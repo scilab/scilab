@@ -54,7 +54,7 @@ clean-java:
 endif
 
 if SWIG
-TARGETS_ALL+=swig
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -72,8 +72,6 @@ swig: $(SWIG_WRAPPERS)
 endif
 
 if GIWS
-TARGETS_ALL+=giws
-
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
@@ -84,7 +82,7 @@ giws: $(GIWS_WRAPPERS)
 	if test ! -z "$(GIWS_WRAPPERS)"; then \
 		for file in $(GIWS_WRAPPERS) ; do \
 			echo "GIWS process of $$file ..."; \
-			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 		done; \
 	fi
 

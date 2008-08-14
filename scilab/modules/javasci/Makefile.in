@@ -63,8 +63,6 @@ DIST_COMMON = $(am__libjavasci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_1 = java
-@JAVASCI_TRUE@@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@@JAVASCI_TRUE@am__append_3 = giws
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -430,8 +428,7 @@ modulename = javasci
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@JAVASCI_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
-@JAVASCI_TRUE@	$(am__append_3)
+@JAVASCI_TRUE@TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -936,6 +933,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@		$(ANT) clean; \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -957,7 +955,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GIWS_TRUE@@JAVASCI_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@JAVASCI_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@JAVASCI_TRUE@		done; \
 @GIWS_TRUE@@JAVASCI_TRUE@	fi
 

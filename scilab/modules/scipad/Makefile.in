@@ -72,11 +72,7 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@@TCLTK_TRUE@am__append_1 = java
-@SWIG_TRUE@@TCLTK_TRUE@am__append_2 = swig
-@GIWS_TRUE@@TCLTK_TRUE@am__append_3 = giws
-@NEED_JAVA_TRUE@@TCLTK_FALSE@am__append_4 = java
-@SWIG_TRUE@@TCLTK_FALSE@am__append_5 = swig
-@GIWS_TRUE@@TCLTK_FALSE@am__append_6 = giws
+@NEED_JAVA_TRUE@@TCLTK_FALSE@am__append_2 = java
 subdir = modules/scipad
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -444,17 +440,14 @@ top_srcdir = @top_srcdir@
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@TCLTK_FALSE@TARGETS_ALL = $(am__append_4) $(am__append_5) \
-@TCLTK_FALSE@	$(am__append_6)
+@TCLTK_FALSE@TARGETS_ALL = $(am__append_2)
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
-@TCLTK_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
-@TCLTK_TRUE@	$(am__append_6)
+@TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -858,6 +851,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @NEED_JAVA_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@@TCLTK_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -879,7 +873,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @GIWS_TRUE@@TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@TCLTK_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@TCLTK_TRUE@		done; \
 @GIWS_TRUE@@TCLTK_TRUE@	fi
 
@@ -995,6 +989,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @NEED_JAVA_TRUE@@TCLTK_FALSE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@@TCLTK_FALSE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@@TCLTK_FALSE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1016,7 +1011,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @GIWS_TRUE@@TCLTK_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@TCLTK_FALSE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@TCLTK_FALSE@		done; \
 @GIWS_TRUE@@TCLTK_FALSE@	fi
 

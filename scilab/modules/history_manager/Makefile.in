@@ -62,8 +62,6 @@ DIST_COMMON = $(libscihistory_manager_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
-@SWIG_TRUE@am__append_3 = swig
-@GIWS_TRUE@am__append_4 = giws
 subdir = modules/history_manager
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -398,6 +396,7 @@ sci_gateway/c/sci_savehistory.c  \
 sci_gateway/c/sci_sethistoryfile.c  \
 sci_gateway/c/sci_historymanager.c
 
+@GUI_TRUE@USEANT = 1
 
 # Includes need for the compilation
 libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/
@@ -442,9 +441,9 @@ includes/InitializeHistoryManager.h \
 includes/TerminateHistoryManager.h
 
 
-####�SWIG Declaration ####
+#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i
-@GUI_TRUE@USEANT = 1
+BUILT_SOURCES = swig
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -454,7 +453,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -495,7 +494,8 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -916,13 +916,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihistory_manager_la_etcdir)" "$(DESTDIR)$(libscihistory_manager_la_rootdir)" "$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)" "$(DESTDIR)$(libscihistory_manager_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -946,6 +948,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1065,6 +1068,7 @@ check-local: $(top_builddir)/scilab-bin
 @NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1086,7 +1090,7 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

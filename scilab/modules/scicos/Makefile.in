@@ -66,11 +66,9 @@ DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
-@SCICOS_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_4 = $(top_builddir)/libs/blas/libsciblas.la
+@SCICOS_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 @OCAML_TRUE@@SCICOS_TRUE@bin_PROGRAMS = $(am__EXEEXT_1)
-@OCAML_TRUE@@SCICOS_TRUE@am__append_5 = .ml .mli .mll .mly .cmo .cmi .cmx
+@OCAML_TRUE@@SCICOS_TRUE@am__append_3 = .ml .mli .mll .mly .cmo .cmi .cmx
 subdir = modules/scicos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -126,7 +124,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@SCICOS_TRUE@	$(am__append_4)
+@SCICOS_TRUE@	$(am__append_2)
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/tree.c src/c/sciblk2i.c src/c/scicos_malloc.c \
 	src/c/import.c src/c/slider.c src/c/scicos.c \
@@ -518,12 +516,12 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci $(am__append_5)
+SUFFIXES = .sci $(am__append_3)
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -665,7 +663,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@SCICOS_TRUE@	$(am__append_4)
+@SCICOS_TRUE@	$(am__append_2)
 
 #### scicos : Conf files ####
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)
@@ -1993,6 +1991,7 @@ check-local: $(top_builddir)/scilab-bin
 @NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -2014,7 +2013,7 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

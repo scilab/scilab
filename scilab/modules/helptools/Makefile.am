@@ -3,8 +3,8 @@
 ### INRIA - Scilab 2008
 ##########
 
-HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp
-#	src/cpp/buildDoc.cpp
+HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
+	src/jni/GiwsException.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
 			sci_gateway/c/gw_helptools.c
@@ -26,6 +26,10 @@ libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+
+if GIWS
+BUILT_SOURCES=giws
+endif
 
 #### Target ######
 modulename=helptools

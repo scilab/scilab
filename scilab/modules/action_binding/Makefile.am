@@ -19,13 +19,18 @@ src/c/dynamic_menus.c
 # List of the gateway c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
 
-####�SWIG Declaration ####
+#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/InterpreterManagement.i
 else
 # List of the c files
 ACTION_BINDING_C_SOURCES = src/noaction_binding/noaction_binding.c \
 src/c/dynamic_menus.c
 endif
+
+if SWIG
+BUILT_SOURCES=swig
+endif
+
 
 # Includes need for the compilation
 libsciaction_binding_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \

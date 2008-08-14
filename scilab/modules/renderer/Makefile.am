@@ -257,8 +257,8 @@ src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
-src/cpp/axesDrawing/AxesSubticksComputer.cpp
-
+src/cpp/axesDrawing/AxesSubticksComputer.cpp \
+src/jni/GiwsException.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
@@ -330,6 +330,10 @@ src/jni/TicksDrawerGL.giws.xml \
 src/jni/GridDrawerGL.giws.xml \
 src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml
+
+if GIWS
+BUILT_SOURCES=giws
+endif
 
 else
 

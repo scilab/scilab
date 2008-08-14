@@ -106,7 +106,8 @@ src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
-sci_gateway/cpp/sci_raise_window.cpp
+sci_gateway/cpp/sci_raise_window.cpp \
+src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -115,6 +116,12 @@ src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \
 src/jni/SwingScilabMenu.giws.xml \
 src/jni/UIElementMapper.giws.xml
+
+
+if GIWS
+BUILT_SOURCES=giws
+endif
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/gw_gui.c \

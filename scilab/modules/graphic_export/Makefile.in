@@ -60,8 +60,6 @@ DIST_COMMON = $(libscigraphic_export_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
 subdir = modules/graphic_export
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -108,7 +106,8 @@ am__libscigraphic_export_la_SOURCES_DIST =  \
 	sci_gateway/c/sci_xs2pdf.c src/cpp/exportToFile.cpp \
 	src/jni/FileExporter.cpp src/cpp/GL2PSConstant.cpp \
 	src/cpp/GL2PSWrapping.cpp src/cpp/JoGLInterface.cpp \
-	src/jni/GL2PSToJOGL.cpp src/jni/JOGLConstant.cpp
+	src/jni/GL2PSToJOGL.cpp src/jni/JOGLConstant.cpp \
+	src/jni/GiwsException.cpp
 @GUI_TRUE@am__objects_1 = libscigraphic_export_la-xs2file.lo \
 @GUI_TRUE@	libscigraphic_export_la-GL2PSConstant_wrap.lo \
 @GUI_TRUE@	libscigraphic_export_la-GL2PSWrapping_wrap.lo \
@@ -130,7 +129,8 @@ am__libscigraphic_export_la_SOURCES_DIST =  \
 @GUI_TRUE@	libscigraphic_export_la-GL2PSWrapping.lo \
 @GUI_TRUE@	libscigraphic_export_la-JoGLInterface.lo \
 @GUI_TRUE@	libscigraphic_export_la-GL2PSToJOGL.lo \
-@GUI_TRUE@	libscigraphic_export_la-JOGLConstant.lo
+@GUI_TRUE@	libscigraphic_export_la-JOGLConstant.lo \
+@GUI_TRUE@	libscigraphic_export_la-GiwsException.lo
 @GUI_FALSE@am_libscigraphic_export_la_OBJECTS =  \
 @GUI_FALSE@	libscigraphic_export_la-nographic_export.lo
 @GUI_TRUE@am_libscigraphic_export_la_OBJECTS = $(am__objects_1) \
@@ -371,7 +371,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/GL2PSWrapping.cpp \
 @GUI_TRUE@src/cpp/JoGLInterface.cpp  \
 @GUI_TRUE@src/jni/GL2PSToJOGL.cpp \
-@GUI_TRUE@src/jni/JOGLConstant.cpp
+@GUI_TRUE@src/jni/JOGLConstant.cpp \
+@GUI_TRUE@src/jni/GiwsException.cpp
 
 @GUI_TRUE@GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
 @GUI_TRUE@src/jni/GL2PSConstant_wrap.c \
@@ -416,6 +417,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/GL2PSToJOGL.giws.xml \
 @GUI_TRUE@src/jni/JOGLConstant.giws.xml
 
+@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -464,7 +466,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -505,7 +507,8 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -580,6 +583,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-GL2PSToJOGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-GL2PSWrapping.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-GL2PSWrapping_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-JOGLConstant.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-JoGLInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-exportToFile.Plo@am__quote@
@@ -793,6 +797,13 @@ libscigraphic_export_la-JOGLConstant.lo: src/jni/JOGLConstant.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_la-JOGLConstant.lo `test -f 'src/jni/JOGLConstant.cpp' || echo '$(srcdir)/'`src/jni/JOGLConstant.cpp
 
+libscigraphic_export_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_la-GiwsException.Tpo -c -o libscigraphic_export_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphic_export_la-GiwsException.Tpo $(DEPDIR)/libscigraphic_export_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscigraphic_export_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -942,13 +953,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphic_export_la_etcdir)" "$(DESTDIR)$(libscigraphic_export_la_rootdir)" "$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphic_export_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -972,6 +985,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1091,6 +1105,7 @@ check-local: $(top_builddir)/scilab-bin
 @NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1112,7 +1127,7 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

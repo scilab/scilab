@@ -34,6 +34,8 @@ if GUI
 # List of the c files
 HISTORY_MANAGER_C_SOURCES += src/jni/HistoryManagement_wrap.c
 
+USEANT=1
+
 endif
 
 
@@ -82,14 +84,9 @@ includes/HistoryManager.h \
 includes/InitializeHistoryManager.h \
 includes/TerminateHistoryManager.h
 
-####�SWIG Declaration ####
+#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i
-
-if GUI
-
-USEANT=1
-
-endif
+BUILT_SOURCES = swig
 
 # Provides macros compilation, Java compilation, cleaning
 include $(top_srcdir)/Makefile.incl.am

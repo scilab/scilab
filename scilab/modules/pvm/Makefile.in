@@ -75,11 +75,7 @@ DIST_COMMON = $(am__libscipvm_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@@PVM_TRUE@am__append_1 = java
-@PVM_TRUE@@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@@PVM_TRUE@am__append_3 = giws
-@NEED_JAVA_TRUE@@PVM_FALSE@am__append_4 = java
-@PVM_FALSE@@SWIG_TRUE@am__append_5 = swig
-@GIWS_TRUE@@PVM_FALSE@am__append_6 = giws
+@NEED_JAVA_TRUE@@PVM_FALSE@am__append_2 = java
 subdir = modules/pvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -507,17 +503,14 @@ top_srcdir = @top_srcdir@
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@PVM_FALSE@TARGETS_ALL = $(am__append_4) $(am__append_5) \
-@PVM_FALSE@	$(am__append_6)
+@PVM_FALSE@TARGETS_ALL = $(am__append_2)
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
-@PVM_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
-@PVM_TRUE@	$(am__append_6)
+@PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1358,6 +1351,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @NEED_JAVA_TRUE@@PVM_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@@PVM_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@@PVM_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1379,7 +1373,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@PVM_TRUE@		done; \
 @GIWS_TRUE@@PVM_TRUE@	fi
 
@@ -1495,6 +1489,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @NEED_JAVA_TRUE@@PVM_FALSE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@@PVM_FALSE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@@PVM_FALSE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1516,7 +1511,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_FALSE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@PVM_FALSE@		done; \
 @GIWS_TRUE@@PVM_FALSE@	fi
 

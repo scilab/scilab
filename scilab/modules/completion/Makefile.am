@@ -10,6 +10,8 @@
 if GUI
 #List of the c files
 COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
+USEANT=1
+
 endif
 
 # List of the c files
@@ -54,28 +56,29 @@ modulename=completion
 libscicompletion_la_rootdir = $(mydatadir)
 libscicompletion_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-####�completion : init scripts ####
+#### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc
 libscicompletion_la_etc_DATA = etc/completion.quit etc/completion.start
 
-####�completion : gateway declaration ####
+#### completion : gateway declaration ####
 libscicompletion_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 
-####�completion : include files ####
+#### completion : include files ####
 libscicompletion_la_includedir=$(pkgincludedir)/completion
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h
 
-
-####�SWIG Declaration ####
+#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/Completion.i
+
+if SWIG
+BUILT_SOURCES=swig
+endif
+
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 
-if GUI
-USEANT=1
-endif
 
 include $(top_srcdir)/Makefile.incl.am

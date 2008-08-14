@@ -59,8 +59,6 @@ DIST_COMMON = $(am__libscitclsci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@@TCLTK_TRUE@am__append_1 = java
-@SWIG_TRUE@@TCLTK_TRUE@am__append_2 = swig
-@GIWS_TRUE@@TCLTK_TRUE@am__append_3 = giws
 subdir = modules/tclsci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -662,8 +660,7 @@ top_srcdir = @top_srcdir@
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
-@TCLTK_TRUE@	$(am__append_3)
+@TCLTK_TRUE@TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1381,6 +1378,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @NEED_JAVA_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@@TCLTK_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1402,7 +1400,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GIWS_TRUE@@TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@TCLTK_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@TCLTK_TRUE@		done; \
 @GIWS_TRUE@@TCLTK_TRUE@	fi
 

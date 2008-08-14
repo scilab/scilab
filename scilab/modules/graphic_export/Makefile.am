@@ -12,7 +12,8 @@ src/cpp/GL2PSConstant.cpp \
 src/cpp/GL2PSWrapping.cpp \
 src/cpp/JoGLInterface.cpp  \
 src/jni/GL2PSToJOGL.cpp \
-src/jni/JOGLConstant.cpp
+src/jni/JOGLConstant.cpp \
+src/jni/GiwsException.cpp
 
 GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
 src/jni/GL2PSConstant_wrap.c \
@@ -56,6 +57,9 @@ GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml
 
+if GIWS
+BUILT_SOURCES=giws
+endif
 
 else
 

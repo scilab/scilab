@@ -63,8 +63,6 @@ DIST_COMMON = $(libscicompletion_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
 subdir = modules/completion
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -341,6 +339,7 @@ top_srcdir = @top_srcdir@
 
 #List of the c files
 @GUI_TRUE@COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
+@GUI_TRUE@USEANT = 1
 
 # List of the c files
 COMPLETION_C_SOURCES = src/c/completion.c \
@@ -383,26 +382,23 @@ modulename = completion
 libscicompletion_la_rootdir = $(mydatadir)
 libscicompletion_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-####�completion : init scripts ####
+#### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc
 libscicompletion_la_etc_DATA = etc/completion.quit etc/completion.start
 
-####�completion : gateway declaration ####
+#### completion : gateway declaration ####
 libscicompletion_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 
-####�completion : include files ####
+#### completion : include files ####
 libscicompletion_la_includedir = $(pkgincludedir)/completion
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h
 
 
-####�SWIG Declaration ####
+#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/Completion.i
-
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-@GUI_TRUE@USEANT = 1
+@SWIG_TRUE@BUILT_SOURCES = swig
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -412,7 +408,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -453,7 +449,8 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .lo .o .obj
@@ -773,13 +770,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicompletion_la_etcdir)" "$(DESTDIR)$(libscicompletion_la_rootdir)" "$(DESTDIR)$(libscicompletion_la_sci_gatewaydir)" "$(DESTDIR)$(libscicompletion_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -803,6 +802,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -922,6 +922,7 @@ check-local: $(top_builddir)/scilab-bin
 @NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -943,7 +944,7 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
@@ -1035,6 +1036,9 @@ install-data-local:
 @NEED_JAVA_FALSE@clean-local: clean-macros
 
 .PHONY: macros java swig giws
+
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

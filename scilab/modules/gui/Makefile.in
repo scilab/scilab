@@ -60,8 +60,6 @@ host_triplet = @host@
 DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -183,7 +181,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp \
 	src/cpp/CallClipboard.cpp src/cpp/exportUserInterface.cpp \
 	src/jni/LookAndFeelManager.cpp \
-	sci_gateway/cpp/sci_raise_window.cpp
+	sci_gateway/cpp/sci_raise_window.cpp src/jni/GiwsException.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-TerminateGui.lo \
 @GUI_TRUE@	libscigui_la-buildMainWindowTitle.lo \
@@ -307,7 +305,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-CallClipboard.lo \
 @GUI_TRUE@	libscigui_la-exportUserInterface.lo \
 @GUI_TRUE@	libscigui_la-LookAndFeelManager.lo \
-@GUI_TRUE@	libscigui_la-sci_raise_window.lo
+@GUI_TRUE@	libscigui_la-sci_raise_window.lo \
+@GUI_TRUE@	libscigui_la-GiwsException.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -547,7 +546,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -687,7 +686,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/CallClipboard.cpp \
 @GUI_TRUE@src/cpp/exportUserInterface.cpp \
 @GUI_TRUE@src/jni/LookAndFeelManager.cpp \
-@GUI_TRUE@sci_gateway/cpp/sci_raise_window.cpp
+@GUI_TRUE@sci_gateway/cpp/sci_raise_window.cpp \
+@GUI_TRUE@src/jni/GiwsException.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
@@ -697,6 +697,7 @@ JARMASK = *.jar
 @GUI_TRUE@src/jni/SwingScilabMenu.giws.xml \
 @GUI_TRUE@src/jni/UIElementMapper.giws.xml
 
+@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 @GUI_TRUE@sci_gateway/c/gw_gui.c \
 @GUI_TRUE@sci_gateway/c/sci_x_mdialog.c \
@@ -916,7 +917,8 @@ images/icons/window-new.png \
 images/icons/edit-cut.png
 
 @GUI_TRUE@USEANT = 1
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -1033,6 +1035,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectVisible.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitProgressionBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitWaitBar.Plo@am__quote@
@@ -2068,6 +2071,13 @@ libscigui_la-sci_raise_window.lo: sci_gateway/cpp/sci_raise_window.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/cpp/sci_raise_window.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_raise_window.cpp
 
+libscigui_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GiwsException.Tpo -c -o libscigui_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GiwsException.Tpo $(DEPDIR)/libscigui_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscigui_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -2253,13 +2263,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -2283,6 +2295,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -2408,6 +2421,7 @@ check-local: $(top_builddir)/scilab-bin
 @NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
+
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -2429,7 +2443,7 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

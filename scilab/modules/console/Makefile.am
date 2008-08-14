@@ -7,7 +7,8 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
+src/jni/GiwsException.cpp
 
 CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
@@ -28,6 +29,17 @@ src/c/GuiManagement.c \
 src/c/dropFiles.c
 
 GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
+
+BUILT_SOURCES=
+
+if GIWS
+BUILT_SOURCES+=giws
+endif
+
+if SWIG
+BUILT_SOURCES+=swig
+endif
+
 
 else
 
@@ -69,7 +81,7 @@ libsciconsole_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
 
-####�SWIG Declaration ####
+#### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GuiManagement.i
 
 ####�console : include files ####
