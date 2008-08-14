@@ -24,4 +24,4 @@ ierr = execstr("mtlb_save(my_mat_file,""x"")","errcatch");
 warning('on');
 
 if ierr <> 10000 then pause,end
-if lasterror()<>gettext("Attempt to write an unsupported data type to an ASCII file.") then pause; end
+if lasterror()<>gettext("mtlb_save: Attempt to write an unsupported data type to an ASCII file.") then pause,end
