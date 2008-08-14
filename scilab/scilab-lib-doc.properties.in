@@ -13,5 +13,7 @@ fop.jar=@FOP@
 ; A complete MathML rendering solution 
 jeuclid-core.jar=@JEUCLID_CORE@
 
+commons-io.jar=@COMMONS_IO@
+
 library.helptools.dir=${modules.dir}/helptools/${build.jar.dir}/
 library.helptools.name=org.scilab.modules.helptools.jar
