@@ -1053,8 +1053,6 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 204:
 		{
-			/* not used  */
-			/* only for compatibility */
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
@@ -1530,7 +1528,18 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			displayAndStoreError(_("Too many commands defined.\n"));
 		}
 		break;
-		case 278: case 279: case 280:
+                case 278: 
+		  {
+		    char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
+		    if (NameVarOnStack)
+		      {
+			displayAndStoreError(_("%s: Input arguments should have the same formal variable name.\n"),NameVarOnStack);
+			FREE(NameVarOnStack);
+			NameVarOnStack = NULL;
+		      }
+		  }
+		  break;
+                 case 279: case 280:
 		{
 			/* no message  */
 		}
