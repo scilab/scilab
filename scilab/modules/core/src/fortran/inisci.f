@@ -178,7 +178,7 @@ c     .  Stack
 c     .  -----
 c     
 c     . initial values for number of local and global variables
-c @TODO : What is 768 ?
+c @TODO : What is 768 (512 + 256) ?
       isiz=isizt-768
 
 c     .  memory allocation
