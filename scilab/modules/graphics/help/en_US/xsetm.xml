@@ -45,7 +45,7 @@
     linkend="get">get</link> functions as well as the <link
     linkend="graphics_entities">graphics_entities</link> help page). It is
     possible to start a more convenient property editor using <link
-    linkend="ged(1)">ged</link>.</para>
+    linkend="ged">ged</link>.</para>
   </refsection>
 
   <refsection>

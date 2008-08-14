@@ -55,7 +55,7 @@
     special meaning.</para>
 
     <para>The total number of actual input arguments is given by <link
-    linkend="???">argn(2)</link>.</para>
+    linkend="argn(2)">argn(2)</link>.</para>
   </refsection>
 
   <refsection>
