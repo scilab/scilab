@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xs2emf" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="xs2fig" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@
 
       <member><link linkend="xs2ps">xs2ps</link></member>
 
-      <member><link linkend="xs2fig">xs2emf</link></member>
+      <member><link linkend="xs2emf">xs2emf</link></member>
     </simplelist>
   </refsection>
 
