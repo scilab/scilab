@@ -51,7 +51,7 @@ public class BuildJavaHelp {
      * @return The result of the operation
 	 */
 	private static boolean buildJar(String outputDirectory, String language) {
-		String baseName = "scilab_" + language + "_help";
+		String baseName = Helpers.getBaseName(language);
 		JarOutputStream jarFile = null;
 		FileOutputStream fileOutputStream = null;
 		final int compressionLevel = 5;
