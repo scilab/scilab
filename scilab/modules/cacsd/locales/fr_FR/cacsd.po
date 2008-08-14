@@ -761,14 +761,6 @@ msgid "%s: Infinite solution.\n"
 msgstr "%s: Solution infinie.\n"
 
 #
-# File: macros/invsyslin.sci, line: 18
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
-msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Un système carré est "
-"attendu.\n"
-
-#
 # File: macros/invrs.sci, line: 15
 # File: macros/st_ility.sci, line: 21
 # File: macros/cls2dls.sci, line: 24
@@ -1090,8 +1082,7 @@ msgstr "%s: %s a un zéro sur ou proche de l'axe imaginaire.\n"
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée  #%d: %s n'est pas de plein "
-"rang.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée  #%d: %s n'est pas de plein rang.\n"
 
 #
 # File: macros/h_inf.sci, line: 243
@@ -1104,8 +1095,7 @@ msgstr "%s: gamma est trop petit.\n"
 # File: macros/h_inf.sci, line: 452
 #, c-format
 msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
-msgstr ""
-"%s: Une valeur propre du controlleur %s est proche de l'axe imaginaire.\n"
+msgstr "%s: Une valeur propre du controlleur %s est proche de l'axe imaginaire.\n"
 
 #
 # File: macros/h_inf.sci, line: 352
@@ -1238,12 +1228,8 @@ msgstr ""
 #
 # File: macros/invsyslin.sci, line: 18
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square system expected.\n"
-"'),"
-msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Un système carré est "
-"attendu.\n"
+msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
+msgstr "%s: Mauvaise taille pour l'argument d'entrée #%d: Un système carré est attendu.\n"
 
 #
 # File: macros/dscr.sci, line: 18
