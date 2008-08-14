@@ -94,7 +94,7 @@ int sci_buildDoc(char *fname,unsigned long l)
 	{
 		if (GetType(1) != sci_strings) 
 		{
-			Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 			return 0;
 			// Wrong type string
 		}
@@ -131,7 +131,7 @@ int sci_buildDoc(char *fname,unsigned long l)
 		if (GetType(2) != sci_strings)
 		{
 			// Wrong type string
-			Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong for type for input argument #%d: String expected.\n"),fname,2);
 			return 0;
 		}
 
