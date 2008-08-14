@@ -414,6 +414,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\GiwsException.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\GuiManagement.c"
 				>
 			</File>
@@ -496,6 +500,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\GetCharWithoutOutput.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.hxx"
 				>
 			</File>
 			<File

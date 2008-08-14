@@ -380,6 +380,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\GiwsException.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_helptools.c"
 				>
 			</File>
@@ -394,6 +398,10 @@
 			>
 			<File
 				RelativePath="..\jni\BuildDocObject.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.hxx"
 				>
 			</File>
 			<File
