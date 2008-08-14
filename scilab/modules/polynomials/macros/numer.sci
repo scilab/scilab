@@ -12,21 +12,15 @@ function num=numer(r)
 //returns the numerator num of a rational function matrix r (r may be
 //also a scalar or polynomial matrix
 //!
-r1=r(1);
-select type(r)
-case 1 then
-  num=r;
-case 2 then
-  num=r;
+  select typeof(r)
+  case 'constant' then
+    num=r;
+  case 'polynomial' then
+    num=r;
+  case 'rational' then
+    num=r.num
+  else
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A floating point number or polynomial or rational fraction array expected.\n"),"numer",1))
+  end
 
-//-compat next case retained for list/tlist compatibility
-case 15 then
-  if r1(1)<>'r' then error(92,1),end
-  num=r(2)
-case 16 then
-  if r1(1)<>'r' then error(92,1),end
-  num=r(2)
-else
-  error(92,1)
-end
 endfunction

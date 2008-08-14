@@ -17,22 +17,14 @@ function den=denom(r)
 //r: rational function matrix (may be polynomial or scalar matrix)
 //den: polynomial matrix
 //!
-select type(r)
-case 1 then
-  den=ones(r);
-case 2 then
-  den=ones(r);
-
-//-compat next case retained for list/tlist compatibility
-case 15 then
-  r1=r(1);
-  if r1(1)<>'r' then error(92,1),end
-  den=r(3)
-case 16 then
-  r1=r(1);
-  if r1(1)<>'r' then error(92,1),end
-  den=r(3)
-else
-  error(92,1)
-end
+  select typeof(r)
+  case 'constant' then
+    den=ones(r);
+  case 'polynomial' then
+    den=ones(r);
+  case 'rational' then
+    den=r.den
+  else
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A floating point number or polynomial or rational fraction array expected.\n"),"denom",1))
+  end
 endfunction

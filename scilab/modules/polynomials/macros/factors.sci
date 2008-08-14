@@ -14,21 +14,42 @@ function [lnum,lden,g]=factors(P,flag)
 // and in lden the factors of denominator of P. g is the gain.
 // if flag=='c' unstable roots are reflected vs the imaginary axis
 // if flag=='d' unstable roots are reflected vs unit circle
-[LHS,RHS]=argn(0);
-if RHS==1 then flag=[];end
-if type(P)==2 then [lnum,lden]=pfactors(P,flag);
-  if LHS >=3 then error('invalid LHS');end
-  return;end
-  if type(P)==16 then
-    if typeof(P)=='state-space' then P=ss2tf(P);end
-    [lnum,gn]=pfactors(P('num'),flag);
-    [lden,gd]=pfactors(P('den'),flag);g=gn/gd;
+  [LHS,RHS]=argn(0);
+  if RHS==1 then flag=[];end
+  select typeof(P)
+  case 'polynomial' then 
+    if size(P,'*')<>1 then
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n"),"factors",1))
+    end
+    [lnum,lden]=pfactors(P,flag);
+  case 'rational' then
+    if size(P,'*')<>1 then
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: A rational fraction expected.\n"),"factors",1))
+    end
+    [lnum,gn]=pfactors(P.num,flag);
+    [lden,gd]=pfactors(P.den,flag);
+    g=gn/gd;
     if LHS==1 then
       num=g;
       for k=lnum;num=num.*k;end
       den=1;
       for k=lden;den=den.*k;end
-      lnum=syslin(P('dt'),num,den);return
+      lnum=syslin(P.dt,num,den);return
     end
+  case 'state-space' then 
+    if size(P,'*')<>1 then
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: A single input, single output system expected.\n"),"factors",1))
+    end
+
+    P=ss2tf(P)
+    [lnum,gn]=pfactors(P.num,flag);
+    [lden,gd]=pfactors(P.den,flag);g=gn/gd;
+    if LHS==1 then
+      num=g;for k=lnum;num=num.*k;end
+      den=1;for k=lden;den=den.*k;end
+      lnum=syslin(P.dt,num,den);return
+    end
+  else
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system or polynomial array expected.\n" ),"factors",1))
   end
 endfunction

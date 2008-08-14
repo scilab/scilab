@@ -20,10 +20,12 @@ function r=horner(p,x)
 // See also: freq, repfreq.
 //!
 //
-  if argn(2)<>2 then error('horner requires two arguments'),end
+  if argn(2)<>2 then 
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),'horner',2))
+  end
   if x==[]|p==[] then r=[],return,end
   tp=type(p)
-  if tp<=10 then
+  if tp<=2 then
     [m,n]=size(p)
     if m==-1 then indef=%t,m=1,n=1,p=p+0;else indef=%f,end
     if m*n==1 then //special case for a single polynomial
@@ -47,9 +49,11 @@ function r=horner(p,x)
       end
     end
     if indef then r=r*eye(),end
-  elseif tp==16 then
+  elseif typeof(p)=='rational' then
     r=horner(p(2),x)./horner(p(3),x),
   elseif tp==129 then
     r=horner(p(:),x);r=r(1):r(2):r(3)
+  else
+    error(msprintf(gettext("%s: Unexpected type for input argument #%d.\n"),'horner',1))
   end
 endfunction

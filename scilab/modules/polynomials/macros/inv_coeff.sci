@@ -21,7 +21,7 @@ function [P]=inv_coeff(c,d,name)
     return,
   end
   if modulo(m,d+1) <> 0 then
-    error(msprintf(_("%s: incompatible  input arguments %d and %d"),"inv_coeff",1,2))
+    error(msprintf(_("%s: incompatible input arguments %d and %d"),"inv_coeff",1,2))
   end
   p=poly(0,name);
   P=p.^(0:d)';
