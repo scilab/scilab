@@ -125,7 +125,7 @@ jthrowable javaException = curEnv->ExceptionOccurred();
 // retrieve informations from the exception.
 // get method id
 jmethodID toStringId = curEnv->GetMethodID(curEnv->GetObjectClass(javaException),
-                                               "toString",
+                                               "getMessage",
                                                "()Ljava/lang/String;");
 
 // call toString
@@ -306,7 +306,7 @@ jstring description = (jstring) curEnv->CallObjectMethod(javaException, toString
   */
   JniCallMethodException::JniCallMethodException(JNIEnv * curEnv) throw() : JniException(curEnv)
   {
-  std::string errorMessage = "Exception when calling Java method : ";
+  std::string errorMessage = "Exception when calling Java method: ";
   errorMessage += getJavaDescription() + "\n" + getJavaStackTrace();
   setErrorMessage(errorMessage);
   }
