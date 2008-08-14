@@ -185,6 +185,8 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
   int NbrPts, current_period_counter;
   int i,j;
   int c__1 =   1 ;
+  /* To know if one or more subwindows need to be redrawn */
+  BOOL needRedraw = FALSE;
   double period;
   /*Go on the window*/
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));
@@ -193,6 +195,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
       /*if we have to redraw the axis for x-axis*/
       if (scoGetNewDraw(pScopeMemory,i) < 0)
         {
+          needRedraw = TRUE;
           pAxes = scoGetPointerAxes(pScopeMemory,i);
           period = scoGetPeriod(pScopeMemory,i);
 
@@ -200,7 +203,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
           current_period_counter = (int)(t/period);
           pSUBWIN_FEATURE(pAxes)->SRect[0] = period*(current_period_counter);
           pSUBWIN_FEATURE(pAxes)->SRect[1] = period*(current_period_counter+1);
-	  forceRedraw(pAxes);
+	  /*forceRedraw(pAxes);*/
           /*Don't forget to save the new value - because we have activated the refresh we are going one step over*/
           scoSetPeriodCounter(pScopeMemory,i,current_period_counter);
           
@@ -228,12 +231,12 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
                     //** pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
 
                     pPOLYLINE_FEATURE(pLongDraw)->n1 = 0;
-                    //We copy previous values to ensure the continuity
+                    /* We copy previous values to ensure the continuity */
                     C2F(dcopy)(&NbrPts,pPOLYLINE_FEATURE(pShortDraw)->pvx,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx,&c__1);
                     C2F(dcopy)(&NbrPts,pPOLYLINE_FEATURE(pShortDraw)->pvy,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy,&c__1);
                     pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPts;
                     
-                    //The next starting point
+                    /* The next starting point */
                     pPOLYLINE_FEATURE(pShortDraw)->pvx[0] = pPOLYLINE_FEATURE(pLongDraw)->pvx[NbrPts-1];
                     pPOLYLINE_FEATURE(pShortDraw)->pvy[0] = pPOLYLINE_FEATURE(pLongDraw)->pvy[NbrPts-1];
                     pPOLYLINE_FEATURE(pShortDraw)->n1 = 1;
@@ -262,15 +265,42 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
               sciprint("SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n");
               break;
             }
-          //Dont forget to reinit it
+          /* Dont forget to reinit it */
           scoSetNewDraw(pScopeMemory,i,0);
 
-          //we have modified some thing it is that we need to redraw the subwin
+          /* we have modified some thing it is that we need to redraw the subwin */
           forceRedraw(pShortDraw);
 	  forceRedraw(pLongDraw);
-	  sciDrawSingleObj(pAxes);
+	  forceRedraw(pAxes);
         }
     }
+
+  if (needRedraw)
+  {
+    /* redraw all the long draws */
+    for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+    {
+      for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+      {
+        pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+        sciSetVisibility(pLongDraw, TRUE);
+        forceRedraw(pLongDraw);
+      }
+    }
+
+    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+
+    /* hide them as before */
+    for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+    {
+      for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+      {
+        pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+        sciSetVisibility(pLongDraw, FALSE);
+        forceRedraw(pLongDraw);
+      }
+    }
+  }
   
 
   //Now that we have redraw the window we can reactivate the shortdraw because there will be more than one point in the futur

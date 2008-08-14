@@ -63,3 +63,4 @@ sciGetText
 getFigureFromIndex
 printStrMat
 copyStrMatElement
+sciSetVisibility
