@@ -115,9 +115,6 @@ extern void sciAxesVerticesIndices( integer insideU[4],
 
 extern void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest ) ;
 
-
-void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2], int offsets[2] ) ;
-
 void sciDrawFigure( int numFigure ) ;
 
 

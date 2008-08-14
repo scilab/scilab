@@ -104,6 +104,11 @@ public:
    */
   virtual void getViewingArea(int * xPos, int * yPos, int * width, int * height);
 
+  /**
+   * Get viewport of the canvas
+   */
+  virtual void getViewport(int viewport[4]);
+
 protected:
 
   /*----------------------------------------------------------------*/

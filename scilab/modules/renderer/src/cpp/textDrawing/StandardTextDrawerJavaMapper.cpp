@@ -69,6 +69,11 @@ void StandardTextDrawerJavaMapper::setTextParameters(int textAlignment, int colo
   m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, fontSize, rotationAngle, useFractionalMetrics);
 }
 /*---------------------------------------------------------------------------------*/
+void StandardTextDrawerJavaMapper::updateParentFigure(int parentFigureIndex)
+{
+  m_pJavaObject->updateParentFigure(parentFigureIndex);
+}
+/*---------------------------------------------------------------------------------*/
 void StandardTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
 {
   m_pJavaObject->setTextContent(text, nbRow * nbCol, nbRow, nbCol);
@@ -84,14 +89,11 @@ double * StandardTextDrawerJavaMapper::drawTextContent(void)
   return m_pJavaObject->drawTextContent();
 }
 /*---------------------------------------------------------------------------------*/
-double * StandardTextDrawerJavaMapper::getBoundingRectangle(void)
+double * StandardTextDrawerJavaMapper::getScreenBoundingBox(double centerPixX,
+                                                            double centerPixY,
+                                                            double centerPixZ)
 {
-  return m_pJavaObject->getBoundingRectangle();
-}
-/*---------------------------------------------------------------------------------*/
-long * StandardTextDrawerJavaMapper::getScreenBoundingBox(void)
-{
-  return m_pJavaObject->getScreenBoundingBox();
+  return m_pJavaObject->getScreenBoundingBox(centerPixX, centerPixY, centerPixZ);
 }
 /*---------------------------------------------------------------------------------*/
 }

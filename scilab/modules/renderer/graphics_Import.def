@@ -165,3 +165,4 @@ isFigureModel
 sciGetSubwinIndex
 sciGetNbTypedObjects
 sciGetAutoSubticks
+sciisTextEmpty

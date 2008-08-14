@@ -180,13 +180,11 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 	/**
 	 * Create a new instance of SciTextRenderer displaying the font font.
 	 * @param font that will be used in the created SciTextRenderer
-	 * @param color color of the text to display
 	 * @param useFractionalMetrics if true the generated renderer will be able to use fractional metrics
 	 * @return new instance of SciTextRenderer
 	 */
-	public SciTextRenderer createTextRenderer(Font font, double[] color, boolean useFractionalMetrics) {
+	public SciTextRenderer createTextRenderer(Font font, boolean useFractionalMetrics) {
 		SciTextRenderer res = factory.createTextRenderer(getTextRenderer(font, useFractionalMetrics), font);
-		res.setColor(color);
 		res.setUseFractionalMetrics(useFractionalMetrics);
 		return res;
 	}

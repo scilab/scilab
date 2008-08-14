@@ -21,65 +21,155 @@
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
-#include "DrawObjects.h"
 #include "StringBox.h"
 #include "localization.h"
-#include "DrawingBridge.h"
 #include "axesScale.h"
+#include "getPropertyAssignedValue.h"
+#include "CurrentObjectsManagement.h"
+
+#define DEFAULT_ANGLE 0.0
+
 /*--------------------------------------------------------------------------*/
-int sci_StringBox( char * fname, unsigned long fname_len )
+static int getScalarFromStack(int paramIndex, char * funcName, double * res);
+/*--------------------------------------------------------------------------*/
+static int getScalarFromStack(int paramIndex, char * funcName, double * res)
 {
-  integer    two   = 2     ;
-  integer    four  = 4     ;
-  integer    m,n           ;
-  integer    stackPointer  ;
-  double     corners[4][2] ; /* the four edges of the boundingRect */
-  sciPointObj * pText = NULL ;
-
-  /* The function should be called with stringbox( handle ) */
-  CheckRhs( 1, 1 ) ;
-  CheckLhs( 0, 1 ) ;
-
-  if ( VarType(1) != sci_handles )
+  int m;
+  int n;
+  int stackPointer;
+  if ( VarType(paramIndex) != sci_matrix )
   {
-    Scierror(999,_("%s: Wrong type for input argument #%d: Only one text handle expected.\n"),fname, 1);
-    return 0 ;
+    Scierror(999,_("%s: Wrong type for input argument #%d: Real scalar expected.\n"), funcName, paramIndex);
+    return -1 ;
   }
 
   /* get the handle */
-  GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &m, &n, &stackPointer );
+  GetRhsVar( paramIndex, MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &stackPointer );
 
   if ( m * n != 1 )
   {
-	  Scierror(999,_("%s: Wrong type for input argument #%d: Only one text handle expected.\n"),fname, 1);
-    return 0 ;
+    Scierror(999,_("%s: Wrong size for input argument #%d: Real scalar expected.\n"), funcName, paramIndex);
+    return -1 ;
   }
 
-  pText = sciGetPointerFromHandle( (unsigned long) *hstk( stackPointer ) ) ;
+  *res = getDoubleFromStack(stackPointer);
+  return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sci_stringbox( char * fname, unsigned long fname_len )
+{
+  int two   = 2;
+  int four  = 4;
+  int stackPointer;
+  double corners[4][2]; /* the four edges of the boundingRect */
+  
 
-  if ( pText == NULL )
+  /* The function should be called with stringbox( handle ) */
+  CheckRhs( 1, 6 ) ;
+  CheckLhs( 0, 1 ) ;
+
+  if (Rhs == 1)
   {
-    Scierror(999,_("%s: The handle is not valid.\n"),fname);
-    return 0 ;
-  }
+    int m;
+    int n;
+    /* A text handle should be specified */
+    sciPointObj * pText = NULL ;
+    if ( VarType(1) != sci_handles )
+    {
+      Scierror(999,_("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
+      return 0 ;
+    }
 
-  if ( sciGetEntityType( pText ) == SCI_LABEL )
+    /* get the handle */
+    GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &m, &n, &stackPointer );
+    if ( m * n != 1 )
+    {
+      Scierror(999,_("%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
+      return 0 ;
+    }
+
+    /* Get the handle and check that this is a text handle */
+    pText = sciGetPointerFromHandle( getHandleFromStack(stackPointer) ) ;
+
+    if ( pText == NULL )
+    {
+      Scierror(999,_("%s: The handle is not valid.\n"),fname);
+      return 0 ;
+    }
+
+    if ( sciGetEntityType( pText ) == SCI_LABEL )
+    {
+      // a label, get the real text
+      pText = pLABEL_FEATURE( pText )->text ;
+    }
+    else if ( sciGetEntityType( pText ) != SCI_TEXT )
+    {
+      Scierror(999,_("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
+      return 0 ;
+    }
+
+    /* update stringbox */
+    updateTextBounds(pText);
+
+    /* get the string box */
+    sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;
+    
+  }
+  else if (Rhs == 2)
   {
-    pText = pLABEL_FEATURE( pText )->text ;
+     Scierror(999,_("%s: Wrong number of input arguments: %d or %d to %d expected.\n"),fname, 1, 3, 6);
+     return 0 ;
   }
-  else if ( sciGetEntityType( pText ) != SCI_TEXT )
+  else
   {
-	  Scierror(999,_("%s: Wrong type for input argument #%d: Only one text handle expected.\n"),fname, 1);
-    return 0 ;
+    sciPointObj * parentSubwin = sciGetCurrentSubWin();
+    char ** text = NULL;
+    int textNbRow;
+    int textNbCol;
+    double xPos;
+    double yPos;
+    double angle = DEFAULT_ANGLE;
+    int fontId = sciGetFontStyle(parentSubwin);
+    double fontSize = sciGetFontSize(parentSubwin);
+
+    /* Check that first argument is a string */
+    if ( VarType(1) != sci_strings )
+    {
+      Scierror(999,_("%s: Wrong type for input argument #%d: 2D array of strings expected.\n"), fname, 1);
+      return 0 ;
+    }
+    GetRhsVar( 1, MATRIX_OF_STRING_DATATYPE, &textNbRow, &textNbCol, &stackPointer );
+    /* retrieve it */
+    text = getStringMatrixFromStack(stackPointer);
+
+    /* Second and third argument should be scalars */
+    if (getScalarFromStack(2, fname, &xPos) < 0) { return 0; }
+    if (getScalarFromStack(3, fname, &yPos) < 0) { return 0; }
+
+    if (Rhs >= 4)
+    {
+      /* angle is defined */
+      if (getScalarFromStack(4, fname, &angle) < 0) { return 0; }
+    }
+
+    if (Rhs >= 5)
+    {
+      double fontIdD;
+      /* font style is defined */
+      if (getScalarFromStack(5, fname, &fontIdD) < 0) { return 0; }
+      fontId = (int) fontIdD;
+    }
+
+    if (Rhs >= 6)
+    {
+      /* font size is defined */
+      if (getScalarFromStack(6, fname, &fontSize) < 0) { return 0; }
+    }
+
+    /* compute the box */
+    getTextBoundingBox(text, textNbRow, textNbCol, xPos, yPos, angle, fontId, fontSize, corners);
   }
-
-  /* create a window if needed to initialize the X11 graphic context  */
-
-  /* update stringbox */
-  updateTextBounds(pText);
-
-  /* get the string box */
-  sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;
+  
 
   /* copy everything into the lhs */
   CreateVar( Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE, &two, &four, &stackPointer );
@@ -97,3 +187,4 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 }
 
 /*--------------------------------------------------------------------------*/
+#undef DEFAULT_ANGLE

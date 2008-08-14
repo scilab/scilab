@@ -127,6 +127,11 @@ public:
   virtual void getViewingArea(int * xPos, int * yPos, int * width, int * height) = 0;
 
   /**
+   * Get viewport of the canvas
+   */
+  virtual void getViewport(int viewport[4]) = 0;
+
+  /**
    * Add an axes reverse strategy.
    */
   void setAxesReverse(bool axisReverseX, bool axisReverseY, bool axisReverseZ);

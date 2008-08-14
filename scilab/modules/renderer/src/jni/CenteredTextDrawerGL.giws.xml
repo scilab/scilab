@@ -36,13 +36,17 @@
     </method>
     <method name="drawTextContent" returnType="double[]">
     </method>
-    <method name="getBoundingRectangle" returnType="double[]">
-    </method>
-    <method name="getScreenBoundingBox" returnType="int[]">
-    </method>
     <method name="setFilledBoxSize" returnType="void">
       <param type="double" name="boxWidth" />
       <param type="double" name="boxHeight" />
+    </method>
+    <method name="getScreenBoundingBox" returnType="double[]">
+      <param type="double" name="centerPixX" />
+      <param type="double" name="centerPixY" />
+      <param type="double" name="centerPixZ" />
+    </method>
+    <method name="updateParentFigure" returnType="double[]">
+      <param type="int" name="parentFigureIndex" />
     </method>
   </object>
 </package>

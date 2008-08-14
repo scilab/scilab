@@ -20,12 +20,13 @@
 
 /**
 * interface function for the StringBox routine :
-* rect = StringBox( handle )
+* rect = stringbox( handle )
+* rect = stringbox(str, x, y, [angle, [fontId, [fontSize]]])
 *
 * @param[in] fname     name of the routine (ie StringBox)
 * @param[in] fname_len length of fname
 * @return 0 if success, -1 otherwise
 */
-int sci_StringBox( char * fname, unsigned long fname_len ) ;
+int sci_stringbox( char * fname, unsigned long fname_len ) ;
 
 #endif /* _INT_STRINGBOX_H_ */

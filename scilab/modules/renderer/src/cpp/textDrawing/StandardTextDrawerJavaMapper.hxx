@@ -47,9 +47,11 @@ public:
   virtual void setCenterPosition(double centerX, double centerY, double centerZ);
   virtual double * drawTextContent(void);
 
-  virtual double * getBoundingRectangle(void);
+  virtual double * getScreenBoundingBox(double centerPixX,
+                                        double centerPixY,
+                                        double centerPixZ);
 
-  virtual long * getScreenBoundingBox(void);
+  virtual void updateParentFigure(int parentFigureIndex);
   /*----------------------------------------------------------------------*/
   // specific for standard text drawer
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,

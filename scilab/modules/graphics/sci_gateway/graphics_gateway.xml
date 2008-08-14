@@ -79,7 +79,7 @@
 <PRIMITIVE gatewayId="7" primitiveId="53" primitiveName="set_posfig_dim" />
 <PRIMITIVE gatewayId="7" primitiveId="54" primitiveName="zoom_rect" />
 <PRIMITIVE gatewayId="7" primitiveId="55" primitiveName="unzoom" />
-<PRIMITIVE gatewayId="7" primitiveId="56" primitiveName="StringBox" />
+<PRIMITIVE gatewayId="7" primitiveId="56" primitiveName="stringbox" />
 <PRIMITIVE gatewayId="7" primitiveId="57" primitiveName="move" />
 <PRIMITIVE gatewayId="7" primitiveId="58" primitiveName="glue" />
 <PRIMITIVE gatewayId="7" primitiveId="59" primitiveName="unglue" />

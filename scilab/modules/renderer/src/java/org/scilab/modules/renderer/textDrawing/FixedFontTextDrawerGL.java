@@ -89,7 +89,7 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 	 */
 	public Vector3D[] getBoundingRectanglePix() {
 		// assume we are in pixels coordinates
-		SciTextRenderer renderer = getTextRenderer();
+		SciTextRenderer renderer = getTextRendererNoColor();
 		
 		setTextMatrix(computeStringSizes(renderer, getTextMatrix()));
 		Vector3D[] bbox = getBoundingBox(getTextMatrix());

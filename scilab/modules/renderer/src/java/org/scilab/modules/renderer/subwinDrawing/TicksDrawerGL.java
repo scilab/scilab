@@ -911,7 +911,9 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 */
 	private SciTextRenderer getTextRenderer() {
 		double[] color = getColorMap().getColor(labelColor);
-		return getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, color, useFractionalMetrics); 
+		SciTextRenderer res = getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, useFractionalMetrics); 
+		res.setColor(color);
+		return res;
 	}
 	
 	/**
@@ -921,7 +923,9 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		if (isDisplayingExponents()) {
 			double[] color = getColorMap().getColor(labelColor);
 			Font exponentFont = labelFont.deriveFont(labelFont.getSize2D() * EXPONENT_SIZE);
-			return getParentFigureGL().getTextRendererCreator().createTextRenderer(exponentFont, color, useFractionalMetrics);
+			SciTextRenderer res = getParentFigureGL().getTextRendererCreator().createTextRenderer(exponentFont, useFractionalMetrics);
+			res.setColor(color);
+			return res;
 		} else {
 			// no need for exponent renderer
 			return null;

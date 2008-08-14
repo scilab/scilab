@@ -193,10 +193,22 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	/**
 	 * Get the text renderer used to draw the text object.
 	 * Create one if none has already been created.
+	 * Also set the right color for the renderer.
 	 * @return instance of SciTextRenderer
 	 */
 	public SciTextRenderer getTextRenderer() {
-		return getParentFigureGL().getTextRendererCreator().createTextRenderer(getFont(), getFontColor(), useFractionalMetrics);
+		SciTextRenderer res = getTextRendererNoColor();
+		res.setColor(getFontColor());
+		return res;
+	}
+	
+	/**
+	 * Get the text renderer used to draw the text object.
+	 * Create one if none has already been created.
+	 * @return instance of SciTextRenderer
+	 */
+	protected SciTextRenderer getTextRendererNoColor() {
+		return getParentFigureGL().getTextRendererCreator().createTextRenderer(getFont(), useFractionalMetrics);
 	}
 	
 	/**
@@ -304,16 +316,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	}
 	
 	/**
-	 * Compute the 4 corners of the bounding rectangle of the text.
-	 * @return array of size 12 which is the concatenation of the 4 corners
-	 *         where a corner is the array {cornerX, cornerY, cornerZ}.
-	 */
-	public double[] getBoundingRectangle() {
-		double[] res = convertToArray(getBoundingRectangle3D());
-		return res;
-	}
-	
-	/**
 	 * Concatenate the coordinates of each points into an array of double
 	 * @param vects vectors to concatenate
 	 * @return array of size nbVects * 3, containing the nummber of vectors
@@ -332,33 +334,19 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	
 	/**
 	 * Get the bounding box of the text in pixels on the screen.
-	 * @return array of size 8 which is the concatenation of the 4 corners
-	 *         where a corner is the array {cornerX, cornerY}.
+	 * This function unlike other graphic functions operate only with Java2D
+	 * and thus does not require an OpenGL to be current.
+	 * @param centerPixX X coordinate of text center in pixel
+	 * @param centerPixY Y coordinate of text center in pixel
+	 * @param centerPixZ Z coordinate of text center in pixel
+	 * @return array of size 12 which is the concatenation of the 4 corners
+	 *         where a corner is the array {cornerX, cornerY, cornerZ}.
 	 */
-	public int[] getScreenBoundingBox() {
-		Vector3D[] resVect = getBoundingRectangle2D();
-		int nbCorner = resVect.length;
-		int nbDim = 2;
-		int[] res = new int[nbCorner * nbDim];
-		for (int i = 0; i < nbCorner; i++) {
-			res[nbDim * i] = (int) resVect[i].getX();
-			res[nbDim * i + 1] = (int) resVect[i].getY();
-		}
-		return res;
-	}
-	
-	/**
-	 * Get the 4 corners of the text bounding box in user coordinate system.
-	 * @return array of size 4 containing the corners of the bounding rectangle.
-	 */
-	protected Vector3D[] getBoundingRectangle3D() {
-		GL gl = getGL();		
-		Vector3D[] res = getBoundingRectangle2D();
-		CoordinateTransformation transform = getCoordinateTransformation();
-		for (int i = 0; i < res.length; i++) {
-			res[i] = transform.retrieveSceneCoordinates(gl, res[i]);
-		}
-		return res;
+	public double[] getScreenBoundingBox(double centerPixX, double centerPixY, double centerPixZ) {
+		this.textCenterPix = new Vector3D(centerPixX, centerPixY, centerPixZ);
+		// computing text size in pixel does not need the OpenGL context to be current.
+		Vector3D[] resVect = getBoundingRectanglePix();
+		return convertToArray(resVect);
 	}
 	
 	/**

@@ -51,10 +51,6 @@ void CenteredTextDrawerJoGL::setDrawerParameters(void)
   double boxHeight;
   getUserSizePix(boxWidth, boxHeight);
   getCenteredTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
-
-  double textPos[3];
-  getTextDisplayPos(textPos);
-  getCenteredTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
 /*---------------------------------------------------------------------------------*/
 void CenteredTextDrawerJoGL::redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])

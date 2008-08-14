@@ -28,7 +28,6 @@ namespace sciGraphics
 DrawableText::DrawableText( sciPointObj * pObj ) : DrawableClippedObject( pObj )
 {
   m_dDefaultFontSize = DEFAULT_FONT_SIZE;
-   m_bBoundsUpdateRequested = false;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableText::~DrawableText( void )
@@ -36,25 +35,11 @@ DrawableText::~DrawableText( void )
 
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableText::updateTextBoxIfRequested(void)
-{
-  if(needBoundsUpdate()){
-    updateTextBoxFromContext();
-    m_bBoundsUpdateRequested = false;
-  }
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableText::requestBoundsUpdate(void)
-{
-  m_bBoundsUpdateRequested = true;
-}
-/*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableText::draw( void )
 { 
   // update might be needed
   if (!checkVisibility() || isTextEmpty() )
   {
-    updateTextBoxIfRequested();
     return UNCHANGED;
   }
 
@@ -93,7 +78,6 @@ DrawableObject::EDisplayStatus DrawableText::redraw(void)
   // update might be needed
   if (!checkVisibility() || isTextEmpty() )
   {
-    updateTextBoxIfRequested();
     return UNCHANGED;
   }
   initializeDrawing();
@@ -106,11 +90,6 @@ DrawableObject::EDisplayStatus DrawableText::redraw(void)
   unClip();
   endDrawing();
   return SUCCESS;
-}
-/*---------------------------------------------------------------------------------*/
-bool DrawableText::needBoundsUpdate(void)
-{
-  return m_bBoundsUpdateRequested;
 }
 /*---------------------------------------------------------------------------------*/
 #undef DEFAULT_FONT_SIZE

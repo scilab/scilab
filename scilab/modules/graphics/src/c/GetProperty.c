@@ -862,7 +862,7 @@ BOOL sciisTextEmpty( sciPointObj * pobj)
     }
     else if (firstElement[0] == 0)
     {
-      // empty string
+      /* empty string */
       return TRUE;
     }
   }
@@ -4356,18 +4356,7 @@ void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2
 void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
                             int corner3[2], int corner4[2])
 {
-
-  double corners3d[4][3];
-  sciPointObj * parentSubwin = sciGetParentSubwin(pObj);
-
-  // get pixel bounding box
-  sciGetTextBoundingBox(pObj, corners3d[0], corners3d[1], corners3d[2], corners3d[3]);
-
-  // convert them to user coordinates
-  sciGetPixelCoordinate(parentSubwin, corners3d[0], corner1);
-  sciGetPixelCoordinate(parentSubwin, corners3d[1], corner2);
-  sciGetPixelCoordinate(parentSubwin, corners3d[2], corner3);
-  sciGetPixelCoordinate(parentSubwin, corners3d[3], corner4);
+  sciGetJavaPixelBoundingBox(pObj, corner1, corner2, corner3, corner4);
 }
 /*----------------------------------------------------------------------------------*/
 /**
@@ -4376,17 +4365,18 @@ void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
 void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
                              double corner3[2], double corner4[2])
 {
-  int pixCorners[4][2];
   sciPointObj * parentSubwin = sciGetParentSubwin(pObj);
+  double corners3d[4][3];
 
-  // get pixel bounding box
-  sciGetPixelBoundingBox(pObj, pixCorners[0], pixCorners[1], pixCorners[2], pixCorners[3]);
+  /* get bounding box */
+  sciGetTextBoundingBox(pObj, corners3d[0], corners3d[1], corners3d[2], corners3d[3]);
+  
+  /* convert it to 2d view coordinates */
+  sciGetJava2dViewCoordinates(parentSubwin, corners3d[0], corner1);
+  sciGetJava2dViewCoordinates(parentSubwin, corners3d[1], corner2);
+  sciGetJava2dViewCoordinates(parentSubwin, corners3d[2], corner3);
+  sciGetJava2dViewCoordinates(parentSubwin, corners3d[3], corner4);
 
-  // convert them to user coordinates
-  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[0], corner1);
-  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[1], corner2);
-  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[2], corner3);
-  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[3], corner4);
 }
 /*----------------------------------------------------------------------------------*/
 /**

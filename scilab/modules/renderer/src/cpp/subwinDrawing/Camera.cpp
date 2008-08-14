@@ -408,6 +408,11 @@ void Camera::getViewingArea(int * xPos, int * yPos, int * width, int * height)
   getCameraImp()->getViewingArea(xPos, yPos, width, height);
 }
 /*--------------------------------------------------------------------------*/
+void Camera::getViewport(int viewport[4])
+{
+  getCameraImp()->getViewport(viewport);
+}
+/*--------------------------------------------------------------------------*/
 void Camera::computeZoomAreaLines(const double areaPixCorners[4][2], double areaLines[4][2][3])
 {
   for (int i = 0; i < 4; i++)

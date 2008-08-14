@@ -39,47 +39,43 @@ TextContentDrawerJoGL::TextContentDrawerJoGL(DrawableText * drawer)
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
-  initializeDrawing();
-  setDrawerParameters();
+  // get pixel bounding in 3D
+  double corners[4][3];
+  getPixelBoundingBox(corners[0], corners[1], corners[2], corners[3]);
 
-  // we got an array of size 12
-  double * rect = getTextContentDrawerJavaMapper()->getBoundingRectangle();
-
-  convertCornersArray(rect, corner1, corner2, corner3, corner4);
-
-  delete[] rect;
-
-  endDrawing();
+  // convert it to 2D
+  Camera * cam = getSubwinDrawer(sciGetParentSubwin(m_pDrawed->getDrawedObject()))->getCamera();
+  cam->getSceneCoordinates(corners[0], corner1);
+  cam->getSceneCoordinates(corners[1], corner2);
+  cam->getSceneCoordinates(corners[2], corner3);
+  cam->getSceneCoordinates(corners[3], corner4);
 }
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2])
 {
-  initializeDrawing();
-  setDrawerParameters();
+  // get pixel bounding in 3D
+  double corners[4][3];
+  getPixelBoundingBox(corners[0], corners[1], corners[2], corners[3]);
 
-  // we got an array of size 8
-  long * rect = getTextContentDrawerJavaMapper()->getScreenBoundingBox();
-
-  corner1[0] = rect[0];
-  corner1[1] = rect[1];
-
-  corner2[0] = rect[2];
-  corner2[1] = rect[3];
-
-  corner3[0] = rect[4];
-  corner3[1] = rect[5];
-
-  corner4[0] = rect[6];
-  corner4[1] = rect[7];
-
-  delete[] rect;
-  endDrawing();
+  // keep only the first 2 values
+  for (int i = 0; i < 2; i++)
+  {
+    corner1[i] = (int) corners[0][i];
+    corner2[i] = (int) corners[1][i];
+    corner3[i] = (int) corners[2][i];
+    corner4[i] = (int) corners[3][i];
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
   initializeDrawing();
   setDrawerParameters();
+
+  // set text center
+  double textPos[3];
+  getTextDisplayPos(textPos);
+  getTextContentDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 
   double * rect = getTextContentDrawerJavaMapper()->drawTextContent();
 
@@ -212,6 +208,47 @@ void TextContentDrawerJoGL::getUserSizePix(double & boxWidthPix, double & boxHei
 
   // convert the user lengths to pixel ones.
   getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, boxWidthPix, boxHeightPix);
+}
+/*---------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::getPixelBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
+{
+  // just update parent figure to avoid problems with OpenGL
+  getTextContentDrawerJavaMapper()->setFigureIndex(sciGetNum(sciGetParentFigure(m_pDrawed->getDrawedObject())));
+  setDrawerParameters();
+
+  // get text center
+  double textCenterPix[3];
+  getTextDisplayPos(textCenterPix);
+
+  // convert it to pixels
+  Camera * cam = getSubwinDrawer(sciGetParentSubwin(m_pDrawed->getDrawedObject()))->getCamera();
+  cam->getPixelCoordinatesRaw(textCenterPix, textCenterPix);
+
+  // we need to convert form OpenGL coordinates to Java ones
+  int viewport[4];
+  cam->getViewport(viewport);
+  textCenterPix[1] = viewport[1] - textCenterPix[1];
+
+  // we got an array of size 12
+  double * rect = getTextContentDrawerJavaMapper()->getScreenBoundingBox(textCenterPix[0], textCenterPix[1], textCenterPix[2]);
+
+  corner1[0] = rect[0];
+  corner1[1] = viewport[1] - rect[1]; // we need to convert form OpenGL coordinates to Java ones
+  corner1[2] = rect[2];
+
+  corner2[0] = rect[3];
+  corner2[1] = viewport[1] - rect[4]; // we need to convert form OpenGL coordinates to Java ones
+  corner1[2] = rect[5];
+
+  corner3[0] = rect[6];
+  corner3[1] = viewport[1] - rect[7]; // we need to convert form OpenGL coordinates to Java ones
+  corner1[2] = rect[8];
+
+  corner4[0] = rect[9];
+  corner4[1] = viewport[1] - rect[10]; // we need to convert form OpenGL coordinates to Java ones
+  corner1[2] = rect[11];
+
+  delete[] rect;
 }
 /*---------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)

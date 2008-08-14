@@ -69,11 +69,6 @@ public:
    */
   virtual void updateTextBox(void);
 
-  /**
-   * Update the text box a text object from OpenGL context.
-   */
-  virtual void updateTextBoxFromContext(void);
-
 protected:
 
   /*---------------------------------------------------------------------------------*/

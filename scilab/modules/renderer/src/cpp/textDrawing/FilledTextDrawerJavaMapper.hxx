@@ -47,12 +47,14 @@ public:
   virtual void setCenterPosition(double centerX, double centerY, double centerZ);
   virtual double * drawTextContent(void);
 
-  virtual double * getBoundingRectangle(void);
-
-  virtual long * getScreenBoundingBox(void);
+  virtual double * getScreenBoundingBox(double centerPixX,
+                                        double centerPixY,
+                                        double centerPixZ);
 
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,
                                  double defaultFontSize, double rotationAngle, bool useFractionalMetrics);
+
+  virtual void updateParentFigure(int parentFigureIndex);
   /*----------------------------------------------------------------------*/
   // specific for filled text drawer
 

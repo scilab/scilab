@@ -52,16 +52,6 @@ public:
   virtual void updateTextBox(void) = 0;
 
   /**
-   * Update the text box a text object from OpenGL context.
-   */
-  virtual void updateTextBoxFromContext(void) = 0;
-
-  /**
-   * Update the text bounding box if needed
-   */
-  void updateTextBoxIfRequested(void);
-
-  /**
    * Keep the default font size used by FilledTextDrawers
    */
   double getDefaultFontSize(void) {return m_dDefaultFontSize;}
@@ -121,22 +111,12 @@ protected:
    */
   virtual void showTextContent(void) = 0;
 
-  /**
-   * Check wether bounds of the text needs to be updated
-   */
-  bool needBoundsUpdate(void);
-
   /*----------------------------------------------*/
   /**
    * Previous font size used by filled text drawer in Scilab Scale.
    * Might be negative for small text.
    */
   double m_dDefaultFontSize;
-
-  /**
-   * If true, next redraw of the text must compute its bounding box.
-   */
-  bool m_bBoundsUpdateRequested;
   /*----------------------------------------------*/
 
 } ;

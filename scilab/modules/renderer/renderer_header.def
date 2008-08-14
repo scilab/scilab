@@ -40,5 +40,6 @@ sciGetJava2dViewPixelCoordinates
 sciGetJava2dViewCoordinates
 javaRubberBox
 sciGetJavaIsAbleToCreateWindow
+sciGetJavaBoundingBox
 ; --------------------------------------- 
 

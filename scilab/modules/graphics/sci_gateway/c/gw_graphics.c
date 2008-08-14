@@ -80,7 +80,7 @@ static gw_generic_table Tab[]={
 	{sci_set_posfig_dim,"set_posfig_dim"},
 	{sci_zoom_rect,"zoom_rect"},
 	{sci_unzoom,"unzoom"},
-	{sci_StringBox,"StringBox"},
+	{sci_stringbox,"stringbox"},
 	{sci_move,"move"},
 	{sci_glue,"glue"},
 	{sci_unglue,"unglue"}, 

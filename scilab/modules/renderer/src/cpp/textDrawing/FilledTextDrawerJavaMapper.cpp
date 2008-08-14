@@ -69,6 +69,11 @@ void FilledTextDrawerJavaMapper::setTextParameters(int textAlignment, int color,
                                    rotationAngle, useFractionalMetrics);
 }
 /*---------------------------------------------------------------------------------*/
+void FilledTextDrawerJavaMapper::updateParentFigure(int parentFigureIndex)
+{
+  m_pJavaObject->updateParentFigure(parentFigureIndex);
+}
+/*---------------------------------------------------------------------------------*/
 void FilledTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
 {
   m_pJavaObject->setTextContent(text, nbRow * nbCol, nbRow, nbCol);
@@ -84,14 +89,11 @@ double * FilledTextDrawerJavaMapper::drawTextContent(void)
   return m_pJavaObject->drawTextContent();
 }
 /*---------------------------------------------------------------------------------*/
-double * FilledTextDrawerJavaMapper::getBoundingRectangle(void)
+double * FilledTextDrawerJavaMapper::getScreenBoundingBox(double centerPixX,
+                                                          double centerPixY,
+                                                          double centerPixZ)
 {
-  return m_pJavaObject->getBoundingRectangle();
-}
-/*---------------------------------------------------------------------------------*/
-long * FilledTextDrawerJavaMapper::getScreenBoundingBox(void)
-{
-  return m_pJavaObject->getScreenBoundingBox();
+  return m_pJavaObject->getScreenBoundingBox(centerPixX, centerPixY, centerPixZ);
 }
 /*---------------------------------------------------------------------------------*/
 double FilledTextDrawerJavaMapper::getFontSize(void)

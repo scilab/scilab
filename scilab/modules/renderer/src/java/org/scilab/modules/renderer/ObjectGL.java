@@ -74,9 +74,17 @@ public abstract class ObjectGL {
 	 *                          Needed to get the GL context to draw in.
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
-		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
+		updateParentFigure(parentFigureIndex);
 		updateGLContext();
 		updateColorMap();
+	}
+	
+	/**
+	 * Set the parent figure for this objects
+	 * @param parentFigureIndex index of the parent figure.
+	 */
+	public void updateParentFigure(int parentFigureIndex) {
+		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
 	}
 	
 	/**

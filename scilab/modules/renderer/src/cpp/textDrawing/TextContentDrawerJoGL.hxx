@@ -93,6 +93,11 @@ protected:
   void getUserSizePix(double & boxWidthPix, double & boxHeightPix);
 
   /**
+   * Compute bounding box the text in pixels coordinates
+   */
+  void getPixelBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3]);
+
+  /**
    * Get the object performing mapping with Java class.
    */
   TextContentDrawerJavaMapper * getTextContentDrawerJavaMapper(void);

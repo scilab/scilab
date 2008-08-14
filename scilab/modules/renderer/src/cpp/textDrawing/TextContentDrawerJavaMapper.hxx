@@ -31,12 +31,13 @@ public:
   virtual void setCenterPosition(double centerX, double centerY, double centerZ) = 0;
   virtual double * drawTextContent(void) = 0;
 
-  virtual double * getBoundingRectangle(void) = 0;
-
-  virtual long * getScreenBoundingBox(void) = 0;
-
+  virtual double * getScreenBoundingBox(double centerPixX,
+                                        double centerPixY,
+                                        double centerPixZ) = 0;
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,
                                  double fontSize, double rotationAngle, bool useFractionalMetrics) = 0;
+
+  virtual void updateParentFigure(int parentFigureIndex) = 0;
 
 };
 

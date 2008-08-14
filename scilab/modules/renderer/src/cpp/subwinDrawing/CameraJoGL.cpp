@@ -229,4 +229,12 @@ void CameraJoGL::getViewingArea(int * xPos, int * yPos, int * width, int * heigh
   *yPos = (int) (m_aViewPort[1]  + m_aViewPort[3] * (1.0 - m_aViewingTranslation[1])) - *height;
 }
 /*--------------------------------------------------------------------------*/
+void CameraJoGL::getViewport(int viewport[4])
+{
+  for (int i = 0; i < 4; i++)
+  {
+    viewport[i] = m_aViewPort[i];
+  }
+}
+/*--------------------------------------------------------------------------*/
 }
