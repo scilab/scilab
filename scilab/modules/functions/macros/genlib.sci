@@ -21,7 +21,7 @@ function genlib(nam,path,force,verbose,names)
   predefined = or(W($-np+1:$)==nam);
   
   if verbose then
-    mprintf(gettext("-- Creation of [%s] (Macros) --"),nam);
+    mprintf(gettext("-- Creation of [%s] (Macros) --\n"),nam);
   end
   
   updatelib=%f //true if updating an already defined library
