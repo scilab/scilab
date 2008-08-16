@@ -55,7 +55,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/jvm_option", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{
@@ -69,7 +69,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 					while (attrib != NULL)
 					{
 						/* loop until when have read all the attributes */
-						if (xmlStrEqual (attrib->name, (const xmlChar*) "string_option"))
+						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
 						{ 
 							/* we found the tag name */
 							const char *str=(const char*)attrib->children->content;

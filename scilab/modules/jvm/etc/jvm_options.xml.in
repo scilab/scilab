@@ -16,24 +16,24 @@ $PATH_SEPARATOR : path separator ';' (windows) ':' linux
 $SCILAB : scilab path (SCI in Scilab)
 -->
 <jvm_options>
-<jvm_option string_option="-Djava.library.path="/>
-<jvm_option string_option="-Djava.class.path=$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+<option value="-Djava.library.path="/>
+<option value="-Djava.class.path=$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 
 <!-- ENABLE Just In Time java compiler -->
-<jvm_option string_option="-Djava.compiler=JIT"/>
+<option value="-Djava.compiler=JIT"/>
 
 <!-- Set Java Heap space to 256mb -->
-<jvm_option string_option="-Xmx256m"/>
+<option value="-Xmx256m"/>
 
 <!-- DISABLE Just In Time java compiler -->
 <!--
-<jvm_option string_option="-Djava.compiler=NONE"/>
+<option value="-Djava.compiler=NONE"/>
 -->
 
 <!-- comments -->
 <!--
-<jvm_option string_option="-verbose:jni"/>
-<jvm_option string_option="-Xcheck:jni"/>
+<option value="-verbose:jni"/>
+<option value="-Xcheck:jni"/>
 -->
 <!-- comments -->
 </jvm_options>
