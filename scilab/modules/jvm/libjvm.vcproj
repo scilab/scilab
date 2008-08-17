@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="libjvm"
 	ProjectGUID="{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}"
 	RootNamespace="libjvm"
 	Keyword="Win32Proj"
-	
+
 	>
 	<Platforms>
 		<Platform
@@ -542,6 +542,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\JVM_functions.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\loadBackGroundClassPath.h"
 				>
 			</File>
 			<File

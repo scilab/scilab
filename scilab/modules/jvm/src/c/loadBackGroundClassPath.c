@@ -13,12 +13,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <jni.h>
 #include <stdio.h>
+#include "loadBackGroundClassPath.h"
 #include "addToClasspath.h"
 #include "getScilabJNIEnv.h"
 #include "fromjava.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-BOOL loadBackGroundClassPath()
+BOOL loadBackGroundClassPath(void)
 {
 	JNIEnv * currentENV = getScilabJNIEnv();
 	if (currentENV)

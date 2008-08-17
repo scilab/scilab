@@ -24,6 +24,7 @@
 #include "../../../string/includes/InitializeString.h"
 #include "scilabmode.h"
 #include "SetScilabEnvironment.h"
+#include "../../../jvm/includes/loadBackGroundClassPath.h"
 /*--------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
 {
