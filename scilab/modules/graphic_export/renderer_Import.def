@@ -3,5 +3,4 @@ LIBRARY    scirenderer.dll
 
 EXPORTS
 ; from renderer
-sciJavaExportToFile
 

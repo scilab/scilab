@@ -2,20 +2,7 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
-
- putlhsvar_
- cluni0_
- createvar_
- stack_
- com_
- getrhsvar_
- checklhs_
- checkrhs_
- intersci_
- createvarfromptr_
- callFunctionFromGateway
  iop_
- ;
+ com_
  ;core_f
  sigbas_
-

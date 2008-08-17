@@ -2,26 +2,24 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
-;
-;core
- putlhsvar_
- stack_
- com_
- getrhsvar_
- checklhs_
- checkrhs_
- createcvar_
- vartype_
- check_dims
- GetData
- intersci_
- getrhscvar_
- createvarfromptr_
- createvar_
- gettype_
- vstk_
- callFunctionFromGateway
- freeArrayOfString
-;
+callFunctionFromGateway
+com_
+putlhsvar_
+intersci_
+stack_
+createvar_
+createcvar_
+vartype_
+check_dims
+GetData
+getrhscvar_
+checklhs_
+checkrhs_
+createvarfromptr_
+freeArrayOfString
+getrhsvar_
+gettype_
+vstk_
+
 ;elementary_functions_f
  dset_

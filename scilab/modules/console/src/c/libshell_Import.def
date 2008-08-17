@@ -2,5 +2,3 @@ LIBRARY    libshell.dll
 
 
 EXPORTS
-scilines
-getLinesSize
