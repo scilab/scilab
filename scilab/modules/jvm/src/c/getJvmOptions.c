@@ -65,7 +65,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 				{
 
 					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
-					/* Get the properties of <jvm_option>  */
+					/* Get the properties of <option>  */
 					while (attrib != NULL)
 					{
 						/* loop until when have read all the attributes */
