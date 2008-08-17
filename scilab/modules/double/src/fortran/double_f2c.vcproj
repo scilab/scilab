@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="double_f2c"
 	ProjectGUID="{97B3664E-1186-400A-AEC0-AC3F23087689}"
 	RootNamespace="double_f2c"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="linear_algebra"
 	ProjectGUID="{BC462A57-C5B3-4F93-8067-80363827DCDA}"
 	RootNamespace="linear_algebra"

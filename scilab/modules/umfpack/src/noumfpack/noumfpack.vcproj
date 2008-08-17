@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="noumfpack"
 	ProjectGUID="{6B557C09-7D85-42A4-A2B3-E952E00ACD28}"
 	RootNamespace="noumfpack"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+	
 	>
 	<Platforms>
 		<Platform

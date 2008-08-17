@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="nosound"
 	ProjectGUID="{B2A7F55B-8449-47FE-A1BB-5E77EC18DE43}"
 	RootNamespace="nosound"

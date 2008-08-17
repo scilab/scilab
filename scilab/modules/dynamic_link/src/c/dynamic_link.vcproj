@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="dynamic_link"
 	ProjectGUID="{EAB6C580-22B3-4359-BA1D-DD7499A96163}"
 	RootNamespace="dynamic_link"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+	
 	>
 	<Platforms>
 		<Platform

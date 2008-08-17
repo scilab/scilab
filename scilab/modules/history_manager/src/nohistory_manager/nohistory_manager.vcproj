@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="nohistory_manager"
 	ProjectGUID="{68F65DC6-AF8B-442F-A21A-108E1E501BE6}"
 	RootNamespace="nohistory_manager"

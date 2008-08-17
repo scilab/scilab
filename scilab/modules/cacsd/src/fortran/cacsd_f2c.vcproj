@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="cacsd_f2c"
 	ProjectGUID="{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}"
 	RootNamespace="cacsd_f2c"

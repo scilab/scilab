@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="CheckHelp"
 	ProjectGUID="{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}"
 	Keyword="MakeFileProj"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="history_manager"
 	ProjectGUID="{1B98DC87-44F5-48AE-B5D0-29DD8AD86F5E}"
 	RootNamespace="history_manager"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+	
 	>
 	<Platforms>
 		<Platform

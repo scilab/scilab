@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="interpolation_f2c"
 	ProjectGUID="{D98B0986-14E4-44FD-B006-CACE4B291F38}"
 	RootNamespace="interpolation_f2c"

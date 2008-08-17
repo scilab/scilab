@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="norandlib"
 	ProjectGUID="{E5038304-761D-448C-B358-48CA2883778A}"
 	RootNamespace="norandlib"

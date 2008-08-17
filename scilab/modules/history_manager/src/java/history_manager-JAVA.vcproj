@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="history_manager-Ant"
 	ProjectGUID="{63965A84-E354-4CBC-BFAC-FDFC8224573F}"
 	RootNamespace="history_manager-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="0"
+	
 	>
 	<Platforms>
 		<Platform

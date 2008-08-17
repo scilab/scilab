@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="fftw"
 	ProjectGUID="{13B86307-5A11-48D6-94BE-71F77BCB82D1}"
 	RootNamespace="fftw"

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="action_binding-Ant"
 	ProjectGUID="{B2911268-79E2-4FE5-AD59-2C3CB7CB794E}"
 	RootNamespace="action_binding-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

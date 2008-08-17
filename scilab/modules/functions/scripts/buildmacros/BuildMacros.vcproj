@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="BuildMacros"
 	ProjectGUID="{66F2FB48-5D68-4445-A856-119F685A371B}"
 	Keyword="MakeFileProj"

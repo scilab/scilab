@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="intersci"
 	ProjectGUID="{DFA0D75B-F7EF-4D02-B33F-486829405315}"
 	RootNamespace="intersci"

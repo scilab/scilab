@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="BuildChm"
 	ProjectGUID="{D319F719-F429-4842-A6F9-B1227FE2A54D}"
 	Keyword="MakeFileProj"

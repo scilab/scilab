@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="noconsole"
 	ProjectGUID="{A1E6DC43-B0B9-4871-9DE5-7940B80A703E}"
 	RootNamespace="noconsole"

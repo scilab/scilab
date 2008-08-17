@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="shell-Ant"
 	ProjectGUID="{2EA61E81-0F0C-4006-985C-12785093CD2F}"
 	RootNamespace="shell-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="0"
+	
 	>
 	<Platforms>
 		<Platform

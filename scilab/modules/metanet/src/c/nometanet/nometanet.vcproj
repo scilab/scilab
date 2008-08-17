@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="nometanet"
 	ProjectGUID="{5F09A87D-A877-4AB8-9482-029253833FE4}"
 	RootNamespace="nometanet"

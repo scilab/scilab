@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="nowindows_tools"
 	ProjectGUID="{73E14CE1-E24C-4AFB-BD0C-BC8643730D62}"
 	RootNamespace="nowindows_tools"

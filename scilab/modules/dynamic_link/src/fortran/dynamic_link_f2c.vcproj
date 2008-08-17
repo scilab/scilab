@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="dynamic_link_f2c"
 	ProjectGUID="{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
 	RootNamespace="dynamic_link_f2c"
