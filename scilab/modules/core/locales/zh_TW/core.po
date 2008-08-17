@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-01-29 16:53+0100\n"
-"PO-Revision-Date: 2008-04-27 01:03+0000\n"
+"PO-Revision-Date: 2008-08-09 01:03+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -645,7 +645,7 @@ msgstr "錯誤 : 不是一有效之 gateway 檔 %s (不是 'utf-8' 編碼) 找�
 # File: src/c/stack3.c, line: 698
 #, c-format
 msgid "Undefined variable %s.\n"
-msgstr "未定義參數 %s.\n"
+msgstr "未定義參數之 %s.\n"
 
 #
 # File: src/c/stack3.c, line: 271
@@ -1076,7 +1076,7 @@ msgstr "              Consortium Scilab (INRIA, ENPC)              \n"
 #
 # File: src/c/banier.c, line: 33
 msgid "!!! WARNING !!!\n"
-msgstr "!!! 警告 !!!\n"
+msgstr "!!! 敬告 !!!\n"
 
 #
 # File: src/c/banier.c, line: 34

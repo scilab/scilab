@@ -44,7 +44,7 @@ msgstr "等待右括弧.\n"
 #
 # File: src/c/errmsg.c, line: 76
 #, c-format
-msgid "Undefined variable : %s\n"
+msgid "Undefined variable: %s\n"
 msgstr "未定義變數 : %s\n"
 
 #
