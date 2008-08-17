@@ -61,6 +61,10 @@ int C2F(initscilab)(void)
 
 	InitializeTclTk();
 
+	if ( getScilabMode() != SCILAB_NWNI ) 
+	{
+		loadBackGroundClassPath();
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
