@@ -26,7 +26,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
+				BuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				CleanCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e clean_help();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e clean_help();exit;"
 				Output=""
@@ -46,7 +46,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
+				BuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				CleanCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e clean_help();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e clean_help();exit;"
 				Output=""
@@ -66,7 +66,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
+				BuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				CleanCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e clean_help();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e clean_help();exit;"
 				Output="BuildHelp.exe"
@@ -86,7 +86,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
+				BuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e xmltojar();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e xmltojar();exit;"
 				CleanCommandLine="IF EXIST &quot;$(SolutionDir)modules\helptools\build\doc&quot; rmdir /s /q &quot;$(SolutionDir)modules\helptools\build\doc&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l en -nouserstartup -nw -e clean_help();exit;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -l fr -nouserstartup -nw -e clean_help();exit;"
 				Output="BuildHelp.exe"
