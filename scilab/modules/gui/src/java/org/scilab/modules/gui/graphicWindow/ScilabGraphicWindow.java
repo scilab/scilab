@@ -94,10 +94,21 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 	 * @return Scilab command used to close a window.
 	 */
 	private String getClosingWindowCommand(int figureIndex) {
-		return "if ( (get_figure_handle(" + figureIndex + ") <> []) & get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on' ) then"
-		+ "  execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)');"
-		+ "end;"
-		+ "delete(get_figure_handle(" + figureIndex + "));";
+		// // check if figure is already closed
+		// if (get_figure_handle(fid) <> []) then
+		//   if (get(get_figure_handle(fid), 'event_handler_enable') == 'on') then
+		//     // execute closing call back
+		//     execstr(get(get_figure_handle(fid), 'event_handler') + '(fid, -1, -1, -1000)');
+		//   end
+		//   // destory the figure
+		//   delete(get_figure_handle(fid));
+		// end
+		return "if (get_figure_handle(" + figureIndex + ") <> []) then"
+		+      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
+		+      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)');"
+		+      "  end;"
+		+      "  delete(get_figure_handle(" + figureIndex + "));"
+		+      "end;";
 	}
 	
 }
