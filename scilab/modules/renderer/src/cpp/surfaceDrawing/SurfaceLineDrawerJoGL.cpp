@@ -41,8 +41,6 @@ void SurfaceLineDrawerJoGL::drawSurface( void )
   sciPointObj * pSurface = m_pDrawer->getDrawedObject();
   sciSurface * ppSurface = pSURFACE_FEATURE(pSurface);
 
-  initializeDrawing();
-
   int nbVertexPerFacet = 0;
   if (ppSurface->typeof3d == SCI_PLOT3D)
   {

@@ -41,8 +41,6 @@ void SurfaceFacetDrawerJoGL::drawSurface( void )
   sciPointObj * pSurface = m_pDrawer->getDrawedObject();
   sciSurface * ppSurface = pSURFACE_FEATURE(pSurface);
 
-  initializeDrawing();
-
   int nbVertexPerFacet = 0;
   if (ppSurface->typeof3d == SCI_PLOT3D)
   {
@@ -87,6 +85,8 @@ void SurfaceFacetDrawerJoGL::drawSurface( void )
   m_pDrawed->pointScale(xCoords, NULL, NULL, sizeXCoord);
   m_pDrawed->pointScale(NULL, yCoords, NULL, sizeYCoord);
   m_pDrawed->pointScale(NULL, NULL, zCoords, sizeZCoord);
+
+  initializeDrawing();
 
   getFacetDrawerJavaMapper()->setSurfaceType(ppSurface->typeof3d, ppSurface->flagcolor);
   getFacetDrawerJavaMapper()->setDefaultColors(Abs(ppSurface->flag[0]), ppSurface->hiddencolor);
