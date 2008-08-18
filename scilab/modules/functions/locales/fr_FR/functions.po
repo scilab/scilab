@@ -3,97 +3,143 @@
 # Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
 # Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
-#
+#, 
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"POT-Creation-Date: 2008-08-18 10:19+0100\n"
+"PO-Revision-Date: 2008-08-18 11:07+0200\n"
+"Last-Translator: Serge Steer <Serge.Steer@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-27 11:02+0100\n"
 
-# File: macros/getd.sci, line: 16
-# File: macros/genlib.sci, line: 41
+# File: macros/warnobsolete.sci, line: 29
 #, c-format
-msgid "I cannot find any sci files in %s"
-msgstr ""
+msgid "Function %s is obsolete."
+msgstr "La fonction %s est obsolete."
 
 #
-# File: macros/getd.sci, line: 26
+# File: macros/warnobsolete.sci, line: 31
 #, c-format
-msgid "Incorrect function in file %s"
-msgstr ""
+msgid "Please use %s instead."
+msgstr "Elle peut être remplacée par %s."
 
 #
-# File: macros/recompilefunction.sci, line: 10
+# File: macros/warnobsolete.sci, line: 34
 #, c-format
-msgid "%s must be the name of a scilab function variable"
-msgstr ""
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "Cette fonction sera supprimée définitivement de Scilab %s"
 
 #
-# File: macros/recompilefunction.sci, line: 15
+# File: macros/get_function_path.sci, line: 23
 #, c-format
-msgid "%s is already noncompiled, nothing to do!"
-msgstr ""
+msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+msgstr "%s: Il n'y a pas de fichier nommé %s.sci dans le répertoire de la bibliothèque %s.\n"
 
 #
-# File: macros/recompilefunction.sci, line: 31
+# File: macros/check_gateways.sci, line: 22
 #, c-format
-msgid "%s is already compiled, nothing to do!"
-msgstr ""
+msgid "Checking: %s.\n"
+msgstr "Test de %s.\n"
 
 #
-# File: macros/recompilefunction.sci, line: 35
+# File: macros/check_gateways.sci, line: 32
 #, c-format
-msgid "%s is already compiled for profiling, nothing to do!"
-msgstr ""
+msgid "%s: Please check: %s\n"
+msgstr "%s: Veuillez vérifier : %s.\n"
 
 #
-# File: macros/head_comments.sci, line: 8
-msgid "Argument is not the name of a Scilab function"
-msgstr ""
-
-#
-# File: macros/head_comments.sci, line: 27
+# File: macros/check_gateways.sci, line: 35
 #, c-format
-msgid "%s.sci file cannot be found with the given paths"
-msgstr ""
+msgid "%s: File %s doesn''t exist.\n"
+msgstr "%s: Le fichier %s n'existe pas.\n"
 
 #
-# File: macros/head_comments.sci, line: 32
-msgid "argument is not the name of a Scilab function"
-msgstr ""
-
-#
-# File: macros/head_comments.sci, line: 38
-# File: macros/head_comments.sci, line: 47
-msgid "No comment available"
-msgstr ""
-
-#
-# File: macros/head_comments.sci, line: 17
+# File: macros/genlib_old.sci, line: 53
+# File: macros/genlib.sci, line: 79
 #, c-format
-msgid "%s.sci file cannot be found with the given paths'),name))"
-msgstr ""
+msgid "%s: No files with extension %s found in %s\n"
+msgstr "%s: Aucun fichier d'exension %s n'a été trouvé dans le répertoire %s.\n"
 
 #
-# File: macros/macrovar.sci, line: 14
-msgid "Argument to macrovars must be a macro!"
-msgstr ""
+# File: macros/genlib_old.sci, line: 73
+# File: macros/genlib.sci, line: 101
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr "%s: La compilation du fichier %s a été forcée.\n"
 
 #
-# File: macros/plotprofile.sci, line: 35
-msgid "Perhaps the function(s) has not been loaded for profiling?"
+# File: macros/genlib_old.sci, line: 94
+# File: macros/genlib.sci, line: 125
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: Traitement du fichier: %s.\n"
+
+#
+# File: macros/genlib_old.sci, line: 105
+# File: macros/genlib.sci, line: 138
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr "%s: Regénération des fichiers names et lib.\n"
+
+#
+# File: macros/genlib_old.sci, line: 115
+# File: macros/genlib.sci, line: 150
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr "%s: Le fichier %s n'a pu être créé.\n"
+
+#
+# File: macros/genlib_old.sci, line: 124
+# File: macros/genlib.sci, line: 160
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because ''%s'' is a protected variable.\n"
 msgstr ""
+"Le fichier de bibliothèque %s a été mis à jour,\n"
+"mais n'a pas pu être chargé dans Scilab car %s est une variable protégée.\n"
+
+#
+# File: macros/genlib_old.sci, line: 140
+# File: macros/genlib.sci, line: 180
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr "%s: Attention une erreur a été rencontrée dans le fichier %s: %s. Le fichier a été ignoré.\n"
+
+#
+# File: macros/genlib_old.sci, line: 154
+# File: macros/genlib.sci, line: 199
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr "%s: Il n'est pas possible d'ouvrir le fichier %s en écriture.\n"
+
+#
+# File: macros/genlib_old.sci, line: 160
+# File: macros/genlib.sci, line: 207
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr "%s: Le fichier %s ne contient aucune fonction.\n"
+
+#
+# File: macros/profile.sci, line: 18
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr "%s: Cette fonction n'a pas été construite pour être profilée."
+
+#
+# File: macros/plotprofile.sci, line: 45
+#, c-format
+msgid "%s: Wrong values for input argument: No profile data in the function\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée: Il n'y a aucune donnée de profile.\n"
 
 #
 # File: macros/plotprofile.sci, line: 68
 msgid "Complexity"
-msgstr ""
+msgstr "Complexité"
 
 #
 # File: macros/plotprofile.sci, line: 84
@@ -105,7 +151,7 @@ msgstr ""
 # File: macros/plotprofile.sci, line: 85
 # File: macros/plotprofile.sci, line: 226
 msgid "Edit"
-msgstr ""
+msgstr "Editer"
 
 #
 # File: macros/plotprofile.sci, line: 86
@@ -116,7 +162,7 @@ msgstr ""
 # File: macros/plotprofile.sci, line: 87
 # File: macros/plotprofile.sci, line: 228
 msgid "Insert"
-msgstr ""
+msgstr "Insérer"
 
 #
 # File: macros/plotprofile.sci, line: 89
@@ -127,7 +173,7 @@ msgstr ""
 # File: macros/plotprofile.sci, line: 90
 # File: macros/plotprofile.sci, line: 233
 msgid "&Edit"
-msgstr ""
+msgstr "&Editer"
 
 #
 # File: macros/plotprofile.sci, line: 91
@@ -138,24 +184,24 @@ msgstr ""
 #
 # File: macros/plotprofile.sci, line: 93
 msgid "Exit"
-msgstr ""
+msgstr "Quitter"
 
 #
-# File: macros/plotprofile.sci, line: 95
-msgid "click to get corresponding line, move with a-z"
-msgstr ""
+# File: macros/plotprofile.sci, line: 105
+msgid "Click to get corresponding line, move with a-z."
+msgstr "Cliquer pour sélectionner la ligne correspondante, bouger avec a-z."
 
 #
 # File: macros/plotprofile.sci, line: 144
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
-msgstr ""
+msgstr "Ligne %s [%s appels, %s s] :: "
 
 #
 # File: macros/plotprofile.sci, line: 146
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
-msgstr ""
+msgstr "Ligne %s [%s appels, %s s] :: "
 
 #
 # File: macros/plotprofile.sci, line: 224
@@ -170,12 +216,12 @@ msgstr ""
 #
 # File: macros/plotprofile.sci, line: 227
 msgid "File"
-msgstr ""
+msgstr "Fichier"
 
 #
 # File: macros/plotprofile.sci, line: 232
 msgid "&File"
-msgstr ""
+msgstr "&Fichier"
 
 #
 # File: macros/plotprofile.sci, line: 234
@@ -183,64 +229,97 @@ msgid "&Tools"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 14
+# File: macros/bytecode.sci, line: 29
 #, c-format
-msgid "-- Creation of [%s] (Macros) --"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d.\n"
 
 #
-# File: macros/genlib.sci, line: 93
-msgid "Regenerate names and lib"
-msgstr ""
+# File: macros/genlib_old.sci, line: 53
+# File: macros/getd.sci, line: 46
+# File: macros/genlib.sci, line: 79
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr "%s: Il n'y a pas de fichier d'extension %s dans le répertoire %s.\n"
 
 #
-# File: macros/genlib.sci, line: 122
-msgid "lib file cannot be created"
-msgstr ""
+# File: macros/getd.sci, line: 56
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr "%s: Fonction incorrecte dans le fichier %s.\n"
 
 #
-# File: macros/genlib.sci, line: 110
+# File: macros/genlib.sci, line: 24
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr "-- Création de [%s] (Macros) --\n"
+
+#
+# File: macros/bytecodewalk.sci, line: 58
+# File: macros/bytecodewalk.sci, line: 97
+#, c-format
+msgid "%s: obsolete op-code %d.\n"
+msgstr "%s: Le code opératoire %d est obsolète.\n"
+
+#
+# File: macros/recompilefunction.sci, line: 5
+#, c-format
+msgid "No variable named: %s"
+msgstr "Il n'y a pas de variable de nom: %s"
+
+#
+# File: macros/recompilefunction.sci, line: 10
+# File: macros/head_comments.sci, line: 20
+# File: macros/head_comments.sci, line: 44
 #, c-format
 msgid ""
-"   Library file %slib has been updated,\n"
-"   but cannot be loaded into Scilab,\n"
-"   because %s is a protected variable."
-msgstr ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée n°%d: Le nom d'une fonction Scilab est attendu.\n"
 
 #
-# File: macros/genlib.sci, line: 152
+# File: macros/recompilefunction.sci, line: 15
+#, c-format
+msgid "%s is already noncompiled, nothing to do!"
+msgstr "%s est déja sous forme non-compilée, il n'y a rien à faire!"
+
+#
+# File: macros/recompilefunction.sci, line: 31
+#, c-format
+msgid "%s is already compiled, nothing to do!"
+msgstr "%s est déja sous forme compilée, il n'y a rien à faire!"
+
+#
+# File: macros/recompilefunction.sci, line: 35
+#, c-format
+msgid "%s is already compiled for profiling, nothing to do!"
+msgstr "%s est déjà prète pour être profilée, il n'y a rien à faire!"
+
+#
+# File: macros/head_comments.sci, line: 14
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Une chaine de caractères est attendue.\n"
+
+#
+# File: macros/head_comments.sci, line: 18
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: La variable %s n'est pas définie.\n"
+
+#
+# File: macros/head_comments.sci, line: 23
 #, c-format
 msgid ""
-"   Warning: Error in file %s :\n"
-"            %s\n"
-"            file ignored\n"
-msgstr ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Le nom d'une fonction Scilab est attendu.\n"
 
 #
-# File: macros/genlib.sci, line: 141
+# File: macros/head_comments.sci, line: 35
+msgid "No comment available.\n"
+msgstr "Aucun commentaire n'est présent.\n"
+
+#
+# File: macros/macrovar.sci, line: 23
 #, c-format
-msgid "Impossible to open file %s for writing, "
-msgstr ""
-
-#
-# File: macros/genlib.sci, line: 179
-#, c-format
-msgid "   Warning: File ''%s'' does not contain any functions\n"
-msgstr ""
-
-#
-# File: macros/genlib.sci, line: 83
-#, c-format
-msgid "Processing file %s.sci'),names(i)));"
-msgstr ""
-
-#
-# File: macros/genlib.sci, line: 62
-#, c-format
-msgid " %s.sci compilation forced'),names(i)));"
-msgstr ""
-
-#
-# File: macros/profile.sci, line: 8
-msgid "The function has not been built for profiling"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr "%s: Mauvais type pour l'arguemnt d'entrée  n° %d: Une fonction Scilab est attendue.\n"
