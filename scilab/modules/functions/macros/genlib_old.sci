@@ -50,7 +50,7 @@ function genlib_old(nam,path,force,verbose,names)
     // list the sci files 
     files=listfiles(path+'*.sci',%f)
     if files==[] | files== "" then 
-      error(msprintf(gettext("%s: I cannot find any files with extension %s in %s\n"),"genlib_old",".sci", path));
+      error(msprintf(gettext("%s: No files with extension %s found in %s\n"),"genlib_old",".sci", path));
     end
     names = basename(files,%f);
   else
@@ -112,7 +112,7 @@ function genlib_old(nam,path,force,verbose,names)
     execstr(nam+'=lib('''+path1+''')')
     //save it
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
-      error(msprintf(gettext("%s: ''%s'' file cannot be created\n"),"genlib_old",path+'lib'));
+      error(msprintf(gettext("%s: %s file cannot be created\n"),"genlib_old",path+'lib'));
     end
   else
      execstr(nam+'=lib('''+path1+''')')
@@ -121,7 +121,7 @@ function genlib_old(nam,path,force,verbose,names)
     if ~predefined then
       execstr(nam+'=resume('+nam+')')
     else
-      mprintf(gettext("Library file ''%s'' has been updated,\nbut cannot be loaded into Scilab because ''%s'' is a protected variable.\n"),path1+'lib',nam);
+      mprintf(gettext("Library file %s has been updated,\nbut cannot be loaded into Scilab because %s is a protected variable.\n"),path1+'lib',nam);
     end
   end
 endfunction
@@ -137,7 +137,7 @@ function getsave(fl)
   ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
   if ierr<>0 then
     clear ierr
-    mprintf(gettext("%s: Warning: Error in file %s : ""%s"". File ignored\n"),"genlib_old",fl,lasterror())
+    mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib_old",fl,lasterror())
   else
     clear ierr
     // lookfor names of the functions defined in file 'fl'
@@ -151,13 +151,13 @@ function getsave(fl)
       clear ierr
       nf=length(fl)
       if nf>40 then fl='...'+part(fl,nf-40:nf),end
-      error(msprintf(gettext("%s: Impossible to open file ''%s'' for writing\n"),"genlib_old",fl));
+      error(msprintf(gettext("%s: Impossible to open file %s for writing\n"),"genlib_old",fl));
     end
     clear ierr
     if new<>[] then 
       execstr('save(u,'+strcat(new($:-1:1),',')+')'); 
     else 
-      msprintf(gettext("%s: File ''%s'' does not contain any function.\n"),"genlib_old",fl)
+      msprintf(gettext("%s: File %s does not contain any function.\n"),"genlib_old",fl)
     end
     mclose(u)
   end

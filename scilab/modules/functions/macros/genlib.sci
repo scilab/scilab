@@ -76,7 +76,7 @@ function genlib(nam,path,force,verbose,names)
     end
     
     if files==[] | files== "" then
-      warning(msprintf(gettext("%s: I cannot find any files with extension %s in %s\n"),"genlib",".sci", path));
+      warning(msprintf(gettext("%s: No files with extension %s found in %s\n"),"genlib",".sci", path));
       return ;
     end
     names = basename(files,%f);
@@ -147,7 +147,7 @@ function genlib(nam,path,force,verbose,names)
     //save it
     
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
-      error(msprintf(gettext("%s: ''%s'' file cannot be created\n"),"genlib",path+'lib'));
+      error(msprintf(gettext("%s: %s file cannot be created\n"),"genlib",path+'lib'));
     end
   else
     execstr(nam+'=lib('''+path1+''')')
@@ -157,7 +157,7 @@ function genlib(nam,path,force,verbose,names)
     if ~predefined then
       execstr(nam+'=resume('+nam+')')
     else
-      mprintf(gettext("Library file ''%s'' has been updated,\nbut cannot be loaded into Scilab because ''%s'' is a protected variable.\n"),path1+'lib',nam);
+      mprintf(gettext("Library file %s has been updated,\nbut cannot be loaded into Scilab because %s is a protected variable.\n"),path1+'lib',nam);
     end
   end
   
@@ -177,7 +177,7 @@ function result = getsave(fl)
   
   if ierr<> 0 then
     clear ierr;
-    mprintf(gettext("%s: Warning: Error in file %s : ""%s"". File ignored\n"),"genlib",fl,lasterror())
+    mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib",fl,lasterror())
     result = %f;
   else
     clear ierr;
@@ -196,7 +196,7 @@ function result = getsave(fl)
       if nf>40 then
 	fl='...'+part(fl,nf-40:nf);
       end
-      error(msprintf(gettext("%s: Impossible to open file ''%s'' for writing\n"),"genlib",fl));
+      error(msprintf(gettext("%s: Impossible to open file %s for writing\n"),"genlib",fl));
     end
     
     clear ierr
@@ -204,7 +204,7 @@ function result = getsave(fl)
     if new<>[] then
       execstr('save(u,'+strcat(new($:-1:1),',')+')');
     else
-      msprintf(gettext("%s: File ''%s'' does not contain any function.\n"),"genlib",fl)
+      msprintf(gettext("%s: File %s does not contain any function.\n"),"genlib",fl)
       result = %f;
     end
     
