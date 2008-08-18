@@ -10,53 +10,30 @@
 
 function head_comments(name,%paths)
 //displays the first comments of a function
-  if exists('%paths')==0 then %paths='./',end
+  if type(name)<>10 then
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: A character string expected.\n"),"head_comments",1))
+  end
   name=stripblanks(name)
-  if exists(name)==0 then 
-    error(msprintf(gettext("%s: Undefined function %s.\n"),"head_comments",name)),
+  if execstr('var='+name,'errcatch')<>0 then
+    error(msprintf(gettext("%s: Undefined variable %s.\n"),"head_comments",name )),    
   end
-  execstr('t=type('+name+')')
-  if t<>11 & t<>13 then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"),"head_comments",1))
-  end
-  l=whereis(name)
-  if l<>[] then
-    execstr('path=string('+l+');path=path(1)')
-    path=path+name+'.sci'
-  else
-    files= listfiles(%paths+'*.sci')
-    if files==[] then
-      error(msprintf(gettext("%s: ''%s'' file cannot be found in the given paths.\n"),"head_comments",name))
-    end
-    k=grep(files,name+'.sci')
-    if k<>[] then
-      path=files(k(1))
-    else
-      path=[]
-    end
-  end
-  if path==[] then
-    error(msprintf(gettext("%s: ''%s'' file cannot be found in the given paths.\n"),"head_comments",name))
-  end
-  txt=mgetl(path);
-  k=grep(txt,'function');
-  if k==[] then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"),"head_comments",1))
 
+  if type(var)==11 then comp(var);end
+  if type(var)<>13 then
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"),"head_comments",1))
   end
-  head=txt(k(1))
-  txt=txt(k(1)+1:$)
-  K=grep(part(txt,1:2),'//')
-  if K(1)<>1 then 
-     mprintf(gettext("No comment available."))
-     return
+  ops=macr2lst(var);
+  syntax='['+strcat(ops(2),',')+'] = '+name+'('+strcat(ops(3),',')+')';
+  
+  comm=[];
+  k=4;if ops(4)=='15' then k=k+1;end
+  while ops(k)(1)=='31' then
+    comm=[comm;ops(k)(2)];
+    k=k+2;
   end
-  k2=find(K(2:$)-K(1:$-1)<>1,1)
-  if k2==[] then k2=size(K,'*'),end
-  sel=K(1):k2(1)
-  if sel<>[] then
-    mprintf("%s\n",[head;strsubst(txt(sel),'//','')])
+  if comm==[] then
+    mprintf("%s\n",[syntax;gettext("No comment available.\n")])
   else
-    mprintf(gettext("No comment available."))
+    mprintf("%s\n",[syntax;comm])
   end
 endfunction
