@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc execfile {{buf "current"}} {
 # return argument: 0=success, 1=scilab busy, 2=cancel overwrite, -1=fail
     global listoffile pad
@@ -255,19 +256,37 @@ proc helpskeleton {} {
 }
 
 proc xmlhelpfile {} {
-# save the file and call xmlfiletohtml. Catch and popup the error messages.
+# save the file and call xmlfiletohtml (in Scilab 4), or do nothing
+# (in Scilab 5) because of bug 3015
+
     global listoffile
+    global Scilab5 ScilabBugzillaURL
 
     if {[isscilabbusy 4]} {return}
 
-    filetosavecur
-    set filetocomp $listoffile("[gettextareacur]",fullname)
-    set filename [file tail    $filetocomp]
-    set filepath [file dirname $filetocomp]
-    set cwd [pwd]
-    cd $filepath
-    ScilabEval_lt "xmlfiletohtml(\"$filename\")" sync
-    cd $cwd
+    if {$Scilab5} {
+        set bugzillabugURL {}
+        append bugzillabugURL $ScilabBugzillaURL "show_bug.cgi?id=3015"
+        # this link points to Scipad_6.143.BP1
+        set backportedscipadversionURL {http://www.scilab.org/contrib/index_contrib.php?page=displayContribution&fileID=1111}
+        set mes {}
+        append mes [mc "This feature is no longer available in Scilab 5 due to bug 3015."] "\n\n" \
+                   [mc "See details at "] $bugzillabugURL "\n\n" \
+                   [mc "Note: Scilab 4.x and Scilab-gtk are offering this feature."] "\n" \
+                   [mc "A solution is to use a backported version of Scipad inside one of these environments, for instance:"] "\n" $backportedscipadversionURL
+        set tit [mc "Feature missing from Scilab 5"]
+        tk_messageBox -message $mes -icon error -title $tit
+    
+    } else {
+        filetosavecur
+        set filetocomp $listoffile("[gettextareacur]",fullname)
+        set filename [file tail    $filetocomp]
+        set filepath [file dirname $filetocomp]
+        set cwd [pwd]
+        cd $filepath
+        ScilabEval_lt "xmlfiletohtml(\"$filename\")" sync
+        cd $cwd
+    }
 }
 
 proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {

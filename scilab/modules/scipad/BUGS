@@ -9,6 +9,9 @@ Bugs:
  http://wiki.scilab.org/Tcl_Thread
  http://wiki.scilab.org/Scipad_debugger_inner_beauties
 
+-other open Scipad bugs reported in the Siclab bugzilla:
+http://bugzilla.scilab.org/buglist.cgi?&component=Scipad+Editor&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED
+
 -issues related with non colorizing single quoted text:
   . code lines such as mprintf("%s",'this is a function') break the line
     number counting in functions if not properly colorized as textquoted.
@@ -478,3 +481,4 @@ https://sourceforge.net/tracker/?func=detail&atid=312997&aid=1477426&group_id=12
 This is patch 1477426, with already a number of implementation proposals.
 Might be far better to make use of the Tcl-designed selection font, keeping mine
 as a default fallback whenever the user has an old Tk version.
+See also TIP #213 and TIP #324, and discussions on them on [TCLCORE].

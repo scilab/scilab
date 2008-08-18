@@ -25,7 +25,7 @@
 #
 
 # Scipad texts in French by Francois Vogel
-# in sync at least with v6.151
+# in sync at least with v6.153
 
 
 # commons
@@ -696,6 +696,11 @@
     ::msgcat::mcset fr_fr "already exists: open the old file instead?" "existe déjà : Ouvrir le fichier existant ?"
 ::msgcat::mcset fr_fr "Existing file" "Fichier existant"
 ::msgcat::mcset fr_fr "New skeleton" "Nouveau squelette d'aide"
+::msgcat::mcset fr_fr "This feature is no longer available in Scilab 5 due to bug 3015." "Cette fonction n'est plus disponible dans Scilab 5 à cause du bug 3015."
+::msgcat::mcset fr_fr "See details at " "Plus d'infos: "
+::msgcat::mcset fr_fr "Note: Scilab 4.x and Scilab-gtk are offering this feature." "Nota: Scilab 4.x et Scilab-gtk proposent cette fonctionnalité."
+::msgcat::mcset fr_fr "A solution is to use a backported version of Scipad inside one of these environments, for instance:" "Une solution est d'utiliser une version dite \"backport\" de Scipad à l'intérieur d'un de ces environnements, par exemple:"
+::msgcat::mcset fr_fr "Feature missing from Scilab 5" "Fonctionnalité manquante dans Scilab 5"
 ::msgcat::mcset fr_fr "ScilabEval command cannot be passed to Scilab!" "Une commande ScilabEval ne peut pas être passée à Scilab!"
 ::msgcat::mcset fr_fr impossibleScilabEval_message \
                    "ATTENTION : Une commande n'a pas pu être passée à Scilab et a été ignorée.\n\n \

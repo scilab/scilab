@@ -1,3 +1,9 @@
+Francois VOGEL, 18/08/08
+ * Avoid Tcl error due to bug 3015 in Scilab5 environment. Compile as help
+   page cannot work in Scilab 5 because no incremental mode is available
+   so far (only the entire help system can be rebuilt, and not a single file)
+ * version --> 6.153
+
 Francois VOGEL, 26/07/08
  * All language names (and therefore message file names) are in lowercase
    because this is needed on Linux since ::msgcat::mclocale stores the locale
