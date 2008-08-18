@@ -32,6 +32,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -207,9 +208,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * Destroy the MenuItem
 	 */
 	public void destroy() {
-		Container parent = getParent();
-		parent.remove(this);
-		parent.repaint();
+		ScilabSwingUtilities.removeFromParent(this);
 	}
 	
 	/**

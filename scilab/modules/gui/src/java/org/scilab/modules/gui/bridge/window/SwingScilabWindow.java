@@ -236,22 +236,27 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
 	 */
 	public void removeTab(Tab tab) {
-		DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
-		((SwingScilabTab) tab.getAsSimpleTab()).close();
-		if (getDockingPort().getDockables().isEmpty()) {
-			if (toolBar != null) {
-				UIElementMapper.removeMapping(toolBar.getElementId());
+		try {
+			DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
+			((SwingScilabTab) tab.getAsSimpleTab()).close();
+			if (getDockingPort().getDockables().isEmpty()) {
+				if (toolBar != null) {
+					UIElementMapper.removeMapping(toolBar.getElementId());
+				}
+				if (menuBar != null) {
+					UIElementMapper.removeMapping(menuBar.getElementId());
+				}
+				addMenuBar(null);
+				addToolBar(null);
+				addInfoBar(null);
+				UIElementMapper.removeMapping(this.elementId);
+				
+				this.removeAll();
+				this.dispose();
 			}
-			if (menuBar != null) {
-				UIElementMapper.removeMapping(menuBar.getElementId());
-			}
-			addMenuBar(null);
-			addToolBar(null);
-			addInfoBar(null);
-			UIElementMapper.removeMapping(this.elementId);
-			
-			this.removeAll();
-			this.dispose();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

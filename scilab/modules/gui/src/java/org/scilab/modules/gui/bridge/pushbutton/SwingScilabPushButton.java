@@ -27,6 +27,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -198,8 +199,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * Destroy the PushButton
 	 */
 	public void destroy() {
-		getParent().remove(this);
-		this.setVisible(false);
+		ScilabSwingUtilities.removeFromParent(this);
 	}
 	
 	/**

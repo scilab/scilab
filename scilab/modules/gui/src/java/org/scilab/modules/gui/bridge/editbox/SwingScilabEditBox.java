@@ -29,6 +29,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -218,8 +219,7 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	 * Destroy the EditBox
 	 */
 	public void destroy() {
-		getParent().remove(this);
-		this.setVisible(false);
+		ScilabSwingUtilities.removeFromParent(this);
 	}
 	
 	/**

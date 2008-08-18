@@ -59,7 +59,7 @@ void DrawableFigureJoGL::closeRenderingCanvas( void )
 {
   // disable synchrnonization here to avoid deadlocks
   endGraphicDataWriting();
-  destroy() ;
+  DrawableObjectJoGL::destroy() ;
   startGraphicDataWriting();
   if ( m_pJavaWindow != NULL )
   {
@@ -172,6 +172,11 @@ DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 DrawableFigureJavaMapper * DrawableFigureJoGL::getFigureJavaMapper(void)
 {
   return dynamic_cast<DrawableFigureJavaMapper *>(getJavaMapper());
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::destroy( void )
+{
+  // do nothing otherwise destroy will be called after window closing
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setTitle( const char * title )

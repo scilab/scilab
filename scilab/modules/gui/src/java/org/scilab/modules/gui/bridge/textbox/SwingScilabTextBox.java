@@ -21,6 +21,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -181,8 +182,7 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 * Destroy the TextBox
 	 */
 	public void destroy() {
-		getParent().remove(this);
-		this.setVisible(false);
+		ScilabSwingUtilities.removeFromParent(this);
 	}
 	
 	/**
