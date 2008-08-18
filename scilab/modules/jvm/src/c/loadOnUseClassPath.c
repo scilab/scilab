@@ -41,13 +41,10 @@ BOOL loadOnUseClassPath(char *tag)
 	// Load the XML
 	if ( FileExist(classpathfile) )
 	{
-		char *encoding = GetXmlFileEncoding(classpathfile);
-
 		/* Don't care about line return / empty line */
 		xmlKeepBlanksDefault(0);
 		/* check if the XML file has been encoded with utf8 (unicode) or not */
-		if ( stricmp("utf-8", encoding)==0 )
-		{
+
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;
@@ -62,7 +59,6 @@ BOOL loadOnUseClassPath(char *tag)
 			if (doc == NULL) 
 			{
 				fprintf(stderr,_("Error: could not parse file %s\n"), classpathfile);
-				if (encoding) {FREE(encoding);encoding=NULL;}
 				return bOK;
 			}
 
@@ -124,12 +120,6 @@ BOOL loadOnUseClassPath(char *tag)
 			* Cleanup function for the XML library.
 			*/
 			xmlCleanupParser();
-		}
-		else
-		{
-			fprintf(stderr,_("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"), classpathfile, encoding);
-		}
-		if (encoding) {FREE(encoding);encoding=NULL;}
 
 	} 
 	else
