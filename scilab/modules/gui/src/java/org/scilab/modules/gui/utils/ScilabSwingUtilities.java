@@ -40,16 +40,18 @@ public final class ScilabSwingUtilities {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
-					Container parent = componentF.getParent();
-					parent.remove(componentF);
 					componentF.setVisible(false);
-					parent.repaint();
+					Container parent = componentF.getParent();
+					if (parent != null) {
+						parent.remove(componentF);
+						parent.repaint();
+					}
 				}
 			});
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			e.getCause().printStackTrace();
 		}
 	}
 	
