@@ -63,6 +63,20 @@ JNIEnv *getScilabJNIEnv(void)
 #elif JNI_VERSION_1_4
 		res = (*jvm_SCILAB)->GetEnv(jvm_SCILAB, (void **)&JNIEnv_SCILAB, JNI_VERSION_1_4);
 #endif
+		if(res == JNI_ERR) 
+		{
+		#ifdef _MSC_VER
+			MessageBox(NULL,_("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+		#else
+			fprintf(stderr,_("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"));
+		#endif
+			return NULL;
+		}
+
+		if(res == JNI_EDETACHED)
+		{
+			(*jvm_SCILAB)->AttachCurrentThread( jvm_SCILAB, (void **) &JNIEnv_SCILAB , NULL ) ;
+		}
 	}
 	else
 	{

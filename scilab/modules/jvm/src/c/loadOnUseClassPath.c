@@ -41,91 +41,87 @@ BOOL loadOnUseClassPath(char *tag)
 	// Load the XML
 	if ( FileExist(classpathfile) )
 	{
-		/* Don't care about line return / empty line */
-		xmlKeepBlanksDefault(0);
-		/* check if the XML file has been encoded with utf8 (unicode) or not */
+		xmlXPathContextPtr xpathCtxt = NULL;
+		xmlXPathObjectPtr xpathObj = NULL;
+		xmlDocPtr doc = NULL;
 
-			xmlDocPtr doc;
-			xmlXPathContextPtr xpathCtxt = NULL;
-			xmlXPathObjectPtr xpathObj = NULL;
-			/* 
-			 * Xpath query: Retrieve all nodes what have the property
-			 * load="onUse" and the tag we are looking for 
-			 */
-			#define XPATH "//classpaths/path[@load='onUse']/load[@on='%s']"
-			char * XPath=(char*)MALLOC(sizeof(char)*(strlen(XPATH)+strlen(tag)-2+1)); /* -2 = strlen(%s) */
-			sprintf(XPath,XPATH,tag);
-			doc = xmlParseFile (classpathfile);
-			if (doc == NULL) 
+		char * XPath = NULL;
+
+		/* 
+		 * Xpath query: Retrieve all nodes what have the property
+		 * load="onUse" and the tag we are looking for 
+		 */
+		#define XPATH "//classpaths/path[@load='onUse']/load[@on='%s']"
+		XPath = (char*)MALLOC(sizeof(char)*(strlen(XPATH)+strlen(tag)-2+1)); /* -2 = strlen(%s) */
+		sprintf(XPath,XPATH,tag);
+
+		doc = getClassPathxmlDocPtr();
+		
+		if (doc == NULL) 
+		{
+			fprintf(stderr,_("Error: could not parse file %s\n"), classpathfile);
+			return bOK;
+		}
+
+		xpathCtxt = xmlXPathNewContext(doc);
+		// Look for all the tag which matches
+		xpathObj = xmlXPathEval((const xmlChar*)XPath, xpathCtxt);
+		if(xpathObj && xpathObj->nodesetval->nodeMax) 
+		{
+			/* the Xpath has been understood and there are node */
+			int	i;
+			for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
 			{
-				fprintf(stderr,_("Error: could not parse file %s\n"), classpathfile);
-				return bOK;
-			}
-
-			xpathCtxt = xmlXPathNewContext(doc);
-			// Look for all the tag which matches
-			xpathObj = xmlXPathEval((const xmlChar*)XPath, xpathCtxt);
-
-			if(xpathObj && xpathObj->nodesetval->nodeMax) 
-			{
-				/* the Xpath has been understood and there are node */
-				int	i;
-				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
+				xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->parent->properties;
+				while (attrib != NULL) 
 				{
-					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->parent->properties;
-					while (attrib != NULL) 
-					{
-						/* loop until when have read all the attributes */
-						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
-						{ 
-							// @TODO Check if it has been loaded before
-
-							/* we found the tag value  & load the jar */
-							/* replaces $SCILAB by current path of SCI */
-							#define KEYWORDSCILAB "$SCILAB" 
-							char *sciPath = getSCIpath();
-							char *FullClasspath = NULL;
-							char *classpath = (char*)attrib->children->content;
-						
-							if (strncmp(classpath,KEYWORDSCILAB,strlen(KEYWORDSCILAB))==0)
+					/* loop until when have read all the attributes */
+					if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
+					{ 
+						// @TODO Check if it has been loaded before
+						/* we found the tag value  & load the jar */
+						/* replaces $SCILAB by current path of SCI */
+						#define KEYWORDSCILAB "$SCILAB" 
+						char *sciPath = getSCIpath();
+						char *FullClasspath = NULL;
+						char *classpath = (char*)attrib->children->content;
+					
+						if (strncmp(classpath,KEYWORDSCILAB,strlen(KEYWORDSCILAB))==0)
+						{
+							FullClasspath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(classpath)+1));
+							if (FullClasspath)
 							{
-								FullClasspath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(classpath)+1));
-								if (FullClasspath)
-								{
-									strcpy(FullClasspath,sciPath);
-									strcat(FullClasspath,&classpath[strlen(KEYWORDSCILAB)]);
-								}
+								strcpy(FullClasspath,sciPath);
+								strcat(FullClasspath,&classpath[strlen(KEYWORDSCILAB)]);
 							}
-							else
-							{
-								FullClasspath = strdup(classpath);
-							}
-
-							addToClasspath(FullClasspath,STARTUP);
-							FREE(FullClasspath);
 						}
-						attrib = attrib->next;
+						else
+						{
+							FullClasspath = strdup(classpath);
+						}
+						addToClasspath(FullClasspath,STARTUP);
+						FREE(FullClasspath);
 					}
+					attrib = attrib->next;
 				}
 			}
-			else
-			{
-				fprintf(stderr,_("Wrong format for %s.\n"), classpathfile);
-			}
-
-			if(xpathObj) xmlXPathFreeObject(xpathObj);
-			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
-			xmlFreeDoc (doc);
-			/*
-			* Cleanup function for the XML library.
-			*/
-			xmlCleanupParser();
-
+		}
+		else
+		{
+			fprintf(stderr,_("Wrong format for %s.\n"), classpathfile);
+		}
+		if(xpathObj) xmlXPathFreeObject(xpathObj);
+		if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+		/*
+		* Cleanup function for the XML library.
+		*/
+		xmlCleanupParser();
 	} 
 	else
 	{
 		fprintf(stderr,_("Warning: could not find classpath declaration file %s.\n"), classpathfile);
 	}
+
 	return FALSE;	
 }
 /*--------------------------------------------------------------------------*/ 
