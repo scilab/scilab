@@ -57,6 +57,7 @@ function [h,num,den]=ss2tf(sl,rmax)
   if rhs==2 then
     if type(rmax)==10 then  
       meth=part(rmax,1),
+      rhs=1
     else 
       meth='b'
     end
