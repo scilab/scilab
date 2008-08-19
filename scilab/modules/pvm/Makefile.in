@@ -592,6 +592,12 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@JARMASK = *.jar
 # JAR files
 @PVM_TRUE@JARMASK = *.jar
+# Chapter file 
+@PVM_FALSE@HELP_CHAPTERDIR = help/
+# Chapter file 
+@PVM_TRUE@HELP_CHAPTERDIR = help/
+@PVM_FALSE@HELP_CHAPTERFILE = addchapter.sce
+@PVM_TRUE@HELP_CHAPTERFILE = addchapter.sce
 all: all-am
 
 .SUFFIXES:
@@ -1419,7 +1425,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
 @PVM_TRUE@install-data-local:
 # Install the tests
-@PVM_TRUE@	@echo "-- Install tests (if any) --"; \
+@PVM_TRUE@	@echo "-------- Install tests (if any) --------"; \
 @PVM_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @PVM_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
@@ -1434,8 +1440,19 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		  done; \
 @PVM_TRUE@	  fi; \
 @PVM_TRUE@	done 
+# Install the help chapter
+@PVM_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
+@PVM_TRUE@	for lang in $(ALL_LINGUAS); do \
+@PVM_TRUE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@PVM_TRUE@		if test -f $$HELPFILE; then \
+@PVM_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@PVM_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@PVM_TRUE@		fi; \
+@PVM_TRUE@	done
 # Install the macros
-@PVM_TRUE@	@echo "-- Install macros (if any) --"; \
+@PVM_TRUE@	@echo "-------- Install macros (if any) --------"; \
 @PVM_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
@@ -1452,7 +1469,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	done
 # Install java files (.jar)
 @PVM_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
-@PVM_TRUE@	echo "-- Install jar files --"; \
+@PVM_TRUE@	echo "-------- Install jar files --------"; \
 @PVM_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @PVM_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
@@ -1557,7 +1574,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
 @PVM_FALSE@install-data-local:
 # Install the tests
-@PVM_FALSE@	@echo "-- Install tests (if any) --"; \
+@PVM_FALSE@	@echo "-------- Install tests (if any) --------"; \
 @PVM_FALSE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @PVM_FALSE@	  if test -d $(srcdir)/$$dir/; then \
 @PVM_FALSE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
@@ -1572,8 +1589,19 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		  done; \
 @PVM_FALSE@	  fi; \
 @PVM_FALSE@	done 
+# Install the help chapter
+@PVM_FALSE@	@echo "-------- Install the help chapter (if any) --------"; \
+@PVM_FALSE@	for lang in $(ALL_LINGUAS); do \
+@PVM_FALSE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@PVM_FALSE@		if test -f $$HELPFILE; then \
+@PVM_FALSE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_FALSE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@PVM_FALSE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@PVM_FALSE@		fi; \
+@PVM_FALSE@	done
 # Install the macros
-@PVM_FALSE@	@echo "-- Install macros (if any) --"; \
+@PVM_FALSE@	@echo "-------- Install macros (if any) --------"; \
 @PVM_FALSE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
@@ -1590,7 +1618,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	done
 # Install java files (.jar)
 @PVM_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
-@PVM_FALSE@	echo "-- Install jar files --"; \
+@PVM_FALSE@	echo "-------- Install jar files --------"; \
 @PVM_FALSE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @PVM_FALSE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
