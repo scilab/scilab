@@ -39,22 +39,25 @@ else
 end
 
 if winsid()~=[] then
-  cmap = get(gcf(),"color_map");
-  curwin = xget("window");
+  curFig = gcf();
+  cmap = curFig.color_map;
+  curwin = curFig.figure_id;
 else
   cmap = []
   curwin = []
 end;
-win = max(winsid()+1);
-xset("window",win);
+
+// create the window for getcolor
+win = max(winsid()) + 1;
+scf(win);
 
 sdf;
 sda;
-f = gcf();
+fig = gcf();
 if cmap~=[] then
-  f.color_map = cmap;
+  fig.color_map = cmap;
 else
-  cmap = f.color_map;
+  cmap = fig.color_map;
 end;
 
 N = size(cmap,1);
@@ -64,14 +67,14 @@ n = round(sqrt(N/r));
 m = int(n*r);
 H = m*45; // These numbers set the size of the getcolor window
 W = n*45;
-f.figure_size = [H,W];
+fig.figure_size = [H,W];
 
 toolbar(win, "off")
 
-delmenu(win,"&File")
-delmenu(win,"&Tools")
-delmenu(win,"&Edit")
-delmenu(win,"&?")
+delmenu(win,gettext("&File"))
+delmenu(win,gettext("&Tools"))
+delmenu(win,gettext("&Edit"))
+delmenu(win,gettext("&?"))
 
 dx = wdim(1)/m;
 dy = wdim(2)/n;
@@ -130,14 +133,20 @@ addmenu(win, gettext("Cancel"));
 
 c_i = 0;
 c = cini;
+windowCloseButton = -1000;
 while %t
   str = '';
   [c_i,cx,cy,cw,str] = xclick();
-  if c_i==(-2) then
+  if (c_i == windowCloseButton) then
+    // window has been closed
+    k = [];
+    c = [];
+    break;
+  elseif (c_i== -2) then
     if str==Ok then k = k1; c = k; break;end;
     if str==Cancel then k = []; c = []; break;end;
   end;
-  if c_i==(-100) then k = []; break;end;
+
   mc = int(cx/dx)+1;
   nc = n-int(cy/dy);
   k = (mc-1)*n+nc; 
@@ -148,15 +157,19 @@ while %t
     end;
     k1 = k;
     name = rgb2name(cmap(k,eye())*255);
-    xinfo(gettext("Color number")+" "+string(k)+": R="+string(floor(cmap(k,1)*255))+" G="+string(floor(cmap(k,2)*255))+" B="+string(floor(cmap(k,3)*255))+" "+gettext("Name")+"="""+name(1)+"""");
+    fig.info_message = ..
+      gettext("Color number")+" "+string(k)+": R="+string(floor(cmap(k,1)*255))+" G="+string(floor(cmap(k,2)*255))+" B="+string(floor(cmap(k,3)*255))+" "+gettext("Name")+"="""+name(1)+"""";
   
   
   end;
 end;
 
-xdel(win);
+if (c_i <> windowCloseButton) then
+  delete(fig);
+end
+
 if curwin~=[] then
-  xset("window",curwin);
+  scf(curwin);
 end;
 
 

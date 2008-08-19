@@ -41,7 +41,7 @@ c=getcolor()</synopsis>
       <varlistentry>
         <term>c</term>
         <listitem>
-          <para>selected color id or [] if the user has clicked on the "Cancel" button.</para>
+          <para>selected color id or [] if the selection is cancelled.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,8 +50,7 @@ c=getcolor()</synopsis>
     <title>Description</title>
     <para><literal>getcolor</literal> opens a window displaying the palette of the current colormap. 
     The user can click on a color to show its id and RGB values.
-    <literal>getcolor</literal> returns the id of the selected color or [] if the user has clicked
-    on the "Cancel" button</para>
+    <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
