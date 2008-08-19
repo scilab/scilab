@@ -63,6 +63,9 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/docbook-xsl-saxon.jar" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
+<path value="$SCILAB/thirdparty/xmlgraphics-commons.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
 
 <!-- Mandatory on startup -->
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar" load="startup"/>

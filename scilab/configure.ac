@@ -1012,7 +1012,7 @@ if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
 	HELP_ENABLE=yes
 
 fi 
-AM_CONDITIONAL(BUILD_HELP, test "$HELP_ENABLE" = "yes")
+AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
 ## Install XML help files ###
 AC_ARG_WITH(install-help-xml,
@@ -1381,13 +1381,14 @@ else
 fi
 
 echo ""
-if test ! -z "$HELP_ENABLE" != no; then
+if test $HELP_ENABLE = yes; then
    echo "Docbook XSL path ....... = $DOCBOOK_ROOT"
    echo "Batik (SVG) ............ = $BATIK"
    echo "Saxon XSLT ............. = $SAXON"
    echo "FOP (XML => PDF) ....... = $FOP"
    echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
-   echo "Commons I/O  ........... = $COMMONS_IO"
+   echo "Commons I/O ............ = $COMMONS_IO"
+   echo "XML graphics commons ... = $XMLGRAPHICS_COMMONS"
 else
    echo "No documentation generated"
 fi
