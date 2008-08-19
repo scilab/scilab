@@ -38,7 +38,7 @@ int sci_TCL_CreateSlave(char *fname,unsigned long l)
 
 		GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
 
-		if (existsSlaveInterp(cstk(l2)))
+		if (!existsSlaveInterp(cstk(l2)))
 		{
 			TCLinterpreter=Tcl_CreateSlave(getTclInterp(),cstk(l2), 1);
 			releaseTclInterp();
