@@ -84,7 +84,7 @@ c     checking variable tol (number 5)
          if(ftol.lt.0.0D0 .or. xtol.lt.0.0D0 .or. gtol.lt.0.0D0
      *        .or. maxfev.le.0 .or. factor.le.0.0D0) then
             err=5-iskip
-            call error(115)
+            call error(116)
             return
          endif
          nprint=0
@@ -111,7 +111,7 @@ c     test m6*n6=n
          do  ii=0,n-1
             if (stk(ldiag+i).le.0.0D0) then
                err=6-iskip
-               call error(115)
+               call error(116)
                return
             endif
          enddo
