@@ -15,6 +15,7 @@
 
 #include "tcl.h"
 #include "tk.h"
+#include "machine.h"
 
 
 /*
@@ -42,5 +43,15 @@ void releaseTclInterp(void);
 ** without any Control
 */
 Tcl_Interp *requestTclInterp(void);
+
+/*
+** Check if global interp exists.
+*/
+BOOL existsGlobalInterp(void);
+
+/*
+** Check if slave interp exists.
+*/
+BOOL existsSlaveInterp(char *name);
 
 #endif /* !__GLOBALTCLINTERP_H___ */
