@@ -908,7 +908,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	for lang in $(ALL_LINGUAS); do \
-@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 if test -d help/$$lang; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 if test -d $(srcdir)/help/$$lang; then \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/$$lang && \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		if ls -lLd $(srcdir)/help/$$lang/$(DOCMASKXML) >/dev/null 2>&1; then \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		  for file in $(srcdir)/help/$$lang/$(DOCMASKXML) ; do \
@@ -1057,7 +1057,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	for lang in $(ALL_LINGUAS); do \
-@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 if test -d help/$$lang; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 if test -d $(srcdir)/help/$$lang; then \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/$$lang && \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		if ls -lLd $(srcdir)/help/$$lang/$(DOCMASKXML) >/dev/null 2>&1; then \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  for file in $(srcdir)/help/$$lang/$(DOCMASKXML) ; do \
