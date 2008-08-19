@@ -2,7 +2,7 @@
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //                      - Alan Layec <alan.layec@inria.fr>
-//
+// //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
@@ -26,22 +26,22 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 //** BEWARE: "d9" state is not yet tested after Replot removal
 //** 24/07/07: Al@n's patch for rotation of blocks
 
-  outin=['out','in']
+  outin = ['out','in']
   //----------- get link origin --------------------------------------
   //------------------------------------------------------------------
   win = %win;
   xc1 = %pt(1);
   yc1 = %pt(2);
 
-  [kfrom,wh] = getblocklink(scs_m,[xc1;yc1])
-
+  [kfrom, wh] = getblocklink(scs_m,[xc1;yc1]); //** recover information 
+                                               //** about the starting point 
   if kfrom<>[] then
     o1 = scs_m.objs(kfrom)
   else
     return
   end
 
-  //kfrom  is the number of selected block or link
+  // kfrom  is the number of selected block or link
   scs_m_save = scs_m;
   nc_save    = needcompile
 
@@ -51,27 +51,26 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
   if typeof(o1)=="Link" then  // add a split block
     pt = [xc1;yc1] ; 
-    [xx,yy,ct,from,to]=(o1.xx,o1.yy,o1.ct,o1.from,o1.to);
+    [xx,yy,ct,from,to] = (o1.xx,o1.yy,o1.ct,o1.from,o1.to);
     if (-wh==size(xx,'*')) then
-      wh=-(wh+1)
-      // avoid with clicking at the end-point of link
+      wh = -(wh+1) // avoid with clicking at the end-point of link
     end
 
     // get split type
-    [xout,yout,typout]=getoutputports(scs_m.objs(from(1)))
-    clr=ct(1)
-    [m,kp1]=mini((yc1-yout)^2+(xc1-xout)^2)
-    k=kp1
-    typo=ct(2)
+    [xout,yout,typout] = getoutputports(scs_m.objs(from(1)))
+    clr = ct(1)
+    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2)
+    k = kp1
+    typo = ct(2)
 
-    if typo==-1 then //old link comes from an event output port
-      typp='evtout'
+    if typo==-1 then // old link comes from an event output port
+      typp="evtout"
     else //old link comes from an regular output or input (implicit) port
       typp=outin(from(3)+1)
     end
 
-    //get port size
-    szout=getportsiz(scs_m.objs(from(1)),from(2),typp)
+    // get port size
+    szout = getportsiz(scs_m.objs(from(1)),from(2),typp)
     //get port data type
     if typp=='out'|typp=='in' then
      szouttyp=getporttyp(scs_m.objs(from(1)),from(2),typp)
@@ -88,17 +87,17 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     // Note : creation of the split block and modifications of links are
     //        done later, the sequel assumes that the split block is added
     //        at the end of scs_m
-    ks=kfrom; //selected link number
-    kfrom=size(scs_m.objs)+1;port_number=2; //to be created split block number
+    ks = kfrom; //selected link number
+    kfrom = size(scs_m.objs)+1;port_number=2; //to be created split block number
 
-    fromsplit=%t
-    //to be created link from origin
+    fromsplit = %t
+    // to be created link from origin
 
-    from=[kfrom,port_number,0] 
-    xo=d(1);yo=d(2)
-    xl=d(1);yl=d(2)
+    from = [kfrom,port_number,0] 
+    xo = d(1);yo=d(2)
+    xl = d(1);yl=d(2)
 
-  else //connection comes from a block
+  else // connection comes from a block
 
     graphics1=o1.graphics
     orig  = graphics1.orig
@@ -113,9 +112,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     i_ImplIndx=find(graphics1.in_implicit=='I')
 
     if xout==[] then
-        hilite_obj(kfrom)
-        message('This block has no output port')
-        unhilite_obj(kfrom)
+        hilite_obj(kfrom);
+        message("This block has no output port")
+        unhilite_obj(kfrom);
       return
     end
 
@@ -125,9 +124,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     xout=xxx(1,:);
     yout=xxx(2,:);
 
-    [m,kp1]=mini((yc1-yout)^2+(xc1-xout)^2)
-    k=kp1
-    xo=xout(k);yo=yout(k);typo=typout(k)
+    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2)
+    k = kp1
+    xo = xout(k); yo = yout(k); typo = typout(k)
 
     // Check if selected port is already connected and get port type ('in' or 'out')
 
@@ -135,9 +134,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       port_number=k
       if op(port_number)<>0 then
           hilite_obj(kfrom)
-          message(['Selected port is already connected.';..
-                   'To start a link off another link, place the cursor';..
-                   'on the split point and double click, or type l.'])
+          message(["Selected port is already connected.";..
+                   "To start a link off another link, place the cursor";..
+                   "on the split point and double click, or type l."])
           unhilite_obj(kfrom)
         return
       end
@@ -291,7 +290,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       //check connection
       if xin==[] then
          hilite_obj(kto)
-         message('This block has no input port.');
+         message("This block has no input port.");
          p_size = size(gh_axes.children);
          d_size = p_size(1) - o_size(1);
          if d_size > 0 then
@@ -301,7 +300,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
          if %scicos_debug_gr then
            disp("d2");   //** Debug
          end
-         unhilite_obj(kto)
+         unhilite_obj(kto);
+         drawnow();
          return;      //** EXIT point from the function
       end
 
@@ -332,6 +332,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
              disp("d3"); //** Debug
           end
           unhilite_obj(kto)
+          drawnow();
           return; //** EXIT point from the function
       end
 
@@ -353,7 +354,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
              if %scicos_debug_gr then
                disp("d4");//** Debug
              end
-             unhilite_obj(kto)
+             unhilite_obj(kto);
+             drawnow();
            return
         end
 
@@ -427,6 +429,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
            if %scicos_debug_gr then
              disp("d5");//** Debug
            end
+           drawnow();
            return ; //** Exit point
         end
 
@@ -461,6 +464,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
            if %scicos_debug_gr then
              disp("d6");//** Debug
            end
+           drawnow();
            return; //** Exit point
         end
         typpto='out'
@@ -493,6 +497,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
               disp("d7");//** Debug
             end
             unhilite_obj(kto)
+            drawnow();
             return; //** Exit point
         end
 
@@ -567,13 +572,13 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       //active window has been closed
-      [%win,Cmenu]=resume(curwin,'Quit')
+      [%win,Cmenu] = resume(curwin,'Quit')
   end
 
-  //make last segment horizontal or vertical
-  typ=typo
-  to=[kto,port_number,bool2s(typpto=='in'|typpto=='evtin')]
-  nx=prod(size(xl))
+  // make last segment horizontal or vertical
+  typ = typo
+  to = [kto,port_number,bool2s(typpto=='in'|typpto=='evtin')]
+  nx = prod(size(xl))
 
   if from==to then
       message(['Selected port is already connected.';..
@@ -591,125 +596,87 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       if %scicos_debug_gr then
         disp("d9");//** Debug
       end
-      //** ... to be removed
-      //** Replot_(); //** force a replot (obsolete)
+      drawnow();
       return //** exit point
   end
 
   //**-----------------------------------------------------------------------------------
-  //** the link is avalid link
+  //** the link is a valid link
 
-  if nx==1 then //1 segment link
+  //** from here the data strucures are update BUT not draw !  
+  drawlater(); //** DO NOT UPDATE THE CANVAS ! 
+ 
+  if nx==1 then // 1 segment link
 
     if fromsplit&(xl<>xc2|yl<>yc2) then
-      //try to move split point
-
-      if xx(wh)==xx(wh+1) then //split is on a vertical link
-
+      // try to move split point
+      if xx(wh)==xx(wh+1) then // split is on a vertical link
         if (yy(wh)-yc2)*(yy(wh+1)-yc2)<0 then
-          //erase last segment
-          //**xpoly([xl;xc2],[yl;yc2],'lines')
           yl = yc2 ;
-          //draw last segment
-          //**xpoly([xl;xc2],[yl;yc2],'lines')
           gh_link.data =  [xl yl ; xc2 yc2] ; //** put the coordinate here
-          //** draw(gh_link.parent); //** display the buffer
-          drawnow(); 
-          //** show_pixmap(); 
         end
-
       elseif yy(wh)==yy(wh+1) then //split is on a horizontal link
-
         if (xx(wh)-xc2)*(xx(wh+1)-xc2)<0 then
-          //erase last segment
-          //xpoly([xl;xc2],[yl;yc2],'lines')
-          xl = xc2,
-          //draw last segment
-          // xpoly([xl;xc2],[yl;yc2],'lines')
+          xl = xc2 ;
           gh_link.data = [xl yl ; xc2 yc2 ] ; //** put the coordinate here
-          //** draw(gh_link.parent); //** display the buffer
-          drawnow(); 
-          //** show_pixmap(); 
         end
-
       end
-      d=[xl,yl]
-    //** Alan's fix, 17/10/07
-    //** create a point in the middle of the link
-    //** in the case of a direct link between two port
-    //** of the same block
+      d = [xl,yl]
+      //** Alan's fix, 17/10/07
+      //** create a point in the middle of the link
+      //** in the case of a direct link between two port
+      //** of the same block
     elseif kto==kfrom then
-      xl=[xl;(xl+xc2)/2]
-      yl=[yl;(yl+yc2)/2]
+      xl = [xl;(xl+xc2)/2]
+      yl = [yl;(yl+yc2)/2]
     end
     //form link datas
-    xl=[xl;xc2];yl=[yl;yc2]
+    xl = [xl;xc2];yl=[yl;yc2]
   else
     if xl(nx)==xl(nx-1) then
-      //previous segment is vertical
-
-      //erase last and previous segments
-      // xpoly([xl(nx-1);xl(nx);xo;xc2],[yl(nx-1);yl(nx);yo;yc2],'lines')
-      //draw last 2 segments
-      // xpoly([xl(nx-1);xl(nx);xc2],[yl(nx-1);yc2;yc2],'lines')
-      drawlater() ;
-        nx = prod(size(xl)) ;
-        gh_link_del = gh_axes.children(1) ;
-        delete( gh_link_del );
-        gh_link_del = gh_axes.children(1) ;
-        delete( gh_link_del );
-        xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
-        gh_link = gh_axes.children(1) ;
-        gh_link.foreground = clr
-        //** draw(gh_link.parent) ; //** display the buffer
-      drawnow();
-      //** show_pixmap(); 
-      //form link datas
-      xl=[xl;xc2];yl=[yl(1:nx-1);yc2;yc2]
+      // previous segment is vertical
+      nx = prod(size(xl)) ;
+      gh_link_del = gh_axes.children(1) ;
+      delete( gh_link_del );
+      gh_link_del = gh_axes.children(1) ;
+      delete( gh_link_del );
+      xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
+      gh_link = gh_axes.children(1) ;
+      gh_link.foreground = clr
+      // form link datas
+      xl = [xl;xc2]; yl = [yl(1:nx-1);yc2;yc2]
 
     //** ---- Previous segment is horizontal
     elseif yl(nx)==yl(nx-1) then
-      //previous segment is horizontal
-      //erase last and previous segments
-      // xpoly([xl(nx-1);xl(nx);xo;xc2],[yl(nx-1);yl(nx);yo;yc2],'lines')
-      //draw last 2 sgements
-      //xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
-      drawlater ;
-        nx = prod(size(xl)) ;
-        gh_link_del = gh_axes.children(1) ;
-        delete( gh_link_del );
-        gh_link_del = gh_axes.children(1) ;
-        delete( gh_link_del );
-        xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
-        gh_link = gh_axes.children(1) ;
-        gh_link.foreground = clr
-        //** draw(gh_link.parent); //** display the buffer
-      drawnow(); 
-      //** show_pixmap(); 
+      // previous segment is horizontal
+      nx = prod(size(xl)) ;
+      gh_link_del = gh_axes.children(1) ;
+      delete( gh_link_del );
+      gh_link_del = gh_axes.children(1) ;
+      delete( gh_link_del );
+      xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
+      gh_link = gh_axes.children(1) ;
+      gh_link.foreground = clr
 
-      //form link datas
-      xl=[xl(1:nx-1);xc2;xc2];yl=[yl;yc2]
-    else //previous segment is oblique
-      //nothing particular is done
-      xl=[xl;xc2];yl=[yl;yc2]
+      // form link datas
+      xl = [xl(1:nx-1);xc2;xc2]; yl = [yl;yc2]
+    else 
+      // previous segment is oblique
+      // nothing particular is done
+      xl = [xl;xc2]; yl = [yl;yc2]
     end
   end
-  lk=scicos_link(xx=xl,yy=yl,ct=[clr,typ],from=from,to=to)
-  gh_blk = drawobj(lk); //** <-- draw the link :)
 
-  //** ----> Put the graphical handling update here :)
+  lk = scicos_link(xx=xl,yy=yl,ct=[clr,typ],from=from,to=to)
 
   //**---- Mr. Clean :) -----------------------------------------------------------------------
   p_size = size(gh_axes.children) ; //** p_size(1) is the number of compound object
   d_size = p_size(1) - o_size(1) ;             //** at the and of this "Link" operation
-  drawlater() ;
   if d_size > 0 then
     gh_compound_delete = glue(gh_axes.children(1:d_size) );
     delete (gh_compound_delete); //** delete the object
   end
-  //** draw(gh_curwin.children); //** display the buffer
-  drawnow();
-  //** show_pixmap(); 
+
   //**------------------------------------------------------------------------------------------
 
   //----------- update objects structure -----------------------------
@@ -799,16 +766,14 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
   drawlater(); 
     drawobj(lk) ;
-    //** draw(gh_curwin.children); //** display the buffer
   drawnow();
-  //** show_pixmap(); 
 
   //** update connected blocks
-  scs_m.objs(kfrom)=mark_prt(scs_m.objs(kfrom),from(2),outin(from(3)+1),typ,nx)
-  scs_m.objs(kto)=mark_prt(scs_m.objs(kto),to(2),outin(to(3)+1),typ,nx)
+  scs_m.objs(kfrom) = mark_prt(scs_m.objs(kfrom),from(2),outin(from(3)+1),typ,nx)
+  scs_m.objs(kto)   = mark_prt(scs_m.objs(kto),to(2),outin(to(3)+1),typ,nx)
 
-  needcompile=4
+  needcompile = 4; 
 
-  [scs_m_save,nc_save,enable_undo,edited]=resume(scs_m_save,nc_save,%t,%t)
+  [scs_m_save,nc_save,enable_undo,edited] = resume(scs_m_save,nc_save,%t,%t)
 
 endfunction
