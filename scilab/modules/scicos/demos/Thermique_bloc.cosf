@@ -2,7 +2,7 @@ scicos_ver = "scicos2.7.3"
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
-"doc"],[600,450,0,0,600,450],["Thermique_bloc","/home/ramin/EDP/Tests/"],..
+"doc"],[600,450,0,0,600,450],["Thermique_bloc","SCI"],..
 [0.0001;0.000001;1.000E-10;100001;0;100;0],15000," ",[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[12,9],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
@@ -181,11 +181,11 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               "   res[99]=-inptr[1][0]*xd[99]-(-99.99999999999999*x[98]+200*x[99]-99.99999999999999*x[100])*inptr[0][0];";
               "   res[100]=inptr[3][0]-x[100];";
               " }else if (flag == 1){";
-              "   /* la première sortie */ ";
+              "   /* la premiï¿½re sortie */ ";
               "   for (i=0;i<101;i++){";
               "     outptr[0][i]=x[i];";
               "   }";
-              "   /* la deuxième sortie */ ";
+              "   /* la deuxiï¿½me sortie */ ";
               "   outptr[1][0]=x[20];";
               "   outptr[1][1]=x[40];";
               "   outptr[1][2]=x[50];";

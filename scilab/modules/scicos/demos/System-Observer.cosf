@@ -3,7 +3,7 @@ scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
 'doc'],[600.456,434.56,-1.1167513,117.91139,540,405],..
-['System-Observer','/usr/local/lib/scilab/demos/scicos/'],..
+['System-Observer','SCI'],..
 [0.0001;1.000E-06;1.000E-10;100001;0;0],29,..
 ['A=[-.3,3,1;0,0,2;0,0,0];B=[1;2;3];C=[1,1,2;0,2,3];D=0;x0=[-2;1;2]';
 'K=ppol(A'',C'',-.7*ones(x0))'';';

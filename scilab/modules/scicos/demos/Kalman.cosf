@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[-97.156248,647.05302,30.427446,531.56599,1014,688,48,0,966,688,185,264,1.4],..
-            Title=["Kalman","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
+            Title=["Kalman","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=15,..
             context=["A=[-.3,3,1;0,0,2;0,0,0];";

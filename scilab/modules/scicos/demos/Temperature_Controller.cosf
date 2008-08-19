@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[-66.387587,1021.4565,-73.770884,612.24824,1469,926,205,174,1019,653,200,200,..
             1.387059],..
-            Title=["Temperature_Controller","/home/vaylet/dev/scilab-5.0/modules/scicos/demos/"],..
+            Title=["Temperature_Controller","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;86401;0;0],..
             tf=86400,..
             context=" ",..

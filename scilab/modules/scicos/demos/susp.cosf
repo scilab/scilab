@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[-362.30252,1051.0868,371.82688,1048.8133,1600,770,156,0,1288,770,52,171,..
             1.1666667],..
-            Title=["susp","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
+            Title=["susp","SCI"],..
             tol=[0.001;0.000001;1.000E-10;11;0;0;0.01],..
             tf=10,..
             context=["if ~exists(''L_f''),    L_f  = 0.9,     end  // front hub displacement from body gravity center (m)";

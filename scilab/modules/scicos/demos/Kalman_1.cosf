@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[600.456,434.56,-1.1167513,117.91139,540,405],..
-            Title=["Kalman_1","/home/fady/scilab_BUILD_4_scicos/demos/scicos/"],..
+            Title=["Kalman_1","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=15,..
             context=["A=[-.3,3,1;0,0,2;0,0,0];";

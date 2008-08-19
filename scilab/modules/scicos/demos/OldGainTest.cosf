@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[-121.06653,666.13144,133.75504,544.29175,1073,559,164,0,745,450,200,200,1.4],..
-            Title=["OldGainTest","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
+            Title=["OldGainTest","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0],..
             tf=49.9,..
             context=["A=[-.17,.03,.1;0,0,.2;0,0,.05];B=[1;2;3];C=[1,1,2;0,2,3];";

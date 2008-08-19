@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[-35.701216,661.18564,112.21202,478.06119,950,502,66,0,818,502,200,200,1.4],..
-            Title=["Discrete-KalmanFilter","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
+            Title=["Discrete-KalmanFilter","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=15,..
             context=["A=[0 1 0;0 1 1;-.1 -.3 -.5] ";

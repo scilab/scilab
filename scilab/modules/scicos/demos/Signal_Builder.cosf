@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[69.149867,527.78987,31.695822,409.50916,630,515,0,32,630,480,397,41,1.4],..
-            Title=["Signal_Builder","/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
+            Title=["Signal_Builder","SCI"],..
             tol=[0.0001;0.000001;1.000D-10;100001;0;0;0],..
             tf=30,..
             context="x3=[0 3 24 28];",..

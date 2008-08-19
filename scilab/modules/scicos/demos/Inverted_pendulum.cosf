@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[-707.40681,621.91844,-197.80747,703.07093,1328,900,194,153,940,728,248,113,..
             1.0256656],..
-            Title=["Inverted_pendulum","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
+            Title=["Inverted_pendulum","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=30,..
             context=["A=[0 1 0 0;20.601 0 0 0;0 0 0 1;-0.4905 0 0 0] ";

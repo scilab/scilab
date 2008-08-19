@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[135.44327,724.53665,29.080015,443.59669,803,565,106,32,670,580,445,243,1.4],..
-            Title=["pendulum_anim5","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
+            Title=["pendulum_anim5","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0.1;0;0],..
             tf=30,..
             context=["M=10;m=3;l=3;ph=0.1; ";

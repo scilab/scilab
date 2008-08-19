@@ -2,7 +2,7 @@ scicos_ver = "scicos2.7.3"
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
-"doc"],[600,450,0,0,600,450],["bounce","/usr/local/src/scilab/demos/scicos/"],..
+"doc"],[600,450,0,0,600,450],["bounce","SCI"],..
 [0.00001;1.000E-07;1.000E-10;100001;1;0],1000,..
 [" N=5;";
 "siz=[1.04 2 1 .5 3];";
