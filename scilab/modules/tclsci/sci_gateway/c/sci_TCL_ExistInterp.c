@@ -19,22 +19,16 @@
 /*--------------------------------------------------------------------------*/
 int sci_TCL_ExistInterp(char *fname,unsigned long l)
 {
-  static int l1,n1,m1;
-  int TypeVar1=0;
+  static int l1 = 0, n1 = 0, m1 = 0;
+
+  char *InterpName = NULL;
 
   CheckRhs(1,2);
   CheckLhs(1,1);
 
-  TypeVar1=GetType(1);
-
-  if (TypeVar1 == sci_strings)
+  if (GetType(1) == sci_strings)
     {
-      Tcl_Interp *TCLinterpreter=NULL;
-
-      char *InterpName=NULL;
-
       GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-      InterpName=cstk(l1);
 
       if (!existsGlobalInterp())
 	{
@@ -42,20 +36,10 @@ int sci_TCL_ExistInterp(char *fname,unsigned long l)
 	  return 0;
 	}
 
-      TCLinterpreter=Tcl_GetSlave(getTclInterp(),InterpName);
-      releaseTclInterp();
-
-      n1=1;
-      if (TCLinterpreter)
-	{
-	  CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-	  *istk(l1)=(int)(TRUE);
-	}
-      else
-	{
-	  CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-	  *istk(l1)=(int)(FALSE);
-	}
+      n1 = 1;
+      InterpName=cstk(l1);
+      CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+      *istk(l1) = (int) existsSlaveInterp(InterpName);
 
       LhsVar(1)=Rhs+1;
       C2F(putlhsvar)();
