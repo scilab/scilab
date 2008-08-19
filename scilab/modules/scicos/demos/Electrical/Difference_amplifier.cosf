@@ -4,7 +4,7 @@ scs_m=scicos_diagram(..
             wpar=[-110.59088,801.08062,11.838943,628.4746,1163,787,170,74,841,670,245,102,..
             1.3107581],..
             Title=["Difference_amplifier",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            "SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;100;0],..
             tf=0.01,..
             context=" ",..

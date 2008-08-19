@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[16.586126,662.49502,22.774884,423.89417,880,546,77,84,725,505,238,367,1.4],..
             Title=["Colpitts_Oscillator",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            "SCI"],..
             tol=[0.0001;0.000001;1.000E-15;1.000E-12;0;100;0],..
             tf=0.0000009,..
             context=" ",..

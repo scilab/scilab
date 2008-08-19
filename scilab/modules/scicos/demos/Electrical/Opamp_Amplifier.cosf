@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[-2.869707,708.94433,28.641365,385.03801,1079,544,135,0,743,544,-1,10,1.5570732],..
             Title=["Opamp_Amplifier",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
+            "SCI"],..
             tol=[0.0001;0.000001;1.000D-10;100001;0;100;0],..
             tf=0.2,..
             context=" ",..

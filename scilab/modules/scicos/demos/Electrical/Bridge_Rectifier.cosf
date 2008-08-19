@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[20.140641,666.37027,85.839415,451.63021,881,500,128,16,617,500,490,439,1.4],..
             Title=["Bridge_Rectifier",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            "SCI"],..
             tol=[1.000E-07;1.000E-08;1.000E-08;100;0;100],..
             tf=0.1,..
             context=" ",..

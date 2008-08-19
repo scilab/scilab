@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[-171.45618,795.25623,-33.46932,457.50675,1046,532,120,65,805,532,470,325,..
             1.1110567],..
-            Title=["AND_Gate","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            Title=["AND_Gate","SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;100;0],..
             tf=0.05,..
             context=" ",..

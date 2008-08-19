@@ -4,7 +4,7 @@ scs_m=scicos_diagram(..
             wpar=[-18.044732,768.99798,63.700178,445.48387,1358,659,170,21,942,639,245,102,..
             1.7723112],..
             Title=["DC_DC_Buck_Converter",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            "SCI"],..
             tol=[1.000E-07;1.000E-07;1.000E-10;100001;0;100;0],..
             tf=0.02,..
             context="L=0.03;T=400e-6;R=22;C=47e-6;a=8.4;Vref=11.3;VL=3.8;VU=8.2",..

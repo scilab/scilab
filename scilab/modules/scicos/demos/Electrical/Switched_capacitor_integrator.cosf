@@ -4,7 +4,7 @@ scs_m=scicos_diagram(..
             wpar=[-103.02497,762.73724,-47.902731,467.51861,1224,730,179,23,849,730,50,20,..
             1.4520997],..
             Title=["Switched_capacitor_integrator",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
+            "SCI"],..
             tol=[0.000001;0.000001;1.000D-10;100001;0;100;0],..
             tf=0.0004,..
             context="T_SW=5e-6;",..

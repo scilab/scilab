@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[-71.42777,819.07735,145.06542,491.36801,1246,488,182,58,900,488,153,264,..
             1.4374844],..
-            Title=["Transformer","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            Title=["Transformer","SCI"],..
             tol=[0.00001;0.000001;1.000E-10;100001;0;100;0],..
             tf=20,..
             context=" ",..

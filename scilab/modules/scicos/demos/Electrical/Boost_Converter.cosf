@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[156.42161,859.42359,15.292724,504.65516,1200,835,175,78,855,638,0,62,1.7524844],..
             Title=["Boost_Converter",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            "SCI"],..
             tol=[1.000E-07;1.000E-08;1.000E-10;100001;0;100;0],..
             tf=0.002,..
             context="L=10e-6; C=220e-6;R=1;T=10e-6;",..
