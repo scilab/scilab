@@ -32,14 +32,10 @@ function e=ge_drawnode_0(n)
   node_border=ge_get_node_border(n)
   node_colors=ge_get_node_colors(n)
 
+  updateAxisForNode(node_border, node_colors(1), node_colors(2));
+
   xarc(node_x-node_diam/2,node_y+node_diam/2,node_diam,node_diam,0,360*64);
   e1=gce();
-  e1.thickness=node_border;
-  e1.fill_mode='on';
-  e1.foreground=node_colors(1);
-  e1.background=node_colors(2);
-  e1.arc_drawing_method='lines"; //to make the drawin less slow
-  
 
   // Node label
   font=ge_get_node_font(n)
@@ -65,24 +61,18 @@ function e=ge_drawnode_1(n)
   node_diam=ge_get_node_diam(n);
   node_border=ge_get_node_border(n)
   node_colors=ge_get_node_colors(n)
+
+  updateAxisForNode(node_border, node_colors(1), node_colors(2));
+  
   //circle
   xarc(node_x-node_diam/2,node_y+node_diam/2,node_diam,node_diam,0,360*64);
   e1=gce();
-  e1.thickness=node_border;
-  e1.fill_mode='on';
-  e1.foreground=node_colors(1);
-  e1.background=node_colors(2);
   
   //Big Arrow
   vx=[-1/2;-1/2;-3/4;-1;0;+1;+3/4;+1/2;+1/2;-1/2]
   vy=[1/2;3/2;1;1;5/2;1;1;3/2;1/2;1/2]-3;
   xpoly(node_x+vx*node_diam,node_y+vy*node_diam)
   e=gce();
-  e.thickness=node_border;
-  e.fill_mode='on';
-  e.foreground=node_colors(1);
-  e.background=node_colors(2);
-
   //make a Compound for node shape
   e1=glue([e1,e])
   
@@ -90,7 +80,6 @@ function e=ge_drawnode_1(n)
   font=ge_get_node_font(n)
   [Id,loc]=ge_get_node_id(n)
   e2=ge_set_node_id(Id,font,loc,node_x,node_y,node_diam,node_diam)
-  
   e=glue([e1,e2])
 endfunction
 
@@ -107,25 +96,19 @@ function e=ge_drawnode_2(n)
   node_diam=ge_get_node_diam(n);
   node_border=ge_get_node_border(n)
   node_colors=ge_get_node_colors(n)
+
+  updateAxisForNode(node_border, node_colors(1), node_colors(2));
+
   //circle
   xarc(node_x-node_diam/2,node_y+node_diam/2,node_diam,node_diam,0,360*64);
   e1=gce();
-  e1.thickness=node_border;
-  e1.fill_mode='on';
-  e1.foreground=node_colors(1);
-  e1.background=node_colors(2);
   //Big Arrow
   vx=[-1/2;-1/2;-3/4;-1;0;+1;+3/4;+1/2;+1/2;-1/2]
   vy=[1/2;3/2;1;1;5/2;1;1;3/2;1/2;1/2];
   xpoly(node_x+vx*node_diam,node_y+vy*node_diam)
   e=gce();
-  e.thickness=node_border;
-  e.fill_mode='on';
-  e.foreground=node_colors(1);
-  e.background=node_colors(2);
   //make a Compound for node shape
   e1=glue([e1,e])
-  
   // Node label
   font=ge_get_node_font(n)
   [Id,loc]=ge_get_node_id(n)
@@ -147,14 +130,11 @@ function e=ge_drawnode_3(n)
   node_diam=ge_get_node_diam(n);
   node_border=ge_get_node_border(n)
   node_colors=ge_get_node_colors(n)
+
+  updateAxisForNode(node_border, node_colors(1), node_colors(2));
+  
   xrect(node_x-node_diam/2,node_y+node_diam/2,node_diam,node_diam)
   e1=gce();
-  e1.thickness=node_border;
-  e1.fill_mode='on';
-  e1.foreground=node_colors(1);
-  e1.background=node_colors(2);
-
-
   
   // Node label
   font=ge_get_node_font(n)
@@ -164,4 +144,19 @@ function e=ge_drawnode_3(n)
   e=glue([e1,e2])
 endfunction
 
+function updateAxisForNode(thickness, foreground, background)
+
+  // modify axes default values if needed
+  a = gca();
+  if (thickness <> a.thickness) then
+     a.thickness = thickness;
+  end
+  if(foreground <> a.foreground) then
+    a.foreground = foreground;
+  end
+  if(background <> a.background) then
+    a.background = background;
+  end
+
+endfunction
 

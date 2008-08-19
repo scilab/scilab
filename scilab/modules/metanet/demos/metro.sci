@@ -239,7 +239,7 @@ function []=metro(demopath)
 		 ' ' ;
 		 'The number of changes is: '+string(EndChange);
 		 string(changename);' '  ;
-		 'You will go thru the following stations:';
+		 'You will go through the following stations:';
 		 string(routef);]);
       road=[];route=[];routef=[];changename=[];
       iter=x_choose(['yes','no'],'Another travel?');
