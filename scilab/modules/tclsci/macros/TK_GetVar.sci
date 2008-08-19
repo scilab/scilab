@@ -7,7 +7,9 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// @OBSOLETE
+
 function ret=TK_GetVar(Var)
-  warning(msprintf(gettext("%s: Obsolete function. Please use %s."),"TK_GetVar","TCL_GetVar"));
+  warnobsolete("TCL_GetVar", "5.1");
   ret=TCL_GetVar(Var)
 endfunction
