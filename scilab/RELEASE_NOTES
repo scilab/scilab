@@ -73,7 +73,9 @@ List of missing/buggy features:
 - A bug altering the function pow on small numbers caused by the JVM still needs
   some attention: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6727254
 
-- The build process of the documentation is going to be changed.
+- The build process of a toolbox crashes on the documentation generation.
+
+- It is not (yet, we hope) possible to build a file documentation file and add it into the documentation.
 
 - A customization of the Java Virtual Machine (JVM) is going to be introduced 
   between the beta 4 & RC1
