@@ -446,9 +446,6 @@ modulename = javasci
 # Where it should be installed
 @JAVASCI_TRUE@pkgdocdir = $(mydatadir)
 
-# Which directories we have to install
-@JAVASCI_TRUE@DOCDIRS = help/fr_FR help/en_US
-
 # What is the mask of the help source
 @JAVASCI_TRUE@DOCMASKXML = *.xml
 
@@ -990,14 +987,14 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 @JAVASCI_TRUE@install-html-local:
 # If the user wants the help sources to be installed
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	@echo "-- Install of XML sources of help files --"; \
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	for dir in $(DOCDIRS) ; do \
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	 if test -d $$dir; then \
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	for lang in $(ALL_LINGUAS); do \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	 if test -d help/$$lang; then \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/$$lang && \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		if ls -lLd $(srcdir)/help/$$lang/$(DOCMASKXML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		  for file in $(srcdir)/help/$$lang/$(DOCMASKXML) ; do \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/$$lang" ; \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/$$lang ; \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	 fi; \
