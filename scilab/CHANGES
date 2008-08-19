@@ -265,6 +265,7 @@ Localization:
  - Scilab is coming with the included french localization (basic GUI for the beta version)
  - Russian localization (by Vorona Aleksey)
  - Traditionnal chinese localization (by Yung-Jang Lee)
+ - Simplified chinese localization (by Shiqi Yu)
  - New functions:
 	+ gettext(string) / _(string) - get text translated into the current locale
 	                                and domain
@@ -513,9 +514,9 @@ Known incompatibilty
 
   - the xgetmouse flag option has been removed 
 
-  - For licence reasons, The quapro and linpro functions are no more
-    available in the Scilab distribution, but as an external free (as beer)
-    toolbox.
+  - Due to license restrictions from the Universidad de Cantabria, the quapro 
+	and linpro functions are no more available in the Scilab distribution, but
+	as an external toolbox.
 
                      Main Changes Scilab 3.0 -> 4.0
                      ==============================
