@@ -37,7 +37,7 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 
-		if (getTclInterp() == NULL)
+		if (!existsGlobalInterp())
 		{
 			Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 			return 0;
