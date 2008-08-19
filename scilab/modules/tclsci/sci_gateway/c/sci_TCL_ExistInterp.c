@@ -36,13 +36,11 @@ int sci_TCL_ExistInterp(char *fname,unsigned long l)
       GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
       InterpName=cstk(l1);
 
-      if (getTclInterp() == NULL)
+      if (!existsGlobalInterp())
 	{
-	  releaseTclInterp();
 	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 	  return 0;
 	}
-      releaseTclInterp();
 
       TCLinterpreter=Tcl_GetSlave(getTclInterp(),InterpName);
       releaseTclInterp();
