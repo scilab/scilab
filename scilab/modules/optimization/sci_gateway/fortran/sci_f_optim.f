@@ -36,6 +36,7 @@ c
 c     
       parameter (nsiz1=nsiz-1)
       data impn/672732690,nsiz1*673720360/
+c
       data coin,coar,coti,cotd,cosi,cosd,nfac
      &     /   5906,6922,4637,3357,4636,3356, 0/
 c     
@@ -96,6 +97,15 @@ c     traitement de simul
          call error(80)
          return
       endif
+c
+c Compute isim :
+c - isim=1 if the cost function is given as a string (code 10), that is, the cost function is 
+c   a C or Fortran routine.
+c   In that case, the cost function is computed with a call to "foptim".
+c - isim=2 if the cost function is given as a script (code 11), a compiled script (code 13),
+c   or a list (code 15)
+c   In that case, the cost function is computed with a call to "boptim".
+c
 c     cas simul=liste
       if(istk(il).eq.10) then
          if (istk(il+1)*istk(il+2).ne.1) then
@@ -116,7 +126,7 @@ c     cas simul=liste
          endif
          isim=1
       endif
-c     cas simul=macro ou liste
+c     cas simul=macro
       if(istk(il).eq.11.or.istk(il).eq.13.or.istk(il).eq.15) then
          kopt=top2
          isim=2
@@ -124,8 +134,11 @@ c     cas simul=macro ou liste
       top2=top2+1
       il=iadr(lstk(top2))
 c     
-c     
-c     contraintes de borne (chaine "b" , xinf , xsup )
+c Compute icontr
+c - icontr=1 if without constraints
+c - icontr=2 if with bound constraints
+c
+c     contraintes de borne :chaine "b" (code 11), xinf , xsup
       if(istk(il).eq.10.and.istk(il+5).eq.2.and.
      +     abs(istk(il+6)).eq.11) then
          if (rhs.lt.5) then
@@ -211,6 +224,12 @@ c     stockage de g
       il=iadr(lstk(top2))
 c     
 c     choix d algorithme
+c
+c Compute ialg1
+c     (26,23) > "qn" > Quasi-Newton > ialg1=1
+c     (16,12) > "gc" > Gradient Conjugate > ialg1=2
+c     (23,13) > "nd" > Non Differentiable > ialg1=10
+c
       if(istk(il).eq.10) then
          if (istk(il+5)-1.ne.2) then
             err=top2-topin
@@ -335,6 +354,7 @@ c     epsg,epsf,epsx (note : epsx est un vecteur)
       endif
 c     
 c     chaine 'in'
+c
  150  if(istk(il).ne.10) then
          err=top2-topin
          call error(55)
@@ -350,7 +370,7 @@ c     chaine 'in'
          call error(36)
          return
       endif
-      if(abs(istk(il+6))+256*abs(istk(il+7)).eq.coin) then
+      if(abs(istk(il+6))+256*abs(istk(il+7)).eq. coin) then
          if(isim.ne.1) then
             buf='''in'' not allowed with simulator defined '//
      $           'by a function'
@@ -560,7 +580,7 @@ c
 c     
 c     appel de l optimiseur
 c     
-c     optimiseur n1qn1
+c     optimiseur n1qn1 : Quasi-Newton without constraints
       if(icontr.eq.1.and.ialg.eq.1) then
          lvar=ldisp
          mode=3
@@ -606,7 +626,7 @@ c     affectation de indopt
          go to 300
       endif
 
-c     algorithme n1qn3
+c     algorithme n1qn3 : Gradient Conjugate without constraints
       if(icontr.eq.1.and.ialg.eq.2) then
 c     calcul de epsrel
          zng=0.0d+0
@@ -666,7 +686,7 @@ c
          go to 300
       endif
 c     
-c     optimiseur n1fc1 (non smooth)
+c     optimiseur n1fc1 : non smooth without constraints
       if(icontr.eq.1.and.ialg.eq.10) then
          if (immx.eq.0) mmx=10
          nitv=2*mmx + 2
@@ -712,7 +732,7 @@ c     interpretation de la cause de retour
          go to 300
       endif
 c     
-c     optimiseur qnbd
+c     optimiseur qnbd : quasi-newton with bound constraints
       if(icontr.eq.2.and.ialg.eq.1) then
          if (iepsx.eq.1) then
             err=ldisp +nx - lstk(bot)
@@ -769,7 +789,7 @@ c     optimiseur qnbd
          go to 300
       endif
 c     
-c     optimiseur gcbd
+c     optimiseur gcbd : Gradient Conjugate with bound constraints
       if(icontr.eq.2.and.ialg.eq.2) then
          nt=2
          if (immx.eq.1) nt= max(1,mmx/3)
