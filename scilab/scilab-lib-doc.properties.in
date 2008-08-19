@@ -15,5 +15,7 @@ jeuclid-core.jar=@JEUCLID_CORE@
 
 commons-io.jar=@COMMONS_IO@
 
+xmlgraphics-commons.jar=@XMLGRAPHICS_COMMONS@
+
 library.helptools.dir=${modules.dir}/helptools/${build.jar.dir}/
 library.helptools.name=org.scilab.modules.helptools.jar

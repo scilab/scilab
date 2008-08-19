@@ -66,6 +66,11 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 </path>
 
+<!-- PDF doc generation (dep of jeuclid) -->
+<path value="@XMLGRAPHICS_COMMONS@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
 
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 

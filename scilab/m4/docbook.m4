@@ -49,6 +49,11 @@ AC_ARG_WITH(docbook,
 	COMMONS_IO=$PACKAGE_JAR_FILE
 	AC_SUBST(COMMONS_IO)
 
+	# XML graphics cmmon
+	AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
+	XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
+	AC_SUBST(XMLGRAPHICS_COMMONS)
+	
 
 AC_SUBST(DOCBOOK_ROOT)
 
