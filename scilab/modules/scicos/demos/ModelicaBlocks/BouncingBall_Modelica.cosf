@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[228.77719,656.22562,16.687184,378.88928,590,500,0,78,590,500,556,363,1.4],..
             Title=["BouncingBall_Modelica",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            "SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;100;0],..
             tf=50,..
             context="L=.0001; ",..

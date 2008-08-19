@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[41.562658,720.21274,355.99883,819.43798,850,583,94,0,721,583,431,261,1.2873407],..
             Title=["Finite_state_SwingUp",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            "SCI"],..
             tol=[0.000001;1.000E-07;1.000E-10;100001;0;100;0],..
             tf=30,..
             context=["n=0.25;";"g=9.8;";"w=1;";"um=n*g;";"k=100;";"Theta=%pi/6;"],..

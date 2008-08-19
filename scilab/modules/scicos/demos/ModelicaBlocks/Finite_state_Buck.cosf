@@ -4,7 +4,7 @@ scs_m=scicos_diagram(..
             wpar=[29.38557,660.11784,147.07398,624.49452,1053,797,136,83,781,631,653,285,..
             1.7154372],..
             Title=["Finite_state_Buck",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            "SCI"],..
             tol=[0.000001;1.000E-08;1.000E-10;100001;0;100;0],..
             tf=0.07,..
             context=["L=0.03;T=400e-6;R=220/2;C=47e-6;a=8.4;";

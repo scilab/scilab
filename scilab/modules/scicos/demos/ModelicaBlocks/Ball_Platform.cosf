@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[149.91398,549.8732,137.54103,442.04938,630,480,28,61,630,480,343,227,1.5995076],..
             Title=["Ball_Platform",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            "SCI"],..
             tol=[0.00001;1.000E-07;1.000E-10;100001;0;100;0],..
             tf=40,..
             context=" ",..

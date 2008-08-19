@@ -3,7 +3,7 @@ scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
 'doc'],[600,450,0,0,600,450],..
-['Hydraulics','/usr/local/lib/scilab/demos/scicos/'],..
+['Hydraulics','SCI'],..
 [1.000E-08;1.000E-10;1.000E-10;1;0;100],50,' ',[],..
 tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
 list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())

@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[275.36623,704.25025,6.9179557,368.53101,590,500,0,64,590,500,424,223,1.4],..
             Title=["Chaos_Modelica",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            "SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;100;0],..
             tf=120,..
             context="L=.0001; ",..

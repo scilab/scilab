@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[6.9075301,659.09798,17.943277,414.96925,889,545,130,0,677,545,683,515,1.4],..
             Title=["RLC_Modelica",..
-            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            "SCI"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;100],..
             tf=2,..
             context="L=.0001; ",..
