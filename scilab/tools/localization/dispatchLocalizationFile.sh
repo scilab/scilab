@@ -30,16 +30,17 @@ fi
 rm $LAUNCHPAD_DIRECTORY/string-v2*.po 
 
 for file in $LAUNCHPAD_DIRECTORY/*.po; do 
-	file=`echo $file|awk -F / '{print $NF}'`
-	LOC=`echo $file|cut -d. -f1|awk -F - '{print $NF}'`
+	file=`echo $file|awk -F / '{print $NF}'` # get only the filename
+	LOC=`echo $file|cut -d. -f1|awk -F - '{print $NF}'` # Get the locale (fr_FR, en_US ...)
 
-	if test "$LOC" == "fr"; then LOC="fr_FR"; fi
+	if test "$LOC" == "fr"; then LOC="fr_FR"; fi # Retrieve real format
 	if test "$LOC" == "ru"; then LOC="ru_RU"; fi
 
 	# check that it is the right format
-	echo "$LOC"|grep -E "(.*_.*)" > /dev/null
+	echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY
+
 	if test $? -eq 0; then
-		MODULE=`echo $file|sed -e "s|\(.*\)-.*|\1|"|sed -e "s|-|_|g"`
+		MODULE=`echo $file|sed -e "s|\(.*\)-.*|\1|"|sed -e "s|-|_|g"` # Get the module name (for example signal_processing)
 
 		DIR=$SCI/modules/$MODULE/locales/$LOC/
 		if test ! -d $DIR; then
