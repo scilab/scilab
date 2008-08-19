@@ -82,7 +82,10 @@ XLIBSBIN= "$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" "$(SCIDIR1)\
 	@echo ----------- Compile file $*.f (using f2c) -------------
 	@"$(SCIDIR1)\bin\f2c.exe" -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 2>NUL
 	@$(CC) $(CFLAGS) $*.c 
+	!IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
+	!ELSE
 	-del $*.c 
+	!ENDIF
 !ELSE 
 .f.obj	:
 	@echo -----------Compile file $*.f  (using $(FC)) -------------
@@ -95,7 +98,14 @@ RM = del
 clean::
 	-del *.bak 
   -del *.obj
+  !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
+  -del *.pdb
+  !ENDIF
 distclean::  
   -del *.bak 
   -del *.obj
+  !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
+  -del *.pdb
+  !ENDIF
+ 
 #==================================================
