@@ -5,11 +5,11 @@
 // ====================================================================
 mode(-1);
 lines(0);
-try   
+try
  getversion('scilab');
-catch  
+catch
  error(gettext('Scilab 5.0 or more is required.'));  
-end;  
+end;
 // ====================================================================
 if ~with_module('development_tools') then
   error(msprintf(gettext('%s module not installed."),'development_tools'));
@@ -26,7 +26,5 @@ tbx_builder_gateway(toolbox_dir);
 tbx_builder_help(toolbox_dir);
 tbx_build_loader(TOOLBOX_NAME, toolbox_dir);
 
-clear tbx_builder_macros tbx_builder_src tbx_builder_gateway tbx_builder_help tbx_build_loader;
-clear toolbox_dir;
-clear TOOLBOX_NAME TOOLBOX_TITLE;
+clear toolbox_dir TOOLBOX_NAME TOOLBOX_TITLE;
 // ====================================================================
