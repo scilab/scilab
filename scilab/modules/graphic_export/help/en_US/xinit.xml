@@ -21,8 +21,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>xinit(FileName)</synopsis>
-    <synopsis>xinit()</synopsis>
+    <synopsis>
+    xinit(FileName)
+    xinit()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
