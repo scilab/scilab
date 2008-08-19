@@ -34,7 +34,7 @@ int sci_delmenu(char *fname,unsigned long fname_len)
       // Error message in not in standard mode (we need figure index)
       if(getScilabMode() != SCILAB_STD)
         {
-          Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"), fname);
+          Scierror(999,_("%s: Figure number must be given when not in '%s' mode.\n"), fname, "STD");
           return FALSE;
         }
 
