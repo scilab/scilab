@@ -23,12 +23,12 @@ function GraphList=ge_new_edge(GraphList,xc1,yc1)
   xe=xl;ye=yl
   ge_win_handle=gcf()
   ge_win_handle.immediate_drawing='off'
-  ge_win_handle.pixel_drawing_mode='xor'
+  ge_win_handle.pixel_drawing_mode='equiv'
   xpoly([xl;xe],[yl;ye],'lines');e=gce();draw(e)
   while %t do //wait for a node selection
     rep(3)=-1
     while rep(3)<0 do //get a new point
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       xe=rep(1);ye=rep(2)
       draw(e)//erase
       e.data(2,:)=rep(1:2); draw(e)//at new position
