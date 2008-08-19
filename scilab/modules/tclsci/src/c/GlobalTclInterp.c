@@ -56,6 +56,25 @@ void releaseTclInterp(void) {
 }
 
 /*
+** Check if global interp exists.
+*/
+BOOL existsGlobalInterp(void) {
+  if(__globalTclInterp != NULL) {
+    return TRUE;
+  }
+  return FALSE;
+}
+/*
+** Check if slave interp exists.
+*/
+BOOL existsSlaveInterp(char *name) {
+  if (Tcl_GetSlave(__globalTclInterp, name) != NULL) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/*
 ** WARNING
 ** Get the Global Interpreter
 ** without any lock
