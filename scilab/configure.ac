@@ -853,7 +853,7 @@ AC_ARG_ENABLE(build-localization,
 
 if test $with_localization != no; then
 
-   ALL_LINGUAS="en_US fr_FR zh_TW ru_RU"
+   ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
    AC_SUBST(ALL_LINGUAS)
 
    AC_PATH_PROG(MSGCAT, msgcat, no)

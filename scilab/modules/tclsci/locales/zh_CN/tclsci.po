@@ -1,0 +1,245 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-08-18 08:31+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "&File"
+msgstr "文件( &F)"
+
+msgid "&Tools"
+msgstr "工具( &T)"
+
+msgid "&Edit"
+msgstr "编辑( &E)"
+
+msgid "&?"
+msgstr ""
+
+#, c-format
+msgid "%s: Error main TCL interpreter not initialized.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No such slave interpreter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or vector of strings "
+"expected.\n"
+msgstr ""
+
+msgid "This function doesn't work with Complex.\n"
+msgstr ""
+
+msgid "[] doesn't work with Tcl/Tk.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为矩阵。\n"
+
+msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
+msgstr ""
+
+msgid "Tcl/TK interface disabled in -nogui mode.\n"
+msgstr ""
+
+msgid "Alpha Release"
+msgstr ""
+
+msgid "Beta Release"
+msgstr ""
+
+msgid "Final Release"
+msgstr ""
+
+msgid "Unknown Release"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not create a slave interpreter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s interpreter already exists.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read Tcl Variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File %s not found.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s, at line %i of file %s\n"
+"\t%s.\n"
+msgstr ""
+
+msgid "Scilab TCL/TK module not installed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
+
+msgid "Impossible to set environment variable."
+msgstr ""
+
+msgid "Impossible to set system encoding."
+msgstr ""
+
+#, c-format
+msgid "Tcl Error: %s\n"
+msgstr ""
+
+#, c-format
+msgid "TCL_EvalScilabCmd %s"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "Execution starts for %s"
+msgstr ""
+
+#, c-format
+msgid "Execution ends for %s"
+msgstr ""
+
+msgid " Flushing starts for queued commands.\n"
+msgstr ""
+
+msgid "Warning: Too many callbacks in queue!\n"
+msgstr ""
+
+#, c-format
+msgid "Flushed execution starts for %s - No option"
+msgstr ""
+
+#, c-format
+msgid "Flushed execution starts for %s - seq"
+msgstr ""
+
+#, c-format
+msgid "Flushed execution ends for %s"
+msgstr ""
+
+msgid "Flushing ends\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Tcl Error : %s\n"
+msgstr ""
+
+msgid ""
+"The SCI environment variable is not set.\n"
+"TCL initialisation failed !\n"
+msgstr ""
+
+msgid ""
+"Unable to find Tcl initialisation scripts.\n"
+"Check your SCI environment variable.\n"
+"Tcl initialisation failed !"
+msgstr ""
+
+msgid ""
+"The SCI environment variable is not set.\n"
+"Tcl initialisation failed !\n"
+msgstr ""
+
+msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
+msgstr ""
+
+#, c-format
+msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
+msgstr ""
+
+#, c-format
+msgid "Tcl Error: Error during the TK initialization (Tk_Init):%s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
+"%s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
+"%s\n"
+msgstr ""
+
+msgid "Variable too long.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error TCL interpreter not initialized.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single double value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Obsolete function. Please use %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+msgid "Tcl/Tk interface not loaded."
+msgstr ""
+
+#, c-format
+msgid "Error %s while loading library %s"
+msgstr ""
+
+msgid "Updating, please wait"
+msgstr ""

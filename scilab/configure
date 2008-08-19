@@ -17665,7 +17665,7 @@ fi
 
 if test $with_localization != no; then
 
-   ALL_LINGUAS="en_US fr_FR zh_TW ru_RU"
+   ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
 
 
    # Extract the first word of "msgcat", so it can be a program name with args.
