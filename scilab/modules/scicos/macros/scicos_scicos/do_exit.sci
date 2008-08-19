@@ -95,10 +95,16 @@ end
 for i=winrem
   if i<>ii then
     win=windows(i,2)
+    //** N.B. winsid() can be temp incoherent in Scilab 5 (see additional protection)
     if or(win==winsid()) then
-      gh_del = scf(win) ; //** select the 'win'window and get the handle
-      //** this line is a source of problems .... 
-      delete (gh_del)   ; //** delete the window   
+        //** this filter out the windows that have been intentionally closed
+        //** ... for more details see macros/scicos_auto/scicos.sci
+        //** 
+        if ~((btn_n==-1000) & (%w==win_n)) 
+          gh_del = scf(win) ; //** select the 'win'window and get the handle
+          //** this line is a source of problems and must be protected 
+          delete (gh_del)   ; //** delete the window
+        end    
     end
   end
 end
