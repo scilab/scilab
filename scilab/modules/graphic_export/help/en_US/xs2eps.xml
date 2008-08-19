@@ -93,7 +93,9 @@
     <simplelist type="inline">
       <member><link linkend="set_posfig_dim">set_posfig_dim</link></member>
 
-      <member><link linkend="printing">printing</link></member>
+      <member><link linkend="toprint">toprint</link></member>
+
+      <member><link linkend="printfigure">printfigure</link></member>
 
       <member><link linkend="xs2bmp">xs2bmp</link></member>
 
