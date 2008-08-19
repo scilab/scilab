@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"PO-Revision-Date: 2008-06-19 16:08+0000\n"
-"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"PO-Revision-Date: 2008-08-19 13:41+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-07-12 14:21+0000\n"
+"X-Launchpad-Export-Date: 2008-08-19 13:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -144,8 +144,7 @@ msgstr "%s:%d:OLE_store_stream:錯誤: 無法由字串 '%s' 及 '%s' 組合成�
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr ""
-"%s:%d:OLE_store_stream:錯誤: 無法開啟 %s 以讀取 (%s)"
+msgstr "%s:%d:OLE_store_stream:錯誤: 無法開啟 %s 以讀取 (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
