@@ -11,6 +11,8 @@
  *
  */
 
+#include <exception>
+
 #include "PolylineLineDrawerJoGL.hxx"
 #include "getHandleDrawer.h"
 
@@ -72,7 +74,13 @@ void PolylineLineDrawerJoGL::drawPolyline( void )
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
 
   // display the polyline
-  getLineDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  try {
+    getLineDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  }
+  catch (const std::exception& e)
+  {
+    sciprint(_("%s: No more memory.\n"),"PolylineLineDrawerJoGL::drawPolyline");
+  }
 
   delete[] xCoords;
   delete[] yCoords;

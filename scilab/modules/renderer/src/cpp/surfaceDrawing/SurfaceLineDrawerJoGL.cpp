@@ -91,10 +91,18 @@ void SurfaceLineDrawerJoGL::drawSurface( void )
   getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pSurface)->foregroundcolor,
                                                (float) sciGetLineWidth(pSurface),
                                                sciGetLineStyle(pSurface));
-  getLineDrawerJavaMapper()->drawSurface(xCoords, sizeXCoord,
-                                         yCoords, sizeYCoord,
-                                         zCoords, sizeZCoord,
-                                         nbVertexPerFacet);
+  try
+  {
+    getLineDrawerJavaMapper()->drawSurface(xCoords, sizeXCoord,
+                                           yCoords, sizeYCoord,
+                                           zCoords, sizeZCoord,
+                                           nbVertexPerFacet);
+  }
+  catch (std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"),"SurfaceLineDrawerJoGL ::drawSurface");
+  }
+
   endDrawing();
 
   delete[] xCoords;

@@ -77,7 +77,16 @@ void PolylineArrowDrawerJoGL::drawPolyline( void )
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
 
   // display the rectangle
-  getArrowDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  try
+  {
+    getArrowDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  }
+  catch (const std::exception& e)
+  {
+    sciprint(_("%s: No more memory.\n"),"PolylineArrowDrawerJoGL::drawPolyline");
+  }
+
+
 
   delete[] xCoords;
   delete[] yCoords;

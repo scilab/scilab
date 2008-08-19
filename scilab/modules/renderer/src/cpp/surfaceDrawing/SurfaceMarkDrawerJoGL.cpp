@@ -93,10 +93,17 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
                                                sciGetMarkSizeUnit(pSurface),
                                                sciGetMarkSize(pSurface),
                                                sciGetMarkStyle(pSurface));
-  getMarkDrawerJavaMapper()->drawSurface(xCoords, sizeXCoord,
-                                         yCoords, sizeYCoord,
-                                         zCoords, sizeZCoord,
-                                         nbVertexPerFacet);
+  try
+  {
+    getMarkDrawerJavaMapper()->drawSurface(xCoords, sizeXCoord,
+                                           yCoords, sizeYCoord,
+                                           zCoords, sizeZCoord,
+                                           nbVertexPerFacet);
+  }
+  catch (std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"),"SurfaceMarkDrawerJoGL::drawSurface");
+  }
   
 
   endDrawing();

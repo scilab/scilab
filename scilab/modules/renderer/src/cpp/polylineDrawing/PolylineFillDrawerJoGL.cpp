@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <exception>
 
 #include "PolylineFillDrawerJoGL.hxx"
 
@@ -81,7 +82,14 @@ void PolylineFillDrawerJoGL::drawPolyline( void )
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
 
   // display the rectangle
-  getFillDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  try
+  {
+    getFillDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  }
+  catch (const std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"),"PolylineFillDrawerJoGL::drawPolyline");
+  }
 
   delete[] xCoords;
   delete[] yCoords;

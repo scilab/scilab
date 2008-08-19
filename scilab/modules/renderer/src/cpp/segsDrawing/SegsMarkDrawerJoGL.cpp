@@ -11,11 +11,15 @@
  *
  */
 
+#include <exception>
+
 #include "SegsMarkDrawerJoGL.hxx"
 
 extern "C"
 {
 #include "GetProperty.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -45,11 +49,18 @@ void SegsMarkDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
                                                sciGetMarkSizeUnit(pSegs),
                                                sciGetMarkSize(pSegs),
                                                sciGetMarkStyle(pSegs));
+  try
+  {
+    getMarkDrawerJavaMapper()->drawSegs(xStarts, xEnds,
+                                        yStarts, yEnds,
+                                        zStarts, zEnds,
+                                        nbSegment);
+  }
+  catch (const std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"),"SegsMarkDrawerJoGL::drawSegs");
+  }
 
-  getMarkDrawerJavaMapper()->drawSegs(xStarts, xEnds,
-                                      yStarts, yEnds,
-                                      zStarts, zEnds,
-                                      nbSegment);
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/

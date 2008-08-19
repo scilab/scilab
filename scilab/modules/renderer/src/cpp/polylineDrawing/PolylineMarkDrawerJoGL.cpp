@@ -11,6 +11,8 @@
  *
  */
 
+#include <exception>
+
 #include "PolylineMarkDrawerJoGL.hxx"
 
 extern "C"
@@ -95,7 +97,14 @@ void PolylineMarkDrawerJoGL::drawPolyline( void )
   }
 
   // display the rectangle
-  getMarkDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  try
+  {
+    getMarkDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  }
+  catch (const std::exception& e)
+  {
+    sciprint(_("%s: No more memory.\n"),"PolylineMarkDrawerJoGL::drawPolyline");
+  }
 
   delete[] xCoords;
   delete[] yCoords;

@@ -11,11 +11,15 @@
  *
  */
 
+#include <exception>
+
 #include "FecFacetDrawerJoGL.hxx"
 
 extern "C"
 {
 #include "GetProperty.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -45,8 +49,16 @@ void FecFacetDrawerJoGL::drawFec(const double xCoords[], const double yCoords[],
                                                  ppFec->colminmax[0], ppFec->colminmax[1],
                                                  ppFec->colout[0], ppFec->colout[1]);
   
-  getFacetDrawerJavaMapper()->drawFec(xCoords, yCoords, values, nbNodes,
-                                      firstPoints, secondPoints, thirdPoints, nbTriangles);
+  try
+  {
+    getFacetDrawerJavaMapper()->drawFec(xCoords, yCoords, values, nbNodes,
+                                        firstPoints, secondPoints, thirdPoints, nbTriangles);
+  }
+  catch (const std::exception & e)
+  {
+     sciprint(_("%s: No more memory.\n"), "FecFacetDrawerJoGL::drawFec");
+  }
+
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/

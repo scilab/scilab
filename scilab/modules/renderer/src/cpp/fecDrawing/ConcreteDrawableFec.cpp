@@ -87,19 +87,8 @@ DrawableObject::EDisplayStatus ConcreteDrawableFec::drawFec(void)
 
   decomposeFec(xCoords, yCoords, firstPoints, secondPoints, thirdPoints);
 
-  EDisplayStatus status = SUCCESS;
-
-  try
-  {
-    drawFec(xCoords, yCoords, pFEC_FEATURE(m_pDrawed)->pfun, nbNodes,
-            firstPoints, secondPoints, thirdPoints, nbTriangles);
-  }
-  catch (const std::exception& e)
-  {
-    // allocation failed
-    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableFec::drawFec");
-    status = FAILURE;
-  }
+  drawFec(xCoords, yCoords, pFEC_FEATURE(m_pDrawed)->pfun, nbNodes,
+          firstPoints, secondPoints, thirdPoints, nbTriangles);
 
   delete[] xCoords;
   delete[] yCoords;
@@ -107,7 +96,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableFec::drawFec(void)
   delete[] secondPoints;
   delete[] thirdPoints;
 
-  return status;
+  return SUCCESS;
 
 }
 /*---------------------------------------------------------------------------------*/

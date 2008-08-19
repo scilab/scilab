@@ -11,11 +11,15 @@
  *
  */
 
+#include <exception>
+
 #include "SegsArrowDrawerJoGL.hxx"
 
 extern "C"
 {
 #include "GetProperty.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -47,10 +51,19 @@ void SegsArrowDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
                                             bounds[4], bounds[5]);
 
   getArrowDrawerJavaMapper()->setArrowSize(sciGetLineWidth(pSegs) * sciGetArrowSize(pSegs));
-  getArrowDrawerJavaMapper()->drawSegs(xStarts, xEnds,
-                                       yStarts, yEnds,
-                                       zStarts, zEnds,
-                                       colors, nbSegment);
+
+  try
+  {
+    getArrowDrawerJavaMapper()->drawSegs(xStarts, xEnds,
+                                         yStarts, yEnds,
+                                         zStarts, zEnds,
+                                         colors, nbSegment);
+  }
+  catch (const std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"),"SegsArrowDrawerJoGL::drawSegs");
+  }
+
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/

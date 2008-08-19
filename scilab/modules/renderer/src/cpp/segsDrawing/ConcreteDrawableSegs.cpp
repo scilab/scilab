@@ -140,18 +140,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableSegs::drawSegs(void)
     getSegsColors(colors);
   }
 
-  EDisplayStatus status = SUCCESS;
-
-  try
-  {
-    drawSegs(xStarts, xEnds, yStarts, yEnds, zStarts, zEnds, colors, nbSegs);
-  }
-  catch (const std::exception& e)
-  {
-    // some allocation failed
-    sciprint(_("%s: No more memory.\n"),"ConcreteDrawableSegs::drawSegs");
-    status = FAILURE;
-  }
+  drawSegs(xStarts, xEnds, yStarts, yEnds, zStarts, zEnds, colors, nbSegs);
 
   delete[] xStarts;
   delete[] xEnds;
@@ -164,7 +153,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableSegs::drawSegs(void)
     delete[] colors;
   }
   
-  return status;
+  return SUCCESS;
 
 }
 /*---------------------------------------------------------------------------------*/

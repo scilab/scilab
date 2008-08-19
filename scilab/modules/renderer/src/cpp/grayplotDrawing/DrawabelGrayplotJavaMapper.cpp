@@ -97,15 +97,7 @@ void DrawableGrayplotJavaMapper::drawGrayplot(const double xGrid[], int nbCol,
                                               double zCoord, const int colors[], int nbColors)
 {
   long * javaColors = NULL;
-  try
-  {
-    javaColors = new long[nbColors];
-  }
-  catch (const std::exception& e)
-  {
-    // propagate exception
-    throw;
-  }
+  javaColors = new long[nbColors];
 
   for (int i = 0; i < nbColors; i++)
   {

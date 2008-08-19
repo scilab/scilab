@@ -18,6 +18,8 @@
 /* desc : Abstract class for text drawing                                 */
 /*------------------------------------------------------------------------*/
 
+#include <exception>
+
 #include "TextContentDrawerJoGL.hxx"
 #include "GetJavaProperty.h"
 #include "../subwinDrawing/Camera.h"
@@ -26,6 +28,8 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -70,7 +74,17 @@ void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2],
 void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
   initializeDrawing();
-  setDrawerParameters();
+  
+  try
+  {
+    setDrawerParameters();
+  }
+  catch (const std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"), "TextContentDrawerJoGL::drawTextContent");
+    endDrawing();
+    return;
+  }
 
   // set text center
   double textPos[3];
@@ -214,7 +228,16 @@ void TextContentDrawerJoGL::getPixelBoundingBox(double corner1[3], double corner
 {
   // just update parent figure to avoid problems with OpenGL
   getTextContentDrawerJavaMapper()->setFigureIndex(sciGetNum(sciGetParentFigure(m_pDrawed->getDrawedObject())));
-  setDrawerParameters();
+
+  try
+  {
+    setDrawerParameters();
+  }
+  catch (const std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"), "TextContentDrawerJoGL::getPixelBoundingBox");
+    return;
+  }
 
   // get text center
   double textCenterPix[3];

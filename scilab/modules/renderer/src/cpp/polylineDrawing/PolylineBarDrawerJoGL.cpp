@@ -18,6 +18,7 @@
 /* desc : Strategy drawing bar plots                                      */
 /*------------------------------------------------------------------------*/
 
+#include <exception>
 
 #include "PolylineBarDrawerJoGL.hxx"
 #include "BarDecomposition.hxx"
@@ -103,7 +104,14 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   decomposer.getBarAbscissas(left, right);
 
   // display the rectangle
-  getBarDrawerJavaMapper()->drawPolyline(left, right, bottom, top, zCoords, nbVertices);
+  try
+  {
+    getBarDrawerJavaMapper()->drawPolyline(left, right, bottom, top, zCoords, nbVertices);
+  }
+  catch (const std::exception& e)
+  {
+    sciprint(_("%s: No more memory.\n"),"PolylineBarDrawerJoGL::drawPolyline");
+  }
  
   delete[] xCoords;
   delete[] yCoords;

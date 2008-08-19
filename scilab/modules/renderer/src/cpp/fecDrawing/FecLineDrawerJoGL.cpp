@@ -11,11 +11,15 @@
  *
  */
 
+#include <exception>
+
 #include "FecLineDrawerJoGL.hxx"
 
 extern "C"
 {
 #include "GetProperty.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -43,8 +47,15 @@ void FecLineDrawerJoGL::drawFec(const double xCoords[], const double yCoords[],
                                                (float)sciGetLineWidth(pFec),
                                                sciGetLineStyle(pFec));
 
+  try
+  {
   getLineDrawerJavaMapper()->drawFec(xCoords, yCoords, values, nbNodes,
                                      firstPoints, secondPoints, thirdPoints, nbTriangles);
+  }
+  catch (const std::exception & e)
+  {
+     sciprint(_("%s: No more memory.\n"), "FecLineDrawerJoGL::drawFec");
+  }
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/

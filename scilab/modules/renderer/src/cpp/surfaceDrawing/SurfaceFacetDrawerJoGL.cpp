@@ -93,10 +93,18 @@ void SurfaceFacetDrawerJoGL::drawSurface( void )
   if (ppSurface->color != NULL) {
     getFacetDrawerJavaMapper()->setFacetsColors(ppSurface->color, ppSurface->nc);
   }
-  getFacetDrawerJavaMapper()->drawSurface(xCoords, sizeXCoord,
-                                          yCoords, sizeYCoord,
-                                          zCoords, sizeZCoord,
-                                          nbVertexPerFacet);
+  try
+  {
+    getFacetDrawerJavaMapper()->drawSurface(xCoords, sizeXCoord,
+                                            yCoords, sizeYCoord,
+                                            zCoords, sizeZCoord,
+                                            nbVertexPerFacet);
+  }
+  catch (std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"),"SurfaceFacetDrawerJoGL ::drawSurface");
+  }
+
   endDrawing();
 
   delete[] xCoords;
