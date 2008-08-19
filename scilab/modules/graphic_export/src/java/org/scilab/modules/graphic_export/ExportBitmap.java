@@ -14,7 +14,9 @@ package org.scilab.modules.graphic_export;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.media.opengl.GLException;
+
 import com.sun.opengl.util.Screenshot;
 
 /**
@@ -59,7 +61,7 @@ public class ExportBitmap extends ExportToFile {
 			/** Generate the screen-shot */		
 			//Check if we have the permission to export			
 			if (checkWritePermission(file) == ExportRenderer.SUCCESS) {
-				Screenshot.writeToFile(file, getWidth(), getHeight());
+				Screenshot.writeToFile(file, getWidth(), getHeight());				
 			} else {
 				return ExportRenderer.INVALID_FILE;
 			}

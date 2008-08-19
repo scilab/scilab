@@ -175,8 +175,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	
 	
 	/**
-	 *Return the file extension
-	 * @param fileName
+	 * Return the file extension
+	 * @param fileName Name of the file
+	 * @return the extension
 	 */
 	public String getExtension(String fileName) {
 		if(fileName != null) {

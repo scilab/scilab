@@ -54,6 +54,7 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	
 	/**
 	 * Creates a Scilab ExportFileChooser
+	 * @param figureId int
 	 * @return the created export file chooser
 	 */
 	public static FileChooser createExportFileChooser(int figureId) {

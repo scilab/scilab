@@ -12,6 +12,9 @@
 
 package org.scilab.modules.gui.canvas;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import javax.media.opengl.GL;
 
 import org.scilab.modules.gui.bridge.canvas.ScrolledSwingScilabCanvas;
@@ -255,5 +258,14 @@ public class ScilabCanvasBridge {
 	  */
 	public static void close(Canvas canvas) {
 		canvas.getAsSimpleCanvas().close();
+	}
+
+	/**
+	 * Convert a ScilabCanvas to a BufferedImage
+	 * @param scilabCanvas ScilabCanvas
+	 * @return BufferedImage
+	 */
+	public static BufferedImage dumpAsBufferedImage(ScilabCanvas scilabCanvas) {
+		return scilabCanvas.getAsSimpleCanvas().dumpAsBufferedImage();
 	}
 }

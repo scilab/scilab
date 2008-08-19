@@ -12,6 +12,8 @@
 
 package org.scilab.modules.gui.canvas;
 
+import java.awt.image.BufferedImage;
+
 import javax.media.opengl.GL;
 
 import org.scilab.modules.gui.dockable.Dockable;
@@ -131,4 +133,10 @@ public interface Canvas extends Dockable {
 	  * Disable the canvas befor closing
 	  */
 	void close();
+
+	/**
+	 * Convert to a BufferedImage
+	 * @return BufferedImage
+	 */
+	BufferedImage dumpAsBufferedImage();
 }

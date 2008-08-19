@@ -17,6 +17,7 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
@@ -30,6 +31,8 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
+
+import com.sun.opengl.util.Screenshot;
 
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
@@ -275,5 +278,15 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		this.removeAll();
 	}
 	
+	/**
+	 * Take a screenshot of the figure and put it into a BufferedImage
+	 * @return a BufferedImage
+	 */
+	public BufferedImage dumpAsBufferedImage() {			
+		getContext().makeCurrent();		
+		BufferedImage dump = Screenshot.readToBufferedImage(getWidth(), getHeight());		
+		getContext().release();		
 
-}
+		return dump;
+	}	
+}	

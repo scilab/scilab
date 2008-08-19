@@ -156,8 +156,7 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	    /** --- MY BEAUTIFUL SCREENSHOT --- */
 	    tac = System.currentTimeMillis();
 	    time("My screenshot...", tic, tac);
-	}
-	else {
+	} else {
 	    tic = System.currentTimeMillis();
 	    /** --- JOGL SCREENSHOT --- */
 	    dump = Screenshot.readToBufferedImage(getWidth(), getHeight());

@@ -15,6 +15,7 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.media.opengl.GL;
@@ -24,7 +25,6 @@ import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.ScilabEventListener;
-import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -350,5 +350,13 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Convert a Canvas to an BufferedImage
+	 * @return a BufferedImage
+	 */
+	public BufferedImage dumpAsBufferedImage() {
+		return canvas.dumpAsBufferedImage();
 	}
 }

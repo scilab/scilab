@@ -17,10 +17,12 @@ package org.scilab.modules.gui.bridge;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GL;
 
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -1406,6 +1408,15 @@ public class ScilabBridge {
 	  */
 	public static void close(Canvas canvas) {
 		ScilabCanvasBridge.close(canvas);
+	}
+	
+	/**
+	 * Dump the scilabCanvas to an BufferedImage
+	 * @param scilabCanvas ScilabCanvas
+	 * @return a BufferedImage
+	 */
+	public static BufferedImage dumpAsBufferedImage(ScilabCanvas scilabCanvas) {
+		return ScilabCanvasBridge.dumpAsBufferedImage(scilabCanvas);
 	}
 	
 	/*****************/

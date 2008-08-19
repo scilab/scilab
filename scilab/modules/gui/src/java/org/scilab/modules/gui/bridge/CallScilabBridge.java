@@ -33,17 +33,15 @@ import javax.print.DocPrintJob;
 import javax.print.PrintException;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.console.SciConsole;
-import org.scilab.modules.graphic_export.ExportRenderer;
-import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
@@ -2298,60 +2296,19 @@ public class CallScilabBridge {
 	public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
 		final int figureID = figID;
 		// Get the PrinterJob object
-		PrinterJob printerJob = PrinterJob.getPrinterJob();
-		
-		int exportRendererMode = ExportRenderer.EPS_EXPORT;
-		DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
-		String fileExtension = ".eps";
-		
-		if (!postScript) {
-			exportRendererMode = ExportRenderer.PNG_EXPORT;
-			printDocFlavor = DocFlavor.INPUT_STREAM.PNG;
-			fileExtension = ".png";
-		}
+		PrinterJob printerJob = PrinterJob.getPrinterJob();	
 
 		boolean userOK = true;
 		if (displayDialog) {
 			userOK = printerJob.printDialog(scilabPageFormat);
 		}
-		
-		if (userOK) {
-			try {
-				/** Export image to PostScript */
-				if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
-					FileExporter.fileExport(figureID, 
-							tmpPrinterFile + fileExtension,
-							exportRendererMode, 0);
-				} else {
-					FileExporter.fileExport(figureID, 
-							tmpPrinterFile + fileExtension,
-							exportRendererMode, 1);
-				}
-				
-				/** Read file */
-				FileInputStream psStream = null; 
-				try { 
-					psStream = new FileInputStream(tmpPrinterFile + fileExtension);
-				} catch (FileNotFoundException ffne) {
-					ffne.printStackTrace();
-					return false;
-				}
 
-				Doc myDoc = new SimpleDoc(psStream, printDocFlavor, null);
-				DocPrintJob job = printerJob.getPrintService().createPrintJob();
-
-				// Remove Orientation option from page setup because already managed in FileExporter
-				PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);
-				aset.add(OrientationRequested.PORTRAIT);
-
-				job.print(myDoc, aset);
-				return true;
-			} catch (PrintException e) {
-				e.printStackTrace();
-				return false;
-			}
+		if (userOK) {					
+			Canvas canvas;		
+			canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
+		    ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage()); 		
 		}
-		return false;
+		return false;					
 	}
 
 	/**
@@ -2764,4 +2721,5 @@ public class CallScilabBridge {
 		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();
 		
 	}
+
 }

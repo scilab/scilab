@@ -14,6 +14,8 @@
 
 package org.scilab.modules.gui.canvas;
 
+import java.awt.image.BufferedImage;
+
 import javax.media.opengl.GL;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
@@ -270,6 +272,14 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	  */
 	public void close() {
 		ScilabBridge.close(this);
+	}
+
+	/**
+	 * Convert to a BufferedImage
+	 * @return BufferedImage
+	 */
+	public BufferedImage dumpAsBufferedImage() {
+				return ScilabBridge.dumpAsBufferedImage(this);
 	}
 	
 }
