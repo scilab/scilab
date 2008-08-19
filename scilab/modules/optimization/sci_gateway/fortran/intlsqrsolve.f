@@ -44,6 +44,11 @@ c     checking variable m (number 3)
       km=top-rhs+3
       if(.not.getscalar(fname,topk,km,lr3))return
       m=stk(lr3)
+      if (m.lt.n) then
+         err=3
+         call error(116)
+         return
+      endif
 
 
 c     checking variable jac (number 4)
@@ -76,6 +81,12 @@ c     checking variable tol (number 5)
          maxfev=stk(lr5+3)
          epsfcn=stk(lr5+4)
          factor=stk(lr5+5)
+         if(ftol.lt.0.0D0 .or. xtol.lt.0.0D0 .or. gtol.lt.0.0D0
+     *        .or. maxfev.le.0 .or. factor.le.0.0D0) then
+            err=5-iskip
+            call error(115)
+            return
+         endif
          nprint=0
       else
          ftol=1.d-8
@@ -91,7 +102,20 @@ c     checking variable diag (number 6)
       if(rhs.ge.6-iskip) then
          if(.not.getrmat(fname,topk,top-rhs+5-iskip,m6,n6,lr6))return
          ldiag=lr6
+         if (m6*n6.ne.n) then
+            err=6-iskip
+            call error(44)
+            return
+         endif
 c     test m6*n6=n
+         do  ii=0,n-1
+            if (stk(ldiag+i).le.0.0D0) then
+               err=6-iskip
+               call error(115)
+               return
+            endif
+         enddo
+
          mode=2
       else
          mode=1
@@ -178,6 +202,22 @@ c     info = 4   iteration is not making good progress.
          top=top+1
          if (.not.cremat(fname,top,0,1,1,lr,lc)) return
          stk(lr)=info
+      else
+         if(info.eq.1.or.info.eq.3) then
+            call msgs(108,0)
+         elseif(info.eq.2) then
+            call msgs(109,0)
+         elseif(info.eq.4) then
+            call msgs(110,0)
+         elseif(info.eq.5) then
+            call msgs(111,0)
+          elseif(info.eq.6) then
+            call msgs(112,0)
+          elseif(info.eq.7) then
+            call msgs(113,0)
+           elseif(info.eq.8) then
+            call msgs(114,0)
+        endif
       endif
       goto 999
       
