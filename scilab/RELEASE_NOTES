@@ -1,15 +1,12 @@
-                      Scilab 5.0 beta Release_Notes
-                      ==============================
+                      Scilab 5.0 rc1 Release_Notes
+                      ============================
 
-Please note that Scilab 5.0 beta version still contains some well known bug,
-missing features and may have some slow behaviours.
 It is a testing only version, it should only be used to test what will be
 Scilab 5 family and not at all in production environment.
-The period between the beta and the stable versions will mainly be used to
+The period between the release candidate and the stable versions will mainly be used to
 debug and optimize Scilab.
 
 List of missing/buggy features:
-
 
 - Uicontrols ascendant incompatibilities:
     * Figure size has to be increased because of the automatic insertion of
@@ -24,7 +21,6 @@ List of missing/buggy features:
       computer / graphic card / graphic card driver combination.
       Errors often appear on ATI and Intel cards under Linux and also with 
       old Nvidia drivers.
-      A solution should be added in Scilab RC1
     * The Symbol font is not compatible with the one used in Scilab 4.
     * By default arcs and circles are now approximated using a constant number of lines.
       To switch to real arcs, set their arc_drawing_method property to "nurbs".
@@ -52,13 +48,10 @@ List of missing/buggy features:
     * Demos are available through Scilab "?"->"Scilab Demonstrations" menu item
       ("Scicos" section) as well as Scicos "?"->"Demos" menu item
     * TCL/TK features are still inactive (eg. "Palette Tree")
-    * "Export" and "Export All" features are now fully functional
 
 - Scipad debugger is not yet fully functional.
 
 - Some TCL/Scilab synchronisation issues have been reported.
-
-- Printing can crash under Linux plateforms with recent versions of Cups.
 
 - Scilab localization system is implemented, however not all the strings have
   been added to the translation engine and therefore not translated.
@@ -72,11 +65,6 @@ List of missing/buggy features:
 
 - A bug altering the function pow on small numbers caused by the JVM still needs
   some attention: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6727254
-
-- The build process of the documentation is going to be changed.
-
-- A customization of the Java Virtual Machine (JVM) is going to be introduced 
-  between the beta 4 & RC1
 
 - Linux 64 bits version has some critical bugs.
 
@@ -104,29 +92,3 @@ List of missing/buggy features:
 
   For more information about SELinux, please consult your Linux distribution
   vendor.
-
-
-
-Scilab 4.0 Release_Notes
-***************************
-
-- Next to the on line help of the software, we advise you, to make
-the first move with Scilab, to consult the Scilab step-to-step web site
-(http://www.spas.cnrs-gif.fr/index.html).
-
-- Please note that:
-    - Scilab 4.x versions family will be the last versions working
-with the old graphics mode.
-    - Scilab v 4.0 is the last release working with Microsoft
-Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
-supported by Scilab operational team.
-
-- Scilab binary versions are built:
-    - for Linux: gcc-3.4.3 and g77 compilers with a platform under
-Mandriva 2005. No need to recompile except to use incremental link, we
-advise indeed to download the source files if you are using others
-compilers.
-    - for Windows: Visual Studio .Net 2003 and Fortran and C Intel
-compilers with a platform under Windows XP Service Pack 2 .
-    - Recall: No Scilab GTK version is provided and supported by
-the operational team. Same way about MinGW and Cygwin.
