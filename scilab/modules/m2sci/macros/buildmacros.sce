@@ -15,7 +15,7 @@ end
 //------------------------------------
 genlib('m2scilib','SCI/modules/m2sci/macros');
 //------------------------------------
-mprintf("-- Creation of [m2sci] (Macros) --\n");
+mprintf(gettext("-- Creation of [%s] (Macros) --\n"),"m2sci");
 //------------------------------------
 
 lines(0);

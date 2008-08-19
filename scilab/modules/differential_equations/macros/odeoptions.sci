@@ -47,35 +47,34 @@ end
   lab_(find(lab_=='Inf'))="%inf"
 
 
-chapeau=["Defining %ODEOPTIONS variable";
+chapeau=[gettext("Defining %ODEOPTIONS variable");
          "*****************************";
-	 'Meaning of itask and tcrit:';
-	 '1 : normal computation at specified times';
-	 '2 : computation at mesh points (given in first row of output of ode)';
-	 '3 : one step at one internal mesh point and return';
-	 '4 : normal computation without overshooting tcrit';
-	 '5 : one step, without passing tcrit, and return';
-	 ' ';
-	 'Meaning of jactype:';
-	 '0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))';
-	 '1 : user-supplied full jacobian';
-	 '2 : internally generated full jacobian';
-	 '3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)';
-	 '4 : user-supplied banded jacobian (see ml,mu)';
-	 '5 : internally generated banded jacobian (see ml,mu)';
-	 ' ';
-	 'Meaning of ml,mu:';
-	 'If jactype = 4 or 5 ml and mu are the lower and upper half-banwidths';
-	 'of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1';
-	 'If jactype = 4 the jacobian function must return';
-	 'a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y));'
-	 'such that column 1 of J is made of mu zeros followed by';
-	 'df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)';
-	 'column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc';
-	 ' '
-	 'Default values are given in square brackets'
-	 'If the function is called without argument, default values"+...
-	 " are used"
+	 gettext("Meaning of itask and tcrit:");
+	 gettext("1 : normal computation at specified times");
+	 gettext("2 : computation at mesh points (given in first row of output of ode)");
+	 gettext("3 : one step at one internal mesh point and return");
+	 gettext("4 : normal computation without overshooting tcrit");
+	 gettext("5 : one step, without passing tcrit, and return");
+	 " ";
+	 gettext("Meaning of jactype:");
+	 gettext("0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))");
+	 gettext("1 : user-supplied full jacobian");
+	 gettext("2 : internally generated full jacobian");
+	 gettext("3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)");
+	 gettext("4 : user-supplied banded jacobian (see ml,mu)");
+	 gettext("5 : internally generated banded jacobian (see ml,mu)");
+	 " ";
+	 gettext("Meaning of ml,mu:");
+	 gettext("If jactype = 4 or 5 ml and mu are the lower and upper half-banwidths");
+	 gettext("of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1");
+	 gettext("If jactype = 4 the jacobian function must return");
+	 gettext("a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))");
+	 gettext("such that column 1 of J is made of mu zeros followed by");
+	 gettext("df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)");
+	 gettext("column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc");
+	 " ";
+	 gettext("Default values are given in square brackets");
+	 gettext("If the function is called without argument, default values are used");
 	]
 
 dims = list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,..
