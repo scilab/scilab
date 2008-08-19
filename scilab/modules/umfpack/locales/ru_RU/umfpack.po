@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-06-11 13:56+0000\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid " For this demo the current stack size is not enought "
