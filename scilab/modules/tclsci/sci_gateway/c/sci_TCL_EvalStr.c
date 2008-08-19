@@ -11,6 +11,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <stdio.h>
 #include <string.h>
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
@@ -25,6 +26,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_TCL_EvalStr(char *fname,unsigned long l)
 {
+
   CheckRhs(1,2);
   CheckLhs(1,1);
 
@@ -41,14 +43,12 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
 
       GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
-      if (getTclInterp() == NULL)
+      if (!existsGlobalInterp())
 	{
-	  releaseTclInterp();
 	  freeArrayOfString(Str,m1*n1);
 	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 	  return 0;
 	}
-      releaseTclInterp();
 
       if (Rhs==2)
 	{
@@ -56,14 +56,12 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
 	  if (GetType(2) == sci_strings)
 	    {
 	      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-	      if (Tcl_GetSlave(getTclInterp(),cstk(l2)) == NULL)
+	      if (!existsSlaveInterp(cstk(l2)))
 		{
-		  releaseTclInterp();
 		  freeArrayOfString(Str,m1*n1);
 		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 		  return 0;
 		}
-	      releaseTclInterp();
 	      tclSlave =  strdup(cstk(l2));
 	    }
 	  else
@@ -89,33 +87,33 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
 	  if (tclInterpReturnValue == TCL_ERROR)
 	    {
 	      const char *trace = NULL;
-             
+
               /* Read the error trace in the slave or in the main interpreter */
               if (tclSlave != NULL)
                 {
                   trace = Tcl_GetVar(Tcl_GetSlave(getTclInterp(),tclSlave), "errorInfo", TCL_GLOBAL_ONLY);
-                } 
+                }
               else
                 {
                   trace = Tcl_GetVar(getTclInterp(), "errorInfo", TCL_GLOBAL_ONLY);
                 }
 	      releaseTclInterp();
 	      freeArrayOfString(Str,m1*n1);
-	      
+
               /* Display the error message */
               if(Err>0) /* Scilab error */
 		{
-          /* Note: there a ScilabEval here in the error message because it should only
-             trigger for commands such as  TCL_EvalStr("ScilabEval scilab==nsp sync")  
-             i.e. when the string passed to TCL_EvalStr will run something in the
-             Scilab parser (thus ScilabEval), and this "something" triggers a Scilab
-             error                                                                   */
+		  /* Note: there a ScilabEval here in the error message because it should only
+		     trigger for commands such as  TCL_EvalStr("ScilabEval scilab==nsp sync")
+		     i.e. when the string passed to TCL_EvalStr will run something in the
+		     Scilab parser (thus ScilabEval), and this "something" triggers a Scilab
+		     error                                                                   */
 		  Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
 		}
 	      else /* TCL error */
 		{
                   const char *result = NULL;
-                  
+
                   if (tclSlave != NULL) /* In the slave */
                     {
                       result = Tcl_GetStringResult(Tcl_GetSlave(getTclInterp(),tclSlave));
@@ -149,7 +147,6 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
       Scierror(999,_("%s: Wrong type for input argument #%d: String or vector of strings expected.\n"), fname, 1);
       return 0;
     }
-
   return 0;
 }
 /*--------------------------------------------------------------------------*/
