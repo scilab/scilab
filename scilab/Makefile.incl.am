@@ -132,23 +132,20 @@ SUFFIXES = .sci
 # Where it should be installed
 pkgdocdir = $(mydatadir)
 
-# Which directories we have to install
-DOCDIRS = help/fr_FR help/en_US
-
 # What is the mask of the help source
 DOCMASKXML = *.xml
 
 install-html-local:
 if INSTALL_HELP_XML
 # If the user wants the help sources to be installed
-	@echo "-- Install of XML sources of help files --"; \
-	for dir in $(DOCDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+	@echo "-------- Install of XML sources of help files --------"; \
+	for lang in $(ALL_LINGUAS); do \
+	 if test -d help/$$lang; then \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/$$lang && \
+		if ls -lLd $(srcdir)/help/$$lang/$(DOCMASKXML) >/dev/null 2>&1; then \
+		  for file in $(srcdir)/help/$$lang/$(DOCMASKXML) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/$$lang" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/$$lang ; \
 		  done ; \
 		fi; \
 	 fi; \

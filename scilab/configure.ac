@@ -999,9 +999,9 @@ fi
 AC_SUBST(MATIO_ENABLE)
 AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 
-#################
-## Man management
-#################
+#############################
+## Documentation management #
+#############################
 
 AC_ARG_ENABLE(build-help,
 		AC_HELP_STRING([--enable-build-help],[Enable the help build])
@@ -1011,16 +1011,18 @@ if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
     AC_DOCBOOK()
 	HELP_ENABLE=yes
 
-fi #build help
-AM_CONDITIONAL(BUILD_HELP, test "$enable_build_help" = "yes")
+fi 
+AM_CONDITIONAL(BUILD_HELP, test "$HELP_ENABLE" = "yes")
 
+## Install XML help files ###
 AC_ARG_WITH(install-help-xml,
-		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files]),
-		[with_install_help_xml=$withval],
-		[with_install_help_xml='']
+		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files])
 		)
-
-AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
+HELP_INSTALL_ENABLE=no
+if test "$with_install_help_xml" != no -a "$with_install_help_xml" != ""; then
+   HELP_INSTALL_ENABLE=yes
+fi 
+AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 
 
 #########################
