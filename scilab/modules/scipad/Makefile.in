@@ -938,10 +938,10 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 # Install the help chapter
 @TCLTK_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
 @TCLTK_TRUE@	for lang in $(ALL_LINGUAS); do \
-@TCLTK_TRUE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@TCLTK_TRUE@		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 @TCLTK_TRUE@		if test -f $$HELPFILE; then \
-@TCLTK_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@TCLTK_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
+@TCLTK_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
 @TCLTK_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_TRUE@		fi; \
@@ -1087,10 +1087,10 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 # Install the help chapter
 @TCLTK_FALSE@	@echo "-------- Install the help chapter (if any) --------"; \
 @TCLTK_FALSE@	for lang in $(ALL_LINGUAS); do \
-@TCLTK_FALSE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@TCLTK_FALSE@		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 @TCLTK_FALSE@		if test -f $$HELPFILE; then \
-@TCLTK_FALSE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@TCLTK_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_FALSE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
+@TCLTK_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
 @TCLTK_FALSE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_FALSE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_FALSE@		fi; \

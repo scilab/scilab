@@ -1438,10 +1438,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # Install the help chapter
 @PVM_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
 @PVM_TRUE@	for lang in $(ALL_LINGUAS); do \
-@PVM_TRUE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@PVM_TRUE@		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 @PVM_TRUE@		if test -f $$HELPFILE; then \
-@PVM_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@PVM_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
+@PVM_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
 @PVM_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@		fi; \
@@ -1587,10 +1587,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # Install the help chapter
 @PVM_FALSE@	@echo "-------- Install the help chapter (if any) --------"; \
 @PVM_FALSE@	for lang in $(ALL_LINGUAS); do \
-@PVM_FALSE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@PVM_FALSE@		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 @PVM_FALSE@		if test -f $$HELPFILE; then \
-@PVM_FALSE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@PVM_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_FALSE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
+@PVM_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
 @PVM_FALSE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@		fi; \
