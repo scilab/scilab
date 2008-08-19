@@ -30,17 +30,15 @@ int sci_TCL_CreateSlave(char *fname,unsigned long l)
 		static int l2,n2,m2;
 		Tcl_Interp *TCLinterpreter=NULL;
 
-		if (getTclInterp() == NULL)
+		if (!existsGlobalInterp())
 		{
-		  releaseTclInterp();
 		  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 		  return 0;
 		}
-		releaseTclInterp();
+
 		GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
-		TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-		releaseTclInterp();
-		if (TCLinterpreter==NULL)
+
+		if (existsSlaveInterp(cstk(l2)))
 		{
 			TCLinterpreter=Tcl_CreateSlave(getTclInterp(),cstk(l2), 1);
 			releaseTclInterp();
