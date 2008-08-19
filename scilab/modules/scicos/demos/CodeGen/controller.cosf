@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[-16.9362,808.20635,22.573615,388.8551,1125,500,164,16,780,500,278,108,1.4],..
             Title=["controller",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/CodeGen/"],..
+            "SCI"],..
             tol=[0.0001,0.000001,1.000D-10,86,0,0],..
             tf=85,..
             context=" ",..
