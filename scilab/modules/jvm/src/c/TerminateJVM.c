@@ -15,9 +15,11 @@
 #include "TerminateJVM.h"
 #include "JVM.h"
 #include "createMainScilabObject.h"
+#include "loadClasspath.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateJVM(void)
 {
+	freeClassPathxmlDocPtr();
 	finishMainScilabObject();
 	return finishJVM();
 }

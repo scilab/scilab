@@ -33,5 +33,10 @@ BOOL LoadClasspath(char *xmlfilename);
 */
 xmlDocPtr getClassPathxmlDocPtr(void);
 
+/**
+* free xmlDocPtr of classpath.xml
+*/
+void freeClassPathxmlDocPtr(void);
+
 #endif /* __LOADCLASSPATH_H__ */
 /*--------------------------------------------------------------------------*/ 

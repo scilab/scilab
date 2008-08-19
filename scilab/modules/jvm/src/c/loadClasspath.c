@@ -37,6 +37,15 @@ xmlDocPtr getClassPathxmlDocPtr(void)
 	return ClassPathxmlDocPtr;
 }
 /*--------------------------------------------------------------------------*/ 
+void freeClassPathxmlDocPtr(void)
+{
+	if (ClassPathxmlDocPtr)
+	{
+		xmlFreeDoc (ClassPathxmlDocPtr);
+		ClassPathxmlDocPtr = NULL;
+	}
+}
+/*--------------------------------------------------------------------------*/ 
 BOOL LoadClasspath(char *xmlfilename)
 {
 	BOOL bOK = FALSE;
