@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2008-05-25 16:09+0000\n"
+"PO-Revision-Date: 2008-08-17 13:42+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-07-12 14:20+0000\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 18:01+0100\n"
 
@@ -44,7 +44,7 @@ msgstr "等待右括弧.\n"
 #
 # File: src/c/errmsg.c, line: 76
 #, c-format
-msgid "Undefined variable: %s\n"
+msgid "Undefined variable : %s\n"
 msgstr "未定義變數 : %s\n"
 
 #
@@ -1291,15 +1291,8 @@ msgstr "已定義指令過多.\n"
 msgid "\"unknown data\""
 msgstr "\"未知數據\""
 
-#
-# File: src/c/msgs.c, line: 482
-# File: src/c/msgs.c, line: 493
-# File: src/c/msgs.c, line: 505
-# File: src/c/msgs.c, line: 525
-# File: src/c/msgs.c, line: 540
-# File: src/c/msgs.c, line: 760
 msgid "Warning :\n"
-msgstr ""
+msgstr "警告 :\n"
 
 #
 # File: src/c/msgs.c, line: 483
@@ -1574,13 +1567,11 @@ msgstr "你的全域變數為...\n"
 msgid "%s: Loop on two orders detected.\n"
 msgstr ""
 
-#
-# File: src/c/msgs.c, line: 925
 #, c-format
 msgid ""
 "%s: Impossible to reach required order.\n"
 "   previous order computed solution returned.\n"
-msgstr ""
+msgstr "%s: 無法達到所需之量級 (order).\n"
 
 #
 # File: src/c/msgs.c, line: 931
@@ -1590,20 +1581,16 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 
-#
-# File: src/c/msgs.c, line: 937
 #, c-format
 msgid ""
 "%s: Too many solutions found.\n"
 "   previous order computed solution returned.\n"
-msgstr ""
+msgstr "%s: 找到太多解.\n"
 
-#
-# File: src/c/msgs.c, line: 979
 msgid ""
 "Warning: loaded file has been created with a previous version of Scilab\n"
 "or you are trying to load a file saved on a different architecture.\n"
-msgstr ""
+msgstr "警告: 載入之檔案為舊版 Scilab 或不同硬體架構之 Scilab 版本所產生.\n"
 
 #
 # File: src/c/msgs.c, line: 988

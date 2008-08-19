@@ -8,28 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-06-19 13:53+0000\n"
+"PO-Revision-Date: 2008-05-25 15:42+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "%s: 輸入參數數值錯誤: 應為'%s', '%s', '%s', '%s', '%s 或 '%s' .\n"
+msgid "Unqueuing %s - No option.\n"
+msgstr "移除 (Unqueuing) %s - 無選項.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: 輸出參數之數目錯誤(s).\n"
-
-msgid "Scilab completion module not installed.\n"
-msgstr "未安裝　Scilab completion 模組.\n"
+msgid "Unqueuing %s - seq.\n"
+msgstr "移除 (Unqueuing) %s - seq(選項).\n"
