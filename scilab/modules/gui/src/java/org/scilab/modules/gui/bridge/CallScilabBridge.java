@@ -937,11 +937,14 @@ public class CallScilabBridge {
 	 * @param status true to set the menu enabled
 	 */
 	public static void setFigureMenuEnabled(int figureID, String menuName, boolean status) {
-		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
+			Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
+					getRendererProperties()).getParentTab();
 		
-		MenuBar figureMenuBar = parentTab.getMenuBar();
+			MenuBar figureMenuBar = parentTab.getMenuBar();
 		
-		figureMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+			figureMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+		}
 	}
 
 	/**
@@ -952,11 +955,14 @@ public class CallScilabBridge {
 	 * @param status true to set the menu enabled
 	 */
 	public static void setFigureSubMenuEnabled(int figureID, String parentMenuName, int menuItemPosition, boolean status) {
-		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
+			Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
+					getRendererProperties()).getParentTab();
 		
-		MenuBar figureMenuBar = parentTab.getMenuBar();
+			MenuBar figureMenuBar = parentTab.getMenuBar();
 		
-		figureMenuBar.getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
+			figureMenuBar.getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
+		}
 	}
 
 	/**
@@ -965,7 +971,9 @@ public class CallScilabBridge {
 	 * @param status true to set the menu enabled
 	 */
 	public static void setRootMenuEnabled(String menuName, boolean status) {
-		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+		if (ScilabConsole.isExistingConsole()) { /** Scilab console must exist */
+			ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+		}
 	}
 	
 	/**
@@ -975,7 +983,9 @@ public class CallScilabBridge {
 	 * @param status true to set the menu enabled
 	 */
 	public static void setRootSubMenuEnabled(String parentMenuName, int menuItemPosition, boolean status) {
-		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
+		if (ScilabConsole.isExistingConsole()) { /** Scilab console must exist */
+			ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
+		}
 	}
 	
 	/****************/
@@ -990,11 +1000,14 @@ public class CallScilabBridge {
 	 * @param menuName the name of the menu
 	 */
 	public static void removeFigureMenu(int figureID, String menuName) {
-		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
+			Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
+					getRendererProperties()).getParentTab();
 		
-		MenuBar figureMenuBar = parentTab.getMenuBar();
+			MenuBar figureMenuBar = parentTab.getMenuBar();
 		
-		figureMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
+			figureMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
+		}
 	}
 
 	/**
@@ -1002,7 +1015,9 @@ public class CallScilabBridge {
 	 * @param menuName the name of the menu
 	 */
 	public static void removeRootMenu(String menuName) {
-		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
+		if (ScilabConsole.isExistingConsole()) { /** Scilab Console must exist */
+			ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
+		}
 	}
 	
 	/***********************/
