@@ -13,14 +13,9 @@
 
 package org.scilab.modules.gui.bridge.menu;
 
-import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.lang.reflect.InvocationTargetException;
-
 import javax.swing.JMenu;
-import javax.swing.SwingUtilities;
-
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
