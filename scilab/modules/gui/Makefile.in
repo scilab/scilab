@@ -588,6 +588,9 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
+# Chapter file 
+HELP_CHAPTERDIR = help/
+HELP_CHAPTERFILE = addchapter.sce
 @GUI_FALSE@GUI_C_SOURCES = src/nogui/nogui.c
 @GUI_TRUE@GUI_C_SOURCES = \
 @GUI_TRUE@src/c/TerminateGui.c \
@@ -2489,7 +2492,7 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@	done
 install-data-local:
 # Install the tests
-	@echo "-- Install tests (if any) --"; \
+	@echo "-------- Install tests (if any) --------"; \
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
@@ -2504,8 +2507,19 @@ install-data-local:
 		  done; \
 	  fi; \
 	done 
+# Install the help chapter
+	@echo "-------- Install the help chapter (if any) --------"; \
+	for lang in $(ALL_LINGUAS); do \
+		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+		if test -f $$HELPFILE; then \
+			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+		fi; \
+	done
 # Install the macros
-	@echo "-- Install macros (if any) --"; \
+	@echo "-------- Install macros (if any) --------"; \
 	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
@@ -2522,7 +2536,7 @@ install-data-local:
 	done
 # Install java files (.jar)
 	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
-	echo "-- Install jar files --"; \
+	echo "-------- Install jar files --------"; \
     $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \

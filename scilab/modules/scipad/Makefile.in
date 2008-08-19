@@ -529,6 +529,12 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@JARMASK = *.jar
 # JAR files
 @TCLTK_TRUE@JARMASK = *.jar
+# Chapter file 
+@TCLTK_FALSE@HELP_CHAPTERDIR = help/
+# Chapter file 
+@TCLTK_TRUE@HELP_CHAPTERDIR = help/
+@TCLTK_FALSE@HELP_CHAPTERFILE = addchapter.sce
+@TCLTK_TRUE@HELP_CHAPTERFILE = addchapter.sce
 all: all-am
 
 .SUFFIXES:
@@ -919,7 +925,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	done
 @TCLTK_TRUE@install-data-local:
 # Install the tests
-@TCLTK_TRUE@	@echo "-- Install tests (if any) --"; \
+@TCLTK_TRUE@	@echo "-------- Install tests (if any) --------"; \
 @TCLTK_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @TCLTK_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @TCLTK_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
@@ -934,8 +940,19 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_TRUE@		  done; \
 @TCLTK_TRUE@	  fi; \
 @TCLTK_TRUE@	done 
+# Install the help chapter
+@TCLTK_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
+@TCLTK_TRUE@	for lang in $(ALL_LINGUAS); do \
+@TCLTK_TRUE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@TCLTK_TRUE@		if test -f $$HELPFILE; then \
+@TCLTK_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	done
 # Install the macros
-@TCLTK_TRUE@	@echo "-- Install macros (if any) --"; \
+@TCLTK_TRUE@	@echo "-------- Install macros (if any) --------"; \
 @TCLTK_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
@@ -952,7 +969,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_TRUE@	done
 # Install java files (.jar)
 @TCLTK_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
-@TCLTK_TRUE@	echo "-- Install jar files --"; \
+@TCLTK_TRUE@	echo "-------- Install jar files --------"; \
 @TCLTK_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @TCLTK_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
@@ -1057,7 +1074,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	done
 @TCLTK_FALSE@install-data-local:
 # Install the tests
-@TCLTK_FALSE@	@echo "-- Install tests (if any) --"; \
+@TCLTK_FALSE@	@echo "-------- Install tests (if any) --------"; \
 @TCLTK_FALSE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @TCLTK_FALSE@	  if test -d $(srcdir)/$$dir/; then \
 @TCLTK_FALSE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
@@ -1072,8 +1089,19 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_FALSE@		  done; \
 @TCLTK_FALSE@	  fi; \
 @TCLTK_FALSE@	done 
+# Install the help chapter
+@TCLTK_FALSE@	@echo "-------- Install the help chapter (if any) --------"; \
+@TCLTK_FALSE@	for lang in $(ALL_LINGUAS); do \
+@TCLTK_FALSE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@TCLTK_FALSE@		if test -f $$HELPFILE; then \
+@TCLTK_FALSE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_FALSE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_FALSE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	done
 # Install the macros
-@TCLTK_FALSE@	@echo "-- Install macros (if any) --"; \
+@TCLTK_FALSE@	@echo "-------- Install macros (if any) --------"; \
 @TCLTK_FALSE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_FALSE@		if test -d $(srcdir)/$$dir/; then \
@@ -1090,7 +1118,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_FALSE@	done
 # Install java files (.jar)
 @TCLTK_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
-@TCLTK_FALSE@	echo "-- Install jar files --"; \
+@TCLTK_FALSE@	echo "-------- Install jar files --------"; \
 @TCLTK_FALSE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @TCLTK_FALSE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \

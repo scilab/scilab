@@ -470,6 +470,9 @@ modulename = javasci
 @JAVASCI_TRUE@JARDIR = jar/
 # JAR files
 @JAVASCI_TRUE@JARMASK = *.jar
+# Chapter file 
+@JAVASCI_TRUE@HELP_CHAPTERDIR = help/
+@JAVASCI_TRUE@HELP_CHAPTERFILE = addchapter.sce
 all: all-am
 
 .SUFFIXES:
@@ -1001,7 +1004,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	done
 @JAVASCI_TRUE@install-data-local:
 # Install the tests
-@JAVASCI_TRUE@	@echo "-- Install tests (if any) --"; \
+@JAVASCI_TRUE@	@echo "-------- Install tests (if any) --------"; \
 @JAVASCI_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @JAVASCI_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @JAVASCI_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
@@ -1016,8 +1019,19 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		  done; \
 @JAVASCI_TRUE@	  fi; \
 @JAVASCI_TRUE@	done 
+# Install the help chapter
+@JAVASCI_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
+@JAVASCI_TRUE@	for lang in $(ALL_LINGUAS); do \
+@JAVASCI_TRUE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@JAVASCI_TRUE@		if test -f $$HELPFILE; then \
+@JAVASCI_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@JAVASCI_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@JAVASCI_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@JAVASCI_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@JAVASCI_TRUE@		fi; \
+@JAVASCI_TRUE@	done
 # Install the macros
-@JAVASCI_TRUE@	@echo "-- Install macros (if any) --"; \
+@JAVASCI_TRUE@	@echo "-------- Install macros (if any) --------"; \
 @JAVASCI_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @JAVASCI_TRUE@		if test -d $(srcdir)/$$dir/; then \
@@ -1034,7 +1048,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	done
 # Install java files (.jar)
 @JAVASCI_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
-@JAVASCI_TRUE@	echo "-- Install jar files --"; \
+@JAVASCI_TRUE@	echo "-------- Install jar files --------"; \
 @JAVASCI_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @JAVASCI_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
