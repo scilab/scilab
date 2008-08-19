@@ -105,6 +105,9 @@ if norm(x-x1)/norm(x-xopt) > 0.1 then  pause,end
 [f,x,g,to]=optim('rosenf','b',bi,bs,x0,'ar',100,3,'in');
 [f,x,g]   =optim('rosenf','b',bi,bs,x,to,'ar',100,3,'in');
 if norm(x-x1)/norm(x-xopt) > 0.1 then  pause,end
+// 
+// Test all possible stop criteria settings 
+//
 [f,x,g]=optim('rosenf',x0,'ar','in');
 if abs(f-1+norm(x-xopt) ) > Leps then pause,end
 [f,x,g]=optim('rosenf',x0,'ar',100,'in');
