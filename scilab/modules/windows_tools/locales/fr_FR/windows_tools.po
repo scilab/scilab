@@ -1,136 +1,118 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
-# File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
-# File: sci_gateway/c/sci_toprint.c, line: 150
-# File: sci_gateway/c/sci_dos.c, line: 50
-# File: sci_gateway/c/sci_dos.c, line: 62
-# File: sci_gateway/c/sci_findfileassociation.c, line: 37
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
-# File: sci_gateway/c/sci_chartooem.c, line: 48
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"PO-Revision-Date: 2008-06-13 12:00+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
 
-#
-# File: sci_gateway/c/sci_winqueryreg.c, line: 29
-# File: sci_gateway/c/sci_winqueryreg.c, line: 37
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
 msgstr ""
+"%s: Mauvais type pour les arguments d'entrée: Une chaîne de caractères "
+"attendue.\n"
 
-#
-# File: sci_gateway/c/sci_winqueryreg.c, line: 88
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
-msgstr ""
+msgstr "%s: Ne peut pas ouvrir la base de registre Windows.\n"
 
-#
-# File: sci_gateway/c/sci_winqueryreg.c, line: 130
 #, c-format
 msgid "%s: Cannot query value of this type.\n"
-msgstr ""
+msgstr "%s: Ne peut pas renseigner la valeur de ce type.\n"
 
-#
-# File: sci_gateway/c/sci_dos.c, line: 70
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée n° %d: '%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_consolebox.c, line: 36
-# File: sci_gateway/c/sci_consolebox.c, line: 73
 msgid "Only on Windows Mode, not in Console Mode.\n"
-msgstr ""
+msgstr "Seulement en mode graphique, non disponible en mode batch\n"
 
-#
-# File: sci_gateway/c/sci_findfileassociation.c, line: 45
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
+"%s: Mauvais type pour les arguments en entrée: Chaîne de caractères "
+"attendue.\n"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 49
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s: Le fichier %s n'existe pas.\n"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 64
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une chaîne de "
+"caractères attendue.\n"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 71
-# File: sci_gateway/c/sci_toprint.c, line: 172
-# File: sci_gateway/c/sci_toprint.c, line: 178
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
-msgstr ""
+msgstr "%s: Cette fonction n'a pas encore été implémentée.\n"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 85
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Des entiers non-négatifs "
+"attendus.\n"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 91
-# File: sci_gateway/c/sci_toprint.c, line: 97
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un entier non-négatif "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 193
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
-msgstr ""
+msgstr "%s: Mauvais argument d'entrée n° %d: '%s' ou '%s' attendu"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 199
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integers expected\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Des entiers non-négatifs "
+"attendus\n"
 
-#
-# File: sci_gateway/c/sci_toprint.c, line: 206
 #, c-format
 msgid "%s: Wrong type for input arguments.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour les arguments d'entrée.\n"
 
-#
-# File: sci_gateway/c/sci_winopen.c, line: 23
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr ""
+msgstr "%s: Ne peut pas ouvrir le fichier %s.\n"
 
-#
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
-msgstr ""
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée: %s.\n"
 
-#
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 msgid "see help"
-msgstr ""
+msgstr "voir l'aide"
 
-# File: sci_gateway/c/sci_createGUID.c, line: 56
 #, c-format
 msgid "%s : Memory allocation error.\n"
-msgstr ""
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
-#
-# File: sci_gateway/c/sci_createGUID.c, line: 61
 #, c-format
 msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: Des entiers non-négatifs "
+"attendus.\n"
 
-#
-# File: sci_gateway/c/sci_createGUID.c, line: 66
-# File: sci_gateway/c/sci_createGUID.c, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour l'argument d'entrée: Scalaire attendu.\n"

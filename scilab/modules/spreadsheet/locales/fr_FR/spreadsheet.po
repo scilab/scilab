@@ -1,352 +1,279 @@
-# Localization of the module spreadsheet
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-06-13 15:35+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-27 11:02+0100\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-# File: macros/sci2excel.sci, line: 23
 #, c-format
 msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
+msgstr "%s: Mauvais argument d'entrée n° %d: ''%s'' ou ''%s'' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 71
 #, c-format
 msgid "The file %s does not exist.\n"
-msgstr ""
+msgstr "Le fichier %s n'existe pas.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 90
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
-msgstr ""
+msgstr "%s: Le fichier %s n'est pas un fichier ole2.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 94
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr ""
+msgstr "%s: Ne peut pas ouvrir le fichier %s.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 103
 #, c-format
 msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr ""
+msgstr "%s: Il n'y a pas de flux xls dans le fichier ole2 %s.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 125
 #, c-format
 msgid "%s: Not an ole2 file.\n"
-msgstr ""
+msgstr "%s: Ce n'est pas un fichier ole2.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 130
-#, c-format
+#, fuzzy, c-format
 msgid "%s: The file has no Workbook directory.\n"
-msgstr ""
+msgstr "%s: Le fichier n'a pas de répertoire Workbook.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 135
-# File: sci_gateway/c/sci_xls_read.c, line: 63
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s : Plus de mémoire disponible.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 140
 #, c-format
 msgid "%s: Incorrect or corrupted file.\n"
-msgstr ""
+msgstr "%s: Fichier incorrect ou corrompu.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 145
 #, c-format
 msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr ""
+msgstr "%s: Uniquement le format de fichier BIFF8 est géré.\n"
 
-#
-# File: sci_gateway/c/sci_xls_read.c, line: 40
-# File: sci_gateway/c/sci_xls_read.c, line: 46
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
 
-#
-# File: sci_gateway/c/sci_xls_read.c, line: 67
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
 msgstr ""
+"%s: Echec de lecture des données attendues, le fichier xls est peut être "
+"invalide.\n"
 
-#
-# File: sci_gateway/c/sci_xls_read.c, line: 71
 #, c-format
 msgid "%s: End of file.\n"
-msgstr ""
+msgstr "%s: Fin de fichier.\n"
 
-#
-# File: src/c/ole.c, line: 102
 #, c-format
 msgid "ripOLE: %s\n"
-msgstr ""
+msgstr "ripOLE: %s\n"
 
-#
-# File: src/c/ole.c, line: 252
 #, c-format
 msgid "%s:%d:OLE_set_debug: Debug level set to %d"
-msgstr ""
+msgstr "%s:%d:OLE_set_debug: Le niveau de débuggage est réglé sur %d"
 
-#
-# File: src/c/ole.c, line: 334
-#, c-format
+#, fuzzy, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
-msgstr ""
+msgstr "%s:%d:OLE_get_block:ERROR: Le block buffer est NULL"
 
-#
-# File: src/c/ole.c, line: 348
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
 msgstr ""
+"%s:%d:OLE_get_block:ERROR: Ne peut pas allouer %d bytes pour le block OLE"
 
-#
-# File: src/c/ole.c, line: 363
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
-msgstr ""
+msgstr "%s:%d:OLE_get_block:ERROR: Echec de Seek (block=%d:%d)"
 
-#
-# File: src/c/ole.c, line: 373
-#, c-format
+#, fuzzy, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr ""
+msgstr "%s:%d: Décalage dans les bytes lus. Requis %d, obtenus %d\n"
 
-#
-# File: src/c/ole.c, line: 389
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
-msgstr ""
+msgstr "%s:%d:OLE_get_block:ERREUR: Le fichier OLE est fermé\n"
 
-#
-# File: src/c/ole.c, line: 979
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
-msgstr ""
+msgstr "%s:%d:OLE_load_FAT:ERREUR: Ne peux pas allouer %d bytes\n"
 
-#
-# File: src/c/ole.c, line: 1033
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
 msgstr ""
+"%s:%d:OLE_load_FAT:ERREUR: Ne peux pas charger le block, secteur importé = "
+"0x%x, position fat = 0x%x"
 
-#
-# File: src/c/ole.c, line: 1049
-# File: src/c/ole.c, line: 1056
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
-msgstr ""
+msgstr "%s:%d:OLE_load_FAT:ERROR: La limite de mémoire FAT dépassée %p >= %p"
 
-#
-# File: src/c/ole.c, line: 1061
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
-msgstr ""
+msgstr "%s:%d:OLE_load_FAT:ERREUR: le secteur demandé était négatif (%d)"
 
-#
-# File: src/c/ole.c, line: 1315
 #, c-format
 msgid ""
 "%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
 msgstr ""
+"%s:%d:OLE_get_miniblock:ERREUR: Ne peux pas allouer suffisamment de mémoire "
+"pour miniChain"
 
-#
-# File: src/c/ole.c, line: 1393
-#, c-format
+#, fuzzy, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr ""
+"%s:%d:OLE_load_chain:ERREUR: La chaîne de cargement a dépassé la limite de "
+"mémoire"
 
-#
-# File: src/c/ole.c, line: 1436
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
 msgstr ""
+"%s:%d:OLE_open_file:ERROR: Ne peux pas localiser le fichier '%s' pour ouvrir "
+"(%s)"
 
-#
-# File: src/c/ole.c, line: 1451
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
-msgstr ""
+msgstr "%s:%d:OLE_open_file:ERREUR: Ne peux pas ouvrir %s en lecture (%s)\n"
 
-#
-# File: src/c/ole.c, line: 1493
 #, c-format
 msgid "%s:%d:OLE_open_directory:ERROR: %s"
-msgstr ""
+msgstr "%s:%d:OLE_open_directory:ERREUR: %s"
 
-#
-# File: src/c/ole.c, line: 1550
 #, c-format
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
 "and '%s'"
 msgstr ""
+"%s:%d:OLE_store_stream:ERREUR: Ne peux pas recomposer le nom de fichier "
+"complet à partir de '%s' et '%s'"
 
-#
-# File: src/c/ole.c, line: 1558
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
 msgstr ""
+"%s:%d:OLE_store_stream:ERREUR: Ne peux pas ouvrir %s en écriture (%s)"
 
-#
-# File: src/c/ole.c, line: 1567
-#, c-format
+#, fuzzy, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""
+"%s:%d:OLE_store_stream: ATTENTION: Ai uniquement écrit %d de %d bytes dans "
+"le fichier %s"
 
-#
-# File: src/c/pldstr.c, line: 501
 #, c-format
 msgid ""
 "%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
 "replacement operation"
 msgstr ""
+"%s:%d:PLD_strreplace:ERREUR: Ne peux pas allouer %d bytes de mémoire pour "
+"effectuer l'opération de remplacement"
 
-#
-# File: src/c/pldstr.c, line: 583
 #, c-format
 msgid ""
 "%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
 "with '%s'"
 msgstr ""
+"%s:%d:PLD_strreplace_general: La mémoire allouée est épuisé pendant le "
+"remplacement de '%s' par '%s'"
 
-#
-# File: src/c/logger.c, line: 118
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
 msgstr ""
+"LOGGER_set_logfile: ERREUR - Ne peux pas ouvrir le fichier de log '%s' (%s)"
 
-#
-# File: src/c/logger.c, line: 120
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr ""
+"LOGGER_set_logfile: ERREUR - Ne peux pas ouvrir le fichier de log '%s' (%s)\n"
 
-#
-# File: src/c/logger.c, line: 343
 #, c-format
 msgid "LOGGER-Default: %s%s"
-msgstr ""
+msgstr "LOGGER-Default: %s%s"
 
-# File: src/c/olestream-unwrap.c, line: 156
 #, c-format
 msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%"
-"s' and '%s'"
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
+"'%s' and '%s'"
 msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:ERREUR: Ne peux pas créer la chaîne de "
+"caractères du nom de fichier à partir de '%s' et '%s'"
 
-#
-# File: src/c/olestream-unwrap.c, line: 168
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
 msgstr ""
+"%s:%d:OLEUNWRAP_save_stream: ATTENTION: Ai écrit uniquement %d de %d bytes "
+"dans le fichier %s\n"
 
-#
-# File: src/c/olestream-unwrap.c, line: 175
 #, c-format
-msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:ERREUR: Ne peux pas ouvrir %s en écriture (%s)\n"
 
-#
-# File: src/c/olestream-unwrap.c, line: 281
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
 msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachement %s:%s:%s taille = %d\n"
 
-#
-# File: src/c/olestream-unwrap.c, line: 293
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
 msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Contacter l'auteur du bug pour le "
+"nom du fichier"
 
-#
-# File: src/c/olestream-unwrap.c, line: 334
 #, c-format
 msgid "Unable to decode stream with element string '%s'\n"
 msgstr ""
+"Ne peux pas décoder le flux avec la chaîne de caractères élément '%s'\n"
 
-#
-# File: src/c/ripole.c, line: 131
-# File: src/c/ripole.c, line: 140
 #, c-format
 msgid ""
 "Cannot interpret option \"%s\"\n"
 "%s\n"
 msgstr ""
+"Ne peux pas interpréter l'option \"%s\"\n"
+"%s\n"
 
-#
-# File: src/c/ripole.c, line: 207
 #, c-format
 msgid "Decoding filename=%s"
-msgstr ""
+msgstr "Décode le nom de fichier=%s"
 
-#
-# File: src/c/ripole.c, line: 286
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
-msgstr ""
+msgstr "ripOLE nécessite un fichier a décoder en entrée.\n"
 
-#
-# File: src/c/ripole.c, line: 320
 msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr ""
+msgstr "ripOLE: Ne peux pas allouer la mémoire pour l'objet OLE."
 
-#
-# File: src/c/ripole.c, line: 347
 #, c-format
 msgid "Cannot locate input file '%s'"
-msgstr ""
+msgstr "Ne peux pas localiser le fichier d'entrée '%s'"
 
-#
-# File: src/c/ripole.c, line: 350
 #, c-format
 msgid "File '%s' is not OLE2 format"
-msgstr ""
+msgstr "Le fichier '%s' n'est pas au format OLE2"
 
-#
-# File: src/c/ripole.c, line: 353
 #, c-format
 msgid "OLE input file '%s' is insane"
-msgstr ""
+msgstr "Le fichier d'entré OLE '%s' est délirant"
 
-#
-# File: src/c/ripole.c, line: 356
-# File: src/c/ripole.c, line: 400
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr ""
+msgstr "ripOLE: le décodage de %s s'est terminé par une erreur %d\n"
 
-#
-# File: src/c/ripole.c, line: 400
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
-msgstr ""
+msgstr "ripOLE: le décodage de %s s'est terminé par une erreur %d.\n"
 
-#
-# File: src/nospreadsheet/nospreadsheet.c, line: 11
 msgid "Scilab spreadsheet module not installed.\n"
-msgstr ""
+msgstr "Le module scilab spreadsheet n'est pas installé.\n"

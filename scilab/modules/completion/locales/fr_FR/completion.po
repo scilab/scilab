@@ -1,50 +1,38 @@
-# Localization of the module completion
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-06-13 12:39+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-# File: sci_gateway/c/sci_completion.c, line: 39
-# File: sci_gateway/c/sci_completion.c, line: 103
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
 
-#
-# File: sci_gateway/c/sci_completion.c, line: 92
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée: '%s', '%s', '%s', '%s', '%s' ou "
+"'%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_completion.c, line: 115
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'argument(s) de sortie.\n"
 
-#
-# File: src/nocompletion/nocompletion.c, line: 13
 msgid "Scilab completion module not installed.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_completion.c, line: 32
-# File: sci_gateway/c/sci_completion.c, line: 85
-# File: sci_gateway/c/sci_completion.c, line: 96
-# File: sci_gateway/c/sci_completion.c, line: 108
-#~ msgid "Invalid parameter(s).\n"
-#~ msgstr "Param�tre(s) incorrect(s).\n"
+msgstr "Le module de complétion Scilab n'est pas installé.\n"

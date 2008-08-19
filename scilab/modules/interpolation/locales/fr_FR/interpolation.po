@@ -1,268 +1,223 @@
-# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2007-2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-#
-# This file is distributed under the same license as the Scilab package.
-# Localization of the module interpolation
-# Please see in SCI/tools/localization for localization management
-#
-# Localization of the module interpolation
-# Please see in SCI/tools/localization for localization management
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-08-13 07:49+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-# File: sci_gateway/c/sci_splin2d.c, line: 52
 #, c-format
 msgid "%s: Wrong size for input arguments.\n"
-msgstr ""
+msgstr "%s: Mauvaise dimension pour les arguments d'entrée.\n"
 
-#
-# File: sci_gateway/c/sci_splin2d.c, line: 60
 #, c-format
-msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid ""
+"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
+"%s: x et/ou y ne sont pas rangés dans un ordre strictement croissant (ou +-"
+"inf détecté)\n"
 
-#
-# File: sci_gateway/c/sci_splin2d.c, line: 71
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported 'spline' type.\n"
 msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Type 'spline' non "
+"supporté.\n"
 
-#
-# File: sci_gateway/c/sci_interp3d.c, line: 54
-# File: sci_gateway/c/sci_bsplin3val.c, line: 46
 #, c-format
 msgid ""
 "%s: Incompatible input arguments '#%d', '#%d' and '#%d': Same sizes "
 "expected.\n"
 msgstr ""
+"%s: Arguments d'entrée incompatibles '#%d', '#%d' et '#%d': Même dimension "
+"attendue.\n"
 
-#
-# File: sci_gateway/c/sci_interp3d.c, line: 75
-# File: sci_gateway/c/sci_bsplin3val.c, line: 68
 #, c-format
 msgid "%s: Wrong type for input argument #%d: tensbs3d tlist expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: tlist tensbs3d attendue.\n"
 
-#
-# File: sci_gateway/c/sci_interp3d.c, line: 109
-# File: sci_gateway/c/sci_interp2d.c, line: 61
-# File: sci_gateway/c/sci_linear_interpn.c, line: 127
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Unsupported 'outmode' type.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Unsupported 'outmode' type.\n"
 msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Type 'outmode' non "
+"supporté.\n"
 
-#
-# File: sci_gateway/c/sci_cshep2d.c, line: 34
 #, c-format
 msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
-msgstr ""
+msgstr "%s: xyz doit être une (n,3) matrice réelle avec n >= 10\n"
 
-#
-# File: sci_gateway/c/sci_cshep2d.c, line: 75
 #, c-format
 msgid "%s: duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr ""
+msgstr "%s: noeuds dupliqués ou tous les noeuds colinéaires (ier = %d).\n"
 
-#
-# File: sci_gateway/c/sci_interp2d.c, line: 50
-# File: sci_gateway/c/sci_interp.c, line: 41
-# File: sci_gateway/c/sci_eval_cshep2d.c, line: 40
 #, c-format
 msgid ""
 "%s: Incompatible input arguments '#%d' and '#%d': Same sizes expected.\n"
 msgstr ""
+"%s: Arguments d'entrée incompatibles '#%d' et '#%d': Même dimension "
+"attendue.\n"
 
-#
-# File: sci_gateway/c/sci_interp.c, line: 53
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unknown 'outmode' type.\n"
 msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Type 'outmode' "
+"inconnu.\n"
 
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 46
 #, c-format
 msgid "%s: the x, y and z grids must have at least 3 points\n"
-msgstr ""
+msgstr "%s: les grilles x, y et z doivent avoir au moins 3 points\n"
 
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 53
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix "
 "expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une hypermatrice "
+"réelle à 3  dimensions attendue.\n"
 
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 67
 #, c-format
 msgid "%s: Input argument #%d must be a vector with 3 components.\n"
 msgstr ""
+"%s: Argument d'entrée n° %d doit être un vecteur avec 3 composantes.\n"
 
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 73
-# File: sci_gateway/c/sci_bsplin3val.c, line: 101
 #, c-format
 msgid "%s: Wrong values for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Mauvaises valeurs pour l'argument d'entrée n° %d.\n"
 
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 113
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"
-msgstr ""
+msgstr "%s: Problème avec 'flag' = %d\n"
 
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 35
-# File: sci_gateway/c/sci_linear_interpn.c, line: 55
 #, c-format
-msgid "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
 msgstr ""
+"%s: Arguments d'entrée n° %d et n° %d incompatiblesd: Même tailles "
+"attendues.\n"
 
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 45
 #, c-format
 msgid "%s: bad input for arg 3\n"
-msgstr ""
+msgstr "%s: mauvaise entrée pour l'argument 3\n"
 
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 53
 #, c-format
 msgid "%s: bad input for x\n"
-msgstr ""
+msgstr "%s: mauvaise entrée pour x\n"
 
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 58
 #, c-format
 msgid ""
 "%s: elements of argument %d not (strictly) increasing or +-inf detected.\n"
 msgstr ""
+"%s: éléments de l'argument %d non (strictement) croissants ou +-inf "
+"détectés.\n"
 
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 77
-#, c-format
+#, fuzzy, c-format
 msgid "%s: not enought points for the fit.\n"
-msgstr ""
+msgstr "%s: pas assez de points pour l'ajustement.\n"
 
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 81
 #, c-format
 msgid "%s warning: rank deficiency of the least square matrix.\n"
-msgstr ""
+msgstr "%s attention: défaut de rang pour la matrice des moindres carrés.\n"
 
-#
-# File: sci_gateway/c/sci_eval_cshep2d.c, line: 60
 #, c-format
 msgid "%s: Wrong type for input argument #%d: cshep2d tlist expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: tlist cshep2d attendue.\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 44
 #, c-format
 msgid "%s: Wrong size for input arguments: Vector of same size expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour les arguments d'entrée: Vecteur de même "
+"dimension attendu.\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 50
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be >= %d.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Doit être >= %d.\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 56
 #, c-format
 msgid ""
 "%s: elements of argument #%d not (strictly) increasing or +-inf detected\n"
 msgstr ""
+"%s: éléments de l'argument n° %d ne sont pas dans une ordre (strictement) "
+"croissant ou +-inf détecté\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 66
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unknown 'spline' type.\n"
 msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Type 'spline' inconnu.\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 77
-#, c-format
+#, fuzzy, c-format
 msgid "%s: for a clamped spline you must give the endpoint slopes.\n"
 msgstr ""
+"%s: pour une spline encastrée, vous devez donner les pentes du point final.\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 83
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong size for input argument #%d: endpoint slopes.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: pentes des points "
+"terminaux.\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 90
-# File: sci_gateway/c/sci_linear_interpn.c, line: 37
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
+msgstr "%s : Mauvais nombre d'argument(s) en entrée.\n"
 
-#
-# File: sci_gateway/c/sci_splin.c, line: 97
 #, c-format
 msgid "%s: Wrong value for periodic spline y(1): Must be equal to y(n).\n"
 msgstr ""
+"%s: Mauvaise valeur pour la spline périodique y(1): Doit être égal à y(n).\n"
 
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 74
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
 
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 82
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
 msgstr ""
+"%s: Les abscisses de la dimension %d ne sont pas en ordre strictement "
+"croissant.\n"
 
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 93
 #, c-format
 msgid "%s: U must be a real %d-dim hypermatrix.\n"
-msgstr ""
+msgstr "%s: U doit être une hypermatrice réelle à %d dimensions.\n"
 
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 99
 #, c-format
 msgid ""
-"%s: Size incompatibility between grid points and grid values in dimension %"
-"d.\n"
+"%s: Size incompatibility between grid points and grid values in dimension "
+"%d.\n"
 msgstr ""
+"%s: Incompatibilité de dimension entre les points de la grille et les "
+"valeurs de la grille sur la dimension %d.\n"
 
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 109
 #, c-format
 msgid ""
 "%s: Size incompatibility between grid points and values in dimension %d.\n"
 msgstr ""
+"%s: Incompatibilité de dimension entre les points et les valeurs de la "
+"grille sur la dimension %d.\n"
 
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 114
 #, c-format
 msgid ""
 "%s: Size incompatibility between grid points and values in dim %d or %d.\n"
 msgstr ""
+"%s: Incompatibilité de dimension entre les points et les valeurs de la "
+"grille sur la dimension %d our %d.\n"
 
-#
-# File: src/c/interpolation.c, line: 99
 #, c-format
 msgid "Argument %d is not a real hypermatrix.\n"
-msgstr ""
+msgstr "Argument %d n'est pas une hypermatrice réelle.\n"
 
-#
-# File: src/c/interpolation.c, line: 115
 #, c-format
 msgid "Argument %d is not a string.\n"
-msgstr ""
+msgstr "Argument %d n'est pas une chaîne de caractères.\n"

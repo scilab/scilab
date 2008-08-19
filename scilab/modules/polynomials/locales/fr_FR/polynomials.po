@@ -1,133 +1,95 @@
-# Localization of the module polynomials
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Serge Steer <Serge.Steer@scilab.org>,2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: #~ 2008-08-14 14:11+0100\n"
-"PO-Revision-Date: 2008-08-14 14:43+0200\n"
-"Last-Translator: Serge Steer <Serge.Steer@scilab.org>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-08-18 15:58+0000\n"
+"PO-Revision-Date: 2008-08-19 11:08+0000\n"
+"Last-Translator: Serge Steer <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-# File: macros/detr.sci, line: 19
-# File: macros/detr.sci, line: 32
-# File: macros/determ.sci, line: 25
-# File: macros/coffg.sci, line: 23
-# File: macros/coffg.sci, line: 36
-# File: macros/hermit.sci, line: 22
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"\"%s: Mauvaise taille pour l'argument d'entrée n° %d: Une matrice carrée est "
+"%s: Mauvaise dimension pour l'argument d'entrÃ©e nÂ° %d: Une matrice carrÃ©e "
 "attendue.\n"
 
-#
-# File: macros/detr.sci, line: 43
-# File: macros/determ.sci, line: 22
-# File: macros/numer.sci, line: 23
-# File: macros/coffg.sci, line: 47
-# File: macros/invr.sci, line: 92
-# File: macros/derivat.sci, line: 42
-# File: macros/denom.sci, line: 28
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument  d'entrée n° %d: un tableau de flottants, "
-"de polynômes ou de fractions rationnelles est attendu.\n"
+"%s: Mauvais type pour l'argument  d'entrÃ©e nÂ° %d: un tableau de flottants, "
+"de polynÃ´mes ou de fractions rationnelles est attendu.\n"
 
-#
-# File: macros/factors.sci, line: 22
-# File: macros/polfact.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un polynôme est "
+"%s: Mauvaise taille pour l'argument d'entrÃ©e nÂ° %d: Un polynÃ´me est "
 "attendu.\n"
 
-#
-# File: macros/factors.sci, line: 27
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée n° %d: Une fraction rationnelle "
+"%s: Mauvaise taille pour l'argument d'entrÃ©e nÂ° %d: Une fraction rationnelle "
 "est attendue.\n"
 
-#
-# File: macros/factors.sci, line: 41
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
 msgstr ""
-"\"%s: Wrong size for input argument n° %d: Single input, single output "
-"system expected.\n"
+"%s: Mauvaise taille pour l'argument d'entrÃ©e nÂ° %d: Un systÃ¨me mono-entrÃ©e, "
+"mono-sortie est attendu.\n"
 
-#
-# File: macros/factors.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or polynomial "
 "array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Un système dynamique "
-"linéaire ou un polynôme est attendu.\n"
+"%s: Mauvais type pour l'argument d'entrÃ©e nÂ° %d: Un systÃ¨me dynamique "
+"linÃ©aire ou un tableau de polynÃ´me est attendu.\n"
 
-#
-# File: macros/hrmt.sci, line: 18
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument  d'entrée n° %d: Un vecteur ligne est "
+"%s: Mauvaise taille pour l'argument  d'entrÃ©e nÂ° %d: Un vecteur ligne est "
 "attendu.\n"
 
-#
-# File: macros/invr.sci, line: 56
-# File: macros/invr.sci, line: 88
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"\"%s: Mauvaise valeur pour l'argument d'entrée #%d: Elle doit être dans "
+"%s: Mauvaise valeur pour l'argument d'entrÃ©e nÂ° %d: Doit Ãªtre dans "
 "l'ensemble {%s}.\n"
 
-#
-# File: macros/hermit.sci, line: 18
-# File: macros/polfact.sci, line: 22
-# File: macros/htrianr.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée: Un tableau de polynômes est "
+"%s: Mauvais type pour l'argument d'entrÃ©e: Un tableau de polynÃ´mes est "
 "attendu.\n"
 
-#
-# File: macros/inv_coeff.sci, line: 24
 #, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
-msgstr "%s: Les arguments d'entrée n° %d et n° %d sont incompatibles.\n"
+msgstr "%s: Les arguments d'entrÃ©e nÂ° %d et nÂ° %d sont incompatibles.\n"
 
-#
-# File: macros/polfact.sci, line: 29
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s: L'argument d'entrée n° %d doit être réel.\n"
+msgstr "%s: L'argument d'entrÃ©e nÂ° %d doit Ãªtre rÃ©el.\n"
 
-#
-# File: macros/horner.sci, line: 24
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée: %d est attendu.\n"
+msgstr "%s: Mauvais nombre d'argument(s) en entrÃ©e: %d attendu.\n"
 
-#
-# File: macros/horner.sci, line: 57
 #, c-format
 msgid "%s: Unexpected type for input argument #%d.\n"
-msgstr "%s: Type non admis pour l'argument d'entrée n° %d.\n"
+msgstr "%s: Type non admis pour l'argument d'entrÃ©e nÂ° %d\n"

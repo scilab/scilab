@@ -1,400 +1,290 @@
-# Localization of the module sparse
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-08-13 07:56+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-#
-# File: includes/spDefs.h, line: 379
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "sparse: Probl�me dans le fichier '%s' � la ligne %d.\n"
+msgstr "creuse: panique dans le fichier `%s' à la ligne %d.\n"
 
-#
-# File: src/c/spOutput.c, line: 180
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "MATRIX SUMMARY\n"
 "\n"
 msgstr ""
-"DESCRIPTION DE LA MATRICE\n"
+"Matrice de résumé\n"
 "\n"
 
-#
-# File: src/c/spOutput.c, line: 181
 #, c-format
 msgid "Size of matrix = %1u x %1u.\n"
-msgstr "Taille de la matrice = %1u x%1u.\n"
+msgstr "dimension de la matrice = %1u x %1u.\n"
 
-#
-# File: src/c/spOutput.c, line: 183
 #, c-format
 msgid "Matrix has been reordered.\n"
-msgstr "La matrice a �t� reordonn�e.\n"
+msgstr "La matrice a été réorganisée.\n"
 
-#
-# File: src/c/spOutput.c, line: 187
 #, c-format
 msgid "Matrix after factorization:\n"
-msgstr "Matrice apr�s factorisation:\n"
+msgstr "Matrice après factorisation:\n"
 
-#
-# File: src/c/spOutput.c, line: 189
 #, c-format
 msgid "Matrix before factorization:\n"
 msgstr "Matrice avant factorisation:\n"
 
-#
-# File: src/c/spOutput.c, line: 227
-# File: src/c/spOutput.c, line: 229
 #, c-format
 msgid "Columns %1d to %1d.\n"
-msgstr "Colonne %1d � %1d.\n"
+msgstr "Colonnes %1d à %1d.\n"
 
-#
-# File: src/c/spOutput.c, line: 312
 #, c-format
 msgid ""
 "\n"
 "Largest element in matrix = %-1.4lg.\n"
 msgstr ""
 "\n"
-"Plus grand �l�ment dans la matrice = %-1.4lg.\n"
+"Le plus grand élément dans la matrice = %-1.4lg.\n"
 
-#
-# File: src/c/spOutput.c, line: 313
 #, c-format
 msgid "Smallest element in matrix = %-1.4lg.\n"
-msgstr "Plus petit �l�ment dans la matrice = %-1.4lg.\n"
+msgstr "lLe plus petit élément dans la matrice = %-1.4lg.\n"
 
-#
-# File: src/c/spOutput.c, line: 326
 #, c-format
 msgid ""
 "\n"
 "Largest diagonal element = %-1.4lg.\n"
 msgstr ""
+"\n"
+"Le plus grand élément diagonal = %-1.4lg.\n"
 
-#
-# File: src/c/spOutput.c, line: 327
 #, c-format
 msgid "Smallest diagonal element = %-1.4lg.\n"
-msgstr ""
+msgstr "Le plus petit élément diagonal = %-1.4lg.\n"
 
-#
-# File: src/c/spOutput.c, line: 330
 #, c-format
 msgid ""
 "\n"
 "Largest pivot element = %-1.4lg.\n"
 msgstr ""
+"\n"
+"Le plus grand élément pivot = %-1.4lg.\n"
 
-#
-# File: src/c/spOutput.c, line: 331
 #, c-format
 msgid "Smallest pivot element = %-1.4lg.\n"
-msgstr ""
+msgstr "Le plus petit élément pivot = %-1.4lg.\n"
 
-#
-# File: src/c/spOutput.c, line: 335
 #, c-format
 msgid ""
 "\n"
 "Density = %2.2lf%%.\n"
 msgstr ""
+"\n"
+"Densité = %2.2lf%%.\n"
 
-#
-# File: src/c/spOutput.c, line: 338
-#, c-format
+#, fuzzy, c-format
 msgid "Number of fill-ins = %1d.\n"
-msgstr ""
+msgstr "Nombre de compléments = %1d.\n"
 
-#
-# File: src/c/spOutput.c, line: 425
 #, c-format
 msgid "Warning : The following matrix is factored in to LU form.\n"
-msgstr ""
+msgstr "Attention : La matrice qui suit est factorisée sous la forme LU.\n"
 
-#
-# File: src/c/spOutput.c, line: 698
 #, c-format
 msgid "Matrix has not been factored.\n"
-msgstr ""
+msgstr "La matrice n'a pas été factorisée.\n"
 
-#
-# File: src/c/spOutput.c, line: 699
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
-msgstr ""
+msgstr "||| Début d'une nouvelle matrice |||\n"
 
-#
-# File: src/c/spOutput.c, line: 702
 #, c-format
 msgid "Matrix is complex.\n"
-msgstr ""
+msgstr "La matrice est complexe.\n"
 
-#
-# File: src/c/spOutput.c, line: 704
 #, c-format
 msgid "Matrix is real.\n"
-msgstr ""
+msgstr "La matrice est réelle.\n"
 
-#
-# File: src/c/spOutput.c, line: 728
 #, c-format
 msgid "     Initial number of elements = %d\n"
-msgstr "     Nombre initial d'�l�ments = %d\n"
+msgstr "     Nombre initial d'éléments = %d\n"
 
-#
-# File: src/c/spOutput.c, line: 731
-#, c-format
+#, fuzzy, c-format
 msgid "     Initial average number of elements per row = %lf\n"
-msgstr ""
+msgstr "     Nombre initial moyen d'éléments par ligne = %lf\n"
 
-#
-# File: src/c/spOutput.c, line: 733
 #, c-format
 msgid "     Fill-ins = %d\n"
-msgstr ""
+msgstr "     Compléments = %d\n"
 
-#
-# File: src/c/spOutput.c, line: 734
 #, c-format
 msgid "     Average number of fill-ins per row = %lf%%\n"
-msgstr ""
+msgstr "     Nombre moyen de compléments par ligne = %lf%%\n"
 
-#
-# File: src/c/spOutput.c, line: 736
 #, c-format
 msgid "     Total number of elements = %d\n"
-msgstr "     Nombre total d'�l�ments = %d\n"
+msgstr "     Nombre total d'éléments = %d\n"
 
-#
-# File: src/c/spOutput.c, line: 738
-#, c-format
+#, fuzzy, c-format
 msgid "     Average number of elements per row = %lf\n"
-msgstr "     Nombre moyen d'�l�ment par ligne = %lf\n"
+msgstr "     Nombre moyen d'éléments par ligne = %lf\n"
 
-#
-# File: src/c/spOutput.c, line: 740
 #, c-format
 msgid "     Density = %lf%%\n"
-msgstr ""
+msgstr "     Densité = %lf%%\n"
 
-#
-# File: src/c/spOutput.c, line: 742
 #, c-format
 msgid "     Relative Threshold = %e\n"
 msgstr "     Seuil relatif = %e\n"
 
-#
-# File: src/c/spOutput.c, line: 743
 #, c-format
 msgid "     Absolute Threshold = %e\n"
 msgstr "     Seuil absolu = %e\n"
 
-#
-# File: src/c/spOutput.c, line: 744
 #, c-format
 msgid "     Largest Element = %e\n"
-msgstr "     Plus grand �l�ment = %e\n"
+msgstr "     Le plus grand Elément = %e\n"
 
-#
-# File: src/c/spOutput.c, line: 745
 #, c-format
 msgid ""
 "     Smallest Element = %e\n"
 "\n"
 "\n"
 msgstr ""
-"     Plus petit �l�ment = %e\n"
+"     Le plus petit Elément = %e\n"
 "\n"
 "\n"
 
-#
-# File: src/c/spFactor.c, line: 212
 #, c-format
 msgid "Reordering,  Step = %1d\n"
-msgstr ""
+msgstr "Réorganisation, étape = %1d\n"
 
-#
-# File: src/c/spFactor.c, line: 693
-#, c-format
+#, fuzzy, c-format
 msgid "Operation count for inner loop of factorization = %d.\n"
 msgstr ""
+"Décompte d'opérations pour la boucle interne de factorisation = %d.\n"
 
-#
-# File: src/c/spFactor.c, line: 2993
-#, c-format
+#, fuzzy, c-format
 msgid "Pivot found at %1d,%1d using "
-msgstr ""
+msgstr "Pivot trouvé à %1d,%1d utilisant "
 
-#
-# File: src/c/lu.c, line: 112
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
-msgstr ""
+msgstr "%s: Un zero a été trouvé sur la diagonale de la matrice.\n"
 
-#
-# File: macros/pcg.sci, line: 50
-# File: macros/pcg.sci, line: 53
-# File: macros/qmr.sci, line: 261
-# File: macros/gmres.sci, line: 152
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
-#
-# File: macros/pcg.sci, line: 76
-# File: macros/pcg.sci, line: 121
-# File: macros/pcg.sci, line: 146
-# File: macros/qmr.sci, line: 73
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d.\n"
 
-#
-# File: macros/pcg.sci, line: 82
-# File: macros/pcg.sci, line: 125
-# File: macros/pcg.sci, line: 151
-# File: macros/qmr.sci, line: 79
-# File: macros/qmr.sci, line: 140
-# File: macros/qmr.sci, line: 191
-# File: macros/gmres.sci, line: 122
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Matrice carrée attendue.\n"
 
-#
-# File: macros/pcg.sci, line: 88
-# File: macros/qmr.sci, line: 115
-# File: macros/gmres.sci, line: 71
-# File: macros/gmres.sci, line: 142
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Vecteur colonne attendu.\n"
 
-#
-# File: macros/pcg.sci, line: 92
-# File: macros/pcg.sci, line: 128
-# File: macros/pcg.sci, line: 154
-# File: macros/pcg.sci, line: 163
-# File: macros/gmres.sci, line: 128
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° #%d: Même dimension que "
+"l'argument d'entrée n° #%d attendue.\n"
 
-#
-# File: macros/pcg.sci, line: 98
-# File: macros/pcg.sci, line: 104
-# File: macros/qmr.sci, line: 235
-# File: macros/qmr.sci, line: 249
-# File: macros/gmres.sci, line: 83
-# File: macros/gmres.sci, line: 93
-# File: macros/gmres.sci, line: 103
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Un scalaire attendu.\n"
 
-#
-# File: macros/pcg.sci, line: 160
-# File: macros/qmr.sci, line: 105
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: Vecteur colonne "
+"attendu.\n"
 
-#
-# File: macros/pcg.sci, line: 236
 #, c-format
 msgid "%s: Convergence error.\n"
-msgstr ""
+msgstr "%s: Erreur de convergence.\n"
 
-#
-# File: macros/qmr.sci, line: 61
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
+"%s: Nombre d'arguments en entrée incorrect: %d au moins sont attendus.\n"
 
-#
-# File: macros/qmr.sci, line: 89
-# File: macros/qmr.sci, line: 164
-# File: macros/qmr.sci, line: 167
-# File: macros/qmr.sci, line: 215
-# File: macros/qmr.sci, line: 219
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Transpose de la fonction "
+"%s attendue.\n"
 
-#
-# File: macros/qmr.sci, line: 97
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: Transpose de la "
+"fonction %s attendue.\n"
 
-#
-# File: macros/qmr.sci, line: 108
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: Vecteur attendu.\n"
 
-#
-# File: macros/qmr.sci, line: 118
-# File: macros/gmres.sci, line: 145
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Même dimension que "
+"l'argument d'entrée n° #%d attendue.\n"
 
-#
-# File: macros/qmr.sci, line: 143
-# File: macros/qmr.sci, line: 194
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: Must be same size as input argument #%"
-"d"
+"%s: Wrong size for input argument #%d: Must be same size as input argument "
+"#%d"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° #%d: Doit être de la même "
+"dimension que l'argument d'entrée n° #%d"
 
-#
-# File: macros/gmres.sci, line: 51
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'argument d'entrée: Au moins %d attendu.\n"
 
-#
-# File: macros/gmres.sci, line: 66
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° #%d: Matrice carrée "
+"attendue.\n"
 
-#
-# File: macros/gmres.sci, line: 75
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d:  Même dimension que "
+"l'argument d'entrée n° #%d attendue.\n"
 
-#
-# File: macros/gmres.sci, line: 290
 #, c-format
 msgid "%s: Did not converge.\n"
-msgstr ""
+msgstr "%s: Ne converge pas\n"

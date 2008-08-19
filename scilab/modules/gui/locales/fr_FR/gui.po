@@ -1,1691 +1,1127 @@
-# Localization of the module gui
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-08-13 12:10+0000\n"
+"Last-Translator: Sabine Gauzere <sabine.gauzere@inria.fr>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-05-28 00:15+0100\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-# File: macros/x_choices.sci, line: 29
-# File: macros/addmenu.sci, line: 27
-# File: macros/addmenu.sci, line: 47
-# File: macros/addmenu.sci, line: 65
-# File: macros/addmenu.sci, line: 104
-# File: sci_gateway/c/sci_unsetmenu.c, line: 38
-# File: sci_gateway/c/sci_delmenu.c, line: 37
-# File: sci_gateway/c/sci_setmenu.c, line: 38
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments en entrée: %d attendu.\n"
 
-#
-# File: macros/x_choices.sci, line: 34
-# File: macros/addmenu.sci, line: 31
-# File: macros/addmenu.sci, line: 37
-# File: macros/addmenu.sci, line: 51
-# File: macros/addmenu.sci, line: 69
-# File: macros/addmenu.sci, line: 88
-# File: macros/addmenu.sci, line: 129
-# File: macros/addmenu.sci, line: 146
-# File: macros/addmenu.sci, line: 168
-# File: sci_gateway/c/sci_toolbar.c, line: 123
-# File: sci_gateway/c/sci_helpbrowser.c, line: 73
-# File: sci_gateway/c/sci_helpbrowser.c, line: 99
-# File: sci_gateway/c/sci_helpbrowser.c, line: 114
-# File: sci_gateway/c/sci_x_choose.c, line: 85
-# File: sci_gateway/c/sci_xgetfile.c, line: 88
-# File: sci_gateway/c/sci_xgetfile.c, line: 109
-# File: sci_gateway/c/sci_xgetfile.c, line: 151
-# File: sci_gateway/c/sci_xgetfile.c, line: 172
-# File: sci_gateway/c/sci_xgetfile.c, line: 190
-# File: sci_gateway/c/sci_xgetfile.c, line: 205
-# File: sci_gateway/c/sci_xgetfile.c, line: 232
-# File: sci_gateway/c/sci_uicontrol.c, line: 226
-# File: sci_gateway/c/sci_uicontrol.c, line: 279
-# File: sci_gateway/c/sci_waitbar.c, line: 168
-# File: sci_gateway/c/sci_unsetmenu.c, line: 45
-# File: sci_gateway/c/sci_unsetmenu.c, line: 121
-# File: sci_gateway/c/sci_delmenu.c, line: 44
-# File: sci_gateway/c/sci_delmenu.c, line: 76
-# File: sci_gateway/c/sci_uimenu.c, line: 117
-# File: sci_gateway/c/sci_messagebox.c, line: 53
-# File: sci_gateway/c/sci_messagebox.c, line: 77
-# File: sci_gateway/c/sci_messagebox.c, line: 157
-# File: sci_gateway/c/sci_setlookandfeel.c, line: 68
-# File: sci_gateway/c/sci_ClipBoard.c, line: 71
-# File: sci_gateway/c/sci_ClipBoard.c, line: 213
-# File: sci_gateway/c/sci_ClipBoard.c, line: 280
-# File: sci_gateway/c/sci_setmenu.c, line: 45
-# File: sci_gateway/c/sci_setmenu.c, line: 120
-# File: sci_gateway/c/sci_uigetdir.c, line: 52
-# File: sci_gateway/c/sci_uigetdir.c, line: 88
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 84
-# File: sci_gateway/c/sci_uigetfont.c, line: 54
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"est attendue.\n"
 
-#
-# File: macros/x_choices.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un type list attendue.\n"
 
-#
-# File: macros/x_choices.sci, line: 51
 #, c-format
 msgid "%s: Wrong type for %s: A list expected.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour %s: Un type list attendue.\n"
 
-#
-# File: macros/x_choices.sci, line: 56
 #, c-format
 msgid "%s: Wrong type for %s: A string expected.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour %s: Une chaîne de caractères attendue.\n"
 
-#
-# File: macros/x_choices.sci, line: 62
 #, c-format
 msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
 msgstr ""
+"%s: Mauvais type pour %s: Un vecteur ligne de chaîne de caractères attendu.\n"
 
-#
-# File: macros/x_choices.sci, line: 66
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour %s: Une vecteur ligne de chaîne de caractères "
+"attendu.\n"
 
-#
-# File: macros/x_choices.sci, line: 72
 #, c-format
 msgid "%s: Wrong type for %s: A real expected.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour %s: Un réel attendu.\n"
 
-#
-# File: macros/x_choices.sci, line: 75
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
-msgstr ""
+msgstr "%s: Mauvaise dimension pour %s: Un réel attendu.\n"
 
-#
-# File: macros/x_matrix.sci, line: 11
-# File: macros/addmenu.sci, line: 84
-# File: macros/addmenu.sci, line: 108
-# File: macros/addmenu.sci, line: 125
-# File: macros/addmenu.sci, line: 142
-# File: macros/addmenu.sci, line: 164
-# File: sci_gateway/c/sci_waitbar.c, line: 158
-# File: sci_gateway/c/sci_unsetmenu.c, line: 110
-# File: sci_gateway/c/sci_unsetmenu.c, line: 137
-# File: sci_gateway/c/sci_delmenu.c, line: 63
-# File: sci_gateway/c/sci_setmenu.c, line: 110
-# File: sci_gateway/c/sci_setmenu.c, line: 136
-# File: sci_gateway/c/sci_printfigure.c, line: 62
-# File: sci_gateway/c/sci_uigetfont.c, line: 73
-# File: sci_gateway/c/sci_uigetcolor.c, line: 58
-# File: sci_gateway/c/sci_uigetcolor.c, line: 93
-# File: sci_gateway/c/sci_uigetcolor.c, line: 111
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 43
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un réel est attendu.\n"
 
-#
-# File: macros/getvalue.sci, line: 184
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
-msgstr ""
+msgstr "%s: Le type %s n'est pas encore implémenté.\n"
 
-#
-# File: macros/getvalue.sci, line: 189
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " has invalid dimension: \n"
 " waiting for dimension %s.\n"
 msgstr ""
+"La réponse donnée pour %s \n"
+" n'a pas la bonne dimension: \n"
+" en attente de la dimension %s.\n"
 
-#
-# File: macros/getvalue.sci, line: 193
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " has incorrect type %s.\n"
 msgstr ""
+"La réponse donnée pour %s \n"
+" a un type incorrect %s.\n"
 
-#
-# File: macros/getvalue.sci, line: 195
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " is incorrect see error message in scilab window.\n"
 msgstr ""
+"La réponse donnée pour %s \n"
+" est incorrecte, voir le message d'erreur dans la fenêtre scilab.\n"
 
-#
-# File: macros/addmenu.sci, line: 73
-# File: macros/addmenu.sci, line: 114
-# File: macros/addmenu.sci, line: 150
-# File: macros/addmenu.sci, line: 174
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une liste à deux éléments "
+"attendue.\n"
 
-#
-# File: macros/addmenu.sci, line: 94
 #, c-format
 msgid "%s: Wrong input arguments: %s or %s expected.\n"
-msgstr ""
+msgstr "%s: Mauvais arguments d'entrée: %s ou %s attendu.\n"
 
-#
-# File: macros/addmenu.sci, line: 156
 #, c-format
 msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
-msgstr ""
+msgstr "%s: Mauvais arguments d'entrée: %s, %s ou %s attendu.\n"
 
-#
-# File: macros/addmenu.sci, line: 180
-# File: macros/clipboard.sci, line: 47
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
-#
-# File: macros/addmenu.sci, line: 309
 #, c-format
 msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour la propriété ''%s'': %d, %d ou %d attendu.\n"
 
-#
-# File: macros/addmenu.sci, line: 314
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
 msgstr ""
+"%s: Mauvais type pour la propriété ''%s'': Une chaîne de caractères "
+"attendue.\n"
 
-#
-# File: macros/clipboard.sci, line: 34
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'', ''%s'' ou ''%s'' "
+"attendu.\n"
 
-#
-# File: macros/clipboard.sci, line: 42
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' ou ''%s'' "
+"attendu.\n"
 
-#
-# File: macros/clipboard.sci, line: 51
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
-msgstr ""
+msgstr "%s: fonction non disponible en mode NWNI.\n"
 
-#
-# File: macros/figure.sci, line: 27
-# File: macros/figure.sci, line: 54
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
 "expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un handle vers une "
+"figure ou un réel attendu.\n"
 
-#
-# File: macros/close.sci, line: 30
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un handle vers un graphique "
+"ou un réel attendu.\n"
 
-#
-# File: macros/createpopup.sci, line: 50
+#, fuzzy
 msgid "createPopupItems: found an empty cascading menu."
-msgstr ""
+msgstr "createPopupItems: un menu déroulant vide a été trouvé."
 
-#
-# File: macros/about.sci, line: 16
 msgid ""
 "Scilab 5 alpha and future versions are released under the terms of the "
 "CeCILL license.\n"
 msgstr ""
+"Scilab 5 alpha et les prochaines versions sont distribués sous les termes de "
+"la licence CeCILL.\n"
 
-#
-# File: macros/about.sci, line: 17
 msgid ""
 "Some Scilab modules are released under the GPLv2 license.\n"
 "\n"
 msgstr ""
+"Certains modules de Scilab sont distribués sous licence GPLv2.\n"
+"\n"
 
-#
-# File: macros/about.sci, line: 18
 msgid ""
 "Authors:\n"
 "Scilab Consortium / INRIA / ENPC / Contributors\n"
 "\n"
 msgstr ""
+"Auteurs :\n"
+"Consortium Scilab / INRIA / ENPC / Contributeurs\n"
+"\n"
 
-#
-# File: macros/about.sci, line: 19
 #, c-format
 msgid ""
 "Version %s (%s)\n"
 "\n"
 msgstr ""
+"Version %s (%s)\n"
+"\n"
 
-#
-# File: macros/about.sci, line: 20
 msgid "http://www.scilab.org/"
-msgstr ""
+msgstr "http://www.scilab.org/"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 62
+#, fuzzy
 msgid "Loading help browser..."
-msgstr ""
+msgstr "Chargement du visualiseur d'aide ..."
 
-#
-# File: src/nogui/nogui.c, line: 26
-# File: src/nogui/nogui.c, line: 138
-# File: src/nogui/nogui.c, line: 142
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr ""
+msgstr "Scilab le module '%s' n'est pas installé.\n"
 
-#
-# File: src/nogui/nogui.c, line: 37
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
-msgstr ""
+msgstr "%s: Disponible seulement dans le mode 'STANDARD'.\n"
 
-#
-# File: src/nogui/nogui.c, line: 104
 msgid "Error. A signal has been caught.\n"
-msgstr ""
+msgstr "Erreur. Un signal a été intercepté.\n"
 
-#
-# File: src/c/CreateUIControl.c, line: 160
 #, c-format
 msgid "%s: Could not create uicontrol of type %s."
-msgstr ""
+msgstr "%s: Ne peux pas créer un uicontrol de type %s."
 
-#
-# File: src/cpp/SetUicontrolPosition.cpp, line: 42
-# File: src/cpp/SetUicontrolPosition.cpp, line: 64
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': Une chaîne de caractères ou un "
+"vecteur réel de taille 1 x %d attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolPosition.cpp, line: 50
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': Une chaîne de caractères ou un "
+"vecteur réel de taille x %d attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolPosition.cpp, line: 77
 #, c-format
 msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': Une chaîne de caractères ou un vecteur "
+"réel de taille 1 x %d attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolParent.cpp, line: 28
 #, c-format
 msgid "Wrong size for '%s' property: A graphic handle expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': Un handle vers un graphique "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolParent.cpp, line: 83
-# File: src/cpp/SetUicontrolParent.cpp, line: 124
 #, c-format
 msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr ""
+msgstr "Pas de propriété '%s' pour le uicontrols de style: %s.\n"
 
-#
-# File: src/cpp/SetUicontrolParent.cpp, line: 134
 #, c-format
 msgid "Wrong value for '%s' property: A 'Figure' handle expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': Un handle vers une figure attendu.\n"
 
-#
-# File: src/cpp/SetUimenuLabel.cpp, line: 22
-# File: src/cpp/SetUicontrolString.cpp, line: 22
-# File: src/cpp/SetUicontrolFontName.cpp, line: 22
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': Une chaîne de caractères attendue.\n"
 
-#
-# File: src/cpp/SetUimenuLabel.cpp, line: 26
-# File: src/cpp/SetUimenuLabel.cpp, line: 32
-# File: src/cpp/SetUiobjectCallback.cpp, line: 32
-# File: src/cpp/SetUiobjectCallback.cpp, line: 38
-# File: src/cpp/SetUiobjectCallback.cpp, line: 66
-# File: src/cpp/SetUiobjectTag.cpp, line: 26
-# File: src/cpp/SetUicontrolString.cpp, line: 34
-# File: src/cpp/SetUicontrolString.cpp, line: 75
-# File: src/cpp/SetUicontrolValue.cpp, line: 60
-# File: src/cpp/SetUicontrolFontName.cpp, line: 26
 #, c-format
 msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': Une chaîne de caractères "
+"attendue.\n"
 
-#
-# File: src/cpp/SetUimenuLabel.cpp, line: 44
-# File: src/cpp/GetUicontrolPosition.cpp, line: 52
-# File: src/cpp/GetUiobjectCallback.cpp, line: 48
-# File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 67
-# File: src/cpp/SetUiobjectCallback.cpp, line: 140
-# File: src/cpp/GetUicontrolMax.cpp, line: 26
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 139
-# File: src/cpp/GetUiobjectForegroundColor.cpp, line: 44
-# File: src/cpp/GetUicontrolFontWeight.cpp, line: 40
-# File: src/cpp/GetUicontrolFontUnits.cpp, line: 43
-# File: src/cpp/GetUicontrolFontSize.cpp, line: 40
-# File: src/cpp/GetUicontrolMin.cpp, line: 26
-# File: src/cpp/SetUiobjectTag.cpp, line: 77
-# File: src/cpp/GetUimenuLabel.cpp, line: 27
-# File: src/cpp/GetUicontrolUnits.cpp, line: 42
-# File: src/cpp/GetUiobjectTag.cpp, line: 58
-# File: src/cpp/GetUicontrolStyle.cpp, line: 24
-# File: src/cpp/GetUicontrolString.cpp, line: 70
-# File: src/cpp/SetUicontrolString.cpp, line: 87
-# File: src/cpp/GetUicontrolFontAngle.cpp, line: 38
-# File: src/cpp/GetUicontrolValue.cpp, line: 95
-# File: src/cpp/GetUicontrolListboxTop.cpp, line: 33
-# File: src/cpp/GetUicontrolRelief.cpp, line: 43
-# File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 37
-# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 37
-# File: src/cpp/GetUicontrolSliderStep.cpp, line: 36
-# File: src/cpp/GetUicontrolFontName.cpp, line: 36
-# File: src/cpp/SetUicontrolFontName.cpp, line: 52
-# File: src/cpp/SetUiobjectVisible.cpp, line: 72
-# File: src/cpp/GetUiobjectVisible.cpp, line: 62
 #, c-format
 msgid "No '%s' property for this object.\n"
-msgstr ""
+msgstr "Pas de propriété '%s' pour cet objet.\n"
 
-#
-# File: src/cpp/InitUIMenu.cpp, line: 98
-# File: src/cpp/InitUIMenu.cpp, line: 111
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour parent: Une figure ou un uimenu attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 43
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 74
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 32
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 76
 #, c-format
 msgid ""
 "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': un vecteur réel de taille 1 x 3 "
+"ou une chaîne de caractères 'R|G|B' attendue.\n"
 
-#
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 52
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 40
 #, c-format
 msgid ""
 "Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': un vecteur réel de taille 1 x 3 ou "
+"une chaîne de caractères 'R|G|B' attendue.\n"
 
-#
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 95
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 111
 #, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': un vecteur réel de taille 1 x 3 ou une "
+"chaîne de caractères 'R|G|B' attendue.\n"
 
-#
-# File: src/cpp/SetUiobjectCallback.cpp, line: 48
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': une liste à deux éléments "
+"attendue.\n"
 
-#
-# File: src/cpp/SetUiobjectCallback.cpp, line: 55
-# File: src/cpp/SetUicontrolFontSize.cpp, line: 29
-# File: src/cpp/SetUicontrolMax.cpp, line: 26
-# File: src/cpp/SetUicontrolMin.cpp, line: 26
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 27
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 38
-# File: src/cpp/SetUicontrolValue.cpp, line: 110
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr ""
+msgstr "Mauvaise dimension pour la propriété '%s': Un réel attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontWeight.cpp, line: 29
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontWeight.cpp, line: 54
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': '%s', '%s', '%s' ou '%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontWeight.cpp, line: 75
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': '%s', '%s', '%s' ou '%s' attendu.\n"
 
-#
-# File: src/cpp/GetUicontrolFontWeight.cpp, line: 34
 #, c-format
 msgid ""
 "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
 "expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': 'light', 'normal', 'demi' ou 'bold' "
+"attendu.\n"
 
-#
-# File: src/cpp/GetUicontrolFontUnits.cpp, line: 36
-# File: src/cpp/SetUicontrolFontUnits.cpp, line: 58
-# File: src/cpp/GetUicontrolUnits.cpp, line: 36
-# File: src/cpp/SetUicontrolUnits.cpp, line: 58
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': '%s', '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontUnits.cpp, line: 29
-# File: src/cpp/SetUicontrolUnits.cpp, line: 29
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': '%s', '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontUnits.cpp, line: 67
-# File: src/cpp/SetUicontrolUnits.cpp, line: 67
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': '%s', '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontSize.cpp, line: 50
-# File: src/cpp/SetUicontrolMax.cpp, line: 86
-# File: src/cpp/SetUicontrolMin.cpp, line: 86
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 54
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
-msgstr ""
+msgstr "Mauvais type pour la propriété '%s': Un réel attendu.\n"
 
-#
-# File: src/cpp/SetUiobjectTag.cpp, line: 22
-# File: src/cpp/SetUicontrolValue.cpp, line: 69
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': Une chaîne de caractères attendue.\n"
 
-#
-# File: src/cpp/SetUicontrolString.cpp, line: 46
-# File: src/cpp/SetUicontrolString.cpp, line: 61
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': Une chaîne de caractères ou un "
+"vecteur de chaîne de caractères attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontAngle.cpp, line: 29
-# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 29
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': '%s', '%s' ou '%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontAngle.cpp, line: 50
-# File: src/cpp/GetUicontrolFontAngle.cpp, line: 32
-# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 50
-# File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 31
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': '%s', '%s' ou '%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolFontAngle.cpp, line: 67
-# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 69
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "Mauvais type pour la propriété '%s': '%s', '%s' ou '%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 47
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr ""
+msgstr "Mauvaise valeur pour la propriété '%s': Un réel attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolValue.cpp, line: 29
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': Un vecteur ligne de réels "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolValue.cpp, line: 80
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': Un vecteur ligne de réels ou une chaîne "
+"de caractères attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolRelief.cpp, line: 29
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': '%s', '%s', '%s', '%s', '%s' ou "
+"'%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolRelief.cpp, line: 62
-# File: src/cpp/GetUicontrolRelief.cpp, line: 37
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': '%s', '%s', '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolRelief.cpp, line: 85
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': '%s', '%s', '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 29
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': '%s', '%s', ou '%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 50
-# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 31
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
+"Mauvaise valeur pour la propriété '%s': '%s', '%s', ou '%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 70
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr ""
+msgstr "Mauvais type pour la propriété '%s': '%s', '%s', ou '%s' attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolSliderStep.cpp, line: 27
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
+"Mauvaise dimension pour la propriété '%s': Un vecteur réel de taille 1 x %d "
+"attendu.\n"
 
-#
-# File: src/cpp/SetUicontrolSliderStep.cpp, line: 60
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
+"Mauvais type pour la propriété '%s': Un vecteur réel de taille 1 x %d "
+"attendu.\n"
 
-#
-# File: src/cpp/DestroyWaitBar.cpp, line: 32
-# File: src/cpp/DestroyJavaUicontrol.cpp, line: 35
 msgid "Could not destroy this object.\n"
-msgstr ""
+msgstr "Impossible de détruire cet objet.\n"
 
-#
-# File: src/cpp/SetUiobjectVisible.cpp, line: 26
-# File: src/cpp/SetUiobjectVisible.cpp, line: 34
-# File: src/cpp/SetUiobjectVisible.cpp, line: 41
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "Mauvaise valeur pour la propriété '%s': '%s' ou '%s' attendu.\n"
 
-#
-# File: src/cpp/UnitsConversion.cpp, line: 54
-# File: src/cpp/UnitsConversion.cpp, line: 95
 #, c-format
 msgid ""
 "%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
 "or pixels expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour la propriété '%s': points, normalisé, pouces, "
+"centimètres ou pixels attendu.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 49
-# File: sci_gateway/c/sci_waitbar.c, line: 49
-# File: sci_gateway/c/sci_waitbar.c, line: 88
-# File: sci_gateway/c/sci_waitbar.c, line: 105
-# File: sci_gateway/c/sci_waitbar.c, line: 152
-# File: sci_gateway/c/sci_unsetmenu.c, line: 68
-# File: sci_gateway/c/sci_unsetmenu.c, line: 84
-# File: sci_gateway/c/sci_unsetmenu.c, line: 104
-# File: sci_gateway/c/sci_unsetmenu.c, line: 131
-# File: sci_gateway/c/sci_delmenu.c, line: 70
-# File: sci_gateway/c/sci_ClipBoard.c, line: 232
-# File: sci_gateway/c/sci_setmenu.c, line: 68
-# File: sci_gateway/c/sci_setmenu.c, line: 84
-# File: sci_gateway/c/sci_setmenu.c, line: 104
-# File: sci_gateway/c/sci_setmenu.c, line: 130
-# File: sci_gateway/c/sci_printfigure.c, line: 38
-# File: sci_gateway/c/sci_uigetfont.c, line: 67
-# File: sci_gateway/c/sci_uigetcolor.c, line: 52
-# File: sci_gateway/c/sci_uigetcolor.c, line: 87
-# File: sci_gateway/c/sci_uigetcolor.c, line: 105
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 36
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un réel attendu.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 56
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être > %d attendu.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 64
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
 "exist.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: 'La fenêtre graphique "
+"numéro %d' n'existe pas.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 75
-# File: sci_gateway/c/sci_uicontrol.c, line: 98
-# File: sci_gateway/c/sci_uicontrol.c, line: 177
-# File: sci_gateway/c/sci_uimenu.c, line: 80
-# File: sci_gateway/c/sci_uiwait.c, line: 51
-# File: sci_gateway/c/sci_progressionbar.c, line: 48
-# File: sci_gateway/c/sci_progressionbar.c, line: 90
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un handle vers un "
+"graphique attendu.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 82
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ce handle n'existe pas.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 88
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un réel ou un handle vers "
+"une figure attendu.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 96
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un réel ou un handle vers "
+"une figure attendu.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 107
-# File: sci_gateway/c/sci_helpbrowser.c, line: 67
-# File: sci_gateway/c/sci_helpbrowser.c, line: 93
-# File: sci_gateway/c/sci_helpbrowser.c, line: 108
-# File: sci_gateway/c/sci_x_choose.c, line: 79
-# File: sci_gateway/c/sci_xgetfile.c, line: 61
-# File: sci_gateway/c/sci_xgetfile.c, line: 79
-# File: sci_gateway/c/sci_xgetfile.c, line: 101
-# File: sci_gateway/c/sci_xgetfile.c, line: 124
-# File: sci_gateway/c/sci_xgetfile.c, line: 142
-# File: sci_gateway/c/sci_xgetfile.c, line: 164
-# File: sci_gateway/c/sci_xgetfile.c, line: 182
-# File: sci_gateway/c/sci_xgetfile.c, line: 223
-# File: sci_gateway/c/sci_unsetmenu.c, line: 53
-# File: sci_gateway/c/sci_delmenu.c, line: 52
-# File: sci_gateway/c/sci_messagebox.c, line: 65
-# File: sci_gateway/c/sci_messagebox.c, line: 151
-# File: sci_gateway/c/sci_setmenu.c, line: 53
-# File: sci_gateway/c/sci_uigetdir.c, line: 45
-# File: sci_gateway/c/sci_uigetdir.c, line: 81
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 78
-# File: sci_gateway/c/sci_uigetfont.c, line: 48
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une chaîne de "
+"caractères attendue.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 117
-# File: sci_gateway/c/sci_ClipBoard.c, line: 65
-# File: sci_gateway/c/sci_ClipBoard.c, line: 86
-# File: sci_gateway/c/sci_ClipBoard.c, line: 207
-# File: sci_gateway/c/sci_ClipBoard.c, line: 273
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_x_mdialog.c, line: 51
-# File: sci_gateway/c/sci_x_mdialog.c, line: 76
-# File: sci_gateway/c/sci_x_mdialog.c, line: 106
-# File: sci_gateway/c/sci_x_choose.c, line: 46
-# File: sci_gateway/c/sci_x_choose.c, line: 56
-# File: sci_gateway/c/sci_x_choice.c, line: 74
-# File: sci_gateway/c/sci_x_choice.c, line: 100
-# File: sci_gateway/c/sci_x_dialog.c, line: 46
-# File: sci_gateway/c/sci_x_dialog.c, line: 66
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 45
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 55
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un vecteur de chaîne de "
+"caractères attendu.\n"
 
-#
-# File: sci_gateway/c/sci_x_mdialog.c, line: 59
+#, fuzzy
 msgid "Scilab Multiple Values Request"
-msgstr ""
+msgstr "Scilab Plusieurs Valeurs Demandées"
 
-#
-# File: sci_gateway/c/sci_x_mdialog.c, line: 69
-# File: sci_gateway/c/sci_x_mdialog.c, line: 88
-# File: sci_gateway/c/sci_x_mdialog.c, line: 98
-# File: sci_gateway/c/sci_x_choice.c, line: 93
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un vecteur de chaîne "
+"de caractères attendu.\n"
 
-#
-# File: sci_gateway/c/sci_x_mdialog.c, line: 118
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une matrice de chaîne "
+"de caractères de taille %d x %d attendue.\n"
 
-#
-# File: sci_gateway/c/sci_x_mdialog.c, line: 125
-# File: sci_gateway/c/sci_helpbrowser.c, line: 55
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice de chaîne de "
+"caractères attendue.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 49
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une matrice de chaîne "
+"de caractères attendue.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 123
-# File: sci_gateway/c/sci_uigetfont.c, line: 86
-# File: sci_gateway/c/sci_uigetfont.c, line: 106
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un booléen attendu.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 129
-# File: sci_gateway/c/sci_uigetfont.c, line: 93
-# File: sci_gateway/c/sci_uigetfont.c, line: 113
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un booléen attendu.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 144
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
-#
-# File: sci_gateway/c/sci_x_choose.c, line: 64
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 63
+#, fuzzy
 msgid "Scilab Choose Message"
-msgstr ""
+msgstr "Message de choix Scilab"
 
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 44
-# File: sci_gateway/c/sci_uicontrol.c, line: 140
-# File: sci_gateway/c/sci_uicontrol.c, line: 240
-# File: sci_gateway/c/sci_ClipBoard.c, line: 157
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s : Plus de mémoire disponible.\n"
 
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 69
-# File: sci_gateway/c/sci_xgetfile.c, line: 132
-# File: sci_gateway/c/sci_xgetfile.c, line: 213
 #, c-format
 msgid "%s: Wrong name for optional input argument #%d: '%s' expected.\n"
 msgstr ""
+"%s: Mauvais nom pour l'argument d'entrée optionel n° %d: '%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 89
-# File: sci_gateway/c/sci_uimenu.c, line: 71
-# File: sci_gateway/c/sci_uiwait.c, line: 69
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un handle vers un graphique "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 124
-# File: sci_gateway/c/sci_uicontrol.c, line: 337
-# File: sci_gateway/c/sci_uimenu.c, line: 155
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
-msgstr ""
+msgstr "%s: Ne peux pas affecter la propriété '%s'.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 130
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un handle vers '%s', '%s' "
+"ou '%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 169
-# File: sci_gateway/c/sci_uicontrol.c, line: 183
-# File: sci_gateway/c/sci_uicontrol.c, line: 199
-# File: sci_gateway/c/sci_waitbar.c, line: 183
-# File: sci_gateway/c/sci_uiwait.c, line: 63
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un handle vers '%s' "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 193
-# File: sci_gateway/c/sci_waitbar.c, line: 112
-# File: sci_gateway/c/sci_waitbar.c, line: 129
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un handle vers '%s' "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 264
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
-msgstr ""
+msgstr "%s: Propriété inconnue: %s pour les handles vers '%s'.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 288
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
-msgstr ""
+msgstr "%s: Ne peux pas créer un handle vers un 'Uicontrol'.\n"
 
-#
-# File: sci_gateway/c/sci_waitbar.c, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un réel ou une chaîne de "
+"caractères attendu.\n"
 
-#
-# File: sci_gateway/c/sci_waitbar.c, line: 141
 #, c-format
 msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: Mauvais arguments d'entrée: '%s', '%s' ou '%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_unsetmenu.c, line: 92
-# File: sci_gateway/c/sci_setmenu.c, line: 92
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: Mauvais arguments d'entrée: '%s' ou '%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_x_choice.c, line: 63
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un vecteur réel ou complexe "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_x_choice.c, line: 82
+#, fuzzy
 msgid "Scilab Choices Request"
-msgstr ""
+msgstr "Scilab Choix Demandés"
 
-#
-# File: sci_gateway/c/gw_gui.c, line: 64
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr ""
+msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni."
 
-#
-# File: sci_gateway/c/sci_x_dialog.c, line: 54
+#, fuzzy
 msgid "Scilab Input Value Request"
-msgstr ""
+msgstr "Requête de valeur d'entrée Scilab"
 
-#
-# File: sci_gateway/c/sci_uimenu.c, line: 86
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un handle vers '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_raise_window.c, line: 22
 #, c-format
 msgid "%s: Not yet implemented.\n"
-msgstr ""
+msgstr "%s: Pas encore implémenté.\n"
 
-#
-# File: sci_gateway/c/sci_messagebox.c, line: 115
-# File: sci_gateway/c/sci_messagebox.c, line: 138
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A string or a string vector "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères ou "
+"un vecteur de chaîne de caractères attendu.\n"
 
-#
-# File: sci_gateway/c/sci_messagebox.c, line: 174
 msgid "Scilab Message"
-msgstr ""
+msgstr "Message de Scilab"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 120
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: '%s', '%s' ou '%s' "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 266
-# File: sci_gateway/c/sci_printfigure.c, line: 56
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être >= %d "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 286
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères ou "
+"un réel attendu.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 293
-# File: sci_gateway/c/sci_printfigure.c, line: 68
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
-msgstr ""
+msgstr "%s: Fonction non disponible en mode NWNI.\n"
 
-#
-# File: sci_gateway/c/sci_mpopup.c, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un vecteur de chaîne de "
+"caractères attendu.\n"
 
-#
-# File: sci_gateway/c/sci_progressionbar.c, line: 58
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a string "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un handle vers un graphique "
+"ou une chaîne de caractères attendu.\n"
 
-#
-# File: sci_gateway/c/sci_progressionbar.c, line: 104
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr ""
+msgstr "%s: Mauvais arguments d'entrée: '%s' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 40
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments de sortie: %d ou %d attendus.\n"
 
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 50
-# File: sci_gateway/c/sci_uigetcolor.c, line: 95
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° #%d: Un 1 x %d vecteur "
+"ligne réel attendu.\n"
 
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 101
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Un 1 x %d vecteur ligne "
+"réel attendu.\n"
 
-#
-# File: sci_gateway/c/sci_exportUI.c, line: 43
-# File: sci_gateway/c/sci_exportUI.c, line: 60
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
 "expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un scalaire réel ou "
+"une handle de type 'Figure' attendu.\n"
 
-#
-# File: sci_gateway/c/sci_exportUI.c, line: 48
-# File: sci_gateway/c/sci_exportUI.c, line: 66
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire réel ou un "
+"handle de type 'Figure' attendu.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 61
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s: Le fichier %s n'existe pas.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 67
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une chaîne de "
+"caractères attendue.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 87
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Des entiers non-négatifs "
+"attendus.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 93
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 99
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un entier non-négatif "
+"attendu.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 201
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
-msgstr ""
+msgstr "%s: Mauvais argument d'entrée n° %d: '%s' ou '%s' attendu"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 207
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integers expected\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Des entiers non-négatifs "
+"attendus\n"
 
-#
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 #, c-format
 msgid "%s: An error occurred: %s.\n"
-msgstr ""
+msgstr "%s: Une erreur est apparue: %s.\n"
 
-#
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
+#, fuzzy
 msgid "Impossible to get current look and feel"
-msgstr ""
+msgstr "Impossible de récupérer le look courant"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 58
+#, fuzzy
 msgid "Control Plot3d"
-msgstr ""
+msgstr "Controles Plot3d"
 
-#
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 37
-# File: scilab_fake_localization_file.c, line: 41
 msgid "&File"
 msgstr "&Fichier"
 
-#
-# File: scilab_fake_localization_file.c, line: 21
 msgid "&Tools"
-msgstr ""
+msgstr "&Outils"
 
-#
-# File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 51
 msgid "&Edit"
-msgstr ""
+msgstr "&Editer"
 
-#
-# File: scilab_fake_localization_file.c, line: 34
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 75
 msgid "&?"
-msgstr ""
+msgstr "&?"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 71
 msgid "File"
-msgstr ""
+msgstr "Fichier"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 74
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 219
+#, fuzzy
 msgid "Jetcolormap"
-msgstr ""
+msgstr "Carte de couleur Jet"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 237
+#, fuzzy
 msgid "Hotcolormap"
-msgstr ""
+msgstr "Carte de couleur Hot"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 255
 msgid "Graycolormap"
-msgstr ""
+msgstr "Carte de couleur Gray"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 375
+#, fuzzy
 msgid "Tics"
-msgstr ""
+msgstr "Marques"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 391
 msgid "Title"
-msgstr ""
+msgstr "Titre"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 407
+#, fuzzy
 msgid "Labels"
-msgstr ""
+msgstr "Libellés"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 423
 msgid "Edges"
-msgstr ""
+msgstr "Bords"
 
-#
-# File: scilab_fake_localization_file.c, line: 2
 msgid "&New figure..."
-msgstr ""
+msgstr "&Nouvelle figure..."
 
-#
-# File: scilab_fake_localization_file.c, line: 3
 msgid "&Load..."
-msgstr ""
+msgstr "&Charger..."
 
-#
-# File: scilab_fake_localization_file.c, line: 4
 msgid "&Save..."
-msgstr ""
+msgstr "&Enregistrer..."
 
-#
-# File: scilab_fake_localization_file.c, line: 5
 msgid "&Export to..."
-msgstr ""
+msgstr "&Exporter vers..."
 
-#
-# File: scilab_fake_localization_file.c, line: 6
 msgid "&BMP"
-msgstr ""
+msgstr "&BMP"
 
-#
-# File: scilab_fake_localization_file.c, line: 7
 msgid "&GIF"
-msgstr ""
+msgstr "&GIF"
 
-#
-# File: scilab_fake_localization_file.c, line: 8
 msgid "&JPG"
-msgstr ""
+msgstr "&JPG"
 
-#
-# File: scilab_fake_localization_file.c, line: 9
 msgid "P&NG"
-msgstr ""
+msgstr "P&NG"
 
-#
-# File: scilab_fake_localization_file.c, line: 10
 msgid "&PPM"
-msgstr ""
+msgstr "&PPM"
 
-#
-# File: scilab_fake_localization_file.c, line: 11
 msgid "&Vectorial export"
-msgstr ""
+msgstr "Exportation &Vectorielle"
 
-#
-# File: scilab_fake_localization_file.c, line: 12
 msgid "&EMF"
-msgstr ""
+msgstr "&EMF"
 
-#
-# File: scilab_fake_localization_file.c, line: 13
 msgid "&EPS"
-msgstr ""
+msgstr "&EPS"
 
-#
-# File: scilab_fake_localization_file.c, line: 14
 msgid "&FIG"
-msgstr ""
+msgstr "&GIF"
 
-#
-# File: scilab_fake_localization_file.c, line: 15
 msgid "&PDF"
-msgstr ""
+msgstr "&PDF"
 
-#
-# File: scilab_fake_localization_file.c, line: 16
 msgid "&SVG"
-msgstr ""
+msgstr "&SVG"
 
-#
-# File: scilab_fake_localization_file.c, line: 17
 msgid "&Copy to clipboard"
-msgstr ""
+msgstr "&Copier dans le presse-papier"
 
-#
-# File: scilab_fake_localization_file.c, line: 18
-# File: scilab_fake_localization_file.c, line: 48
 msgid "P&age setup..."
-msgstr ""
+msgstr "Configurer la P&age ..."
 
-#
-# File: scilab_fake_localization_file.c, line: 19
-# File: scilab_fake_localization_file.c, line: 49
 msgid "&Print..."
-msgstr ""
+msgstr "&Imprimer..."
 
-#
-# File: scilab_fake_localization_file.c, line: 20
 msgid "C&lose"
-msgstr ""
+msgstr "&Fermer"
 
-#
-# File: scilab_fake_localization_file.c, line: 22
-# File: scilab_fake_localization_file.c, line: 62
+#, fuzzy
 msgid "Show/Hide &Toolbar"
-msgstr ""
+msgstr "Afficher/Masquer la barre d'ou&tils"
 
-#
-# File: scilab_fake_localization_file.c, line: 23
 msgid "&Zoom"
-msgstr ""
+msgstr "&Zoom"
 
-#
-# File: scilab_fake_localization_file.c, line: 24
 msgid "&UnZoom"
-msgstr ""
+msgstr "&Dézoomer"
 
-#
-# File: scilab_fake_localization_file.c, line: 25
 msgid "2D/3D &Rotation"
-msgstr ""
+msgstr "2D/3D &Rotation"
 
-#
-# File: scilab_fake_localization_file.c, line: 27
 msgid "&Select as current figure"
-msgstr ""
+msgstr "&Sélectionner comme figure courante"
 
-#
-# File: scilab_fake_localization_file.c, line: 28
 msgid "&Redraw figure"
-msgstr ""
+msgstr "&Redessiner la figure"
 
-#
-# File: scilab_fake_localization_file.c, line: 29
 msgid "&Clear figure"
-msgstr ""
+msgstr "&Effacer la figure"
 
-#
-# File: scilab_fake_localization_file.c, line: 30
+#, fuzzy
 msgid "&Figure properties"
-msgstr ""
+msgstr "&Propriétés de la figure"
 
-#
-# File: scilab_fake_localization_file.c, line: 31
 msgid "&Axes properties"
-msgstr ""
+msgstr "Propriétés des axes"
 
-#
-# File: scilab_fake_localization_file.c, line: 32
+#, fuzzy
 msgid "&Start entity picker"
-msgstr ""
+msgstr "Démarer le &Sélectionneur d'entité"
 
-#
-# File: scilab_fake_localization_file.c, line: 33
+#, fuzzy
 msgid "S&top entity picker"
-msgstr ""
+msgstr "Arrê&ter le sélectionneur d'entité"
 
-#
-# File: scilab_fake_localization_file.c, line: 35
 msgid "&Scilab Help"
-msgstr ""
+msgstr "&Aide Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 36
-# File: scilab_fake_localization_file.c, line: 40
-# File: scilab_fake_localization_file.c, line: 83
+#, fuzzy
 msgid "&About Scilab..."
-msgstr ""
+msgstr "&A propos de Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 38
 msgid "&Close"
-msgstr ""
+msgstr "&Fermer"
 
-#
-# File: scilab_fake_localization_file.c, line: 42
 msgid "&Execute..."
-msgstr ""
+msgstr "&Exécuter..."
 
-#
-# File: scilab_fake_localization_file.c, line: 43
 msgid "&Open a file..."
-msgstr ""
+msgstr "&Ouvrir un fichier..."
 
-#
-# File: scilab_fake_localization_file.c, line: 44
 msgid "&Load environment..."
-msgstr ""
+msgstr "&Charger un environnement..."
 
-#
-# File: scilab_fake_localization_file.c, line: 45
 msgid "&Save environment..."
-msgstr ""
+msgstr "&Enregistrer l'environnement..."
 
-#
-# File: scilab_fake_localization_file.c, line: 46
 msgid "&Change current directory..."
-msgstr ""
+msgstr "&Changer le répertoire courant...."
 
-#
-# File: scilab_fake_localization_file.c, line: 47
 msgid "&Display current directory"
-msgstr ""
+msgstr "&Afficher le répertoire courant"
 
-#
-# File: scilab_fake_localization_file.c, line: 50
 msgid "&Quit"
-msgstr ""
+msgstr "&Quitter"
 
-#
-# File: scilab_fake_localization_file.c, line: 52
 msgid "C&ut"
-msgstr ""
+msgstr "Co&uper"
 
-#
-# File: scilab_fake_localization_file.c, line: 53
 msgid "&Copy"
-msgstr ""
+msgstr "&Copier"
 
-#
-# File: scilab_fake_localization_file.c, line: 54
 msgid "&Paste"
-msgstr ""
+msgstr "Co&ller"
 
-#
-# File: scilab_fake_localization_file.c, line: 55
 msgid "&Empty clipboard"
-msgstr ""
+msgstr "&Vider le presse-papier"
 
-#
-# File: scilab_fake_localization_file.c, line: 56
 msgid "&Select all"
-msgstr ""
+msgstr "&Sélectionner tout"
 
-#
-# File: scilab_fake_localization_file.c, line: 57
 msgid "&Preferences"
-msgstr ""
+msgstr "&Préférences"
 
-#
-# File: scilab_fake_localization_file.c, line: 58
 msgid "&Colors"
-msgstr ""
+msgstr "&Couleurs"
 
-#
-# File: scilab_fake_localization_file.c, line: 59
+#, fuzzy
 msgid "Console &Background..."
-msgstr ""
+msgstr "Fond de la console ..."
 
-#
-# File: scilab_fake_localization_file.c, line: 60
+#, fuzzy
 msgid "Console &Font..."
-msgstr ""
+msgstr "Police de la console ..."
 
-#
-# File: scilab_fake_localization_file.c, line: 61
 msgid "&Font..."
-msgstr ""
+msgstr "&Police..."
 
-#
-# File: scilab_fake_localization_file.c, line: 63
 msgid "Clear &History"
-msgstr ""
+msgstr "Effacer l'&Historique"
 
-#
-# File: scilab_fake_localization_file.c, line: 64
 msgid "Clear C&onsole"
-msgstr ""
+msgstr "Effacer la c&onsole"
 
-#
-# File: scilab_fake_localization_file.c, line: 65
 msgid "&Control"
-msgstr ""
+msgstr "&Contrôle"
 
-#
-# File: scilab_fake_localization_file.c, line: 66
 msgid "&Resume"
-msgstr ""
+msgstr "&Reprendre"
 
-#
-# File: scilab_fake_localization_file.c, line: 67
 msgid "&Abort"
-msgstr ""
+msgstr "&Abandonner"
 
-#
-# File: scilab_fake_localization_file.c, line: 68
 msgid "&Interrupt"
-msgstr ""
+msgstr "&Interrompre"
 
-#
-# File: scilab_fake_localization_file.c, line: 69
 msgid "&Applications"
-msgstr ""
+msgstr "&Applications"
 
-#
-# File: scilab_fake_localization_file.c, line: 70
 msgid "&Editor"
-msgstr ""
+msgstr "Edit&eur"
 
-#
-# File: scilab_fake_localization_file.c, line: 71
 msgid "&Scicos"
-msgstr ""
+msgstr "Scicos"
 
-#
-# File: scilab_fake_localization_file.c, line: 72
 msgid "Edit&Graph"
-msgstr ""
+msgstr "Editer le &graphique"
 
-#
-# File: scilab_fake_localization_file.c, line: 73
 msgid "&Matlab to Scilab translator"
-msgstr ""
+msgstr "Convertisseur &Matlab vers Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 74
 msgid "&Variable Editor"
-msgstr ""
+msgstr "Editeur de &Variables"
 
-#
-# File: scilab_fake_localization_file.c, line: 76
+#, fuzzy
 msgid "Scilab &Help"
-msgstr ""
+msgstr "Aide Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 77
 msgid "Scilab &Demonstrations"
-msgstr ""
+msgstr "&Démonstrations de Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 78
 msgid "&Web links"
-msgstr ""
+msgstr "Liens Internet"
 
-#
-# File: scilab_fake_localization_file.c, line: 79
 msgid "Scilab &Web Site"
-msgstr ""
+msgstr "Site &Web Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 80
 msgid "&Contributions"
-msgstr ""
+msgstr "&Contributions"
 
-#
-# File: scilab_fake_localization_file.c, line: 81
+#, fuzzy
 msgid "&Bug And Request database"
-msgstr ""
+msgstr "&Base de données de Bugs et de requêtes"
 
-#
-# File: scilab_fake_localization_file.c, line: 82
+#, fuzzy
 msgid "&Newsgroup Archives"
-msgstr ""
+msgstr "Archives de &Newsgroup"
 
-#
-# File: scilab_fake_localization_file.c, line: 84
 msgid "Rotate"
-msgstr ""
+msgstr "Pivoter"
 
-#
-# File: scilab_fake_localization_file.c, line: 85
 msgid "Zoom Area"
-msgstr ""
+msgstr "Zone de Zoom"
 
-#
-# File: scilab_fake_localization_file.c, line: 86
 msgid "Original View"
-msgstr ""
+msgstr "Vue originale"
 
-#
-# File: scilab_fake_localization_file.c, line: 87
-# File: scilab_fake_localization_file.c, line: 96
 msgid "Help Browser"
-msgstr ""
+msgstr "Navigateur d'aide"
 
-#
-# File: scilab_fake_localization_file.c, line: 88
 msgid "Launch Scipad"
-msgstr ""
+msgstr "Lancer Scipad"
 
-#
-# File: scilab_fake_localization_file.c, line: 89
 msgid "Open a file"
-msgstr ""
+msgstr "Ouvrir un fichier"
 
-#
-# File: scilab_fake_localization_file.c, line: 90
 msgid "Cut"
-msgstr ""
+msgstr "Couper"
 
-#
-# File: scilab_fake_localization_file.c, line: 91
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
-#
-# File: scilab_fake_localization_file.c, line: 92
 msgid "Paste"
-msgstr ""
+msgstr "Coller"
 
-#
-# File: scilab_fake_localization_file.c, line: 93
 msgid "Change Current Directory"
-msgstr ""
+msgstr "Changer le Répertoire Courant"
 
-#
-# File: scilab_fake_localization_file.c, line: 94
 msgid "Choose Font..."
-msgstr ""
+msgstr "Choisir la police..."
 
-#
-# File: scilab_fake_localization_file.c, line: 95
 msgid "Print..."
-msgstr ""
+msgstr "Imprimer..."
 
-#
-# File: etc/graphics_menubar.xml, line: 12
-# File: etc/main_menubar.xml, line: 33
 msgid "Select a file to load"
-msgstr ""
+msgstr "Selectionnez un fichier à charger"
 
-#
-# File: etc/graphics_menubar.xml, line: 15
 msgid "Figure loaded.\n"
-msgstr ""
+msgstr "Figure chargée.\n"
 
-#
-# File: etc/graphics_menubar.xml, line: 23
-# File: etc/main_menubar.xml, line: 44
 msgid "Select a file to write"
-msgstr ""
+msgstr "Sélectionner un fichier à écrire"
 
-#
-# File: etc/graphics_menubar.xml, line: 29
 msgid "Figure saved.\n"
-msgstr ""
+msgstr "Figure enregistrée.\n"
 
-#
-# File: etc/graphics_menubar.xml, line: 39
-# File: etc/graphics_menubar.xml, line: 49
-# File: etc/graphics_menubar.xml, line: 59
-# File: etc/graphics_menubar.xml, line: 69
-# File: etc/graphics_menubar.xml, line: 79
-# File: etc/graphics_menubar.xml, line: 91
-# File: etc/graphics_menubar.xml, line: 101
-# File: etc/graphics_menubar.xml, line: 111
-# File: etc/graphics_menubar.xml, line: 121
-# File: etc/graphics_menubar.xml, line: 131
 msgid "Select a file name"
-msgstr ""
+msgstr "Sélectionnez un nom de fichier"
 
-#
-# File: etc/main_menubar.xml, line: 11
 msgid "Select a file to execute"
-msgstr ""
+msgstr "Sélectionnez un fichier à exécuter"
 
-#
-# File: etc/main_menubar.xml, line: 14
 msgid "Execution done.\n"
-msgstr ""
+msgstr "Exécution terminée.\n"
 
-#
-# File: etc/main_menubar.xml, line: 23
-# File: etc/main_toolbar.xml, line: 11
 msgid "Select a file to open with Scipad"
-msgstr ""
+msgstr "Sélectionnez un fichier à ouvrir avec Scipad"
 
-#
-# File: etc/main_menubar.xml, line: 36
 msgid "Environment loaded.\n"
-msgstr ""
+msgstr "Environnement chargé.\n"
 
-#
-# File: etc/main_menubar.xml, line: 50
 msgid "Environment saved.\n"
-msgstr ""
+msgstr "Environnement sauvegardé.\n"
 
-#
-# File: etc/main_menubar.xml, line: 59
-# File: etc/main_toolbar.xml, line: 39
 msgid "Select a directory"
-msgstr ""
+msgstr "Sélectionnez un répertoire"

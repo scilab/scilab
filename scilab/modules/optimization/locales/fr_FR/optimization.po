@@ -1,250 +1,185 @@
-# Localization of the module optimization
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-06-27 15:58+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-# File: macros/fit_dat.sci, line: 78
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
+msgstr "%s : Mauvais nombre d'argument(s) en entrée.\n"
 
-#
-# File: macros/fit_dat.sci, line: 81
 #, c-format
 msgid "%s: Weighting matrix must be square.\n"
-msgstr ""
+msgstr "%s: La matrice de pondération doit être carrée.\n"
 
-#
-# File: macros/fit_dat.sci, line: 100
 #, c-format
 msgid "%s: Initial guess not feasible.\n"
-msgstr ""
+msgstr "%s: La solution initiale n'est pas faisable.\n"
 
-#
-# File: macros/derivative.sci, line: 29
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
-#
-# File: macros/derivative.sci, line: 32
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: une table de dimension N "
+"attendue.\n"
 
-#
-# File: macros/derivative.sci, line: 36
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un vecteur colonne "
+"attendu.\n"
 
-#
-# File: macros/derivative.sci, line: 41
 #, c-format
 msgid "%s: Order must be 1, 2 or 4.\n"
-msgstr ""
+msgstr "%s: L'ordre doit être 1, 2 ou 4.\n"
 
-#
-# File: macros/derivative.sci, line: 127
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une fonction est attendue.\n"
 
-#
-# File: macros/karmarkar.sci, line: 28
-# File: macros/karmarkar.sci, line: 32
-# File: macros/karmarkar.sci, line: 36
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
-msgstr ""
+msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d."
 
-#
-# File: macros/karmarkar.sci, line: 39
 #, c-format
 msgid "%s: x0 is not feasible."
-msgstr ""
+msgstr "%s: x0 n'est pas faisable."
 
-#
-# File: macros/karmarkar.sci, line: 56
 #, c-format
 msgid "%s: Unbounded problem!"
-msgstr ""
+msgstr "%s: Problème non-borné!"
 
-#
-# File: macros/bvodeS.sci, line: 69
-# File: macros/bvodeS.sci, line: 114
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour l'argument d'entrée.\n"
 
-#
-# File: macros/lmisolver.sci, line: 135
 #, c-format
 msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr ""
+msgstr " nombre de contraintes (%s)'),'lmisolver',%m,%fm));"
 
-#
-# File: sci_gateway/c/sci_qp_solve.c, line: 81
 #, c-format
 msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr ""
+msgstr "%s: Argument 3: mauvais nombre de colonnes %d attendue\n"
 
-#
-# File: sci_gateway/c/sci_qp_solve.c, line: 110
-# File: sci_gateway/c/sci_qp_solve.c, line: 134
-# File: sci_gateway/c/sci_qp_solve.c, line: 142
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
-msgstr ""
+msgstr "%s: Ne peut pas allouer plus de mémoire.\n"
 
-#
-# File: sci_gateway/c/sci_qp_solve.c, line: 169
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
-msgstr ""
+msgstr "%s: Le problème de minimisation n'a pas de solution.\n"
 
-#
-# File: sci_gateway/c/sci_qp_solve.c, line: 173
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
-msgstr ""
+msgstr "%s: Q n'est pas symétrique définie positive.\n"
 
-#
-# File: src/c/sp.c, line: 261
 msgid "m must be at least one.\n"
-msgstr ""
+msgstr "m doit valoir au moins un.\n"
 
-#
-# File: src/c/sp.c, line: 266
 msgid "L must be at least one.\n"
-msgstr ""
+msgstr "L doit valoir au moins un.\n"
 
-#
-# File: src/c/sp.c, line: 271
 #, c-format
 msgid "blck_szs[%d] must be at least one.\n"
-msgstr ""
+msgstr "blck_szs[%d] doit valoir au moins un.\n"
 
-#
-# File: src/c/sp.c, line: 276
 msgid "nu must be at least 1.0.\n"
-msgstr ""
+msgstr "nu doit valoir au moins 1.0.\n"
 
-#
-# File: src/c/sp.c, line: 297
 msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
-msgstr ""
+msgstr "Les matrices Fi, i=1,...,m sont linéairement dépendantes.\n"
 
-#
-# File: src/c/sp.c, line: 311
 msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
 msgstr ""
+"Z0 ne satisfait pas les conditions d'égalité pour la faisabilité duale.\n"
 
-#
-# File: src/c/sp.c, line: 346
 #, c-format
 msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
 msgstr ""
+"L'espace de travail est trop petit. Nécessite au moins %d*sizeof(double).\n"
 
-#
-# File: src/c/sp.c, line: 403
-# File: src/c/sp.c, line: 588
 #, c-format
 msgid "Error in dspgv, info = %d.\n"
-msgstr ""
+msgstr "Erreur dans dspgv, info = %d.\n"
 
-#
-# File: src/c/sp.c, line: 405
+#, fuzzy
 msgid "x0 is not strictly primal feasible.\n"
-msgstr ""
+msgstr "x0 n'est pas strictement primale faisable.\n"
 
-#
-# File: src/c/sp.c, line: 418
 msgid "Z0 is not positive definite.\n"
-msgstr ""
+msgstr "Z0 n'est pas définie positive.\n"
 
-#
-# File: src/c/sp.c, line: 421
 msgid "F(x)*Z has a negative eigenvalue.\n"
-msgstr ""
+msgstr "F(x)*Z a une valeur propre négative.\n"
 
-#
-# File: src/c/sp.c, line: 443
+#, fuzzy
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
+"\n"
+"    primal obj. dual obj. saut dual. \n"
 
-#
-# File: src/c/sp.c, line: 500
 #, c-format
 msgid "Error in dgels, info = %d.\n"
-msgstr ""
+msgstr "Erreur dans dgels, info = %d.\n"
 
-#
-# File: src/c/sp.c, line: 512
 #, c-format
 msgid "Error in dtrcon, info = %d.\n"
-msgstr ""
+msgstr "Erreurr dans dtrcon, info = %d.\n"
 
-#
-# File: src/c/sp.c, line: 514
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
 "are very badly conditioned).\n"
 msgstr ""
+"Les matrices F_i, i=1,...,m sont linéairement dépendantes (ou alors la "
+"solution initiale est très mal conditionnée).\n"
 
-#
-# File: src/c/sp.c, line: 561
 #, c-format
 msgid "Error in dspst, info = %d.\n"
-msgstr ""
+msgstr "Erreur dans dspst, info = %d.\n"
 
-#
-# File: src/c/sp.c, line: 569
 #, c-format
 msgid "Error in dspev, info = %d.\n"
-msgstr ""
+msgstr "Erreur dans dspev, info = %d.\n"
 
-#
-# File: src/c/intqld.c, line: 41
 #, c-format
 msgid "Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
+"Mauvaise dimension pour l'argument d'entrée n° %d: nombre de colonnes %d "
+"attendue.\n"
 
-#
-# File: src/c/intqld.c, line: 135
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
-msgstr ""
+msgstr "%s: Trop d'itérations (plus de %d).\n"
 
-#
-# File: src/c/intqld.c, line: 137
 #, c-format
 msgid "%s: Accuracy insufficient to statify convergence criterion.\n"
 msgstr ""
+"%s: Précision insuffisante pour satisfaire le critère de convergence.\n"
 
-#
-# File: src/c/intqld.c, line: 139
 #, c-format
 msgid "%s: Length of working array is too short.\n"
-msgstr ""
+msgstr "%s: La longueur de la table de travail est trop courte.\n"
 
-#
-# File: src/c/intqld.c, line: 141
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
-msgstr ""
+msgstr "%s: Les contraintes sont inconsistantes.\n"

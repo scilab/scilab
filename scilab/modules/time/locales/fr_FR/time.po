@@ -1,356 +1,241 @@
-# Localization of the module time
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - time\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-08-13 08:08+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-#
-# File: macros/etime.sci, line: 22
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un vecteur réel attendu.\n"
 
-#
-# File: macros/etime.sci, line: 28
-# File: macros/etime.sci, line: 31
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée #%d: Cela doit être entre %d "
+"et %d.\n"
 
-#
-# File: macros/eomday.sci, line: 18
 #, c-format
 msgid "%s: Wrong size for input argument: Same size expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée : Même dimension attendue.\n"
 
-#
-# File: macros/calendar.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
 msgstr ""
+"%s: Mauvais type pour les arguments d'entrée : ils doivent être des "
+"scalaires.\n"
 
-#
-# File: macros/calendar.sci, line: 23
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: Il doit être compris entre %d "
+"et %d.\n"
 
-#
-# File: macros/calendar.sci, line: 27
-# File: macros/eomday.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments d'entrée.\n"
 
-#
-# File: macros/weekday.sci, line: 51
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
-#
-# File: macros/date.sci, line: 4
-# File: macros/calendar.sci, line: 32
 msgid "Feb"
-msgstr ""
+msgstr "Fév"
 
-#
-# File: macros/date.sci, line: 5
-# File: macros/calendar.sci, line: 33
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
-#
-# File: macros/date.sci, line: 6
-# File: macros/calendar.sci, line: 34
 msgid "Apr"
-msgstr ""
+msgstr "Avr"
 
-#
-# File: macros/date.sci, line: 7
-# File: macros/calendar.sci, line: 35
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
-#
-# File: macros/date.sci, line: 8
-# File: macros/calendar.sci, line: 36
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
-#
-# File: macros/date.sci, line: 9
-# File: macros/calendar.sci, line: 37
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
-#
-# File: macros/date.sci, line: 10
-# File: macros/calendar.sci, line: 38
 msgid "Aug"
-msgstr ""
+msgstr "Aoû"
 
-#
-# File: macros/date.sci, line: 11
-# File: macros/calendar.sci, line: 39
 msgid "Sep"
-msgstr ""
+msgstr "Sép"
 
-#
-# File: macros/date.sci, line: 12
-# File: macros/calendar.sci, line: 40
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
-#
-# File: macros/date.sci, line: 13
-# File: macros/calendar.sci, line: 41
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
-#
-# File: macros/date.sci, line: 14
-# File: macros/calendar.sci, line: 42
 msgid "Dec"
-msgstr ""
+msgstr "Déc"
 
-#
-# File: macros/calendar.sci, line: 46
 msgid "   M      Tu     W      Th     F     Sat     Sun"
-msgstr ""
+msgstr "   L Ma M Je V Sam Dim"
 
-#
-# File: macros/weekday.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'argument d'entrée: %d à %d attendus.\n"
 
-#
-# File: macros/weekday.sci, line: 23
 #, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice de constantes "
+"réelles attendue.\n"
 
-#
-# File: macros/weekday.sci, line: 27
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' ou ''%s'' "
+"attendu.\n"
 
-#
-# File: macros/weekday.sci, line: 36
 msgid "Sat"
-msgstr ""
+msgstr "Sam"
 
-#
-# File: macros/weekday.sci, line: 37
 msgid "Sun"
-msgstr ""
+msgstr "Dim"
 
-#
-# File: macros/weekday.sci, line: 38
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
-#
-# File: macros/weekday.sci, line: 39
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
-#
-# File: macros/weekday.sci, line: 40
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
-#
-# File: macros/weekday.sci, line: 41
 msgid "Thu"
-msgstr ""
+msgstr "Jeu"
 
-#
-# File: macros/weekday.sci, line: 42
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
-#
-# File: macros/weekday.sci, line: 44
 msgid "Saturday"
-msgstr ""
+msgstr "Samedi"
 
-#
-# File: macros/weekday.sci, line: 45
 msgid "Sunday"
-msgstr ""
+msgstr "Dimanche"
 
-#
-# File: macros/weekday.sci, line: 46
 msgid "Monday"
-msgstr ""
+msgstr "Lundi"
 
-#
-# File: macros/weekday.sci, line: 47
 msgid "Tuesday"
-msgstr ""
+msgstr "Mardi"
 
-#
-# File: macros/weekday.sci, line: 48
 msgid "Wednesday"
-msgstr ""
+msgstr "Mercredi"
 
-#
-# File: macros/weekday.sci, line: 49
 msgid "Thursday"
-msgstr ""
+msgstr "Jeudi"
 
-#
-# File: macros/weekday.sci, line: 50
 msgid "Friday"
-msgstr ""
+msgstr "Vendredi"
 
-#
-# File: macros/datevec.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d attendus.\n"
 
-#
-# File: macros/datevec.sci, line: 28
-# File: macros/datenum.sci, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice réelle "
+"attendue.\n"
 
-#
-# File: macros/datenum.sci, line: 46
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: une matrice m*3 ou "
+"une matrice m*6 attendue.\n"
 
-#
-# File: macros/datenum.sci, line: 50
-# File: macros/datenum.sci, line: 54
-# File: macros/datenum.sci, line: 60
-# File: macros/datenum.sci, line: 64
-# File: macros/datenum.sci, line: 68
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: %s doit être entre %d et "
+"%d.\n"
 
-#
-# File: macros/datenum.sci, line: 50
 msgid "Month"
-msgstr ""
+msgstr "Mois"
 
-#
-# File: macros/datenum.sci, line: 54
 msgid "Day"
-msgstr ""
+msgstr "Jour"
 
-#
-# File: macros/datenum.sci, line: 60
 msgid "Hour"
-msgstr ""
+msgstr "Heure"
 
-#
-# File: macros/datenum.sci, line: 64
 msgid "Minute"
-msgstr ""
+msgstr "Minute"
 
-#
-# File: macros/datenum.sci, line: 68
 msgid "Second"
-msgstr ""
+msgstr "Second"
 
-#
-# File: macros/datenum.sci, line: 87
-# File: macros/datenum.sci, line: 124
 #, c-format
 msgid "%s: Wrong type for input arguments.\n"
-msgstr ""
+msgstr "%s: Mauvais type des arguments d'entrée.\n"
 
-#
-# File: macros/datenum.sci, line: 93
-# File: macros/datenum.sci, line: 134
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
+"%s: Mauvaise taille pour les arguments en entrée: Mêmes tailles attendues.\n"
 
-#
-# File: macros/datenum.sci, line: 97
-# File: macros/datenum.sci, line: 101
-# File: macros/datenum.sci, line: 138
-# File: macros/datenum.sci, line: 142
-# File: macros/datenum.sci, line: 146
-# File: macros/datenum.sci, line: 150
-# File: macros/datenum.sci, line: 154
-# File: macros/eomday.sci, line: 39
-# File: sci_gateway/c/sci_calendar.c, line: 58
-# File: sci_gateway/c/sci_calendar.c, line: 64
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être entre %d et "
+"%d.\n"
 
-#
-# File: macros/datenum.sci, line: 159
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr ""
+msgstr "%s: Mauvais nombre d'argument d'entrée.\n"
 
-#
-# File: macros/eomday.sci, line: 26
-# File: macros/eomday.sci, line: 30
 #, c-format
 msgid "%s: Wrong type for input arguments: Integer expected.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour les arguments d'entrée: entiers attendus.\n"
 
-#
-# File: src/c/getdate.c, line: 94
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être > %d.\n"
 
-#
-# File: src/c/getdate.c, line: 96
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être < %d.\n"
 
-#
-# File: sci_gateway/c/sci_xpause.c, line: 37
-# File: sci_gateway/c/sci_sleep.c, line: 32
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Un entier non-négatif "
+"attendu.\n"
 
-#
-# File: sci_gateway/c/sci_calendar.c, line: 60
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr ""
+"%s: Mauvais type pour les arguments d'entrée: Valeurs scalaires attendues.\n"
 
-#
-# File: sci_gateway/c/sci_getdate.c, line: 43
 #, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr ""
+msgstr "%s: Une erreur s'est produite: %s\n"
 
-#
-# File: sci_gateway/c/sci_getdate.c, line: 85
-# File: sci_gateway/c/sci_getdate.c, line: 141
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Entier ou '%s' attendu.\n"
