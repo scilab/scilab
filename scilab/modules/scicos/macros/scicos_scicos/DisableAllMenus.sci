@@ -21,7 +21,18 @@
 
 function DisableAllMenus()
   %ws = intersect(winsid(), [inactive_windows(2);curwin]')
-  %men = menus(1); 
+  %men = menus(1);
+
+  //** This additiona double protection assure the existance
+  //** of the variable (not produce the first time in case of
+  //** Scicos used in batch mode
+  if ~exists("btn_n") then
+       btn_n = []; 
+  end
+  if ~exists("win_n") then
+       win_n = []; 
+  end
+ 
   for %w = %ws
   
     //** this filter out the windows that have been intentionally closed
