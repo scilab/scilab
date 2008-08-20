@@ -70,7 +70,7 @@
     loader file which can be used to dynamically load the shared library 
     into Scilab with <literal>addinter</literal></para>
     <para>
-    Many examples are provided in <literal>examples/interface-tour-so</literal>
+    Many examples are provided in <literal>SCI/modules/dynamic_link/examples</literal>
     directory.</para>
   </refsection>
   <refsection>
