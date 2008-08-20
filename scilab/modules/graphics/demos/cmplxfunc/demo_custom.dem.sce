@@ -96,7 +96,7 @@ function demo_custom()
 	my_exptext_string = my_exptext_string + "<html>";
 	
 	my_exptext_string = my_exptext_string + "<center>";
-	my_exptext_string = my_exptext_string + "<img src=""file://"+SCI+"/modules/graphics/demos/cmplxfunc/warning.png"+""">";
+	my_exptext_string = my_exptext_string + "<img src=""file:///"+SCI+"/modules/graphics/demos/cmplxfunc/warning.png"+""">";
 	my_exptext_string = my_exptext_string + "BE CAREFUL NOTHING IS PROTECTED";
 	my_exptext_string = my_exptext_string + "</center>";
 	
