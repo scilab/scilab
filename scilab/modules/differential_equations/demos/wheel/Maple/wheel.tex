@@ -1,0 +1,50 @@
+% Copyright ENPC
+%XFlatexpr Magnification  0.5
+\typeout{TransFig: figure text in LaTeX.}
+\typeout{TransFig: figures in PostScript.}
+
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17 \tiny\else \ifnum #1<20 \small\else
+  \ifnum #1<24 \normalsize\else \ifnum #1<29 \large\else
+  \ifnum #1<34 \Large\else \ifnum #1<41 \LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@ \count@25 \fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}
+\fi
+\endgroup
+
+\def\dessin#1#2{
+\begin{figure}[hbtp]\begin{center}
+\begin{picture}(0,0)%
+\special{psfile=wheel.ps}%
+\end{picture}%
+\setlength{\unitlength}{0.006250in}%
+\begin{picture}(608,341)(60,405)
+\put(575,485){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$u$}}}
+\put(650,555){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$v$}}}
+\put(550,590){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$w$}}}
+\put(195,445){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$\theta$}}}
+\put( 60,460){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$x$}}}
+\put(425,535){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$y$}}}
+\put(215,735){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$z$}}}
+\put(305,405){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$u$}}}
+\put(420,605){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$v$}}}
+\put(375,460){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$u_1$}}}
+\put(370,640){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$\psi$}}}
+\put(265,700){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$\phi$}}}
+\put(350,675){\makebox(0,0)[lb]{\smash{\SetFigFont{6}{7.2}{rm}$w$}}}
+\end{picture}
+\caption{\label{#2}#1}
+\end{center}\end{figure}}
