@@ -155,13 +155,15 @@ public class MarkDrawer extends DrawableObjectGL {
 		GL gl = getGL();
 		
 		startRecordDL();
-		
-		// enable offset factor to be sure that lines are drawn in font of polygons
-		GLTools.pushPolygonsBack(gl);
-		double realMarkSize = getMarkPixelSize();
-		gl.glScaled(realMarkSize, realMarkSize, 1.0);
-		drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
-		GLTools.endPushPolygonsBack(gl);
+		// drawer might be null if the mark index is not good
+		if (drawer != null) {
+			// enable offset factor to be sure that lines are drawn in font of polygons
+			GLTools.pushPolygonsBack(gl);
+			double realMarkSize = getMarkPixelSize();
+			gl.glScaled(realMarkSize, realMarkSize, 1.0);
+			drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
+			GLTools.endPushPolygonsBack(gl);
+		}
 		
 		endRecordDL();
 	}

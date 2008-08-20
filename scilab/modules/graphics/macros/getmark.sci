@@ -15,6 +15,9 @@ function [k1,k2]=getmark()
   k1=[];k2=[];
   win=max(winsid()+1);
   f=scf(win)
+
+  nbMarks = 14;
+  nbSizes = 6;
   
   delmenu(win,_("&File")); 
   delmenu(win,_("&Edit"));
@@ -37,8 +40,7 @@ function [k1,k2]=getmark()
   deff('menu_ok(k,gwin)','global done;done=1')
   deff('menu_cancel(k,gwin)','global done;done=2')
   drawlater()	
-  f.figure_size = [674,841]
-  f.axes_size = [610,780]
+  f.axes_size = [610,610]
   f.auto_resize='off'
   
   a=gca();
@@ -47,24 +49,25 @@ function [k1,k2]=getmark()
   a.data_bounds=[0 0;10 30];
   a.font_size=2;
   a.mark_size_unit="tabulated"
-  a.margins=[0.04 0.06 0.1 0.05];
+  a.margins=[0.04 0.06 0.05 0.1];
   
-  xtitle(" Select mark style k and mark size l")
-  for k=0:14
-    xstringb(0,2*k-1,"k = "+msprintf("%2d",k),1.5,2)
-    xrect(0, 2*k+1, 1.5, 2);
+  a.title.text = " Select mark style k and mark size l";
+  a.title.font_size = 3;
+  for k=0:nbMarks
+    xstringb(0,2*k - 2,"k = "+msprintf("%2d",k),1.5,2)
+    xrect(0, 2*k, 1.5, 2);
   end
   
-  for l=1:6
-    xstringb(l*1.5, 29,"l = "+msprintf("%2d",l-1),1.5,2)
-    xrect(l*1.5, 31, 1.5, 2);
+  for l=1:nbSizes
+    xstringb(l*1.5, 28,"l = "+msprintf("%2d",l-1),1.5,2)
+    xrect(l*1.5, 30, 1.5, 2);
   end
   
   H=[]
-  for x=1:6
+  for x=1:nbSizes
     Hc=[]
-    for k=(0:19)
-      xpoly(1+x*1.5,2*k,'marks');
+    for k=(0:nbMarks)
+      xpoly(0.75+x*1.5,2*k - 1,'marks');
       p=gce();p.mark_size=x-1;p.mark_style=k;
       Hc=[Hc;p];
     end
@@ -78,19 +81,19 @@ function [k1,k2]=getmark()
   
   global pos done;done=-1;
   ksel=9;xsel=1;
-  H(k1+1,(k2+1)).mark_foreground=5;
+  //H(k1+1,(k2+1)).mark_foreground=5;
   while %t
     select done
     case 0 then //click somehere
       seteventhandler('');drawlater()
       cx=pos(1);cy=pos(2)
-      k1=round(cy/2);k1=min(k1,14);k1=max(0,k1);
-      k2=round(cx/1.5);k2=k2-2;k2=min(k2,5);k2=max(0,k2);
+      k1=round((cy + 1)/2);k1=min(k1,nbMarks);k1=max(0,k1);
+      k2=round((cx + 0.75)/1.5);k2=k2-2;k2=min(k2,nbSizes - 1);k2=max(0,k2);
       H(ksel+1,xsel+1).mark_foreground=-1;
       H(k1+1,k2+1).mark_foreground=5;
       ksel=k1;xsel=k2;
       done=-1;
-      xinfo('You have chosen mark_style = '+string(k1)+' , mark_size ='+string(k2))
+      xinfo('You have chosen mark_style = '+string(k1)+', mark_size = '+string(k2))
       drawnow();seteventhandler('evh')
     case 1 then  // ok button clicked
       k1=k1;k=[k1,k2];break,
