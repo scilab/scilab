@@ -297,26 +297,27 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	return 0;
       }
 
-      if (nleg != cmpt) {
+      if (nleg < cmpt) {
 	FREE(tabofhandles);
-	FREE(hdltab);
-        for (jj = 0; jj < *n1; jj++) { FREE(Str[jj]); }
+        for (jj = 0; jj < nleg; jj++) { FREE(Str[jj]); }
 	FREE(Str);
-	sciprint(_("%s: Invalid legend.\n"),"plot2d");
+	sciprint(_("%s: Invalid legend ignored.\n"),"plot2d");
       }
-      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,cmpt);
-      if (Leg != NULL)
-      {
-        pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
-        sciSetIsFilled (Leg, FALSE);
-        sciSetIsLine (Leg, FALSE);
-        sciSetCurrentObj (Leg); 
-      }
+      else {
+	Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,cmpt);
+	if (Leg != NULL)
+	  {
+	    pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
+	    sciSetIsFilled (Leg, FALSE);
+	    sciSetIsLine (Leg, FALSE);
+	    sciSetCurrentObj (Leg); 
+	  }
 
       
-      for (jj = 0; jj < *n1; jj++) { FREE(Str[jj]); }
-      FREE(Str);
-      FREE(tabofhandles);
+	for (jj = 0; jj < nleg; jj++) { FREE(Str[jj]); }
+	FREE(Str);
+	FREE(tabofhandles);
+      }
     }
 
     /*---- construct Compound ----*/
