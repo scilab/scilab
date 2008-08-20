@@ -63,6 +63,5 @@ Bigsyst=dscr(syslin('c',BigA,BigB,BigC,BigD,BigX0),dt);
 
 z=flts(uu(instants),Bigsyst);
 plot2d([instants',instants'],..
-       [totrack(1,:)',z(1,:)'],[1 2],'161',..
-       'Signal to track@Computed signal@');
+       [totrack(1,:)',z(1,:)'],[1 2],leg='Signal to track@Computed signal');
 xtitle('tracking');
