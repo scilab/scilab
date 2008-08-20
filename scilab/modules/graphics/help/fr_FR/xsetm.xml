@@ -28,16 +28,14 @@
   <refsection>
     <title>Description</title>
 
-    <title>Description</title>
-
     <para>Cette fonction ainsi la fonction <link linkend="xset">xset</link>
     était fortement liée à l'ancien mode graphique qui n'est plus supporté. Le
     paramétrage du graphique actuel est beaucoup plus flexible (voir les
     fonctions <link linkend="set">set</link> et <link linkend="get">get</link>
     ainsi que la page d'aide <link
-    linkend="graphics_entities">graphics_entities</link>. Il est possible de
+    linkend="graphics_entities">graphics_entities</link>). Il est possible de
     lancer un éditeur de propriété graphiques mieux adapté à la structure
-    actuelle par l'instruction <link linkend="ged(1)">ged</link>.</para>
+    actuelle par l'instruction <link linkend="ged">ged</link>.</para>
   </refsection>
 
   <refsection>
