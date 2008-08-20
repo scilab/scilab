@@ -35,7 +35,7 @@ my_handle = scf(100001);
 clf(my_handle,"reset"); 
 plot2d(1:n,[zd',1000*u'],style=[1,3],leg="Simulated output@Input [scaled]") ;
 comp = gce() ;
-comp.children(2:3).polyline_style = 2 ;
+comp.children(1:2).polyline_style = 2 ;
 halt();
 write(%io(2),"Identification ARX (least square):");
 [arc,la,lb,sig,resid]=armax(3,3,zd,u,1,1);
