@@ -845,6 +845,8 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
+
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--enable-build-localization],[Enable the localization build]),
 		[with_localization=yes],
@@ -853,7 +855,6 @@ AC_ARG_ENABLE(build-localization,
 
 if test $with_localization != no; then
 
-   ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
    AC_SUBST(ALL_LINGUAS)
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
