@@ -28,6 +28,9 @@ public class FastArcFillTools extends ArcFillTools {
 	 * To avoid drawing the circle several times
 	 */
 	private static final double TWO_PI = 2 * Math.PI;
+	
+	/** Angle of the X axis in gluPartialDisk */
+	private static final double X_AXIS_ANGLE = 90.0;
 
 	/**
 	 * Constructor
@@ -53,13 +56,14 @@ public class FastArcFillTools extends ArcFillTools {
 				
 		if (getSweepAngle() < -TWO_PI) {
 			drawAngle = -TWO_PI;		
-		} else if (getSweepAngle() >= -TWO_PI && getSweepAngle() <= TWO_PI) {
+		} else if (getSweepAngle() <= TWO_PI) {
 			drawAngle = getSweepAngle();		
 		} else {
 			drawAngle = TWO_PI;		
-		}	
+		}
 		
-		glu.gluPartialDisk(glu.gluNewQuadric(),  0.0, 1.0, NB_SLICES, 1, 0, Math.toDegrees(drawAngle));
+		/* In gluPartialDisk, X axis as a start angle of 90° and the sweepangle is clockwise */
+		glu.gluPartialDisk(glu.gluNewQuadric(),  0.0, 1.0, NB_SLICES, 1, X_AXIS_ANGLE, -Math.toDegrees(drawAngle));
 		
 	}
 
