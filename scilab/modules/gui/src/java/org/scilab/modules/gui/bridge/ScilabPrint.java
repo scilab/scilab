@@ -20,7 +20,7 @@ import java.awt.print.PrinterJob;
  */
 public class ScilabPrint implements Printable {
 
-	private final int PRINT_MARGIN = 36; 
+	private final int PRINT_MARGIN = 3; 
 	
 	private BufferedImage canvasDump;
 
@@ -37,7 +37,7 @@ public class ScilabPrint implements Printable {
 		
 		//setting the page format
 		Paper paper = new Paper();
-	    double margin = PRINT_MARGIN; // half inch
+	    double margin = PRINT_MARGIN;
 	    paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight()
 	        - margin * 2);
 	    pf.setPaper(paper);
