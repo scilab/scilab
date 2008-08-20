@@ -33,7 +33,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   if sltyp=='rational' then Sl=tf2ss(Sl);end
 
   eps=1.d-8;
-  if Sl.dt=='d'|type(sl.dt)==1 then 
+  if Sl.dt=='d'|type(Sl.dt)==1 then 
     hinfnorm=dhnorm(Sl);frequency=[];
     return;
   end
@@ -42,7 +42,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   if maxi(real(eiga)) >= -1e-12 then 
     warning(msprintf(_("%s: System is not stable.\n"),"h_norm"))
   end
-  if rhs==1 then rerr=1e-8; end;
+  if argn(2)==1 then rerr=1e-8; end;
   [no,ns] = size(c); [ns,ni] = size(b);
   if mini(ni,no) == 1 then isiso = 2; else isiso = 1; end;
   [p,a] = hess(a); [u,d,v] = svd(d); b = p' * b * v; c = u' * c * p;

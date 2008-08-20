@@ -60,7 +60,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
   Dk21=Dk21*Yci;
   //Convert to descriptor form:
   Sk=des2ss(Ak,[Bk1,Bk2],[Ck1;Ck2],[Dk11,Dk12;Dk21,Dk22],E);
-  if argn(2)<3 then 
+  if argn(1)<3 then 
     Sk=Sk(1:r(2),1:r(1));rk=mu;
     //    Case D22 different from zero
     if norm(coeff(D22),1) <> 0 then Sk=Sk/.D22;end
@@ -457,7 +457,7 @@ function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
     Ay=A-L*C2;
     Qy=-B1#*B1#';
 
-    //               mu-dependent part
+    //mu-dependent part
 
     //Optimal controller
 
