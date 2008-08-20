@@ -31,6 +31,7 @@ List of missing/buggy features:
     * Sector boundary angles of arc objects are now specified in degree whereas it used to
       be specified in degree/64.
     * The text_box property of text objects now refers to user coordinates even in axes_reverse mode.
+    * Bode routine creates only the two needed axes instead of four in previous versions.
 
 - It is strongly recommended to update graphic cards drivers to the latest 
 	revision:
