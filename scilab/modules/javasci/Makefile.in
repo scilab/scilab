@@ -1020,10 +1020,10 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 # Install the help chapter
 @JAVASCI_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
 @JAVASCI_TRUE@	for lang in $(ALL_LINGUAS); do \
-@JAVASCI_TRUE@		HELPFILE=$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
+@JAVASCI_TRUE@		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 @JAVASCI_TRUE@		if test -f $$HELPFILE; then \
-@JAVASCI_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@JAVASCI_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@JAVASCI_TRUE@			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
+@JAVASCI_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
 @JAVASCI_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @JAVASCI_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @JAVASCI_TRUE@		fi; \
