@@ -7,6 +7,8 @@
 
 //ieee
 
+warning("off");
+
 ieee(2);
 if execstr("1/0","errcatch") <> 0 then pause,end
 if 1/0<>%inf then pause,end
