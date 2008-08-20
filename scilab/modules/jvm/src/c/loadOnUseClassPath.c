@@ -23,13 +23,12 @@
 #include "stricmp.h"
 #include "addToClasspath.h"
 #include "loadOnUseClassPath.h"
+#include "loadClasspath.h"
 #include "../../fileio/includes/FileExist.h"
 #include "GetXmlFileEncoding.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-/*--------------------------------------------------------------------------*/ 
-extern xmlDocPtr getClassPathxmlDocPtr();
 /*--------------------------------------------------------------------------*/ 
 BOOL loadOnUseClassPath(char *tag)
 {
