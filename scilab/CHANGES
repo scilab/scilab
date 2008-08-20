@@ -46,7 +46,7 @@ Graphics:
  - Behavior changes:
     * clf now deletes user menus which are children of the figure (Created by addmenu or uimenu).
  - Obsolete functions:
-    * xclea, xaxis, xloadplots and xtape functions has been removed because of their imcompatibility with new graphic syntax.
+    * xclea, xaxis, loadplots and xtape functions has been removed because of their imcompatibility with new graphic syntax.
 
 Graphic file export:
 ====================
