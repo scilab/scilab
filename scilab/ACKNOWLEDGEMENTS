@@ -1,3 +1,82 @@
+
+
+			CONTRIBUTORS
+			************
+
+Outside of the Scilab Consortium, many people contributed to Scilab version 5.
+We are very grateful for all the work and the time they all spend to make
+Scilab a better software.
+
+* Vorona Aleksey
+	- Russian localization
+
+* Yann Collette
+	- Genetic algorithm
+	- Generic probabilistic meta-algorithm
+	- Param/parameters module
+	- Bug reports
+	- Bug Fixes
+
+* Markus Dittrich 
+	- Misc patches for Gentoo
+
+* Aurélien Gérôme
+	- Misc patches for Debian & Ubuntu
+
+* Sébastien Jourdain from Artenum ( http://www.artenum.com )	
+	- Scilab Console console ( Jrosetta )
+
+* Yung-Jang Lee
+	- Management of non-UTF8 asian/russian charset internationalization
+	- Traditional Chinese localization
+
+* Séverin Lemaignan
+	- Advices
+
+* Olivier Mehani
+	- Advices
+	- Patches
+
+* Stéphane Mottelet 
+	- Advices
+	- Bug reports
+	- Misc patches for Mac OS X
+
+* Bruno Pinçon
+	- UMFPACK interface
+	- Bug reports
+	- Bug fixes
+	- Advices
+
+* Jacques-Deric Rouault 
+	- Bug reports
+
+* Jean-Sebastien Roy 
+	- Misc patches for FreeBSD
+
+* Enrico Segre
+	- Scipad
+	- Bug reports
+	- Bug fixes
+	- Advices
+
+* François Vogel
+	- Scipad
+	- Bug reports
+	- Bug fixes
+	- Advices
+
+* Torsten Werner
+	- Misc patches for Debian & Ubuntu
+
+* Jeffrey Whitaker
+	- Misc patches for Mac OS X
+
+* Shiqi Yu
+	- Simplified Chinese localization
+
+And many others...
+
 			    ORIGIN OF CODE
 			    **************
 
@@ -21,9 +100,7 @@ control: LINPACK + EISPACK + INRIA routines.
          bdiag: adapted from Bavely and Stewart.
          ereduc,fstair: T. Beelen, P. Van Dooren.
 
-default: Scilab routines (INRIA/ENPC) for the user.  Funtab.c
-	 (J.P.Chancelier) is derived from an hash table code from The
-	 University of California, Berkeley.
+default: Scilab routines (INRIA/ENPC) for the user. 
 
 dcd: Library of Fortran Routines for Cumulative Distribution
          Functions, Inverses, and Other Parameters (February, 1994)
@@ -31,14 +108,13 @@ dcd: Library of Fortran Routines for Cumulative Distribution
          Biomathematics, Box 237, The University of Texas,
          M.D. Anderson Cancer Center. 1515 Holcombe
          Boulevard. Houston, TX 77030.
-        Interfaced by J.P Chancelier and B. Pin�on.
+        Interfaced by J.P Chancelier and B. Pinçon.
 
 dld: is a library package of C functions that performs "dynamic link
          editing" from Wilson Ho (how@cs.ucdavis.edu). It is used on
          the linux version of scilab.
 
 FreeBSD port: by Dan McMahill.
-
 
 graphics based on entities: INRIA (M. Philippe, D. Abdemouche).
  
@@ -73,7 +149,7 @@ randlib: Library of Fortran Routines for Random Number Generation
 
 scipad: an embedded text editor scipad derived from TkNotepad
         (http://home.earthlink.net/~joseph-ja/programs.html#Tcl-Tk) and improved by
-        Enrico Segre and Fran�ois Vogel, two Scilab Developers to take
+        Enrico Segre and François Vogel, two Scilab Developers to take
         an active part in Scilab development.
 
 SciGui: a tcl gui environment developed by Jaime Urzua: jaime_urzua@yahoo.com
