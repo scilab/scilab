@@ -14,14 +14,14 @@ mode(1)
 //define system macro which generates the next
 //observation given the old state
 
-   deff('[x1,y]=system(x0,f,g,h,q,r)',[
-        'rand(''normal'');'
-        'q2=chol(q);'
-        'r2=chol(r);'
-        'u=q2''*rand(ones(x0));'
-        'v=r2''*rand(ones(x0));'
-        'x1=f*x0+g*u;'
-        'y=h*x1+v;'])
+function [x1,y]=system(x0,f,g,h,q,r)
+  rand('normal');
+  q2=chol(q);r2=chol(r);
+  u=q2'*rand(ones(x0));
+  v=r2'*rand(ones(x0));
+  x1=f*x0+g*u;
+  y=h*x1+v;
+endfunction
 
 //initialize state statistics (mean and error variance)
 
@@ -61,23 +61,24 @@ mode(1)
       yt=[yt y];ft=[ft f];gt=[gt g];ht=[ht h];qt=[qt q];rt=[rt r];
    end,
 
-//get the wiener filter estimate
+   //get the wiener filter estimate
 
    [xs,ps,xf,pf]=wiener(yt,m0,p0,ft,gt,ht,qt,rt);
 
-//plot result
+   //plot result
 
    my_handle = scf(100001);
    clf(my_handle,"reset");
 
-//plot frame, real state (x), and estimates (xf, and xs)
+   //plot frame, real state (x), and estimates (xf, and xs)
 
    plot2d([x(1,:)',xf(1,:)',xs(1,:)'],..
-          [x(2,:)',xf(2,:)',xs(2,:)'],[1 2 3],"161",..
-          'real state@estimates xf@estimates xs'),
+          [x(2,:)',xf(2,:)',xs(2,:)'],[1 2 3]);
+   curves=get(gce(),'children');
 
-//mark data points (* for real data, o for estimates)
-
-    plot2d([x(1,:)',xf(1,:)',xs(1,:)'],..
-          [x(2,:)',xf(2,:)',xs(2,:)'],-[1 2 3],"000",..
-          'real state@estimates xf@estimates xs'),
+   //mark data points (* for real data, o for estimates)
+    curves(1).mark_mode='on';curves(1).mark_style=3;
+    curves(2).mark_mode='on';curves(2).mark_style=2;
+    curves(3).mark_mode='on';curves(3).mark_style=1;
+    
+   legend([_("real state");_("estimates xf");_("estimates xs")])

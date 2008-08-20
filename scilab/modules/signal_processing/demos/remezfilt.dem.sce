@@ -22,7 +22,8 @@
    title_c=["Minimax FIR filter";
             "low pass  cut-off in [.23,.27]";
             "length 33"];
-   xtitle(title_c);
+   ax=gca();a.margins(3)=0.2;
+   title(title_c);
    halt();
  
 //Triangular filter created using remezb
