@@ -12,8 +12,6 @@
 function rings()
 
 	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	demo_viewCode("rings.sce");
 	
 	rr = 0.2;
 	t  = linspace(0,2*%pi,10);
@@ -24,6 +22,9 @@ function rings()
 	X  = [x;(x+1.3);(x-1.3)];
 	Y  = [y;-z;-z];
 	Z  = [z;y;y];
+	
+	clf(my_handle,"reset");
+	demo_viewCode("rings.sce");
 	
 	plot3d2(X,Y,Z,[m,2*m]);
 

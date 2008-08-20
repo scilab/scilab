@@ -11,10 +11,6 @@
 
 function moebius()
 	
-	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	demo_viewCode("moebius.sce");
-	
 	// the Moebius band
 	t=linspace(-1,1,20)';
 	x=linspace(0,%pi,40);
@@ -26,6 +22,9 @@ function moebius()
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
 	my_axe                      = my_handle.children;
+	
+	demo_viewCode("moebius.sce");
+	
 	my_handle.immediate_drawing = "off";
 	plot3d2(X,Y,Z);
 	my_plot                     = my_axe.children;

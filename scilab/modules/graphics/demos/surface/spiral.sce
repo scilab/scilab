@@ -19,9 +19,10 @@ function hole3d1()
 	
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
+	my_axe                      = my_handle.children;
+	
 	demo_viewCode("spiral.sce");
 	
-	my_axe                      = my_handle.children;
 	my_handle.immediate_drawing = "off";
 	plot3d2(x,y,z);
 	my_plot                     = my_axe.children;

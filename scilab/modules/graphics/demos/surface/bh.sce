@@ -14,10 +14,6 @@ function bh(nn)
 
 	// a black hole
 	
-	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	demo_viewCode("bh.sce");
-	
 	x         = linspace(0,2*%pi,nn);
 	t         = linspace(0,1,20);
 	cosphi    = dup(cos(x),length(t));
@@ -27,6 +23,9 @@ function bh(nn)
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
 	my_axe                      = my_handle.children;
+	demo_viewCode("bh.sce");
+	
+	
 	my_handle.immediate_drawing = "off";
 	plot3d2(f.*cosphi,f.*sinphi,dup(t'.*2-1,length(x)));
 	my_plot                     = my_axe.children;

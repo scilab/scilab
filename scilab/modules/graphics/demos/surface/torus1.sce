@@ -11,9 +11,6 @@
 
 function torus1
 	
-	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	
 	x=linspace(0,2*%pi,40);
 	y=linspace(0,2*%pi,20)';
 	my_factor=1.5+cos(y);
@@ -23,9 +20,9 @@ function torus1
 	
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
+	my_axe                      = my_handle.children;
 	demo_viewCode("torus1.sce");
 	
-	my_axe                      = my_handle.children;
 	my_handle.immediate_drawing = "off";
 	plot3d2(X,Y,Z);
 	my_plot                     = my_axe.children;

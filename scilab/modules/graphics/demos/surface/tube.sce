@@ -11,9 +11,6 @@
 
 function tube(nn)
 	
-	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	
 	x=linspace(0,2*%pi,nn);
 	//  atomic modell or so.
 	y=0.1+[sin(linspace(0,%pi,15)),1.5*sin(linspace(0,%pi,10)),sin(linspace(0,%pi,15))];
@@ -23,13 +20,12 @@ function tube(nn)
 	x1=f.*cosphi;     y1=f.*sinphi;
 	z=dup(linspace(-2,2,prod(size(y)))',prod(size(x)));
 	
-	
-	
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
+	my_axe                      = my_handle.children;
+	
 	demo_viewCode("tube.sce");
 	
-	my_axe                      = my_handle.children;
 	my_handle.immediate_drawing = "off";
 	plot3d2(x1,y1,z,-1,35,70);
 	my_plot                     = my_axe.children;

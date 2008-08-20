@@ -11,9 +11,6 @@
 
 function torus
 	
-	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	
 	// some torus type bodies.
 	x=linspace(0,2*%pi,40);
 	y=linspace(0,2*%pi,20)';
@@ -25,9 +22,10 @@ function torus
 	
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
+	my_axe                      = my_handle.children;
+	
 	demo_viewCode("torus.sce");
 	
-	my_axe                      = my_handle.children;
 	my_handle.immediate_drawing = "off";
 	plot3d2(X,Y,Z);
 	my_plot                     = my_axe.children;
