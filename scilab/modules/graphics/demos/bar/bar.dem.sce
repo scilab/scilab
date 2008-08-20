@@ -12,6 +12,7 @@
 
 my_handle             = scf(100001);
 clf(my_handle,"reset");
+demo_viewCode("bar.dem.sce");
 
 // Parameters
 

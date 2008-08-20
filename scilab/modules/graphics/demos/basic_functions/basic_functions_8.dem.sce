@@ -24,7 +24,5 @@ expr=[
 "    -1,1,2,2,64*(120),64*(70);"
 "    -1,1,2,2,64*(190),64*(360-190)];"
 "xfarcs(alls'',[1,3,5,7]);a.clip_state = ''off'';"];
-x_message(["[VIII  Colored histogram]";expr]);
 
 execstr(expr);
-

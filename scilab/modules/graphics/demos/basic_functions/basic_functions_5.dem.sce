@@ -30,6 +30,5 @@ expr=[
 "c=0:(n-1);"
 "xfpolys(xx,yy,c);"
 "a.clip_state = ''off'';"];
-x_message(["[V] set of rectangles";expr]);
-execstr(expr);
 
+execstr(expr);

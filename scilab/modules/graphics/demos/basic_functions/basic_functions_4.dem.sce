@@ -36,5 +36,5 @@ execstr(expr);
 // Demo IV.2
 expr=["xset(''window'',0);";
 "xselect();";]
-x_message(["[IV.2] Selecting and raising window 0]";expr]);
+
 execstr(expr);

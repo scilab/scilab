@@ -29,6 +29,5 @@ expr=[
 "  end"
 "end"
 "xfpolys(xx,yy,(1:16));a.clip_state = ''off'';"];
-x_message(["[VI]";expr]);
-execstr(expr);
 
+execstr(expr);

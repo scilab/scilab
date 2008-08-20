@@ -25,7 +25,5 @@ expr=[
 "xx=[x,x+d,x+2*d,x+3*d,x+4*d,x+5*d];"
 "yy=[y,5*y,2*y,10*y,8*y,6*y];"
 "xfpolys(xx,yy,2*[1 2 3 4 5 6]);a.clip_state = ''off'';"];
-x_message(["[VII Colored histogram]";expr]);
 
 execstr(expr);
-
