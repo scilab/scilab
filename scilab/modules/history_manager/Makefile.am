@@ -86,7 +86,10 @@ includes/TerminateHistoryManager.h
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i
+
+if SWIG
 BUILT_SOURCES = swig
+endif
 
 # Provides macros compilation, Java compilation, cleaning
 include $(top_srcdir)/Makefile.incl.am
