@@ -278,7 +278,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
   if (needRedraw)
   {
     /* redraw all the long draws */
-    for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+    /*for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
       for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
       {
@@ -286,12 +286,12 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
         sciSetVisibility(pLongDraw, TRUE);
         forceRedraw(pLongDraw);
       }
-    }
+    }*/
 
     sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
 
     /* hide them as before */
-    for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+    /*for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
       for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
       {
@@ -299,7 +299,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
         sciSetVisibility(pLongDraw, FALSE);
         forceRedraw(pLongDraw);
       }
-    }
+    }*/
   }
   
 
