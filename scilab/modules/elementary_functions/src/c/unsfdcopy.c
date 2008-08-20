@@ -25,7 +25,7 @@
 		/*  clean-up loop */
 		memmove(dy , dx , (*n *sizeof(double)) );
 	}
-	else if(dx != dy)
+	else
 	{
 		int i = 0;
 
