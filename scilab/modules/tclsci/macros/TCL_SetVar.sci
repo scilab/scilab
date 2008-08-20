@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function status = TCL_SetVar_Blouno(varName, value, slaveName)
+function status = TCL_SetVar(varName, value, slaveName)
 
 // Input arguments tests
 [lhs, rhs] = argn();
@@ -47,19 +47,19 @@ end
 
 if size(value, "*") == 1 then // Scalar value
   if rhs==3 then
-    command = "interp eval "+slaveName+" ""set "+varName+" """+value+""" "" ";
+    command = "interp eval "+slaveName+" {set "+varName+" {"+value+"}}";
     disp(command)
     status = TCL_EvalStr(command);
   else
-    status = TCL_EvalStr("set "+varName+" """+value+""" ");
+    status = TCL_EvalStr("set "+varName+" {"+value+"}");
   end
 else // Matrix
   for nbRow=1:size(value, 1)
     for nbCol=1:size(value, 2)
       if rhs==3 then
-	status = TCL_EvalStr("interp eval "+slaveName+" ""set "+varName+"("+string(nbRow)+string(nbCol)+") "+value+" "" ");
+	status = TCL_EvalStr("interp eval "+slaveName+" {set "+varName+"("+string(nbRow)+","+string(nbCol)+") {"+value+"}}");
       else
-	status = TCL_EvalStr("set "+varName+"("+string(nbRow)+","+string(nbCol)+") "+value);
+	status = TCL_EvalStr("set "+varName+"("+string(nbRow)+","+string(nbCol)+") {"+value+"}");
       end
     end
   end

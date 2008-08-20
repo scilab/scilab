@@ -29,6 +29,6 @@ if TCL_ExistInterp(slaveName) then
   error(msprintf(gettext("%s: Slave interpreter already exists.\n"),"TCL_CreateSlave"));
 end
 
-status = TCL_EvalStr("interp create "+slaveName);
+status = TCL_EvalStr("interp create -safe "+slaveName);
 
 endfunction
