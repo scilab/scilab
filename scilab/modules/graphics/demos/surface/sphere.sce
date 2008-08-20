@@ -11,9 +11,6 @@
 
 function sphere()
 
-	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	
 	u = linspace(-%pi/2,%pi/2,40);
 	v = linspace(0,2*%pi,20);
 	x = cos(u)'*cos(v);

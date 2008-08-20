@@ -11,10 +11,6 @@
 
 function hole3d1()
 	
-	my_handle = scf(100001);
-	clf(my_handle,"reset");
-	demo_viewCode("hole3d1.sce");
-	
 	deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";
 	"y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";
 	"z=r*sin(alp)+orig(3)*ones(tet)"]);
@@ -29,6 +25,9 @@ function hole3d1()
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
 	my_axe                      = my_handle.children;
+	
+	demo_viewCode("hole3d1.sce");
+	
 	my_handle.immediate_drawing = "off";
 	plot3d1(x1,y1,z1);
 	my_axe.rotation_angles      = [70,20];
