@@ -18,6 +18,7 @@
 ;
 Source: bin\integer_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\integer.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\integer.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\VERSION.xml; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\readme.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}

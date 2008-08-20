@@ -65,7 +65,7 @@ GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
 # XLIBSBIN is used by the binary version of Scilab for linking examples
-XLIBSBIN= "$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\scicos.lib" "$(SCIDIR1)\bin\intersci.lib" "$(SCIDIR1)\bin\scioutput_stream.lib" "$(SCIDIR1)\bin\dynamic_link.lib"
+XLIBSBIN= "$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\scicos.lib" "$(SCIDIR1)\bin\intersci.lib" "$(SCIDIR1)\bin\scioutput_stream.lib" "$(SCIDIR1)\bin\dynamic_link.lib" "$(SCIDIR1)\bin\integer.lib"
 #==================================================
 .c.obj	:
 	@echo ------------- Compile file $< --------------
