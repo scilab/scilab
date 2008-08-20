@@ -261,15 +261,15 @@ void TextContentDrawerJoGL::getPixelBoundingBox(double corner1[3], double corner
 
   corner2[0] = rect[3];
   corner2[1] = viewport[1] - rect[4]; // we need to convert form OpenGL coordinates to Java ones
-  corner1[2] = rect[5];
+  corner2[2] = rect[5];
 
   corner3[0] = rect[6];
   corner3[1] = viewport[1] - rect[7]; // we need to convert form OpenGL coordinates to Java ones
-  corner1[2] = rect[8];
+  corner3[2] = rect[8];
 
   corner4[0] = rect[9];
   corner4[1] = viewport[1] - rect[10]; // we need to convert form OpenGL coordinates to Java ones
-  corner1[2] = rect[11];
+  corner4[2] = rect[11];
 
   delete[] rect;
 }
