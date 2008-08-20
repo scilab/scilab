@@ -29,6 +29,8 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/ 
+extern xmlDocPtr getClassPathxmlDocPtr();
+/*--------------------------------------------------------------------------*/ 
 BOOL loadOnUseClassPath(char *tag)
 {
 	BOOL bOK = FALSE;
