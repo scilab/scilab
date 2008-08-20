@@ -52,7 +52,7 @@ function ged(k,win)
     case 2 then //redraw
       // nothing to do in new graphic mode
     case 3 then //erase
-      xbasc()
+      clf()
     case 4 then //copy
       ged_copy_entity()
     case 5 then //past
