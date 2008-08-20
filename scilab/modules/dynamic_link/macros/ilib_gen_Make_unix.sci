@@ -45,7 +45,7 @@ function ilib_gen_Make_unix(names,   ..
 	  mdelete(commandpath+"/write.test");
 	end
 	
-	if (writePerm == %T & fileinfo(commandpath+"/Makefile.orig") == []) then
+	if (writePerm == %T & ( fileinfo(commandpath+"/Makefile.orig") == [] | fileinfo(commandpath+"/libtool") == [] )) then
 	  // We have write permission on the scilab tree, then generate the stuff into the directory in order to avoid the configure each time.
 	  generateConfigure(commandpath)
 	end
@@ -129,7 +129,7 @@ function ilib_gen_Make_unix(names,   ..
 		end
 	end
 	
-	if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | fileinfo(commandpath+"/Makefile.orig") == [] then
+	if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | fileinfo(commandpath+"/Makefile.orig") == [] | fileinfo(commandpath+"/libtool") == [] then
 		// Makefile.orig doesn't exists or may be invalid regarding the flags
 		// run the ./configure with the flags
 		mdelete(linkBuildDir+"/Makefile.orig");
