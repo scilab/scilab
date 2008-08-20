@@ -297,14 +297,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	return 0;
       }
 
-      if (nleg < cmpt) {
+      /* if (nleg < cmpt) {
 	FREE(tabofhandles);
         for (jj = 0; jj < nleg; jj++) { FREE(Str[jj]); }
 	FREE(Str);
 	sciprint(_("%s: Invalid legend ignored.\n"),"plot2d");
       }
-      else {
-	Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,cmpt);
+      else {*/
+	Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,nleg);
 	if (Leg != NULL)
 	  {
 	    pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
@@ -317,7 +317,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	for (jj = 0; jj < nleg; jj++) { FREE(Str[jj]); }
 	FREE(Str);
 	FREE(tabofhandles);
-      }
+	/* }*/
     }
 
     /*---- construct Compound ----*/
