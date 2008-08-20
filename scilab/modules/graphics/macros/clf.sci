@@ -54,19 +54,7 @@ for k=1:nbHandles
   end
 end
 
-if (job == 'reset') then
-  for k = 1: nbHandles
-    curFig = h(k);
-
-    // delete the figure and recreate a new one with same id.
-    // consequently we are sure it is reset to the default values.
-    figId = curFig.figure_id;
-    delete(curFig);
-    scf(figId);
-  end 
-end
-
-
+// delete childrens
 for k=1:nbHandles 
   curFig = h(k)
 
@@ -78,6 +66,46 @@ for k=1:nbHandles
 
   // drawnow
   curFig.immediate_drawing = immediateMode;
+end
+
+// reset figures to default values if needed
+if (job == 'reset') then
+  defaultFig = gdf();
+  for k = 1: nbHandles
+    curFig = h(k);
+    
+    // drawlater
+    immediateMode = curFig.immediate_drawing;
+    curFig.immediate_drawing = 'off';
+
+    // properties to set
+    defaultProps=['figure_position',
+                  'axes_size',
+                  'auto_resize',
+                  'viewport',
+                  'figure_name',
+                  'color_map',
+                  'info_message',
+                  'pixmap',
+                  'pixel_drawing_mode',
+                  'immediate_drawing',
+                  'background',
+                  'visible',
+                  'rotation_style',
+                  'event_handler',
+                  'event_handler_enable',
+                  'user_data',
+                  'tag'];
+
+    for i = 1:size(defaultProps,'*')
+      defaultValue = get(defaultFig, defaultProps(i));
+      set(curFig, defaultProps(i), defaultValue);
+    end
+
+    // drawnow
+    curFig.immediate_drawing = immediateMode;
+
+  end 
 end
 
 endfunction
