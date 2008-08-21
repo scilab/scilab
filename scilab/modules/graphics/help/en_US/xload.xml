@@ -44,6 +44,8 @@
     <title>Description</title>
     <para><literal>xload</literal> reloads the graphics contained in the file
     <literal>file_name</literal> in the graphics window <literal>win_num</literal>.</para>
+    <para>Since  Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also loaded.
+    </para>
     <para>For files containing new graphics, the <literal>load</literal> function can
     be used instead of <literal>xload</literal>. <literal>xload</literal> does not restore
     the window number, the window size nor the window dimensions.</para>

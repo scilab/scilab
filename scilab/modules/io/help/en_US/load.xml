@@ -51,7 +51,9 @@ load(fd [,x1,...,xn])</synopsis>
     <para>The <literal>load</literal> command can be used to reload in the Scilab session
     variables previously saved in a file with the <literal>save</literal> command. If
     the file contains graphic handle variables, the corresponding
-      <link linkend="graphics_entities">graphics_entities</link> are drawn.</para>
+      <link linkend="graphics_entities">graphics_entities</link> are drawn. </para>
+      <para>Since
+    Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also drawn.</para>
     <para><literal>load(filename)</literal> loads the variables saved in file given by its
     path <literal>filename</literal>.</para>
     <para><literal>load(fd)</literal> loads the variables saved in file given by its
