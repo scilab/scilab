@@ -14,6 +14,9 @@
 #include <string.h>
 #ifndef _MSC_VER
 #include <stdint.h> 
+#else
+#define int32_t long
+#define uint32_t unsigned long
 #endif
 #include "mget.h"
 #include "filesmanagement.h"
