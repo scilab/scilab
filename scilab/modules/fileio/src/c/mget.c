@@ -84,7 +84,7 @@ void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr
   switch ( type[0] )
     {
     case 'i' : MGET_GEN_NC(int,c1);    break;
-    case 'l' : MGET_GEN_NC(long,c1);   break;
+    case 'l' : MGET_GEN_NC(int32_t,c1);   break;
     case 's' : MGET_GEN_NC(short,c1);  break;
     case 'c' : MGET_CHAR_NC(char);     break;
     case 'd' : MGET_GEN_NC(double,c1); break;
@@ -93,7 +93,7 @@ void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr
       switch ( c1 )
 	{
 	case 'i' :  MGET_GEN_NC(unsigned int,c2);   break;
-	case 'l' :  MGET_GEN_NC(unsigned long,c2);  break;
+	case 'l' :  MGET_GEN_NC(uint32_t,c2);  break;
 	case 's' :  MGET_GEN_NC(unsigned short,c2); break;
 	case ' ' :  MGET_GEN_NC(unsigned int,' ');  break;
 	case 'c' :  MGET_CHAR_NC(unsigned char);    break;
@@ -140,7 +140,7 @@ void mget2(FILE *fa, integer swap2, double *res, integer n, char *type, integer 
 	switch ( type[0] )
 	{
 	case 'i' : MGET_GEN(int,c1);    break;
-	case 'l' : MGET_GEN(long,c1);   break;
+	case 'l' : MGET_GEN(int32_t,c1);   break;
 	case 's' : MGET_GEN(short,c1);  break;
 	case 'c' : MGET_CHAR(char);     break;
 	case 'd' : MGET_GEN(double,c1); break;
@@ -149,7 +149,7 @@ void mget2(FILE *fa, integer swap2, double *res, integer n, char *type, integer 
 		switch ( c1 )
 		{
 		case 'i' :  MGET_GEN(unsigned int,c2);   break;
-		case 'l' :  MGET_GEN(unsigned long,c2);  break;
+		case 'l' :  MGET_GEN(uint32_t,c2);  break;
 		case 's' :  MGET_GEN(unsigned short,c2); break;
 		case ' ' :  MGET_GEN(unsigned int,' ');  break;
 		case 'c' :  MGET_CHAR(unsigned char);    break;

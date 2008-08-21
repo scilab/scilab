@@ -193,6 +193,8 @@ if test -z "$CC"; then
   AC_MSG_ERROR([No C Compiler found. Cannot compile Scilab without a C compiler])
 fi
 
+AC_CHECK_SIZEOF([int])
+AC_CHECK_SIZEOF([long])
 
 ### C++ ###
 AC_PROG_CXX

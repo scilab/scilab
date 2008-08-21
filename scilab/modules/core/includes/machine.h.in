@@ -463,5 +463,23 @@
 /* Defines PARAMS type */
 #include "PARAMS.h"
 
+/* Define uint32_t/int32_t */
+#undef SIZEOF_INT
+#undef SIZEOF_LONG
+
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#else
+# if SIZEOF_LONG == 4
+#  define int32_t long
+#  define uint32_t unsigned long
+# elseif SIZEOF_INT == 4
+#  define int32_t int
+#  define uint32_t unsigned int
+# else
+#  error What a strange machine...
+# endif
+#endif
+
 #endif /* MACHINE_H  */
 
