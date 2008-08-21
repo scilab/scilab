@@ -50,7 +50,7 @@
     les instructions de profilage..  A noter qu'il est possible
     d'ajouter ces instructions de profilage à une fonction
     déjà compileée en utilisant la fonction <link
-    linkend="add_profile">add_profile</link>.</para>
+    linkend="add_profiling">add_profiling</link>.</para>
 
    <para>L'option opt==1 est obsolete est équivalente à
     opt==0.</para>
