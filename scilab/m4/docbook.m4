@@ -8,7 +8,7 @@ dnl
 AC_DEFUN([AC_DOCBOOK], [
 
 DOCBOOK_OK=no
-DOCBOOK_ROOT=
+DOCBOOK_ROOT=""
 
 AC_ARG_WITH(docbook,
 		AC_HELP_STRING([--with-docbook=DIR],[Set the path to the docbook package]),
@@ -17,7 +17,7 @@ AC_ARG_WITH(docbook,
 		)
 
 	for dir in $with_docbook /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets--*/ /usr/share/sgml/docbook/xsl-stylesheets-*/; do
-		if test -d "$dir"; then
+		if test -d "$dir" -a "$DOCBOOK_ROOT" == ""; then
 			DOCBOOK_ROOT=$dir
         fi
 	done
