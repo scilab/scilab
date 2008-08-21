@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+warning("off");
 function r=testresult(eps)
   if argn(2)<=0 then eps=1d-10;end
   if or(isnan(real(y))<>isnan(real(yref)))  then r=%t,return,end;
@@ -107,12 +108,10 @@ alpha=[0];
 x=[0];
 yref=[-%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[0];
@@ -192,12 +191,10 @@ alpha=[1];
 x=[0];
 yref=[-%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[1];
@@ -277,12 +274,10 @@ alpha=[1 2 3];
 x=[0];
 yref=[-%inf -%inf -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf -%inf -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[1 2 3];
@@ -346,12 +341,10 @@ alpha=[1.19999999999999996 2.20000000000000018 3.20000000000000018];
 x=[0];
 yref=[-%inf -%inf -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf -%inf -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[1.19999999999999996 2.20000000000000018 3.20000000000000018];
@@ -421,14 +414,12 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[0
@@ -531,14 +522,12 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[0.0200000000000000004
@@ -635,12 +624,10 @@ alpha=[-1];
 x=[0];
 yref=[-%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[-1];
@@ -723,13 +710,11 @@ x=[0];
 yref=[-%inf
 -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
 -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[ -1
@@ -825,7 +810,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
@@ -834,7 +818,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[-3
@@ -942,7 +925,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
@@ -950,7 +932,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[-2
@@ -1049,7 +1030,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
@@ -1057,7 +1037,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[ -1.30000000000000004
@@ -1159,7 +1138,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
@@ -1168,7 +1146,6 @@ yref=[-%inf
 -%inf
 -%inf];
 y=bessely(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[ -2.29999999999999982

@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+warning("off");
 
 function r=testresult(eps)
   if argn(2)<=0 then eps=1d-10;end

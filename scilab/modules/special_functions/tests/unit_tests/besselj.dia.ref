@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+warning("off");
 function r=testresult(eps)
   if argn(2)<=0 then eps=1d-10;end
   if or(isnan(real(y))<>isnan(real(yref)))  then r=%t,return,end;
@@ -695,13 +696,11 @@ x=[0];
 yref=[ -0
 -%inf];
 y=besselj(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[ -0
 -%inf];
 y=besselj(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[ -1
@@ -1003,7 +1002,6 @@ yref=[-%inf
  0
  -0];
 y=besselj(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
@@ -1011,7 +1009,6 @@ yref=[-%inf
  0
  -0];
 y=besselj(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[ -1.30000000000000004
@@ -1113,7 +1110,6 @@ yref=[-%inf
  0
  -0];
 y=besselj(alpha,x);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 yref=[-%inf
@@ -1122,7 +1118,6 @@ yref=[-%inf
  0
  -0];
 y=besselj(alpha,x,1);
-Warning : division by zero...
 
 if testresult() then bugmes();quit;end
 alpha=[ -2.29999999999999982
