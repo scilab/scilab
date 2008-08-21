@@ -13,7 +13,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#ifndef _MSC_VER
 #include <stdint.h> 
+#endif
 
 #include "machine.h"
 #include "mputi.h"

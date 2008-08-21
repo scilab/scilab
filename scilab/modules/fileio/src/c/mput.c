@@ -12,7 +12,9 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#ifndef _MSC_VER
 #include <stdint.h> 
+#endif
 #include "mput.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
