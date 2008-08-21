@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+warning("off");
+
 funcprot(0);
 
 // Copyright INRIA
