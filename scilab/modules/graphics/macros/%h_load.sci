@@ -1232,6 +1232,42 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
     end
     
+  case "uicontrol"
+    if is_higher_than( [4 1 2 0] ) then
+      uistyle = ascii(mget(mget(1,"c",fd),"c",fd)); // Style
+      h = uicontrol("parent",gcf(), "style", uistyle);
+      ncolors = mget(1,"il",fd); // BackgroundColor (size)
+      h.backgroundcolor = mget(ncolors,"dl",fd); // BackgroundColor (data)
+      h.enable = toggle(mget(1,"c",fd)); // Enable
+      h.fontangle = ascii(mget(mget(1,"c",fd),"c",fd)); // FontAngle
+      h.fontname = ascii(mget(mget(1,"c",fd),"c",fd)); // FontName
+      h.fontsize = mget(1,"dl",fd); // FontSize
+      h.fontunits = ascii(mget(mget(1,"c",fd),"c",fd)); // FontUnits
+      h.fontweight = ascii(mget(mget(1,"c",fd),"c",fd)); // FontWeight
+      ncolors = mget(1,"il",fd); // Foregroundcolor (size)
+      h.foregroundcolor = mget(ncolors,"dl",fd); // ForegroundColor (data)
+      h.horizontalalignment = ascii(mget(mget(1,"c",fd),"c",fd)); // HorizontalAlignment
+      ndata = mget(1,"il",fd); // ListboxTop (size)
+      h.listboxtop = mget(ndata,"dl",fd); // ListboxTop (data)
+      h.max = mget(1,"dl",fd); // Max
+      h.min = mget(1,"dl",fd); // Min
+      ndata = mget(1,"il",fd); // Position (size)
+      h.position = mget(ndata,"dl",fd); // Position (data)
+      h.relief = ascii(mget(mget(1,"c",fd),"c",fd)); // Relief
+      ndata = mget(1,"il",fd); // SliderStep (size)
+      h.sliderstep = mget(ndata,"dl",fd); // SliderStep (data)
+      h.string = load_text_matrix(fd) ; // String
+      h.units = ascii(mget(mget(1,"c",fd),"c",fd)); // Units
+      ndata = mget(1,"il",fd); // Value (size)
+      h.value = mget(ndata,"dl",fd); // Value (data)
+      h.verticalalignment = ascii(mget(mget(1,"c",fd),"c",fd)); // VerticalAlignment
+      h.visible = toggle(mget(1,"c",fd)); // Visible
+      h.callback = ascii(mget(mget(1,"c",fd),"c",fd)); // Callback
+      h.callback_type = mget(1,"il",fd); // Callback Type
+      load_user_data(fd); // Userdata
+      h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
+    end
+    
   else
       warning("type " +typ+" unhandled");
   end

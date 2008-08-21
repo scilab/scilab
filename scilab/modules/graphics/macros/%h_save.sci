@@ -599,7 +599,7 @@ function save_graphichandle(h,fd)
     user_data=h.user_data;save(fd,user_data) // user_data
     
   case "uimenu"
-    mput(length(h.type),"c",fd);mput(ascii(h.type),"c",fd); // type
+    mput(length(h.type),"c",fd);mput(ascii(h.type),"c",fd); // Type
     mput(bool2s(h.enable=="on"),"c",fd); // Enable
     mput(size(h.foregroundcolor,'*'),"il",fd); // ForegroundColor (size)
     mput(h.foregroundcolor,"dl",fd); // ForegroundColor (data)
@@ -609,6 +609,40 @@ function save_graphichandle(h,fd)
     mput(h.callback_type,"il",fd); // Callback Type
     mput(length(h.tag),"c",fd);mput(ascii(h.tag),"c",fd); // Tag
     
+  case "uicontrol"
+    mput(length(h.type),"c",fd);mput(ascii(h.type),"c",fd); // Type
+    mput(length(h.style),"c",fd);mput(ascii(h.style),"c",fd); // Style
+    mput(size(h.backgroundcolor,'*'),"il",fd); // BackgroundColor (size)
+    mput(h.backgroundcolor,"dl",fd); // BackgroundColor (data)
+    mput(bool2s(h.enable=="on"),"c",fd); // Enable
+    mput(length(h.fontangle),"c",fd);mput(ascii(h.fontangle),"c",fd); // FontAngle
+    mput(length(h.fontname),"c",fd);mput(ascii(h.fontname),"c",fd); // FontName
+    mput(h.fontsize,"dl",fd); // FontSize
+    mput(length(h.fontunits),"c",fd);mput(ascii(h.fontunits),"c",fd); // FontUnits
+    mput(length(h.fontweight),"c",fd);mput(ascii(h.fontweight),"c",fd); // FontWeight
+    mput(size(h.foregroundcolor,'*'),"il",fd); // ForegroundColor (size)
+    mput(h.foregroundcolor,"dl",fd); // ForegroundColor (data)
+    mput(length(h.horizontalalignment),"c",fd);mput(ascii(h.horizontalalignment),"c",fd); // HorizontalAlignment
+    mput(size(h.listboxtop,'*'),"il",fd); // ListboxTop (size)
+    mput(h.listboxtop,"dl",fd); // ListboxTop (data)
+    mput(h.max,"dl",fd); // Max
+    mput(h.min,"dl",fd); // Min
+    mput(size(h.position,'*'),"il",fd); // Position (size)
+    mput(h.position,"dl",fd); // Position (data)
+    mput(length(h.relief),"c",fd);mput(ascii(h.relief),"c",fd); // Relief
+    mput(size(h.sliderstep,'*'),"il",fd); // SliderStep (size)
+    mput(h.sliderstep,"dl",fd); // SliderStep (data)
+    save_text_matrix( h.string, fd ) ; // String
+    mput(length(h.units),"c",fd);mput(ascii(h.units),"c",fd); // Units
+    mput(size(h.value,'*'),"il",fd); // Value (size)
+    mput(h.value,"dl",fd); // Value (data)
+    mput(length(h.verticalalignment),"c",fd);mput(ascii(h.verticalalignment),"c",fd); // VerticalAlignment
+    mput(bool2s(h.visible=="on"),"c",fd); // Visible
+    mput(length(h.callback),"c",fd);mput(ascii(h.callback),"c",fd); // Callback
+    mput(h.callback_type,"il",fd); // Callback Type
+    user_data=h.user_data;save(fd,user_data); // Userdata
+    mput(length(h.tag),"c",fd);mput(ascii(h.tag),"c",fd); // Tag
+  
   else
     warning("handle of type "+h.type+" unhandled")
   end
