@@ -5,10 +5,11 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <!-- NOT FIXED -->
 // <-- Non-regression test for bug 3311 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=?
+// http://bugzilla.scilab.org/show_bug.cgi?id=3311
 //
 // <-- Short Description -->
 // Loop with a "for" over a vector of complex polynomials.
