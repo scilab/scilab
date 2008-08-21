@@ -948,6 +948,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@GENERATE_LOCALIZATION_FILES_FALSE@install-data-local:
 clean: clean-recursive
 
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
@@ -1136,16 +1137,16 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@	done; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
 
-install-data-local:
-	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
-	echo $(mkinstalldirs) $(DESTDIR)$(localedir); \
-	for lang in $(ALL_LINGUAS); do \
-		LANG_PATH_DIST=$(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/; \
-		echo $(mkinstalldirs) $$LANG_PATH_DIST; \
-		$(mkinstalldirs) $$LANG_PATH_DIST; \
-		echo $(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
-		$(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
-	done
+@GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
+@GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
+@GENERATE_LOCALIZATION_FILES_TRUE@	echo $(mkinstalldirs) $(DESTDIR)$(localedir); \
+@GENERATE_LOCALIZATION_FILES_TRUE@	for lang in $(ALL_LINGUAS); do \
+@GENERATE_LOCALIZATION_FILES_TRUE@		LANG_PATH_DIST=$(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		echo $(mkinstalldirs) $$LANG_PATH_DIST; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		$(mkinstalldirs) $$LANG_PATH_DIST; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		echo $(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		$(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	done
 
 ################ INSTALL DOCUMENTATION #################
 # Starting from Scilab 5, documentation file are provided by Docbook

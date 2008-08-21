@@ -184,6 +184,7 @@ DOCMASK=scilab_*_help.jar
 # Path to builded files
 PATHTOHELPFILES = modules/helptools/jar/
 
+if GENERATE_LOCALIZATION_FILES
 install-data-local:
 	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
 	echo $(mkinstalldirs) $(DESTDIR)$(localedir); \
@@ -194,6 +195,7 @@ install-data-local:
 		echo $(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 		$(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 	done
+endif
 
 ################ INSTALL DOCUMENTATION #################
 # Starting from Scilab 5, documentation file are provided by Docbook
