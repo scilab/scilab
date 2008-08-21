@@ -128,9 +128,9 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 			{
 				char *pointer = Str[0];
 				start_point = 0;
-				strcpy(save,Str2[x]);
 				do
 				{
+					strcpy(save,Str2[x]);
 					answer = pcre_private(pointer,save,&Output_Start,&Output_End);
 					if ( answer == 0 )
 					{

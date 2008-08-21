@@ -285,13 +285,13 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		pcre_extra *extra = NULL;
 		const char *error=NULL;
 		char *p=NULL; 
-		char	*pp=NULL;
+		char *pp=NULL;
 		char *ppp=NULL;
 		const unsigned char *tables = NULL;
 		unsigned long int true_size, true_study_size = 0;
 		int do_G = 0;
 		int do_g = 0;
-		int erroroffset, len, delimiter, poffset;
+		int erroroffset, len, delimiter;
 		
 		LOOP_PCRE_TST = TRUE;
 		p = INPUT_PAT;
@@ -357,7 +357,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
     }
 
 	pp = p;
-	poffset = (int)(p - buffer);
 
 	while (*pp != 0)
 	{
@@ -366,10 +365,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		pp++;
 	}
 
-	/* The buffer may have moved while being extended; reset the start of data
-	pointer to the correct relative point in the buffer. */
-
-	p = buffer + poffset;
+	/* If the delimiter can't be found, it's a syntax error */
+	if(*pp == 0) return CAN_NOT_COMPILE_PATTERN;
 
 	/* If the first character after the delimiter is backslash, make
 	the pattern end with backslash. This is purely to provide a way
