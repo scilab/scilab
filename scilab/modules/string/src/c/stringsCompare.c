@@ -17,6 +17,13 @@
 #include "MALLOC.h"
 #include "stricmp.h"
 /*--------------------------------------------------------------------------*/
+static int sign(int x)
+{
+	if(x < 0) return -1;
+	if(x > 0) return 1;
+	return 0;
+}
+
 int * stringsCompare(char **Input_String_One,int dim_One,char **Input_String_Two,int dim_Two,BOOL dostricmp)
 {
 	int *returnedValues = NULL;
@@ -33,9 +40,9 @@ int * stringsCompare(char **Input_String_One,int dim_One,char **Input_String_Two
 
 			if (dostricmp) 
 			{
-				returnedValues[i] = stricmp(Input_String_One[i],Input_String_Two[j]);
+				returnedValues[i] = sign(stricmp(Input_String_One[i],Input_String_Two[j]));
 			}
-			else returnedValues[i] = strcmp(Input_String_One[i],Input_String_Two[j]);
+			else returnedValues[i] = sign(strcmp(Input_String_One[i],Input_String_Two[j]));
 		}
 	}
 	return returnedValues;
