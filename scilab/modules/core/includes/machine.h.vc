@@ -91,8 +91,7 @@
 
 #define va_copy(x,y) (x=(y))
 
-/* Define uint32_t/int32_t */
-#define int32_t long
-#define uint32_t unsigned long
+#define SIZEOF_INT 4
+#define SIZEOF_LONG 4
 
 #endif /* MACHINE_H  */

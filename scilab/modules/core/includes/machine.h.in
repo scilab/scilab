@@ -375,6 +375,12 @@
 /* Extension of a shared library */
 #undef SHARED_LIB_EXT
 
+/* The size of `int', as computed by sizeof. */
+#undef SIZEOF_INT
+
+/* The size of `long', as computed by sizeof. */
+#undef SIZEOF_LONG
+
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
 
@@ -462,24 +468,6 @@
 
 /* Defines PARAMS type */
 #include "PARAMS.h"
-
-/* Define uint32_t/int32_t */
-#undef SIZEOF_INT
-#undef SIZEOF_LONG
-
-#ifdef HAVE_STDINT_H
-# include <stdint.h>
-#else
-# if SIZEOF_LONG == 4
-#  define int32_t long
-#  define uint32_t unsigned long
-# elseif SIZEOF_INT == 4
-#  define int32_t int
-#  define uint32_t unsigned int
-# else
-#  error What a strange machine...
-# endif
-#endif
 
 #endif /* MACHINE_H  */
 
