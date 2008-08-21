@@ -46,7 +46,7 @@ static int filetype (int fd);
 int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,WavInfo *Wi, integer *ierr)
 {
   long i,size_max;
-#if defined(__alpha)|defined(__ia64__)
+#if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
   int buf[BUFSIZ];
 #else
   long buf[BUFSIZ];

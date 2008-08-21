@@ -33,7 +33,7 @@
  *  *buf++ = LEFT(datum,XXX) into 
  *  *buf++ = datum =  LEFT(datum,XXX) to force the result we want
  ****************************************************************/
-#if defined(__alpha)|defined(__ia64__)
+#if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
 int rawread(ft_t ft, int *buf, long int nsamp)
 #else 
 int rawread(ft_t ft, long int *buf, long int nsamp)
@@ -41,7 +41,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 
 {
   int count;
-#if defined(__alpha)|defined(__ia64__)
+#if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
   register int datum;
 #else
   register long datum;

@@ -281,7 +281,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
  * Place in buf[].
  * Return number of samples read.
  */
-#if defined(__alpha)|defined(__ia64__)
+#if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
 int wavread(ft_t ft,int *buf, long int len)
 #else 
 int wavread(ft_t ft, long int *buf, long int len)

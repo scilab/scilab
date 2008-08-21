@@ -250,7 +250,7 @@ IMPORT int soxpreview;	/* Preview mode: be fast and ugly */
 
 #include "machine.h" 
 
-#if defined(__alpha)|defined(__ia64__)
+#if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
 int wavread (ft_t ft, int *buf, long int len);
 #else
 int wavread (ft_t ft, long int *buf, long int len);
@@ -263,7 +263,7 @@ void wavstartwrite(ft_t ft);
 void wavstopwrite (ft_t ft);
 void wavwritehdr(ft_t ft);
 
-#if defined(__alpha)|defined(__ia64__)
+#if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
 int rawread (ft_t ft,int * buf,long nsamp);
 #else
 int rawread (ft_t ft,long * buf,long nsamp);
