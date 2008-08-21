@@ -13,7 +13,4 @@
 // <-- Short Description -->
 //    @?
 
-res = execstr("A = 1@1;","errcatch");
-B   = lasterror();
-
-if B <> "Missing operator, comma, or semicolon." then pause,end
+if execstr("A = 1@1;","errcatch") == 0 then pause,end
