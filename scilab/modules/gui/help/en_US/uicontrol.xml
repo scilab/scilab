@@ -470,6 +470,18 @@
           has only effect with Text and CheckBoxes styles.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>Visible</term>
+
+        <listitem>
+          <para>{on} | off</para>
+
+          <para>Set the visibility of the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is visible, 
+          but if this property is set to <literal>"off"</literal>, the uicontrol will not appear in its parent figure.</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 
