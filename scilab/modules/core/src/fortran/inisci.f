@@ -50,7 +50,7 @@ c     ippty: interfaces properties
 c     integer graphicsmodels
       logical first
       double precision dlamch
-      integer i,k,l,nc,mode(2),vsizg
+      integer i,k,l,nc,mode(2),vsizg,stacksize
       integer eps(nsiz),im(nsiz),exp(nsiz),pi(nsiz),bl(nsiz),io(nsiz)
       integer true(nsiz),false(nsiz),dollar(nsiz)
       integer idloc(nsiz)
@@ -183,9 +183,10 @@ c @TODO : What is 768 (512 + 256) ?
 
 c     .  memory allocation
 c     get default stackize from c
-      call getdefaultstacksize(stk(1))
+      call getdefaultstacksize(stacksize)
       offset=0
       call scimem(vsizr,offset)
+      stk(1) = stacksize
       lstk(1) =   offset+1
 c     . hard predefined variables
       goffset=0
