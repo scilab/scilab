@@ -14,7 +14,9 @@ Graphical User Interface:
  - GUI re-written in Java Swing:
         + Same GUI for all OS (Menubars, toolbars...)
         + Window docking available using FlexDock https://flexdock.dev.java.net/
- - Uicontrols are now Java objects and can be included in a graphic window with graphics
+ - Uicontrols are now Java objects: they can be included in a graphic window with graphics and are managed as graphic handles in Scilab
+ - Uimenus are now Java objects and are managed as graphic handles in Scilab
+ - Uimenus and Uicontrols can be saved and loaded like other graphic entities using save and load functions
  - Dialogs are now Java objects (x_message, x_dialog...)
  - Completion on variable and function names avaible using TAB key or CTRL-SPACE
 
