@@ -12,6 +12,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdint.h> 
 #include "mget.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
