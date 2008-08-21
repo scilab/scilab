@@ -597,6 +597,18 @@ function save_graphichandle(h,fd)
       mput(h.clip_box,'dl',fd) // clip_box
     end
     user_data=h.user_data;save(fd,user_data) // user_data
+    
+  case "uimenu"
+    mput(length(h.type),"c",fd);mput(ascii(h.type),"c",fd); // type
+    mput(bool2s(h.enable=="on"),"c",fd); // Enable
+    mput(size(h.foregroundcolor,'*'),"il",fd); // ForegroundColor (size)
+    mput(h.foregroundcolor,"dl",fd); // ForegroundColor (data)
+    mput(length(h.label),"c",fd);mput(ascii(h.label),"c",fd); // Label
+    mput(bool2s(h.visible=="on"),"c",fd); // Visible
+    mput(length(h.callback),"c",fd);mput(ascii(h.callback),"c",fd); // Callback
+    mput(h.callback_type,"il",fd); // Callback Type
+    mput(length(h.tag),"c",fd);mput(ascii(h.tag),"c",fd); // Tag
+    
   else
     warning("handle of type "+h.type+" unhandled")
   end

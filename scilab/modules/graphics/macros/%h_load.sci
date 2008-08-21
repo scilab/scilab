@@ -1218,6 +1218,20 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"clip_state",clip_state);
       load_user_data(fd) // user_data
     end
+    
+  case "uimenu"
+    if is_higher_than( [4 1 2 0] ) then
+      h = uimenu("parent", gcf());
+      h.enable = toggle(mget(1,"c",fd)); // Enable
+      ncolors = mget(1,"il",fd); // Foregroundcolor (size)
+      h.foregroundcolor = mget(ncolors,"dl",fd); // ForegroundColor (data)
+      h.label = ascii(mget(mget(1,"c",fd),"c",fd)); // Label
+      h.visible = toggle(mget(1,"c",fd)); // Visible
+      h.callback = ascii(mget(mget(1,"c",fd),"c",fd)); // Callback
+      h.callback_type = mget(1,"il",fd); // Callback Type
+      h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
+    end
+    
   else
       warning("type " +typ+" unhandled");
   end
