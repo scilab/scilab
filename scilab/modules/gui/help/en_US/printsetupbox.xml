@@ -21,23 +21,28 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-printsetupbox()
-status=printsetupbox()
-</synopsis>
+    printsetupbox()
+    status=printsetupbox()
+    </synopsis>
   </refsynopsisdiv>
+  
   <refsection>
     <title>Parameters</title>
+    <variablelist>
       <varlistentry>
         <term>status</term>
         <listitem>
           <para>Boolean: <emphasis>%T</emphasis> if the user clicked on the <literal>OK</literal> button, <emphasis>%F</emphasis> otherwise.</para>
         </listitem>
       </varlistentry>
+    </variablelist>
   </refsection>
+  
   <refsection>
     <title>Description</title>
     <para>Displays the built-in printing dialogbox and configure the printer.</para>
   </refsection>
+  
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
@@ -49,6 +54,7 @@ status=printsetupbox()
       </member>
     </simplelist>
   </refsection>
+  
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">
