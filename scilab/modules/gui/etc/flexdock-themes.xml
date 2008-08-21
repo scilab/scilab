@@ -19,10 +19,17 @@
             <property name="icon-map" value="scilab" />
         </titlebar-ui>
 
+	<icon-resource name="scilab.undock">
+		<property name="default" value="undock_default.png" />
+		<property name="active" value="undock_active.png" />
+		<property name="tooltip" value="Undock" handler="string" />
+	</icon-resource>
+
         <!-- List the available icon maps -->	
         <icon-map name="scilab">
             <property name="close" value="win32.close" />
             <property name="pin" value="win32.pin" />
+            <property name="undock" value="scilab.undock" />
         </icon-map>
     </theme>
     <!-- End Scilab -->

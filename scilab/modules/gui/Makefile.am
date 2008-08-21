@@ -230,7 +230,9 @@ etc/graphics_toolbar.xml \
 etc/helpbrowser_menubar.xml \
 etc/main_menubar.xml \
 etc/main_toolbar.xml \
-etc/flexdock-themes.xml
+etc/flexdock-themes.xml \
+etc/undock_active.png \
+etc/undock_default.png
 
 
 #### gui : gateway declaration ####

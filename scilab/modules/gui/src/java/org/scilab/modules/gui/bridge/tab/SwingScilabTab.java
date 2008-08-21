@@ -55,6 +55,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -91,6 +92,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		// Removed because make JOGL crash when "Unpin"
 		//this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
+		
 		this.setLayout(null);
 	}
 
@@ -783,6 +785,11 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public void setCallback(CallBack callback) {
 		callback.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
 		this.addAction(callback);
+		
+		/* Undock button */
+		SciUndockingAction undockAction = new SciUndockingAction(this); 
+		undockAction.putValue(Action.NAME, "undock");
+		this.addAction(undockAction);
 	}
 	
 	/**
