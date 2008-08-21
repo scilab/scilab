@@ -87,50 +87,6 @@ function [x,y] = polar2Cart(rho, theta)
 endfunction
 
 
-function [x,y] = decomposeCurvedFacet(rho0, rho1, theta0, theta1)
-  // approximate a curved facet into a set of rectangular ones
-  // rho0, rho1, theta0, theta1 defined the boundaries of the facet
-  // x and y are 4xnbDecompostion matrices. Each row of these matrices
-  // contains the X or Y coordinates of the 4 vertices of an approximating
-  // quad.
-  // The decomposition is performed along the theta angle
- 
-  nbDecomposition = 32; // number of approximation facets
-
-  [x0, y0] = polar2Cart(rho0, theta0);
-  x(1,1) = x0;
-  y(1,1) = y0;
-  [x1, y1] = polar2Cart(rho1, theta0);
-  x(2,1) = x1;
-  y(2,1) = y1;
-  for i=1:(nbDecomposition - 1)
-    t = i / nbDecomposition
-    // get an interpolated theta between theta0 and theta1
-    thetaInterp = t * theta1 + (1 - t) * theta0;
-    [x0, y0] = polar2Cart(rho1, thetaInterp);
-    x(3,i) = x0;
-    y(3,i) = y0;
-    [x1, y1] = polar2Cart(rho0, thetaInterp);
-    x(4,i) = x1;
-    y(4,i) = y1;
-
-    // the nexr quad first two points are the previous one last two
-    x(1,i+1) = x(4,i);
-    y(1,i+1) = y(4,i);
-    x(2,i+1) = x(3,i);
-    y(2,i+1) = y(3,i);
-  end
-
-  [x0, y0] = polar2Cart(rho1, theta1);
-  x(3,nbDecomposition) = x0;
-  y(3,nbDecomposition) = y0;
-  [x1, y1] = polar2Cart(rho0, theta1);
-  x(4,nbDecomposition) = x1;
-  y(4,nbDecomposition) = y1;
-
-endfunction
-
-
 function drawGrayplot(theta, rh, z)
 // draw only the colored part of the grayplot
 
@@ -138,37 +94,78 @@ function drawGrayplot(theta, rh, z)
 // In previous versions, it used arcs to perform this.
 // However, since arcs are drawn from the origin to the outside
 // there were overlapping and cause Z fighting in 3D.
-// Consequnelty we now decompose each curved facet into a set of rectangular
+// Consequenlty we now decompose each curved facet into a set of rectangular
 // facets.
 
 nbRho = size(rho,'*');
 nbTheta = size(theta,'*');
 
-xCoords = [];
-yCoords = [];
-colors = [];
+nbDecomposition = 32; // number of approximation facets
 
-// compute the 4xnbFacets matrices for plot 3d
-for i=1:(nbRho - 1)
-  for j =1:(nbTheta - 1);
-    // compute the decomposition of a curved facet
-    [xFacet, yFacet] = decomposeCurvedFacet(rho(i), rho(i + 1), theta(j), theta(j + 1));
-    xCoords = [xCoords, xFacet];
-    yCoords = [yCoords, yFacet];
-    colors = [colors, z(j,i) * ones(1,size(xFacet,2))];
+nbRefinedTheta = (nbTheta - 1) * nbDecomposition + 1;
+
+// first step decompose theta in smaller intervals
+// Actually compute cosTheta and sinTheta for speed
+cosTheta = zeros(1, nbRefinedTheta);
+sinTheta = zeros(1, nbRefinedTheta);
+
+// first values
+cosTheta(1) = cos(theta(1));
+sinTheta(1) = sin(theta(1));
+
+index = 2;
+for i=1:(nbTheta - 1)
+  for j=1:nbDecomposition
+    t = j / nbDecomposition;
+    interpolatedTheta = t * theta(i + 1) + (1 - t) * theta(i);
+    cosTheta(index) = cos(interpolatedTheta);
+    sinTheta(index) = sin(interpolatedTheta);
+    index = index + 1;
   end
 end
 
+
+nbQuadFacets = (nbRho - 1) * (nbRefinedTheta - 1);
+
+// allocate matrices
+xCoords = zeros(4, nbQuadFacets);
+yCoords = zeros(4, nbQuadFacets);
+colors = zeros(1, nbQuadFacets);
+
+index = 1;
+
+// compute the 4xnbFacets matrices for plot 3d
+for i=1:(nbRho - 1)
+  for j=1:(nbRefinedTheta - 1);
+    // get the 4 corners of a facet
+    xCoords(:,index) = [rho(i) * cosTheta(j)
+                        rho(i) * cosTheta(j + 1)
+                        rho(i + 1) * cosTheta(j + 1)
+                        rho(i + 1) * cosTheta(j)];
+
+    yCoords(:,index) = [rho(i) * sinTheta(j)
+                        rho(i) * sinTheta(j + 1)
+                        rho(i + 1) * sinTheta(j + 1)
+                        rho(i + 1) * sinTheta(j)];
+
+    // color is the same for each nbDecomposition facets
+    colors(index) = z(j / nbDecomposition + 1, i);
+
+    index = index + 1;
+  end
+end
+
+
 // flat plot
-zCoords = zeros(size(xCoords,1),size(xCoords,2));
+zCoords = zeros(4, nbQuadFacets);
 
-
-
+// disable line draing and hidden color
 plot3d(xCoords,yCoords,list(zCoords,colors));
 gPlot = gce();
 gPlot.color_mode = -1;
 gPlot.hiddencolor = 0;
 
+// restore 2d view
 axes = gca();
 axes.view = "2d";
 

@@ -32,6 +32,7 @@ List of missing/buggy features:
       be specified in degree/64.
     * The text_box property of text objects now refers to user coordinates even in axes_reverse mode.
     * Bode routine creates only the two needed axes instead of four in previous versions.
+    * graypolarplot routine is now constructed using a surface instead of arcs.
 
 - It is strongly recommended to update graphic cards drivers to the latest 
 	revision:
