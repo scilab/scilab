@@ -1427,12 +1427,11 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
                'Superblock name cannot contains ""-"" characters';
                '""-"" chars will be automatically substituted by ""_"" '])
     end
-
     rdnom = strsubst(rdnom,'-','_');
-
     //**
-    //** rpat=strsubst(rpat,'-','_');
-    //**
+    //** same process but done for the the directory folder 
+    rpat = strsubst(rpat,' ','_');
+    rpat = strsubst(rpat,'-','_');
 
     dirinfo=fileinfo(rpat)
     if dirinfo==[] then
@@ -1558,7 +1557,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   filestan=[rdnom+'_standalone' rdnom+'_act_sens_events' rdnom+'_Cblocks']
 
   if ok then
-    ok=buildnewblock(rdnom,files,filestan,libs,rpat,'','')
+    ok = buildnewblock(rdnom,files,filestan,libs,rpat,'','')
   end
 
   //**

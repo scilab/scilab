@@ -89,9 +89,9 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
       return;
     end
 
-    //** generate txt of makefile and get wright name
+    //** generate txt of makefile and get right name
     //** of the Makefile file
-    [Makename2, txt] = gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags); //** the Makefile is n
+    [Makename2, txt] = gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags);
 
     //** write text of the Makefile in the file called Makename
     ierr = execstr("mputl(txt,Makename2)",'errcatch')
@@ -143,7 +143,7 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
   
   else
     //**------------ Linux / Unix  -------------------------------------------
-    //** on Linux we change to the new "autotools" based model 
+    //** on Linux Scilab 5 uses an "autotools" based mechanism
 
     //** the input parameters are : "blknam", "files", "filestan", "libs", "rpat", "ldflags", cflags
     //** "blknam" : a prefix (the name 
@@ -161,7 +161,7 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     //** ways, so the code is splitted in two branches. 
     //** We plan to remove these differences - in a second phase - modifing the upper levels routines. 
      
-    //** the switch is done lloking inside at "filestan" : it is empty for Modelica ;) 
+    //** the switch is done looking inside at "filestan" : it is empty for Modelica ;) 
     //** BEWARE: "ilib_for_link" does NOT provide support for "standalone" applications !
 
     if filestan=="" then
@@ -173,24 +173,25 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
        chdir(TMPDIR);
 
        entry_names = blknam ;
-       file_names = files + ".c"  ;
+       file_names = files + ".c"  ; //** the new ilib_for_link accept .c extension 
        libs = libs ;
        flag = "c" ; //** "C" entry point / "C" source code  
        makename = "Makelib" ;
        loadername = "loader.sce" ;
        libname = "";
        ldflags = ldflags ;
-       //** BEWARE:
-       //**     1 - Remember to use WSCI for the Windows version
-       //**     2 - This setting OVERRIDE the original one 
-	   // source tree
-       cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include 
-	   if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-		 	// Binary version
-		 cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
-	   end
-       fflags = ""; //** no Fortran 
-       cc = ""; //** default "C" compiler 
+       //** BEWARE: default directory for source and binary versions are different ! 
+       //** if this dir exist means that someone has installed a Scilab binary version 
+       if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
+          //** Binary version
+	  cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
+       else	  
+          //** it is a source version 
+          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
+       end
+
+       fflags = ""; //** no additional Fortran flags 
+       cc = "";     //** default "C" compiler 
   
        disp("Compile and link Modelica generated C code"); 
 
@@ -200,41 +201,52 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
 
     else
      //** -------------- Scicos Super Block Compilation ---------------------------------------
-     //** Special note for SB : this code is a simplified version  
-     //**
-      
-      //** change dir to the TEMPDIR  
-      chdir(TMPDIR);
+     //** 
+       //** change dir to the TEMPDIR  
+       chdir(TMPDIR);
+ 
+       //** Copy all the source generated file in the TMPDIR because 
+       //** TMPDIR is the "ilib_for_link" default 
+       cmd_line = "cp "+rpat+"/*"+" "+"." ;
+       unix(cmd_line); 
 
-      //**---------------------------------------------------------------------
-      //** -------- This POC works for Scicos code generation -----------------
-      //** 
-      //** Copy all the source generated file in the TMPDIR because 
-      //** TMPDIR is the "ilib_for_link" default 
-      cmd_line = "cp "+rpat+"/*"+" "+"." ;
-      unix(cmd_line); 
+       //** prepare the parameters 
+       //** BEWARE : some settings are "hard coded" 
 
-      //** prepare the parameters 
-      //** BEWARE :
-      //**       1 - This setting is "hard coded" 
-      //**       2 - "C" blocks are not yet supported 
-      entry_names = [files(1), files(1)+"_actuator", files(1)+"_sensor"]; 
-      file_names = files + ".o"  ;
-      libs  = libs  ;
-      flag = "c" ; //** "C" entry point / "C" source code  
+       entry_names = [files(1), files(1)+"_actuator", files(1)+"_sensor"]; 
+       
+       file_names = files + ".c"  ;
+       libs = libs ;
+       flag = "c" ; //** "C" entry point / "C" source code  
+       makename = "Makelib" ;
+       loadername = "loader.sce" ;
+       libname = "";
+       ldflags = ldflags ;
+       //** BEWARE: default directory for source and binary versions are different ! 
+       //** if this dir exist means that someone has installed a binary version 
+       if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
+          //** Binary version
+	  cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
+       else	  
+          //** it is a source version 
+          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
+       end
 
+       fflags = ""; //** no additional Fortran flags 
+       cc = "";     //** default "C" compiler 
+    
       message(["BEWARE: if you want to reload this simulation,", ...
                "you need to MANUALLY reload - for each Compiled Super Block - ",...
                "the shared library using ''exec loader.sce'' AND",...
                "the interfacing function ''*.sci''              ",...
                "in the corresponding directory ", ...
                "   _BEFORE_ ",...
-               "running ''scicos();'' "]);
+               "running ''scicos();'' "]);  
 
       disp("Compile and link Scicos generated C code"); 
 
-      libn = ilib_for_link(entry_names, file_names, libs, flag); 
-      
+       libn = ilib_for_link(entry_names, file_names, libs, flag, makename, loadername, libname, ldflags, cflags, fflags, cc); 
+     
       //** This is just a patch because "ilib_for_link" has some issues outside "TMPDIR"
       //** copy the shared library and the loader where the Scicos code generated is 
       //** 
