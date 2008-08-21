@@ -77,7 +77,7 @@ execstr(expr);
 
 // Demo III.5
 expr=["xset(''line mode'',0);";
-"xlfont(''-*-helvetica-bold-r-normal--*-%s0-*-*-p-*-*-1'',6);";
+"xlfont(''SansSerif'',6);";
 "xset(''font'',6,3);";
 "xstring(100,260,''helVB'',0,1);"];
 x_message(["[III.5] Loading a new font hlevB is now font 6";expr]);
