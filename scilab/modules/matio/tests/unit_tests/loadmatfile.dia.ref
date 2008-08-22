@@ -13,7 +13,7 @@ binFormats = ["-v4";"-v6";"-v7"];
 for formatIndex = 1:size(binFormats, "*")
   matFiles = gsort(listfiles("SCI/modules/matio/tests/unit_tests/*" + binFormats(formatIndex) + ".mat"), "r", "i");
   for fileIndex=1:size(matFiles, "*")
-    disp(matFiles(fileIndex));
+    disp(fileparts(matFiles(fileIndex), "fname") + fileparts(matFiles(fileIndex), "extension"));
     loadmatfile(matFiles(fileIndex));
   end
   //
@@ -186,391 +186,289 @@ end
   if or(eye100x100 <> eye(100,100)) then bugmes();quit;end
 end
  
- SCI/modules/matio/tests/unit_tests/cplxdoublecolvecto 
-      r-v4.mat                                                          
+ cplxdoublecolvector-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublematrix-v 
-      4.mat                                                             
+ cplxdoublematrix-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublerowvecto 
-      r-v4.mat                                                          
+ cplxdoublerowvector-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublescalar-v 
-      4.mat                                                             
+ cplxdoublescalar-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/emptydoublematrix- 
-      v4.mat                                                            
+ emptydoublematrix-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/emptystringmatrix- 
-      v4.mat                                                            
+ emptystringmatrix-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/eye100x100-v4.mat  
+ eye100x100-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublecolvecto 
-      r-v4.mat                                                          
+ realdoublecolvector-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublematrix-v 
-      4.mat                                                             
+ realdoublematrix-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublerowvecto 
-      r-v4.mat                                                          
+ realdoublerowvector-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublescalar-v 
-      4.mat                                                             
+ realdoublescalar-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/stringcolvector-v4 
-      .mat                                                              
+ stringcolvector-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/stringmatrix-v4.ma 
-      t                                                                 
+ stringmatrix-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/stringrowvector-v4 
-      .mat                                                              
+ stringrowvector-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/stringscalar-v4.ma 
-      t                                                                 
+ stringscalar-v4.mat   
  
- SCI/modules/matio/tests/unit_tests/arraycell-v6.mat   
+ arraycell-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/arraystruct-v6.mat 
+ arraystruct-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/colcell-v6.mat   
+ colcell-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/colstruct-v6.mat   
+ colstruct-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/complexdoubleNDarr 
-      ay-v6.mat                                                         
+ complexdoubleNDarray-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublecolvecto 
-      r-v6.mat                                                          
+ cplxdoublecolvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublematrix-v 
-      6.mat                                                             
+ cplxdoublematrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublerowvecto 
-      r-v6.mat                                                          
+ cplxdoublerowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublescalar-v 
-      6.mat                                                             
+ cplxdoublescalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyNDarray-v6.ma 
-      t                                                                 
+ emptyNDarray-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptycell-v6.mat   
+ emptycell-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptydoublematrix- 
-      v6.mat                                                            
+ emptydoublematrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyint16matrix-v 
-      6.mat                                                             
+ emptyint16matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyint32matrix-v 
-      6.mat                                                             
+ emptyint32matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyint8matrix-v6 
-      .mat                                                              
+ emptyint8matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptysparse-v6.mat 
+ emptysparse-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptystringmatrix- 
-      v6.mat                                                            
+ emptystringmatrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptystruct-v6.mat 
+ emptystruct-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyuint16matrix- 
-      v6.mat                                                            
+ emptyuint16matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyuint32matrix- 
-      v6.mat                                                            
+ emptyuint32matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyuint8matrix-v 
-      6.mat                                                             
+ emptyuint8matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/eye100x100-v6.mat  
+ eye100x100-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int16colvector-v6. 
-      mat                                                               
+ int16colvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int16matrix-v6.mat 
+ int16matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int16rowvector-v6. 
-      mat                                                               
+ int16rowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int16scalar-v6.mat 
+ int16scalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int32colvector-v6. 
-      mat                                                               
+ int32colvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int32matrix-v6.mat 
+ int32matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int32rowvector-v6. 
-      mat                                                               
+ int32rowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int32scalar-v6.mat 
+ int32scalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int8colvector-v6.m 
-      at                                                                
+ int8colvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int8matrix-v6.mat  
+ int8matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int8rowvector-v6.m 
-      at                                                                
+ int8rowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/int8scalar-v6.mat  
+ int8scalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realcolvectorspars 
-      e-v6.mat                                                          
+ realcolvectorsparse-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoubleNDarray- 
-      v6.mat                                                            
+ realdoubleNDarray-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublecolvecto 
-      r-v6.mat                                                          
+ realdoublecolvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublematrix-v 
-      6.mat                                                             
+ realdoublematrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublerowvecto 
-      r-v6.mat                                                          
+ realdoublerowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublescalar-v 
-      6.mat                                                             
+ realdoublescalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realmatrixsparse-v 
-      6.mat                                                             
+ realmatrixsparse-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realrowvectorspars 
-      e-v6.mat                                                          
+ realrowvectorsparse-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/realscalarsparse-v 
-      6.mat                                                             
+ realscalarsparse-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/rowcell-v6.mat   
+ rowcell-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/rowstruct-v6.mat   
+ rowstruct-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/scalarcell-v6.mat  
+ scalarcell-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/scalarstruct-v6.ma 
-      t                                                                 
+ scalarstruct-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/stringcell-v6.mat  
+ stringcell-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/stringcolvector-v6 
-      .mat                                                              
+ stringcolvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/stringmatrix-v6.ma 
-      t                                                                 
+ stringmatrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/stringrowvector-v6 
-      .mat                                                              
+ stringrowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/stringscalar-v6.ma 
-      t                                                                 
+ stringscalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16colvector-v6 
-      .mat                                                              
+ uint16colvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16matrix-v6.ma 
-      t                                                                 
+ uint16matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16rowvector-v6 
-      .mat                                                              
+ uint16rowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16scalar-v6.ma 
-      t                                                                 
+ uint16scalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32colvector-v6 
-      .mat                                                              
+ uint32colvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32matrix-v6.ma 
-      t                                                                 
+ uint32matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32rowvector-v6 
-      .mat                                                              
+ uint32rowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32scalar-v6.ma 
-      t                                                                 
+ uint32scalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8colvector-v6. 
-      mat                                                               
+ uint8colvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8matrix-v6.mat 
+ uint8matrix-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8rowvector-v6. 
-      mat                                                               
+ uint8rowvector-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8scalar-v6.mat 
+ uint8scalar-v6.mat   
  
- SCI/modules/matio/tests/unit_tests/arraycell-v7.mat   
+ arraycell-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/arraystruct-v7.mat 
+ arraystruct-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/colcell-v7.mat   
+ colcell-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/colstruct-v7.mat   
+ colstruct-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/complexdoubleNDarr 
-      ay-v7.mat                                                         
+ complexdoubleNDarray-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublecolvecto 
-      r-v7.mat                                                          
+ cplxdoublecolvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublematrix-v 
-      7.mat                                                             
+ cplxdoublematrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublerowvecto 
-      r-v7.mat                                                          
+ cplxdoublerowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/cplxdoublescalar-v 
-      7.mat                                                             
+ cplxdoublescalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyNDarray-v7.ma 
-      t                                                                 
+ emptyNDarray-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptycell-v7.mat   
+ emptycell-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptydoublematrix- 
-      v7.mat                                                            
+ emptydoublematrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyint16matrix-v 
-      7.mat                                                             
+ emptyint16matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyint32matrix-v 
-      7.mat                                                             
+ emptyint32matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyint8matrix-v7 
-      .mat                                                              
+ emptyint8matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptysparse-v7.mat 
+ emptysparse-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptystringmatrix- 
-      v7.mat                                                            
+ emptystringmatrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptystruct-v7.mat 
+ emptystruct-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyuint16matrix- 
-      v7.mat                                                            
+ emptyuint16matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyuint32matrix- 
-      v7.mat                                                            
+ emptyuint32matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/emptyuint8matrix-v 
-      7.mat                                                             
+ emptyuint8matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/eye100x100-v7.mat  
+ eye100x100-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int16colvector-v7. 
-      mat                                                               
+ int16colvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int16matrix-v7.mat 
+ int16matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int16rowvector-v7. 
-      mat                                                               
+ int16rowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int16scalar-v7.mat 
+ int16scalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int32colvector-v7. 
-      mat                                                               
+ int32colvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int32matrix-v7.mat 
+ int32matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int32rowvector-v7. 
-      mat                                                               
+ int32rowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int32scalar-v7.mat 
+ int32scalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int8colvector-v7.m 
-      at                                                                
+ int8colvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int8matrix-v7.mat  
+ int8matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int8rowvector-v7.m 
-      at                                                                
+ int8rowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/int8scalar-v7.mat  
+ int8scalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realcolvectorspars 
-      e-v7.mat                                                          
+ realcolvectorsparse-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoubleNDarray- 
-      v7.mat                                                            
+ realdoubleNDarray-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublecolvecto 
-      r-v7.mat                                                          
+ realdoublecolvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublematrix-v 
-      7.mat                                                             
+ realdoublematrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublerowvecto 
-      r-v7.mat                                                          
+ realdoublerowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realdoublescalar-v 
-      7.mat                                                             
+ realdoublescalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realmatrixsparse-v 
-      7.mat                                                             
+ realmatrixsparse-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realrowvectorspars 
-      e-v7.mat                                                          
+ realrowvectorsparse-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/realscalarsparse-v 
-      7.mat                                                             
+ realscalarsparse-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/rowcell-v7.mat   
+ rowcell-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/rowstruct-v7.mat   
+ rowstruct-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/scalarcell-v7.mat  
+ scalarcell-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/scalarstruct-v7.ma 
-      t                                                                 
+ scalarstruct-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/stringcell-v7.mat  
+ stringcell-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/stringcolvector-v7 
-      .mat                                                              
+ stringcolvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/stringmatrix-v7.ma 
-      t                                                                 
+ stringmatrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/stringrowvector-v7 
-      .mat                                                              
+ stringrowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/stringscalar-v7.ma 
-      t                                                                 
+ stringscalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16colvector-v7 
-      .mat                                                              
+ uint16colvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16matrix-v7.ma 
-      t                                                                 
+ uint16matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16rowvector-v7 
-      .mat                                                              
+ uint16rowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint16scalar-v7.ma 
-      t                                                                 
+ uint16scalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32colvector-v7 
-      .mat                                                              
+ uint32colvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32matrix-v7.ma 
-      t                                                                 
+ uint32matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32rowvector-v7 
-      .mat                                                              
+ uint32rowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint32scalar-v7.ma 
-      t                                                                 
+ uint32scalar-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8colvector-v7. 
-      mat                                                               
+ uint8colvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8matrix-v7.mat 
+ uint8matrix-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8rowvector-v7. 
-      mat                                                               
+ uint8rowvector-v7.mat   
  
- SCI/modules/matio/tests/unit_tests/uint8scalar-v7.mat 
+ uint8scalar-v7.mat   
 // TODO: read all variables from a single file ?

@@ -17,7 +17,7 @@ binFormats = ["-v4";"-v6";"-v7"];
 for formatIndex = 1:size(binFormats, "*")
   matFiles = gsort(listfiles("SCI/modules/matio/tests/unit_tests/*" + binFormats(formatIndex) + ".mat"), "r", "i");
   for fileIndex=1:size(matFiles, "*")
-    disp(matFiles(fileIndex));
+    disp(fileparts(matFiles(fileIndex), "fname") + fileparts(matFiles(fileIndex), "extension"));
     loadmatfile(matFiles(fileIndex));
   end
 
