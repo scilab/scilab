@@ -17,5 +17,5 @@
 // not give the result 1 as desired
 f = figure(1);
 h = uicontrol("tag","F");
-if isempty(findobj("tag","F")) then pause; end
-if findobj("tag","F")<>h then pause; end
+if isempty(findobj("tag","F")) then bugmes();quit;end
+if findobj("tag","F")<>h then bugmes();quit;end

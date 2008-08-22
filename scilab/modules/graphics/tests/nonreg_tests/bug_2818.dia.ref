@@ -16,4 +16,4 @@
 clf();
 axes = gca();
 // no box should be present
-if (axes.box == "on") then pause; end;
+if (axes.box == "on") then bugmes();quit;end;

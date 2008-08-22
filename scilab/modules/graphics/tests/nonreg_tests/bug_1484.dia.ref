@@ -17,4 +17,4 @@ xclip(rect);
 WARNING : Function xclip is obsolete.
 WARNING : Please use clip_state and clip_box instead.
 
-if (xget("clipping") <> rect) then pause; end
+if (xget("clipping") <> rect) then bugmes();quit;end

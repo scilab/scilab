@@ -26,11 +26,11 @@ load(TMPDIR + "savePlot.scg");
 axes = gca();
 // check axes properties
 surf1 = axes.children(1);
-if (surf1.clip_box <> [1, 2, 3, 4]) then pause; end
-if (surf1.clip_state <> "on") then pause; end
+if (surf1.clip_box <> [1, 2, 3, 4]) then bugmes();quit;end
+if (surf1.clip_state <> "on") then bugmes();quit;end
 surf2 = axes.children(2);
-if (surf2.clip_box <> []) then pause; end
-if (surf2.clip_state <> "clipgrf") then pause; end
+if (surf2.clip_box <> []) then bugmes();quit;end
+if (surf2.clip_state <> "clipgrf") then bugmes();quit;end
 // same for grayplot
 clf();
 x = 0:10;
@@ -51,11 +51,11 @@ load(TMPDIR + "savePlot.scg");
 axes = gca();
 // check axes properties
 surf1 = axes.children(1);
-if (surf1.clip_box <> [1, 2, 3, 4]) then pause; end
-if (surf1.clip_state <> "on") then pause; end
+if (surf1.clip_box <> [1, 2, 3, 4]) then bugmes();quit;end
+if (surf1.clip_state <> "on") then bugmes();quit;end
 surf2 = axes.children(2);
-if (surf2.clip_box <> []) then pause; end
-if (surf2.clip_state <> "clipgrf") then pause; end
+if (surf2.clip_box <> []) then bugmes();quit;end
+if (surf2.clip_state <> "clipgrf") then bugmes();quit;end
 // same for Matplot
 clf();
 x = 0:10;
@@ -76,11 +76,11 @@ load(TMPDIR + "savePlot.scg");
 axes = gca();
 // check axes properties
 surf1 = axes.children(1);
-if (surf1.clip_box <> [1, 2, 3, 4]) then pause; end
-if (surf1.clip_state <> "on") then pause; end
+if (surf1.clip_box <> [1, 2, 3, 4]) then bugmes();quit;end
+if (surf1.clip_state <> "on") then bugmes();quit;end
 surf2 = axes.children(2);
-if (surf2.clip_box <> []) then pause; end
-if (surf2.clip_state <> "clipgrf") then pause; end
+if (surf2.clip_box <> []) then bugmes();quit;end
+if (surf2.clip_state <> "clipgrf") then bugmes();quit;end
 // same for fec
 clf();
 x = 0:10;
@@ -103,8 +103,8 @@ load(TMPDIR + "savePlot.scg");
 axes = gca();
 // check axes properties
 surf1 = axes.children(1).children(1);
-if (surf1.clip_box <> [1, 2, 3, 4]) then pause; end
-if (surf1.clip_state <> "on") then pause; end
+if (surf1.clip_box <> [1, 2, 3, 4]) then bugmes();quit;end
+if (surf1.clip_state <> "on") then bugmes();quit;end
 surf2 = axes.children(2).children(1);
-if (surf2.clip_box <> []) then pause; end
-if (surf2.clip_state <> "clipgrf") then pause; end
+if (surf2.clip_box <> []) then bugmes();quit;end
+if (surf2.clip_state <> "clipgrf") then bugmes();quit;end

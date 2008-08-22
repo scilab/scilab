@@ -21,4 +21,4 @@ delete(h);
 // a call to h should not open a window
 if is_handle_valid(h)<>%f then bugmes();quit;end;
 // no window should have been created
-if (winsid() <> []) then pause; end
+if (winsid() <> []) then bugmes();quit;end

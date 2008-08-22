@@ -17,4 +17,4 @@
 name = 'Something';
 my_figure_handle             = scf(10);
 my_figure_handle.figure_name = name;
-if (my_figure_handle.figure_name <> name) then pause; end;
+if (my_figure_handle.figure_name <> name) then bugmes();quit;end;

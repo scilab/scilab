@@ -20,4 +20,4 @@ my_axis = gca();
 if my_axis.rotation_angles <> [70 70] then bugmes();quit;end;
 // should not change info message
 my_axe.rotation_angles = [70, 70];
-if (my_fig.info_message <> infoMessage) then pause; end
+if (my_fig.info_message <> infoMessage) then bugmes();quit;end

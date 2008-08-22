@@ -11,4 +11,4 @@
 //
 // <-- Short Description -->
 //    hypermatrix insertion problem
-if execstr("S=[];for k=1:5,S(1:2,1:3,k)=rand(2,3);end","errcatch")<>0 then pause; end
+if execstr("S=[];for k=1:5,S(1:2,1:3,k)=rand(2,3);end","errcatch")<>0 then bugmes();quit;end

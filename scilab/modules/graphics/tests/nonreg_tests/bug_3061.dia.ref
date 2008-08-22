@@ -26,7 +26,7 @@ fig = gcf();
 axesSize = fig.axes_size;
 // check that the label is drawn on top of the canvas and visible
 for i = 1:4
-  if (pixPos(i,2) < 0 | pixPos(i,2) > axesSize(2) * 0.1) then pause; end
+  if (pixPos(i,2) < 0 | pixPos(i,2) > axesSize(2) * 0.1) then bugmes();quit;end
 end
 // second test
 // create two plots
@@ -41,7 +41,7 @@ for i = 1:4
 end
 // check that the label is drawn on top of the canvas and visible
 for i = 1:4
-  if (pixPos(i,2) < 0 | pixPos(i,2) > axesSize(2) * 0.1) then pause; end
+  if (pixPos(i,2) < 0 | pixPos(i,2) > axesSize(2) * 0.1) then bugmes();quit;end
 end
 // check that title of a1 is in the middle of the canvas
 subplot(212);
@@ -52,5 +52,5 @@ for i = 1:4
 end
 // check that the label is drawn on top of the canvas and visible
 for i = 1:4
-  if (pixPos(i,2) < axesSize(2) * 0.4 | pixPos(i,2) > axesSize(2) * 0.6) then pause; end
+  if (pixPos(i,2) < axesSize(2) * 0.4 | pixPos(i,2) > axesSize(2) * 0.6) then bugmes();quit;end
 end

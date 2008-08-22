@@ -19,7 +19,7 @@ x=linspace(-%pi,%pi,100);
 plot2d(x,sin(x));
 axes = gca();
 // axes box should be off
-if (axes.box <> "off") then pause; end;
+if (axes.box <> "off") then bugmes();quit;end;
 // reset default model axes
 sda();
 clf();
@@ -28,7 +28,7 @@ axes.box="off";
 x=linspace(-%pi,%pi,100);
 plot2d(x,sin(x));
 // axes box should be off
-if (axes.box <> "off") then pause; end
+if (axes.box <> "off") then bugmes();quit;end
 // for plot
 sda();
 dAxes = gda();
@@ -38,7 +38,7 @@ clf();
 plot(1:10);
 axes = gca();
 // box should be "off" since axes at at origin
-if (axes.box <> "off") then pause; end
+if (axes.box <> "off") then bugmes();quit;end
 // for plot
 sda();
 clf();
@@ -48,4 +48,4 @@ dAxes.y_location = "left";
 plot(1:10);
 axes = gca();
 // box should be "on"
-if (axes.box <> "on") then pause; end
+if (axes.box <> "on") then bugmes();quit;end

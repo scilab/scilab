@@ -275,7 +275,7 @@ PS=(1:N)'/N;
 // test fo perm
 N=1000;
 Mat=grand(N,'prm',[1:10]');
-if sum([1:10]')/10 - sum(Mat,'c')/N > 0 then pause;end
+if sum([1:10]')/10 - sum(Mat,'c')/N > 0 then bugmes();quit;end
 // test for nbn
 N=10000;A=5;B=0.7;
 Rdev=grand(1,N,'nbn',A,B);

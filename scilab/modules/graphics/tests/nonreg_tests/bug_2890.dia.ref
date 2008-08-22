@@ -16,7 +16,7 @@ x=logspace(-2,2,100);
 plot(x,x);
 a=gca();a.log_flags='ll';
 // check that there is ticks along X and Y axes
-if (a.x_ticks.labels == []) then pause;end;
-if (a.x_ticks.locations == []) then pause;end;
-if (a.y_ticks.labels == []) then pause;end;
-if (a.x_ticks.locations == []) then pause;end;
+if (a.x_ticks.labels == []) then bugmes();quit;end;
+if (a.x_ticks.locations == []) then bugmes();quit;end;
+if (a.y_ticks.labels == []) then bugmes();quit;end;
+if (a.x_ticks.locations == []) then bugmes();quit;end;

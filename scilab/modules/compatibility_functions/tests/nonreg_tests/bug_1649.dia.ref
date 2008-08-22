@@ -26,4 +26,4 @@
 //     53.    54.    55.    56.
 //
 z = ['1' '2' '3' '4'; '5' '6' '7' '8'];
-if or(asciimat(z)<>[49 50 51 52 ; 53 54 55 56]) then pause;end
+if or(asciimat(z)<>[49 50 51 52 ; 53 54 55 56]) then bugmes();quit;end

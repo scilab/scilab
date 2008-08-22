@@ -29,4 +29,4 @@ plot(x,f)
  Error 27 at line 0 : Division by zero...   
 plot(x,x)
 // check we are not in drawlater mode anymore
-if (curFig.immediate_drawing <> "on") then pause; end
+if (curFig.immediate_drawing <> "on") then bugmes();quit;end

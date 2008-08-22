@@ -13,7 +13,7 @@
 //    mprintf is broken
 colors=["red";"green";"blue";"pink";"black"];
 RGB=[1 0 0;0 1 0;0 0 1;1 0.75 0.75;0 0 0];
-if execstr("mprintf(""%d\t%s\t%f\t%f\t%f\n"",(1:5)'',colors,RGB);", "errcatch")<>0 then pause; end
+if execstr("mprintf(""%d\t%s\t%f\t%f\t%f\n"",(1:5)'',colors,RGB);", "errcatch")<>0 then bugmes();quit;end
 1	red	1.000000	0.000000	0.000000
 2	green	0.000000	1.000000	0.000000
 3	blue	0.000000	0.000000	1.000000

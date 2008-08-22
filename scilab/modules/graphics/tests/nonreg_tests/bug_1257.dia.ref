@@ -24,4 +24,4 @@ subplot(1,2,2)
 axes1 = f.children(1);
 axes2 = f.children(2);
 axes1.rotation_angles = [20,30];
-if (axes2.rotation_angles <> axes1.rotation_angles) then pause; end
+if (axes2.rotation_angles <> axes1.rotation_angles) then bugmes();quit;end

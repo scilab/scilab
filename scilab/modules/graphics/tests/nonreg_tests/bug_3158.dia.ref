@@ -21,4 +21,4 @@ zoom_rect([0.5,0.5,0.6,0.6]);
 a.margins = [0,0,0,0];
 // get user coordinates of the upper left point of the window
 [x, y] = xchange(0, 0, "i2f");
-if ( abs(x - 0.5) > 0.01 | abs(y - 0.6) > 0.01) then pause;end
+if ( abs(x - 0.5) > 0.01 | abs(y - 0.6) > 0.01) then bugmes();quit;end

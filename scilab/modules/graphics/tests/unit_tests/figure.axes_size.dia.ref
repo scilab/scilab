@@ -16,8 +16,8 @@ my_default_axes_size   = my_figure.axes_size;
 // auto_resize = "on"
 my_figure.auto_resize = "on";
 my_figure.axes_size = my_default_axes_size + 200;
-if or( my_figure.figure_size <> (my_default_figure_size + 200) ) then pause; end
-if or( my_figure.axes_size   <> (my_default_axes_size   + 200) ) then pause; end
+if or( my_figure.figure_size <> (my_default_figure_size + 200) ) then bugmes();quit;end
+if or( my_figure.axes_size   <> (my_default_axes_size   + 200) ) then bugmes();quit;end
 // Delete
 delete(my_figure);
 // Test 2 : auto_resize = "off"
@@ -31,7 +31,7 @@ my_default_axes_size   = my_figure.axes_size;
 // auto_resize = "on"
 my_figure.auto_resize = "off";
 my_figure.axes_size = my_default_axes_size + 200;
-if or( my_figure.figure_size <> my_default_figure_size) then pause; end
-if or( my_figure.axes_size   <> (my_default_axes_size + 200) ) then pause; end
+if or( my_figure.figure_size <> my_default_figure_size) then bugmes();quit;end
+if or( my_figure.axes_size   <> (my_default_axes_size + 200) ) then bugmes();quit;end
 // Delete
 delete(my_figure);

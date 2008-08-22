@@ -31,5 +31,5 @@ WARNING : Please use clip_state and clip_box instead.
 xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));
 // check that xsegs is clipped
 segs = gce();
-if (segs.clip_state <> "on") then pause; end;
-if (segs.clip_box <> clipBox) then pause; end
+if (segs.clip_state <> "on") then bugmes();quit;end;
+if (segs.clip_box <> clipBox) then bugmes();quit;end

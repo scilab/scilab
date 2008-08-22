@@ -21,10 +21,10 @@ e.color_flag // valeur 2 ok
  
     2.  
 errorNum = execstr("e.color_flag=2", "errcatch"); //message d'erreur : bug
-if (errorNum <> 0) then pause; end;
+if (errorNum <> 0) then bugmes();quit;end;
 e.cdata_mapping // valeur direct=ok
  ans  =
  
  direct   
 errorNum = execstr("e.cdata_mapping=''direct''", "errcatch"); //message d'erreur : bug
-if (errorNum <> 0) then pause; end;
+if (errorNum <> 0) then bugmes();quit;end;

@@ -21,5 +21,5 @@ legends(["Circle with radius 1";..
          "Circle with radius 2";..
          "Circle with radius 5"],..
          [1,5,6],opt="below");
-if (ha.isoview <> "on") then pause; end
+if (ha.isoview <> "on") then bugmes();quit;end
 // check that the axes are still in isoview mode

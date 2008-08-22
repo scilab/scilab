@@ -43,16 +43,16 @@ axesBounds4 = axes4.axes_bounds;
 subplot(3,3,4);
 plot2d(T,T);
 // check that data bounds did not change for other plots
-if (axes1.data_bounds <> dataBounds1) then pause; end;
-if (axes2.data_bounds <> dataBounds2) then pause; end;
-if (axes3.data_bounds <> dataBounds3) then pause; end;
+if (axes1.data_bounds <> dataBounds1) then bugmes();quit;end;
+if (axes2.data_bounds <> dataBounds2) then bugmes();quit;end;
+if (axes3.data_bounds <> dataBounds3) then bugmes();quit;end;
 // margins should not have change for any of plots
-if (axes1.margins <> margins1) then pause; end;
-if (axes2.margins <> margins2) then pause; end;
-if (axes3.margins <> margins3) then pause; end;
-if (axes4.margins <> margins4) then pause; end;
+if (axes1.margins <> margins1) then bugmes();quit;end;
+if (axes2.margins <> margins2) then bugmes();quit;end;
+if (axes3.margins <> margins3) then bugmes();quit;end;
+if (axes4.margins <> margins4) then bugmes();quit;end;
 // axes_bounds also
-if (axes1.axes_bounds <> axesBounds1) then pause; end;
-if (axes2.axes_bounds <> axesBounds2) then pause; end;
-if (axes3.axes_bounds <> axesBounds3) then pause; end;
-if (axes4.axes_bounds <> axesBounds4) then pause; end;
+if (axes1.axes_bounds <> axesBounds1) then bugmes();quit;end;
+if (axes2.axes_bounds <> axesBounds2) then bugmes();quit;end;
+if (axes3.axes_bounds <> axesBounds3) then bugmes();quit;end;
+if (axes4.axes_bounds <> axesBounds4) then bugmes();quit;end;

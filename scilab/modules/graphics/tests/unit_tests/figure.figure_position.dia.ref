@@ -11,6 +11,6 @@ clf(my_figure,"reset");
 // Get default value
 my_df_figure_position = my_figure.figure_position;
 my_figure.figure_position = my_df_figure_position + 100;
-if or( my_figure.figure_position <> (my_df_figure_position + 100) ) then pause; end
+if or( my_figure.figure_position <> (my_df_figure_position + 100) ) then bugmes();quit;end
 // Delete
 delete(my_figure);

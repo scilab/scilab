@@ -30,6 +30,6 @@ for k=1:nbComputation, show_pixmap(),free=[free,getmemory()];end
 // compute used memory during compuations
 usedMemory = free(1) - free(nbComputation);
 // 5 mega
-if (usedMemory > 5000) then pause; end
+if (usedMemory > 5000) then bugmes();quit;end
 Type 'resume' or 'abort' to return to standard level prompt.
 

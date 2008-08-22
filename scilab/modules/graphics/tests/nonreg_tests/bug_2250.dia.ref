@@ -22,5 +22,5 @@ save(pathconvert(TMPDIR+"/bug_2250.scg",%f), f)
 delete(f)
 load(pathconvert(TMPDIR+"/bug_2250.scg",%f))
 figureloaded = gcf();
-if figureloaded.background<>backgroundvariable then pause; end
-if figureloaded.user_data<>userdatavariable then pause;end
+if figureloaded.background<>backgroundvariable then bugmes();quit;end
+if figureloaded.user_data<>userdatavariable then bugmes();quit;end

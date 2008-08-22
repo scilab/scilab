@@ -48,4 +48,4 @@ CallbackType = -1
 Userdata = []
 Tag = 
 // Now type something in the entry box
-if execstr("get(h,""string"")", "errcatch")<>0 then pause; end
+if execstr("get(h,""string"")", "errcatch")<>0 then bugmes();quit;end

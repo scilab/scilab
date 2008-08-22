@@ -18,6 +18,6 @@ plot2d();
 clf(f4,'reset');
 defaultFig = gdf();
 // check that axes_size are set to default
-if (f4.axes_size <> defaultFig.axes_size) then pause; end;
+if (f4.axes_size <> defaultFig.axes_size) then bugmes();quit;end;
 // check that figure is empty
-if (f4.children.children <> [] ) then pause; end;
+if (f4.children.children <> [] ) then bugmes();quit;end;

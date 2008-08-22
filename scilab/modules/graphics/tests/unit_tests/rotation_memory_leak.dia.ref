@@ -17,4 +17,4 @@ endFreeMemory = getmemory();
 // not much should have been allocated.
 memoryIncrease = beginFreeMemory - endFreeMemory;
 // let say that the rotation should not use more than 10 Meg
-if (memoryIncrease > 10000) then pause; end
+if (memoryIncrease > 10000) then bugmes();quit;end

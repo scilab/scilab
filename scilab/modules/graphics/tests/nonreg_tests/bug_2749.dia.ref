@@ -46,4 +46,4 @@ end
 // user complained that it use to use 20Mb of memory
 endFreeMemory = getmemory();
 // give 4 meg
-if ((initFreeMemory - endFreeMemory) > 4096) then pause; end
+if ((initFreeMemory - endFreeMemory) > 4096) then bugmes();quit;end

@@ -17,5 +17,5 @@ f = gcf();
 drawaxis();
 xsave(TMPDIR+"/bug_2597.scg");
 delete(f);
-if execstr("load(TMPDIR+""/bug_2597.scg"");","errcatch")<>0 then pause;end
+if execstr("load(TMPDIR+""/bug_2597.scg"");","errcatch")<>0 then bugmes();quit;end
 delete(gcf());

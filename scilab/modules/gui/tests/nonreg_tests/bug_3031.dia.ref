@@ -14,4 +14,4 @@
 // <-- Short Description -->
 //   uicontrol property names could be abbreviated in scilab 4.1.2, need to be extended in scilab 5
 figure();
-if execstr("uicontrol(""posi"",[10 10 100 100])", "errcatch")<>0 then pause; end
+if execstr("uicontrol(""posi"",[10 10 100 100])", "errcatch")<>0 then bugmes();quit;end

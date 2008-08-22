@@ -11,7 +11,7 @@
 //
 // <-- Short Description -->
 //    savewave crashes my machine
-if execstr("savewave(TMPDIR+""/toto.WAV"", rand(1:10000), 11025);", "errcatch")<>0 then pause; end
+if execstr("savewave(TMPDIR+""/toto.WAV"", rand(1:10000), 11025);", "errcatch")<>0 then bugmes();quit;end
 Writing Wave file: Microsoft PCM format, 1 channel, 11025 samp/sec
         22050 byte/sec, 2 block align, 16 bits/samp
 Finished writing Wave file, 20000 data bytes

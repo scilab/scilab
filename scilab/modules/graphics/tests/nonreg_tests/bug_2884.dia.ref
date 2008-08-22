@@ -25,6 +25,6 @@ end
 fig = gcf();
 axesSize = fig.axes_size;
 for i = 1:4
-  if (pixPos(i,1) < 0 | pixPos(i,1) > axesSize(1)) then pause; end
-  if (pixPos(i,2) < 0 | pixPos(i,2) > axesSize(2)) then pause; end
+  if (pixPos(i,1) < 0 | pixPos(i,1) > axesSize(1)) then bugmes();quit;end
+  if (pixPos(i,2) < 0 | pixPos(i,2) > axesSize(2)) then bugmes();quit;end
 end
