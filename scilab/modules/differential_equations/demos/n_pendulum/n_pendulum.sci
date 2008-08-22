@@ -53,7 +53,7 @@ endfunction
 
 
 function [ydot]=npend ( t, th)
-	// Fortran version 
+	// Fortran version
 	//      data r  / 1.0, 1.0, 1.0, 1.0 /
 	//      data m  / 1.0, 1.0, 1.0, 1.0 /
 	//      data j  / 0.3, 0.3, 0.3, 0.3 /
@@ -81,6 +81,11 @@ endfunction
 
 
 function draw_chain_from_coor(x,y,job)
+	
+	my_handle = scf(100001);
+	clf(my_handle,"reset");
+	my_handle.immediate_drawing = "off"; //not to see the intermediate graphic steps
+	
 	// x,y the coordinates ,
 	//     x(i,j), y(i,j) is the coordinate of node i a time t(j)
 	// r the segments half length
@@ -88,31 +93,39 @@ function draw_chain_from_coor(x,y,job)
 	[n1,n2]=size(x);
 	
 	//set the frame
-	xbasc();set figure_style new;a=gca()
+	a=gca()
 	a.data_bounds=2*[-n1,-n1;n1,0];
 	
 	//create one polyline and one polymark with the initial position
-	drawlater() //not to see the intermediate graphic steps
-	xsegs([x(1:$-1,1)';x(2:$,1)'],[y(1:$-1,1)';y(2:$,1)'],1:n1-1)
-	p=gce();p.thickness=4;
-	xpoly(x(:,1),y(:,1),'lines');
-	p1=gce();p1.mark_style=3;p1.mark_size_unit='point';p1.mark_size=6;
+	xsegs([x(1:$-1,1)';x(2:$,1)'],[y(1:$-1,1)';y(2:$,1)'],1:n1-1);
+	p=gce();
+	p.thickness=4;
+	xpoly(x(:,1),y(:,1),"lines");
+	p1=gce();
+	
+	p1.mark_style=3;
+	p1.mark_size_unit='point';
+	p1.mark_size=6;
+	
 	if job==1 then
 		//bound trajectory
 		xpoly(x($,1)*ones(2,1),y($,1)*ones(2,1),'lines');
 		t=gce();t.line_style=2;
 	end
-	drawnow()
+	
+	my_handle.immediate_drawing = "on";
+	
 	ind=[1;(2:n1-1)'.*.ones(2,1);n1]
 	realtimeinit(0.1)
 	for j=1:n2,
 		realtime(j) //to slow down the drawing
-		drawlater() 
+		my_handle.immediate_drawing = "off";
 		// update chain coordinates
 		p1.data = [x(:,j),y(:,j)]; 
 		p.data = [x(ind,j),y(ind,j)]; 
 		// add a trajectory point
 		if job==1 then t.data=[t.data;[x($,j),y($,j)]],end
-		drawnow()
+		my_handle.immediate_drawing = "on";
 	end
+	
 endfunction

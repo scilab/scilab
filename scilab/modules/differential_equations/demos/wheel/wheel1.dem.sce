@@ -12,7 +12,7 @@ my_handle = scf(100001);
 clf(my_handle,"reset");
 toolbar(my_handle.figure_id, "off");
 
-// A precomputed value for 
+// A precomputed value for
 // x0=[0;%pi/2+0.1;0;5.0;0.0;4.0;0;0];
 
 exec(thispath+"show.sci");
@@ -21,3 +21,7 @@ x=read(thispath+"x.wrt",8,301);
 wheelg=wheelgs;
 show(x);
 toolbar(my_handle.figure_id, "on");
+
+// Clear variable and functions
+clear wheelg wheelgs;
+clear show wheeld test_wheel wheel_build_and_load get_wheel_rti;

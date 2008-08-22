@@ -20,8 +20,8 @@ function []=show(xx,t,p)
 	curFig = gcf();
 	toolbar(curFig.figure_id,"off");
 	xselect();
-	curFig.pixmap = "on";
-	curAxe = gca();
+	
+	curAxe     = gca();
 	curFont(1) = curAxe.font_style;
 	curFont(2) = curAxe.font_size;
 	
@@ -37,77 +37,80 @@ function []=show(xx,t,p)
 	//the first one is the contact point 
 	//the coordinates are given in the (u,v,w) space 
 	// as a matrix xu(:,t) ....
-	nnn=24
-	l=(1/nnn)*( 2*%pi)*(0:nnn)'
-	nu=prod(size(l));
-	xu=r1*cos(l).*.ones(time);
-	yu=r1*sin(l).*.ones(time);
-	zu=0*ones(l).*.ones(time);
+	nnn= 24
+	l  = (1/nnn)*( 2*%pi)*(0:nnn)'
+	nu = prod(size(l));
+	xu = r1*cos(l).*.ones(time);
+	yu = r1*sin(l).*.ones(time);
+	zu = 0*ones(l).*.ones(time);
 	
 	//[2] Adding rays ( they are moving with time in the (u,v,w) space 
 	//turning around w with angle psi
 	//in xr,yr,zr : four moving points plus the center 
-	l= ones(4,1).*.xx(3,time) + [0;%pi/2;%pi;3*%pi/2].*.ones(time);
-	xr=r1*cos(l).*.[0;1]
-	yr=r1*sin(l).*.[0;1]
-	zr=0*ones(l).*.[0;1]
-	[nr,pr]=size(xr);  
+	l       = ones(4,1).*.xx(3,time) + [0;%pi/2;%pi;3*%pi/2].*.ones(time);
+	xr      = r1*cos(l).*.[0;1];
+	yr      = r1*sin(l).*.[0;1];
+	zr      = 0*ones(l).*.[0;1];
+	[nr,pr] = size(xr);
 	
 	//[3] using wheelg to transform these vectors in the (x,y,z) space 
 	[xu,yu,zu]=wheelg(nu,prod(size(time)),xu,yu,zu,xx(:,time));
 	[xr,yr,zr]=wheelg(nr,prod(size(time)),xr,yr,zr,xx(:,time));
 	
-	xmin=mini(xu);xmax=maxi(xu);
-	ymin=mini(yu);ymax=maxi(yu);
-	zmin=mini(zu);zmax=maxi(zu);
+	xmin=mini(xu);
+	xmax=maxi(xu);
+	ymin=mini(yu);
+	ymax=maxi(yu);
+	zmin=mini(zu);
+	zmax=maxi(zu);
 	rect=[xmin,xmax,ymin,ymax,zmin,zmax]
 	
 	//[4] plotting frame
 	t=t*180/%pi,p=p*180/%pi,
 	plot3d([xmin,xmax],[ymin,ymax],zmin*ones(2,2),t,p," ",[0,1,0],rect);
 	
-	curAxe = gca();
+	curAxe            = gca();
 	curAxe.font_style = curFont(1);
-	curAxe.font_size = 3;
-	
+	curAxe.font_size  = 3;
 	deff('[]=traj(i)',['j=i+1;';
 			'param3d(xu(1,i:j),yu(1,i:j),zu(1,i:j),t,p,'" "',[0,0])';
 			]);
 	
-	[n1,n2]=size(xu);
+	[n1,n2] = size(xu);
 	get_wheel_rti(%t);
 	if ~isdef('wheel_rti') then wheel_rti=0.03;end 
 	
 	realtimeinit(wheel_rti);
-	realtime(0)
-	plot3d(xu(:,1),yu(:,1),zu(:,1),t,p,flag=[1,0,0])
-	e = gce();  
+	realtime(0);
+	
+	plot3d(xu(:,1),yu(:,1),zu(:,1),t,p,flag=[1,0,0]);
+	e = gce();
 	e.hiddencolor = -1;
 	
-	param3d(xu(1,1:2),yu(1,1:2),zu(1,1:2),t,p," ",[0,0]);
+	a = xu(1,1:2);
+	b = yu(1,1:2);
+	c = zu(1,1:2);
+	
+	param3d(a,b,c,t,p,"X@Y@Z",[0,0]);
 	e1 = gce();
 	
-	
 	for i=2:1:n2-1,
-	
-		drawlater();
+		curFig.immediate_drawing = "off";
 		realtime(i);
-	
-		e.data.x=xu(:,i);
-		e.data.y=yu(:,i);
-		e.data.z=zu(:,i);
-		trajdata = e1.data;
-		trajdata = [trajdata; xu(1,i),yu(1,i),zu(1,i)];
-		e1.data = trajdata;
-		drawnow();
-		show_pixmap();
-	
+		e.data.x  = xu(:,i);
+		e.data.y  = yu(:,i);
+		e.data.z  = zu(:,i);
+		trajdata  = e1.data;
+		trajdata  = [trajdata; xu(1,i),yu(1,i),zu(1,i)];
+		e1.data   = trajdata;
+		curFig.immediate_drawing = "on";
 	end
 	
 	[wheel_rti]=resume(wheel_rti);
 	toolbar(curFig.figure_id,"on");
 	curAxe.font_style = curFont(1);
 	curAxe.font_size = curFont(2);
+	
 endfunction
 
 
@@ -146,6 +149,7 @@ function [xxu,yyu,zzu]=wheelgs(n,t,xu,yu,zu,xx)
 		yyu(i1,:) = xx(8,:)+r*(cs2.*si1.*xu(i1,:)+cs1.*yu(i1,:)+si2.*si1.*zu(i1,:));
 		zzu(i1,:) = r*si2 +r*( -si2.*xu(i1,:)+cs2.*zu(i1,:));
 	end
+	
 endfunction
 
 

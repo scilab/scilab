@@ -28,7 +28,7 @@ nn     = 300;
 times  = (0:(nn-1));
 times  = tmax*times/(nn-1) +tmin*((nn-1)*ones(times)-times);
 
-// INITIAL CONDITIONS
+// Iinitial conditions
 // =========================================================================
 x0=[0;             // theta
 	%pi/2+0.1;     // phi
@@ -39,7 +39,7 @@ x0=[0;             // theta
 	0;             // x
 	0];            // y
 
-// SIMULATION
+// Simulation
 // =========================================================================
 
 x=ode(x0,tmin,times,"wheel");
@@ -53,9 +53,16 @@ flag = 2;
 while flag==2, [n1,n2]=size(x);
 	flag=tk_choose(['Stop';'Go on'],'Choose');
 	if flag==2 then
-		x0=evstr(x_mdialog(['Initial conditions'],ystr,string(x(:,n2))));
-		x=ode(x0,tmin,times,'wheel');
+		x0 = evstr(x_mdialog(['Initial conditions'],ystr,string(x(:,n2))));
+		x  = ode(x0,tmin,times,'wheel');
 		clf(my_handle,"reset");
 		show(x);
 	end
 end
+
+
+// Clear variable and functions
+// =========================================================================
+
+clear wheelg wheelgf tmin tmax nn times x0 x ystr flag;
+clear show wheeld test_wheel wheel_build_and_load get_wheel_rti;
