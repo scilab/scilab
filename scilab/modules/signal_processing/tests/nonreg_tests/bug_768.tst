@@ -18,4 +18,4 @@
 
 err_number  = execstr('window(''ch'',128,[0.25 0.1])','errcatch');
 err_message = lasterror();
-if stripblanks(err_message,%T) <> "window: Wrong value for input argument #3: Must be in the interval [dp, df]." then pause,end
+if stripblanks(err_message,%T) <> msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "window", 3, "dp", "df") then pause,end
