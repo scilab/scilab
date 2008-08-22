@@ -281,7 +281,7 @@ dnl @TODO : il faut peut etre verifier que c'est bien gfortran
    fi
 	  case "$host" in
 		 x86_64-*-linux*)
-			FFLAGS="$FFLAGS -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 -fPIC"
+			FFLAGS="$FFLAGS -mfpmath=sse -msse2 -m64 -fPIC"
 					;;
 		# Dec Alpha OSF 4
 		alpha*-dec-osf4.*)
@@ -404,7 +404,7 @@ if test "$CC" = "gcc"; then
 	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
 	;;
 	 x86_64-*-linux-gnu)
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64"
+		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -mfpmath=sse -msse2 -m64"
 		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
