@@ -1,3 +1,6 @@
+// Clear the functions defined in truck.sci to avoid warnings
+clear truck_solve polyline truck_polynomial_curve cr2Tfjt cr2Tkf cr2Tfk display_truck_trajectory build_truck draw_truck polyline
+
 exec(get_absolute_file_path("truck.dem.sce") + "/truck.sci",-1);
 
 initial   = [-2;3;0.5235988;0;0;1];

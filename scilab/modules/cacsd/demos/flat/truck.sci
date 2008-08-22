@@ -239,7 +239,6 @@ function display_truck_trajectory(state)
     drawnow()
   end 
   for i=(1:30)+size(state,1),realtime(i),end
-  xdel()
 endfunction
 
 

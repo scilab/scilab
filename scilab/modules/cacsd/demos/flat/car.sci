@@ -107,7 +107,6 @@ function display_car_trajectory(state)
     drawnow()
   end 
   for i=(1:30)+size(state,1),realtime(i),end
-  xdel()
 endfunction
 
 
