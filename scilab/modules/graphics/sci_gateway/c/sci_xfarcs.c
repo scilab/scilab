@@ -27,6 +27,8 @@
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DrawingBridge.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xfarcs( char * fname, unsigned long fname_len )
 {
@@ -59,9 +61,10 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
     for (i = 0; i < n2; ++i) { *istk(l2 + i) = i+1 ; }
   }
 
-  startGraphicDataWriting();
   pFigure = sciGetCurrentFigure();
-  endGraphicDataWriting();
+  
+
+  startFigureDataWriting(pFigure);
   for (i = 0; i < n1; ++i)
   { 
     angle1 = DEG2RAD(*stk(l1+(6*i)+4) / 64.0);
@@ -70,9 +73,10 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
       stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl); 
   }
   /** construct Compound and make it current object **/
-  startFigureDataWriting(pFigure);
   sciSetCurrentObj(ConstructCompoundSeq (n1));
   endFigureDataWriting(pFigure);
+
+  sciDrawObj(sciGetCurrentObj());
 
   LhsVar(1)=0;
   return 0;

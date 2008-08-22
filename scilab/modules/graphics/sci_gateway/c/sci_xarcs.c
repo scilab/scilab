@@ -26,6 +26,8 @@
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DrawingBridge.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xarcs(char *fname,unsigned long fname_len)
 {
@@ -53,9 +55,8 @@ int sci_xarcs(char *fname,unsigned long fname_len)
     }
   }
 
-  startGraphicDataWriting();
   pFigure = sciGetCurrentFigure();
-  endGraphicDataWriting();
+
   if (Rhs == 2) 
   {
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
@@ -75,8 +76,10 @@ int sci_xarcs(char *fname,unsigned long fname_len)
       *istk(l2 + i2) = sciGetForeground(sciGetCurrentSubWin() );
     }
     endFigureDataReading(pFigure);
-  }  
+  }
+
   /* NG beg */
+  startFigureDataWriting(sciGetCurrentFigure());
   for (i = 0; i < n1; ++i)
   { 
     angle1 = DEG2RAD(*stk(l1+(6*i)+4) / 64.0);
@@ -84,10 +87,15 @@ int sci_xarcs(char *fname,unsigned long fname_len)
     Objarc (&angle1,&angle2,stk(l1+(6*i)),stk(l1+(6*i)+1),
       stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
   }
-  /** construct Compound and make it current object **/
-  startFigureDataWriting(pFigure);
+  /* construct Compound and make it current object */
   sciSetCurrentObj(ConstructCompoundSeq(n1));
   endFigureDataWriting(pFigure);
+
+  /* Draw the result */
+  startFigureDataReading(pFigure);
+  sciDrawObj(sciGetCurrentObj());
+  endFigureDataReading(pFigure);
+
   /* NG end */
   LhsVar(1)=0;
   return 0;

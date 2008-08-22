@@ -67,7 +67,6 @@ void Objrect ( double * x         ,
   sciPointObj *psubwin;
   sciPointObj * pFigure = sciGetCurrentFigure();
 
-  startFigureDataWriting(pFigure);
   psubwin = sciGetCurrentSubWin();
   /* check if the auto_clear property is on and then erase everything */
   checkRedrawing() ;
@@ -83,7 +82,6 @@ void Objrect ( double * x         ,
   }
   sciSetCurrentObj( newObj ) ; 
   *hdl=sciGetHandle( newObj ) ;
-  endFigureDataWriting(pFigure);
 
 }
 
@@ -104,24 +102,16 @@ void Objarc( double * angle1    ,
              BOOL     isline    ,
              long   * hdl        )
 { 
-  sciPointObj *psubwin, *pobj;
+  sciPointObj * psubwin;
+  sciPointObj * pobj;
 
-  startFigureDataWriting(sciGetCurrentFigure());
   psubwin = sciGetCurrentSubWin() ;
   checkRedrawing() ;
-  sciSetCurrentObj (ConstructArc
-         (psubwin,*x,*y,
-	  *height, *width, *angle1, *angle2, foreground, background, isfilled, isline));
-  pobj = sciGetCurrentObj();
+  pobj = ConstructArc(psubwin,*x,*y,
+	              *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
+  sciSetCurrentObj(pobj);
 
   *hdl=sciGetHandle(pobj);
-  endFigureDataWriting(sciGetCurrentFigure());
-
-  /* if the window has been cleared we must redraw everything */
-  sciDrawObj( pobj ) ;
-
-
- 
 }
 
 /*------------------------------------------------
@@ -136,27 +126,26 @@ void Objpoly ( double  * x     ,
                long    * hdl    )
 { 
   sciPointObj * pFigure = NULL;
-  sciPointObj *psubwin, *pobj;
+  sciPointObj * psubwin;
+  sciPointObj * pobj;
 
   pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();  
 
   
   checkRedrawing() ;
-  startFigureDataWriting(pFigure);
   if (mark <= 0)
     { 
       int absmark = abs(mark);
-      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
-					  NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
+      pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
+	         	       NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
     }
   else
     {
-      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
-					  &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
+      pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
+	                       &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
     }
-   endFigureDataWriting(pFigure);
-   pobj = sciGetCurrentObj();
+  sciSetCurrentObj(pobj);
    *hdl=sciGetHandle(pobj);
 }
   
@@ -182,32 +171,32 @@ void Objfpoly ( double  * x    ,
   if(shading == 2)
     {
       /* interpolated shading is "on" */
-      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					  1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE));
+      pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+	 		       1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE);
     }
   else
     {
       /* flat mode is "on" */
       if (*style < 0){
 	fillcolor = abs(*style);
-	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					    1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE));
+	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+			         1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE);
       }
       else if (*style == 0){
 	contourcolor = sciGetForeground(psubwin);
-	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					    1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
+	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+	                         1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
       }
       else{ /* *style > 0*/
 	fillcolor = *style;
 	contourcolor = sciGetForeground(psubwin);
-	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					    1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE));
+	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+	                         1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
       }
       
-      pobj = sciGetCurrentObj();
-      *hdl=sciGetHandle(sciGetCurrentObj ());  
     }
+    sciSetCurrentObj(pobj);
+    *hdl=sciGetHandle(pobj);  
 
 }
 
@@ -233,7 +222,6 @@ void Objsegs ( integer * style,
   fx=x;fy=y;
   sciSetCurrentObj (ConstructSegs(psubwin,type,
 				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp));
-  sciDrawObj(sciGetCurrentObj());
 }
 /*-----------------------------------------------------------
  * Objstring:

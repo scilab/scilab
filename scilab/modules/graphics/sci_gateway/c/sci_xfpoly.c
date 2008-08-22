@@ -26,6 +26,7 @@
 #include "sciCall.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfpoly(char *fname,unsigned long fname_len)
@@ -55,7 +56,10 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
   {
     close = sciGetForeground(sciGetCurrentSubWin());
   }
+
+  startFigureDataWriting(sciGetParentFigure(psubwin));
   Objfpoly (stk(l1),stk(l2),mn1,&close,&hdl,0);
+  endFigureDataWriting(sciGetParentFigure(psubwin));
 
   sciDrawObjIfRequired(sciGetCurrentObj ());
 

@@ -130,7 +130,7 @@ void ConcreteDrawableText::showTextContent(void)
 /*---------------------------------------------------------------------------------*/
 bool ConcreteDrawableText::isTextEmpty(void)
 {
-  return sciisTextEmpty(m_pDrawed);
+  return (sciisTextEmpty(m_pDrawed) == TRUE);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::updateTextBox(void)

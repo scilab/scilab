@@ -35,6 +35,7 @@ DrawableObject * DrawableArcFactory::create( void )
   DrawableArcBridgeFactory fact;
   fact.setDrawedArc(newArc);
   newArc->setDrawableImp(fact.create());
+  setStrategies(newArc);
 
   return newArc;
 

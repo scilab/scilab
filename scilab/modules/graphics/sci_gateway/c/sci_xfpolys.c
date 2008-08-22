@@ -28,6 +28,8 @@
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
+#include "GraphicSynchronizerInterface.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xfpolys( char *fname, unsigned long fname_len )
 {
@@ -76,6 +78,8 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
     m3 = n3 = 1;
   }
   psubwin = sciGetCurrentSubWin();
+
+  startFigureDataWriting(sciGetParentFigure(psubwin));
   for (i = 0; i < n1; ++i) {
     if(m3 == 1 || n3 == 1) /* color vector specified */
     {
@@ -90,10 +94,13 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
       }
     }
     else /* we have a color matrix used for interpolated shading : one color per vertex */
+    {
       Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i*m3),&hdl,v1);
+    }
   }
   /** construct Compound and make it current object**/
   sciSetCurrentObj (ConstructCompoundSeq (n1));
+  endFigureDataWriting(sciGetParentFigure(psubwin));
 
   sciDrawObjIfRequired(sciGetCurrentObj ());
  
