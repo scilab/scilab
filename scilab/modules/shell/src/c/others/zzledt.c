@@ -736,12 +736,32 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 
 			if (completionResults)
 			{
-				int lencompletionResults0 = 0;
-				lencompletionResults0 = (int) strlen(completionResults[0]);
-				if ( strncmp(completionResults[0],completionResults[1],lencompletionResults0) == 0 )
+				int i = 0;
+				char *pieceOfWord = NULL;
+				
+				for (i = 0; i < sizecompletionResults; i++)
 				{
-					char *texttoadd = &completionResults[0][strlen(wordToFind)];
-					CopyLineAtPrompt(wk_buf,strcat(wk_buf,texttoadd),cursor,cursor_max);
+					 if ( strncmp(completionResults[0],completionResults[i],strlen(completionResults[0])) == 0)
+					 {
+						 if (pieceOfWord) {FREE(pieceOfWord); pieceOfWord = NULL;}
+						 pieceOfWord = strdup(completionResults[0]);
+					 }
+					 else
+					 {
+						 if (pieceOfWord) {FREE(pieceOfWord); pieceOfWord = NULL;}
+						 pieceOfWord = strdup(wordToFind);
+						 break;
+					 }
+				}
+
+				if (pieceOfWord)
+				{
+					CopyLineAtPrompt(wk_buf,pieceOfWord,cursor,cursor_max);
+					FREE(pieceOfWord); pieceOfWord = NULL;
+				}
+				else
+				{
+					CopyLineAtPrompt(wk_buf,(char*)wordToFind,cursor,cursor_max);
 				}
 				freeArrayOfString(completionResults,sizecompletionResults);
 			}

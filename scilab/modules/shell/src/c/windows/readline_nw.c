@@ -704,6 +704,8 @@ static void doCompletion(const char *current_line,const char *prompt)
 			else
 			{
 				int i = 0;
+				char *pieceOfWord = NULL;
+
 				backup_line = strdup(cur_line);
 
 				doNewLine(FALSE);
@@ -729,18 +731,32 @@ static void doCompletion(const char *current_line,const char *prompt)
 				lenCurrentLine = 0;
 				redraw_line((char*)prompt);
 				strcpy(cur_line,backup_line);
-
-				if ( strncmp(completionDictionary[0],completionDictionary[1],strlen(completionDictionary[0])) == 0 )
+				
+				for (i = 0; i < sizeCompletionDictionary; i++)
 				{
-					int lenwordToFind = (int)strlen(wordToFind);
-					int lencompletionDictionary0 = (int)strlen(completionDictionary[0]);
-
-					if (lencompletionDictionary0 > lenwordToFind)
-					{
-						strcat(cur_line,&completionDictionary[0][lenwordToFind]);
-					}
-					
+					 if ( strncmp(completionDictionary[0],completionDictionary[i],strlen(completionDictionary[0])) == 0)
+					 {
+						 if (pieceOfWord) {FREE(pieceOfWord); pieceOfWord = NULL;}
+						 pieceOfWord = strdup(completionDictionary[0]);
+					 }
+					 else
+					 {
+						 if (pieceOfWord) {FREE(pieceOfWord); pieceOfWord = NULL;}
+						 pieceOfWord = strdup(wordToFind);
+						 break;
+					 }
 				}
+
+				if (pieceOfWord)
+				{
+					strcpy(cur_line,pieceOfWord);
+					FREE(pieceOfWord); pieceOfWord = NULL;
+				}
+				else
+				{
+					strcpy(cur_line,wordToFind);
+				}
+
 				fputs (cur_line, stdout);
 				cur_pos = (int)strlen(cur_line);
 				max_pos = (int)strlen(cur_line);
