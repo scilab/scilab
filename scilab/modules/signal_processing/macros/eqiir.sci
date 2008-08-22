@@ -57,7 +57,6 @@ function [cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)
   if maxi(size(om))==2 then
     om=matrix([matrix(om,1,2),0,0],1,4),
   end
-  pause
   [fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(ityp,iapro,om,deltap,deltas);
   nb=maxi(size(b0));
   coeffs=[b0;b1;b2;c0;c1];
