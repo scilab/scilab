@@ -454,6 +454,8 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	// Do some modification in tst file
 	txt = strsubst(txt,'pause,end' ,'bugmes();quit;end');
 	txt = strsubst(txt,'pause, end','bugmes();quit;end');
+	txt = strsubst(txt,'pause;end' ,'bugmes();quit;end');
+	txt = strsubst(txt,'pause; end','bugmes();quit;end');
 	txt = strsubst(txt,'-->','@#>'); //to avoid suppression of input --> with prompts
 	txt = strsubst(txt,'halt();','');
 	
