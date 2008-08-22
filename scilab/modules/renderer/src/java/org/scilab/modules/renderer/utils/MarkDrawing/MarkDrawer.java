@@ -29,7 +29,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	/**
 	 * The two kinds of markSize unit
 	 */
-	private static enum SizeUnit { POINT, TABULATED };
+	public static enum MarkSizeUnit { POINT, TABULATED };
 	
 	/**
 	 * Mapping between tabulated sizes and point sizes
@@ -37,7 +37,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	private static final int[] TABULATED_SIZE = {8, 10, 12, 14, 18, 24};
 	
 	/** To know the type of unit */
-	private SizeUnit unit; 
+	private MarkSizeUnit unit; 
 	/** background color of marks */
 	private int markBackground;
 	/** outline color of marks */
@@ -52,7 +52,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	 * Default constructor
 	 */
 	public MarkDrawer() {
-		unit = SizeUnit.POINT;
+		unit = MarkSizeUnit.POINT;
 		markBackground = -1;
 		markForeground = -1;
 		markSize       = -1;
@@ -79,14 +79,14 @@ public class MarkDrawer extends DrawableObjectGL {
 	 * Specify that size unit is tabulated.
 	 */
 	public void setTabulatedUnit() {
-		unit = SizeUnit.TABULATED;
+		unit = MarkSizeUnit.TABULATED;
 	}
 	
 	/**
 	 * Specify that size unit is point.
 	 */
 	public void setPointUnit() {
-		unit = SizeUnit.POINT;
+		unit = MarkSizeUnit.POINT;
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	protected int getMarkPixelSize() {
 		int res = 0;
 		// point
-		if (unit == SizeUnit.POINT) {
+		if (unit == MarkSizeUnit.POINT) {
 			res = markSize;
 		} else {
 			

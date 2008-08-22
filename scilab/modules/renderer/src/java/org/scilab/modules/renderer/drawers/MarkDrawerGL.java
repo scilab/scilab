@@ -20,6 +20,7 @@ import org.scilab.modules.renderer.DrawableObjectGL;
 
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawer;
+import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawingStrategy;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -106,6 +107,30 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		drawer.setMarkSize(markSize);
 	}
 	
+	/**
+	 * Specify a new size and style for marks
+	 * @param markStyleIndex index of the markStyle
+	 * @param markSize new size
+	 * @param markSizeUnit index of the kind of mark
+	 */
+	public void setMarkSizeAndStyle(int markStyleIndex, int markSize, int markSizeUnit) {
+		// Special case for mark_size!
+		// for compatibility with Scilab 4
+		// dot mark with tabulated size of 0 is a single pixel.
+		// This mean it is drawn in pixel size instead of tabulated size
+		if (MarkDrawingStrategy.getMarkStyle(markStyleIndex) == MarkDrawingStrategy.MarkStyle.DOT
+		    && markSize == 0 && markSizeUnit == 2) {
+			setMarkSizeUnit(1);
+			setMarkSize(0);
+			setMarkStyle(markStyleIndex);
+		} else {
+			// standard case
+			setMarkSizeUnit(markSizeUnit);
+			setMarkSize(markSize);
+			setMarkStyle(markStyleIndex);
+		}
+	}
+	
 	
 	/**
 	 * Specify the kind of mark to draw
@@ -127,9 +152,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	public void setMarkParameters(int background, int foreground, int markSizeUnit, int markSize, int markStyleIndex) {
 		setBackground(background);
 		setForeground(foreground);
-		setMarkSizeUnit(markSizeUnit);
-		setMarkSize(markSize);
-		setMarkStyle(markStyleIndex);
+		setMarkSizeAndStyle(markStyleIndex, markSize, markSizeUnit);
 	}
 
 	/**

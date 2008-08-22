@@ -130,7 +130,7 @@ public abstract class MarkDrawingStrategy {
 	 * @param markStyleIndex index of mark style
 	 * @return kind of mark
 	 */
-	private static MarkStyle getMarkStyle(int markStyleIndex) {
+	public static MarkStyle getMarkStyle(int markStyleIndex) {
 		if (markStyleIndex < 0 || markStyleIndex >= MARK_STYLE.length) {
 			return MarkStyle.UNDEFINED;
 		}
