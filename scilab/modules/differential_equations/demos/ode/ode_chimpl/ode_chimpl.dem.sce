@@ -7,18 +7,20 @@
 
 // Equation definition
 
-deff("[r]=chemres(t,y,yd)",[
-     "r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);";
-     "r(2)=0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2);"
-     "r(3)=y(1)+y(2)+y(3)-1;"]);
+function r=chemres(t,y,yd)
+   r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);
+   r(2)=0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
+   r(3)=y(1)+y(2)+y(3)-1;
+endfunction
 
 
-deff("[p]=chemad(t,y,p)','p=p+diag([1 1 0])');
+function p=chemad(t,y,p),p=p+diag([1 1 0]),endfunction
 
-deff("[p]=chemjac(t,y,yd)",[
-     "p=[-0.04,     1.d4*y(3)      ,  1.d4*y(2);";
-     "    0.04, -1d4*y(3)-6d7*y(2) , -1d4*y(2);";
-     "    1   ,     1              ,  1       ]"]);
+function p=chemjac(t,y,yd)
+  p=[-0.04,     1.d4*y(3)      ,  1.d4*y(2);
+      0.04, -1d4*y(3)-6d7*y(2) , -1d4*y(2);
+      1   ,     1              ,  1       ]
+endfunction
 
 // Integration
 
@@ -34,8 +36,9 @@ my_handle = scf(100001);
 clf(my_handle,"reset");
 demo_viewCode("ode_chimpl.dem.sce");
 
-rect              = [1.d-5,-0.1,1d11,1.1];
-plot2d1("oln",t',(diag([1 10000 1])*y)',(1:3),"111",'y1@10000 y2@y3',rect)
-a                 = gca();
-a.title.text      = 'chemical process (implicit)';
-a.title.font_size = 3;
+drawlater()
+plot2d(t',(diag([1 10000 1])*y)',style=(1:3))
+ax=gca();ax.log_flags = "lnn";ax.box="on";ax.margins(4)=0.2;
+title(_("chemical process (implicit)"))
+l=legend(['y1';'10^4 y2';'y3']);l.legend_location = "lower_caption"
+drawnow()

@@ -26,12 +26,12 @@ my_handle = scf(100001);
 clf(my_handle,"reset");
 demo_viewCode("ode_chstiff.dem.sce");
 
-rect = [1.d-5,-0.1,1d11,1.1];
-plot2d1("oln",t',(diag([1 10000 1])*y)',(1:3),"111",' y1@10000 y2@y3',rect);
-
-a                   = gca();
-a.title.text        = "chemical process (stiff)";
-a.title.font_size   = 3;
+drawlater()
+plot2d(t',(diag([1 10000 1])*y)',style=(1:3))
+ax=gca();ax.log_flags = "lnn";ax.box="on";ax.margins(4)=0.2;
+title(_("chemical process (implicit)"))
+l=legend(['y1';'10^4 y2';'y3']);l.legend_location = "lower_caption"
+drawnow()
 
 x_message("Click Ok to continue.");
 
@@ -43,15 +43,15 @@ deff('[y]=Surf(t,x)','y=[x(1)-1.e-4;x(3)-1.e-2]');
 [y,rd,w,iw] = ode("root",[1;0;0],0,t,rtol,atol,chem,2,Surf);rd;
 
 while rd<>[] then
-	
-	[nw,ny]=size(y);
-	k=find(rd(1)>t(1:nt-1)&rd(1)<t(2:nt));
-	
-	// Visualisation
-	write(%io(2),[rd(1);y(:,ny)]','(''t='',e10.3,'' y='',3(e10.3,'',''))');
-	plot2d1("oln",rd(1)',(diag([1 10000 1])*y(:,ny))',[-3,-3,-3],"000");
-	
-	// Next root
-	[y,rd,w,iw]=ode('root',[1;0;0],rd(1),t(k+1:nt),rtol,atol,chem,2,Surf,w,iw);
-	
+  
+  [nw,ny]=size(y);
+  k=find(rd(1)>t(1:nt-1)&rd(1)<t(2:nt));
+  
+  // Visualisation
+  write(%io(2),[rd(1);y(:,ny)]','(''t='',e10.3,'' y='',3(e10.3,'',''))');
+  plot2d1("oln",rd(1)',(diag([1 10000 1])*y(:,ny))',style=[-3,-3,-3]);
+  
+  // Next root
+  [y,rd,w,iw]=ode('root',[1;0;0],rd(1),t(k+1:nt),rtol,atol,chem,2,Surf,w,iw);
+  
 end

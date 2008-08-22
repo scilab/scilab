@@ -34,9 +34,7 @@ y        = ode(y0,t0,instants,lorenz,jacobian);
 my_handle = scf(100001);
 clf(my_handle,"reset");
 demo_viewCode("ode_lorentz.dem.sce");
-
-a                 = gca();
-a.title.text      = "Lorentz differential equation";
-a.title.font_size = 3;
+title(_("Lorentz differential equation"))
 
 param3d(y(1,:),y(2,:),y(3,:));
+ax=gca();ax.grid=ax.hidden_axis_color*ones(1,3);
