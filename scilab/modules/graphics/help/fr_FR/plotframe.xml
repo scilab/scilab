@@ -72,12 +72,12 @@
             </varlistentry>
 
             <varlistentry>
-              <term>captions</term>
+              <term>Captions</term>
 
               <listitem>
                 <para>vecteur de 3 chaînes de caractères
                 <literal>[title,x-leg,y-leg]</literal> correspondant au titre
-                du dessin et aux légendes des axes x et y.</para>
+                du dessin et aux légendes des axes x et y. Le "C" majuscule est important.</para>
               </listitem>
             </varlistentry>
 
@@ -137,18 +137,17 @@
     y=rand(x);
     rect=[min(x),min(y),max(x),max(y)];
     tics=[4,10,2,5];    // 4 x-intervalles et 2 y-intervalles
-    plotframe(rect,tics,[%f,%f],["My plot","x","y"],[0,0,0.5,0.5])
+    plotframe(rect,tics,[%f,%f],["Mon plot","x","y"],[0,0,0.5,0.5])
     plot2d(x,y,2,"000")
-    plotframe(rect,tics,[%t,%f],["My plot avec grille","x","y"],[0.5,0,0.5,0.5])
+    plotframe(rect,tics,[%t,%f],["Mon plot avec grille","x","y"],[0.5,0,0.5,0.5])
     plot2d(x,y,3,"000")
     plotframe(rect,tics,[%t,%t],..
     ["plot avec grille et bornes automatiques","x","y"],[0,0.5,0.5,0.5])
     plot2d(x,y,4,"000")
     plotframe(rect,flags=[%f,%t],tics=tics,..
-       captions=["plot sans grille mais avec bornes automatiques ","x","y"],..
+       Captions=["plot sans grille mais avec bornes automatiques ","x","y"],..
        subwin=[0.5,0.5,0.5,0.5])
     plot2d(x,y,5,"000")
-    xset("default")
     </programlisting>
   </refsection>
 

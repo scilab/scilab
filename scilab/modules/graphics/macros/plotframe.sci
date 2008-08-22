@@ -42,8 +42,12 @@ else
   flags = [%f,%f] ;
 end
 
+if exists('Captions','local') == 1 then
+  f_captions = %t ;
+end
 if exists('captions','local') == 1 then
   f_captions = %t ;
+  Captions = captions;
 end
 
 if exists('subwin','local') == 1 then
@@ -60,21 +64,21 @@ if rhs >= 2 & ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
     select type(subwindow),
     case 1 , subwin   = subwindow, f_subwin   = %t ;
     case 4 , flags    = subwindow, f_flags    = %t ;
-    case 10, captions = subwindow, f_captions = %t ;
+    case 10, Captions = subwindow, f_captions = %t ;
     end
   end
   if rhs >= 4 then
     select type(legs),
     case 1 , subwin   = legs, f_subwin   = %t ;
     case 4 , flags    = legs, f_flags    = %t ;
-    case 10, captions = legs, f_captions = %t ;
+    case 10, Captions = legs, f_captions = %t ;
     end
   end
   if rhs >= 3 then
     select type(options),
     case 1 , subwin   = options, f_subwin   = %t ;
     case 4 , flags    = options, f_flags    = %t ;
-    case 10, captions = options, f_captions = %t ;
+    case 10, Captions = options, f_captions = %t ;
     end
   end
 
@@ -101,10 +105,10 @@ end
 
 // -- trace des legendes d'axes et du titre
 if f_captions then
-  select size(captions,'*'),
-  case 1, xtitle(captions(1)) ;
-  case 2, xtitle(captions(1),captions(2)) ;
-  case 3, xtitle(captions(1),captions(2),captions(3));
+  select size(Captions,'*'),
+  case 1, xtitle(Captions(1)) ;
+  case 2, xtitle(Captions(1),Captions(2)) ;
+  case 3, xtitle(Captions(1),Captions(2),Captions(3));
   end 
 end
 

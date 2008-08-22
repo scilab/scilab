@@ -83,13 +83,13 @@ plotframe(rect,&lt;opts_args&gt;)</synopsis>
             </varlistentry>
 
             <varlistentry>
-              <term>captions</term>
+              <term>Captions</term>
 
               <listitem>
                 <para>vector of 3 strings
                 <literal>[title,x-leg,y-leg]</literal> corresponding
                 respectively to the title of the plot and the captions on the
-                x-axis and the y-axis.</para>
+                x-axis and the y-axis. Warning: the upper-case "C" is important.</para>
               </listitem>
             </varlistentry>
 
@@ -151,16 +151,15 @@ rect=[min(x),min(y),max(x),max(y)];
 tics=[4,10,2,5];    //4 x-intervals and 2 y-intervals
 plotframe(rect,tics,[%f,%f],["My plot","x","y"],[0,0,0.5,0.5])
 plot2d(x,y,2,"000")
-plotframe(rect,tics=tics,flags=[%t,%f],captions=["My plot with grids","x","y"],subwin=[0.5,0,0.5,0.5])
+plotframe(rect,tics=tics,flags=[%t,%f],Captions=["My plot with grids","x","y"],subwin=[0.5,0,0.5,0.5])
 plot2d(x,y,3,"000")
 plotframe(rect,tics,[%t,%t],..
 ["My plot with grids and automatic bounds","x","y"],[0,0.5,0.5,0.5])
 plot2d(x,y,4,"000")
 plotframe(rect,flags=[%f,%t],tics=tics,..
-   captions=["My plot without grids but with automatic bounds ","x","y"],..
+   Captions=["My plot without grids but with automatic bounds ","x","y"],..
    subwin=[0.5,0.5,0.5,0.5])
 plot2d(x,y,5,"000")
-xset("default")
  
   </programlisting>
   </refsection>
