@@ -551,17 +551,17 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     CreateCsteTList("code23",data,index2);
     break;
   case 24: /* Create an object with type 0 */
-    Scierror(999,_("%s: No more memory.\n"),"GetInstruction",data[*index2]);
+    Scierror(999,_("%s: code %d not yet implemented.\n"),"GetInstruction",data[*index2]);
     break;
   case 25: /* Compute profiling data */
  /* This code is ignored */
     *index2 += 2;
     break;
   case 26: /* Vector of strings */
-    Scierror(999,_("%s: No more memory.\n"),"GetInstruction",data[*index2]);
+    Scierror(999,_("%s: code %d not yet implemented.\n"),"GetInstruction",data[*index2]);
     break;
   case 27: /* varfunptr */
-    Scierror(999,_("%s: No more memory.\n"),"GetInstruction",data[*index2]);
+    Scierror(999,_("%s: code %d not yet implemented.\n"),"GetInstruction",data[*index2]);
     break;
   case 28: /* continue */
     CreateFuncallTList("datacode",data,index2);
