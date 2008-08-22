@@ -77,10 +77,10 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 
   if ( Rhs < *iMin || Rhs > *iMax)
     {
-		if (Rhs==0 || Rhs==1 || *iMin==*iMax) { /* 0 or 1 or equals input argument */
-			Scierror(77,_("%s: Wrong number of input argument: %d expected.\n"),get_fname(fname,fname_len), *iMax);
+		if (*iMin==*iMax) { /* No optional argument */
+			Scierror(77,_("%s: Wrong number of input argument(s): %d expected.\n"),get_fname(fname,fname_len), *iMax);
 		}else{
-			Scierror(77,_("%s: Wrong number of input arguments: %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
+			Scierror(77,_("%s: Wrong number of input argument(s): %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
 		}
       return FALSE;
     }
@@ -95,10 +95,10 @@ int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 {
   if ( Lhs < *iMin || Lhs > *iMax)
     {
-		if (Lhs==0 || Lhs==1 || *iMin == *iMax) { /* 0 or 1 output argument */
-			Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"),get_fname(fname,fname_len), *iMax);
+		if (*iMin == *iMax) { /* No optional argument */
+			Scierror(78,_("%s: Wrong number of output argument(s): %d expected.\n"),get_fname(fname,fname_len), *iMax);
 		}else{
-			Scierror(78,_("%s: Wrong number of output arguments: %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
+			Scierror(78,_("%s: Wrong number of output argument(s): %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
 		}
       return FALSE;
     }
