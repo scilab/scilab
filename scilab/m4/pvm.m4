@@ -147,7 +147,7 @@ for EXT_LIB_PVM in $libexts; do
 
 		        AC_CHECK_LIB([$NAME_LIB_PVM], pvm_spawn,
 		        [
-	    		    LDFLAGS="-lpvm3 -lgpvm3 $LDFLAGS"
+	    		    LDFLAGS="-lpvm3 $LDFLAGS"
 			        AC_CHECK_LIB(pvm3, pvm_barrier,
     		    		[PVMLIBS="-lpvm3"; PVM_LIB_OK=1],
 		        		[

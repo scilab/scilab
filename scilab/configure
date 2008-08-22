@@ -18008,7 +18008,7 @@ ac_res=`eval echo '${'$as_ac_Lib'}'`
 echo "${ECHO_T}$ac_res" >&6; }
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
 
-	    		    LDFLAGS="-lpvm3 -lgpvm3 $LDFLAGS"
+	    		    LDFLAGS="-lpvm3 $LDFLAGS"
 			        { echo "$as_me:$LINENO: checking for pvm_barrier in -lpvm3" >&5
 echo $ECHO_N "checking for pvm_barrier in -lpvm3... $ECHO_C" >&6; }
 if test "${ac_cv_lib_pvm3_pvm_barrier+set}" = set; then
