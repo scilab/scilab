@@ -2449,14 +2449,15 @@ ConstructCompoundSeq (int number)
 
   /* Remove the created objects after the compound and add them */
   /* Under the compound in the same order */
-  for ( i = number ; i > 0 ; i-- )
+  for ( i = 0 ; i < number ; i++ )
   {
-    /* get the first added son, ie the last one of the i - 1 remainings. */
-    sciPointObj * curObj = sciGetIndexedSon(psubwin, i);
+    /* Get the first object to move (the first son in the list is the compound) */
+    sciSons * sonToMove = sciGetSons(psubwin)->pnext;
+    sciPointObj * curObj = sonToMove->pointobj;
     /* remove it from the subwin */
-    sciDelThisToItsParent(curObj, psubwin);
+    sciDelSonFromItsParent(sonToMove, psubwin);
     /* add it to the agreg */
-    sciAddThisToItsParent(curObj, pobj);
+    sciAddThisToItsParentLastPos(curObj, pobj);
   }
 
   sciInitSelectedSons(pobj);

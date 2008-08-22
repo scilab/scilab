@@ -39,7 +39,9 @@ extern sciRelationShip *sciGetRelationship (sciPointObj * pobj); /* HANDLE MANAG
 extern int sciSetParent (sciPointObj * pson, sciPointObj * pparent); /* HANDLE MANAGEMENT */
 extern sciPointObj *sciGetParent (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern BOOL sciAddThisToItsParent (sciPointObj * pthis,  sciPointObj * pparent); /* HANDLE MANAGEMENT */
+BOOL sciAddThisToItsParentLastPos(sciPointObj * pthis, sciPointObj * parent); /* HANDLE MANAGEMENT */
 extern BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent); /* HANDLE MANAGEMENT */
+BOOL sciDelSonFromItsParent(sciSons * son, sciPointObj * parent); /* HANDLE MANAGEMENT */
 extern sciSons *sciGetSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern sciSons *sciGetLastSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern sciSons * sciGetNextAccessibleSon( sciSons * son ) ; /* HANDLE MANAGEMENT */

@@ -25,6 +25,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 
 /*--------------------------------------------------------------------------*/
@@ -33,8 +34,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3 ;
   int i;
   long hdl;
-
-  sciPointObj *psubwin = NULL ;
+  sciPointObj * pFigure = NULL;
 
   CheckRhs(2,3);
 
@@ -49,24 +49,32 @@ int sci_xpolys(char *fname,unsigned long fname_len)
     return 0 ;
   }
 
+  pFigure = sciGetCurrentFigure();
+
+  startFigureDataWriting(pFigure);
   if (Rhs == 3) 
   {
-    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); CheckVector (3,m3,n3); CheckDimProp(1,3,m3 * n3 < n1);
+    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); CheckVector (3,m3,n3);
+    CheckDimProp(1,3,m3 * n3 < n1);
+    /* Construct the polylines */
+    for (i = 0; i < n1; ++i)
+    {
+      Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
+    }
   }
   else
   {
-    int un=1;
-    CreateVar(3,MATRIX_OF_INTEGER_DATATYPE,&un,&n1,&l3);
-    for (i = 0 ; i < n1 ; ++i) *istk(l3+i) = 1;
+    for (i = 0; i < n1; ++i)
+    {
+      Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,1,&hdl);
+    }
   } 
 
-  psubwin = sciGetCurrentSubWin() ;
-
-  for (i = 0; i < n1; ++i) 
-    Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
 
   /** construct Compound and make it current object**/
   sciSetCurrentObj (ConstructCompoundSeq (n1));
+
+  endFigureDataWriting(pFigure);
 
   sciDrawObjIfRequired(sciGetCurrentObj ());
 
