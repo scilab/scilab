@@ -21,6 +21,12 @@ int SetUicontrolRelief(sciPointObj* sciObj, int stackPointer, int valueType, int
 
   char * relief = NULL;
   
+  if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
+    {
+      sciprint(_("No '%s' property for this object.\n"), "Relief");
+      return SET_PROPERTY_ERROR;
+    }
+
   if (valueType == sci_strings)
     {
       if(nbCol != 1 || nbRow == 0)

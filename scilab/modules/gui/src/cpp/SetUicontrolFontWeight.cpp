@@ -21,6 +21,12 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, int stackPointer, int valueType,
 
   char * fontWeight = NULL; 
 
+  if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
+    {
+      sciprint(_("No '%s' property for this object.\n"), "FontWeight");
+      return SET_PROPERTY_ERROR;
+    }
+
   if (valueType == sci_strings)
     {
       if(nbCol != 1)
