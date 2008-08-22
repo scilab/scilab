@@ -20,4 +20,4 @@ warning('off');
 ierr = execstr("mtlb_save(my_mat_file,""x"")","errcatch");
 warning('on');
 if ierr <> 10000 then bugmes();quit;end
-if lasterror()<>gettext("mtlb_save: Attempt to write an unsupported data type to an ASCII file.") then bugmes();quit;end
+if lasterror()<>msprintf(gettext("%s: Attempt to write an unsupported data type to an ASCII file.\n"), "mtlb_save") then bugmes();quit;end
