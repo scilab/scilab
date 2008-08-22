@@ -32,7 +32,7 @@ Source: modules\{#DIFFEQU}\macros\buildmacros.sce; DestDir: {app}\modules\{#DIFF
 Source: modules\{#DIFFEQU}\macros\buildmacros.bat; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\macros\cleanmacros.bat; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 ;
-;Source: modules\{#DIFFEQU}\demos\*.*; DestDir: {app}\modules\{#DIFFEQU}\demos; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\demos\*.*; DestDir: {app}\modules\{#DIFFEQU}\demos; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 ;
 Source: modules\{#DIFFEQU}\tests\*.*; DestDir: {app}\modules\{#DIFFEQU}\tests; Flags: recursesubdirs; Components: {#COMPN_EQUDIF} and {#COMPN_TESTS}
 ;
