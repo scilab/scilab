@@ -56,7 +56,7 @@ rotate_axes(h)
       // create two axes in the figure
       subplot(2, 1, 1);
       plot2d;
-      suplot(2, 1, 2);
+      subplot(2, 1, 2);
       plot3d;
 
       // rotate only the second axes

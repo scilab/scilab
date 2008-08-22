@@ -54,7 +54,7 @@ rotate_axes(h)
       // création deux système d'axe à l'intérieur de la figure
       subplot(2, 1, 1);
       plot2d;
-      suplot(2, 1, 2);
+      subplot(2, 1, 2);
       plot3d;
 
       // rotation du deuxième système d'axe uniquement
