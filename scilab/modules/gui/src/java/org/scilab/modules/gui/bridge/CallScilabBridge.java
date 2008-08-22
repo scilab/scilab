@@ -31,8 +31,6 @@ import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
 import javax.print.PrintException;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttribute;
@@ -99,7 +97,6 @@ import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.jvm.Scilab;
 import org.scilab.modules.renderer.FigureMapper;
 
 /**
@@ -2317,68 +2314,65 @@ public class CallScilabBridge {
 	 */
 	public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
 		final int figureID = figID;
-
 		// Get the PrinterJob object
-		PrinterJob printerJob = PrinterJob.getPrinterJob();			
-
-		int exportRendererMode = ExportRenderer.PS_EXPORT;
-		DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
-		String fileExtension = ".ps";
+		PrinterJob printerJob = PrinterJob.getPrinterJob();	
 
 		boolean userOK = true;
 		if (displayDialog) {
-			userOK = printerJob.printDialog();		
+			userOK = printerJob.printDialog(scilabPageFormat);		
 		}		
 
 		if (userOK) {
 			//If the OS is Windows
-			if (Scilab.isWindowsPlateform()) {
+			if (isWindowsPlateform()) {
 				Canvas canvas;		
 				canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
-				ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob);
+				ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
 
 				return false;	
 
 			//If the OS is Linux
-			} else {	
-				
-				if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
-					FileExporter.fileExport(figureID, 
-							tmpPrinterFile + fileExtension,
-							exportRendererMode, 0);
-				} else {
-					FileExporter.fileExport(figureID, 
-							tmpPrinterFile + fileExtension,
-							exportRendererMode, 1);
-				}
-				FileInputStream psStream = null; 
+			} else {					
+
+				int exportRendererMode = ExportRenderer.PS_EXPORT;
+				DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
+				String fileExtension = ".ps";
 
 				try {
-					psStream = new FileInputStream(tmpPrinterFile + fileExtension);
-				} catch (FileNotFoundException ffne) {
-					ffne.printStackTrace();
-				}
-				if (psStream == null) {
-					return false;
-				}
+					/** Export image to PostScript */
+					if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
+						FileExporter.fileExport(figureID, 
+								tmpPrinterFile + fileExtension,
+								exportRendererMode, 0);
+					} else {
+						FileExporter.fileExport(figureID, 
+								tmpPrinterFile + fileExtension,
+								exportRendererMode, 1);
+					}
 
-				printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
-				Doc myDoc = new SimpleDoc(psStream, printDocFlavor, null);  
-				PrintRequestAttributeSet aset = 
-					new HashPrintRequestAttributeSet();
-				PrintService[] services = 
-					PrintServiceLookup.lookupPrintServices(printDocFlavor, aset);		
+					/** Read file */
+					FileInputStream psStream = null; 
 
-				if (services.length > 0) {
-					DocPrintJob job = services[0].createPrintJob();
-					try {
-						job.print(myDoc, aset);
-						return true;
-					} catch (PrintException pe) {
-						pe.printStackTrace();
+					try { 
+						psStream = new FileInputStream(tmpPrinterFile + fileExtension);						
+					} catch (FileNotFoundException ffne) {
+						ffne.printStackTrace();
 						return false;
 					}
-				}	
+
+					Doc myDoc = new SimpleDoc(psStream, printDocFlavor, null);
+					DocPrintJob job = printerJob.getPrintService().createPrintJob();	
+
+					// Remove Orientation option from page setup because already managed in FileExporter
+					PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);			
+					aset.add(OrientationRequested.PORTRAIT);	
+
+					job.print(myDoc, aset);
+					return true;
+				} catch (PrintException e) {
+					e.printStackTrace();
+					return false;
+				}
 			}
 		}
 		return false;
@@ -2793,6 +2787,14 @@ public class CallScilabBridge {
 		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
 		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();
 		
+	}
+	
+	/**
+	 * @return true if the os is windows, false otherwise
+	 */
+	public static boolean isWindowsPlateform() {
+		// get os name
+		return System.getProperty("os.name").toLowerCase().contains("windows");
 	}
 
 }
