@@ -23,7 +23,7 @@ function head_comments(name,%paths)
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"),"head_comments",1))
   end
   ops=macr2lst(var);
-  syntax='['+strcat(ops(2),',')+'] = '+name+'('+strcat(ops(3),',')+')';
+  syntax='function ['+strcat(ops(2),',')+'] = '+name+'('+strcat(ops(3),',')+')';
   
   comm=[];
   k=4;if ops(4)=='15' then k=k+1;end
