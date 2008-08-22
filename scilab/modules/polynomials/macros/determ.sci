@@ -55,7 +55,7 @@ function res=determ(W,k)
   end
 
   if n1>8 then
-    mprintf('Computing determinant: Be patient...');
+    mprintf(gettext("Computing determinant: Be patient...\n"));
   end
 
   // Default Values
