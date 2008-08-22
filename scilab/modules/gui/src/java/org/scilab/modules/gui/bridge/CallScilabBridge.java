@@ -31,14 +31,19 @@ import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
 import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.console.SciConsole;
+import org.scilab.modules.graphic_export.ExportRenderer;
+import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
@@ -84,6 +89,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
@@ -93,6 +99,7 @@ import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.jvm.Scilab;
 import org.scilab.modules.renderer.FigureMapper;
 
 /**
@@ -2310,20 +2317,71 @@ public class CallScilabBridge {
 	 */
 	public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
 		final int figureID = figID;
+
 		// Get the PrinterJob object
-		PrinterJob printerJob = PrinterJob.getPrinterJob();	
+		PrinterJob printerJob = PrinterJob.getPrinterJob();			
+
+		int exportRendererMode = ExportRenderer.PS_EXPORT;
+		DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
+		String fileExtension = ".ps";
 
 		boolean userOK = true;
 		if (displayDialog) {
-			userOK = printerJob.printDialog(scilabPageFormat);
-		}
+			userOK = printerJob.printDialog();		
+		}		
 
-		if (userOK) {					
-			Canvas canvas;		
-			canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
-		    ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage()); 		
+		if (userOK) {
+			//If the OS is Windows
+			if (Scilab.isWindowsPlateform()) {
+				Canvas canvas;		
+				canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
+				ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob);
+
+				return false;	
+
+			//If the OS is Linux
+			} else {	
+				
+				if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
+					FileExporter.fileExport(figureID, 
+							tmpPrinterFile + fileExtension,
+							exportRendererMode, 0);
+				} else {
+					FileExporter.fileExport(figureID, 
+							tmpPrinterFile + fileExtension,
+							exportRendererMode, 1);
+				}
+				FileInputStream psStream = null; 
+
+				try {
+					psStream = new FileInputStream(tmpPrinterFile + fileExtension);
+				} catch (FileNotFoundException ffne) {
+					ffne.printStackTrace();
+				}
+				if (psStream == null) {
+					return false;
+				}
+
+				printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
+				Doc myDoc = new SimpleDoc(psStream, printDocFlavor, null);  
+				PrintRequestAttributeSet aset = 
+					new HashPrintRequestAttributeSet();
+				PrintService[] services = 
+					PrintServiceLookup.lookupPrintServices(printDocFlavor, aset);		
+
+				if (services.length > 0) {
+					DocPrintJob job = services[0].createPrintJob();
+					try {
+						job.print(myDoc, aset);
+						return true;
+					} catch (PrintException pe) {
+						pe.printStackTrace();
+						return false;
+					}
+				}	
+			}
 		}
-		return false;					
+		return false;
 	}
 
 	/**
