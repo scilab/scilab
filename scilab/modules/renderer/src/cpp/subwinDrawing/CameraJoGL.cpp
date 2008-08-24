@@ -233,7 +233,7 @@ void CameraJoGL::getViewport(int viewport[4])
 {
   for (int i = 0; i < 4; i++)
   {
-    viewport[i] = m_aViewPort[i];
+    viewport[i] = (int)m_aViewPort[i];
   }
 }
 /*--------------------------------------------------------------------------*/
