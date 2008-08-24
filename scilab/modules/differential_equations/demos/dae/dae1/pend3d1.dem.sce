@@ -19,7 +19,7 @@ x0=l*[sin(phi0)*cos(theta0);cos(phi0)*cos(theta0);sin(theta0)];
 // index 1
 
 u0      = [1;-1;0];
-deff("r=ff(l)","r=ggpp(x0,u0,l)");
+function  r=ff(l),r=ggpp(x0,u0,l);endfunction
 lambda0 = fsolve(0,ff);
 ud0     = -2*lambda0/m*x0-[0;0;g];
 y0      = [x0;u0;lambda0];
@@ -41,7 +41,24 @@ my_handle = scf(100001);
 clf(my_handle,"reset");
 demo_viewCode("pend3d1.dem.sce");
 
-param3d(x1(1,:),x1(2,:),x1(3,:))
-a=gca();
-a.title.text='spherical pendulum, index 1';
-a.title.font_size=3;
+drawlater()
+title(_("spherical pendulum, index 1"),"fontsize",3)
+xpoly([],[]);
+p                 = gce();
+a                 = gca();
+a.view            = '3d';
+a.box             = 'on';
+a.grid            =color('lightgray')*ones(1,3);
+a.rotation_angles = [35 45];
+a.axes_visible    = "on";
+a.data_bounds     = [min(x1(1,:)),min(x1(2,:)),min(x1(3,:))
+		     max(x1(1,:)),max(x1(2,:)),max(x1(3,:))];
+p.data=[x1(1,1) x1(2,1),x1(3,1)];
+drawnow();
+
+step=10;
+for k=1:step:(size(x1,2)-step)
+  p.data=[p.data
+	  x1(:,k:(k+step-1))'];
+end
+

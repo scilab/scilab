@@ -15,11 +15,6 @@ x = read(thispath+"data/xdemo.dat",46,401,"(e10.4)");
 
 my_handle = scf(100001);
 clf(my_handle,"reset");
-toolbar(my_handle.figure_id, "off");
-
-my_axe                 = gca();
-my_axe.title.font_size = 3;
-my_axe.title.text      = "bike simulation, stable trajectory";
 
 show(x(:,1:340),1.6,1.47,velo1);
 

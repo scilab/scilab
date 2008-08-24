@@ -42,7 +42,23 @@ clf(my_handle,"reset");
 demo_viewCode("pend3d2.dem.sce");
 
 
-param3d(x2(1,:),x2(2,:),x2(3,:))
-a=gca();
-a.title.text='spherical pendulum, index 2';
-a.title.font_size=3;
+drawlater()
+title(_("spherical pendulum, index 2"),"fontsize",3)
+xpoly([],[]);
+p                 = gce();
+a                 = gca();
+a.view            = '3d';
+a.box             = 'on';
+a.grid            =color('lightgray')*ones(1,3);
+a.rotation_angles = [48 48];
+a.axes_visible    = "on";
+a.data_bounds     = [min(x2(1,:)),min(x2(2,:)),min(x2(3,:))
+		     max(x2(1,:)),max(x2(2,:)),max(x2(3,:))];
+p.data=[x2(1,1) x2(2,1),x2(3,1)];
+drawnow();
+
+step=10;
+for k=1:step:(size(x2,2)-step)
+  p.data=[p.data
+	  x2(:,k:(k+step-1))'];
+end

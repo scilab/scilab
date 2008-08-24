@@ -10,7 +10,6 @@ thispath = get_absolute_file_path("wheel2.dem.sce");
 
 my_handle = scf(100001);
 clf(my_handle,"reset");
-toolbar(my_handle.figure_id, "off");
 
 exec(thispath+"show.sci");
 

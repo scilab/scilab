@@ -37,21 +37,16 @@ ny = size(y,"*");
 fx = ones(nt,ny);
 fy = feval(t,y,f);
 champ(t,y,fx,fy);
+xlabel('t','fontsize',3)
+ylabel('y','fontsize',3)
+a=gca();a.margins(3)=0.2;
+title([_("ODE 1D vector field")
+       "dy/dt=  y^2 - t"],'fontsize',3)
 
-a                   = gca();
-a.margins(3)=0.2;
 
-a.x_label.text      = "y1",
-a.x_label.font_size = 3;
-a.y_label.text      = "y2",
-a.y_label.font_size = 3;
 
 oldt0 = 10*tmax;
 oldy0 = 10*ymax;
-
-a.title.text       = [_("ODE 1D vector field");]
-		      
-a.title.font_size  = 3;
 dt                 = 0.1;
 dy                 = 0.1;
 

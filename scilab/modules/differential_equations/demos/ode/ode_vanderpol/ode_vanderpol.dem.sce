@@ -28,39 +28,37 @@ clf(my_handle,"reset");
 demo_viewCode("ode_vanderpol.dem.sce");
 
 
-deff("yprim=f(t,y)",..
-     ["yprim1=y(2)";..
-      "yprim2=mu*(1-y(1)^2)*y(2)-y(1)";..
-      "yprim=[yprim1;yprim2]";])
+function yprim=f(t,y)
+  yprim=[y(2)
+	 mu*(1-y(1)^2)*y(2)-y(1)]
+endfunction
 
 mu = 5;
 
-xmin = -3;
-xmax =  3;
-ymin = -8;
-ymax =  8;
+xmin = -3.5;
+xmax =  3.5;
+ymin = -9;
+ymax =  9;
 
 xr = xmin:0.5:xmax;
 yr = ymin:1:ymax;
 
 fchamp(f,1,xr,yr);
-a=gca();
-a.x_label.text="y1";
-a.x_label.font_size=3;
-a.y_label.text="y2";
-a.y_label.font_size=3;
+xlabel('y(1)','fontsize',3)
+ylabel('y(2)','fontsize',3)
+a=gca();a.margins(3)=0.2
+title([_("Van der Pol vector field")
+       "dy1/dt=y2"
+       "dy2/dt=5*(1-y1^2*y2-y1"],'fontsize',3)
 
-fig=gcf();
-a=gca();
-a.title.text='Van der Pol vector field';
-a.title.font_size=3;t0=0; dt=0.05; tmax=15;
+t0=0; dt=0.05; tmax=15;
 t=t0:dt:tmax;
 oldx0=10*xmax; oldy0=10*ymax;
 dx=0.1; dy=0.1;
 rtol=0.0001; atol=rtol;
 while (%t)
   [b,x0,y0]=xclick();
-  if or(b==[2 5]) then break,end;
+  if or(b==[2 5,-1000]) then break,end;
   if or(b==[0 3]) & x0>=xmin & x0<=xmax & y0>=ymin & y0<=ymax then
     sol=ode([x0;y0],t0,t,rtol,atol,f);
     xpoly(sol(1,:)',sol(2,:)');
@@ -68,7 +66,7 @@ while (%t)
     show_pixmap()
     rep=[x0,y0,-1];  
     while rep(3)==-1 then
-      rep=xgetmouse(0);
+      rep=xgetmouse();
       x0=rep(1); y0=rep(2);
       if (xmin<x0 & x0<xmax & ymin<y0 & y0<ymax) & (abs(x0-oldx0)>=dx | abs(y0-oldy0)>=dy) then
         sol=ode([x0;y0],t0,t,rtol,atol,f);

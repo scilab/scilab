@@ -10,7 +10,6 @@ thispath = get_absolute_file_path("wheel1.dem.sce");
 
 my_handle = scf(100001);
 clf(my_handle,"reset");
-toolbar(my_handle.figure_id, "off");
 
 // A precomputed value for
 // x0=[0;%pi/2+0.1;0;5.0;0.0;4.0;0;0];
@@ -20,7 +19,6 @@ x=read(thispath+"x.wrt",8,301);
 
 wheelg=wheelgs;
 show(x);
-toolbar(my_handle.figure_id, "on");
 
 // Clear variable and functions
 clear wheelg wheelgs;

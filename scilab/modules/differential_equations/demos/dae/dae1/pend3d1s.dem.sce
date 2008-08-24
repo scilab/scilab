@@ -14,7 +14,7 @@ x0=l*[sin(phi0)*cos(theta0);cos(phi0)*cos(theta0);sin(theta0)];
 // index 1 with stabilization
 
 u0       = [1;-1;0];
-deff("r=ff(l)","r=ggpp(x0,u0,l)");
+function r=ff(l),r=ggpp(x0,u0,l),endfunction
 lambda0  = fsolve(0,ff);
 ud0      = -2*lambda0/m*x0-[0;0;g];
 y0       = [x0;u0;lambda0];
@@ -39,7 +39,22 @@ my_handle = scf(100001);
 clf(my_handle,"reset");
 demo_viewCode("pend3d1s.dem.sce");
 
-param3d(x1s(1,:),x1s(2,:),x1s(3,:))
-a=gca();
-a.title.text='spherical pendulum, index 1 with stabilization';
-a.title.font_size=3;
+drawlater()
+title(_("spherical pendulum, index 1 with stabilization"),"fontsize",3)
+xpoly([],[]);
+p                 = gce();
+a                 = gca();
+a.view            = '3d';
+a.box             = 'on';
+a.grid            =color('lightgray')*ones(1,3);
+a.rotation_angles = [35 45];
+a.axes_visible    = "on";
+a.data_bounds     = [min(x1s(1,:)),min(x1s(2,:)),min(x1s(3,:))
+		     max(x1s(1,:)),max(x1s(2,:)),max(x1s(3,:))];
+p.data=[x1s(1,1) x1s(2,1),x1s(3,1)];
+drawnow()
+step=10;
+for k=1:step:(size(x1s,2)-step)
+  p.data=[p.data
+	  x1s(:,k:(k+step-1))'];
+end
