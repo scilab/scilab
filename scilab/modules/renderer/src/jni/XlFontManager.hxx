@@ -62,6 +62,9 @@ jmethodID jbooleanisAvailableFontNamejstringID; // cache method id
 jmethodID jintaddFontjstringID; // cache method id
 jmethodID jintchangeFontjintjstringID; // cache method id
 jmethodID jintchangeFontWithPropertyjintjstringjbooleanjbooleanID; // cache method id
+jmethodID voidresetXlFontManagerID; // cache method id
+jmethodID jintaddFontFromFilenamejstringID; // cache method id
+jmethodID jintchangeFontFromFilenamejintjstringID; // cache method id
 
 
 /**
@@ -118,6 +121,12 @@ long addFont(char * fontName);
 long changeFont(long index, char * fontName);
 
 long changeFontWithProperty(long index, char * fontName, bool isBold, bool isItalic);
+
+void resetXlFontManager();
+
+long addFontFromFilename(char * FontFilename);
+
+long changeFontFromFilename(long index, char * FontFilename);
 
 
                         /**

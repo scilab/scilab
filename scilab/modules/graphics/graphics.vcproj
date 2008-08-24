@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="graphics"
 	ProjectGUID="{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
 	RootNamespace="graphics"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../../../jvm/includes"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../../../jvm/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"

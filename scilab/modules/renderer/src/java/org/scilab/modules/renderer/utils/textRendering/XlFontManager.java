@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - DIGITEO - Allan CORNET
+ * Copyright (C) 2008 - INRIA - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -80,7 +80,16 @@ public class XlFontManager {
 	}
 	
 	/**
-	 * 
+	 * add font loaded from a filename
+	 * @param font filename
+	 * @return index
+	 */
+	public int addFontFromFilename(String FontFilename) {
+		return sciFontManager.addFontFromFilename(FontFilename);
+	}
+	
+	/**
+	 * Change Font
 	 * @param index index of font to replace
 	 * @param fontName font name
 	 * @return index
@@ -89,8 +98,18 @@ public class XlFontManager {
 		return sciFontManager.changeFont(index, fontName);
 	}
 	
+  /**
+	 * Change Font loaded from a filename
+	 * @param index index of font to replace
+	 * @param font filename
+	 * @return index
+	 */
+	public int changeFontFromFilename(int index, String FontFilename) {
+		return sciFontManager.changeFontFromFilename(index, FontFilename);
+	}	
+	
 	/**
-	 * 
+	 * Change Font 
 	 * @param index index of font to replace
 	 * @param fontName  font name
 	 * @param isBold true or false
@@ -99,6 +118,13 @@ public class XlFontManager {
 	 */
 	public int changeFontWithProperty(int index, String fontName, boolean isBold, boolean isItalic) {
 		return sciFontManager.changeFont(index, fontName, isBold, isItalic);
+	}
+	
+	/**
+	 * reset XlFontManager with initial value
+	 */
+	public void resetXlFontManager() {
+		sciFontManager.initializeFontManager();
 	}
 	
 }

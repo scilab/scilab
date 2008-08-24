@@ -107,6 +107,9 @@ jbooleanisAvailableFontNamejstringID=NULL;
 jintaddFontjstringID=NULL; 
 jintchangeFontjintjstringID=NULL; 
 jintchangeFontWithPropertyjintjstringjbooleanjbooleanID=NULL; 
+voidresetXlFontManagerID=NULL; 
+jintaddFontFromFilenamejstringID=NULL; 
+jintchangeFontFromFilenamejintjstringID=NULL; 
 
 
 }
@@ -137,6 +140,9 @@ jbooleanisAvailableFontNamejstringID=NULL;
 jintaddFontjstringID=NULL; 
 jintchangeFontjintjstringID=NULL; 
 jintchangeFontWithPropertyjintjstringjbooleanjbooleanID=NULL; 
+voidresetXlFontManagerID=NULL; 
+jintaddFontFromFilenamejstringID=NULL; 
+jintchangeFontFromFilenamejintjstringID=NULL; 
 
 
 }
@@ -328,6 +334,59 @@ jboolean isBold_ = ((bool) isBold ? JNI_TRUE : JNI_FALSE);
 jboolean isItalic_ = ((bool) isItalic ? JNI_TRUE : JNI_FALSE);
 
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintchangeFontWithPropertyjintjstringjbooleanjbooleanID ,index, fontName_, isBold_, isItalic_);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+void XlFontManager::resetXlFontManager (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidresetXlFontManagerID==NULL) { /* Use the cache Luke */ voidresetXlFontManagerID = curEnv->GetMethodID(this->instanceClass, "resetXlFontManager", "()V" ) ;
+if (voidresetXlFontManagerID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "resetXlFontManager");
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidresetXlFontManagerID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+long XlFontManager::addFontFromFilename (char * FontFilename){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jintaddFontFromFilenamejstringID==NULL) { /* Use the cache Luke */ jintaddFontFromFilenamejstringID = curEnv->GetMethodID(this->instanceClass, "addFontFromFilename", "(Ljava/lang/String;)I" ) ;
+if (jintaddFontFromFilenamejstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "addFontFromFilename");
+}
+}
+jstring FontFilename_ = curEnv->NewStringUTF( FontFilename );
+
+                        jint res =  (jint) curEnv->CallIntMethod( this->instance, jintaddFontFromFilenamejstringID ,FontFilename_);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+long XlFontManager::changeFontFromFilename (long index, char * FontFilename){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jintchangeFontFromFilenamejintjstringID==NULL) { /* Use the cache Luke */ jintchangeFontFromFilenamejintjstringID = curEnv->GetMethodID(this->instanceClass, "changeFontFromFilename", "(ILjava/lang/String;)I" ) ;
+if (jintchangeFontFromFilenamejintjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "changeFontFromFilename");
+}
+}
+jstring FontFilename_ = curEnv->NewStringUTF( FontFilename );
+
+                        jint res =  (jint) curEnv->CallIntMethod( this->instance, jintchangeFontFromFilenamejintjstringID ,index, FontFilename_);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

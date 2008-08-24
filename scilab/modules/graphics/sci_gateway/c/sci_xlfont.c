@@ -27,6 +27,7 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "FileExist.h"
 /*--------------------------------------------------------------------------*/
 static int xlfont_no_rhs(char * fname);
 static int xlfont_one_rhs(char * fname);
@@ -88,11 +89,28 @@ static int xlfont_one_rhs(char * fname)
 			LhsVar(1) = Rhs+1 ;
 			return 0;
 		}
+		else if ( strcmp(cstk(l1),"reset")==0)
+		{
+			resetFontManager();
+			LhsVar(1) = 0 ;
+			return 0;
+		}
 		else
 		{
 			if (isAvailableFontsName(cstk(l1)))
 			{
 				int fontID = addFont(cstk(l1));
+
+				m1 = 1; n1 = 1; l1 = 0;
+				CreateVar( Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1 );
+				*istk(l1) = fontID ;
+
+				LhsVar(1) = Rhs+1 ;
+				return 0;
+			}
+			else if (FileExist(cstk(l1)))
+			{
+				int fontID = addFontFromFilename(cstk(l1));
 
 				m1 = 1; n1 = 1; l1 = 0;
 				CreateVar( Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1 );
@@ -163,7 +181,16 @@ static int xlfont_n_rhs(char * fname)
 				return 0;
 			}
 
-			if ( isAvailableFontsName(fontname) )
+			if ( (Rhs == 2) && FileExist(fontname) )
+			{
+				int Id = changeFontFromFilename(index,fontname);
+				m1 = 1; n1 = 1; l1 = 0;
+				CreateVar( Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1 );
+				*istk(l1) = Id ;
+
+				LhsVar(1) = Rhs+1 ;
+			}
+			else if ( isAvailableFontsName(fontname) )
 			{
 				int Id = changeFontWithProperty(index,fontname,isBold,isItalic);
 				m1 = 1; n1 = 1; l1 = 0;

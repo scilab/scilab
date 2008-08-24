@@ -34,7 +34,10 @@
     <title>Calling Sequence</title>
 
     <synopsis>xlfont(font-name)
+xlfont(font-filename)
+xlfont('reset')
 xlfont(font-name,font-id)
+xlfont(font-filename,font-id)
 xlfont(font-name,font-id,bold)
 xlfont(font-name,font-id,bold,italic)
 fonts=xlfont('AVAILABLE_FONTS')
@@ -50,6 +53,14 @@ fonts=xlfont()</synopsis>
 
         <listitem>
           <para>string, name of the font family.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font-filename</term>
+
+        <listitem>
+          <para>string, filename of a true type font.</para>
         </listitem>
       </varlistentry>
 
@@ -79,6 +90,8 @@ fonts=xlfont()</synopsis>
 
     <para>xlfont('AVAILABLE_FONTS') returns list of fonts available on your
     system.</para>
+
+    <para>xlfont('reset') reset to initial index list of fonts.</para>
 
     <para>With arguments, <literal>xlfont</literal> is used to load a new font
     at different sizes in the graphics context.</para>

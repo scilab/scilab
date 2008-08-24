@@ -141,3 +141,37 @@ int changeFontWithProperty(int index, char * fontName, BOOL isBold, BOOL isItali
 	return fontID;
 }
 /*--------------------------------------------------------------------------*/
+void resetFontManager(void)
+{
+	org_scilab_modules_renderer_utils_textRendering::XlFontManager *fntmgr = new org_scilab_modules_renderer_utils_textRendering::XlFontManager(getScilabJavaVM());
+	if (fntmgr)
+	{
+		fntmgr->resetXlFontManager();
+		delete fntmgr;
+	}
+}
+/*--------------------------------------------------------------------------*/
+int changeFontFromFilename (int index, char * FontFilename)
+{
+	int fontID = 0;
+	org_scilab_modules_renderer_utils_textRendering::XlFontManager *fntmgr = new org_scilab_modules_renderer_utils_textRendering::XlFontManager(getScilabJavaVM());
+	if (fntmgr)
+	{
+		fontID = (int)fntmgr->changeFontFromFilename((long)index,FontFilename);
+		delete fntmgr;
+	}
+	return fontID;
+}
+/*--------------------------------------------------------------------------*/
+int addFontFromFilename (char * FontFilename)
+{
+	int fontID = 0;
+	org_scilab_modules_renderer_utils_textRendering::XlFontManager *fntmgr = new org_scilab_modules_renderer_utils_textRendering::XlFontManager(getScilabJavaVM());
+	if (fntmgr)
+	{
+		fontID = (int)fntmgr->addFontFromFilename (FontFilename);
+		delete fntmgr;
+	}
+	return fontID;
+}
+/*--------------------------------------------------------------------------*/

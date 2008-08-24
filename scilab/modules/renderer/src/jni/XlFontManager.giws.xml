@@ -24,6 +24,15 @@
     <param type="boolean" name="isBold" />
     <param type="boolean" name="isItalic" />
     </method>
+    <method name="resetXlFontManager" returnType="void">
+    </method>
+    <method name="addFontFromFilename" returnType="int">
+    <param type="String" name="FontFilename" />
+    </method>
+    <method name="changeFontFromFilename" returnType="int">
+    <param type="int" name="index" />
+    <param type="String" name="FontFilename" />
+    </method>
     
   </object>
 </package>

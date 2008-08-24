@@ -1,44 +1,23 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - DIGITEO - Allan CORNET
+// Copyright (C) 2008 - INRIA - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
-fonts = xlfont();
-if size(fonts,'*') <> 11 then bugmes();quit;end
-default_fonts = [ "Monospaced" , ..
-"Symbol" , ..
-"Serif" , ..
-"Serif" , ..
-"Serif" , ..
-"Serif" , ..
-"SansSerif" , ..
-"SansSerif" , ..
-"SansSerif" , ..
-"SansSerif" , ..
-"SansSerif" ];
-if ~MSDOS then
-default_fonts = strsubst(default_fonts,'Symbol','OpenSymbol');
-end
-if ( or(fonts <> default_fonts) ) then bugmes();quit;end
+initialfonts = xlfont();
+if size(initialfonts,'*') <> 11 then bugmes();quit;end
 availablefonts = xlfont('AVAILABLE_FONTS');
 if size(availablefonts,'*') < 11 then bugmes();quit;end
-for i=0:size(fonts,'*')-1
-  xlfont(default_fonts(1),i);
+for i=1:11:1
+  xlfont(availablefonts(i),i);
 end
-ref = emptystr(1:size(fonts,'*')) + default_fonts(1);
-fonts = xlfont();
-if ( and(fonts <> default_fonts) ) then bugmes();quit;end
-for i=0:size(fonts,'*')-1
-  xlfont(default_fonts(2),i,%t);
+for i=1:11:1
+  xlfont(availablefonts(i),i,%t,%f);
 end
-ref = emptystr(1:size(fonts,'*')) + default_fonts(2);
-fonts = xlfont();
-if ( and(fonts <> default_fonts) ) then bugmes();quit;end
-for i=0:size(fonts,'*')-1
-  xlfont(default_fonts(2),i,%t,%t);
+for i=1:11:1
+  xlfont(availablefonts(i),i,%t);
 end
-ref = emptystr(1:size(fonts,'*')) + default_fonts(2);
-fonts = xlfont();
-if ( and(fonts <> default_fonts) ) then bugmes();quit;end
+xlfont('reset');
+afterresetfonts = xlfont();
+if ~and(initialfonts == afterresetfonts) then bugmes();quit;end

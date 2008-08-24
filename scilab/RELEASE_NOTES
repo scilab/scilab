@@ -25,7 +25,6 @@ List of missing/buggy features:
       Errors often appear on ATI and Intel cards under Linux and also with 
       old Nvidia drivers.
       A solution should be added in Scilab RC1
-    * The Symbol font is not compatible with the one used in Scilab 4.
     * By default arcs and circles are now approximated using a constant number of lines.
       To switch to real arcs, set their arc_drawing_method property to "nurbs".
     * Sector boundary angles of arc objects are now specified in degree whereas it used to
