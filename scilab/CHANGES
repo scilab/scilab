@@ -98,17 +98,17 @@ Optimization:
 Genetic Algorithms:
 ===================
  - Genetic algorithms have been added into Scilab. Many thanks to Yann Collette
-	+ codage_binary				- Performs conversion between binary and continuous representation
-	+ codage_identity			- "no-operation" conversion function
+	+ codage_binary			- Performs conversion between binary and continuous representation
+	+ codage_identity		- "no-operation" conversion function
 	+ crossover_func_binary 	- Crossover function for binary code
 	+ crossover_func_default 	- Crossover function for continuous variable functions
-	+ init_func_default			- Initialize a population 
+	+ init_func_default		- Initialize a population 
 	+ mutation_func_binary		- Performs binary mutation 
 	+ mutation_func_default		- Continuous variable mutation
-	+ optim_ga					- Flexible genetic algorithm 
-	+ optim_nsga				- Multi-objective Niched Sharing Genetic Algorithm
-	+ optim_nsga2				- Multi-objective Niched Sharing Genetic Algorithm version 2
-	+ pareto_filter				- Extracts non dominated solution from a set
+	+ optim_ga			- Flexible genetic algorithm 
+	+ optim_nsga			- Multi-objective Niched Sharing Genetic Algorithm
+	+ optim_nsga2			- Multi-objective Niched Sharing Genetic Algorithm version 2
+	+ pareto_filter			- Extracts non dominated solution from a set
 	+ selection_func_elitist	- 'Elitist' selection function 
 	+ selection_func_random		- Random selection of individuals 
 
@@ -118,22 +118,22 @@ Param/parameters module:
  - This package allows to deal with list of parameters efficiently (like optim_set in Matlab from The Mathworks (TM)). Many thanks to Yann Collette
 	+ add_param		- Add a parameter to a list of parameters
 	+ get_param		- Get the value of a parameter in a parameter list
-	+ init_param	- 
+	+ init_param		- Initialize an empty parameter list
 	+ is_param		- Check if a parameter is present in a parameter list
-	+ list_param	- List all the parameters name in a list of parameters 
-	+ remove_param	- Remove a parameter and its associated value from a list of parameters 
+	+ list_param		- List all the parameters name in a list of parameters 
+	+ remove_param		- Remove a parameter and its associated value from a list of parameters 
 	+ set_param		- Set the value of a parameter in a parameter list 
 
 
 Simulated Annealing:
 ====================
  - Simulated annealing (SA) is a generic probabilistic meta-algorithm for the global optimization problem. Many thanks to Yann Collette
-	+ compute_initial_temp	- Compute the initial temperature of the simulated annealing
+	+ compute_initial_temp		- Compute the initial temperature of the simulated annealing
 	+ neigh_func_csa		- The classical neighborhood relationship for the simulated annealing 
-	+ neigh_func_default	- Computes a neighbor of a given point
+	+ neigh_func_default		- Computes a neighbor of a given point
 	+ neigh_func_fsa		- The Fast Simulated Annealing neghborhood relationship 
 	+ neigh_func_vfsa		- The Very Fast Simulated Annealing neighborhood relationship 
-	+ optim_sa				- Simulated Annealing optimization method 
+	+ optim_sa			- Simulated Annealing optimization method 
 	+ temp_law_csa			- The classical temperature decrease law
 	+ temp_law_default		- Computes the temperature of the next temperature stage 
 	+ temp_law_fsa			- The Szu and Hartley Fast simulated annealing
