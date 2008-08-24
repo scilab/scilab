@@ -24,6 +24,9 @@
 #include "GetProperty.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DrawObjects.h"
+#include "CurrentObjectsManagement.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xarrows(char *fname,unsigned long fname_len)
 {

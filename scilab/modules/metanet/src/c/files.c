@@ -129,7 +129,7 @@ char *my_dirname(char *path)
     if (pathlen >= sizeof(buf)) return NULL;
 
     strcpy(buf, path);
-    for (i = pathlen; i >= 0; --i) {
+    for (i = (int)pathlen; i >= 0; --i) {
         if (buf[i] == '/' || buf[i] == '\\') {
             buf[i] = '\0';
             break;

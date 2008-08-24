@@ -214,7 +214,7 @@ static char* addCodePage(char *lang)
 		char *retCTYPE = setlocale(LC_CTYPE,"");
 		#endif
 		char *encoding = getEncoding(retCTYPE);
-		int sizelanguageCountryCodePage = strlen(lang) + strlen(encoding) + strlen(".") + 1;
+		int sizelanguageCountryCodePage = (int)(strlen(lang) + strlen(encoding) + strlen(".") + 1);
 
 		languageCountryCodePage = (char*)MALLOC(sizeof(char) * sizelanguageCountryCodePage);
 		if (languageCountryCodePage)

@@ -18,6 +18,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
+#include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 
 static BOOL loadedDep=FALSE;
