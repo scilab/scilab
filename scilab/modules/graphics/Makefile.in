@@ -119,6 +119,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @GUI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+@GUI_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
 @GUI_TRUE@	$(am__append_2) $(am__append_3)
 am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/GetCommandArg.c src/c/WindowList.c src/c/Events.c \
@@ -1106,6 +1107,7 @@ libscigraphics_la_CFLAGS =  \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes -Iincludes/ \
 	-Isrc/c/ -Isrc/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ $(am__append_1) \
 	$(am__append_4)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
@@ -1509,6 +1511,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @GUI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+@GUI_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
 @GUI_TRUE@	$(am__append_2) $(am__append_3)
 
 #### graphics : Conf files ####
