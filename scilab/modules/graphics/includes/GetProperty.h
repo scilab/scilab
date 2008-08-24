@@ -231,8 +231,6 @@ int sciGetPolylineStyle(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsClosed(sciPointObj * pObj); /* GET */
 
-double sciGetArrowSize(sciPointObj * pObj); /* GET */
-
 void sciGetTextPos(sciPointObj * pObj, double position[3]); /* GET */
 
 void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2]); /* GET */
