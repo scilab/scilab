@@ -3,6 +3,7 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
+ * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -123,42 +124,30 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   pixelCoords[1] = (int) getJxgetmouseYCoordinate();
   windowsID = (int )getJxgetmouseWindowsID();
 
-  // Convert pixel coordinates to user coordinates
-  clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowsID), SCI_SUBWIN);
-  updateSubwinScale(clickedSubwin);
-  sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  // No need to calculate coordinates if callback or close is trapped
+  if (mouseButtonNumber == -1000 || mouseButtonNumber == -2)
+    {
+      *stk(l1) = -1;
+      *stk(l1+1) = -1;
+      *stk(l1+2) = (double) mouseButtonNumber;
+    }
+  else
+    {
+      // Convert pixel coordinates to user coordinates
+      clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowsID), SCI_SUBWIN);
+      updateSubwinScale(clickedSubwin);
+      sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
+      *stk(l1) = userCoords2D[0];
+      *stk(l1+1) = userCoords2D[1];
+      *stk(l1+2) = (double) mouseButtonNumber;
+    }
+  LhsVar(1) = Rhs+1;
 
   switch (Lhs) {
   case 1:
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-    if (mouseButtonNumber==-100)
-    {
-      *stk(l1) = -1;
-      *stk(l1+1) = -1;
-      *stk(l1+2) = (double) mouseButtonNumber;
-    }
-    else
-    {
-      *stk(l1) = userCoords2D[0];
-      *stk(l1+1) = userCoords2D[1];
-      *stk(l1+2) = (double) mouseButtonNumber;
-    }
-    LhsVar(1) = Rhs+1;
     return 0;
   case 2:
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-    if (mouseButtonNumber==-100)
-    {
-      *stk(l1) = -1;
-      *stk(l1+1) = -1;
-      *stk(l1+2) = (double) mouseButtonNumber;
-    }
-    else
-    {
-      *stk(l1) = userCoords2D[0];
-      *stk(l1+1) = userCoords2D[1];
-      *stk(l1+2) = (double) mouseButtonNumber;
-    }
     LhsVar(1) = Rhs+1;
 
     CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&m1,&l2);
