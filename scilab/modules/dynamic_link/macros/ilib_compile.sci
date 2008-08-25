@@ -84,7 +84,8 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	  [msg, ierr, stderr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
 		mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
-	    mprintf(stderr);
+		lines(0)
+	    disp(stderr);
 		mprintf("\n");
 		mprintf(gettext("%s: The command was:\n"),"ilib_compile");
 		mprintf(cmd);
