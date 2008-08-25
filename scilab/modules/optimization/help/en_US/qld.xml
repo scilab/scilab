@@ -208,9 +208,9 @@ me=3;
         <link linkend="optim">optim</link>
       </member>
 
+    </simplelist>
       <para>The contributed toolbox "quapro" may also be of interest, in
       particular for singular <literal>Q</literal>.</para>
-    </simplelist>
   </refsection>
 
   <refsection>

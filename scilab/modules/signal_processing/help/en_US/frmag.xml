@@ -9,8 +9,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[xm,fr]=frmag(sys,npts)</synopsis>
-    <synopsis>[xm,fr]=frmag(num,den,npts)</synopsis>
+    <synopsis>
+    [xm,fr]=frmag(sys,npts)
+    [xm,fr]=frmag(num,den,npts)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>

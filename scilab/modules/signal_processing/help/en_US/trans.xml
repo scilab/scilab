@@ -9,8 +9,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>hzt=trans(hz,tr_type,frq)</synopsis>
-    <synopsis>hzt=trans(pd,zd,gd,tr_type,frq)</synopsis>
+    <synopsis>
+    hzt=trans(hz,tr_type,frq)
+    hzt=trans(pd,zd,gd,tr_type,frq)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
