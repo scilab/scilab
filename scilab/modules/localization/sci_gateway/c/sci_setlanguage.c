@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007/2008 - INRIA - Sylvestre LEDRU
- * Copyright (C) 2008 - DIGITEO - Allan CORNET
+ * Copyright (C) 2008 - INRIA - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -71,28 +71,14 @@ int C2F(sci_setlanguage)(char *fname,unsigned long fname_len)
 				if ( getWarningMode() )
 				{
 					sciprint("\n");
-					sciprint(_("The language for menus cannot be changed on a running console.\n"));
-					sciprint(_("Restart Scilab to apply to menus.\n"));
+					sciprint(_("Note that menus cannot be changed on the fly.\n"));
+#ifdef _MSC_VER
+					sciprint(_("Please use %s to make this change permanent.\n"),"setdefaultlanguage");
+#endif
 				}
 				
 				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-				if ( strcmp(newlang,"") )
-				{
-					*istk(l1)=(int)saveLanguagePref();
-				}
-				else /* "" language fixed by yhe system */
-				{
-					char *FileFilenameLanguagePref = getFilenameLanguagePref();
-					if (FileFilenameLanguagePref)
-					{
-						/* remove preference file */
-						deleteafile(FileFilenameLanguagePref);
-						FREE(FileFilenameLanguagePref);
-						FileFilenameLanguagePref = NULL;
-					}
-
-					*istk(l1)=(int)(TRUE);
-				}
+				*istk(l1)=(int)(TRUE);
 			}
 		}
 
@@ -103,7 +89,7 @@ int C2F(sci_setlanguage)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 		return 0;
 	}
 

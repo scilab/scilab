@@ -17,6 +17,7 @@
 #include "gw_localization.h"
 #include "Scierror.h"
 #include "strsubst.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 {
@@ -57,7 +58,7 @@ int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 
 			revertStrsub = TRUE;
 		}
-		TranslatedString = gettext(msgid);
+		TranslatedString = localeToUTF(gettext(msgid));
 
 		/* Add removed slashes */
 		if (revertStrsub)
