@@ -847,8 +847,8 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       clearglobal inactive_windows
 
       //** restore the original Scilab 5 font list before exit 
-      xlfont(scilab5fonts(2),1);
-
+      //** xlfont(scilab5fonts(2),1);
+      xlfont('reset'); 
       //** TO DO
       //** For future implementation ..... 
       //** This is the place of the windows cleaning section 
