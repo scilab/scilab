@@ -36,5 +36,5 @@
 stacksize(2e6);
 execstr("function foo","errcatch");
 str = lasterror();
-if str<>"endfunction is missing." then pause,end
+if str<>msprintf(gettext("endfunction is missing.\n")) then pause,end
 

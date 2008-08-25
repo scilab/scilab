@@ -28,4 +28,4 @@
 stacksize(2e6);
 execstr("function foo","errcatch");
 str = lasterror();
-if str<>"endfunction is missing." then bugmes();quit;end
+if str<>msprintf(gettext("endfunction is missing.\n")) then bugmes();quit;end
