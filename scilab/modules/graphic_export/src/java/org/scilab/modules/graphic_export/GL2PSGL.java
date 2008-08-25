@@ -67,6 +67,7 @@ public class GL2PSGL extends DebugGL {
 		case GL.GL_LINE_STIPPLE:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_LINE_STIPPLE);
 			break;
+		// we use simple line offset in gl2ps begin page, so disable it
 		/*case GL.GL_POLYGON_OFFSET_FILL:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_OFFSET_FILL);
 			break;*/
@@ -93,9 +94,10 @@ public class GL2PSGL extends DebugGL {
 		case GL.GL_LINE_STIPPLE:
 			gl2ps.gl2psDisable(GL2PS.GL2PS_LINE_STIPPLE);
 			break;
-		case GL.GL_POLYGON_OFFSET_FILL:
+		// we use simple line offset in gl2ps begin page, so disable it
+		/*case GL.GL_POLYGON_OFFSET_FILL:
 			gl2ps.gl2psDisable(GL2PS.GL2PS_POLYGON_OFFSET_FILL);
-			break;
+			break;*/
 		case GL.GL_BLEND:
 			gl2ps.gl2psDisable(GL2PS.GL2PS_BLEND);
 			break;

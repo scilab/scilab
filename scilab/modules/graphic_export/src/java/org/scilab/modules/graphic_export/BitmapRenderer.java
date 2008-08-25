@@ -72,15 +72,24 @@ public class BitmapRenderer  extends ExportRenderer {
 		
 		// export it to a file
 		GL gl = gLDrawable.getGL();
+		
 		// use the lastly modified buffer
+		// first saved the current one
+		int[] currentBuffer = {GL.GL_BACK};
+		gl.glGetIntegerv(GL.GL_READ_BUFFER, currentBuffer, 0);
+		
+		// set the dispayed one
 		gl.glReadBuffer(GL.GL_FRONT);
+		
+		
 		ExportToFile export = ExportToFile.createExporter(super.getFileName(), super.getFileType());
 		export.setFileSize(gLDrawable.getWidth(), gLDrawable.getHeight());
 		export.exportToBitmap();
 		
 		setErrorNumber(export.exportToBitmap());
-		// back to defautl value
-		gl.glReadBuffer(GL.GL_BACK);  
+		
+		// back to default value
+		gl.glReadBuffer(currentBuffer[0]);  
 
 		// one shot renderer
 		gLDrawable.removeGLEventListener(this);
