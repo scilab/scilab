@@ -1,11 +1,17 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 package org.scilab.modules.gui.events.callback;
 
-
-import java.awt.event.ActionEvent;
 import java.lang.reflect.Method;
-
-import org.scilab.modules.gui.events.GlobalEventFilter;
-import org.scilab.modules.gui.events.GlobalEventWatcher;
 
 /**
  * Generic class to hide callback management
@@ -42,20 +48,5 @@ public abstract class JavaCallBack extends CallBack {
 				}
 			}
 		});
-	}
-	/**
-	 * Standard Java behaviour encapsulated behind callback
-	 * which is more Scilab compliant.
-	 * @param e The action event that awake the callback
-	 */
-	public void actionPerformed(ActionEvent e) {
-		if (!GlobalEventWatcher.isActivated()) {
-			callBack();
-		} 
-		else {
-			if (this.command != null) {
-				GlobalEventFilter.filterCallback(this.command);
-			}
-		}
 	}
 }

@@ -1,17 +1,32 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 package org.scilab.modules.gui.events.callback;
 
+import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+
+import org.scilab.modules.gui.events.GlobalEventFilter;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
 
 /**
  * Abstract class to manage all callbacks.
  * Those that need Java code, and those that need Scilab execution.
- * 
+ *
  * @author bruno
  *
  */
 public abstract class CallBack extends AbstractAction {
-	
+
 	/**
 	 * Unmanaged command type constant
 	 */
@@ -32,18 +47,18 @@ public abstract class CallBack extends AbstractAction {
 	/**
 	 * Java function type constant
 	 */
-	public static final int JAVA = 3;	
-	
+	public static final int JAVA = 3;
+
 	/**
 	 * Scilab instruction without GCBO setting (old addmenu compatibility)
 	 */
-	public static final int SCILAB_INSTRUCTION_WITHOUT_GCBO = 4;	
-	
+	public static final int SCILAB_INSTRUCTION_WITHOUT_GCBO = 4;
+
 	/**
 	 * The Command to Store and remember.
 	 */
 	protected String command;
-	
+
 	/**
 	 * Constructor to be seen by specifics CallBack.
 	 * @param command the command associated to the ccallback
@@ -51,19 +66,19 @@ public abstract class CallBack extends AbstractAction {
 	public CallBack(String command) {
 		this.command = command;
 	}
-	
+
 	/**
 	 * @return the command if it's a Scilab instruction.
 	 */
 	public String getCommand() {
 		return command;
 	}
-	
+
 	/**
 	 * Callback function that will be call on some event.
 	 */
 	public abstract void callBack();
-		
+
 	/**
 	 * Create a Callback from Scilab data
 	 * @param command the instruction
@@ -93,9 +108,23 @@ public abstract class CallBack extends AbstractAction {
 		} else {
 			return ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
 					+ "gcbo = getcallbackobject(" + objectIndex + ");"
-					+ command 
+					+ command
 					+ ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;");
 		}
 	}
 
+	/**
+	 * To match the standard Java Action management.
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @param e The event that launch the callback.
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (!GlobalEventWatcher.isActivated()) {
+				callBack();
+		} else {
+			if (this.command != null) {
+				GlobalEventFilter.filterCallback(this.command);
+			}
+		}
+	}
 }
