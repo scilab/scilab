@@ -46,6 +46,7 @@ int sci_buildDoc(char *fname,unsigned long l)
 	char * outputDirectoryTMP = NULL;
 	char * currentLanguage = getlanguage();
 	char * styleSheet = (char*)MALLOC((strlen(SciPath)+strlen(PATHTOCSS)+1)*sizeof(char));; /* the CSS */
+	org_scilab_modules_helptools::BuildDocObject *doc;
 
 	if ( styleSheet == NULL )
 	{
@@ -140,50 +141,39 @@ int sci_buildDoc(char *fname,unsigned long l)
 		masterXML = cstk(l2);
 	}
 
-	org_scilab_modules_helptools::BuildDocObject *doc = new org_scilab_modules_helptools::BuildDocObject(getScilabJavaVM());
-
-	#ifdef _MSC_VER
-	slashToAntislash(outputDirectory,outputDirectory);
-	slashToAntislash(styleSheet,styleSheet);
-	slashToAntislash(masterXML,masterXML);
-	#endif
-
-	if (doc->setOutputDirectory(outputDirectory)) 
+	try
 	{
-		doc->setWorkingLanguage(currentLanguage);
-		doc->setExportFormat(exportFormat);
-		
-		try
+		doc = new org_scilab_modules_helptools::BuildDocObject(getScilabJavaVM());
+
+		#ifdef _MSC_VER
+		slashToAntislash(outputDirectory,outputDirectory);
+		slashToAntislash(styleSheet,styleSheet);
+		slashToAntislash(masterXML,masterXML);
+		#endif
+
+		if (doc->setOutputDirectory(outputDirectory)) 
 		{
+			doc->setWorkingLanguage(currentLanguage);
+			doc->setExportFormat(exportFormat);
 			doc->process(masterXML, styleSheet);
+			
+			LhsVar(1) = 0;
+			C2F(putlhsvar)();
 		}
-		catch(GiwsException::JniException ex)
+		else
 		{
-			Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
-			delete doc;
-			FREE(masterXML); masterXML = NULL;
-			FREE(outputDirectory); outputDirectory = NULL;
-			FREE(styleSheet); styleSheet = NULL;
-			return 0;
+			Scierror(999,_("%s: Could find or create the working directory %s.\n"),fname, outputDirectory);
 		}
-		
-		delete doc;
-		FREE(masterXML); masterXML = NULL;
-		FREE(outputDirectory); outputDirectory = NULL;
-		FREE(styleSheet); styleSheet = NULL;
 	}
-	else
+	catch(GiwsException::JniException ex)
 	{
-		Scierror(999,_("%s: Could find or create the working directory %s.\n"),fname, outputDirectory);
-		delete doc;
-		FREE(masterXML); masterXML = NULL;
-		FREE(outputDirectory); outputDirectory = NULL;
-		FREE(styleSheet); styleSheet = NULL;
-		return 0;
+		Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
 	}
-
-	LhsVar(1) = 0;
-	C2F(putlhsvar)();
+	
+	delete doc;
+	FREE(masterXML); masterXML = NULL;
+	FREE(outputDirectory); outputDirectory = NULL;
+	FREE(styleSheet); styleSheet = NULL;
 
 	return 0;
 }
