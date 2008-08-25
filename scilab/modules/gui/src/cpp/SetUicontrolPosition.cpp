@@ -25,6 +25,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
   double * allValues = NULL;
   
   float xDouble = 0.0, yDouble = 0.0, widthDouble = 0.0, heightDouble = 0.0;
+
+  long int * returnValues = NULL;
+
+  sciPointObj *parent = NULL;
   
   if (stackPointer == -1) /* Default values setting */
     {
@@ -81,12 +85,22 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
 
   if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
     {
+      parent = sciGetParent(sciObj);
+      if (parent != NULL && sciGetEntityType(parent)==SCI_UICONTROL)
+        {
+          /* Parent is a frame and position is relative to parent */
+           returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
+                                                             pUICONTROL_FEATURE(parent)->hashMapIndex);
+           xInt = returnValues[0] + xInt;
+           yInt = returnValues[1] + returnValues[3] + yInt;
+        }
+
       CallScilabBridge::setFramePosition(getScilabJavaVM(), 
-                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                          xInt, 
-                                          yInt, 
-                                          widthInt, 
-                                          heightInt);
+                                         pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                         xInt, 
+                                         yInt, 
+                                         widthInt, 
+                                         heightInt);
     }
   else if( sciGetEntityType(sciObj) == SCI_FIGURE ) /* Uicontrol figure */
   {
@@ -94,6 +108,17 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
   }
   else /* All other uicontrol styles */
     {
+
+      parent = sciGetParent(sciObj);
+      if (parent != NULL && sciGetEntityType(parent)==SCI_UICONTROL)
+        {
+          /* Parent is a frame and position is relative to parent */
+           returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
+                                                             pUICONTROL_FEATURE(parent)->hashMapIndex);
+           xInt = returnValues[0] + xInt;
+           yInt = returnValues[1] + returnValues[3] + yInt;
+        }
+
       CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
                                           xInt, 

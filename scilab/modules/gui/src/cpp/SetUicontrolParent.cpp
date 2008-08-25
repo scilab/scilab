@@ -24,6 +24,8 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
   long int * returnValues = NULL;
 
   sciPointObj *figure = NULL;
+  sciPointObj *parent = NULL;
+  sciPointObj *oldParentFigure = NULL;
 
   if (nbRow*nbCol != 1)
     {
@@ -36,11 +38,23 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
       if (valueType == sci_handles)
         {
           figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
+
+          parent = figure;
+          
+          /* Set a Frame as parent: we need to get the parent figure */
+          if (sciGetEntityType(figure) != SCI_FIGURE)
+            {
+              while (sciGetEntityType(figure) != SCI_FIGURE)
+                {
+                  figure = sciGetParent(figure);
+                }
+            }
         }
 
       if (valueType == sci_matrix)
         {
           figure = getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
+          parent = figure;
         }
 
       if (sciGetEntityType(figure) == SCI_FIGURE)
@@ -60,7 +74,15 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
           // Remove from previous parent
           if (sciGetParent(sciObj) != NULL)
             {
-              parentFigureIndex = sciGetNum(sciGetParent(sciObj));
+              oldParentFigure = sciGetParent(sciObj);
+              if (sciGetEntityType(oldParentFigure) != SCI_FIGURE)
+                {
+                  while (sciGetEntityType(oldParentFigure) != SCI_FIGURE)
+                    {
+                      oldParentFigure = sciGetParent(oldParentFigure);
+                    }
+                  parentFigureIndex = sciGetNum(oldParentFigure);
+                }
 
               sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
 
@@ -100,7 +122,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
             }
           
           // Scilab relationship
-          sciAddThisToItsParent(sciObj, figure);
+          sciAddThisToItsParent(sciObj, parent);
 
           // The parent is a figure
           parentFigureIndex = sciGetNum(figure);
@@ -163,14 +185,14 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
       else
         {
           // Parent is not a figure
-          sciprint(_("Wrong value for '%s' property: A 'Figure' handle expected.\n"), "Parent");
+          sciprint(_("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
           return SET_PROPERTY_ERROR;
         }
     }
   else
     {
       // Do not know how to set the parent
-      sciprint(_("Wrong value for '%s' property: A 'Figure' handle expected.\n"), "Parent");
+      sciprint(_("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
       return SET_PROPERTY_ERROR;
     }
 }
