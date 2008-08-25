@@ -12,6 +12,7 @@
  */
 
 #include <string.h>
+#include "MALLOC.h"
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -138,7 +139,7 @@ char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *nb_lines, int 
 
 	  while (current != NULL)
 	    {
-	      index_list = realloc(index_list, (*nb_lines + 1) * sizeof(char *));
+	      index_list = REALLOC(index_list, (*nb_lines + 1) * sizeof(char *));
 	      index_list[*nb_lines] = strdup(current);
 	      current = strtok (NULL, " ");
 	      ++(*nb_lines);
