@@ -45,11 +45,9 @@ char **getInstalledFontsName(int *sizeArray)
 			for( i = 0; i < *sizeArray; i++)
 			{
 				returnedinstalledfontsname[i] = strdup(installedfontsname[i]);
-				free(installedfontsname[i]); /* free because giws uses malloc */ 
-				installedfontsname[i] = NULL;
-
+				delete installedfontsname[i];
 			}
-			free(installedfontsname);
+			delete [] installedfontsname;
 			installedfontsname = NULL;
 		}
 		delete fntmgr;
@@ -77,11 +75,9 @@ char **getAvailableFontsName(int *sizeArray)
 			for( i = 0; i < *sizeArray; i++)
 			{
 				returnedavailablefontsname[i] = strdup(availablefontsname[i]);
-				free(availablefontsname[i]); /* free because giws uses malloc */ 
-				availablefontsname[i] = NULL;
-
+				delete availablefontsname[i];
 			}
-			free(availablefontsname);
+			delete [] availablefontsname;
 			availablefontsname = NULL;
 		}
 		delete fntmgr;
