@@ -22,7 +22,7 @@ Graphical User Interface:
 
 Event Handling Functions:
 =========================
- - All the event hadling functions "xclick", "xgetmouse" and the "envent_handler"
+ - All the event handling functions "xclick", "xgetmouse" and the "envent_handler"
        * they have been rewritten in Java   
        * they use the same "-1000" code to signal the "window close" actions 
          (previously "xclick" and "xgetmouse" used "-100" code) 
@@ -445,10 +445,12 @@ TCL/TK:
 	+ @TODO detail
  - Provided with version 8.5 of TCL/TK
  - Removed Functions:
-	+ tcl_?
+	+ tcl_? @TODO 
 	+ demoplay is obsolete
 	+ sciGUIhelp is obsolete 
- - TCL_Create slave now allows to create "safe" or "unsafe" slave interpreters (new option added)
+ - TCL_CreateSlave now allows to create "safe" or "unsafe" slave interpreters (new option added).
+   Default switched from safe to unsafe interp.
+
 
 Java/Scilab API:
 ================
