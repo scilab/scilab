@@ -32,6 +32,7 @@
 #include "CurrentObjectsManagement.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
+#include "GraphicSynchronizerInterface.h"
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {
@@ -40,6 +41,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   int  box      = 0  ;
   BOOL isBoxSpecified = FALSE ;
   sciPointObj * psubwin = NULL;
+  sciPointObj * pFigure = NULL;
   static rhs_opts opts[] = { {-1,"boxed","i" ,0,0,0},
   {-1,NULL   ,NULL,0,0,0} };
 
@@ -89,27 +91,18 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     nbLabels-- ; /* it is not a label text */
   }
 
-
+  pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();
 
 
   for ( narg = 1 ; narg <= nbLabels ; narg++)
   {
-    int i,m,n;
+    int m,n;
     char **Str;
     sciPointObj * modifiedLabel = NULL ;
-    char * text ;
 
     GetRhsVar(narg,MATRIX_OF_STRING_DATATYPE,&m,&n,&Str);
     if ( m*n == 0 ) { continue ; }
-    strcpy(C2F(cha1).buf,Str[0]);
-    for ( i= 1 ; i < m*n ; i++) 
-    {
-      strcat(C2F(cha1).buf,"@"); 
-      strcat(C2F(cha1).buf,Str[i]);
-    }
-
-	freeArrayOfString(Str,m*n);
 
     switch(narg)
     {
@@ -127,10 +120,9 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     default:
       break;
     }
-
-
-    text = C2F(cha1).buf ;
-    sciSetText( modifiedLabel, &text, 1, 1 ) ;
+    
+    startFigureDataWriting(pFigure);
+    sciSetText( modifiedLabel, Str, m, n ) ;
 
     if ( box == 1 )
     {
@@ -140,11 +132,14 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     {
       sciSetIsFilled( modifiedLabel, FALSE ) ;
     }
+    endFigureDataWriting(pFigure);
+
+    freeArrayOfString(Str,m*n);
 
   }
 
   sciSetCurrentObj(psubwin);
-  sciRedrawFigure();
+  sciDrawObj(pFigure);
 
   LhsVar(1)=0;
   return 0;
