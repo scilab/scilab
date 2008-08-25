@@ -91,7 +91,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
       break;
     default:
       // Call Java xgetmouse
-      CallJxgetmouse();
+      // No need to set any option.
       break;
     }
 
