@@ -2,12 +2,9 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer <Serge.Steer@scilab.org>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// This file is distributed under the same license as the Scilab package.
 //
+
 function qpdot=levitron_dyn(t,qp,a,c,Mc)
 //Dynamics of the Levitron(TM)
 //Roger F Gans, Thomas B Jones and Masao Washizu 1998 J. Phys. D: Appl. Phys. 31 671-679   doi:10.1088/0022-3727/31/6/015
