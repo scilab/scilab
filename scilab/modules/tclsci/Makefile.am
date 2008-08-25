@@ -21,8 +21,7 @@ src/c/TCL_ArraySize.c \
 src/c/TCL_Command.c \
 src/c/GlobalTclInterp.c
 
-GATEWAY_C_SOURCES =  sci_gateway/c/sci_TCL_CreateSlave.c \
-sci_gateway/c/sci_opentk.c \
+GATEWAY_C_SOURCES =  sci_gateway/c/sci_opentk.c \
 sci_gateway/c/sci_TCL_SetVar.c \
 sci_gateway/c/sci_TCL_ExistVar.c \
 sci_gateway/c/sci_TCL_DoOneEvent.c \
