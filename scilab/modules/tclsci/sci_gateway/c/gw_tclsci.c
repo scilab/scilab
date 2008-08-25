@@ -35,7 +35,6 @@
   {sci_TCL_ExistVar,"TCL_ExistVar"},
   {sci_TCL_UpVar,"TCL_UpVar"},
   {sci_TCL_DeleteInterp,"TCL_DeleteInterp"},
-  {sci_TCL_CreateSlave,"TCL_CreateSlave"},
   {sci_TCL_ExistInterp,"TCL_ExistInterp"},
   {sci_TCL_ExistArray,"TCL_ExistArray"},
   {sci_TCL_EvalFile,"TCL_EvalFile"}

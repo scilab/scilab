@@ -41,8 +41,7 @@
 <PRIMITIVE gatewayId="40" primitiveId="8" primitiveName="TCL_ExistVar" />
 <PRIMITIVE gatewayId="40" primitiveId="9" primitiveName="TCL_UpVar" />
 <PRIMITIVE gatewayId="40" primitiveId="10" primitiveName="TCL_DeleteInterp" />
-<PRIMITIVE gatewayId="40" primitiveId="11" primitiveName="TCL_CreateSlave" />
-<PRIMITIVE gatewayId="40" primitiveId="12" primitiveName="TCL_ExistInterp" />
-<PRIMITIVE gatewayId="40" primitiveId="13" primitiveName="TCL_ExistArray" />
-<PRIMITIVE gatewayId="40" primitiveId="14" primitiveName="TCL_EvalFile" />
+<PRIMITIVE gatewayId="40" primitiveId="11" primitiveName="TCL_ExistInterp" />
+<PRIMITIVE gatewayId="40" primitiveId="12" primitiveName="TCL_ExistArray" />
+<PRIMITIVE gatewayId="40" primitiveId="13" primitiveName="TCL_EvalFile" />
 </GATEWAY>
