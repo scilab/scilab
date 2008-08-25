@@ -448,7 +448,7 @@ TCL/TK:
 	+ tcl_?
 	+ demoplay is obsolete
 	+ sciGUIhelp is obsolete 
-
+ - TCL_Create slave no allows to create "safe" or "unsafe" slave interpreters (new option added)
 
 Java/Scilab API:
 ================
