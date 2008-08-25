@@ -15,6 +15,9 @@
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define TCL_ALL_INDEXES "TclScilabTmpVar1"
 #define TCL_NUMERICAL_INDEXES "TclScilabTmpVar2"
