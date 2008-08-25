@@ -22,12 +22,10 @@ if exists("path","local")==1 then
   path=strsubst(path,"\","/")
   arg = arg+" -initialdir {"+path+"}"
 else
-  if MSDOS then
-    global("%tk_getfile_defaultpath")
-    if exists("%tk_getfile_defaultpath","global")==1 then
-      arg = arg+" -initialdir {"+%tk_getfile_defaultpath+"}"
-    end;
-  end;
+  global("%tk_getfile_defaultpath")
+  if typeof(%tk_getfile_defaultpath)=="string" then
+    arg = arg+" -initialdir {"+%tk_getfile_defaultpath+"}"
+  end
 end;
 if exists("title","local")==1 then
   Title=title
