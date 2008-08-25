@@ -101,7 +101,9 @@ public class SwingScilabTab extends View implements SimpleTab {
      */
 	public void repaint() {
 		super.repaint();
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+		if (isActive()) {
+			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+		}
 	}
 	
 	/**
@@ -111,7 +113,9 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void setName(String newTabName) {
 		setTitle(newTabName, true);
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+		if (isActive()) {
+			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+		}
 	}
 
 	/**
