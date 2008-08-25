@@ -21,16 +21,21 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>TCL_CreateSlave(interp)</synopsis>
+    <synopsis>TCL_CreateSlave(slaveName[, isSafe])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>interp</term>
+        <term>slaveName</term>
         <listitem>
-          <para>character string parameter. Name of the slave tcl interpreter
-          in which the operation has to be performed.</para>
+          <para>String: Name of the TCL slave interpreter to create.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>isSafe</term>
+        <listitem>
+          <para>Boolean: <literal>%T</literal> to create a safe slave interpreter, <literal>%F</literal> otherwise. The default value is <literal>%F</literal>. A safe slave is not allowed to perform some operations, see the TCL documentation for more informations.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,12 +47,17 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-  TCL_CreateSlave('TCLinterp')
-  TCL_SetVar('a','r','TCLinterp')
-  TCL_ExistVar('a','TCLinterp')
-  TCL_ExistVar('a')
-  TCL_DeleteInterp('TCLinterp')
+  TCL_CreateSlave("TCLinterp")
+  TCL_SetVar("a","r","TCLinterp")
+  TCL_ExistVar("a","TCLinterp")
+  TCL_ExistVar("a")
+  TCL_DeleteInterp("TCLinterp")
 
+  TCL_CreateSlave("TCLinterp", %T)
+  TCL_SetVar("a","r","TCLinterp")
+  TCL_ExistVar("a","TCLinterp")
+  TCL_ExistVar("a")
+  TCL_DeleteInterp("TCLinterp")
 ]]></programlisting>
   </refsection>
   <refsection>
@@ -67,5 +77,6 @@
   <refsection>
     <title>Authors</title>
     <para>Allan CORNET</para>
+    <para>V.C.</para>
   </refsection>
 </refentry>
