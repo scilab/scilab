@@ -107,8 +107,8 @@ start_profiling_visu() {
 
 find_docbook_path() {
 	if test -z "$DOCBOOK_ROOT"; then
-		for dir in /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/;	do
-			if test -d "$dir"; then
+		for dir in /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/;	do
+			if test -r "$dir/javahelp/javahelp.xsl"; then
 				export DOCBOOK_ROOT=$dir
 			fi
 		done
