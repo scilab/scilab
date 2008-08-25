@@ -11,6 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "BuildDocObject.hxx"
+#include "GiwsException.hxx"
 
 extern "C"
 {
@@ -151,7 +152,21 @@ int sci_buildDoc(char *fname,unsigned long l)
 	{
 		doc->setWorkingLanguage(currentLanguage);
 		doc->setExportFormat(exportFormat);
-		doc->process(masterXML, styleSheet);
+		
+		try
+		{
+			doc->process(masterXML, styleSheet);
+		}
+		catch(GiwsException::JniException ex)
+		{
+			Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
+			delete doc;
+			FREE(masterXML); masterXML = NULL;
+			FREE(outputDirectory); outputDirectory = NULL;
+			FREE(styleSheet); styleSheet = NULL;
+			return 0;
+		}
+		
 		delete doc;
 		FREE(masterXML); masterXML = NULL;
 		FREE(outputDirectory); outputDirectory = NULL;
