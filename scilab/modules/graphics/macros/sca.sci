@@ -8,6 +8,25 @@
 
 function [a]=sca(h)
 //set default axes, h must be a handle
-  set("current_axes",h);
-  a=get("current_axes");
+
+	[lhs,rhs] = argn(0);
+
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "sca",1));
+		return;
+	end
+
+	if (type(h) <> 9) | (h.type <> "Axes") then
+		error(msprintf(gettext("%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"), "sca",1));	
+		return;
+	end
+
+	if (size(h) <> [1,1]) then
+		error(msprintf(gettext("%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"), "sca",1));	
+		return;
+	end
+
+	set("current_axes", h);
+	a=get("current_axes");
+
 endfunction
