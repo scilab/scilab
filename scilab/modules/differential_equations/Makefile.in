@@ -90,6 +90,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_etcdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_rootdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscidifferential_equations_la_demosdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -175,9 +176,11 @@ DIST_SOURCES = $(libscidifferential_equations_la_SOURCES)
 libscidifferential_equations_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscidifferential_equations_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscidifferential_equations_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+nobase_libscidifferential_equations_la_demosDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscidifferential_equations_la_etc_DATA) \
 	$(libscidifferential_equations_la_root_DATA) \
-	$(libscidifferential_equations_la_sci_gateway_DATA)
+	$(libscidifferential_equations_la_sci_gateway_DATA) \
+	$(nobase_libscidifferential_equations_la_demos_DATA)
 libscidifferential_equations_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscidifferential_equations_la_include_HEADERS)
 ETAGS = etags
@@ -495,6 +498,80 @@ sci_gateway/fortran/Ex-dasrt.f \
 sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f
+
+
+#### differential_equations : demos files ####
+libscidifferential_equations_la_demosdir = $(mydatadir)
+nobase_libscidifferential_equations_la_demos_DATA = demos/bike/bike.dem.gateway.sce \
+demos/bike/bike1.dem.sce \
+demos/bike/bike2.dem.sce \
+demos/bike/data/x1.dat \
+demos/bike/data/xdemo.dat \
+demos/bike/macros/show.sci \
+demos/bike/macros/velo1.sci \
+demos/bike/macros/velo2.sci \
+demos/bike/macros/velod.sci \
+demos/bike/macros/velodp.sci \
+demos/dae/dae.dem.gateway.sce \
+demos/dae/dae1/pend3d1.dem.sce \
+demos/dae/dae2/dae2.dem.gateway.sce \
+demos/dae/dae2/demo_sliding_pendulum.sci \
+demos/dae/dae2/demo_sliding_pendulum_fr.htm \
+demos/dae/dae2/pendc1.sci \
+demos/dae/dae2/pendg.sci \
+demos/dae/dae2/pendg1.dem.sce \
+demos/dae/dae2/pendg1_gateway.sce \
+demos/dae/dae2/pendg2.dem.sce \
+demos/n_pendulum/demo_pendulum_eng.htm \
+demos/n_pendulum/demo_pendulum_fr.htm \
+demos/n_pendulum/dessin.sci \
+demos/n_pendulum/macros.sci \
+demos/n_pendulum/Maple/all.tex \
+demos/n_pendulum/Maple/dlslv.f \
+demos/n_pendulum/Maple/ener.f \
+demos/n_pendulum/Maple/Euler.map \
+demos/n_pendulum/Maple/Makefile \
+demos/n_pendulum/Maple/Makefile.mak \
+demos/n_pendulum/Maple/np.f \
+demos/n_pendulum/Maple/npend.f \
+demos/n_pendulum/Maple/Npend.map \
+demos/n_pendulum/Maple/Readme.txt \
+demos/n_pendulum/Maple/systeme.tex \
+demos/n_pendulum/n_pendulum.dem.sce \
+demos/n_pendulum/n_pendulum.sci \
+demos/n_pendulum/TeX/npend.fig \
+demos/n_pendulum/TeX/npend.ps \
+demos/n_pendulum/TeX/npend.tex \
+demos/n_pendulum/TeX/Texte.tex \
+demos/n_pendulum/TeX/transfig.tex \
+demos/n_pendulum/yt.wrt \
+demos/ode/ode.dem.gateway.sce \
+demos/ode/ode_1dvect/ode_1dvect.dem.sce \
+demos/ode/ode_chimpl/ode_chimpl.dem.sce \
+demos/ode/ode_chstiff/ode_chstiff.dem.sce \
+demos/ode/ode_lorentz/ode_lorentz.dem.sce \
+demos/ode/ode_lotka/ode_lotka.dem.sce \
+demos/ode/ode_simple/ode_simple.dem.sce \
+demos/ode/ode_vanderpol/ode_vanderpol.dem.sce \
+demos/simulation.dem.gateway.sce \
+demos/wheel/Maple/all.tex \
+demos/wheel/Maple/dlslv.f \
+demos/wheel/Maple/Euler.map \
+demos/wheel/Maple/Readme.txt \
+demos/wheel/Maple/systeme.tex \
+demos/wheel/Maple/transfig.tex \
+demos/wheel/Maple/wheel.f \
+demos/wheel/Maple/wheel.fig \
+demos/wheel/Maple/Wheel.map \
+demos/wheel/Maple/wheel.ps \
+demos/wheel/Maple/wheel.tex \
+demos/wheel/Maple/wheelg.f \
+demos/wheel/Readme.txt \
+demos/wheel/show.sci \
+demos/wheel/wheel.dem.gateway.sce \
+demos/wheel/wheel1.dem.sce \
+demos/wheel/wheel2.dem.sce \
+demos/wheel/x.wrt
 
 libscidifferential_equations_la_CFLAGS = -Iincludes/ \
 -I$(top_builddir)/modules/output_stream/includes \
@@ -1217,6 +1294,25 @@ uninstall-libscidifferential_equations_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)/$$f"; \
 	done
+install-nobase_libscidifferential_equations_la_demosDATA: $(nobase_libscidifferential_equations_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscidifferential_equations_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscidifferential_equations_la_demosdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscidifferential_equations_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscidifferential_equations_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscidifferential_equations_la_demosdir)/$$f'"; \
+	  $(nobase_libscidifferential_equations_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscidifferential_equations_la_demosdir)/$$f"; \
+	done
+
+uninstall-nobase_libscidifferential_equations_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscidifferential_equations_la_demos_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscidifferential_equations_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscidifferential_equations_la_demosdir)/$$f"; \
+	done
 install-libscidifferential_equations_la_includeHEADERS: $(libscidifferential_equations_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscidifferential_equations_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscidifferential_equations_la_includedir)"
@@ -1313,7 +1409,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidifferential_equations_la_etcdir)" "$(DESTDIR)$(libscidifferential_equations_la_rootdir)" "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" "$(DESTDIR)$(libscidifferential_equations_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidifferential_equations_la_etcdir)" "$(DESTDIR)$(libscidifferential_equations_la_rootdir)" "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" "$(DESTDIR)$(libscidifferential_equations_la_demosdir)" "$(DESTDIR)$(libscidifferential_equations_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1365,7 +1461,8 @@ install-data-am: install-data-local \
 	install-libscidifferential_equations_la_etcDATA \
 	install-libscidifferential_equations_la_includeHEADERS \
 	install-libscidifferential_equations_la_rootDATA \
-	install-libscidifferential_equations_la_sci_gatewayDATA
+	install-libscidifferential_equations_la_sci_gatewayDATA \
+	install-nobase_libscidifferential_equations_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -1407,6 +1504,7 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	uninstall-libscidifferential_equations_la_includeHEADERS \
 	uninstall-libscidifferential_equations_la_rootDATA \
 	uninstall-libscidifferential_equations_la_sci_gatewayDATA \
+	uninstall-nobase_libscidifferential_equations_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1424,16 +1522,19 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	install-libscidifferential_equations_la_includeHEADERS \
 	install-libscidifferential_equations_la_rootDATA \
 	install-libscidifferential_equations_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am \
-	install-pkglibLTLIBRARIES install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	install-man \
+	install-nobase_libscidifferential_equations_la_demosDATA \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am \
 	uninstall-libscidifferential_equations_la_etcDATA \
 	uninstall-libscidifferential_equations_la_includeHEADERS \
 	uninstall-libscidifferential_equations_la_rootDATA \
 	uninstall-libscidifferential_equations_la_sci_gatewayDATA \
+	uninstall-nobase_libscidifferential_equations_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

@@ -126,6 +126,82 @@ sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f
 
+
+#### differential_equations : demos files ####
+
+libscidifferential_equations_la_demosdir=$(mydatadir)
+nobase_libscidifferential_equations_la_demos_DATA = demos/bike/bike.dem.gateway.sce \
+demos/bike/bike1.dem.sce \
+demos/bike/bike2.dem.sce \
+demos/bike/data/x1.dat \
+demos/bike/data/xdemo.dat \
+demos/bike/macros/show.sci \
+demos/bike/macros/velo1.sci \
+demos/bike/macros/velo2.sci \
+demos/bike/macros/velod.sci \
+demos/bike/macros/velodp.sci \
+demos/dae/dae.dem.gateway.sce \
+demos/dae/dae1/pend3d1.dem.sce \
+demos/dae/dae2/dae2.dem.gateway.sce \
+demos/dae/dae2/demo_sliding_pendulum.sci \
+demos/dae/dae2/demo_sliding_pendulum_fr.htm \
+demos/dae/dae2/pendc1.sci \
+demos/dae/dae2/pendg.sci \
+demos/dae/dae2/pendg1.dem.sce \
+demos/dae/dae2/pendg1_gateway.sce \
+demos/dae/dae2/pendg2.dem.sce \
+demos/n_pendulum/demo_pendulum_eng.htm \
+demos/n_pendulum/demo_pendulum_fr.htm \
+demos/n_pendulum/dessin.sci \
+demos/n_pendulum/macros.sci \
+demos/n_pendulum/Maple/all.tex \
+demos/n_pendulum/Maple/dlslv.f \
+demos/n_pendulum/Maple/ener.f \
+demos/n_pendulum/Maple/Euler.map \
+demos/n_pendulum/Maple/Makefile \
+demos/n_pendulum/Maple/Makefile.mak \
+demos/n_pendulum/Maple/np.f \
+demos/n_pendulum/Maple/npend.f \
+demos/n_pendulum/Maple/Npend.map \
+demos/n_pendulum/Maple/Readme.txt \
+demos/n_pendulum/Maple/systeme.tex \
+demos/n_pendulum/n_pendulum.dem.sce \
+demos/n_pendulum/n_pendulum.sci \
+demos/n_pendulum/TeX/npend.fig \
+demos/n_pendulum/TeX/npend.ps \
+demos/n_pendulum/TeX/npend.tex \
+demos/n_pendulum/TeX/Texte.tex \
+demos/n_pendulum/TeX/transfig.tex \
+demos/n_pendulum/yt.wrt \
+demos/ode/ode.dem.gateway.sce \
+demos/ode/ode_1dvect/ode_1dvect.dem.sce \
+demos/ode/ode_chimpl/ode_chimpl.dem.sce \
+demos/ode/ode_chstiff/ode_chstiff.dem.sce \
+demos/ode/ode_lorentz/ode_lorentz.dem.sce \
+demos/ode/ode_lotka/ode_lotka.dem.sce \
+demos/ode/ode_simple/ode_simple.dem.sce \
+demos/ode/ode_vanderpol/ode_vanderpol.dem.sce \
+demos/simulation.dem.gateway.sce \
+demos/wheel/Maple/all.tex \
+demos/wheel/Maple/dlslv.f \
+demos/wheel/Maple/Euler.map \
+demos/wheel/Maple/Readme.txt \
+demos/wheel/Maple/systeme.tex \
+demos/wheel/Maple/transfig.tex \
+demos/wheel/Maple/wheel.f \
+demos/wheel/Maple/wheel.fig \
+demos/wheel/Maple/Wheel.map \
+demos/wheel/Maple/wheel.ps \
+demos/wheel/Maple/wheel.tex \
+demos/wheel/Maple/wheelg.f \
+demos/wheel/Readme.txt \
+demos/wheel/show.sci \
+demos/wheel/wheel.dem.gateway.sce \
+demos/wheel/wheel1.dem.sce \
+demos/wheel/wheel2.dem.sce \
+demos/wheel/x.wrt
+
+
 libscidifferential_equations_la_CFLAGS=  	-Iincludes/ \
 -I$(top_builddir)/modules/output_stream/includes \
 -I$(top_builddir)/modules/dynamic_link/includes
