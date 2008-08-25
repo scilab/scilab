@@ -20,6 +20,7 @@
 #include "BasicAlgos.h"
 #include "MALLOC.h"
 #include "core_math.h"
+#include "rendererBasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin( double x[], int n )
@@ -175,6 +176,11 @@ void destroyStringArray( char * src[], int nbStrings )
     src[i] = NULL ;
   }
   FREE( src ) ;
+}
+/*--------------------------------------------------------------------------*/
+void destroyCppString(char * string)
+{
+  destroyRendererString(string);
 }
 /*--------------------------------------------------------------------------*/
 double * createDoubleArrayCopy( const double src[], int nbElement )

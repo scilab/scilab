@@ -41,5 +41,6 @@ sciGetJava2dViewCoordinates
 javaRubberBox
 sciGetJavaIsAbleToCreateWindow
 sciGetJavaBoundingBox
+destroyRendererString
 ; --------------------------------------- 
 

@@ -29,6 +29,8 @@
 #include "ObjectSelection.h"
 #include "WindowList.h"
 #include "axesScale.h"
+#include "BasicAlgos.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)
 {
@@ -117,6 +119,9 @@ int sci_xclick(char *fname,unsigned long fname_len)
     CreateVar(Rhs+5,STRING_DATATYPE,&istr,&one,&rep); 
     strncpy(cstk(rep),menuCallback,istr);
   }
+
+  destroyCppString(menuCallback);
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

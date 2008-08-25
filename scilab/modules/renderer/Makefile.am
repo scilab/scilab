@@ -258,7 +258,8 @@ src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 src/cpp/axesDrawing/AxesSubticksComputer.cpp \
-src/jni/GiwsException.cpp
+src/jni/GiwsException.cpp \
+src/cpp/rendererBasicAlgos.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
@@ -374,7 +375,8 @@ includes/GetJavaProperty.h \
 includes/GraphicSynchronizerInterface.h \
 includes/SetJavaProperty.h \
 includes/JavaInteraction.h \
-includes/RendererFontManager.h
+includes/RendererFontManager.h \
+includes/rendererBasicAlgos.h
 
 
 
