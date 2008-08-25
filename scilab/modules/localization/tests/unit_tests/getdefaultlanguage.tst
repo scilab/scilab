@@ -1,14 +1,14 @@
-// =============================================================================
+// ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 //
 //  This file is distributed under the same license as the Scilab package.
-// =============================================================================
+// ============================================================================
 
 //===============================
 // unit tests getdefaultlanguage
 //===============================
-
+warning("off")
 // check that the default language is really english
  if getdefaultlanguage() <> "en_US" then pause, end
 
