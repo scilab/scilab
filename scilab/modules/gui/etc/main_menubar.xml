@@ -155,10 +155,6 @@
             <callback instruction='scicos();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Edit&amp;Graph"> 
-            <callback instruction='edit_graph();' type="0"/>
-        </submenu>
-        <separator/>
         <submenu label="&amp;Matlab to Scilab translator"> 
             <callback instruction='mfile2sci();' type="0"/>
         </submenu>
