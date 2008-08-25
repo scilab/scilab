@@ -22,4 +22,4 @@
 //    Francois
 
 execstr('inttype(''hell'')','errcatch');
-if lasterror() <> _("Wrong first argument.") then pause,end
+if lasterror() <> msprintf(gettext("Wrong first argument.\n")) then pause,end
