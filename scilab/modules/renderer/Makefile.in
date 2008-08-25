@@ -330,7 +330,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 	src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 	src/cpp/axesDrawing/AxesSubticksComputer.cpp \
-	src/jni/GiwsException.cpp sci_gateway/c/gw_renderer.c
+	src/jni/GiwsException.cpp src/cpp/rendererBasicAlgos.cpp \
+	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -583,7 +584,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-UserDefLogSubticksComputer.lo \
 @GUI_TRUE@	libscirenderer_la-UserDefinedSubticksComputer.lo \
 @GUI_TRUE@	libscirenderer_la-AxesSubticksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-GiwsException.lo
+@GUI_TRUE@	libscirenderer_la-GiwsException.lo \
+@GUI_TRUE@	libscirenderer_la-rendererBasicAlgos.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1069,7 +1071,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 @GUI_TRUE@src/cpp/axesDrawing/AxesSubticksComputer.cpp \
-@GUI_TRUE@src/jni/GiwsException.cpp
+@GUI_TRUE@src/jni/GiwsException.cpp \
+@GUI_TRUE@src/cpp/rendererBasicAlgos.cpp
 
 
 # List of the gateway c files
@@ -1175,7 +1178,8 @@ includes/GetJavaProperty.h \
 includes/GraphicSynchronizerInterface.h \
 includes/SetJavaProperty.h \
 includes/JavaInteraction.h \
-includes/RendererFontManager.h
+includes/RendererFontManager.h \
+includes/rendererBasicAlgos.h
 
 
 # Provides macros compilation, Java compilation, cleaning
@@ -1556,6 +1560,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-norenderer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -3383,6 +3388,13 @@ libscirenderer_la-GiwsException.lo: src/jni/GiwsException.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscirenderer_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+
+libscirenderer_la-rendererBasicAlgos.lo: src/cpp/rendererBasicAlgos.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-rendererBasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rendererBasicAlgos.cpp' object='libscirenderer_la-rendererBasicAlgos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
