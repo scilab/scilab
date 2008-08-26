@@ -361,7 +361,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                       if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
                         {
                           GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
-                          setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                          setStatus = callSetProperty((sciPointObj*) GraphicHandle, (int)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                         }
                       else
                         {
