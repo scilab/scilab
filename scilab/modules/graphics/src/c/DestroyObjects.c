@@ -295,6 +295,8 @@ int DestroyFigure (sciPointObj * pthis)
   
   if (pFIGURE_FEATURE(pthis)->tag != NULL)
   {
+    /* TO DO : Memory leaks not a FREE but a delete [] */
+    /* allocated in setUiobjectTag.cpp by a new */
     FREE( pFIGURE_FEATURE(pthis)->tag ) ;
   }
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
