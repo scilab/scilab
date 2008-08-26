@@ -11,18 +11,15 @@
 // =============================================================================
 
 function Yd=traj(tt,Y,surface)
-  global g
   [p,q,r,s,t] = surface(Y(1),Y(3))
-  w           = -(r*Y(2)^2+2*s*Y(2)*Y(4)+t*Y(4)^2+g)/(1+p^2+q^2)
+  w           = -(r*Y(2)^2+2*s*Y(2)*Y(4)+t*Y(4)^2+gravity)/(1+p^2+q^2)
   Yd          = [Y(2) ; p*w ; Y(4) ; q*w ];
 endfunction
 
 
 function [p,q,r,s,t]=SlantedCylinder(x,y)
 	
-	global g_pente;
-	
-	a = -tan(g_pente/180*%pi);
+	a = -tan(slope/180*%pi);
 	z = sqrt(1-x^2)
 	p = x/z;
 	q = a //pente
@@ -38,9 +35,8 @@ endfunction
 // calculate_traj
 // =============================================================================
 
-function Y = calculate_traj(g_x,g_y,g_V,g_Vdir,t)
-	
-  global g_pente;
+function Y = calculate_traj(g_x,g_y,g_V,g_Vdir,t,gravity,slope)
+
 function r=cyllim(t,y),
   r=[y(1)-1
      y(1)+1
@@ -64,7 +60,4 @@ function draw_bille(Y)
 	g_ty = Y(3,:)';
 	g_tz = -sqrt(1-g_tx^2-g_ty^2);
 endfunction
-
-// execylinder
-// =============================================================================
 

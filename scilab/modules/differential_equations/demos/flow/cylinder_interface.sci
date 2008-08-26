@@ -13,8 +13,7 @@
 // Step 1, set up the gradient
 // =============================================================================
 function execylinder()
-	global g_pente g
-	g        = 9.81
+	gravity        = 9.81
 	g_pente  = 14;
 	
 	g_x      = 0.6;
@@ -63,7 +62,7 @@ function execylinder()
 	change_speed(g_V)
 	change_dir(g_Vdir)
 	
-	draw_initial_point(g_x,g_y,g_V,g_Vdir,%T)
+	draw_initial_point(g_x,g_y,g_V,g_Vdir,g_pente,%T)
 
 	my_figure_handle.immediate_drawing = "on";
 endfunction
@@ -72,7 +71,6 @@ endfunction
 // =============================================================================
 
 function draw_cylinder(g_pente,orig)
-  global g_pente;
   a  = -tan(g_pente/180*%pi);
   xx = -1:0.1:1;
   yy = (0:1:14)';
@@ -92,9 +90,8 @@ endfunction
 
 // draw_initial_point
 // =============================================================================
-function draw_initial_point(x,y,g_V,g_Vdir,create)
-  global g_pente
-  a = -tan(g_pente*%pi/180);
+function draw_initial_point(x,y,g_V,g_Vdir,slope,create)
+  a = -tan(slope*%pi/180);
   r = 0.1;
   z = -sqrt(1-x^2)+a*y+r;
   dx1 = g_V*cos(g_Vdir*%pi/180);
@@ -148,9 +145,8 @@ endfunction
 
 function cylinder_create_gui()
   //initial values
-    global g_pente;
-    g=9.81
-    g_pente =14
+    gravity = 9.81
+    g_pente = 14
     g_x     = 0;
     g_y     = 0;
     g_speed = 0;
@@ -207,7 +203,7 @@ function cylinder_create_gui()
     slider_g = uicontrol(my_figure_handle                            , ...
 			 "position"          , [x_slider y slider_width slider_height], ...
 			 "Style"             , "slider"                               , ...
-			 "Value"             , g                                 , ...
+			 "Value"             , gravity                                 , ...
 			 "Min"               , 0                                      , ...
 			 "Max"               , 100                                      , ...
 			 "callback"          , "change_gravity()"                           , ...
@@ -216,7 +212,7 @@ function cylinder_create_gui()
     value_g = uicontrol(my_figure_handle                             , ...
 			"position"          , [x_value  y value_width slider_height] , ...
 			"Style"             , "text"                                 , ...
-			"String"            , string(g)                            , ...
+			"String"            , string(gravity)                            , ...
 			"BackgroundColor"   , [1 1 1]                                , ...
 			"tag"               , "value_g"                          );
     
@@ -461,7 +457,8 @@ function change_x(x)
     x=-0.9+x*1.8/100
   end
   value_x.String=msprintf("%.3f",x)
-  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,slider_speed.Value*2/100,slider_dir.value*360/100,%F);
+  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,..
+		     slider_speed.Value*2/100,slider_dir.value*360/100,slider_slope.Value*70/100,%F);
 endfunction
 
 function change_y(y)
@@ -481,7 +478,8 @@ function change_y(y)
     y=-y*3/100
   end
   value_y.String=msprintf("%.3f",y)
-  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,slider_speed.Value*2/100,slider_dir.value*360/100,%F);
+  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,..
+		     slider_speed.Value*2/100,slider_dir.value*360/100,slider_slope.Value*70/100,%F);
 endfunction
 
 function change_speed(speed)
@@ -501,13 +499,13 @@ function change_speed(speed)
     speed=speed*2/100
   end
   value_speed.String=msprintf("%.2f",speed)
-  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,slider_speed.Value*2/100,slider_dir.value*360/100,%F);
+  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,..
+		     slider_speed.Value*2/100,slider_dir.value*360/100,slider_slope.Value*70/100,%F);
 endfunction
 
 function change_slope(slope)
 //slope slider callback  
 //slope is in [0 70]
-  global g_pente
   slider_x     = findobj("tag", "slider_x");
   slider_y     = findobj("tag", "slider_y");
   slider_slope = findobj("tag", "slider_slope");
@@ -524,7 +522,8 @@ function change_slope(slope)
   value_slope.String=msprintf("%.2f",slope)
   g_pente=slope
   draw_cylinder(g_pente,%f);
-  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,slider_speed.Value*2/100,slider_dir.value*360/100,%F);
+  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,..
+		     slider_speed.Value*2/100,slider_dir.value*360/100,slider_slope.Value*70/100,%F);
 endfunction
 
 function change_dir(dir)
@@ -544,13 +543,13 @@ function change_dir(dir)
     dir=dir*360/100
   end
   value_dir.String=msprintf("%.0f",dir)
-  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,slider_speed.Value*2/100,slider_dir.value*360/100,%F);
+  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,..
+		     slider_speed.Value*2/100,slider_dir.value*360/100,slider_slope.Value*70/100,%F);
 endfunction
 
-function change_gravity(g)
+function change_gravity(gravity)
 //gravity slider callback  
 //gravity is in [0 10]
-  global g
   slider_x       = findobj("tag", "slider_x");
   slider_y       = findobj("tag", "slider_y");
   slider_slope   = findobj("tag", "slider_slope");
@@ -560,19 +559,21 @@ function change_gravity(g)
 
   value_g  = findobj("tag", "value_g");
   if argn(2)==1 then
-    slider_g.Value=(g)*100/10;
+    slider_g.Value=(gravity)*100/10;
   else
-    g=slider_g.Value
-    g=g*360/10
+    gravity=slider_g.Value
+    gravity=gravity*360/10
   end
-  value_g.String=msprintf("%.2f",g)
-  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,slider_speed.Value*2/100,slider_dir.value*360/100,%F);
+  value_g.String=msprintf("%.2f",gravity)
+  //  draw_initial_point(-0.9+slider_x.Value*1.8/100,slider_y.value*3/100,..
+  //		     slider_speed.Value*2/100,slider_dir.value*360/100,slider_slope.Value*70/100,%F);
+
 endfunction
 
 
 function start_simu()
 //start button callback
-  global g fin g_pente;
+  global fin
   fin   = %f;
   slider_x       = findobj("tag", "slider_x");
   slider_y       = findobj("tag", "slider_y");
@@ -588,7 +589,8 @@ function start_simu()
   y = slider_y.value*3/100
   V = slider_speed.Value*2/100
   Vdir = slider_dir.value*360/100
-  Y = calculate_traj(x,y,V,Vdir,t)
+  slope=slider_slope.Value*70/100
+  Y = calculate_traj(x,y,V,Vdir,t,gravity,slope)
   x = Y(1,:)
   y = Y(3,:)
   r = 0.1; //bias to have the curve above the surface
