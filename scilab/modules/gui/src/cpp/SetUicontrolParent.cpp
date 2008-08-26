@@ -21,7 +21,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
 
   int parentFigureIndex = 0; 
 
-  long int * returnValues = NULL;
+  int * returnValues = NULL;
 
   sciPointObj *figure = NULL;
   sciPointObj *parent = NULL;
@@ -166,19 +166,19 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
             {
               CallScilabBridge::setFramePosition(getScilabJavaVM(), 
                                                  pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                                 (int) returnValues[0], 
-                                                 (int) returnValues[1], 
-                                                 (int) returnValues[2], 
-                                                 (int) returnValues[3]);
+                                                 returnValues[0], 
+                                                 returnValues[1], 
+                                                 returnValues[2], 
+                                                 returnValues[3]);
             }
           else /* All other uicontrol styles */
             {
               CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                                  (int) returnValues[0], 
-                                                  (int) returnValues[1], 
-                                                  (int) returnValues[2], 
-                                                  (int) returnValues[3]);
+                                                  returnValues[0], 
+                                                  returnValues[1], 
+                                                  returnValues[2], 
+                                                  returnValues[3]);
             }
           return SET_PROPERTY_SUCCEED;
         }

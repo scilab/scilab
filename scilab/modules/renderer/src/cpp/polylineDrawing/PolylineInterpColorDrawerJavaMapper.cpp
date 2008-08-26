@@ -65,18 +65,10 @@ void PolylineInterpColorDrawerJavaMapper::setFigureIndex(int figureIndex)
 void PolylineInterpColorDrawerJavaMapper::drawPolyline(const double xCoords[], const double yCoords[],
                                                        const double zCoords[], const int colors[], int nbCoords)
 {
-  // temporary, convert int * to long *
-  long * colorsLong = new long[nbCoords];
-  for ( int i = 0 ; i < nbCoords ; i++ )
-  {
-    colorsLong[i] = colors[i];
-  }
   m_pJavaObject->drawPolyline((double *)xCoords, nbCoords,
                               (double *)yCoords, nbCoords,
                               (double *)zCoords, nbCoords,
-                              colorsLong,  nbCoords);
-
-  delete[] colorsLong;
+                              (int *)colors,  nbCoords);
 }
 /*---------------------------------------------------------------------------------*/
 }

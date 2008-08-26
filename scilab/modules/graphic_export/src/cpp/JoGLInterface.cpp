@@ -93,7 +93,7 @@ void joglGetIndexClearValue(int * value)
 /*---------------------------------------------------------------------------------*/
 void joglGetViewport(int * viewPort)
 {
-  long * javaViewPort = GL2PSToJOGL::glGetViewport(getScilabJavaVM());
+  int * javaViewPort = GL2PSToJOGL::glGetViewport(getScilabJavaVM());
 
   for (int i = 0; i < VIEWPORT_SIZE; i++)
   {

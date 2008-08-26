@@ -17,7 +17,7 @@ using namespace org_scilab_modules_gui_bridge;
 
 double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj)
 {
-  long int *position = NULL;
+  int *position = NULL;
 
   int height = 0;
 
@@ -58,7 +58,7 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj)
 
 int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj)
 {
-  long int *position = NULL;
+  int *position = NULL;
 
   int height = 0;
 

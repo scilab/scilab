@@ -26,7 +26,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
   
   float xDouble = 0.0, yDouble = 0.0, widthDouble = 0.0, heightDouble = 0.0;
 
-  long int * returnValues = NULL;
+  int * returnValues = NULL;
 
   sciPointObj *parent = NULL;
   

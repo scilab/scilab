@@ -70,7 +70,7 @@ int getMessageBoxSelectedButton(int ID);
  * @param indices the indices of the default selected buttons
  * @param nbIndices the number of indices
  */
-void setMessageBoxDefaultSelectedButtons(int ID, long int* indices, int nbIndices);
+void setMessageBoxDefaultSelectedButtons(int ID, int* indices, int nbIndices);
 
 /**
  * Get the indices of the user selected buttons (x_choices)
@@ -78,7 +78,7 @@ void setMessageBoxDefaultSelectedButtons(int ID, long int* indices, int nbIndice
  * @param ID the ID of the MessageBox  
  * @return the indices of the user selected buttons
  */
-long int* getMessageBoxUserSelectedButtons(int ID);
+int* getMessageBoxUserSelectedButtons(int ID);
 
 /**
  * Set the labels of the buttons

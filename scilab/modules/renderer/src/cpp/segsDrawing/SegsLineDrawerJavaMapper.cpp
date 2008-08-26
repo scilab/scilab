@@ -73,33 +73,13 @@ void SegsLineDrawerJavaMapper::drawSegs(const double startXCoords[], const doubl
                                         const double startZCoords[], const double endZCoords[],
                                         const int colors[], int nbSegments)
 {
-  long * javaColors = NULL;
-  
-  try
-  {
-    javaColors = new long[nbSegments];
-  }
-  catch (const std::exception& e)
-  {
-    // propagate exception
-    throw;
-  }
-
-  for (int i = 0; i < nbSegments; i++)
-  {
-    javaColors[i] = colors[i];
-  }
-
   m_pJavaObject->drawSegs((double *)startXCoords, nbSegments,
                           (double *)endXCoords, nbSegments,
                           (double *)startYCoords, nbSegments,
                           (double *)endYCoords, nbSegments,
                           (double *)startZCoords, nbSegments,
                           (double *)endZCoords, nbSegments,
-                          javaColors, nbSegments);
-
-
-  delete[] javaColors;
+                          (int *)colors, nbSegments);
 }
 /*---------------------------------------------------------------------------------*/
 

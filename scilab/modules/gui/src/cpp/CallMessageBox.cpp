@@ -44,12 +44,12 @@ int getMessageBoxSelectedButton(int ID)
   return CallScilabBridge::getMessageBoxSelectedButton(getScilabJavaVM(), ID);
 }
      
-void setMessageBoxDefaultSelectedButtons(int ID, long int* indices, int nbIndices)
+void setMessageBoxDefaultSelectedButtons(int ID, int* indices, int nbIndices)
 {
   CallScilabBridge::setMessageBoxDefaultSelectedButtons(getScilabJavaVM(), ID, indices, nbIndices);
 }
 
-long int* getMessageBoxUserSelectedButtons(int ID)
+int* getMessageBoxUserSelectedButtons(int ID)
 {
   return CallScilabBridge::getMessageBoxUserSelectedButtons(getScilabJavaVM(), ID);
 }

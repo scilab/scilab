@@ -74,45 +74,12 @@ void FecFacetDrawerJavaMapper::drawFec(const double xCoords[], const double yCoo
                                        const int firstPoints[], const int secondPoints[],
                                        const int thirdPoints[], int nbTriangles)
 {
-  // convert to long
-  long * javaFirstPoints = NULL;
-  long * javaSecondPoints = NULL;
-  long * javaThirdPoints = NULL;
-
-  try
-  {
-    javaFirstPoints = new long[nbTriangles];
-    javaSecondPoints = new long[nbTriangles];
-    javaThirdPoints = new long[nbTriangles];
-  }
-  catch (const std::exception& e)
-  {
-    // allocation failed
-    if (javaFirstPoints != NULL) { delete[] javaFirstPoints; }
-    if (javaSecondPoints != NULL) { delete[] javaSecondPoints; }
-    if( javaThirdPoints != NULL) { delete[] javaThirdPoints; }
-    // propagate exception
-    throw;
-  }
-
-  for (int i = 0; i < nbTriangles; i++)
-  {
-    javaFirstPoints[i] = firstPoints[i];
-    javaSecondPoints[i] = secondPoints[i];
-    javaThirdPoints[i] = thirdPoints[i];
-  }
-
   m_pJavaObject->drawFec((double *)xCoords, nbNodes,
                          (double *)yCoords, nbNodes,
                          (double *)values, nbNodes,
-                         javaFirstPoints, nbTriangles,
-                         javaSecondPoints, nbTriangles,
-                         javaThirdPoints, nbTriangles);
-
-
-  delete[] javaFirstPoints;
-  delete[] javaSecondPoints;
-  delete[] javaThirdPoints;
+                         (int *)firstPoints, nbTriangles,
+                         (int *)secondPoints, nbTriangles,
+                         (int *)thirdPoints, nbTriangles);
 }
 /*---------------------------------------------------------------------------------*/
 

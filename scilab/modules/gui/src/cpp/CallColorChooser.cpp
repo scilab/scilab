@@ -26,17 +26,17 @@ void setColorChooserTitle(int colorChooserID, char *title)
 
 void setColorChooserDefaultRGB(int colorChooserID, double *RGB)
 {
-  long int *RGBint = new long int[3];
-  RGBint[0] = (long int) RGB[0];
-  RGBint[1] = (long int) RGB[1];
-  RGBint[2] = (long int) RGB[2];
+  int *RGBint = new int[3];
+  RGBint[0] = (int) RGB[0];
+  RGBint[1] = (int) RGB[1];
+  RGBint[2] = (int) RGB[2];
   CallScilabBridge::setColorChooserDefaultColor(getScilabJavaVM(), colorChooserID, RGBint, 3);
   delete[] RGBint;
 }
 
 void setColorChooserDefaultRGBSeparateValues(int colorChooserID, int R, int G, int B)
 {
-  long int *RGB = new long int[3];
+  int *RGB = new int[3];
   RGB[0] = R;
   RGB[1] = G;
   RGB[2] = B;
@@ -46,7 +46,7 @@ void setColorChooserDefaultRGBSeparateValues(int colorChooserID, int R, int G, i
 
 double *getColorChooserSelectedRGB(int colorChooserID)
 {
-  long int *RGB = CallScilabBridge::getColorChooserSelectedColor(getScilabJavaVM(), colorChooserID);
+  int *RGB = CallScilabBridge::getColorChooserSelectedColor(getScilabJavaVM(), colorChooserID);
   
   double *RGBdouble = new double[3];
   RGBdouble[0] = RGB[0];

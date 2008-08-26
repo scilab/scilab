@@ -170,7 +170,7 @@ bool DrawableFigureJavaMapper::getAutoResizeMode(void)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::getViewport(int viewport[4])
 {
-  long * javaViewport = m_pJavaObject->getViewport();
+  int * javaViewport = m_pJavaObject->getViewport();
   viewport[0] = javaViewport[0];
   viewport[1] = javaViewport[1];
   viewport[2] = javaViewport[2];
@@ -191,23 +191,12 @@ void DrawableFigureJavaMapper::setBackgroundColor(int colorIndex)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  long * javaInitialRect = NULL;
   int sizeJavaInitialRect = 0;
   if (initialRect != NULL)
   {
     sizeJavaInitialRect = 4;
-    javaInitialRect = new long[sizeJavaInitialRect];
-    for (int i = 0; i < 4; i++)
-    {
-      javaInitialRect[i] = initialRect[i];
-    }
   }
-  long * javaRes = m_pJavaObject->rubberBox(isClick, isZoom, javaInitialRect, sizeJavaInitialRect);
-
-  if (javaInitialRect != NULL)
-  {
-    delete[] javaInitialRect;
-  }
+  int * javaRes = m_pJavaObject->rubberBox(isClick, isZoom, (int *)initialRect, sizeJavaInitialRect);
 
   // javaRes = [x1,y1,x2,y2,button];
   for (int i = 0; i < 4; i++)
@@ -228,7 +217,7 @@ void DrawableFigureJavaMapper::setTitle(char * title)
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::getRotationDisplacement(int displacement[2])
 {
-  long * javaRes = m_pJavaObject->getRotationDisplacement();
+  int * javaRes = m_pJavaObject->getRotationDisplacement();
 
   displacement[0] = javaRes[0];
   displacement[1] = javaRes[1];

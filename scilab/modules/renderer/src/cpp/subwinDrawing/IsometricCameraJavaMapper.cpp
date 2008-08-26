@@ -108,7 +108,7 @@ void IsometricCameraJavaMapper::setAxesReverse(bool xAxisRevert, bool yAxisRever
 void IsometricCameraJavaMapper::getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ,
                                                     int pixCoord[2])
 {
-  long * javaCoords = m_pJavaObject->get2dViewPixelCoordinates(userCoordX, userCoordY, userCoordZ);
+  int * javaCoords = m_pJavaObject->get2dViewPixelCoordinates(userCoordX, userCoordY, userCoordZ);
   pixCoord[0] = javaCoords[0];
   pixCoord[1] = javaCoords[1];
 
@@ -118,7 +118,7 @@ void IsometricCameraJavaMapper::getPixelCoordinates(double userCoordX, double us
 void IsometricCameraJavaMapper::get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ,
   int pixCoord[2])
 {
-  long * javaCoords = m_pJavaObject->get2dViewPixelCoordinates(userCoordX, userCoordY, userCoordZ);
+  int * javaCoords = m_pJavaObject->get2dViewPixelCoordinates(userCoordX, userCoordY, userCoordZ);
   pixCoord[0] = javaCoords[0];
   pixCoord[1] = javaCoords[1];
 

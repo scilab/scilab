@@ -33,7 +33,7 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
   int lineLabelsAdr = 0;
   int defaultValuesAdr = 0;
   double *defaultValues = NULL;
-  long int *defaultValuesInt = NULL;
+  int *defaultValuesInt = NULL;
 
   int userValueSize = 0;
   int *userValue = NULL;
@@ -52,10 +52,10 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
       GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&nbRowDefaultValues,&nbColDefaultValues,&defaultValuesAdr);
       defaultValues = getDoubleMatrixFromStack(defaultValuesAdr);
       
-      defaultValuesInt = (long int *)MALLOC(nbRowDefaultValues*nbColDefaultValues*sizeof(long int));
+      defaultValuesInt = (int *)MALLOC(nbRowDefaultValues*nbColDefaultValues*sizeof(int));
       for (K = 0; K < nbRowDefaultValues*nbColDefaultValues; K++)
         {
-          defaultValuesInt[K] = (long)defaultValues[K];
+          defaultValuesInt[K] = (int)defaultValues[K];
         }
     }
   else 
