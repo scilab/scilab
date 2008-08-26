@@ -27,14 +27,11 @@ int sci_TCL_DeleteInterp(char *fname,unsigned long l)
   if (Rhs==1)
     {
 
-      if (getTclInterp() == NULL)
+      if (!existsGlobalInterp())
 	{
-	  releaseTclInterp();
 	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 	  return 0;
 	}
-
-      releaseTclInterp();
 
       if (GetType(1) == sci_strings)
 	{
@@ -63,13 +60,6 @@ int sci_TCL_DeleteInterp(char *fname,unsigned long l)
     }
   else /* Rhs == 0 */
     {
-      if (getTclInterp() == NULL)
-	{
-	  releaseTclInterp();
-	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
-	  return 0;
-	}
-
       releaseTclInterp();
 
       CloseTCLsci();
