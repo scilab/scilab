@@ -11,6 +11,8 @@
  */
 package org.scilab.modules.gui.events.callback;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
@@ -51,4 +53,37 @@ public abstract class ScilabCallBack extends CallBack {
 			}
 		});
 	}
+
+	/**
+	 * Callback Factory to easily create a callback
+	 * just like in scilab.
+	 * WARNING : this callback will be ignored by xclick & xgetmouse
+	 * @param command : the command to execute.
+	 * @return a usable Scilab callback
+	 */
+	public static ScilabCallBack createOutOfXclickAndXgetmouse(String command) {
+		return (new ScilabCallBack(command) {
+		   		    
+			private static final long serialVersionUID = -7286803341046313407L;
+
+			public void callBack() {
+				Thread launchMe = new Thread() {
+					public void run() {
+						InterpreterManagement.putCommandInScilabQueue(getCommand());
+					}
+				};
+				launchMe.start();
+			}
+			
+			/**
+			 * To match the standard Java Action management.
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+			 * @param e The event that launch the callback.
+			 */
+			public void actionPerformed(ActionEvent e) {
+			    callBack();
+			}
+		});
+	}
+	
 }
