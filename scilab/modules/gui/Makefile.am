@@ -230,9 +230,7 @@ etc/graphics_toolbar.xml \
 etc/helpbrowser_menubar.xml \
 etc/main_menubar.xml \
 etc/main_toolbar.xml \
-etc/flexdock-themes.xml \
-etc/undock_active.png \
-etc/undock_default.png
+etc/flexdock-themes.xml
 
 
 #### gui : gateway declaration ####
@@ -353,7 +351,11 @@ images/icons/printer.png \
 images/icons/scilab.png \
 images/icons/rotate.png \
 images/icons/window-new.png \
-images/icons/edit-cut.png
+images/icons/edit-cut.png \
+images/icons/undock_active.png \
+images/icons/undock_default.png \
+images/icons/scilab_close_active.png \
+images/icons/scilab_close_default.png
 
 
 if GUI

@@ -25,9 +25,14 @@
 		<property name="tooltip" value="Undock" handler="string" />
 	</icon-resource>
 
+	<icon-resource name="scilab.close" extends="win32.close">
+		<property name="default" value="scilab_close_default.png" />
+		<property name="active" value="scilab_close_active.png" />
+	</icon-resource>
+
         <!-- List the available icon maps -->	
         <icon-map name="scilab">
-            <property name="close" value="win32.close" />
+            <property name="close" value="scilab.close" />
             <property name="pin" value="win32.pin" />
             <property name="undock" value="scilab.undock" />
         </icon-map>
