@@ -39,6 +39,7 @@ Graphics:
  	* Text object are able to handle matrices of strings.
  - All graphic objects are fully operational both in 2D and 3D modes.
  - Clipping is operational both in 2D and 3D modes.
+ - New property "filled" added to Axes object which controls axes box transparency.
  - New functions:
 	* swap_handles - Permute two handles in the graphic hierarchy.
 	* relocate_handle - Move handles inside the graphic hierarchy.
