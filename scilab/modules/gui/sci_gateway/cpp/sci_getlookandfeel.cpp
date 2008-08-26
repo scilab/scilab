@@ -33,19 +33,19 @@ int sci_getlookandfeel(char *fname,unsigned long fname_len)
 		static integer n1 = 0,m1 = 0,l1 = 0;
 
 		char *look = lnf->getCurrentLookAndFeel();
-		delete lnf;
-
 		if (look)
 		{	
 			m1 = (int)strlen(look);
 			n1 = 1;
 			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m1,&n1,&look);
-			if (look) {free(look); look = NULL;} /* free because giws uses malloc */
+			if (look) {delete look; look = NULL;}
+			delete lnf;
 			LhsVar(1) = Rhs+1;
 			C2F(putlhsvar)();
 		}
 		else
 		{
+			delete lnf;
 			Scierror(999,_("%s: An error occurred: %s.\n"),fname,_("Impossible to get current look and feel"));
 		}
 	}

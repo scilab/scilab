@@ -35,28 +35,27 @@ int sci_getinstalledlookandfeels(char *fname,unsigned long fname_len)
 
 		lookandfeels = lnf->getInstalledLookAndFeels();
 		nbElems = lnf->numbersOfInstalledLookAndFeels();
-		delete lnf;
 
 		nbCol = 1;
 		CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &nbElems, &nbCol,lookandfeels );
 
-		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
-
 		if (lookandfeels)
 		{
 			int i = 0;
-			for (i=0;i<nbElems;i++)
+			for (i = 0;i<nbElems;i++)
 			{
 				if (lookandfeels[i])
 				{
-					free(lookandfeels[i]); /* free because giws uses malloc */
-					lookandfeels[i] = NULL;
+					delete lookandfeels[i];
 				}
 			}
-			free(lookandfeels);
+			delete [] lookandfeels;
 			lookandfeels = NULL;
 		}
+		delete lnf;
+
+		LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
 	}
 	else
 	{
