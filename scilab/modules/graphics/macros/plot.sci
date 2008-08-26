@@ -210,15 +210,14 @@ for i=1:numplot
             // get error
             [err_message, err_number, err_line, err_func] = lasterror(%t);
 
+			clear buildFunc;
             // print it
             if (err_func <> "") then
-              disp("Error : unable to evaluate input function" + " " + err_func + ".");
+			// ascii(10) = \n
+             error(msprintf(gettext("%s: Error : unable to evaluate input function ''%s''.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_func,err_number, err_line, err_message));
             else
-              disp("Error : unable to evaluate input function" + ".");
+             error(msprintf(gettext("%s: Error : unable to evaluate input function.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_number, err_line, err_message));
             end
-            disp("Error " + string(err_number) +" at line " + string(err_line) + " : " + err_message);
-            clear buildFunc;
-
             // exit function
             return;
           end

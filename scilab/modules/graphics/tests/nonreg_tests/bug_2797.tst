@@ -28,10 +28,12 @@ curFig.immediate_drawing = "on";
 
 // evaluation of f will fail
 // it use to keep current figure in drawlater mode
-plot(x,f)
+//plot(x,f)
+
+//the error will not be printed in the console
+ierr = execstr('plot(x,f)','errcatch');
 
 plot(x,x)
-
 
 // check we are not in drawlater mode anymore
 if (curFig.immediate_drawing <> "on") then pause; end
