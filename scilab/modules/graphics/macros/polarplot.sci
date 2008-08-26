@@ -61,11 +61,15 @@ for k=1:4
   xarc(-r,r,2*r,2*r,0,360*64)
   xset("dashes",1)
   xstring((r+dr)*cos(5*%pi/12),(r+dr)*sin(5*%pi/12),string(round(10*r)/10))
+  //clipping off 
+  e = gce();e.clip_state = "off"
   r=r+step
 end
 xset("dashes",1)
 xarc(-r,r,2*r,2*r,0,360*64)
 xstring((r+dr)*cos(5*%pi/12),(r+dr)*sin(5*%pi/12),string(round(10*r)/10))
+//clipping off 
+e = gce();e.clip_state = "off"
 
 rect=xstringl(0,0,'360');w=rect(3);h=rect(4);d=sqrt(w^2+h^2)/1.8
 r=rm+d
@@ -73,7 +77,9 @@ for k=0:11
   xset("dashes",3)
   xsegs([0;rm*cos(k*(%pi/6))],[0;rm*sin(k*(%pi/6))])
   xset("dashes",1)
+  //clipping off 
   xstring(r*cos(k*(%pi/6))-w/2,r*sin(k*(%pi/6))-h/2,string(k*30))
+  e = gce();e.clip_state = "off"
 end
 xset("dashes",1)
 endfunction

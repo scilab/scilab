@@ -105,6 +105,7 @@ while k < length(xc)
 
    if stripblanks(fpf)<>'' then
       xstring(xc(k+1+n/2),yc(k+1+n/2)," "+msprintf(fpf,level))
+	  e = gce();e.clip_state = "off"
       cnt=cnt+1;
    end
    k=k+n+1;
