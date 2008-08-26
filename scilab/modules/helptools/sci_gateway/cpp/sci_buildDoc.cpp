@@ -46,7 +46,7 @@ int sci_buildDoc(char *fname,unsigned long l)
 	char * outputDirectoryTMP = NULL;
 	char * currentLanguage = getlanguage();
 	char * styleSheet = (char*)MALLOC((strlen(SciPath)+strlen(PATHTOCSS)+1)*sizeof(char));; /* the CSS */
-	org_scilab_modules_helptools::BuildDocObject *doc;
+	org_scilab_modules_helptools::BuildDocObject *doc = NULL;
 
 	if ( styleSheet == NULL )
 	{
@@ -170,7 +170,7 @@ int sci_buildDoc(char *fname,unsigned long l)
 		Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
 	}
 	
-	delete doc;
+	if (doc != NULL) delete doc;
 	FREE(masterXML); masterXML = NULL;
 	FREE(outputDirectory); outputDirectory = NULL;
 	FREE(styleSheet); styleSheet = NULL;
