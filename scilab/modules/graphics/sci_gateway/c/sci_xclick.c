@@ -120,7 +120,7 @@ int sci_xclick(char *fname,unsigned long fname_len)
     strncpy(cstk(rep),menuCallback,istr);
   }
 
-  destroyCppString(menuCallback);
+  deleteMenuCallBack(menuCallback);
 
   return 0;
 }

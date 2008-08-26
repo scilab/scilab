@@ -24,5 +24,10 @@ int getJxclickWindowID(void);
 
 char * getJxclickMenuCallback(void);
 
+/**
+ * Delete the menu call back which is allocated by a C++ new.
+ */
+void deleteMenuCallBack(char * menuCallBack);
+
 #endif
 

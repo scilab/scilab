@@ -72,3 +72,4 @@ SetUimenuLabel
 SetUiobjectEnable
 setFigureEventHandler
 setFigureEventHandlerEnabled
+deleteMenuCallBack

@@ -44,3 +44,8 @@ char * getJxclickMenuCallback()
 {
   return Jxclick::getMenuCallback(getScilabJavaVM());
 }
+
+void deleteMenuCallBack(char * menuCallBack)
+{
+  delete[] menuCallBack;
+}
