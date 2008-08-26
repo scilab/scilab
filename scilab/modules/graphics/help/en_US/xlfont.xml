@@ -108,11 +108,24 @@ fonts=xlfont()</synopsis>
     <title>Examples</title>
 
     <programlisting role="example">
+xlfont('reset');
+xlfont()
 
 // Caution : this example may not work if your system have not Monospaced font.
-xlfont("Monospaced",10,true,true)
+xlfont("Monospaced",10,%t,%t);
 xset("font", 10, 4) // use Monospaced Bold Italic
 plot2d()
+
+xlfont()
+
+xlfont(SCI+'/thirdparty/fonts/scilabsymbols.ttf')
+xset("font", 12, 4) // use scilabsymbols.ttf font
+plot2d()
+
+xlfont()
+
+xlfont('reset');
+
  
   </programlisting>
   </refsection>
