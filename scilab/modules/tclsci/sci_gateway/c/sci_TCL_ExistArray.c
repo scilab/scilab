@@ -69,6 +69,7 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 		}
 
 		ValRet=TCL_ArrayExist(TCLinterpreter,VarName);
+		releaseTclInterp();
 
 		n1=1;
 		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
