@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUiobjectForegroundColor(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol);
+int SetUiobjectForegroundColor(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UIOBJECT_FOREGROUNDCOLOR_H__ */

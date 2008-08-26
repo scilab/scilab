@@ -27,7 +27,7 @@
 #include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_name_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   int status;
   if ( !isParameterStringMatrix( valueType ) )

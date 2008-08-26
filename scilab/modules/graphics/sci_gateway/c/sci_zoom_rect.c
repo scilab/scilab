@@ -47,7 +47,7 @@ BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
 {
   int nbRow;
   int nbCol;
-  int stackPointer;
+  size_t stackPointer = 0;
   int i;
   double * rectVect;
   GetRhsVar(attribPos, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
@@ -85,7 +85,7 @@ sciPointObj * getZoomedObject(const char * fname)
 {
   int nbRow;
   int nbCol;
-  int stackPointer;
+  size_t stackPointer = 0;
   sciPointObj * res = NULL;
   /* if a handle is specified it must be the first input argument */
   GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);

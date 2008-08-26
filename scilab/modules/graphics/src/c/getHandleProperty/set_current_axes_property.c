@@ -27,7 +27,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_axes_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_axes_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   sciPointObj * curAxes   = NULL ;
   sciPointObj * parentFig = NULL ;

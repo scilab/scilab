@@ -38,7 +38,7 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
 
   int nbRow;
   int nbCol;
-  int stackPointer;
+  size_t stackPointer = 0;
 
   /* check size of input and output */
   CheckRhs(0,1);

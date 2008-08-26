@@ -49,7 +49,7 @@ typedef int (*getPropertyFunc)(sciPointObj *) ;
 * SET_PROPERTY_UNCHANGED if nothing was actually changed and SET_PROPERTY_ERROR if
 * an error occurred.
 */
-typedef int (*setPropertyFunc)(sciPointObj *, int, int, int, int ) ;
+typedef int (*setPropertyFunc)(sciPointObj *, size_t, int, int, int ) ;
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/

@@ -237,7 +237,7 @@ SetPropertyHashTable * createScilabSetHashTable( void )
 
 }
 /*--------------------------------------------------------------------------*/
-int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nbRow, int nbCol, char * propertyName )
+int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName )
 {
   setPropertyFunc accessor = searchSetHashtable( setHashTable, propertyName ) ;
   if ( accessor == NULL )

@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the relief property set has been correcty done
  */
-int SetUicontrolRelief(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol);
+int SetUicontrolRelief(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_RELIEF_H__ */

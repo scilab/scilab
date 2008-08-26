@@ -36,7 +36,7 @@ static int getScalarFromStack(int paramIndex, char * funcName, double * res)
 {
   int m;
   int n;
-  int stackPointer;
+  size_t stackPointer = 0;
   if ( VarType(paramIndex) != sci_matrix )
   {
     Scierror(999,_("%s: Wrong type for input argument #%d: Real scalar expected.\n"), funcName, paramIndex);
@@ -60,7 +60,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
 {
   int two   = 2;
   int four  = 4;
-  int stackPointer;
+  size_t stackPointer = 0;
   double corners[4][2]; /* the four edges of the boundingRect */
   
 
@@ -172,6 +172,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
   
 
   /* copy everything into the lhs */
+  stackPointer = 0; /* Fix for 64 bits: MSB of stackPointer has been set by GetRhsVar but are not reset by CreateVar */
   CreateVar( Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE, &two, &four, &stackPointer );
   *stk( stackPointer     )  = corners[1][0] ; 
   *stk( stackPointer + 1 )  = corners[1][1] ;

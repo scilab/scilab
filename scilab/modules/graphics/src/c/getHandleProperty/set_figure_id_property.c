@@ -28,7 +28,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_id_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   int id = (int) getDoubleFromStack( stackPointer ) ;
 

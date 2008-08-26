@@ -33,7 +33,7 @@ void InitUIMenu(sciPointObj* sciObj)
   pUIMENU_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newMenu(getScilabJavaVM());
 }
 
-int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
 
   int parentFigureIndex = 0; 

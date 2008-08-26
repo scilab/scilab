@@ -20,6 +20,7 @@
 #define _GET_PROPERTY_ASSIGNEMENT_VALUE_H_
 
 #include "machine.h"
+#include <stdlib.h> /* for size_t */
 
 /*------------------------------------------------------------------------------*/
 /* Basic type parameters */
@@ -50,55 +51,55 @@ BOOL isParameterStringMatrix( int type ) ;
 /**
  * retrieve a single double from the stack
  */
-double getDoubleFromStack( int stackPointer ) ;
+double getDoubleFromStack( size_t stackPointer ) ;
 
 /**
  * retrieve a double matrix from the scilab stack
  */
-double * getDoubleMatrixFromStack( int stackPointer ) ;
+double * getDoubleMatrixFromStack( size_t stackPointer ) ;
 
 /**
  * copy a double vector from the scilab stack
  */
-void copyDoubleVectorFromStack( int stackPointer, double dest[], int nbElement ) ;
+void copyDoubleVectorFromStack( size_t stackPointer, double dest[], int nbElement ) ;
 
 /**
  * copy a double vector from the scilab stack to an int array
  * with int cast for each parameter.
  */
-void copyDoubleVectorToIntFromStack( int stackPointer, int dest[], int nbElement ) ;
+void copyDoubleVectorToIntFromStack( size_t stackPointer, int dest[], int nbElement ) ;
 
 /**
  * create a copy of a vector (or Matrix) of double stored in the stack
  */
-double * createCopyDoubleVectorFromStack( int stackPointer, int nbElement ) ;
+double * createCopyDoubleVectorFromStack( size_t stackPointer, int nbElement ) ;
 
 /**
  * retrieve a string on from the scilab stack
  */
-char * getStringFromStack( int stackPointer ) ;
+char * getStringFromStack( size_t stackPointer ) ;
 
 /**
  * retrieve a string matrix on from the scilab stack
  */
-char ** getStringMatrixFromStack( int stackPointer ) ;
+char ** getStringMatrixFromStack( size_t stackPointer ) ;
 
 /**
  * create a copy of a stringMatrix which is in the stack
  */
-char ** createCopyStringMatrixFromStack( int stackPointer, int nbElement ) ;
+char ** createCopyStringMatrixFromStack( size_t stackPointer, int nbElement ) ;
 
 /**
  * retrieve a handle on from the Scilab stack
  */
-unsigned long getHandleFromStack( int stackPointer ) ;
+unsigned long getHandleFromStack( size_t stackPointer ) ;
 
 /**
  * compare the string stored in the stack with str
  * @return TRUE is the string are equal (using strcmp)
  *         FALSE otherwise
  */
-BOOL isStringParamEqual( int stackPointer, const char * str ) ;
+BOOL isStringParamEqual( size_t stackPointer, const char * str ) ;
 /*------------------------------------------------------------------------------*/
 /* Tlist */
 typedef struct 
@@ -106,7 +107,7 @@ typedef struct
   int nbElement ; /**< number of elements in the tlist */
   int curElement ; /**< currently read element */
   int paramNumber ; /**< rank of the tlist within the Rhs parameters */
-  int stackPointer ; /**< pointer of the tlist in the stack */
+  size_t stackPointer ; /**< pointer of the tlist in the stack */
 } AssignedList ;
 
 /**

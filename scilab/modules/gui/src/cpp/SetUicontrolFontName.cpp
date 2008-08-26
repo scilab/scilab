@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolFontName(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontName(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
   // Font Name must be only one character string
   if (valueType != sci_strings) {

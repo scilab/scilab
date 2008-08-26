@@ -26,7 +26,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_background_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_background_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {

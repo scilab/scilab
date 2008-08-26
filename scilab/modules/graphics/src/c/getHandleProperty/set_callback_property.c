@@ -27,7 +27,7 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 /*------------------------------------------------------------------------*/
-int set_callback_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_callback_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   if (sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
     {

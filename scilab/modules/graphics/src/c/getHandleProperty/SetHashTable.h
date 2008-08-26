@@ -38,6 +38,6 @@ void destroyScilabSetHashTable( void ) ;
  *         -1 if an error occured in the get function
  *          1 if the property was not found
  */
-int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
+int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
 
 #endif /* _SET_HASH_TABLE_H_ */

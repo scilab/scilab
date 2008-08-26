@@ -30,7 +30,7 @@
 #include "BasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   int flagcolor = (int) getDoubleFromStack( stackPointer ) ;
 

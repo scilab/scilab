@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the units property set has been correcty done
  */
-int SetUicontrolFontUnits(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol);
+int SetUicontrolFontUnits(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_FONTUNITS_H__ */

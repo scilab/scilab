@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUicontrolPosition(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol);
+int SetUicontrolPosition(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif

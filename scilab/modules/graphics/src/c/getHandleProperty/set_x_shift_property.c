@@ -28,7 +28,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_x_shift_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
   int nbElement = nbRow * nbCol ;

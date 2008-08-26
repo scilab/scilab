@@ -33,7 +33,7 @@ void InitUIMenu(sciPointObj* sciObj);
  * @param nbCol number of columns of the parent
  * @return execution status
  */
-int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol);
+int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 /**
  * Disable/Enable a menu attached to the console

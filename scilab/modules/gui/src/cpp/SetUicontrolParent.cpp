@@ -16,7 +16,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
 
   int parentFigureIndex = 0; 

@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the set has been correcty done
  */
-int SetUiobjectVisible(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
+int SetUiobjectVisible(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif /* !__SETUIOBJECTVISIBLE_H__ */

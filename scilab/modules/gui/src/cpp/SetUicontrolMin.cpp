@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolMin(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolMin(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
   if (valueType == sci_matrix)
     {

@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the font weight poperty set has been correcty done
  */
-int SetUicontrolFontWeight(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol);
+int SetUicontrolFontWeight(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_FONTWEIGHT_H__ */

@@ -110,7 +110,7 @@ char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads,
   return  u_xlabels;
 }
 /*------------------------------------------------------------------------*/
-int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   char * flags = getStringFromStack( stackPointer ) ;
   sciSubWindow * ppSubWin = NULL ;

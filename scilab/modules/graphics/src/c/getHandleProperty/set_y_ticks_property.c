@@ -31,7 +31,7 @@
 #include "DrawObjects.h"
 
 /*------------------------------------------------------------------------*/
-int set_y_ticks_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   AssignedList * tlist     = NULL ;
   sciSubWindow * ppSubWin  = NULL ;

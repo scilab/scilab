@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
   // Position can be [x, y, width, height]
   // or "x|y|width|height"

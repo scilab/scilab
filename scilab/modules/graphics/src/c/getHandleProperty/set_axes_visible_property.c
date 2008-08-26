@@ -30,7 +30,7 @@
 #include "BasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_visible_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   char ** values = getStringMatrixFromStack( stackPointer ) ;
 

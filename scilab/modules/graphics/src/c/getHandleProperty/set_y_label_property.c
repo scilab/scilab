@@ -27,7 +27,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_y_label_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_y_label_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )

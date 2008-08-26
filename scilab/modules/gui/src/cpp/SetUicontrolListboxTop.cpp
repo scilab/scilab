@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolListboxTop(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
   int value = 0, nbValue = 0;
 

@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
   // Label must be a character string
   if (valueType != sci_strings) {

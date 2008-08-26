@@ -42,7 +42,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
     int paramType    = VarType(1);
     int nbRow        = 0 ;
     int nbCol        = 0 ;
-    int stackPointer = 0 ;
+    size_t stackPointer = 0 ;
 
     if ( isParameterHandle( paramType ) )
     {

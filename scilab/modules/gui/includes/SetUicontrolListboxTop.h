@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the listbox top property set has been correcty done
  */
-int SetUicontrolListboxTop(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol);
+int SetUicontrolListboxTop(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_LISTBOXTOP_H__ */

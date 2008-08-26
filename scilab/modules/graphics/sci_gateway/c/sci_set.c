@@ -43,12 +43,12 @@
 #include "stricmp.h"
 
 /*--------------------------------------------------------------------------*/
-static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol) ;
+static int sciSet(sciPointObj *pobj, char *marker, size_t *value, int valueType, int *numrow, int *numcol) ;
 /*--------------------------------------------------------------------------*/
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
 * Sets the value to the object
 */
-static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol)
+static int sciSet(sciPointObj *pobj, char *marker, size_t *value, int valueType, int *numrow, int *numcol)
 {
   return callSetProperty( pobj, *value, valueType, *numrow, *numcol, marker ) ;
 }
@@ -77,7 +77,7 @@ int sci_set(char *fname, unsigned long fname_len)
 	  integer m1,n1,l1,m2,n2,l2;
 	  integer numrow3 = 0 ;
 	  integer numcol3 = 0 ;
-	  integer l3 = 0 ;
+	  size_t l3 = 0 ;
 	  unsigned long hdl;
 	  int t2;
 	  BOOL vis_save = FALSE ;

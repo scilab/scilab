@@ -46,7 +46,7 @@ int sci_draw( char * fname, unsigned long fname_len )
     int nbObjects = 0;
     int nbRow;
     int nbCol;
-    int stackPointer;
+    size_t stackPointer = 0;
     int i;
 
     GetRhsVar( 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer ); 

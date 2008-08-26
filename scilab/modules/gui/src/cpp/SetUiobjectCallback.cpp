@@ -16,7 +16,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
   char * cbString = NULL;
   int cbType = 0;

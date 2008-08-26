@@ -42,7 +42,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   {
     int nbUnzoomedObjects = 0;
     int m,n,i;
-    int stackPointer;
+    size_t stackPointer = 0;
     sciPointObj ** zoomedObjects = NULL; /* array of object to unzoom */
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m,&n,&stackPointer);
     
