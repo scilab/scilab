@@ -78,6 +78,8 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar" load="startup"/>
 <path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar" load="startup"/>
+<path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
+<path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
 <path value="$SCILAB/modules/javasci/jar/javasci.jar" load="startup"/>
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar" load="startup"/>
 <path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar" load="startup"/>

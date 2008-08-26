@@ -85,7 +85,8 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
 
 <path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
-<path value="$SCILAB/modules/gui/etc"/> <!-- Temporary fix for Flexdock using GTK theme -->
+<path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
+<path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
 
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 
