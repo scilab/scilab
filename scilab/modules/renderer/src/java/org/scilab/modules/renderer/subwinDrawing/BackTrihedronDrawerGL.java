@@ -18,7 +18,7 @@ package org.scilab.modules.renderer.subwinDrawing;
  * Class drawing only the backTrihedron of a subwin object
  * @author Jean-Baptiste Silvy
  */
-public class BackTrihedronDrawerGL extends SubwinBoxDrawer {
+public class BackTrihedronDrawerGL extends SubwinLineBoxDrawer {
 
 	/**
 	 * Default constuctor
@@ -31,21 +31,19 @@ public class BackTrihedronDrawerGL extends SubwinBoxDrawer {
 	/**
 	 * An other seetting for parameters since line colro is not needed
 	 * @param hiddenAxisColor color of back trihedron lines
-	 * @param backgroundColor color of back trihedron facets
 	 * @param thickness thickness of the lines
 	 */
-	public void setBoxParameters(int hiddenAxisColor, int backgroundColor,
-								 float thickness) {
+	public void setBoxParameters(int hiddenAxisColor, float thickness) {
 		setHiddenAxisColor(hiddenAxisColor);
-		setBackgroundColor(backgroundColor);
 		setThickness(thickness);
 	}
 	
 	/**
 	 * Draw the box specified by its bounds.
+	 * @param concealedCornerIndex index of the concealed corner
 	 */
-	public void drawBox() {
-		drawTrihedron(findConcealedCorner());
+	public void drawBox(int concealedCornerIndex) {
+		drawTrihedron(concealedCornerIndex);
 	}
 
 }

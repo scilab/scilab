@@ -176,5 +176,6 @@ int set_arc_drawing_method_property(   sciPointObj * pobj, size_t stackPointer, 
 int set_fractional_font_property(      sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_links_property(                sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_legend_location_property(      sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
+int set_filled_property(               sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

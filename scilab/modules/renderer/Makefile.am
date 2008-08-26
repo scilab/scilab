@@ -259,7 +259,10 @@ src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 src/cpp/axesDrawing/AxesSubticksComputer.cpp \
 src/jni/GiwsException.cpp \
-src/cpp/rendererBasicAlgos.cpp
+src/cpp/rendererBasicAlgos.cpp \
+src/jni/SubwinBackgroundDrawerGL.cpp \
+src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
@@ -330,7 +333,8 @@ src/jni/SurfaceMarkDrawerGL.giws.xml \
 src/jni/TicksDrawerGL.giws.xml \
 src/jni/GridDrawerGL.giws.xml \
 src/jni/RenderingChecker.giws.xml \
-src/jni/XlFontManager.giws.xml
+src/jni/XlFontManager.giws.xml \
+src/jni/SubwinBackgroundDrawerGL.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws

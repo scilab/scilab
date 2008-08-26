@@ -105,8 +105,8 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
-voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetBoxParametersjintjintjintjfloatID=NULL; 
+voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID=NULL; 
 
 
 }
@@ -135,8 +135,8 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
-voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetBoxParametersjintjintjintjfloatID=NULL; 
+voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID=NULL; 
 
 
 }
@@ -251,31 +251,31 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void FullBoxDrawerGL::setBoxParameters (int hiddenAxisColor, int backgroundColor, int lineColor, int lineStyle, float thickness){
+void FullBoxDrawerGL::setBoxParameters (int hiddenAxisColor, int lineColor, int lineStyle, float thickness){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetBoxParametersjintjintjintjintjfloatID==NULL) { /* Use the cache Luke */ voidsetBoxParametersjintjintjintjintjfloatID = curEnv->GetMethodID(this->instanceClass, "setBoxParameters", "(IIIIF)V" ) ;
-if (voidsetBoxParametersjintjintjintjintjfloatID == NULL) {
+if (voidsetBoxParametersjintjintjintjfloatID==NULL) { /* Use the cache Luke */ voidsetBoxParametersjintjintjintjfloatID = curEnv->GetMethodID(this->instanceClass, "setBoxParameters", "(IIIF)V" ) ;
+if (voidsetBoxParametersjintjintjintjfloatID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "setBoxParameters");
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetBoxParametersjintjintjintjintjfloatID ,hiddenAxisColor, backgroundColor, lineColor, lineStyle, thickness);
+                         curEnv->CallVoidMethod( this->instance, voidsetBoxParametersjintjintjintjfloatID ,hiddenAxisColor, lineColor, lineStyle, thickness);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void FullBoxDrawerGL::drawBox (double xMin, double xMax, double yMin, double yMax, double zMin, double zMax){
+void FullBoxDrawerGL::drawBox (double xMin, double xMax, double yMin, double yMax, double zMin, double zMax, int concealedCornerIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID==NULL) { /* Use the cache Luke */ voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "drawBox", "(DDDDDD)V" ) ;
-if (voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
+if (voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID==NULL) { /* Use the cache Luke */ voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID = curEnv->GetMethodID(this->instanceClass, "drawBox", "(DDDDDDI)V" ) ;
+if (voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "drawBox");
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,xMin, xMax, yMin, yMax, zMin, zMax);
+                         curEnv->CallVoidMethod( this->instance, voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID ,xMin, xMax, yMin, yMax, zMin, zMax, concealedCornerIndex);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

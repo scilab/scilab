@@ -60,8 +60,8 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voidsetBoxParametersjintjintjintjintjfloatID; // cache method id
-jmethodID voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voidsetBoxParametersjintjintjintjfloatID; // cache method id
+jmethodID voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID; // cache method id
 
 
 /**
@@ -115,9 +115,9 @@ void destroy(int figureIndex);
 
 void setFigureIndex(int figureIndex);
 
-void setBoxParameters(int hiddenAxisColor, int backgroundColor, int lineColor, int lineStyle, float thickness);
+void setBoxParameters(int hiddenAxisColor, int lineColor, int lineStyle, float thickness);
 
-void drawBox(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
+void drawBox(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax, int concealedCornerIndex);
 
 
                         /**

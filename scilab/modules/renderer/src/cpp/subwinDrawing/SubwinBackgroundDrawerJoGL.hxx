@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
- * desc : Class drawing half of a subwin object bounding box
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,23 +10,23 @@
  *
  */
 
-#ifndef _HALF_BOX_DRAWER_JOGL_HXX_
-#define _HALF_BOX_DRAWER_JOGL_HXX_
+#ifndef _SUBWIN_BACKGROUND_DRAWER_JOGL_HXX_
+#define _SUBWIN_BACKGROUND_DRAWER_JOGL_HXX_
 
 #include "DrawAxesBoxStrategy.hxx"
 #include "../DrawableObjectJoGL.h"
-#include "HalfBoxDrawerJavaMapper.hxx"
+#include "SubwinBackgroundDrawerJavaMapper.hxx"
 
 namespace sciGraphics
 {
 
-class HalfBoxDrawerJoGL: public DrawAxesBoxStrategy, public DrawableObjectJoGL
+class SubwinBackgroundDrawerJoGL: public DrawAxesBoxStrategy, public DrawableObjectJoGL
 {
 public:
+  
+   SubwinBackgroundDrawerJoGL(DrawableSubwin * subwin);
 
-  HalfBoxDrawerJoGL(DrawableSubwin * subwin);
-
-  virtual ~HalfBoxDrawerJoGL(void);
+   virtual ~SubwinBackgroundDrawerJoGL(void);
 
   /**
    * Main funtion which actually draw the box.
@@ -38,13 +37,13 @@ public:
 protected:
 
   /**
-  * Get the object performing mapping with Java class.
-  */
-  HalfBoxDrawerJavaMapper * getHalfBoxDrawerJavaMapper(void);
+   * Get the object performing mapping with Java class.
+   */
+  SubwinBackgroundDrawerJavaMapper * getSubwinBackgroundDrawerJavaMapper(void);
 
 };
 
 }
 
-#endif /* _HALF_BOX_DRAWER_JOGL_HXX_ */
+#endif /* _SUBWIN_BACKGROUND_DRAWER_JOGL_HXX_ */
 

@@ -3141,6 +3141,9 @@ int sciInitIsFilled( sciPointObj * pobj, BOOL isfilled )
     sciInitIsBoxed(  pLABEL_FEATURE(pobj)->text, isfilled ) ;
     sciInitIsLine(   pLABEL_FEATURE(pobj)->text, isfilled ) ;
     return sciInitIsFilled( pLABEL_FEATURE(pobj)->text, isfilled ) ;
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pobj)->axes.filled = isfilled;
+    return 0;
   default:
     if(sciGetGraphicContext(pobj) != NULL)
     {

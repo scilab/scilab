@@ -837,6 +837,9 @@ typedef struct
   
   int  subint[3]; /* Dj.A 17/12/03 */
   EAxesBoxType  rect ; /**< to know the part of the box we have to draw */
+  BOOL filled; /**< Specify wether the axis background should be drawn or not.
+                    graphic_context is not used because otherwise all the children would inherit the value.*/
+
   char xdir;   /**<  xdir  = 'u' | 'd'  : gives the xy-axes positions */ 
   char ydir;   /**<  ydir  = 'r' | 'l' : gives the xy-axes positions */ 
  

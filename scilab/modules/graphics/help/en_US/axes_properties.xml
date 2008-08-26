@@ -269,6 +269,17 @@
               </listitem>
             </varlistentry>
             <varlistentry>
+              <term>filled: </term>
+              <listitem>
+                <para>This property specifies whether the axes background should be drawn or not.
+                Its value can be either <literal>"off"</literal> or
+                <literal>"on".</literal> If the property is <literal>"off"</literal>, the background
+		is not drawn, the axes box is transparent. If the property is <literal>"on"</literal> the
+		background is drawn using the color specified by the <literal>background</literal> property.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
               <term>sub_ticks: </term>
               <listitem>
                 <para>This field sets the number of tics to draw between two main

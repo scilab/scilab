@@ -46,10 +46,11 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for HalfBoxDrawer
-  virtual void setBoxParameters(int hiddenAxisColor, int backgroundColor, int lineColor,
+  virtual void setBoxParameters(int hiddenAxisColor, int lineColor,
                                 int lineStyle, float thickness);
   virtual void drawBox(double xMin, double xMax, double yMin,
-                       double yMax, double zMin, double zMax);
+                       double yMax, double zMin, double zMax,
+                       int concealedCornerIndex);
   /*----------------------------------------------------------------------*/
 
 protected:

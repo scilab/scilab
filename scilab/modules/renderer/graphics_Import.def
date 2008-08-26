@@ -166,3 +166,4 @@ sciGetSubwinIndex
 sciGetNbTypedObjects
 sciGetAutoSubticks
 sciisTextEmpty
+sciGetIsFilled

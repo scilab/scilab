@@ -788,6 +788,18 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\SubwinBackgroundDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\SubwinBackgroundDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\SubwinBackgroundDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawer.cpp"
 					>
 				</File>
@@ -1879,6 +1891,18 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\SubwinAxisPositioner.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SubwinBackgroundDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\SubwinBackgroundDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\SubwinBackgroundDrawerJoGL.hxx"
 					>
 				</File>
 				<File

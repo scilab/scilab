@@ -30,8 +30,9 @@ public:
 
   /**
    * Main funtion which actually draw the box.
+   * @param concealedCornerIndex index of the concealed corner
    */
-  virtual void drawAxesBox(void) = 0;
+  virtual void drawAxesBox(int concealedCornerIndex) = 0;
 
 protected:
   

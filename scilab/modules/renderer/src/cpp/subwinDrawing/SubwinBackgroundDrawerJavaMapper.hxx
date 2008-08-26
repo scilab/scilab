@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
- * desc : Class containing java methods needed by BackTrihedronJoGL
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy 
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,11 +10,11 @@
  *
  */
 
-#ifndef _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_
-#define _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_
+#ifndef _SUBWIN_BACKGROUND_DRAWER_JAVA_MAPPER_HXX_
+#define _SUBWIN_BACKGROUND_DRAWER_JAVA_MAPPER_HXX_
 
 #include "../DrawableObjectJavaMapper.hxx"
-#include "BackTrihedronDrawerGL.hxx"
+#include "SubwinBackgroundDrawerGL.hxx"
 
 
 namespace sciGraphics
@@ -24,13 +23,13 @@ namespace sciGraphics
 /**
  * Contains mapping of java method used by BackTrihedronDrawerJoGL 
  */
-class BackTrihedronDrawerJavaMapper : public virtual DrawableObjectJavaMapper
+class SubwinBackgroundDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
 
-  BackTrihedronDrawerJavaMapper(void);
+  SubwinBackgroundDrawerJavaMapper(void);
 
-  virtual ~BackTrihedronDrawerJavaMapper(void);
+  virtual ~SubwinBackgroundDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
   // Inherited From DrawableObjectJavaMapper
@@ -46,7 +45,7 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for back trihedron
-  virtual void setBoxParameters(int hiddenAxisColor, float thickness);
+  virtual void setBoxParameters(int backgroundColor);
   virtual void drawBox(double xMin, double xMax, double yMin,
                        double yMax, double zMin, double zMax,
                        int concealedCornerIndex);
@@ -57,11 +56,11 @@ protected:
   /**
    * Giws generated wrapper
    */
-  org_scilab_modules_renderer_subwinDrawing::BackTrihedronDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_subwinDrawing::SubwinBackgroundDrawerGL * m_pJavaObject;
 
 };
 
 }
 
-#endif /* _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_ */
+#endif /* _SUBWIN_BACKGROUND_DRAWER_JAVA_MAPPER_HXX_ */
 

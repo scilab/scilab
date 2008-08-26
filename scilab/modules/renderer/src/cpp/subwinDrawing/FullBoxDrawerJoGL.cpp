@@ -34,13 +34,12 @@ FullBoxDrawerJoGL::~FullBoxDrawerJoGL(void)
 
 }
 /*--------------------------------------------------------------------------*/
-void FullBoxDrawerJoGL::drawAxesBox(void)
+void FullBoxDrawerJoGL::drawAxesBox(int concealedCornerIndex)
 {
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
   initializeDrawing();
 
   getFullBoxDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
-                                                 sciGetGraphicContext(pSubwin)->backgroundcolor,
                                                  sciGetGraphicContext(pSubwin)->foregroundcolor,
                                                  sciGetLineStyle(pSubwin),
                                                  (float) sciGetLineWidth(pSubwin));
@@ -49,7 +48,8 @@ void FullBoxDrawerJoGL::drawAxesBox(void)
   double bounds[6];
   sciGetRealDataBounds(pSubwin, bounds);
   getFullBoxDrawerJavaMapper()->drawBox(bounds[0], bounds[1], bounds[2],
-                                        bounds[3], bounds[4], bounds[5]);
+                                        bounds[3], bounds[4], bounds[5],
+                                        concealedCornerIndex);
   endDrawing();
 }
 /*--------------------------------------------------------------------------*/

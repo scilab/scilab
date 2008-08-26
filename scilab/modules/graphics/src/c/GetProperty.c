@@ -672,9 +672,15 @@ sciGetIsLine (sciPointObj * pobj)
 BOOL
 sciGetIsFilled (sciPointObj * pobj)
 {
-  if (sciGetGraphicContext(pobj) != NULL)
+  switch (sciGetEntityType (pobj))
   {
-    return sciGetGraphicContext(pobj)->isfilled;
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pobj)->axes.filled;
+  default:
+    if (sciGetGraphicContext(pobj) != NULL)
+    {
+      return sciGetGraphicContext(pobj)->isfilled;
+    }
   }
   return FALSE;
 }

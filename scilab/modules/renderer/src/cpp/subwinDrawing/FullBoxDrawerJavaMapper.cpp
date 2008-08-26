@@ -63,16 +63,19 @@ void FullBoxDrawerJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void FullBoxDrawerJavaMapper::setBoxParameters(int hiddenAxisColor, int backgroundColor,
-                                               int lineColor, int lineStyle, float thickness)
+void FullBoxDrawerJavaMapper::setBoxParameters(int hiddenAxisColor,
+                                               int lineColor, int lineStyle,
+                                               float thickness)
 {
-  m_pJavaObject->setBoxParameters(hiddenAxisColor, backgroundColor, lineColor, lineStyle, thickness);
+  m_pJavaObject->setBoxParameters(hiddenAxisColor, lineColor,
+                                  lineStyle, thickness);
 }
 /*--------------------------------------------------------------------------*/
 void FullBoxDrawerJavaMapper::drawBox(double xMin, double xMax, double yMin,
-                                      double yMax, double zMin, double zMax)
+                                      double yMax, double zMin, double zMax,
+                                      int concealedCornerIndex)
 {
-  m_pJavaObject->drawBox(xMin, xMax, yMin, yMax, zMin, zMax);
+  m_pJavaObject->drawBox(xMin, xMax, yMin, yMax, zMin, zMax, concealedCornerIndex);
 }
 /*--------------------------------------------------------------------------*/
 }

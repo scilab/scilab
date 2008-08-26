@@ -34,10 +34,12 @@ ConcreteDrawableSubwin::ConcreteDrawableSubwin(sciPointObj * pObj)
   m_pXBoundsStrategy = NULL;
   m_pYBoundsStrategy = NULL;
   m_pZBoundsStrategy = NULL;
-  m_pAxesBoxDrawer = NULL;
   m_pXTicksDrawer = NULL;
   m_pYTicksDrawer = NULL;
   m_pZTicksDrawer = NULL;
+
+  m_oAxesBoxDrawers.clear();
+
 }
 /*------------------------------------------------------------------------------------------*/
 ConcreteDrawableSubwin::~ConcreteDrawableSubwin(void)
@@ -47,11 +49,11 @@ ConcreteDrawableSubwin::~ConcreteDrawableSubwin(void)
   setYBoundsStrategy(NULL);
   setZBoundsStrategy(NULL);
 
-  setAxesBoxDrawer(NULL);
-
   setXTicksDrawer(NULL);
   setYTicksDrawer(NULL);
   setZTicksDrawer(NULL);
+
+  removeAxesBoxDrawers();
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::setXBoundsStrategy(ComputeBoundsStrategy * strategy)
@@ -108,13 +110,20 @@ void ConcreteDrawableSubwin::setZTicksDrawer(TicksDrawer * zTicksDrawer)
   m_pZTicksDrawer = zTicksDrawer;
 }
 /*------------------------------------------------------------------------------------------*/
-void ConcreteDrawableSubwin::setAxesBoxDrawer(DrawAxesBoxStrategy * strategy)
+void ConcreteDrawableSubwin::addAxesBoxDrawer(DrawAxesBoxStrategy * strategy)
 {
-  if (m_pAxesBoxDrawer != NULL)
+  m_oAxesBoxDrawers.push_back(strategy);
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::removeAxesBoxDrawers(void)
+{
+  list<DrawAxesBoxStrategy *>::iterator it = m_oAxesBoxDrawers.begin();
+  for( ; it != m_oAxesBoxDrawers.end(); it++ )
   {
-    delete m_pAxesBoxDrawer;
+    delete *it;
+    *it = NULL;
   }
-  m_pAxesBoxDrawer = strategy;
+  m_oAxesBoxDrawers.clear();
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::pointScale(double xCoord, double yCoord, double zCoord,
@@ -341,9 +350,16 @@ bool ConcreteDrawableSubwin::getZAxisPosition(double axisStart[3], double axisEn
 void ConcreteDrawableSubwin::drawBox(void)
 {
   // If axes is not displayed m_pAxesbox is not drawn.
-  if (m_pAxesBoxDrawer != NULL)
+  if (m_oAxesBoxDrawers.empty())
   {
-    m_pAxesBoxDrawer->drawAxesBox();
+    return ;
+  }
+
+  int concealedCornerIndex = computeConcealedCornerIndex();
+  list<DrawAxesBoxStrategy *>::iterator it = m_oAxesBoxDrawers.begin();
+  for ( ; it != m_oAxesBoxDrawers.end(); it++)
+  {
+    (*it)->drawAxesBox(concealedCornerIndex);
   }
 }
 /*------------------------------------------------------------------------------------------*/
@@ -373,10 +389,10 @@ void ConcreteDrawableSubwin::drawTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::showBox(void)
 {
-  // If axes is not displayed m_pAxesbox is not drawn.
-  if (m_pAxesBoxDrawer != NULL)
+  list<DrawAxesBoxStrategy *>::iterator it = m_oAxesBoxDrawers.begin();
+  for ( ; it != m_oAxesBoxDrawers.end(); it++)
   {
-    m_pAxesBoxDrawer->show(); 
+    (*it)->show();
   }
 }
 /*------------------------------------------------------------------------------------------*/
@@ -433,5 +449,37 @@ void ConcreteDrawableSubwin::addZeroInRange(double range[2])
   }
 }
 /*------------------------------------------------------------------------------------------*/
+int ConcreteDrawableSubwin::computeConcealedCornerIndex(void)
+{
+  double bounds[6];
+  sciGetRealDataBounds(m_pDrawed, bounds);
 
+  Camera * cam = getCamera();
+
+  // eight conrners of the axes box
+  double corners[8][3];
+  for (int i = 0; i < 8; i++)
+  {
+    // compute position of corner i
+    corners[i][0] = (i < 4 ? bounds[0] : bounds[1]); // xMin or xMax
+    corners[i][1] = ((i % 4) < 2 ? bounds[2] : bounds[3]); // yMin or yMax
+    corners[i][2] = ((i % 2) == 0 ? bounds[4] : bounds[5]); // zMin or zMax
+
+    // directly convert it to pixel coordinates
+    cam->getPixelCoordinates(corners[i], corners[i]);
+  }
+
+  // fin the index of the deeper corner
+  double eyeDistance = corners[0][2];
+  int farthestCornerIndex = 0;
+  for (int i = 1; i < 8; i++) {
+    if (corners[i][2] > eyeDistance) {
+      eyeDistance = corners[i][2];
+      farthestCornerIndex = i;
+    }
+  }
+  return farthestCornerIndex;
+
+}
+/*------------------------------------------------------------------------------------------*/
 }

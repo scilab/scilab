@@ -22,6 +22,7 @@
 #include "FullBoxDrawerJoGL.hxx"
 #include "HalfBoxDrawerJoGL.hxx"
 #include "TicksDrawerFactory.hxx"
+#include "SubwinBackgroundDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -67,6 +68,8 @@ void DrawableSubwinFactory::update( void )
 void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
 {
   sciPointObj * pSubwin = subwin->getDrawedObject();
+
+  // bounds computation
   char logFlags[3];
   sciGetLogFlags(pSubwin, logFlags);
 
@@ -97,23 +100,30 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
     subwin->setZBoundsStrategy(new LinearBoundsComputer());
   }
 
+  // box drawing
+  subwin->removeAxesBoxDrawers();
   switch(sciGetBoxType(pSubwin))
   {
   case BT_HIDDEN_AXIS:
-    subwin->setAxesBoxDrawer(new BackTrihedronDrawerJoGL(subwin));
+    subwin->addAxesBoxDrawer(new BackTrihedronDrawerJoGL(subwin));
     break;
   case BT_BACK_HALF:
-    subwin->setAxesBoxDrawer(new HalfBoxDrawerJoGL(subwin));
+    subwin->addAxesBoxDrawer(new HalfBoxDrawerJoGL(subwin));
     break;
   case BT_ON:
-    subwin->setAxesBoxDrawer(new FullBoxDrawerJoGL(subwin));
+    subwin->addAxesBoxDrawer(new FullBoxDrawerJoGL(subwin));
     break;
   case BT_OFF:
   default:
-    subwin->setAxesBoxDrawer(NULL);
     break;
   }
 
+  if (sciGetIsFilled(pSubwin))
+  {
+    subwin->addAxesBoxDrawer(new SubwinBackgroundDrawerJoGL(subwin));
+  }
+
+  // ticks computation
   // update of data bounds needed
   subwin->computeRealDataBounds();
   TicksDrawerFactory tdf(subwin);

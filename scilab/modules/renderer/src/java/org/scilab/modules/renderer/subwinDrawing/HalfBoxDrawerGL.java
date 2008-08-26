@@ -18,7 +18,7 @@ package org.scilab.modules.renderer.subwinDrawing;
  * Class drawing only the backTrihedron of a subwin object
  * @author Jean-Baptiste Silvy
  */
-public class HalfBoxDrawerGL extends SubwinBoxDrawer {
+public class HalfBoxDrawerGL extends SubwinLineBoxDrawer {
 
 	/**
 	 * Default constuctor
@@ -30,9 +30,9 @@ public class HalfBoxDrawerGL extends SubwinBoxDrawer {
 	
 	/**
 	 * Draw the box specified by its bounds.
+	 * @param concealedCornerIndex index of the concealed corner
 	 */
-	public void drawBox() {
-		int concealedCornerIndex = findConcealedCorner();
+	public void drawBox(int concealedCornerIndex) {
 		drawTrihedron(concealedCornerIndex);
 		drawHalfBox(concealedCornerIndex);
 	}

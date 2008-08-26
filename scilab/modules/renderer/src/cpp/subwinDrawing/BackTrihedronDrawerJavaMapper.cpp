@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Class containing java methods needed by BackTrihedronJoGL
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -64,16 +63,16 @@ void BackTrihedronDrawerJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void BackTrihedronDrawerJavaMapper::setBoxParameters(int hiddenAxisColor, int backgroundColor,
-                                                     float thickness)
+void BackTrihedronDrawerJavaMapper::setBoxParameters(int hiddenAxisColor, float thickness)
 {
-  m_pJavaObject->setBoxParameters(hiddenAxisColor, backgroundColor,thickness);
+  m_pJavaObject->setBoxParameters(hiddenAxisColor, thickness);
 }
 /*--------------------------------------------------------------------------*/
 void BackTrihedronDrawerJavaMapper::drawBox(double xMin, double xMax, double yMin,
-                                            double yMax, double zMin, double zMax)
+                                            double yMax, double zMin, double zMax,
+                                            int concealedCornerIndex)
 {
-  m_pJavaObject->drawBox(xMin, xMax, yMin, yMax, zMin, zMax);
+  m_pJavaObject->drawBox(xMin, xMax, yMin, yMax, zMin, zMax, concealedCornerIndex);
 }
 /*--------------------------------------------------------------------------*/
 }

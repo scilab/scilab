@@ -36,8 +36,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_BACKTRIHEDRONDRAWERGL__
-#define __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_BACKTRIHEDRONDRAWERGL__
+#ifndef __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_SUBWINBACKGROUNDDRAWERGL__
+#define __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_SUBWINBACKGROUNDDRAWERGL__
 #include <iostream>
 #include <string>
 #include <string.h>
@@ -48,7 +48,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 namespace org_scilab_modules_renderer_subwinDrawing {
 
-class BackTrihedronDrawerGL {
+class SubwinBackgroundDrawerGL {
 private:
 JavaVM * jvm;
 jobject instance;
@@ -60,7 +60,7 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voidsetBoxParametersjintjfloatID; // cache method id
+jmethodID voidsetBoxParametersjintID; // cache method id
 jmethodID voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoublejintID; // cache method id
 
 
@@ -76,17 +76,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-BackTrihedronDrawerGL(JavaVM * jvm_);
+SubwinBackgroundDrawerGL(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-BackTrihedronDrawerGL(JavaVM * jvm_, jobject JObj);
+SubwinBackgroundDrawerGL(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~BackTrihedronDrawerGL();
+~SubwinBackgroundDrawerGL();
 
 // Generic method
 // Synchronization methods
@@ -115,7 +115,7 @@ void destroy(int figureIndex);
 
 void setFigureIndex(int figureIndex);
 
-void setBoxParameters(int hiddenAxisColor, float thickness);
+void setBoxParameters(int backgroundColor);
 
 void drawBox(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax, int concealedCornerIndex);
 
@@ -127,7 +127,7 @@ void drawBox(double xMin, double xMax, double yMin, double yMax, double zMin, do
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/renderer/subwinDrawing/BackTrihedronDrawerGL";
+                return "org/scilab/modules/renderer/subwinDrawing/SubwinBackgroundDrawerGL";
                 }
                 
 };

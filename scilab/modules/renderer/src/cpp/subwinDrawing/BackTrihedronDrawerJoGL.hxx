@@ -11,8 +11,8 @@
  *
  */
 
-#ifndef _BACK_TRIHEDRON_DRAWER_HXX_
-#define _BACK_TRIHEDRON_DRAWER_HXX_
+#ifndef _BACK_TRIHEDRON_DRAWER_JOGL_HXX_
+#define _BACK_TRIHEDRON_DRAWER_JOGL_HXX_
 
 #include "DrawAxesBoxStrategy.hxx"
 #include "../DrawableObjectJoGL.h"
@@ -29,10 +29,11 @@ public:
 
    virtual ~BackTrihedronDrawerJoGL(void);
 
-   /**
-    * Main funtion which actually draw the box.
-    */
-   virtual void drawAxesBox(void);
+  /**
+   * Main funtion which actually draw the box.
+   * @param concealedCornerIndex index of the concealed corner
+   */
+  virtual void drawAxesBox(int concealedCornerIndex);
 
 protected:
 
@@ -45,5 +46,5 @@ protected:
 
 }
 
-#endif /* _BACK_TRIHEDRON_DRAWER_HXX_ */
+#endif /* _BACK_TRIHEDRON_DRAWER_JOGL_HXX_ */
 

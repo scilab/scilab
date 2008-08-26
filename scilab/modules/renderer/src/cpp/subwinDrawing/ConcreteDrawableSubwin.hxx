@@ -42,7 +42,8 @@ public:
   void setYTicksDrawer(TicksDrawer * yTicksDrawer);
   void setZTicksDrawer(TicksDrawer * zTicksDrawer);
 
-  void setAxesBoxDrawer(DrawAxesBoxStrategy * strategy);
+  void addAxesBoxDrawer(DrawAxesBoxStrategy * strategy);
+  void removeAxesBoxDrawers(void);
 
   /**
    * For non linear scaling (not supported by OpenGL) we need to modify points.
@@ -178,16 +179,21 @@ protected:
   TicksDrawer * m_pYTicksDrawer;
   TicksDrawer * m_pZTicksDrawer;
 
-  DrawAxesBoxStrategy * m_pAxesBoxDrawer;
-
+  std::list<DrawAxesBoxStrategy *> m_oAxesBoxDrawers;
   /*---------------------------------------------------------------------*/
 
 private:
 
   /**
-   * Modify range si it includes 0
+   * Modify range if it includes 0
    */
   void addZeroInRange(double range[2]);
+
+  /**
+   * Compute concealed corner
+   * @return index of the coner which is concealed
+   */
+  int computeConcealedCornerIndex(void);
 
   
 };

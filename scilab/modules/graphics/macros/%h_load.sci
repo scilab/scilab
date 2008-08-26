@@ -313,6 +313,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       // migth be now 'off','hidden_axis','back_half' or 'on'
       boxtype = ascii(mget(mget(1,'c',fd),'c',fd)) ;
       set( a, "box", boxtype  ) // box
+      set(a,"filled",  toggle(mget(1,'c',fd) )); // filled
     else
       set(a, "box", toggle(mget(1,'c',fd) ) ) // box
     end

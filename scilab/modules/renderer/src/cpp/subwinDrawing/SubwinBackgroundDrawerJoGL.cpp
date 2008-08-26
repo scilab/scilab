@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Class drawing only the backTrihedron of a subwin object
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,8 +10,8 @@
  *
  */
 
-#include "BackTrihedronDrawerJoGL.hxx"
-#include "BackTrihedronDrawerJavaMapper.hxx"
+#include "SubwinBackgroundDrawerJoGL.hxx"
+#include "SubwinBackgroundDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -23,37 +22,36 @@ namespace sciGraphics
 {
 
 /*--------------------------------------------------------------------------*/
-BackTrihedronDrawerJoGL::BackTrihedronDrawerJoGL(DrawableSubwin * subwin)
+SubwinBackgroundDrawerJoGL::SubwinBackgroundDrawerJoGL(DrawableSubwin * subwin)
   : DrawAxesBoxStrategy(), DrawableObjectJoGL(subwin)
 {
-  setJavaMapper(new BackTrihedronDrawerJavaMapper());
+  setJavaMapper(new SubwinBackgroundDrawerJavaMapper());
 }
 /*--------------------------------------------------------------------------*/
-BackTrihedronDrawerJoGL::~BackTrihedronDrawerJoGL(void)
+SubwinBackgroundDrawerJoGL::~SubwinBackgroundDrawerJoGL(void)
 {
   
 }
 /*--------------------------------------------------------------------------*/
-void BackTrihedronDrawerJoGL::drawAxesBox(int concealedCornerIndex)
+void SubwinBackgroundDrawerJoGL::drawAxesBox(int concealedCornerIndex)
 {
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
   initializeDrawing();
 
-  getBackTrihedronDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
-                                                       (float) sciGetLineWidth(pSubwin));
+  getSubwinBackgroundDrawerJavaMapper()->setBoxParameters(sciGetGraphicContext(pSubwin)->backgroundcolor);
 
   // get displayed bounds
   double bounds[6];
   sciGetRealDataBounds(pSubwin, bounds);
-  getBackTrihedronDrawerJavaMapper()->drawBox(bounds[0], bounds[1], bounds[2],
-                                              bounds[3], bounds[4], bounds[5],
-                                              concealedCornerIndex);
+  getSubwinBackgroundDrawerJavaMapper()->drawBox(bounds[0], bounds[1], bounds[2],
+                                                 bounds[3], bounds[4], bounds[5],
+                                                 concealedCornerIndex);
   endDrawing();
 }
 /*--------------------------------------------------------------------------*/
-BackTrihedronDrawerJavaMapper * BackTrihedronDrawerJoGL::getBackTrihedronDrawerJavaMapper(void)
+SubwinBackgroundDrawerJavaMapper * SubwinBackgroundDrawerJoGL::getSubwinBackgroundDrawerJavaMapper(void)
 {
-  return dynamic_cast<BackTrihedronDrawerJavaMapper *>(getJavaMapper());
+  return dynamic_cast<SubwinBackgroundDrawerJavaMapper *>(getJavaMapper());
 }
 /*--------------------------------------------------------------------------*/
 }

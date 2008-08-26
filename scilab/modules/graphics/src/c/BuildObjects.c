@@ -356,6 +356,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
       ppsubwin->axes.ydir = dir;
 
       ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
+      sciInitIsFilled(pobj, sciGetIsFilled(paxesmdl));
       for (i=0 ; i<7 ; i++)
 	ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
 

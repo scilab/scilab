@@ -163,6 +163,7 @@ function %h_p(h)
                 "y_ticks.labels = "+laby
                 "z_ticks.labels = "+labz
                 "box = "+sci2exp(h.box)
+                "filled = " + sci2exp(h.filled)
                 "sub_ticks = "+sci2exp(h.sub_ticks,0)
                 "font_style = "+string(h.font_style)
                 "font_size = "+string(h.font_size)

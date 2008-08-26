@@ -192,6 +192,7 @@ function save_graphichandle(h,fd)
     end
     mput(length(h.box), 'c', fd ) ; // box
     mput(ascii(h.box),  'c', fd ) ;
+    mput(bool2s(h.filled == 'on'),'c',fd); // filled
     mput(size(h.sub_tics,'*'),'c',fd);mput(h.sub_tics,'c',fd); // sub_ticks
     //mput(-1,'il',fd) // tics_color is removed F.Leray 15.03.05
     mput(h.font_style,'c',fd) // font_style

@@ -30,9 +30,10 @@ public:
   virtual ~FullBoxDrawerJoGL(void);
 
   /**
-  * Main funtion which actually draw the box.
-  */
-  virtual void drawAxesBox(void);
+   * Main funtion which actually draw the box.
+   * @param concealedCornerIndex index of the concealed corner
+   */
+  virtual void drawAxesBox(int concealedCornerIndex);
 
 protected:
 

@@ -18,7 +18,6 @@
     </method>
     <method name="setBoxParameters" returnType="void">
       <param type="int" name="hiddenAxisColor" />
-      <param type="int" name="backgroundColor" />
       <param type="int" name="lineColor" />
       <param type="int" name="lineStyle" />
       <param type="float" name="thickness" />
@@ -30,6 +29,7 @@
       <param type="double" name="yMax" />
       <param type="double" name="zMin" />
       <param type="double" name="zMax" />
+      <param type="int" name="concealedCornerIndex" />
     </method>
   </object>
 </package>
