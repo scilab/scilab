@@ -29,6 +29,8 @@ sciquit_
 setSCIpath
 IsAScalar
 freeArrayOfString
+getSCIHOME
+getWarningMode
 ;
 
 

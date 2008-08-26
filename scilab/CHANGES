@@ -328,6 +328,7 @@ Windows_tools:
 	+ istssession         - determine if scilab is launched from a ms terminal service session.
 	+ getsystemmetrics    - retrieves the specified system metric or system configuration setting.
 	+ createGUID          - creates a Globally Unique IDentifier (GUID)
+	+ setdefaultlanguage  - set and save default language on Windows
 
 
 History manager:
