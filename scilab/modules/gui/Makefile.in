@@ -697,6 +697,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@src/jni/Jxclick.giws.xml \
 @GUI_TRUE@src/jni/Jxgetmouse.giws.xml \
 @GUI_TRUE@src/jni/SwingScilabMenu.giws.xml \
+@GUI_TRUE@src/jni/LookAndFeelManager.giws.xml \
 @GUI_TRUE@src/jni/UIElementMapper.giws.xml
 
 @GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
