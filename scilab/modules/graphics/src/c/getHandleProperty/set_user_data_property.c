@@ -38,8 +38,8 @@ int set_user_data_property( sciPointObj * pobj, size_t stackPointer,  int valueT
      nbRow, nbCol are not used */
   int *  size_ptr                                        ;
   int ** user_data_ptr                                   ;
-  int    data_size     = GetDataSize( stackPointer ) * 2 ; /*GetDataSize returns the size of the variable in double words */
-  int *  data_ptr      = GetData( stackPointer )         ;
+  int    data_size     = GetDataSize( (int)stackPointer ) * 2 ; /*GetDataSize returns the size of the variable in double words */
+  int *  data_ptr      = GetData( (int)stackPointer )         ;
 
   /* retrieve current user data matrix */
   sciGetPointerToUserData( pobj, &user_data_ptr, &size_ptr ) ;
@@ -47,7 +47,7 @@ int set_user_data_property( sciPointObj * pobj, size_t stackPointer,  int valueT
   /* Assigning an empty matrix, free the user_data property. Check for an empty matrix */
   if ( valueType == 1 ) {
     int nr, nc, l ;
-    GetRhsVar(stackPointer, MATRIX_OF_DOUBLE_DATATYPE, &nr, &nc, &l);
+    GetRhsVar((int)stackPointer, MATRIX_OF_DOUBLE_DATATYPE, &nr, &nc, &l);
     if ( nr * nc == 0 ) /*an empty matrix */
       {
 	FREE( *user_data_ptr ) ;

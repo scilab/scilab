@@ -29,7 +29,7 @@
 #include "localization.h"
 #include "axesScale.h"
 /*------------------------------------------------------------------------*/
-int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
+int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
                              double * xMin, double * xMax,
                              double * yMin, double * yMax,
                              double * zMin, double * zMax );
@@ -38,7 +38,7 @@ int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
  * fill bounds (xMin, xMax, yMin,... ) from the assigned value in the stack
  * beacause it might have several possible size.
  */
-int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
+int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
                              double * xMin, double * xMax,
                              double * yMin, double * yMax,
                              double * zMin, double * zMax )
