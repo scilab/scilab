@@ -36,14 +36,17 @@ function dynamickeywords()
 
 
   function setscipadwords(wset,wtype)
-    lp=lineform(wset);
-    TCL_EvalStr("set chset(scilab."+wtype+") {}","scipad")
-    for i=1:size(lp,1)
-      initial=part(lp(i),1);
-      TCL_EvalStr("append chset(scilab."+wtype+") """+..
-               initial+"""","scipad")
-      TCL_EvalStr("set words(scilab."+wtype+"."+initial+") """+..
-               lp(i)+"""","scipad")
+    // checks that scipad interp exists
+    if TCL_ExistInterp('scipad') then
+      lp=lineform(wset);
+      TCL_EvalStr("set chset(scilab."+wtype+") {}","scipad")
+      for i=1:size(lp,1)
+        initial=part(lp(i),1);
+        TCL_EvalStr("append chset(scilab."+wtype+") """+..
+                 initial+"""","scipad")
+        TCL_EvalStr("set words(scilab."+wtype+"."+initial+") """+..
+                 lp(i)+"""","scipad")
+      end
     end
   endfunction
 
