@@ -331,6 +331,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 	src/cpp/axesDrawing/AxesSubticksComputer.cpp \
 	src/jni/GiwsException.cpp src/cpp/rendererBasicAlgos.cpp \
+	src/jni/SubwinBackgroundDrawerGL.cpp \
+	src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -585,7 +588,10 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-UserDefinedSubticksComputer.lo \
 @GUI_TRUE@	libscirenderer_la-AxesSubticksComputer.lo \
 @GUI_TRUE@	libscirenderer_la-GiwsException.lo \
-@GUI_TRUE@	libscirenderer_la-rendererBasicAlgos.lo
+@GUI_TRUE@	libscirenderer_la-rendererBasicAlgos.lo \
+@GUI_TRUE@	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-SubwinBackgroundDrawerJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1072,7 +1078,10 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 @GUI_TRUE@src/cpp/axesDrawing/AxesSubticksComputer.cpp \
 @GUI_TRUE@src/jni/GiwsException.cpp \
-@GUI_TRUE@src/cpp/rendererBasicAlgos.cpp
+@GUI_TRUE@src/cpp/rendererBasicAlgos.cpp \
+@GUI_TRUE@src/jni/SubwinBackgroundDrawerGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
 
 
 # List of the gateway c files
@@ -1145,7 +1154,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/TicksDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/GridDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/RenderingChecker.giws.xml \
-@GUI_TRUE@src/jni/XlFontManager.giws.xml
+@GUI_TRUE@src/jni/XlFontManager.giws.xml \
+@GUI_TRUE@src/jni/SubwinBackgroundDrawerGL.giws.xml
 
 @GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 
@@ -1523,6 +1533,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StandardTextDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StandardTextDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinAxisPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJoGL.Plo@am__quote@
@@ -3395,6 +3408,27 @@ libscirenderer_la-rendererBasicAlgos.lo: src/cpp/rendererBasicAlgos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rendererBasicAlgos.cpp' object='libscirenderer_la-rendererBasicAlgos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
+
+libscirenderer_la-SubwinBackgroundDrawerGL.lo: src/jni/SubwinBackgroundDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SubwinBackgroundDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Tpo -c -o libscirenderer_la-SubwinBackgroundDrawerGL.lo `test -f 'src/jni/SubwinBackgroundDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SubwinBackgroundDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SubwinBackgroundDrawerGL.cpp' object='libscirenderer_la-SubwinBackgroundDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinBackgroundDrawerGL.lo `test -f 'src/jni/SubwinBackgroundDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SubwinBackgroundDrawerGL.cpp
+
+libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo: src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Tpo -c -o libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp' object='libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp
+
+libscirenderer_la-SubwinBackgroundDrawerJoGL.lo: src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SubwinBackgroundDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Tpo -c -o libscirenderer_la-SubwinBackgroundDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' object='libscirenderer_la-SubwinBackgroundDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinBackgroundDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
