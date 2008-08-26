@@ -13,8 +13,6 @@
 
 package org.scilab.modules.renderer.utils;
 
-import org.apache.batik.apps.rasterizer.Main.ColorOptionHandler;
-
 
 /**
  * Class to handle Scilab colormaps
