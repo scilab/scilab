@@ -1,4 +1,4 @@
-(* ceci est un premier commentaire *)
+
 (*  Scicos *)
 (* *)
 (*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
