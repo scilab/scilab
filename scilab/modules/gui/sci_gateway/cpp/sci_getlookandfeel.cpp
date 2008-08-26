@@ -38,7 +38,7 @@ int sci_getlookandfeel(char *fname,unsigned long fname_len)
 			m1 = (int)strlen(look);
 			n1 = 1;
 			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m1,&n1,&look);
-			if (look) {delete look; look = NULL;}
+			if (look) {delete [] look; look = NULL;}
 			delete lnf;
 			LhsVar(1) = Rhs+1;
 			C2F(putlhsvar)();

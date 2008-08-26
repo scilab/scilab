@@ -46,7 +46,7 @@ int sci_getinstalledlookandfeels(char *fname,unsigned long fname_len)
 			{
 				if (lookandfeels[i])
 				{
-					delete lookandfeels[i];
+					delete [] lookandfeels[i];
 				}
 			}
 			delete [] lookandfeels;

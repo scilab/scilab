@@ -45,7 +45,7 @@ char **getInstalledFontsName(int *sizeArray)
 			for( i = 0; i < *sizeArray; i++)
 			{
 				returnedinstalledfontsname[i] = strdup(installedfontsname[i]);
-				delete installedfontsname[i];
+				delete [] installedfontsname[i];
 			}
 			delete [] installedfontsname;
 			installedfontsname = NULL;
@@ -75,7 +75,7 @@ char **getAvailableFontsName(int *sizeArray)
 			for( i = 0; i < *sizeArray; i++)
 			{
 				returnedavailablefontsname[i] = strdup(availablefontsname[i]);
-				delete availablefontsname[i];
+				delete [] availablefontsname[i];
 			}
 			delete [] availablefontsname;
 			availablefontsname = NULL;
