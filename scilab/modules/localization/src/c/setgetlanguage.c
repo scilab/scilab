@@ -45,7 +45,7 @@
 #include "scilabDefaults.h"
 #include "setenvc.h"
 /*--------------------------------------------------------------------------*/
-static char CURRENTLANGUAGESTRING[30] = SCILABDEFAULTLANGUAGE;
+static char CURRENTLANGUAGESTRING[6] = SCILABDEFAULTLANGUAGE;
 /*--------------------------------------------------------------------------*/
 static BOOL exportLocaleToSystem(char *locale);
 static char* addCodePage(char *lang);
@@ -86,7 +86,7 @@ BOOL setlanguage(char *lang)
 			}
 			else
 			{
-				strcpy(CURRENTLANGUAGESTRING,lang);
+				strncpy(CURRENTLANGUAGESTRING,lang,5);
 			}
 		}
 
