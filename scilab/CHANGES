@@ -22,7 +22,7 @@ Graphical User Interface:
 
 Event Handling Functions:
 =========================
- - All the event handling functions "xclick", "xgetmouse" and the "envent_handler"
+ - All the event handling functions "xclick", "xgetmouse" and the "event_handler"
        * they have been rewritten in Java   
        * they use the same "-1000" code to signal the "window close" actions 
          (previously "xclick" and "xgetmouse" used "-100" code) 
