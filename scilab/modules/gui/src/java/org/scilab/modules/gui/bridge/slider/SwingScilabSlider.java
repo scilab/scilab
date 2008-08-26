@@ -245,7 +245,10 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 		}
 
 		setBlockIncrement(space);
-
+		int oldMax = getMaximum() - getVisibleAmount();
+		setVisibleAmount(space);
+		setMaximum(oldMax + getVisibleAmount());
+		
 		/* Put back the listener */
 		if (adjustmentListener != null) {
 			addAdjustmentListener(adjustmentListener);
