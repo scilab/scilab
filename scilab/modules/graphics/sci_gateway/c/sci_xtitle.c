@@ -33,6 +33,7 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
+#include "DrawingBridge.h"
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {
