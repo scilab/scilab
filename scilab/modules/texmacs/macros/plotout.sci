@@ -23,7 +23,8 @@ function plotout(zoom)
 
   xs2ps(win,output) 
 
-  unix_s(SCI+'/bin/BEpsf -portrait '+output)
+  // not needed any more
+  //unix_s(SCI+'/bin/BEpsf -portrait '+output)
 
   //[DATA_BEGIN]scheme:(postscript "/tmp/foo.eps" "*1/2" "*1/2" "" "" "" "")[DATA_END]
 
