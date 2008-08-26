@@ -37,6 +37,8 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 
 	private static final long serialVersionUID = -4262320156090829309L;
+	
+	private static final int MIN_KNOB_SIZE = 40;
 
 	private CallBack callback;
 	
@@ -246,7 +248,7 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 
 		setBlockIncrement(space);
 		int oldMax = getMaximum() - getVisibleAmount();
-		setVisibleAmount(space);
+		setVisibleAmount(Math.max(space, MIN_KNOB_SIZE));
 		setMaximum(oldMax + getVisibleAmount());
 		
 		/* Put back the listener */
