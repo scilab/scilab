@@ -5,96 +5,151 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+function exesphere()
+// initialize the graphics and controls 
+  
+// initial point
+  g_r = 0.7;//radius
+  g_t = 250;//theta
+  
+  //initial speed
+  g_V    = 1; //speed
+  g_Vdir = 180; //speed orientation 
+  
+
+   
+  // Figure parameters
+  // =========================================================================
+  
+  surface_frame_w = 600;     // surface frame width
+  surface_frame_h = 600;     // surface frame height
+  
+  control_frame_w = 600;
+  control_frame_h = 200;
+  
+  margin_x     = 15;      // Horizontal margin between each elements
+  margin_y     = 15;      // Vertical margin between each elements
+  
+  axes_figure_w = 2*margin_x + max(surface_frame_w,control_frame_w);
+  axes_figure_h = 3*margin_y + surface_frame_h + control_frame_h;
+  
+  // Figure creation
+  // =========================================================================
+  
+  my_figure_handle = scf(100001);
+  clf(my_figure_handle,"reset");
+  
+  my_figure_handle.background      = -2;
+  my_figure_handle.figure_position = [0 0];
+  my_figure_handle.axes_size       = [axes_figure_w axes_figure_h];
+  my_figure_handle.figure_name     = gettext("Sphere");
+  
+  //reserve The upper part of the graphic windows for the 3d view of the scene
+  curAxe=gca();
+  curAxe.axes_bounds = [0,0,1,3/4];
+  draw_sphere();
+  draw_initial_point(g_r,g_t,g_V,g_Vdir,%T);
+  
+  //Create the controls in the window bottom
+  // =========================================================================
+
+  sphere_create_gui()
+  
+  //Set control and graphics initial values
+  // =========================================================================
+  change_r(g_r)
+  change_theta(g_t)
+  change_speed(g_V)
+  change_dir(g_Vdir)
+  
+endfunction
+
+// draw_sphere
+// =============================================================================
+
+function draw_sphere()
+// draw half of a sphere (the flow lines surface )
+  
+   function [x,y,z]=sph(alp,tet)
+     //parametric definition of a sphere
+     x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)
+     y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)
+     z = r*sin(alp)+orig(3)*ones(tet);
+   endfunction
+
+   r    = 1;
+   orig = [0 0 0];
+   //create surface facets
+   [xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,0,40),linspace(0,%pi*2,20));
+   // draw facets
+   plot3d(xx,yy,zz);
+	
+   endfunction
+   
+   
+// draw_initial_point
+// =============================================================================
+function draw_initial_point(g_r,g_t,g_V,g_Vdir,create)
+  x = g_r*cos(g_t*%pi/180);
+  y = g_r*sin(g_t*%pi/180);
+  r = 0.05;
+  z = -sqrt(1-x^2-y^2)+r;
+  dx1 = 0.1*g_V*cos(g_Vdir*%pi/180);
+  dy1 = 0.1*g_V*sin(g_Vdir*%pi/180);
+  my_figure_handle = scf(100001);
+  my_figure_handle.immediate_drawing = "off";
+	
+  if create then
+    //create the graphical object used to visualize the trajectory
+    xpoly(0,0) 
+    traj_handle                        =gce();
+    traj_handle.thickness              = 2; 
+    traj_handle.foreground             = 5;
+    //create the graphical object used to visualize the initial speed
+    xpoly(0,0) 
+    speed_handle                       =  gce();
+    speed_handle.thickness             =  1;
+    speed_handle.foreground            =  5;
+    speed_handle.polyline_style        =  4;
+    speed_handle.arrow_size_factor     =  2;
+    //create the graphical objects used to visualize the initial position
+    param3d([x-r,x+r],[y,y],[z,z]);  
+    e1                                 = gce(); 
+    e1.thickness                       = 1; 
+    e1.foreground                      = 5;
+    param3d([x,x],[y-r,y+r],[z,z]);  
+    e2                                 = gce(); 
+    e2.thickness                       = 1; 
+    e2.foreground                      = 5;
+    param3d([x,x],[y,y],[z-r,z+r]);  
+    e3                                 = gce(); 
+    e3.thickness                       = 1; 
+    e3.foreground                      = 5;
+    glue([traj_handle speed_handle e1 e2 e3])
+  else
+    curAxe = gca();
+    initial=curAxe.children(1).children
+    initial(1).data = [x,y,z-r;x,y,z+r];
+    initial(2).data = [x,y-r,z;x,y+r,z];
+    initial(3).data = [x-r,y,z;x+r,y,z];
+  end
+  z1=-sqrt(1-(x+dx1)^2-(y+dy1)^2)+r 
+  initial(4).data = [x,y,z;x+dx1,y+dy1,z1];
+
+  my_figure_handle.immediate_drawing = "on";	
+endfunction
 
 // =============================================================================
-// Sphere interface functions
+// The gui controls builder
 // =============================================================================
 
-
-
-// Step 1, set up the ini-position
-// =============================================================================
-
-function change_r()
+function sphere_create_gui()
+  //initial values
 	
-	global g_r;
-	global g_t;
-	global g_V;
-	global g_Vdir;
-	
-	g_r = get(findobj("tag", "pos_slider_1"),"value")/10;
-	g_t = get(findobj("tag", "pos_slider_2"),"value");
-	
-	set(findobj("tag", "pos_value_1"),"string",string(g_r));
-	
-	draw_point(g_r,g_t,%F);
-	
-endfunction
-
-
-function change_t()
-	
-	global g_r;
-	global g_t;
-	global g_V;
-	global g_Vdir;
-	
-	g_r = get(findobj("tag", "pos_slider_1"),"value")/10;
-	g_t = get(findobj("tag", "pos_slider_2"),"value");
-	
-	set(findobj("tag", "pos_value_2"),"string",string(g_t));
-	draw_point(g_r,g_t,%F);
-	
-endfunction
-
-
-function interrupt()
-	global go_on fin;
-	fin   = %T;
-	go_on = %F;
-endfunction
-
-
-function position_next()
-	
-	global g_r;
-	global g_t;
-	global g_V;
-	global g_Vdir;
-	
-	g_r = get(findobj("tag", "pos_slider_1"),"value")/10;
-	g_t = get(findobj("tag", "pos_slider_2"),"value");
-	
-	obj_to_del = [        ..
-		"pos_title_1"   ; ..
-		"pos_text_1"    ; ..
-		"pos_slider_1"  ; ..
-		"pos_value_1"   ; ..
-		"pos_unite_1"   ; ..
-		"pos_text_2"    ; ..
-		"pos_slider_2"  ; ..
-		"pos_value_2"   ; ..
-		"pos_unite_2"   ; ..
-		"pos_button_1"  ; ..
-		"pos_button_2"  ];
-	
-	my_figure_handle = scf(100001);
-	my_figure_handle.immediate_drawing = "off";
-	
-	for i=1:size(obj_to_del,"*")
-		obj = findobj("tag",obj_to_del(i));
-		delete(obj);
-	end
-	
-	my_figure_handle.immediate_drawing = "on";
-	
-	draw_speed(g_r,g_t,g_V,g_Vdir,%T);
-	[g_V,g_Vdir,go_on]=speed();
-	
-endfunction
-
-
-function [g_r,g_t] = position()
+	g_t     = 0;
+	g_r     = 0;
+	g_speed = 0;
+	g_Vdir   = 0;
 	
 	my_figure_handle = scf(100001);
 	
@@ -102,641 +157,349 @@ function [g_r,g_t] = position()
 	axes_figure_w    = axes_size_figure(1);
 	axes_figure_h    = axes_size_figure(2);
 	
-	global fin;
+	frame_x      = 25;
+	frame_y      = 200;
 	
-	frame_width  = 600;
-	frame_pos_x  = 25;
-	frame_pos_y  = 200;
+	slider_height   = 15;
+	slider_width    = 140;
+	value_width     = 30;
+	unit_width      = 30;
+	text_width      = 50;
+	y_margin        = 5;
+        x_margin        = 10;
+	title_width     =  text_width + slider_width + value_width + unit_width +3*x_margin
 	
-	// Title
+	x_text         = frame_x
+	x_slider        = x_text + text_width + x_margin;
+	x_value         = x_slider + slider_width+x_margin;
+	x_unit          = x_value  + value_width+x_margin;
+	
+	y               = frame_y-40;
+	
+	// Title position
 	// =========================================================================
 	
-	pos_title_1 = uicontrol(my_figure_handle                             , ...
-		"position"            , [frame_pos_x+15 frame_pos_y-40 580 30]   , ...
+	title_r = uicontrol(my_figure_handle                             , ...
+		"position"            , [x_text y title_width slider_height+y_margin]   , ...
 		"Style"               , "text"                                   , ...
-		"String"              , "Choose the starting point"              , ...
+		"String"              , "Starting point"                         , ...
 		"BackgroundColor"     , [1 1 1]                                  , ...
 		"Fontsize"            , 16                                       , ...
 		"horizontalalignment" , "center"                                 , ...
-		"tag"                 , "pos_title_1"                            );
+		"tag"                 , "title_r"                            );
 	
-	// Slider 1
+	// Slider "r"
 	// =========================================================================
-	
-	pos_text_1 = uicontrol(my_figure_handle                          , ...
-		"position"          , [frame_pos_x frame_pos_y-60 40 15]     , ...
+	y = y - (slider_height+y_margin)
+	text_r = uicontrol(my_figure_handle                              , ...
+		"position"          , [x_text y text_width slider_height]    , ...
 		"Style"             , "text"                                 , ...
 		"String"            , "r"                                    , ...
 		"BackgroundColor"   , [1 1 1]                                , ...
-		"tag"               , "pos_text_1"                           );
+		"tag"               , "text_r"                           );
 	
-	pos_slider_1 = uicontrol(my_figure_handle                        , ...
-		"position"          , [frame_pos_x+50 frame_pos_y-60 450 15] , ...
+	slider_r = uicontrol(my_figure_handle                            , ...
+		"position"          , [x_slider y slider_width slider_height], ...
 		"Style"             , "slider"                               , ...
-		"Value"             , g_r*10                                 , ...
-		"SliderStep"        , [1 2]                                  , ...
-		"Min"               , 1                                      , ...
-		"Max"               , 9                                     , ...
+		"Value"             , g_r                                 , ...
+		"Min"               , 0                                      , ...
+		"Max"               , 100                                      , ...
 		"callback"          , "change_r()"                           , ...
-		"tag"               , "pos_slider_1"                         );
+		"tag"               , "slider_r"                         );
 	
-	pos_value_1 = uicontrol(my_figure_handle                         , ...
-		"position"          , [frame_pos_x+520 frame_pos_y-60 30 15] , ...
+	value_r = uicontrol(my_figure_handle                             , ...
+		"position"          , [x_value  y value_width slider_height] , ...
 		"Style"             , "text"                                 , ...
 		"String"            , string(g_r)                            , ...
 		"BackgroundColor"   , [1 1 1]                                , ...
-		"tag"               , "pos_value_1"                          );
+		"tag"               , "value_r"                          );
 	
-	pos_unite_1 = uicontrol(my_figure_handle                         , ...
-		"position"          , [frame_pos_x+550 frame_pos_y-60 30 15] , ...
+	unite_r = uicontrol(my_figure_handle                             , ...
+		"position"          , [x_unit y unit_width slider_height]    , ...
 		"Style"             , "text"                                 , ...
 		"String"            , "(m)"                                  , ...
 		"BackgroundColor"   , [1 1 1]                                , ...
-		"tag"               , "pos_unite_1"                          );
+		"tag"               , "unite_r"                          );
 	
-	// Slider 2
+	// Slider theta
 	// =========================================================================
-	
-	pos_text_2 = uicontrol(my_figure_handle                          , ...
-		"position"       , [frame_pos_x frame_pos_y-80 40 15]        , ...
+	y = y - (slider_height+y_margin)
+	text_theta = uicontrol(my_figure_handle                          , ...
+		"position"       , [x_text y text_width slider_height]       , ...
 		"Style"          , "text"                                    , ...
 		"String"         , "theta"                                   , ...
 		"BackgroundColor", [1 1 1]                                   , ...
-		"tag"            , "pos_text_2"                              );
+		"tag"            , "text_theta"                              );
 	
-	pos_slider_2 = uicontrol(my_figure_handle                        , ...
-		"position"  , [frame_pos_x+50 frame_pos_y-80 450 15]         , ...
+	slider_theta = uicontrol(my_figure_handle                        , ...
+		"position"  , [x_slider y slider_width slider_height]        , ...
 		"Style"     , "slider"                                       , ...
 		"Min"       , 0                                              , ...
-		"Max"       , 360                                            , ...
+		"Max"       , 100                                            , ...
 		"Value"     , g_t                                            , ...
-		"SliderStep", [2 20]                                         , ...
-		"callback"  , "change_t()"                                   , ...
-		"tag"       , "pos_slider_2"                                 );
+		"callback"  , "change_theta()"                                   , ...
+		"tag"       , "slider_theta"                                 );
 	
-	pos_value_2 = uicontrol(my_figure_handle                         , ...
-		"position"        , [frame_pos_x+520 frame_pos_y-80 30 15]   , ...
+	value_theta = uicontrol(my_figure_handle                         , ...
+		"position"        , [x_value  y value_width  slider_height]  , ...
 		"Style"           , "text"                                   , ...
 		"String"          , string(g_t)                              , ...
 		"BackgroundColor" , [1 1 1]                                  , ...
-		"tag"             , "pos_value_2"                            );
+		"tag"             , "value_theta"                            );
 	
-	pos_unite_2 = uicontrol(my_figure_handle                         , ...
-		"position"        , [frame_pos_x+550 frame_pos_y-80 30 15]   , ...
+	unite_theta = uicontrol(my_figure_handle                         , ...
+		"position"        , [x_unit y unit_width slider_height]      , ...
 		"Style"           , "text"                                   , ...
 		"String"          , "(deg)"                                  , ...
 		"BackgroundColor" , [1 1 1]                                  , ...
-		"tag"             , "pos_unite_2"                            );
+		"tag"             , "unite_theta"                            );
+	//---------------------------------------------------------------------------
+	//second column 
+	x_text          = frame_x + title_width + 3*x_margin
+	x_slider        = x_text + text_width + x_margin;
+	x_value         = x_slider + slider_width+x_margin;
+	x_unit          = x_value  + value_width+x_margin;
 	
-	// Buttons
+	y               = frame_y-40;
+
+	// Title speed
 	// =========================================================================
 	
-	pos_button_1 = uicontrol(my_figure_handle                               , ...
-		"Position"             , [frame_pos_x+150 frame_pos_y-120 100 20]   , ...
-		"Style"                , "pushbutton"                               , ...
-		"String"               , "cancel"                                   , ...
-		"Fontsize"             , 14                                         , ...
-		"BackgroundColor"      , [1 1 1]                                    , ...
-		"callback"             , "interrupt();"                             , ...
-		"tag"                  , "pos_button_1"                             );
-	
-	
-	pos_button_2 = uicontrol(my_figure_handle                               , ...
-		"Position"               , [frame_pos_x+300 frame_pos_y-120 100 20] , ...
-		"Style"                  , "pushbutton"                             , ...
-		"String"                 , "next"                                   , ...
-		"Fontsize"               , 14                                       , ...
-		"BackgroundColor"        , [1 1 1]                                  , ...
-		"callback"               , "position_next();"                       , ...
-		"tag"                    , "pos_button_2"                           );
-	
-	return
-	
-endfunction
-
-// =============================================================================
-// Step 2, set up the ini-speed
-// =============================================================================
-
-function change_V()
-	
-	global g_r;
-	global g_t;
-	global g_V;
-	global g_Vdir;
-	
-	g_V    = get(findobj("tag", "spd_slider_1"),"value")/100;
-	g_Vdir = get(findobj("tag", "spd_slider_2"),"value");
-	set(findobj("tag", "spd_value_1"),"string",string(g_V));
-	
-	draw_speed(g_r,g_t,g_V,g_Vdir,%F);
-	
-endfunction
-
-
-function change_Vdir()
-	
-	global g_r;
-	global g_t;
-	global g_V;
-	global g_Vdir;
-	
-	g_V    = get(findobj("tag", "spd_slider_1"),"value")/100;
-	g_Vdir = get(findobj("tag", "spd_slider_2"),"value");
-	set(findobj("tag", "spd_value_2"),"string",string(g_Vdir));
-	
-	draw_speed(g_r,g_t,g_V,g_Vdir,%F);
-	
-endfunction
-
-
-function [g_V,g_Vdir,go_on]=speed()
-	
-	my_figure_handle = scf(100001);
-	
-	axes_size_figure = my_figure_handle.axes_size;
-	axes_figure_w    = axes_size_figure(1);
-	axes_figure_h    = axes_size_figure(2);
-	
-	global go_on fin;
-	
-	frame_width  = 600;
-	frame_pos_x  = 25;
-	frame_pos_y  = 200;
-	
-	// Title
-	// =========================================================================
-	
-	spd_title_1 = uicontrol(my_figure_handle                              , ...
-		"Position"             , [frame_pos_x+15 frame_pos_y-40 580 30]   , ...
-		"Style"                , "text"                                   , ...
-		"String"               , "Choose the initial speed"               , ...
-		"BackgroundColor"      , [1 1 1]                                  , ...
-		"Fontsize"             , 16                                       , ...
-		"horizontalalignment"  , "center"                                 , ...
-		"tag"                  , "spd_title_1"                            );
-
-	// Slider 1
-	// =========================================================================
-	
-	spd_text_1 = uicontrol(my_figure_handle                    , ...
-		"Position"             , [frame_pos_x frame_pos_y-60 40 15], ...
-		"Style"                , "text"                        , ...
-		"String"               , "speed"                       , ...
-		"BackgroundColor"      , [1 1 1]                       , ...
-		"tag"                  , "spd_text_1"                  );
-		
-
-	spd_slider_1 = uicontrol(my_figure_handle                  , ...
-		"Position"             , [frame_pos_x+45 frame_pos_y-60 450 15], ...
-		"Style"                , "slider"                      , ...
-		"Min"                  , 0                             , ...
-		"Max"                  , 200                           , ...
-		"Value"                , g_V*100                       , ...
-		"SliderStep"           , [5 20]                        , ...
-		"callback"             , "change_V()"                  , ...
-		"tag"                  , "spd_slider_1"                );
-
-	spd_value_1 = uicontrol(my_figure_handle                   , ...
-		"Position"             , [frame_pos_x+520 frame_pos_y-60 30 15], ...
-		"Style"                , "text"                        , ...
-		"String"               , string(round(100*g_V)/100)    , ...
-		"BackgroundColor"      , [1 1 1]                       , ...
-		"tag"                  , "spd_value_1"                  );
-
-
-	spd_unite_1 = uicontrol(my_figure_handle                             , ...
-		"Position"             , [frame_pos_x+550 frame_pos_y-60 30 15],...
-		"Style"                , "text"                        ,...
-		"String"               , "(m/s)"                       , ...
-		"tag"                  , "spd_unite_1"                );
-	
-	// Slider 2
-	// =========================================================================
-
-	spd_text_2 = uicontrol(my_figure_handle                    , ...
-		"Position"             , [frame_pos_x frame_pos_y-80 45 15] , ...
-		"Style"                , "text"                        , ...
-		"String"               , "direction"                   , ...
-		"BackgroundColor"      , [1 1 1]                       , ...
-		"tag"                  , "spd_text_2"                  );
-
-
-	spd_slider_2 = uicontrol(my_figure_handle                  , ...
-		"Position"             , [frame_pos_x+45 frame_pos_y-80 450 15], ...
-		"Style"                , "slider"                      , ...
-		"Min"                  , 0                             , ...
-		"Max"                  , 360                           , ...
-		"Value"                , g_Vdir                        , ...
-		"SliderStep"           , [5 20]                        , ...
-		"callback"             , "change_Vdir()"               , ...
-		"tag"                  , "spd_slider_2"                );
-		
-		
-	spd_value_2 = uicontrol(my_figure_handle                    , ...
-		"Position"             , [frame_pos_x+520 frame_pos_y-80 30 15], ...
-		"Style"                , "text"                        , ...
-		"String"               , string(g_Vdir)                , ...
-		"BackgroundColor"      , [1 1 1]                       , ...
-		"tag"                  , "spd_value_2"                  );
-	
-	
-	spd_unite_2 = uicontrol(my_figure_handle                  , ...
-		"Position"             , [frame_pos_x+550 frame_pos_y-80 30 15], ...
-		"Style"                , "text"                        , ...
-		"String"               , "(deg)"                       , ...
-		"BackgroundColor"      , [1 1 1]                       , ...
-		"tag"                  , "spd_unite_2"                );
-	
-	
-	// Buttons
-	// =========================================================================
-	
-	spd_button_1 = uicontrol(my_figure_handle                  , ...
-		"Position"             , [frame_pos_x+150 frame_pos_y-120 100 20] , ...
-		"Style"                , "pushbutton"                  , ...
-		"String"               , "cancel"                      , ...
-		"Fontsize"             , 14                            , ...
-		"BackgroundColor"      , [1 1 1]                       , ...
-		"callback"             , "interrupt();"                , ...
-		"tag"                  , "spd_button_1"                );
-	
-	spd_button_2 = uicontrol(my_figure_handle                  , ...
-		"Position"               , [frame_pos_x+300 frame_pos_y-120 100 20] , ...
-		"Style"                  , "pushbutton"                , ...
-		"String"                 , "next"                      , ...
-		"Fontsize"               , 14                          , ...
-		"BackgroundColor"        , [1 1 1]                     , ...
-		"callback"               , "speed_next();"             , ...
-		"tag"                    , "spd_button_2"              );
-		
-	return
-	
-endfunction
-
-
-
-function speed_next()
-	
-	global g_r;
-	global g_t;
-	global g_V;
-	global g_Vdir;
-	
-	g_V    = get(findobj("tag", "spd_slider_1"),"value")/100;
-	g_Vdir = get(findobj("tag", "spd_slider_2"),"value");
-	
-	my_figure_handle = scf(100001);
-	
-	axes_size_figure = my_figure_handle.axes_size;
-	axes_figure_w    = axes_size_figure(1);
-	axes_figure_h    = axes_size_figure(2);
-	
-	global go_on fin;
-	
-	frame_width  = 300;
-	frame_pos_x  = 25;
-	frame_pos_y  = 200;
-	
-	obj_to_del = [        ..
-		"spd_title_1"   ; ..
-		"spd_text_1"    ; ..
-		"spd_slider_1"  ; ..
-		"spd_value_1"   ; ..
-		"spd_unite_1"   ; ..
-		"spd_text_2"    ; ..
-		"spd_slider_2"  ; ..
-		"spd_value_2"   ; ..
-		"spd_unite_2"   ; ..
-		"spd_button_1"  ; ..
-		"spd_button_2"  ];
-	
-	my_figure_handle = scf(100001);
-	my_figure_handle.immediate_drawing = "off";
-	
-	for i=1:size(obj_to_del,"*")
-		obj = findobj("tag",obj_to_del(i));
-		delete(obj);
-	end
-	
-	my_figure_handle.immediate_drawing = "on";
-	
-	msg_gene_traj = uicontrol(my_figure_handle                             , ...
-		"position"            , [frame_pos_x+15 frame_pos_y-40 580 30]   , ...
+	title_speed = uicontrol(my_figure_handle                             , ...
+		"position"            , [x_text y title_width slider_height+y_margin],...
 		"Style"               , "text"                                   , ...
-		"String"              , "Generating trajectory"                   , ...
+		"String"              , "Initial speed"                          , ...
 		"BackgroundColor"     , [1 1 1]                                  , ...
 		"Fontsize"            , 16                                       , ...
 		"horizontalalignment" , "center"                                 , ...
-		"tag"                 , "msg_gene_traj"                            );
+		"tag"                 , "title_speed"                            );
 	
-	tra = calculate_traj(g_r,g_t,g_V,g_Vdir);
-	delete(msg_gene_traj);
-	draw_traj_interface(tra);
-	
-endfunction
-
-
-
-
-
-// Step 3, launch
-// =============================================================================
-
-function change_alpha()
-	
-	global plot_handle;
-	global g_alpha;
-	global g_theta;
-	
-	g_alpha = get(findobj("tag", "view_traj_slider_1"),"value");
-	g_theta = get(findobj("tag", "view_traj_slider_2"),"value");
-	
-	set(findobj("tag","view_traj_value_1"),"string",string(g_alpha));
-	
-	plot_handle.rotation_angles = [g_alpha,g_theta];
-	
-endfunction
-
-
-function change_theta()
-
-	global plot_handle;
-	global g_alpha;
-	global g_theta;
-	
-	g_alpha = get(findobj("tag", "view_traj_slider_1"),"value");
-	g_theta = get(findobj("tag", "view_traj_slider_2"),"value");
-	
-	set(findobj("tag", "view_traj_value_2"),"string",string(g_theta));
-	
-	plot_handle.rotation_angles = [g_alpha,g_theta];
-	
-endfunction
-
-
-function change_visibility()
-	
-	global plot_handle;
-	global eff;
-	global g_alpha;
-	global g_theta;
-	
-	traj_val  = get(findobj("tag", "view_traj_checkbox_3"),"value");
-	bille_val = get(findobj("tag", "view_traj_checkbox_4"),"value");
-	
-	if eff then
-		
-		my_figure_handle = scf(100001);
-		my_figure_handle.immediate_drawing = "off";
-		
-		curAxe = gca();
-		e2     = curAxe.children(1); //trajectory
-		e1     = curAxe.children(2); //point
-		
-		if traj_val==1 then
-			e1.visible="on";
-		else
-			e1.visible="off";
-		end
-		
-		if bille_val==1 then
-			e2.visible="on";
-		else
-			e2.visible="off";
-		end
-		
-		plot_handle.rotation_angles = [g_alpha,g_theta];
-		my_figure_handle.immediate_drawing = "on";
-	end
-	
-endfunction
-
-
-function draw_traj_interface(Y)
-	
-	global eff;
-	global g_alpha;
-	global g_theta;
-	global go_on fin;
-	
-	my_figure_handle = scf(100001);
-	
-	axes_size_figure = my_figure_handle.axes_size;
-	axes_figure_w    = axes_size_figure(1);
-	axes_figure_h    = axes_size_figure(2);
-	
-	global go_on fin;
-	
-	frame_width  = 600;
-	frame_pos_x  = 25;
-	frame_pos_y  = 200;
-	
-	// Title
+	// Slider speed
 	// =========================================================================
+	y = y - (slider_height+y_margin)
+	text_speed = uicontrol(my_figure_handle                          , ...
+		"position"          , [x_text y text_width slider_height]    , ...
+		"Style"             , "text"                                 , ...
+		"String"            , "speed"                                , ...
+		"BackgroundColor"   , [1 1 1]                                , ...
+		"tag"               , "text_speed"                           );
 	
-	view_traj_title1 = uicontrol(my_figure_handle                         , ...
-		"Position"             , [frame_pos_x+15 frame_pos_y-40 600 30]   , ...
-		"Style"                , "text"                                   , ...
-		"String"               , "Change observation points"              , ...
-		"horizontalalignment"  , "center"                                 , ...
-		"BackgroundColor"      , [1 1 1]                                  , ...
-		"Fontsize"             , 16                                       );
+	slider_speed = uicontrol(my_figure_handle                        , ...
+		"position"          , [x_slider y slider_width slider_height], ...
+		"Style"             , "slider"                               , ...
+		"Value"             , g_speed                                , ...
+		"Min"               , 0                                      , ...
+		"Max"               , 100                                      , ...
+		"callback"          , "change_speed()"                       , ...
+		"tag"               , "slider_speed"                         );
 	
-	// Slider 1 (change_alpha)
+	value_speed = uicontrol(my_figure_handle                         , ...
+		"position"          , [x_value  y value_width slider_height] , ...
+		"Style"             , "text"                                 , ...
+		"String"            , string(g_speed)                        , ...
+		"BackgroundColor"   , [1 1 1]                                , ...
+		"tag"               , "value_speed"                          );
+	
+	unite_speed = uicontrol(my_figure_handle                         , ...
+		"position"          , [x_unit y unit_width slider_height]    , ...
+		"Style"             , "text"                                 , ...
+		"String"            , "(m/s)"                                  , ...
+		"BackgroundColor"   , [1 1 1]                                , ...
+		"tag"               , "unite_speed"                          );
+	
+	// Slider direction
 	// =========================================================================
+	y = y - (slider_height+y_margin)
+	text_dir = uicontrol(my_figure_handle                            , ...
+		"position"       , [x_text y text_width slider_height]       , ...
+		"Style"          , "text"                                    , ...
+		"String"         , "direction"                                   , ...
+		"BackgroundColor", [1 1 1]                                   , ...
+		"tag"            , "text_dir"                              );
 	
-	view_traj_text1 = uicontrol(my_figure_handle,             ...
-		"Position"            , [frame_pos_x frame_pos_y-60 40 15]              , ...
-		"Style"               , "text"                      , ...
-		"String"              , "alpha"                     , ...
-		"BackgroundColor"     ,[1 1 1]                      );
+	slider_dir = uicontrol(my_figure_handle                          , ...
+		"position"  , [x_slider y slider_width slider_height]        , ...
+		"Style"     , "slider"                                       , ...
+		"Min"       , 0                                              , ...
+		"Max"       , 100                                            , ...
+		"Value"     , g_Vdir                                           , ...
+		"callback"  , "change_dir()"                                   , ...
+		"tag"       , "slider_dir"                                 );
 	
-	view_traj_slider_1 = uicontrol(my_figure_handle,          ...
-		"Position"            , [frame_pos_x+45 frame_pos_y-60 450 15]             , ...
-		"Style"               , "slider"                    , ...
-		"Min"                 , 1                           , ...
-		"Max"                 , 90                          , ...
-		"Value"               , g_alpha                     , ...
-		"SliderStep"          , [5 10]                      , ...
-		"callback"            , "change_alpha()"            , ...
-		"tag"                 , "view_traj_slider_1"        );
-		
-	view_traj_value_1 = uicontrol(my_figure_handle          , ...
-		"Position"            , [frame_pos_x+520 frame_pos_y-60 20 15]             , ...
-		"Style"               , "text"                      , ...
-		"String"              , string(g_alpha)             , ...
-		"BackgroundColor"     , [1 1 1]                     , ...
-		"tag"                 , "view_traj_value_1"          );
+	value_dir = uicontrol(my_figure_handle                           , ...
+		"position"        , [x_value  y value_width  slider_height]  , ...
+		"Style"           , "text"                                   , ...
+		"String"          , string(g_Vdir)                              , ...
+		"BackgroundColor" , [1 1 1]                                  , ...
+		"tag"             , "value_dir"                            );
 	
-	view_traj_unite_1 = uicontrol(my_figure_handle          , ...
-		"Position"          , [frame_pos_x+550 frame_pos_y-60 30 15]               , ...
-		"Style"             , "text"                        , ...
-		"String"            , "(deg)"                       , ...
-		"BackgroundColor"   , [1 1 1]                       );
-		
-	// Slider 2 (change_theta)
+	unite_dir = uicontrol(my_figure_handle                           , ...
+		"position"        , [x_unit y unit_width slider_height]      , ...
+		"Style"           , "text"                                   , ...
+		"String"          , "(deg)"                                  , ...
+		"BackgroundColor" , [1 1 1]                                  , ...
+		"tag"             , "unite_dir"                            );
+	// Buttons
 	// =========================================================================
+	y = y - (slider_height+5*y_margin)
+	btn_width=100;
+	btn_margin=50;
+	btn_height=20;
+	x=frame_x+80
+	start_button = uicontrol(my_figure_handle                                   , ...
+		"Position"             , [x y btn_width btn_height]                 , ...
+		"Style"                , "pushbutton"                               , ...
+		"String"               , "Start"                                    , ...
+		"Fontsize"             , 14                                         , ...
+		"BackgroundColor"      , [1 1 1]                                    , ...
+		"callback"             , "start_simu()"                             , ...
+		"tag"                  , "start_button"                             );
 	
-	view_traj_text2 = uicontrol(my_figure_handle,             ...
-		"Position"            , [frame_pos_x frame_pos_y-80 45 15]              , ...
-		"Style"               , "text"                      , ...
-		"String"              , "theta"                     , ...
-		"BackgroundColor"     ,[1 1 1]                      );
+	x=x+btn_width+btn_margin
+	stop_button = uicontrol(my_figure_handle                                    , ...
+		"Position"               , [x y btn_width btn_height]               , ...
+		"Style"                  , "pushbutton"                             , ...
+		"String"                 , "Stop"                                   , ...
+		"Fontsize"               , 14                                       , ...
+		"BackgroundColor"        , [1 1 1]                                  , ...
+		"callback"               , "stop_simu"                              , ...
+		"tag"                    , "stop_button"                            );
 
-
-	view_traj_slider2 = uicontrol(my_figure_handle          , ...
-		"Position"            , [frame_pos_x+45 frame_pos_y-80 450 15]              , ...
-		"Style"               , "slider"                    , ...
-		"Min"                 , 0                           , ...
-		"Max"                 , 180                         , ...
-		"Value"               , g_theta                     , ...
-		"SliderStep"          , [5 20]                      , ...
-		"callback"            , "change_theta()"            , ...
-		"tag"                 , "view_traj_slider_2"        );
-	
-	view_traj_value_2 = uicontrol(my_figure_handle          , ...
-		"Position"          , [frame_pos_x+520 frame_pos_y-80 20 15]                , ...
-		"Style"             , "text"                        , ...
-		"String"            , string(g_theta)               , ...
-		"BackgroundColor"   , [1 1 1]                       , ...
-		"tag"               , "view_traj_value_2"            );
-	
-	view_traj_unite_2 = uicontrol(my_figure_handle          , ...
-		"Position"          , [frame_pos_x+550 frame_pos_y-80 30 15]                , ...
-		"Style"             , "text"                        , ...
-		"String"            , "(deg)"                       , ...
-		"BackgroundColor",[1 1 1]                           );
-	
-	// Checkbox 3 (show trajectory)
-	// =========================================================================
-	
-	view_traj_checkbox_3 = uicontrol(my_figure_handle                 , ...
-		"Position"          , [frame_pos_x+150 frame_pos_y-110 15 15] , ...
-		"Style"             , "checkbox"                              , ...
-		"Min"               , 0                                       , ...
-		"Max"               , 1                                       , ...
-		"Value"             , 1                                       , ...
-		"callback"          , "change_visibility()"                   , ...
-		"tag"               , "view_traj_checkbox_3"                  );
-	
-	view_traj_text_3 = uicontrol(my_figure_handle                     , ...
-		"Position"          , [frame_pos_x+50 frame_pos_y-110 80 15]  , ...
-		"Style"             , "text"                                  , ...
-		"String"            , "show trajectory"                        , ...
-		"tag"               , "view_traj_text_3"                      , ...
-		"BackgroundColor"   ,[1 1 1]                                  );
-	
-	// Checkbox 4 (show point)
-	// =========================================================================
-	
-	view_traj_checkbox_4 = uicontrol(my_figure_handle                  , ...
-		"Position"          , [frame_pos_x+400 frame_pos_y-110 15 15]  , ...
-		"Style"             , "checkbox"                               , ...
-		"Min"               , 0                                        , ...
-		"Max"               , 1                                        , ...
-		"Value"             , 0                                        , ...
-		"callback"          , "change_visibility()"                    , ...
-		"tag"               , "view_traj_checkbox_4"                   );
-		
-		
-	view_traj_text_4 = uicontrol(my_figure_handle                      , ...
-		"Position"          , [frame_pos_x+300 frame_pos_y-110 80 15]  , ...
-		"Style"             , "text"                                   , ...
-		"String"            , "show point"                             , ...
-		"BackgroundColor"   ,[1 1 1]                                   );
-	
-	
-	// Buttons ( interrupt -start - pause )
-	// =========================================================================
-	
-	view_traj_button_5 = uicontrol(my_figure_handle                    , ...
-		"Position"          , [frame_pos_x+50 frame_pos_y-150 100 20]   , ...
-		"Style"             , "pushbutton"                             , ...
-		"String"            , "stop"                                   , ...
-		"Fontsize"          , 14                                       , ...
-		"BackgroundColor"   , [1 1 1]                                  , ...
-		"callback"          , "interrupt()"                            , ...
-		"tag"               , "view_traj_button_5"                     );
-	
-	
-	view_traj_button_6 = uicontrol(my_figure_handle                    , ...
-		"Position"          , [frame_pos_x+250 frame_pos_y-150 100 20]  , ...
-		"Style"             , "pushbutton"                             , ...
-		"String"            , "start"                                  , ...
-		"Fontsize"          , 14                                       , ...
-		"BackgroundColor"   , [1 1 1]                                  , ...
-		"callback"          , "m_start=%T"                             , ...
-		"tag"               , "view_traj_button_6"                     );
-
-	view_traj_button_7 = uicontrol(my_figure_handle                    , ...
-		"Position"          , [frame_pos_x+450 frame_pos_y-150 100 20]   , ...
-		"Style"             , "pushbutton"                             , ...
-		"String"            , "pause"                                  , ...
-		"Fontsize"          , 14                                       , ...
-		"BackgroundColor"   ,[1 1 1]                                   , ...
-		"callback"          , "m_start=%F"                             , ...
-		"tag"               , "view_traj_button_7"                     );
-		
-	fin       = %F;
-	m_start   = %F;
-	step      = 0;
-	r         =  0.1;
-	[aux,num] = size(Y); //number of total steps
-	g_tx      = Y(1,:)';
-	g_ty      = Y(3,:)';
-	g_tz      = -sqrt(1-g_tx^2-g_ty^2);
-	
-	while ~fin
-		
-		if ~m_start then
-			sleep(1);
-		else
-			sleep(1);
-			
-			if (step<num) then
-				
-				my_figure_handle.immediate_drawing = "off";
-				
-				
-				if (step == 0) then
-					
-					eff = %T;
-					
-					param3d(g_tx(1:10),g_ty(1:10),g_tz(1:10)+0.1);
-					e1                 = gce();
-					e1.thickness       = 2;
-					e1.foreground      = 5;
-					
-					param3d(g_tx(10),g_ty(10),g_tz(10)+0.1);
-					e2                 = gce();
-					e2.mark_mode       = "on";
-					e2.mark_style      = 0;
-					e2.mark_size_unit  = "point";
-					e2.mark_size       = 4;
-					e2.mark_foreground = 6;
-					
-					change_visibility();
-					
-				else
-		
-					e1.data = [g_tx(1:step),g_ty(1:step),g_tz(1:step)+0.1];
-					e2.data = [g_tx(step),g_ty(step),g_tz(step)+0.1];
-					
-				end
-				
-				
-				my_figure_handle.immediate_drawing = "on";
-				step = step +10;
-				sleep(50)
-			else
-				fin   = %T;
-				go_on = %F;
-			end
-		end
-		
-	end
+	x=x+btn_width+btn_margin
+	clear_button = uicontrol(my_figure_handle                                   , ...
+		"Position"               , [x y btn_width btn_height]               , ...
+		"Style"                  , "pushbutton"                             , ...
+		"String"                 , "Clear"                                  , ...
+		"Fontsize"               , 14                                       , ...
+		"BackgroundColor"        , [1 1 1]                                  , ...
+		"callback"               , "clear_simu"                             , ...
+		"tag"                    , "clear_button"                           );
 	
 	return
+endfunction
 
+// =============================================================================
+// The callbacks
+// =============================================================================
+
+function change_r(r)
+//r slider callback 
+  // r is in [0 1]
+  slider_r     = findobj("tag", "slider_r");
+  slider_theta = findobj("tag", "slider_theta");
+  slider_speed = findobj("tag", "slider_speed");
+  slider_dir   = findobj("tag", "slider_dir");
+  slider_r     = findobj("tag", "slider_r");
+ 
+  value_r       = findobj("tag", "value_r");
+  if argn(2)==1 then
+    slider_r.Value=(r)*100;
+  else
+    r=slider_r.Value
+    r=r/100
+  end
+  value_r.String=msprintf("%.3f",r)
+  draw_initial_point(slider_r.Value/100,slider_theta.value*360/100,slider_speed.Value*20/100,slider_dir.value*360/100,%F);
+  
+endfunction
+
+
+function change_theta(theta)
+//theta slider callback  
+//theta is in [0 360]
+  slider_r     = findobj("tag", "slider_r");
+  slider_theta = findobj("tag", "slider_theta");
+  slider_speed = findobj("tag", "slider_speed");
+  slider_dir   = findobj("tag", "slider_dir");
+  slider_r     = findobj("tag", "slider_r");
+ 
+  value_theta   = findobj("tag", "value_theta");
+  if argn(2)==1 then
+    slider_theta.Value=(theta)*100/360;
+  else
+    theta=slider_theta.Value
+    theta=theta*360/100
+  end
+  value_theta.String=msprintf("%.0f",theta)
+  draw_initial_point(slider_r.Value/100,slider_theta.value*360/100,slider_speed.Value*20/100,slider_dir.value*360/100,%F);
+endfunction
+
+function change_speed(speed)
+//speed slider callback  
+//speed is in [0 20]
+  slider_r     = findobj("tag", "slider_r");
+  slider_theta = findobj("tag", "slider_theta");
+  slider_speed = findobj("tag", "slider_speed");
+  slider_dir   = findobj("tag", "slider_dir");
+
+  value_speed  = findobj("tag", "value_speed");
+  if argn(2)==1 then
+    slider_speed.Value=(speed)*100/20;
+  else
+    speed=slider_speed.Value
+    speed=speed*20/100
+  end
+  value_speed.String=msprintf("%.0f",speed)
+  draw_initial_point(slider_r.Value/100,slider_theta.value*360/100,slider_speed.Value*20/100,slider_dir.value*360/100,%F);
+endfunction
+
+function change_dir(dir)
+//direction slider callback  
+//dir is in [0 360]
+  slider_r      = findobj("tag", "slider_r");
+  slider_theta  = findobj("tag", "slider_theta");
+  slider_speed = findobj("tag", "slider_speed");
+  slider_dir   = findobj("tag", "slider_dir");
+  value_dir  = findobj("tag", "value_dir");
+  if argn(2)==1 then
+    slider_dir.Value=(dir)*100/360;
+  else
+    dir=slider_dir.Value
+    dir=dir*360/100
+  end
+  value_dir.String=msprintf("%.0f",dir)
+  draw_initial_point(slider_r.Value/100,slider_theta.value*360/100,slider_speed.Value*20/100,slider_dir.value*360/100,%F);
+endfunction
+
+function start_simu()
+//start button callback
+  global go_on fin;
+  fin   = %f;
+  slider_r     = findobj("tag", "slider_r");
+  slider_theta = findobj("tag", "slider_theta");
+  slider_speed = findobj("tag", "slider_speed");
+  slider_dir   = findobj("tag", "slider_dir");
+  t = 0:0.01:15
+  Y = calculate_traj(slider_r.Value/100,slider_theta.value*360/100, ...
+		     slider_speed.Value*20/100,slider_dir.value*360/100,t)
+  x = Y(1,:)
+  y = Y(3,:)
+  r = 0.1; //bias to have the curve above the surface
+  z = -sqrt(1-x^2-y^2)+r;
+  my_figure_handle = scf(100001);
+  curAxe = gca();
+  traj_handle=curAxe.children(1).children(5);
+  traj_handle.data=[x(1),y(1),z(1)];
+  for k=2:size(x,'*')
+    if fin then break,end
+    traj_handle.data=[traj_handle.data;[x(k),y(k),z(k)]];
+  end
+  fin=%t
+endfunction
+
+function stop_simu()
+//stop button callback
+  global fin;
+  fin   = %T;
+endfunction
+
+function clear_simu()
+//clear button callback
+  global fin;
+  if fin then
+    my_figure_handle = scf(100001);
+    curAxe = gca();
+    traj_handle=curAxe.children(1).children(5);
+    traj_handle.data=[0,0,0];
+  end
 endfunction
