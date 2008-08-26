@@ -22,6 +22,7 @@
 #include "getstaticDebugInfo_Windows.h"
 #else
 #include "getstaticdebuginfo.h"
+#include "getdynamicdebuginfo.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getdebuginfo)(char *fname,unsigned long fname_len)
