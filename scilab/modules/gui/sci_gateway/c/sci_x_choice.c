@@ -116,6 +116,7 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
     }
   else
     {
+	  
       userValue = (int*)getMessageBoxUserSelectedButtons(messageBoxID);
   
       userValueDouble = (double *)MALLOC(nbRowDefaultValues*nbColDefaultValues*sizeof(double));
@@ -125,6 +126,7 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
         }
 
       CreateVarFromPtr(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, &userValueDouble);
+      /* TO DO : do a delete []  getMessageBoxUserSelectedButton */
     }
 
   FREE(defaultValuesInt);

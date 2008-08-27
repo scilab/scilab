@@ -119,8 +119,9 @@ int sci_uigetdir(char *fname,unsigned long l)
       nbCol = 1;
 
       userSelection = getFileChooserSelection(fileChooserID);
-
       CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, userSelection);
+      /* TO DO a delete [] userSelection */
+
     }
   else
     {

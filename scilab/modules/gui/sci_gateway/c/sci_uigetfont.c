@@ -149,6 +149,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
   
   /* Read the user answer */
   selectedFontName = getFontChooserFontName(fontChooserID);
+  
 
   if (strcmp(selectedFontName,"")) /* The user selected a font */
     {
@@ -207,6 +208,8 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
          CreateVar(Rhs+4, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &italicAdr);
         }
     }
+  
+  /* TO DO delete [] selectedFontName */
   
   LhsVar(1) = Rhs+1;
   LhsVar(2) = Rhs+2;

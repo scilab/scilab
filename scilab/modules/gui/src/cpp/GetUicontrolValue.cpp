@@ -28,6 +28,7 @@ int GetUicontrolValue(sciPointObj* sciObj)
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_LISTBOX:
+		      /* DO A DELETE @ end on value returned by getListBoxSelectedIndices */
           value = (int*) CallScilabBridge::getListBoxSelectedIndices(getScilabJavaVM(), 
                                                               pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           valueSize = CallScilabBridge::getListBoxSelectionSize(getScilabJavaVM(), 

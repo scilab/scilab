@@ -26,6 +26,7 @@ void createContextMenu(sciPointObj* sciObj)
 
 char* uiWaitContextMenu(sciPointObj* sciObj)
 {
+  /* TO DO : create a copy or move sci_uiwait to cpp to do a delete */
   return CallScilabBridge::displayAndWaitContextMenu(getScilabJavaVM(), pUICONTEXTMENU_FEATURE(sciObj)->hashMapIndex);
 }
 

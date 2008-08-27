@@ -140,9 +140,9 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
   else
     {
       userValue = getMessageBoxValue(messageBoxID);
-  
       nbCol = 1;
       CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, userValue);
+      /* TO DO : delete of userValue */
     }
 
   LhsVar(1) = Rhs+1;

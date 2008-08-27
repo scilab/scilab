@@ -50,10 +50,13 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                 {
                   /* Use the Java clipboard (CallScilabBridge.java returns "" if clipbaord could not be read) */
                   char *output = getClipboardContents();
+
+
                   m1 = (int)strlen(output);
                   n1 = 1;
                   
                   CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE, &m1, &n1, &output);
+                   /* TO DO a delete [] and a FREE */
                   FREE(output);
                   LhsVar(1)=Rhs+1;
                   
