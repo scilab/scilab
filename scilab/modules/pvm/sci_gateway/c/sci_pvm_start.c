@@ -42,7 +42,6 @@ int intspvm_start(char *fname,unsigned long fname_len)
   LhsVar(1)=Rhs+1;
   C2F(putlhsvar)();
   pvm_error_check(fname,*istk(res),fname_len);
-  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/ 
