@@ -19,11 +19,11 @@ function [iperm,mrepi,profil,ierr]=bandwr(a,b,c,d)
     [ij,v,mn]=spget(a);
     aa=sparse(ij,ones(v),mn);
     if (sum(aa-aa') <> 0) then   
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Symmetric matrix expected.\n"),"bandwr",1))
+      error('The matrix ""a"" must to be symmetric')
     end
     n=mn(1);
     if (size(diag(a),1) < n) then   
-      error(msprintf(gettext("%s: There are null terms on the diagonal.\n"),"bandwr"))
+      error('There are null terms on the diagonal')
     end
     //
     amem=a;
@@ -48,7 +48,7 @@ function [iperm,mrepi,profil,ierr]=bandwr(a,b,c,d)
     amem=sparse([ta' he'],v,[n,n]);
   end;
   if(n < 3) then 
-    error(msprintf(gettext("%s: Size too small.\n"),"bandwr"))
+    error('Size too small')
   end
   if(iopt <> 0) then iopt=1;end;
   nz=size(v,'*');
@@ -125,7 +125,7 @@ function [iperm,mrepi,profil,ierr]=bandwr(a,b,c,d)
 	  return;end;
     end;
     if(ierr == 64000) then
-      error(msprintf(gettext("%s: program terminated by error.\n"),"bandwr"));
+      error('program terminated by error');
       return;
     end;
   end;
