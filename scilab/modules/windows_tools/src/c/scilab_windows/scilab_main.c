@@ -28,13 +28,15 @@ static void interrupt (int an_int);
 /*--------------------------------------------------------------------------*/
 jmp_buf env;
 /*--------------------------------------------------------------------------*/
-__declspec(dllexport) __threadSignal	LaunchScilab;
-__declspec(dllexport) __threadLock	LaunchScilabLock;
+__declspec(dllexport) __threadSignal		LaunchScilab;
+__declspec(dllexport) __threadSignalLock	LaunchScilabLock;
 /*--------------------------------------------------------------------------*/
 void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
 {
+
   __InitSignal(&LaunchScilab);
-  __InitLock(&LaunchScilabLock);
+  __InitSignalLock(&LaunchScilabLock);
+
   setbuf (stderr, (char *) NULL);
 	if (!setjmp (env))
 	{
