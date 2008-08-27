@@ -44,9 +44,9 @@ int sci_TCL_SetVar(char *fname,unsigned long l)
 	{
 	  GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
 	  TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-	  //releaseTclInterp();
 	  if (TCLinterpreter==NULL)
 	    {
+              releaseTclInterp();
 	      Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 	      return 0;
 	    }
@@ -127,10 +127,10 @@ int sci_TCL_SetVar(char *fname,unsigned long l)
     else
 		{
 			if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-			if (GetType(1) == sci_strings) {
+			if (GetType(1) != sci_strings) {
 				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname ,1);
 			} 
-			if (GetType(2) == sci_matrix) {
+			if (GetType(2) != sci_matrix) {
 				Scierror(999,_("%s: Wrong type for input argument #%d: Matrix expected.\n"),fname ,2);
 			}
 	releaseTclInterp();
