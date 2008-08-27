@@ -85,11 +85,6 @@ int SetUicontrolMax(sciPointObj* sciObj, size_t stackPointer, int valueType, int
             }
           else  /* Default Value is 0 */
             {
-              if ((pUICONTROL_FEATURE(sciObj)->min != 0) && (pUICONTROL_FEATURE(sciObj)->max != 0))
-                {
-                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Checkbox", "Min", "Max");
-                }
-
               CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                    pUICONTROL_FEATURE(sciObj)->max == 0);
@@ -110,11 +105,6 @@ int SetUicontrolMax(sciPointObj* sciObj, size_t stackPointer, int valueType, int
             }
           else  /* Default Value is 0 */
             {
-              if ((pUICONTROL_FEATURE(sciObj)->min != 0) && (pUICONTROL_FEATURE(sciObj)->max != 0))
-                {
-                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Radiobutton", "Min", "Max");
-                }
-
               CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                       pUICONTROL_FEATURE(sciObj)->max == 0);
