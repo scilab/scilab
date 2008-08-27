@@ -42,12 +42,13 @@ int intspvm_recv(char *fname,unsigned long fname_len)
    * but we transmit stk(l5-2) to scipvmrecv which 
    * then can change the header of object at position 4 
    */ 
-  double mavartmp;
-
-  C2F(scipvmrecv)(&mavartmp,&size,&sizeUsed,&tid,&tag,istk(l3));
-  *stk(l5-2)=mavartmp;
+  C2F(scipvmrecv)(stk(l5-2),&size,&sizeUsed,&tid,&tag,istk(l3));
   /* now we know the exact size used */
   SetWorkSize(4,&sizeUsed);
+  LhsVar(1)=4;
+  LhsVar(2)=3;
+  LhsVar(3)=1;
+  LhsVar(4)=2;
   /* since 1 and 2 could be ref */ 
   if ( IsRef(1) ) { 
     CreateVar(count,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l);
@@ -60,13 +61,9 @@ int intspvm_recv(char *fname,unsigned long fname_len)
     *istk(l)=tag;
     LhsVar(4)=count;
   }
-  LhsVar(1)=4;
-  LhsVar(2)=3;
-  LhsVar(3)=1;
-  LhsVar(4)=2;
+  C2F(putlhsvar)();
 
   pvm_error_check(fname,*istk(l3),fname_len);
-  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/ 
