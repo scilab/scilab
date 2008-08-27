@@ -46,7 +46,7 @@
       <varlistentry>
         <term>where</term>
         <listitem>
-          <para>string (optional), can be a host name such as ``tequila.ens-lyon.fr'' or a PVM architecture class such as ``SUN4''.</para>
+          <para>string (optional), can be a host name such as ``machine.domain.country'' or a PVM architecture class such as ``SUN4''. If you want to use localhost as host, set <literal>where</literal> value to <literal>"."</literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>
