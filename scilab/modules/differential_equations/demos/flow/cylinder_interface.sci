@@ -573,8 +573,10 @@ endfunction
 
 function start_simu()
 //start button callback
-  global fin
-  fin   = %f;
+  my_figure_handle           = scf(100001);
+  fin                        = my_figure_handle.user_data
+  my_figure_handle.user_data = %f
+
   slider_x       = findobj("tag", "slider_x");
   slider_y       = findobj("tag", "slider_y");
   slider_slope   = findobj("tag", "slider_slope");
@@ -583,13 +585,13 @@ function start_simu()
   slider_g       = findobj("tag", "slider_gravity");
 
   
-  t     = 0:0.01:10; //1001 track points
+  t              = 0:0.01:10; //1001 track points
 
-  x = -0.9+slider_x.Value*1.8/100
-  y = slider_y.value*3/100
-  V = slider_speed.Value*2/100
-  Vdir = slider_dir.value*360/100
-  slope=slider_slope.Value*70/100
+  x     = -0.9+slider_x.Value*1.8/100
+  y     = slider_y.value*3/100
+  V     = slider_speed.Value*2/100
+  Vdir  = slider_dir.value*360/100
+  slope = slider_slope.Value*70/100
   Y = calculate_traj(x,y,V,Vdir,t,gravity,slope)
   x = Y(1,:)
   y = Y(3,:)
@@ -601,21 +603,23 @@ function start_simu()
   traj_handle=curAxe.children(1).children(5);
   traj_handle.data=[x(1),y(1),z(1)];
   for k=2:size(x,'*')
-    if fin then break,end
+    if execstr('fin=my_figure_handle.user_data','errcatch')<>0|fin then break,end
     traj_handle.data=[traj_handle.data;[x(k),y(k),z(k)]];
   end
-  fin=%t
+  my_figure_handle.user_data=%t
 endfunction
 
 function stop_simu()
 //stop button callback
-  global fin;
+  my_figure_handle = scf(100001);
   fin   = %T;
+  my_figure_handle.user_data=fin
 endfunction
 
 function clear_simu()
 //clear button callback
-  global fin;
+  my_figure_handle = scf(100001);
+  fin=my_figure_handle.user_data
   if fin then
     my_figure_handle = scf(100001);
     curAxe = gca();
@@ -623,4 +627,3 @@ function clear_simu()
     traj_handle.data=[0,0,0];
   end
 endfunction
-

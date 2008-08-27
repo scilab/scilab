@@ -448,9 +448,9 @@ function change_dir(dir)
 //dir is in [0 360]
   slider_r      = findobj("tag", "slider_r");
   slider_theta  = findobj("tag", "slider_theta");
-  slider_speed = findobj("tag", "slider_speed");
-  slider_dir   = findobj("tag", "slider_dir");
-  value_dir  = findobj("tag", "value_dir");
+  slider_speed  = findobj("tag", "slider_speed");
+  slider_dir    = findobj("tag", "slider_dir");
+  value_dir     = findobj("tag", "value_dir");
   if argn(2)==1 then
     slider_dir.Value=(dir)*100/360;
   else
@@ -463,13 +463,15 @@ endfunction
 
 function start_simu()
 //start button callback
-  global go_on fin;
-  fin   = %f;
+  my_figure_handle           = scf(100001);
+  fin                        = my_figure_handle.user_data
+  my_figure_handle.user_data = %f
+
   slider_r     = findobj("tag", "slider_r");
   slider_theta = findobj("tag", "slider_theta");
   slider_speed = findobj("tag", "slider_speed");
   slider_dir   = findobj("tag", "slider_dir");
-  t = 0:0.01:15
+  t =            0:0.01:15
   Y = calculate_traj(slider_r.Value/100,slider_theta.value*360/100, ...
 		     slider_speed.Value*20/100,slider_dir.value*360/100,t)
   x = Y(1,:)
@@ -481,21 +483,23 @@ function start_simu()
   traj_handle=curAxe.children(1).children(5);
   traj_handle.data=[x(1),y(1),z(1)];
   for k=2:size(x,'*')
-    if fin then break,end
+    if execstr('fin=my_figure_handle.user_data','errcatch')<>0|fin then break,end
     traj_handle.data=[traj_handle.data;[x(k),y(k),z(k)]];
   end
-  fin=%t
+  my_figure_handle.user_data=%t
 endfunction
 
 function stop_simu()
 //stop button callback
-  global fin;
+  my_figure_handle = scf(100001);
   fin   = %T;
+  my_figure_handle.user_data=fin
 endfunction
 
 function clear_simu()
 //clear button callback
-  global fin;
+  my_figure_handle = scf(100001);
+  fin=my_figure_handle.user_data
   if fin then
     my_figure_handle = scf(100001);
     curAxe = gca();
