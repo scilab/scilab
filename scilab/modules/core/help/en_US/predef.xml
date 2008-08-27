@@ -32,12 +32,12 @@ oldnew=predef('clear')</synopsis>
   <refsection>
     <title>Remark</title>
     <para>
-			A number of protected variables are set in the start-up file <literal>SCI/scilab.star</literal>.
+			A number of protected variables are set in the start-up file <literal>SCI/etc/scilab.start</literal>.
 			User may in particular set its own predefined variables in user's startup files 
 			<literal>SCIHOME/.scilab</literal> and <literal>SCIHOME/scilab.ini</literal>
 		</para>
     <para>
-			SCIHOME definition : 
+			SCIHOME definition :
 			On Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
 			On Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
 		</para>

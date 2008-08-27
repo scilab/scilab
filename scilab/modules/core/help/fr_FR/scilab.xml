@@ -100,7 +100,7 @@
         <term>-ns</term>
         <listitem>
           <para>si cette option est présente le script de démarrage "principal"
-			<literal>SCI/scilab.star</literal> ainsi que les fichiers de démarrage
+			<literal>SCI/etc/scilab.start</literal> ainsi que les fichiers de démarrage
 			"utilisateur" <literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
 			ne sont pas pas exécutés.
 		</para>

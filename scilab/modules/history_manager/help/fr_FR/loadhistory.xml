@@ -37,7 +37,7 @@ loadhistory(f)</synopsis>
   <refsection>
     <title>Description</title>
     <para>charge un fichier contenant l'historique</para>
-    <para>Par défaut, le nom du fichier contenant l'historique est home+'/history.scilab'</para>
+    <para>Par défaut, le nom du fichier contenant l'historique est SCIHOME+'/.history.scilab'</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

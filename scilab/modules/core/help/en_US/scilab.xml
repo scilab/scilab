@@ -105,7 +105,7 @@
         <listitem>
           <para>
 				:if this option is  present the startup file
-				<literal>SCI/scilab.star</literal> and the user startup files
+				<literal>SCI/etc/scilab.start</literal> and the user startup files
 				<literal>SCIHOME/.scilab</literal>, <literal>SCIHOME/scilab.ini</literal> are not executed.
 			</para>
         </listitem>

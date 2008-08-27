@@ -11,7 +11,7 @@
     <title>Description</title>
     <para>Les fichiers de démarrage <literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
 		sont automatiquement executés (s'ils existent) au démarrage de Scilab, ainsi que le fichier 
-		SCI/scilab.star présent dans le répertoire de Scilab.
+		SCI/etc/scilab.start présent dans le répertoire de Scilab.
 		</para>
   </refsection>
   <refsection>

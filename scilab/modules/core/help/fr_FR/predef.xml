@@ -44,7 +44,7 @@ oldnew=predef('clear')</synopsis>
     <title>Remarques</title>
     <para>
 			Le nombre de variables protégées est défini dans le fichier de démarrage
-			<literal>SCI/scilab.star</literal>. L'utilisateur a la possibilité de
+			<literal>SCI/etc/scilab.start</literal>. L'utilisateur a la possibilité de
 			définir ses propres variables protégées dans les fichiers de démarrage
 			<literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
 		</para>

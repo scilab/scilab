@@ -37,7 +37,7 @@ loadhistory(f)</synopsis>
   <refsection>
     <title>Description</title>
     <para>load a history file</para>
-    <para>by default, history filename is home+'/history.scilab'</para>
+    <para>by default, history filename is SCIHOME+'/.history.scilab'</para>
   </refsection>
   <refsection>
     <title>Examples</title>

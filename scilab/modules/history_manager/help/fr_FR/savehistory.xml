@@ -37,7 +37,7 @@ savehistory(f)</synopsis>
   <refsection>
     <title>Description</title>
     <para>sauvegarde l'historique de scilab dans un fichier.</para>
-    <para>Par défaut, l'historique est sauvegardé dans home+'/history.scilab'</para>
+    <para>Par défaut, l'historique est sauvegardé dans SCIHOME+'/.history.scilab'</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

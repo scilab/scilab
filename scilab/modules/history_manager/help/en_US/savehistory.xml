@@ -37,7 +37,7 @@ savehistory(f)</synopsis>
   <refsection>
     <title>Description</title>
     <para>save the current history in a file.</para>
-    <para>by default, history filename is SCIHOME+'/history.scilab'</para>
+    <para>by default, history filename is SCIHOME+'/.history.scilab'</para>
   </refsection>
   <refsection>
     <title>Examples</title>

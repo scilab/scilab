@@ -48,7 +48,7 @@
     <para>Si cette variable est affectée à la matrice vide ( <literal>global
 	%browsehelp; %browsehelp=[]</literal>) alors une fenêtre de dialogue
       apparait au lancement du help et permet de  choisir le browser
-      désiré. Attention, les differents browsers on des synatxes d'appel
+      désiré. Attention, les differents browsers on des syntaxes d'appel
       différentes. Aussi si vous souhaitez ajouter un nouveau browser à la
       liste vous devrez modifier la fonction Scilab <literal>browsehelp</literal>
 	  dont le code source est dans  <literal>SCI/modules/helptools/macros/apropos.sci</literal>.</para>
