@@ -160,7 +160,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
-			strcpy(Str[i],Info);
+			if (Info) strcpy(Str[i],Info);
 		}
 	}
 
