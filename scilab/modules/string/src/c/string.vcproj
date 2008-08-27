@@ -494,6 +494,22 @@
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_strcat.c"
 				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_strchr.c"
