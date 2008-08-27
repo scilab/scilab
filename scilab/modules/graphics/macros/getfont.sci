@@ -33,10 +33,10 @@ function [fontId,fontSize]=getfont(S,v1)
 
   addmenu(win,'Ok',list(2,'menu_ok'));
   addmenu(win,'Cancel',list(2,'menu_cancel'));
-  delmenu(win,"?")
-  delmenu(win,_("Edit"))
-  delmenu(win,_("Tools"))  
-  delmenu(win,_("File"))
+  delmenu(win,"&?")
+  delmenu(win,_("&Edit"))
+  delmenu(win,_("&Tools"))  
+  delmenu(win,_("&File"))
   toolbar(win,'off')
   x=2;
   red=addcolor([1 0 0]);
