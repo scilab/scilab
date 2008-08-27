@@ -40,7 +40,7 @@
 	#define __InitLock(lockName)					(*(lockName)=CreateMutex(NULL,FALSE,NULL))
 
 	#define __Lock(lockName)						WaitForSingleObject(*lockName,INFINITE)
-	
+
 	#define __UnLock(lockName)						ReleaseMutex(*lockName)
 
 	#define __InitSignal(signalName)				(*signalName=CreateEvent(NULL,FALSE,FALSE,NULL))
@@ -62,11 +62,17 @@ typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
 typedef pthread_mutex_t __threadSignalLock;
 typedef pthread_cond_t __threadSignal;
-#define __InitLock(lockName)		pthread_mutex_init(lockName, NULL)
+#define __InitLock(lockName)			pthread_mutex_init(lockName, NULL)
 
 #define __Lock(lockName)			pthread_mutex_lock(lockName)
 
 #define __UnLock(lockName)			pthread_mutex_unlock(lockName)
+
+#define __InitSignalLock(lockName)			pthread_mutex_init(lockName, NULL)
+
+#define __LockSignal(lockName)			pthread_mutex_lock(lockName)
+
+#define __UnLockSignal(lockName)		pthread_mutex_unlock(lockName)
 
 #define __InitSignal(signalName)		pthread_cond_init(signalName, NULL)
 
