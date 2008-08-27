@@ -81,6 +81,17 @@ libsciumfpack_la_includedir=$(pkgincludedir)/umfpack
 libsciumfpack_la_include_HEADERS = includes/gw_umfpack.h \
 includes/with_umfpack.h
 
+libsciumfpack_la_examplesdir=$(mydatadir)
+libsciumfpack_la_examples_DATA = examples/bench.txt \
+examples/scisptdem2.dem \
+examples/bcsstk24.rsa \
+examples/arc130.rua \
+examples/young1c.csa \
+examples/scisptdem1.dem \
+examples/scisptdem3.dem \
+examples/ex14.rua
+
+
 else
 
 UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c

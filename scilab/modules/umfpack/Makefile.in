@@ -94,6 +94,7 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciumfpack_la_etcdir)" \
+	"$(DESTDIR)$(libsciumfpack_la_examplesdir)" \
 	"$(DESTDIR)$(libsciumfpack_la_rootdir)" \
 	"$(DESTDIR)$(libsciumfpack_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciumfpack_la_includedir)"
@@ -158,9 +159,11 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libsciumfpack_la_SOURCES)
 DIST_SOURCES = $(am__libsciumfpack_la_SOURCES_DIST)
 libsciumfpack_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciumfpack_la_examplesDATA_INSTALL = $(INSTALL_DATA)
 libsciumfpack_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsciumfpack_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsciumfpack_la_etc_DATA) $(libsciumfpack_la_root_DATA) \
+DATA = $(libsciumfpack_la_etc_DATA) $(libsciumfpack_la_examples_DATA) \
+	$(libsciumfpack_la_root_DATA) \
 	$(libsciumfpack_la_sci_gateway_DATA)
 am__libsciumfpack_la_include_HEADERS_DIST = includes/gw_umfpack.h \
 	includes/with_umfpack.h
@@ -422,6 +425,16 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@libsciumfpack_la_includedir = $(pkgincludedir)/umfpack
 @UMFPACK_TRUE@libsciumfpack_la_include_HEADERS = includes/gw_umfpack.h \
 @UMFPACK_TRUE@includes/with_umfpack.h
+
+@UMFPACK_TRUE@libsciumfpack_la_examplesdir = $(mydatadir)
+@UMFPACK_TRUE@libsciumfpack_la_examples_DATA = examples/bench.txt \
+@UMFPACK_TRUE@examples/scisptdem2.dem \
+@UMFPACK_TRUE@examples/bcsstk24.rsa \
+@UMFPACK_TRUE@examples/arc130.rua \
+@UMFPACK_TRUE@examples/young1c.csa \
+@UMFPACK_TRUE@examples/scisptdem1.dem \
+@UMFPACK_TRUE@examples/scisptdem3.dem \
+@UMFPACK_TRUE@examples/ex14.rua
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -722,6 +735,23 @@ uninstall-libsciumfpack_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsciumfpack_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsciumfpack_la_etcdir)/$$f"; \
 	done
+install-libsciumfpack_la_examplesDATA: $(libsciumfpack_la_examples_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciumfpack_la_examplesdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciumfpack_la_examplesdir)"
+	@list='$(libsciumfpack_la_examples_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciumfpack_la_examplesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciumfpack_la_examplesdir)/$$f'"; \
+	  $(libsciumfpack_la_examplesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciumfpack_la_examplesdir)/$$f"; \
+	done
+
+uninstall-libsciumfpack_la_examplesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciumfpack_la_examples_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciumfpack_la_examplesdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciumfpack_la_examplesdir)/$$f"; \
+	done
 install-libsciumfpack_la_rootDATA: $(libsciumfpack_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciumfpack_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciumfpack_la_rootdir)"
@@ -852,7 +882,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciumfpack_la_etcdir)" "$(DESTDIR)$(libsciumfpack_la_rootdir)" "$(DESTDIR)$(libsciumfpack_la_sci_gatewaydir)" "$(DESTDIR)$(libsciumfpack_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciumfpack_la_etcdir)" "$(DESTDIR)$(libsciumfpack_la_examplesdir)" "$(DESTDIR)$(libsciumfpack_la_rootdir)" "$(DESTDIR)$(libsciumfpack_la_sci_gatewaydir)" "$(DESTDIR)$(libsciumfpack_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -901,6 +931,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciumfpack_la_etcDATA \
+	install-libsciumfpack_la_examplesDATA \
 	install-libsciumfpack_la_includeHEADERS \
 	install-libsciumfpack_la_rootDATA \
 	install-libsciumfpack_la_sci_gatewayDATA
@@ -942,6 +973,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsciumfpack_la_etcDATA \
+	uninstall-libsciumfpack_la_examplesDATA \
 	uninstall-libsciumfpack_la_includeHEADERS \
 	uninstall-libsciumfpack_la_rootDATA \
 	uninstall-libsciumfpack_la_sci_gatewayDATA \
@@ -958,6 +990,7 @@ uninstall-am: uninstall-libsciumfpack_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libsciumfpack_la_etcDATA \
+	install-libsciumfpack_la_examplesDATA \
 	install-libsciumfpack_la_includeHEADERS \
 	install-libsciumfpack_la_rootDATA \
 	install-libsciumfpack_la_sci_gatewayDATA install-man \
@@ -967,6 +1000,7 @@ uninstall-am: uninstall-libsciumfpack_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libsciumfpack_la_etcDATA \
+	uninstall-libsciumfpack_la_examplesDATA \
 	uninstall-libsciumfpack_la_includeHEADERS \
 	uninstall-libsciumfpack_la_rootDATA \
 	uninstall-libsciumfpack_la_sci_gatewayDATA \

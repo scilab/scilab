@@ -1,0 +1,5 @@
+// display the file bench.txt
+
+txt = read(DIR_SCISPT_DEM+"bench.txt",-1,1,"(A)");
+x_message(txt)
+
