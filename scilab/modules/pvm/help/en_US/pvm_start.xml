@@ -76,6 +76,8 @@ pvm_start()
     ]]></programlisting>
     <para>
     Error -28 means: pvm_start_pvmd(): Duplicate host</para>
+    <para>
+    Error -1 means: missing environment variables.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
