@@ -100,7 +100,7 @@ e.box = 'on' ;
 // get its bounding box
 stringbox( e )
 // or
-rect = stringbox( str, 4, 9, 90, 6, 5 )
+rect = stringbox( str, 4, 9, 90, 7, 6 )
 
 // click and find if the text was hit
 hit = xclick()  ;

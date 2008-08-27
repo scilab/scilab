@@ -186,6 +186,12 @@ protected:
   void printSingleObjs(std::list<sciPointObj *>& pObjs);
 
   /**
+   * Place the camera and update coordinates transformation
+   */
+  void placeCamera(void);
+
+
+  /**
    * Return the real type of implementation object
    */
   DrawableSubwinBridge * getSubwinImp( void ) ;
@@ -194,6 +200,9 @@ protected:
   /*-----------------------------------------------------------------------------*/
   /** Camera used to visualize this axes */
   Camera * m_pCamera;
+
+  /** To know if coordinate transformations should be updated */
+  bool m_bNeedCoordUpdate;
   /*-----------------------------------------------------------------------------*/
 
 

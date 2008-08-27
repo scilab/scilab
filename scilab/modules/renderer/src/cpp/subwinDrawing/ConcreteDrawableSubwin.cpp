@@ -221,14 +221,16 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::updateScale(void)
 {
+
+  if (!m_bNeedCoordUpdate) {
+    // no need to update
+    return;
+  }
+
   sciPointObj * parentFigure = sciGetParentFigure(m_pDrawed);
   BOOL visible = sciGetVisibility(m_pDrawed);
   int pixelMode = sciGetXorMode(parentFigure);
 
-  if (!m_bNeedRedraw && !m_bNeedDraw) {
-    // no need to update
-    return;
-  }
 
   // update the data by just calling
   // display on the invisible window

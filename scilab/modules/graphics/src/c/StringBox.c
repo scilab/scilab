@@ -41,6 +41,9 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
   int defaultColor = 0; /* color does not matter */
   sciPointObj * pText = NULL;
 
+  /* Update subwin scale if needed */
+  updateSubwinScale(parentSubwin);
+
   startFigureDataWriting(parentFigure);
   
   pText = allocateText(parentSubwin,
