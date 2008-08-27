@@ -8,18 +8,31 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-mode(-1)
-mes=x_message(['Start PVM daemon if not already active'
-           'ok=pvm_start()'
-	   'if ok<>0 then disp(''PVM daemon already active''),end'],..
+mode(-1);
+lines(0);
+mes=x_message(["Start PVM daemon if not already active"
+           "ok=pvm_start()"
+	   "if ok==-28 then"
+	   "  disp(""PVM daemon already active."")"
+	   "end"
+	   "if ok==-1 then"
+	   "  disp(""Could not start PVM, check your environment variables."")"
+	   "  return"
+	   "end"],..
            ['Ok','Cancel'])
 if mes==2 then return, end
 ok=pvm_start()       
-if ok<>0 then disp('PVM daemon already active'),end;
+if ok==-28 then
+  disp("PVM daemon already active.")
+end
+if ok==-1 then 
+  disp("Could not start PVM, check your environment variables.")
+  return
+end
 
 mes=x_message(['Start another Scilab process under PVM with the following instruction:';
            ' '
-	   '[task_id,numt] = pvm_spawn(SCI+''/modules/pvm/demos/script.sce'',1)'
+	   "[task_id,numt] = pvm_spawn(SCI+''/modules/pvm/demos/script.sce'',1,"""",""."")"
 	   ' '
 	   'SCI+''/modules/pvm/demos/script.sce'' file is: '
 	   '======================================='
@@ -27,7 +40,7 @@ mes=x_message(['Start another Scilab process under PVM with the following instru
            ['Ok','Cancel'])
 if mes==2 then return, end   
 
-[task_id,numt] = pvm_spawn(SCI+'/modules/pvm/demos/script.sce',1)
+[task_id,numt] = pvm_spawn(SCI+'/modules/pvm/demos/script.sce',1,"",".")
 if numt<0 then
   x_message(['pvm_spawn aborts to create a new process'])
   return
@@ -82,4 +95,3 @@ v=pvm_recv(task_id,0);disp(v)
 pvm_send(task_id,'exit',0)
 x_message(['Job finished'])
 pvm_halt()
-//pvm_kill(task_id)
