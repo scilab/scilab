@@ -46,7 +46,8 @@ if flag then
  //General matrix
 r=and(imag(a)==0)
 a=a+0*%i;   //Set complex
-[s,u,bs]=bdiag(a);
+rmax=max(norm(a,1),1/sqrt(%eps))
+[s,u,bs]=bdiag(a,rmax);
   if maxi(bs)>1 then
     error(msprintf(gettext("%s: Unable to diagonalize.\n"),"logm"));
     return
