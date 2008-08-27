@@ -7,18 +7,18 @@
 //
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case
-//   in the case where the cost function is provided as a Fortran 
+//   in the case where the cost function is provided as a Fortran
 //   routine and use the "in" option.
 //
 //   Note : the following source code was copied from optimization/sci_gateway/fortran/Ex-optim.f
 //   Thus, the "genros" function from Ex-optim.f is not needed anymore.
 //
-// 
+//
 // Define a fortran source code and compile it (fortran compiler required)
 //
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'C     -------------------------------------------'
-'c (DLL Digital Visual Fortran)'     
+'c (DLL Digital Visual Fortran)'
 'c On Windows , we need to import common nird from scilab'
 'cDEC$ IF DEFINED (FORDLL)'
 'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
@@ -72,8 +72,15 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 mputl(fortransource,TMPDIR+'/rosenf.f')
 // compile the C code
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+   Generate a loader file
+   Generate a Makefile
+   Running the Makefile
+   Compilation of rosenf
+   Building shared library (be patient)
 // incremental linking
 linkid=link(libpath,'rosenf','f');
+Shared archive loaded.
+Link done.
 //
 // Define some constants
 //
@@ -87,74 +94,70 @@ xopt=.1*bs;
 // Solve the problem
 //
 [f,x,g]=optim('rosenf',x0,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'gc','in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 //
-
 [f,x,g]=optim('rosenf',x0,'nd','in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
-
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'qn',1,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'gc',1,50,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 //
 [f,x,g]=optim('rosenf',x0,'nd',1,50,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
-
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x1,g]  =optim('rosenf',x0,   'ar',100,6,'in');
 [f,x,g,to]=optim('rosenf',x0,   'ar',100,3,'in');
 [f,x,g,to]=optim('rosenf',x ,to,'ar',100,3,'in');
-if norm(x-x1)/norm(x-xopt) > 0.1 then  pause,end
+if norm(x-x1)/norm(x-xopt) > 0.1 then  bugmes();quit;end
 [f,x1,g]=optim('rosenf','b',bi,bs,x0,'ar',100,6,'in');
 [f,x,g,to]=optim('rosenf','b',bi,bs,x0,'ar',100,3,'in');
 [f,x,g]   =optim('rosenf','b',bi,bs,x,to,'ar',100,3,'in');
-if norm(x-x1)/norm(x-xopt) > 0.1 then  pause,end
-// 
-// Test all possible stop criteria settings 
+if norm(x-x1)/norm(x-xopt) > 0.1 then  bugmes();quit;end
+//
+// Test all possible stop criteria settings
 //
 [f,x,g]=optim('rosenf',x0,'ar','in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'ar',100,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'ar',100,100,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'ar',100,100,%eps,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'ar',100,100,%eps,%eps,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'ar',100,100,10.*%eps,%eps,epsx,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'gc','ar',100,100,%eps,%eps,epsx,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 //
 [f,x,g]=optim('rosenf','b',bi,bs,x0,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf','b',bi,bs,x0,'gc','in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x]=optim('rosenf','b',bi,bs,x0,'ar',100,100,1.d-8,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',..
    'b',bi,bs,x0,'gc','ar',100,100,%eps,%eps,epsx,'in');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g,to,td]=optim('rosenf',x0,'in','sd');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g,ti]=optim('rosenf',x0,'gc','in','si');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g,to,ti,td]=optim('rosenf',x0,to,'in','si','sd');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g,td]=optim('rosenf',..
    'b',bi,bs,x0,'gc','ar',100,100,%eps,%eps,epsx,'in','sd');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g,ti]=optim('rosenf',x0,'gc','ar',100,100,%eps,'in','si');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g,ti,td]=optim('rosenf',..
     x0,'gc','ar',100,100,%eps,'in','si','sd');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g,ti,td]=optim('rosenf',..
     x0,'gc','ar',100,100,%eps,'in','ti',ti,'td',td,'si','sd');
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 // Clean-up
 ulink(linkid)
-
