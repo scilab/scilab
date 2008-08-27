@@ -265,7 +265,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 			 * $SCI/.pvmd.conf 
 			 * if both files are not found, let pvmd does his work
 			 */ 
-			if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
+			if (!argc && (rd = getenv("HOME"))){
 				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
 					(void) fprintf(stderr, _("Error MALLOC in pvm_error\n"));
 					*res = PvmNoMem;
@@ -278,27 +278,47 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 					argv[0] = path;
 					sciprint_nd(_("The configuration file %s is used.\n"), path);
 				} else {
+                                  ro = getenv("PVM_ROOT");
+                                  if (ro != NULL)
+                                    {
 					sciprint_nd(_("Warning: PVM_ROOT is set to %s\n"),ro);
 					sciprint_nd(_("but there exists no configuration file:\n"));
 					sciprint_nd("%s\n", path);
 					FREE(path);
+                                    }
+                                  else
+                                    {
+					sciprint_nd(_("Warning: PVM_ROOT is not set.\n"),ro);
+                                    }
 				}
 			} /* PVM_ROOT + HOME */
 			if (!argc && (rd = getSCIpath())){
-				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
+				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_MODULE)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
 					(void) fprintf(stderr, _("%s: No more memory.\n"),"pvm_start");
 					*res = PvmNoMem;
 					return;
 				}
 				strcpy(path, rd);
+				strcat(path, PVM_MODULE); 
 				strcat(path, PVM_CONFIG_FILE); 
-				if (stat(path, &buf) == 0){
-					sciprint_nd(_("The standard configuration file $SCI%s will be used.\nWith SCI=%s\nSCI will have to be set on remote hosts\nin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
-					argc = 1;
-					argv[0] = path;
-				} else {
-					FREE(path);
-					sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\nWe supposed that PVM and scilab are in standard place on your net\n (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
+				if (stat(path, &buf) == 0)
+                                  {
+                                    sciprint_nd(_("The standard configuration file $SCI%s will be used.\nWith SCI=%s\nSCI will have to be set on remote hosts\nin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
+                                    /* Standard Scilab configuration file needs env variables PVM_ROOT, SCI, PVM_ARCH */
+                                    /* If they are not set then return */
+                                    if (getenv("PVM_ROOT") == NULL || getenv("PVM_ARCH") == NULL || getenv("SCI"))
+                                      {
+                                        sciprint_nd(_("The standard configuration file $SCI%s%s needs the environment variables %s, %s, %s to be set. PVM can not be started.\n"),PVM_MODULE, PVM_CONFIG_FILE, "PVM_ROOT", "PVM_ARCH", "SCI");
+                                        *res = -1;
+                                        return;
+                                      }
+                                    argc = 1;
+                                    argv[0] = path;
+                                  } 
+                                else
+                                  {
+                                    FREE(path);
+                                    sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\nWe supposed that PVM and scilab are in standard place on your net\n (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
 				}
 			} /* SCI */
 		} else {
@@ -310,6 +330,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 			}
 		}
 	*res = pvm_start_pvmd(argc, argv, block);
+
 } 
 
 
@@ -412,11 +433,20 @@ void C2F(scipvmspawn)(char *task,  int *l1, char *win,   int *l2, char *where, i
   arg[++nargs]=NULL;
   /* 
   sciprint("cmd=[%s]\n",cmd) ;
-  nargs = 0; 
-  for ( i = 0 ; arg[i] != NULL ; i++) 
+  nargs = 0;
+  int i = 0;
+  for (i = 0 ; arg[i] != NULL ; i++) 
     sciprint("arg %d =[%s]\n",i,arg[i]) ;
+  sciprint("flag = %d\n", flag);
+  sciprint("where = %s\n", where);
+  sciprint("*ntask = %d\n", *ntask);
   */
   *res = pvm_spawn(cmd, arg, flag, where, *ntask, taskId);
+  /* res: A positive value less than ntask indicates a partial failure. In this case the user should check the tids array for the error code(s). */
+  if (*res < *ntask)
+    {
+      (void) fprintf(stderr,_("%s: Error while creating processes: %s.\n"), "scipvmspawn", scipvm_error_msg(taskId[0]));
+    }
 }
 
 /*------------------------------------------------------------------------

@@ -21,6 +21,7 @@
 #include "stack-c.h"
 
 #define PVM_CONFIG_FILE "/.pvmd.conf"
+#define PVM_MODULE "/modules/pvm/etc"
 
 /**
  * TODO: Add comments
