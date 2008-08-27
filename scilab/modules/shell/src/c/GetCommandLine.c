@@ -9,6 +9,7 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include <string.h>
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
@@ -41,12 +42,13 @@ static char * __CommandLine;
 
 /*--------------------------------------------------------------------------*/
 
-IMPORT_SIGNAL __threadSignal	LaunchScilab;
-IMPORT_SIGNAL __threadLock	LaunchScilabLock;
+IMPORT_SIGNAL __threadSignal		LaunchScilab;
+IMPORT_SIGNAL __threadSignalLock	LaunchScilabLock;
 
+static __threadLock		SingleTimeToWork;
 static __threadSignal	TimeToWork;
 
-static __threadLock ReadyForLaunch;
+static __threadSignalLock ReadyForLaunch;
 
 static BOOL WatchStoreCmdThreadAlive = FALSE;
 static __threadId WatchStoreCmdThread;
@@ -97,7 +99,7 @@ static void getCommandLine(void)
 static void initAll(void) {
   initialized = TRUE;
   __InitSignal(&TimeToWork);
-  __InitLock(&ReadyForLaunch);
+  __InitSignalLock(&ReadyForLaunch);
 }
 
 
@@ -107,14 +109,15 @@ static void initAll(void) {
 ** sent when StoreCommand is performed.
 */
 static void *watchStoreCommand(void *in) {
-  __UnLock(&LaunchScilabLock);
+  __LockSignal(&LaunchScilabLock);
   __Wait(&LaunchScilab, &LaunchScilabLock);
+  __UnLockSignal(&LaunchScilabLock);
 
-
-  __Lock(&ReadyForLaunch);
+  __Lock(&SingleTimeToWork);
+  __LockSignal(&ReadyForLaunch);
   WatchStoreCmdThreadAlive=FALSE;
   __Signal(&TimeToWork);
-  __UnLock(&ReadyForLaunch);
+  __UnLockSignal(&ReadyForLaunch);
 
   return NULL;
 }
@@ -127,10 +130,12 @@ static void *watchStoreCommand(void *in) {
 */
 static void *watchGetCommandLine(void *in) {
   getCommandLine();
-  __Lock(&ReadyForLaunch);
+
+  __Lock(&SingleTimeToWork);
+  __LockSignal(&ReadyForLaunch);
   WatchGetCmdLineThreadAlive = FALSE;
   __Signal(&TimeToWork);
-  __UnLock(&ReadyForLaunch);
+  __UnLockSignal(&ReadyForLaunch);
 
    return NULL;
 
@@ -149,7 +154,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
       initAll();
     }
 
-  __Lock(&ReadyForLaunch);
+  __LockSignal(&ReadyForLaunch);
   __CommandLine = strdup("");
 
   if (ismenu() == 0) {
@@ -171,9 +176,10 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
       }
 
     __Wait(&TimeToWork, &ReadyForLaunch);
+	__UnLock(&SingleTimeToWork);
 
   }
-  __UnLock(&ReadyForLaunch);
+  __UnLockSignal(&ReadyForLaunch);
 
   /*
   ** WARNING : Old crappy f.... code
