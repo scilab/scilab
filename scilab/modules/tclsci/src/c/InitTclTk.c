@@ -37,7 +37,7 @@ in order to wait it ends when closing Scilab */
 __threadId TclThread;
 
 __threadSignal InterpReady;
-__threadLock InterpReadyLock;
+__threadSignalLock InterpReadyLock;
 
 
 /*--------------------------------------------------------------------------*/
@@ -159,9 +159,10 @@ static void *DaemonOpenTCLsci(void* in)
 
 	if (SciPath) {FREE(SciPath);SciPath=NULL;}
 
+	__LockSignal(&InterpReadyLock);
 	// Signal TclInterpreter init is now over.
 	__Signal(&InterpReady);
-	__UnLock(&InterpReadyLock);
+	__UnLockSignal(&InterpReadyLock);
 
 	// This start a periodic and endless call to "update"
 	// TCL command. This causes any TCL application to start
@@ -173,14 +174,18 @@ static void *DaemonOpenTCLsci(void* in)
 /*--------------------------------------------------------------------------*/
 int OpenTCLsci(void)
 {
+	__InitSignalLock(&InterpReadyLock);
 	__InitSignal(&InterpReady);
 	// Open TCL interpreter in a separated thread.
 	// Allows all Tcl application not to freeze nor decrease Scilab speed.
 	// Causes also Scilab let those application live their own lifes.
 
+
 	__CreateThread(&TclThread, &DaemonOpenTCLsci);
 	// Wait to be sure initialisation is complete.
+	__LockSignal(&InterpReadyLock);
 	__Wait(&InterpReady, &InterpReadyLock);
+	__UnLockSignal(&InterpReadyLock);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
