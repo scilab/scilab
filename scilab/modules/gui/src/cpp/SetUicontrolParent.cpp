@@ -81,8 +81,8 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
                     {
                       oldParentFigure = sciGetParent(oldParentFigure);
                     }
-                  parentFigureIndex = sciGetNum(oldParentFigure);
                 }
+              parentFigureIndex = sciGetNum(oldParentFigure);
 
               sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
 
