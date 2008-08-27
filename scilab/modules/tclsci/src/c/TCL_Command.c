@@ -39,13 +39,13 @@ __threadLock		singleExecutionLock;
 
 // Wake Up
 __threadSignal		wakeUp;
-__threadLock		wakeUpLock;
+__threadSignalLock	wakeUpLock;
 
 // Work is done
 __threadSignal		workIsDone;
 
 // Launch command
-__threadLock		launchCommand;
+__threadSignalLock	launchCommand;
 
 // ***********************
 // ** Enable LocalDebug **
@@ -72,9 +72,9 @@ static void *sleepAndSignal(void* in) {
     //fflush(NULL);
 #endif
     usleep(TIME_TO_SLEEP);
-    __Lock(&wakeUpLock);
+    __LockSignal(&wakeUpLock);
     __Signal(&wakeUp);
-    __UnLock(&wakeUpLock);
+    __UnLockSignal(&wakeUpLock);
   }
   return NULL;
 }
@@ -125,9 +125,9 @@ void startTclLoop()
   __InitLock(&singleExecutionLock);
 
   __InitSignal(&wakeUp);
-  __InitLock(&wakeUpLock);
+  __InitSignalLock(&wakeUpLock);
   __InitSignal(&workIsDone);
-  __InitLock(&launchCommand);
+  __InitSignalLock(&launchCommand);
 
   __CreateThread(&sleepThreadId, sleepAndSignal);
 
@@ -154,7 +154,7 @@ void startTclLoop()
 	printf("[LOCK] launch Command\n");
 	fflush(NULL);
 #endif
-	__Lock(&launchCommand);
+	__LockSignal(&launchCommand);
 
 	/* Reinit local interpreter,
 	   default is the biggest one. */
@@ -199,7 +199,7 @@ void startTclLoop()
 	Tcl_Eval(getTclInterp(), "update");
 	releaseTclInterp();
 	__Signal(&workIsDone);
-	__UnLock(&launchCommand);
+	__UnLockSignal(&launchCommand);
       }
     /*
     ** -= ELSE =-
@@ -208,7 +208,7 @@ void startTclLoop()
     */
     else
       {
-	__Lock(&wakeUpLock);
+	__LockSignal(&wakeUpLock);
 	Tcl_Eval(getTclInterp(), "update");
 	releaseTclInterp();
 #ifdef __LOCAL_DEBUG__
@@ -216,7 +216,7 @@ void startTclLoop()
 	//fflush(NULL);
 #endif
 	__Wait(&wakeUp, &wakeUpLock);
-	__UnLock(&wakeUpLock);
+	__UnLockSignal(&wakeUpLock);
       }
   }
   /* TK is stopped... Kill interpreter. */
@@ -237,7 +237,7 @@ int sendTclFileToSlave(char* file, char* slave)
 #endif
   __Lock(&singleExecutionLock);
   {
-    __Lock(&launchCommand);
+    __LockSignal(&launchCommand);
     TclFile = strdup(file);
     if (slave != NULL)
       {
@@ -247,9 +247,9 @@ int sendTclFileToSlave(char* file, char* slave)
       {
 	TclSlave = NULL;
       }
-    __Lock(&wakeUpLock);
+    __LockSignal(&wakeUpLock);
     __Signal(&wakeUp);
-    __UnLock(&wakeUpLock);
+    __UnLockSignal(&wakeUpLock);
 #ifdef __LOCAL_DEBUG__
     printf("[TCL Main] Wait EXECUTION DONE\n");
     fflush(NULL);
@@ -259,7 +259,7 @@ int sendTclFileToSlave(char* file, char* slave)
     printf("[TCL SendFile] DONE\n");
     fflush(NULL);
 #endif
-    __UnLock(&launchCommand);
+    __UnLockSignal(&launchCommand);
   }
   __UnLock(&singleExecutionLock);
   return getTclCommandReturn();
@@ -276,63 +276,64 @@ int sendTclCommandToSlave(char* command, char* slave)
   ** Shortcut for evaluation if there is some file evaluation
   ** in progress.
   */
-  if (!FileEvaluationInProgress && !CommandEvaluationInProgress)
-    {
+	if (!FileEvaluationInProgress && !CommandEvaluationInProgress)
+	{
 #ifdef __LOCAL_DEBUG__
-      printf("[TCL %s Send] Eval : %s\n", slave, command);
-      fflush(NULL);
+		printf("[TCL %s Send] Eval : %s\n", slave, command);
+		fflush(NULL);
 #endif
-      CommandEvaluationInProgress = TRUE;
-     __Lock(&singleExecutionLock);
-      {
-	__Lock(&launchCommand);
-	TclCommand = strdup(command);
-	if (slave != NULL)
-	  {
-	    TclSlave = strdup(slave);
-	  }
+
+		CommandEvaluationInProgress = TRUE;
+		__Lock(&singleExecutionLock);
+
+		__LockSignal(&launchCommand);
+		TclCommand = strdup(command);
+		if (slave != NULL)
+		{
+			TclSlave = strdup(slave);
+		}
+		else
+		{
+			TclSlave = NULL;
+		}
+		__LockSignal(&wakeUpLock);
+		__Signal(&wakeUp);
+		__UnLockSignal(&wakeUpLock);
+
+#ifdef __LOCAL_DEBUG__
+		printf("[TCL Main]Wait EXECUTION DONE\n");
+		fflush(NULL);
+#endif
+		__Wait(&workIsDone, &launchCommand);
+#ifdef __LOCAL_DEBUG__
+		printf("[TCL Send] DONE\n");
+		fflush(NULL);
+#endif
+		__UnLockSignal(&launchCommand);
+		__UnLock(&singleExecutionLock);
+		CommandEvaluationInProgress = FALSE;
+		return getTclCommandReturn();
+	}
 	else
-	  {
-	    TclSlave = NULL;
-	  }
-	__Lock(&wakeUpLock);
-	__Signal(&wakeUp);
-	__UnLock(&wakeUpLock);
+	{
 #ifdef __LOCAL_DEBUG__
-	printf("[TCL Main]Wait EXECUTION DONE\n");
-	fflush(NULL);
+		printf("[TCL %s Send] Eval : %s -- Shortcut\n", slave, command);
+		fflush(NULL);
 #endif
-	__Wait(&workIsDone, &launchCommand);
-#ifdef __LOCAL_DEBUG__
-	printf("[TCL Send] DONE\n");
-	fflush(NULL);
-#endif
-	__UnLock(&launchCommand);
-      }
-      __UnLock(&singleExecutionLock);
-      CommandEvaluationInProgress = FALSE;
-      return getTclCommandReturn();
-    }
-  else
-    {
-#ifdef __LOCAL_DEBUG__
-      printf("[TCL %s Send] Eval : %s -- Shortcut\n", slave, command);
-      fflush(NULL);
-#endif
-     /*
-      ** File Evaluation in progress
-      */
-      	TclCommand = strdup(command);
-	if (slave != NULL)
-	  {
-	    TclSlave = strdup(slave);
-	  }
-	else
-	  {
-	    TclSlave = NULL;
-	  }
-	evaluateTclCommand();
-    }
+		/*
+		** File Evaluation in progress
+		*/
+		TclCommand = strdup(command);
+		if (slave != NULL)
+		{
+			TclSlave = strdup(slave);
+		}
+		else
+		{
+			TclSlave = NULL;
+		}
+		evaluateTclCommand();
+	}
 }
 
 
@@ -343,11 +344,13 @@ int sendTclCommandToSlave(char* command, char* slave)
 */
 int getTclCommandReturn(void)
 {
+  int commandResult = TclInterpReturn;
+
 #ifdef __LOCAL_DEBUG__
   printf("[TCL getTclCommandReturn]\n");
   fflush(NULL);
 #endif
-  int commandResult = TclInterpReturn;
+
   TclInterpReturn = 0;
   return commandResult;
 }
