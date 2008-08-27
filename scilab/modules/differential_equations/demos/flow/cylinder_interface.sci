@@ -587,16 +587,17 @@ function start_simu()
   
   t              = 0:0.01:10; //1001 track points
 
-  x     = -0.9+slider_x.Value*1.8/100
-  y     = slider_y.value*3/100
-  V     = slider_speed.Value*2/100
-  Vdir  = slider_dir.value*360/100
-  slope = slider_slope.Value*70/100
+  x       = -0.9+slider_x.Value*1.8/100
+  y       = slider_y.value*3/100
+  V       = slider_speed.Value*2/100
+  Vdir    = slider_dir.value*360/100
+  slope   = slider_slope.Value*70/100
+  gravity = slider_g.Value*360/10
   Y = calculate_traj(x,y,V,Vdir,t,gravity,slope)
   x = Y(1,:)
   y = Y(3,:)
   r = 0.1; //bias to have the curve above the surface
-  a  = -tan(g_pente/180*%pi);
+  a  = -tan(slope/180*%pi);
   z = -sqrt(1-x^2)+a*y+r;
   my_figure_handle = scf(100001);
   curAxe = gca();
