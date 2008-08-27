@@ -5,7 +5,18 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-  list_item = ["rouge"  "vert"  "tomate"  "chevre" "Truc"];
+
+function add_list_item()
+  if e1<>0&l1<>0 then
+  new = get(e1,'String')
+  list_item = [list_item  new];
+  set(l1,'String',strcat(list_item,'|'));
+  list_item=resume(list_item)
+  end
+endfunction
+
+
+list_item = ["rouge"  "vert"  "tomate"  "chevre" "Truc"];
   e1=0;l1 =0
   initial=strcat(list_item,'|')
 
@@ -94,14 +105,3 @@
     end
   end
   close(f)
-
-
-
-function add_list_item()
-  if e1<>0&l1<>0 then
-  new = get(e1,'String')
-  list_item = [list_item  new];
-  set(l1,'String',strcat(list_item,'|'));
-  list_item=resume(list_item)
-  end
-endfunction
