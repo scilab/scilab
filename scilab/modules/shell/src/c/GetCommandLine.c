@@ -9,7 +9,6 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <stdio.h>
 #include <string.h>
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
@@ -45,7 +44,6 @@ static char * __CommandLine;
 IMPORT_SIGNAL __threadSignal		LaunchScilab;
 IMPORT_SIGNAL __threadSignalLock	LaunchScilabLock;
 
-static __threadLock		SingleTimeToWork;
 static __threadSignal	TimeToWork;
 
 static __threadSignalLock ReadyForLaunch;
@@ -113,7 +111,6 @@ static void *watchStoreCommand(void *in) {
   __Wait(&LaunchScilab, &LaunchScilabLock);
   __UnLockSignal(&LaunchScilabLock);
 
-  __Lock(&SingleTimeToWork);
   __LockSignal(&ReadyForLaunch);
   WatchStoreCmdThreadAlive=FALSE;
   __Signal(&TimeToWork);
@@ -131,13 +128,12 @@ static void *watchStoreCommand(void *in) {
 static void *watchGetCommandLine(void *in) {
   getCommandLine();
 
-  __Lock(&SingleTimeToWork);
   __LockSignal(&ReadyForLaunch);
   WatchGetCmdLineThreadAlive = FALSE;
   __Signal(&TimeToWork);
   __UnLockSignal(&ReadyForLaunch);
 
-   return NULL;
+  return NULL;
 
 }
 
@@ -157,28 +153,27 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   __LockSignal(&ReadyForLaunch);
   __CommandLine = strdup("");
 
-  if (ismenu() == 0) {
-    if (!WatchGetCmdLineThreadAlive)
-      {
-	if (WatchGetCmdLineThread) {
-	  __WaitThreadDie(WatchGetCmdLineThread);
+  if (ismenu() == 0)
+    {
+      if (!WatchGetCmdLineThreadAlive)
+	{
+	  if (WatchGetCmdLineThread) {
+	    __WaitThreadDie(WatchGetCmdLineThread);
+	  }
+	  __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
+	  WatchGetCmdLineThreadAlive = TRUE;
 	}
-	__CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
-	WatchGetCmdLineThreadAlive = TRUE;
-      }
-    if (!WatchStoreCmdThreadAlive)
-      {
-	if (WatchStoreCmdThread) {
-	  __WaitThreadDie(WatchStoreCmdThread);
+      if (!WatchStoreCmdThreadAlive)
+	{
+	  if (WatchStoreCmdThread) {
+	    __WaitThreadDie(WatchStoreCmdThread);
+	  }
+	  __CreateThread(&WatchStoreCmdThread, &watchStoreCommand);
+	  WatchStoreCmdThreadAlive = TRUE;
 	}
-	__CreateThread(&WatchStoreCmdThread, &watchStoreCommand);
-	WatchStoreCmdThreadAlive = TRUE;
-      }
 
-    __Wait(&TimeToWork, &ReadyForLaunch);
-	__UnLock(&SingleTimeToWork);
-
-  }
+      __Wait(&TimeToWork, &ReadyForLaunch);
+    }
   __UnLockSignal(&ReadyForLaunch);
 
   /*
