@@ -17,6 +17,8 @@ extern "C"
 #include "DestroyUicontrol.h"
 #include "DestroyObjects.h"
 #include "MALLOC.h" /* MALLOC */
+#include "GetProperty.h"
+#include "GraphicSynchronizerInterface.h"
 }
 /**
  * DestroyUicontrol
@@ -27,7 +29,9 @@ extern "C"
 int  DestroyUicontrol (sciPointObj * pthis)
 {
   /* Destroy Java object */
+  disableFigureSynchronization(sciGetParentFigure(pthis));
   DestroyJavaUiobject(pthis);
+  enableFigureSynchronization(sciGetParentFigure(pthis));
 
   if  (pUICONTROL_FEATURE (pthis)->backgroundcolor != NULL)
     {

@@ -37,9 +37,9 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
 
   /* disable protection since this function will call Java */
-  endFigureDataWriting(pobj);
+  disableFigureSynchronization(pobj);
   status = sciSetInfoMessage( pobj, getStringFromStack( stackPointer ) ) ;
-  startFigureDataWriting(pobj);
+  enableFigureSynchronization(pobj);
 
   return status;
 }

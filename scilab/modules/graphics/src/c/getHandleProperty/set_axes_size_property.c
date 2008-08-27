@@ -47,9 +47,9 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   }
 
   /* disable protection since this function will call Java */
-  endFigureDataWriting(pobj);
+  disableFigureSynchronization(pobj);
   status = sciSetDimension(pobj, (int) newWindowSize[0], (int) newWindowSize[1] ) ;
-  startFigureDataWriting(pobj);
+  enableFigureSynchronization(pobj);
 
   if (status == SET_PROPERTY_ERROR)
   {

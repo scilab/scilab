@@ -59,9 +59,9 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   /* force auto_resize. With auto_resize disable, resize does not work */
 
   /* disable protection since this function will call Java */
-  endFigureDataWriting(pobj);
+  disableFigureSynchronization(pobj);
   status = sciSetViewport(pobj, values);
-  startFigureDataWriting(pobj);
+  enableFigureSynchronization(pobj);
 
   return status;
 }

@@ -52,9 +52,9 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
   }
 
   /* disable protection since this function will call Java */
-  endFigureDataWriting(pobj);
+  disableFigureSynchronization(pobj);
   status = sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
-  startFigureDataWriting(pobj);
+  enableFigureSynchronization(pobj);
 
   return status;
 }

@@ -45,9 +45,9 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
   }
 
   /* disable protection since this function will call Java */
-  endFigureDataWriting(pobj);
+  disableFigureSynchronization(pobj);
   status = sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
-  startFigureDataWriting(pobj);
+  enableFigureSynchronization(pobj);
 
   return status;
 }

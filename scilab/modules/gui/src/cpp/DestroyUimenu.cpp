@@ -17,6 +17,8 @@ extern "C"
 #include "DestroyUimenu.h"
 #include "MALLOC.h" /* MALLOC */
 #include "DestroyObjects.h" /* sciStandardDestroyOperations */
+#include "GetProperty.h"
+#include "GraphicSynchronizerInterface.h"
 }
 
 /**
@@ -28,7 +30,9 @@ extern "C"
 int DestroyUimenu (sciPointObj * pthis)
 {
   /* Destroy Java object */
+  disableFigureSynchronization(sciGetParentFigure(pthis));
   DestroyJavaUiobject(pthis);
+  enableFigureSynchronization(sciGetParentFigure(pthis));
 
   if (pUIMENU_FEATURE (pthis)->foregroundcolor != NULL)
     {

@@ -36,6 +36,8 @@ sciSetJavaInfoMessage
 sciSetJavaTitle
 endFigureDataWriting
 startFigureDataWriting
+disableFigureSynchronization
+enableFigureSynchronization
 sciGetJava2dViewPixelCoordinates
 sciGetJava2dViewCoordinates
 javaRubberBox

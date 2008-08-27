@@ -24,6 +24,7 @@ GraphicSynchronizer::GraphicSynchronizer( void )
   m_oWritersIds.clear();
   m_oReadersIds.clear();
   m_oDisplayersIds.clear();
+  m_bIsEnable = true;
 }
 /*---------------------------------------------------------------------------------*/
 GraphicSynchronizer::~GraphicSynchronizer( void )
@@ -31,6 +32,7 @@ GraphicSynchronizer::~GraphicSynchronizer( void )
   m_oWritersIds.clear();
   m_oReadersIds.clear();
   m_oDisplayersIds.clear();
+  m_bIsEnable = false;
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::startWriting( void )
@@ -100,19 +102,27 @@ void GraphicSynchronizer::endDisplaying( void )
   exitCriticalSection();
 }
 /*---------------------------------------------------------------------------------*/
+void GraphicSynchronizer::setEnable(bool enable)
+{
+  enterCriticalSection();
+  m_bIsEnable = enable;
+  exitCriticalSection();
+}
+/*---------------------------------------------------------------------------------*/
 bool GraphicSynchronizer::isWritable( int threadId )
 {
-  return isOnlyWriter(threadId) && isOnlyDisplayer(threadId) && isOnlyReader(threadId);
+  // if not enable synchronizer is considered as able to write
+  return (!m_bIsEnable) || (isOnlyWriter(threadId) && isOnlyDisplayer(threadId) && isOnlyReader(threadId));
 }
 /*---------------------------------------------------------------------------------*/
 bool GraphicSynchronizer::isReadable( int threadId )
 {
-  return isOnlyWriter(threadId);
+  return (!m_bIsEnable) || isOnlyWriter(threadId);
 }
 /*---------------------------------------------------------------------------------*/
 bool GraphicSynchronizer::isDisplayable( int threadId )
 {
-  return isOnlyWriter(threadId) && isOnlyDisplayer(threadId);
+  return (!m_bIsEnable) || (isOnlyWriter(threadId) && isOnlyDisplayer(threadId));
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::addWriter( int threadId )

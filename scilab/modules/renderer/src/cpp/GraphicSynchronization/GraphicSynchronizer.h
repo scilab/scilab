@@ -82,6 +82,14 @@ public:
    * Should always be called after a startDisplaying call.
    */
   void endDisplaying( void ) ;
+
+  /**
+   * Specify if the synchrnonizer is enable or not.
+   * If enable it will stop current thread if needed.
+   * If not enable, it won't stop any thread. It means
+   * that the synchrnonizer can always be considered as enable to read, display and write.
+   */
+  void setEnable(bool enable);
   /*--------------------------------------------------------------------------------*/
 
 protected:
@@ -191,6 +199,8 @@ protected:
   std::list<int> m_oDisplayersIds;
   /** Number of active displayer */
   std::list<int> m_oWritersIds;
+  /** If false, the synchrnonizer is always considered as able to read, display and write */
+  bool m_bIsEnable;
   /*--------------------------------------------------------------------------------*/
 
 };

@@ -81,6 +81,20 @@ void startGraphicDataDisplaying( void ) ;
 void endGraphicDataDisplaying( void ) ;
 
 /**
+ * Disable synchronization for a figure.
+ * By default synchrnonization is enalbe
+ * To be used with caution.
+ */
+void enableFigureSynchronization(sciPointObj * pFigure);
+
+/**
+ * Enable synchronization for a figure.
+ * By default synchrnonization is enalbe
+ * To be used with caution.
+ */
+void disableFigureSynchronization(sciPointObj * pFigure);
+
+/**
  * To be called before any call to startGraphicData***
  * Allocates data needed by these functions.
  */

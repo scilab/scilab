@@ -102,6 +102,24 @@ void endGraphicDataDisplaying( void )
   GraphicSynchronizerFactory::getGlobalSynchronizer()->endDisplaying();
 }
 /*---------------------------------------------------------------------------------*/
+void enableFigureSynchronization(sciPointObj * pFigure)
+{
+  GraphicSynchronizerFactory::getGlobalSynchronizer()->setEnable(true);
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->setEnable(true);
+  }
+}
+/*---------------------------------------------------------------------------------*/
+void disableFigureSynchronization(sciPointObj * pFigure)
+{
+  GraphicSynchronizerFactory::getGlobalSynchronizer()->setEnable(false);
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->setEnable(false);
+  }
+}
+/*---------------------------------------------------------------------------------*/
 void createGraphicSynchronizer( void )
 {
   GraphicSynchronizerFactory::getGlobalSynchronizer();

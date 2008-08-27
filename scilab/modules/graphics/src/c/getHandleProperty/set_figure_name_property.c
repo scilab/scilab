@@ -36,9 +36,9 @@ int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int value
     return SET_PROPERTY_ERROR ;
   }
   /* disable protection since this function will call Java */
-  endFigureDataWriting(pobj);
+  disableFigureSynchronization(pobj);
   status = sciSetName( pobj, getStringFromStack( stackPointer ), nbCol * nbRow ) ;
-  startFigureDataWriting(pobj);
+  enableFigureSynchronization(pobj);
 
   return status;
 }
