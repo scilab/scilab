@@ -11,6 +11,7 @@
 #define OPTIMIZATION "optimization"
 ;
 Source: bin\optimization_f.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
+Source: bin\optimization_f.lib; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 Source: bin\optimization.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\VERSION.xml; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
@@ -40,4 +41,3 @@ Source: modules\{#OPTIMIZATION}\demos\*.*; DestDir: {app}\modules\{#OPTIMIZATION
 Source: modules\{#OPTIMIZATION}\tests\*.*; DestDir: {app}\modules\{#OPTIMIZATION}\tests; Flags: recursesubdirs; Components: {#COMPN_OPTIM}  and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

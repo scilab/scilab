@@ -33,7 +33,11 @@ LINKER_FLAGS=/NOLOGO $(MACHINE) $(LINKER_OPTIMISATION_MODE)
 CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE)
 
 # include options 
-INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)\modules\output_stream\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
+INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" \
+-I"$(SCIDIR)\modules\core\includes" \
+-I"$(SCIDIR)\modules\output_stream\includes" \
+-I"$(SCIDIR)/libs/f2c" \
+-I"$(SCIDIR)/modules/mexlib/includes" 
 
 CC_LDFLAGS = 
 #==================================================
@@ -64,8 +68,13 @@ RCVARS=-r -DWIN32
 GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
+
 # XLIBSBIN is used by the binary version of Scilab for linking examples
-XLIBSBIN= "$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\scicos.lib" "$(SCIDIR1)\bin\intersci.lib" "$(SCIDIR1)\bin\scioutput_stream.lib" "$(SCIDIR1)\bin\dynamic_link.lib" "$(SCIDIR1)\bin\integer.lib"
+XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
+"$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" \
+"$(SCIDIR1)\bin\scicos.lib" "$(SCIDIR1)\bin\intersci.lib" \
+"$(SCIDIR1)\bin\scioutput_stream.lib" "$(SCIDIR1)\bin\dynamic_link.lib" \
+"$(SCIDIR1)\bin\integer.lib" "$(SCIDIR1)\bin\optimization_f.lib"
 #==================================================
 .c.obj	:
 	@echo ------------- Compile file $< --------------
