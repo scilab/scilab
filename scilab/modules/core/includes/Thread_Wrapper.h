@@ -19,47 +19,48 @@
 #ifndef __THREAD_WRAPPER_H__
 #define __THREAD_WRAPPER_H__
 
-#ifndef _MSC_VER
-	#include <pthread.h>
-#else
+#ifdef _MSC_VER
 	#ifndef _WIN32_WINNT
 		#define _WIN32_WINNT 0x500
 	#endif
 	#include <Windows.h>
 	#include <process.h>
 
-	#define	pthread_t								HANDLE
-	#define	pthread_create(t,u,f,d)					*(t)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)f,d,0,NULL)
-	#define	pthread_join(thread, result)			((WaitForSingleObject((thread),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(thread))
-	#define	pthread_cancel(thread)					TerminateThread(thread,0)
+	typedef HANDLE				__threadId;
+	typedef HANDLE				__threadLock;
+	typedef CRITICAL_SECTION	__threadSignalLock;
+	typedef HANDLE				__threadSignal;
 
-    /* returns to previous version with mutex */
-    /* I don't want to manage a exception here on some windows and not some others */
-	/* http://msdn2.microsoft.com/en-us/library/ms682411.aspx */
-	/* http://msdn2.microsoft.com/en-us/library/ms683472(VS.85).aspx */
-    /* Windows Server 2003 and Windows XP/2000:  In low memory situations,
-	   InitializeCriticalSection can raise a STATUS_NO_MEMORY exception.
-	   This exception was eliminated starting with Windows Vista.
-	 */
+	#define __InitSignalLock(lockName)				InitializeCriticalSection(lockName)
 
-	#define pthread_mutex_t							HANDLE
+	#define __LockSignal(lockName)					EnterCriticalSection(lockName)
 
-	#define pthread_mutex_init(pobject,pattr)       (*(pobject)=CreateMutex(NULL,FALSE,NULL))
-	#define pthread_mutex_destroy(pobject)          CloseHandle(*pobject)
-	#define pthread_mutex_lock(pobject)				WaitForSingleObject(*pobject,INFINITE)
-	#define pthread_mutex_unlock(pobject)	        ReleaseMutex(*pobject)
+	#define __UnLockSignal(lockName)				LeaveCriticalSection(lockName)
 
+	#define __InitLock(lockName)					(*(lockName)=CreateMutex(NULL,FALSE,NULL))
 
-	#define pthread_cond_t					        HANDLE
-	#define pthread_cond_init(pobject,pattr)        (*pobject=CreateEvent(NULL,FALSE,FALSE,NULL))
-	#define pthread_cond_destroy(pobject)           CloseHandle(*pobject)
-	#define CV_TIMEOUT			INFINITE
-	#define pthread_cond_wait(pobject,pmutex)		{ReleaseMutex(*pmutex);WaitForSingleObject(*pobject,CV_TIMEOUT);};
-	#define pthread_cond_signal(pobject)			SetEvent(*pobject)
-#endif
+	#define __Lock(lockName)						WaitForSingleObject(*lockName,INFINITE)
+	
+	#define __UnLock(lockName)						ReleaseMutex(*lockName)
+
+	#define __InitSignal(signalName)				(*signalName=CreateEvent(NULL,FALSE,FALSE,NULL))
+
+	#define __Signal(signalName)					SetEvent(*signalName)
+
+	#define __Wait(signalName, lockName)			{__UnLockSignal(lockName);ResetEvent(*signalName);WaitForSingleObject(*signalName, INFINITE);__LockSignal(lockName);};
+
+	#define __CreateThread(threadId, functionName)  *(threadId)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)functionName, NULL,0,NULL)
+
+	#define __WaitThreadDie(threadId)				((WaitForSingleObject((threadId),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(threadId))
+
+	#define __Terminate(threadId)					TerminateThread(threadId, 0)
+
+#else
+	#include <pthread.h>
 
 typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
+typedef pthread_mutex_t __threadSignalLock;
 typedef pthread_cond_t __threadSignal;
 #define __InitLock(lockName)		pthread_mutex_init(lockName, NULL)
 
@@ -78,6 +79,8 @@ typedef pthread_cond_t __threadSignal;
 #define __WaitThreadDie(threadId)		pthread_join(threadId, NULL)
 
 #define __Terminate(threadId)			pthread_cancel(threadId)
+
+#endif //_MSC_VER
 
 #endif /* !__THREAD_WRAPPER_H__ */
 
