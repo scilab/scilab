@@ -22,6 +22,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
 int set_filled_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
