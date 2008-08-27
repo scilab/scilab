@@ -26,11 +26,6 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	SCI_long = pathconvert(getlongpathname(SCI),%F,%F);
 	
 	//--------------------------------------------------------------------------
-	// Gestion des messages d'erreur
-	//--------------------------------------------------------------------------
-	err_msg = "";
-	
-	//--------------------------------------------------------------------------
 	// Sauvegarde de l'environnement initial
 	//--------------------------------------------------------------------------
 	
@@ -55,8 +50,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		// ---------------------------------------------------------------------
 		
 		if rhs > 5 | rhs < 1 then
-			err_msg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"xmltoformat",1,5);
-			error(1001);
+			error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"xmltoformat",1,5));
 		end
 		
 		// Cas par défaut : construction de l'aide en ligne de Scilab
@@ -184,15 +178,12 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			
 		end
 		
-        
-        
 		// On transforme le ou les chemins donnés en chemin absolu
 		// ---------------------------------------------------------------------
 		
 		for k=1:size(dirs,'*');
 			if ~isdir(dirs(k)) then
-				err_msg = sprintf("Directory %s does not exist or read access denied.\n",dirs(k));
-				break;
+				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs(k)));
 			end
 			
 			chdir(dirs(k));
@@ -207,8 +198,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		if all_scilab_help then
 			for k=1:size(dirs_m,'*');
 				if ~isdir(dirs_m(k)) then
-					err_msg = sprintf("Directory %s does not exist or read access denied.\n",dirs_m(k));
-					break;
+					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
 				end
 				chdir(dirs_m(k));
 				if MSDOS then
@@ -221,8 +211,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			
 			for k=1:size(dirs_c,'*');
 				if ~isdir(dirs_c(k)) then
-					err_msg = sprintf("Directory %s does not exist or read access denied.\n",dirs_c(k));
-					break;
+					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
 				end
 				chdir(dirs_c(k));
 				if MSDOS then
@@ -232,10 +221,6 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				end
 				chdir(current_directory);
 			end
-		end
-		
-		if err_msg <> "" then
-			error(1001);
 		end
 		
 		//----------------------------------------------------------------------
@@ -272,10 +257,10 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		end
 		
 		if ~or(need_to_be_build_tab) then
-			printf(_("\tHTML files are up-to-date.\n"));
+			mprintf(gettext("\tHTML files are up-to-date.\n"));
 			return;
 		end
-        
+		
 		// Nombre de répertoire ayant besoin d'une modification
 		// ---------------------------------------------------------------------
 		
@@ -286,7 +271,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		//----------------------------------------------------------------------
 		
 		displaydone = 0;
-        
+		
 		if all_scilab_help then
 			
 			if or(need_to_be_build_tab_m) then
@@ -294,35 +279,35 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					if  language_system_m(k) then
 						default_language_path = pathconvert(dirs_m(k)+"/../"+default_language_m(k),%f,%f);
 						if displaydone == 0 then
-							printf(_("\nCopying missing help files copied from the default language\n"));
+							mprintf(_("\nCopying missing help files copied from the default language\n"));
 							displaydone = 1;
 						end
-						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+						mprintf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 						complete_with_df_lang(dirs_m(k),directory_language_m(k),default_language_m(k));
 					end
 				end
 			end
-            
+			
 			if or(need_to_be_build_tab_c) then
 				for k=1:size(dirs_c,'*')
-                    if need_to_be_build_tab_c(k) & language_system_c(k) then
-                        default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
-                        if nb_dir > 1 then
-                            if displaydone == 0 then
-                                printf(_("\nCopying missing files copied from\n"));
-                                displaydone = 1;
-                            end
-                            printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-                        else
-                            printf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-                        end
-                        complete_with_df_lang(dirs_c(k),directory_language_c(k),default_language_c(k));
-                    end
-                end
+					if need_to_be_build_tab_c(k) & language_system_c(k) then
+						default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
+						if nb_dir > 1 then
+							if displaydone == 0 then
+								mprintf(_("\nCopying missing files copied from\n"));
+								displaydone = 1;
+							end
+							mprintf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+						else
+							mprintf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+						end
+						complete_with_df_lang(dirs_c(k),directory_language_c(k),default_language_c(k));
+					end
+				end
 			end
 			
 		end
-        
+		
 		//----------------------------------------------------------------------
 		// build all the Master document
 		//----------------------------------------------------------------------
@@ -332,7 +317,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
 			
 			if or(need_to_be_build_tab_m) then
-				printf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
+				mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
 				create_MD(dirs_m,titles_m,master_doc);
 				
 			end
@@ -340,7 +325,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			if or(need_to_be_build_tab_c) then
 				for k=1:size(dirs_c,"*")
 					if need_to_be_build_tab_c(k) then
-						printf(_("\nBuilding the master document: %s\n"),titles_c(k));
+						mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
 						create_MD(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml");
 					end
 				end
@@ -353,19 +338,19 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				if need_to_be_build_tab(k) then
 					if nb_dir > 1 then
 						if displaydone == 0 then
-							printf(_("\nBuilding the master document for %s.\n"),getlanguage());
+							mprintf(_("\nBuilding the master document for %s.\n"),getlanguage());
 							displaydone = 1;
 						end
-						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+						mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					else
-						printf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+						mprintf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					end
 					create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml");
 				end
 			end
 		
 		end
-        
+		
 		//----------------------------------------------------------------------
 		// perform the jar generation
 		//----------------------------------------------------------------------
@@ -374,8 +359,8 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		
 		if all_scilab_help then
 
-		  printf(_("\nBuilding the scilab manual file ["+output_format+"]\n"));
-		  buildDoc(output_format)
+			mprintf(_("\nBuilding the scilab manual file ["+output_format+"]\n"));
+			buildDoc(output_format)
 		
 		else
 		
@@ -385,12 +370,12 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					
 					if nb_dir > 1 then
 						if displaydone == 0 then
-							printf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take up to 10 minutes)\n"),output_format);
+							mprintf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take up to 10 minutes)\n"),output_format);
 							displaydone = 1;
 						end
-						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+						mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					else
-						printf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
+						mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
 					end
 					buildDoc(output_format, dirs(k)+"/master_help.xml")
 					
@@ -460,13 +445,8 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		
 		[error_str,error_num,error_line,error_func] = lasterror(%T);
 		
-		printf("   !-- error %d :\n",error_num);
-		
-		if error_num > 300 then
-			printf("\t%s\n",err_msg);
-		else
-			printf("\t%s\n",error_str);
-		end
+		mprintf("   !-- error %d :\n",error_num);
+		mprintf("\t%s\n",error_str);
 		
 	end
 	
