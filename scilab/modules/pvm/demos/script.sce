@@ -7,12 +7,10 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-mes=x_message(['plop ?'],['Ok','Cancel'])
-if mes==2 then
-  return, 
+parent=pvm_parent();
+if parent<0 then
+  return
 end
-
-parent=pvm_parent(),if parent<0 then return,end
 
 while %t  //Infinite loop
   [buf,info] = pvm_recv(parent, -1)//get new variable or instruction
