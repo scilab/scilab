@@ -8,8 +8,7 @@
 demopath = get_absolute_file_path("standard.dem.gateway.sce");
 
 subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"    ; ..
-               "Bouncing Ball"                        , "bouncing_ball.dem.sce"  ; ..
-               "Space Balls"                          , "bounce.dem.sce"            ; ..
+               "Bouncing Balls"                       , "bounce.dem.sce"            ; ..
                "Simple Thermostat"                    , "simple_thermostat.dem.sce" ; ..
                "Table Lookup"                         , "table_lookup.dem.sce"      ; ..
                "Signal Builder"                       , "signal_builder.dem.sce"    ; ..
@@ -23,3 +22,6 @@ subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"   
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+
+//**               "Bouncing Ball"                        , "bouncing_ball.dem.sce"  ; ..
+//**               "Space Balls"                          , "bounce.dem.sce"            ; ..
