@@ -43,7 +43,8 @@ int GetUicontrolPosition(sciPointObj* sciObj)
      
       returnFlag =  sciReturnRowVector(tmp, 4);
       
-      delete(tmp);
+      delete [] tmp;
+	  delete [] returnValues;
       
       return returnFlag;
     }

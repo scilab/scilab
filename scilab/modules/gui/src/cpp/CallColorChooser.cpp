@@ -53,6 +53,7 @@ double *getColorChooserSelectedRGB(int colorChooserID)
   RGBdouble[1] = RGB[1];
   RGBdouble[2] = RGB[2];
 
+  delete [] RGB;
   return RGBdouble;
 }
 

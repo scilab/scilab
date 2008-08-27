@@ -117,6 +117,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
                                                              pUICONTROL_FEATURE(parent)->hashMapIndex);
            xInt = returnValues[0] + xInt;
            yInt = returnValues[1] + returnValues[3] + yInt;
+		   delete [] returnValues;
         }
 
       CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 

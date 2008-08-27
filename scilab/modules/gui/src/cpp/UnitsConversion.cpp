@@ -31,11 +31,13 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj)
     {
       position = CallScilabBridge::getFramePosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
       height = position[3];
+	  delete [] position;
     }
   else if ( sciObj != NULL ) /* All other uicontrol styles */
     {
       position = CallScilabBridge::getWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
       height = position[3];
+	  delete [] position;
     }
   
   switch(newUnit)
@@ -72,11 +74,13 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj)
     {
       position = CallScilabBridge::getFramePosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
       height = position[3];
+	  delete [] position;
     }
   else if ( sciObj != NULL )  /* All other uicontrol styles */
     {
       position = CallScilabBridge::getWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
       height = position[3];
+	  delete [] position;
     }
 
   switch(oldUnit)

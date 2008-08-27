@@ -56,7 +56,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                   n1 = 1;
                   
                   CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE, &m1, &n1, &output);
-                   /* TO DO a delete [] and a FREE */
+                   /* TO DO a delete [] and not a FREE */
                   FREE(output);
                   LhsVar(1)=Rhs+1;
                   

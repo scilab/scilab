@@ -117,6 +117,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
                   break;
                 default:
                   sciprint(_("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+				  delete [] returnValues;
                   return SET_PROPERTY_ERROR;
                 }
             }
@@ -158,6 +159,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
               break;
             default:
               sciprint(_("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+			  delete [] returnValues;
               return SET_PROPERTY_ERROR;
             }
 
@@ -180,10 +182,12 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
                                                   returnValues[2], 
                                                   returnValues[3]);
             }
+		  delete [] returnValues;
           return SET_PROPERTY_SUCCEED;
         }
       else
         {
+		  delete [] returnValues;
           // Parent is not a figure
           sciprint(_("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
           return SET_PROPERTY_ERROR;
@@ -191,6 +195,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
     }
   else
     {
+	  delete [] returnValues;
       // Do not know how to set the parent
       sciprint(_("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
       return SET_PROPERTY_ERROR;

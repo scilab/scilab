@@ -24,8 +24,11 @@ int GetUicontrolString(sciPointObj* sciObj)
       // Get the string from Java
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
         {
-          return sciReturnString(CallScilabBridge::getFrameText(getScilabJavaVM(),
-                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+		  int ret = 0;
+		  char *text = CallScilabBridge::getFrameText(getScilabJavaVM(),pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+          ret = sciReturnString(text);
+		  delete [] text;
+		  return ret;
         }
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_LISTBOX) /* ListBox style uicontrol */
         {
@@ -37,10 +40,19 @@ int GetUicontrolString(sciPointObj* sciObj)
             }
           else 
             {
-              return sciReturnStringMatrix(CallScilabBridge::getListBoxAllItemsText(getScilabJavaVM(),
-                                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex),
-                                           1,
-                                           nbItems);
+			  int l = 0;
+			  char **texts = CallScilabBridge::getListBoxAllItemsText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+			  int ret = 0;
+
+              ret = sciReturnStringMatrix(texts,1, nbItems);
+
+			  for (l = 0;l < nbItems; l++)
+			  {
+				  delete [] texts[l];
+			  }
+			  delete [] texts;
+
+			  return ret;
             }
         }
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_POPUPMENU) /* PopupMenu style uicontrol */
@@ -53,16 +65,25 @@ int GetUicontrolString(sciPointObj* sciObj)
             }
           else
             {
-              return sciReturnStringMatrix(CallScilabBridge::getPopupMenuAllItemsText(getScilabJavaVM(),
-                                                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex),
-                                           1,
-                                           nbItems);
+			  int l = 0;
+			  char **texts = CallScilabBridge::getPopupMenuAllItemsText(getScilabJavaVM(),pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+			  int ret = sciReturnStringMatrix(texts, 1, nbItems);
+
+			  for (l = 0; l < nbItems; l++)
+			  {
+				delete [] texts[l];
+			  }
+			  delete [] texts;
+              return ret;
             }
         }
       else/* All other uicontrol style */
         {
-          return sciReturnString(CallScilabBridge::getWidgetText(getScilabJavaVM(),
-                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+		  int ret = 0;
+		  char *text = CallScilabBridge::getWidgetText(getScilabJavaVM(),pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+          ret = sciReturnString(text);
+		  delete [] text;                                    
+		  return ret;
         }
     }
   else

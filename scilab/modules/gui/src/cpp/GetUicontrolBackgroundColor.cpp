@@ -33,6 +33,7 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
         {
           returnValues = CallScilabBridge::getWidgetBackgroundColor(getScilabJavaVM(),
                                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+
         }
       tmp = new double[3];
       
@@ -58,7 +59,8 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
 
       returnFlag =  sciReturnRowVector(tmp, 3);
       
-      delete(tmp);
+      delete [] tmp;
+	  delete [] returnValues;
       
       return returnFlag;
     }

@@ -22,13 +22,21 @@ int GetUicontrolFontName(sciPointObj* sciObj)
       // Get the font name from Java
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
         {
-          return sciReturnString(CallScilabBridge::getFrameFontName(getScilabJavaVM(),
-                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+		  int ret = 0;
+		  char *text = CallScilabBridge::getFrameFontName(getScilabJavaVM(),
+                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+
+          ret = sciReturnString(text);
+		  delete [] text;
+		  return ret;
         }
       else/* All other uicontrol style */
         {
-          return sciReturnString(CallScilabBridge::getWidgetFontName(getScilabJavaVM(),
-                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+		  int ret = 0;
+		  char *text = CallScilabBridge::getWidgetFontName(getScilabJavaVM(),pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+          ret = sciReturnString(text);
+		  delete [] text;
+		  return ret;
         }
      }
   else
