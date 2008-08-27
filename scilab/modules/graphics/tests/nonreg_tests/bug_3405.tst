@@ -16,5 +16,9 @@
 // Scilab hangs but does not crash
 
 // used to freeze Scilab
-i=666;h=scf(i);addmenu(i,'mymenu');delete(h);
+for i=1:100,
+  h=scf(i);
+  addmenu(i,'mymenu');
+  delete(h);
+end
 
