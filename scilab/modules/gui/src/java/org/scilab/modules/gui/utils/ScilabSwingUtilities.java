@@ -32,7 +32,32 @@ public final class ScilabSwingUtilities {
 	}
 	
 	/**
+	 * Add a component to its new parent.
+	 * This method is thread safe.
+	 * @param component component to add
+	 * @param parent parent in which the component will be added
+	 */
+	public static void addToParent(JComponent component, Container parent) {
+		final JComponent componentF = component;
+		final Container parentF = parent;
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					parentF.add(componentF);
+					// repaint to see the changes
+					parentF.repaint();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.getCause().printStackTrace();
+		}
+	}
+	
+	/**
 	 * Remove a component from its parent.
+	 * This method is thread safe.
 	 * @param component component to remove
 	 */
 	public static void removeFromParent(JComponent component) {
@@ -44,6 +69,7 @@ public final class ScilabSwingUtilities {
 					Container parent = componentF.getParent();
 					if (parent != null) {
 						parent.remove(componentF);
+						// repaint to see the changes
 						parent.repaint();
 					}
 				}

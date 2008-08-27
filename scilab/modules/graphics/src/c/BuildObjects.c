@@ -2770,7 +2770,7 @@ sciPointObj * createFullFigure(int * winNum)
 
   if (newFig == NULL)
   {
-    endGraphicDataWriting();
+    endFigureDataWriting(newFig);
     return NULL;
   }
 

@@ -7,28 +7,14 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-// <-- Non-regression test for bug 2914 -->
+// <-- Non-regression test for bug 3405 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=2914
+// http://bugzilla.scilab.org/show_bug.cgi?id=3405
 //
 // <-- Short Description -->
-// Its not possible to paint the background of axes if box property is set to off
+// Scilab hangs but does not crash
 
-fig = scf();
-fig.background = 3;
-
-axes = gca();
-axes.filled = "on"; // force background drawing
-axes.box = "off"; // disable box drawing
-axes.background = 2;
-
-// axes background should be drawn
-// could be check with some image processing
-
-
-
-
-
-
+// used to freeze Scilab
+i=666;h=scf(i);addmenu(i,'mymenu');delete(h);
 

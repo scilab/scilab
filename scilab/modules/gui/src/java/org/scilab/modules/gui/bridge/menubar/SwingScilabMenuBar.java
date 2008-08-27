@@ -12,15 +12,13 @@
 
 package org.scilab.modules.gui.bridge.menubar;
 
-import java.lang.reflect.InvocationTargetException;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Swing implementation for Scilab MenuBars in GUIs
@@ -54,8 +52,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.ContextMenu)
 	 */
 	public void add(SwingScilabMenu newMenu) {
-		super.add(newMenu);
-		repaint();
+		ScilabSwingUtilities.addToParent(newMenu, this);
 	}
 
 	/**
@@ -117,24 +114,9 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 	 */
 	public void removeMenu(String menuName) {
 		for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
-			final int finalMenuIndex = menuIndex;
 			// Check the name of each menu until one matches the name
 			if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(menuName))) {
-				try {
-					SwingUtilities.invokeAndWait(new Runnable() {
-						public void run() {
-							remove(finalMenuIndex);
-						}
-					});
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				// Redraw the menuBar to display the changes
-				repaint();
+				ScilabSwingUtilities.removeFromParent(this.getMenu(menuIndex));
 				break;
 			}
 		}
