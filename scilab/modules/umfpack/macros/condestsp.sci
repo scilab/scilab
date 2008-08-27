@@ -68,15 +68,15 @@ function [K1] = condestsp(A, arg2, arg3)
   [lhs, rhs] = argn()
 
   if rhs<1 | rhs>3 | lhs > 2 then
-     error(msprintf(gettext("%s: Wrong number of input arguments.\n"),"condestsp"))
+     error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"condestsp",1,3))
   end
   
   if typeof(A) ~= "sparse"  then
-     error(msprintf(gettext("%s: Wrong type for first input argument: Square sparse matrix expected.\n"),"condestsp"))
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"),"condestsp",1))
   else
      [n,m] = size(A)
      if n~=m  then
-        error(msprintf(gettext("%s: Wrong size for first input argument: Square sparse matrix expected.\n"),"condestsp"))
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"),"condestsp",1))
      end
   end
     
