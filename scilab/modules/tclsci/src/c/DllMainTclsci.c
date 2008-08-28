@@ -34,6 +34,10 @@
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
+	/* redirect stdout, stderr in console */
+	freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
+	freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
+
 	switch (reason) 
 	{
 	case DLL_PROCESS_ATTACH:
