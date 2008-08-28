@@ -38,13 +38,14 @@ int sci_buildDoc(char *fname,unsigned long l)
 {
 	static int l1 = 0,n1 = 0,m1 = 0;
 	static int l2 = 0,n2 = 0,m2 = 0;
+	static int l3 = 0,n3 = 0,m3 = 0;
 	char * exportFormat = NULL;
 	char * SciPath = getSCIpath(); /* Scilab path */
 	char * masterXML = NULL; /* Which file contains all the doc stuff */
 	char * masterXMLTMP = NULL;
 	char * outputDirectory = NULL; /* Working directory */
 	char * outputDirectoryTMP = NULL;
-	char * currentLanguage = getlanguage();
+	char * language = NULL;
 	char * styleSheet = (char*)MALLOC((strlen(SciPath)+strlen(PATHTOCSS)+1)*sizeof(char));; /* the CSS */
 	org_scilab_modules_helptools::BuildDocObject *doc = NULL;
 
@@ -54,20 +55,29 @@ int sci_buildDoc(char *fname,unsigned long l)
 		return 0;
 	}
 
-	CheckRhs(0,2);
+	CheckRhs(0,3);
 	CheckLhs(1,1);
 
 	strcpy(styleSheet,SciPath);
 	strcat(styleSheet,PATHTOCSS);
+	if ( Rhs != 3) /* Language provided */
+		{
+			language = getlanguage();	
+		} 
+	else
+		{
+			GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+			language = cstk(l3);	
+		}
 
 	/* Update the path with the localization */
-	outputDirectoryTMP = (char*) MALLOC ((strlen(PATHTOBUILDDOC)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char)); /* - strlen(%s) because it is going to be be replaced by currentLanguage */
+	outputDirectoryTMP = (char*) MALLOC ((strlen(PATHTOBUILDDOC)-strlen("%s")+strlen(language)+1)*sizeof(char)); /* - strlen(%s) because it is going to be be replaced by currentLanguage */
 	if ( outputDirectoryTMP == NULL )
 	{
 		Scierror(999,_("%s: No more memory.\n"),fname);
 		return 0;
 	}
-	sprintf(outputDirectoryTMP, PATHTOBUILDDOC, currentLanguage);
+	sprintf(outputDirectoryTMP, PATHTOBUILDDOC, language);
 
 	outputDirectory = (char*)MALLOC((strlen(SciPath)+strlen(outputDirectoryTMP)+1)*sizeof(char)); 
 	if ( outputDirectory == NULL )
@@ -109,14 +119,14 @@ int sci_buildDoc(char *fname,unsigned long l)
 	if (Rhs < 2) 
 	{
 		/* Update the path with the localization */
-		masterXMLTMP = (char*) MALLOC ((strlen(PATHTOMASTERXML)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char));
+		masterXMLTMP = (char*) MALLOC ((strlen(PATHTOMASTERXML)-strlen("%s")+strlen(language)+1)*sizeof(char));
 		if ( masterXMLTMP == NULL )
 		{
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
 		
-		sprintf(masterXMLTMP, PATHTOMASTERXML, currentLanguage);
+		sprintf(masterXMLTMP, PATHTOMASTERXML, language);
 
 		masterXML = (char*)MALLOC((strlen(SciPath)+strlen(masterXMLTMP)+1)*sizeof(char));
 		if ( masterXML == NULL )
@@ -153,7 +163,7 @@ int sci_buildDoc(char *fname,unsigned long l)
 
 		if (doc->setOutputDirectory(outputDirectory)) 
 		{
-			doc->setWorkingLanguage(currentLanguage);
+			doc->setWorkingLanguage(language);
 			doc->setExportFormat(exportFormat);
 			doc->process(masterXML, styleSheet);
 			
