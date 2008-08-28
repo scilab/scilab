@@ -69,7 +69,7 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
 '      return'
 '      end'];
-mputl(fortransource,TMPDIR+'/rosenf.f')
+mputl(fortransource,TMPDIR+'/rosenf.f');
 // compile the C code
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
 // incremental linking
@@ -156,5 +156,5 @@ if abs(f-1+norm(x-xopt) ) > Leps then pause,end
     x0,'gc','ar',100,100,%eps,'in','ti',ti,'td',td,'si','sd');
 if abs(f-1+norm(x-xopt) ) > Leps then pause,end
 // Clean-up
-ulink(linkid)
+ulink(linkid);
 
