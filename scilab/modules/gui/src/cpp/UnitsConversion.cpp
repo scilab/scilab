@@ -26,7 +26,14 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthA
   /* Get the component height from java */
   if(sciGetEntityType(sciObj) == SCI_FIGURE) /* Figure */
     {
-      refSize = sciGetHeight(sciObj);
+      if (widthAsRef == TRUE)
+        {
+          refSize = CallScilabBridge::getScreenWidth(getScilabJavaVM());
+        }
+      else
+        {
+          refSize = CallScilabBridge::getScreenHeight(getScilabJavaVM());
+        }
       newUnit = PIXELS_UNITS;
     }
   else /* Uicontrol */
@@ -94,7 +101,15 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsR
   /* Get the component height from java */
   if(sciGetEntityType(sciObj) == SCI_FIGURE) /* Figure */
     {
-      refSize = sciGetHeight(sciObj);
+      /* The parent is the screen */
+      if (widthAsRef == TRUE)
+        {
+          refSize = CallScilabBridge::getScreenWidth(getScilabJavaVM());
+        }
+      else
+        {
+          refSize = CallScilabBridge::getScreenHeight(getScilabJavaVM());
+        }
       oldUnit = PIXELS_UNITS;
     }
   else /* Uicontrol */
