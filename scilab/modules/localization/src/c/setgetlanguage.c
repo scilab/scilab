@@ -29,6 +29,7 @@
  #endif
 #else
 	#include <locale.h>
+	#include <libintl.h>
 #endif
 
 #ifdef _MSC_VER
@@ -42,7 +43,7 @@
 #include "tableslanguages.h"
 #include "defaultlanguage.h"
 #include "loadsavelanguage.h"
-#include "syncexec.h"
+
 #include "scilabDefaults.h"
 #include "../../../io/includes/setenvc.h"
 
@@ -62,8 +63,10 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 	{
 		if (LanguageIsOK(lang))
 		{
+			#ifndef _MSC_VER
 			if (needtochangelanguage(lang))
 			{
+			#endif
 				/* Load the locale from the system */
 				#ifndef _MSC_VER
 				char *ret=setlocale(LC_MESSAGES,lang);
@@ -73,58 +76,48 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 				#endif
 				
 				//				  This stuff causes pb when locales have been compiled 
-				if (ret==NULL){ 
+				if (ret==NULL)
+				{ 
+					#ifndef _MSC_VER
 					fprintf(stderr, "Warning: Localization issue. Doesn't support the locale '%s' %s %s.\n",lang,ret,setlocale(LC_MESSAGES,NULL));
+					#else
+					fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
+					#endif
 				}
 
 				/* change language */
-				if (strcmp(lang,"C")==0 || ret==NULL || strcmp(ret,"C")==0){
+				if (strcmp(lang,"C")==0 || ret==NULL || strcmp(ret,"C")==0)
+				{
 					/* The lang is the default one... ie en_US */
-					strcpy(CURRENTLANGUAGESTRING,"en_US");
-				}else{
-					if (strcmp(lang,"")==0 && ret!=NULL){
+					strcpy(CURRENTLANGUAGESTRING,SCILABDEFAULTLANGUAGE);
+				}
+				else
+				{
+					if (strcmp(lang,"")==0 && ret!=NULL)
+					{
 						/* The requested language is the one of the system ... 
 						 * which we don't really know which one is it
 						 * but if setlocale worked, we get it from the return 
 						 */
-						
-
 						strncpy(CURRENTLANGUAGESTRING,ret,5); /* 5 is the number of char in fr_FR for example */
-						
-					}else{
+					}
+					else
+					{
 						strcpy(CURRENTLANGUAGESTRING,lang);
 					}
 				}
+				#ifndef _MSC_VER
 				setlanguagecode(CURRENTLANGUAGESTRING);
+				#endif
+
 				exportLocaleToSystem(CURRENTLANGUAGESTRING);
 
 				openLocaleToUTFConverter(ret,CURRENTLANGUAGESTRING);/*open a localeToUTF converter if needed*/
-
-
-				/*
-				  Commented since we want the user to restart scilab when the locale is changed
-				if (updateHelpIndex)
-				{
-					#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;clear update_scilab_help;"
-					integer ierr ;
-					integer seq = 1 ;
-					int macroCallLength=0;
-
-					// update help index 
-					macroCallLength = (int)strlen(UPDATESCILABHELPMACRO);
-					C2F(syncexec)(UPDATESCILABHELPMACRO,&macroCallLength,&ierr,&seq, macroCallLength);
-				}
-			*/
-				/* save language pref. */
-				savelanguagepref();
-
-				if (updateMenus)
-				{
-					/* changes menus : to do after */
-				}
 				return TRUE;
 			}
+		#ifndef _MSC_VER
 		}
+		#endif
 	}
 	return FALSE;
 }

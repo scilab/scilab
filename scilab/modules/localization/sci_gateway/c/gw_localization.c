@@ -24,12 +24,6 @@ static gw_generic_table Tab[]=
 		{C2F(sci_gettext),"_"},
 		{C2F(sci_dgettext),"dgettext"}
 };
-			/*	{C2F(sci_getlanguagealias),"getlanguagealias"},
-	{C2F(sci_getlanguagestable),"getlanguagestable"},
-
-	{C2F(sci_addtext),"addtext"},
-	{C2F(sci_removetext),"removetext"}
-*/
 /*--------------------------------------------------------------------------*/
 int gw_localization(void)
 {  

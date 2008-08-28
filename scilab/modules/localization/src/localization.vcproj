@@ -399,10 +399,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\c\getentrieshashtable.h"
-				>
-			</File>
-			<File
 				RelativePath=".\c\getLocaleInfo_Windows.h"
 				>
 			</File>
@@ -419,31 +415,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadhashtableslocalization.h"
+				RelativePath=".\c\LanguagePref.h"
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadsavelanguage.h"
+				RelativePath=".\c\loadLanguagePref.h"
 				>
 			</File>
 			<File
 				RelativePath="..\includes\localization.h"
-				>
-			</File>
-			<File
-				RelativePath=".\c\org_scilab_modules_localization_QueryString.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\QueryStringError.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\QueryStringMenu.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\QueryStringMessage.h"
 				>
 			</File>
 			<File
@@ -460,10 +440,6 @@
 			</File>
 			<File
 				RelativePath=".\c\tableslanguages.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\TerminateLocalization.h"
 				>
 			</File>
 		</Filter>
@@ -516,7 +492,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadsavelanguage.c"
+				RelativePath=".\c\LanguagePref.c"
+				>
+			</File>
+			<File
+				RelativePath=".\c\loadLanguagePref.c"
 				>
 			</File>
 			<File

@@ -20,6 +20,42 @@
 #include "saveLanguagePref.h"
 #include "LanguagePref.h"
 #include "deleteafile.h"
+#include "strdup_windows.h"
+/*--------------------------------------------------------------------------*/
+char *getLanguageFromAlias(char *alias)
+{
+	if (alias)
+	{
+		if ( strcmp(alias,"en") == 0 )
+		{
+			return strdup("en_US");
+		}
+
+		if ( strcmp(alias,"fr") == 0 )
+		{
+			return strdup("fr_FR");
+		}
+
+		return strdup(alias);
+	}
+	/* "" value fixed by system */
+	else return strdup("");
+}
+/*--------------------------------------------------------------------------*/
+BOOL isValidLanguage(char *lang)
+{
+	/* Try to detect if it is a correct language */
+	if (lang)
+	{
+		if ( strcmp(lang,"") == 0) return TRUE;
+		if ( strcmp(lang,"C") == 0) return TRUE;
+		if ( strcmp(lang,"en") == 0) return TRUE;
+		if ( strcmp(lang,"fr") == 0) return TRUE;
+		if ( ((int) strlen(lang) == 5) && (lang[2] == '_') ) return TRUE; /* xx_XX */
+	}
+	return FALSE;
+
+}
 /*--------------------------------------------------------------------------*/
 int sci_setdefaultlanguage(char *fname,unsigned long fname_len)
 {
@@ -59,7 +95,7 @@ int sci_setdefaultlanguage(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			if ( !setlanguage(newlang) )
+			if ( !setlanguage(newlang,FALSE,FALSE) )
 			{
 				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 				*istk(l1)=(int)(FALSE);
