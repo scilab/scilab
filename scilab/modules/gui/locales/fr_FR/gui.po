@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-08-13 12:10+0000\n"
-"Last-Translator: Sabine Gauzere <sabine.gauzere@inria.fr>\n"
+"PO-Revision-Date: 2008-08-28 13:08+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Launchpad-Export-Date: 2008-08-28 13:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -155,7 +155,6 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un handle vers un graphique "
 "ou un réel attendu.\n"
 
-#, fuzzy
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: un menu déroulant vide a été trouvé."
 
@@ -193,9 +192,8 @@ msgstr ""
 msgid "http://www.scilab.org/"
 msgstr "http://www.scilab.org/"
 
-#, fuzzy
 msgid "Loading help browser..."
-msgstr "Chargement du visualiseur d'aide ..."
+msgstr "Chargement du navigateur d'aide..."
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -466,10 +464,10 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un réel attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être > %d attendu.\n"
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être > %d.\n"
 
 #, c-format
 msgid ""
@@ -521,9 +519,8 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un vecteur de chaîne de "
 "caractères attendu.\n"
 
-#, fuzzy
 msgid "Scilab Multiple Values Request"
-msgstr "Scilab Plusieurs Valeurs Demandées"
+msgstr "Demande de Plusieurs Valeurs Scilab"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
@@ -564,7 +561,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
-#, fuzzy
 msgid "Scilab Choose Message"
 msgstr "Message de choix Scilab"
 
@@ -636,15 +632,13 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un vecteur réel ou complexe "
 "attendu.\n"
 
-#, fuzzy
 msgid "Scilab Choices Request"
-msgstr "Scilab Choix Demandés"
+msgstr "Demande de Choix Scilab"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
 msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni."
 
-#, fuzzy
 msgid "Scilab Input Value Request"
 msgstr "Requête de valeur d'entrée Scilab"
 
@@ -789,13 +783,11 @@ msgstr ""
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Une erreur est apparue: %s.\n"
 
-#, fuzzy
 msgid "Impossible to get current look and feel"
-msgstr "Impossible de récupérer le look courant"
+msgstr "Impossible de récupérer le thème courant"
 
-#, fuzzy
 msgid "Control Plot3d"
-msgstr "Controles Plot3d"
+msgstr "Contrôles Plot3d"
 
 msgid "&File"
 msgstr "&Fichier"
@@ -804,7 +796,7 @@ msgid "&Tools"
 msgstr "&Outils"
 
 msgid "&Edit"
-msgstr "&Editer"
+msgstr "&Edition"
 
 msgid "&?"
 msgstr "&?"
@@ -815,27 +807,23 @@ msgstr "Fichier"
 msgid "Close"
 msgstr "Fermer"
 
-#, fuzzy
 msgid "Jetcolormap"
 msgstr "Carte de couleur Jet"
 
-#, fuzzy
 msgid "Hotcolormap"
 msgstr "Carte de couleur Hot"
 
 msgid "Graycolormap"
 msgstr "Carte de couleur Gray"
 
-#, fuzzy
 msgid "Tics"
-msgstr "Marques"
+msgstr "Graduations"
 
 msgid "Title"
 msgstr "Titre"
 
-#, fuzzy
 msgid "Labels"
-msgstr "Libellés"
+msgstr "Labels"
 
 msgid "Edges"
 msgstr "Bords"
@@ -897,7 +885,6 @@ msgstr "&Imprimer..."
 msgid "C&lose"
 msgstr "&Fermer"
 
-#, fuzzy
 msgid "Show/Hide &Toolbar"
 msgstr "Afficher/Masquer la barre d'ou&tils"
 
@@ -919,25 +906,21 @@ msgstr "&Redessiner la figure"
 msgid "&Clear figure"
 msgstr "&Effacer la figure"
 
-#, fuzzy
 msgid "&Figure properties"
 msgstr "&Propriétés de la figure"
 
 msgid "&Axes properties"
 msgstr "Propriétés des axes"
 
-#, fuzzy
 msgid "&Start entity picker"
-msgstr "Démarer le &Sélectionneur d'entité"
+msgstr "Démarrer le &Sélectionneur d'entité"
 
-#, fuzzy
 msgid "S&top entity picker"
 msgstr "Arrê&ter le sélectionneur d'entité"
 
 msgid "&Scilab Help"
 msgstr "&Aide Scilab"
 
-#, fuzzy
 msgid "&About Scilab..."
 msgstr "&A propos de Scilab"
 
@@ -986,11 +969,9 @@ msgstr "&Préférences"
 msgid "&Colors"
 msgstr "&Couleurs"
 
-#, fuzzy
 msgid "Console &Background..."
-msgstr "Fond de la console ..."
+msgstr "Arrière-plan de la console ..."
 
-#, fuzzy
 msgid "Console &Font..."
 msgstr "Police de la console ..."
 
@@ -1033,9 +1014,8 @@ msgstr "Convertisseur &Matlab vers Scilab"
 msgid "&Variable Editor"
 msgstr "Editeur de &Variables"
 
-#, fuzzy
 msgid "Scilab &Help"
-msgstr "Aide Scilab"
+msgstr "Aide de Scilab"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Démonstrations de Scilab"
@@ -1049,13 +1029,11 @@ msgstr "Site &Web Scilab"
 msgid "&Contributions"
 msgstr "&Contributions"
 
-#, fuzzy
 msgid "&Bug And Request database"
-msgstr "&Base de données de Bugs et de requêtes"
+msgstr "&Base de données de Bugs et de Requêtes"
 
-#, fuzzy
 msgid "&Newsgroup Archives"
-msgstr "Archives de &Newsgroup"
+msgstr "Archives du &Newsgroup"
 
 msgid "Rotate"
 msgstr "Pivoter"
