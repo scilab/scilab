@@ -49,13 +49,7 @@ function uicontrol_plot3d()
 	axes_w       = 3*margin_x + frame_w + plot_w; // axes width
 	axes_h       = 2*margin_y + frame_h;          // axes height (100 => toolbar height)
 	
-	demo_plot3d = figure(100001);
-	
-	demo_plot3d.background      = -2;
-	demo_plot3d.color_map       = jetcolormap(128);
-	demo_plot3d.figure_position = [0 0];
-	demo_plot3d.axes_size       = [axes_w axes_h];
-	demo_plot3d.figure_name     = gettext("Control Plot3d");
+	demo_plot3d = scf(100001);
 	
 	// Remove Scilab graphics menus & toolbar
 	
@@ -64,6 +58,11 @@ function uicontrol_plot3d()
 	delmenu(demo_plot3d.figure_id, gettext("&Edit"));
 	delmenu(demo_plot3d.figure_id, gettext("&?"));
 	toolbar(demo_plot3d.figure_id, "off");
+	
+	demo_plot3d.background      = -2;
+	demo_plot3d.color_map       = jetcolormap(128);
+	demo_plot3d.figure_position = [0 0];
+	demo_plot3d.figure_name     = gettext("Control Plot3d");
 	
 	// New menu
 	
@@ -74,6 +73,9 @@ function uicontrol_plot3d()
 			"label"     , gettext("Close"),  ..
 			"callback"  , "demo_plot3d=get_figure_handle(100001);delete(demo_plot3d);", ..
 			"tag"       , "close_menu");
+	
+	sleep(500);
+	demo_plot3d.axes_size       = [axes_w axes_h];
 	
 	// Frames creation [Control Panel]
 	// =========================================================================
