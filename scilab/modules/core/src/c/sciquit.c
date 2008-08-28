@@ -30,13 +30,11 @@
 int ExitScilab(void)
 {
 	TerminateCorePart1();
-	
-	TerminateGUI();
   
-	TerminateTclTk();
-
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
+		TerminateGUI();
+		TerminateTclTk();
 		TerminateGraphics();
 		TerminateGUI();
 		TerminateJVM();

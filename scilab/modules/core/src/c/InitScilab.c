@@ -45,7 +45,6 @@ int C2F(initscilab)(void)
 
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
-
 		InitializeJVM();
 		InitializeGUI();
 		
@@ -54,16 +53,12 @@ int C2F(initscilab)(void)
                 
 		/* Standard mode -> init Java Console */
 		if ( getScilabMode() == SCILAB_STD ) 
-			{
-				/* Initialize console: lines... */
-				InitializeConsole();
-			}
-	}
+		{
+			/* Initialize console: lines... */
+			InitializeConsole();
+		}
 
-	InitializeTclTk();
-
-	if ( getScilabMode() != SCILAB_NWNI ) 
-	{
+		InitializeTclTk();
 		loadBackGroundClassPath();
 	}
 	return 0;
