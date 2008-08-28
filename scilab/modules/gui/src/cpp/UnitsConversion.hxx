@@ -34,9 +34,10 @@ extern "C"
  * @param value the value to convert
  * @param newUnit the new unit
  * @param sciObj the font parent
+ * @param widthAsRef TRUE to use width to compute normalized size, FALSE to use height to compute normalized size
  * @return the new value
  */
-double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj);
+double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthAsRef);
 
 /*
  * Convert a value to Point units
@@ -44,9 +45,10 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj);
  * @param value the value to convert
  * @param newUnit the new unit
  * @param sciObj the font parent
+ * @param widthAsRef TRUE to use width to compute normalized size, FALSE to use height to compute normalized size
  * @return the new value
  */
-int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj);
+int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsRef);
 
 /*
  * Convert a value from Pixels units to another unit
@@ -54,9 +56,10 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj);
  * @param value the value to convert
  * @param newUnit the new unit
  * @param sciObj the font parent
+ * @param widthAsRef TRUE to use width to compute normalized size, FALSE to use height to compute normalized size
  * @return the new value
  */
-double ConvertFromPixel(int value, int newUnit, sciPointObj *sciObj);
+double ConvertFromPixel(int value, int newUnit, sciPointObj *sciObj, BOOL widthAsRef);
 
 /*
  * Convert a value to Pixel units
@@ -65,7 +68,8 @@ double ConvertFromPixel(int value, int newUnit, sciPointObj *sciObj);
  * @param newUnit the new unit
  * @param sciObj the font parent
  * @return the new value
+ * @param widthAsRef TRUE to use width to compute normalized size, FALSE to use height to compute normalized size
  */
-int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj);
+int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsRef);
 
 #endif /*!__UNITS_CONVERSION_HXX__*/

@@ -39,8 +39,8 @@ int GetScreenProperty(char *propertyName)
     {
       value[0] = 0.0;
       value[1] = 0.0;
-      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), CENTIMETERS_UNITS, NULL) * 10;
-      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), CENTIMETERS_UNITS, NULL) * 10;
+      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), CENTIMETERS_UNITS, NULL, FALSE) * 10;
+      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), CENTIMETERS_UNITS, NULL, FALSE) * 10;
       
       flag = sciReturnRowVector(value, 4);
       
@@ -52,8 +52,8 @@ int GetScreenProperty(char *propertyName)
     {
       value[0] = 0.0;
       value[1] = 0.0;
-      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), CENTIMETERS_UNITS, NULL);
-      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), CENTIMETERS_UNITS, NULL);
+      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), CENTIMETERS_UNITS, NULL, FALSE);
+      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), CENTIMETERS_UNITS, NULL, FALSE);
       
       flag = sciReturnRowVector(value, 4);
       
@@ -65,8 +65,8 @@ int GetScreenProperty(char *propertyName)
     {
       value[0] = 0.0;
       value[1] = 0.0;
-      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), INCHES_UNITS, NULL);
-      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), INCHES_UNITS, NULL);
+      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), INCHES_UNITS, NULL, FALSE);
+      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), INCHES_UNITS, NULL, FALSE);
       
       flag = sciReturnRowVector(value, 4);
       
@@ -78,8 +78,8 @@ int GetScreenProperty(char *propertyName)
     {
       value[0] = 0.0;
       value[1] = 0.0;
-      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), POINTS_UNITS, NULL);
-      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), POINTS_UNITS, NULL);
+      value[2] = ConvertFromPixel((int) CallScilabBridge::getScreenWidth(getScilabJavaVM()), POINTS_UNITS, NULL, FALSE);
+      value[3] = ConvertFromPixel((int) CallScilabBridge::getScreenHeight(getScilabJavaVM()), POINTS_UNITS, NULL, FALSE);
       
       flag = sciReturnRowVector(value, 4);
       

@@ -55,10 +55,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
               return SET_PROPERTY_ERROR;
             }
           
-          xInt = ConvertToPixel(xDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj);
-          yInt = ConvertToPixel(yDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj);
-          widthInt = ConvertToPixel(widthDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj);
-          heightInt = ConvertToPixel(heightDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj);
+          xInt = ConvertToPixel(xDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
+          yInt = ConvertToPixel(yDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
+          widthInt = ConvertToPixel(widthDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
+          heightInt = ConvertToPixel(heightDouble, pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
           
         }
       else if (valueType == sci_matrix)
@@ -70,10 +70,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
             }
           
           allValues = getDoubleMatrixFromStack(stackPointer);
-          xInt = ConvertToPixel(allValues[0], pUICONTROL_FEATURE(sciObj)->units, sciObj);
-          yInt = ConvertToPixel(allValues[1], pUICONTROL_FEATURE(sciObj)->units, sciObj);
-          widthInt = ConvertToPixel(allValues[2], pUICONTROL_FEATURE(sciObj)->units, sciObj);
-          heightInt = ConvertToPixel(allValues[3], pUICONTROL_FEATURE(sciObj)->units, sciObj);
+          xInt = ConvertToPixel(allValues[0], pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
+          yInt = ConvertToPixel(allValues[1], pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
+          widthInt = ConvertToPixel(allValues[2], pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
+          heightInt = ConvertToPixel(allValues[3], pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
           
         }
       else
