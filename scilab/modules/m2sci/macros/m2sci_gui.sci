@@ -17,11 +17,9 @@ btnh = 22;
 btnw = 80;
 defaultfont = "arial";
 margin = 13;
-figw = 500;
-figh = 17*margin + btnh + 7*widgeth + 90; // 70 = size of the status bar and the menu bar
 
 // Figure creation
-m2scifig = figure("position", [0 0 figw figh], "figure_name", gettext("Matlab to Scilab conversion tool"));
+m2scifig = figure("figure_name", gettext("Matlab to Scilab conversion tool"));
 
 // Remove Scilab graphics menus & toolbar
 delmenu(m2scifig.figure_id, gettext("&File"));
@@ -37,6 +35,11 @@ h = uimenu("parent", m2scifig, "label", gettext("?"));
 uimenu("parent", h, "label", gettext("Mfile2sci help page"), "callback", "cb_m2sci_gui", "tag", "mfile2sci_help_menu");
 uimenu("parent", h, "label", gettext("Translatepaths help page"), "callback", "cb_m2sci_gui", "tag", "translatepaths_help_menu");
 uimenu("parent", h, "label", gettext("About M2SCI tools..."), "callback", "cb_m2sci_gui", "tag", "about_m2sci_menu");
+
+figw = 500;
+figh = 17*margin + btnh + 7*widgeth;
+m2scifig.axes_size = [figw figh];
+m2scifig.auto_resize = "off";
 
 //-------------------
 // --- Validation ---
@@ -300,7 +303,7 @@ outlabel = uicontrol("parent", m2scifig,...
 outedit = uicontrol("parent", m2scifig,...
     "style", "edit",...
     "string", getcwd(),...
-    "units", "points",...
+    "units", "pixels",...
     "position",[3*margin+100 optframemaxy+2*margin-1 figw-6*margin-100-btnw widgeth],...
     "fontname", defaultfont,...
     "fontunits", "points",...
