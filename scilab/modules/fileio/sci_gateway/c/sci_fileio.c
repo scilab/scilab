@@ -252,7 +252,7 @@ int intsmgetstr(char *fname,unsigned long fname_len)
 	int fd=-1;
 	int n=1,un=1;
 	Nbvars=0;
-	CheckRhs(1,3);
+	CheckRhs(1,2);
 	CheckLhs(1,1);
 	if ( Rhs >= 1)
 	{
