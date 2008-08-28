@@ -54,7 +54,7 @@ int SendScilabJob(char *job)
 			fprintf(stderr,"Error: SendScilabJob (1) 'TMP_EXEC_STRING'.\n");
 			retCode = -1;
 
-			if (command) {FREE(command);command=NULL;}
+			if (command) {FREE(command);command = NULL;}
 			return retCode;
 		}
 		else
@@ -88,7 +88,7 @@ int SendScilabJob(char *job)
 			/* clear prev. Err , TMP_EXEC_STRING scilab variables */
 			C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
 		}
-		if (command) {FREE(command);command=NULL;}
+		if (command) {FREE(command);command = NULL;}
 	}
 	else
 	{
@@ -272,7 +272,7 @@ static BOOL RemoveComments(char *line)
 	{
 		if (line[l] == '/') 
 		{
-			if (l-1>0)
+			if (l-1 >= 0)
 			{
 				if (line[l-1] == '/') 
 				{

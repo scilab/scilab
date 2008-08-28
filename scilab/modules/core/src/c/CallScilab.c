@@ -24,6 +24,7 @@
 #include "scilabmode.h"
 #include "dynamic_menus.h"
 #include "scilabDefaults.h"
+#include "TerminateCore.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
 #include "../../../windows_tools/src/c/scilab_windows/getScilabDirectory.h"
@@ -35,7 +36,7 @@
 #define putenv _putenv
 #endif
 /*--------------------------------------------------------------------------*/
-static int StartScilabIsOK=FALSE;
+static BOOL StartScilabIsOK = FALSE;
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static void SetSciEnv(void)
@@ -61,20 +62,21 @@ void DisableInteractiveMode(void)
 	setScilabMode(SCILAB_NWNI);
 }
 /*--------------------------------------------------------------------------*/
-int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
+BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 {
-	char *ScilabStartupUsed=NULL;
-	char *InitStringToScilab=NULL;
-	int StacksizeUsed=0;
-	int lengthStringToScilab=0;
+	#define FORMAT_SCRIPT_STARTUP "exec(\"%s\",-1);quit;"
+	char *ScilabStartupUsed = NULL;
+	char *InitStringToScilab = NULL;
+	int StacksizeUsed = 0;
+	int lengthStringToScilab = 0;
 
-	static int iflag=-1,ierr=0;
+	static int iflag = -1, ierr = 0;
 
 	if (StartScilabIsOK) return FALSE;
 
 	SetFromCToON();
 
-	if (SCIpath==NULL)
+	if (SCIpath == NULL)
 	{
 		#ifdef _MSC_VER
 			SetSciEnv();
@@ -95,7 +97,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		putenv(env);
 	}
 
-	if (ScilabStartup==NULL)
+	if (ScilabStartup == NULL)
 	{
 		ScilabStartupUsed = strdup(DEFAULTSCILABSTARTUP);
 	}
@@ -106,44 +108,47 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	if (Stacksize==NULL)
 	{
-		StacksizeUsed=DEFAULTSTACKSIZE;
+		StacksizeUsed = DEFAULTSTACKSIZE;
 	}
 	else
 	{
-		StacksizeUsed=*Stacksize;
+		StacksizeUsed = *Stacksize;
 	}
 
-	/* running the startup */
+	/* creates TMPDIR */
 	C2F(settmpdir)();
 
 	/* Scilab Initialization */
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
+	if ( ierr > 0 ) return FALSE;
 
-	if ( ierr > 0 )
-	  {
-	    return FALSE;
-	  }
-
-	lengthStringToScilab=(int)(strlen("exec(\"SCI/etc/scilab.start\",-1);quit;")+strlen(ScilabStartupUsed));
-	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
-	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
+	lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartupUsed + 1));
+	InitStringToScilab = (char*)MALLOC(lengthStringToScilab*sizeof(char));
+	sprintf(InitStringToScilab,FORMAT_SCRIPT_STARTUP,ScilabStartupUsed);
 
 	C2F(scirun)(InitStringToScilab,(long int)strlen(InitStringToScilab));
 
 	if (ScilabStartupUsed) {FREE(ScilabStartupUsed);ScilabStartupUsed=NULL;}
 	if (InitStringToScilab) {FREE(InitStringToScilab);InitStringToScilab=NULL;}
 
-	StartScilabIsOK=TRUE;
+	StartScilabIsOK = TRUE;
 
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-int TerminateScilab(char *ScilabQuit)
+BOOL TerminateScilab(char *ScilabQuit)
 {
 	if (StartScilabIsOK)
 	{
-		ExitScilab();
-		StartScilabIsOK=FALSE;
+		if (getScilabMode() != SCILAB_NWNI)
+		{
+			ExitScilab();
+		}
+		else
+		{
+			TerminateCorePart2();
+		}
+		StartScilabIsOK = FALSE;
 		return TRUE;
 	}
 

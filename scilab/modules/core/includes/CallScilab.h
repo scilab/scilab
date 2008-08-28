@@ -29,14 +29,14 @@ void DisableInteractiveMode(void);
  * @param Stacksize : Default --> NULL 
  * @return TRUE if it is OK else FALSE
 */
-int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
+BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 
 /**
  * Terminate Scilab
  * @param ScilabQuit path & filename of scilab.quit : Default --> NULL 
  * @return TRUE if it is OK else FALSE 
 */
-int TerminateScilab(char *ScilabQuit);
+BOOL TerminateScilab(char *ScilabQuit);
 
 /**
  * Send a job to scilab 
