@@ -4,9 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
-
 // <-- Non-regression test for bug 2914 -->
 //
 // <-- Bugzilla URL -->
@@ -16,13 +14,10 @@
 // some values on polar axes have been removed (to compare with scilab 4.1.2)
 // see help polarplot
 // the same bug was reported for "contour()"
-
 polarplot()
 //contour()
 a = gca();
- 
 function TextChildren(a)
-
     children = a.children;
 	for k=1:size(children, 1)
 		handle = children(k);
@@ -35,5 +30,4 @@ function TextChildren(a)
 	end	
 	
 endfunction
-
 TextChildren(a);

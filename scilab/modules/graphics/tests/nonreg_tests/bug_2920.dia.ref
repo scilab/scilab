@@ -4,24 +4,16 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
-
-// <-- Non-regression test for bug 3258 -->
+// <-- Non-regression test for bug 2920 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3258
+// http://bugzilla.scilab.org/show_bug.cgi?id=2920
 //
 // <-- Short Description -->
-// Incompatibility detected between scilab4 and 5
-// xpolys creates a compound objects the order of the handles in the compound
-// is inverted compared to Scilab5
-
-xpolys(1:3,1:3)
-
-// get handle of the compound
+// The demo called "Rectangles, Arcs, Polylines, Segments and Numbers" do not display yellow filled objects.
+// should draw a white rectangle (draw a yellow one in Scilab 4).
+xrects([0.25;0.75;0.5;0.5],xget('white'));
 e = gce();
-
-if (e.children(1).data <> [3,3]) then pause; end
-if (e.children(2).data <> [2,2]) then pause; end
-if (e.children(3).data <> [1,1]) then pause; end
+e = e.children;
+e.line_mode = "on";

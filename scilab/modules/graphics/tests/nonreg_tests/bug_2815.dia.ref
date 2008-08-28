@@ -4,19 +4,17 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
-// <-- INTERACTIVE TEST -->
-
-// <-- Non-regression test for bug 3349 -->
+// <-- Non-regression test for bug 2815 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3349
+// http://bugzilla.scilab.org/show_bug.cgi?id=2815
 //
 // <-- Short Description -->
-// getcolor() freezes Scilab.
-
-getcolor()
-
-// close the new window using the closing cross.
-// It used to freeze Scilab.
+// sub_ticks disappear when changed
+plot2d()
+f=gcf();
+// subticks should not disappear
+f.children.sub_ticks;
+f.children.sub_ticks=[1,1];
+f.children.sub_ticks=[2,1];

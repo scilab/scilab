@@ -19,11 +19,6 @@ plot2d()
 f=gcf();
 
 // subticks should not disappear
-f.children.sub_ticks
+f.children.sub_ticks;
 f.children.sub_ticks=[1,1];
-f.children.sub_ticks=[2,1]; 
-
-
-
-
-
+f.children.sub_ticks=[2,1];

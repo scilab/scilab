@@ -16,10 +16,10 @@
 // xpolys performance regression in Scilab 5
 
 // should be almost as fast in Scilab 4 and Scilab 5.
-clf()
+
+clf();
 u=rand(2,10000);
 v=rand(2,10000);
-tic()
-xpolys(u,v)
-toc()
-
+tic();
+xpolys(u,v);
+toc();
