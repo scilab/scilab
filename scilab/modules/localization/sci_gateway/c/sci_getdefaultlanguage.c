@@ -23,7 +23,7 @@ int C2F(sci_getdefaultlanguage)(char *fname,unsigned long fname_len)
 	CheckLhs(0,1);
 
 	m1= (int)strlen(SCILABDEFAULTLANGUAGE);
-	n1 = 1;
+	n1=1;
 
 	CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&l1);
 	strcpy(cstk(l1), SCILABDEFAULTLANGUAGE );

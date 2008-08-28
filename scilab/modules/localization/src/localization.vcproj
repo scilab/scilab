@@ -16,9 +16,6 @@
 		/>
 	</Platforms>
 	<ToolFiles>
-		<ToolFile
-			RelativePath="..\..\..\Visual-Studio-settings\swig.rules"
-		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -38,9 +35,6 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="swig rule"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -52,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../io/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -133,9 +127,6 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="swig rule"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -148,7 +139,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../io/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -229,9 +220,6 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="swig rule"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -245,7 +233,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../io/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -324,9 +312,6 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="swig rule"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -341,7 +326,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../io/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -414,7 +399,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\c\defaultlanguage.h"
+				RelativePath=".\c\getentrieshashtable.h"
 				>
 			</File>
 			<File
@@ -422,11 +407,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\getTextWarp.h"
+				RelativePath="..\includes\gw_localization.h"
 				>
 			</File>
 			<File
-				RelativePath="..\includes\gw_localization.h"
+				RelativePath=".\c\hashtable_localization.h"
 				>
 			</File>
 			<File
@@ -434,11 +419,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\LanguagePref.h"
+				RelativePath=".\c\loadhashtableslocalization.h"
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadLanguagePref.h"
+				RelativePath=".\c\loadsavelanguage.h"
 				>
 			</File>
 			<File
@@ -446,11 +431,39 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\saveLanguagePref.h"
+				RelativePath=".\c\org_scilab_modules_localization_QueryString.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\QueryStringError.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\QueryStringMenu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\QueryStringMessage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\c\sci_getlanguage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\c\sci_setlanguage.h"
 				>
 			</File>
 			<File
 				RelativePath="..\includes\setgetlanguage.h"
+				>
+			</File>
+			<File
+				RelativePath=".\c\tableslanguages.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\TerminateLocalization.h"
 				>
 			</File>
 		</Filter>
@@ -503,19 +516,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\LanguagePref.c"
-				>
-			</File>
-			<File
-				RelativePath=".\c\loadLanguagePref.c"
+				RelativePath=".\c\loadsavelanguage.c"
 				>
 			</File>
 			<File
 				RelativePath=".\c\localetoutf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\c\saveLanguagePref.c"
 				>
 			</File>
 			<File

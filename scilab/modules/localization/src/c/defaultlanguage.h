@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
- * Copyright (C) 2008 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +13,12 @@
 #ifndef __DEFAULTLANGUAGE_H__
 #define __DEFAULTLANGUAGE_H__
 
+/*
+** @TODO : Hard reference to a static array defined in
+** tableslanguages.h seems not to be a very clever idea...
+*/
+
 #define SCILABDEFAULTLANGUAGE "en_US"
+#define SCILABDEFAULTLANGUAGECODE 83
 
 #endif /* !__DEFAULTLANGUAGE_H__ */

@@ -75,31 +75,28 @@ char* getLocaleUserInfo(void)
 		if (ret >0)
 		{
             // BY YJLee get Windows CODE Page Information
-			ret = GetLocaleInfo(LOCALE_USER_DEFAULT,
+			int ret = GetLocaleInfo(LOCALE_USER_DEFAULT,
 						LOCALE_IDEFAULTANSICODEPAGE,
 						&buffer_LOCALE_IDEFAULTANSICODEPAGE[0],
 						LENGTH_BUFFER);
-			if (ret >0)
-			{
-				int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
+
+			int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
 										 strlen(buffer_LOCALE_SISO3166CTRYNAME)+
 										 strlen(buffer_LOCALE_IDEFAULTANSICODEPAGE)+
 										 strlen("_.CP") );
-
-				localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
-				if (localeStr)
-				{
-					#ifdef FORMAT_LOCALE
-						#undef FORMAT_LOCALE
-					#endif
-					#define FORMAT_LOCALE "%s_%s.CP%s"
-					// in lang_contry.CPxxx format
-					sprintf(localeStr,FORMAT_LOCALE,
+			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
+			if (localeStr)
+			{
+				#ifdef FORMAT_LOCALE
+					#undef FORMAT_LOCALE
+				#endif
+				#define FORMAT_LOCALE "%s_%s.CP%s"
+				// in lang_contry.CPxxx format
+				sprintf(localeStr,FORMAT_LOCALE,
 					              buffer_LOCALE_SISO639LANGNAME,
 								  buffer_LOCALE_SISO3166CTRYNAME,
 								  buffer_LOCALE_IDEFAULTANSICODEPAGE
 								  );
-				}
 			}
 		}
 	}

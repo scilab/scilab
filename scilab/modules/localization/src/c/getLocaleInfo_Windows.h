@@ -16,8 +16,8 @@
 #define __GETLOCALINFO_WINDOWS_H__
 
 /**
-* returns user locale string with .CP
-* @return Locale user example fr_FR.CP1215
+* returns user locale string
+* @return Locale user example fr_FR or en_US
 */
 char* getLocaleUserInfo(void);
 

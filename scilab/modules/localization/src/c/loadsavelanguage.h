@@ -10,12 +10,14 @@
  *
  */
 
-#ifndef __INITIALIZELOCALIZATION_H__
-#define __INITIALIZELOCALIZATION_H__
-#include <stdio.h>
+#ifndef __LOADSAVELANGUAGE_H__
+#define __LOADSAVELANGUAGE_H__
+
 #include "machine.h"
 
-BOOL InitializeLocalization(void);
+BOOL loadlanguagepref(void);
+BOOL savelanguagepref(void);
 
-#endif /* __INITIALIZELOCALIZATION_H__ */
+#endif /* __LOADSAVELANGUAGE_H__ */
 /*--------------------------------------------------------------------------*/ 
+

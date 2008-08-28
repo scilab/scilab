@@ -12,10 +12,7 @@ LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
 src/c/localetoutf.c \
-src/c/LanguagePref.c \
-src/c/saveLanguagePref.c \
-src/c/loadLanguagePref.c
-
+src/c/loadsavelanguage.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
@@ -24,6 +21,10 @@ sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c
 
+#sci_gateway/c/sci_getlanguagealias.c \
+#sci_gateway/c/sci_getlanguagestable.c \
+#sci_gateway/c/sci_addtext.c \
+#sci_gateway/c/sci_removetext.c
 
 libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-Iincludes/ \
@@ -31,7 +32,6 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscilocalization.la
@@ -64,7 +64,8 @@ libscilocalization_la_includedir=$(pkgincludedir)/localization
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h \
 includes/InitializeLocalization.h \
-includes/setgetlanguage.h 
+includes/setgetlanguage.h \
+includes/TerminateLocalization.h
 
 if GUI
 USEANT=1
