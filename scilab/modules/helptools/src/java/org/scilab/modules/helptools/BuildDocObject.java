@@ -1,10 +1,23 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.helptools;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.xml.sax.SAXException;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
@@ -12,17 +25,39 @@ import com.icl.saxon.StyleSheet; /* saxon */
  * This classes intends to wrap Saxon features in a easy-to-use class.
  */
 public class BuildDocObject extends StyleSheet {
+	
+	/**
+	 * Windows version ?
+	 */
+	public static final boolean IS_WINDOWS = (File.pathSeparatorChar == ';');
+
+	private static final String SCI = System.getenv("SCI");
+	private static final String ERROR_WHILE_COPYING = "Error while copying ";
+	private static final String CANNOT_COPY_CONVERT = "Cannot copy/convert '";
+	private static final String TO_WITH_QUOTES = "' to '";
+	private static final String TO = " to ";
+	private static final String COLON_WITH_QUOTES = "': ";
+	private static final String COLON = " : ";
+	private static final String PDF_FORMAT = "PDF";
+	private static final String PS_FORMAT = "PS";
+	private static final String JH_FORMAT = "JH";
+	private static final String JAVAHELP_FORMAT = "JAVAHELP";
+	private static final String USE_EXTENSIONS_1 = "use.extensions=1";
+	private static final String GRAPHICSIZE_EXTENSION_0 = "graphicsize.extension=0";
+	private static final String TOC_SECTION_DEPTH_3 = "toc.section.depth=3";
+	private static final String SECTION_AUTOLABEL_1 = "section.autolabel=1";
+	
 	private String outputDirectory;
 	private String format;
 	private String language;
 	private String docbookPath;
 	private String styleDoc;
 	private ArrayList<String> specificArgs = new ArrayList<String>();
-	
-	public static final boolean IS_WINDOWS = (File.pathSeparatorChar == ';');
 
     /**
      * Creator ... creates the BuildDocObject object
+     * 
+     * @throws FileNotFoundException if Docbook is not found 
 	 */
 	public BuildDocObject() throws FileNotFoundException {
 		super();
@@ -30,12 +65,11 @@ public class BuildDocObject extends StyleSheet {
 		
 		if (IS_WINDOWS) {
 			if (this.docbookPath == null) {
-				String SCI = System.getenv("SCI");
 				this.docbookPath = SCI + "/thirdparty/docbook";
 			}
-		}else{
+		} else {
 			if (this.docbookPath == null) {
-				throw new FileNotFoundException("Could not find variable DOCBOOK_ROOT defining Docbook root directory");				
+				throw new FileNotFoundException("Could not find variable DOCBOOK_ROOT defining Docbook root directory");
 			}
 		}
 	}
@@ -88,13 +122,13 @@ public class BuildDocObject extends StyleSheet {
 		// Need to work with a String instead of a enum since it needs
 		// to be called from C/C++ and GIWS doesn't manage this type.
 		// Can be CHM, HTML, PDF, JavaHelp, Postscript
-		if (format.equalsIgnoreCase("PDF") || format.equalsIgnoreCase("PS")) {
-			specificArgs.add("use.extensions=1");
-			specificArgs.add("graphicsize.extension=0");
+		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(PS_FORMAT)) {
+			specificArgs.add(USE_EXTENSIONS_1);
+			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
 			specificArgs.add("paper.type=A4");
 			specificArgs.add("\"generate.toc=book toc,title,figure,table,example,equation part toc,title reference toc,title\"");
-			specificArgs.add("toc.section.depth=3");
-			specificArgs.add("section.autolabel=1");
+			specificArgs.add(TOC_SECTION_DEPTH_3);
+			specificArgs.add(SECTION_AUTOLABEL_1);
 			specificArgs.add("variablelist.as.blocks=1");
 			specificArgs.add("shade.verbatim=1");
 			this.styleDoc = docbookPath + "/fo/docbook.xsl";
@@ -104,17 +138,17 @@ public class BuildDocObject extends StyleSheet {
 		if (format.equalsIgnoreCase("HTML")) {
 			specificArgs.add("use.id.as.filename=1");
 			specificArgs.add("html.stylesheet=html.css");
-			specificArgs.add("use.extensions=1");
-			specificArgs.add("graphicsize.extension=0");
-			specificArgs.add("toc.section.depth=3");
-			specificArgs.add("section.autolabel=1");
+			specificArgs.add(USE_EXTENSIONS_1);
+			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
+			specificArgs.add(TOC_SECTION_DEPTH_3);
+			specificArgs.add(SECTION_AUTOLABEL_1);
 			this.styleDoc = docbookPath + "/html/chunk.xsl";
 
 		}
-		if (format.equalsIgnoreCase("JH") || format.equalsIgnoreCase("javaHelp")) {
+		if (format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
 			// JavaHelp
-			specificArgs.add("use.extensions=1");
-			specificArgs.add("graphicsize.extension=0");
+			specificArgs.add(USE_EXTENSIONS_1);
+			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
 			specificArgs.add("\"generate.toc= \"");
 			this.styleDoc = docbookPath + "/javahelp/javahelp.xsl";
 		}
@@ -122,19 +156,26 @@ public class BuildDocObject extends StyleSheet {
 	}
 
 
+	/**
+	 * Replace links by the contents of the XML files in the master
+	 * @param masterXML name of the master file
+	 * @param styleSheet CSS to be used
+	 * @return the absolute path the the new master file
+	 */
 	private String preProcessMaster(String masterXML, String styleSheet) {
 
 		String filename = (String) new File(masterXML).getName();
 		/* Create the output file which will be created by copyconvert.run into the working directory  */
-		File masterXMLTransformed = new File(this.outputDirectory + File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
-		String out=this.outputDirectory + File.separator + (String) new File(styleSheet).getName();
+		File masterXMLTransformed = new File(this.outputDirectory 
+				+ File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
+		String out = this.outputDirectory + File.separator + (String) new File(styleSheet).getName();
 		try {
 			
 		Helpers.copyFile(new File(styleSheet), new File(out));
-		} catch(java.io.FileNotFoundException e) {
-			System.err.println("Error while copying " + styleSheet + " to " + out + " : " + e.getMessage());			
+		} catch (java.io.FileNotFoundException e) {
+			System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());			
 		} catch (java.io.IOException e) {
-			System.err.println("Error while copying " + styleSheet + " to " + out + " : " + e.getMessage());			
+			System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());			
 		}
         CopyConvert copyConvert = new CopyConvert();
         copyConvert.setVerbose(true);
@@ -142,9 +183,13 @@ public class BuildDocObject extends StyleSheet {
 		
         try {
             copyConvert.run(new File(masterXML), masterXMLTransformed);
-        } catch (Exception e) {
-            System.err.println("Cannot copy/convert '" + masterXML + "' to '"
-							   + masterXMLTransformed + "': " + Helpers.reason(e));
+        } catch (SAXException e) {
+            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
+					   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
+            System.exit(2);
+        } catch (IOException e) {
+           System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
+        		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
             System.exit(2);
         }
 		return masterXMLTransformed.getAbsolutePath();
@@ -155,10 +200,10 @@ public class BuildDocObject extends StyleSheet {
      *
      */
 	private void postProcess() {
-		if (this.format.equalsIgnoreCase("JH") || format.equalsIgnoreCase("javaHelp")) {
+		if (this.format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
 			BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
 		}
-		if (format.equalsIgnoreCase("PDF")) {
+		if (format.equalsIgnoreCase(PDF_FORMAT)) {
 			BuildPDF.buildPDF(this.outputDirectory, this.language);
 		}
 	}
@@ -191,7 +236,7 @@ public class BuildDocObject extends StyleSheet {
 		}
 		
 		String sourceDocProcessed = this.preProcessMaster(sourceDoc, styleSheet);
-		if (format.equalsIgnoreCase("PDF")) {
+		if (format.equalsIgnoreCase(PDF_FORMAT)) {
 			/* PDF takes others args */
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
@@ -220,12 +265,13 @@ public class BuildDocObject extends StyleSheet {
      * @param arg Useless arg
 	 */
 	public static void main(String[] arg) {
-		try{
+		try {
 			BuildDocObject d = new BuildDocObject();
 			d.setOutputDirectory("/tmp/");
-			d.setExportFormat("PDF");
+			d.setExportFormat(PDF_FORMAT);
 			d.setDocbookPath("/usr/share/xml/docbook/stylesheet/nwalsh/");
-			d.process("/home/sylvestre/dev/scilab5/modules/helptools/master_en_US_help.xml", "/home/sylvestre/dev/scilab5/modules/helptools/css/javahelp.css");
+			d.process("/home/sylvestre/dev/scilab5/modules/helptools/master_en_US_help.xml",
+					"/home/sylvestre/dev/scilab5/modules/helptools/css/javahelp.css");
 		} catch (FileNotFoundException e) {
 			System.err.println("Exception catched: " + e.getMessage());
 		}
