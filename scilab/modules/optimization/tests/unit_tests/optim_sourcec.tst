@@ -43,7 +43,7 @@ C=['#include <math.h>'
 '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
 '  }'
 '}'];
-mputl(C,TMPDIR+'/rosenc.c')
+mputl(C,TMPDIR+'/rosenc.c');
 // compile the C code
 libpath=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
 // incremental linking
@@ -51,25 +51,22 @@ linkid=link(libpath,'rosenc','c');
 //solve the problem
 valtd=100;
 // Test with default solver and default settings.
-[f,x,g]=optim('rosenc',x0,'td',valtd)
+[f,x,g]=optim('rosenc',x0,'td',valtd);
 if abs(f-1+norm(x-xopt) ) > Leps then pause,end
 // Test with all solvers
-solverlist=["gc" "qn" "nd"]
+solverlist=["gc" "qn" "nd"];
 for solver=solverlist
-  mprintf("Solver=%s\n",solver)
   [f,x,g]=optim('rosenc',x0,solver,'td',valtd);
   if abs(f-1+norm(x-xopt) ) > Leps then pause,end
 end
 // Test all verbose levels with all possible solvers
-verboselevels=[0 1 2 3]
+verboselevels=[0 1 2 3];
 for verbose=verboselevels
-  mprintf("Verbose=%d\n",verbose)
   for solver=solverlist
-    mprintf("Solver=%s\n",solver)
     [f,x,g]=optim('rosenc',x0,solver,'td',valtd,imp=verbose);
     if abs(f-1+norm(x-xopt) ) > Leps then pause,end
   end
 end
 // Clean-up
-ulink(linkid)
+ulink(linkid);
 

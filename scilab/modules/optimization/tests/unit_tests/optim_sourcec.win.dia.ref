@@ -43,7 +43,7 @@ C=['#include <math.h>'
 '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
 '  }'
 '}'];
-mputl(C,TMPDIR+'/rosenc.c')
+mputl(C,TMPDIR+'/rosenc.c');
 // compile the C code
 libpath=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
    Generate a loader file
@@ -58,72 +58,35 @@ Link done.
 //solve the problem
 valtd=100;
 // Test with default solver and default settings.
-[f,x,g]=optim('rosenc',x0,'td',valtd)
- g  =
- 
-    0.  
-    0.  
-    0.  
- x  =
- 
-    1.  
-    1.  
-    1.  
- f  =
- 
-    1.  
+[f,x,g]=optim('rosenc',x0,'td',valtd);
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 // Test with all solvers
-solverlist=["gc" "qn" "nd"]
- solverlist  =
- 
-!gc  qn  nd  !
+solverlist=["gc" "qn" "nd"];
 for solver=solverlist
-  mprintf("Solver=%s\n",solver)
   [f,x,g]=optim('rosenc',x0,solver,'td',valtd);
   if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 end
-Solver=gc
-Solver=qn
-Solver=nd
 // Test all verbose levels with all possible solvers
-verboselevels=[0 1 2 3]
- verboselevels  =
- 
-    0.    1.    2.    3.  
+verboselevels=[0 1 2 3];
 for verbose=verboselevels
-  mprintf("Verbose=%d\n",verbose)
   for solver=solverlist
-    mprintf("Solver=%s\n",solver)
     [f,x,g]=optim('rosenc',x0,solver,'td',valtd,imp=verbose);
     if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
   end
 end
-Verbose=0
-Solver=gc
-Solver=qn
-Solver=nd
-Verbose=1
-Solver=gc
 Optim stops: maximum number of calls to f is reached.
 
-Solver=qn
 Norm of projected gradient lower than   0.0000000D+00.
 
-Solver=nd
 entry in n1fc1 . n=   3 memax= 10  
 minimal array sizes: iz(    22)  rz(    85)  dz(   198)
 n1fc1      Incorrect end of fprf2
 End of optimization.
 
-Verbose=2
-Solver=gc
 Optim stops: maximum number of calls to f is reached.
 
-Solver=qn
 Norm of projected gradient lower than   0.0000000D+00.
 
-Solver=nd
 entry in n1fc1 . n=   3 memax= 10  
 minimal array sizes: iz(    22)  rz(    85)  dz(   198)
  n1fc1            diam1= 0.497D+00    eta2= 0.000D+00    ap= 0.201D-28
@@ -134,14 +97,10 @@ n1fc1   eta2 assigned to  0.000D+00
 n1fc1      Incorrect end of fprf2
 End of optimization.
 
-Verbose=3
-Solver=gc
 Optim stops: maximum number of calls to f is reached.
 
-Solver=qn
 Norm of projected gradient lower than   0.0000000D+00.
 
-Solver=nd
 entry in n1fc1 . n=   3 memax= 10  
 minimal array sizes: iz(    22)  rz(    85)  dz(   198)
 n1fc1      1    1   0.1260000D+02  0.10D+01  0.20D+05  0.00D+00  2
@@ -175,4 +134,4 @@ n1fc1      Incorrect end of fprf2
 End of optimization.
 
 // Clean-up
-ulink(linkid)
+ulink(linkid);
