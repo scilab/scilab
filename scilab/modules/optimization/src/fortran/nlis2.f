@@ -272,7 +272,7 @@ c                arret sur dx ou de secours
   960 g(i)=gg(i)
   970 if (imp.le.0) go to 999
       if (logic.lt.0) call n1fc1o(io,42,logic,i2,i3,i4,i5,d1,d2,d3,d4)
-      if (logic.eq.6) call n1fc1o(io,42,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (logic.eq.6) call n1fc1o(io,42,logic,i2,i3,i4,i5,d1,d2,d3,d4)
       go to 999
 c
 c                recopiage de x et boucle
