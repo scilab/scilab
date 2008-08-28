@@ -6,8 +6,8 @@
 // ============================================================================
 // Check value provided here:
 // http://math.nist.gov/MatrixMarket/data/SPARSKIT/tokamak/utm300.html
+warning("off");
 [A, dsc]=ReadHBSparse(SCI+"/modules/umfpack/examples/utm300.rua");
-WARNING: ReadHBSparse: Le fichier contient un rhs mais ne sera pas lu !
 if dsc <> "utm300" then bugmes();quit;end
 [nl,nc] = size(A)
  nc  =
