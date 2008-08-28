@@ -9,11 +9,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-#include "TerminateGui.h"
 /*--------------------------------------------------------------------------*/ 
-#include "xscion.h"
-#include "fromjava.h" /* IsFromJava */
+#include "TerminateGui.h"
+#include "CallMainWindow.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateGUI(void)
 {
