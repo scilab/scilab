@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mmread"><info><pubdate>4-Jan-2007</pubdate></info><refnamediv><refname>mmread</refname><refpurpose> Reads a Matrix Market file </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>A = mmread(filename)
+[A,rows,cols,entries,rep,field,symm,comments] = mmread(filename)</synopsis></refsynopsisdiv>
+
+  <refsection><title>Parameters</title>
+  <variablelist>
+
+    <varlistentry>
+    <term>filename</term>
+    <listitem>
+       <para>string, path of the Matrix Market file.
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>A</term>
+    <listitem>
+       <para>full or sparse matrix
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>rows</term>
+    <listitem>
+       <para>scalar, number of matrix rows
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>cols</term>
+    <listitem>
+       <para>scalar, number of matrix columns
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>entries</term>
+    <listitem>
+       <para>scalar, number of nonzeros entries in the matrix 
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>rep</term>
+    <listitem>
+       <para> string, with values "coordinate" or "array" 
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>field</term>
+    <listitem>
+       <para>string, with values "real",  "complex" or "pattern"
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>symm</term>
+    <listitem>
+       <para>string, with values "general", "symmetric", "skew-symmetric", "hermitian"
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
+ 
+  <refsection><title>Description</title>
+     <itemizedlist>
+     <listitem>
+     <para>
+	  Reads the contents of the Matrix Market file <literal>filename</literal>
+      into the matrix <literal>A</literal>.  <literal>A</literal> will be either sparse or full,
+      depending on the Matrix Market format indicated by <literal>rep</literal>
+      'coordinate' (coordinate sparse storage), or
+      'array' (dense array storage).  The data will be duplicated
+      as appropriate if symmetry is indicated in the header.
+
+      Optionally, size information about the matrix can be 
+      obtained by using the return values <literal>rows</literal>, <literal>cols</literal>, and
+      <literal>entries</literal>, where <literal>entries</literal> is the number of nonzero entries
+      in the final matrix. Type information can also be retrieved
+      using the optional return values <literal>rep</literal> (representation), <literal>field</literal>,
+      and <literal>symm</literal> (symmetry).
+
+     </para>
+     </listitem>
+  </itemizedlist>
+  </refsection>
+
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    A=sparse([1,1;1,3;2,2;3,1;3,3;3,4;4,3;4,4],..
+               [9;27+%i;16;27-%i;145;88;88;121],[4,4])    
+    mmwrite(TMPDIR+'/A.mtx',A); 
+    A1=mmread(TMPDIR+'/A.mtx')
+  ]]></programlisting></refsection>
+
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="mminfo"> mminfo</link> </member>
+    <member> <link linkend="mmwrite"> mmwrite</link> </member>
+  </simplelist></refsection>
+
+ <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>Serge Steer</term><listitem><para>
+    INRIA
+    </para></listitem></varlistentry>
+  </variablelist></refsection>
+
+
+  <refsection><title>Bibliography</title>
+    <para>
+    http://math.nist.gov/MatrixMarket/formats.html
+    </para>
+  </refsection>
+  <refsection><title>Used Functions</title>
+     <para>
+     mminfo
+     </para>
+  </refsection>
+</refentry>

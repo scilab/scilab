@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mminfo"><info><pubdate>4-Jan-2007</pubdate></info><refnamediv><refname>mminfo</refname><refpurpose> Extracts size and storage information out of a Matrix Market file</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[rows,cols,entries,rep,field,symm,comments] = mminfo(filename)</synopsis></refsynopsisdiv>
+
+  <refsection><title>Parameters</title>
+  <variablelist>
+
+    <varlistentry>
+    <term>filename</term>
+    <listitem>
+       <para>string, path of the Matrix Market file, or logical unit associated to
+	    that file
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>rows</term>
+    <listitem>
+       <para>scalar, number of matrix rows
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>cols</term>
+    <listitem>
+       <para>scalar, number of matrix columns
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>entries</term>
+    <listitem>
+       <para>scalar, number of entries stored in the file (see below)
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>rep</term>
+    <listitem>
+       <para>string, with values "coordinate" or "array" 
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>field</term>
+    <listitem>
+       <para>string, with values "real",  "complex" or "pattern"
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>symm</term>
+    <listitem>
+       <para>string, with values "general", "symmetric", "skew-symmetric", "hermitian"
+       </para>
+    </listitem>
+    </varlistentry>
+
+    <varlistentry>
+    <term>comments</term>
+    <listitem>
+       <para>a character string vector, contains the comments present in the file header
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
+ 
+  <refsection><title>Description</title>
+     <itemizedlist>
+     <listitem>
+     <para>
+	  <literal>[rows, cols, entries, rep, field, symmetry ,comments] = mminfo(filename)</literal>
+
+      Extracts size and storage information out of a Matrix Market file.
+
+      In the case of coordinate matrices, entries refers to the
+      number of coordinate entries stored in the file.  The number
+      of non-zero entries in the final matrix cannot be determined
+      until the data is read (and symmetrized, if necessary).
+
+      In the case of array matrices, entries is the product
+      rows*cols, regardless of whether symmetry was used to
+      store the matrix efficiently.
+     </para>
+     </listitem>
+     <listitem>
+	<para>
+	  If <literal>filename</literal> is a file path ,
+	  <literal>mminfo(filename)</literal> opens the file, reads the information
+	  and then closes the file.
+
+	</para>
+	<para>
+	  If <literal>filename</literal> is a logical unit (see <link linkend="mopen">mopen</link>) ,
+	  <literal>mminfo(filename)</literal>  reads the information and and let the
+	  file pointer positionned at the beginning of the data in the file
+	  
+	</para>
+
+     </listitem>
+   <listitem>
+	<para>
+	  without left hand side arguments <literal>mminfo(filename)</literal>
+	  displays the file information.
+	</para>
+
+     </listitem>
+     </itemizedlist>
+  </refsection>
+
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    A=sparse([1,1;1,3;2,2;3,1;3,3;3,4;4,3;4,4],..
+               [9;27+%i;16;27-%i;145;88;88;121],[4,4]) ;  
+    mmwrite(TMPDIR+'/A.mtx',A); 
+    mminfo(TMPDIR+'/A.mtx');
+    [rows,cols,entries,rep,field,symm,comments] = mminfo(TMPDIR+'/A.mtx')
+  ]]></programlisting></refsection>
+
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="mmread"> mmread</link> </member>
+  </simplelist></refsection>
+
+  <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>Serge Steer</term><listitem><para>
+    INRIA
+    </para></listitem></varlistentry>
+  </variablelist></refsection>
+
+  <refsection><title>Bibliography</title>
+    <para>
+    http://math.nist.gov/MatrixMarket/formats.html
+    </para>
+  </refsection>
+
+</refentry>
