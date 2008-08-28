@@ -304,7 +304,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	sciprint(_("%s: Invalid legend ignored.\n"),"plot2d");
       }
       else {*/
-	Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,nleg);
+      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,Min(nleg,cmpt));
 	if (Leg != NULL)
 	  {
 	    pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
