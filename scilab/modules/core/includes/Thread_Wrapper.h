@@ -47,7 +47,7 @@
 
 	#define __Signal(signalName)					SetEvent(*signalName)
 
-	#define __Wait(signalName, lockName)			{__UnLockSignal(lockName);ResetEvent(*signalName);WaitForSingleObject(*signalName, INFINITE);__LockSignal(lockName);};
+	#define __Wait(signalName, lockName)			{ResetEvent(*signalName);__UnLockSignal(lockName);WaitForSingleObject(*signalName, INFINITE);__LockSignal(lockName);};
 
 	#define __CreateThread(threadId, functionName)  *(threadId)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)functionName, NULL,0,NULL)
 
