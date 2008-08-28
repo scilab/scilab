@@ -115,7 +115,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
  
   if(sciGetEntityType(sciObj) == SCI_UIMENU)  /* Sets the foreground of an uimenu */
     {
-      CallScilabBridge::setWidgetForegroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, redInt, greenInt, blueInt);
+      CallScilabBridge::setWidgetForegroundColor(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex, redInt, greenInt, blueInt);
       return SET_PROPERTY_SUCCEED;
     }
   else if(sciGetEntityType(sciObj) == SCI_UICONTROL)  /* Sets the foreground of an uicontrol */
