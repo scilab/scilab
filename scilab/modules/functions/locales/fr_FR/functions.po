@@ -173,7 +173,7 @@ msgstr ""
 # File: macros/plotprofile.sci, line: 90
 # File: macros/plotprofile.sci, line: 233
 msgid "&Edit"
-msgstr "&Editer"
+msgstr "&Edition"
 
 #
 # File: macros/plotprofile.sci, line: 91

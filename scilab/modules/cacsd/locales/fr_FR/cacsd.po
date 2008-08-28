@@ -116,7 +116,7 @@ msgid "3D &Rot."
 msgstr ""
 
 msgid "&Edit"
-msgstr ""
+msgstr "&Edition"
 
 msgid "&Insert"
 msgstr ""

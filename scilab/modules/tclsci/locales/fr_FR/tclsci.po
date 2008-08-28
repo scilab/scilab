@@ -24,7 +24,7 @@ msgid "&Tools"
 msgstr "&Outils"
 
 msgid "&Edit"
-msgstr "&Édition"
+msgstr "&Edition"
 
 msgid "&?"
 msgstr "&?"
