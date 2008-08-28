@@ -47,7 +47,7 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      endif'
 '      return'
 '      end'];
-mputl(F,TMPDIR+'/rosenf.f')
+mputl(F,TMPDIR+'/rosenf.f');
 // compile the Fortran code
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
    Generate a loader file
@@ -56,80 +56,40 @@ libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
    Compilation of rosenf
    Building shared library (be patient)
 // incremental linking
-linkid=link(libpath,'rosenf','f')
+linkid=link(libpath,'rosenf','f');
 Shared archive loaded.
 Link done.
- linkid  =
- 
-    0.  
 //solve the problem
 x0=1.2*ones(n,1);
 valtd=100;
-[f,xo,go]=optim('rosenf',x0,'td',valtd)
- go  =
- 
-    0.  
-    0.  
-    0.  
- xo  =
- 
-    1.  
-    1.  
-    1.  
- f  =
- 
-    1.  
+[f,xo,go]=optim('rosenf',x0,'td',valtd);
 // Test with all solvers
-solverlist=["gc" "qn" "nd"]
- solverlist  =
- 
-!gc  qn  nd  !
+solverlist=["gc" "qn" "nd"];
 for solver=solverlist
-  mprintf("Solver=%s\n",solver)
   [f,x,g]=optim('rosenf',x0,solver,'td',valtd);
   if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 end
-Solver=gc
-Solver=qn
-Solver=nd
 // Test all verbose levels with all possible solvers
-verboselevels=[0 1 2 3]
- verboselevels  =
- 
-    0.    1.    2.    3.  
+verboselevels=[0 1 2 3];
 for verbose=verboselevels
-  mprintf("Verbose=%d\n",verbose)
   for solver=solverlist
-    mprintf("Solver=%s\n",solver)
     [f,x,g]=optim('rosenf',x0,solver,'td',valtd,imp=verbose);
     if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
   end
 end
-Verbose=0
-Solver=gc
-Solver=qn
-Solver=nd
-Verbose=1
-Solver=gc
 Optim stops: maximum number of calls to f is reached.
 
-Solver=qn
 Norm of projected gradient lower than   0.0000000D+00.
 
-Solver=nd
 entry in n1fc1 . n=   3 memax= 10  
 minimal array sizes: iz(    22)  rz(    85)  dz(   198)
 n1fc1      Incorrect end of fprf2
 End of optimization.
 
-Verbose=2
-Solver=gc
 Optim stops: maximum number of calls to f is reached.
 
-Solver=qn
 Norm of projected gradient lower than   0.0000000D+00.
 
-Solver=nd
 entry in n1fc1 . n=   3 memax= 10  
 minimal array sizes: iz(    22)  rz(    85)  dz(   198)
  n1fc1            diam1= 0.497D+00    eta2= 0.000D+00    ap= 0.201D-28
@@ -140,14 +100,10 @@ n1fc1   eta2 assigned to  0.000D+00
 n1fc1      Incorrect end of fprf2
 End of optimization.
 
-Verbose=3
-Solver=gc
 Optim stops: maximum number of calls to f is reached.
 
-Solver=qn
 Norm of projected gradient lower than   0.0000000D+00.
 
-Solver=nd
 entry in n1fc1 . n=   3 memax= 10  
 minimal array sizes: iz(    22)  rz(    85)  dz(   198)
 n1fc1      1    1   0.1260000D+02  0.10D+01  0.20D+05  0.00D+00  2
@@ -181,4 +137,4 @@ n1fc1      Incorrect end of fprf2
 End of optimization.
 
 // Clean-up
-ulink(linkid)
+ulink(linkid);

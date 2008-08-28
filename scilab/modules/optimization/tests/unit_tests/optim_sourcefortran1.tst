@@ -48,32 +48,29 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      return'
 '      end'];
 
-mputl(F,TMPDIR+'/rosenf.f')
+mputl(F,TMPDIR+'/rosenf.f');
 // compile the Fortran code
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
 // incremental linking
-linkid=link(libpath,'rosenf','f')
+linkid=link(libpath,'rosenf','f');
 //solve the problem
 x0=1.2*ones(n,1);
 valtd=100;
-[f,xo,go]=optim('rosenf',x0,'td',valtd)
+[f,xo,go]=optim('rosenf',x0,'td',valtd);
 // Test with all solvers
-solverlist=["gc" "qn" "nd"]
+solverlist=["gc" "qn" "nd"];
 for solver=solverlist
-  mprintf("Solver=%s\n",solver)
   [f,x,g]=optim('rosenf',x0,solver,'td',valtd);
   if abs(f-1+norm(x-xopt) ) > Leps then pause,end
 end
 // Test all verbose levels with all possible solvers
-verboselevels=[0 1 2 3]
+verboselevels=[0 1 2 3];
 for verbose=verboselevels
-  mprintf("Verbose=%d\n",verbose)
   for solver=solverlist
-    mprintf("Solver=%s\n",solver)
     [f,x,g]=optim('rosenf',x0,solver,'td',valtd,imp=verbose);
     if abs(f-1+norm(x-xopt) ) > Leps then pause,end
   end
 end
 // Clean-up
-ulink(linkid)
+ulink(linkid);
 
