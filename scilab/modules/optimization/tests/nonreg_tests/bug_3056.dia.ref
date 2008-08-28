@@ -81,7 +81,7 @@ myf: ||xn(1) - xn_1(1)|| = 0.000112 - ||xn(2) - xn_1(2)|| = 0.001607 - iter = 16
 myf: ||xn(1) - xn_1(1)|| = 0.000102 - ||xn(2) - xn_1(2)|| = 0.001458 - iter = 17 - ||fn - fn_1|| = 0.025055 - ||gn - gn_1|| = 0.015094
 myf: ||xn(1) - xn_1(1)|| = 0.000092 - ||xn(2) - xn_1(2)|| = 0.001325 - iter = 18 - ||fn - fn_1|| = 0.023007 - ||gn - gn_1|| = 0.013720
 myf: ||xn(1) - xn_1(1)|| = 0.000084 - ||xn(2) - xn_1(2)|| = 0.001204 - iter = 19 - ||fn - fn_1|| = 0.021105 - ||gn - gn_1|| = 0.012478
-     nlis2   contrainte implicite**** active
+     nlis2   contrainte implicite   6 active
 n1fc1  end (dxmin reached)
 Optimization stops because too small variations for x.
 
