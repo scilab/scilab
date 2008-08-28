@@ -22,6 +22,7 @@
 #include "GlobalTclInterp.h"
 #include "localization.h"
 #include "ConvertSlash.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
 extern void	TclSetLibraryPath(Tcl_Obj * pathPtr);
 /*--------------------------------------------------------------------------*/
@@ -64,6 +65,13 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
 
 	CopyOfDefaultPath = MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 	if (CopyOfDefaultPath == NULL) return FALSE;
+
+	if (getScilabMode() == SCILAB_STD)
+	{
+		/* redirect stdout, stderr in console */
+		freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
+		freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
+	}
 
 	Tcl_GetVersion(&tcl_major, &tcl_minor, &tcl_patchLevel, &tcl_type);
 
