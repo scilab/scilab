@@ -9,21 +9,27 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 package org.scilab.modules.helptools;
+
 import java.io.File;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
-//JAXP
+
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.Result;
 import javax.xml.transform.sax.SAXResult;
 
-import java.util.ArrayList;
+import org.apache.fop.apps.FOPException;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.MimeConstants;
@@ -32,9 +38,16 @@ import org.apache.fop.apps.FormattingResults;
 /**
  * This class manages the build of the PDF file
  */
-public class BuildPDF {
+public final class BuildPDF {
 
-
+	/**
+	 * Default constructor (must not be used)
+	 */
+	private BuildPDF() {
+		throw new UnsupportedOperationException();
+	}
+	
+	
     /**
      * After the saxon process, create the PDF thanks to fop 
      *
@@ -44,7 +57,7 @@ public class BuildPDF {
 	 */
 	public static boolean buildPDF(String outputDirectory, String language) {
 
-		String baseName=Helpers.getBaseName(language);
+		String baseName = Helpers.getBaseName(language);
 		String fileName = outputDirectory + "/" + baseName + ".pdf";
 		try {
 			FopFactory fopFactory = FopFactory.newInstance();
@@ -69,8 +82,16 @@ public class BuildPDF {
 
 			//Clean-up
 			out.close();
-		}catch(Exception e){
-
+		} catch (FOPException e) {
+			System.out.println(e.getLocalizedMessage());
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getLocalizedMessage());
+		} catch (TransformerConfigurationException e) {
+			System.out.println(e.getLocalizedMessage());
+		} catch (TransformerException e) {
+			System.out.println(e.getLocalizedMessage());
+		} catch (IOException e) {
+			System.out.println(e.getLocalizedMessage());
 		}
 			
 		return true;
