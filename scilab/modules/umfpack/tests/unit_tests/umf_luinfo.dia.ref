@@ -11,37 +11,17 @@ A = sparse( [ 2  3  0  0  0;
               0  0  1  0  0;
               0  4  2  0  1] );
 Lup = umf_lufact(A);
-[OK, nrow, ncol, lnz, unz, udiag_nz, it] = umf_luinfo(Lup)  // OK must be %t, nrow=ncol = 5,
- it  =
- 
-    0.  
- udiag_nz  =
- 
-    5.  
- unz  =
- 
-    9.  
- lnz  =
- 
-    9.  
- ncol  =
- 
-    5.  
- nrow  =
- 
-    5.  
- OK  =
- 
-  T  
+[OK, nrow, ncol, lnz, unz, udiag_nz, it] = umf_luinfo(Lup);  // OK must be %t, nrow=ncol = 5,
+if OK <> %t then bugmes();quit;end
+if nrow <> 5 then bugmes();quit;end
+if ncol <> 5 then bugmes();quit;end
+if lnz <> 9 then bugmes();quit;end
+if unz <> 9 then bugmes();quit;end
+if udiag_nz <> 5 then bugmes();quit;end
+if it <> 0 then bugmes();quit;end
 [L,U,p,q,R] = umf_luget(Lup);
-nnz(L)  // must be equal to lnz
- ans  =
- 
-    9.  
-nnz(U)  // must be equal to unz
- ans  =
- 
-    9.  
+if nnz(L) <> lnz then bugmes();quit;end
+if nnz(U) <> unz then bugmes();quit;end
 umf_ludel(Lup) // clear memory
  ans  =
  

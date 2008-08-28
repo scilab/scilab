@@ -15,11 +15,13 @@ A = sparse( [ 2  3  0  0  0;
               0  4  2  0  1] );
 b = [8 ; 45; -3; 3; 19];
 Lup = umf_lufact(A);
-x = umf_lusolve(Lup,b)
+x = umf_lusolve(Lup,b);
+
+if x <> [ 1; 2; 3; 4; 5 ] then pause, end
 
 // solve now A'x=b
 x = umf_lusolve(Lup,b,"A''x=b")
-norm(A'*x - b)
+if norm(A'*x - b) <> 0, then pause, end
 
 // don't forget to clear memory with
 umf_ludel(Lup)
@@ -32,17 +34,13 @@ Lup = umf_lufact(A);
 b = rand(size(A,1),1); // a random rhs
 // use umf_lusolve for solving Ax=b
 x = umf_lusolve(Lup,b);
-norm(A*x - b)
+plop1=norm(A*x - b)
 
 // now the same thing with iterative refiment
 x = umf_lusolve(Lup,b,"Ax=b",A);
-norm(A*x - b)
+plop2=norm(A*x - b)
 
-// solve now the system A'x=b
-x = umf_lusolve(Lup,b,"A''x=b");  // without refinement
-norm(A'*x - b)
-x = umf_lusolve(Lup,b,"A''x=b",A);  // with refinement
-norm(A'*x - b)
+if plop1 <> plop2 then pause, end
 
 // don't forget to clear memory
 umf_ludel(Lup)
