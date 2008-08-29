@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>add_help_chapter(title,path)</synopsis>
+    <synopsis>add_help_chapter(title,path[,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -36,6 +36,12 @@
         <listitem>
           <para>a character string, the path of the directory containing the
        help files.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode</term>
+        <listitem>
+          <para>a boolean, %T if the help directory belongs to scilab modules list, %F else (toolboxes). The default value is %F.</para>
         </listitem>
       </varlistentry>
     </variablelist>
