@@ -28,11 +28,11 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthA
     {
       if (widthAsRef == TRUE)
         {
-          refSize = CallScilabBridge::getScreenWidth(getScilabJavaVM());
+          refSize = (int)CallScilabBridge::getScreenWidth(getScilabJavaVM());
         }
       else
         {
-          refSize = CallScilabBridge::getScreenHeight(getScilabJavaVM());
+          refSize = (int)CallScilabBridge::getScreenHeight(getScilabJavaVM());
         }
       newUnit = PIXELS_UNITS;
     }
@@ -104,11 +104,11 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsR
       /* The parent is the screen */
       if (widthAsRef == TRUE)
         {
-          refSize = CallScilabBridge::getScreenWidth(getScilabJavaVM());
+          refSize = (int)CallScilabBridge::getScreenWidth(getScilabJavaVM());
         }
       else
         {
-          refSize = CallScilabBridge::getScreenHeight(getScilabJavaVM());
+          refSize = (int)CallScilabBridge::getScreenHeight(getScilabJavaVM());
         }
       oldUnit = PIXELS_UNITS;
     }
