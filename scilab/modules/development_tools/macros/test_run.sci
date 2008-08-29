@@ -624,8 +624,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		dia = strsubst(dia,TMPDIR1,"TMPDIR");
 		
 		if MSDOS then
-			strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
-			strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(TMPDIR ,"/","\"),"TMPDIR");
+			dia = strsubst(dia,strsubst(TMPDIR1,"/","\"),"TMPDIR");
 			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR) ,"\","/"),"TMPDIR");
 			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR1),"\","/"),"TMPDIR");
 			dia = strsubst(dia,getshortpathname(TMPDIR) ,"TMPDIR");
@@ -633,9 +635,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		end
 		
 		dia = strsubst(dia,SCI,"SCI");
-		
+	
 		if MSDOS then
-			strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
+			dia = strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
+			dia = strsubst(dia,strsubst(SCI ,"/","\"),"SCI");
 			dia = strsubst(dia,strsubst(getshortpathname(SCI) ,"\","/"),"SCI");
 			dia = strsubst(dia,getshortpathname(SCI) ,"SCI");
 		end
