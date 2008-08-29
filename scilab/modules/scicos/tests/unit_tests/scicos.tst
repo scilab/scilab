@@ -22,11 +22,9 @@ Blocs(Blocs=="m_sin")=[];
 
 nb=size(Blocs,1);
 if checkdefine() then pause,end
-if checkdraw() then pause,end
 if checkinputs() then pause,end
 if checkoutputs() then pause,end
 if checkorigin() then pause,end
-if checkset() then pause,end
 if checkdeput() then pause,end
 if checkfiring() then pause,end
 if check_define_ports() then pause,end
