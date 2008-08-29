@@ -14,14 +14,23 @@
 #include "scimem.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
+#ifdef USE_DYNAMIC_STACK
+extern integer scimem64(integer *n, integer newsize, BOOL isglobal);
+extern void freemem64(BOOL isglobal);
+#else
 static char *the_p=NULL;
 static char *the_ps=NULL;
 static char *the_gp=NULL;
 static char *the_gps=NULL;
+#endif
 /*--------------------------------------------------------------------------*/
 integer C2F(scimem)(integer *n, integer *ptr)
 {
+#ifdef USE_DYNAMIC_STACK
+  return scimem64(ptr, *n, FALSE);
+#else
   register char *p1 = NULL;
   if (*n > 0)
   {
@@ -46,10 +55,14 @@ integer C2F(scimem)(integer *n, integer *ptr)
     }
   }
   return(0);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 integer C2F(scigmem)(integer *n, integer *ptr)
 {
+#ifdef USE_DYNAMIC_STACK
+  return scimem64(ptr, *n, TRUE);
+#else
   register char *p1=NULL;
   if (*n > 0)
   {
@@ -73,15 +86,24 @@ integer C2F(scigmem)(integer *n, integer *ptr)
     }
   }
   return(0);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 void C2F(freegmem)(void)
 {
+#ifdef USE_DYNAMIC_STACK
+  freemem64(TRUE);
+#else
   if (the_gps != NULL) SCISTACKFREE(the_gps);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 void C2F(freemem)(void)
 {
+#ifdef USE_DYNAMIC_STACK
+  freemem64(FALSE);
+#else
   if (the_ps != NULL) SCISTACKFREE(the_ps);
+#endif
 }
 /*--------------------------------------------------------------------------*/
