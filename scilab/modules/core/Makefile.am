@@ -84,6 +84,10 @@ src/c/dynamic_gateways.c \
 src/c/readGateway.c \
 src/c/comparehandles.c
 
+if USE_DYNAMIC_STACK
+CORE_C_SOURCES += src/c/scimem64.c
+endif
+
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -195,6 +199,10 @@ src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
 src/fortran/isinstring.f \
 src/fortran/promptecho.f
+
+if USE_DYNAMIC_STACK
+CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
+endif
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
