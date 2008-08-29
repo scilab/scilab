@@ -362,7 +362,7 @@ if test -z "$CXX"; then
   AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
 fi
 
-if test "$CXX" = "g++" -o test "$CXX" = "ccache g++"; then
+if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
 	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall "
