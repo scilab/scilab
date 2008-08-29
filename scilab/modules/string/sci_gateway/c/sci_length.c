@@ -40,6 +40,8 @@ static int lengthStrings(int RhsPosition);
 static int lengthOthers(char *fname);
 static int lengthfunction(int RhsPosition,char *VariableType);
 static int lengthPoly(int RhsPosition);
+/* !!! WARNING !!! : Read comments about length on sparse matrix */
+static int lengthSparse(int RhsPosition);
 /*----------------------------------------------------------------------------*/
 int C2F(sci_length)(char *fname,unsigned long fname_len)
 {
@@ -69,7 +71,7 @@ int C2F(sci_length)(char *fname,unsigned long fname_len)
 		break;
 
 		case sci_sparse :
-			lenghtValue = lengthfunction(1,SPARSE_MATRIX_DATATYPE);
+			lenghtValue = lengthSparse(1);
 		break;
 
 		case sci_ints :
@@ -236,5 +238,42 @@ static int lengthPoly(int RhsPosition)
       C2F(intersci).lad[RhsPosition - 1] = l1;
 
       return mn;
+}
+/*--------------------------------------------------------------------------*/
+/* !!! WARNING !!! */
+/* Compatibility with Scilab 4.x */
+/* length returned is the max of dimensions of the sparse matrix max(m,n) */
+/* and not m * n */
+static int lengthSparse(int RhsPosition)
+{
+	int m = 0, n = 0; /* matrix size */
+    int lengthreturned = 0; 
+
+    int il = 0; int ilrd = 0;
+    int l1 = 0;
+
+    int outIndex = 0 ;
+    int x = 0;
+      
+    int lw = RhsPosition + Top - Rhs;
+      
+    l1 = *Lstk(lw);
+    il = iadr(l1);
+
+    if (*istk(il ) < 0) il = iadr(*istk(il + 1));
+
+    /* get dimensions */
+    m = getNumberOfLines(il); /* row */
+    n = getNumberOfColumns(il); /* col */
+
+	lengthreturned = max(m,n);
+      
+    ilrd = il + 4;
+      
+    /* readjust stack before to call createvar */
+    C2F(intersci).ntypes[RhsPosition - 1] = '$';
+    C2F(intersci).iwhere[RhsPosition - 1] = l1;
+    C2F(intersci).lad[RhsPosition - 1] = l1;
+    return lengthreturned;
 }
 /*--------------------------------------------------------------------------*/
