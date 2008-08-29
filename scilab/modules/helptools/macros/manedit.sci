@@ -8,29 +8,50 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function manedit(manitem,editor)
+function manedit(manitem)
+	
+	lhs=argn(1);
+	rhs=argn(2);
+	
+	if rhs<>1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"manedit",1));
+	end
 	
 	// manitem : character string giving a manitem
 	
-	path=gethelpfile(manitem)
+	path=get_item_xml_path(manitem);
 	
-	if path<>[] then 
-		px=strsubst(path,'.htm','.xml')
-		if fileinfo(px)<>[] then 
-			path=px
+	if path==[] then
+		ierr=execstr('t=type('+manitem+')','errcatch')
+		if ierr==0&t==13 then
+			path = pathconvert(TMPDIR+"/"+manitem+".xml",%F,%F);
+			help_skeleton(manitem,TMPDIR);
 		else
-			ierr=execstr('t=type('+manitem+')','errcatch')
-			if ierr==0&t==13 then
-				path=TMPDIR+'/'+manitem+'.xml'
-				help_skeleton(manitem,TMPDIR)
-			else
-				path=[]
-			end
+			path=[]
 		end
 	end
 	
-	if path<>[] then
+	if path <> [] then
 		scipad(path);
+	end
+	
+endfunction
+
+
+
+function path = get_item_xml_path(manitem)
+	
+	path = [];
+	
+	global %helps
+	global %helps_modules;
+	%HELPS=[%helps_modules;%helps];
+	
+	for k=1:size(%HELPS(:,1),'*')
+		if fileinfo(pathconvert(%HELPS(k,1)+"/"+manitem+".xml",%f,%f)) <> [] then
+			path = pathconvert(%HELPS(k,1)+"/"+manitem+".xml",%f,%f);
+			return;
+		end
 	end
 	
 endfunction
