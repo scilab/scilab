@@ -21,7 +21,7 @@ if foo()<>sin(cos(%pi/6)) then pause,end
 
 //check modified pseudocode
 L1=macr2lst(foo);
-if or(L1(4)<>["27","6","24","cos"]) then pause,end // create varfunptr
+if or(L1(4)<>["27","6","23","cos"]) then pause,end // create varfunptr
 if or(L1(5)<>["20","sin","1","1"]) then pause,end // primitive all
 if or(L1(6)<>["29","52","y","0"]) then pause,end //affectation
 if foo()<>sin(cos(%pi/6)) then pause,end
@@ -41,7 +41,7 @@ if foo()<>cos(1) then pause,end
 
 //check modified pseudocode
 L1=macr2lst(foo);
-if or(L1(4)<>["27","6","24","cos"]) then pause,end // create varfunptr
+if or(L1(4)<>["27","6","23","cos"]) then pause,end // create varfunptr
 if or(L1(5)<>["2","toto","-2","1"]) then pause,end // primitive all
 if or(L1(6)<>["5","25","2","1"]) then pause,end //affectation
 if foo()<>cos(1) then pause,end
@@ -79,7 +79,7 @@ L=macr2lst(foo);
 if or(L(4)<>["2","sin","0","0"]) then pause,end // create varfunptr
 if type(foo())<>130 then pause,end
 L=macr2lst(foo);
-if or(L(4)<>["27","6","23","sin"]) then pause,end // create varfunptr
+if or(L(4)<>["27","6","22","sin"]) then pause,end // create varfunptr
 if type(foo())<>130 then pause,end
 
 sin=1
