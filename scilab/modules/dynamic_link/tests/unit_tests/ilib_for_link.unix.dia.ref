@@ -27,7 +27,6 @@ chdir(TMP_DIR);
 ilib_for_link('ext1c','fun1.o',[],"c")
    Generate a loader file
    Generate a Makefile
-   ilib_gen_Make: configure : Generate Makefile in SCI/modules/dynamic_link/src/scripts/
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy fun1.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.

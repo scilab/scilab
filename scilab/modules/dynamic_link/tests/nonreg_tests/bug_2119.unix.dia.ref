@@ -34,7 +34,6 @@ chdir(TMPDIR);
 libn=ilib_for_link('dgesvtst','dgesvtst.o',[],'f');
    Generate a loader file
    Generate a Makefile
-   ilib_gen_Make: configure : Generate Makefile in SCI/modules/dynamic_link/src/scripts/
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy dgesvtst.f to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
