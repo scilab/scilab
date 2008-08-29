@@ -20,15 +20,15 @@ x=[1 2 3 4 5 6 7 8 9 10 11 12];
 y=[ 13702 16902 22765 ; ..
     13758 19959 21321 ; ..
     16944 23254 24971 ; ..
-    16324 18323 0 ; ..
-    15399 19648 0 ; ..
-    14988 17160 0 ; ..
-    10275 10996 0 ; ..
-    10195 14316 0 ; ..
-    14899 18410 0 ; ..
-    18884 23924 0 ; ..
-    16919 21535 0; ..
-    14759 19979 0];
+    16324 18323 21325 ; ..
+    15399 19648 24176 ; ..
+    14988 17160 22978 ; ..
+    10275 10996 25754 ; ..
+    10195 14316 25128 ; ..
+    14899 18410 33430 ; ..
+    18884 23924 49388 ; ..
+    16919 21535 43048 ; ..
+    14759 19979 33706];
 
 angle = 295;
 
@@ -67,38 +67,38 @@ year2007.bar_width = 0.25;
 
 // Labels drawing
 
-year2005_data = year2005.data;
-year2006_data = year2006.data;
-year2007_data = year2007.data;
-
-year2005_shift = year2005.x_shift;
-year2006_shift = year2006.x_shift;
-year2007_shift = year2007.x_shift;
-
-year2005_width = year2005.bar_width;
-year2006_width = year2006.bar_width;
-year2007_width = year2007.bar_width;
-
-for j = 1:length(year2005_shift),
-  xstring(j+year2005_shift(j)+(year2005_width/3),year2005_data(j,2),string(year2005_data(j,2)),angle);
-  t=get("hdl");
-  t.font_size=2;
-  t.font_style=9;
-end;
-
-for j = 1:length(year2006_shift),
-  xstring(j+year2006_shift(j)+(year2006_width/3),year2006_data(j,2),string(year2006_data(j,2)),angle);
-  t=get("hdl");
-  t.font_size=2;
-  t.font_style=9;
-end;
-
-for j = 1:length(year2007_shift),
-  xstring(j+year2007_shift(j)+(year2007_width/3),year2007_data(j,2),string(year2007_data(j,2)),angle);
-  t=get("hdl");
-  t.font_size=2;
-  t.font_style=9;
-end;
+// year2005_data = year2005.data;
+// year2006_data = year2006.data;
+// year2007_data = year2007.data;
+// 
+// year2005_shift = year2005.x_shift;
+// year2006_shift = year2006.x_shift;
+// year2007_shift = year2007.x_shift;
+// 
+// year2005_width = year2005.bar_width;
+// year2006_width = year2006.bar_width;
+// year2007_width = year2007.bar_width;
+// 
+// for j = 1:length(year2005_shift),
+//   xstring(j+year2005_shift(j)+(year2005_width/3),year2005_data(j,2),string(year2005_data(j,2)),angle);
+//   t=get("hdl");
+//   t.font_size=2;
+//   t.font_style=1;
+// end;
+// 
+// for j = 1:length(year2006_shift),
+//   xstring(j+year2006_shift(j)+(year2006_width/3),year2006_data(j,2),string(year2006_data(j,2)),angle);
+//   t=get("hdl");
+//   t.font_size=2;
+//   t.font_style=1;
+// end;
+// 
+// for j = 1:length(year2007_shift),
+//   xstring(j+year2007_shift(j)+(year2007_width/3),year2007_data(j,2),string(year2007_data(j,2)),angle);
+//   t=get("hdl");
+//   t.font_size=2;
+//   t.font_style=2;
+// end;
 
 // Legend drawing
 

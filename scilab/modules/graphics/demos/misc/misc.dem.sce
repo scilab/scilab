@@ -10,5 +10,5 @@
 //
 
 my_path = SCI+"/modules/graphics/demos/misc";
-exec(my_path+"/misc.dem.sci");
+funcprot(0);exec(my_path+"/misc.dem.sci");funcprot(1);
 demo_misc();
