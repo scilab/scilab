@@ -24,7 +24,7 @@ import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
  * Class which draw centered text.
  * @author Jean-Baptiste Silvy
  */
-public class CenteredAlignedTextGL implements TextAlignementStrategy {
+public class CenteredAlignedTextGL extends TextAlignementStrategy {
 
 	/**
 	 * Default constructor
@@ -49,7 +49,8 @@ public class CenteredAlignedTextGL implements TextAlignementStrategy {
 				Vector3D[] curCell = positionMatrix.getCellCoordinates(i, j);
 				// put the middle of the string in the middle of the cell
 				double xCoord = ((curCell[2].getX() + curCell[1].getX()) - text.getStringWidth(i, j)) / 2.0;
-				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
+				xCoord = centerX(xCoord);
+				double yCoord = getYCoordinate(curCell);
 				renderer.draw3D(gl, text.getMatrixElement(i, j), xCoord,
 						        yCoord, curCell[1].getZ(), angle);
 			}

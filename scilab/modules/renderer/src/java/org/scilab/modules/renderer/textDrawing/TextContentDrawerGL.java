@@ -25,6 +25,7 @@ import org.scilab.modules.renderer.utils.textRendering.FontManager;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 
+
 /**
  * Abstract class containing for drawing text content of a text object
  * @author Jean-Baptiste Silvy
@@ -42,6 +43,11 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	
 	private boolean useFractionalMetrics;
 	
+	private boolean drawBoxBackground;
+	private boolean drawBoxLine;
+	private int lineColor;
+	private int backgroundColor;
+	
 	/**
 	 * Default constructor
 	 */
@@ -53,6 +59,10 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		rotationAngle = 0.0;
 		textCenter = new Vector3D();
 		useFractionalMetrics = true;
+		drawBoxBackground = false;
+		drawBoxLine = false;
+		lineColor = 0;
+		backgroundColor = 0;
 	}
 	
 	/**
@@ -171,6 +181,35 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		setFont(fontTypeIndex, fontSize);
         setRotationAngle(rotationAngle);
         setUseFractionalMetrics(useFractionalMetrics);
+	}
+	
+	/**
+	 * Set up the box drawing for this object.
+	 * @param drawBoxLine if true the surrounding line of the box is drawn
+	 * @param drawBoxBackground if true the background of the box is drawn
+	 * @param lineColor color of the surrounding line
+	 * @param backgroundColor color of the text background
+	 */
+	public void setBoxDrawingParameters(boolean drawBoxLine, boolean drawBoxBackground,
+			                  			int lineColor, int backgroundColor) {
+		this.drawBoxLine = drawBoxLine;
+		this.drawBoxBackground = drawBoxBackground;
+		this.backgroundColor = backgroundColor;
+		this.lineColor = lineColor;
+	}
+	
+	/**
+	 * @return array of size 3 containing the 3 channels of the background color
+	 */
+	public double[] getBackgroundColor() {
+		return getColorMap().getColor(backgroundColor);
+	}
+	
+	/**
+	 * @return array of size 3 containing the 3 channels of the line color
+	 */
+	public double[] getLineColor() {
+		return getColorMap().getColor(lineColor);
 	}
 	
 	/**
@@ -384,9 +423,75 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	public void drawText(SciTextRenderer renderer, StringMatrixGL text, TextGrid stringPositions) {
 		GL gl = getGL();
+		drawBox(stringPositions);
 		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 		textDrawer.drawTextContent(gl, renderer, text, stringPositions, rotationAngle);
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
+	}
+	
+	/**
+	 * Show the text at the right position.
+	 * @param renderer TextRenderer used to render the text.
+	 * @param text Matrix of the string to display
+	 * @param stringPositions positons of the strings
+	 */
+	public void showText(SciTextRenderer renderer, StringMatrixGL text, TextGrid stringPositions) {
+		GL gl = getGL();
+		showBox();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
+		textDrawer.drawTextContent(gl, renderer, text, stringPositions, rotationAngle);
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
+	}
+	
+	/**
+	 * Draw the box of the text
+	 * @param stringPositions positons of the strings
+	 */
+	public void drawBox(TextGrid stringPositions) {
+		if (drawBoxBackground || drawBoxLine) {
+			GL gl = getGL();
+			startRecordDL();
+			Vector3D[] bounds = stringPositions.getExtremBounds();
+			
+			// ne need for polygon offset here since text is draw n vertically
+			// so the depth of both is equal. Consequently we just need to
+			// draw it before the line
+			if (drawBoxBackground) {
+				double[] color = getBackgroundColor();
+				gl.glColor3d(color[0], color[1], color[2]);
+				gl.glBegin(GL.GL_QUADS);
+				for (int i = 0; i < bounds.length; i++) {
+					// use round to center the box on the pixel
+					// and so avoid flickering
+					gl.glVertex3d(Math.round(bounds[i].getX()), Math.round(bounds[i].getY()), Math.round(bounds[i].getZ()));
+				}
+				gl.glEnd();
+			}
+			
+			if (drawBoxLine) {
+				double[] color = getLineColor();
+				gl.glColor3d(color[0], color[1], color[2]);
+				gl.glBegin(GL.GL_LINE_LOOP);
+				for (int i = 0; i < bounds.length; i++) {
+					// use round to center the box on the pixel
+					// and so avoid flickering
+					gl.glVertex3d(Math.round(bounds[i].getX()), Math.round(bounds[i].getY()), Math.round(bounds[i].getZ()));
+				}	
+				gl.glEnd();
+			}
+			
+			endRecordDL();
+		}
+		
+	}
+	
+	/**
+	 * Show the bounding box of the text
+	 */
+	public void showBox() {
+		if (drawBoxBackground || drawBoxLine) {
+			displayDL();
+		}
 	}
 	
 	/**

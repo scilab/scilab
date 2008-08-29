@@ -52,6 +52,9 @@ public:
                                         double centerPixZ);
 
   virtual void updateParentFigure(int parentFigureIndex);
+
+  virtual void setBoxDrawingParameters(bool drawBoxLine, bool drawBoxBackground,
+			               int lineColor, int backgroundColor);
   /*----------------------------------------------------------------------*/
   // specific for standard text drawer
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,

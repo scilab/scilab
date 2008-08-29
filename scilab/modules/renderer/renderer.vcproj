@@ -1099,14 +1099,6 @@
 					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJoGL.cpp"
 					>
 				</File>
-				<File
-					RelativePath=".\src\cpp\textDrawing\TextFillBoxDrawerJoGL.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\textDrawing\TextLineBoxDrawerJoGL.cpp"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="LabelDrawing"
@@ -2287,14 +2279,6 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJoGL.hxx"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\textDrawing\TextFillBoxDrawerJoGL.hxx"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\textDrawing\TextLineBoxDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

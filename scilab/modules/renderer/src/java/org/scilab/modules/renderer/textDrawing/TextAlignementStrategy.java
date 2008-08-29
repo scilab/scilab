@@ -15,6 +15,7 @@ package org.scilab.modules.renderer.textDrawing;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 
@@ -22,14 +23,17 @@ import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
  * Interface for drawing text inside a position matrix with different alignment.
  * @author Jean-Baptiste Silvy
  */
-public interface TextAlignementStrategy {
+public abstract class TextAlignementStrategy {
 
 	/** left aligned text */
-	int LEFT_ALIGNED_INDEX = 1;
+	public static final int LEFT_ALIGNED_INDEX = 1;
 	/** centered aligned text */
-	int CENTERED_ALIGNED_INDEX = 2;
+	public static final int CENTERED_ALIGNED_INDEX = 2;
 	/** right aligned text */
-	int RIGHT_ALIGNED_INDEX = 3;
+	public static final int RIGHT_ALIGNED_INDEX = 3;
+	
+	/** Offset used to center text in a pixel */
+	protected static final double PIXEL_CENTERING_OFFSET = 0.5;
 	
 	/**
 	 * Draw the text matrix inside a position matrix using a specific text renderer.
@@ -39,7 +43,42 @@ public interface TextAlignementStrategy {
 	 * @param positionMatrix matrix of positions.
 	 * @param angle angle of the text to draw
 	 */
-	void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix, double angle);
+	public abstract void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix, double angle);
 	
+	
+	/**
+	 * Get the width of the bounding box
+	 * @param textBox 4 corners of the bounding box
+	 * @return width of the bounding box
+	 */
+	protected double getBoxWidth(Vector3D[] textBox) {
+		return (textBox[2].getX() - textBox[0].getX());
+	}
+	
+	/**
+	 * Get the height of the bounding box
+	 * @param textBox 4 corners of the bounding box
+	 * @return width of the bounding box
+	 */
+	protected double getBoxHeight(Vector3D[] textBox) {
+		return (textBox[0].getY() - textBox[1].getY());
+	}
+	
+	/**
+	 * @param xCoord value to center
+	 * @return centered value
+	 */
+	protected double centerX(double xCoord) {
+		return Math.round(xCoord - PIXEL_CENTERING_OFFSET) + PIXEL_CENTERING_OFFSET;
+	}
+	
+	/**
+	 * The Y coordinate is the same for all texts
+	 * @param textBox 4 corners of the text cell
+	 * @return Y coocdinate of the text to draw
+	 */
+	protected double getYCoordinate(Vector3D[] textBox) {
+		return Math.round(textBox[1].getY() + getBoxHeight(textBox) * TextGrid.EXTEND_FACTOR_Y / 2.0) + PIXEL_CENTERING_OFFSET;
+	}
 	
 }

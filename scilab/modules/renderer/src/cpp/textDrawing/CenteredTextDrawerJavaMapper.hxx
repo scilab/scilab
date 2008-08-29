@@ -55,6 +55,9 @@ public:
                                  double fontSize, double rotationAngle, bool useFractionalMetrics);
 
   virtual void updateParentFigure(int parentFigureIndex);
+
+  virtual void setBoxDrawingParameters(bool drawBoxLine, bool drawBoxBackground,
+			               int lineColor, int backgroundColor);
   /*----------------------------------------------------------------------*/
   // specific for centered text drawer
   virtual void setFilledBoxSize(double boxWidth, double boxHeight);

@@ -91,6 +91,21 @@ void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3]
   getTextDisplayPos(textPos);
   getTextContentDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 
+  sciPointObj * pText = m_pDrawed->getDrawedObject();
+
+  // set box drawing parameters
+  if (sciGetIsBoxed(pText))
+  {
+    getTextContentDrawerJavaMapper()->setBoxDrawingParameters(sciGetIsLine(pText) == TRUE,
+                                                              sciGetIsFilled(pText) == TRUE,
+                                                              sciGetGraphicContext(pText)->foregroundcolor,
+                                                              sciGetGraphicContext(pText)->backgroundcolor);
+  }
+  else
+  {
+    getTextContentDrawerJavaMapper()->setBoxDrawingParameters(false, false, 0, 0);
+  }
+
   double * rect = getTextContentDrawerJavaMapper()->drawTextContent();
 
   convertCornersArray(rect, corner1, corner2, corner3, corner4);

@@ -24,6 +24,12 @@
       <param type="double" name="rotationAngle" />
       <param type="boolean" name="useFractionalMetrics" />
     </method>
+    <method name="setBoxDrawingParameters" returnType="void">
+      <param type="boolean" name="drawBoxLine" />
+      <param type="boolean" name="drawBoxBackground" />
+      <param type="int" name="lineColor" />
+      <param type="int" name="backgroundColor" />
+    </method>
     <method name="setTextContent" returnType="void">
       <param type="String[]" name="text" />
       <param type="int" name="nbRow" />

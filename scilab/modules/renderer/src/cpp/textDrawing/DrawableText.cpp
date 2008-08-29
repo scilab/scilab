@@ -48,7 +48,6 @@ DrawableObject::EDisplayStatus DrawableText::draw( void )
   clip();
   reinitMove();
   drawTextContent();
-  drawBox();
   unClip();
   endDrawing();
   return SUCCESS;
@@ -65,7 +64,6 @@ DrawableObject::EDisplayStatus DrawableText::show( void )
   clip();
   translate();
   showTextContent();
-  showBox();
   endTranslate();
   unClip();
   endDrawing();
@@ -84,9 +82,6 @@ DrawableObject::EDisplayStatus DrawableText::redraw(void)
   clip();
   reinitMove();
   drawTextContent();
-
-  // data bound may have changed so we need to redraw bounding box
-  drawBox();
   unClip();
   endDrawing();
   return SUCCESS;

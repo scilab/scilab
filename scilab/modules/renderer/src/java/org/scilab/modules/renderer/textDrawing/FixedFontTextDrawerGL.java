@@ -68,7 +68,7 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 		
 		placeTextGrid(stringPos, getTextCenterPix(), getRotationAngle());
 		
-		drawText(renderer, getTextMatrix(), stringPos);
+		showText(renderer, getTextMatrix(), stringPos);
 	}
 
 

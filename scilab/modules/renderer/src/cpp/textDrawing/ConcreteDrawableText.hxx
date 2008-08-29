@@ -15,10 +15,7 @@
 #ifndef _CONCRETE_DRAWABLE_TEXT_H_
 #define _CONCRETE_DRAWABLE_TEXT_H_
 
-#include <list>
-
 #include "DrawableText.h"
-#include "DrawTextBoxStrategy.hxx"
 #include "DrawTextContentStrategy.hxx"
 
 namespace sciGraphics
@@ -42,16 +39,6 @@ public:
    * Get the bounding box of the displayed text. Used to detect overlapping text.
    */
   virtual void getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2]);
-
-  /**
-   * Add a new strategy to draw the bounding rectangle of text.
-   */
-  void addBoxDrawingStrategy(DrawTextBoxStrategy * strategy);
-
-  /**
-   * Remove all strategies used to draw the bounding rectangle of text.
-   */
-  void removeBoxDrawingStrategies(void);
 
   /**
    * Set the strategy to use for drawing text.
@@ -83,10 +70,6 @@ public:
 protected:
 
   /*---------------------------------------------------------------------------------*/
-  /**
-   * Draw the rectangle surrounding the text.
-   */
-  virtual void drawBox(void);
 
   /**
    * Draw the text of the object.
@@ -99,17 +82,11 @@ protected:
   virtual void redrawTextContent(void);
 
   /**
-   * Display the rectangle surrounding the text using display lists.
-   */
-  virtual void showBox(void);
-
-  /**
    * Display the text using display lists.
    */
   virtual void showTextContent(void);
   /*---------------------------------------------------------------------------------*/
   DrawTextContentStrategy * m_pDrawingTextStrategy;
-  std::list<DrawTextBoxStrategy *> m_oDrawingBoxStrategies;
   /*---------------------------------------------------------------------------------*/
 
 

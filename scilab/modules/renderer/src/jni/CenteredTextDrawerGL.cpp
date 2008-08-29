@@ -106,6 +106,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetTextParametersjintjintjintjdoublejdoublejbooleanID=NULL; 
+voidsetBoxDrawingParametersjbooleanjbooleanjintjintID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -145,6 +146,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetTextParametersjintjintjintjdoublejdoublejbooleanID=NULL; 
+voidsetBoxDrawingParametersjbooleanjbooleanjintjintID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -281,6 +283,25 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "setTextParameters");
 jboolean useFractionalMetrics_ = ((bool) useFractionalMetrics ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoublejbooleanID ,textAlignment, color, fontStyle, fontSize, rotationAngle, useFractionalMetrics_);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CenteredTextDrawerGL::setBoxDrawingParameters (bool drawBoxLine, bool drawBoxBackground, int lineColor, int backgroundColor){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetBoxDrawingParametersjbooleanjbooleanjintjintID==NULL) { /* Use the cache Luke */ voidsetBoxDrawingParametersjbooleanjbooleanjintjintID = curEnv->GetMethodID(this->instanceClass, "setBoxDrawingParameters", "(ZZII)V" ) ;
+if (voidsetBoxDrawingParametersjbooleanjbooleanjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setBoxDrawingParameters");
+}
+}
+jboolean drawBoxLine_ = ((bool) drawBoxLine ? JNI_TRUE : JNI_FALSE);
+
+jboolean drawBoxBackground_ = ((bool) drawBoxBackground ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetBoxDrawingParametersjbooleanjbooleanjintjintID ,drawBoxLine_, drawBoxBackground_, lineColor, backgroundColor);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

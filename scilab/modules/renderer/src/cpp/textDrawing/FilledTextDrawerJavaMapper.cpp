@@ -74,6 +74,12 @@ void FilledTextDrawerJavaMapper::updateParentFigure(int parentFigureIndex)
   m_pJavaObject->updateParentFigure(parentFigureIndex);
 }
 /*---------------------------------------------------------------------------------*/
+void FilledTextDrawerJavaMapper::setBoxDrawingParameters(bool drawBoxLine, bool drawBoxBackground,
+			                                 int lineColor, int backgroundColor)
+{
+  m_pJavaObject->setBoxDrawingParameters(drawBoxLine, drawBoxBackground, lineColor, backgroundColor);
+}
+/*---------------------------------------------------------------------------------*/
 void FilledTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
 {
   m_pJavaObject->setTextContent(text, nbRow * nbCol, nbRow, nbCol);

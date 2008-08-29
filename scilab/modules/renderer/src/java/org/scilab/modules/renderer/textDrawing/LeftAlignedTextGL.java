@@ -24,7 +24,7 @@ import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
  * Class which draw left aligned text
  * @author Jean-Baptiste Silvy
  */
-public class LeftAlignedTextGL implements TextAlignementStrategy {
+public class LeftAlignedTextGL extends TextAlignementStrategy {
 
 	/**
 	 * Default constructor
@@ -46,8 +46,9 @@ public class LeftAlignedTextGL implements TextAlignementStrategy {
 		for (int i = 0; i < text.getNbRow(); i++) {
 			for (int j = 0; j < text.getNbCol(); j++) {
 				Vector3D[] curCell = positionMatrix.getCellCoordinates(i, j);
-				double xCoord = curCell[1].getX();
-				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
+				double xCoord = curCell[1].getX() + getBoxWidth(curCell) * TextGrid.EXTEND_FACTOR_X / 2.0;
+				xCoord = centerX(xCoord);
+				double yCoord = getYCoordinate(curCell);
 				renderer.draw3D(gl, text.getMatrixElement(i, j), xCoord,
 						        yCoord, curCell[1].getZ(), angle);
 			}

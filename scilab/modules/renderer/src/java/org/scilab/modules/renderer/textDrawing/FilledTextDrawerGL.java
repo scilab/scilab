@@ -141,7 +141,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		
 		placeTextGrid(stringPos, realCenter, getTextCenterPix(), getRotationAngle());
 		
-		drawText(renderer, getTextMatrix(), stringPos);
+		showText(renderer, getTextMatrix(), stringPos);
 
 	}
 	

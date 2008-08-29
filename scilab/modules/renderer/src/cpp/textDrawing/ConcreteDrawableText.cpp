@@ -26,18 +26,14 @@ extern "C"
 namespace sciGraphics
 {
 
-using namespace std;
-
 /*---------------------------------------------------------------------------------*/
 ConcreteDrawableText::ConcreteDrawableText(sciPointObj * pObj) : DrawableText(pObj)
 {
-  m_oDrawingBoxStrategies.clear();
   m_pDrawingTextStrategy = NULL;
 }
 /*---------------------------------------------------------------------------------*/
 ConcreteDrawableText::~ConcreteDrawableText(void)
 {
-  removeBoxDrawingStrategies();
   setTextDrawingStrategy(NULL);
 }
 /*---------------------------------------------------------------------------------*/
@@ -51,22 +47,6 @@ void ConcreteDrawableText::getScreenBoundingBox(int corner1[2], int corner2[2], 
   m_pDrawingTextStrategy->getScreenBoundingBox(corner1, corner2, corner3, corner4);
 }
 /*---------------------------------------------------------------------------------*/
-void ConcreteDrawableText::addBoxDrawingStrategy(DrawTextBoxStrategy * strategy)
-{
-  m_oDrawingBoxStrategies.push_back(strategy);
-}
-/*---------------------------------------------------------------------------------*/
-void ConcreteDrawableText::removeBoxDrawingStrategies(void)
-{
-  list<DrawTextBoxStrategy *>::iterator it = m_oDrawingBoxStrategies.begin();
-  for( ; it != m_oDrawingBoxStrategies.end(); it++)
-  {
-    delete *it;
-    *it = NULL;
-  }
-  m_oDrawingBoxStrategies.clear();
-}
-/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::setTextDrawingStrategy(DrawTextContentStrategy * strategy)
 {
   if (m_pDrawingTextStrategy != NULL)
@@ -74,22 +54,6 @@ void ConcreteDrawableText::setTextDrawingStrategy(DrawTextContentStrategy * stra
     delete m_pDrawingTextStrategy;
   }
   m_pDrawingTextStrategy = strategy;
-}
-/*---------------------------------------------------------------------------------*/
-void ConcreteDrawableText::drawBox(void)
-{
-  list<DrawTextBoxStrategy *>::iterator it = m_oDrawingBoxStrategies.begin();
-  
-  // get bounding rectangle corners
-  double corners[4][3];
-  sciGetTextBoundingBox(m_pDrawed, corners[0], corners[1], corners[2], corners[3]);
-  //m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
-
-  for( ; it != m_oDrawingBoxStrategies.end(); it++)
-  {
-    (*it)->setBoxCorners(corners[0], corners[1], corners[2], corners[3]);
-    (*it)->drawBox();
-  }
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::drawTextContent(void)
@@ -106,22 +70,6 @@ void ConcreteDrawableText::redrawTextContent(void)
   sciText * ppText = pTEXT_FEATURE(m_pDrawed);
   m_pDrawingTextStrategy->redrawTextContent(ppText->corners[0], ppText->corners[1],
                                             ppText->corners[2], ppText->corners[3]);
-}
-/*---------------------------------------------------------------------------------*/
-void ConcreteDrawableText::showBox(void)
-{
-  list<DrawTextBoxStrategy *>::iterator it = m_oDrawingBoxStrategies.begin();
-
-  // get bounding rectangle corners
-  double corners[4][3];
-  sciGetTextBoundingBox(m_pDrawed, corners[0], corners[1], corners[2], corners[3]);
-  //m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
-
-  for( ; it != m_oDrawingBoxStrategies.end(); it++)
-  {
-    (*it)->setBoxCorners(corners[0], corners[1], corners[2], corners[3]);
-    (*it)->showBox();
-  }
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::showTextContent(void)
@@ -152,6 +100,7 @@ void ConcreteDrawableText::hasChanged( void )
 {
   DrawableObject::hasChanged();
 
+  // force parent subwin to sort text at next draw
   getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->textChanged();
 
 }
@@ -160,6 +109,7 @@ void ConcreteDrawableText::move(const double translation[3])
 {
   DrawableObject::move(translation);
 
+  // force parent subwin to sort text at next draw
   getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->textChanged();
 }
 /*---------------------------------------------------------------------------------*/

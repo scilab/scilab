@@ -41,7 +41,7 @@ public final class GLTools {
 	/** Disctane max */
 	public static final double MAX_PIXEL_Z = -1.0;
 	
-	/** Minimum line with which can be set (glLineWidth does on accept values > 0 */
+	/** Minimum line with which can be set (glLineWidth does only accept values > 0) */
 	private static final float MIN_LINE_WIDTH = 0.1f;
 	
 	/** Contains the different line stipple pattern */
@@ -100,6 +100,7 @@ public final class GLTools {
 	 */
 	public static void endDashMode(GL gl) {
 		gl.glDisable(GL.GL_LINE_STIPPLE);
+		gl.glLineWidth(1.0f);
 	}
 	
 	/**

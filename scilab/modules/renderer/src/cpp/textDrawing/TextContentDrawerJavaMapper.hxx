@@ -39,6 +39,9 @@ public:
 
   virtual void updateParentFigure(int parentFigureIndex) = 0;
 
+  virtual void setBoxDrawingParameters(bool drawBoxLine, bool drawBoxBackground,
+			               int lineColor, int backgroundColor) = 0;
+
 };
 
 }
