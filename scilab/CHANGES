@@ -292,6 +292,8 @@ Online Help management:
 	+ xmltops
 	+ xmltochm
  - xmltohtml function is now deprecated
+ - loaddefaultbrowser function and %browsehelp global variable have been removed :
+   The new Java help browser is the only help browser.
  - For more information, have a look to :
     + http://wiki.scilab.org/howto/scilab_documentation_kit
     + SCI/modules/helptools/doc directory

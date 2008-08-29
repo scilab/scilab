@@ -45,7 +45,7 @@ apropos(regexp)</synopsis>
     <title>Description</title>
     <para><literal>apropos(key)</literal> recherche les pages d'aides contenant la
       séquence de caractères <literal>key</literal> dans leur section "SHORT_DESCRIPTION".</para>
-    <para>Avec le "Browser Scilab" uniquement , <literal>apropos(regexp)</literal>
+    <para><literal>apropos(regexp)</literal>
       recherche les pages d'aides contenant l'expression régulière donnée par
       <literal>regexp</literal> dans leur section "SHORT_DESCRIPTION".</para>
   </refsection>
@@ -55,16 +55,9 @@ apropos(regexp)</synopsis>
 apropos('ode')
 apropos ode 
 apropos "list of"
-
-// la suite ne fonction qu'avec le browser "Browser Scilab"
-global %browsehelp;%browsehelp_save=%browsehelp;%browsehelp="Scilab Browser";
-
 apropos "sin.*hyperbolique"
 apropos "^ab"  //rechercher les pages d'aide dont le nom commence par les deux caractères "ab"
 apropos "quadratic.*solver"
-
-%browsehelp=%browsehelp_save;
-
  ]]></programlisting>
   </refsection>
   <refsection>

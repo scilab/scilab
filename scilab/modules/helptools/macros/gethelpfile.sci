@@ -10,7 +10,7 @@
 
 function path=gethelpfile(key)
 	// copy of gethelpfile contained in help.sci
-	global %helps %browsehelp
+	global %helps
 	global %helps_modules
   %HELPS=[%helps_modules;%helps];
 	sep="/";

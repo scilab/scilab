@@ -45,27 +45,19 @@ apropos(regexp)</synopsis>
     <title>Description</title>
     <para><literal>apropos(key)</literal> looks for Scilab help files containing
       keywords <literal>key</literal>in their short description section.</para>
-    <para>With Scilab Browser only, <literal>apropos(regexp)</literal> looks for Scilab
+    <para><literal>apropos(regexp)</literal> looks for Scilab
       help files containing regular expression  <literal>regexp</literal>in their short
       description section.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-
 apropos('ode')
 apropos ode 
 apropos "list of"
-
-//next only for Scilab Browser
-global %browsehelp;%browsehelp_save=%browsehelp;%browsehelp="Scilab Browser";
-
 apropos "sin.*hyperbolic"
 apropos "^ab"  //search help beginning the two characters "ab"
 apropos "quadratic.*solver"
-
-%browsehelp=%browsehelp_save;
- 
   ]]></programlisting>
   </refsection>
   <refsection>

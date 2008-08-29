@@ -40,18 +40,6 @@
     <para><literal>help(key)</literal> visualise la page d'aide associé avec le nom
       donné par <literal>key</literal>. S'il n'y a pas de page d'aide, <literal>help(key)</literal>
       appele automatiquement <literal>apropos(key)</literal>.</para>
-    <para> Scilab comprend son propre browser html écrit en  TCL/TK. Il est
-      possible de choisir un autre browser. La variable globale
-      <literal>%browsehelp</literal> contient une chaîne de caractères définissant
-      quel browser doit être utilisé. Sa valeur initiale est fixée par le
-      fichier startup <literal>scilab.start</literal> est peut être changée. </para>
-    <para>Si cette variable est affectée à la matrice vide ( <literal>global
-	%browsehelp; %browsehelp=[]</literal>) alors une fenêtre de dialogue
-      apparait au lancement du help et permet de  choisir le browser
-      désiré. Attention, les differents browsers on des syntaxes d'appel
-      différentes. Aussi si vous souhaitez ajouter un nouveau browser à la
-      liste vous devrez modifier la fonction Scilab <literal>browsehelp</literal>
-	  dont le code source est dans  <literal>SCI/modules/helptools/macros/apropos.sci</literal>.</para>
     <para> Voir  <link linkend="man">man</link> pour apprendre à écrire de nouvelles pages d'aide.</para>
   </refsection>
   <refsection>
