@@ -93,6 +93,8 @@ else
 end
 setenv("VERSION",getversion())
 
+clear  pathconvert //remove the local variable
+
 // Protect variable previously defined  ================================
 predef('all')
 
