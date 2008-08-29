@@ -118,6 +118,9 @@ AC_ARG_ENABLE(build-giws,
 ########## compilator detection
 ##############################
 
+AC_PROG_CPP
+AC_PROG_GREP
+
 #####################################################
 ## check if options are correct (or not)
 #####################################################
@@ -1224,6 +1227,23 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 #if test "$with_mpi" = yes; then
 #AC_CONFIG_FILES([modules/mpi/Makefile])
 #fi
+
+# Generate stack.h
+if test $IS_64_BITS_CPU = true; then
+   stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
+else
+   stack_h_cpp_flags=
+fi
+
+AC_CONFIG_COMMANDS([modules/core/includes/stack.h],
+  [if ! $CPP $stack_h_cpp_flags - < $srcdir/modules/core/includes/stack.h.in |\
+              $GREP -v '^#' > $srcdir/modules/core/includes/stack.h ; then
+     AC_MSG_ERROR([stack.h generation failed])
+   fi],
+  [CPP="$CPP"
+   GREP="$GREP"
+   stack_h_cpp_flags="$stack_h_cpp_flags"
+  ])
 
 AC_OUTPUT
 

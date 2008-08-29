@@ -62,7 +62,11 @@
  */
 typedef struct 
 {
+#ifdef USE_DYNAMIC_STACK
+	double *Stk;
+#else
 	double Stk[vsiz];
+#endif
 } STACK_struct;
 
 IMPORT STACK_struct C2F(stack);
