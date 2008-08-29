@@ -64,6 +64,16 @@ BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int h
   }
 }
 /*---------------------------------------------------------------------------------*/
+void sciJavaAddTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
+{
+  getSubwinDrawer(parentSubwin)->addTextToDraw(pText);
+}
+/*---------------------------------------------------------------------------------*/
+void sciJavaRemoveTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
+{
+  getSubwinDrawer(parentSubwin)->removeTextToDraw(pText);
+}
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode)
 {
   getFigureDrawer(pFigure)->setAutoResizeMode(resizeMode == TRUE);

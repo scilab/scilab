@@ -74,7 +74,7 @@ public:
   /**
    * Common to every object, draw their children
    */
-  void displayChildren( void ) ;
+  virtual void displayChildren( void ) ;
 
 
   /**
@@ -120,7 +120,7 @@ public:
    * Apply a translation to the object.
    * The next call to show will take it into account
    */
-  void move(const double translation[3]);
+  virtual void move(const double translation[3]);
 
   /**
    * Reinit the move translation

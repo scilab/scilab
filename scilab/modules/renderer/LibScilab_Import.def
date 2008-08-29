@@ -2,3 +2,9 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
+;--------------------------
+; elementary_functions
+;--------------------------
+dsort_
+
+EXPORTS

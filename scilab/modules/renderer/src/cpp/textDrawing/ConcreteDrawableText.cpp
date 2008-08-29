@@ -15,6 +15,7 @@
 
 #include "ConcreteDrawableText.hxx"
 #include "DrawingBridge.h"
+#include "getHandleDrawer.h"
 
 extern "C"
 {
@@ -145,6 +146,21 @@ void ConcreteDrawableText::updateTextBox(void)
   getBoundingRectangle(ppText->corners[0], ppText->corners[1],
                        ppText->corners[2], ppText->corners[3]);
   
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableText::hasChanged( void )
+{
+  DrawableObject::hasChanged();
+
+  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->textChanged();
+
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableText::move(const double translation[3])
+{
+  DrawableObject::move(translation);
+
+  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->textChanged();
 }
 /*---------------------------------------------------------------------------------*/
 }

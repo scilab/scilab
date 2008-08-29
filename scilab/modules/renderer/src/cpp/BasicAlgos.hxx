@@ -15,6 +15,7 @@
 #define _BASIC_ALGOS_HXX_
 
 #include <list>
+#include <vector>
 
 class BasicAlgos
 {
@@ -49,6 +50,27 @@ public:
     {
       if (*it == value)
       {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Remove an object inside a vector.
+   * @param searchedList, vector in which the value is searched
+   * @param value searched value
+   * @return ture if the value has been find and removed, false otherwise
+   */
+  template <typename T>
+  static bool vectorRemove(std::vector<T>& searchedVector, T& value)
+  {
+    typename std::vector<T>::iterator it = searchedVector.begin();
+    for (; it != searchedVector.end(); it++)
+    {
+      if (*it == value)
+      {
+        searchedVector.erase(it);
         return true;
       }
     }

@@ -52,6 +52,7 @@
 #include "GraphicSynchronizerInterface.h"
 #include "Interaction.h"
 #include "GetJavaProperty.h"
+#include "SetJavaProperty.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"

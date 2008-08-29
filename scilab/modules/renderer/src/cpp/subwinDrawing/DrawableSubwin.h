@@ -113,6 +113,23 @@ public:
    */
   virtual bool getZAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3]) = 0;
 
+  /**
+   * Specify that a new text has been added under this object.
+   */
+  virtual void addTextToDraw(sciPointObj * text) = 0;
+
+  /**
+   * Specify that a text object has been destoyed and should be removed from
+   * the list of drawing texts.
+   */
+  virtual void removeTextToDraw(sciPointObj * text) = 0;
+
+  /**
+   * To be called when a text object change.
+   * Next display will sort the text objects.
+   */
+  virtual void textChanged(void) = 0;
+
 
 protected:
 

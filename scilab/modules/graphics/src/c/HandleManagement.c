@@ -40,6 +40,8 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
+#include "SetJavaProperty.h"
+#include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
@@ -376,6 +378,16 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 {
   sciSons * OneSon = NULL ;
   
+  /* Special case for text, it needs to be registered with its parent subwin */
+  if (sciGetEntityType(pthis) == SCI_TEXT)
+  {
+    if (sciGetParent(pthis) != NULL)
+    {
+      sciJavaRemoveTextToDraw(pthis, sciGetParentSubwin(pthis));
+    }
+    sciJavaAddTextToDraw(pthis, sciGetParentSubwin(pparent));
+  }
+
   if ( sciSetParent(pthis, pparent) == -1 )
   {
     return FALSE ;
@@ -419,6 +431,16 @@ BOOL sciAddThisToItsParentLastPos(sciPointObj * pthis, sciPointObj * parent)
 {
   sciSons * newSon = NULL ;
   
+  /* Special case for text, it needs to be registered with its parent subwin */
+  if (sciGetEntityType(pthis) == SCI_TEXT)
+  {
+    if (sciGetParent(pthis) != NULL)
+    {
+      sciJavaRemoveTextToDraw(pthis, sciGetParentSubwin(pthis));
+    }
+    sciJavaAddTextToDraw(pthis, sciGetParentSubwin(parent));
+  }
+
   if ( sciSetParent(pthis, parent) == -1 )
   {
     return FALSE ;
@@ -472,6 +494,12 @@ BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 {
   sciSons *OneSon     = NULL ;
   sciSons *OneSonprev = NULL ;
+
+  /* Special case for text, it needs to be registered with its parent subwin */
+  if (sciGetEntityType(pthis) == SCI_TEXT)
+  {
+    sciJavaRemoveTextToDraw(pthis, sciGetParentSubwin(pthis));
+  }
 
   if ( pparent == NULL )
   {
@@ -652,6 +680,9 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
       sciInitSelectedSubWin( newSubWin ) ;
     }
   }
+
+  // redraw the object and its children
+  forceHierarchyRedraw(movedObj);
 
   return 0 ;
 }
@@ -838,7 +869,6 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
     return -1 ;
   }
 
-  /* Swap the two pointed values of the handles */
   firstSon->pointobj  = secondObject ;
   secondSon->pointobj = firstObject  ;
 
@@ -846,6 +876,21 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   sciSetParent( firstObject , secondParent ) ;
   sciSetParent( secondObject, firstParent  ) ;
   
+  /* Special case for texts we need to register them with the new parent */
+  if (sciGetEntityType(firstObject) == SCI_TEXT)
+  {
+    sciJavaRemoveTextToDraw(firstObject, sciGetParentSubwin(firstParent));
+    sciJavaAddTextToDraw(firstObject, sciGetParentSubwin(secondParent));
+  }
+
+  if (sciGetEntityType(secondObject) == SCI_TEXT)
+  {
+    sciJavaRemoveTextToDraw(secondObject, sciGetParentSubwin(secondParent));
+    sciJavaAddTextToDraw(secondObject, sciGetParentSubwin(firstParent));
+  }
+
+  forceHierarchyRedraw(firstObject);
+  forceHierarchyRedraw(secondObject);
 
   return 0 ;
 

@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;_DEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;STATIC_LINKED"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -128,7 +128,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;STATIC_LINKED"
 				StringPooling="true"
 				RuntimeLibrary="0"

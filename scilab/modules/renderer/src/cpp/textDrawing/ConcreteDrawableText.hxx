@@ -69,6 +69,17 @@ public:
    */
   virtual void updateTextBox(void);
 
+  /**
+   * To specify that the object was modified and need to be redrawn
+   */
+  virtual void hasChanged( void ) ;
+
+  /**
+   * Apply a translation to the object.
+   * The next call to show will take it into account
+   */
+  virtual void move(const double translation[3]);
+
 protected:
 
   /*---------------------------------------------------------------------------------*/

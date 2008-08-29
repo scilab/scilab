@@ -44,5 +44,7 @@ javaRubberBox
 sciGetJavaIsAbleToCreateWindow
 sciGetJavaBoundingBox
 destroyRendererString
+sciJavaAddTextToDraw
+sciJavaRemoveTextToDraw
 ; --------------------------------------- 
 
