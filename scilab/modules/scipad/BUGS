@@ -38,6 +38,8 @@ http://bugzilla.scilab.org/buglist.cgi?&component=Scipad+Editor&bug_status=NEW&b
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
+-Line numbering issue in Scilab 5 only (bug 3407)
+
 -When a function definition line ends with a comment, the line numbering is
  wrong 1 unit, resulting in various strange behaviors: execution not stopping
  at breakpoints or not up-to-date value of variables in the watch window
@@ -160,6 +162,14 @@ Old bugs/whishes which have been hacked but could have been done better:
  -- Printing works on Linux and now also on Windows. It makes use of Scilab
     internal new functions that do not preserve colorization. I'm convinced
     that an internal Tk printing scheme would be better.
+ -- Update August 2008: The opteam has now implemented functions toprint and
+    printsetupbox in java. From their post on the dev mailing list:
+    "functions *toprint* (printing without dialogs, no user action needed) and
+    *printsetupbox* are avaiblable under Linux and Windows and call standard
+    Java dialogs".
+    TODO: check whether on Linux we should change the way printing works in
+    Scipad or not (i.e. use toprint or stay as we do now). On Windows,
+    toprint/printsetupbox are already used.
 
 -trying to debug functions with names > 24 characters does not work. This is
  a very general Scilab limitation (in the debugger context, setbpt looses

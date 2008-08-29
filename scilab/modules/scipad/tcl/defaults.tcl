@@ -71,6 +71,8 @@ if {$tcl_platform(platform) == "unix" && $Tk85} {
 # Scilab 5 or Scilab 4?
 # Set flags value here, it will be useful throughout the rest of the code!
 # The test is on whereis(scipad)=="utillib"|"scipadlib"
+# This test is also consistent with scilab-gtk (i.e. Scilab5 will be set
+# to false when running aside scilab-gtk)
 
 if {$standaloneScipad} {
     # no possible test, since launching Scipad outside of Scilab is used
@@ -123,6 +125,20 @@ set bug2384_fixed true
 # but nowhere else, e.g. in scilab-gtk
 
 set bug2474_fixed true
+
+
+# The debugger has been broken by the operational team of the Scilab Consortium
+# and they could not fix the situation on time for Scilab 5 release, despite
+# Scilab 5 has been delayed more than one year. Their desperate request is that
+# the debugger be unplugged from Scilab 5...
+
+if {$Scilab5 && !$standaloneScipad} {
+    set bug2789_fixed false
+} else {
+    # Scilab 4.x, Scilab-gtk, or stand-alone Scipad
+    set bug2789_fixed true
+}
+
 
 # There are other bugs, such as:
 #
@@ -411,6 +427,13 @@ set blockseltoggledwordwrap false
 
 # single place in Scipad where the bugzilla URL is defined
 set ScilabBugzillaURL {http://bugzilla.scilab.org}
+
+# the most recent backported Scipad version can be found at this URL
+# this link points to Scipad_6.152.BP1
+set latestbackportedscipadversionURL {http://www.scilab.org/contrib/index_contrib.php?page=displayContribution&fileID=1130}
+
+# URL where the Scipad debugger internals are described
+set scipaddebuggerinnerworkingsdescriptionURL {http://wiki.scilab.org/Scipad_debugger_inner_beauties}
 
 ##########################################################################
 # Regular expression patterns

@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc showinfo {message} {
 # Temporarily display a string in the message area
     global pad
@@ -247,4 +248,26 @@ proc displaybusystate {} {
             after 100 {displaybusystate}
         }
     }
+}
+
+proc pleaseuseabetterscilabversion {bugnumber {furtherrefs {}}} {
+# Many thanks to the Operational Team of the Scilab Consortium
+# Scilab 5 definitely rocks
+    global ScilabBugzillaURL latestbackportedscipadversionURL
+    set bugzillabugURL {}
+    append bugzillabugURL $ScilabBugzillaURL "/show_bug.cgi?id=$bugnumber"
+    set mes {}
+    append mes [mc "This feature is no longer available in Scilab 5 due to bug "] $bugnumber "." "\n\n" \
+               [mc "See details at "] $bugzillabugURL "\n\n"
+    if {$furtherrefs != {}} {
+        append mes [mc "See also:"] "\n"
+        foreach elt $furtherrefs {
+            append mes "    " $elt "\n"
+        }
+        append mes "\n"
+    }
+    append mes [mc "Note: Scilab 4.x and Scilab-gtk are offering this feature."] "\n" \
+               [mc "A solution is to use a backported version of Scipad inside one of these environments, for instance:"] "\n" $latestbackportedscipadversionURL
+    set tit [mc "Feature missing from Scilab 5"]
+    tk_messageBox -message $mes -icon error -title $tit
 }

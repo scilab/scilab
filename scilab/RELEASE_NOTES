@@ -56,12 +56,14 @@ List of missing/buggy features:
       "scicos_simulate()" batch mode)
     * Demos are available through Scilab "?"->"Scilab Demonstrations" menu item
       ("Scicos" section) as well as Scicos "?"->"Demos" menu item
-    * TCL/TK features are still inactive (eg. "Palette Tree")
+    * Tcl/Tk features are still inactive (eg. "Palette Tree")
     * "Export" and "Export All" features are now fully functional
 
-- Scipad debugger is not yet fully functional.
+- The Scipad debugger is broken because of code reorganization that has been
+  performed in the Scilab core and rewriting of the Tcl interface. It has
+  therefore been unplugged from Scipad
 
-- Some TCL/Scilab synchronisation issues have been reported.
+- Some Tcl/Scilab synchronisation issues have been reported.
 
 - Printing can crash under Linux plateforms with recent versions of Cups.
 

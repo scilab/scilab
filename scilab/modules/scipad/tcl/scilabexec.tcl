@@ -260,23 +260,13 @@ proc xmlhelpfile {} {
 # (in Scilab 5) because of bug 3015
 
     global listoffile
-    global Scilab5 ScilabBugzillaURL
+    global Scilab5
 
     if {[isscilabbusy 4]} {return}
 
     if {$Scilab5} {
-        set bugzillabugURL {}
-        append bugzillabugURL $ScilabBugzillaURL "show_bug.cgi?id=3015"
-        # this link points to Scipad_6.143.BP1
-        set backportedscipadversionURL {http://www.scilab.org/contrib/index_contrib.php?page=displayContribution&fileID=1111}
-        set mes {}
-        append mes [mc "This feature is no longer available in Scilab 5 due to bug 3015."] "\n\n" \
-                   [mc "See details at "] $bugzillabugURL "\n\n" \
-                   [mc "Note: Scilab 4.x and Scilab-gtk are offering this feature."] "\n" \
-                   [mc "A solution is to use a backported version of Scipad inside one of these environments, for instance:"] "\n" $backportedscipadversionURL
-        set tit [mc "Feature missing from Scilab 5"]
-        tk_messageBox -message $mes -icon error -title $tit
-
+        pleaseuseabetterscilabversion 3015
+    
     } else {
         filetosavecur
         set filetocomp $listoffile("[gettextareacur]",fullname)
@@ -308,8 +298,8 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
     global sciprompt
 
     global tmpdir
-    set bsiz_1  4095   ;# Must be consistent with bsiz defined in routines/stack.h
-    set lsiz_1 65535   ;# Must be consistent with lsiz defined in routines/stack.h
+    set bsiz_1  4095   ;# Must be consistent with bsiz defined in stack.h
+    set lsiz_1 65535   ;# Must be consistent with lsiz defined in stack.h
     set commlength [string length $comm]
     if {$commlength <= $bsiz_1} {
         # No problem to process this
@@ -409,29 +399,29 @@ proc scilaberror {funnameargs} {
     # See http://wiki.scilab.org/Tcl_Thread
     global Scilab5
     if {$ScilabErrorMessageBox} {
-	if { $Scilab5 } {
-	    #
-	    # Let Scilab Display the message so that there is no more locking process
-	    # for communication between TCL and Scilab.
-	    # Lasterror outputs are already known in scilab, let's use them.
-	    #
-	    # We need to escape ' in scilab strings using ''
-	    # Used after Scipad Localisation => string map {' ''}
-	    #
-	    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
-	    set shellError [string map {' ''} [concat [mc "The shell reported an error while trying to execute "] $funnameargs [mc ": error "]]]
-	    set lineError [string map {' ''} [mc "at line "]]
-	    set funcError [string map {' ''} [mc " of "]]
-	    set winTitle [string map {' ''} [mc "Scilab execution error"]]
-	    ScilabEval_lt "messagebox(\[\"$shellError\"+string(db_n); \
-				db_str; \
-				\"$lineError\"+string(db_l)+\"$funcError\"+string(db_func)\], \"$winTitle\", \"error\")" "sync" "seq"
-	} else {
-	    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
-	    ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
-	    ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
-	    ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
-	    ScilabEval_lt  "TCL_SetVar(\"errmsg\" , strsubst( \
+        if {$Scilab5} {
+            # Let Scilab Display the message so that there is no more locking process
+            # for communication between Tcl and Scilab.
+            # Lasterror outputs are already known in scilab, let's use them.
+            #
+            # We need to escape ' in scilab strings using ''
+            # Used after Scipad Localisation => string map {' ''}
+            #
+            ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
+            set shellError [string map {' ''} [concat [mc "The shell reported an error while trying to execute "] $funnameargs [mc ": error "]]]
+            set lineError [string map {' ''} [mc "at line "]]
+            set funcError [string map {' ''} [mc " of "]]
+            set winTitle [string map {' ''} [mc "Scilab execution error"]]
+            ScilabEval_lt "messagebox(\[\"$shellError\"+string(db_n); \
+                                        db_str; \
+                                        \"$lineError\"+string(db_l)+\"$funcError\"+string(db_func)\], \"$winTitle\", \"error\")" \
+                          "sync" "seq"
+        } else {
+            ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
+            ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
+            ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
+            ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
+            ScilabEval_lt  "TCL_SetVar(\"errmsg\" , strsubst( \
                                              strsubst( \
                                              strsubst( \
                                              strsubst( \
@@ -443,15 +433,15 @@ proc scilaberror {funnameargs} {
                                                               ,\"\[\",\"\\\[\") \
                                                               ,\"\]\",\"\\\]\") \
                                            , \"scipad\" )" "sync" "seq"
-	    tk_messageBox -title [mc "Scilab execution error"] \
-		-message [append dummyvar [mc "The shell reported an error while trying to execute "]\
-			      $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
-			      $errline [mc " of "] $errfunc]
-	}
+            tk_messageBox -title [mc "Scilab execution error"] \
+                -message [append dummyvar [mc "The shell reported an error while trying to execute "]\
+                              $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
+                              $errline [mc " of "] $errfunc]
+        }
     }
     showinfo [mc "Execution aborted!"]
     if {[getdbstate] != "NoDebug"} {
-	canceldebug_bp
+        canceldebug_bp
     }
     blinkline $errline $errfunc
 }

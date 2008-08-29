@@ -29,6 +29,16 @@ proc configurefoo_bp {} {
     global listboxinput listboxinputval listboxscrolly spin buttonAddc
     global funnames funvars funvarsvals funnameargs
     global menuFont textFont
+    global bug2789_fixed scipaddebuggerinnerworkingsdescriptionURL
+
+    # the debugger does not work if bug 2789 is not fixed
+    # the easiest way to unplug it from Scipad is to prevent configuration
+    # of the debugger, thus preventing the debug state to go into
+    # ReadyForDebug mode
+    if {!$bug2789_fixed} {
+        pleaseuseabetterscilabversion 2789 [list $scipaddebuggerinnerworkingsdescriptionURL]
+        return
+    }
 
     # configurefoo_bp cannot be executed when colorization is in progress
     # since it uses Obtain_all which in turn needs getallfunsintextarea
