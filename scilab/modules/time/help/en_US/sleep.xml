@@ -24,7 +24,7 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>sleep</literal>Sleep process for specified number of miliseconds
+    <para><literal>sleep</literal> : Sleep process for specified number of miliseconds
     specified by the argument. The actual suspension time may be longer
     because of other activities in the system, or because of the time spent in
     processing the call.</para>
