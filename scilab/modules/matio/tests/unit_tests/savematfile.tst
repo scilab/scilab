@@ -199,7 +199,6 @@ for varIndex=1:size(varNames,"*")
 
         // Save data in Matlab format
         filename = getcwd()+pathconvert("/")+varNames(varIndex)+binFormats(formatIndex)+"-scilab.mat";
-	mprintf("%s\n", filename);
 	saveCmd = "savematfile "+filename+" "+varNames(varIndex)+" "+binFormats(formatIndex);
         execstr(saveCmd);
 	// Read saved file
