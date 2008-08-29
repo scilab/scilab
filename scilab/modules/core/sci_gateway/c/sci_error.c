@@ -74,13 +74,18 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 				{
 					/* store error */
 					errorCode = (int)(*stk(l));
+                                        if (errorCode <= 0)
+                                          {
+                                            Scierror(999,_("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"),fname,1);
+                                            return 0;
+                                          }
 					strcpy(bufferErrorMessage,defaultErrorMessage);
 					C2F(iop).err = errorPosition;
 					SciError(errorCode);
 				}
 				else 
 				{
-					Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,2);
+					Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
 					return 0;
 				}
 			}
