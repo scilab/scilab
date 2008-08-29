@@ -30,6 +30,7 @@
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "core_math.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -266,7 +267,7 @@ static int lengthSparse(int RhsPosition)
     m = getNumberOfLines(il); /* row */
     n = getNumberOfColumns(il); /* col */
 
-	lengthreturned = max(m,n);
+	lengthreturned = Max(m,n);
       
     ilrd = il + 4;
       
