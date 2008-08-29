@@ -634,6 +634,12 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		
 		dia = strsubst(dia,SCI,"SCI");
 		
+		if MSDOS then
+			strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
+			dia = strsubst(dia,strsubst(getshortpathname(SCI) ,"\","/"),"SCI");
+			dia = strsubst(dia,getshortpathname(SCI) ,"SCI");
+		end
+		
 		//suppress the prompts
 		dia = strsubst(dia,'-->','');
 		dia = strsubst(dia,'@#>','-->');
