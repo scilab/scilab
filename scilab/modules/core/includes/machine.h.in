@@ -469,5 +469,10 @@
 /* Defines PARAMS type */
 #include "PARAMS.h"
 
+/* Force usage of dynamically located stack on 64 bits */
+#ifdef IS_64_BITS_CPU
+#define USE_DYNAMIC_STACK
+#endif
+
 #endif /* MACHINE_H  */
 

@@ -157,12 +157,14 @@ if test -z "$F77"; then
    AC_PROG_F77
 fi
 
+f90compatible=false
 if test -z "$F77"; then
   AC_MSG_ERROR([No fortran compiler found. Cannot compile scilab without a fortran compiler])
 else
 	case "$F77" in
 	 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
 	 AC_DEFINE([G95_FORTRAN],[],[uses G95 fortran])
+	 f90compatible=true
 	 ;;
 	esac
 fi
@@ -500,10 +502,14 @@ CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modu
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 if test $IS_64_BITS_CPU = true; then
+   if test $f90compatible = false; then
+      AC_MSG_ERROR([64 bits support needs a fortran 90 compiler.])
+   fi
    AC_DEFINE([IS_64_BITS_CPU], [], [If we are building a 64 bits version])
 fi
 
 AM_CONDITIONAL(IS_64_BITS_CPU, test "$IS_64_BITS_CPU" = true)
+AM_CONDITIONAL(USE_DYNAMIC_STACK, test "$IS_64_BITS_CPU" = true)
 
 #######################
 ## test for underscores (name mangling issues between C and fortran)
@@ -1085,6 +1091,11 @@ AH_BOTTOM([
 
 /* Defines PARAMS type */
 #include "PARAMS.h"
+
+/* Force usage of dynamically located stack on 64 bits */
+#ifdef IS_64_BITS_CPU
+#define USE_DYNAMIC_STACK
+#endif
 
 #endif /* MACHINE_H  */
 ])
