@@ -24,7 +24,7 @@ B(p,q) - L*U  // must be a (quasi) nul matrix
  
 (    5,    5) sparse matrix
  
-   1.0E-16 *
+   1.0D-16 *
  
 (    5,    3)        0.2775558 
 (    5,    5)        0. 
@@ -53,7 +53,7 @@ B(p,q) - L*U  // must be a (quasi) nul matrix
  
 (    5,    5) sparse matrix
  
-   1.0E-16 *
+   1.0D-16 *
  
 (    4,    2)     - 0.1387779i 
 (    5,    2)       0.0693889i 

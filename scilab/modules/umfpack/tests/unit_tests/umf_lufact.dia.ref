@@ -40,13 +40,13 @@ x = umf_lusolve(Lup,b);
 plop1=norm(A*x - b)
  plop1  =
  
-    2.485E-10  
+    2.485D-10  
 // now the same thing with iterative refiment
 x = umf_lusolve(Lup,b,"Ax=b",A);
 plop2=norm(A*x - b)
  plop2  =
  
-    2.485E-10  
+    2.485D-10  
 if plop1 <> plop2 then bugmes();quit;end
 // don't forget to clear memory
 umf_ludel(Lup)
