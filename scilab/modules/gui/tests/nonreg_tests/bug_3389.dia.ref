@@ -33,14 +33,14 @@ figure("enable", "on",...
     "verticalalignment", "left",...
     "fontname", "arial",...
     "sliderstep", [1 2]);
-Pas de propriété 'Enable' pour cet objet.
-Pas de propriété 'Label' pour cet objet.
-Pas de propriété 'String' pour cet objet.
-Pas de propriété 'FontWeight' pour cet objet.
-Pas de propriété 'FontSize' pour cet objet.
-Pas de propriété 'FontAngle' pour cet objet.
-Pas de propriété 'Relief' pour cet objet.
-Pas de propriété 'HorizontalAlignment' pour cet objet.
-Pas de propriété 'VerticalAlignment' pour cet objet.
-Pas de propriété 'FontName' pour cet objet.
-Pas de propriété 'SliderStep' pour cet objet.
+No 'Enable' property for this object.
+No 'Label' property for this object.
+No 'String' property for this object.
+No 'FontWeight' property for this object.
+No 'FontSize' property for this object.
+No 'FontAngle' property for this object.
+No 'Relief' property for this object.
+No 'HorizontalAlignment' property for this object.
+No 'VerticalAlignment' property for this object.
+No 'FontName' property for this object.
+No 'SliderStep' property for this object.

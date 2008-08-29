@@ -9,7 +9,6 @@
 clear uicontrol_generic_test
 getf("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
 uicontrol_generic_test("radiobutton");
-Warning: 'Radiobutton' 'Value' property should be equal to either 'Min' or 'Max' property value.
 // Default relief value
 h = uicontrol("parent", scf(), "style", "radiobutton");
 if get(h, "relief") <> "flat" then
