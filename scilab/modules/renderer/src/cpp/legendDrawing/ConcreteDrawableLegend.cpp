@@ -95,7 +95,7 @@ namespace sciGraphics
     
     int nblegends = getNbLegend();
     for (int i = 0; i < nblegends; i++) {
-      sciPointObj * legendedObject = sciGetPointerFromHandle(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]);
+      sciPointObj * legendedObject = sciGetPointerFromHandle((long)(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]));
       if (legendedObject != NULL) {
 	if (i != i1) {
 	  pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i1]= pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i];
@@ -255,7 +255,7 @@ namespace sciGraphics
     for (int i = 0; i < nbLegends; i++)
       {
 	// current object we want to set the legend
-	sciPointObj * legendedObject = sciGetPointerFromHandle(ppLegend->tabofhandles[i]);
+	sciPointObj * legendedObject = sciGetPointerFromHandle((long)(ppLegend->tabofhandles[i]));
 	// set same mark parameters as the polyline
 	sciInitMarkSize(m_aLines[i], sciGetMarkSize(legendedObject));
 	sciInitMarkSizeUnit(m_aLines[i], sciGetMarkSizeUnit(legendedObject));
@@ -493,7 +493,7 @@ namespace sciGraphics
     // interpolate between top to bottom
     for (int i = 0; i < nblegends; i++)
       {
-	sciPointObj * legendedObject = sciGetPointerFromHandle(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]);
+	sciPointObj * legendedObject = sciGetPointerFromHandle((long)(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]));
 	
 	// our polylines are composed of at most four points
 	sciPolyline * curPoly = pPOLYLINE_FEATURE(m_aLines[i]);
