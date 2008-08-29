@@ -39,6 +39,7 @@ function  GraphList=ge_do_move_region(GraphList,xc,yc)
 
   ge_win_handle=gcf()
   ge_win_handle.immediate_drawing='off'
+  ge_win_handle.pixel_drawing_mode='equiv'
   ge_axes_handle=gca();n=size(ge_axes_handle.children,'*')
   gindex=ge_axes_handle.user_data;
   hedges=gindex.edge;hnodes=gindex.node;
@@ -47,20 +48,29 @@ function  GraphList=ge_do_move_region(GraphList,xc,yc)
   moved=[hnodes(ksel);hedges(kinternals)]
   nmoved=size(moved,'*')
   modified=hedges(karcs)
+  nmodified=size(modified,'*')
   
   rep(3)=-1
   xy=[rect(1)+rect(3),rect(2)-rect(4)]
   xy_save=xy;
   while rep(3)==-1 ,  // move loop
-    rep=xgetmouse()
+    rep=xgetmouse([%t %t])
     dxy=rep(1:2)-xy
+    // erase current position
+    for k=1:nmoved,draw(moved(k)),end //erase
+    for k=1:nmodified,draw(modified(k)),end //erase
+
     for k=1:nmoved,move(moved(k),dxy),end
     GraphList.nodes.graphics.x(ksel)=GraphList.nodes.graphics.x(ksel)+dxy(1)
     GraphList.nodes.graphics.y(ksel)= GraphList.nodes.graphics.y(ksel)+dxy(2)
     ge_update_edges(karcs,modified)
     xy=rep(1:2)
-    draw(ge_axes_handle);
-    show_pixmap()
+    //draw modified objects at new position
+    for k=1:nmoved,draw(moved(k)),end 
+    for k=1:nmodified,draw(modified(k)),end 
+
+    //draw(ge_axes_handle);
+    //show_pixmap()
   end
   if rep(3)==2 then //cancel
     for k=1:nmoved,move(moved(k),xy_save-rep(1:2)),end
@@ -72,6 +82,7 @@ function  GraphList=ge_do_move_region(GraphList,xc,yc)
     ge_enablemenus()
   end
   ge_win_handle.immediate_drawing='on'
+  ge_win_handle.pixel_drawing_mode='copy'
   show_pixmap()
   ge_enablemenus()
   edited=return(%t)

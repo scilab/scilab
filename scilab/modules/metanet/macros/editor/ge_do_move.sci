@@ -40,18 +40,26 @@ function GraphList=ge_do_move(GraphList,xc,yc)
   
   ge_win_handle=gcf()
   ge_win_handle.immediate_drawing='off'
+  ge_win_handle.pixel_drawing_mode='equiv'
+
   rep(3)=-1
   xy=[xc,yc]
   while rep(3)==-1 ,  // move loop
-    rep=xgetmouse()
+    rep=xgetmouse([%t %t])
     dxy=rep(1:2)-xy
+    // erase current position
+    for k=1:nmoved,draw(moved(k)),end //erase
+    for k=1:nmodified,draw(modified(k)),end //erase
+    
     for k=1:nmoved,move(moved(k),dxy),end
     GraphList.nodes.graphics.x(ksel)=GraphList.nodes.graphics.x(ksel)+dxy(1)
     GraphList.nodes.graphics.y(ksel)= GraphList.nodes.graphics.y(ksel)+dxy(2)
     ge_update_edges(karcs,modified)
     xy=rep(1:2)
-    draw(ge_axes_handle);
-    show_pixmap()
+    //draw modified objects at new position
+    for k=1:nmoved,draw(moved(k)),end 
+    for k=1:nmodified,draw(modified(k)),end 
+     //draw(ge_axes_handle);
   end
   if rep(3)==2 then //cancel
     for k=1:nmoved,move(moved(k),[xc,yc]-rep(1:2)),end
@@ -61,7 +69,8 @@ function GraphList=ge_do_move(GraphList,xc,yc)
     ge_add_history(list("move",ksel,[x_save,y_save]))
   end
   ge_win_handle.immediate_drawing='on'
-  show_pixmap()
+  ge_win_handle.pixel_drawing_mode='copy'
+ 
   ge_enablemenus()
   edited=return(edited)
 endfunction

@@ -27,7 +27,7 @@ function GraphList=ge_new_edge(GraphList,xc1,yc1)
   xpoly([xl;xe],[yl;ye],'lines');e=gce();draw(e)
   while %t do //wait for a node selection
     rep(3)=-1
-    while rep(3)<0 do //get a new point
+    while rep(3)==-1 do //get a new point
       rep=xgetmouse([%t %t])
       xe=rep(1);ye=rep(2)
       draw(e)//erase
