@@ -10,6 +10,6 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3268
 // link try to load a non existing file
-
+warning('off');
 ierr = execstr('link(''NOEXISTLIBNAME'',''foo'')','errcatch');
 if ierr <> 236 then pause,end
