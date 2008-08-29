@@ -29,8 +29,7 @@ h.min = 5; // Default is 0
 h.position = [100 100 200 200]; // Default is [20 20 80 40]
 h.relief = "sunken"; // Default is "ridge" for frames
 h.sliderstep = [1 2]; // Default is [0.01,0.1]
-h.string = ["titi";"toto"]; // Default is ""
-Mauvaise dimension pour la propriété 'String': Une chaîne de caractères attendue.
+h.string = "titi"; // Default is ""
 h.units = "points"; // Default is pixels
 h.value = 10; // Default is []
 h.verticalalignment = "top"; // Default is "center"
