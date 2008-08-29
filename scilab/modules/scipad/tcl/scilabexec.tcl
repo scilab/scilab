@@ -407,42 +407,51 @@ proc scilaberror {funnameargs} {
     # Communication between Scipad and Scilab through
     # Tcl global interp is not supported by Scilab 5
     # See http://wiki.scilab.org/Tcl_Thread
-#     ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
-#     ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
-#     ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
-#     ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
-#     ScilabEval_lt  "TCL_SetVar(\"errmsg\" , strsubst( \
-#                                             strsubst( \
-#                                             strsubst( \
-#                                             strsubst( \
-#                                             strsubst( \
-#                                                        strcat(stripblanks(db_str),ascii(13)) \
-#                                                              ,\"\"\"\",\"\\\"\"\") \
-#                                                              ,\"''\",\"\\''\") \
-#                                                              ,\"$\",\"\\$\") \
-#                                                              ,\"\[\",\"\\\[\") \
-#                                                              ,\"\]\",\"\\\]\") \
-#                                           , \"scipad\" )" "sync" "seq"
-#     if {$ScilabErrorMessageBox} {
-#         tk_messageBox -title [mc "Scilab execution error"] \
-#           -message [append dummyvar [mc "The shell reported an error while trying to execute "]\
-#           $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
-#           $errline [mc " of "] $errfunc]
-#     }
-
-#
-# Let Scilab Display the message so that there is no more locking process
-# for communication between TCL and Scilab.
-# Lasterror outputs are already known in scilab, let's use them.
-#
-    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
-    ScilabEval_lt "messagebox(\[msprintf(gettext(\"The shell reported an error while trying to execute %s\"), \"$funnameargs\"); \
-	msprintf(gettext(\"error %s: %s\"), string(db_n), db_str); \
-	gettext(\"at line \")+ string(db_l)+gettext(\" of \")+string(db_func)\], gettext(\"Scilab execution error\"), \"error\")" "sync" "seq"
-
+    global Scilab5
+    if {$ScilabErrorMessageBox} {
+	if { $Scilab5 } {
+	    #
+	    # Let Scilab Display the message so that there is no more locking process
+	    # for communication between TCL and Scilab.
+	    # Lasterror outputs are already known in scilab, let's use them.
+	    #
+	    # We need to escape ' in scilab strings using ''
+	    # Used after Scipad Localisation => string map {' ''}
+	    #
+	    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
+	    set shellError [string map {' ''} [concat [mc "The shell reported an error while trying to execute "] $funnameargs [mc ": error "]]]
+	    set lineError [string map {' ''} [mc "at line "]]
+	    set funcError [string map {' ''} [mc " of "]]
+	    set winTitle [string map {' ''} [mc "Scilab execution error"]]
+	    ScilabEval_lt "messagebox(\[\"$shellError\"+string(db_n); \
+				db_str; \
+				\"$lineError\"+string(db_l)+\"$funcError\"+string(db_func)\], \"$winTitle\", \"error\")" "sync" "seq"
+	} else {
+	    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
+	    ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
+	    ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
+	    ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
+	    ScilabEval_lt  "TCL_SetVar(\"errmsg\" , strsubst( \
+                                             strsubst( \
+                                             strsubst( \
+                                             strsubst( \
+                                             strsubst( \
+                                                        strcat(stripblanks(db_str),ascii(13)) \
+                                                              ,\"\"\"\",\"\\\"\"\") \
+                                                              ,\"''\",\"\\''\") \
+                                                              ,\"$\",\"\\$\") \
+                                                              ,\"\[\",\"\\\[\") \
+                                                              ,\"\]\",\"\\\]\") \
+                                           , \"scipad\" )" "sync" "seq"
+	    tk_messageBox -title [mc "Scilab execution error"] \
+		-message [append dummyvar [mc "The shell reported an error while trying to execute "]\
+			      $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
+			      $errline [mc " of "] $errfunc]
+	}
+    }
     showinfo [mc "Execution aborted!"]
     if {[getdbstate] != "NoDebug"} {
-        canceldebug_bp
+	canceldebug_bp
     }
     blinkline $errline $errfunc
 }
