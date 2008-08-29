@@ -1,3 +1,9 @@
+Scilab operational team, 29/08/06
+ * Added check about scipad interpreter existence (dynamickeywords.sce)
+ * Changed proc scilaberror once more so that it sleeps with the new Tcl
+   threaded loop of Scilab 5, i.e. does no longer use TCL_GetVzr/TCL_SetVar
+ * version --> 6.154
+
 Francois VOGEL, 18/08/08
  * Avoid Tcl error due to bug 3015 in Scilab5 environment. Compile as help
    page cannot work in Scilab 5 because no incremental mode is available
