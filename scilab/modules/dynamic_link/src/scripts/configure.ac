@@ -13,6 +13,8 @@ AC_INIT([scilab],[0],[http://bugzilla.scilab.org/index.cgi])
 # Initialise automake (foreign is low strictness)
 AM_INIT_AUTOMAKE([foreign]) 
 
+AM_MAINTAINER_MODE
+
 # Detect C compiler
 AC_PROG_CC
 
@@ -27,6 +29,17 @@ AC_PROG_LIBTOOL
 
 # Specify which Makefile.in should be "adapted"
 AC_CONFIG_FILES([Makefile])
+
+# x86_64 needs -fPIC
+case "$host" in
+  x86_64-*-linux*)
+    CFLAGS="$CFLAGS -fPIC"
+	CXXFLAGS="$CXXFLAGS -fPIC"
+	FFLAGS="$CXXFLAGS -fPIC"
+	LDFLAGS="$LDFLAGS -fPIC"
+	F77_LDFLAGS="$F77_LDFLAGS -fPIC"
+	;;
+esac
 
 # Configure the Makefile
 AC_OUTPUT
