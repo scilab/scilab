@@ -38,7 +38,10 @@ c
          else
             call zzledt(string,len(string),lline,status,menusflag,1)
          endif
-         if(status.ne.0) goto 10
+         if(status.ne.0) then
+c     .     status>0 : eof, status<0 :read interrupted (callbacks),
+            goto 10
+         endif
          if (lline.eq.0) then
             string(1:1)=' '
             lline=1

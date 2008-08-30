@@ -94,8 +94,14 @@ c        check if getlin is call in a macro or an exec
       if(info.ne.0) goto 50 
       if(ltype.eq.1) then
          call basin(ierr,rio,buf(1:lrecl),'*',menusflag)
-         if(ierr.lt.0) goto 90
-         if(ierr.ne.0) goto 50
+         if(ierr.lt.0) then
+c     .     interrupted line acquisition (callback)
+            goto 90
+         endif
+         if(ierr.ne.0) then
+c     .     end of file encountered
+            goto 50
+         endif
          n=lnblnk(buf(1:lrecl))
       else
          call readnextline(rio,buf,bsiz,n,nr,info)
