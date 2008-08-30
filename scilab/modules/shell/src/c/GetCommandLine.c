@@ -173,16 +173,20 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	}
 
       __Wait(&TimeToWork, &ReadyForLaunch);
+      /*
+      ** WARNING : Old crappy f.... code
+      ** do not change reference to buffer
+      ** or fortran will be lost !!!!
+      */
+      strcpy(buffer, __CommandLine);
+      *len_line = (int)strlen(buffer);
+      *eof = FALSE;
     }
+  else {
+    *len_line = 0;
+    *eof = -1;
+  }
   __UnLockSignal(&ReadyForLaunch);
 
-  /*
-  ** WARNING : Old crappy f.... code
-  ** do not change reference to buffer
-  ** or fortran will be lost !!!!
-  */
-  strcpy(buffer, __CommandLine);
-  *len_line = (int)strlen(buffer);
-  *eof = FALSE;
 }
 
