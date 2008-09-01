@@ -697,7 +697,7 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 			if (strcmp((char*)wordToFind,completionResults[0])!=0)
 			{
 				/* No the same as previously displayed */
-				char *texttoadd = &completionResults[0][strlen(wordToFind) - 1];
+				char *texttoadd = &completionResults[0][strlen(wordToFind)];
 				CopyLineAtPrompt(wk_buf,strcat(wk_buf, texttoadd),cursor,cursor_max);
 			}
 			FREE(completionResults[0]);
