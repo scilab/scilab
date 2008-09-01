@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
 "PO-Revision-Date: 2008-05-22 07:53+0000\n"
 "Last-Translator: Arnaud Dessein <Unknown>\n"
@@ -17,26 +17,14 @@ msgstr ""
 "X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Plus de mémoire disponible.\n"
-
-#, fuzzy, c-format
-msgid "  (cont'd) %s"
-msgstr "  (suite) %s"
-
-#, c-format
-msgid "     (end) %s"
-msgstr "     (fin) %s"
-
 msgid "Incorrect assignment.\n"
 msgstr "Affectation incorrecte.\n"
 
 msgid "Waiting for right parenthesis.\n"
 msgstr "En attente d'une parenthèse droite.\n"
 
-#, c-format
-msgid "Undefined variable : %s\n"
+#, fuzzy, c-format
+msgid "Undefined variable: %s\n"
 msgstr "Variable non définie: %s\n"
 
 msgid "Inconsistent column/row dimensions.\n"
@@ -47,8 +35,7 @@ msgstr "Dimension ligne/colonne incohérente.\n"
 
 #, fuzzy
 msgid "Dot cannot be used as modifier for this operator.\n"
-msgstr ""
-"Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
+msgstr "Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
 
 msgid "Inconsistent addition.\n"
 msgstr "Addition incohérente.\n"
@@ -84,16 +71,16 @@ msgstr "Taille de la pile dépassée!\n"
 msgid "Use stacksize function to increase it.\n"
 msgstr "Utiliser la fonction stacksize pour l'augmenter.\n"
 
-#, c-format
-msgid "Memory used for variables : %d\n"
+#, fuzzy, c-format
+msgid "Memory used for variables: %d\n"
 msgstr "Mémoire utilisée pour les variables: %d\n"
 
-#, c-format
-msgid "Intermediate memory needed : %d\n"
+#, fuzzy, c-format
+msgid "Intermediate memory needed: %d\n"
 msgstr "Mémoire intermédiaire requise: %d\n"
 
-#, c-format
-msgid "Total memory available : %d\n"
+#, fuzzy, c-format
+msgid "Total memory available: %d\n"
 msgstr "Mémoire totale disponible: %d\n"
 
 msgid "Too many variables!\n"
@@ -169,6 +156,10 @@ msgstr "Mauvais argument d'entrée %d.\n"
 #, c-format
 msgid "Incorrect function at line %d.\n"
 msgstr "Fonction incorrecte à la ligne %d.\n"
+
+#, fuzzy
+msgid "Incorrect function.\n"
+msgstr "Chaîne de caractères incorrecte.\n"
 
 msgid "Wrong file name.\n"
 msgstr "Mauvais nom de fichier.\n"
@@ -329,6 +320,11 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée.\n"
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Mauvais nombre d'arguments de sortie.\n"
+
+#
+# File: src/c/errmsg.c, line: 579
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
 
 #, c-format
 msgid "Incorrect function (argument n: %d).\n"
@@ -592,6 +588,12 @@ msgstr "%s: Paramètres d'arrêts incorrects.\n"
 msgid "%s: Incorrect bounds.\n"
 msgstr "%s: Bornes incorrectes.\n"
 
+#
+# File: src/c/errmsg.c, line: 969
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
@@ -719,6 +721,11 @@ msgid "reference to the cleared global variable %s.\n"
 msgstr "référence vers la variable global effacée %s.\n"
 
 #, fuzzy
+msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: Ne doit pas contenir de NaN ou Inf.\n"
+
+#, fuzzy
 msgid "semi def fails.\n"
 msgstr "Echec de semi def.\n"
 
@@ -793,10 +800,13 @@ msgid "  check arguments or define function %s for overloading.\n"
 msgstr ""
 "  vérifier les arguments ou définir la fonction %s pour la surcharge.\n"
 
+#, fuzzy, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr "Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
+
 #, c-format
 msgid "Wrong value for argument %d: Valid variable name expected.\n"
-msgstr ""
-"Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
+msgstr "Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
 
 #, c-format
 msgid "Wrong value for argument %d: Empty string expected.\n"
@@ -899,8 +909,7 @@ msgid "endfunction is missing.\n"
 msgstr "endfunction est manquant.\n"
 
 #, fuzzy
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Partie gauche de l'instruction: en attente d'un point ou d'une parenthèse "
 "ouvrante.\n"
@@ -918,8 +927,26 @@ msgstr "Opérateur, virgule ou point-virgule manquant.\n"
 msgid "Too many commands defined.\n"
 msgstr "Trop de commandes définies.\n"
 
+#
+# File: src/c/errmsg.c, line: 1536
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr ""
+
 msgid "\"unknown data\""
 msgstr "\"Donnée inconnue\""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Plus de mémoire disponible.\n"
+
+#, fuzzy, c-format
+msgid "  (cont'd) %s\n"
+msgstr "  (suite) %s"
+
+#, fuzzy, c-format
+msgid "     (end) %s\n"
+msgstr "     (fin) %s"
 
 msgid "Warning :\n"
 msgstr "Attention:\n"
@@ -1016,8 +1043,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Fin de l'optimisation (échec de la recherche en ligne).\n"
 
 #, fuzzy, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : convergence incomplète. Précision relative atteinte: 10**(%s).\n"
 
@@ -1038,17 +1064,13 @@ msgid "Breakpoints of function : %s\n"
 msgstr "Point d'arrêt de la fonction: %s\n"
 
 #, fuzzy
-msgid ""
-"Warning: recursion problem..., cleared.\n"
-" will be cleared with next error...\n"
+msgid "Warning: recursion problem..., cleared.\n"
 msgstr ""
 "Attention: problème de récurrence ..., nettoyé.\n"
 " sera nettoyé lors de la prochaine erreur ...\n"
 
 #, fuzzy
-msgid ""
-"Warning: stack problem..., cleared\n"
-" will be cleared with next error...\n"
+msgid "Warning: stack problem..., cleared.\n"
 msgstr ""
 "Attention: problème de pile ..., nettoyé.\n"
 " sera nettoyé lors de la prochaine erreur ...\n"
@@ -1096,8 +1118,9 @@ msgstr "Fonctions système:\n"
 msgid "Commands:\n"
 msgstr "Commandes :\n"
 
-#, c-format
-msgid "Warning : redefining function: %s"
+#, fuzzy, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
 msgstr "Attention: redéfinition de la fonction: %s"
 
 #, c-format
@@ -1291,5 +1314,46 @@ msgstr "%s: les dimensions de la fenêtre ont été réduite à moins de 2^16.\n
 
 #, fuzzy
 msgid "Some data have not been computed they are replaced by NaN.\n"
+msgstr "Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+
+#
+# File: src/c/msgs.c, line: 1341
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most %"
+"s.\n"
 msgstr ""
-"Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+
+#
+# File: src/c/msgs.c, line: 1347
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1353
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.\n"
+
+#
+# File: src/c/msgs.c, line: 1366
+# File: src/c/msgs.c, line: 1373
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1380
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""
