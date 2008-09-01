@@ -419,6 +419,10 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/GL2PSToJOGL.giws.xml \
 @GUI_TRUE@src/jni/JOGLConstant.giws.xml
 
+
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
+@GUI_TRUE@USEANT = 1
 @GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -455,10 +459,6 @@ includes/sci_xs2pdf.h \
 includes/sci_xs2png.h \
 includes/sci_xs2svg.h
 
-
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)

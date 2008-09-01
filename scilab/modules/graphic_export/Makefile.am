@@ -57,6 +57,11 @@ GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml
 
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
+
+USEANT=1
+
 if GIWS
 BUILT_SOURCES=giws
 endif
@@ -104,10 +109,5 @@ includes/sci_xs2jpg.h \
 includes/sci_xs2pdf.h \
 includes/sci_xs2png.h \
 includes/sci_xs2svg.h
-
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-
-USEANT=1
 
 include $(top_srcdir)/Makefile.incl.am
