@@ -5,7 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-mode(1)
+mode(1);
+lines(0);
 // Spectral power estimation 
 // ( form Sawaragi et all) 
 m=18;

@@ -5,6 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+lines(0);
+
 ////////////////////////
 //DISCRETE IIR FILTERS//
 ////////////////////////

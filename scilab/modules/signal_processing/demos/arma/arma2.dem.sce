@@ -6,7 +6,8 @@
 //
 
 
-mode(1)
+mode(1);
+lines(0);
 // A bidimensional version of demo one.
 a=[1,-2.851,2.717,-0.865].*.eye(2,2);
 b=[0,1,1,1].*.[1;1];
