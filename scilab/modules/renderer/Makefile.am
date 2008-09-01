@@ -335,6 +335,11 @@ src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
 src/jni/SubwinBackgroundDrawerGL.giws.xml
 
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
+
+USEANT=1
+
 if GIWS
 BUILT_SOURCES=giws
 endif
@@ -383,9 +388,5 @@ includes/rendererBasicAlgos.h
 
 
 
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-
-USEANT=1
 
 include $(top_srcdir)/Makefile.incl.am
