@@ -109,8 +109,7 @@ x_message(["[III.8] Thickness)";expr]);
 execstr(expr);
 
 // Demo III.9
-expr=["xfrect(400,50,50,100);";
-"xclea(410,50,10,100);"];
+expr=["xfrect(400,50,50,100);"];
 x_message(["[III.9] Clear a rectangle";expr]);
 execstr(expr);
 

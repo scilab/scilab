@@ -592,12 +592,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xclea</term>
-        <listitem>
-          <para>erase a rectangle</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xclip</term>
         <listitem>
           <para>set a clipping zone</para>
