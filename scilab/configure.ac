@@ -286,7 +286,7 @@ dnl @TODO : il faut peut etre verifier que c'est bien gfortran
    fi
 	  case "$host" in
 		 x86_64-*-linux*)
-			FFLAGS="$FFLAGS -mfpmath=sse -msse2 -m64 -fPIC"
+			FFLAGS="$FFLAGS -m64 -fPIC"
 					;;
 		# Dec Alpha OSF 4
 		alpha*-dec-osf4.*)
@@ -409,7 +409,7 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
 	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
 	;;
 	 x86_64-*-linux-gnu)
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -mfpmath=sse -msse2 -m64"
+		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -fPIC -m64"
 		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
@@ -506,7 +506,7 @@ FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 if test $IS_64_BITS_CPU = true; then
    if test $f90compatible = false; then
-      AC_MSG_ERROR([64 bits support needs a fortran 90 compiler.])
+      AC_MSG_ERROR([64 bits support needs a fortran 90 compiler (try --with-gfortran).])
    fi
    AC_DEFINE([IS_64_BITS_CPU], [], [If we are building a 64 bits version])
 fi
