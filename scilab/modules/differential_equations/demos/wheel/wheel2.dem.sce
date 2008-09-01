@@ -27,7 +27,7 @@ nn     = 300;
 times  = (0:(nn-1));
 times  = tmax*times/(nn-1) +tmin*((nn-1)*ones(times)-times);
 
-// Iinitial conditions
+// Initial conditions
 // =========================================================================
 x0=[0;             // theta
 	%pi/2+0.1;     // phi
@@ -50,7 +50,7 @@ ystr = [ 'phi';'theta';'psi';'Dpsi';'Dtheta';'Dpsi';'x';'y'];
 flag = 2;
 
 while flag==2, [n1,n2]=size(x);
-	flag=tk_choose(['Stop';'Go on'],'Choose');
+	flag=x_choose(['Stop';'Go on'],'Choose');
 	if flag==2 then
 		x0 = evstr(x_mdialog(['Initial conditions'],ystr,string(x(:,n2))));
 		x  = ode(x0,tmin,times,'wheel');
