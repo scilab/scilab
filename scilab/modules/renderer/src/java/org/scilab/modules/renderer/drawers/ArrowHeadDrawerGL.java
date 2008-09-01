@@ -315,7 +315,6 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 			// compute the position of the three vertices of the triangle
 			Vector3D segmentDir = endPixCoords[i].substract(startPixCoords[i]).getNormalized();
 			segmentDir.scalarMultSelf(curArrowPixelSize);
-			System.err.println("segmentDir = " + segmentDir);
 			
 			Vector3D orthoDir = new Vector3D(-segmentDir.getY(), segmentDir.getX(), 0.0);
 			
