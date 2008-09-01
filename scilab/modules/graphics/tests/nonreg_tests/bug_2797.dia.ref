@@ -22,11 +22,9 @@ curFig = gcf();
 curFig.immediate_drawing = "on";
 // evaluation of f will fail
 // it use to keep current figure in drawlater mode
-plot(x,f)
- 
- Error : unable to evaluate input function.   
- 
- Error 27 at line 0 : Division by zero...   
+// plot(x,f)
+//the error will not be printed in the console
+ierr = execstr('plot(x,f)','errcatch');
 plot(x,x)
 // check we are not in drawlater mode anymore
 if (curFig.immediate_drawing <> "on") then bugmes();quit;end
