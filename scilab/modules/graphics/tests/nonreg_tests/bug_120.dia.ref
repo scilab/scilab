@@ -34,7 +34,7 @@ bode(h,fmin,fmax,my_title);
 // check that the axes data bounds are fmin and fmax
 curFig = gcf();
 // get data bounds of phase plot
-dataBounds1 = curFig.children(2).data_bounds
+dataBounds1 = curFig.children(1).data_bounds
  dataBounds1  =
  
     0.01  - 29.4651    
@@ -43,7 +43,7 @@ dataBounds1 = curFig.children(2).data_bounds
 if (dataBounds1(1,1) <> fmin) then bugmes();quit;end;
 if (dataBounds1(2,1) <> fmax) then bugmes();quit;end;
 // same for magnitude plot
-dataBounds2 = curFig.children(3).data_bounds
+dataBounds2 = curFig.children(2).data_bounds
  dataBounds2  =
  
     0.01  - 0.1723667  
