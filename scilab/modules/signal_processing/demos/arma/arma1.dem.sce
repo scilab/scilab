@@ -5,7 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-mode(1)
+mode(1);
+lines(0);
 // An example of arma simulation and identification 
 // form ( K.J. Astrom)
 // The armax process with the following characteristics 

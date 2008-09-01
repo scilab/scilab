@@ -8,7 +8,8 @@
 ////////////////////////
 //SPECTRAL ESTIMATION///
 ////////////////////////
-   mode(1)
+   mode(1);
+   lines(0);
 
 //generate white data
    rand('normal');

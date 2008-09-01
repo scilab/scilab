@@ -9,7 +9,8 @@
 //WIENER FILTERING//////
 ////////////////////////
 
-mode(1)
+mode(1);
+lines(0);
 
 //define system macro which generates the next
 //observation given the old state
@@ -81,4 +82,4 @@ endfunction
     curves(2).mark_mode='on';curves(2).mark_style=2;
     curves(3).mark_mode='on';curves(3).mark_style=1;
     
-   legend([_("real state");_("estimates xf");_("estimates xs")])
+   legend([_("real state");_("estimates xf");_("estimates xs")]);
