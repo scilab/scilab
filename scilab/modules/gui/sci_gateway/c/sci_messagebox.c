@@ -66,7 +66,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
               return FALSE;
             }
           /* The title argument can be used to give the modal option */
-          if (isModalOption(getStringMatrixFromStack((int)titleAdr)[0]))
+          if (isModalOption(getStringMatrixFromStack((size_t)titleAdr)[0]))
             {
               modalOptionAdr = titleAdr;
               titleAdr = 0;
@@ -88,12 +88,12 @@ int sci_messagebox(char *fname,unsigned long fname_len)
           if (nbRow*nbCol == 1)
             {
               /* The icon argument can be used to give the modal option or the buttons names */
-              if (isModalOption(getStringMatrixFromStack((int)iconAdr)[0]))
+              if (isModalOption(getStringMatrixFromStack((size_t)iconAdr)[0]))
                 {
                   modalOptionAdr = (char **)iconAdr;
                   iconAdr = 0;
                 }
-              else if(!isIconName(getStringMatrixFromStack((int)iconAdr)[0]))
+              else if(!isIconName(getStringMatrixFromStack((size_t)iconAdr)[0]))
                 {
                   buttonsTextAdr = (char **)iconAdr;
                   nbRowButtons = nbRow;
@@ -162,12 +162,12 @@ int sci_messagebox(char *fname,unsigned long fname_len)
   messageBoxID = createMessageBox();
 
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
 
   /* Title */
   if (titleAdr != 0)
     {
-      setMessageBoxTitle(messageBoxID, getStringMatrixFromStack((int)titleAdr)[0]);
+      setMessageBoxTitle(messageBoxID, getStringMatrixFromStack((size_t)titleAdr)[0]);
     }
   else
     {
@@ -177,19 +177,19 @@ int sci_messagebox(char *fname,unsigned long fname_len)
   /* Icon */
   if (iconAdr != 0)
     {
-      setMessageBoxIcon(messageBoxID, getStringMatrixFromStack((int)iconAdr)[0]);
+      setMessageBoxIcon(messageBoxID, getStringMatrixFromStack((size_t)iconAdr)[0]);
     }
     
   /* Buttons */
   if (buttonsTextAdr != 0)
     {
-      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((int)buttonsTextAdr), nbColButtons*nbRowButtons);
+      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((size_t)buttonsTextAdr), nbColButtons*nbRowButtons);
     }
 
   /* Modal ? */
   if (modalOptionAdr != 0)
     {
-      setMessageBoxModal(messageBoxID, !stricmp(getStringMatrixFromStack((int)modalOptionAdr)[0],"modal"));
+      setMessageBoxModal(messageBoxID, !stricmp(getStringMatrixFromStack((size_t)modalOptionAdr)[0],"modal"));
     }
   else
     {
