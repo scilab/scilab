@@ -7,8 +7,6 @@
 // <-- TEST WITH GRAPHIC -->
 // Create a surface
 surf();
-WARNING: Ambiguous surface property
-WARNING: Ambiguous surface property
 // get the handle on the surface
 srf = gce();
 // set hidden color to some value and check them
