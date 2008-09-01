@@ -68,9 +68,11 @@ BOOL existsGlobalInterp(void) {
 ** Check if slave interp exists.
 */
 BOOL existsSlaveInterp(char *name) {
-  if (Tcl_GetSlave(__globalTclInterp, name) != NULL) {
+  if (Tcl_GetSlave(getTclInterp(), name) != NULL) {
+	  releaseTclInterp();
     return TRUE;
   }
+  releaseTclInterp();
   return FALSE;
 }
 
