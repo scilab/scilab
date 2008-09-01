@@ -61,7 +61,7 @@ jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetArrowSizejdoubleID; // cache method id
-jmethodID voidsetArrowSizesjdoubleArrayID; // cache method id
+jmethodID voidsetIsSegsjbooleanID; // cache method id
 jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjintArrayID; // cache method id
 jmethodID voiddrawSegsID; // cache method id
@@ -120,7 +120,7 @@ void setFigureIndex(int figureIndex);
 
 void setArrowSize(double size);
 
-void setArrowSizes(double * sizes, int sizesSize);
+void setIsSegs(bool isSegs);
 
 void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
 

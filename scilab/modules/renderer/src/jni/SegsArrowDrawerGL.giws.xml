@@ -19,8 +19,8 @@
     <method name="setArrowSize" returnType="void">
       <param type="double" name="size" />
     </method>
-    <method name="setArrowSizes" returnType="void">
-      <param type="double[]" name="sizes" />
+    <method name="setIsSegs" returnType="void">
+      <param type="boolean" name="isSegs" />
     </method>
     <method name="setAxesBounds" returnType="void">
       <param type="double" name="xMin" />

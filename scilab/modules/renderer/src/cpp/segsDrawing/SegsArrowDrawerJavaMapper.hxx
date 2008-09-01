@@ -45,7 +45,7 @@ public:
   // specific for arrow segs drawer
   virtual void setArrowSize(double size);
 
-  virtual void setArrowSizes(const double sizes[], int nbSegments);
+  virtual void setIsSegs(bool isSegs);
 
   virtual void setAxesBounds(double xMin, double xMax,
                              double yMin, double yMax,

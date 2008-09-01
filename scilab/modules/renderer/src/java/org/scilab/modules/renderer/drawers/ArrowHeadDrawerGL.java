@@ -27,14 +27,18 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  */
 public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	
-	private static final double COS60 = 0.5;
-	private static final double SIN60 = Math.sqrt(2.0 + 1.0) / 2.0;
+	private static final double TRIANGLE_ANGLE = 70.0;
+	private static final double COS70 = Math.cos(Math.toRadians(TRIANGLE_ANGLE));
+	private static final double SIN70 = Math.sin(Math.toRadians(TRIANGLE_ANGLE));
 	
 	/** Size of a arrow head compared to the axis size if specified size is 1 */
 	private static final double REDUCTION_RATIO = 0.02;
 	
+	/** Size of a arrow head compared to the axis size if specified size is 1 for segs */
+	private static final double SEGS_REDUCTION_RATIO = 0.075;
+	
 	/** Size of arrow head compared to arrow length if specified size is - */
-	private static final double REDUCTION_RATIO_DEPENDING = 0.15;
+	private static final double REDUCTION_RATIO_DEPENDING = 0.1;
 	
 	private int defaultColorIndex;
 	
@@ -43,15 +47,17 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	private double axesPixelHeight;
 	private double arrowPixelSize;
 	
-	/** Variable used if several arrow size are defined */
-	private double[] defaultArrowSizes;
-	private double[] arrowPixelSizes;
-	
 	private Vector3D[] arrowStarts;
 	private Vector3D[] arrowEnds;
 	
+	private double xRange;
+	private double yRange;
+	
 	/** User might specify a diferent color for each arrow head */
 	private int[] colors;
+	
+	/** To know if were drawing a segs object */
+	private boolean isSegs;
 	
 	/**
 	 * Default constructor
@@ -65,8 +71,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		axesPixelHeight = 1.0;
 		arrowPixelSize = 1.0;
 		colors = null;
-		defaultArrowSizes = null;
-		arrowPixelSizes = null;
+		isSegs = false;
 	}
 	
 	/**
@@ -100,6 +105,13 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * @return default size of the arrows
+	 */
+	public double getDefaultArrowSize() {
+		return this.defaultArrowSize;
+	}
+	
+	/**
 	 * @return color index of the arrow head
 	 */
 	public int getArrowColorIndex() {
@@ -122,6 +134,14 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * @param isSegs if true the object is a segs one
+	 * TODO : create a specific class for segs drawing instead of this boolean
+	 */
+	public void setIsSegs(boolean isSegs) {
+		this.isSegs = isSegs;
+	}
+	
+	/**
 	 * Set all the properties of the arrow head
 	 * @param colorIndex index in the colormap
 	 * @param size size of the arrow for default resolution.
@@ -129,16 +149,6 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	public void setArrowParameters(int colorIndex, double size) {
 		setArrowColor(colorIndex);
 		setArrowSize(size);
-	}
-	
-	/**
-	 * Set a different arrow size for each arrow
-	 * @param sizes sizes to use
-	 */
-	public void setArrowSizes(double[] sizes) {
-		defaultArrowSizes = sizes;
-		// allocate arrow pixel size here
-		arrowPixelSizes = new double[defaultArrowSizes.length];
 	}
 	
 	/**
@@ -192,6 +202,26 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		
 		axesPixelWidth  = maxX - minX;
 		axesPixelHeight = maxY - minY;
+		
+		xRange = xMax - xMin;
+		yRange = yMax - yMin;
+	}
+	
+	
+	/**
+	 * Set a new size for the arrow head size.
+	 * @param arrowSize new size of the arrow in pixel
+	 */
+	protected void setArrowPixelSize(double arrowSize) {
+		this.arrowPixelSize = arrowSize;
+	}
+	
+	/**
+	 * Get the size of the arrow in pixel
+	 * @return size of the arrow head in pixels
+	 */
+	protected double getArrowPixelSize() {
+		return this.arrowPixelSize;
 	}
 	
 	/**
@@ -201,16 +231,15 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	 */
 	public void updateArrowPixelSize(Vector3D[] startPixCoords, Vector3D[] endPixCoords) {
 		// we use the min between width and height to avoid to large arrows when one of the dimension is very small.
+		
 		if (defaultArrowSize < 0) {
 			arrowPixelSize = computeLengthDependingArrowSize(startPixCoords, endPixCoords);
+		} else if (isSegs) {
+			// special case for segs, arrow head depends on axes size
+			arrowPixelSize =  defaultArrowSize * Math.min(axesPixelWidth, axesPixelHeight)
+			                / Math.max(xRange, yRange) * SEGS_REDUCTION_RATIO;
 		} else {
 			arrowPixelSize = defaultArrowSize * Math.min(axesPixelWidth, axesPixelHeight) * REDUCTION_RATIO;
-		}
-		
-		if (defaultArrowSizes != null) {
-			for (int i = 0; i < defaultArrowSizes.length; i++) {
-				arrowPixelSizes[i] = defaultArrowSizes[i] * Math.min(axesPixelWidth, axesPixelHeight) * REDUCTION_RATIO;
-			}
 		}
 	}
 	
@@ -281,22 +310,20 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 				gl.glColor3d(curColor[0], curColor[1], curColor[2]);
 			}
 			
-			double curArrowPixelSize;
-			if (arrowPixelSizes != null) {
-				curArrowPixelSize = arrowPixelSizes[i];
-			} else {
-				curArrowPixelSize = arrowPixelSize;
-			}
+			double curArrowPixelSize = arrowPixelSize;
 			
 			// compute the position of the three vertices of the triangle
 			Vector3D segmentDir = endPixCoords[i].substract(startPixCoords[i]).getNormalized();
+			segmentDir.scalarMultSelf(curArrowPixelSize);
+			System.err.println("segmentDir = " + segmentDir);
+			
 			Vector3D orthoDir = new Vector3D(-segmentDir.getY(), segmentDir.getX(), 0.0);
 			
-			// secondPoint = end - SIN60.dir + COS60.ortho
-			// thirdPoint = end - SIN60.dir - cos60.ortho
-			orthoDir.scalarMultSelf(COS60 * curArrowPixelSize);
+			// secondPoint = end - SIN70.dir + COS70.ortho
+			// thirdPoint = end - SIN70.dir - COS70.ortho
+			orthoDir.scalarMultSelf(COS70);
 			
-			Vector3D projOnDir = endPixCoords[i].substract(segmentDir.scalarMult(SIN60 * curArrowPixelSize));
+			Vector3D projOnDir = endPixCoords[i].substract(segmentDir.scalarMult(SIN70));
 			Vector3D secondPoint = projOnDir.add(orthoDir);
 			Vector3D thirdPoint = projOnDir.substract(orthoDir);
 			

@@ -42,6 +42,7 @@ void SegsArrowDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
                                    const int colors[], int nbSegment)
 {
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
+  sciSegs * ppSegs = pSEGS_FEATURE(pSegs);
 
   initializeDrawing();
   double bounds[6];
@@ -49,6 +50,9 @@ void SegsArrowDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
   getArrowDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1],
                                             bounds[2], bounds[3],
                                             bounds[4], bounds[5]);
+
+  // 0 for segs, 1 for champ
+  getArrowDrawerJavaMapper()->setIsSegs(ppSegs->ptype == 0);
 
   getArrowDrawerJavaMapper()->setArrowSize(sciGetLineWidth(pSegs) * sciGetArrowSize(pSegs));
 

@@ -106,7 +106,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetArrowSizejdoubleID=NULL; 
-voidsetArrowSizesjdoubleArrayID=NULL; 
+voidsetIsSegsjbooleanID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjintArrayID=NULL; 
 voiddrawSegsID=NULL; 
@@ -139,7 +139,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetArrowSizejdoubleID=NULL; 
-voidsetArrowSizesjdoubleArrayID=NULL; 
+voidsetIsSegsjbooleanID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjintArrayID=NULL; 
 voiddrawSegsID=NULL; 
@@ -272,29 +272,19 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void SegsArrowDrawerGL::setArrowSizes (double * sizes, int sizesSize){
+void SegsArrowDrawerGL::setIsSegs (bool isSegs){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetArrowSizesjdoubleArrayID==NULL) { /* Use the cache Luke */ voidsetArrowSizesjdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "setArrowSizes", "([D)V" ) ;
-if (voidsetArrowSizesjdoubleArrayID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setArrowSizes");
+if (voidsetIsSegsjbooleanID==NULL) { /* Use the cache Luke */ voidsetIsSegsjbooleanID = curEnv->GetMethodID(this->instanceClass, "setIsSegs", "(Z)V" ) ;
+if (voidsetIsSegsjbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setIsSegs");
 }
 }
-jdoubleArray sizes_ = curEnv->NewDoubleArray( sizesSize ) ;
+jboolean isSegs_ = ((bool) isSegs ? JNI_TRUE : JNI_FALSE);
 
-if (sizes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetDoubleArrayRegion( sizes_, 0, sizesSize, (jdouble*) sizes ) ;
-
-
-                         curEnv->CallVoidMethod( this->instance, voidsetArrowSizesjdoubleArrayID ,sizes_);
-                        curEnv->DeleteLocalRef(sizes_);
-if (curEnv->ExceptionCheck()) {
+                         curEnv->CallVoidMethod( this->instance, voidsetIsSegsjbooleanID ,isSegs_);
+                        if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }

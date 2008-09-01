@@ -68,9 +68,9 @@ void SegsArrowDrawerJavaMapper::setArrowSize(double size)
   m_pJavaObject->setArrowSize(size);
 }
 /*---------------------------------------------------------------------------------*/
-void SegsArrowDrawerJavaMapper::setArrowSizes(const double sizes[], int nbSegments)
+void SegsArrowDrawerJavaMapper::setIsSegs(bool isSegs)
 {
-  m_pJavaObject->setArrowSizes((double *) sizes, nbSegments);
+  m_pJavaObject->setIsSegs(isSegs);
 }
 /*---------------------------------------------------------------------------------*/
 void SegsArrowDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
