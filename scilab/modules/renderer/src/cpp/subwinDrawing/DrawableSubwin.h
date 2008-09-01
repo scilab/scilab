@@ -181,6 +181,11 @@ protected:
   virtual void showTicks(void) = 0;
 
   /**
+   * Draw the labels after the ticks.
+   */
+  virtual void displayLabels(void) = 0;
+
+  /**
    * draw the subwin by just setting the camera
    * and its children pObj
    */

@@ -109,11 +109,13 @@ void DrawableObject::displayChildren( void )
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
+    sciEntityType curType = sciGetEntityType(curSon->pointobj);
     // uicontrol and menus are directly drawn by Java
-    // while text is drawn ath the end
-    if (   sciGetEntityType(curSon->pointobj) != SCI_UICONTROL
-        && sciGetEntityType(curSon->pointobj) != SCI_UIMENU
-        && sciGetEntityType(curSon->pointobj) != SCI_TEXT )
+    // while text and labels are drawn at the end
+    if (   curType != SCI_UICONTROL
+        && curType != SCI_UIMENU
+        && curType != SCI_TEXT
+        && curType != SCI_LABEL)
       {
         getHandleDrawer( curSon->pointobj )->display() ;
       }
