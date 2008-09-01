@@ -20,7 +20,7 @@ ft=ones(nt,ny); fy=feval(t,y,f);
 champ(t,y,ft,fy)		
 a = gca();
 // champ data_bounds must be outside [-3,5] x [-3,3]
-if (a.data_bounds(1,1) >= -2.99) then, pause;end
-if (a.data_bounds(2,1) <= 5) then, pause;end
-if (a.data_bounds(1,2) >= -2.99) then, pause;end
-if (a.data_bounds(2,2) <= 3) then, pause;end
+if (a.data_bounds(1,1) >= -2.99) then, bugmes();quit;end
+if (a.data_bounds(2,1) <= 5) then, bugmes();quit;end
+if (a.data_bounds(1,2) >= -2.99) then, bugmes();quit;end
+if (a.data_bounds(2,2) <= 3) then, bugmes();quit;end
