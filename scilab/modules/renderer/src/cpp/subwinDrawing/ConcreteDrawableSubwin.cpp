@@ -452,6 +452,18 @@ void ConcreteDrawableSubwin::showTicks(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::displayLabels(void)
+{
+  sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
+  
+  // there are 4 labels, stored at then end of the list
+  for (int i = 0; i < 4; i++)
+  {
+    getHandleDrawer(curSon->pointobj)->display();
+    curSon = curSon->pprev;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::displayTexts(void)
 {
  

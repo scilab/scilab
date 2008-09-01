@@ -115,6 +115,9 @@ DrawableObject::EDisplayStatus DrawableSubwin::draw( void )
   // draw ticks after otherwise there are some transparency issues
   drawTicks();
 
+  // labels need ticks display before
+  displayLabels();
+
   // needed
   m_pCamera->replaceCamera();
 
@@ -146,6 +149,9 @@ DrawableObject::EDisplayStatus DrawableSubwin::show( void )
   // draw ticks after otherwise there are some transparency issues
   showTicks();
 
+  // labels need ticks display before
+  displayLabels();
+
   // needed
   m_pCamera->replaceCamera();
 
@@ -175,6 +181,9 @@ DrawableObject::EDisplayStatus DrawableSubwin::redraw(void)
 
   // draw ticks after otherwise there are some transparency issues
   drawTicks();
+
+  // labels need ticks display before
+  displayLabels();
 
   // needed
   m_pCamera->replaceCamera();

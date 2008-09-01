@@ -196,6 +196,11 @@ protected:
   virtual void showTicks(void);
 
   /**
+   * Draw the labels after the ticks.
+   */
+  virtual void displayLabels(void);
+
+  /**
    * Display all the stored text objects
    */
   void displayTexts(void);
