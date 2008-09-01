@@ -38,7 +38,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	private static final double SEGS_REDUCTION_RATIO = 0.075;
 	
 	/** Size of arrow head compared to arrow length if specified size is - */
-	private static final double REDUCTION_RATIO_DEPENDING = 0.1;
+	private static final double REDUCTION_RATIO_DEPENDING = 0.15;
 	
 	private int defaultColorIndex;
 	
