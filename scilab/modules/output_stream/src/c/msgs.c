@@ -143,6 +143,7 @@ static int msg_111(integer *n, integer *ierr);
 static int msg_112(integer *n, integer *ierr);
 static int msg_113(integer *n, integer *ierr);
 static int msg_114(integer *n, integer *ierr);
+static int msg_115(integer *n, integer *ierr);
 
 static int msg_default(integer *n, integer *ierr);
 /*--------------------------------------------------------------------------*/
@@ -493,6 +494,9 @@ int C2F(msgs)(integer *n, integer *ierr)
 			break;
 		case 114:
 			msg_114(n,ierr);
+			break;
+		case 115:
+			msg_115(n,ierr);
 			break;
 		default:
 			msg_default(n,ierr);
@@ -1378,6 +1382,12 @@ static int msg_113(integer *n, integer *ierr)
 static int msg_114(integer *n, integer *ierr)
 {
   sciprint(_("%s: %s is too small. %s is orthogonal to the columns of the jacobian to machine precision.\n"),"lsqrsolve","gtol","fvec");
+  return 0;
+}
+
+static int msg_115(integer *n, integer *ierr)
+{
+	sciprint(_("poly: variable name must be lesser than 5 characters long.\n"));
   return 0;
 }
 /*--------------------------------------------------------------------------*/
