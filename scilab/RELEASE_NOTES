@@ -34,6 +34,12 @@ List of missing/buggy features:
     * Some old poscript tools are not used anymore in Scilab and have been removed.
       The list of file removed form the Scilab bin directory is:
       BEpsf, Blatdoc, Blatdocs, Blatexpr, Blatexpr2, Blatexpr2, Blatexprs, Blpr and lpr
+    * Pixel drawing mode property of figures is not compatible with Scilab 4.
+      The result in Scilab 5 is inverted compared to the one in Scilab 4.
+      For example the result of a white object drawn above a white background in "xor"
+      mode will appear black (it was still white in Scilab 4).
+      Moreover, the logical operators now works on the entire figure.
+      In practice, the "xor" mode can be generally replaced by the "equiv" one. 
       
 
 
