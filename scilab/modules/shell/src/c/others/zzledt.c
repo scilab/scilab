@@ -680,11 +680,13 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 {
 	char **completionResults = NULL;
 	const char *wordToFind = NULL;
+        int wordToFindLength = 0;
 	char msg[WK_BUF_SIZE]="";
 	int sizecompletionResults = 0;
 	#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
 
 	wordToFind = preparse_line_for_completion_nw((char*)wk_buf);
+        wordToFindLength = strlen(wordToFind); /* Save length of the word to restore line beginning after completion result display) */
 
 	if (wordToFind)
 	{
@@ -754,16 +756,20 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 					 }
 				}
 
+                                /* Have to write first part of the line (not used for completion) */
+                                char *wk_buf_beg = strdup(wk_buf);
+                                wk_buf_beg[strlen(wk_buf) - wordToFindLength] = '\0';
 				if (pieceOfWord)
 				{
-					CopyLineAtPrompt(wk_buf,pieceOfWord,cursor,cursor_max);
+                                        CopyLineAtPrompt(wk_buf,strcat(wk_buf_beg, pieceOfWord),cursor,cursor_max);
 					FREE(pieceOfWord); pieceOfWord = NULL;
 				}
 				else
 				{
-					CopyLineAtPrompt(wk_buf,(char*)wordToFind,cursor,cursor_max);
+					CopyLineAtPrompt(wk_buf,strcat(wk_buf_beg, (char*)wordToFind),cursor,cursor_max);
 				}
 				freeArrayOfString(completionResults,sizecompletionResults);
+                                FREE(wk_buf_beg);
 			}
 		}
 	}
