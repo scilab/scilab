@@ -121,6 +121,9 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	// ============================================
 	
 	my_title_axes = newaxes();
+
+	// make axes transparent
+	my_title_axes.filled = "off";
 	
 	my_title_axes.margins = [ 0 0 0 0 ]
 	
