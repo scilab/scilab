@@ -33,15 +33,12 @@ void banner(void)
 	}
 	
 	sciprint("%s\n\n",SCI_VERSION_STRING);
-	sciprint(_("                 Copyright (c) 1989-2008                   \n"));
-	sciprint(_("              Consortium Scilab (INRIA, ENPC)              \n"));
-	sciprint("%s\n",line);
 
-	sciprint("\n\n");
-	sciprint(_("!!! WARNING !!!\n"));
-	sciprint(_("This software is being provided \"as is\", without any express or\nimplied warranty.\n"));
-	sciprint(_("This is a development and not at all a final or stable version of Scilab 5.0\nthat will be released in the future. A lot of features are missing and buggy.\n"));
-	sciprint(_("In no event will the authors be held liable for any damages arising from,\nout of or in connection with the software or the use or other dealings\nin the software.\n"));
+	sciprint(_("                 Consortium Scilab (DIGITEO)\n"));
+
+	sciprint(_("               Copyright (c) 1989-2008 (INRIA)\n"));
+	sciprint(_("               Copyright (c) 1989-2007 (ENPC)\n"));
+	sciprint("%s\n",line);
 
 	#if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
 		sciprint("\n\n");
