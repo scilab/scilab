@@ -57,7 +57,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
     // Source tree version
 	if isdir(SCI+"/modules/core/includes/") then
 	  cflags="-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/ "
-	  cflags="-I"+SCI+"/modules/output_stream/includes/ -I+"SCI+"/libs/MALLOC/includes "+cflags
+	  cflags="-I"+SCI+"/modules/output_stream/includes/ -I"+SCI+"/libs/MALLOC/includes "+cflags
 	  fflags="-I"+SCI+"/modules/core/includes/"+fflags
 	end
 
