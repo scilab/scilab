@@ -570,12 +570,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xclea</term>
-        <listitem>
-          <para>effacement d'un rectangle</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xclip</term>
         <listitem>
           <para> définit une zone de clipping </para>
