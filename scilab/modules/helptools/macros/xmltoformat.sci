@@ -718,15 +718,19 @@ function create_MD(dirs,titles,output_filename)
 		"  <info>"; ..
 		"    <title>Scilab manual</title>"; ..
 		"  </info>"; ..
-		""; ..
-		"  <part xml:id=""UsersGuide"">"; ..
-		"    <title>User''s guide</title>"; ..
-		""; ..
-		"    <chapter xml:id=""GettingStarted"">"; ..
-		"      <title>Getting started</title>"; ..
-		"      <para>TODO</para>"; ..
-		"    </chapter>"; ..
-		"  </part>"; ..
+		""];
+		
+// 	master_document    = [ master_document; ..
+// 		"  <part xml:id=""UsersGuide"">"; ..
+// 		"    <title>User''s guide</title>"; ..
+// 		""; ..
+// 		"    <chapter xml:id=""GettingStarted"">"; ..
+// 		"      <title>Getting started</title>"; ..
+// 		"      <para>TODO</para>"; ..
+// 		"    </chapter>"; ..
+// 		"  </part>"];
+		
+	master_document    = [ master_document; ..
 		"<!--Begin Reference-->"];
 	
 	for k=1:size(dirs,"*");
