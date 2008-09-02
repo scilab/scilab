@@ -591,7 +591,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
-				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
+				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 		fi
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -602,6 +602,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	AC_SUBST(JAVA_JNI_INCLUDE)
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
+
+
 
 	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 		SWIG_PROG()
@@ -633,7 +635,7 @@ AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" !=
 AC_CHECK_FUNCS([sleep] [usleep] [dup2] [getcwd] [getpagesize] [getpass])
 AC_CHECK_FUNCS([rmdir])
 
-AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function. ]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
+AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function.]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
 
 # Provided by <regex.h>
 AC_CHECK_FUNCS([regcomp])
