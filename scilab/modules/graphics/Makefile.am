@@ -691,11 +691,11 @@ demos/contourf.dem \
 demos/fec/fec.dem.gateway.sce \
 demos/fec/fec.ex1 \
 demos/fec/fec.ex2 \
-demos/fec/fec.ex2.dem.gateway.sce \
+demos/fec/fec.ex2.dem.sce \
 demos/fec/fec.ex3 \
-demos/fec/fec.ex3.dem.gateway.sce \
+demos/fec/fec.ex3.dem.sce \
 demos/fec/fec.ex4 \
-demos/fec/fec.ex4.dem.gateway.sce \
+demos/fec/fec.ex4.dem.sce \
 demos/fec/fec.info \
 demos/fec/fec_demo.sci \
 demos/fec/MESH \
