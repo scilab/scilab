@@ -62,7 +62,7 @@ public class FastArcFillTools extends ArcFillTools {
 			drawAngle = TWO_PI;		
 		}
 		
-		/* In gluPartialDisk, X axis as a start angle of 90° and the sweepangle is clockwise */
+		/* In gluPartialDisk, X axis as a start angle of 90 degrees and the sweepangle is clockwise */
 		glu.gluPartialDisk(glu.gluNewQuadric(),  0.0, 1.0, NB_SLICES, 1, X_AXIS_ANGLE, -Math.toDegrees(drawAngle));
 		
 	}

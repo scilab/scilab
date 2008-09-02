@@ -23,7 +23,7 @@ namespace sciGraphics
 {
  /*------------------------------------------------------------------------------------------*/
 GridDrawerJoGL::GridDrawerJoGL(DrawableSubwin * subwin)
-: GridDrawer(subwin), DrawableObjectJoGL(subwin)
+: GridDrawer(), DrawableObjectJoGL(subwin)
 {
   setJavaMapper(new GridDrawerJavaMapper());
 }

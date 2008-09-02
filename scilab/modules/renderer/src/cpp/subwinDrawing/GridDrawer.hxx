@@ -25,7 +25,7 @@ class GridDrawer : public virtual DrawableObjectBridge
 {
 public:
 
-  GridDrawer(DrawableSubwin * subwin);
+  GridDrawer(void);
 
   virtual ~GridDrawer(void);
 

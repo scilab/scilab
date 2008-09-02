@@ -59,7 +59,7 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   BOOL axesVisible[3];
   sciGetAxesVisible(pSubwin, axesVisible);
 
-  TicksDrawer * newTicksDrawer = new TicksDrawer(m_pDrawer);
+  TicksDrawer * newTicksDrawer = new TicksDrawer();
 
   if (axesVisible[0])
   {
@@ -168,7 +168,7 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
   sciGetAxesVisible(pSubwin, axesVisible);
   
 
-  TicksDrawer * newTicksDrawer = new TicksDrawer(m_pDrawer);
+  TicksDrawer * newTicksDrawer = new TicksDrawer();
 
   if (axesVisible[1])
   {
@@ -279,7 +279,7 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
     return NULL;
   }
 
-  TicksDrawer * newTicksDrawer = new TicksDrawer(m_pDrawer);
+  TicksDrawer * newTicksDrawer = new TicksDrawer();
 
   if (axesVisible[2])
   {
