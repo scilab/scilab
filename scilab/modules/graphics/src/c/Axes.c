@@ -41,6 +41,9 @@
 #include "GetProperty.h"
 
 /*--------------------------------------------------------------------------------*/
+static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
+static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
+/*--------------------------------------------------------------------------------*/
 /* clear a subwindow from all of its children */
 void clearSubWin( sciPointObj * pSubWin )
 {
@@ -145,7 +148,7 @@ BOOL checkRedrawing( void )
 /**
  * Return the square distance between the center of axes box anf point (xCoord, yCoord);
  */
-int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
+static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
 {
   int xPos;
   int yPos;
@@ -165,7 +168,7 @@ int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
 /**
  * @return TRUE if the point in pixel (xCoord, yCoord) is above the subwin
  */
-BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
+static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
 {
   int xPos;
   int yPos;

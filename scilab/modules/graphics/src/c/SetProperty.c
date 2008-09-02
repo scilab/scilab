@@ -1499,8 +1499,7 @@ sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place)
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
   double position[2]={0.0,0.0};
-  int y = 0;
-
+  
   if (sciGetEntityType (pobj) == SCI_LEGEND)
   {
     pLEGEND_FEATURE (pobj)->place = place;
@@ -3584,7 +3583,6 @@ int sciSetIs3d( sciPointObj * pObj, BOOL is3d )
 /*-----------------------------------------------------------------------------------*/
 int sciInitHiddenColor( sciPointObj * pObj, int newColor )
 {
-  int m = sciGetNumColors(pObj);
   if(!sciCheckColorIndex(pObj, newColor)) { return -1;}
 
   switch( sciGetEntityType( pObj ) )

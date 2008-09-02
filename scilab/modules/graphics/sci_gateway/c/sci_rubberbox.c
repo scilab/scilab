@@ -24,7 +24,11 @@
 #include "CurrentObjectsManagement.h"
 
 /*--------------------------------------------------------------------------*/
-int getInitialRectangle(double initRect[4])
+static int getInitialRectangle(double initRect[4]);
+static BOOL getEditionMode(void);
+static int returnRectAndButton(const double selectedRect[4], int button);
+/*--------------------------------------------------------------------------*/
+static int getInitialRectangle(double initRect[4])
 {
   int rectNbRow = 0;
   int rectNbCol = 0;
@@ -73,7 +77,7 @@ int getInitialRectangle(double initRect[4])
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-BOOL getEditionMode(void)
+static BOOL getEditionMode(void)
 {
   if (Rhs == 1 && GetType(1) == sci_boolean)
   {
@@ -82,7 +86,7 @@ BOOL getEditionMode(void)
   return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-int returnRectAndButton(const double selectedRect[4], int button)
+static int returnRectAndButton(const double selectedRect[4], int button)
 {
   int selectedRectSize = 4;
   int one = 1;

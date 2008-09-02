@@ -59,7 +59,6 @@
 
 extern int LinearScaling2Colormap(sciPointObj* pobj);
 extern double * AllocUserGrads(double * u_xgrads, int nb);
-extern char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 extern int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
 
 extern unsigned short defcolors[];

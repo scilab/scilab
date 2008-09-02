@@ -32,7 +32,6 @@
 #include "MALLOC.h" /* MALLOC */
 
 
-extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
 /** PGEOX and PGEOY are like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/

@@ -955,11 +955,11 @@ BOOL isHandleValid(long handle)
  * Get a son of an object knowing its position within the children.
  * @return a pointer on the object or NULL if the index is out of bounds
  */
-sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int index)
+sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int position)
 {
   sciSons * curSon = sciGetSons( pobj ) ;
   int curIndex = 0;
-  while (curSon != NULL && curIndex < index)
+  while (curSon != NULL && curIndex < position)
   {
     curSon = curSon->pnext ;
     curIndex++;

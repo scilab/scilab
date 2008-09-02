@@ -49,12 +49,14 @@ extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
 double * FreeUserGrads(double * u_xgrads);
 
-extern char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 extern int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, double * grads);
 int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads);
 
 int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint,BOOL flagNax, integer lstr1,integer lstr2);
+
+static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag);
+
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  
@@ -492,7 +494,7 @@ BOOL update_specification_bounds(sciPointObj  *psubwin,double rect[6],int flag)
 
 
 
-char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag)
+static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag)
 {
   int i;
   char c_format[5]; 

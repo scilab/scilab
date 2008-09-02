@@ -36,7 +36,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
-extern void initsubwin();
 /* extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect); */
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
@@ -87,7 +86,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   /* get the bounding rect of the displayed champ */
   /*getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;*/
   
-  /* First create champ object *
+  /* First create champ object */
   /* F.Leray Allocation de style[dim = Nbr1] */
   if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
   {
@@ -340,21 +339,6 @@ double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
   min = ( min < SMDOUBLE) ? SMDOUBLE : sqrt(min) ;
 
   return min ;
-}
-/*----------------------------------------------------------------------------------*/
-int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int ind )
-{
-  integer whiteid = sciGetWhiteColorIndex(sciGetCurrentFigure());
-  int color = 0 ;
-  double scx = Cscale.Wscx1 ;
-  double scy = Cscale.Wscy1 ;
-
-  double nor = sqrt( scx*scx*gridX[ind]*gridX[ind] + scy*scy*gridY[ind]*gridY[ind] ) ;
-  double max = getLongestVector( gridX, gridY, nbRow, nbCol, scx, scy ) ;
-  
-  color = inint( (whiteid-1) * (1.0-nor/max) ) + 1 ;
-
-  return color ;
 }
 /*----------------------------------------------------------------------------------*/
 double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy )

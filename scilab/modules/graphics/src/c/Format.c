@@ -65,7 +65,11 @@ static void newbnds  (double *xminv,double *xmaxv,double *xmin, double *xmax, do
 static int  gradu    (double *xmin, double *xmax, double *grads, int *nticks, double *thewidth, int *tst0, double *scal);
 static int  gradu2   (double *xmax, double *thewidth, double *scal);
 static void grds     (double *xminv, double *xmaxv, double *gr, int *nticks, double *thewidth, int *tst0, double *scal);
+
+static void removeIndex( double * changedArray, int size, int ind );
+static void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks );
 static int  agrandir (double *xmin, double *xmax, double *xlow, double *xup);
+static void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads );
 
 int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads) ;
 
@@ -874,7 +878,7 @@ int GradEqual(const double grads[],const int *ngrads)
 /*--------------------------------------------------------------------------*/
 /* remove an element in the array from translating the next
 elements on step backward */
-void removeIndex( double * changedArray, int size, int ind )
+static void removeIndex( double * changedArray, int size, int ind )
 {
   int i ;
   for ( i = ind + 1 ; i < size ; i++ )
@@ -885,21 +889,21 @@ void removeIndex( double * changedArray, int size, int ind )
 /*--------------------------------------------------------------------------*/
 /* remove in the ticks array the indices i such as removedTicks[i] */
 /* is true. The value nbtics is an in-out variable */
-void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks )
+static void removeBadTicks( double * curTicks, BOOL * removedTicks, int * nbTicks )
 {
   int i ;
   for ( i = *nbTicks - 1 ; i >= 0 ; i-- )
   {
     if ( removedTicks[i] )
     {
-      removeIndex( ticks, *nbTicks, i ) ;
+      removeIndex( curTicks, *nbTicks, i ) ;
       *nbTicks = *nbTicks - 1 ;
     }
   }
 }
 /*--------------------------------------------------------------------------*/
 /* compute the graduation of the segment [minVal,maxVal] knowing the number of ticks */
-void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
+static void GradFixedlog( double minVal, double maxVal, double * outTicks, int nbGrads )
 {
   int initSize ;
   int i ;
@@ -937,7 +941,7 @@ void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
     FREE( removedTicks ) ;
 
   }
-  doubleArrayCopy(ticks, tempTicks, nbGrads);
+  doubleArrayCopy(outTicks, tempTicks, nbGrads);
 
 }
 

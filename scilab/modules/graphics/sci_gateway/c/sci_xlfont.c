@@ -173,9 +173,9 @@ static int xlfont_n_rhs(char * fname)
 		GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
 		if ( (m2 == 1) && (n2 == 1) )
 		{
-			int index = (int)(*stk(l2));
+			int fontIndex = (int)(*stk(l2));
 			char *fontname = cstk(l1);
-			if (index < 0)
+			if (fontIndex < 0)
 			{
 				Scierror(999,_("%s: Wrong value for input argument #%d: Non-negative integer expected.\n"),fname,2);
 				return 0;
@@ -183,7 +183,7 @@ static int xlfont_n_rhs(char * fname)
 
 			if ( (Rhs == 2) && FileExist(fontname) )
 			{
-				int Id = changeFontFromFilename(index,fontname);
+				int Id = changeFontFromFilename(fontIndex,fontname);
 				m1 = 1; n1 = 1; l1 = 0;
 				CreateVar( Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1 );
 				*istk(l1) = Id ;
@@ -192,7 +192,7 @@ static int xlfont_n_rhs(char * fname)
 			}
 			else if ( isAvailableFontsName(fontname) )
 			{
-				int Id = changeFontWithProperty(index,fontname,isBold,isItalic);
+				int Id = changeFontWithProperty(fontIndex,fontname,isBold,isItalic);
 				m1 = 1; n1 = 1; l1 = 0;
 				CreateVar( Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1 );
 				*istk(l1) = Id ;
