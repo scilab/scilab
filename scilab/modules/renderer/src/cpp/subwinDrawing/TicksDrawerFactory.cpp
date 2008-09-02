@@ -232,29 +232,13 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
   switch(pSUBWIN_FEATURE(pSubwin)->axes.ydir)
   {
   case 'l':
-    // special case for 2D, y labels is drawn on the opposite side
-    /*if(sciGetIs3d(pSubwin))
-    {*/
-      ticksPositioner = new LeftYAxisPositioner(m_pDrawer);
-    /*}
-    else
-    {
-      ticksPositioner = new RightYAxisPositioner(m_pDrawer);
-    }*/
+    ticksPositioner = new LeftYAxisPositioner(m_pDrawer);
     break;
   case 'c':
     ticksPositioner = new MiddleYAxisPositioner(m_pDrawer);
     break;
   case 'r':
-    // special case for 2D, y labels is drawn on the opposite side
-    /*if(sciGetIs3d(pSubwin))
-    {*/
-      ticksPositioner = new RightYAxisPositioner(m_pDrawer);
-   /* }
-    else
-    {
-      ticksPositioner = new LeftYAxisPositioner(m_pDrawer);
-    }*/
+    ticksPositioner = new RightYAxisPositioner(m_pDrawer);
     break;
   default:
     ticksPositioner = new LeftYAxisPositioner(m_pDrawer);
@@ -354,7 +338,6 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
                                                                   pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[2]));
 
   // set ticks positioner
-  AxisPositioner * ticksPositioner = NULL;
 
   newTicksDrawer->setAxisPositioner(new ZAxisPositioner(m_pDrawer));
 
