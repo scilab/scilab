@@ -9,6 +9,18 @@
 // Demonstrate animation based on the dynamic of a chain
 // =============================================================================
 
+// compute color of a set of facets, relative to the distance to the origin
+function [colors] = computeFacetsColor(xx, yy, zz, colormapSize)
+  nbFacets = size(xx);
+  colors = zeros(nbFacets(1), nbFacets(2));
+  for i=1:nbFacets(1)
+    for j=1:nbFacets(2)
+      colors(i,j) = norm([xx(i,j), yy(i,j), zz(i,j)]) * colormapSize / 15;
+    end
+  end
+
+endfunction
+
 curFig             = scf(100001);
 clf(curFig,"reset");
 demo_viewCode("anim7.sce");
@@ -20,7 +32,7 @@ drawlater();
 
 //Create the data
 //---------------
-
+colormapSize = 128;
 n=60;
 U = linspace(0,3*%pi,n);
 v = linspace(0,2*%pi,20);
@@ -30,15 +42,14 @@ X = (cos(u).*u)'*(1+cos(v)/2);
 Y = (u/2)'*sin(v);
 Z = (sin(u).*u)'*(1+cos(v)/2);
 
-curFig.color_map = jetcolormap(128);
+curFig.color_map = coppercolormap(colormapSize);
 
 [xx,yy,zz]=nf3d(X,Y,Z);//build facets
 
 
 // generate colors
 // colors depending on z, between 1 and colormap size
-colormapSize = 128;
-facetsColors = (zz + 1) * (colormapSize - 1) / 2 + 1;
+facetsColors = computeFacetsColor(xx, yy, zz, colormapSize);
 
 
 //Creates and set graphical entities which represent the surface
@@ -54,6 +65,7 @@ curAxe=gca();
 curAxe.data_bounds=[-15 -5 -10; 10  5  12];
 //set view angles
 curAxe.rotation_angles=[103 138];
+curAxe.isoView = "on";
 
 drawnow();
 
@@ -80,18 +92,9 @@ for k=2:size(K,'*')
 	data.x=[data.x xx];
 	data.y=[data.y yy];
 	data.z=[data.z zz];
-	
+	data.color = [data.color, computeFacetsColor(xx, yy, zz, colormapSize)];
+
 	e.data=data;// update the Fac3d entity
-	
-	// == TEMPORARLILY !!! =============================================
-	facetsColors = ([data.z zz] + 1) * (colormapSize - 1) / 9 + 1;
-	plot3d([data.x xx],[data.y yy],list( [data.z zz],facetsColors) ) //creates a Fac3d entity
-	// set 3D boundaries
-	curAxe.data_bounds=[-15 -5 -10; 10  5  12];
-	//set view angles
-	curAxe.rotation_angles=[103 138];
-	// == END OF TEMPORARLILY !!! ======================================
-	
 	
 	drawnow();
 	
