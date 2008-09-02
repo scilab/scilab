@@ -4,21 +4,19 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
-
-// <-- Non-regression test for bug 3448 -->
+// <-- Non-regression test for bug 3225 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3448
+// http://bugzilla.scilab.org/show_bug.cgi?id=3225
 //
 // <-- Short Description -->
-// getting data property of polylines fails if the polyline is empty.
+// The "symbol" font (number 1) is broken
+// 
 
-xpoly([],[]);
+xstring(0.2,0.2,['abcdefghijklmnopqrstuvwxyz';'ABCDEFGHIJKLMNOPQRSTUVWXYZ']);
+e=gce();
+e.font_style=1;
 
-// should not fail
-e = gce();
-if (e.data <> []) then pause; end
-
+// check that greek letters are displayed
 
