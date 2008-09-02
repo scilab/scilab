@@ -140,6 +140,15 @@ if sciargs()<>'-nouserstartup' then
 end
 clear startup ierr
 
+// Detects if the bug 3443 ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
+// is present or not
+foo=8.8353017163510351e-10
+if ( ( sqrt(foo) == foo^(0.5) ) == %f & ~MSDOS ) then
+	disp(gettext("This case should NOT occur. You are faced to the bug #3443. Please report to Scilab''s bugtracker ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 ) with your CPU (cat /proc/cpuinfo), your operating system, your kernel (uname -a) and the result of the Scilab command ''ver''."))
+end
+clear foo
+
+
 // Menus/toolbar can now be enabled ====================================
 if ( getscilabmode() == 'STD') then
         setmenu(gettext("&File"));
