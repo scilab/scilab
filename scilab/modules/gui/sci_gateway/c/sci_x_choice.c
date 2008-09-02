@@ -29,8 +29,8 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
 
   int messageBoxID = 0;
 
-  int labelsAdr = 0;
-  int lineLabelsAdr = 0;
+  char **labelsAdr = NULL;
+  char **lineLabelsAdr = NULL;
   int defaultValuesAdr = 0;
   double *defaultValues = NULL;
   int *defaultValuesInt = NULL;
@@ -82,7 +82,7 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
   setMessageBoxTitle(messageBoxID, _("Scilab Choices Request"));
 
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(labelsAdr), nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)labelsAdr), nbCol*nbRow);
     
   /* READ THE LABELS */
   if (VarType(3) ==  sci_strings)
@@ -93,7 +93,7 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
         Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
         return FALSE;
       }
-      setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack(lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
+      setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack((size_t)lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
     }
   else 
     {

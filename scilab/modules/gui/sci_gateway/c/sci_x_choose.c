@@ -26,10 +26,10 @@ int C2F(sci_x_choose)(char *fname,unsigned long fname_len)
 
   int messageBoxID = 0;
 
-  int itemsAdr = 0;
-  int buttonLabelAdr = 0;
+  char **itemsAdr = NULL;
+  char **buttonLabelAdr = NULL;
 
-  int messageAdr = 0;
+  char **messageAdr = NULL;
 
   int userValueAdr = 0;
   int userValue = 0;
@@ -63,9 +63,9 @@ int C2F(sci_x_choose)(char *fname,unsigned long fname_len)
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, _("Scilab Choose Message"));
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(messageAdr), nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)messageAdr), nbCol*nbRow);
   /* ListBox Items */
-  setMessageBoxListBoxItems(messageBoxID, getStringMatrixFromStack(itemsAdr), nbColItems*nbRowItems);
+  setMessageBoxListBoxItems(messageBoxID, getStringMatrixFromStack((size_t)itemsAdr), nbColItems*nbRowItems);
   /* Modality */
   setMessageBoxModal(messageBoxID, TRUE);
     
@@ -86,7 +86,7 @@ int C2F(sci_x_choose)(char *fname,unsigned long fname_len)
           return FALSE;
         }
 
-      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack(buttonLabelAdr), nbCol*nbRow);
+      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((size_t)buttonLabelAdr), nbCol*nbRow);
     }
 
   /* Display it and wait for a user input */

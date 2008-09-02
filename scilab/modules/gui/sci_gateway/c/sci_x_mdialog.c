@@ -28,10 +28,10 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
 
   int messageBoxID = 0;
 
-  int labelsAdr = 0;
-  int lineLabelsAdr = 0;
-  int columnLabelsAdr = 0;
-  int defaultValuesAdr = 0;
+  char **labelsAdr = NULL;
+  char **lineLabelsAdr = NULL;
+  char **columnLabelsAdr = NULL;
+  char **defaultValuesAdr = NULL;
 
   int userValueSize = 0;
   char **userValue = NULL;
@@ -58,7 +58,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, _("Scilab Multiple Values Request"));
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(labelsAdr), nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)labelsAdr), nbCol*nbRow);
     
   /* READ THE LINE LABELS */
   if (VarType(2) ==  sci_strings)
@@ -69,7 +69,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
         Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 2);
         return FALSE;
       }
-      setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack(lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
+      setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack((size_t)lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
     }
   else 
     {
@@ -88,7 +88,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
               Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
               return FALSE;
             }
-          setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack(defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
+          setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack((size_t)defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
         }
       else
         {
@@ -98,7 +98,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
               Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
               return FALSE;
             }
-          setMessageBoxColumnLabels(messageBoxID, getStringMatrixFromStack(columnLabelsAdr), nbColColumnLabels*nbRowColumnLabels);
+          setMessageBoxColumnLabels(messageBoxID, getStringMatrixFromStack((size_t)columnLabelsAdr), nbColColumnLabels*nbRowColumnLabels);
        }
     }
   else 
@@ -118,7 +118,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
               Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"),fname, 4, nbRowLineLabels*nbColLineLabels, nbRowColumnLabels*nbColColumnLabels);
               return FALSE;
             }
-          setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack(defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
+          setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack((size_t)defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
         }
       else 
         {

@@ -53,7 +53,7 @@ int C2F(sci_x_dialog)(char *fname,unsigned long fname_len)
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, _("Scilab Input Value Request"));
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((int)labelsAdr), nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)labelsAdr), nbCol*nbRow);
     
   if (Rhs == 2)
     {
@@ -67,7 +67,7 @@ int C2F(sci_x_dialog)(char *fname,unsigned long fname_len)
           return FALSE;
         }
 
-      setMessageBoxInitialValue(messageBoxID, getStringMatrixFromStack((int)initialValueAdr), nbCol*nbRow);
+      setMessageBoxInitialValue(messageBoxID, getStringMatrixFromStack((size_t)initialValueAdr), nbCol*nbRow);
     }
 
   /* Display it and wait for a user input */

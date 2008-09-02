@@ -71,11 +71,11 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
       if (fractionAdr !=0)
         {
-          setWaitBarValue(waitbarID, (int)(getDoubleFromStack((int)messageAdr) * 100));
+          setWaitBarValue(waitbarID, (int)(getDoubleFromStack((size_t)messageAdr) * 100));
         }
       else if (messageAdr != 0)
         {
-          setWaitBarMessage(waitbarID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
+          setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
         }
     }
   else if (Rhs==2)
@@ -95,7 +95,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           setWaitBarIndeterminateMode(waitbarID, FALSE);
 
           setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
-          setWaitBarMessage(waitbarID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
+          setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
        }
       else if (VarType(1) == sci_matrix && VarType(2) == sci_handles) /* waitbar(x,winId) */
         {
@@ -134,7 +134,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           pObj = sciGetPointerFromHandle(GraphicHandle);
 
           waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
-          setWaitBarMessage(waitbarID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
+          setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
         }
       else
         {
@@ -189,7 +189,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
       waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
 
       setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
-      setWaitBarMessage(waitbarID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
+      setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
     }
 
   if (Lhs == 1)

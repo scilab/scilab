@@ -28,9 +28,10 @@
 /*--------------------------------------------------------------------------*/
 int sci_mpopup(char *fname,unsigned long fname_len)
 {
-  int nbRow = 0,  nbCol = 0, menuAdr = 0;
+  int nbRow = 0, nbCol = 0;
 
   char * res = NULL;
+  char **menuAdr = NULL;
   int resAdr = 0;
 
   CheckRhs(1,1);

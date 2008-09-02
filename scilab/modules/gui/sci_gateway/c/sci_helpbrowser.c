@@ -76,11 +76,11 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
 
       if (helpAdr == NULL) /* No toolboxes loaded */
         {
-          launchHelpBrowser(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((int)languageAdr)[0]);
+          launchHelpBrowser(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((size_t)languageAdr)[0]);
         }
       else
         {
-          launchHelpBrowser(getStringMatrixFromStack((int)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((int)languageAdr)[0]);
+          launchHelpBrowser(getStringMatrixFromStack((size_t)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((size_t)languageAdr)[0]);
         }
     }
   else if (Rhs == 4)
@@ -132,11 +132,11 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
       
       if (helpAdr == NULL) /* No toolboxes loaded */
         {
-          searchKeyword(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0], *istk(fullTextAdr)==1);
+          searchKeyword(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((size_t)keywordAdr)[0], getStringMatrixFromStack((size_t)languageAdr)[0], *istk(fullTextAdr)==1);
         }
       else
         {
-          searchKeyword(getStringMatrixFromStack((int)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0], *istk(fullTextAdr)==1);
+          searchKeyword(getStringMatrixFromStack((size_t)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((size_t)keywordAdr)[0], getStringMatrixFromStack((size_t)languageAdr)[0], *istk(fullTextAdr)==1);
         }
     }
   else
