@@ -90,11 +90,11 @@ int sci_get(char *fname,unsigned long fname_len)
                   return SET_PROPERTY_ERROR;
                 }
              
-             status = GetScreenProperty(getStringMatrixFromStack((int)stkAdr)[0]);
+             status = GetScreenProperty(getStringMatrixFromStack(stkAdr)[0]);
              
              if(status != SET_PROPERTY_SUCCEED) /* Return property */
                {
-                 Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack((int)stkAdr)[0]);
+                 Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack(stkAdr)[0]);
                  return FALSE;
                }
             }
