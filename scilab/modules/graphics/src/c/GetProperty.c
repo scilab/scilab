@@ -2347,7 +2347,9 @@ sciIsExistingSubWin (double WRect[4])
 
   /* Initialisation de WRectTmp a 0*/
   for(i=0;i<4;i++)
-    WRectTmp[i] = 0.;
+  {
+    WRectTmp[i] = 0.0;
+  }
 
   pparentfigure = (sciPointObj *)sciGetCurrentFigure();
   if (pparentfigure == NULL)
@@ -2357,48 +2359,41 @@ sciIsExistingSubWin (double WRect[4])
 
   /**  15/03/2002 **/
   if ((WRect[0] == 0.)&&(WRect[1] == 0.)&&(WRect[2] == 1.)&&(WRect[3] == 1.))
-    return (sciPointObj *) sciGetLastSons (pparentfigure)->pointobj;
+  {
+    /* return the last subwindow */
+    sciSons * curSon = sciGetLastSons(pparentfigure);
+    while (sciGetEntityType(curSon->pointobj) != SCI_SUBWIN)
+    {
+      curSon = curSon->pprev;
+    }
+    return curSon->pointobj;
+  }
 
   psonstmp = sciGetSons (pparentfigure);
-  /* init */
-  if (psonstmp != (sciSons *) NULL)
+  while (psonstmp != NULL)
+  {
+    sciPointObj * curObj = psonstmp->pointobj;
+    if (sciGetEntityType (curObj) == SCI_SUBWIN)
     {
-      /* on peut commencer sur le next */
-      /* tant que le fils  */
-      /* j'utilise l'ordre d'evaluation normalise C pour */
-      /* verifier d'abord qu'il s'agit d'une sous fenetre */
-      /* puis si les WRect et FRect sont bons */
-      stop = 0;
-      while ((psonstmp->pnext != (sciSons *) NULL) && (stop == 0))
-	{
-	  WRectTmp[0] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[0];
-	  WRectTmp[1] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[1];
-	  WRectTmp[2] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[2];
-	  WRectTmp[3] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[3];
+      WRectTmp[0] = pSUBWIN_FEATURE (curObj)->WRect[0];
+      WRectTmp[1] = pSUBWIN_FEATURE (curObj)->WRect[1];
+      WRectTmp[2] = pSUBWIN_FEATURE (curObj)->WRect[2];
+      WRectTmp[3] = pSUBWIN_FEATURE (curObj)->WRect[3];
 
-	  if ((sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	      && (Abs(WRectTmp[0] - WRect[0]) < 1e-8)
-	      && (Abs(WRectTmp[1] - WRect[1]) < 1e-8)
-	      && (Abs(WRectTmp[2] - WRect[2]) < 1e-8)
-	      && (Abs(WRectTmp[3] - WRect[3]) < 1e-8))
-	    {
-	      stop = 1;
-	    }
-	  else 
-	    psonstmp = psonstmp->pnext;
-	}
-		
-      if ((sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	  && (Abs(WRectTmp[0] - WRect[0]) < 1e-8)
-	  && (Abs(WRectTmp[1] - WRect[1]) < 1e-8)
-	  && (Abs(WRectTmp[2] - WRect[2]) < 1e-8)
-	  && (Abs(WRectTmp[3] - WRect[3]) < 1e-8))
-
-	return (sciPointObj *) psonstmp->pointobj;
-      else return (sciPointObj *) NULL;
+      if (   (Abs(WRectTmp[0] - WRect[0]) < 1e-8)
+          && (Abs(WRectTmp[1] - WRect[1]) < 1e-8)
+          && (Abs(WRectTmp[2] - WRect[2]) < 1e-8)
+          && (Abs(WRectTmp[3] - WRect[3]) < 1e-8))
+      {
+        /* subwin found */
+        return curObj;
+      }
     }
+    psonstmp = psonstmp->pnext;
+  }
 
-  return (sciPointObj *)NULL;
+
+  return NULL;
 }
 
 /**sciGetScrollPosV
