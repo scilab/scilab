@@ -32,9 +32,11 @@ static int no_startup_flag=0;
 #define BSIZE 128
 /*--------------------------------------------------------------------------*/
 /* See the function for the explanation */
-#ifndef _MSC_VER
+#ifdef linux
+#ifndef IS_64_BITS_CPU
 static void checkPresenceOfBug3443(void);
 static void set_fpu_64(void);
+#endif
 #endif
 /*--------------------------------------------------------------------------*/
 void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
@@ -172,7 +174,8 @@ int Get_no_startup_flag(void)
   return no_startup_flag;
 }
 /*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
+#ifdef linux
+#ifndef IS_64_BITS_CPU
 /* 
  * This function is an standalone function which aims to see 
  * if the bug 3443 ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
@@ -218,4 +221,5 @@ static void set_fpu_64(void)
    __asm__ __volatile__("popl -4(%esp)");
 }
 
+#endif
 #endif
