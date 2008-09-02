@@ -55,12 +55,15 @@ function [y]=toolboxes(path,flag,force)
 
   if contribs<>[] & grep(sciargs(),"-nw")==[] then 
   	if ( ~fromjava() & ~fromc() ) then
-    	delmenu(gettext("toolboxes"));
-    	addmenu(gettext("toolboxes"),contribs);
-    	// If you also want a build meny 
-    	//addmenu('build',contribs);
+    	delmenu(gettext("&Toolboxes"));
+    	h = uimenu("parent", 0, "label", gettext("&Toolboxes"));
+    	for k=1:size(contribs,'*')
+    	 m = uimenu(h,'label', string(contribs(k)), 'callback','execstr(toolboxes('+string(k)+'))');
+    	end
+    	unsetmenu(gettext("&Toolboxes"));
     end
   end
+  
   %toolboxes= contribs;
   %toolboxes_dir= pathconvert(path);
   chdir(cur_wd);

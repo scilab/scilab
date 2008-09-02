@@ -163,6 +163,7 @@ if ( getscilabmode() == 'STD') then
           unsetmenu(gettext("&Applications"),10);
         end
         setmenu(gettext("&?"));
+        setmenu(gettext("&Toolboxes"));
         toolbar(-1, "on");
 end
 // =====================================================================
