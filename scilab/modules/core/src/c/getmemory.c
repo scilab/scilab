@@ -39,8 +39,8 @@ int getfreememory()
 
  {
    struct pst_static pst;
-  /*	pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
-	memorysizeKO=(pst.psd_free)/kooctet;*/
+  /*        pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
+        memorysizeKO=(pst.psd_free)/kooctet;*/
   return 0;
  }
 
@@ -48,17 +48,17 @@ int getfreememory()
 #if defined(__APPLE__) 
 #define MEMOK 1
       {
-	vm_statistics_data_t page_info;
-	vm_size_t pagesize;
-	mach_msg_type_number_t count;
-	kern_return_t kret;
+        vm_statistics_data_t page_info;
+        vm_size_t pagesize;
+        mach_msg_type_number_t count;
+        kern_return_t kret;
     
-	pagesize = 0;
-	kret = host_page_size (mach_host_self(), &pagesize);
-	count = HOST_VM_INFO_COUNT;
+        pagesize = 0;
+        kret = host_page_size (mach_host_self(), &pagesize);
+        count = HOST_VM_INFO_COUNT;
     
-	kret = host_statistics (mach_host_self(), HOST_VM_INFO,(host_info_t)&page_info, &count);
-	return page_info.free_count*pagesize / 1024;
+        kret = host_statistics (mach_host_self(), HOST_VM_INFO,(host_info_t)&page_info, &count);
+        return page_info.free_count*pagesize / 1024;
       }
 #endif
 
@@ -74,8 +74,8 @@ int getfreememory()
 
          if (0 <= pages && 0 <= pagesize)
            return pages * pagesize;
-	 else
-	   return 0;
+         else
+           return 0;
        }
    }
 #endif
@@ -139,8 +139,8 @@ int getmemorysize()
 
         if (0 <= kbytes)
           return kbytes * 1024.0;
-	else
-	  return 0;
+        else
+          return 0;
        }
    }
 #endif
