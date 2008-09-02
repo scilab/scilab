@@ -40,6 +40,6 @@ if and(size(TCL_GetVar("tcl_a")) == [3 3]) == %F then pause,end
 // adding a new value change a into a 50x10 matrix
 TCL_SetVar("tcl_a(50,10)", "50");
 
-if and(size(TCL_GetVar("ta")) == [50 10]) == %F then pause,end
+if and(size(TCL_GetVar("tcl_a")) == [50 10]) == %F then pause,end
 
 
