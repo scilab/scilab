@@ -68,11 +68,11 @@
 
 // example_1/
 // `-- help
-//     |-- eng
+//     |-- en_US
 //     |   |-- example_1_function_1.xml
 //     |   |-- example_1_function_2.xml
 //     |   `-- example_1_function_3.xml
-//     `-- fr
+//     `-- fr_FR
 //         |-- example_1_function_1.xml
 //         `-- example_1_function_3.xml
 
@@ -80,18 +80,16 @@ my_module_path = pathconvert(SCI+'/modules/helptools/examples/example_1',%f,%f)
 
   // Build the french help
   // ===================================================================================
-my_french_help_dir    =  my_module_path+'/help/fr';
-my_french_xsl_file    =  pathconvert(SCI+'/modules/helptools/help_fr.xsl',%f,%f)
-my_french_help_title  =  'Example 1 [fr]';
-xmltohtml(my_french_help_dir,my_french_help_title,my_french_xsl_file,'all','fr','en');
+my_french_help_dir    =  my_module_path+'/help/fr_FR';
+my_french_help_title  =  'Example 1 [fr_FR]';
+xmltojar(my_french_help_dir,my_french_help_title,'fr_FR','en_US');
 
 
   // Build the english help
   // ===================================================================================
-my_english_help_dir   =  my_module_path+'/help/en';
-my_english_xsl_file   =  pathconvert(SCI+'/modules/helptools/help_eng.xsl',%f,%f)
-my_english_help_title =  'Example 1 [eng]';
-xmltohtml(my_english_help_dir,my_english_help_title,my_english_xsl_file,'all');
+my_english_help_dir   =  my_module_path+'/help/en_US';
+my_english_help_title =  'Example 1 [EN_US]';
+xmltojar(my_english_help_dir,my_english_help_title,'en_US');
 
 
   // Add french and english help chapters
