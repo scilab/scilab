@@ -83,9 +83,6 @@ List of missing/buggy features:
 
 - make install won't install the localization.
 
-- A bug altering the function pow on small numbers caused by the JVM still needs
-  some attention: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6727254
-
 - The build process of a toolbox crashes on the documentation generation.
 
 - It is not (yet, we hope) possible to build a file documentation file and add it into the documentation.
