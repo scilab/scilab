@@ -31,6 +31,10 @@ static int no_startup_flag=0;
 /*--------------------------------------------------------------------------*/
 #define BSIZE 128
 /*--------------------------------------------------------------------------*/
+/* See the function for the explanation */
+static void checkPresenceOfBug3443(void);
+static void set_fpu_64(void);
+/*--------------------------------------------------------------------------*/
 void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
 {
   static int initialization=-1;
@@ -119,6 +123,12 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
   if (ierr > 0) C2F(sciquit)() ;
   /* execute the initial script and enter scilab */
 
+  /* This bug only occurs under Linux 32 bits */
+#ifdef linux
+#ifndef IS_64_BITS_CPU
+  set_fpu_64();
+#endif
+#endif
 
 #if !defined(_DEBUG) && defined(_MSC_VER)
   _try
@@ -161,3 +171,47 @@ int Get_no_startup_flag(void)
 }
 /*--------------------------------------------------------------------------*/
 
+/* 
+ * This function is an standalone function which aims to see 
+ * if the bug 3443 ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
+ * is present.
+ * As far as we know, this bug is only present under Linux 32 bits
+ * Basically, the Java/JNI function JNI_CreateJavaVM which is changing the 
+ * Precision Control (PC) of the FPU.
+  * Then, the goal of this function is:
+ * - Check the bug exist
+ * - If it does exist, change the PC of the FPU (Assembler... Yep, I know)
+ * - Check if the bug is actually fixed. 
+ * - If not fixed, you are screwed and we would like to the know your 
+ *   configuration
+ *
+ * Note that this function is not used because the first case is always true
+ * (which is not the case in a stand alone code)
+ */
+static void checkPresenceOfBug3443(void)
+{
+	/* Our test case value */
+	double val1=8.8353017163510351e-10;
+	double sqrtWithPow=0.5;
+
+	if (sqrt(val1) != pow(val1,sqrtWithPow)) {
+		/* We are in the case of the bug */
+		set_fpu_64(); 
+		if (sqrt(val1) != pow(val1,sqrtWithPow)) {
+			fprintf(stderr,"\nThis case should NOT occur. You are faced to the bug #3443. Please report to Scilab's bugtracker ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 ) with your CPU (cat /proc/cpuinfo), your operating system, your kernel (uname -a) and the result of the Scilab command 'ver'.\n");
+		}
+	}
+
+}
+
+
+/* Set the FPU to 64 bits... It is the expected behaviour of the lib math
+ * and thefore Scilab behaviour */
+static void set_fpu_64(void)
+{
+   __asm__ __volatile__("pushl $0");
+   __asm__ __volatile__("fstcw 0(%esp)");
+   __asm__ __volatile__("orw   $0x0300, 0(%esp)"); /* Set PC=11 (64 bits) */
+   __asm__ __volatile__("fldcw 0(%esp)");
+   __asm__ __volatile__("popl -4(%esp)");
+}
