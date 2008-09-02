@@ -17,7 +17,7 @@
 //    spaces, apostrophes and doublequotes give strange (repeatable) results
 
 
-f = figure(1)
+f = figure(1);
 
 uicontrol(f,"style","pushbutton","position",[10 10 150 20],..
           "string","Close figure","callback","close(f)");

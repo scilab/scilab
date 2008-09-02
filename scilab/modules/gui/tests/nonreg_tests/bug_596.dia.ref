@@ -14,31 +14,7 @@
 // <-- Short Description -->
 //    uicontrol has problem in parsing string arguments: 'string' and 'callback' arguments containing
 //    spaces, apostrophes and doublequotes give strange (repeatable) results
-f = figure(1)
- f  =
- 
-Handle of type "Figure" with properties:
-========================================
-children: "Axes"
-figure_position = [200,200]
-figure_size = [628,592]
-axes_size = [610,460]
-auto_resize = "on"
-viewport = [0,0]
-figure_name = "Graphic window number %d"
-figure_id = 1
-info_message = ""
-color_map= matrix 33x3
-pixmap = "off"
-pixel_drawing_mode = "copy"
-immediate_drawing = "on"
-background =  33
-visible = "on"
-rotation_style = "unary"
-event_handler = ""
-event_handler_enable = "off"
-user_data = []
-tag = ""
+f = figure(1);
 uicontrol(f,"style","pushbutton","position",[10 10 150 20],..
           "string","Close figure","callback","close(f)");
 uicontrol(f,"style","pushbutton",..
