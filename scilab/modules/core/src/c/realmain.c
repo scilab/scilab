@@ -34,6 +34,8 @@ static int no_startup_flag=0;
 /* See the function for the explanation */
 #ifdef linux
 #ifndef IS_64_BITS_CPU
+#include <fpu_control.h>
+
 static void checkPresenceOfBug3443(void);
 static void set_fpu_64(void);
 #endif
@@ -214,11 +216,10 @@ static void checkPresenceOfBug3443(void)
  * and thefore Scilab behaviour */
 static void set_fpu_64(void)
 {
-   __asm__ __volatile__("pushl $0");
-   __asm__ __volatile__("fstcw 0(%esp)");
-   __asm__ __volatile__("orw   $0x0300, 0(%esp)"); /* Set PC=11 (64 bits) */
-   __asm__ __volatile__("fldcw 0(%esp)");
-   __asm__ __volatile__("popl -4(%esp)");
+	fpu_control_t _cw; 
+    _FPU_GETCW(_cw); 
+	_cw = (_cw & ~_FPU_DOUBLE) | _FPU_EXTENDED;
+    _FPU_SETCW(_cw); 
 }
 
 #endif
