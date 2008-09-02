@@ -87,7 +87,8 @@ Sparse LU factorization:
 	+ cond2sp       - Computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix
 	+ condestsp     - Estimate the condition number of a sparse matrix
 	+ PlotSparse    - Plot the pattern of non nul elements of a sparse matrix 
-	+ ReadHBSparse  - Read a Harwell-Boeing sparse format file
+	+ ReadHBSparse  - Read a Harwell-Boeing sparse format file (See http://math.nist.gov/MatrixMarket/ for examples)
+
 
 Optimization:
 =============
@@ -405,8 +406,10 @@ Scilab modes:
 
 GNU/Linux - Unix:
 =================
+ - Please note that most of these points are outputs of the SCOS project ( http://www.oscos.org/ )
  - New configure (based on autoconf)
  - New compilation process (based on automake and libtool)
+ - Parallel build (make -j)
  - LSB/FHS compliant
  - Switched to dynamic libraries
  - Advanced numerical libraries can be used (Atlas, MKL...)
@@ -446,7 +449,8 @@ Dynamic/incremental link:
 TCL/TK:
 =======
  - New event loop 
-	+ @TODO detail
+	+ Tcl/Tk thread separated from the Scilab one.
+
  - Provided with version 8.5 of TCL/TK
  - Removed Functions:
 	+ tcl_? @TODO 
@@ -504,10 +508,8 @@ Internal API:
 Scicos:
 =======
  - Test framework currently under development:
-  + Unitary tests (95% done)
-  + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2) (95% done)
-  + Benchmarks (0% done)
-
+  + Unitary tests
+  + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2)
 
 Known incompatibilty
 --------------------
@@ -516,7 +518,7 @@ Known incompatibilty
     see update_graph for translation, Graph saving is not more
     possible in a formatted way.
 
-  - due to a bug fix the xstringb x and y arguments meaning had
+  - Due to a bug fix the xstringb x and y arguments meaning had
     changed "lower" and "left" are now relative to user coordinates
     order.
 
