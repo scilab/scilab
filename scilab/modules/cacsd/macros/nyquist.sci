@@ -171,9 +171,16 @@ function nyquist(varargin)
       di=repi(k,ks(1:last)+1)-repi(k,ks(1:last));
       dd=150*sqrt((dr/dx).^2+(di/dy).^2);
       if dd>0 then
-	xarrows([repf(k,ks(1:last));repf(k,ks(1:last))+dr./dd],..
-		[repi(k,ks(1:last));repi(k,ks(1:last))+di./dd],1.5)
+        // we should use xarrows or xsegs here.
+        // However their displayed arrow size depends
+        // on the data bounds and we want to avoid this
+        xpolys([repf(k,ks(1:last));repf(k,ks(1:last))+dr./dd],..
+		[repi(k,ks(1:last));repi(k,ks(1:last))+di./dd])
+	//xarrows([repf(k,ks(1:last));repf(k,ks(1:last))+dr./dd],..
+	//	[repi(k,ks(1:last));repi(k,ks(1:last))+di./dd],1.5)
 	A=gce();
+        A.children.arrow_size_factor = 1.5;
+        A.children.polyline_style = 4;
       end
     end
     kf=kf+ilf
