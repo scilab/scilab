@@ -34,6 +34,7 @@ public class BuildDocObject extends StyleSheet {
 	private static final String SCI = System.getenv("SCI");
 	private static final String ERROR_WHILE_COPYING = "Error while copying ";
 	private static final String CANNOT_COPY_CONVERT = "Cannot copy/convert '";
+	private static final String COULD_NOT_FIND_STYLE_DOC = "Could not find the style document: ";
 	private static final String TO_WITH_QUOTES = "' to '";
 	private static final String TO = " to ";
 	private static final String COLON_WITH_QUOTES = "': ";
@@ -228,7 +229,7 @@ public class BuildDocObject extends StyleSheet {
 		}
 
 		if (!new File(this.styleDoc).isFile()) {
-			throw new FileNotFoundException("Could not find the style document: " + this.styleDoc);
+			throw new FileNotFoundException(COULD_NOT_FIND_STYLE_DOC + this.styleDoc);
 		}
 
 		if (!new File(this.outputDirectory).isDirectory()) {
@@ -245,9 +246,9 @@ public class BuildDocObject extends StyleSheet {
 		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);
-		args.add("html.stylesheet=" + styleSheet);
+		args.add("html.stylesheet=" + new File(styleSheet).getName());
 		args.addAll(specificArgs);
-
+		
 		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
 
 		if (new File(sourceDocProcessed).isDirectory()) {
