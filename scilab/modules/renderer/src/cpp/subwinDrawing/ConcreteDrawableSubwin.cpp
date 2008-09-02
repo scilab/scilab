@@ -484,7 +484,7 @@ void ConcreteDrawableSubwin::displayTexts(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::sortDisplayedTexts(void)
 {
-  int nbDisplayedTexts = m_oDisplayedTexts.size();
+  int nbDisplayedTexts = (int)m_oDisplayedTexts.size();
 
   double * textsDepth;
   try
