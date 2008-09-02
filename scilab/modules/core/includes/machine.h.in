@@ -399,7 +399,7 @@
 /* With the FFTW library */
 #undef WITH_FFTW
 
-/* With the JAVA stuff (GUI, Console, JOGL... */
+/* With the JAVA stuff (GUI, Console, JOGL...) */
 #undef WITH_GUI
 
 /* With the MATIO library */
