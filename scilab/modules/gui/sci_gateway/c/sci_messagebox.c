@@ -34,7 +34,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
   char **messageAdr = 0;
   char **titleAdr = 0;
   char **modalOptionAdr = 0;
-  int iconAdr = 0;
+  char **iconAdr = 0;
 
   /* Used to write output argument */
   int buttonNumberAdr = 0;
@@ -126,7 +126,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
           if (nbRow*nbCol == 1)
             {
               /* The buttons names argument can be used to give the modal option */
-              if (isModalOption(getStringMatrixFromStack((int)buttonsTextAdr)[0]))
+              if (isModalOption(getStringMatrixFromStack((size_t)buttonsTextAdr)[0]))
                 {
                   modalOptionAdr = buttonsTextAdr;
                   buttonsTextAdr = 0;

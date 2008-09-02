@@ -69,7 +69,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
           waitbarID = createWaitBar();
           pPROGRESSIONBAR_FEATURE(pObj)->hashMapIndex = waitbarID;
           setWaitBarIndeterminateMode(waitbarID, TRUE);
-          setWaitBarMessage(waitbarID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
+          setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
         }
       else
         {
@@ -97,7 +97,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
 
           waitbarID = pPROGRESSIONBAR_FEATURE(pObj)->hashMapIndex;
           setWaitBarValue(waitbarID, 0); /* Update */
-          setWaitBarMessage(waitbarID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
+          setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
        }
       else
         {
