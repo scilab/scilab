@@ -17,6 +17,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "cluni0.h"
 /*--------------------------------------------------------------------------*/
 int sci_uigetdir(char *fname,unsigned long l)
 {
@@ -101,7 +102,10 @@ int sci_uigetdir(char *fname,unsigned long l)
 
   if (initialDirectory != NULL)
     {
-      setFileChooserInitialDirectory(fileChooserID, initialDirectory);
+		char expandedpath[PATH_MAX+1];
+		int out_n = 0;
+		C2F(cluni0)(initialDirectory ,expandedpath, &out_n,(int)strlen(initialDirectory),PATH_MAX);
+		setFileChooserInitialDirectory(fileChooserID, expandedpath);
     }
 
   setFileChooserDirectorySelectionOnly(fileChooserID);
