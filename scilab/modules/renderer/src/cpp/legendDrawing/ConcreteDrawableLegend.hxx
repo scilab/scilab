@@ -15,6 +15,8 @@
 #ifndef _CONCRETE_DRAWABLE_LEGEND_HXX_
 #define _CONCRETE_DRAWABLE_LEGEND_HXX_
 
+#include <string>
+
 #include "DrawableLegend.h"
 
 namespace sciGraphics
@@ -97,7 +99,7 @@ protected:
   /**
    * Compute the rectangles in 3d in which the lines will be drawn and also the 3D bounding box rectangle
    */
-  void getBoxes(char * opt, double upperLeftCorner[3], double lowerLeftCorner[3],
+  void getBoxes(const std::string & opt, double upperLeftCorner[3], double lowerLeftCorner[3],
 		double lowerRightCorner[3], double upperRightCorner[3],
 		double upperBoxLeftCorner[3], double lowerBoxLeftCorner[3],
 		double lowerBoxRightCorner[3], double upperBoxRightCorner[3]);
