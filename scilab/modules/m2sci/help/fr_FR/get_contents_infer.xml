@@ -35,7 +35,7 @@
       <varlistentry>
         <term>index</term>
         <listitem>
-          <para>un index tel que ceux retournï¿½s par <literal>macr2tree</literal>.</para>
+          <para>un index tel que ceux retournés par <literal>macr2tree</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

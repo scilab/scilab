@@ -35,19 +35,19 @@
       <varlistentry>
         <term>result-path</term>
         <listitem>
-          <para>une chaîne de caractères qui donne le répertoire oï¿½ le résultat sera ï¿½crit. La valeur par dï¿½fault est le rï¿½petoire courant.</para>
+          <para>une chaîne de caractères qui donne le répertoire où le résultat sera écrit. La valeur par défault est le répertoire courant.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Recmode</term>
         <listitem>
-          <para>Flag booléen, utilisé par translatepaths pour une conversion rï¿½cursive. Doit être %F pour convertir un seul M-file. Valeur par dï¿½faut : %F</para>
+          <para>Flag booléen, utilisé par translatepaths pour une conversion récursive. Doit être %F pour convertir un seul M-file. Valeur par défaut : %F</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>only-double</term>
         <listitem>
-          <para>Flag booléen, si il vaut %T mfile2sci considère que les fonctions de calcul numériques ont été utilisées uniquement avec des données numériques (Aucune fonction de surcharge Scilab est requise). Valeur par dï¿½faut : %F</para>
+          <para>Flag booléen, si il vaut %T mfile2sci considère que les fonctions de calcul numériques ont été utilisées uniquement avec des données numériques (Aucune fonction de surcharge Scilab est requise). Valeur par défaut : %F</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -76,7 +76,7 @@
             <varlistentry>
               <term>3</term>
               <listitem>
-                <para>les ionformations sont écrites comme commentaires du fichier Scilab, dans le fichier log et affichï¿½es dans la fenêtre Scilab (Valeur par dï¿½faut).</para>
+                <para>les ionformations sont écrites comme commentaires du fichier Scilab, dans le fichier log et affichées dans la fenêtre Scilab (Valeur par défaut).</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -85,7 +85,7 @@
       <varlistentry>
         <term>prettyprint</term>
         <listitem>
-          <para>Flag booléen, si il vaut %T le code gï¿½nï¿½rï¿½ est rï¿½arrangï¿½. Valeur par dï¿½faut : %F</para>
+          <para>Flag booléen, si il vaut %T le code généré est réarrangé. Valeur par défaut : %F</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -102,8 +102,8 @@
     mfile2sci(fichier)
   </para>
     <para>
-    oï¿½ fichier est une chaîne de caractère qui donne le chemin du M-file.
-    mfile2sci va gï¿½nï¿½rer trois fichiers dans le même répertoire :
+    où fichier est une chaîne de caractère qui donne le chemin du M-file.
+    mfile2sci va générer trois fichiers dans le même répertoire :
   </para>
     <variablelist>
       <varlistentry>
@@ -115,43 +115,43 @@
       <varlistentry>
         <term>&lt;function-name&gt;.cat</term>
         <listitem>
-          <para>le fichier d'aide Scilab associï¿½ à la fonction</para>
+          <para>le fichier d'aide Scilab associé à la fonction</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sci_&lt;function-name&gt;.sci</term>
         <listitem>
-          <para>la fonction Scilab requise pour convertir les appels à ce M-file dans d'autres M-files. Cette fonction peut être amï¿½liorï¿½e "ï¿½ la main". Cette fonction est utile uniquement pour la conversion, pas pour utiliser la fonction convertie.</para>
+          <para>la fonction Scilab requise pour convertir les appels à ce M-file dans d'autres M-files. Cette fonction peut être améliorée "à la main". Cette fonction est utile uniquement pour la conversion, pas pour utiliser la fonction convertie.</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
     Des fonctions comme eye, ones, size, sum,... se comportent différemment
     selon la dimension de leurs arguments. Quand mfile2sci ne peut pas 
-    infï¿½rer les dimensions, il remplace ces fonctions par un appel à une
-    fonction d'émulation nommï¿½e mtlb_&lt;function_name&gt;. Pour une meilleure ï¿½fficacitï¿½,
+    inférer les dimensions, il remplace ces fonctions par un appel à une
+    fonction d'émulation nommée mtlb_&lt;function_name&gt;. Pour une meilleure éfficacité,
     ces fonctions peuvent être remplacées par les instructions Scilab équivalentes.
     Pour avoir des informations sur le remplacement, entrer :
     help mtlb_&lt;function_name&gt; dans la fenêtre de commande Scilab.
     </para>
     <para>
     D'autres fonctions comme plot, n'ont pas d'équivalent direct en
-    Scilab. Elles sont aussi remplacées par des fonctions d'émulation nommï¿½es :
+    Scilab. Elles sont aussi remplacées par des fonctions d'émulation nommées :
      mtlb_&lt;function_name&gt;.
     </para>
     <para>
-    Quand la conversion peut être incorrecte ou amï¿½liorï¿½e, mfile2sci ajoute
+    Quand la conversion peut être incorrecte ou améliorée, mfile2sci ajoute
     des commentaires qui commencent par "//!" (suivant verbose-mode).
   </para>
     <para>
-  Un appel à <literal>mfile2sci()</literal> sans rhs lance une interface graphique pour aider à la sï¿½lection d'un fichier/répertoire et des options.
+  Un appel à <literal>mfile2sci()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
   </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
 
-// Crï¿½ation d'une fichier .m simple
+// Création d'une fichier .m simple
 write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  '[m,n] = size(A);'
  'if nargin == 1'
@@ -179,7 +179,7 @@ mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
 write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
 // get it into scilab
 getf(TMPDIR+'/rot90.sci')
-// Exï¿½cution du code
+// Exécution du code
 m=rand(4,2);rot90(m,1)
  
   ]]></programlisting>

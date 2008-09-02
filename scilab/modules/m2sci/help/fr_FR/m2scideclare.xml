@@ -21,13 +21,13 @@
   <refsection>
     <title>Description</title>
     <para>
-  La principale difficultï¿½ de M2SCI (<literal>mfile2sci</literal>) est de trouver
+  La principale difficulté de M2SCI (<literal>mfile2sci</literal>) est de trouver
   ce que sont les variables : dimensions, type...  
   </para>
     <para>
   Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
   <literal>%m2scideclare</literal> dans le fichier Matlab à convertir,
-  (<literal>%m2sciassume</literal> était utilisée dans les versions prï¿½cï¿½dentes
+  (<literal>%m2sciassume</literal> était utilisée dans les versions précédentes
   de Scilab mais est maintenant obsolète).
   </para>
     <para>
@@ -44,16 +44,16 @@
         <itemizedlist>
           <listitem>
             <para>
-      nom_de_variable : nom de la variable dï¿½clarï¿½e. Ce nom peut être
+      nom_de_variable : nom de la variable déclarée. Ce nom peut être
       un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
-      ou dï¿½crire le contenu d'une Cell en utilisant la syntaxe
+      ou décrire le contenu d'une Cell en utilisant la syntaxe
       <literal>x(1,2).entries</literal>. NOTEZ que pour les Cells et les
       Structs <literal>*</literal> peut être utilisé comme index.
       </para>
           </listitem>
           <listitem>
             <para>
-      dimensions : dimensions de la variable déclarée sï¿½parï¿½es par des espaces,
+      dimensions : dimensions de la variable déclarée séparées par des espaces,
       si une dimension est inconnue, remplacez la par <literal>?</literal>. NOTEZ que
       les dimensions des chaînes de caractère doivent être identiques aux dimensions
       Matlab e.g. <literal>1 6</literal> pour la chaîne de caractères 'chaine'.
@@ -116,23 +116,23 @@
       </para>
             <informaltable border="1">
               <tr>
-                <td>Propriï¿½tï¿½ m2scideclare</td>
+                <td>Propriété m2scideclare</td>
                 <td>"Equivalent" Scilab</td>
               </tr>
               <tr>
                 <td>Real</td>
-                <td>Donnï¿½e réelle</td>
+                <td>Donnée réelle</td>
               </tr>
               <tr>
                 <td>Complex</td>
-                <td>Donnï¿½e complexe</td>
+                <td>Donnée complexe</td>
               </tr>
               <tr>
                 <td>?</td>
                 <td>Property inconnue</td>
               </tr>
             </informaltable>
-            <para>Ce champ est ignorï¿½ pour les types de données suivants : <literal>Cell</literal>,
+            <para>Ce champ est ignoré pour les types de données suivants : <literal>Cell</literal>,
       <literal>Struct</literal>, <literal>String</literal> et <literal>Boolean</literal>.</para>
           </listitem>
         </itemizedlist>
@@ -140,8 +140,8 @@
     </itemizedlist>
     <para>
   Toutes les informations données par <literal>m2scideclare</literal> sont comparées avec
-  les données infï¿½rï¿½es, en cas de conflit, les données infï¿½rï¿½es sont conservï¿½es et
-  un warning est affichï¿½. Si vous ï¿½tes sï¿½rs de vos informations, rapportez ce bug.
+  les données inférées, en cas de conflit, les données inférées sont conservées et
+  un warning est affiché. Si vous êtes sûrs de vos informations, rapportez ce bug.
   </para>
     <para>Voici quelques exemples :</para>
     <itemizedlist>
@@ -174,7 +174,7 @@
           </listitem>
           <listitem>
             <para><literal>%m2scideclare var6(2,*).entries|1 3|Double|Real</literal>var6 est déclarée comme un tableau de Cells contenant un
-      veteur de Doubles de taille 1x3 dans chaque ï¿½lement de sa
+      veteur de Doubles de taille 1x3 dans chaque élement de sa
       seconde ligne.</para>
           </listitem>
         </itemizedlist>

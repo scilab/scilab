@@ -33,20 +33,20 @@
             <varlistentry>
               <term>varargin(1)</term>
               <listitem>
-                <para>liste des dimensions, la valeur par dï¿½faut est list(Unknown,Unknown)</para>
+                <para>liste des dimensions, la valeur par défaut est list(Unknown,Unknown)</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>varargin(2)</term>
               <listitem>
-                <para>type (tlist de type "type", voir la page d'aide de Type), la valeur par dï¿½faut est Type(Unknown,Unknown)</para>
+                <para>type (tlist de type "type", voir la page d'aide de Type), la valeur par défaut est Type(Unknown,Unknown)</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>varargin(3)</term>
               <listitem>
-                <para>contenu (tlist de type "contents", voir la page d'aide de Type), la valeur par dï¿½faut est
-              Contents(list(),list()). Ce champ est utilisé uniquement si la donnée rï¿½prï¿½sentï¿½e est une Cell ou une Struct.
+                <para>contenu (tlist de type "contents", voir la page d'aide de Type), la valeur par défaut est
+              Contents(list(),list()). Ce champ est utilisé uniquement si la donnée réprésentée est une Cell ou une Struct.
 	      </para>
               </listitem>
             </varlistentry>

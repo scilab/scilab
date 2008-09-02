@@ -35,7 +35,7 @@
       <varlistentry>
         <term>res_path</term>
         <listitem>
-          <para>une chaîne de caractère qui donne le chemin du répertoire oï¿½ les fonctions Scilab seront écrites. Valeur par dï¿½faut : répertoire courant.</para>
+          <para>une chaîne de caractère qui donne le chemin du répertoire où les fonctions Scilab seront écrites. Valeur par défaut : répertoire courant.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -45,10 +45,10 @@
     <para><literal>translatepaths</literal>, convertit tous les M-files contenus dans un ensemble de répertoires
     en fonctions Scilab. Chaque fonction est convertie par <literal>mfile2sci</literal>.</para>
     <para>
-    Toutes les informations de traduction sont stockées dans un fichier nommï¿½ <literal>"log"</literal> dans
+    Toutes les informations de traduction sont stockées dans un fichier nommé <literal>"log"</literal> dans
     le répertoire <literal>res_path</literal>.</para>
     <para>
-    Un appel à <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider à la sï¿½lection d'un fichier/répertoire et des options.
+    Un appel à <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
     </para>
   </refsection>
   <refsection>

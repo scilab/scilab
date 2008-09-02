@@ -16,21 +16,21 @@
   </info>
   <refnamediv>
     <refname>sci_files</refname>
-    <refpurpose>Comment ï¿½crire des fonctions de conversion</refpurpose>
+    <refpurpose>Comment écrire des fonctions de conversion</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>  
-  Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelï¿½e
-  <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont dï¿½finies dans des <literal>sci_files</literal>
+  Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelée
+  <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont définies dans des <literal>sci_files</literal>
   dans le répertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
   ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
   Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
   ou pour ses propres fonctions) en utilisant les conseils suivants.
   </para>
     <para>
-  Dans M2SCI, un appel à une fonction est considï¿½rï¿½ comme un "arbre" (c'est aussi le cas des instructions
-  du fichier à convertir), reprï¿½sentï¿½ dans Scilab par une <literal>tlist</literal> avec les champs suivants :
+  Dans M2SCI, un appel à une fonction est considéré comme un "arbre" (c'est aussi le cas des instructions
+  du fichier à convertir), représenté dans Scilab par une <literal>tlist</literal> avec les champs suivants :
   </para>
     <itemizedlist>
       <listitem>
@@ -65,9 +65,9 @@
     <para>
   Une <literal>sci_function</literal> a un paramètre d'entrée <literal>tree</literal> qui est aussi la sortie de cette fonction.
   Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
-  en changeant name, lhsnb, lhs et/ou rhs. L'autre rï¿½le de cette fonction est de gï¿½rer
+  en changeant name, lhsnb, lhs et/ou rhs. L'autre rôle de cette fonction est de gérer
   l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
-  ce que l'on peut infï¿½rer pour les lhs de cette fonction. 
+  ce que l'on peut inférer pour les lhs de cette fonction. 
   </para>
     <para>
   Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :
@@ -121,7 +121,7 @@
       </listitem>
     </itemizedlist>
     <para>
-  Quelques fonctions ont été écrites pour récupèrer les propriétés des opérandes/entrées. En considï¿½rant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
+  Quelques fonctions ont été écrites pour récupèrer les propriétés des opérandes/entrées. En considérant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
   </para>
     <informaltable border="1">
       <tr>
@@ -162,7 +162,7 @@
       </tr>
       <tr>
         <td>isdefinedvar(A)</td>
-        <td>A est une variable dï¿½jï¿½ dï¿½finie dans le M-file en cours de conversion</td>
+        <td>A est une variable déjà définie dans le M-file en cours de conversion</td>
       </tr>
       <tr>
         <td>allunknown(A)</td>
@@ -170,7 +170,7 @@
       </tr>
     </informaltable>
     <para>
-  D'autres fonctions ont été écrites pour des besoins spï¿½cifiques lors de l'ï¿½criture de fonctions de conversion :
+  D'autres fonctions ont été écrites pour des besoins spécifiques lors de l'écriture de fonctions de conversion :
   </para>
     <itemizedlist>
       <listitem>
@@ -184,13 +184,13 @@
           <varlistentry>
             <term>gettempvar</term>
             <listitem>
-              <para>gï¿½nï¿½re une variable temporaire portant une nom qui n'existe pas. Séquence d'appel : v = gettempvar()</para>
+              <para>génére une variable temporaire portant une nom qui n'existe pas. Séquence d'appel : v = gettempvar()</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>insert</term>
             <listitem>
-              <para>permet d'insérer des instruction. Séquence d'appel : insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer aprï¿½s celle-ci.</para>
+              <para>permet d'insérer des instruction. Séquence d'appel : insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer après celle-ci.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -208,16 +208,16 @@
           <varlistentry>
             <term>convert2double</term>
             <listitem>
-              <para>change le type de l'entrée quand ce type n'est pas implémenté pour une fonction particuliï¿½re de Scilab. Séquence d'appel : A = convert2double(A)</para>
+              <para>change le type de l'entrée quand ce type n'est pas implémenté pour une fonction particulière de Scilab. Séquence d'appel : A = convert2double(A)</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Pour plus d'informations sur la fï¿½on d'ï¿½crire ces fichiers, consulter le répertoire
+  Pour plus d'informations sur la façon d'écrire ces fichiers, consulter le répertoire
   SCI/modules/m2sci/macros/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
-  aux plus compliquï¿½s (e.g. sci_zeros.sci).
+  aux plus compliqués (e.g. sci_zeros.sci).
   </para>
   </refsection>
   <refsection>
