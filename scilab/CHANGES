@@ -12,8 +12,8 @@ Graphical User Interface:
  - Advanced docking system
  - Follow the Tango Desktop Project http://tango.freedesktop.org/
  - GUI re-written in Java Swing:
-        + Same GUI for all OS (Menubars, toolbars...)
-        + Window docking available using FlexDock https://flexdock.dev.java.net/
+	+ Same GUI for all OS (Menubars, toolbars...)
+	+ Window docking available using FlexDock https://flexdock.dev.java.net/
  - Uicontrols are now Java objects: they can be included in a graphic window with graphics and are managed as graphic handles in Scilab
  - Uimenus are now Java objects and are managed as graphic handles in Scilab
  - Uimenus and Uicontrols can be saved and loaded like other graphic entities using save and load functions
@@ -23,33 +23,48 @@ Graphical User Interface:
 Event Handling Functions:
 =========================
  - All the event handling functions "xclick", "xgetmouse" and the "event_handler"
-       * they have been rewritten in Java   
-       * they use the same "-1000" code to signal the "window close" actions 
-         (previously "xclick" and "xgetmouse" used "-100" code) 
+	+ they have been rewritten in Java   
+	+ they use the same "-1000" code to signal the "window close" actions 
+	  (previously "xclick" and "xgetmouse" used "-100" code) 
  - Obsolete functions:
-       * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
+	+ Using xgetmouse with a flag to avoid the event queue to be cleared is 
+	  now obsolete. This functionnality will be removed in Scilab 5.1.
 
 Graphics:
 =========
  - New rendering engine based on JOGL (Java Binding for the OpenGL API):
-	* Support 3D hardware acceleration.
-	* Facet ordering issues fixed with the use of Z-buffer.
+	+ Support 3D hardware acceleration.
+	+ Facet ordering issues fixed with the use of Z-buffer.
  - Text possibilities extended:
-	* Support for floating point sizes.
- 	* Text object are able to handle matrices of strings.
+	+ Support for floating point sizes.
+	+ Text object are able to handle matrices of strings.
  - All graphic objects are fully operational both in 2D and 3D modes.
  - Clipping is operational both in 2D and 3D modes.
  - New property "filled" added to Axes object which controls axes box transparency.
  - New functions:
-	* swap_handles - Permute two handles in the graphic hierarchy.
-	* relocate_handle - Move handles inside the graphic hierarchy.
-	* get_figure_handle - Get a figure handle from its id without changing current figure.
-	* rotate_axes - Interactive rotation of an Axes handle.
-	* is_handle_valid - Check wether a set of graphic handles is still valid.
+	+ swap_handles - Permute two handles in the graphic hierarchy.
+	+ relocate_handle - Move handles inside the graphic hierarchy.
+	+ get_figure_handle - Get a figure handle from its id without changing current figure.
+	+ rotate_axes - Interactive rotation of an Axes handle.
+	+ is_handle_valid - Check wether a set of graphic handles is still valid.
+ - New colormaps ( See demonstrations -> graphics -> Colormap ):
+	+ autumncolormap    - red through orange to yellow colormap
+	+ bonecolormap      - gray colormap with a light blue tone
+	+ coolcolormap      - cyan to magenta colormap
+	+ coppercolormap    - black to a light copper tone colormap
+	+ oceancolormap     - linear blue colormap
+	+ pinkcolormap      - sepia tone colorization on black and white images
+	+ rainbowcolormap   - red through orange, yellow, green,blue to violet colormap
+	+ springcolormap    - magenta to yellow colormap
+	+ summercolormap    - green to yellow colormap
+	+ whitecolormap     - completely white colormap
+	+ wintercolormap    - blue to green colormap
  - Behavior changes:
-    * clf now deletes user menus which are children of the figure (Created by addmenu or uimenu).
+	+ clf now deletes user menus which are children of the figure
+	  (Created by addmenu or uimenu).
  - Obsolete functions:
-    * xclea, xaxis, loadplots and xtape functions have been removed because of their incompatibilities with the new graphic syntax.
+	+ xclea, xaxis, loadplots and xtape functions have been removed because of 
+	  their incompatibilities with the new graphic syntax.
 
 Graphic file export:
 ====================
@@ -79,15 +94,18 @@ Sparse LU factorization:
 	+ umf_lusolve   - Solve a linear sparse system given the LU factors
 	+ umf_luinfo    - Get information on LU factors
 	+ umf_luget     - Retrieve LU factors at the Scilab level 
-	+ taucs_chfac   - Cholesky factorisation of a sparse Symmetric Positive Definite (s.p.d.) matrix
+	+ taucs_chfac   - Cholesky factorisation of a sparse Symmetric Positive 
+	                  Definite (s.p.d.) matrix
 	+ taucs_chsolve - Solve a linear sparse (s.p.d.) system given the Cholesky factors
 	+ taucs_chinfo  - Get information on Cholesky factors
 	+ taucs_chget   - Retrieve the Cholesky factorization at the Scilab level
 	+ res_with_prec - Computes the residual r = Ax-b with precision
-	+ cond2sp       - Computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix
+	+ cond2sp       - Computes an approximation of the 2-norm condition number 
+	                  of a s.p.d. sparse matrix
 	+ condestsp     - Estimate the condition number of a sparse matrix
 	+ PlotSparse    - Plot the pattern of non nul elements of a sparse matrix 
-	+ ReadHBSparse  - Read a Harwell-Boeing sparse format file (See http://math.nist.gov/MatrixMarket/ for examples)
+	+ ReadHBSparse  - Read a Harwell-Boeing sparse format file 
+	                  (See http://math.nist.gov/MatrixMarket/ for examples)
 
 
 Optimization:
@@ -100,55 +118,58 @@ Optimization:
 Genetic Algorithms:
 ===================
  - Genetic algorithms have been added into Scilab. Many thanks to Yann Collette
-	+ codage_binary			- Performs conversion between binary and continuous representation
-	+ codage_identity		- "no-operation" conversion function
-	+ crossover_func_binary 	- Crossover function for binary code
-	+ crossover_func_default 	- Crossover function for continuous variable functions
-	+ init_func_default		- Initialize a population 
-	+ mutation_func_binary		- Performs binary mutation 
-	+ mutation_func_default		- Continuous variable mutation
-	+ optim_ga			- Flexible genetic algorithm 
-	+ optim_nsga			- Multi-objective Niched Sharing Genetic Algorithm
-	+ optim_nsga2			- Multi-objective Niched Sharing Genetic Algorithm version 2
-	+ pareto_filter			- Extracts non dominated solution from a set
-	+ selection_func_elitist	- 'Elitist' selection function 
-	+ selection_func_random		- Random selection of individuals 
+	+ codage_binary         - Performs conversion between binary and continuous 
+	                          representation
+	+ codage_identity       - "no-operation" conversion function
+	+ crossover_func_binary - Crossover function for binary code
+	+ crossover_func_default- Crossover function for continuous variable functions
+	+ init_func_default     - Initialize a population 
+	+ mutation_func_binary  - Performs binary mutation 
+	+ mutation_func_default - Continuous variable mutation
+	+ optim_ga              - Flexible genetic algorithm 
+	+ optim_nsga            - Multi-objective Niched Sharing Genetic Algorithm
+	+ optim_nsga2           - Multi-objective Niched Sharing Genetic Algorithm version 2
+	+ pareto_filter         - Extracts non dominated solution from a set
+	+ selection_func_elitist- 'Elitist' selection function 
+	+ selection_func_random - Random selection of individuals 
 
 
 Param/parameters module:
 ========================
- - This package allows to deal with list of parameters efficiently (like optim_set in Matlab from The Mathworks (TM)). Many thanks to Yann Collette
-	+ add_param		- Add a parameter to a list of parameters
-	+ get_param		- Get the value of a parameter in a parameter list
-	+ init_param		- Initialize an empty parameter list
-	+ is_param		- Check if a parameter is present in a parameter list
-	+ list_param		- List all the parameters name in a list of parameters 
-	+ remove_param		- Remove a parameter and its associated value from a list of parameters 
-	+ set_param		- Set the value of a parameter in a parameter list 
+ - This package allows to deal with list of parameters efficiently 
+   (like optim_set in Matlab from The Mathworks (TM)). Many thanks to Yann Collette
+	+ add_param            - Add a parameter to a list of parameters
+	+ get_param            - Get the value of a parameter in a parameter list
+	+ init_param           - Initialize an empty parameter list
+	+ is_param             - Check if a parameter is present in a parameter list
+	+ list_param           - List all the parameters name in a list of parameters 
+	+ remove_param         - Remove a parameter and its associated value from a list of parameters 
+	+ set_param            - Set the value of a parameter in a parameter list 
 
 
 Simulated Annealing:
 ====================
- - Simulated annealing (SA) is a generic probabilistic meta-algorithm for the global optimization problem. Many thanks to Yann Collette
-	+ compute_initial_temp		- Compute the initial temperature of the simulated annealing
-	+ neigh_func_csa		- The classical neighborhood relationship for the simulated annealing 
-	+ neigh_func_default		- Computes a neighbor of a given point
-	+ neigh_func_fsa		- The Fast Simulated Annealing neghborhood relationship 
-	+ neigh_func_vfsa		- The Very Fast Simulated Annealing neighborhood relationship 
-	+ optim_sa			- Simulated Annealing optimization method 
-	+ temp_law_csa			- The classical temperature decrease law
-	+ temp_law_default		- Computes the temperature of the next temperature stage 
-	+ temp_law_fsa			- The Szu and Hartley Fast simulated annealing
-	+ temp_law_huang		- The Huang temperature decrease law for the simulated annealing
-	+ temp_law_vfsa			- The Very Fast Simulated Annealing from L. Ingber 
+ - Simulated annealing (SA) is a generic probabilistic meta-algorithm for the 
+   global optimization problem. Many thanks to Yann Collette
+	+ compute_initial_temp - Compute the initial temperature of the simulated annealing
+	+ neigh_func_csa       - The classical neighborhood relationship for the simulated annealing 
+	+ neigh_func_default   - Computes a neighbor of a given point
+	+ neigh_func_fsa       - The Fast Simulated Annealing neghborhood relationship 
+	+ neigh_func_vfsa      - The Very Fast Simulated Annealing neighborhood relationship 
+	+ optim_sa             - Simulated Annealing optimization method 
+	+ temp_law_csa         - The classical temperature decrease law
+	+ temp_law_default     - Computes the temperature of the next temperature stage 
+	+ temp_law_fsa         - The Szu and Hartley Fast simulated annealing
+	+ temp_law_huang       - The Huang temperature decrease law for the simulated annealing
+	+ temp_law_vfsa        - The Very Fast Simulated Annealing from L. Ingber 
 
 
 Other Numerical Functions
 =========================
  - new functions 
-        + filter                - signal filtering 
-        + erfinv                - inverse of the erf function
-        +                       - support for rational fraction hypermatrices added
+        + filter           - signal filtering 
+        + erfinv           - inverse of the erf function
+        +                  - support for rational fraction hypermatrices added
  - Bug fixes
         + Major bug in qld fixed
 
