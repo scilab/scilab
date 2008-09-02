@@ -26,6 +26,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "SetPropertyStatus.h"
 
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
@@ -170,16 +171,22 @@ int get_data_property( sciPointObj * pobj )
   {
     int nbRow  =  0 ;
     int nbCol  =  0 ;
-    int status = -1 ;
+    int status = SET_PROPERTY_ERROR ;
     /* Warning the following function allocate data */
     double * data = sciGetPoint( pobj, &nbRow, &nbCol ) ;
 
-    if (data == NULL)
+    if (data == NULL && nbRow == 0 && nbCol == 0)
     {
-      // data allocation failed
-      sciprint(_("%s: No more memory.\n"),"get_data_property");
+      /* Empty data */
       sciReturnEmptyMatrix();
-      status = -1;
+      status = SET_PROPERTY_SUCCEED;
+    }
+    else if (data == NULL)
+    {
+      /* data allocation failed */
+      sciprint(_("%s: No more memory."), "get_data_property") ;
+      sciReturnEmptyMatrix();
+      status = SET_PROPERTY_ERROR;
     }
     else
     {
