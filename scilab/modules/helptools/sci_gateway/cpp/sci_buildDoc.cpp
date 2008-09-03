@@ -33,8 +33,8 @@ extern "C"
 #define PATHTOBUILDDOC "/modules/helptools/build/doc/scilab_%s_help/"
 #define PATHTOMASTERXML "/modules/helptools/master_%s_help.xml"
 #define DEFAULTEXPORT "JH"
-
-static void slashToAntislash(std::string *in)
+#ifdef _MSC_VER
+static void __slashToAntislash(std::string *in)
 {
   size_t found = in->rfind("/");
 
@@ -44,7 +44,7 @@ static void slashToAntislash(std::string *in)
       found = in->rfind("/");
     }
 }
-
+#endif
 /*--------------------------------------------------------------------------*/
   int sci_buildDoc(char *fname,unsigned long l)
   {
