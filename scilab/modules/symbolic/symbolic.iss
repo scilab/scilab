@@ -37,6 +37,6 @@ Source: modules\{#SYMBOLIC}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SYM
 ;
 ;Source: modules\{#SYMBOLIC}\demos\*.*; DestDir: {app}\modules\{#SYMBOLIC}\demos; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;
-;Source: modules\{#SYMBOLIC}\tests\*.*; DestDir: {app}\modules\{#SYMBOLIC}\tests; Flags: recursesubdirs; Components: {#COMPN_SYMB} and {#COMPN_TESTS}
+Source: modules\{#SYMBOLIC}\tests\*.*; DestDir: {app}\modules\{#SYMBOLIC}\tests; Flags: recursesubdirs; Components: {#COMPN_SYMB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
