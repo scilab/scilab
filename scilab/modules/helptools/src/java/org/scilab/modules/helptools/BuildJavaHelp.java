@@ -30,6 +30,7 @@ public final class BuildJavaHelp {
 	private static final String COULD_NOT_FIND = "buildDoc: Could not find/access to ";
 	private static final String LEFT_PAR = " ( ";
 	private static final String RIGHT_PAR = " )";
+	private static Indexer indexer = new Indexer();
 	
 	/**
 	 * Default constructor (must no be used)
@@ -132,7 +133,7 @@ public final class BuildJavaHelp {
      * @return The result of the process
 	 */
 	public static boolean buildJavaHelp(String outputDirectory, String language) {
-		Indexer indexer = new Indexer();
+		
 		String outputJavaHelp = new String (outputDirectory + JAVAHELPSEARCH_DIR);
 		try {
 			Helpers.deleteDirectory(outputJavaHelp); /* Purge the directory before launching the index because the JavaHelp Indexer failed when launched twice on the same directory */

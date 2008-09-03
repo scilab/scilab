@@ -377,7 +377,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					else
 						mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
 					end
-					buildDoc(output_format, dirs(k)+"/master_help.xml")
+					buildDoc(output_format, dirs(k)+"/master_help.xml", "", dirs(k))
 					
 				end
 			end

@@ -51,6 +51,7 @@ static void __slashToAntislash(std::string *in)
     static int l1 = 0,n1 = 0,m1 = 0;
     static int l2 = 0,n2 = 0,m2 = 0;
     static int l3 = 0,n3 = 0,m3 = 0;
+    static int l4 = 0,n4 = 0,m4 = 0;
     std::string exportFormat;
     std::string SciPath = getSCIpath(); /* Scilab path */
     std::string masterXML; /* Which file contains all the doc stuff */
@@ -61,25 +62,10 @@ static void __slashToAntislash(std::string *in)
     std::string styleSheet; /* the CSS */
     org_scilab_modules_helptools::BuildDocObject *doc = NULL;
 
-    CheckRhs(0,3);
+    CheckRhs(0,4);
     CheckLhs(1,1);
 
     styleSheet = SciPath+PATHTOCSS;
-
-    if ( Rhs != 3) /* Language provided */
-      {
-	language = getlanguage();
-      }
-    else
-      {
-	GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-	language = std::string(cstk(l3));
-      }
-
-    /* Update the path with the localization */
-    outputDirectoryTMP = std::string("/modules/helptools/build/doc/scilab_")+language+std::string("_help/");
-
-    outputDirectory = SciPath+outputDirectoryTMP;
 
     if (Rhs < 1)
       {
@@ -118,6 +104,44 @@ static void __slashToAntislash(std::string *in)
 	masterXML = cstk(l2);
       }
 
+    if ( Rhs < 3) /* Language not provided */
+      {
+	language = getlanguage();
+      }
+    else
+      {
+	GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+        if (m3*n3 == 0)
+          {
+            language = getlanguage();
+          }
+        else
+          {
+            language = std::string(cstk(l3));
+          }
+      }
+
+    if (Rhs == 4)
+      {
+        if (GetType(4) == sci_strings)
+          {
+            GetRhsVar(4,STRING_DATATYPE,&m4,&n4,&l4);
+            outputDirectory = std::string(cstk(l4))+std::string("/scilab_")+language+std::string("_help/");
+          }
+        else
+          {
+	    Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,4);
+	    return FALSE;
+          }
+      }
+    else /* Scilab help */
+      {
+        /* Update the path with the localization */
+        outputDirectoryTMP = std::string("/modules/helptools/build/doc/scilab_")+language+std::string("_help/");
+        
+        outputDirectory = SciPath+outputDirectoryTMP;
+      }
+
     try
       {
 	doc = new org_scilab_modules_helptools::BuildDocObject(getScilabJavaVM());
@@ -137,11 +161,13 @@ static void __slashToAntislash(std::string *in)
 	else
 	  {
 	    Scierror(999,_("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
+            return FALSE;
 	  }
       }
     catch(GiwsException::JniException ex)
       {
 	Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
+        return FALSE;
       }
 
     if (doc != NULL) delete doc;
