@@ -84,6 +84,22 @@ static void __slashToAntislash(std::string *in)
 	exportFormat = cstk(l1);
       }
 
+    if ( Rhs < 3) /* Language not provided */
+      {
+	language = getlanguage();
+      }
+    else
+      {
+	GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+        if (m3*n3 == 0)
+          {
+            language = getlanguage();
+          }
+        else
+          {
+            language = std::string(cstk(l3));
+          }
+      }
 
     if (Rhs < 2)
       {
@@ -104,23 +120,6 @@ static void __slashToAntislash(std::string *in)
 	masterXML = cstk(l2);
       }
 
-    if ( Rhs < 3) /* Language not provided */
-      {
-	language = getlanguage();
-      }
-    else
-      {
-	GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-        if (m3*n3 == 0)
-          {
-            language = getlanguage();
-          }
-        else
-          {
-            language = std::string(cstk(l3));
-          }
-      }
-
     if (Rhs == 4)
       {
         if (GetType(4) == sci_strings)
@@ -138,7 +137,7 @@ static void __slashToAntislash(std::string *in)
       {
         /* Update the path with the localization */
         outputDirectoryTMP = std::string("/modules/helptools/build/doc/scilab_")+language+std::string("_help/");
-        
+
         outputDirectory = SciPath+outputDirectoryTMP;
       }
 
