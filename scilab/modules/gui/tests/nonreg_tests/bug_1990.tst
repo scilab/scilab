@@ -20,6 +20,6 @@ f = figure(123);
 if isempty(get(f,"position")) then pause; end
 
 
-set(f,"position",[100 400 200 800]);
+set(f,"position",[100 100 200 200]);
 
-if or(get(f,"position")<>[100 400 200 800]) then pause;end		
+if or(get(f,"position")<>[100 100 200 200]) then pause;end		
