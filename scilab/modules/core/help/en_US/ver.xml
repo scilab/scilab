@@ -20,11 +20,23 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>ver()</synopsis>
+    <synopsis>r = ver()</synopsis>
   </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>a matrix of strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
   <refsection>
     <title>Description</title>
     <para>Version information for Scilab.</para>
+    <para>returns a matrix of string with informations about Scilab.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
