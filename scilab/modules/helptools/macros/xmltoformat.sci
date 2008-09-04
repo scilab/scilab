@@ -10,16 +10,23 @@
 function xmltoformat(output_format,dirs,titles,directory_language,default_language)
 	
 	// =========================================================================
-	// dirs is a set of directories
-	// for which html manuals are to be generated
-	// + and index and toc file
-	// titles are associated title strings (optional or [])
-	// if dirs is not specified or [] then
-	// standard scilab man are assumed and titles
-	// are searched in %helps
+	// + output_format : "javaHelp", "pdf", "chm", "ps"
+	//
+	// + dirs : A set of directories for which help files (jar, pdf, chm, ...) are
+	//        genereated
+	//
+	// + titles : associated title strings (optional or [])
+	//
+	// + directory_language : language in which the help is written
+	//
+	// + default_language : The directory we compiling is completed with help files
+	//                      from the default_language
+	//
+	// if dirs is not specified or [] then standard scilab man are assumed and 
+	// titles are searched in %helps
 	// =========================================================================
 	
-	global %helps
+	global %helps;
 	global %helps_modules;
 	%HELPS=[%helps_modules;%helps];
 	
@@ -39,419 +46,434 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	//------------------------------------------------------------------
 	%helps(grep(%helps,"/modules\/scicos/","r"),:) = [];
 	
-	
 	all_scilab_help     = %F;
 	
-	try
+	[lhs,rhs] = argn(0);
+	
+	// Trop de paramêtres
+	// ---------------------------------------------------------------------
+	
+	if rhs > 5 | rhs < 1 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"xmltoformat",1,5));
+	end
+	
+	// Transformation du %helps_modules jar => help/language
+	
+	// Cas par défaut : construction de l'aide en ligne de Scilab
+	// ---------------------------------------------------------------------
+	
+	if (rhs <= 1) | ((rhs == 2) & (dirs == [])) then
 		
-		[lhs,rhs] = argn(0);
+		all_scilab_help      = %T;
 		
-		// Trop de paramêtres
-		// ---------------------------------------------------------------------
+		dirs_to_build          = %HELPS;
+		dirs_to_build_m        = %helps_modules;
+		dirs_to_build_c        = %helps;
 		
-		if rhs > 5 | rhs < 1 then
-			error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"xmltoformat",1,5));
+		dirs                   = get_xml_path(dirs_to_build(:,1));
+		dirs_m                 = get_xml_path(dirs_to_build_m(:,1));
+		dirs_c                 = get_xml_path(dirs_to_build_c(:,1));
+		
+		titles                 = dirs_to_build(:,2);
+		titles_m               = dirs_to_build_m(:,2);
+		titles_c               = dirs_to_build_c(:,2);
+		
+		dirs(     find(dirs   == "")) = [];
+		dirs_m(   find(dirs_m == "")) = [];
+		dirs_c(   find(dirs_c == "")) = [];
+		titles(   find(dirs   == "")) = [];
+		titles_m( find(dirs_m == "")) = [];
+		titles_c( find(dirs_c == "")) = [];
+		
+		directory_language     = [];
+		directory_language_m   = [];
+		directory_language_c   = [];
+		
+		default_language       = [];
+		default_language_m     = [];
+		default_language_c     = [];
+		
+		language_system        = []; // language_system is equal to %T when
+		language_system_m      = []; // a help directory needs to be completed
+		language_system_c      = []; // with the default language
+		
+		if getlanguage() == getdefaultlanguage() then
+			for k=1:size(dirs,'*')
+				directory_language = [directory_language;getdefaultlanguage()];
+				language_system    = [language_system;%F];
+			end
+			for k=1:size(dirs_m,'*')
+				directory_language_m = [directory_language_m;getdefaultlanguage()];
+				language_system_m    = [language_system_m;%F];
+			end
+			for k=1:size(dirs_c,'*')
+				directory_language_c = [directory_language_c;getdefaultlanguage()];
+				language_system_c    = [language_system_c;%F];
+			end
+		else
+			for k=1:size(dirs,'*')
+				directory_language = [directory_language;getlanguage()];
+				default_language   = [default_language;getdefaultlanguage()];
+				language_system    = [language_system;%T];
+			end
+			for k=1:size(dirs_m,'*')
+				directory_language_m = [directory_language_m;getlanguage()];
+				default_language_m   = [default_language_m;getdefaultlanguage()];
+				language_system_m    = [language_system_m;%T];
+			end
+			for k=1:size(dirs_c,'*')
+				directory_language_c = [directory_language_c;getlanguage()];
+				default_language_c   = [default_language_c;getdefaultlanguage()];
+				language_system_c    = [language_system_c;%T];
+			end
+		end
+	
+	// Cas ou seulement le ou les répertoires sont précisés
+	// ---------------------------------------------------------------------
+	
+	elseif (rhs == 2) & (dirs <> []) then
+		
+		language_system    = [];
+		titles             = [];
+		directory_language = [];
+		
+		for k=1:size(dirs,'*')
+			
+			// Language detection
+			// ------------------
+			directory_language = [directory_language ; guess_lang(dirs(k)) ];
+			
+			titles = [titles;gettext("Help chapter")+" ("+dirs(k)+")"];
+			language_system = [language_system;%F];
 		end
 		
-		// Cas par défaut : construction de l'aide en ligne de Scilab
-		// ---------------------------------------------------------------------
+	// Cas ou seulement le ou les répertoires ainsi que le ou les titres
+	// sont précisés
+	// ---------------------------------------------------------------------
+	
+	elseif rhs == 3 then
 		
-		if (rhs <= 1) | ((rhs == 2) & (dirs == [])) then
+		language_system    = [];
+		directory_language = [];
+		
+		for k=1:size(dirs,'*')
 			
-			all_scilab_help      = %T;
+			// Language detection
+			// ------------------
+			directory_language = [directory_language ; guess_lang(dirs(k)) ];
 			
-			dirs_to_build        = %HELPS;
-			dirs_to_build_m      = %helps_modules;
-			dirs_to_build_c      = %helps;
-			
-			dirs                 = dirs_to_build(:,1);
-			dirs_m               = dirs_to_build_m(:,1);
-			dirs_c               = dirs_to_build_c(:,1);
-			
-			titles               = dirs_to_build(:,2);
-			titles_m             = dirs_to_build_m(:,2);
-			titles_c             = dirs_to_build_c(:,2);
-			
-			directory_language   = [];
-			directory_language_m = [];
-			directory_language_c = [];
-			
-			default_language     = [];
-			default_language_m   = [];
-			default_language_c   = [];
-			
-			language_system      = [];
-			language_system_m    = [];
-			language_system_c    = [];
-			
-			if getlanguage() == getdefaultlanguage() then
-				for k=1:size(dirs,'*')
-					directory_language = [directory_language;getdefaultlanguage()];
-					language_system    = [language_system;%F];
-				end
-				for k=1:size(dirs_m,'*')
-					directory_language_m = [directory_language_m;getdefaultlanguage()];
-					language_system_m    = [language_system_m;%F];
-				end
-				for k=1:size(dirs_c,'*')
-					directory_language_c = [directory_language_c;getdefaultlanguage()];
-					language_system_c    = [language_system_c;%F];
-				end
-			else
-				for k=1:size(dirs,'*')
-					directory_language = [directory_language;getlanguage()];
-					default_language   = [default_language;getdefaultlanguage()];
-					language_system    = [language_system;%T];
-				end
-				for k=1:size(dirs_m,'*')
-					directory_language_m = [directory_language_m;getlanguage()];
-					default_language_m   = [default_language_m;getdefaultlanguage()];
-					language_system_m    = [language_system_m;%T];
-				end
-				for k=1:size(dirs_c,'*')
-					directory_language_c = [directory_language_c;getlanguage()];
-					default_language_c   = [default_language_c;getdefaultlanguage()];
-					language_system_c    = [language_system_c;%T];
-				end
+			language_system = [language_system;%F];
+		end
+	
+	// Cas les répertoires,les titres ainsi que la
+	// langue du répertoire sont précisés
+	// ---------------------------------------------------------------------
+	
+	elseif rhs == 4 then
+		
+		language_system   = [];
+		language_system_m = [];
+		language_system_c = [];
+		
+		for k=1:size(dirs,'*')
+			language_system = [language_system;%F];
+		end
+	
+	// Cas où tous est précisé
+	// ---------------------------------------------------------------------
+	
+	elseif rhs == 5 then
+		
+		language_system   = [];
+		language_system_m = [];
+		language_system_c = [];
+		
+		for k=1:size(dirs,'*')
+			if isdir(pathconvert(dirs(k)+"/../"+default_language(k),%f,%f)) then
+				language_system = [language_system;%T];
 			end
-			
-		// Cas ou seulement le ou les répertoires sont précisés
-		// ---------------------------------------------------------------------
-		
-		elseif (rhs == 2) & (dirs <> []) then
-			
-			language_system = [];
-			titles          = [];
-			
-			if getlanguage() == getdefaultlanguage() then
-				for k=1:size(dirs,'*')
-					titles = [titles;"Help chapter ("+dirs(k)+")"];
-					language_system = [language_system;%F];
-				end
-			else
-				for k=1:size(dirs,'*')
-					titles = [titles;"Chapitre de help ("+dirs(k)+")"];
-					language_system = [language_system;%F];
-				end
-			end
-			
-		// Cas ou seulement le ou les répertoires ainsi que le ou les titres
-		// sont précisés
-		// ---------------------------------------------------------------------
-		
-		elseif rhs == 3 then
-			
-			language_system   = [];
-			
-			for k=1:size(dirs,'*')
-				language_system = [language_system;%F];
-			end
-		
-		// Cas les répertoires,les titres ainsi que la
-		// langue du répertoire sont précisés
-		// ---------------------------------------------------------------------
-		
-		elseif rhs == 4 then
-			
-			language_system   = [];
-			language_system_m = [];
-			language_system_c = [];
-			
-			for k=1:size(dirs,'*')
-				language_system = [language_system;%F];
-			end
-		
-		// Cas où tous est précisé
-		// ---------------------------------------------------------------------
-		
-		elseif rhs == 5 then
-			
-			language_system   = [];
-			language_system_m = [];
-			language_system_c = [];
-			
-			for k=1:size(dirs,'*')
-				if isdir(pathconvert(dirs(k)+"/../"+default_language(k),%f,%f)) then
-					language_system = [language_system;%T];
-				end
-			end
-			
 		end
 		
-		// On transforme le ou les chemins donnés en chemin absolu
-		// ---------------------------------------------------------------------
+	end
+	
+	// On transforme le ou les chemins donnés en chemin absolu
+	// ---------------------------------------------------------------------
+	
+	for k=1:size(dirs,'*');
+		if ~isdir(dirs(k)) then
+			error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs(k)));
+		end
 		
-		for k=1:size(dirs,'*');
-			if ~isdir(dirs(k)) then
-				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs(k)));
+		chdir(dirs(k));
+		if MSDOS then
+			dirs(k) = getlongpathname(pwd());
+		else
+			dirs(k) = pwd();
+		end
+		chdir(current_directory);
+	end
+	
+	if all_scilab_help then
+		for k=1:size(dirs_m,'*');
+			if ~isdir(dirs_m(k)) then
+				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
 			end
-			
-			chdir(dirs(k));
+			chdir(dirs_m(k));
 			if MSDOS then
-				dirs(k) = getlongpathname(pwd());
+				dirs_m(k) = getlongpathname(pwd());
 			else
-				dirs(k) = pwd();
+				dirs_m(k) = pwd();
 			end
 			chdir(current_directory);
 		end
 		
-		if all_scilab_help then
-			for k=1:size(dirs_m,'*');
-				if ~isdir(dirs_m(k)) then
-					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
-				end
-				chdir(dirs_m(k));
-				if MSDOS then
-					dirs_m(k) = getlongpathname(pwd());
-				else
-					dirs_m(k) = pwd();
-				end
-				chdir(current_directory);
+		for k=1:size(dirs_c,'*');
+			if ~isdir(dirs_c(k)) then
+				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
 			end
-			
-			for k=1:size(dirs_c,'*');
-				if ~isdir(dirs_c(k)) then
-					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
-				end
-				chdir(dirs_c(k));
-				if MSDOS then
-					dirs_c(k) = getlongpathname(pwd());
-				else
-					dirs_c(k) = pwd();
-				end
-				chdir(current_directory);
-			end
-		end
-		
-		//----------------------------------------------------------------------
-		// On établit la liste des répertoires nécéssitants d'étre reconstruit
-		//----------------------------------------------------------------------
-		
-		need_to_be_build_tab   = [];
-		need_to_be_build_tab_m = [];
-		need_to_be_build_tab_c = [];
-		
-		for k=1:size(dirs,'*');
-			if language_system(k) then
-				need_to_be_build_tab = [need_to_be_build_tab;need_to_be_build(dirs(k),directory_language(k),default_language(k))];
+			chdir(dirs_c(k));
+			if MSDOS then
+				dirs_c(k) = getlongpathname(pwd());
 			else
-				need_to_be_build_tab = [need_to_be_build_tab;need_to_be_build(dirs(k))];
+				dirs_c(k) = pwd();
+			end
+			chdir(current_directory);
+		end
+	end
+	
+	//----------------------------------------------------------------------
+	// On établit la liste des répertoires nécéssitants d'étre reconstruit
+	//----------------------------------------------------------------------
+	
+	need_to_be_build_tab   = [];
+	need_to_be_build_tab_m = [];
+	need_to_be_build_tab_c = [];
+	
+	for k=1:size(dirs,'*');
+		if language_system(k) then
+			need_to_be_build_tab = [need_to_be_build_tab;need_to_be_build(dirs(k),directory_language(k),default_language(k))];
+		else
+			need_to_be_build_tab = [need_to_be_build_tab;need_to_be_build(dirs(k))];
+		end
+	end
+	
+	if all_scilab_help then
+		for k=1:size(dirs_m,'*');
+			if language_system_m(k) then
+				need_to_be_build_tab_m = [need_to_be_build_tab_m;need_to_be_build(dirs(k),directory_language_m(k),default_language_m(k))];
+			else
+				need_to_be_build_tab_m = [need_to_be_build_tab_m;need_to_be_build(dirs(k))];
 			end
 		end
+		for k=1:size(dirs_c,'*');
+			if language_system_c(k) then
+				need_to_be_build_tab_c = [need_to_be_build_tab_c;need_to_be_build(dirs(k),directory_language_c(k),default_language_c(k))];
+			else
+				need_to_be_build_tab_c = [need_to_be_build_tab_c;need_to_be_build(dirs(k))];
+			end
+		end
+	end
+	
+	if ~or(need_to_be_build_tab) then
+		mprintf(gettext("\tHTML files are up-to-date.\n"));
+		return;
+	end
+	
+	// Nombre de répertoire ayant besoin d'une modification
+	// ---------------------------------------------------------------------
+	
+	nb_dir = size( find(need_to_be_build_tab == %T) , '*' );
+	
+	//----------------------------------------------------------------------
+	// Complete the on-line help with the default language
+	//----------------------------------------------------------------------
+	
+	displaydone = 0;
+	
+	if all_scilab_help then
 		
-		if all_scilab_help then
-			for k=1:size(dirs_m,'*');
-				if language_system_m(k) then
-					need_to_be_build_tab_m = [need_to_be_build_tab_m;need_to_be_build(dirs(k),directory_language_m(k),default_language_m(k))];
-				else
-					need_to_be_build_tab_m = [need_to_be_build_tab_m;need_to_be_build(dirs(k))];
+		if or(need_to_be_build_tab_m) then
+			for k=1:size(dirs_m,'*')
+				if  language_system_m(k) then
+					default_language_path = pathconvert(dirs_m(k)+"/../"+default_language_m(k),%f,%f);
+					if displaydone == 0 then
+						mprintf(_("\nCopying missing help files copied from the default language\n"));
+						displaydone = 1;
+					end
+					mprintf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+					complete_with_df_lang(dirs_m(k),directory_language_m(k),default_language_m(k));
 				end
 			end
-			for k=1:size(dirs_c,'*');
-				if language_system_c(k) then
-					need_to_be_build_tab_c = [need_to_be_build_tab_c;need_to_be_build(dirs(k),directory_language_c(k),default_language_c(k))];
-				else
-					need_to_be_build_tab_c = [need_to_be_build_tab_c;need_to_be_build(dirs(k))];
-				end
-			end
 		end
 		
-		if ~or(need_to_be_build_tab) then
-			mprintf(gettext("\tHTML files are up-to-date.\n"));
-			return;
-		end
-		
-		// Nombre de répertoire ayant besoin d'une modification
-		// ---------------------------------------------------------------------
-		
-		nb_dir = size( find(need_to_be_build_tab == %T) , '*' );
-		
-		//----------------------------------------------------------------------
-		// Complete the on-line help with the default language
-		//----------------------------------------------------------------------
-		
-		displaydone = 0;
-		
-		if all_scilab_help then
-			
-			if or(need_to_be_build_tab_m) then
-				for k=1:size(dirs_m,'*')
-					if  language_system_m(k) then
-						default_language_path = pathconvert(dirs_m(k)+"/../"+default_language_m(k),%f,%f);
+		if or(need_to_be_build_tab_c) then
+			for k=1:size(dirs_c,'*')
+				if need_to_be_build_tab_c(k) & language_system_c(k) then
+					default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
+					if nb_dir > 1 then
 						if displaydone == 0 then
-							mprintf(_("\nCopying missing help files copied from the default language\n"));
+							mprintf(_("\nCopying missing files copied from\n"));
 							displaydone = 1;
 						end
 						mprintf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-						complete_with_df_lang(dirs_m(k),directory_language_m(k),default_language_m(k));
-					end
-				end
-			end
-			
-			if or(need_to_be_build_tab_c) then
-				for k=1:size(dirs_c,'*')
-					if need_to_be_build_tab_c(k) & language_system_c(k) then
-						default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
-						if nb_dir > 1 then
-							if displaydone == 0 then
-								mprintf(_("\nCopying missing files copied from\n"));
-								displaydone = 1;
-							end
-							mprintf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-						else
-							mprintf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-						end
-						complete_with_df_lang(dirs_c(k),directory_language_c(k),default_language_c(k));
-					end
-				end
-			end
-			
-		end
-		
-		//----------------------------------------------------------------------
-		// build all the Master document
-		//----------------------------------------------------------------------
-		
-		if all_scilab_help then
-			
-			master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
-			
-			if or(need_to_be_build_tab_m) then
-				mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
-				create_MD(dirs_m,titles_m,master_doc);
-				
-			end
-			
-			if or(need_to_be_build_tab_c) then
-				for k=1:size(dirs_c,"*")
-					if need_to_be_build_tab_c(k) then
-						mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
-						create_MD(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml");
-					end
-				end
-			end
-			
-		else
-			
-			displaydone = 0;
-			for k=1:size(dirs,"*");
-				if need_to_be_build_tab(k) then
-					if nb_dir > 1 then
-						if displaydone == 0 then
-							mprintf(_("\nBuilding the master document for %s.\n"),getlanguage());
-							displaydone = 1;
-						end
-						mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					else
-						mprintf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+						mprintf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 					end
-					create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml");
+					complete_with_df_lang(dirs_c(k),directory_language_c(k),default_language_c(k));
 				end
 			end
-		
 		end
 		
-		//----------------------------------------------------------------------
-		// perform the jar generation
-		//----------------------------------------------------------------------
+	end
+	
+	//----------------------------------------------------------------------
+	// build all the Master document
+	//----------------------------------------------------------------------
+	
+	if all_scilab_help then
 		
-		script_tool = "";
+		master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
 		
-		if all_scilab_help then
+		if or(need_to_be_build_tab_m) then
+			mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
+			create_MD(dirs_m,titles_m,master_doc);
+			
+		end
+		
+		if or(need_to_be_build_tab_c) then
+			for k=1:size(dirs_c,"*")
+				if need_to_be_build_tab_c(k) then
+					mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
+					create_MD_dir(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml");
+				end
+			end
+		end
+		
+	else
+		
+		displaydone = 0;
+		for k=1:size(dirs,"*");
+			if need_to_be_build_tab(k) then
+				if nb_dir > 1 then
+					if displaydone == 0 then
+						mprintf(_("\nBuilding the master document for %s.\n"),getlanguage());
+						displaydone = 1;
+					end
+					mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+				else
+					mprintf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+				end
+				create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml");
+			end
+		end
+	
+	end
+	
+	//----------------------------------------------------------------------
+	// perform the jar generation
+	//----------------------------------------------------------------------
+	
+	if all_scilab_help then
 
-			mprintf(_("\nBuilding the scilab manual file ["+output_format+"]\n"));
-			buildDoc(output_format)
-		
-		else
-		
-			displaydone = 0;
-			for k=1:size(dirs,"*");
-				if need_to_be_build_tab(k) then
-					
-					if nb_dir > 1 then
-						if displaydone == 0 then
-							mprintf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take up to 10 minutes)\n"),output_format);
-							displaydone = 1;
-						end
-						mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
-					else
-						mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
-					end
-					// Create output directory if does not exist      
-					if output_format=="javaHelp" & ~isdir(dirs(k)+"/../../jar/")
-					  mkdir(dirs(k)+"/../../jar/")
-					end
-					buildDoc(output_format, dirs(k)+"/master_help.xml", "", dirs(k))
-					
-				end
-			end
-		end
-		
-		chdir(current_directory);
-		
-		//----------------------------------------------------------------------
-		// Delete the xml files translated into the default language
-		//----------------------------------------------------------------------
+		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take up to 10 minutes)\n"));
+		buildDoc(output_format);
 		
 		displaydone = 0;
 		
-		if all_scilab_help then
-			
-			if or(need_to_be_build_tab_m) then
-				for k=1:size(dirs_m,'*')
-					if  language_system_m(k) then
-						default_language_path = pathconvert(dirs_m(k)+"/../"+default_language_m(k),%f,%f);
+		for k=1:size(dirs_c,"*");
+			if need_to_be_build_tab_c(k) then
+				
+				mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
+				
+				// Create output directory if does not exist
+				if output_format=="javaHelp" & ~isdir(dirs_c(k)+"/../../jar/")
+					mkdir(dirs_c(k)+"/../../jar/")
+				end
+				
+				buildDoc(output_format,dirs_c(k)+"/master_help.xml",directory_language_c(k),dirs_c(k))
+				
+			end
+		end
+		
+	else
+		
+		displaydone = 0;
+		for k=1:size(dirs,"*");
+			if need_to_be_build_tab(k) then
+				
+				if nb_dir > 1 then
+					if displaydone == 0 then
+						mprintf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take up to 10 minutes)\n"),output_format);
+						displaydone = 1;
+					end
+					mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+				else
+					mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
+				end
+				// Create output directory if does not exist
+				if output_format=="javaHelp" & ~isdir(dirs(k)+"/../../jar/")
+					mkdir(dirs(k)+"/../../jar/")
+				end
+				
+				buildDoc(output_format,dirs(k)+"/master_help.xml",directory_language(k),dirs(k))
+				
+			end
+		end
+	end
+	
+	chdir(current_directory);
+	
+	//----------------------------------------------------------------------
+	// Delete the xml files translated into the default language
+	//----------------------------------------------------------------------
+	
+	displaydone = 0;
+	
+	if all_scilab_help then
+		
+		if or(need_to_be_build_tab_m) then
+			for k=1:size(dirs_m,'*')
+				if  language_system_m(k) then
+					default_language_path = pathconvert(dirs_m(k)+"/../"+default_language_m(k),%f,%f);
+					if displaydone == 0 then
+						printf(_("\nDeleting files copied from\n"));
+						displaydone = 1;
+					end
+					printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+					del_df_lang_xml_files(dirs(k),directory_language(k));
+				end
+			end
+		end
+		
+		if or(need_to_be_build_tab_c) then
+			for k=1:size(dirs_c,'*')
+				if need_to_be_build_tab_c(k) & language_system_c(k) then
+					default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
+					if nb_dir > 1 then
 						if displaydone == 0 then
 							printf(_("\nDeleting files copied from\n"));
 							displaydone = 1;
 						end
 						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-						del_df_lang_xml_files(dirs(k),directory_language(k));
+					else
+						printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 					end
+					del_df_lang_xml_files(dirs_c(k),directory_language_c(k));
 				end
 			end
-			
-			if or(need_to_be_build_tab_c) then
-				for k=1:size(dirs_c,'*')
-                    if need_to_be_build_tab_c(k) & language_system_c(k) then
-                        default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
-                        if nb_dir > 1 then
-                            if displaydone == 0 then
-                                printf(_("\nDeleting files copied from\n"));
-                                displaydone = 1;
-                            end
-                            printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-                        else
-                            printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-                        end
-                        del_df_lang_xml_files(dirs_c(k),directory_language_c(k),default_language_c(k));
-                    end
-                end
-			end
-			
 		end
 		
-		//----------------------------------------------------------------------
-		// Création du fichier "directory/.last_successful_build_output_format"
-		//----------------------------------------------------------------------
-		
-		for k=1:size(dirs,'*');
-			if need_to_be_build_tab(k) then
-				dateToPrint = msprintf("last_success_build_val = %d",getdate('s'));
-				mputl(dateToPrint,pathconvert(dirs(k)+"/.last_successful_build_"+output_format,%f,%f));
-			end
+	end
+	
+	//----------------------------------------------------------------------
+	// Création du fichier "directory/.last_successful_build_output_format"
+	//----------------------------------------------------------------------
+	
+	for k=1:size(dirs,'*');
+		if need_to_be_build_tab(k) then
+			dateToPrint = msprintf("last_success_build_val = %d",getdate('s'));
+			mputl(dateToPrint,pathconvert(dirs(k)+"/.last_successful_build_"+output_format,%f,%f));
 		end
-		
-	catch
-		
-		// Gestion et affichage de l'erreur
-		//----------------------------------------------------------------------
-		
-		[error_str,error_num,error_line,error_func] = lasterror(%T);
-		
-		mprintf("   !-- error %d :\n",error_num);
-		mprintf("\t%s\n",error_str);
-		
 	end
 	
 	// On remet l'environement initial
@@ -954,5 +976,45 @@ function out = text2html(in)
 // 		out = strsubst(out , "þ"  , "&thorn;"  );
 // 		out = strsubst(out , "ÿ"  , "&yuml;"   );
 // 		out = strsubst(out , "µ"  , "&micro;"  );
+	
+endfunction
+
+
+function dirs_out = get_xml_path(dirs_in)
+	
+	dirs_out = [];
+	
+	for k=1:size(dirs_in,"*")
 		
+		if basename(dirs_in(k)) == "jar" then
+			
+			help_basepath = part(dirs_in(k),1:length(dirs_in(k))-4) + "/help";
+			
+			if isdir(help_basepath+"/"+getlanguage()) then
+				dirs_out(k) = help_basepath + "/" + getlanguage();
+			elseif isdir(help_basepath+"/"+getdefaultlanguage()) then
+				dirs_out(k) = help_basepath + "/" + getlanguage();
+			else
+				dirs_out(k) = "";
+			end
+			
+		else
+			dirs_out(k) = dirs_in(k);
+		end
+		
+	end
+	
+endfunction
+
+
+function language_out = guess_lang(dir_in)
+	
+	language_out = getlanguage();
+	
+	[my_start,my_end,my_match] = regexp(dir_in,"/(\/[a-z][a-z]_[A-Z][A-Z])$/");
+	
+	if my_start <> [] then
+		language_out = part(my_match,2:6);
+	end
+	
 endfunction
