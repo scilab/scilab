@@ -146,8 +146,8 @@ public class HelpViewer implements ActionListener {
         }
     }
 
-    private void quit() {
-        System.exit(0);
+    private int quit() {
+        return 0;
     }
 
     // -----------------------------------------------------------------------
@@ -207,7 +207,7 @@ public class HelpViewer implements ActionListener {
 
     // -----------------------------------------------------------------------
     
-    public static void main(String[] args) {
+    public static int main(String[] args) {
         File[] jarFiles = null;
 
         if (args.length > 0) {
@@ -236,7 +236,7 @@ public class HelpViewer implements ActionListener {
                 "JavaHelp[tm] .jar files.\n" +
                 "Specified .jar files must have been created using sci2jh.\n" +
                 "The name of a .jar file must end with '_help.jar'.");
-            System.exit(1);
+            return 1;
         }
 
         HelpViewer helpViewer;
@@ -246,7 +246,8 @@ public class HelpViewer implements ActionListener {
             System.err.println("*** error: cannot create help viewer: " +
                                Helpers.reason(e));
 			e.printStackTrace();
-            System.exit(2);
+            return 2;
         }
+        return 0;
     }
 }
