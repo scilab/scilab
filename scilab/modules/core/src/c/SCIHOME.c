@@ -58,6 +58,9 @@ BOOL setSCIHOME(void)
 		#ifdef _MSC_VER
 			C2F(getenvc)(&ierr,"APPDATA",USERHOMESYSTEM,&buflen,&iflag);
 			if (ierr) C2F(getenvc)(&ierr,"USERPROFILE",USERHOMESYSTEM,&buflen,&iflag);
+			/* checks that directory exists */
+			if (!isdir(USERHOMESYSTEM)) return FALSE;
+
 		#else
 			C2F(getenvc)(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
 		#endif
