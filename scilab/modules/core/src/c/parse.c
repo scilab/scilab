@@ -250,7 +250,9 @@ int C2F(parse)(void)
     }
   }
  L13:
-
+#if defined(linux) && defined(__i386__)
+  setFPUToExtended();
+#endif
   //C2F(tksynchro)(&C2F(recu).paus);
 
   C2F(getlin)(&job, &c__1);
