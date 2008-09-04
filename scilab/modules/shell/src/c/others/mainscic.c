@@ -88,7 +88,6 @@ fpsetmask(0);
       {
 		  char lang[128];
 		  char *argLang=strdup(argv[++i]);
-		  BOOL isSet=FALSE;
 
 		  if (strcmp(argLang,"en")==0) {/* backward compatiblity en => en_US */
 			  exportLocaleToSystem("en_US");
