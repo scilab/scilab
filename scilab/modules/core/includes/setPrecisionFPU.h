@@ -10,17 +10,24 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-
+#include <fpu_control.h>
 
 /**
  * Set the precision of the FPU to double precision (PC=10 / 53bit)
  * This function should not be used in Scilab 5.0
  */
-void setFPUToDouble(void);
+#define setFPUToDouble() {fpu_control_t _cw; \
+	 	 	 	 	 	 	 _FPU_GETCW(_cw); \
+	 	 	 	 	 	 	 _cw = (_cw & ~_FPU_EXTENDED) | _FPU_DOUBLE; \
+	 	 	 	 	 	 	 _FPU_SETCW(_cw);}
 
 /**
  * Set the precision of the FPU to extended precision (PC=11 / 64bit)
  * This is the normal precision in Scilab 3 => 5.0
  * We usually use it to revert the FPU precision changed after a JVM call.
  */
-void setFPUToExtended(void);
+#define setFPUToExtended() {fpu_control_t _cw; \
+	 	 	 	 	 	 	 _FPU_GETCW(_cw); \
+	 	 	 	 	 	 	 _cw = (_cw & ~_FPU_DOUBLE) | _FPU_EXTENDED; \
+	 	 	 	 	 	 	 _FPU_SETCW(_cw);}
+

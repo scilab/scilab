@@ -26,6 +26,10 @@
 #include "msgs.h"
 #include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
+#if defined(linux) && defined(__i386__)
+#include "setPrecisionFPU.h"
+#endif
+/*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
 /*--------------------------------------------------------------------------*/
@@ -250,6 +254,7 @@ int C2F(parse)(void)
     }
   }
  L13:
+
 #if defined(linux) && defined(__i386__)
   setFPUToExtended();
 #endif
