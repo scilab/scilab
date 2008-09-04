@@ -3,11 +3,22 @@
 ### INRIA - Scilab 2008
 ##########
 
+if GUI
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
 			sci_gateway/c/gw_helptools.c
+
+GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+
+if GIWS
+BUILT_SOURCES=giws
+endif
+
+else
+GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
+endif
 
 pkglib_LTLIBRARIES = libscihelptools.la
 
@@ -24,12 +35,6 @@ libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
 
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
-
-GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
-
-if GIWS
-BUILT_SOURCES=giws
-endif
 
 #### Target ######
 modulename=helptools

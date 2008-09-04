@@ -17,6 +17,7 @@
 #include "with_java.h"
 #include "InitializeJVM.h"
 #include "TerminateJVM.h"
+#include "loadBackGroundClassPath.h"
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/ 
@@ -44,3 +45,8 @@ BOOL with_java(void)
 	return FALSE;	
 }
 /*--------------------------------------------------------------------------*/ 
+BOOL loadBackGroundClassPath(void)
+{
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/

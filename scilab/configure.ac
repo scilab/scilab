@@ -618,10 +618,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
 		AC_GIWS()
 	fi
-
-	AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 fi
 
+AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
