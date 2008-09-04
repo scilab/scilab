@@ -477,7 +477,7 @@ do_help()
 	echo     "      -version        : print product version and exit."
 	echo     "      --texmacs       : reserved for TeXMacs."
         echo     " "
-	echo     "      All these arguments can be retreived by the Scilab function sciargs."
+	echo     "      All these arguments can be retrieved by the Scilab function sciargs."
         echo     " "
 	exit
 }
