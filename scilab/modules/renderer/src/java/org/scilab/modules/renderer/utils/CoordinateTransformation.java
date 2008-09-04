@@ -353,4 +353,26 @@ public class CoordinateTransformation {
 		}
 	}
 	
+	/**
+	 * Enable polygon offset if not in 2D mode.
+	 * @param gl current gl pipeline
+	 */
+	public void pushPolygonsBack(GL gl) {
+		if (!is2dMode) {
+			GLTools.pushPolygonsBack(gl);
+		}
+	}
+	
+	
+	/**
+	 * Disable polygon offset if not in 2D mode.
+	 * @param gl current gl pipeline
+	 */
+	public void endPushPolygonsBack(GL gl) {
+		if (!is2dMode) {
+			GLTools.pushPolygonsBack(gl);
+		}
+	}
+	
+	
 }

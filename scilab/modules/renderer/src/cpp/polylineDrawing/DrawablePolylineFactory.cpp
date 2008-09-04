@@ -105,11 +105,14 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
     }
   }
 
+  // lines are drawn after filling to be drawn above in 2D
   if (sciGetIsLine(pPolyline))
   {
     polyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
   }
 
+  // set mark drawin at the end so they will be drawn in front of lines and fill
+  // in 2D
   if (sciGetIsMark(pPolyline))
   {
     polyline->addDrawingStrategy(new PolylineMarkDrawerJoGL(polyline));

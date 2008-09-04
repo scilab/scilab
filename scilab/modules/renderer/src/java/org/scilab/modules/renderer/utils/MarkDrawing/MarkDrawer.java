@@ -15,6 +15,7 @@
 package org.scilab.modules.renderer.utils.MarkDrawing;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 import javax.media.opengl.GL;
@@ -154,15 +155,18 @@ public class MarkDrawer extends DrawableObjectGL {
 	public void createDisplayList() {
 		GL gl = getGL();
 		
+		
 		startRecordDL();
 		// drawer might be null if the mark index is not good
 		if (drawer != null) {
 			// enable offset factor to be sure that lines are drawn in font of polygons
-			GLTools.pushPolygonsBack(gl);
+			CoordinateTransformation transform = getCoordinateTransformation();
+			
+			transform.pushPolygonsBack(gl);
 			double realMarkSize = getMarkPixelSize();
 			gl.glScaled(realMarkSize, realMarkSize, 1.0);
 			drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
-			GLTools.endPushPolygonsBack(gl);
+			transform.endPushPolygonsBack(gl);
 		}
 		
 		endRecordDL();
