@@ -16,6 +16,7 @@
 package org.scilab.modules.gui.graphicWindow;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GLException;
 
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.tab.Tab;
@@ -133,11 +134,16 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @return indicates if the size could be successfully modified
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#setCanvasSize(int, int)
 	 */
-	public boolean setCanvasSize(int width, int height) {
+	public int setCanvasSize(int width, int height) {
+		int status = RESIZE_SUCCESS;
 		if (!getAutoResizeMode()) {
 			// autore size off, just resize the canvas
-			parentCanvas.setDims(new Size(width, height));
-			return true;
+			try {
+				parentCanvas.setDims(new Size(width, height));
+			} catch (GLException e) {
+				// somthing wrong occured when resizing
+				status = RESIZE_MEMORY_ERROR;
+			}
 		} else if (parentTab.getParentWindow().getNbDockedObjects() == 1) {
 			// canvas tab is the only one in its window
 			// so resize window (tab and canvas will follow)
@@ -158,16 +164,22 @@ public class ScilabRendererProperties implements RendererProperties {
 			Size windowSize = parentWindow.getDims();
 			windowSize.setWidth(windowSize.getWidth() + deltaX);
 			windowSize.setHeight(windowSize.getHeight() + deltaY);
-			parentWindow.setDims(windowSize);
+			parentWindow.setDims(windowSize);	
 			
-			// also apply on canvas otherwise the canvas is resized twice by Swing
-			parentCanvas.setDims(new Size(width, height));
-			return true;
+			status = RESIZE_SUCCESS;
+		} else {
+			// if there are several docked objects, don't allow to resize canvas
+			// if it must changed either the tab or window size
+			System.err.println("Nb Docked objects =" + parentTab.getParentWindow().getNbDockedObjects());
+			return RESIZE_MULTIPLE_DOCKED_TAB;
 		}
-		// if there are several docked objects, don't allow to resize canvas
-		// if it must changed either the tab or window size
 		
-		return false;
+		// needed for a good display
+		forceDisplay();
+		
+		
+		
+		return status;
 	}
 
 	/**

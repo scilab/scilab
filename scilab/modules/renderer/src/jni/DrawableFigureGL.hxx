@@ -70,7 +70,7 @@ jmethodID jdoubleArraygetColorMapDataID; // cache method id
 jmethodID jintgetColorMapSizeID; // cache method id
 jmethodID jintgetCanvasWidthID; // cache method id
 jmethodID jintgetCanvasHeightID; // cache method id
-jmethodID jbooleansetCanvasSizejintjintID; // cache method id
+jmethodID jintsetCanvasSizejintjintID; // cache method id
 jmethodID jintgetWindowPosXID; // cache method id
 jmethodID jintgetWindowPosYID; // cache method id
 jmethodID voidsetWindowPositionjintjintID; // cache method id
@@ -161,7 +161,7 @@ int getCanvasWidth();
 
 int getCanvasHeight();
 
-bool setCanvasSize(int width, int height);
+int setCanvasSize(int width, int height);
 
 int getWindowPosX();
 

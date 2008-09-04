@@ -348,7 +348,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			e.getCause().printStackTrace();
 		}
 	}
 	

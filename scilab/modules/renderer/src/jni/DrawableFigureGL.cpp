@@ -115,7 +115,7 @@ jdoubleArraygetColorMapDataID=NULL;
 jintgetColorMapSizeID=NULL; 
 jintgetCanvasWidthID=NULL; 
 jintgetCanvasHeightID=NULL; 
-jbooleansetCanvasSizejintjintID=NULL; 
+jintsetCanvasSizejintjintID=NULL; 
 jintgetWindowPosXID=NULL; 
 jintgetWindowPosYID=NULL; 
 voidsetWindowPositionjintjintID=NULL; 
@@ -171,7 +171,7 @@ jdoubleArraygetColorMapDataID=NULL;
 jintgetColorMapSizeID=NULL; 
 jintgetCanvasWidthID=NULL; 
 jintgetCanvasHeightID=NULL; 
-jbooleansetCanvasSizejintjintID=NULL; 
+jintsetCanvasSizejintjintID=NULL; 
 jintgetWindowPosXID=NULL; 
 jintgetWindowPosYID=NULL; 
 voidsetWindowPositionjintjintID=NULL; 
@@ -487,20 +487,20 @@ return res;
 
 }
 
-bool DrawableFigureGL::setCanvasSize (int width, int height){
+int DrawableFigureGL::setCanvasSize (int width, int height){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (jbooleansetCanvasSizejintjintID==NULL) { /* Use the cache Luke */ jbooleansetCanvasSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setCanvasSize", "(II)Z" ) ;
-if (jbooleansetCanvasSizejintjintID == NULL) {
+if (jintsetCanvasSizejintjintID==NULL) { /* Use the cache Luke */ jintsetCanvasSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setCanvasSize", "(II)I" ) ;
+if (jintsetCanvasSizejintjintID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "setCanvasSize");
 }
 }
-                        jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleansetCanvasSizejintjintID ,width, height);
+                        jint res =  (jint) curEnv->CallIntMethod( this->instance, jintsetCanvasSizejintjintID ,width, height);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
-return (res == JNI_TRUE);
+return res;
 
 }
 

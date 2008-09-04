@@ -6,7 +6,6 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-// <-- NOT FIXED -->
 
 // <-- Non-regression test for bug 805 -->
 //
@@ -16,12 +15,11 @@
 // <-- Short Description -->
 // creating a very large canvas used to fail
 
-// creating a very large canvas used to fail
 f = gcf();
 f.auto_resize = "off";
-plot2d
+plot(1:10);
 f.axes_size = [10000, 10000];
 
-
+// it should instead provide an error message
 
 

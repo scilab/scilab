@@ -118,7 +118,7 @@ int DrawableFigureJavaMapper::getCanvasHeight(void)
   return m_pJavaObject->getCanvasHeight();
 }
 /*---------------------------------------------------------------------------------*/
-bool DrawableFigureJavaMapper::setCanvasSize(int width, int height)
+int DrawableFigureJavaMapper::setCanvasSize(int width, int height)
 {
   return m_pJavaObject->setCanvasSize(width, height);
 }

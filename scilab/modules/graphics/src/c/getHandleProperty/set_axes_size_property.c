@@ -26,6 +26,7 @@
 #include "localization.h"
 #include "InitObjects.h"
 #include "SetPropertyStatus.h"
+#include "Interaction.h"
 #include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
@@ -51,12 +52,18 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   status = sciSetDimension(pobj, (int) newWindowSize[0], (int) newWindowSize[1] ) ;
   enableFigureSynchronization(pobj);
 
-  if (status == SET_PROPERTY_ERROR)
+  switch(status)
   {
+  case RESIZE_MEMORY_ERROR:
+    sciprint(_("Wrong value for property '%s': smaller values expected.\n"), "axes_size") ;
+    return SET_PROPERTY_ERROR ;
+  case RESIZE_MULTIPLE_DOCKED_TAB:
     sciprint(_("WARNING: '%s' property can not be modified if the %s is docked with other elements.\n"), "axes_size", "Figure") ;
     return SET_PROPERTY_ERROR ;
-  }
-
-  return status;
+  case RESIZE_UNCHANGED:
+    return SET_PROPERTY_UNCHANGED;
+  default:
+    return SET_PROPERTY_SUCCEED;
+  };
 }
 /*------------------------------------------------------------------------*/

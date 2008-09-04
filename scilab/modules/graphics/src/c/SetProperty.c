@@ -2311,12 +2311,7 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
       else
       {
         int size[2] = {newWidth, newHeight} ;
-        BOOL status = sciSetJavaFigureSize(pobj, size) ;
-        if (!status)
-        {
-          /* error modifying size */
-          return -1;
-        }
+        return sciSetJavaFigureSize(pobj, size) ;
       }
       break;
     case SCI_SUBWIN:
@@ -2347,7 +2342,7 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
  * @param sciPointObj * pobj: the pointer to the entity
  * @param int *pwidth: the width of the window dimension
  * @param int *pheight: the height of the window dimension
- * @return
+ * @return one of the EResizeStatus values.
  */
 int sciSetDimension( sciPointObj * pobj, int newWidth, int newHeight )
 {

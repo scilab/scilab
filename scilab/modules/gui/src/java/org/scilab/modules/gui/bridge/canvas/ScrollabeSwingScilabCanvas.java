@@ -74,7 +74,7 @@ public class ScrollabeSwingScilabCanvas extends SwingScilabCanvas implements
 	 */
 	public void setSize(Dimension newSize) {
 		super.setSize(newSize);
-		setPreferredSize(newSize);
+		super.setPreferredSize(newSize);
 	}
 	
 	/**

@@ -18,10 +18,13 @@ import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
@@ -136,7 +139,25 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+		Size oldSize = getDims();	
+		try {
+			final Size newSizeF = newSize;
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					setSize(new Dimension(newSizeF.getWidth(), newSizeF.getHeight()));
+					
+					// display to update the size
+					display();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// something wrong occured when setting previous size
+			// Reset previous size
+			setSize(new Dimension(oldSize.getWidth(), oldSize.getHeight()));
+			throw new GLException(e.getCause());
+		}
 	}
 	
 

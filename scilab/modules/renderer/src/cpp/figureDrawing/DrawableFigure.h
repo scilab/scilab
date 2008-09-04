@@ -80,7 +80,7 @@ public:
    * Set the size (width, height) of the figure.
    * @return indicates if the size could be successfully modified
    */
-   bool setSize( const int size[2] ) ;
+   int setSize( const int size[2] ) ;
 
    /**
     * Get the size of the window enclosing the figure.

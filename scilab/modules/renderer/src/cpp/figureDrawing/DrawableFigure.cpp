@@ -74,7 +74,7 @@ void DrawableFigure::getSize( int size[2] )
   getFigureImp()->getSize(size) ;
 }
 /*---------------------------------------------------------------------------------*/
-bool DrawableFigure::setSize( const int size[2] )
+int DrawableFigure::setSize( const int size[2] )
 {
   return getFigureImp()->setSize(size) ;
 }

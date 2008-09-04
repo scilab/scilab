@@ -53,6 +53,7 @@
 #include "Interaction.h"
 #include "GetJavaProperty.h"
 #include "SetJavaProperty.h"
+#include "Interaction.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
@@ -222,7 +223,13 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 
   sciInitWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
   /* Set axes_size after to be sure to have correct values */
-  sciInitDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl)) ;
+  if (sciInitDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl)) != RESIZE_SUCCESS)
+  {
+    FREE(pobj->pfeatures);
+    FREE(pobj);
+    return (sciPointObj *) NULL;
+  }
+
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciInitScreenPosition( pobj, x[0], x[1] );
 

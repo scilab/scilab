@@ -36,7 +36,7 @@ void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbCol
  * Set the size of a figure object
  * @return indicates if the size could be successfully modified
  */
-BOOL sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] ) ;
+int sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] ) ;
 
 /**
  * Set the size of a window enclosing a figure.
