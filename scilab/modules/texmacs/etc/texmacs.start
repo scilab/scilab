@@ -3,11 +3,8 @@
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
- if with_texmacs() then
-   load('SCI/modules/texmacs/macros/lib');
- end
- clear with_texmacs;
- // ====================================================================
+load('SCI/modules/texmacs/macros/lib');
+// ====================================================================
 //add help chapter
 add_module_help_chapter('texmacs');
 // ====================================================================
