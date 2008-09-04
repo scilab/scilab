@@ -105,6 +105,14 @@ fpsetmask(0);
       else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
     }
 
+#ifndef WITH_GUI
+  if(getScilabMode() != SCILAB_NWNI)
+  {
+    fprintf(stderr, "Scilab was compiled without its GUI. Run scilab with the -nwni option.\n");
+    exit(1);
+  }
+#endif
+
   realmain(no_startup_flag,initial_script,initial_script_type,memory);
 }
 /*--------------------------------------------------------------------------*/
