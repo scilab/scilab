@@ -523,7 +523,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
+if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -620,7 +620,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	fi
 fi
 
-AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
+AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
