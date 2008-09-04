@@ -11,4 +11,4 @@ if (isdef("genlib") == %f) then
   exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib("genetic_algorithmslib",SCI+"/modules/genetic_algorithms/macros",%f,%t);
+genlib("genetic_algorithmslib","SCI/modules/genetic_algorithms/macros",%f,%t);
