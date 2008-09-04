@@ -51,10 +51,18 @@ void UserDefLogSubticksComputer::getSubticksPosition(const double ticksPositions
       // positions are given in logarithmic mode
       // so we need to switch ticks positions in normal mode
       // and then come back to log mode
-      // the expression is then s = log(exp(t[i]) + (exp(t[i+1]) - exp(t[i])) * (j+1) / (nb+1)
-      // and simplified
+      // the expression is then s = log(exp(t[i]) + (exp(t[i+1]) - exp(t[i])) * (j+1) / (nb+1).
+      // A little cheat here. First I used the above formula to compute subticks position
+      // which display a linear interpaolation between ticks (and transform to log during display).
+      // Actually, this does not give good visual result if the interval between ticks
+      // is not a 10 factor. When it is 10^2 or higher, the subticks are stuck to the right of the interval.
+      // The cheat consists here to compute the discretisation of a an interval of size 10.
+      // And then translate and move the result to obtain the final position
+      double defaultIntervalPosition = log10(1.0 + 9.0 * (j + 1.0) / (m_iNbSubticks + 1.0));
+
+      // fit the result between prevTick and nextTick.
       subTickspositions[j + m_iNbSubticks * i]
-         = prevTick + log10(1.0 + (exp10(nextTick - prevTick) - 1.0) * (j + 1.0) / (m_iNbSubticks + 1.0));
+        = prevTick + (nextTick - prevTick) * defaultIntervalPosition;
     }
   }
 }
