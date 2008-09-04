@@ -20,6 +20,7 @@ import javax.media.opengl.glu.GLUtessellator;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 
 
 /**
@@ -86,8 +87,10 @@ public class PolylineFillDrawerGL extends FillDrawerGL implements PolylineDrawer
 		glu.gluTessBeginPolygon(tess, null);
 		glu.gluTessBeginContour(tess);
 		for (int i = 0; i < xCoords.length; i++) {
-			double[] coords = {xCoords[i], yCoords[i], zCoords[i]};
-			glu.gluTessVertex(tess, coords, 0, coords);
+			if (GeomAlgos.isVector3DFinite(xCoords[i], yCoords[i], zCoords[i])) {
+				double[] coords = {xCoords[i], yCoords[i], zCoords[i]};
+				glu.gluTessVertex(tess, coords, 0, coords);
+			}
 		}
 		glu.gluTessEndContour(tess);
 		glu.gluEndPolygon(tess);
