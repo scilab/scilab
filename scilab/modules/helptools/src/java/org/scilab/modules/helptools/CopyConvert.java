@@ -52,12 +52,12 @@ import net.sourceforge.jeuclid.Converter;
 /**
  * @TODO add comment
  *
- * @param inFile    
- * @param outFile   
+ * @param inFile
+ * @param outFile
  */
 public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
-    private static final String MATHML_NS = 
+    private static final String MATHML_NS =
         "http://www.w3.org/1998/Math/MathML";
     private static final String SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -88,10 +88,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 	public void setPrintFormat(String printFormat){
 		this.printFormat=printFormat;
 	}
-   
+
     // -----------------------------------------------------------------------
 
-    public void run(File inFile, File outFile) 
+    public void run(File inFile, File outFile)
         throws SAXException, IOException {
         outFile = outFile.getCanonicalFile();
         outDir = outFile.getParentFile();
@@ -123,9 +123,8 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         out = new PrintWriter(
             new OutputStreamWriter(new FileOutputStream(outFile), "UTF-8"));
         try {
-            parser.parse(inFile, this);
-
-            out.flush();
+               parser.parse(inFile, this);
+               out.flush();
             if (out.checkError()) {
                 throw new IOException("Error writing '" + outFile + "'");
 			}
@@ -204,7 +203,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                     }
 
                     if (graphicsFile != null) {
-                        String converted = 
+                        String converted =
                             copyConvertGraphics(graphicsFile);
                         if (converted != null) {
                             // Substitute the basename of the converted file
@@ -235,7 +234,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         if (!isImage || isGraphicsFile) {
             out.write('>');
         } else {
-            File extractedFile = 
+            File extractedFile =
                 new File(outDir, "graphics-" + (++graphicsCounter) + ".tmp");
             try {
                 PrintWriter extracted = new PrintWriter(
@@ -250,7 +249,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
                 embeddedGraphicsIsMathML = -1;
             } catch (IOException e) {
-                reportError("Cannot create file '" + extractedFile + "': " 
+                reportError("Cannot create file '" + extractedFile + "': "
                            + Helpers.reason(e));
                 // Keep embedded graphics.
                 out.write('>');
@@ -268,7 +267,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             uniquePrefixes.put(pair[0], pair[1]);
         }
 
-        Iterator<Map.Entry<String, String>> iter = 
+        Iterator<Map.Entry<String, String>> iter =
             uniquePrefixes.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<String, String> e = iter.next();
@@ -309,7 +308,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                 out.close(); // Close now otherwise rename fails on Windows
 
                 File extractedFile2 = new File(
-                  outDir, 
+                  outDir,
                   rootName + ((embeddedGraphicsIsMathML == 1) ? ".mml" : ".svg"));
                 if (!extractedFile.renameTo(extractedFile2)) {
                     reportError("Cannot rename '" + extractedFile + "' to '"
@@ -330,7 +329,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                 String converted = copyConvertGraphics(extractedFile);
                 if (converted != null) {
                     baseName = converted;
-                    
+
                     if (!extractedFile.delete()) {
                         reportError("Cannot delete '" + extractedFile + "'");
                     }
@@ -393,7 +392,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             File convertedFile = new File(outDir, baseName);
 
             if (!convertedFile.exists()) {
-                reportInfo("Converting '" + graphicsFile + "' to '" 
+                reportInfo("Converting '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
                 if (!convertTeX(graphicsFile, convertedFile)) {
@@ -453,7 +452,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             doConvertTeX(inFile, outFile);
             return true;
         } catch (Exception e) {
-            reportError("Cannot convert '" + inFile + "' to '"  
+            reportError("Cannot convert '" + inFile + "' to '"
 						+ outFile + "': " + Helpers.reason(e));
             return false;
         }
@@ -491,7 +490,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         return (initTeX == 1);
     }
 
-    private void doConvertTeX(File inFile, File outFile) 
+    private void doConvertTeX(File inFile, File outFile)
         throws IOException, InterruptedException {
         File latexFile = wrapTeX(inFile);
 
@@ -574,7 +573,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         }
     }
 
-    private File wrapTeX(File inFile) 
+    private File wrapTeX(File inFile)
         throws IOException {
         String tex = Helpers.loadString(inFile, "ISO-8859-1");
 
@@ -594,12 +593,12 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         return latexFile;
     }
 
-    private void shellExec(String command, File workDir) 
+    private void shellExec(String command, File workDir)
         throws IOException, InterruptedException {
-        int status = 
+        int status =
             Helpers.shellExec(command, /*envp*/ null, workDir, verbose);
         if (status != 0) {
-            throw new RuntimeException("command '" + command  
+            throw new RuntimeException("command '" + command
                                        + "' has exited with non-zero status "
                                        + status);
 		}
@@ -646,10 +645,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                 // Xerces.
 
                 transcoder.addTranscodingHint(
-                    XMLAbstractTranscoder.KEY_XML_PARSER_CLASSNAME, 
+                    XMLAbstractTranscoder.KEY_XML_PARSER_CLASSNAME,
                     parser.getXMLReader().getClass().getName());
                 transcoder.addTranscodingHint(
-                    XMLAbstractTranscoder.KEY_XML_PARSER_VALIDATING, 
+                    XMLAbstractTranscoder.KEY_XML_PARSER_VALIDATING,
                     Boolean.FALSE);
 
                 OutputStream outf = new FileOutputStream(outFile);
@@ -676,19 +675,19 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     // Batik's ErrorHandler
     // -----------------------------------
 
-    public void warning(TranscoderException e) 
+    public void warning(TranscoderException e)
         throws TranscoderException {
         String msg = "SVG transcoder warning: " + Helpers.reason(e);
         reportWarning(msg);
     }
 
-    public void error(TranscoderException e) 
+    public void error(TranscoderException e)
         throws TranscoderException {
         String msg = "SVG transcoder error: " + Helpers.reason(e);
         reportError(msg);
     }
 
-    public void fatalError(TranscoderException e) 
+    public void fatalError(TranscoderException e)
         throws TranscoderException {
         String msg = "SVG transcoder fatal error: " + Helpers.reason(e);
         reportError(msg);
@@ -716,7 +715,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     // Main
     // -----------------------------------------------------------------------
 
-    public static void main(String[] args) {
+    public static int main(String[] args) {
         boolean verbose = false;
         String printFormat = null;
         boolean usage = false;
@@ -758,9 +757,9 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
               "  -ps  Target format is PostScript rather than HTML.\n" +
               "  -pdf Target format is PDF rather than HTML.\n" +
               "  -v   Verbose.");
-            System.exit(1);
+            return 1;
         }
-        
+
         File inFile = new File(args[l]);
         File outFile = new File(args[l+1]);
 
@@ -771,9 +770,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         try {
             copyConvert.run(inFile, outFile);
         } catch (Exception e) {
-            reportError("Cannot copy/convert '" + inFile + "' to '" + 
+            reportError("Cannot copy/convert '" + inFile + "' to '" +
                         outFile + "': " + Helpers.reason(e));
-            System.exit(2);
+            return 2;
         }
+        return 0;
     }
 }
