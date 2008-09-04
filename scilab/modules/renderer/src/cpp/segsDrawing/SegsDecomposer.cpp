@@ -70,7 +70,7 @@ void SegsDecomposer::getSegsPos(double startXCoords[], double endXCoords[],
     {
       defaultZvalue = 0.0;
     }
-    sciGetLogFlags(sciGetParentSubwin(pSegs), logFlags);
+
     for (int i = 0; i < nbSegs; i++)
     {
       startZCoords[i] = defaultZvalue;
@@ -80,7 +80,7 @@ void SegsDecomposer::getSegsPos(double startXCoords[], double endXCoords[],
 
   // apply log scale if needed
   m_pDrawed->pointScale(startXCoords, startYCoords, startZCoords, nbSegs);
-  m_pDrawed->pointScale(startXCoords, startYCoords, startZCoords, nbSegs);
+  m_pDrawed->pointScale(endXCoords, endYCoords, endZCoords, nbSegs);
 
 
 }
