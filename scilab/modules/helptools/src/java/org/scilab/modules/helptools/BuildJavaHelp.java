@@ -134,9 +134,11 @@ public final class BuildJavaHelp {
 	 */
 	public static boolean buildJavaHelp(String outputDirectory, String language) {
 		
-		String outputJavaHelp = new String (outputDirectory + JAVAHELPSEARCH_DIR);
+		String outputJavaHelp = new String(outputDirectory + JAVAHELPSEARCH_DIR);
 		try {
-			Helpers.deleteDirectory(outputJavaHelp); /* Purge the directory before launching the index because the JavaHelp Indexer failed when launched twice on the same directory */
+			/* Purge the directory before launching the index */
+			/* because the JavaHelp Indexer failed when launched twice on the same directory */
+			Helpers.deleteDirectory(outputJavaHelp); 
 			String[] args = new String[] {
 				"-db",
 				outputJavaHelp, /* Where the Java Help Index should be created */
