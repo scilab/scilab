@@ -34,8 +34,6 @@ VersionInfoCompany=Your Company
 Source: loader.sce; DestDir: {app}
 Source: etc\toolbox_skeleton.quit; DestDir: {app}\etc
 Source: etc\toolbox_skeleton.start; DestDir: {app}\etc
-Source: help\en_US\addchapter.sce; DestDir: {app}\help\en_US
-Source: help\fr_FR\addchapter.sce; DestDir: {app}\help\fr_FR
 Source: macros\buildmacros.sce; DestDir: {app}\macros
 Source: macros\lib; DestDir: {app}\macros
 Source: macros\names; DestDir: {app}\macros
