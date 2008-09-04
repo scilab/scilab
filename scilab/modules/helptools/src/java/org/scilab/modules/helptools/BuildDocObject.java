@@ -187,11 +187,11 @@ public class BuildDocObject extends StyleSheet {
         } catch (SAXException e) {
             System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
 					   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            System.exit(2);
+            return null;
         } catch (IOException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
         		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            System.exit(2);
+            return null;
         }
 		return masterXMLTransformed.getAbsolutePath();
 	}
@@ -237,6 +237,11 @@ public class BuildDocObject extends StyleSheet {
 		}
 		
 		String sourceDocProcessed = this.preProcessMaster(sourceDoc, styleSheet);
+		
+		if (sourceDocProcessed == null) {
+		    throw new FileNotFoundException("Unable to parse generated master file.");
+		}
+		
 		if (format.equalsIgnoreCase(PDF_FORMAT)) {
 			/* PDF takes others args */
 			args.add("-o");
