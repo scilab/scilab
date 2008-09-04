@@ -377,6 +377,10 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					else
 						mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
 					end
+					// Create output directory if does not exist      
+					if output_format=="javaHelp" & ~isdir(dirs(k)+"/../../jar/")
+					  mkdir(dirs(k)+"/../../jar/")
+					end
 					buildDoc(output_format, dirs(k)+"/master_help.xml", "", dirs(k))
 					
 				end
