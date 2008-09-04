@@ -155,7 +155,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		} catch (InvocationTargetException e) {
 			// something wrong occured when setting previous size
 			// Reset previous size
-			setSize(new Dimension(oldSize.getWidth(), oldSize.getHeight()));
+			//setSize(new Dimension(oldSize.getWidth(), oldSize.getHeight()));
 			throw new GLException(e.getCause());
 		}
 	}

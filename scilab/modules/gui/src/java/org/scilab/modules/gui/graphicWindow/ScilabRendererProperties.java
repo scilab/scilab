@@ -19,6 +19,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLException;
 
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -36,14 +37,19 @@ public class ScilabRendererProperties implements RendererProperties {
 	/** Enclosing tab */
 	private Tab parentTab;
 	
+	/** Index of the figure the object is associated to. */
+	private int figureIndex;
+	
 	/**
 	 * Default constructor
 	 * @param parentTab the parent tab of this renderer 
 	 * @param parentCanvas the parent canvas of this renderer
+	 * @param figureIndex index of the figure the object is associated to
 	 */
-	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas) {
+	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas, int figureIndex) {
 		this.parentCanvas = parentCanvas;
 		this.parentTab = parentTab;
+		this.figureIndex = figureIndex;
 	}
 	
 	/**
@@ -138,11 +144,17 @@ public class ScilabRendererProperties implements RendererProperties {
 		int status = RESIZE_SUCCESS;
 		if (!getAutoResizeMode()) {
 			// autore size off, just resize the canvas
+			// save value sjust in case
+			boolean pixmapMode = getPixmapMode();
+			int oldWidth = getCanvasWidth();
+			int oldHeight  = getCanvasHeight();
+			
 			try {
 				parentCanvas.setDims(new Size(width, height));
 			} catch (GLException e) {
 				// somthing wrong occured when resizing
 				status = RESIZE_MEMORY_ERROR;
+				recreateCanvas(oldWidth, oldHeight, false, pixmapMode);
 			}
 		} else if (parentTab.getParentWindow().getNbDockedObjects() == 1) {
 			// canvas tab is the only one in its window
@@ -361,6 +373,31 @@ public class ScilabRendererProperties implements RendererProperties {
 	 */
 	public void disableCanvas() {
 		parentCanvas.close();
+	}
+	
+	/**
+	 * For some reason the canvas may not be usable any more and needed to be recreated.
+	 * This function perform the job
+	 * @param width width of the canvas to create
+	 * @param height height of the canvas to create
+	 * @param autoResize autoresize mode to set
+	 * @param pixmapMode pixmap mode to set
+	 */
+	private void recreateCanvas(int width, int height, boolean autoResize, boolean pixmapMode) {
+		// first remove the canvas
+		parentTab.removeMember(parentCanvas);
+		
+		// create a new canvas
+		parentCanvas = ScilabCanvas.createCanvas(figureIndex);
+		
+		// add it to the tab
+		parentTab.addMember(parentCanvas);
+		
+		// set old properties
+		parentCanvas.setDims(new Size(width, height));
+		parentCanvas.setAutoResizeMode(autoResize);
+		parentCanvas.setAutoSwapBufferMode(pixmapMode);
+		
 	}
 
 }
