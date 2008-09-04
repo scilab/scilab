@@ -30,9 +30,10 @@ warning(warning_mode);
 disp('Load help');
 
 //add help chapter
-path_addchapter = root_tlbx+"/jar/";
+path_addchapter = root_tlbx + "/jar/";
 if ( fileinfo(path_addchapter) <> [] ) then
-  add_help_chapter('Toolbox Skeleton',path_addchapter,%F);
+  add_help_chapter('Toolbox Skeleton', path_addchapter, %F);
+  clear add_help_chapter;
 end
 // ====================================================================
 clear warning_mode;
