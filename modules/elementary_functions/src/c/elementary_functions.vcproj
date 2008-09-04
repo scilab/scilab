@@ -343,6 +343,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\add_vector.c"
+				>
+			</File>
+			<File
 				RelativePath=".\asin.c"
 				>
 			</File>
@@ -352,6 +356,10 @@
 			</File>
 			<File
 				RelativePath=".\basic_functions.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ceil.c"
 				>
 			</File>
 			<File
@@ -367,6 +375,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\cupro.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dmsum.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dsearch.c"
+				>
+			</File>
+			<File
 				RelativePath=".\exp.c"
 				>
 			</File>
@@ -375,7 +395,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\eye.c"
+				>
+			</File>
+			<File
 				RelativePath=".\finite.c"
+				>
+			</File>
+			<File
+				RelativePath=".\floor.c"
 				>
 			</File>
 			<File
@@ -404,6 +432,18 @@
 			</File>
 			<File
 				RelativePath=".\log.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matrix_generation.c"
+				>
+			</File>
+			<File
+				RelativePath=".\mprod.c"
+				>
+			</File>
+			<File
+				RelativePath=".\pythag.c"
 				>
 			</File>
 			<File
@@ -631,6 +671,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sign.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sin.c"
 				>
 			</File>
@@ -644,6 +688,10 @@
 			</File>
 			<File
 				RelativePath=".\sqrt.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sub_vector.c"
 				>
 			</File>
 			<File
@@ -686,6 +734,10 @@
 			</File>
 			<File
 				RelativePath=".\vfrexp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\vmul.c"
 				>
 			</File>
 			<File

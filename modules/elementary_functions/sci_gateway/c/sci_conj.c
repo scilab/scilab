@@ -111,7 +111,8 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 			//pReturnImgData		= (double*)malloc(iMaxData * sizeof(double));
 
 			memcpy(pReturnRealData, pdblRealData, iMaxData * sizeof(double));
-			C2F(dscal)(&iSize, &dblCoef, pdblImgData, pReturnImgData);
+			memcpy(pReturnImgData, pdblImgData, iMaxData * sizeof(double));
+			C2F(dscal)(&iMaxData, &dblCoef, pReturnImgData, &iOne);
 			//CreateCPolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData, pReturnImgData);
 			LhsVar(1) = Rhs + 1;
 			PutLhsVar();

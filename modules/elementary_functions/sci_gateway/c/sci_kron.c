@@ -207,7 +207,7 @@ void vKronR(	double* _pdblDataIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
 			{
 				C2F(dcopy)(&_iRowsIn2, &_pdblDataIn2[iIndex3], &iOne, &_pdblDataOut[iIndex5], &iOne);
 //				ddscals(&_pdblDataOut[iIndex5], _iRowsIn2, _pdblDataIn1[iIndex4], &_pdblDataOut[iIndex5]);
-				C2F(dscal)(&_iRowsIn2, &_pdblDataIn1[iIndex4], _pdblDataOut[iIndex5], &iOne);
+				C2F(dscal)(&_iRowsIn2, &_pdblDataIn1[iIndex4], &_pdblDataOut[iIndex5], &iOne);
 
 				iIndex5 += _iRowsIn2;
 				iIndex4++;

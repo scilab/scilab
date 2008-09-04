@@ -71,11 +71,6 @@ double dceilsEx(double _dblVal, int _iPrecision);
 double dceils(double _dblVal);
 double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
-void zwmmuls(double* _pdblReal1, double* _pdblImg1, int _iRows1, 
-			 double* _pdblReal2, double* _pdblImg2, int _iRows2, 
-			 double *_pRealOut, double *_pImgOut, int _iRowsOut, int _iColsOut, 
-			 int _iCols1, int _iCols2);
-
 void vCupro(int _iNbElem, double* _piIn, double* _piOut);
 void vCuproi(int _iNbElem, double* _piRealIn, double* _piImgIn, double* _piRealOut, double* _piImgOut);
 void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIncIn2, double* _piOut);
