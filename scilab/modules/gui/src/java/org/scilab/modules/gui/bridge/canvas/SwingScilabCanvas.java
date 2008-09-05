@@ -31,6 +31,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
+import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 import com.sun.opengl.util.Screenshot;
 
@@ -136,7 +137,20 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+		// get the greatest size we can use
+		int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
+		
+		// make suze size is not greater than the max size
+		Dimension finalDim = new Dimension(Math.min(newSize.getWidth(), maxSize[0]),
+										   Math.min(newSize.getHeight(), maxSize[1]));
+		
+		setSize(finalDim);
+		
+		// if the size is too large, throw an exception
+		if (newSize.getWidth() > maxSize[0] || newSize.getHeight() > maxSize[1]) {
+			throw new IllegalArgumentException();
+		}
+		
 	}
 	
 

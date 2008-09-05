@@ -30,7 +30,7 @@ public interface RendererProperties {
 	/** Resize failed because other docked objects are present */
 	int RESIZE_MULTIPLE_DOCKED_TAB = -1;
 	/** Ressources are not enaough to allocate the new  */
-	int RESIZE_MEMORY_ERROR = -2;
+	int RESIZE_SIZE_TOO_LARGE = -2;
 	
 	/**
 	 * get the GL pipeline used by the canvas

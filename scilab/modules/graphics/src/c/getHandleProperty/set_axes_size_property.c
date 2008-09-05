@@ -54,7 +54,7 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   switch(status)
   {
-  case RESIZE_MEMORY_ERROR:
+  case RESIZE_SIZE_TOO_LARGE:
     sciprint(_("Wrong value for property '%s': smaller values expected.\n"), "axes_size") ;
     return SET_PROPERTY_ERROR ;
   case RESIZE_MULTIPLE_DOCKED_TAB:
