@@ -91,9 +91,6 @@ DrawableObject::EDisplayStatus DrawableSubwin::draw( void )
 {
   initializeDrawing() ;
 
-  // fill Frect with real data bounds
-  computeRealDataBounds();
-
   // set up camera
   placeCamera();
 
@@ -209,9 +206,6 @@ void DrawableSubwin::drawSingleObjs(std::list<sciPointObj *>& singleObjs)
 
   initializeDrawing() ;
 
-  // fill Frect with real data bounds
-  computeRealDataBounds();
-
   // set up camera
   placeCamera();
 
@@ -226,7 +220,6 @@ void DrawableSubwin::drawSingleObjs(std::list<sciPointObj *>& singleObjs)
 
   // camera has been set
   // display only the children
-  //getHandleDrawer(pObj)->display();
   printSingleObjs(singleObjs);
 
   // needed
@@ -238,9 +231,6 @@ void DrawableSubwin::drawSingleObjs(std::list<sciPointObj *>& singleObjs)
 void DrawableSubwin::showSingleObjs(std::list<sciPointObj *>& singleObjs)
 {
   initializeDrawing() ;
-
-  // fill Frect with real data bounds
-  computeRealDataBounds();
 
   // set up camera
   m_pCamera->show();
@@ -256,7 +246,6 @@ void DrawableSubwin::showSingleObjs(std::list<sciPointObj *>& singleObjs)
 
   // camera has been set
   // display only the children
-  //getHandleDrawer(pObj)->display();
   printSingleObjs(singleObjs);
 
   // needed
