@@ -988,12 +988,12 @@ function dirs_out = get_xml_path(dirs_in)
 		
 		if basename(dirs_in(k)) == "jar" then
 			
-			help_basepath = part(dirs_in(k),1:length(dirs_in(k))-4) + "/help";
+			help_basepath = part(dirs_in(k),1:length(dirs_in(k))-4) + filesep() + "help";
 			
-			if isdir(help_basepath+"/"+getlanguage()) then
-				dirs_out(k) = help_basepath + "/" + getlanguage();
-			elseif isdir(help_basepath+"/"+getdefaultlanguage()) then
-				dirs_out(k) = help_basepath + "/" + getlanguage();
+			if isdir(help_basepath + filesep() +getlanguage()) then
+				dirs_out(k) = help_basepath + filesep() + getlanguage();
+			elseif isdir(help_basepath+filesep()+getdefaultlanguage()) then
+				dirs_out(k) = help_basepath+filesep()+getlanguage();
 			else
 				dirs_out(k) = "";
 			end
@@ -1011,7 +1011,7 @@ function language_out = guess_lang(dir_in)
 	
 	language_out = getlanguage();
 	
-	[my_start,my_end,my_match] = regexp(dir_in,"/(\/[a-z][a-z]_[A-Z][A-Z])$/");
+	[my_start,my_end,my_match] = regexp(basename(dir_in),"/([a-z][a-z]_[A-Z][A-Z])$/");
 	
 	if my_start <> [] then
 		language_out = part(my_match,2:6);
