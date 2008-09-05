@@ -100,7 +100,7 @@ libscistring_la_includedir=$(pkgincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h includes/InitializeString.h \
 includes/cvstr.h includes/getfastcode.h \
-includes/stricmp.h includes/strsubst.h
-
+includes/stricmp.h includes/strsubst.h \
+includes/code2str.h
 
 include $(top_srcdir)/Makefile.incl.am

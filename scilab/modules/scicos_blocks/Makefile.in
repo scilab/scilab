@@ -598,7 +598,7 @@ am__libsciscicos_blocks_la_include_HEADERS_DIST =  \
 	includes/scoBase.h includes/scoGetProperty.h \
 	includes/scoMemoryScope.h includes/scoMisc.h \
 	includes/scoSetProperty.h includes/scoWindowScope.h \
-	includes/blocks.h
+	includes/blocks.h includes/affich.h
 libsciscicos_blocks_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciscicos_blocks_la_include_HEADERS)
 ETAGS = etags
@@ -1279,7 +1279,8 @@ HELP_CHAPTERFILE = addchapter.sce
 @SCICOS_TRUE@includes/scoMisc.h \
 @SCICOS_TRUE@includes/scoSetProperty.h \
 @SCICOS_TRUE@includes/scoWindowScope.h \
-@SCICOS_TRUE@includes/blocks.h
+@SCICOS_TRUE@includes/blocks.h \
+@SCICOS_TRUE@includes/affich.h
 
 
 #### scicos_blocks : MACROS ####

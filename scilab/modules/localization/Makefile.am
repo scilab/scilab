@@ -65,7 +65,8 @@ libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h \
 includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
-includes/TerminateLocalization.h
+includes/TerminateLocalization.h \
+includes/localetoutf.h
 
 if GUI
 USEANT=1

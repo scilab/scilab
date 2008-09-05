@@ -391,7 +391,9 @@ includes/gw_jvm.h \
 includes/addToClasspath.h \
 includes/addToLibrarypath.h \
 includes/catchIfJavaException.h \
-includes/getScilabObject.h
+includes/getScilabObject.h \
+includes/loadBackGroundClassPath.h \
+includes/loadOnUseClassPath.h 
 
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 @GUI_TRUE@sci_gateway/c/sci_system_setproperty.c \

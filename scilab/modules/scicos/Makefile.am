@@ -212,6 +212,7 @@ demos/lorentz.dem.sce \
 demos/mechanical_systems.dem.gateway.sce \
 demos/modelica_demos.dem.gateway.sce \
 demos/old_demos.dem.gateway.sce \
+demos/old_gain_block.dem.sce \
 demos/OldGainTest.cosf \
 demos/PENDULUM_ANIM.sci \
 demos/pendulum_anim5.cosf \

@@ -648,6 +648,8 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@demos/tk/scroll.dem.sce \
 @TCLTK_TRUE@demos/tk/color.dem.sce \
 @TCLTK_TRUE@demos/tk/rolodex \
+@TCLTK_TRUE@demos/tk/uicontrol.sci \
+@TCLTK_TRUE@ demos/tk/uicontrol1.sce \
 @TCLTK_TRUE@demos/tk/vscale
 
 

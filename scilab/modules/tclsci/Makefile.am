@@ -277,6 +277,8 @@ demos/tk/puzzle.dem.sce \
 demos/tk/scroll.dem.sce \
 demos/tk/color.dem.sce \
 demos/tk/rolodex \
+demos/tk/uicontrol.sci \
+ demos/tk/uicontrol1.sce \
 demos/tk/vscale
 
 include $(top_srcdir)/Makefile.incl.am

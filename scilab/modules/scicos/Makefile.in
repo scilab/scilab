@@ -769,6 +769,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @SCICOS_TRUE@demos/mechanical_systems.dem.gateway.sce \
 @SCICOS_TRUE@demos/modelica_demos.dem.gateway.sce \
 @SCICOS_TRUE@demos/old_demos.dem.gateway.sce \
+@SCICOS_TRUE@demos/old_gain_block.dem.sce \
 @SCICOS_TRUE@demos/OldGainTest.cosf \
 @SCICOS_TRUE@demos/PENDULUM_ANIM.sci \
 @SCICOS_TRUE@demos/pendulum_anim5.cosf \

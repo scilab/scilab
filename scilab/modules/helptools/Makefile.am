@@ -50,6 +50,11 @@ libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 
+#### helptools : include files ####
+libscihelptools_la_includedir=$(pkgincludedir)/helptools
+libscihelptools_la_include_HEADERS = includes/gw_helptools.h
+
+
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \
@@ -96,6 +101,8 @@ doc/addonprefs.png \
 doc/doc.pdf \
 doc/doc.xml
 
+
+#### helptools : doc [html] files ####
 libscihelptools_la_doc_htmldir = $(mydatadir)/doc/html
 libscihelptools_la_doc_html_DATA = \
 doc/html/ch01.html \
@@ -108,9 +115,13 @@ doc/html/ch07.html \
 doc/html/html.css \
 doc/html/index.html
 
+
+#### helptools : doc [images] files ####
 libscihelptools_la_doc_html_imagesdir = $(mydatadir)/doc/html/images
 libscihelptools_la_doc_html_images_DATA = doc/html/images/draft.png
 
+
+#### helptools : doc [images - callouts] files ####
 libscihelptools_la_doc_html_images_calloutsdir = $(mydatadir)/doc/html/images/callouts
 libscihelptools_la_doc_html_images_callouts_DATA = \
 doc/html/images/callouts/1.png \
@@ -129,6 +140,8 @@ doc/html/images/callouts/7.png \
 doc/html/images/callouts/8.png \
 doc/html/images/callouts/9.png
 
+
+#### helptools : doc [html - resources] files ####
 libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
 libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
 
