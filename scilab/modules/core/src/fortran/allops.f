@@ -22,7 +22,6 @@ c
       sadr(l)=(l/2)+1
 
       r=0
-      call setFPUToExtended
       if(pt.gt.0) r=rstk(pt)
 c
       if (ddt .eq. 4) then

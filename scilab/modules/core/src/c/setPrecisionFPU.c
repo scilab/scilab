@@ -37,7 +37,7 @@
  */
 
 /* Set the FPU to 53 bits... */
-void C2F(setfputodouble)(void)
+void setFPUToDouble(void)
 {
 	fpu_control_t _cw;
     _FPU_GETCW(_cw);
@@ -47,7 +47,7 @@ void C2F(setfputodouble)(void)
 
 
 /* Set the FPU to 64 bits... It is the expected behaviour of a 32 bits Linux */
-void C2F(setfputoextended)(void)
+void setFPUToExtended(void)
 {
 	fpu_control_t _cw;
 	//printf("Changing precision\n");

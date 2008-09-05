@@ -11,13 +11,11 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#include "machine.h"
-
 /**
  * Set the precision of the FPU to double precision (PC=10 / 53bit)
  * This function should not be used in Scilab 5.0
  */
-void C2F(setfputodouble)(void);
+void setFPUToDouble(void);
 
 /**
  * Set the precision of the FPU to extended precision (PC=11 / 64bit)

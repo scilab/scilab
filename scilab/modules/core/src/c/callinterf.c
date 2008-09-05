@@ -21,9 +21,6 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-#if defined(linux) && defined(__i386__)
-#include "setPrecisionFPU.h"
-#endif
 
 static  jmp_buf jmp_env;
 
@@ -135,12 +132,6 @@ int C2F(callinterf) (int *k)
 {
   int returned_from_longjump ;
   static int count = 0;
-
-  // Need to set FPU flag to extendede to tackle Java
-  // flag which is double
-#if defined(linux) && defined(__i386__)
-  C2F(setfputoextended)();
-#endif
 
  if ( count == 0)
     {
