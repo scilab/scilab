@@ -61,6 +61,11 @@ bin/sci2html \
 bin/sciviewhelp
 
 
+#### helptools : gateway declaration ####
+libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
+
+
 #### helptools : css files ####
 libscihelptools_la_cssdir = $(mydatadir)/css
 libscihelptools_la_css_DATA = css/html.css \

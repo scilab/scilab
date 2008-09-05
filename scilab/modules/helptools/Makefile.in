@@ -93,6 +93,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_etcdir)" \
 	"$(DESTDIR)$(libscihelptools_la_rootdir)" \
 	"$(DESTDIR)$(libscihelptools_la_schemadir)" \
+	"$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
@@ -145,6 +146,7 @@ libscihelptools_la_doc_html_resourcesDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_schemaDATA_INSTALL = $(INSTALL_DATA)
+libscihelptools_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_convertDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_foDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
@@ -155,6 +157,7 @@ DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_doc_html_resources_DATA) \
 	$(libscihelptools_la_etc_DATA) $(libscihelptools_la_root_DATA) \
 	$(libscihelptools_la_schema_DATA) \
+	$(libscihelptools_la_sci_gateway_DATA) \
 	$(libscihelptools_la_xsl_convert_DATA) \
 	$(libscihelptools_la_xsl_fo_DATA)
 ETAGS = etags
@@ -392,6 +395,10 @@ bin/manrev2sci \
 bin/sci2html \
 bin/sciviewhelp
 
+
+#### helptools : gateway declaration ####
+libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
 
 #### helptools : css files ####
 libscihelptools_la_cssdir = $(mydatadir)/css
@@ -834,6 +841,23 @@ uninstall-libscihelptools_la_schemaDATA:
 	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_schemadir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscihelptools_la_schemadir)/$$f"; \
 	done
+install-libscihelptools_la_sci_gatewayDATA: $(libscihelptools_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihelptools_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)"
+	@list='$(libscihelptools_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscihelptools_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f'"; \
+	  $(libscihelptools_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libscihelptools_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscihelptools_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f"; \
+	done
 install-libscihelptools_la_xsl_convertDATA: $(libscihelptools_la_xsl_convert_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_xsl_convertdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)"
@@ -948,7 +972,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1008,6 +1032,7 @@ install-data-am: install-data-local install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_etcDATA \
 	install-libscihelptools_la_rootDATA \
 	install-libscihelptools_la_schemaDATA \
+	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
 	install-libscihelptools_la_xsl_foDATA
 
@@ -1057,6 +1082,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_etcDATA \
 	uninstall-libscihelptools_la_rootDATA \
 	uninstall-libscihelptools_la_schemaDATA \
+	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1081,6 +1107,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	install-libscihelptools_la_etcDATA \
 	install-libscihelptools_la_rootDATA \
 	install-libscihelptools_la_schemaDATA \
+	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
 	install-libscihelptools_la_xsl_foDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -1098,6 +1125,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_etcDATA \
 	uninstall-libscihelptools_la_rootDATA \
 	uninstall-libscihelptools_la_schemaDATA \
+	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
 	uninstall-pkglibLTLIBRARIES
