@@ -707,8 +707,8 @@ static int ordered_uf_union  (int* uf, int s, int t)
   else
   {
     uf[t] = s;
-	return s; 
   }
+	return s; 
 }
 
 static void 
