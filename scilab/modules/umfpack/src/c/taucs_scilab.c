@@ -461,9 +461,12 @@ supernodal_frontal_create(int* firstcol_in_supernode,
   tmp->sn_vertices = rowind;
   tmp->up_vertices = rowind + sn_size;
 
-  tmp->f1 = (double*)CALLOC((tmp->sn_size)*(tmp->sn_size),sizeof(double));
-  tmp->f2 = (double*)CALLOC((tmp->up_size)*(tmp->sn_size),sizeof(double));
-  tmp->u  = (double*)CALLOC((tmp->up_size)*(tmp->up_size),sizeof(double));
+  if (tmp->sn_size)
+	  tmp->f1 = (double*)CALLOC((tmp->sn_size)*(tmp->sn_size),sizeof(double));
+  if (tmp->sn_size && tmp->up_size)
+	  tmp->f2 = (double*)CALLOC((tmp->up_size)*(tmp->sn_size),sizeof(double));
+  if (tmp->up_size)
+	  tmp->u  = (double*)CALLOC((tmp->up_size)*(tmp->up_size),sizeof(double));
 
   if(tmp->f1 == NULL || tmp->f2==NULL || tmp->u==NULL) 
   {
