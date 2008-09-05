@@ -25,6 +25,9 @@ extern "C"
 
 namespace sciGraphics
 {
+
+#define LABEL_PIXEL_OFFSET 10.0
+
 /*------------------------------------------------------------------------------------------*/
 LabelPositioner::LabelPositioner(DrawableLabel * label)
 {
@@ -95,7 +98,7 @@ void LabelPositioner::getTextDirections(double widthVect[3], double heightVect[3
   vectSubstract3D(corners[1], corners[0], heightVect);
 }
 /*------------------------------------------------------------------------------------------*/
-void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double displacement[3])
+void LabelPositioner::getLabelDisplacement(const double ticksDirection[3], double displacement[3])
 {
   // first get width and height of label
   double textWidth[3];
@@ -122,6 +125,15 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
   rotate2D(ticksDirPix, origin, -textAngle, ticksDirPix);
 
   // compute displacement coordinates within the width, height coordinates
+  //   \  top /
+  //    \    /
+  //     \  /
+  // left \/ right
+  //      /\
+  //     /  \
+  //    /    \
+  //   /bottom\
+ 
   double localDisplacement[3];
   if (ticksDirPix[0] > Abs(ticksDirPix[1]))
   {
@@ -160,6 +172,13 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
   double tempVect[3];
   scalarMult3D(textHeight, localDisplacement[1], tempVect);
   vectAdd3D(displacement, tempVect, displacement);
+
+  // add a little offset of a certain number of pixels pixels
+  // the length in pixels of ticksDirection is norm(ticksDirPix).
+  // So 5 a vector of 5 pixels is 5 / ticksDirPix * ticksDirection
+  double offset[3];
+  scalarMult3D(ticksDirection, LABEL_PIXEL_OFFSET / NORM_3D(ticksDirPix), offset);
+  vectAdd3D(displacement, offset, displacement);
 }
 /*------------------------------------------------------------------------------------------*/
 bool LabelPositioner::getAutoPosition(double pos[3])
@@ -183,10 +202,14 @@ bool LabelPositioner::getAutoPosition(double pos[3])
   normalize3D(ticksDir);
 
   // set it with label to distance axis
-  scalarMult3D(ticksDir, m_dDistanceToAxis * 1.5, ticksDir);
+  //scalarMult3D(ticksDir, m_dDistanceToAxis * 1.5, ticksDir);
 
   double labelDisplacement[3];
   getLabelDisplacement(ticksDir, labelDisplacement);
+
+  // set it with label to distance axis
+  scalarMult3D(ticksDir, m_dDistanceToAxis * 1.3, ticksDir);
+
   vectAdd3D(ticksDir, labelDisplacement, ticksDir);
 
 

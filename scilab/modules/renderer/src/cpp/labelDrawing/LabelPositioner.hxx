@@ -54,8 +54,9 @@ protected:
 
   /**
    * Compute the displacement we need to apply according to the text size
+   * @param ticksDirection normalized ticks direction
    */
-  void getLabelDisplacement(double ticksDirection[3], double displacement[3]);
+  void getLabelDisplacement(const double ticksDirection[3], double displacement[3]);
 
   /**
    * Compute the automatic position of the label
