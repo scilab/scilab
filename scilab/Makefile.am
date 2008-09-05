@@ -20,14 +20,15 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 
-scilab_bin_LDFLAGS 		= 
-scilab_bin_CFLAGS 		= 
+scilab_bin_LDFLAGS 		=
+scilab_bin_CFLAGS 		=
 # --no-undefined --relax
 
 
 # libshell is mandatory here since main_linux.c depends on it.
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-$(top_builddir)/modules/shell/libscishell.la
+$(top_builddir)/modules/shell/libscishell.la \
+$(top_builddir)/modules/core/libscicore.la
 
 if NEED_JAVA
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
@@ -151,7 +152,7 @@ clean-localization:
 
 
 # The user wants to compile the localization files
-# Please note that ALL_LINGUAS is defined in configure.ac 
+# Please note that ALL_LINGUAS is defined in configure.ac
 if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \

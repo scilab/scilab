@@ -55,11 +55,10 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in ABOUT-NLS \
-	COPYING config.guess config.sub config/compile \
-	config/config.guess config/config.rpath config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing depcomp install-sh missing
+	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in COPYING \
+	config/compile config/config.guess config/config.rpath \
+	config/config.sub config/depcomp config/install-sh \
+	config/ltmain.sh config/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -92,7 +91,8 @@ PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = scilab_bin-main_linux.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
-	$(top_builddir)/modules/shell/libscishell.la
+	$(top_builddir)/modules/shell/libscishell.la \
+	$(top_builddir)/modules/core/libscicore.la
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -361,7 +361,8 @@ scilab_bin_CFLAGS =
 
 # libshell is mandatory here since main_linux.c depends on it.
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-$(top_builddir)/modules/shell/libscishell.la
+$(top_builddir)/modules/shell/libscishell.la \
+$(top_builddir)/modules/core/libscicore.la
 
 #	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
 #else
@@ -1114,7 +1115,7 @@ clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
 # The user wants to compile the localization files
-# Please note that ALL_LINGUAS is defined in configure.ac 
+# Please note that ALL_LINGUAS is defined in configure.ac
 @GENERATE_LOCALIZATION_FILES_TRUE@localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@echo "-- Build localization (.mo from .po) --"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales/"; \
