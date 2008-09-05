@@ -116,16 +116,27 @@ public final class RenderingCapabilities {
 			gl.glGetIntegerv(GL.GL_MAX_VIEWPORT_DIMS, maxCanvasSize, 0);
 			
 			// also use GL_MAX_RENDERBUFFER_SIZE_EXT if possible
-			if (gl.isExtensionAvailable("EXT_framebuffer_object")) {
-				int[] maxRenderBufferSize = {0, 0};
+			int[] maxRenderBufferSize = {0, 0};
+			
+			// available only if GL_EXT_framebuffer_object extension is available
+			if (gl.isExtensionAvailable("GL_EXT_framebuffer_object")) {
+				
+				// only one value is retrieved
 				gl.glGetIntegerv(GL.GL_MAX_RENDERBUFFER_SIZE_EXT, maxRenderBufferSize, 0);
 				
-				// update values in consequences
-				maxCanvasSize[0] = Math.min(maxCanvasSize[0], maxRenderBufferSize[0]);
-				maxCanvasSize[1] = Math.min(maxCanvasSize[1], maxRenderBufferSize[1]);
+				maxRenderBufferSize[1] = maxRenderBufferSize[0];
+				
+			} else {
+			  // update with max window size instead
+			  // the view port size is actually often too large
+			  maxRenderBufferSize = getMaxWindowSize();
 			}
+			
+			// update values in consequences
+		    maxCanvasSize[0] = Math.min(maxCanvasSize[0], maxRenderBufferSize[0]);
+			maxCanvasSize[1] = Math.min(maxCanvasSize[1], maxRenderBufferSize[0]);
 		}
-		// otherwise values are alredy retrieved.
+		// otherwise values are already retrieved.
 		
 	}
 }
