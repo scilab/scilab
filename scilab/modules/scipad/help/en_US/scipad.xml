@@ -509,6 +509,11 @@ scipad f1 f2 ...</synopsis>
           versions of Scilab are currently shipped with TkDnD. If not, here
           are some installation instructions:</para>
 
+          <para>First of all, please note that tkdnd1.0 shall be used. An
+          alpha version of tkdnd2 exists but shouldn't be used with Scipad.
+          Details about reasons for this can be read at
+          http://bugzilla.scilab.org/show_bug.cgi?id=2998#c4</para>
+
           <para>Windows platforms: Download the full package (currently
           tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the content
           of lib\tkdnd and paste it into
@@ -553,13 +558,15 @@ scipad f1 f2 ...</synopsis>
         <listitem>
           <para></para>
 
-          <para>Currently Scilab is shipped with Tcl/Tk 8.4. However, Scipad
+          <para>Scipad should run on Tcl/Tk 8.4.6 or higher. Scipad however
           offers a handful of quite handy features that are available as soon
           as Tcl/Tk 8.5 is running in its background. For instance, peer text
           widgets are available from Tk 8.5, and this capability is used in
           Scipad to allow for displaying more than one contiguous area of an
-          opened file at a time in tile mode. Instructions about how to
-          upgrade to Tcl/Tk 8.5 can be found on the Scilab wiki:
+          opened file at a time in tile mode. Scilab 5 is currently shipped
+          with Tcl/Tk 8.5 (at least on Windows). Should you need to upgrade
+          from Tcl/Tk8.4, instructions about how to do this can be found on
+          the Scilab wiki:
           http://wiki.scilab.org/Linking_Scilab_with_Tcl/Tk_8.5 .</para>
 
           <para></para>

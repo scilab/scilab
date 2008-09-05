@@ -9,7 +9,7 @@ Bugs:
  http://wiki.scilab.org/Tcl_Thread
  http://wiki.scilab.org/Scipad_debugger_inner_beauties
 
--other open Scipad bugs reported in the Siclab bugzilla:
+-other open Scipad bugs reported in the Scilab bugzilla:
 http://bugzilla.scilab.org/buglist.cgi?&component=Scipad+Editor&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED
 
 -issues related with non colorizing single quoted text:

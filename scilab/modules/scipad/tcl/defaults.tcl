@@ -36,7 +36,7 @@ set winTitle "SciPad"
 # This flag allows for easy checking whether the workaround for this
 # bug must be geared in or not
 
-if {$tcl_platform(osVersion) == "6.0" && !$Tk85} {
+if {$tcl_platform(platform) == "windows" && $tcl_platform(osVersion) == "6.0" && !$Tk85} {
     # don't use the -parent option in tk_get*File
     set bug2672_shows_up true
 } else {

@@ -51,13 +51,19 @@ wm iconname $pad $winTitle
 
 set iconimage [image create photo $pad.icon1 -format gif \
                     -file [file join $iconsdir scipad-editor.gif]]
-# wm iconphoto is officially implemented in Tk 8.5 only
-# however it is also in Tk 8.4.8 onwards
-# see http://groups.google.com/group/comp.lang.tcl/browse_thread/thread/8c6e1a59ea384573
-# to avoid testing for complicated versions and platforms, I lazily catch this...
-# there is anyway no fallback when wm iconphoto is not supported
-# (ok, there is wm iconbitmap with a .ico file on Windows only, well...)
-catch {wm iconphoto $pad -default $iconimage}
+if {$tcl_platform(platform) == "windows" && $tcl_platform(osVersion) == "5.0"} {
+    # special case for Windows 2000 (see bug 3416) 
+    wm iconbitmap $pad -default $iconimage
+} else {
+    # other platforms or other Windows versions (see bug 3105)
+    # wm iconphoto is officially implemented in Tk 8.5 only
+    # however it is also in Tk 8.4.8 onwards
+    # see http://groups.google.com/group/comp.lang.tcl/browse_thread/thread/8c6e1a59ea384573
+    # to avoid testing for complicated versions and platforms, I lazily catch this...
+    # there is anyway no fallback when wm iconphoto is not supported
+    # (wm iconbitmap perhaps, on Windows only... well, let's wait for bug reports, if any!)
+    catch {wm iconphoto $pad -default $iconimage}
+}
 
 # catch the kill of the windowmanager
 wm protocol $pad WM_DELETE_WINDOW {idleexitapp}
