@@ -82,7 +82,8 @@ src/c/callDynamicGateway.c \
 src/c/gw_dynamic_generic.c \
 src/c/dynamic_gateways.c \
 src/c/readGateway.c \
-src/c/comparehandles.c
+src/c/comparehandles.c \
+src/c/setPrecisionFPU.c
 
 
 if USE_DYNAMIC_STACK

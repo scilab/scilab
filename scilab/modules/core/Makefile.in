@@ -131,13 +131,13 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
 	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
-	src/c/comparehandles.c src/c/scimem64.c src/fortran/algebre.f \
-	src/fortran/clunit.f src/fortran/getlin.f \
-	src/fortran/allowptr.f src/fortran/dldsp.f src/fortran/isany.f \
-	src/fortran/hmcreate.f src/fortran/nextj.f \
-	src/fortran/functionsforbasout.f src/fortran/setgetmode.f \
-	src/fortran/showstack.f src/fortran/misops.f \
-	src/fortran/iseye.f src/fortran/chkvar.f \
+	src/c/comparehandles.c src/c/setPrecisionFPU.c \
+	src/c/scimem64.c src/fortran/algebre.f src/fortran/clunit.f \
+	src/fortran/getlin.f src/fortran/allowptr.f \
+	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
+	src/fortran/nextj.f src/fortran/functionsforbasout.f \
+	src/fortran/setgetmode.f src/fortran/showstack.f \
+	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
 	src/fortran/funnam.f src/fortran/isnum.f src/fortran/cmdstr.f \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
@@ -279,7 +279,8 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-callDynamicGateway.lo \
 	libscicore_la-gw_dynamic_generic.lo \
 	libscicore_la-dynamic_gateways.lo libscicore_la-readGateway.lo \
-	libscicore_la-comparehandles.lo $(am__objects_1)
+	libscicore_la-comparehandles.lo \
+	libscicore_la-setPrecisionFPU.lo $(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
 	isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
@@ -601,7 +602,7 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
 	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
-	src/c/comparehandles.c $(am__append_1)
+	src/c/comparehandles.c src/c/setPrecisionFPU.c $(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
@@ -1110,6 +1111,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-scimem64.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sciquit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-scirun.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-setPrecisionFPU.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-setgetSCIpath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack2.Plo@am__quote@
@@ -1664,6 +1666,13 @@ libscicore_la-comparehandles.lo: src/c/comparehandles.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/comparehandles.c' object='libscicore_la-comparehandles.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-comparehandles.lo `test -f 'src/c/comparehandles.c' || echo '$(srcdir)/'`src/c/comparehandles.c
+
+libscicore_la-setPrecisionFPU.lo: src/c/setPrecisionFPU.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-setPrecisionFPU.lo -MD -MP -MF $(DEPDIR)/libscicore_la-setPrecisionFPU.Tpo -c -o libscicore_la-setPrecisionFPU.lo `test -f 'src/c/setPrecisionFPU.c' || echo '$(srcdir)/'`src/c/setPrecisionFPU.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-setPrecisionFPU.Tpo $(DEPDIR)/libscicore_la-setPrecisionFPU.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setPrecisionFPU.c' object='libscicore_la-setPrecisionFPU.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-setPrecisionFPU.lo `test -f 'src/c/setPrecisionFPU.c' || echo '$(srcdir)/'`src/c/setPrecisionFPU.c
 
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
