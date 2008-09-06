@@ -54,6 +54,11 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   	  write(%io(2),sprintf(_("   Generate a Makefile")));
 	end
   end
+  
+  if ~MSDOS then // Needs to copy the libfoo.c which contains important stuff
+  files = [files,ilib_name+'.c'];
+  end
+
   ilib_gen_Make(ilib_name,table,files,libs,makename,%t,ldflags,cflags,fflags,cc);
   
   // we call make
