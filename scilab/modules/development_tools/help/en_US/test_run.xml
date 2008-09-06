@@ -103,6 +103,9 @@ test_run([],[],'nonreg_test');
 test_run([],[],'unit_test');
 
 test_run([],[],['no_check_ref','mode_nw']);
+
+// Do not check the error output (std err)
+test_run('boolean','bug_2799','no_check_error_output');
    </programlisting>
   </refsection>
   <refsection>
