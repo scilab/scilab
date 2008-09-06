@@ -28,6 +28,7 @@ ilib_build('bug',['ex2c_1','intex2c'],files,[]);
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy bug_2085.c to TMPDIR
+   ilib_gen_Make: Copy libbug.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
 // disable message
@@ -48,7 +49,7 @@ libbug_path = get_file_path('loader.sce');
 list_functions = [ 'ex2c_1';
 ];
  
-addinter(libbug_path+'/libbug.so','intex2c',list_functions);
+addinter(libbug_path+'/libbug.so','libbug',list_functions);
  
 // remove temp. variables on stack
  
