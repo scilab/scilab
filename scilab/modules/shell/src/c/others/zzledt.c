@@ -686,7 +686,14 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 	#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
 
 	wordToFind = preparse_line_for_completion_nw((char*)wk_buf);
-        wordToFindLength = strlen(wordToFind); /* Save length of the word to restore line beginning after completion result display) */
+	if (wordToFind==NULL) 
+	  { /* This case occurs when we copy/paste in some cases */
+	    wordToFindLength=0;
+	  }
+	else
+	  {
+	    wordToFindLength = strlen(wordToFind); /* Save length of the word to restore line beginning after completion result display) */
+	  }
 
 	if (wordToFind)
 	{
