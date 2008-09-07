@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[-99.449205,661.17009,129.23821,567.31946,1037,597,151,92,734,555,555,116,1.4],..
-            Title=["Controller","C:\SVN\scilab\modules\scicos\demos\"],..
+            Title=["Controller","SCI/modules/scicos/demos/"],..
             tol=[ .0001; .000001;1.000E-10;100001;0;0],..
             tf=29,..
             context=["A=[-.3,3,1;0,0,2;0,0,0];B=[1;2;3];C=[1,1,2;0,2,3];D=0;x0=[-2;1;2]";

@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[41.486683,470.59215,161.72219,488.04676,590,450,0,0,590,450,555,116,1.4],..
-            Title=["bounce","C:\SVN\scilab\modules\scicos\demos\"],..
+            Title=["bounce","SCI/modules/scicos/demos/"],..
             tol=[ .00001;1.000E-07;1.000E-10;100001;1;0],..
             tf=1000,..
             context=[" N=5;";
