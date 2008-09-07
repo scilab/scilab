@@ -49,7 +49,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
           return SET_PROPERTY_ERROR;
         }
 
-      GetListRhsVar(stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
+      GetListRhsVar((int)stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
       if (typeNbRow * typeNbCol !=1)
         {
           sciprint(_("Wrong size for '%s' property: A real expected.\n"), "CallbackType");
@@ -60,7 +60,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
           cbType = (int) (*stk(typeStackPointer));
         }
 
-      GetListRhsVar(stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
+      GetListRhsVar((int)stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
       if (strNbCol !=1)
         {
           sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Callback");
