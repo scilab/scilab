@@ -118,20 +118,19 @@ Optimization:
 Genetic Algorithms:
 ===================
  - Genetic algorithms have been added into Scilab. Many thanks to Yann Collette
-	+ codage_binary         - Performs conversion between binary and continuous 
-	                          representation
-	+ codage_identity       - "no-operation" conversion function
-	+ crossover_func_binary - Crossover function for binary code
-	+ crossover_func_default- Crossover function for continuous variable functions
-	+ init_func_default     - Initialize a population 
-	+ mutation_func_binary  - Performs binary mutation 
-	+ mutation_func_default - Continuous variable mutation
+	+ coding_ga_binary 	- Performs conversion between binary and continuous representation
+	+ coding_ga_identity	- "no-operation" conversion function
+	+ crossover_ga_binary 	- Crossover function for binary code
+	+ crossover_ga_default	- Crossover function for continuous variable functions
+	+ init_ga_default     	- Initialize a population 
+	+ mutation_ga_binary  	- Performs binary mutation 
+	+ mutation_ga_default 	- Continuous variable mutation
 	+ optim_ga              - Flexible genetic algorithm 
 	+ optim_nsga            - Multi-objective Niched Sharing Genetic Algorithm
 	+ optim_nsga2           - Multi-objective Niched Sharing Genetic Algorithm version 2
 	+ pareto_filter         - Extracts non dominated solution from a set
-	+ selection_func_elitist- 'Elitist' selection function 
-	+ selection_func_random - Random selection of individuals 
+	+ selection_ga_elitist	- 'Elitist' selection function 
+	+ selection_ga_random 	- Random selection of individuals 
 
 
 Param/parameters module:
