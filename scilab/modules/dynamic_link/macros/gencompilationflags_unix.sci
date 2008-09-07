@@ -20,6 +20,11 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
 	if cflags <> '' then
 		cmd = cmd +" CFLAGS="""+cflags+""""
 	end
+
+	// CXXFLAGS ... use the same as C
+	if cflags <> '' then
+		cmd = cmd +" CXXFLAGS="""+cflags+""""
+	end
 	
 	// LDFLAGS
 	if ldflags <> '' then
