@@ -66,12 +66,19 @@ int C2F(intor)(char *fname,unsigned long l)
 
  /* cross variable size checking */
  mm2=1;
- if (opt==0) {
-   CreateVar(2+nopt,MATRIX_OF_BOOLEAN_DATATYPE,&mm2,&mm2,&l2);}/* named: x */
- else if (opt==1) {
-   CreateVar(2+nopt,MATRIX_OF_BOOLEAN_DATATYPE,&mm2,&n1,&l2);}/* named: x */
- else if (opt==2) {
-   CreateVar(2+nopt,MATRIX_OF_BOOLEAN_DATATYPE,&m1,&mm2,&l2);}/* named: x */
+ l2 = 0;
+ if (opt==0) 
+ {
+   CreateVar(2+nopt,MATRIX_OF_BOOLEAN_DATATYPE,&mm2,&mm2,&l2);
+ }/* named: x */
+ else if (opt==1) 
+ {
+   CreateVar(2+nopt,MATRIX_OF_BOOLEAN_DATATYPE,&mm2,&n1,&l2);
+ }/* named: x */
+ else if (opt==2) 
+ {
+   CreateVar(2+nopt,MATRIX_OF_BOOLEAN_DATATYPE,&m1,&mm2,&l2);
+ }/* named: x */
  vect_or(istk(l1),m1,n1,istk(l2),opt);
  LhsVar(1)= 2+nopt;
  C2F(putlhsvar)();
