@@ -8,7 +8,8 @@
 AUTOMAKE_OPTIONS = 1.9 dist-zip dist-bzip2
 
 SUBDIRS= libs \
-	modules
+	modules \
+	contrib
 
 ACLOCAL_AMFLAGS = -I m4/
 
