@@ -19,3 +19,29 @@ if ~isnan(real(sin(%inf)))    then bugmes();quit;end
 if imag(sin(%inf)) <> 0       then bugmes();quit;end
 if ~isnan(real(sin(-%inf)))   then bugmes();quit;end
 if imag(sin(-%inf)) <> 0      then bugmes();quit;end
+A = rand(100,100);
+B = rand(100,100);
+// sin(-x) = - sin(x)
+if or( sin(-A) + sin(A) > %eps) then bugmes();quit;end
+// sin(%pi/2 - x) = cos(x)
+if or( sin(%pi/2 - A) - cos(A) > %eps) then bugmes();quit;end
+// sin(%pi - x) = sin(x)
+if or( sin(%pi - A) - sin(A) > %eps) then bugmes();quit;end
+// sin(%pi + x) = - sin(x)
+if or( sin(%pi + A) + sin(A) > %eps) then bugmes();quit;end
+// sin(%pi/2 + x) = cos(x)
+if or( sin(%pi/2 + A) - cos(A) > %eps) then bugmes();quit;end
+// cos^2(a) + sin^2(a) = 1
+if or( (cos(A)).^2 + (sin(A)).^2 - 1 > %eps) then bugmes();quit;end
+// cos(a + b) = cos(a) cos(b) - sin(a) sin(b)
+if or( cos(A + B) - cos(A).*cos(B) + sin(A).*sin(B) > 2 * %eps) then bugmes();quit;end
+// cos(a -b) = cos(a) cos(b) + sin(a) sin(b)
+if or( cos(A - B) - cos(A).*cos(B) - sin(A).*sin(B) > 2 * %eps) then bugmes();quit;end
+// sin(a + b) = sin(a) cos(b) + sin(b) cos(a)
+if or( sin(A + B) - sin(A).*cos(B) - sin(B).*cos(A) > 2 * %eps) then bugmes();quit;end
+// sin(a -b) = sin(a) cos(b) - sin(b) cos(a)
+if or( sin(A - B) - sin(A).*cos(B) + sin(B).*cos(A) > 2 * %eps) then bugmes();quit;end
+// cos(2a) = cos^2(a) - sin^2(a) = 2 cos^2(a) - 1 = 1 - 2 sin^2(a)
+if or( cos(2*A) - (cos(A)).^2 + (sin(A)).^2 > 2 * %eps ) then bugmes();quit;end
+if or( cos(2*A) - 2 * (cos(A)).^2 + 1 > 2 * %eps ) then bugmes();quit;end
+if or( cos(2*A) - 1 + 2 * (sin(A)).^2 > 2 * %eps ) then bugmes();quit;end
