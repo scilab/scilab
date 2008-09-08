@@ -251,7 +251,6 @@ options, followed by a set of test data, terminated by an empty line. */
 pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End)
 {
 	int options = 0;
-	int timeit = 0;
 	int size_offsets = 45;
 	int size_offsets_max;
 	int *offsets = NULL;
@@ -288,7 +287,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		char *pp=NULL;
 		char *ppp=NULL;
 		const unsigned char *tables = NULL;
-		unsigned long int true_size, true_study_size = 0;
+		unsigned long int true_size;
 		int do_G = 0;
 		int do_g = 0;
 		int erroroffset, len, delimiter;
@@ -297,55 +296,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		p = INPUT_PAT;
 		while (isspace(*p)) p++;
 		if (*p == 0) continue;
-		/* See if the pattern is to be loaded pre-compiled from a file. */
-		if (*p == '<' && strchr((char *)(p+1), '<') == NULL)
-		{
-			unsigned long int get_options;
-			char sbuf[8];
-			FILE *f;
-			p++;
-			pp = p + (int)strlen((char *)p);
-			while (isspace(pp[-1])) pp--;
-			*pp = 0;
-			f = fopen((char *)p, "rb");
-			if (f == NULL)
-			{
-				continue;
-			}
-			if (fread(sbuf, 1, 8, f) != 8) goto FAIL_READ;
-			true_size = (sbuf[0] << 24) | (sbuf[1] << 16) | (sbuf[2] << 8) | sbuf[3];
-			true_study_size = (sbuf[4] << 24) | (sbuf[5] << 16) | (sbuf[6] << 8) | sbuf[7];
-			re = (real_pcre *)new_malloc(true_size);
-			if (fread(re, 1, true_size, f) != true_size) goto FAIL_READ;
-			
-		
-			/* Need to know if UTF-8 for printing data strings */
-			new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
-			
-			/* Now see if there is any following study data */
-			if (true_study_size != 0)
-			{
-				pcre_study_data *psd;
-
-				extra = (pcre_extra *)new_malloc(sizeof(pcre_extra) + true_study_size);
-				extra->flags = PCRE_EXTRA_STUDY_DATA;
-
-				psd = (pcre_study_data *)(((char *)extra) + sizeof(pcre_extra));
-				extra->study_data = psd;
-
-				if (fread(psd, 1, true_study_size, f) != true_study_size)
-				{
-					FAIL_READ:
-					if (extra != NULL) FREE(extra);
-					if (re != NULL) FREE(re);
-					fclose(f);
-					continue;
-				}
-				
-			}
-			goto SHOW_INFO;
-		}
-
 	/* In-line pattern (the usual case). Get the delimiter and seek the end of
 	the pattern; if is isn't complete, read more. */
 
@@ -451,17 +401,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 
     {
-		if (timeit > 0)
-		{
-			register int i;
-			for (i = 0; i < timeit; i++)
-			{
-				re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
-				/* "re" allocated by pcre_compile (better to use free function associated to pcre)*/
-				if (re != NULL) (*pcre_free)(re);
-			}
-			
-		}
 		re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
 		/* Compilation failed; go back for another re, skipping to blank line
 		if non-interactive. */
@@ -471,11 +410,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			return CAN_NOT_COMPILE_PATTERN;
 		}
 		true_size = ((real_pcre *)re)->size;
-		SHOW_INFO: ;
-
-		/* If the '>' option was present, we write out the regex to a file, and
-		that is all. The first 8 bytes of the file are the regex length and then
-		the study length, in big-endian order. */
 
     }        /* End of non-POSIX compile */
 
@@ -774,7 +708,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 							(*pcre_free)((void *)tables);
 							setlocale(LC_CTYPE, "C");
 						}
-						return 0;
+						return PCRE_FINISHED_OK;
 					}
 				}
 

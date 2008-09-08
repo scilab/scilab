@@ -121,7 +121,7 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string)
 {
 	char *tail = NULL;
-    int w = 0;
+    pcre_error_code w = PCRE_FINISHED_OK;
 
 	int Output_Start = 0;
     int Output_End = 0;
@@ -136,12 +136,12 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 		return strdup(input_string);
 	}
     w = pcre_private(input_string,(char*)string_to_search,&Output_Start,&Output_End);
-	if (w != 0)
+	if (w != PCRE_FINISHED_OK)
 	{
 		return strdup(input_string);
 	}
 
-	if (w==0) 
+	if (w == PCRE_FINISHED_OK) 
 	{
 		len = (int)strlen(replacement_string) + (int)strlen(input_string);
 	}

@@ -168,7 +168,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		if (bStrindex_with_pattern)
 		{
 			int x = 0;
-			int w = 0;
+			pcre_error_code w = PCRE_FINISHED_OK;
 
 			int Output_Start = 0;
 			int Output_End = 0;
@@ -177,7 +177,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 			for (x = 0; x < m2n2; ++x)
 			{
 				w = pcre_private(Strings_Input1[0],Strings_Input2[x],&Output_Start,&Output_End);
-				if ( w == 0)
+				if ( w == PCRE_FINISHED_OK)
 				{
 					values[nbValues++].data = Output_Start+1; /* adding the answer into the outputmatrix */
 					values[nbposition++].position = x+1;        /* The number according to the str2 matrix */
