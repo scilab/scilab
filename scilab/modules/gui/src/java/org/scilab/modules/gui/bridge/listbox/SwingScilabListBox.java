@@ -17,12 +17,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.StringTokenizer;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.listbox.SimpleListBox;
@@ -277,18 +279,30 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 */
 	public void setText(String[] text) {
 		/* Clear previous items */
-		((DefaultListModel) getList().getModel()).clear();
 		
-		/* Special case if the text contains | to separate items */
-		if (text.length == 1) {
-			StringTokenizer strTok = new StringTokenizer(text[0], "|");
-			while (strTok.hasMoreTokens()) {
-				((DefaultListModel) getList().getModel()).addElement(strTok.nextToken());
-			}
-		} else {
-			for (int i = 0; i < text.length; i++) {
-				((DefaultListModel) getList().getModel()).addElement(text[i]);
-			}
+		final String[] textF = text;
+		
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					/* Clear previous items */
+					((DefaultListModel) getList().getModel()).clear();
+					if (textF.length == 1) {
+						StringTokenizer strTok = new StringTokenizer(textF[0], "|");
+						while (strTok.hasMoreTokens()) {
+							((DefaultListModel) getList().getModel()).addElement(strTok.nextToken());
+						}
+					} else {
+						for (int i = 0; i < textF.length; i++) {
+							((DefaultListModel) getList().getModel()).addElement(textF[i]);
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.getCause().printStackTrace();
 		}
 	}
 	
