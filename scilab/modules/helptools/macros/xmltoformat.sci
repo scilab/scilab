@@ -1014,7 +1014,7 @@ function language_out = guess_lang(dir_in)
 	[my_start,my_end,my_match] = regexp(basename(dir_in),"/([a-z][a-z]_[A-Z][A-Z])$/");
 	
 	if my_start <> [] then
-		language_out = part(my_match,2:6);
+		language_out = part(my_match,1:5);
 	end
 	
 endfunction
