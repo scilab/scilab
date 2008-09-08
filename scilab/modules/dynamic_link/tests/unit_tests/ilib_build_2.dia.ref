@@ -6,15 +6,15 @@
 // =============================================================================
 if MSDOS then
   TMP_OS_DIR = getenv('TMP','err');
-  if (TMP_OS_DIR == 'err') then pause,end;
+  if (TMP_OS_DIR == 'err') then bugmes();quit;end;
 else
   TMP_OS_DIR = '/tmp';
-  if ~isdir(TMP_OS_DIR) then pause,end;
+  if ~isdir(TMP_OS_DIR) then bugmes();quit;end;
 end
 TMP_DIR = TMP_OS_DIR+filesep()+'ilib_build_2';
 rmdir(TMP_DIR,'s');
 mkdir(TMP_OS_DIR,'ilib_build_2');
-if ~isdir(TMP_DIR) then pause,end;
+if ~isdir(TMP_DIR) then bugmes();quit;end;
 //Here with give a complete example on adding new primitive to Scilab
 //create the procedure files
 f1=['void c_sum(double *a,double *b, double *sum)'
