@@ -89,7 +89,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		/* Create automatically a docking port associated to the window */
 		sciDockingPort = new DefaultDockingPort();
 
-		EffectsManager.setPreview(new GhostPreview());
+		//EffectsManager.setPreview(new GhostPreview());
 		
 		/* The docking port is the center of the Layout of the Window */
 		super.add(sciDockingPort, java.awt.BorderLayout.CENTER);
