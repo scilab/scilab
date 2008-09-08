@@ -427,15 +427,4 @@ libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 endif
 
-
-
-#### WORKAROUND ####
-# Do not use the global clean-local rule because Scicos help is not managed
-# like the rest of Scilab
-#clean-local:
-#	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-#		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-#        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-#    done;
-
 .NOTPARALLEL: libscisundials.la libsciscicos.la

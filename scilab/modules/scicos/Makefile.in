@@ -2150,15 +2150,6 @@ install-data-local:
 @OCAML_TRUE@@SCICOS_TRUE@$(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
-#### WORKAROUND ####
-# Do not use the global clean-local rule because Scicos help is not managed
-# like the rest of Scilab
-#clean-local:
-#	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-#		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-#        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-#    done;
-
 .NOTPARALLEL: libscisundials.la libsciscicos.la
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
