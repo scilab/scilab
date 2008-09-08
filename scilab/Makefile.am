@@ -26,8 +26,11 @@ scilab_bin_CFLAGS 		=
 
 
 # libshell is mandatory here since main_linux.c depends on it.
+# Localization dep already exists because of the `exportLocaleToSystem' symbol
+# (causing issues on some platform)
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
+$(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/core/libscicore.la
 
 if NEED_JAVA
