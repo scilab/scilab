@@ -56,7 +56,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>ldflags,cflags,fflags, cc</term>
+        <term>ldflags,cflags,fflags,cc</term>
         <listitem>
           <para>character strings to provide options/flags for the loader, the C compiler, the Fortran compiler. cc provides the name of the compiler.</para>
         </listitem>

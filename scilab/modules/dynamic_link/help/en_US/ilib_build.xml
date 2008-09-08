@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags])</synopsis>
+    <synopsis>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,ismex, cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -59,6 +59,18 @@
         <term>ldflags,cflags,fflags</term>
         <listitem>
           <para>character strings to provide options for the loader, the C compiler and the Fortran compiler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ismex</term>
+        <listitem>
+          <para>Internal variable to specify if we are working with mex or not.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cc</term>
+        <listitem>
+          <para>Provide the name of the C compiler.</para>
         </listitem>
       </varlistentry>
     </variablelist>
