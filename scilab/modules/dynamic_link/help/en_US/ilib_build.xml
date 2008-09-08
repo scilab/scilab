@@ -40,7 +40,7 @@
       <varlistentry>
         <term>files</term>
         <listitem>
-          <para>string matrix giving objects files needed for shared library creation</para>
+          <para>string matrix giving source (from Scilab 5.0) or object files needed for shared library creation</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -109,7 +109,7 @@ mputl(i,'intfun1.c')
 //creating the shared library (a gateway, a Makefile and a loader are 
 //generated. 
 
-files=['fun1.o','fun2.o','intfun1.o'];
+files=['fun1.c','fun2.c','intfun1.c'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
 
 // load the shared library 
