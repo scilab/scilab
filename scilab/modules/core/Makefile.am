@@ -373,6 +373,7 @@ includes/getcommandlineargs.h \
 includes/GetenvB.h \
 includes/GetExceptionCode.h \
 includes/getfunctionslist.h \
+includes/getmemory.h \
 includes/getmodules.h \
 includes/getvariablesname.h \
 includes/GetXmlFileEncoding.h \
