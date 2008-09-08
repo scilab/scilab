@@ -5,11 +5,19 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// unit tests for sin() function (element wise cosine inverse)
+// unit tests for cos() function (element wise cosine)
 // =============================================================================
 
-if execstr("cos()"   ,"errcatch") == 0 then pause, end
-if execstr("cos(1,2)","errcatch") == 0 then pause, end
+
+// 1. Interface
+// ============
+
+if execstr("cos()"   ,"errcatch")           == 0 then pause, end
+if execstr("cos(1,2)","errcatch")           == 0 then pause, end
+if execstr("cos(''my string'')","errcatch") == 0 then pause, end
+
+// 2. Singular Values
+// ==================
 
 rt2 = sqrt(2);
 rt3 = sqrt(3);
@@ -19,14 +27,27 @@ v = [1, rt3/2 , rt2/2 , 1/2   , 0     , - 1/2   , - rt2/2   , -rt3/2   , -1  ];
 
 if or(abs(cos(x)-v) > sqrt(%eps)) then pause, end
 
+
+// 3. Not A Number
+// ===============
+
 if ~isnan(cos(%nan)) then pause, end
 if ~isnan(cos(-%nan)) then pause, end
+
+
+// 4. Limit values
+// ===============
 
 if ~isnan(real(cos(%inf)))    then pause, end
 if imag(cos(%inf)) <> 0       then pause, end
 
 if ~isnan(real(cos(-%inf)))   then pause, end
 if imag(cos(-%inf)) <> 0      then pause, end
+
+
+
+// 5. Properties
+// =============
 
 A = rand(100,100);
 B = rand(100,100);

@@ -8,8 +8,15 @@
 // unit tests for acos() function (element wise cosine inverse)
 // =============================================================================
 
+// 1. Interface
+// ============
+
 if execstr("acos()"   ,"errcatch") == 0 then pause, end
 if execstr("acos(1,2)","errcatch") == 0 then pause, end
+
+
+// 2. Singular Values
+// ==================
 
 rt2 = sqrt (2);
 rt3 = sqrt (3);
@@ -18,14 +25,26 @@ x   = [1, rt3/2 , rt2/2 , 1/2  , 0     , -1/2    , -rt2/2  , -rt3/2  , -1];
 
 if or(abs (acos (x) - v) > sqrt (%eps)) then pause, end
 
+
+// 3. Not A Number
+// ===============
+
 if ~isnan(acos(%nan)) then pause, end
 if ~isnan(acos(-%nan)) then pause, end
+
+
+// 4. Limit values
+// ===============
 
 if real(acos(%inf)) <> 0    then pause, end
 if imag(acos(%inf)) <> %inf then pause, end
 
 if real(acos(-%inf)) <> %pi  then pause, end
 if imag(acos(-%inf)) <> -%inf then pause, end
+
+
+// 5. Properties
+// =============
 
 // acos(-x) = asin(x) + pi/2
 A = rand(1000,1000);

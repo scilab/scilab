@@ -8,8 +8,16 @@
 // unit tests for asin() function (element wise coasine inverse)
 // =============================================================================
 
+
+// 1. Interface
+// ============
+
 if execstr("asin()"   ,"errcatch") == 0 then pause, end
 if execstr("asin(1,2)","errcatch") == 0 then pause, end
+
+
+// 2. Singular Values
+// ==================
 
 rt2 = sqrt(2);
 rt3 = sqrt(3);
@@ -18,8 +26,19 @@ x   = [0 , 1/2   , rt2/2 , rt3/2 , 1        , rt3/2 , rt2/2 , 1/2   , 0 ];
 
 if or(abs(asin(x)-v) > sqrt (%eps)) then pause, end
 
+
+// 3. Not A Number
+// ===============
+
 if ~isnan(asin(%nan))        then pause, end
 if ~isnan(asin(-%nan))       then pause, end
+
+
+// 4. Limit values
+// ===============
+
+// 5. Properties
+// =============
 
 A = rand(100,100);
 

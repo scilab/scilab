@@ -5,22 +5,43 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// unit tests for sinh() function (element wise cosine inverse)
+// unit tests for cosh() function (element wise cosine inverse)
 // =============================================================================
 
-if execstr("cosh()"   ,"errcatch") == 0 then pause, end
-if execstr("cosh(1,2)","errcatch") == 0 then pause, end
+
+// 1. Interface
+// ============
+
+if execstr("cosh()"   ,"errcatch")           == 0 then pause, end
+if execstr("cosh(1,2)","errcatch")           == 0 then pause, end
+if execstr("cosh(''my string'')","errcatch") == 0 then pause, end
+
+
+// 2. Singular Values
+// ==================
 
 x = [0, %pi/2*%i , %pi*%i , 3*%pi/2*%i ];
 v = [1, 0        , -1     , 0          ];
 
 if or(abs(cosh(x)-v) > sqrt (%eps)) then pause, end
 
+
+// 3. Not A Number
+// ===============
+
 if ~isnan(cosh(%nan))   then pause, end
 if ~isnan(cosh(-%nan))  then pause, end
 
+
+// 4. Limit values
+// ===============
+
 if cosh(%inf)  <> %inf  then pause, end
 if cosh(-%inf) <> %inf  then pause, end
+
+
+// 5. Properties
+// =============
 
 A = rand(100,100);
 
