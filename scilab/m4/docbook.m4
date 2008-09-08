@@ -55,6 +55,12 @@ AC_ARG_WITH(docbook,
 	AC_SUBST(XMLGRAPHICS_COMMONS)
 	
 
+	# Avalon Framework (PDF)
+	AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
+	AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
+	AC_SUBST(AVALON_FRAMEWORK)
+	
+
 AC_SUBST(DOCBOOK_ROOT)
 
 ])
