@@ -13,8 +13,6 @@ cd [file dirname [info script]]
 variable DEMODIR [pwd]
 cd $pwd
 
-#debug info.
-#set env(SCIPATH) "/home/leray/scilab"
 
 variable DEMODIR
 
@@ -40,9 +38,9 @@ global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
 set ged_listofpref "MAIN_WINDOW_POSITION TICK_WINDOW_POSITION"
 set MAIN_WINDOW_POSITION "+0+0"
 set TICK_WINDOW_POSITION "+0+0"
-set envSCIHOME $env(SCIPATH)
-set preffilename $env(SCIPATH)/.GedPreferences.tcl
-#puts "preffilename vaut: -> $preffilename"
+
+set envSCIHOME $SCIHOME
+set preffilename $envSCIHOME/.GedPreferences.tcl
 catch {source $preffilename}
 
 

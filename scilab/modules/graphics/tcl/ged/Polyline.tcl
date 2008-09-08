@@ -13,20 +13,6 @@ cd [file dirname [info script]]
 variable DEMODIR [pwd]
 cd $pwd
 
-# #debug info.
-# set env(SCIPATH) "/home/leray/scilab"
-
-# #debug
-# set ged_handle_list_size 2
-# set curgedindex 1
-
-# set SELOBJECT(1) "Figure"
-# set SELOBJECT(2) "Axes"
-
-# set OBJECTSARRAY(1) "dzdz"
-# set OBJECTSARRAY(2) "dzd"
-# set curgedobject "dzd"
-
 
 
 variable DEMODIR
@@ -53,9 +39,9 @@ global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION msdos
 set ged_listofpref "MAIN_WINDOW_POSITION TICK_WINDOW_POSITION"
 set MAIN_WINDOW_POSITION "+0+0"
 set TICK_WINDOW_POSITION "+0+0"
-set envSCIHOME $env(SCIPATH)
-set preffilename $env(SCIPATH)/.GedPreferences.tcl
-#puts "preffilename vaut: -> $preffilename"
+
+set envSCIHOME $SCIHOME
+set preffilename $envSCIHOME/.GedPreferences.tcl
 catch {source $preffilename}
 
 
