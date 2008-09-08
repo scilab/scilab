@@ -26,7 +26,8 @@ extern "C"
 namespace sciGraphics
 {
 
-#define LABEL_PIXEL_OFFSET 10.0
+#define LABEL_PIXEL_OFFSET 15.0
+#define LABEL_RELATIVE_DISTANCE_TO_AXIS 1.2
 
 /*------------------------------------------------------------------------------------------*/
 LabelPositioner::LabelPositioner(DrawableLabel * label)
@@ -176,9 +177,12 @@ void LabelPositioner::getLabelDisplacement(const double ticksDirection[3], doubl
   // add a little offset of a certain number of pixels pixels
   // the length in pixels of ticksDirection is norm(ticksDirPix).
   // So 5 a vector of 5 pixels is 5 / ticksDirPix * ticksDirection
-  double offset[3];
-  scalarMult3D(ticksDirection, LABEL_PIXEL_OFFSET / NORM_3D(ticksDirPix), offset);
-  vectAdd3D(displacement, offset, displacement);
+  if (m_dDistanceToAxis == 0)
+  {
+    double offset[3];
+    scalarMult3D(ticksDirection, LABEL_PIXEL_OFFSET / NORM_3D(ticksDirPix), offset);
+    vectAdd3D(displacement, offset, displacement);
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 bool LabelPositioner::getAutoPosition(double pos[3])
@@ -208,7 +212,7 @@ bool LabelPositioner::getAutoPosition(double pos[3])
   getLabelDisplacement(ticksDir, labelDisplacement);
 
   // set it with label to distance axis
-  scalarMult3D(ticksDir, m_dDistanceToAxis * 1.3, ticksDir);
+  scalarMult3D(ticksDir, m_dDistanceToAxis * LABEL_RELATIVE_DISTANCE_TO_AXIS, ticksDir);
 
   vectAdd3D(ticksDir, labelDisplacement, ticksDir);
 

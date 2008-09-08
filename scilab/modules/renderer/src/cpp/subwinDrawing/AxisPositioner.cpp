@@ -23,7 +23,7 @@ extern "C"
 namespace sciGraphics
 {
 
-#define TICKS_PIXEL_LENGTH 0.02
+#define TICKS_PIXEL_LENGTH 0.015
 
 /*------------------------------------------------------------------------------------------*/
 void AxisPositioner::setTicksDirectionLength(double ticksDir[3], sciPointObj * pSubwin)
@@ -46,8 +46,9 @@ void AxisPositioner::setTicksDirectionLength(double ticksDir[3], sciPointObj * p
   camera->getViewingArea(&xPos, &yPos, &width, &height);
 		
   // compute sizes wich would apply if axes where along X or Y axis
-  double xSize = width * TICKS_PIXEL_LENGTH;
-  double ySize = height * TICKS_PIXEL_LENGTH;
+  // and use at least 2 pixels
+  double xSize = Max(width * TICKS_PIXEL_LENGTH, 2);
+  double ySize = Max(height * TICKS_PIXEL_LENGTH, 2);
 		
   // compute angle between ticks direction and x axis in pixel coordinates, pixDir[0]
   double angle = acos(Abs(pixDir[0]));
