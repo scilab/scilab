@@ -13,3 +13,18 @@ stacksize(a+1000);
 y =stacksize();
 
 if y(1)<>a+1000 then pause,end
+
+stacksize('max');
+y1 =stacksize();
+stacksize('max');
+y2 =stacksize();
+
+if y1<>y2  then pause,end
+
+stacksize('min');
+y1 =stacksize();
+stacksize('min');
+y2 =stacksize();
+
+if y1<>y2  then pause,end
+

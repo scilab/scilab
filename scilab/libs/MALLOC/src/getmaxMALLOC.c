@@ -20,6 +20,8 @@
 #ifdef _MSC_VER
 IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void)
 {
+#define SECURITY_FREE_MEMORY 240000
+
 #if _WIN64
 	/* we need to limite values on 32 bits for Scilab :( */
 	return MAXLONG32;
@@ -50,6 +52,9 @@ IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void)
 			p = (void*) (((char*)p) + systemInfo.dwPageSize);
 		}
 	}
+	/* We remove a security size to be sure that MALLOC doesn't fails */
+	if (largestSize > SECURITY_FREE_MEMORY) largestSize = largestSize - SECURITY_FREE_MEMORY;
+
 	return largestSize;
 #endif
 }
