@@ -51,6 +51,6 @@ Source: src\fortran\loader.sce; DestDir: {app}\src\fortran
 Source: tests\*.*; DestDir: {app}\tests; Flags: recursesubdirs
 ;Source: includes\*.h; DestDir: {app}\includes; Flags: recursesubdirs
 ;Source: locales\*.*; DestDir: {app}\locales; Flags: recursesubdirs
-;Source: demos\*.*; DestDir: {app}\locales; Flags: recursesubdirs
+Source: demos\*.*; DestDir: {app}\locales; Flags: recursesubdirs
 ;
 ;##############################################################################################################

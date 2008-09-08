@@ -36,6 +36,11 @@ if ( fileinfo(path_addchapter) <> [] ) then
   clear add_help_chapter;
 end
 // ====================================================================
+// add demos
+pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce",%f,%t);
+add_demo("Toolbox skeleton",pathdemos);
+clear pathdemos ;
+// ====================================================================
 clear warning_mode;
 clear path_addchapter;
 clear root_tlbx;
