@@ -24,3 +24,11 @@ if imag(sinh(%inf)) <> 0     then pause, end
 
 if real(sinh(-%inf)) <> - %inf then pause, end
 if imag(sinh(-%inf)) <> 0      then pause, end
+
+A = rand(100,100);
+
+// sinh(i * x) = i * sin(x)
+if or( abs(sinh(%i*A) - (%i * sin(A))) > 2*%eps) then pause, end
+
+// sinh^2(x/2) = (cosh(x)-1)/2
+if or( abs( (sinh(A/2).^2) - ((cosh(A)-1)/2) ) > 2*%eps) then pause, end
