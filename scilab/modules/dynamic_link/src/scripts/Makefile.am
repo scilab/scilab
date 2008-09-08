@@ -9,6 +9,8 @@ AM_CXXFLAGS=@CXXFLAGS@
 AM_FFLAGS=@FFLAGS@
 AM_LDFLAGS=@LDFLAGS@
 
+ACLOCAL_AMFLAGS = -I m4/
+
 # Definitions are already in machine.h, avoid double definition errors
 DEFS=
 
@@ -20,6 +22,7 @@ pkglib_LTLIBRARIES = libsciexternal.la
 # Thanks to this, automake will generate compilation mydatadirs for 
 # these 3 languages.
 # Don't change name or order 
-libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx
+libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp
+
 
 
