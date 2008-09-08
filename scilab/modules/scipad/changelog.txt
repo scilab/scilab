@@ -1,3 +1,8 @@
+Francois VOGEL, 08/09/08
+ * Fixed bug 3416 (black Scipad icon on Windows 2000) again since the
+   candidate fix in 6.156 didn't work
+ * version --> 6.157
+
 Francois VOGEL, 05/09/08
  * Fixed bug 3416 (black Scipad icon on Windows 2000)
  * Updated help scipad about tkdnd1.0 only, and Tcl/Tk version shipped

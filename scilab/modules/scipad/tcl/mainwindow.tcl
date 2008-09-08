@@ -49,11 +49,16 @@ eval destroy [winfo children $pad]
 wm withdraw $pad ; # $pad will be deiconified after Scipad's startup is completely over
 wm iconname $pad $winTitle
 
-set iconimage [image create photo $pad.icon1 -format gif \
-                    -file [file join $iconsdir scipad-editor.gif]]
+# give Scipad an icon in the task bar and in its toplevel
 if {$tcl_platform(platform) == "windows" && $tcl_platform(osVersion) == "5.0"} {
-    # special case for Windows 2000 (see bug 3416) 
-    wm iconbitmap $pad -default $iconimage
+    # special case for Windows 2000: just do nothing
+    # we cannot rely on catch {wm iconphoto ...} because this produces
+    # a black square icon on Win 2000 (bug 3416)
+    # <TODO> the proper fix would be to use
+    #          wm iconbitmap $pad -default $iconicofile
+    #        but the question is how to create the ico file from the existing
+    #        icon in GIF format
+    # doing nothing here means Scipad will receive the Tk icon, which is fine
 } else {
     # other platforms or other Windows versions (see bug 3105)
     # wm iconphoto is officially implemented in Tk 8.5 only
@@ -61,7 +66,9 @@ if {$tcl_platform(platform) == "windows" && $tcl_platform(osVersion) == "5.0"} {
     # see http://groups.google.com/group/comp.lang.tcl/browse_thread/thread/8c6e1a59ea384573
     # to avoid testing for complicated versions and platforms, I lazily catch this...
     # there is anyway no fallback when wm iconphoto is not supported
-    # (wm iconbitmap perhaps, on Windows only... well, let's wait for bug reports, if any!)
+    # (wm iconbitmap with an ico file, on Windows only... well, let's wait for bug reports, if any!)
+    set iconimage [image create photo $pad.icon1 -format gif \
+                        -file [file join $iconsdir scipad-editor.gif]]
     catch {wm iconphoto $pad -default $iconimage}
 }
 
