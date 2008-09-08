@@ -545,8 +545,8 @@ Known incompatibilty
   - the xgetmouse flag option has been removed 
 
   - Due to license restrictions from the Universidad de Cantabria, the quapro 
-	and linpro functions are no more available in the Scilab distribution, but
-	as an external toolbox.
+	and linpro functions are no more available in the Scilab distribution, 
+	but as an external toolbox.
 
                      Main Changes Scilab 3.0 -> 4.0
                      ==============================
