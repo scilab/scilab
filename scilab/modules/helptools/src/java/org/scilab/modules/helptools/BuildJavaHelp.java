@@ -133,17 +133,18 @@ public final class BuildJavaHelp {
      * @return The result of the process
 	 */
 	public static boolean buildJavaHelp(String outputDirectory, String language) {
-		
+        
 		String outputJavaHelp = new String(outputDirectory + JAVAHELPSEARCH_DIR);
-		try {
+        
+        try {
 			/* Purge the directory before launching the index */
 			/* because the JavaHelp Indexer failed when launched twice on the same directory */
 			Helpers.deleteDirectory(outputJavaHelp); 
-			String[] args = new String[] {
-				"-db",
-				outputJavaHelp, /* Where the Java Help Index should be created */
-				outputDirectory
-			};
+			File directory = new File(outputJavaHelp);
+			directory.mkdirs();
+
+			String[] args = new String[] {"."};
+
 			indexer.compile(args);
 		} catch (Exception e) {
 			System.err.println("buildDoc: Error building search index: " + e.getLocalizedMessage());

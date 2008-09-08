@@ -376,7 +376,18 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	if all_scilab_help then
 
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take up to 10 minutes)\n"));
+		
+		// Create output directory if does not exist
+		outDir = SCI+"/modules/helptools/build/doc/scilab_" + getlanguage() + "_help/";
+		if  ~isdir(outDir)
+		  mkdir(outDir);
+		end
+		
+		// Change Scilab current directory so that Java Indexer works
+		oldDir = getcwd();
+		chdir(outDir);
 		buildDoc(output_format);
+		chdir(oldDir);
 		
 		displaydone = 0;
 		
@@ -389,8 +400,16 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				if output_format=="javaHelp" & ~isdir(dirs_c(k)+"/../../jar/")
 					mkdir(dirs_c(k)+"/../../jar/")
 				end
+				outDir = dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help/";
+				if  ~isdir(outDir)
+				  mkdir(outDir);
+				end
 				
+				// Change Scilab current directory so that Java Indexer works
+				oldDir = getcwd();
+				chdir(outDir);
 				buildDoc(output_format,dirs_c(k)+"/master_help.xml",directory_language_c(k),dirs_c(k))
+				chdir(oldDir);
 				
 			end
 		end
@@ -414,8 +433,16 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				if output_format=="javaHelp" & ~isdir(dirs(k)+"/../../jar/")
 					mkdir(dirs(k)+"/../../jar/")
 				end
-				
+				outDir = dirs(k) + "/scilab_" + directory_language(k) + "_help/";
+				if  ~isdir(outDir)
+				  mkdir(outDir);
+				end
+
+				// Change Scilab current directory so that Java Indexer works
+				oldDir = getcwd();
+				chdir(dirs(k) + "/scilab_" + directory_language(k) + "_help/");
 				buildDoc(output_format,dirs(k)+"/master_help.xml",directory_language(k),dirs(k))
+				chdir(oldDir);
 				
 			end
 		end
