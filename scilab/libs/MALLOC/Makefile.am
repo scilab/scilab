@@ -16,7 +16,7 @@ includes/MALLOC.h \
 includes/getmaxMALLOC.h \
 includes/ExportImport.h
 
-libscimalloc_la_CFLAGS= 
+libscimalloc_la_CFLAGS=-I$(top_srcdir)/modules/core/src/c
 
 pkglib_LTLIBRARIES = libscimalloc.la
 

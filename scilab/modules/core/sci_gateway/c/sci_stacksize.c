@@ -155,7 +155,7 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 					C2F(getstackinfo)(&memstacktotal,&memstackused);
 					C2F(getgstackinfo)(&memgstacktotal,&memgstackused);
 
-					newmaxstack = maxmemfree-memstackused-memgstackused;
+					newmaxstack = maxmemfree;
 
 					if ( newmaxstack > (integer)memmaxavailablebyscilab )
 					{
