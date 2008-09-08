@@ -430,7 +430,7 @@ GNU/Linux - Unix:
  - New configure (based on autoconf)
  - New compilation process (based on automake and libtool)
  - Parallel build (make -j)
- - LSB/FHS compliant
+ - FHS compliant
  - Switched to dynamic libraries
  - Advanced numerical libraries can be used (Atlas, MKL...)
  - Use librairies when available on the system
