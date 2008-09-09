@@ -126,10 +126,15 @@ public final class RenderingCapabilities {
 				
 				maxRenderBufferSize[1] = maxRenderBufferSize[0];
 				
-			} else {
-			  // update with max window size instead
-			  // the view port size is actually often too large
-			  maxRenderBufferSize = getMaxWindowSize();
+			}
+			
+			if (maxRenderBufferSize[0] == 0 || maxRenderBufferSize[1] == 0) {
+				// frame buffer extension might not be available or
+				// getting GL_MAX_RENDERBUFFER_SIZE_EXT might fail (this happens
+				// with some MESA drivers revisions).
+				// In this case update with max window size instead
+				// the view port size is actually often too large
+				maxRenderBufferSize = getMaxWindowSize();
 			}
 			
 			// update values in consequences
