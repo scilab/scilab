@@ -34,13 +34,13 @@ Lup = umf_lufact(A);
 b = rand(size(A,1),1); // a random rhs
 // use umf_lusolve for solving Ax=b
 x = umf_lusolve(Lup,b);
-plop1=norm(A*x - b)
+firstNorm=norm(A*x - b)
 
 // now the same thing with iterative refiment
 x = umf_lusolve(Lup,b,"Ax=b",A);
-plop2=norm(A*x - b)
+secondNorm=norm(A*x - b)
 
-if plop1 <> plop2 then pause, end
+if firstNorm <> secondNorm then pause, end
 
 // don't forget to clear memory
 umf_ludel(Lup)
