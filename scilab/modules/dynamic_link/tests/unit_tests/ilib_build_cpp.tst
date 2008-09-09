@@ -31,7 +31,11 @@ i=['#include <string>'
 '  std::string search (inputString2);'
 '  m3=1;n3=1;'
 '  position = new double[1];'
-'  position[0] = myMessage.find(search); /* The actual operation */'
+'  if (myMessage.find(search) != std::string::npos) {'
+'    position[0] = myMessage.find(search); /* The actual operation */'
+'  } else {'
+'    position[0] = -1; /* Substring not found */'
+'  }'
 '  CreateVarFromPtr(Rhs+1,""d"",&m3,&n3,&position); /* Create the output argument */'
 '  LhsVar(1) = Rhs+1;'
 '  delete[] position;'
@@ -54,3 +58,4 @@ exec loader.sce
 // Small test to see if the function is actually working.
 if cppfind("my very long string","long") <> 8 pause, end
 if cppfind("my very long string","very") <> 3 pause, end
+if cppfind("my very long string","short") <> -1 pause, end
