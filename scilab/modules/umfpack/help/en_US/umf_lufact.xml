@@ -49,7 +49,7 @@
     factorisation have been computed, a linear system must be solved
     with umf_lusolve (in general x = umf_lusolve(LU_ptr, b) but others
     options are possible, see <link linkend='umf_lusolve'>umf_lusolve</link>.
-    To free the memory used by the LU factors, use umf_ludel(LU_ptr) (<link linkend='umf_ludel'>umf_ludel</link>);
+    <emphasis role="bold">To free the memory used by the LU factors, use umf_ludel(LU_ptr) (<link linkend='umf_ludel'>umf_ludel</link>);</emphasis>
     to retrieve the LU factors at the scilab level (for example to display their sparse 
     patterns), use <link linkend='umf_luget'>umf_luget</link>; to get some informations (number of
     non zeros in L and U), use <link linkend='umf_luinfo'>umf_luinfo</link>.

@@ -96,11 +96,11 @@
     numerous sparse matrices (in the Harwell-Boeing format) at the University
     of Florida Sparse Matrix Collection </para>
 
-    <para>web site : <link
-    linkend="http://www.cise.ufl.edu/research/sparse/matrices/">http://www.cise.ufl.edu/research/sparse/matrices/</link></para>
+    <para>web site : <ulink
+    url="http://www.cise.ufl.edu/research/sparse/matrices/">http://www.cise.ufl.edu/research/sparse/matrices/</ulink></para>
 
-    <para>maintained by Tim Davis (<link
-    linkend="http://www.cise.ufl.edu/~davis/">http://www.cise.ufl.edu/~davis/</link>)</para>
+    <para>maintained by Tim Davis (<ulink
+    url="http://www.cise.ufl.edu/~davis/">http://www.cise.ufl.edu/~davis/</ulink>)</para>
   </refsection>
 
   <refsection>
