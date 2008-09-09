@@ -33,7 +33,7 @@ for file in $SOURCES_TEMP; do
 done
 
 # Replace fake filenames to the one we want 
-sed -e "s|libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp|lib"$LIB"_la_SOURCES = $SOURCES|g" Makefile.orig > Makefile
+sed -e "s|libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp foo5.f90|lib"$LIB"_la_SOURCES = $SOURCES|g" Makefile.orig > Makefile
 
 ## Replace sources by .lo file (manage also when it is at the end of the line
 SOURCES=`echo $SOURCES|sed -e 's|\.c |\.lo |g' -e 's|\.c$|\.lo|g'`
@@ -45,7 +45,7 @@ SOURCES=`echo $SOURCES|sed -e 's|\.cpp |\.lo |g' -e 's|\.cpp$|\.lo|g'`
 # Makefile.swap is used because there is no inline option with sed under Solaris 
 
 ### Changes objects in the source code
-sed -e "s|am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo foo4.lo|am_lib"$LIB"_la_OBJECTS = $SOURCES|g" Makefile > Makefile.swap
+sed -e "s|am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo foo4.lo foo5.lo|am_lib"$LIB"_la_OBJECTS = $SOURCES|g" Makefile > Makefile.swap
 mv  Makefile.swap Makefile
 
 ### Changes objects in the source code

@@ -22,7 +22,7 @@ pkglib_LTLIBRARIES = libsciexternal.la
 # Thanks to this, automake will generate compilation mydatadirs for 
 # these 3 languages.
 # Don't change name or order 
-libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp
+libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp foo5.f90
 
 
 

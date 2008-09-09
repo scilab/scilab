@@ -60,7 +60,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciexternal_la_LIBADD =
-am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo foo4.lo
+am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo foo4.lo foo5.lo
 libsciexternal_la_OBJECTS = $(am_libsciexternal_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -90,6 +90,13 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+FCCOMPILE = $(FC) $(AM_FCFLAGS) $(FCFLAGS)
+LTFCCOMPILE = $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(FC) $(AM_FCFLAGS) $(FCFLAGS)
+FCLD = $(FC)
+FCLINK = $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(FCLD) $(AM_FCFLAGS) $(FCFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o \
+	$@
 SOURCES = $(libsciexternal_la_SOURCES)
 DIST_SOURCES = $(libsciexternal_la_SOURCES)
 ETAGS = etags
@@ -134,6 +141,8 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 F77 = @F77@
+FC = @FC@
+FCFLAGS = @FCFLAGS@
 FFLAGS = @FFLAGS@
 GREP = @GREP@
 INSTALL = @INSTALL@
@@ -172,6 +181,7 @@ abs_top_srcdir = @abs_top_srcdir@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_F77 = @ac_ct_F77@
+ac_ct_FC = @ac_ct_FC@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -232,11 +242,11 @@ pkglib_LTLIBRARIES = libsciexternal.la
 # Thanks to this, automake will generate compilation mydatadirs for 
 # these 3 languages.
 # Don't change name or order 
-libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp
+libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp foo5.f90
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .cpp .cxx .f .lo .o .obj
+.SUFFIXES: .c .cpp .cxx .f .f90 .lo .o .obj
 am--refresh:
 	@:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -381,6 +391,15 @@ distclean-compile:
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
+
+.f90.o:
+	$(FCCOMPILE) -c -o $@ $<
+
+.f90.obj:
+	$(FCCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.f90.lo:
+	$(LTFCCOMPILE) -c -o $@ $<
 
 mostlyclean-libtool:
 	-rm -f *.lo

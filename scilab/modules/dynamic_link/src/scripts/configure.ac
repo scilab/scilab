@@ -22,7 +22,7 @@ AC_PROG_CC
 AC_PROG_CXX
 
 # Detect Fortran Compiler (77 and 90)
-AC_PROG_F77
+AC_PROG_FC
 
 # Initialise libtool
 AC_PROG_LIBTOOL
