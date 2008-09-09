@@ -27,7 +27,11 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  */
 public abstract class FacetDrawerGL {
 
+	/** Number of edges in a line */
+	protected static final int LINE_NB_EDGE = 2;
+	/** Number of edges in a triangle */
 	protected static final int TRIANGLE_NB_EDGE = 3;
+	/** Number of edges in a quad */
 	protected static final int QUAD_NB_EDGE = 4;
 	
 	private int hiddenColor;

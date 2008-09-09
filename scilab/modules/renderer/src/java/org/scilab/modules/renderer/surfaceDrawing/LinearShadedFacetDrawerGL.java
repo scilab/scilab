@@ -108,6 +108,7 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 			return;
 		}
 	
+		// for now draw only polygons with 3 or 4 edges
 		if (vertices.length == TRIANGLE_NB_EDGE) {
 			// only a triangle
 			sfd.paintPolygon(vertices, colors, gl, getColorMap());	
@@ -117,7 +118,7 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 				drawBackTriangle(gl, vertices, getHiddenColorIndex());
 			}
 			
-		} else {
+		} else if (vertices.length == QUAD_NB_EDGE) {
 			
 			// its a quad, decompose it into 2 triangles
 			Vector3D[] triangle1 =  new Vector3D[TRIANGLE_NB_EDGE];
