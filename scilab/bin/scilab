@@ -404,9 +404,10 @@ fi
 
 # See http://bugzilla.scilab.org/show_bug.cgi?id=3486
 # Some Java stuff raises spurious SIGSEGV. The problem is that when bug-buddy
-# is enabled, it catch the signal and terminate Scilab. We have to desactivate
-# bug-buddy.
+# is enabled, it catches the signal and terminate Scilab. We have to 
+# desactivate bug-buddy.
 # See also https://bugzilla.novell.com/show_bug.cgi?id=331618
+# and: http://bugzilla.gnome.org/show_bug.cgi?id=479929
 export GTK_MODULES=`echo $GTK_MODULES | sed s/gnomebreakpad//g`
 
 if test $SCIVERBOSE -ne 0; then
