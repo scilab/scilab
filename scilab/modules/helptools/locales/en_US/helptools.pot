@@ -14,90 +14,260 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-26 18:05+0100\n"
+"Revision-Date: 2008-09-09 16:04+0100\n"
 
-# File: macros/formatman.sci, line: 75
+# File: macros/xmlfiletohtml.sci, line: 66
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr ""
+#
+# File: macros/xmlfiletohtml.sci, line: 99
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr ""
+#
+# File: macros/manedit.sci, line: 17
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+#
+# File: macros/apropos.sci, line: 14
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+#
+# File: macros/formatman.sci, line: 85
 #, c-format
 msgid "Processing %s to %s"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 242
+# File: macros/help.sci, line: 39
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr ""
+#
+# File: macros/help.sci, line: 44
+#, c-format
+msgid "%s: help module is not installed.\n"
+msgstr ""
+#
+# File: macros/xmltohtml.sci, line: 256
 #, c-format
 msgid "The xsl file %s does not exist or read access denied.\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 299
+# File: macros/xmltohtml.sci, line: 313
 #, c-format
 msgid "\tHTML files are up-to-date\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 321
+# File: macros/xmltohtml.sci, line: 335
+# File: macros/xmltoformat.sci, line: 315
 #, c-format
 msgid ""
 "\n"
 "Copying missing files copied from\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 324
-# File: macros/xmltohtml.sci, line: 346
-# File: macros/xmltohtml.sci, line: 457
+# File: macros/xmltohtml.sci, line: 338
+# File: macros/xmltohtml.sci, line: 360
+# File: macros/xmltohtml.sci, line: 471
+# File: macros/xmltoformat.sci, line: 303
+# File: macros/xmltoformat.sci, line: 318
+# File: macros/xmltoformat.sci, line: 362
+# File: macros/xmltoformat.sci, line: 434
+# File: macros/xmltoformat.sci, line: 475
+# File: macros/xmltoformat.sci, line: 490
 #, c-format
 msgid "\t%s\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 326
+# File: macros/xmltohtml.sci, line: 340
+# File: macros/xmltoformat.sci, line: 320
 #, c-format
 msgid ""
 "\n"
 "Copying missing from %s\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 343
+# File: macros/xmltohtml.sci, line: 357
 #, c-format
 msgid ""
 "\n"
 "Creating whatis.htm\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 348
+# File: macros/xmltohtml.sci, line: 362
 #, c-format
 msgid ""
 "\n"
 "Creating whatis.htm in %s\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 368
+# File: macros/xmltohtml.sci, line: 382
 #, c-format
 msgid ""
 "\n"
 "Processing chapter %s\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 409
-# File: macros/xmltohtml.sci, line: 419
+# File: macros/xmltohtml.sci, line: 423
+# File: macros/xmltohtml.sci, line: 433
 #, c-format
 msgid ""
 "\n"
 "Creating %s\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 435
+# File: macros/xmltohtml.sci, line: 449
 #, c-format
 msgid ""
 "\n"
 "Creating sciman.hh*\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 454
+# File: macros/xmltohtml.sci, line: 468
+# File: macros/xmltoformat.sci, line: 472
+# File: macros/xmltoformat.sci, line: 487
 #, c-format
 msgid ""
 "\n"
 "Deleting files copied from\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 459
+# File: macros/xmltohtml.sci, line: 473
+# File: macros/xmltoformat.sci, line: 492
 #, c-format
 msgid ""
 "\n"
 "Deleting files copied from %s\n"
+msgstr ""
+#
+# File: macros/clean_help.sci, line: 76
+msgid "-- Deleting "
+msgstr ""
+#
+# File: macros/xmltojar.sci, line: 28
+# File: macros/xmltops.sci, line: 28
+# File: macros/xmltochm.sci, line: 33
+# File: macros/xmltopdf.sci, line: 28
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 57
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 146
+msgid "Help chapter"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 204
+# File: macros/xmltoformat.sci, line: 219
+# File: macros/xmltoformat.sci, line: 232
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 278
+msgid "\tHTML files are up-to-date.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 300
+msgid ""
+"\n"
+"Copying missing help files copied from the default language\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 338
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 346
+#, c-format
+msgid ""
+"\n"
+"Building the master document: %s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 359
+#, c-format
+msgid ""
+"\n"
+"Building the master document for %s.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 364
+#, c-format
+msgid ""
+"\n"
+"Building the master document in %s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 378
+msgid ""
+"\n"
+"Building the scilab manual file ["
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 403
+# File: macros/xmltoformat.sci, line: 436
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s. (Please wait building ... this can take "
+"up to 10 minutes)\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 431
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s]. (Please wait building ... this can take up to "
+"10 minutes)\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 778
+msgid "Scilab manual"
+msgstr ""
+#
+# File: macros/xmltochm.sci, line: 13
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr ""
+#
+# File: sci_gateway/c/gw_helptools.c, line: 38
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 78
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 132
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 115
+#, c-format
+msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 162
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 168
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr ""
+#
+# File: sci_gateway/nogui/nogui.c, line: 20
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
 msgstr ""
