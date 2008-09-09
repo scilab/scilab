@@ -40,6 +40,6 @@ Source: modules\{#DEMO_TOOLS}\macros\*.sci; DestDir: {app}\modules\{#DEMO_TOOLS}
 ;
 ;Source: modules\{#DEMO_TOOLS}\examples\*.*; DestDir: {app}\modules\{#DEMO_TOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#DEMO_TOOLS}\tests\*.*; DestDir: {app}\modules\{#DEMO_TOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#DEMO_TOOLS}\tests\*.*; DestDir: {app}\modules\{#DEMO_TOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
