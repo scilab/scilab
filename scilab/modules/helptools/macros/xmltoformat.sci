@@ -380,7 +380,13 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		// Create output directory if does not exist
 		outDir = SCI+"/modules/helptools/build/doc/scilab_" + getlanguage() + "_help/";
 		if  ~isdir(outDir)
-		  mkdir(outDir);
+		  if  ~isdir(outDir+"../..") then
+		    mkdir(SCI+"/modules/helptools/build/");
+		  end
+		  if ~isdir(outDir+"../") then
+		    mkdir(SCI+"/modules/helptools/build/doc");
+		  end
+	    mkdir(outDir);
 		end
 		
 		// Change Scilab current directory so that Java Indexer works
