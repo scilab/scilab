@@ -110,6 +110,6 @@
   </refsection>
   <refsection>
     <title>Authors</title>
-    <para>PVM have been developped by A. L. Beguelin, J. J. Dongarra, G. A. Geist, W. C. Jiang, R. J. Manchek, B. K. Moore, V. S. Sunderam (see http://www.netlib.org/pvm3)  </para>
+    <para>PVM have been developped by A. L. Beguelin, J. J. Dongarra, G. A. Geist, W. C. Jiang, R. J. Manchek, B. K. Moore, V. S. Sunderam (see <ulink url="http://www.netlib.org/pvm3">http://www.netlib.org/pvm3</ulink>)  </para>
   </refsection>
 </refentry>

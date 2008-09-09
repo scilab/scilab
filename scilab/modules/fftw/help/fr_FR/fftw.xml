@@ -80,7 +80,7 @@
     consultez la fonction <link linkend="fft">fft</link> de scilab.</para>
 
     <para>Pour plus de détails concernant la libraire FFW, consultez le site
-    web <link linkend="http://www.fftw.org">http://www.fftw.org</link>.</para>
+    web <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>.</para>
 
     <para>Rmq : La fonction ffw enregistre automatiquement les dernières
     paramètres utilisés lors d'un appel pour les ré-utiliser une seconde

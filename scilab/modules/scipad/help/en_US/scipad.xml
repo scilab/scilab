@@ -503,7 +503,7 @@ scipad f1 f2 ...</synopsis>
           different Scipad subpanes, when tiling is active.</para>
 
           <para>Drag and drop capabilities in Scipad rely on the TkDnD package
-          (http://sourceforge.net/projects/tkdnd). Presence of this package
+          (<ulink url="http://sourceforge.net/projects/tkdnd">http://sourceforge.net/projects/tkdnd</ulink>). Presence of this package
           should be automatically detected by Scipad, enabling the
           corresponding features at that time. Windows and linux-i386 binary
           versions of Scilab are currently shipped with TkDnD. If not, here
@@ -512,7 +512,7 @@ scipad f1 f2 ...</synopsis>
           <para>First of all, please note that tkdnd1.0 shall be used. An
           alpha version of tkdnd2 exists but shouldn't be used with Scipad.
           Details about reasons for this can be read at
-          http://bugzilla.scilab.org/show_bug.cgi?id=2998#c4</para>
+          <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=2998#c4">http://bugzilla.scilab.org/show_bug.cgi?id=2998#c4</ulink></para>
 
           <para>Windows platforms: Download the full package (currently
           tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the content
@@ -543,7 +543,7 @@ scipad f1 f2 ...</synopsis>
 
           <para>There are still a few... Details can be found in file
           <literal>SCI/modules/scipad/BUGS</literal>. Officially reported bugs
-          are filed in the Bugzilla http://bugzilla.scilab.org and can be
+          are filed in the Bugzilla <ulink url="http://bugzilla.scilab.org">http://bugzilla.scilab.org</ulink> and can be
           easily retrieved by filtering entries wrt the "Scipad Editor"
           element.</para>
 

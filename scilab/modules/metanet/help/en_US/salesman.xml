@@ -77,7 +77,7 @@ hilite_edges(cir);
   </refsection>
   <refsection>
     <title>Bibliography</title>
-    <para>Applegate, D.; Bixby, R.; Chvatal, V.; and Cook, W. "Solving Traveling Salesman Problems." http://www.tsp.gatech.edu/.</para>
+    <para>Applegate, D.; Bixby, R.; Chvatal, V.; and Cook, W. "Solving Traveling Salesman Problems." <ulink url="http://www.tsp.gatech.edu/">http://www.tsp.gatech.edu/</ulink>.</para>
     <para>Hoffman, P. The Man Who Loved Only Numbers: The Story of Paul Erdos and the Search for Mathematical Truth. New York: Hyperion, pp. 168-169, 1998.</para>
     <para>Kruskal, J. B. "On the Shortest Spanning Subtree of a Graph and the Traveling Salesman Problem." Proc. Amer. Math. Soc. 7, 48-50, 1956.</para>
     <para>Lawler, E.; Lenstra, J.; Rinnooy Kan, A.; and Shmoys, D. The Traveling Salesman Problem: A Guided Tour of Combinatorial Optimization. New York: Wiley, 1985. </para>

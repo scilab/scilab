@@ -118,7 +118,7 @@
   <refsection>
     <title>Bibliography</title>
     <para>This function is based on Excel
-      stream description from OpenOffice (http://sc.openoffice.org/spreadsheetfileformat.pdf).</para>
+      stream description from OpenOffice (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).</para>
   </refsection>
   <refsection>
     <title>Used Functions</title>

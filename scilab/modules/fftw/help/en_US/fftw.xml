@@ -86,7 +86,7 @@
 
     <para>For more details of fftw syntax see <link linkend='fft'>fft</link> scilab function.</para> 
 
-    <para>For more details about FFTW library see FFTW Web site : <ulink url='http://www.fftw.org'>http://www.fftw.org</ulink>
+    <para>For more details about FFTW library see FFTW Web site : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>
     </para>
 
     <para>Remark : fftw function automaticaly stores his last parameters in
@@ -147,6 +147,6 @@
     <title>Bibliography</title>
 
     <para>Matteo Frigo and Steven G. Johnson, "FFTW Manual fo version 3.1.2"
-    June 2006. Available : http://www.fftw.org</para>
+    June 2006. Available : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink></para>
   </refsection>
 </refentry>

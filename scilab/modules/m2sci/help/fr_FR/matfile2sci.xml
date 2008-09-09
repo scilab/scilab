@@ -70,6 +70,6 @@
   <refsection>
     <title>Bibliographie</title>
     <para>Cette fonction a été développée en suivant le document   "MAT-File Format":
-<link linkend="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</link></para>
+<ulink url="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</ulink></para>
   </refsection>
 </refentry>
