@@ -99,9 +99,14 @@ XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
 	!ELSE
 	-del $*.c 
 	!ENDIF
+.f90.obj :	
+  @echo F2C cannot compile .f90 files
 !ELSE 
 .f.obj	:
 	@echo -----------Compile file $*.f  (using $(FC)) -------------
+	@$(FC) $(FFLAGS) $<
+.f90.obj	:
+	@echo -----------Compile file $*.f90  (using $(FC)) -------------
 	@$(FC) $(FFLAGS) $<
 !ENDIF 
 #==================================================

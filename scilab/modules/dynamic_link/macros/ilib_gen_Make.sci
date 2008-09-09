@@ -61,6 +61,7 @@ endfunction
 
 
 function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
+  files = strsubst(files,'.f90','');
   files = strsubst(strsubst(files,'.cxx','') ,'.f','');
   files = strsubst(strsubst(files,'.cpp','') ,'.f','');
   files = strsubst(strsubst(files,'.c','') ,'.f','');
