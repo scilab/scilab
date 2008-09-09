@@ -419,13 +419,24 @@ void taucs_supernodal_factor_free(void* vL)
   FREE(L->sn_up_size);
   FREE(L->sn_blocks_ld);
   FREE(L->up_blocks_ld);
+  if (L->sn_struct)   
+    for (sn=0; sn<L->n_sn; sn++)
+      FREE(L->sn_struct[sn]);
 
+  if (L->sn_blocks)   
+    for (sn=0; sn<L->n_sn; sn++)
+      FREE(L->sn_blocks[sn]);
+
+  if (L->up_blocks)   
+    for (sn=0; sn<L->n_sn; sn++)
+      FREE(L->up_blocks[sn]);
+  /*
   for (sn=0; sn<L->n_sn; sn++) 
   {
     FREE(L->sn_struct[sn]);
     FREE(L->sn_blocks[sn]);
     FREE(L->up_blocks[sn]);
-  }
+	}*/
 
   FREE(L->sn_struct);
   FREE(L->sn_blocks);
