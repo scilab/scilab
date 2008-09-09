@@ -90,6 +90,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_etcdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_rootdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscipolynomials_la_demosdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -164,9 +165,11 @@ DIST_SOURCES = $(libscipolynomials_la_SOURCES)
 libscipolynomials_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscipolynomials_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscipolynomials_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+nobase_libscipolynomials_la_demosDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscipolynomials_la_etc_DATA) \
 	$(libscipolynomials_la_root_DATA) \
-	$(libscipolynomials_la_sci_gateway_DATA)
+	$(libscipolynomials_la_sci_gateway_DATA) \
+	$(nobase_libscipolynomials_la_demos_DATA)
 libscipolynomials_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscipolynomials_la_include_HEADERS)
 ETAGS = etags
@@ -485,17 +488,24 @@ modulename = polynomials
 libscipolynomials_la_rootdir = $(mydatadir)
 libscipolynomials_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### polynomials : init scripts ####
+#### polynomials : init scripts ####
 libscipolynomials_la_etcdir = $(mydatadir)/etc
 libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
-#### polynomials : gateway declaration ####
+#### polynomials : gateway declaration ####
 libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
-#### polynomials : include files ####
+#### polynomials : include files ####
 libscipolynomials_la_includedir = $(pkgincludedir)/polynomials
 libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
+
+#### polynomials : demos files ####
+libscipolynomials_la_demosdir = $(mydatadir)
+nobase_libscipolynomials_la_demos_DATA = demos/polynomials.dem.gateway.sce \
+demos/rootsdemo.sci \
+demos/intro/poly.intro.dem.sce
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1078,6 +1088,25 @@ uninstall-libscipolynomials_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)/$$f"; \
 	done
+install-nobase_libscipolynomials_la_demosDATA: $(nobase_libscipolynomials_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscipolynomials_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipolynomials_la_demosdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscipolynomials_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscipolynomials_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipolynomials_la_demosdir)/$$f'"; \
+	  $(nobase_libscipolynomials_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipolynomials_la_demosdir)/$$f"; \
+	done
+
+uninstall-nobase_libscipolynomials_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscipolynomials_la_demos_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscipolynomials_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscipolynomials_la_demosdir)/$$f"; \
+	done
 install-libscipolynomials_la_includeHEADERS: $(libscipolynomials_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscipolynomials_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscipolynomials_la_includedir)"
@@ -1174,7 +1203,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipolynomials_la_etcdir)" "$(DESTDIR)$(libscipolynomials_la_rootdir)" "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libscipolynomials_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipolynomials_la_etcdir)" "$(DESTDIR)$(libscipolynomials_la_rootdir)" "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libscipolynomials_la_demosdir)" "$(DESTDIR)$(libscipolynomials_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1226,7 +1255,8 @@ install-data-am: install-data-local \
 	install-libscipolynomials_la_etcDATA \
 	install-libscipolynomials_la_includeHEADERS \
 	install-libscipolynomials_la_rootDATA \
-	install-libscipolynomials_la_sci_gatewayDATA
+	install-libscipolynomials_la_sci_gatewayDATA \
+	install-nobase_libscipolynomials_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -1268,6 +1298,7 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 	uninstall-libscipolynomials_la_includeHEADERS \
 	uninstall-libscipolynomials_la_rootDATA \
 	uninstall-libscipolynomials_la_sci_gatewayDATA \
+	uninstall-nobase_libscipolynomials_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1284,16 +1315,17 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 	install-libscipolynomials_la_includeHEADERS \
 	install-libscipolynomials_la_rootDATA \
 	install-libscipolynomials_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am \
-	uninstall-libscipolynomials_la_etcDATA \
+	install-nobase_libscipolynomials_la_demosDATA install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libscipolynomials_la_etcDATA \
 	uninstall-libscipolynomials_la_includeHEADERS \
 	uninstall-libscipolynomials_la_rootDATA \
 	uninstall-libscipolynomials_la_sci_gatewayDATA \
+	uninstall-nobase_libscipolynomials_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
