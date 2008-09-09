@@ -8,22 +8,31 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y=erfc(x)
-//erfc  -  The complementary error function.
-//%Syntax
-// y = erf(x).
-//%Parameters
-// x : real vector
-// y : real vector (of same size)
-//%Description
-// erf computes the complementary error function:
-//
-//                      /inf
-//      y = 2/sqrt(pi) *|  exp(-t^2) dt
-//                      /x
-//      y = 1 - erf(x)
-//%See also
-// erf erfcx calerf
-//!
-
-y=calerf(x,1)
+	
+	//erfc  -  The complementary error function.
+	//%Syntax
+	// y = erf(x).
+	//%Parameters
+	// x : real vector
+	// y : real vector (of same size)
+	//%Description
+	// erf computes the complementary error function:
+	//
+	//                      /inf
+	//      y = 2/sqrt(pi) *|  exp(-t^2) dt
+	//                      /x
+	//      y = 1 - erf(x)
+	//%See also
+	// erf erfcx calerf
+	//!
+	
+	rhs = argn(2);
+	
+	// check the number of input arguments
+	if rhs<>1 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"erfc",1));
+	end
+	
+	y=calerf(x,1);
+	
 endfunction

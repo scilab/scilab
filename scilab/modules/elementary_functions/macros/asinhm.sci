@@ -22,10 +22,13 @@ function t=asinhm(x)
   if type(x)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"asinhm",1));
   end
-  [m,n]=size(x)
+
+  [m,n]=size(x);
+
   if m<>n then
    error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"asinhm",1));
-  else
-    t=logm(x+sqrtm(x*x+eye()))
   end
+
+  t=logm(x+sqrtm(x*x+eye()));
+
 endfunction

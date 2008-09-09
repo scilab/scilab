@@ -19,6 +19,9 @@ function x=sinhm(a)
   if type(a)<>1 then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
   end
+
   if a==[] then x=[],return,end
-  x=(expm(a)-expm(-a))/2
+
+  x=(expm(a)-expm(-a))/2;
+
 endfunction

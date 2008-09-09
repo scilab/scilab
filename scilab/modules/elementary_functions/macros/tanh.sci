@@ -8,11 +8,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [t]=tanh(z)
-// 
-//  PURPOSE 
+//
+//  PURPOSE
 //    element wise hyperbolic tangent
 //
-//  METHOD 
+//  METHOD
 //    based on the formula  tanh(z) = -i tan(i z)
 //
 
@@ -25,9 +25,11 @@ function [t]=tanh(z)
   if type(z)<>1 then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
   end
+
   if isreal(z) then
-     t = imag(tan(imult(z)))
+    t = imag(tan(imult(z)));
   else
-     t = -imult(tan(imult(z)))
+    t = -imult(tan(imult(z)));
   end
+
 endfunction

@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [t] = asinh(x)
+
   //
   //  PURPOSE
   //     element wise hyperbolic arcsinus
@@ -25,9 +26,11 @@ function [t] = asinh(x)
   if type(x)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"asinh",1));
   end
+
   if isreal(x) then
     t = imag(asin(imult(x)))
   else
     t = -imult(asin(imult(x)))
   end
+
 endfunction

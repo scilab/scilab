@@ -24,6 +24,7 @@ function x=cosm(a)
   if type(a)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"cosm",1));
   end
+
   if a==[] then x=[],return,end
 
   if norm(imag(a),1)==0 then
@@ -31,4 +32,5 @@ function x=cosm(a)
   else
     x=0.5*(expm(%i*a)+expm(-%i*a));
   end
+
 endfunction

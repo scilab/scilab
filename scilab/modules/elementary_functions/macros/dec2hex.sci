@@ -15,7 +15,14 @@
 // =============================================================================
 
 function h=dec2hex(v)
-
+	
+	rhs = argn(2);
+	
+	// check the number of input arguments
+	if rhs<>1 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"dec2hex",1));
+	end
+	
 	[nr,nc] = size(v);
 	
 	if (find(v<0) <> []) | (norm(round(v)-v,1) > norm(round(v),1)*2*%eps) then

@@ -24,16 +24,23 @@ function x=atanm(a)
   if type(x)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"atanm",1));
   end
+
   if a==[] then x=[],return,end
-  [m,n]=size(a)
+
+  [m,n]=size(a);
   if m<>n then
    error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"atanm",1));
   end
+
   //diagonalization
-  [x,t,bs]=bdiag(a+0*%i*ones(a),1/%eps)
+  [x,t,bs]=bdiag(a+0*%i*ones(a),1/%eps);
+
   if find(bs>1)<>[] then
     error(msprintf(gettext("%s: Matrix is not diagonalisable.\n"),"atanm"));
   end
-  x=t*diag(atan(diag(x)))/t
+
+  x=t*diag(atan(diag(x)))/t;
+
   if and(imag(a)==0) then x=real(x),end
+
 endfunction

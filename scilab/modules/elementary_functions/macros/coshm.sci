@@ -19,6 +19,12 @@ function x=coshm(a)
   if type(a)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"coshm",1));
   end
-  if a==[] then x=[],return,end
-  x=(expm(a)+expm(-a))/2
+
+  if a==[] then
+    x=[];
+    return;
+  end
+
+  x=(expm(a)+expm(-a))/2;
+
 endfunction

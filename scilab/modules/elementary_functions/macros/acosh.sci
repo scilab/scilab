@@ -33,6 +33,7 @@ function [t] = acosh(z)
   if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"acosh",1));
   end
+
   if isreal(z) then
     if min(z) < 1 then
       // result is complex

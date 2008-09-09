@@ -8,11 +8,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [t] = sinh(z)
-// 
-//  PURPOSE 
+//
+//  PURPOSE
 //     element wise hyperbolic sinus
 //
-//  METHOD 
+//  METHOD
 //     based on the formula  sinh(z) = -i sin(i z)
 //
 
@@ -32,4 +32,3 @@ function [t] = sinh(z)
      t = -imult(sin(imult(z)))
   end
 endfunction
-
