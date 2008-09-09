@@ -38,14 +38,12 @@ mputl(i,'sci_cppfind.cxx');
 //generated.
 files=['sci_cppfind.cxx'];
 ilib_build('foo',['cppfind','sci_cppfind'],files,[]);
-   Génère un fichier gateway
-   Génère un fichier loader
-   Génère un Makefile
-   ilib_gen_Make: Copie les fichiers de compilation (Makefile*, libtool...) vers TMPDIR
-   ilib_gen_Make: Copie sci_cppfind.cxx vers TMPDIR
-   ilib_gen_Make: Copie libfoo.c vers TMPDIR
-   ilib_gen_Make: Modification du Makefile dans TMPDIR.
-   Exécute le makefile
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile: Makelib
+   Running the makefile
+   Compilation of sci_cppfind.cxx
+   Building shared library (be patient)
 // load the shared library
 exec loader.sce
  
@@ -56,18 +54,18 @@ exec loader.sce
 // ------------------------------------------------------
  
  
-libfoo_path = get_file_path('loader.sce');
+foo_path = get_file_path('loader.sce');
  
 list_functions = [ 'cppfind';
 ];
  
-addinter(libfoo_path+'/libfoo.so','libfoo',list_functions);
-Bibliothèque partagée chargée.
+addinter(foo_path+'/foo.dll','foo',list_functions);
+Shared archive loaded.
 Link done.
  
 // remove temp. variables on stack
  
-clear libfoo_path;
+clear foo_path;
  
 clear list_functions;
  
