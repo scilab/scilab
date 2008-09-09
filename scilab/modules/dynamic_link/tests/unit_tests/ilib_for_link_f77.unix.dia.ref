@@ -19,7 +19,6 @@ mputl(sourcecode,'incrdoublef77.f');
 libpath=ilib_for_link('incrdoublef77','incrdoublef77.o',[],'f','Makefile');
    Génère un fichier loader
    Génère un Makefile
-   ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Copie les fichiers de compilation (Makefile*, libtool...) vers TMPDIR
    ilib_gen_Make: Copie incrdoublef77.f vers TMPDIR
    ilib_gen_Make: Modification du Makefile dans TMPDIR.
