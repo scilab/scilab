@@ -59,25 +59,25 @@ current_driver=driver()</synopsis>
       <varlistentry>
         <term>"Rec"</term>
         <listitem>
-          <para>output to the screen of the computer with recording of all the graphics commands. This is the default driver.</para>
+          <para>output to the screen of the computer. Same as <literal>X11</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"Fig"</term>
         <listitem>
-          <para>output into XFig format. Clipping of objects is not provided in XFig.</para>
+          <para>output into XFig format.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"GIF"</term>
         <listitem>
-          <para>output into Gif format based on gd (http://www.boutell.com/gd)</para>
+          <para>output into Gif format.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"PPM"</term>
         <listitem>
-          <para>output into PPM format based on gd (http://www.boutell.com/gd)</para>
+          <para>output into PPM format.</para>
         </listitem>
       </varlistentry>
     </variablelist>
