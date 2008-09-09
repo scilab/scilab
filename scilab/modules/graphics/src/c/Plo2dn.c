@@ -781,8 +781,8 @@ int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax)
 						   ppsubwin->logflags[1]);
     
   /* Subtics storage here */
-  ppsubwin->axes.nbsubtics[0] = nbsubtics_x +1;
-  ppsubwin->axes.nbsubtics[1] = nbsubtics_y +1;
+  ppsubwin->axes.nbsubtics[0] = nbsubtics_x;
+  ppsubwin->axes.nbsubtics[1] = nbsubtics_y;
 
   return 0;
 }
