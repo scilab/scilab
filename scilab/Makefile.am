@@ -75,6 +75,17 @@ $(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml
 
 
+infofilesdir=$(pkgdatadir)/
+infofiles_DATA = $(top_srcdir)/CHANGES \
+$(top_srcdir)/ACKNOWLEDGEMENTS \
+$(top_srcdir)/COPYING \
+$(top_srcdir)/COPYING-FR \
+$(top_srcdir)/README_Unix \
+$(top_srcdir)/RELEASE_NOTES \
+$(top_srcdir)/Readme_Visual.txt \
+$(top_srcdir)/README_Windows.txt
+
+
 profilingdir=$(pkgdatadir)/tools/profiling/
 profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 

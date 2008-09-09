@@ -55,11 +55,11 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in ABOUT-NLS \
-	COPYING config.guess config.sub config/compile \
-	config/config.guess config/config.rpath config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing depcomp install-sh missing
+	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in COPYING \
+	config.guess config.sub config/compile config/config.guess \
+	config/config.rpath config/config.sub config/depcomp \
+	config/install-sh config/ltmain.sh config/missing depcomp \
+	install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -85,8 +85,8 @@ CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 	scilab-lib-doc.properties
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
-	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" \
-	"$(DESTDIR)$(rootdir)"
+	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
+	"$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = scilab_bin-main_linux.$(OBJEXT)
@@ -139,10 +139,12 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+infofilesDATA_INSTALL = $(INSTALL_DATA)
 pkgconfigDATA_INSTALL = $(INSTALL_DATA)
 profilingDATA_INSTALL = $(INSTALL_DATA)
 rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(pkgconfig_DATA) $(profiling_DATA) $(root_DATA)
+DATA = $(infofiles_DATA) $(pkgconfig_DATA) $(profiling_DATA) \
+	$(root_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -388,6 +390,16 @@ $(top_srcdir)/etc/classpath.xml \
 $(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml
 
+infofilesdir = $(pkgdatadir)/
+infofiles_DATA = $(top_srcdir)/CHANGES \
+$(top_srcdir)/ACKNOWLEDGEMENTS \
+$(top_srcdir)/COPYING \
+$(top_srcdir)/COPYING-FR \
+$(top_srcdir)/README_Unix \
+$(top_srcdir)/RELEASE_NOTES \
+$(top_srcdir)/Readme_Visual.txt \
+$(top_srcdir)/README_Windows.txt
+
 profilingdir = $(pkgdatadir)/tools/profiling/
 profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
@@ -592,6 +604,23 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool
+install-infofilesDATA: $(infofiles_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(infofilesdir)" || $(MKDIR_P) "$(DESTDIR)$(infofilesdir)"
+	@list='$(infofiles_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(infofilesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(infofilesdir)/$$f'"; \
+	  $(infofilesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(infofilesdir)/$$f"; \
+	done
+
+uninstall-infofilesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(infofiles_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(infofilesdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(infofilesdir)/$$f"; \
+	done
 install-pkgconfigDATA: $(pkgconfig_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkgconfigdir)" || $(MKDIR_P) "$(DESTDIR)$(pkgconfigdir)"
@@ -929,7 +958,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -978,8 +1007,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-pkgconfigDATA \
-	install-profilingDATA install-rootDATA
+install-data-am: install-data-local install-infofilesDATA \
+	install-pkgconfigDATA install-profilingDATA install-rootDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1018,8 +1047,8 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
-	uninstall-pkgconfigDATA uninstall-profilingDATA \
-	uninstall-rootDATA
+	uninstall-infofilesDATA uninstall-pkgconfigDATA \
+	uninstall-profilingDATA uninstall-rootDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -1035,17 +1064,17 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	install install-am install-binPROGRAMS install-binSCRIPTS \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-pkgconfigDATA \
-	install-profilingDATA install-ps install-ps-am \
-	install-rootDATA install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
+	install-html-am install-info install-info-am \
+	install-infofilesDATA install-man install-pdf install-pdf-am \
+	install-pkgconfigDATA install-profilingDATA install-ps \
+	install-ps-am install-rootDATA install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am \
 	uninstall-binPROGRAMS uninstall-binSCRIPTS \
-	uninstall-pkgconfigDATA uninstall-profilingDATA \
-	uninstall-rootDATA
+	uninstall-infofilesDATA uninstall-pkgconfigDATA \
+	uninstall-profilingDATA uninstall-rootDATA
 
 
 @NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
