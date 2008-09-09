@@ -14,14 +14,13 @@ load('SCI/modules/cacsd/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('cacsd');
-
+// ====================================================================
 path = get_absolute_file_path('cacsd.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/cacsd.dem.gateway.sce',%f,%f);
 
 // add demos
-add_demo("CACSD",pathdemos);
+add_demo(gettext("CACSD"),pathdemos);
 
 clear pathdemos ;
-
 // ====================================================================

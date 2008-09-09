@@ -13,7 +13,7 @@ path = get_absolute_file_path('optimization.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/optimization.dem.gateway.sce',%f,%f);
 
-add_demo("Optimization and Simulation",pathdemos);
+add_demo(gettext("Optimization and Simulation"),pathdemos);
 
 clear path pathdemos;
 // ====================================================================

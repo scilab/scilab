@@ -22,5 +22,5 @@ add_module_help_chapter('spreadsheet');
 path = get_absolute_file_path('spreadsheet.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/spreadsheet.dem.sce',%f,%f);
-add_demo('Spreadsheet',pathdemos);
+add_demo(gettext('Spreadsheet'),pathdemos);
 clear path pathdemos;

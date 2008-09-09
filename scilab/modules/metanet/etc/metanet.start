@@ -23,6 +23,6 @@ add_module_help_chapter('metanet');
 path = get_absolute_file_path('metanet.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/meta.dem',%f,%f);
-add_demo("Metanet",pathdemos);
+add_demo(gettext("Metanet"),pathdemos);
 
 clear path pathdemos ;

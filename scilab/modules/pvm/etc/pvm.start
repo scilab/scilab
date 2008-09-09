@@ -22,7 +22,7 @@ add_module_help_chapter('pvm');
 path = get_absolute_file_path('pvm.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/pvm.dem',%f,%f);
-add_demo("PVM parallel Toolbox",pathdemos);
+add_demo(gettext("PVM parallel Toolbox"),pathdemos);
 // ====================================================================
 if MSDOS then
   if %pvm then

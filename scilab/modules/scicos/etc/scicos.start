@@ -22,7 +22,7 @@ path=get_absolute_file_path('scicos.start');
 path=getshortpathname(path);
 path=strsubst(path,'\','/');
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/scicos.dem.gateway.sce',%f,%f);
-add_demo("Scicos",pathdemos);
+add_demo(gettext("Scicos"),pathdemos);
 clear path pathdemos;
 
 // Define Scicos data tables ===========================================
