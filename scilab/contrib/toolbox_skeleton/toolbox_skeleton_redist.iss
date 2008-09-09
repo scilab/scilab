@@ -42,6 +42,8 @@ Source: macros\*.bin; DestDir: {app}\macros
 Source: sci_gateway\loader_gateway.sce; DestDir: {app}\sci_gateway
 Source: sci_gateway\c\loader.sce; DestDir: {app}\sci_gateway\c
 Source: sci_gateway\c\skeleton_c.dll; DestDir: {app}\sci_gateway\c
+Source: sci_gateway\cpp\loader.sce; DestDir: {app}\sci_gateway\cpp
+Source: sci_gateway\cpp\skeleton_cpp.dll; DestDir: {app}\sci_gateway\cpp
 Source: sci_gateway\fortran\loader.sce; DestDir: {app}\sci_gateway\fortran
 Source: sci_gateway\fortran\skeleton_fortran.dll; DestDir: {app}\sci_gateway\fortran
 Source: src\c\libcsum.dll; DestDir: {app}\src\c
