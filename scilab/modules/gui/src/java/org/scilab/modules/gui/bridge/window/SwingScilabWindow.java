@@ -29,8 +29,6 @@ import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.defaults.DefaultDockingPort;
-import org.flexdock.docking.drag.effects.EffectsManager;
-import org.flexdock.docking.drag.preview.GhostPreview;
 import org.flexdock.view.View;
 
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
