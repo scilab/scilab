@@ -13,11 +13,21 @@ function about(h)
 
 [a, b] = getversion();
 
-x_message(msprintf(gettext("Scilab 5 alpha and future versions are released under the terms of the CeCILL license.\n") +..
+btn = messagebox(msprintf(gettext("Scilab 5 alpha and future versions are released under the terms of the CeCILL license.\n") +..
     gettext("Some Scilab modules are released under the GPLv2 license.\n\n") +..
     gettext("Authors:\nScilab Consortium / INRIA / ENPC / Contributors\n\n") +..
     gettext("Version %s (%s)\n\n") +..
-    gettext("http://www.scilab.org/"), a, b($-1)));
+    gettext("http://www.scilab.org/"), a, b($-1)), gettext("About Scilab..."), "scilab", [gettext("Acknowledgements"), gettext("Ok")], "modal");
 
+if btn==1 then
+  if ~isempty(fileinfo("SCI/ACKNOWLEDGEMENTS")) then // Windows and Linux source version
+    txt = mgetl("SCI/ACKNOWLEDGEMENTS");
+  elseif ~isempty(fileinfo("SCI/../../ACKNOWLEDGEMENTS")) then // Linux binary version
+    txt = mgetl("SCI/../../ACKNOWLEDGEMENTS");
+  else
+    return
+  end
+  messagebox(txt, gettext("Scilab Contributors..."), "modal");
+end
 endfunction
 
