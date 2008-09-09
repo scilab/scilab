@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-06-28 06:46+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2008-08-21 20:00+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -169,7 +169,7 @@ msgstr "%s: Déjà chargé à partir de la bibliothèque %s\n"
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: problème avec une des points d'entrée.\n"
+msgstr "%s : problème avec un des points d'entrée.\n"
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s\n"
@@ -222,6 +222,6 @@ msgstr "Nom de l'entrée %s.\n"
 msgid "%s is not an entry point.\n"
 msgstr "%s n'est pas un point d'entrée.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Linking %s.\n"
 msgstr "Edition de liens %s.\n"

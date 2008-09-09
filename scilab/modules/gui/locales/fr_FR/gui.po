@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-08-28 13:08+0000\n"
-"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"PO-Revision-Date: 2008-09-09 06:43+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-28 13:28+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -609,7 +609,7 @@ msgstr "%s: Propriété inconnue: %s pour les handles vers '%s'.\n"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
-msgstr "%s: Ne peux pas créer un handle vers un 'Uicontrol'.\n"
+msgstr "%s: Ne peux pas créer un handle de type 'Uicontrol'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
@@ -877,7 +877,7 @@ msgid "&Copy to clipboard"
 msgstr "&Copier dans le presse-papier"
 
 msgid "P&age setup..."
-msgstr "Configurer la P&age ..."
+msgstr "Mise en p&age..."
 
 msgid "&Print..."
 msgstr "&Imprimer..."

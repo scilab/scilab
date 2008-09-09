@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-08-13 07:50+0000\n"
+"PO-Revision-Date: 2008-08-31 07:57+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -35,9 +35,9 @@ msgstr "L'interface JVM est désactivée en mode -nogui ou -nwni.\n"
 msgid "%s: Could not add path to java.library.path: %s.\n"
 msgstr "%s: Ne peut pas ajouter un chemin à java.library.path: %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Could not add URL to system classloader : %s.\n"
-msgstr "%s: Ne peux pas ajouter l'URL au système classloader : %s.\n"
+msgstr "%s : Ne peux pas ajouter l'URL au classloader du système : %s.\n"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Le module Java de Scilab n'est pas installé.\n"
@@ -89,7 +89,7 @@ msgstr ""
 msgid "Error"
 msgstr "Erreur"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -98,8 +98,8 @@ msgid ""
 msgstr ""
 "\n"
 "Scilab ne peut pas créer la classe principale Java Scilab (nous n'avons pas "
-"été capable de trouvé la classe Scilab principale. Vérifier si Scilab et les "
-"paquets thirdparty sont accessibles).\n"
+"été capable de trouver la classe Scilab principale. Vérifier si les paquets "
+"Scilab et thirdparty sont accessibles).\n"
 
 #, c-format
 msgid "Warning: Could not find Java package '%s'.\n"
@@ -190,9 +190,9 @@ msgstr ""
 "\n"
 "La version JNI est incorrecte (besoin d'au moins JDK 1.4).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Error in the creation of the Java VM: %s\n"
-msgstr "Erreur lors de la création de la VM Java: %s\n"
+msgstr "Erreur lors de la création de la Machine Virtuelle Java : %s\n"
 
 #, c-format
 msgid ""

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2008-06-28 06:53+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2008-08-21 20:12+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -52,13 +52,11 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Table de chaîne de "
 "caractères attendue.\n"
 
-#, fuzzy
 msgid "// Begin Session : "
-msgstr "// Débute la Session : "
+msgstr "// Début de  la Session : "
 
-#, fuzzy
 msgid "// End Session   : "
-msgstr "// Termine la Session : "
+msgstr "// Fin de la Session : "
 
 msgid "Sun"
 msgstr "Dim"

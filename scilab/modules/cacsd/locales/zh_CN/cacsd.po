@@ -7,201 +7,204 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-08-18 13:49+0000\n"
-"PO-Revision-Date: 2008-07-25 14:14+0000\n"
+"POT-Creation-Date: 2008-08-19 14:45+0000\n"
+"PO-Revision-Date: 2008-08-22 15:09+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "Function %s is obsolete."
-msgstr ""
+msgstr "函数 %s 已被弃用。"
 
 #, c-format
 msgid "Please use %s instead."
-msgstr ""
+msgstr "请使用 %s 替代。"
 
 #, c-format
 msgid "This function will be permanently removed in Scilab %s"
-msgstr ""
+msgstr "该函数将被永久地从 Scilab %s 中移除。"
 
 #, c-format
 msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
+msgstr "%s：没有文件名为 %s.sci 存在于库目录 %s 中。\n"
 
 #, c-format
 msgid "Checking: %s.\n"
-msgstr ""
+msgstr "检查中：%s。\n"
 
 #, c-format
 msgid "%s: Please check: %s\n"
-msgstr ""
+msgstr "%s：请检查：%s\n"
 
 #, c-format
 msgid "%s: File %s doesn''t exist.\n"
-msgstr ""
+msgstr "%s：文件 %s 不存在。\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
-msgstr ""
+msgstr "%s：没有扩展名为 %s 的文件存在于 %s\n"
 
 #, c-format
 msgid "%s: %s file compilation forced\n"
-msgstr ""
+msgstr "%s：文件 %s 强制编译\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
-msgstr ""
+msgstr "%s：处理文件：%s\n"
 
 #, c-format
 msgid "%s: Regenerate names and lib\n"
-msgstr ""
+msgstr "%s：重新生成 names 和 lib\n"
 
 #, c-format
 msgid "%s: %s file cannot be created\n"
-msgstr ""
+msgstr "%s：不能创建文件 %s\n"
 
 #, c-format
 msgid ""
 "Library file %s has been updated,\n"
 "but cannot be loaded into Scilab because ''%s'' is a protected variable.\n"
 msgstr ""
+"库文件 %s 已被更新，但是因为\n"
+"''%s''是一个被保护变量所以库文件不能装载到Scilab。\n"
 
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr ""
+msgstr "%s：警告：在文件 %s 中有错误：忽略 %s.File 。\n"
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
-msgstr ""
+msgstr "%s：不能打开文件 %s 进行写操作\n"
 
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
-msgstr ""
+msgstr "%s：文件 %s 不包含任何函数。\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: The function has not been built for profiling"
-msgstr ""
+msgstr "%s：该函数没有被为 profiling 生成。"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr ""
+msgstr "%s：输入参数的值错误：函数中无 profile 数据。\n"
 
 msgid "Complexity"
-msgstr ""
+msgstr "复杂度"
 
 msgid "3D Rot."
-msgstr ""
+msgstr "3维旋转"
 
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 msgid "Editer"
 msgstr ""
 
 msgid "Insert"
-msgstr ""
+msgstr "插入"
 
 msgid "3D &Rot."
-msgstr ""
+msgstr "3维旋转( &R)"
 
 msgid "&Edit"
-msgstr ""
+msgstr "编辑( &E)"
 
 msgid "&Insert"
-msgstr ""
+msgstr "插入( &I)"
 
 msgid "Exit"
-msgstr ""
+msgstr "退出"
 
+#, fuzzy
 msgid "Click to get corresponding line, move with a-z."
-msgstr ""
+msgstr "点击以得到相关行，move with a-z。"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
-msgstr ""
+msgstr "行 %s [从 %s 调用, %s sec] :: "
 
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
-msgstr ""
+msgstr "行 %s [从 %s 调用, %s sec] :: "
 
 msgid "UnZoom"
-msgstr ""
+msgstr "不缩放"
 
 msgid "Zoom"
-msgstr ""
+msgstr "缩放"
 
 msgid "File"
-msgstr ""
+msgstr "文件"
 
 msgid "&File"
-msgstr ""
+msgstr "文件( &F)"
 
 msgid "&Tools"
-msgstr ""
+msgstr "工具( &T)"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr ""
+msgstr "%s：无法找到扩展名为 %s 的文件于 %s 中。\n"
 
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
-msgstr ""
+msgstr "%s：文件 %s 中存在不正确的函数。\n"
 
 #, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
-msgstr ""
+msgstr "-- 创建 [%s]（宏） --\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
-msgstr ""
+msgstr "%s：弃用的操作码 %d。\n"
 
 #, c-format
 msgid "No variable named: %s"
-msgstr ""
+msgstr "没有名为 %s 的变量"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
 
 #, c-format
 msgid "%s is already noncompiled, nothing to do!"
-msgstr ""
+msgstr "%s 已经没有编译，无操作。"
 
 #, c-format
 msgid "%s is already compiled, nothing to do!"
-msgstr ""
+msgstr "%s 已经编译，无操作。"
 
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
-msgstr ""
+msgstr "%s 已经 for profiling 编译，无操作。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
-msgstr ""
+msgstr "%s：没定义的变量 %s。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
 
 msgid "No comment available.\n"
-msgstr ""
+msgstr "没有注释可用。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的类型错误：应该为Scilab函数。\n"

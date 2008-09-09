@@ -14,20 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "  (cont'd) %s"
-msgstr ""
-
-#, c-format
-msgid "     (end) %s"
-msgstr "     (конец) %s"
 
 msgid "Incorrect assignment.\n"
 msgstr "Некорректное присвоение.\n"
@@ -36,8 +24,8 @@ msgid "Waiting for right parenthesis.\n"
 msgstr "Ожидание закрывающей скобки.\n"
 
 #, c-format
-msgid "Undefined variable : %s\n"
-msgstr "Неопределённая переменная : %s\n"
+msgid "Undefined variable: %s\n"
+msgstr ""
 
 msgid "Inconsistent column/row dimensions.\n"
 msgstr "Несовместимые размеры столбца/строки.\n"
@@ -83,16 +71,16 @@ msgid "Use stacksize function to increase it.\n"
 msgstr "Используйте функцию stacksize для увеличения его.\n"
 
 #, c-format
-msgid "Memory used for variables : %d\n"
-msgstr "Памяти занято под переменные : %d\n"
+msgid "Memory used for variables: %d\n"
+msgstr ""
 
 #, c-format
-msgid "Intermediate memory needed : %d\n"
-msgstr "Нобходимо промежуточной памяти : %d\n"
+msgid "Intermediate memory needed: %d\n"
+msgstr ""
 
 #, c-format
-msgid "Total memory available : %d\n"
-msgstr "Доступно памяти (всего) : %d\n"
+msgid "Total memory available: %d\n"
+msgstr ""
 
 msgid "Too many variables!\n"
 msgstr "Слишком много переменных!\n"
@@ -164,6 +152,9 @@ msgstr "Неверный аргумент %d.\n"
 #, c-format
 msgid "Incorrect function at line %d.\n"
 msgstr "Некорректная функция в строке %d.\n"
+
+msgid "Incorrect function.\n"
+msgstr ""
 
 msgid "Wrong file name.\n"
 msgstr "Неправильное имя файла.\n"
@@ -318,6 +309,9 @@ msgstr "%s: Неверное количество аргументов.\n"
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Неверное количество выходных аргументов.\n"
+
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
 
 #, c-format
 msgid "Incorrect function (argument n: %d).\n"
@@ -564,6 +558,10 @@ msgid "%s: Incorrect bounds.\n"
 msgstr "%s: Некорректные граничные учловия.\n"
 
 #, c-format
+msgid "Variable : %s must be a list\n"
+msgstr ""
+
+#, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
 "Перезапуск \"на ходу\": размерность рабочей таблицы (аргумент n:%d).\n"
@@ -687,6 +685,9 @@ msgstr "Пропущен индекс.\n"
 msgid "reference to the cleared global variable %s.\n"
 msgstr "ссылка на очищенную глобальную переменную %s.\n"
 
+msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgstr ""
+
 msgid "semi def fails.\n"
 msgstr ""
 
@@ -751,6 +752,10 @@ msgstr "Функция не определена для заданных тип�
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr "  проверьте аргументы или определите функцию %s как перегружаемую.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for argument %d: Valid variable name expected.\n"
@@ -871,8 +876,24 @@ msgstr "Пропущен оператор, запятая или точка с �
 msgid "Too many commands defined.\n"
 msgstr "Задано слишком много команд.\n"
 
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr ""
+
 msgid "\"unknown data\""
 msgstr "\"неизвестные данные\""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
 
 msgid "Warning :\n"
 msgstr "Внимание :\n"
@@ -979,19 +1000,11 @@ msgstr "Режим паузы: введите пустую строку для �
 msgid "Breakpoints of function : %s\n"
 msgstr "Точки останова функции : %s\n"
 
-msgid ""
-"Warning: recursion problem..., cleared.\n"
-" will be cleared with next error...\n"
+msgid "Warning: recursion problem..., cleared.\n"
 msgstr ""
-"Внимание: проблема рекурсии..., очищена.\n"
-" будет очищена при обработке следующей ошибки...\n"
 
-msgid ""
-"Warning: stack problem..., cleared\n"
-" will be cleared with next error...\n"
+msgid "Warning: stack problem..., cleared.\n"
 msgstr ""
-"Внимание: проблема стека..., очищена.\n"
-" будет очищена при обработке следующей ошибки...\n"
 
 #, c-format
 msgid "Stop after row %s in function %s.\n"
@@ -1037,8 +1050,9 @@ msgid "Commands:\n"
 msgstr "Команды:\n"
 
 #, c-format
-msgid "Warning : redefining function: %s"
-msgstr "Внимание : переопределение функции: %s"
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -1221,3 +1235,34 @@ msgstr "%s: измерения окна были установлены мень
 
 msgid "Some data have not been computed they are replaced by NaN.\n"
 msgstr "Некоторые данные не были вычислены и были заменены на NaN.\n"
+
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""
