@@ -686,6 +686,7 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 	#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
 
 	wordToFind = preparse_line_for_completion_nw((char*)wk_buf);
+        
 	if (wordToFind==NULL) 
 	  { /* This case occurs when we copy/paste in some cases */
 	    wordToFindLength=0;
@@ -703,9 +704,17 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 			/* Only one result. Display it */
 			if (strcmp((char*)wordToFind,completionResults[0])!=0)
 			{
-				/* No the same as previously displayed */
-				char *texttoadd = &completionResults[0][strlen(wordToFind)];
-				CopyLineAtPrompt(wk_buf,strcat(wk_buf, texttoadd),cursor,cursor_max);
+                          /* No the same as previously displayed */
+                          char *texttoadd = NULL;
+                          if (wordToFind[0] == '/') // Path completion (completion results do not contain '/' )
+                            {
+                              texttoadd = &completionResults[0][strlen(wordToFind) - 1];
+                            }
+                          else
+                            {
+                              texttoadd = &completionResults[0][strlen(wordToFind)];
+                            }
+                          CopyLineAtPrompt(wk_buf,strcat(wk_buf, texttoadd),cursor,cursor_max);
 			}
 			FREE(completionResults[0]);
 		}
