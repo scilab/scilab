@@ -44,7 +44,6 @@ int sci_xset( char *fname, unsigned long fname_len )
 {
   integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v;
   integer lr;
-  double fontSize = 0.0;
   double  xx[5];
   sciPointObj *subwin = NULL; 
   BOOL keyFound = FALSE ;
@@ -144,8 +143,16 @@ int sci_xset( char *fname, unsigned long fname_len )
     forceRedraw(subwin);
   }
   else if ( strcmp(cstk(l1),"font size") == 0) {
-    fontSize = xx[0];
+    double defaultSubwinFontSize = sciGetFontSize(getAxesModel());
+    double fontSize = xx[0];
+    // set also the default subwin font size in order
+    // to have the right font size for labels if they are created
+    sciSetFontSize(getAxesModel(), fontSize);
     subwin = sciGetCurrentSubWin();
+
+    // restore previous font size
+    sciSetFontSize(getAxesModel(), defaultSubwinFontSize);
+
     sciSetFontSize(subwin, fontSize);
     sciSetFontSize(sciGetParent(subwin), fontSize);
     forceRedraw(subwin);
@@ -189,6 +196,28 @@ int sci_xset( char *fname, unsigned long fname_len )
     pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
     forceRedraw(psubwin);
   }
+  else if ( strcmp(cstk(l1),"font") == 0) {
+    int defaultSubwinFontStyle = sciGetFontStyle(getAxesModel());
+    double defaultSubwinFontSize = sciGetFontSize(getAxesModel());
+    int fontStyle = x[0];
+    double fontSize = x[1];
+
+    // set also the default subwin font size in order
+    // to have the right font size for labels if they are created
+    sciSetFontStyle(getAxesModel(), fontStyle);
+    sciSetFontSize(getAxesModel(), fontSize);
+    subwin = sciGetCurrentSubWin();
+
+    // restore previous font size
+    sciSetFontStyle(getAxesModel(), defaultSubwinFontStyle);
+    sciSetFontSize(getAxesModel(), defaultSubwinFontSize);
+
+    sciSetFontStyle(subwin, fontStyle); 
+    sciSetFontSize(subwin,  fontSize);  
+    sciSetFontStyle(sciGetParent(subwin), fontStyle); 
+    sciSetFontSize(sciGetParent(subwin), fontSize);
+    forceRedraw(subwin);
+  } 
   else if ( strcmp(cstk(l1),"window") == 0 || strcmp(cstk(l1),"figure") == 0 )
   {
     if (sciSwitchWindow(x[0]) != 0){
@@ -231,23 +260,11 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1),"colormap") == 0) {
       sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
     }
-    else if ( strcmp(cstk(l1),"font size") == 0) {
-      sciSetFontSize(subwin, fontSize); 
-      sciSetFontSize(sciGetParent(subwin), fontSize);
-      forceRedraw(subwin);
-    }
     else if ( strcmp(cstk(l1),"dashes") == 0) {
       sciSetLineStyle(subwin, x[0]); 
       sciSetLineStyle(sciGetParent(subwin), x[0]);
       forceRedraw(subwin);
-    }  
-    else if ( strcmp(cstk(l1),"font") == 0) {
-      sciSetFontStyle(subwin, x[0]); 
-      sciSetFontSize(subwin,  x[1]);  
-      sciSetFontStyle(sciGetParent(subwin), x[0]); 
-      sciSetFontSize(sciGetParent(subwin), x[1]);
-      forceRedraw(subwin);
-    } 
+    }
     else if ( strcmp(cstk(l1),"alufunction") == 0) {
       sciSetXorMode(subwin, x[0]); 
       sciSetXorMode(sciGetParent(subwin), x[0]);
