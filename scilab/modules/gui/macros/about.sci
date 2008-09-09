@@ -13,7 +13,7 @@ function about(h)
 
 [a, b] = getversion();
 
-btn = messagebox(msprintf(gettext("Scilab 5 alpha and future versions are released under the terms of the CeCILL license.\n") +..
+btn = messagebox(msprintf(gettext("Scilab 5.0 and future versions are released under the terms of the CeCILL license.\n") +..
     gettext("Some Scilab modules are released under the GPLv2 license.\n\n") +..
     gettext("Authors:\nScilab Consortium / INRIA / ENPC / Contributors\n\n") +..
     gettext("Version %s (%s)\n\n") +..
