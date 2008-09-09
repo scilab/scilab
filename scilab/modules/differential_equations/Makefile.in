@@ -533,10 +533,6 @@ demos/flow/flow.dem.gateway.sce \
 demos/flow/sphere.dem.sce \
 demos/flow/sphere.sci \
 demos/flow/sphere_interface.sci \
-demos/levitron/doc/dyn_of_lev.pdf \
-demos/levitron/doc/levitron_2.pdf \
-demos/levitron/doc/spinstab.pdf \
-demos/levitron/doc/Understanding_Euler_Angles.zip \
 demos/levitron/levitron.dem.sce \
 demos/levitron/levitron.mpl \
 demos/levitron/levitron.sci \
