@@ -145,6 +145,16 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add(SECTION_AUTOLABEL_1);
 			this.styleDoc = docbookPath + "/html/chunk.xsl";
 
+			/* Copy the css file for thr HTML pages */
+			String cssFile=new String(SCI+"/modules/helptools/css/html.css");
+			try {
+				Helpers.copyFile(new File(cssFile), new File(outputDirectory+"/html.css"));
+			} catch (java.io.FileNotFoundException e) {
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+			} catch (java.io.IOException e) {
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+			}
+			
 		}
 		if (format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
 			// JavaHelp
@@ -171,8 +181,7 @@ public class BuildDocObject extends StyleSheet {
 				+ File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
 		String out = this.outputDirectory + File.separator + (String) new File(styleSheet).getName();
 		try {
-			
-		Helpers.copyFile(new File(styleSheet), new File(out));
+			Helpers.copyFile(new File(styleSheet), new File(out));
 		} catch (java.io.FileNotFoundException e) {
 			System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());			
 		} catch (java.io.IOException e) {
