@@ -8,13 +8,20 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [t] = atanh(z)
-  // 
-  //  PURPOSE 
+  //
+  //  PURPOSE
   //     element wise hyperbolic arctangent
   //
-  //  METHOD 
+  //  METHOD
   //     based on the formula  atanh(z) = i atan(-i z)
   //
+
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"atanh",1));
+  end
+
   if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"atanh",1));
   end

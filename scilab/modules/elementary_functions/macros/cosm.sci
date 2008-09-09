@@ -15,6 +15,12 @@ function x=cosm(a)
 //   a   : square hermitian or diagonalizable matrix
 //   x   : square hermitian matrix
 
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cosm",1));
+  end
+
   if type(a)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"cosm",1));
   end

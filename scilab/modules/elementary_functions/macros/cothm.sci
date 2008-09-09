@@ -10,6 +10,12 @@
 function x=cothm(a)
 // hyperbolic co-tangent of square matrix
 
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cothm",1));
+  end
+
   if type(a)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"cothm",1));
   end

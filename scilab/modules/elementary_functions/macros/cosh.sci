@@ -26,6 +26,13 @@ function [t] = cosh(z)
   //
   //     2/ in the complex case use :   cosh(z) = cos(i z)
   //
+
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cosh",1));
+  end
+
   if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"cosh",1));
   end

@@ -15,6 +15,13 @@ function [t] = sinh(z)
 //  METHOD 
 //     based on the formula  sinh(z) = -i sin(i z)
 //
+
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sinh",1));
+  end
+
   if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinh",1));
   end

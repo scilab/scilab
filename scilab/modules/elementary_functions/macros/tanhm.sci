@@ -9,7 +9,13 @@
 
 function x=tanhm(a)
 //Matrix wise Hyperbolic tangent
-
+	
+	rhs = argn(2);
+	
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"tanhm",1));
+	end
+ 
 	if a==[] then x=[],return,end
 	[m,n]=size(a)
 	if m<>n then

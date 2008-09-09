@@ -8,12 +8,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [t] = acosh(z)
-  // 
-  //  PURPOSE 
+  //
+  //  PURPOSE
   //     element wise hyperbolic arccosinus
   //
-  //  METHOD 
-  //     based on the formula : 
+  //  METHOD
+  //     based on the formula :
   //
   //     acosh(z) = sign(-imag(acos(z)) i acos(z)
   //
@@ -23,6 +23,13 @@ function [t] = acosh(z)
   //
   //     sign(-x) = 2*(0.5 - bool2s(x>0))
   //
+
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"acosh",1));
+  end
+
   if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"acosh",1));
   end
