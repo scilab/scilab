@@ -10,117 +10,196 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pcg">
+<refentry version="5.0-subset Scilab" xml:id="pcg" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>pcg</refname>
-    <refpurpose>precondioned conjugate gradient </refpurpose>
+
+    <refpurpose>precondioned conjugate gradient</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[x, flag, err, iter, res] = pcg(A, b [, tol [, maxit [, M [, M2 [, x]]]]])
-[x, flag, err, iter, res] = pcg(A, b, key=value,...)</synopsis>
+
+    <synopsis>[x, flag, err, iter, res] = pcg(A, b [, tol [, maxit [, M [, M2 [, x0]]]]])
+</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>A</term>
+
+        <term></term>
+
         <listitem>
-          <para>symmetric positive definite full or sparse matrix of size nxn 
-	    or a function returning <literal>A*x</literal> for each given <literal>x</literal></para>
+          <para>a matrix, or a function, or a list computing
+          <literal>A*x</literal> for each given <literal>x</literal>. The
+          following is a description of the computation of A*x depending on
+          the type of A.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para><literal>matrix.</literal>If A is a matrix, it can be
+              dense or sparse</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>function.</literal>If A is a function, it must
+              have the following header.</para>
+
+              <programlisting>
+      
+      function y = A ( x , mymatrix )
+      
+    </programlisting>
+            </listitem>
+
+            <listitem>
+              <para><literal>list.</literal>If A is a list, the first element
+              of the list is expected to be a function and the other elements
+              in the list are the arguments of the function, from index 2 to
+              the end. When the function is called, the current value of x is
+              passed to the function as the first argument. The other
+              arguments passed are the one given in the list.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
       <varlistentry>
         <term>b</term>
+
         <listitem>
           <para>right hand side vector (size: nx1)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>tol</term>
+
         <listitem>
           <para>error tolerance (default: 1000*%eps)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>maxi</term>
+
         <listitem>
           <para>maximum number of iterations (default: n)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>M</term>
+
         <listitem>
           <para>preconditioner: full or sparse matrix or function returning
-	    <literal>M\x</literal> (default: none)</para>
+          <literal>M\x</literal> (default: none)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>M2</term>
+
         <listitem>
           <para>preconditioner: full or sparse matrix or function returning
-	    <literal>M2\x</literal> for each <literal>x</literal> (default: none)</para>
+          <literal>M2\x</literal> for each <literal>x</literal> (default:
+          none)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>x0</term>
+
         <listitem>
           <para>initial guess vector (default: zeros(n,1))</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>solution vector</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>flag</term>
+
         <listitem>
-          <para>0 if <literal>pcg</literal> converged to the desired
-	    tolerance within <literal>maxi</literal> iterations, 1 else</para>
+          <para>0 if <literal>pcg</literal> converged to the desired tolerance
+          within <literal>maxi</literal> iterations, 1 else</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>err</term>
+
         <listitem>
           <para>final relative norm of the residual</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>iter</term>
+
         <listitem>
           <para>number of iterations performed</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>res</term>
+
         <listitem>
           <para>vector of the residual norms</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para> Solves the linear system <literal>Ax=b</literal> using the conjugate
-      gradient method with or without preconditioning. The preconditionning
-      should be defined by a symmetric positive definite matrix <literal>M</literal>,
-      or two matrices <literal>M1</literal> and <literal>M2</literal> such that
-      <literal>M=M1*M2</literal>. in the case the function solves <literal>inv(M)*A*x =
-	inv(M)*b</literal> for <literal>x</literal>. <literal>M</literal>, <literal>M1</literal> and
-      <literal>M2</literal> can be Scilab functions with calling sequence <literal>y=Milx(x)</literal> which
-      computes  the corresponding left division  <literal>y=Mi\x</literal>. </para>
-    <para> The <literal>A</literal> matrix must be a symmetric positive definite 
-      matrix (full or sparse) or a function  with calling sequence <literal>y=Ax(x)</literal> which
-      computes <literal>y=A*x</literal></para>
+
+    <para>Solves the linear system <literal>Ax=b</literal> using the conjugate
+    gradient method with or without preconditioning. The preconditionning
+    should be defined by a symmetric positive definite matrix
+    <literal>M</literal>, or two matrices <literal>M1</literal> and
+    <literal>M2</literal> such that <literal>M=M1*M2</literal>. in the case
+    the function solves <literal>inv(M)*A*x = inv(M)*b</literal> for
+    <literal>x</literal>. <literal>M</literal>, <literal>M1</literal> and
+    <literal>M2</literal> can be Scilab functions with calling sequence
+    <literal>y=Milx(x)</literal> which computes the corresponding left
+    division <literal>y=Mi\x</literal>.</para>
+
+    <para>The <literal>A</literal> matrix must be a symmetric positive
+    definite matrix (full or sparse) or a function with calling sequence
+    <literal>y=Ax(x)</literal> which computes <literal>y=A*x</literal></para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
  //Well conditionned problem
  A=[ 94  0   0   0    0   28  0   0   32  0  
@@ -155,41 +234,55 @@
   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
    //sparse matrix
-   A=sparse(A);
-   [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
+   Asparse=sparse(A);
+   [x, fail, err, iter, res]=pcg(Asparse,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
    //using a function
-   function y=Atimesx(x,A),y=A*x, endfunction
+   function y=Atimesx(x,A)
+     y=A*x
+   endfunction
 
    //A passed by the calling context
    [x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
    // A passed as an argument
-   [x, fail, err, iter, res]=pcg(list(Atimesx,A),b,maxIter=30,tol=1d-12);
+   Alist = list(Atimesx,Asparse)
+   [x, fail, err, iter, res]=pcg(Alist,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="backslash">backslash</link>
-      </member>
-      <member>
-        <link linkend="qmr">qmr</link>
-      </member>
-      <member>
-        <link linkend="gmres">gmres</link>
-      </member>
+      <member><link linkend="backslash">backslash</link></member>
+
+      <member><link linkend="qmr">qmr</link></member>
+
+      <member><link linkend="gmres">gmres</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
-    <para>
-    Sage Group (IRISA, 2004)
-  </para>
+
+    <para>Sage Group (IRISA, 2004)</para>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <para>"Templates for the Solution of Linear Systems: Building Blocks for
+    Iterative Methods", Barrett, Berry, Chan, Demmel, Donato, Dongarra,
+    Eijkhout, Pozo, Romine, and Van der Vorst, SIAM Publications, 1993, ftp
+    netlib2.cs.utk.edu/linalg/templates.ps</para>
+
+    <para>"Iterative Methods for Sparse Linear Systems, Second Edition", Saad,
+    SIAM Publications, 2003, ftp
+    ftp.cs.umn.edu/dept/users/saad/PS/all_ps.zip</para>
   </refsection>
 </refentry>
