@@ -17,5 +17,5 @@
  Defines version of "completion" module
 -->
 
-<VERSION major="5" minor="0" maintenance="0" revision="0" string="unstable-svn" />
+<VERSION major="5" minor="0" maintenance="0" revision="0" string="stable" />
 </MODULE_VERSION>
