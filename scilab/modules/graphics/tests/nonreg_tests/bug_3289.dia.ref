@@ -14,36 +14,13 @@
 // When a legended curve is destroyed, legend is not updated and Scilab becomes unstable
 t=linspace(0,6,100)';
 plot2d(t,[sin(t),cos(t),abs(cos(t))],[1 2 3])
-e=gce();
-c=captions(e.children,string(1:3))
- c  =
- 
-Handle of type "Legend" with properties:
-========================================
-parent: Axes
-children: []
-visible = "on"
-text = ["1";"2";"3"]
-font_style = 6
-font_size = 1
-font_color = -1
-fractional_font = "off"
-links = ["Polyline";"Polyline";"Polyline"]
-legend_location = "lower_caption"
-position = [0.1245902,0.9414130]
-line_mode = "on"
-thickness = 1
-foreground = -1
-fill_mode = "off"
-background = -2
-clip_state = "off"
-clip_box = []
-user_data = []
-l=c.links;
-c.legend_location='in_lower_left';
-delete(e.children(2))
+e = gce();
+c = captions(e.children,string(1:3));
+l = c.links;
+c.legend_location = "in_lower_left";
+delete(e.children(2));
 if or(c.links<>l([1 3])) then bugmes();quit;end
 if or(c.text<>["1";"3"]) then bugmes();quit;end
-delete(e.children(2))
-if or(c.links<>l([3])) then bugmes();quit;end
-if or(c.text<>["3"]) then bugmes();quit;end
+delete(e.children(2));
+if or(c.links<>l([3]))   then bugmes();quit;end
+if or(c.text<>["3"])     then bugmes();quit;end
