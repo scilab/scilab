@@ -75,6 +75,8 @@ List of missing/buggy features:
 - MacOS X version has some critical issues which will be probably addressed in 
   Scilab v 5.1
 
+- The search in the help is not done on the Scicos help.
+
 - Some Linux distributions with SELinux enabled may prevent Scilab from running
   under the default security context. Newer Linux distributions have enabled 
   new kernel security extensions from the SELinux project at the NSA. These
