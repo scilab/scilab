@@ -98,6 +98,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)" \
+	"$(DESTDIR)$(libscihelptools_la_examplesdir)" \
 	"$(DESTDIR)$(libscihelptools_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -152,6 +153,7 @@ libscihelptools_la_schemaDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_convertDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_foDATA_INSTALL = $(INSTALL_DATA)
+nobase_libscihelptools_la_examplesDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_doc_DATA) \
 	$(libscihelptools_la_doc_html_DATA) \
@@ -162,7 +164,8 @@ DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_schema_DATA) \
 	$(libscihelptools_la_sci_gateway_DATA) \
 	$(libscihelptools_la_xsl_convert_DATA) \
-	$(libscihelptools_la_xsl_fo_DATA)
+	$(libscihelptools_la_xsl_fo_DATA) \
+	$(nobase_libscihelptools_la_examples_DATA)
 libscihelptools_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscihelptools_la_include_HEADERS)
 ETAGS = etags
@@ -480,6 +483,15 @@ doc/html/images/callouts/9.png
 #### helptools : doc [html - resources] files ####
 libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
 libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
+
+#### helptools : example files ####
+libscihelptools_la_examplesdir = $(mydatadir)
+nobase_libscihelptools_la_examples_DATA = examples/example_1/help/fr_FR/example_1_function_3.xml \
+examples/example_1/help/fr_FR/example_1_function_1.xml \
+examples/example_1/help/en_US/example_1_function_3.xml \
+examples/example_1/help/en_US/example_1_function_1.xml \
+examples/example_1/help/en_US/example_1_function_2.xml
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -910,6 +922,25 @@ uninstall-libscihelptools_la_xsl_foDATA:
 	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f"; \
 	done
+install-nobase_libscihelptools_la_examplesDATA: $(nobase_libscihelptools_la_examples_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihelptools_la_examplesdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_examplesdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscihelptools_la_examples_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscihelptools_la_examplesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f'"; \
+	  $(nobase_libscihelptools_la_examplesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f"; \
+	done
+
+uninstall-nobase_libscihelptools_la_examplesDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscihelptools_la_examples_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f"; \
+	done
 install-libscihelptools_la_includeHEADERS: $(libscihelptools_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_includedir)"
@@ -1007,7 +1038,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)" "$(DESTDIR)$(libscihelptools_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)" "$(DESTDIR)$(libscihelptools_la_examplesdir)" "$(DESTDIR)$(libscihelptools_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1070,7 +1101,8 @@ install-data-am: install-data-local install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_schemaDATA \
 	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
-	install-libscihelptools_la_xsl_foDATA
+	install-libscihelptools_la_xsl_foDATA \
+	install-nobase_libscihelptools_la_examplesDATA
 
 install-dvi: install-dvi-am
 
@@ -1122,6 +1154,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
+	uninstall-nobase_libscihelptools_la_examplesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1147,7 +1180,8 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	install-libscihelptools_la_schemaDATA \
 	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
-	install-libscihelptools_la_xsl_foDATA install-man install-pdf \
+	install-libscihelptools_la_xsl_foDATA install-man \
+	install-nobase_libscihelptools_la_examplesDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1167,6 +1201,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
+	uninstall-nobase_libscihelptools_la_examplesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
