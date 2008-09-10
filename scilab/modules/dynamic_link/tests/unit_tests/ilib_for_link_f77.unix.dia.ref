@@ -17,14 +17,14 @@ sourcecode=['      subroutine incrdoublef77(x,y)'
     '      end'];
 mputl(sourcecode,'incrdoublef77.f');
 libpath=ilib_for_link('incrdoublef77','incrdoublef77.o',[],'f','Makefile');
-   Génère un fichier loader
-   Génère un Makefile
-   ilib_gen_Make: Copie les fichiers de compilation (Makefile*, libtool...) vers TMPDIR
-   ilib_gen_Make: Copie incrdoublef77.f vers TMPDIR
-   ilib_gen_Make: Modification du Makefile dans TMPDIR.
-   Exécute le Makefile
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy incrdoublef77.f to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the Makefile
 exec loader.sce;
-Bibliothèque partagée chargée.
+Shared archive loaded.
 Link done.
 n=1.
  n  =
