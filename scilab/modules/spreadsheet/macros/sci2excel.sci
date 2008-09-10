@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function sci2spreadsheet(var,fname,sep,dec)
+function sci2excel(var,fname,sep,dec)
 // var : a matrix of numbers or a matrix of strings
 // fname : a character string, the path of the file to create
 // sep   : the column separator mark, a tab by default

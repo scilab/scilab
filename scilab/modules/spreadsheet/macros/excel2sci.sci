@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function mat=spreadsheet2sci(fname,sep)
+function mat=excel2sci(fname,sep)
 // Given an ascii  file created by Excel using "Text and comma" format
 // exel2sci(fname) returns the corresponding Scilab matrix of strings.
 
