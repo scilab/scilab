@@ -43,7 +43,7 @@
     <para>Remarque : Le temps CPU est le nombre de cycles processeur utilisé
     pour l'execution.</para>
 
-    <para>Le temps CPU time peut etre utilisé pour comparer l'usage CPU entre
+    <para>Le temps CPU peut etre utilisé pour comparer l'usage CPU entre
     différents programmes ou fonctions, indépendamment des processus en
     arrière plan qui peuvent ralentir l'ordinateur.</para>
   </refsection>
