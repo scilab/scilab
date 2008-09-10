@@ -1,36 +1,22 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
 C/MEMBR ADD NAME=ISET,SSI=0
 c
-      subroutine iset(n,dx,dy,incy)
-c!but
-c     iset affecte un entier a tous les elements d'un vecteur
-c!liste d'appel
-c     subroutine iset(n,dx,dy,incy)
-c     integer dx,dy(n*incy)
-c     integer n,incy
+      subroutine iset (n, value, array, inc)
 c
-c     n : nombre d'elements du vecteur dy
-c     dx : scalaire a affecter
-c     dy : tableau contenant le vecteur
-c     incy : increment entre deux elements consecutifs du vecteur y
-c              dans le tableau dy
-c!
-      integer dx,dy(*)
+      integer    n, value, inc
+      integer    array(*)
 c
-      if (n.le.0) return
-      iy = 1
-      if (incy.lt.0) iy = (-n+1)*incy + 1
-      do 10 i = 1,n
-        dy(iy) = dx
-        iy = iy + incy
+      do 10 i = 1, n
+         array(i) = value
    10 continue
+c
       return
       end
