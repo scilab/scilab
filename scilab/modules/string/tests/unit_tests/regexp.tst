@@ -467,3 +467,11 @@ if regexp('......abef'                              ,'/.*a(?!(b|cd)*e).*f/'     
 if regexp('fools'                                   ,'/(foo|fool|x.|money|parted)$/'         ) <>  []  then pause,end
 if regexp('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ) <>  []  then pause,end
 if regexp('fools'                                   ,'/(foo|fool|money|parted)$/'            ) <>  []  then pause,end
+
+if regexp('scilab-5.0'            ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
+if regexp('scilab-5.0.1'          ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
+if regexp('scilab-5.0-alpha-1'    ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
+if regexp('scilab-5.0-alpha1'     ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> [] then pause,end
+if regexp('scilab-5.0-rc1'        ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
+if regexp('scilab-5.0-rc-1'       ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> [] then pause,end
+if regexp('scilab-SE-trunk-27490' ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> [] then pause,end
