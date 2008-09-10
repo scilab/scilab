@@ -232,21 +232,12 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
     for( i = 0; i < nbValues; i++)
     {
-        if ( (values_end[i] - values[i]) > 1 )
-        {
-            match[i] = (char*)MALLOC(sizeof(char)*(values_end[i] - values[i] + 1));
-        }
-        else
-        {
-            match[i] = (char*)MALLOC(sizeof(char)*(1));
-        }
-
-        for(j = values[i] - 1; j < values_end[i] ; j++)
-        {
-            match[i][j+1-values[i]]=Str[0][j];
-        }
+        int len = values_end[i] - values[i] + 1;
+        match[i] = (char*)MALLOC(sizeof(char)*(len + 1));
+        strncpy(match[i], Str[0] + values[i] - 1, len);
+        
         /* A char* always finished by \0 */
-        match[i][j+1-values[i]]='\0';
+        match[i][len]='\0';
     }
 
     freeArrayOfString(Str,mn);
