@@ -22,9 +22,7 @@ $=poly(0,'$')
 add_module_help_chapter('polynomials');
 // ====================================================================
 //add demo
-path = get_absolute_file_path('polynomials.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/polynomials.dem.gateway.sce',%f,%f);
+pathdemos = pathconvert(SCI+"/modules/polynomials/demos/polynomials.dem.gateway.sce",%f,%t);
 add_demo(gettext("Polynomials"),pathdemos);
 clear pathdemos ;
 // ====================================================================

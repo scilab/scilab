@@ -15,14 +15,13 @@
 //Load  functions librarie
 load('SCI/modules/metanet/macros/editor/lib');
 load('SCI/modules/metanet/macros/graph_tools/lib');
-
+// ====================================================================
 //add help chapter
 add_module_help_chapter('metanet');
-
+// ====================================================================
 //add demos
-path = get_absolute_file_path('metanet.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/meta.dem',%f,%f);
+pathdemos = pathconvert(SCI+"/modules/metanet/demos/meta.dem",%f,%t);
 add_demo(gettext("Metanet"),pathdemos);
+clear pathdemos ;
+// ====================================================================
 
-clear path pathdemos ;

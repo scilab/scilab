@@ -14,11 +14,7 @@ load('SCI/modules/core/macros/lib');
 add_module_help_chapter('core');
 // ====================================================================
 //add demos
-path = get_absolute_file_path('core.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/intro/dem01.dem',%f,%f);
-
+pathdemos = pathconvert(SCI+"/modules/core/demos/intro/dem01.dem",%f,%t);
 add_demo(gettext('Introduction'),pathdemos);
-
-clear path pathdemos ;
+clear pathdemos ;
 // ====================================================================
