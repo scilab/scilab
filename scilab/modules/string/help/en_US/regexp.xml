@@ -77,6 +77,8 @@
     quick start , see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>. For a more
     in-depth tutorial on , see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink> and for
     the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink></para>
+    <para>A difference with Perl is that matching a position but no character (for example, with /^/ or /(?=o)/) is a successful match
+    in Perl but not in Scilab.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -134,18 +134,24 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                     answer = pcre_private(pointer,save,&Output_Start,&Output_End);
                     if ( answer == PCRE_FINISHED_OK )
                     {
-                        if (Output_Start != Output_End || Output_Start==0)
+                        /* Start = End means that we matched a position and 0 characters.
+                         * Matching 0 characters, for us, means no match.
+                         */
+                        if (Output_Start!=Output_End)
                         {
                             /*adding the answer into the outputmatrix*/
                             values[nbValues++] = Output_Start + start_point + 1;
+                            values_end[nbValues_end++] = Output_End + start_point;
+                            
+                            /*The number according to the str2 matrix*/
+                            position[nbposition++]=x+1;
                         }
-                        else
+                        else if(Output_End == 0 && *pointer != '\0')
                         {
-                            values[nbValues++] = Output_Start + start_point;
+                            /* Avoid an infinite loop */
+                            pointer++;
                         }
-                        values_end[nbValues_end++] = Output_End + start_point;
-                        /*The number according to the str2 matrix*/
-                        position[nbposition++] = x + 1;
+                        
                         pointer = pointer + Output_End;
                         start_point = start_point + Output_End;
                     }
@@ -158,7 +164,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                         }
                     }
                 }
-                while( (answer == PCRE_FINISHED_OK) && (Output_Start != Output_End) );
+                while( answer == PCRE_FINISHED_OK && *pointer != '\0' );
 
                 if (save) {FREE(save);save=NULL;}
             }
@@ -193,19 +199,18 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                 answer = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
                 if ( answer == PCRE_FINISHED_OK)
                 {
-                    if (Output_Start!=Output_End || Output_Start==0)
+                    /* Start = End means that we matched a position and 0 characters.
+                     * Matching 0 characters, for us, means no match.
+                     */
+                    if (Output_Start!=Output_End)
                     {
                         /*adding the answer into the outputmatrix*/
                         values[nbValues++]=Output_Start+1;
+                        values_end[nbValues_end++]=Output_End;
+                        
+                        /*The number according to the str2 matrix*/
+                        position[nbposition++]=x+1;
                     }
-                    else
-                    {
-                        values[nbValues++]=Output_Start;
-                    }
-
-                    values_end[nbValues_end++]=Output_End;
-                    /*The number according to the str2 matrix*/
-                    position[nbposition++]=x+1;
                 }
                 else
                 {
