@@ -46,15 +46,19 @@ char * system_setproperty(char *property,char *value)
 
 				jstrPreviousValue = (*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstrProperty,jstrValue);
 				bOK = catchIfJavaException(""); 
+
 				if (bOK)
 				{
-					strPreviousValue = (*currentENV)->GetStringUTFChars(currentENV,jstrPreviousValue, 0);
-					if (strPreviousValue)
+					if (jstrPreviousValue)
 					{
-						retValue = (char*)MALLOC(sizeof(char)*(strlen(strPreviousValue)+1));
-						if (retValue) strcpy(retValue,strPreviousValue);
+						strPreviousValue = (*currentENV)->GetStringUTFChars(currentENV,jstrPreviousValue, 0);
+						if (strPreviousValue)
+						{
+							retValue = (char*)MALLOC(sizeof(char)*(strlen(strPreviousValue)+1));
+							if (retValue) strcpy(retValue,strPreviousValue);
+						}
+						(*currentENV)->ReleaseStringUTFChars(currentENV, jstrPreviousValue , strPreviousValue);
 					}
-					(*currentENV)->ReleaseStringUTFChars(currentENV, jstrPreviousValue , strPreviousValue);
 				}
 			}
 		}
