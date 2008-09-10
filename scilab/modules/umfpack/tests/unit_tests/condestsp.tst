@@ -5,6 +5,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+
+warning("off");
+
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6; 
               0 -1 -3  2  0; 
@@ -30,7 +33,7 @@ if round(K1) <> round(K1e) then pause, end
 
 // if you have already the lu factors condestsp(A,Lup) is faster
 // because lu factors are then not computed inside condestsp
-Lup = umf_lufact(A);   
+Lup = umf_lufact(A);
 K1 = condestsp(A,Lup);
 if round(K1) <> 10798708075 then pause, end
 
