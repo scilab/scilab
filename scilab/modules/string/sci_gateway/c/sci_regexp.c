@@ -51,7 +51,6 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
     int outIndex = 0;
     int numRow = 1;
-    int j;
 
     int *values = NULL;
     int *values_end= NULL;
