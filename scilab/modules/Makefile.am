@@ -5,7 +5,7 @@
 
 # The order DOES matter !!!
 
-# core is the main module of Scilab. All the compilation deps has been removed 
+# core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 SUBDIRS = core
 
@@ -82,7 +82,7 @@ matio
 
 if SCICOS
 SUBDIRS += scicos_blocks
-endif 
+endif
 
 SUBDIRS += scicos
 
@@ -119,6 +119,7 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
@@ -152,12 +153,12 @@ $(top_builddir)/modules/mexlib/libmex.la \
 
 # These libs are loaded dynamical by Scilab
 #	$(top_builddir)/modules/matio/libscimatio.la
-#	$(top_builddir)/modules/randlib/libscirandlib.la 
-#	$(top_builddir)/modules/optimization/libscioptimization.la 
+#	$(top_builddir)/modules/randlib/libscirandlib.la
+#	$(top_builddir)/modules/optimization/libscioptimization.la
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
-#	$(top_builddir)/modules/symbolic/libscisymbolic.la 
-#	$(top_builddir)/modules/metanet/libscimetanet.la 
-#	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la 
+#	$(top_builddir)/modules/symbolic/libscisymbolic.la
+#	$(top_builddir)/modules/metanet/libscimetanet.la
+#	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la
 
 # Dev in progress
 
@@ -200,4 +201,4 @@ endif
 if USE_EMBEDDED_LAPACK
 libscilab_la_LIBADD += \
 $(top_builddir)/libs/lapack/libscilapack.la
-endif 
+endif
