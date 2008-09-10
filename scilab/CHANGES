@@ -173,7 +173,7 @@ Simulated Annealing:
 
 Other Numerical Functions
 =========================
- - new functions 
+ - New functions 
         + filter           - signal filtering 
         + erfinv           - inverse of the erf function
         +                  - support for rational fraction hypermatrices added
@@ -255,7 +255,7 @@ System relative Functions:
 	+ reset_profiling       - reset  profiling data of a function
 
  - Rewrite in native code:
-  + warning
+        + warning
   
  - Profile changed:
 	+ unix_g                - a third output argument (optional) has been added to get standard error output in a variable.
@@ -283,7 +283,7 @@ Binary, octal and hexadecimal representation:
 	+ dec2oct  - return octal representation of integers
 
 
-jvm module:
+Jvm module:
 ===========
 	+ with_embedded_jre        - checks if scilab uses a embedded JRE
 	+ system_getproperty       - gets the system property indicated by a specified key.
@@ -322,8 +322,8 @@ Online Help management:
  - loaddefaultbrowser function and %browsehelp global variable have been removed:
    The new Java help browser is the only help browser.
  - For more information, have a look to :
-    + http://wiki.scilab.org/howto/scilab_documentation_kit
-    + SCI/modules/helptools/doc directory
+        + http://wiki.scilab.org/howto/scilab_documentation_kit
+        + SCI/modules/helptools/doc directory
 
 Metanet : graph and network toolbox
 ===================================
@@ -411,7 +411,7 @@ Source reorganisation:
 
 New Scilab Functions:
 =====================
- - Function rewrited from Fortran to C for better maintenance
+ - Function rewritten from Fortran to C for better maintenance
 
 
 Scilab modes:
@@ -467,9 +467,9 @@ Dynamic/incremental link:
  - Under Linux/Unix, now based on basic autotools for the detection of compiler
 	and compilation.
  - New functions:
-  + getdynlibext - get the extension of dynamic libraries on your operating system.
+        + getdynlibext - get the extension of dynamic libraries on your operating system.
  - Function improved:
-  + ilib_for_link & ilib_build - now accept the actual filename (not only filename.o but also filename.c or filename.f)
+        + ilib_for_link & ilib_build - now accept the actual filename (not only filename.o but also filename.c or filename.f)
 
 
 TCL/TK:
@@ -499,9 +499,9 @@ Tests:
 	+ Non regression
 	+ Benchmarks
  - New functions:
-    + test_run
-    + unitary_test_run
-    + nonreg_test_run
+        + test_run
+        + unitary_test_run
+        + nonreg_test_run
 
 OTHERS IMPROVEMENTS:
 ====================
@@ -534,8 +534,8 @@ Internal API:
 Scicos:
 =======
  - Test framework currently under development:
-  + Unitary tests
-  + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2)
+        + Unitary tests
+        + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2)
 
 Known incompatibilty
 --------------------
@@ -548,7 +548,7 @@ Known incompatibilty
     changed "lower" and "left" are now relative to user coordinates
     order.
 
-  - the xgetmouse flag option has been removed 
+  - The xgetmouse flag option has been removed 
 
   - Due to license restrictions from the Universidad de Cantabria, the quapro 
 	and linpro functions are no more available in the Scilab distribution, 
