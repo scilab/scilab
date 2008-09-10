@@ -699,7 +699,7 @@
 ::msgcat::mcset fr_fr "This feature is no longer available in Scilab 5 due to bug " "Cette fonction n'est plus disponible dans Scilab 5 à cause du bug "
 ::msgcat::mcset fr_fr "See details at " "Plus d'infos: "
 ::msgcat::mcset fr_fr "See also:" "Voir aussi :"
-::msgcat::mcset fr_fr "Note: Scilab 4.x and Scilab-gtk are offering this feature." "Nota: Scilab 4.x et Scilab-gtk proposent cette fonctionnalité."
+::msgcat::mcset fr_fr "Note: Scilab 4.x is offering this feature." "Nota: Scilab 4.x propose cette fonctionnalité."
 ::msgcat::mcset fr_fr "A solution is to use a backported version of Scipad inside one of these environments, for instance:" "Une solution est d'utiliser une version dite \"backport\" de Scipad à l'intérieur d'un de ces environnements, par exemple :"
 ::msgcat::mcset fr_fr "Feature missing from Scilab 5" "Fonctionnalité manquante dans Scilab 5"
 ::msgcat::mcset fr_fr "ScilabEval command cannot be passed to Scilab!" "Une commande ScilabEval ne peut pas être passée à Scilab!"

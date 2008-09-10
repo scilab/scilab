@@ -266,7 +266,7 @@ proc pleaseuseabetterscilabversion {bugnumber {furtherrefs {}}} {
         }
         append mes "\n"
     }
-    append mes [mc "Note: Scilab 4.x and Scilab-gtk are offering this feature."] "\n" \
+    append mes [mc "Note: Scilab 4.x is offering this feature."] "\n" \
                [mc "A solution is to use a backported version of Scipad inside one of these environments, for instance:"] "\n" $latestbackportedscipadversionURL
     set tit [mc "Feature missing from Scilab 5"]
     tk_messageBox -message $mes -icon error -title $tit

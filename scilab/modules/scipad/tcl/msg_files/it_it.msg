@@ -853,9 +853,9 @@
                        per via del bug "
 ::msgcat::mcset it_it "See details at " "Maggiori informazioni in: "
 ::msgcat::mcset it_it "See also:" "Vedi anche:"
-::msgcat::mcset it_it "Note: Scilab 4.x and Scilab-gtk are offering this\
+::msgcat::mcset it_it "Note: Scilab 4.x is offering this\
                        feature."\
-                      "Nota: Scilab 4.x e Scilab-gtk offrono questa\
+                      "Nota: Scilab 4.x offrono questa\
                        funzionalità."
 ::msgcat::mcset it_it "A solution is to use a backported version of Scipad\
                        inside one of these environments, for instance:"\
