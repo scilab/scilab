@@ -11,9 +11,30 @@
  */
 
 #include "gw_io.h"
+#include "stack-c.h"
+#include "localization.h"
+#include "Scierror.h"
+#include "IsAScalar.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_mgetl)(char *fname,unsigned long fname_len)
 {
+	if (Rhs == 2)
+	{
+		if (VarType(2) != sci_matrix)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: An integer scalar expected.\n"),fname,2); 
+			return 0;
+		}
+		else
+		{
+			if ( !IsAScalar(2) )
+			{
+				Scierror(999,_("%s: Wrong type for input argument #%d: An integer scalar expected.\n"),fname,2); 
+				return 0;
+			}
+		}
+	}
+
 	C2F(intmgetl)();
 	return 0;
 }
