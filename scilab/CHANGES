@@ -479,9 +479,10 @@ TCL/TK:
 
  - Provided with version 8.5 of TCL/TK
  - Removed Functions:
-	+ tcl_? @TODO 
 	+ demoplay is obsolete
 	+ sciGUIhelp is obsolete 
+ - Some TCL/related functions have been tagged as obsolete 
+   (See http://wiki.scilab.org/obsolete_scilab_function )
  - TCL_CreateSlave now allows to create "safe" or "unsafe" slave interpreters (new option added).
    Default switched from safe to unsafe interp.
 
@@ -555,7 +556,7 @@ Known incompatibilty
 	but as an external toolbox.
 
   - Some uses of the pow function could cause issues for base ~ 1.0 and large
-	exponent (see http://sources.redhat.com/bugzilla/show_bug.cgi?id=706)
+	exponent (See http://sources.redhat.com/bugzilla/show_bug.cgi?id=706)
 
                      Main Changes Scilab 3.0 -> 4.0
                      ==============================
