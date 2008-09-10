@@ -18,7 +18,7 @@ export SCI
 shift
 LOCALPOS=`pwd`
 cd $SCI
-# Generate a temp directory with a random name to avoid bug #3409
+# Generates a temp directory with a random name to avoid bug #3409
 TMPWRKDIR=`mktemp -d sci.XXXXXXXXXX`
 make show | grep -v make > $TMPWRKDIR/SciLink$$1
 sed -e "s+routines/default+\$SD+g"  -e "s+libs+\$SL+g" -e "s+./pvm3+\$SPVM+g" $TMPWRKDIR/SciLink$$1 > $TMPWRKDIR/SciLink$$2
