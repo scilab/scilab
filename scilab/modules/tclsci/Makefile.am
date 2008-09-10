@@ -108,15 +108,6 @@ tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \
 tcl/sciGUI/sciEditVar.tcl \
-tcl/BWidget-1.8.0/demo/select.tcl \
-tcl/BWidget-1.8.0/demo/tree.tcl \
-tcl/BWidget-1.8.0/demo/basic.tcl \
-tcl/BWidget-1.8.0/demo/tmpldlg.tcl \
-tcl/BWidget-1.8.0/demo/demo.tcl \
-tcl/BWidget-1.8.0/demo/dnd.tcl \
-tcl/BWidget-1.8.0/demo/bwidget.xbm \
-tcl/BWidget-1.8.0/demo/manager.tcl \
-tcl/BWidget-1.8.0/demo/x1.xbm \
 tcl/BWidget-1.8.0/tests/entry.test \
 tcl/BWidget-1.8.0/BWman/SelectColor.html \
 tcl/BWidget-1.8.0/BWman/SpinBox.html \
