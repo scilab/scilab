@@ -35,11 +35,12 @@ function r=checknyquist(Args,leg)
     if size(a.children($+1-k).children,'*')<>2  then r=5;return,end
     if a.children($+1-k).children(1).type<>'Compound'  then r=6;return, end
     if a.children($+1-k).children(2).type<>'Polyline'  then r=7;return, end
-    if a.children($+1-k).children(1).children(1).type<>'Segs' then r=8;return, end
-    ns=size(a.children($+1-k).children(1).children(1).data,1);
-    if size(a.children($+1-k).children(1).children,'*')-2<>(ns/2) then r=9;return, end
-    if or(a.children($+1-k).children(1).children(2:$).type<>'Text') then r=10;return, end
-
+    if %f then //temporarily removed for 5.0
+      if a.children($+1-k).children(1).children(1).type<>'Segs' then r=8;return, end
+      ns=size(a.children($+1-k).children(1).children(1).data,1);
+      if size(a.children($+1-k).children(1).children,'*')-2<>(ns/2) then r=9;return, end
+      if or(a.children($+1-k).children(1).children(2:$).type<>'Text') then r=10;return, end
+    end
     if or(l<>find(~isnan(a.children($+1-k).children(2).data(:,1)))) then r=11;return, end
     if norm(a.children($+1-k).children(2).data(l,:)-[R(k,l)' I(k,l)'])> 1d-14 then r=12;return, end
     s= a.children($+1-k).children(1).children(1);
