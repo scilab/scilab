@@ -180,4 +180,6 @@ int GradEqual( const double grads[], const int * ngrads) ;
  */
 char * getFPF(void);
 
+int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax );
+
 #endif /* _FORMAT_H_ */

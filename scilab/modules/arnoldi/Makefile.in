@@ -99,29 +99,28 @@ libsciarnoldi_la_DEPENDENCIES =  \
 am__objects_1 = libsciarnoldi_la-dsconv.lo libsciarnoldi_la-dsortc.lo \
 	libsciarnoldi_la-dsaup2.lo libsciarnoldi_la-dneigh.lo \
 	libsciarnoldi_la-znaupd.lo libsciarnoldi_la-dsesrt.lo \
-	libsciarnoldi_la-iset.lo libsciarnoldi_la-zneupd.lo \
-	libsciarnoldi_la-smout.lo libsciarnoldi_la-znaitr.lo \
-	libsciarnoldi_la-zngets.lo libsciarnoldi_la-second.lo \
-	libsciarnoldi_la-znapps.lo libsciarnoldi_la-zlarnv.lo \
-	libsciarnoldi_la-dsortr.lo libsciarnoldi_la-zmout.lo \
-	libsciarnoldi_la-dseigt.lo libsciarnoldi_la-zgetv0.lo \
-	libsciarnoldi_la-znaup2.lo libsciarnoldi_la-icnteq.lo \
-	libsciarnoldi_la-icopy.lo libsciarnoldi_la-zneigh.lo \
-	libsciarnoldi_la-zsortc.lo libsciarnoldi_la-dstatn.lo \
-	libsciarnoldi_la-dlaruv.lo libsciarnoldi_la-dstqrb.lo \
-	libsciarnoldi_la-cvout.lo libsciarnoldi_la-dvout.lo \
-	libsciarnoldi_la-dstats.lo libsciarnoldi_la-dlaqrb.lo \
-	libsciarnoldi_la-ivout.lo libsciarnoldi_la-dnaupd.lo \
-	libsciarnoldi_la-dneupd.lo libsciarnoldi_la-dsaupd.lo \
-	libsciarnoldi_la-svout.lo libsciarnoldi_la-dnaitr.lo \
-	libsciarnoldi_la-iswap.lo libsciarnoldi_la-zstatn.lo \
-	libsciarnoldi_la-dseupd.lo libsciarnoldi_la-dngets.lo \
-	libsciarnoldi_la-dnapps.lo libsciarnoldi_la-dsaitr.lo \
-	libsciarnoldi_la-dlarnv.lo libsciarnoldi_la-cmout.lo \
-	libsciarnoldi_la-dnconv.lo libsciarnoldi_la-zvout.lo \
-	libsciarnoldi_la-dmout.lo libsciarnoldi_la-dsgets.lo \
-	libsciarnoldi_la-dgetv0.lo libsciarnoldi_la-dnaup2.lo \
-	libsciarnoldi_la-dsapps.lo
+	libsciarnoldi_la-zneupd.lo libsciarnoldi_la-smout.lo \
+	libsciarnoldi_la-znaitr.lo libsciarnoldi_la-zngets.lo \
+	libsciarnoldi_la-second.lo libsciarnoldi_la-znapps.lo \
+	libsciarnoldi_la-zlarnv.lo libsciarnoldi_la-dsortr.lo \
+	libsciarnoldi_la-zmout.lo libsciarnoldi_la-dseigt.lo \
+	libsciarnoldi_la-zgetv0.lo libsciarnoldi_la-znaup2.lo \
+	libsciarnoldi_la-icnteq.lo libsciarnoldi_la-icopy.lo \
+	libsciarnoldi_la-zneigh.lo libsciarnoldi_la-zsortc.lo \
+	libsciarnoldi_la-dstatn.lo libsciarnoldi_la-dlaruv.lo \
+	libsciarnoldi_la-dstqrb.lo libsciarnoldi_la-cvout.lo \
+	libsciarnoldi_la-dvout.lo libsciarnoldi_la-dstats.lo \
+	libsciarnoldi_la-dlaqrb.lo libsciarnoldi_la-ivout.lo \
+	libsciarnoldi_la-dnaupd.lo libsciarnoldi_la-dneupd.lo \
+	libsciarnoldi_la-dsaupd.lo libsciarnoldi_la-svout.lo \
+	libsciarnoldi_la-dnaitr.lo libsciarnoldi_la-iswap.lo \
+	libsciarnoldi_la-zstatn.lo libsciarnoldi_la-dseupd.lo \
+	libsciarnoldi_la-dngets.lo libsciarnoldi_la-dnapps.lo \
+	libsciarnoldi_la-dsaitr.lo libsciarnoldi_la-dlarnv.lo \
+	libsciarnoldi_la-cmout.lo libsciarnoldi_la-dnconv.lo \
+	libsciarnoldi_la-zvout.lo libsciarnoldi_la-dmout.lo \
+	libsciarnoldi_la-dsgets.lo libsciarnoldi_la-dgetv0.lo \
+	libsciarnoldi_la-dnaup2.lo libsciarnoldi_la-dsapps.lo
 am__objects_2 = libsciarnoldi_la-sci_dseupd.lo \
 	libsciarnoldi_la-sci_zneupd.lo libsciarnoldi_la-gw_arnoldi.lo \
 	libsciarnoldi_la-sci_dnaupd.lo libsciarnoldi_la-sci_dneupd.lo \
@@ -171,6 +170,7 @@ AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
+AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
@@ -359,7 +359,6 @@ src/arpack/dsaup2.f \
 src/arpack/dneigh.f \
 src/arpack/znaupd.f \
 src/arpack/dsesrt.f \
-src/arpack/iset.f \
 src/arpack/zneupd.f \
 src/arpack/smout.f \
 src/arpack/znaitr.f \
@@ -666,9 +665,6 @@ libsciarnoldi_la-znaupd.lo: src/arpack/znaupd.f
 
 libsciarnoldi_la-dsesrt.lo: src/arpack/dsesrt.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsesrt.lo `test -f 'src/arpack/dsesrt.f' || echo '$(srcdir)/'`src/arpack/dsesrt.f
-
-libsciarnoldi_la-iset.lo: src/arpack/iset.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-iset.lo `test -f 'src/arpack/iset.f' || echo '$(srcdir)/'`src/arpack/iset.f
 
 libsciarnoldi_la-zneupd.lo: src/arpack/zneupd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zneupd.lo `test -f 'src/arpack/zneupd.f' || echo '$(srcdir)/'`src/arpack/zneupd.f

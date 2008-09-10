@@ -14,6 +14,3 @@
 
 // Load  functions library
 load('SCI/modules/demo_tools/macros/lib');
-
-// Add help chapter
-add_module_help_chapter('demo_tools');

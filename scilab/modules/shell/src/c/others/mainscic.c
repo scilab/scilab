@@ -84,6 +84,22 @@ fpsetmask(0);
 		  sprintf(dpy,"DISPLAY=%s",argv[++i]);
 		  putenv(dpy);
       }
+      else if ( strcmp(argv[i],"-l") == 0)
+      {
+		  char lang[128];
+		  char *argLang=strdup(argv[++i]);
+
+		  if (strcmp(argLang,"en")==0) {/* backward compatiblity en => en_US */
+			  exportLocaleToSystem("en_US");
+
+		  }else{
+			  if (strcmp(argLang,"fr")==0) { /* backward compatiblity fr => fr_FR */
+				  exportLocaleToSystem("fr_FR");
+			  }else{
+				  exportLocaleToSystem(argLang);
+			  }
+		  }
+      }
       else if ( strcmp(argv[i],"-nb") == 0)  { sci_show_banner = 0; }
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
       else if ( strcmp(argv[i],"-mem") == 0) { i++; memory = Max(atoi(argv[i]),MIN_STACKSIZE );}
@@ -104,6 +120,14 @@ fpsetmask(0);
       }
       else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
     }
+
+#ifndef WITH_GUI
+  if(getScilabMode() != SCILAB_NWNI)
+  {
+    fprintf(stderr, "Scilab was compiled without its GUI. Run scilab with the -nwni option.\n");
+    exit(1);
+  }
+#endif
 
   realmain(no_startup_flag,initial_script,initial_script_type,memory);
 }

@@ -159,4 +159,17 @@ public final class GeomAlgos {
 		}
 	}
 	
+	/**
+	 * Check if the 3 component of a 3D vector is finite.
+	 * @param xCoord X coordinate of the vector
+	 * @param yCoord Y coordinate of the vector
+	 * @param zCoord Z coordinate of the vector
+	 * @return true if the vector is finite, false otherwise
+	 */
+	public static boolean isVector3DFinite(double xCoord, double yCoord, double zCoord) {
+		return    !(Double.isInfinite(xCoord) || Double.isNaN(xCoord)
+				 || Double.isInfinite(yCoord) || Double.isNaN(yCoord)
+				 || Double.isInfinite(zCoord) || Double.isNaN(zCoord));
+	}
+	
 }

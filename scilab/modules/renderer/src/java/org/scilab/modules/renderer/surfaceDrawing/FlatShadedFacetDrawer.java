@@ -79,6 +79,7 @@ public class FlatShadedFacetDrawer extends FacetDrawerGL {
 		
 		double[] frontColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[0]));
 		
+		// for now draw only polygons with 3 or 4 edges
 		if (vertices.length == TRIANGLE_NB_EDGE) {
 			// only a triangle
 			drawFrontTriangle(gl, vertices, frontColor);
@@ -88,7 +89,7 @@ public class FlatShadedFacetDrawer extends FacetDrawerGL {
 				drawBackTriangle(gl, vertices, getHiddenColor());
 			}
 			
-		} else {
+		} else if (vertices.length == QUAD_NB_EDGE) {
 			
 			// its a quad, decompose it into 2 triangles
 			Vector3D[] triangle1 =  new Vector3D[TRIANGLE_NB_EDGE];

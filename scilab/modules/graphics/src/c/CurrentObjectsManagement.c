@@ -49,7 +49,6 @@ sciPointObj * sciGetCurrentFigure( void )
 {
   /* debug F.Leray 22.07.04 */
   sciPointObj * pfigure = getCurrentPointedFigure();
-  sciPointObj * pSousFen = NULL;
 
   if( !sciHasFigures() )
   {

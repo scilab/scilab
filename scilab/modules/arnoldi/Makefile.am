@@ -10,7 +10,6 @@ src/arpack/dsaup2.f \
 src/arpack/dneigh.f \
 src/arpack/znaupd.f \
 src/arpack/dsesrt.f \
-src/arpack/iset.f \
 src/arpack/zneupd.f \
 src/arpack/smout.f \
 src/arpack/znaitr.f \
@@ -77,7 +76,7 @@ libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libsciarnoldi_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la 
+libsciarnoldi_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la
 
 if USE_EMBEDDED_LAPACK
 libsciarnoldi_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la

@@ -286,7 +286,7 @@ dnl @TODO : il faut peut etre verifier que c'est bien gfortran
    fi
 	  case "$host" in
 		 x86_64-*-linux*)
-			FFLAGS="$FFLAGS -mfpmath=sse -msse2 -m64 -fPIC"
+			FFLAGS="$FFLAGS -m64 -fPIC"
 					;;
 		# Dec Alpha OSF 4
 		alpha*-dec-osf4.*)
@@ -409,7 +409,7 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
 	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
 	;;
 	 x86_64-*-linux-gnu)
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -mfpmath=sse -msse2 -m64"
+		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -m64"
 		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
@@ -506,7 +506,7 @@ FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 if test $IS_64_BITS_CPU = true; then
    if test $f90compatible = false; then
-      AC_MSG_ERROR([64 bits support needs a fortran 90 compiler.])
+      AC_MSG_ERROR([64 bits support needs a fortran 90 compiler (try --with-gfortran).])
    fi
    AC_DEFINE([IS_64_BITS_CPU], [], [If we are building a 64 bits version])
 fi
@@ -523,7 +523,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
+if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -591,7 +591,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
-				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
+				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 		fi
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -602,6 +602,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	AC_SUBST(JAVA_JNI_INCLUDE)
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
+
+
 
 	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 		SWIG_PROG()
@@ -616,10 +618,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
 		AC_GIWS()
 	fi
-
-	AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 fi
 
+AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
@@ -633,7 +634,7 @@ AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" !=
 AC_CHECK_FUNCS([sleep] [usleep] [dup2] [getcwd] [getpagesize] [getpass])
 AC_CHECK_FUNCS([rmdir])
 
-AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function. ]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
+AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function.]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
 
 # Provided by <regex.h>
 AC_CHECK_FUNCS([regcomp])
@@ -1128,6 +1129,7 @@ libs/dynamiclibrary/Makefile
 libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
 libs/libst/Makefile
+contrib/Makefile
 modules/helptools/Makefile
 modules/helptools/macros/xmlfiletohtml.sci
 modules/data_structures/Makefile

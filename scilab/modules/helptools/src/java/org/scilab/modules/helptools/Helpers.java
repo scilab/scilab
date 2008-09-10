@@ -174,6 +174,40 @@ public final class Helpers {
 
     // -----------------------------------------------------------------------
 
+    /**
+     * Delete a directory and all his content
+     *
+     * @param dir The path to the directory
+	 */
+    public static void deleteDirectory(String dir) {
+		deleteDirectory(new File(dir));
+	}
+
+    /**
+     * Delete a directory and all his content
+     *
+     * @param dir The file object of the path to the directory
+	 */
+    public static void deleteDirectory(File dir) {
+
+        String files[] = dir.list();
+        if (files == null) {
+            files = new String[0];
+        }
+        for (int i = 0; i < files.length; i++) {
+            File file = new File(dir, files[i]);
+            if (file.isDirectory()) {
+                Helpers.deleteDirectory(file);
+            } else {
+                file.delete();
+            }
+        }
+        dir.delete();
+
+    }
+
+    // -----------------------------------------------------------------------
+
     public static String[] split(String string, char separatorChar) {
         // Count elements ---
 

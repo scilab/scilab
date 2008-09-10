@@ -20,6 +20,7 @@ import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.jni.FigureScilabCall;
+import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 
 
@@ -113,6 +114,10 @@ public class SciRenderer
 	  }
 	  //gLDrawable.setAutoSwapBufferMode(false);
 	  GL gl = gLDrawable.getGL();
+	  
+	  // update the maximum size of a panel if needed
+	  RenderingCapabilities.updateMaxCanvasSize(gl);
+	  
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);    // white Background
       gl.glClear(GL.GL_COLOR_BUFFER_BIT); // clear here othrwise we don't know what we will have

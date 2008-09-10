@@ -240,7 +240,7 @@ trace(F2*Z)-c(2)
     </para>
     <para>
     SP: Software for Semidefinite Programming, 
-    http://www.ee.ucla.edu/~vandenbe/sp.html
+    <ulink url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
     </para>
   </refsection>
 </refentry>

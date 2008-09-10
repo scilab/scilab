@@ -3,11 +3,22 @@
 ### INRIA - Scilab 2008
 ##########
 
+if GUI
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
 			sci_gateway/c/gw_helptools.c
+
+GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+
+if GIWS
+BUILT_SOURCES=giws
+endif
+
+else
+GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
+endif
 
 pkglib_LTLIBRARIES = libscihelptools.la
 
@@ -25,12 +36,6 @@ libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
 
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
-GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
-
-if GIWS
-BUILT_SOURCES=giws
-endif
-
 #### Target ######
 modulename=helptools
 
@@ -45,15 +50,20 @@ libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 
+#### helptools : include files ####
+libscihelptools_la_includedir=$(pkgincludedir)/helptools
+libscihelptools_la_include_HEADERS = includes/gw_helptools.h
+
+
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \
 bin/man2sci \
-bin/sci2pdf \
-bin/sci2jh \
-bin/manrev2sci \
-bin/sci2html \
-bin/sciviewhelp
+bin/manrev2sci 
+
+#### helptools : gateway declaration ####
+libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
 
 
 #### helptools : css files ####
@@ -86,6 +96,8 @@ doc/addonprefs.png \
 doc/doc.pdf \
 doc/doc.xml
 
+
+#### helptools : doc [html] files ####
 libscihelptools_la_doc_htmldir = $(mydatadir)/doc/html
 libscihelptools_la_doc_html_DATA = \
 doc/html/ch01.html \
@@ -98,9 +110,13 @@ doc/html/ch07.html \
 doc/html/html.css \
 doc/html/index.html
 
+
+#### helptools : doc [images] files ####
 libscihelptools_la_doc_html_imagesdir = $(mydatadir)/doc/html/images
 libscihelptools_la_doc_html_images_DATA = doc/html/images/draft.png
 
+
+#### helptools : doc [images - callouts] files ####
 libscihelptools_la_doc_html_images_calloutsdir = $(mydatadir)/doc/html/images/callouts
 libscihelptools_la_doc_html_images_callouts_DATA = \
 doc/html/images/callouts/1.png \
@@ -119,8 +135,20 @@ doc/html/images/callouts/7.png \
 doc/html/images/callouts/8.png \
 doc/html/images/callouts/9.png
 
+
+#### helptools : doc [html - resources] files ####
 libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
 libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
+
+
+#### helptools : example files ####
+libscihelptools_la_examplesdir=$(mydatadir)
+nobase_libscihelptools_la_examples_DATA = examples/example_1/help/fr_FR/example_1_function_3.xml \
+examples/example_1/help/fr_FR/example_1_function_2.xml \
+examples/example_1/help/fr_FR/example_1_function_1.xml \
+examples/example_1/help/en_US/example_1_function_3.xml \
+examples/example_1/help/en_US/example_1_function_1.xml \
+examples/example_1/help/en_US/example_1_function_2.xml
 
 
 include $(top_srcdir)/Makefile.incl.am

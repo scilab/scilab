@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //================================================
 // test call
 //================================================
@@ -12,9 +18,10 @@ if ~c_link('foo') then
   ilib_for_link(['foo'],'foo.o',[],"c");
    Generate a loader file
    Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy foo.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
-   Compilation of foo
-   Building shared library (be patient)
   // disable message
   warning_mode = warning('query');
   warning('off');

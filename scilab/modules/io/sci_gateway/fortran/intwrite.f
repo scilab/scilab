@@ -13,7 +13,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer    lch
       parameter (lch=1024)
       character chaine*(lch)
-      character chainebis*(lch)
 c     
       integer top2,id(nlgh),h(nsiz)
       integer ftyp,fmttyp,mode(2)
@@ -134,13 +133,12 @@ c     acces sequentiel
                if(fin.gt.0) then
                   buf=' '
                   nv=lct(5)/18
-                  call writebufw(chaine,nv)
+                  write(chaine(1:lch),'(''('',i2,''(1x,1pd17.10))'')') nv
                   do 64 k1=1,n,nv
                      k2=min(n,k1+nv-1)
-                     write(chainebis,chaine,err=139) 
-     &                    (stk(li+(j-1)*m),j=k1,k2)
-                     call writeiotobuf(chainebis)
                      lc=18*(k2-k1+1)
+                     write(buf,chaine(1:lc),err=139) 
+     &                    (stk(li+(j-1)*m),j=k1,k2)
                      call basout(io,wte,buf(1:lc))
  64               continue
                else

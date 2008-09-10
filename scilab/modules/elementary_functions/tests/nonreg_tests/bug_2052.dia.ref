@@ -39,6 +39,7 @@ ilib_build('libtest',['changetype','intchangetype'],'intchangetype',[]);
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy intchangetype.c to TMPDIR
+   ilib_gen_Make: Copy libtest.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
  
@@ -54,10 +55,7 @@ libtest_path = get_file_path('loader.sce');
 list_functions = [ 'changetype';
 ];
  
-addinter(libtest_path+'/libtest.so','intchangetype',list_functions);
-Shared archive loaded.
-Link done.
-intchangetype_ is not an entry point.
+addinter(libtest_path+'/libtest.so','libtest',list_functions);
 Shared archive loaded.
 Link done.
  

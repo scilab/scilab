@@ -9,9 +9,7 @@ load('SCI/modules/signal_processing/macros/lib');
 add_module_help_chapter('signal_processing');
 // ====================================================================
 //add demos
-path = get_absolute_file_path('signal_processing.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/signal.dem.gateway.sce',%f,%f);
-add_demo("Signal Processing",pathdemos);
-clear path pathdemos;
+pathdemos = pathconvert(SCI+"/modules/signal_processing/demos/signal.dem.gateway.sce",%f,%t);
+add_demo(gettext("Signal Processing"),pathdemos);
+clear pathdemos;
 // ====================================================================

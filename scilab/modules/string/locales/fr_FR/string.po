@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2008-08-13 08:03+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2008-08-21 20:23+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:45+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -68,12 +68,12 @@ msgstr "%s: Cette fonctionnalité n'a pas été implémentée: %s.\n"
 msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
 msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: ''%s'' attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
 msgstr ""
-"%s: Cette fonctionnalité n'a pas encore été implémentée: Traduction variable "
-"du type %s.\n"
+"%s : Cette fonctionnalité n'a pas encore été implémentée : Traduction d'une "
+"variable du type %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
@@ -105,7 +105,7 @@ msgstr "%s: Plus de mémoire disponible.\n"
 msgid "%s: Delimiter must not be alphameric.\n"
 msgstr "%s: Les délimiteurs ne doivent pas être alphanumériques.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Capturing subpatterns error.\n"
 msgstr "%s: Capture d'une erreur concernant des sous-motifs.\n"
 
@@ -117,9 +117,9 @@ msgstr "%s: Correspondance partielle non supportée.\n"
 msgid "%s: Contains explicit CR or LF match.\n"
 msgstr "%s: Contient des correspondances explicites avec CR ou LF.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Duplicate name status changes.\n"
-msgstr "%s: Changement de status des noms dupliqués.\n"
+msgstr "%s : Changement de statut des noms dupliqués.\n"
 
 #, c-format
 msgid "%s: Returned count is too big for offset size.\n"

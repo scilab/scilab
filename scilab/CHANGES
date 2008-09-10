@@ -12,8 +12,8 @@ Graphical User Interface:
  - Advanced docking system
  - Follow the Tango Desktop Project http://tango.freedesktop.org/
  - GUI re-written in Java Swing:
-        + Same GUI for all OS (Menubars, toolbars...)
-        + Window docking available using FlexDock https://flexdock.dev.java.net/
+	+ Same GUI for all OS (Menubars, toolbars...)
+	+ Window docking available using FlexDock https://flexdock.dev.java.net/
  - Uicontrols are now Java objects: they can be included in a graphic window with graphics and are managed as graphic handles in Scilab
  - Uimenus are now Java objects and are managed as graphic handles in Scilab
  - Uimenus and Uicontrols can be saved and loaded like other graphic entities using save and load functions
@@ -23,40 +23,63 @@ Graphical User Interface:
 Event Handling Functions:
 =========================
  - All the event handling functions "xclick", "xgetmouse" and the "event_handler"
-       * they have been rewritten in Java   
-       * they use the same "-1000" code to signal the "window close" actions 
-         (previously "xclick" and "xgetmouse" used "-100" code) 
+	+ they have been rewritten in Java   
+	+ they use the same "-1000" code to signal the "window close" actions 
+	  (previously "xclick" and "xgetmouse" used "-100" code) 
  - Obsolete functions:
-       * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
+	+ Using xgetmouse with a flag to avoid the event queue to be cleared is 
+	  now obsolete. This functionnality will be removed in Scilab 5.1.
 
 Graphics:
 =========
  - New rendering engine based on JOGL (Java Binding for the OpenGL API):
-	* Support 3D hardware acceleration.
-	* Facet ordering issues fixed with the use of Z-buffer.
+	+ Support 3D hardware acceleration.
+	+ Facet ordering issues fixed with the use of Z-buffer.
  - Text possibilities extended:
-	* Support for floating point sizes.
- 	* Text object are able to handle matrices of strings.
+	+ Support for floating point sizes.
+	+ Text object are able to handle matrices of strings.
  - All graphic objects are fully operational both in 2D and 3D modes.
  - Clipping is operational both in 2D and 3D modes.
  - New property "filled" added to Axes object which controls axes box transparency.
  - New functions:
-	* swap_handles - Permute two handles in the graphic hierarchy.
-	* relocate_handle - Move handles inside the graphic hierarchy.
-	* get_figure_handle - Get a figure handle from its id without changing current figure.
-	* rotate_axes - Interactive rotation of an Axes handle.
-	* is_handle_valid - Check wether a set of graphic handles is still valid.
+	+ swap_handles - Permute two handles in the graphic hierarchy.
+	+ relocate_handle - Move handles inside the graphic hierarchy.
+	+ get_figure_handle - Get a figure handle from its id without changing current figure.
+	+ rotate_axes - Interactive rotation of an Axes handle.
+	+ is_handle_valid - Check wether a set of graphic handles is still valid.
+ - New colormaps ( See demonstrations -> graphics -> Colormap ):
+	+ autumncolormap    - red through orange to yellow colormap
+	+ bonecolormap      - gray colormap with a light blue tone
+	+ coolcolormap      - cyan to magenta colormap
+	+ coppercolormap    - black to a light copper tone colormap
+	+ oceancolormap     - linear blue colormap
+	+ pinkcolormap      - sepia tone colorization on black and white images
+	+ rainbowcolormap   - red through orange, yellow, green,blue to violet colormap
+	+ springcolormap    - magenta to yellow colormap
+	+ summercolormap    - green to yellow colormap
+	+ whitecolormap     - completely white colormap
+	+ wintercolormap    - blue to green colormap
  - Behavior changes:
-    * clf now deletes user menus which are children of the figure (Created by addmenu or uimenu).
+	+ clf now deletes user menus which are children of the figure
+	  (Created by addmenu or uimenu).
  - Obsolete functions:
-    * xclea, xaxis, loadplots and xtape functions have been removed because of their incompatibilities with the new graphic syntax.
+	+ xclea, xaxis, loadplots and xtape functions have been removed because of 
+	  their incompatibilities with the new graphic syntax.
 
 Graphic file export:
 ====================
-  - xs2jpeg, xs2png, xs2svg, xs2pdf functions added to export graphics under JPEG, PNG, SVG and PDF formats.     	
+  - xs2jpeg, xs2png, xs2svg, xs2pdf functions added to export graphics under
+	JPEG, PNG, SVG and PDF formats.
   - Option color in xs2eps and xs2ps has been removed.
   - Export GUI has been rewritten to match the new Java Swing style.
 
+
+Numerical precision:
+====================
+ - Numerical precision of Scilab under Linux 32 bits has been switched to
+	double precision (53 bits). Therefore, the precision on some specific 
+	computations is improved and the consistency between Microsoft Windows &
+	GNU/Linux enhanced.
 
 Signal processing:
 ==================
@@ -79,15 +102,19 @@ Sparse LU factorization:
 	+ umf_lusolve   - Solve a linear sparse system given the LU factors
 	+ umf_luinfo    - Get information on LU factors
 	+ umf_luget     - Retrieve LU factors at the Scilab level 
-	+ taucs_chfac   - Cholesky factorisation of a sparse Symmetric Positive Definite (s.p.d.) matrix
+	+ taucs_chfac   - Cholesky factorisation of a sparse Symmetric Positive 
+	                  Definite (s.p.d.) matrix
 	+ taucs_chsolve - Solve a linear sparse (s.p.d.) system given the Cholesky factors
 	+ taucs_chinfo  - Get information on Cholesky factors
 	+ taucs_chget   - Retrieve the Cholesky factorization at the Scilab level
 	+ res_with_prec - Computes the residual r = Ax-b with precision
-	+ cond2sp       - Computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix
+	+ cond2sp       - Computes an approximation of the 2-norm condition number 
+	                  of a s.p.d. sparse matrix
 	+ condestsp     - Estimate the condition number of a sparse matrix
 	+ PlotSparse    - Plot the pattern of non nul elements of a sparse matrix 
-	+ ReadHBSparse  - Read a Harwell-Boeing sparse format file
+	+ ReadHBSparse  - Read a Harwell-Boeing sparse format file 
+	                  (See http://math.nist.gov/MatrixMarket/ for examples)
+
 
 Optimization:
 =============
@@ -99,55 +126,57 @@ Optimization:
 Genetic Algorithms:
 ===================
  - Genetic algorithms have been added into Scilab. Many thanks to Yann Collette
-	+ codage_binary			- Performs conversion between binary and continuous representation
-	+ codage_identity		- "no-operation" conversion function
-	+ crossover_func_binary 	- Crossover function for binary code
-	+ crossover_func_default 	- Crossover function for continuous variable functions
-	+ init_func_default		- Initialize a population 
-	+ mutation_func_binary		- Performs binary mutation 
-	+ mutation_func_default		- Continuous variable mutation
-	+ optim_ga			- Flexible genetic algorithm 
-	+ optim_nsga			- Multi-objective Niched Sharing Genetic Algorithm
-	+ optim_nsga2			- Multi-objective Niched Sharing Genetic Algorithm version 2
-	+ pareto_filter			- Extracts non dominated solution from a set
-	+ selection_func_elitist	- 'Elitist' selection function 
-	+ selection_func_random		- Random selection of individuals 
+	+ coding_ga_binary 	- Performs conversion between binary and continuous representation
+	+ coding_ga_identity	- "no-operation" conversion function
+	+ crossover_ga_binary 	- Crossover function for binary code
+	+ crossover_ga_default	- Crossover function for continuous variable functions
+	+ init_ga_default     	- Initialize a population 
+	+ mutation_ga_binary  	- Performs binary mutation 
+	+ mutation_ga_default 	- Continuous variable mutation
+	+ optim_ga              - Flexible genetic algorithm 
+	+ optim_nsga            - Multi-objective Niched Sharing Genetic Algorithm
+	+ optim_nsga2           - Multi-objective Niched Sharing Genetic Algorithm version 2
+	+ pareto_filter         - Extracts non dominated solution from a set
+	+ selection_ga_elitist	- 'Elitist' selection function 
+	+ selection_ga_random 	- Random selection of individuals 
 
 
 Param/parameters module:
 ========================
- - This package allows to deal with list of parameters efficiently (like optim_set in Matlab from The Mathworks (TM)). Many thanks to Yann Collette
-	+ add_param		- Add a parameter to a list of parameters
-	+ get_param		- Get the value of a parameter in a parameter list
-	+ init_param		- Initialize an empty parameter list
-	+ is_param		- Check if a parameter is present in a parameter list
-	+ list_param		- List all the parameters name in a list of parameters 
-	+ remove_param		- Remove a parameter and its associated value from a list of parameters 
-	+ set_param		- Set the value of a parameter in a parameter list 
+ - This package allows to deal with list of parameters efficiently 
+   (like optim_set in Matlab from The Mathworks (TM)). Many thanks to Yann Collette
+	+ add_param            - Add a parameter to a list of parameters
+	+ get_param            - Get the value of a parameter in a parameter list
+	+ init_param           - Initialize an empty parameter list
+	+ is_param             - Check if a parameter is present in a parameter list
+	+ list_param           - List all the parameters name in a list of parameters 
+	+ remove_param         - Remove a parameter and its associated value from a list of parameters 
+	+ set_param            - Set the value of a parameter in a parameter list 
 
 
 Simulated Annealing:
 ====================
- - Simulated annealing (SA) is a generic probabilistic meta-algorithm for the global optimization problem. Many thanks to Yann Collette
-	+ compute_initial_temp		- Compute the initial temperature of the simulated annealing
-	+ neigh_func_csa		- The classical neighborhood relationship for the simulated annealing 
-	+ neigh_func_default		- Computes a neighbor of a given point
-	+ neigh_func_fsa		- The Fast Simulated Annealing neghborhood relationship 
-	+ neigh_func_vfsa		- The Very Fast Simulated Annealing neighborhood relationship 
-	+ optim_sa			- Simulated Annealing optimization method 
-	+ temp_law_csa			- The classical temperature decrease law
-	+ temp_law_default		- Computes the temperature of the next temperature stage 
-	+ temp_law_fsa			- The Szu and Hartley Fast simulated annealing
-	+ temp_law_huang		- The Huang temperature decrease law for the simulated annealing
-	+ temp_law_vfsa			- The Very Fast Simulated Annealing from L. Ingber 
+ - Simulated annealing (SA) is a generic probabilistic meta-algorithm for the 
+   global optimization problem. Many thanks to Yann Collette
+	+ compute_initial_temp - Compute the initial temperature of the simulated annealing
+	+ neigh_func_csa       - The classical neighborhood relationship for the simulated annealing 
+	+ neigh_func_default   - Computes a neighbor of a given point
+	+ neigh_func_fsa       - The Fast Simulated Annealing neghborhood relationship 
+	+ neigh_func_vfsa      - The Very Fast Simulated Annealing neighborhood relationship 
+	+ optim_sa             - Simulated Annealing optimization method 
+	+ temp_law_csa         - The classical temperature decrease law
+	+ temp_law_default     - Computes the temperature of the next temperature stage 
+	+ temp_law_fsa         - The Szu and Hartley Fast simulated annealing
+	+ temp_law_huang       - The Huang temperature decrease law for the simulated annealing
+	+ temp_law_vfsa        - The Very Fast Simulated Annealing from L. Ingber 
 
 
 Other Numerical Functions
 =========================
- - new functions 
-        + filter                - signal filtering 
-        + erfinv                - inverse of the erf function
-        +                       - support for rational fraction hypermatrices added
+ - New functions 
+        + filter           - signal filtering 
+        + erfinv           - inverse of the erf function
+        +                  - support for rational fraction hypermatrices added
  - Bug fixes
         + Major bug in qld fixed
 
@@ -226,7 +255,7 @@ System relative Functions:
 	+ reset_profiling       - reset  profiling data of a function
 
  - Rewrite in native code:
-  + warning
+        + warning
   
  - Profile changed:
 	+ unix_g                - a third output argument (optional) has been added to get standard error output in a variable.
@@ -254,7 +283,7 @@ Binary, octal and hexadecimal representation:
 	+ dec2oct  - return octal representation of integers
 
 
-jvm module:
+Jvm module:
 ===========
 	+ with_embedded_jre        - checks if scilab uses a embedded JRE
 	+ system_getproperty       - gets the system property indicated by a specified key.
@@ -287,17 +316,14 @@ Online Help management:
 	+ del_help_chapter
 	+ add_module_help_chapter
 	+ del_module_help_chapter
-	+ xmltojar
+	+ xmltojar (the documentation provided in Scilab)
 	+ xmltopdf
-	+ xmltops
-	+ xmltochm
- - xmltohtml function is now deprecated
- - loaddefaultbrowser function and %browsehelp global variable have been removed :
+	+ xmltohtml
+ - loaddefaultbrowser function and %browsehelp global variable have been removed:
    The new Java help browser is the only help browser.
  - For more information, have a look to :
-    + http://wiki.scilab.org/howto/scilab_documentation_kit
-    + SCI/modules/helptools/doc directory
-
+        + http://wiki.scilab.org/howto/scilab_documentation_kit
+        + SCI/modules/helptools/doc directory
 
 Metanet : graph and network toolbox
 ===================================
@@ -385,7 +411,7 @@ Source reorganisation:
 
 New Scilab Functions:
 =====================
- - Function rewrited from Fortran to C for better maintenance
+ - Function rewritten from Fortran to C for better maintenance
 
 
 Scilab modes:
@@ -405,15 +431,18 @@ Scilab modes:
 
 GNU/Linux - Unix:
 =================
+ - Please note that most of these points are outputs of the SCOS project ( http://www.oscos.org/ )
  - New configure (based on autoconf)
  - New compilation process (based on automake and libtool)
- - LSB/FHS compliant
+ - Parallel build (make -j)
+ - FHS compliant
  - Switched to dynamic libraries
  - Advanced numerical libraries can be used (Atlas, MKL...)
  - Use librairies when available on the system
  - Build by default with gfortran
  - Versioned libraries
  - Easier profiling (memory and call graph)
+ - Better support of 64 bits CPU
  - Better startup script
 	+ Debug
 	+ Profiling (valgrind)
@@ -438,20 +467,22 @@ Dynamic/incremental link:
  - Under Linux/Unix, now based on basic autotools for the detection of compiler
 	and compilation.
  - New functions:
-  + getdynlibext - get the extension of dynamic libraries on your operating system.
+        + getdynlibext - get the extension of dynamic libraries on your operating system.
  - Function improved:
-  + ilib_for_link - now accept the actual filename (not only filename.o but also filename.c or filename.f)
+        + ilib_for_link & ilib_build - now accept the actual filename (not only filename.o but also filename.c or filename.f)
 
 
 TCL/TK:
 =======
  - New event loop 
-	+ @TODO detail
+	+ Tcl/Tk thread separated from the Scilab one.
+
  - Provided with version 8.5 of TCL/TK
  - Removed Functions:
-	+ tcl_? @TODO 
 	+ demoplay is obsolete
 	+ sciGUIhelp is obsolete 
+ - Some TCL/related functions have been tagged as obsolete 
+   (See http://wiki.scilab.org/obsolete_scilab_function )
  - TCL_CreateSlave now allows to create "safe" or "unsafe" slave interpreters (new option added).
    Default switched from safe to unsafe interp.
 
@@ -469,9 +500,9 @@ Tests:
 	+ Non regression
 	+ Benchmarks
  - New functions:
-    + test_run
-    + unitary_test_run
-    + nonreg_test_run
+        + test_run
+        + unitary_test_run
+        + nonreg_test_run
 
 OTHERS IMPROVEMENTS:
 ====================
@@ -504,10 +535,8 @@ Internal API:
 Scicos:
 =======
  - Test framework currently under development:
-  + Unitary tests (95% done)
-  + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2) (95% done)
-  + Benchmarks (0% done)
-
+        + Unitary tests
+        + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2)
 
 Known incompatibilty
 --------------------
@@ -516,15 +545,18 @@ Known incompatibilty
     see update_graph for translation, Graph saving is not more
     possible in a formatted way.
 
-  - due to a bug fix the xstringb x and y arguments meaning had
+  - Due to a bug fix the xstringb x and y arguments meaning had
     changed "lower" and "left" are now relative to user coordinates
     order.
 
-  - the xgetmouse flag option has been removed 
+  - The xgetmouse flag option has been removed 
 
   - Due to license restrictions from the Universidad de Cantabria, the quapro 
-	and linpro functions are no more available in the Scilab distribution, but
-	as an external toolbox.
+	and linpro functions are no more available in the Scilab distribution, 
+	but as an external toolbox.
+
+  - Some uses of the pow function could cause issues for base ~ 1.0 and large
+	exponent (See http://sources.redhat.com/bugzilla/show_bug.cgi?id=706)
 
                      Main Changes Scilab 3.0 -> 4.0
                      ==============================

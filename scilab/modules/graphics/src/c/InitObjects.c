@@ -44,6 +44,7 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "Interaction.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
@@ -806,7 +807,14 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
   sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
-  sciSetDimension( pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl) ) ;
+  if (sciSetDimension( pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl) ) != RESIZE_SUCCESS)
+  {
+    sciDelHandle (pobj);
+    FREE(pobj->pfeatures);
+    FREE(pobj);
+    return -1;
+  }
+
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciSetScreenPosition(pobj,x[0],x[1]);
   pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;

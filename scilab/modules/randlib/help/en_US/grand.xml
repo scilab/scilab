@@ -684,7 +684,7 @@ S=grand(action [,q1,....,ql])</synopsis>
         <listitem>
           <para>
      The method is from P. L'Ecuyer but the C code is provided at the Luc  Devroye home page 
-     (http://cgm.cs.mcgill.ca/~luc/rng.html).
+     (<ulink url="http://cgm.cs.mcgill.ca/~luc/rng.html">http://cgm.cs.mcgill.ca/~luc/rng.html</ulink>).
   </para>
         </listitem>
       </varlistentry>
@@ -693,7 +693,7 @@ S=grand(action [,q1,....,ql])</synopsis>
         <listitem>
           <para>
      The code is from P. L'Ecuyer and Terry H.Andres and provided at the P. L'Ecuyer
-     home page ( http://www.iro.umontreal.ca/~lecuyer/papers.html) A paper is also provided 
+     home page ( <ulink url="http://www.iro.umontreal.ca/~lecuyer/papers.html">http://www.iro.umontreal.ca/~lecuyer/papers.html</ulink>) A paper is also provided 
      and this new package is the logical successor of an old 's one from : P.  L'Ecuyer
      and S. Cote.   Implementing a Random   Number Package with Splitting Facilities.  ACM Transactions 
      on Mathematical  Software 17:1,pp 98-111.

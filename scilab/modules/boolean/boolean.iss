@@ -42,6 +42,6 @@ Source: modules\{#BOOLEAN}\macros\cleanmacros.bat; DestDir: {app}\modules\{#BOOL
 ;
 ;Source: modules\{#BOOLEAN}\demos\*.*; DestDir: {app}\modules\{#BOOLEAN}\demos; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#BOOLEAN}\tests\*.*; DestDir: {app}\modules\{#BOOLEAN}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#BOOLEAN}\tests\*.*; DestDir: {app}\modules\{#BOOLEAN}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

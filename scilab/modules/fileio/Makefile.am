@@ -122,7 +122,9 @@ includes/getfiletype.h \
 includes/mclose.h \
 includes/mget.h \
 includes/mput.h \
-includes/mseek.h
+includes/mseek.h \
+includes/deleteafile.h \
+includes/readline.h
 
 #### fileio : demos files ####
 libscifileio_la_demosdir=$(mydatadir)

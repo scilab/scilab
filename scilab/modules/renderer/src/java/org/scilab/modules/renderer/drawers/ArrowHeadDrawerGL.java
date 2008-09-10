@@ -304,17 +304,21 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		// draw equilaterals triangles at the end of segments.
 		for (int i = 0; i < startPixCoords.length; i++) {
 			
+			// compute the position of the three vertices of the triangle
+			Vector3D segmentDir = endPixCoords[i].substract(startPixCoords[i]);
+			
+			// check that there is a segment
+			if (segmentDir.getNorm() == 0.0) { continue; }
+			
 			if (colors != null) {
 				// specify a different color for each head
 				double[] curColor = getColorMap().getColor(colors[i]);
 				gl.glColor3d(curColor[0], curColor[1], curColor[2]);
 			}
 			
-			double curArrowPixelSize = arrowPixelSize;
-			
-			// compute the position of the three vertices of the triangle
-			Vector3D segmentDir = endPixCoords[i].substract(startPixCoords[i]).getNormalized();
-			segmentDir.scalarMultSelf(curArrowPixelSize);
+			// set the length of the arrow
+			segmentDir.normalize();
+			segmentDir.scalarMultSelf(arrowPixelSize);
 			
 			Vector3D orthoDir = new Vector3D(-segmentDir.getY(), segmentDir.getX(), 0.0);
 			
@@ -325,6 +329,8 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 			Vector3D projOnDir = endPixCoords[i].substract(segmentDir.scalarMult(SIN70));
 			Vector3D secondPoint = projOnDir.add(orthoDir);
 			Vector3D thirdPoint = projOnDir.substract(orthoDir);
+			
+			
 			
 			// switch back to the new frame
 			drawTriangle(gl, endPixCoords[i], secondPoint, thirdPoint);

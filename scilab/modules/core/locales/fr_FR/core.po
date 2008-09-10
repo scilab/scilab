@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-01-29 16:53+0100\n"
-"PO-Revision-Date: 2008-06-30 18:24+0000\n"
+"PO-Revision-Date: 2008-08-31 07:53+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #
@@ -1002,9 +1002,9 @@ msgstr ""
 "%s: taille de la pile dépassée (utilisez la fonction stacksize pour "
 "augmenter la taille de la pile).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong Top value %d instead of %d\n"
-msgstr "%s: Mauvaise valeur Top %d au lieu de %d\n"
+msgstr "%s : Mauvaise valeur pour la variable Top %d au lieu de %d\n"
 
 #, fuzzy, c-format
 msgid "%s: Unknown code %d at index2 %d.\n"
@@ -1022,13 +1022,13 @@ msgstr "%s: mauvaise valeur de type.\n"
 msgid "%s: unknown operator %d.\n"
 msgstr "%s: opérateur inconnu %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: wrong fromwhat value %s\n"
-msgstr "%s: mauvaise valeur fromwhat %s\n"
+msgstr "%s : Mauvaise valeur pour la variable fromwhat %s\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong fromwhat value %s\n"
-msgstr "%s: Mauvaise valeur fromwhat %s\n"
+msgstr "%s : Mauvaise valeur pour la variable fromwhat %s\n"
 
 #, c-format
 msgid "%s: wrong code %d.\n"
@@ -1102,18 +1102,19 @@ msgstr "%s: type invalide pour l'argument %d: matrice réelle attendue.\n"
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr "%s: Mauvaise taille pour l'argument %d: (%d,%d) attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
 "expected.\n"
 msgstr ""
-"%s: mauvais type pour l'argument %d (élément de la liste: %d): Matrice "
-"réelle ou complexe attendue..\n"
+"%s : Mauvais type pour l'argument %d (Elément %d de la liste) : Matrice "
+"réelle ou complexe attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
-"%s: Mauvais type por l'argument %d: Matrice réelle ou complexe attendue.\n"
+"%s : Mauvais type pour l'argument %d : Une matrice réelle ou complexe "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
@@ -1131,22 +1132,22 @@ msgstr ""
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s: Mauvaise taille pour l'argument %d: Au moinst %d attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
 msgstr ""
-"%s: mauvais type pour l'argument %d (élément de la liste: %d): Matrice de "
+"%s : Mauvais type pour l'argument %d (Elément %d de la liste) : Matrice de "
 "booléens attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
 msgstr "%s: Mauvais type pour l'argument %d: Matrice booléenne attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
 msgstr ""
-"%s: mauvais type pour l'argument %d (élément de la liste: %d): Matrice "
+"%s : Mauvais type pour l'argument %d (Elément %d de la liste) : Matrice "
 "creuse attendue.\n"
 
 #, c-format
@@ -1171,23 +1172,23 @@ msgstr "%s: Mauvais type pour l'argument %d: Vecteur réel attendu.\n"
 msgid "%s: Wrong size for argument %d: %d expected.\n"
 msgstr "%s: Mauvaise taille pour l'argument %d: %d attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
 msgstr ""
-"%s: mauvais type pour l'argument %d (élément de la liste: %d): Scalaire "
-"attendu/\n"
+"%s : Mauvais type pour l'argument %d (Elément %d de la liste) : Scalaire "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument %d: Scalaire, '%s' ou '%s' attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Matrix of strings "
 "expected.\n"
 msgstr ""
-"%s: mauvais type pour l'argument %d (élément de la liste: %d): Matrice de "
+"%s : Mauvais type pour l'argument %d (Elément %d de la liste) : Matrice de "
 "chaînes de caractères attendue.\n"
 
 #, c-format
@@ -1196,12 +1197,12 @@ msgstr ""
 "%s: Mauvais type pour l'argument %d: Matrice de chaîne de caractères "
 "attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
 msgstr ""
-"%s: mauvais type pour l'argument %d (élément de la liste: %d): Vecteur ligne "
-"attendu.\n"
+"%s : Mauvais type pour l'argument %d (Elément %d de la liste) : Vecteur "
+"ligne attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
@@ -1228,14 +1229,16 @@ msgstr "%s: l'argument %d >(%d) devrait être un vecteur colonne.\n"
 msgid "%s: Wrong type for argument %d: Column vector expected.\n"
 msgstr "%s: Mauvais type pour l'argument %d: Vecteur colonne attendu.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument %d (Elément de liste: %d): Pointeur lufact "
+"attendu.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
-msgstr ""
+msgstr "%s: Mauvais type pour l'argument %d: Pointeur lufact attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"

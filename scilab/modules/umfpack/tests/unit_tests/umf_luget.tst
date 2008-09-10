@@ -17,9 +17,9 @@ Lup = umf_lufact(A);
 if nnz(L) <> 9 then pause, end
 if nnz(U) <> 9 then pause, end
 
-if p <> [ 3; 4; 1; 5; 2 ] then pause, end
-if q <> [ 4; 3; 1; 5; 2 ] then pause, end
-if R <> [ 5; 13; 6; 1; 7 ] then pause, end
+if or(p <> [ 3; 4; 1; 5; 2 ]) then pause, end
+if or(q <> [ 4; 3; 1; 5; 2 ]) then pause, end
+if or(R <> [ 5; 13; 6; 1; 7 ]) then pause, end
 
 B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
@@ -42,9 +42,9 @@ Lup = umf_lufact(A);
 if nnz(L) <> 9 then pause, end
 if nnz(U) <> 9 then pause, end
 
-if p <> [ 3; 4; 1; 5; 2 ] then pause, end
-if q <> [ 4; 3; 1; 5; 2 ] then pause, end
-if R <> [ 8; 18; 14; 6; 8 ] then pause, end
+if or(p <> [ 3; 4; 1; 5; 2 ]) then pause, end
+if or(q <> [ 4; 3; 1; 5; 2 ]) then pause, end
+if or(R <> [ 8; 18; 14; 6; 8 ]) then pause, end
 
 B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling

@@ -25,6 +25,18 @@
 #ifndef __SCI_INTERACTION__
 #define __SCI_INTERACTION__
 
+/**
+ * Different status after resizing a canvas or a window.
+ */
+typedef enum
+{
+  RESIZE_SUCCESS = 0,
+  RESIZE_MULTIPLE_DOCKED_TAB = -1,
+  RESIZE_SIZE_TOO_LARGE = -2,
+  RESIZE_UNCHANGED = 1
+} EResizeStatus;
+
+
 
 extern int sciAddCallback (sciPointObj * pthis, char *code, int len, int mevent); /* INTERACTION */
 extern int sciExecCallback (sciPointObj * pthis); /* INTERACTION */

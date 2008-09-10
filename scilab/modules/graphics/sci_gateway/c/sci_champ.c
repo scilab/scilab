@@ -40,7 +40,9 @@ int sci_champ1 (char *fname,unsigned long fname_len)
   return sci_champ_G(fname,C2F(champ1),fname_len);
 }
 /*--------------------------------------------------------------------------*/
-int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
+int sci_champ_G(char *fname,
+                int (*func) (double *, double *, double *, double *, integer *, integer *, char *, double *, double *, int),
+                unsigned long fname_len)
 {
   double arfact_def=1.0;
   double * arfact=&arfact_def;

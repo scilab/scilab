@@ -86,8 +86,6 @@ public class PentagramMarkDrawer extends MarkDrawingStrategy {
 			for (int j = 0; j < NB_COORDINATES; j++) {
 				gl.glVertex3d(VERTICES_COORDINATES[THREE_TRIANGLE[i][j]][0], VERTICES_COORDINATES[THREE_TRIANGLE[i][j]][1], 0.0);
 			}
-			
-			
 		}
 		
 		gl.glEnd();

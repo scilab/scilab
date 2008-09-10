@@ -8,15 +8,25 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function t=acoshm(x)
-//Matrix wise Hyberbolic cosine inverse of x
+
+  //Matrix wise Hyberbolic cosine inverse of x
+
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"acoshm",1));
+  end
 
   if type(x)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"acoshm",1));
   end
-  [m,n]=size(x)
+
+  [m,n]=size(x);
+
   if m<>n then
    error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"acoshm",1));
-  else
-    t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))
   end
+
+  t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())));
+
 endfunction

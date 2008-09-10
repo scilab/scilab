@@ -19,6 +19,7 @@
 #include "sciquit.h"
 #include "tmpdir.h"
 #include "inisci-c.h"
+
 /*--------------------------------------------------------------------------*/
 extern void sci_clear_and_exit(int n);
 extern void sci_usr1_signal(int n);
@@ -111,14 +112,13 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 	}
       else sprintf(startup," ");
     }
-  
+
   startup[PATH_MAX] = '\0'; /* force string to be null-terminated on overflow */
 
   /* initialize scilab interp  */
   C2F(inisci)(&initialization, &memory, &ierr);
   if (ierr > 0) C2F(sciquit)() ;
   /* execute the initial script and enter scilab */
-
 
 #if !defined(_DEBUG) && defined(_MSC_VER)
   _try
@@ -160,4 +160,3 @@ int Get_no_startup_flag(void)
   return no_startup_flag;
 }
 /*--------------------------------------------------------------------------*/
-

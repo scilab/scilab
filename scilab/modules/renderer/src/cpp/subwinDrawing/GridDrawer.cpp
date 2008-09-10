@@ -16,7 +16,7 @@
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
-GridDrawer::GridDrawer(DrawableSubwin * subwin)
+GridDrawer::GridDrawer(void)
   : DrawableObjectBridge()
 {
   m_bIsLogModeOn = false;

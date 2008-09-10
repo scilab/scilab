@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="iscell" xml:lang="fr"
+<refentry version="5.0-subset Scilab" xml:id="iscell" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -25,24 +25,24 @@
   <refnamediv>
     <refname>iscell</refname>
 
-    <refpurpose>Vérifie si une variable est une cell.</refpurpose>
+    <refpurpose>Check if a variable is a cell array</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>Calling Sequence</title>
 
     <synopsis>bool = iscell(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>Parameters</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>Variable Scilab</para>
+          <para>Scilab variable</para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>bool</term>
 
         <listitem>
-          <para>Un booléen</para>
+          <para>A boolean</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,12 +59,12 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>iscell(x)</literal> retourne vrai si x est une cell
-    et faux sinon.</para>
+    <para><literal>iscell(x)</literal> returns true if x is a cell array
+    and false otherwise.</para>
   </refsection>
 
   <refsection>
-    <title>Exemples</title>
+    <title>Examples</title>
 
     <programlisting role="example">
 
@@ -81,7 +81,7 @@ iscell(c)
   </refsection>
 
   <refsection>
-    <title>Voir aussi</title>
+    <title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="cell">cell</link></member>
@@ -91,7 +91,7 @@ iscell(c)
   </refsection>
 
   <refsection>
-    <title>Auteur</title>
+    <title>Author</title>
 
     <simplelist type="vert">
       <member>V.C.</member>

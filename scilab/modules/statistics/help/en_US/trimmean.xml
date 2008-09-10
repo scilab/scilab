@@ -75,13 +75,13 @@ m=trimmean(x,discard,'c') or m=trimmean(x,discard,2)</synopsis>
     precision  of  the  estimate:  The  more  efficient  the
     statistic,  the  more precise  the  statistic  is as  an
     estimator         of         the         parameter.[from
-    http://davidmlane.com/hyperstat/A12977.html])  than  the
+    <ulink url="http://davidmlane.com/hyperstat/A12977.html">http://davidmlane.com/hyperstat/A12977.html</ulink>])  than  the
     mean for normal distributions.</para>
     <para>
     Trimmed  means  are often  used  in  Olympic scoring  to
     minimize the effects  of extreme ratings possibly caused
     by            biased            judges.            [from
-    http://davidmlane.com/hyperstat/A11971.html]</para>
+    <ulink url="http://davidmlane.com/hyperstat/A11971.html">http://davidmlane.com/hyperstat/A11971.html</ulink>]</para>
     <para>
     For      a      vector      or     matrix      <literal>x</literal>,
     <literal>t=trimmean(x,discard)</literal>  returns in  scalar <literal>t</literal>

@@ -18,20 +18,3 @@ c     ====================================
       
       end
 c     ====================================  
-      subroutine writebufw(chaine,line)
-      
-      character*(*) chaine
-      character*(*) line
-      
-      write(chaine,'(''('',i2,''(1x,1pd17.10))'')') line
-      
-      end
-c     ====================================  
-      subroutine writeiotobuf(line)
-      INCLUDE 'stack.h'
-
-      character*(*) line
-      write(buf,line)
-     
-      end
-c     ====================================  

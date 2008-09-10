@@ -11,4 +11,4 @@ if (isdef("genlib") == %f) then
   exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib("simulated_annealinglib",SCI+"/modules/simulated_annealing/macros",%f,%t);
+genlib("simulated_annealinglib","SCI/modules/simulated_annealing/macros",%f,%t);

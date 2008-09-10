@@ -1499,8 +1499,7 @@ sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place)
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
   double position[2]={0.0,0.0};
-  int y = 0;
-
+  
   if (sciGetEntityType (pobj) == SCI_LEGEND)
   {
     pLEGEND_FEATURE (pobj)->place = place;
@@ -2312,12 +2311,7 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
       else
       {
         int size[2] = {newWidth, newHeight} ;
-        BOOL status = sciSetJavaFigureSize(pobj, size) ;
-        if (!status)
-        {
-          /* error modifying size */
-          return -1;
-        }
+        return sciSetJavaFigureSize(pobj, size) ;
       }
       break;
     case SCI_SUBWIN:
@@ -2348,7 +2342,7 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
  * @param sciPointObj * pobj: the pointer to the entity
  * @param int *pwidth: the width of the window dimension
  * @param int *pheight: the height of the window dimension
- * @return
+ * @return one of the EResizeStatus values.
  */
 int sciSetDimension( sciPointObj * pobj, int newWidth, int newHeight )
 {
@@ -3584,7 +3578,6 @@ int sciSetIs3d( sciPointObj * pObj, BOOL is3d )
 /*-----------------------------------------------------------------------------------*/
 int sciInitHiddenColor( sciPointObj * pObj, int newColor )
 {
-  int m = sciGetNumColors(pObj);
   if(!sciCheckColorIndex(pObj, newColor)) { return -1;}
 
   switch( sciGetEntityType( pObj ) )

@@ -34,6 +34,7 @@ public class BuildDocObject extends StyleSheet {
 	private static final String SCI = System.getenv("SCI");
 	private static final String ERROR_WHILE_COPYING = "Error while copying ";
 	private static final String CANNOT_COPY_CONVERT = "Cannot copy/convert '";
+	private static final String COULD_NOT_FIND_STYLE_DOC = "Could not find the style document: ";
 	private static final String TO_WITH_QUOTES = "' to '";
 	private static final String TO = " to ";
 	private static final String COLON_WITH_QUOTES = "': ";
@@ -144,6 +145,16 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add(SECTION_AUTOLABEL_1);
 			this.styleDoc = docbookPath + "/html/chunk.xsl";
 
+			/* Copy the css file for thr HTML pages */
+			String cssFile=new String(SCI+"/modules/helptools/css/html.css");
+			try {
+				Helpers.copyFile(new File(cssFile), new File(outputDirectory+"/html.css"));
+			} catch (java.io.FileNotFoundException e) {
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+			} catch (java.io.IOException e) {
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+			}
+			
 		}
 		if (format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
 			// JavaHelp
@@ -170,8 +181,7 @@ public class BuildDocObject extends StyleSheet {
 				+ File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
 		String out = this.outputDirectory + File.separator + (String) new File(styleSheet).getName();
 		try {
-			
-		Helpers.copyFile(new File(styleSheet), new File(out));
+			Helpers.copyFile(new File(styleSheet), new File(out));
 		} catch (java.io.FileNotFoundException e) {
 			System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());			
 		} catch (java.io.IOException e) {
@@ -186,11 +196,11 @@ public class BuildDocObject extends StyleSheet {
         } catch (SAXException e) {
             System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
 					   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            System.exit(2);
+            return null;
         } catch (IOException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
         		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            System.exit(2);
+            return null;
         }
 		return masterXMLTransformed.getAbsolutePath();
 	}
@@ -228,7 +238,7 @@ public class BuildDocObject extends StyleSheet {
 		}
 
 		if (!new File(this.styleDoc).isFile()) {
-			throw new FileNotFoundException("Could not find the style document: " + this.styleDoc);
+			throw new FileNotFoundException(COULD_NOT_FIND_STYLE_DOC + this.styleDoc);
 		}
 
 		if (!new File(this.outputDirectory).isDirectory()) {
@@ -236,6 +246,11 @@ public class BuildDocObject extends StyleSheet {
 		}
 		
 		String sourceDocProcessed = this.preProcessMaster(sourceDoc, styleSheet);
+		
+		if (sourceDocProcessed == null) {
+		    throw new FileNotFoundException("Unable to parse generated master file.");
+		}
+		
 		if (format.equalsIgnoreCase(PDF_FORMAT)) {
 			/* PDF takes others args */
 			args.add("-o");
@@ -245,9 +260,9 @@ public class BuildDocObject extends StyleSheet {
 		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);
-		args.add("html.stylesheet=" + styleSheet);
+		args.add("html.stylesheet=" + new File(styleSheet).getName());
 		args.addAll(specificArgs);
-
+		
 		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
 
 		if (new File(sourceDocProcessed).isDirectory()) {

@@ -54,7 +54,6 @@ function ilib_gen_gateway(name,tables)
       error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
     end 
     [gate,names] = new_names(table); 
-    
     t = [ '#include <mex.h> ';
 	        'static int direct_gateway(char *fname,void F(void)) { F();return 0;};'
 	        'extern Gatefunc ' + names(:) + ';';
@@ -79,7 +78,7 @@ function ilib_gen_gateway(name,tables)
 	      mputl(t,path+tname+'.c')    
       end
     else
-       // file does not exists we create it 
+       // file does not exist we create it 
        mputl(t,path+tname+'.c')    
     end
   end
@@ -118,7 +117,7 @@ function [gate,names] = new_names(table)
        gate(i) = "(Myinterfun)direct_gateway" ;
        names(i) = "C2F(" + table(i,2) + ")" ;
     else 
-      error(999,"wrong interface type " + table(i,3)); 
+      error(999,"Wrong interface type " + table(i,3)); 
     end 
   end 
 endfunction

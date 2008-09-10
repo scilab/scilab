@@ -23,5 +23,5 @@
 //  at line       2 of function sca called by :  
 //  sca()
 
-
-sca()
+execstr("sca();","errcatch");
+if lasterror() <> msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "sca",1) then pause,end

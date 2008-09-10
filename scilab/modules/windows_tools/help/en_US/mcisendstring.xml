@@ -61,7 +61,7 @@ bOK=mcisendstring(mcistring)
     <para>The mciSendString primitive sends a command string to an MCI device.
     The device that the command is sent to is specified in the command
     string.</para>
-    <para>see on http://msdn.microsoft.com/library/default.asp and search
+    <para>see on <ulink url="http://msdn.microsoft.com/library/default.asp">http://msdn.microsoft.com/library/default.asp</ulink> and search
     "Windows Multimedia SDK open"</para>
   </refsection>
   <refsection>

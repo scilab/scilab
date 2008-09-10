@@ -1327,7 +1327,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("File %s already exists or directory write access denied.\n"),NameVarOnStack);
+				displayAndStoreError(_("File \"%s\" already exists or directory write access denied.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1338,7 +1338,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("File %s does not exist or read access denied.\n"),NameVarOnStack);
+				displayAndStoreError(_("File \"%s\" does not exist or read access denied.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}

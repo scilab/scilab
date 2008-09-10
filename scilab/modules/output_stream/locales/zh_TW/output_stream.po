@@ -9,27 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 18:01+0100\n"
-
-# File: src/c/sciprint_full.c, line: 38
-# File: src/c/sciprint_full.c, line: 56
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體耗盡.\n"
-
-#
-# File: src/c/sciprint_full.c, line: 92
-#, c-format
-msgid "  (cont'd) %s"
-msgstr "  (繼續) %s"
-
-#
-# File: src/c/sciprint_full.c, line: 102
-#, c-format
-msgid "     (end) %s"
-msgstr "     (結束) %s"
 
 #
 # File: src/c/errmsg.c, line: 55
@@ -44,7 +26,7 @@ msgstr "等待右括弧.\n"
 #
 # File: src/c/errmsg.c, line: 76
 #, c-format
-msgid "Undefined variable : %s\n"
+msgid "Undefined variable: %s\n"
 msgstr "未定義變數 : %s\n"
 
 #
@@ -117,23 +99,17 @@ msgstr "堆疊長度超過!\n"
 msgid "Use stacksize function to increase it.\n"
 msgstr "使用stacksize 函數增大它.\n"
 
-#
-# File: src/c/errmsg.c, line: 154
 #, c-format
-msgid "Memory used for variables : %d\n"
-msgstr "用於變數的記憶體s : %d\n"
+msgid "Memory used for variables: %d\n"
+msgstr ""
 
-#
-# File: src/c/errmsg.c, line: 155
 #, c-format
-msgid "Intermediate memory needed : %d\n"
-msgstr "中介 (Intermediate) 記憶體需求 : %d\n"
+msgid "Intermediate memory needed: %d\n"
+msgstr ""
 
-#
-# File: src/c/errmsg.c, line: 156
 #, c-format
-msgid "Total memory available : %d\n"
-msgstr "可用記憶體 : %d\n"
+msgid "Total memory available: %d\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 161
@@ -252,6 +228,9 @@ msgstr "參數 %d 錯誤.\n"
 #, c-format
 msgid "Incorrect function at line %d.\n"
 msgstr "第 %d 行出現不正確之函數 .\n"
+
+msgid "Incorrect function.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 300
@@ -491,6 +470,9 @@ msgstr "%s: 輸入參數數目錯誤.\n"
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: 輸出參數數目錯誤.\n"
+
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 569
@@ -850,6 +832,10 @@ msgstr "%s: 不正確的停止參數.\n"
 msgid "%s: Incorrect bounds.\n"
 msgstr "%s: 不正確的邊界值.\n"
 
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr ""
+
 #
 # File: src/c/errmsg.c, line: 959
 #, c-format
@@ -1019,6 +1005,9 @@ msgstr "缺少指標.\n"
 msgid "reference to the cleared global variable %s.\n"
 msgstr "參考到已清空之全域變數  %s .\n"
 
+msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgstr ""
+
 #
 # File: src/c/errmsg.c, line: 1255
 msgid "semi def fails.\n"
@@ -1117,6 +1106,10 @@ msgstr "此參數型態沒有對應之函數定義,\n"
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr "  檢查參數或重新定義函數 %s 以便重載.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1364
@@ -1286,10 +1279,28 @@ msgstr "缺少運算子，逗號 (,) 或分號 (;).\n"
 msgid "Too many commands defined.\n"
 msgstr "已定義指令過多.\n"
 
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr ""
+
 #
 # File: src/c/errmsg.c, line: 1614
 msgid "\"unknown data\""
 msgstr "\"未知數據\""
+
+# File: src/c/sciprint_full.c, line: 38
+# File: src/c/sciprint_full.c, line: 56
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
 
 msgid "Warning :\n"
 msgstr "警告 :\n"
@@ -1454,23 +1465,11 @@ msgstr "Pause 模式: 輸入空白行以繼續.\n"
 msgid "Breakpoints of function : %s\n"
 msgstr "函數之中斷點 : %s\n"
 
-#
-# File: src/c/msgs.c, line: 719
-msgid ""
-"Warning: recursion problem..., cleared.\n"
-" will be cleared with next error...\n"
+msgid "Warning: recursion problem..., cleared.\n"
 msgstr ""
-"警告: 遞迴問題 ..., 清除.\n"
-" 將再下次錯誤時清除...\n"
 
-#
-# File: src/c/msgs.c, line: 726
-msgid ""
-"Warning: stack problem..., cleared\n"
-" will be cleared with next error...\n"
+msgid "Warning: stack problem..., cleared.\n"
 msgstr ""
-"警告: 堆疊 (stack) 問題 ..., 清除.\n"
-" 將再下次錯誤時清除...\n"
 
 #
 # File: src/c/msgs.c, line: 746
@@ -1539,11 +1538,10 @@ msgstr "系統函數:\n"
 msgid "Commands:\n"
 msgstr "指令:\n"
 
-#
-# File: src/c/msgs.c, line: 843
 #, c-format
-msgid "Warning : redefining function: %s"
-msgstr "警告 : 函數 %s 重新定義"
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 870
@@ -1778,3 +1776,34 @@ msgstr "%s: window 尺寸限制小於 2^16.\n"
 # File: src/c/msgs.c, line: 1300
 msgid "Some data have not been computed they are replaced by NaN.\n"
 msgstr "部份資料未計算因此以 NaN 取代.\n"
+
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""

@@ -12,7 +12,7 @@
 function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,cc)
   
   if ~haveacompiler() then
-    error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'ilib_mex_build'));
+    error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"),'ilib_mex_build'));
   	return;
   end
   
@@ -24,6 +24,11 @@ function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflag
   if rhs <= 7 then fflags  = ''; end 
   if rhs <= 8 then cc  = ''; end 
   
+  // These flags are important... The rename of the fly the name of the 
+  // function in the C / C++ / Fortran code
+  cflags=" -DmexFunction=mex_\$* " + cflags
+  fflags=" -Dmexfunction=mex\$* " + fflags
+
   ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,%t,cc);
   
 endfunction

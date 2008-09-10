@@ -106,7 +106,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 {
 	int x = 0,y = 0;
     char *save=NULL;
-	int answer = 0;
+	pcre_error_code answer = PCRE_FINISHED_OK;
 	for (x = 0; x <  mn_one ;x++) 
 	{
 		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
@@ -133,7 +133,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 			save = strdup(Inputs_param_two[x]);
 			answer = pcre_private(Inputs_param_one[y],save,&Output_Start,&Output_End);
 
-			if ( answer == 0 )
+			if ( answer == PCRE_FINISHED_OK )
 			{
 				if (results->currentLength < results->sizeArraysMax) 
 				{

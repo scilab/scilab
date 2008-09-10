@@ -1,15 +1,7 @@
-                      Scilab 5.0 beta Release_Notes
-                      ==============================
-
-Please note that Scilab 5.0 beta version still contains some well known bug,
-missing features and may have some slow behaviours.
-It is a testing only version, it should only be used to test what will be
-Scilab 5 family and not at all in production environment.
-The period between the beta and the stable versions will mainly be used to
-debug and optimize Scilab.
+                      Scilab 5.0 Release_Notes
+                      ========================
 
 List of missing/buggy features:
-
 
 - Uicontrols ascendant incompatibilities:
     * Figure size has to be increased because of the automatic insertion of
@@ -24,23 +16,27 @@ List of missing/buggy features:
       computer / graphic card / graphic card driver combination.
       Errors often appear on Intel cards under Linux and also with 
       old Nvidia or ATI drivers.
-    * By default arcs and circles are now approximated using a constant number of lines.
+    * By default arcs and circles are now approximated using a constant number 
+	  of lines.
       To switch to real arcs, set their arc_drawing_method property to "nurbs".
-    * Sector boundary angles of arc objects are now specified in degree whereas it used to
-      be specified in degree/64.
-    * The text_box property of text objects now refers to user coordinates even in axes_reverse mode.
-    * Bode routine creates only the two needed axes instead of four in previous versions.
+    * Sector boundary angles of arc objects are now specified in degree whereas
+	  it used to be specified in degree/64.
+    * The text_box property of text objects now refers to user coordinates even
+	  in axes_reverse mode.
+    * Bode routine creates only the two needed axes instead of four in previous
+	  versions.
     * graypolarplot routine is now constructed using a surface instead of arcs.
-    * Some old poscript tools are not used anymore in Scilab and have been removed.
+    * Some old postcript tools are not used anymore in Scilab and have been
+	  removed.
       The list of file removed form the Scilab bin directory is:
-      BEpsf, Blatdoc, Blatdocs, Blatexpr, Blatexpr2, Blatexpr2, Blatexprs, Blpr and lpr
+      BEpsf, Blatdoc, Blatdocs, Blatexpr, Blatexpr2, Blatexpr2, Blatexprs, Blpr
+	  and lpr
     * Pixel drawing mode property of figures is not compatible with Scilab 4.
       The result in Scilab 5 is inverted compared to the one in Scilab 4.
-      For example the result of a white object drawn above a white background in "xor"
-      mode will appear black (it was still white in Scilab 4).
+      For example the result of a white object drawn above a white background
+	  in "xor" mode will appear black (it was still white in Scilab 4).
       Moreover, the logical operators now works on the entire figure.
-      In practice, the "xor" mode can be generally replaced by the "equiv" one. 
-      
+      In practice, the "xor" mode can be generally replaced by the "equiv" one.      
 
 
 - It is strongly recommended to update graphic cards drivers to the latest 
@@ -55,47 +51,31 @@ List of missing/buggy features:
 
 
 - Scicos:
-    * The basic features of the editor are fully functional and tested.
     * Scicos code has been updated to the new event handling functions and code
       (please see "Event Handling Functions" section in "CHANGES") 
-    * The Scicos simulation engine is correctly working (interactive as well as
-      "scicos_simulate()" batch mode)
-    * Demos are available through Scilab "?"->"Scilab Demonstrations" menu item
-      ("Scicos" section) as well as Scicos "?"->"Demos" menu item
     * Tcl/Tk features are still inactive (eg. "Palette Tree")
-    * "Export" and "Export All" features are now fully functional
 
 - The Scipad debugger is broken because of code reorganization that has been
   performed in the Scilab core and rewriting of the Tcl interface. It has
-  therefore been unplugged from Scipad
-
-- Some Tcl/Scilab synchronisation issues have been reported.
+  therefore been unplugged from Scipad and will be plugged back as soon as
+  possible.
 
 - Printing can crash under Linux plateforms with recent versions of Cups.
+  See http://bugzilla.scilab.org/show_bug.cgi?id=3309
 
 - Scilab localization system is implemented, however not all the strings have
   been added to the translation engine and therefore not translated.
 
 - Dynamic/incremental link bugs on unusual archs/compiler or with modified 
-  flags and still have issues with the binary version of Scilab
+  flags and still have issues with the binary version of Scilab.
 
-- make install won't install the documentation.
+- It is not (yet, we hope) possible to build a file documentation file 
+  and add it into the documentation without rebuilding the whole documentation.
 
-- make install won't install the localization.
+- MacOS X version has some critical issues which will be probably addressed in 
+  Scilab v 5.1
 
-- A bug altering the function pow on small numbers caused by the JVM still needs
-  some attention: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6727254
-
-- The build process of a toolbox crashes on the documentation generation.
-
-- It is not (yet, we hope) possible to build a file documentation file and add it into the documentation.
-
-- A customization of the Java Virtual Machine (JVM) is going to be introduced 
-  between the beta 4 & RC1
-
-- Linux 64 bits version has some critical bugs.
-
-- MacOS X version is not planned for Scilab 5.0 (probably 5.1)
+- The search in the help is not done on the Scicos help.
 
 - Some Linux distributions with SELinux enabled may prevent Scilab from running
   under the default security context. Newer Linux distributions have enabled 
@@ -119,29 +99,3 @@ List of missing/buggy features:
 
   For more information about SELinux, please consult your Linux distribution
   vendor.
-
-
-
-Scilab 4.0 Release_Notes
-***************************
-
-- Next to the on line help of the software, we advise you, to make
-the first move with Scilab, to consult the Scilab step-to-step web site
-(http://www.spas.cnrs-gif.fr/index.html).
-
-- Please note that:
-    - Scilab 4.x versions family will be the last versions working
-with the old graphics mode.
-    - Scilab v 4.0 is the last release working with Microsoft
-Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
-supported by Scilab operational team.
-
-- Scilab binary versions are built:
-    - for Linux: gcc-3.4.3 and g77 compilers with a platform under
-Mandriva 2005. No need to recompile except to use incremental link, we
-advise indeed to download the source files if you are using others
-compilers.
-    - for Windows: Visual Studio .Net 2003 and Fortran and C Intel
-compilers with a platform under Windows XP Service Pack 2 .
-    - Recall: No Scilab GTK version is provided and supported by
-the operational team. Same way about MinGW and Cygwin.

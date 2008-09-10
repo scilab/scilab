@@ -29,7 +29,7 @@ class TicksDrawer
 {
 public:
   
-  TicksDrawer(DrawableObject * drawer);
+  TicksDrawer(void);
 
   virtual ~TicksDrawer(void);
 

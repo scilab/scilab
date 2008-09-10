@@ -103,6 +103,10 @@ sci_gateway/fortran/sci_f_pclean.f \
 sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
+
+
+
+
 libscipolynomials_la_CFLAGS= 	-Iincludes/ \
 				-I$(top_builddir)/modules/output_stream/includes
 
@@ -132,19 +136,25 @@ libscipolynomials_la_rootdir = $(mydatadir)
 libscipolynomials_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### polynomials : init scripts ####
+#### polynomials : init scripts ####
 libscipolynomials_la_etcdir = $(mydatadir)/etc
 libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
-#### polynomials : gateway declaration ####
+
+#### polynomials : gateway declaration ####
 libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
 
-
-#### polynomials : include files ####
+#### polynomials : include files ####
 libscipolynomials_la_includedir=$(pkgincludedir)/polynomials
 libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
-include $(top_srcdir)/Makefile.incl.am
 
+#### polynomials : demos files ####
+libscipolynomials_la_demosdir=$(mydatadir)
+nobase_libscipolynomials_la_demos_DATA = demos/polynomials.dem.gateway.sce \
+demos/rootsdemo.sci \
+demos/intro/poly.intro.dem.sce
+
+include $(top_srcdir)/Makefile.incl.am

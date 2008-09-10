@@ -34,12 +34,11 @@ std::string CommandLine::get(void)
 /*------------------------------------------------------------------------*/
 BOOL CommandLine::set(std::string line_)
 {
-	BOOL bOK = FALSE;
 	if (!line_.empty())
 	{
 		this->Command = line_ ;
-		bOK = TRUE;
+		return TRUE;
 	}
-	return bOK;
+	return FALSE;
 }
 /*------------------------------------------------------------------------*/

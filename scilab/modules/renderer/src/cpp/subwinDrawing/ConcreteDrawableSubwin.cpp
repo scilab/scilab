@@ -484,7 +484,7 @@ void ConcreteDrawableSubwin::displayTexts(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::sortDisplayedTexts(void)
 {
-  int nbDisplayedTexts = m_oDisplayedTexts.size();
+  int nbDisplayedTexts = (int)m_oDisplayedTexts.size();
 
   double * textsDepth;
   try
@@ -584,7 +584,7 @@ int ConcreteDrawableSubwin::computeConcealedCornerIndex(void)
     corners[i][2] = ((i % 2) == 0 ? bounds[4] : bounds[5]); // zMin or zMax
 
     // directly convert it to pixel coordinates
-    cam->getPixelCoordinates(corners[i], corners[i]);
+    cam->getPixelCoordinatesRaw(corners[i], corners[i]);
   }
 
   // fin the index of the deeper corner

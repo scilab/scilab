@@ -36,8 +36,10 @@ n1=size(x,'*');
 
 //set the axes boundary
 curAxes=gca();
+curAxes.box = "on";
 curAxes.data_bounds=2*sum(r)*[-1,-1;1,0.1];
-title("N link pendulum movement","fontsize",3)
+curAxes.title.text = "N link pendulum movement";
+curAxes.title.font_size = 3;
 
 colors=1:n1;colors(8)=n1+1;
 xpolys([x(1:($-1)),x(2:$)]',[y(1:($-1)),y(2:$)]',colors);

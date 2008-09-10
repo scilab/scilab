@@ -74,9 +74,9 @@
   <refsection>
     <title>Description</title>
     <para>The rules of regular expression is similar to perl language. For a
-    quick start , see http://perldoc.perl.org/perlrequick.html. For a more
-    in-depth tutorial on , see http://perldoc.perl.org/perlretut.html and for
-    the reference page, see http://perldoc.perl.org/perlre.html</para>
+    quick start , see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>. For a more
+    in-depth tutorial on , see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink> and for
+    the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>

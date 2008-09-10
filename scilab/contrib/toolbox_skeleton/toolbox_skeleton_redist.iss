@@ -34,8 +34,6 @@ VersionInfoCompany=Your Company
 Source: loader.sce; DestDir: {app}
 Source: etc\toolbox_skeleton.quit; DestDir: {app}\etc
 Source: etc\toolbox_skeleton.start; DestDir: {app}\etc
-Source: help\en_US\addchapter.sce; DestDir: {app}\help\en_US
-Source: help\fr_FR\addchapter.sce; DestDir: {app}\help\fr_FR
 Source: macros\buildmacros.sce; DestDir: {app}\macros
 Source: macros\lib; DestDir: {app}\macros
 Source: macros\names; DestDir: {app}\macros
@@ -44,6 +42,8 @@ Source: macros\*.bin; DestDir: {app}\macros
 Source: sci_gateway\loader_gateway.sce; DestDir: {app}\sci_gateway
 Source: sci_gateway\c\loader.sce; DestDir: {app}\sci_gateway\c
 Source: sci_gateway\c\skeleton_c.dll; DestDir: {app}\sci_gateway\c
+Source: sci_gateway\cpp\loader.sce; DestDir: {app}\sci_gateway\cpp
+Source: sci_gateway\cpp\skeleton_cpp.dll; DestDir: {app}\sci_gateway\cpp
 Source: sci_gateway\fortran\loader.sce; DestDir: {app}\sci_gateway\fortran
 Source: sci_gateway\fortran\skeleton_fortran.dll; DestDir: {app}\sci_gateway\fortran
 Source: src\c\libcsum.dll; DestDir: {app}\src\c
@@ -53,6 +53,6 @@ Source: src\fortran\loader.sce; DestDir: {app}\src\fortran
 Source: tests\*.*; DestDir: {app}\tests; Flags: recursesubdirs
 ;Source: includes\*.h; DestDir: {app}\includes; Flags: recursesubdirs
 ;Source: locales\*.*; DestDir: {app}\locales; Flags: recursesubdirs
-;Source: demos\*.*; DestDir: {app}\locales; Flags: recursesubdirs
+Source: demos\*.*; DestDir: {app}\locales; Flags: recursesubdirs
 ;
 ;##############################################################################################################

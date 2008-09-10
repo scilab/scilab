@@ -64,6 +64,9 @@
 #include "sundials_math.h"
 #include "ida_impl.h"
 
+#if defined(linux) && defined(__i386__)
+#include "setPrecisionFPU.h"
+#endif
 
 typedef struct {
 	integer iero;
@@ -131,7 +134,7 @@ typedef struct {
 
 #define ONE   RCONST(1.0)
 #define ZERO  RCONST(0.0)
-#define T0    RCONST(0.0)   
+#define T0    RCONST(0.0)
 /* #define Ith(v,i)    NV_Ith_S(v,i-1)*/        /* Ith numbers components 1..NEQ */
 /* #define IJth(A,i,j) DENSE_ELEM(A,i-1,j-1)*/  /* IJth numbers rows,cols 1..NEQ */
 
@@ -140,7 +143,7 @@ void cosini(double *);
 void idoit(double *);
 void cosend(double *);
 void cdoit(double *);
-void doit(double *); 
+void doit(double *);
 void ddoit(double *);
 void edoit(double *,integer *);
 void odoit(double *,double *,double *,double *);
@@ -255,7 +258,7 @@ static integer *iwa;
 
 static integer *xptr,*modptr, *evtspt;
 static integer  *funtyp, *inpptr, *outptr, *inplnk, *outlnk;
-static integer *clkptr, *ordptr, *ordclk, *cord, 
+static integer *clkptr, *ordptr, *ordclk, *cord,
   *iord, *oord,  *zord,  *critev,  *zcptr;
 static integer *pointi;
 static integer *ierr;
@@ -334,6 +337,12 @@ int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
   extern /* Subroutine */ int C2F(clearscicosimport)();
   static integer nx, nz, noz, nopar;
   double *W;
+
+  // Set FPU Flag to Extended for scicos simulation
+  // in order to override Java setting it to Double.
+#if defined(linux) && defined(__i386__)
+  setFPUToExtended();
+#endif
 
   /*     Copyright INRIA */
   /* iz,izptr are used to pass block labels */
@@ -535,7 +544,7 @@ int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
     else if (i<=ntabsim){
       Blocks[kf].funpt=*(tabsim[i-1].fonc);
       Blocks[kf].scsptr=0;     /* this is done for being able to test if a block
-                                  is a scilab block in the debugging phase when 
+                                  is a scilab block in the debugging phase when
                                   sciblk4 is called */
     }
     else {
@@ -548,7 +557,7 @@ int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
         return 0;
       }
       Blocks[kf].scsptr=0;   /* this is done for being able to test if a block
-                                is a scilab block in the debugging phase when 
+                                is a scilab block in the debugging phase when
                                 sciblk4 is called */
     }
     Blocks[kf].ztyp=ztyp[kf+1];
@@ -695,7 +704,7 @@ int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
     }
 
     Blocks[kf].work=(void **)(((double *)work)+kf);
-    Blocks[kf].nmode=modptr[kf+2]-modptr[kf+1]; 
+    Blocks[kf].nmode=modptr[kf+2]-modptr[kf+1];
     if ( Blocks[kf].nmode!=0){
       Blocks[kf].mode=&(mod[modptr[kf+1]-1]);
     }
@@ -789,7 +798,7 @@ int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
       for (i = 0; i < nx; ++i) {
           x[i] = W[i];
       }
-      FREE(W); 
+      FREE(W);
     }
   }
   FREE(iwa);
@@ -1149,7 +1158,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
       nclock = iord[jj + niord];
       flag__ = 1;
       callf(told, xd, x, x,x,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
@@ -1279,7 +1288,7 @@ void cossim(told)
   integer i3;
 
   /* La vita e bella ! */
-  //** used for the [stop] button 
+  //** used for the [stop] button
   static char CommandToUnstack[1024];
   static int CommandLength;
   static int SeqSync;
@@ -1297,7 +1306,7 @@ void cossim(told)
   static integer kpo, kev;
   int Discrete_Jump;
   integer *jroot,*zcros;
-  realtype reltol, abstol; 
+  realtype reltol, abstol;
   N_Vector y;
   void *cvode_mem;
   int flag, flagr;
@@ -1326,19 +1335,19 @@ void cossim(told)
 
   if (*neq>0){ /* Unfortunately CVODE does not work with NEQ==0 */
     y = NULL;
-    y = N_VNewEmpty_Serial(*neq); 
+    y = N_VNewEmpty_Serial(*neq);
     if (check_flag((void *)y, "N_VNewEmpty_Serial", 0)) {
       *ierr=10000;
-      if ( ng>0 ) FREE(jroot); 
+      if ( ng>0 ) FREE(jroot);
       if ( ng>0 )FREE(zcros);
       return;
     };
 
     NV_DATA_S(y)=x;
-    
+
     reltol = (realtype) rtol;
     abstol = (realtype) Atol;  /* Ith(abstol,1) = realtype) Atol;*/
-    
+
     cvode_mem = NULL;
     switch (C2F(cmsolver).solver)
       {
@@ -1347,7 +1356,7 @@ void cossim(told)
       case 2:   cvode_mem = CVodeCreate(CV_ADAMS, CV_NEWTON);break;
       case 3:   cvode_mem = CVodeCreate(CV_ADAMS, CV_FUNCTIONAL);break;
       }
-    
+
     /*    cvode_mem = CVodeCreate(CV_ADAMS, CV_FUNCTIONAL);*/
 
     if (check_flag((void *)cvode_mem, "CVodeCreate", 0)) {
@@ -1355,14 +1364,14 @@ void cossim(told)
       N_VDestroy_Serial(y); FREE(jroot); FREE(zcros);
       return;
     };
-    
+
     flag = CVodeMalloc(cvode_mem, simblk, T0, y, CV_SS, reltol, &abstol);
     if (check_flag(&flag, "CVodeMalloc", 1)) {
       *ierr=300+(-flag);
       freeall
       return;
     };
-    
+
     flag = CVodeRootInit(cvode_mem, ng, grblk, NULL);
     if (check_flag(&flag, "CVodeRootInit", 1)) {
       *ierr=300+(-flag);
@@ -1386,7 +1395,7 @@ void cossim(told)
 	return;
       };
     }
-  /* Set the Jacobian routine to Jac (user-supplied) 
+  /* Set the Jacobian routine to Jac (user-supplied)
      flag = CVDenseSetJacFn(cvode_mem, Jac, NULL);
      if (check_flag(&flag, "CVDenseSetJacFn", 1)) return(1);  */
 
@@ -1422,16 +1431,16 @@ void cossim(told)
   }
   /*--discrete zero crossings----dzero--------------------*/
   if (ng>0){ /* storing ZC signs just after a solver call*/
-    zdoit(g, x, x, told); 
+    zdoit(g, x, x, told);
     if (*ierr != 0) {freeall;return;  }
     for (jj = 0; jj < ng; ++jj)
       if(g[jj]>=0) jroot[jj]=5;else jroot[jj]=-5;
   }
-  /*--discrete zero crossings----dzero--------------------*/ 
-  
-  //** 
-  //** STARDARD SCICOS SIMULATION LOOP : EXPLICIT SOLVER 
-  //** 
+  /*--discrete zero crossings----dzero--------------------*/
+
+  //**
+  //** STARDARD SCICOS SIMULATION LOOP : EXPLICIT SOLVER
+  //**
   /*     main loop on time */
   while(*told < *tf) { /* while time is less than simulation final time */
 
@@ -1439,30 +1448,30 @@ void cossim(told)
   /*
      if (inxsci == 1 && scilab_timer_check() == 1) {
        C2F(sxevents)();
-       //     .     sxevents can modify halt 
+       //     .     sxevents can modify halt
        }
   */
-  
-  //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation 
-  while (ismenu()) //** if the user has done something, do the actions  
+
+  //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation
+  while (ismenu()) //** if the user has done something, do the actions
        {
-	SeqSync = GetCommand(CommandToUnstack); //** get at the action 
+	SeqSync = GetCommand(CommandToUnstack); //** get at the action
         CommandLength = (int)strlen(CommandToUnstack);
-        syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength); //** execute it 
+        syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength); //** execute it
        }
   //** Typically the user click over the "STOP" button; the "haltscicos" callback macros is executed
   //*  then the built in "sci_haltscicos()" put set "C2F(coshlt).halt = 1", the the following if is true :)
 
   if (C2F(coshlt).halt != 0)  /* if the menu has ben activated OR the simulation has been forced to stop */
     {
-      if (C2F(coshlt).halt==2) 
+      if (C2F(coshlt).halt==2)
          *told=*tf;   /* if the simulation has been stopped because the final time is reached  */
-      
-      C2F(coshlt).halt = 0; //** reset the flag for the next simulation  
-      
+
+      C2F(coshlt).halt = 0; //** reset the flag for the next simulation
+
       freeall;
 
-      return; //** EXIT from the function 
+      return; //** EXIT from the function
     }
 
     if (*pointi == 0) {
@@ -1518,7 +1527,7 @@ void cossim(told)
 	}
 	tstop = rhotmp;
 	t = min(*told + deltat,min(t,*tf + ttol));
-	
+
 	if (ng>0 &&  hot == 0 && nmod>0) {
 	  zdoit(g,x,x,told);
 	  if (*ierr != 0){
@@ -1526,15 +1535,15 @@ void cossim(told)
 	    return;
 	  }
 	}
-	       
+
 	if (hot==0){ /* hot==0 : cold restart*/
 	  flag = CVodeSetStopTime(cvode_mem, (realtype)tstop);  /* Setting the stop time*/
-	  if (check_flag(&flag, "CVodeSetStopTime", 1)) {    
+	  if (check_flag(&flag, "CVodeSetStopTime", 1)) {
 	    *ierr=300+(-flag);
 	    freeall;
 	    return;
 	  };
-	  
+
 	  flag =CVodeReInit(cvode_mem, simblk, (realtype)(*told), y, CV_SS, reltol, &abstol);
 	  if (check_flag(&flag, "CVodeReInit", 1)) {
 	    *ierr=300+(-flag);
@@ -1586,8 +1595,8 @@ void cossim(told)
 	    sciprint("****SUNDIALS.Cvode reached: %f\r\n",*told);
 	  hot = 1;
           cnt = 0;
-	} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
-	  sciprint("**** SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);	  
+	} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {
+	  sciprint("**** SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);
 	  hot = 0;
           cnt++;
           if (cnt>5) {
@@ -1612,7 +1621,7 @@ void cossim(told)
 	      *ierr=300+(-flagr);
 	      freeall;
 	      return;
-	    };	
+	    };
 	  }
 	  /*     .        at a least one root has been found */
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
@@ -1628,11 +1637,11 @@ void cossim(told)
 	  for (jj = 0; jj < ng; ++jj) {
 	    C2F(curblk).kfun = zcros[ jj];
 	    if (C2F(curblk).kfun == -1) {
-	      break; 
+	      break;
 	    }
 	    kev = 0;
 
-	    for (j = zcptr[C2F(curblk).kfun]-1 ; 
+	    for (j = zcptr[C2F(curblk).kfun]-1 ;
 		 j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
 	      if(jroot[j]!=0){
 		kev=1;
@@ -1643,7 +1652,7 @@ void cossim(told)
 	    if (kev != 0) {
 	      Blocks[C2F(curblk).kfun-1].jroot=&jroot[zcptr[C2F(curblk).kfun]-1];
 	      if (funtyp[C2F(curblk).kfun] > 0) {
-		
+
 		if (Blocks[C2F(curblk).kfun-1].nevout > 0) {
 		  flag__ = 3;
 		  /* call corresponding block to determine output event (kev) */
@@ -1689,7 +1698,7 @@ void cossim(told)
       /*--discrete zero crossings----dzero--------------------*/
       if (ng>0){ /* storing ZC signs just after a sundials call*/
 	zdoit(g, x, x, told); if (*ierr != 0) {freeall;return;  }
-	for (jj = 0; jj < ng; ++jj) 
+	for (jj = 0; jj < ng; ++jj)
 	  if(g[jj]>=0)jroot[jj]=5;else jroot[jj]=-5;
       }
       /*--discrete zero crossings----dzero--------------------*/
@@ -1726,7 +1735,7 @@ void cossim(told)
 
 
 
-/* Subroutine */ 
+/* Subroutine */
 void cossimdaskr(told)
      double *told;
 {
@@ -1736,7 +1745,7 @@ void cossimdaskr(told)
   integer i3;
 
   /* La vita e bella ! */
-  //** used fot the [stop] button 
+  //** used fot the [stop] button
   static char CommandToUnstack[1024];
   static int CommandLength;
   static int SeqSync;
@@ -1759,9 +1768,9 @@ void cossimdaskr(told)
   integer *Mode_save;
   integer Mode_change;
 
-  int flag, flagr; 
+  int flag, flagr;
   N_Vector   yy, yp;
-  realtype reltol, abstol; 
+  realtype reltol, abstol;
   int Discrete_Jump;
   N_Vector IDx;
   realtype *scicos_xproperty;
@@ -1804,7 +1813,7 @@ void cossimdaskr(told)
     }
   }
 
-  if (*neq>0){    
+  if (*neq>0){
     yy=NULL;
     yy = N_VNewEmpty_Serial(*neq);
     if(check_flag((void *)yy, "N_VNew_Serial", 0)){
@@ -1829,7 +1838,7 @@ void cossimdaskr(told)
     abstol = (realtype) Atol;  /*  Ith(abstol,1) = realtype) Atol;*/
 
     IDx = NULL;
-    IDx = N_VNew_Serial(*neq); 
+    IDx = N_VNew_Serial(*neq);
     if (check_flag((void *)IDx, "N_VNew_Serial", 0)) {
       *ierr=10000;
       if (*neq>0) N_VDestroy_Serial(yp);
@@ -1843,7 +1852,7 @@ void cossimdaskr(told)
     /* Call IDACreate and IDAMalloc to initialize IDA memory */
     ida_mem = NULL;
     ida_mem = IDACreate();
-    if(check_flag((void *)ida_mem, "IDACreate", 0)) {      
+    if(check_flag((void *)ida_mem, "IDACreate", 0)) {
       if (*neq>0) N_VDestroy_Serial(IDx);
      if (*neq>0) N_VDestroy_Serial(yp);
      if (*neq>0) N_VDestroy_Serial(yy);
@@ -1856,7 +1865,7 @@ void cossimdaskr(told)
 
     flag = IDAMalloc(ida_mem, simblkdaskr, T0, yy, yp, IDA_SS, reltol, &abstol);
     if(check_flag(&flag, "IDAMalloc", 1)){
-      *ierr=200+(-flag);  
+      *ierr=200+(-flag);
       if (*neq>0)IDAFree(&ida_mem);
       if (*neq>0)N_VDestroy_Serial(IDx);
      if (*neq>0) N_VDestroy_Serial(yp);
@@ -1870,7 +1879,7 @@ void cossimdaskr(told)
 
     flag = IDARootInit(ida_mem, ng, grblkdaskr, NULL);
     if (check_flag(&flag, "IDARootInit", 1)) {
-      *ierr=200+(-flag);  
+      *ierr=200+(-flag);
       if (*neq>0)IDAFree(&ida_mem);
       if (*neq>0)N_VDestroy_Serial(IDx);
       if (*neq>0)N_VDestroy_Serial(yp);
@@ -1884,7 +1893,7 @@ void cossimdaskr(told)
 
     flag = IDADense(ida_mem, *neq);
     if (check_flag(&flag, "IDADense", 1)) {
-      *ierr=200+(-flag);  
+      *ierr=200+(-flag);
       if (*neq>0)IDAFree(&ida_mem);
       if (*neq>0)N_VDestroy_Serial(IDx);
       if (*neq>0)N_VDestroy_Serial(yp);
@@ -1916,7 +1925,7 @@ void cossimdaskr(told)
 
     data->ewt   = N_VNew_Serial(*neq);
     if (check_flag((void *)data->ewt, "N_VNew_Serial", 0)) {
-      *ierr=200+(-flag);  
+      *ierr=200+(-flag);
       if (*neq>0)FREE(data);
       if (*neq>0)IDAFree(&ida_mem);
      if (*neq>0) N_VDestroy_Serial(IDx);
@@ -1947,8 +1956,8 @@ void cossimdaskr(told)
       Jnx=Blocks[AJacobian_block-1].nx;
       Jno=Blocks[AJacobian_block-1].nout;
       Jni=Blocks[AJacobian_block-1].nin;
-      Jactaille= 2*Jn+(Jn+Jni)*(Jn+Jno)+Jnx*(Jni+2*Jn+Jno)+(Jn-Jnx)*(2*(Jn-Jnx)+Jno+Jni)+2*Jni*Jno;    
-  
+      Jactaille= 2*Jn+(Jn+Jni)*(Jn+Jno)+Jnx*(Jni+2*Jn+Jno)+(Jn-Jnx)*(2*(Jn-Jnx)+Jno+Jni)+2*Jni*Jno;
+
       if ((data->rwork = (double *) MALLOC(Jactaille * sizeof(double)))==NULL){
 	if ( ng>0 ) FREE(data->gwork);
 	if (*neq>0)N_VDestroy_Serial(data->ewt);
@@ -1965,21 +1974,21 @@ void cossimdaskr(told)
       }
 
       flag = IDADenseSetJacFn(ida_mem, Jacobians, data);
-      if(check_flag(&flag, "IDADenseSetJacFn", 1)) {       
-      *ierr=200+(-flag);  
+      if(check_flag(&flag, "IDADenseSetJacFn", 1)) {
+      *ierr=200+(-flag);
 	freeallx
 	  return;
-      };  
+      };
     }
 
     flag = IDASetRdata(ida_mem, data);
-    if (check_flag(&flag, "IDASetRdata", 1)) {      
-      *ierr=200+(-flag);  
+    if (check_flag(&flag, "IDASetRdata", 1)) {
+      *ierr=200+(-flag);
       freeallx
 	return;
     };
-    
- 
+
+
     if(hmax>0){
       flag=IDASetMaxStep(ida_mem, (realtype) hmax);
       if (check_flag(&flag, "IDASetMaxStep", 1)) {
@@ -2005,7 +2014,7 @@ void cossimdaskr(told)
       return;
     };
 
-    
+
   }/* testing if neq>0 */
 
   uround = 1.0;
@@ -2049,31 +2058,31 @@ void cossimdaskr(told)
   }
   /*--discrete zero crossings----dzero--------------------*/
   if (ng>0){ /* storing ZC signs just after a solver call*/
-    zdoit(g, x, x, told); 
+    zdoit(g, x, x, told);
     if (*ierr != 0) {freeallx;return;  }
     for (jj = 0; jj < ng; ++jj)
       if(g[jj]>=0) jroot[jj]=5;else jroot[jj]=-5;
   }
-  
-  //** 
-  //** MODELICA SIMULATION LOOP : IMPLICIT SOLVER 
-  //** 
+
+  //**
+  //** MODELICA SIMULATION LOOP : IMPLICIT SOLVER
+  //**
   /* main loop on time */
-  while (*told < *tf) { //** util the end of simulation time 
+  while (*told < *tf) { //** util the end of simulation time
       // removed in scilab 5
         /*
           if (inxsci == 1 && scilab_timer_check() == 1) {
               C2F(sxevents)();
-              //     .     sxevents can modify halt 
+              //     .     sxevents can modify halt
             }
       */
- 
-     //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation 
-     while (ismenu()) //** if the user has done something, do the actions  
-          { 
-   	    SeqSync = GetCommand(CommandToUnstack); //** get at the action 
+
+     //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation
+     while (ismenu()) //** if the user has done something, do the actions
+          {
+   	    SeqSync = GetCommand(CommandToUnstack); //** get at the action
             CommandLength = (int)strlen(CommandToUnstack);
-            syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength); //** execute it 
+            syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength); //** execute it
           }
      //** Typically the user click over the "STOP" button; the "haltscicos" callback macros is executed
      //*  then the built in "sci_haltscicos()" put set "C2F(coshlt).halt = 1", the the following if is true :)
@@ -2082,12 +2091,12 @@ void cossimdaskr(told)
       {
         if (C2F(coshlt).halt ==2)
           *told = *tf;  /* end simulation */
-        
+
         C2F(coshlt).halt = 0;
         freeallx;
-        return; //** exit from the simulation 
+        return; //** exit from the simulation
       }
- 
+
     if (*pointi == 0) {
       t = *tf;
     } else {
@@ -2122,7 +2131,7 @@ void cossimdaskr(told)
 	if (hot == 0) {
 	  N_VConst(ONE, IDx); /* Initialize id to 1's. */
 	  scicos_xproperty=NV_DATA_S(IDx);
-	  reinitdoit(told,scicos_xproperty);	  
+	  reinitdoit(told,scicos_xproperty);
 	  if(*ierr >0){
 	    freeallx;
 	    return;
@@ -2142,17 +2151,17 @@ void cossimdaskr(told)
 	  }
 	L30:
 	  if (rhotmp < tstop) {
-	    hot = 0;/* Do cold-restat the solver:if the new TSTOP isn't beyong the previous one*/ 
+	    hot = 0;/* Do cold-restat the solver:if the new TSTOP isn't beyong the previous one*/
 	  }
 	}
 	tstop = rhotmp;
 	t = min(*told + deltat,min(t,*tf + ttol));
 
 	if (hot == 0){ /* CIC calculation when hot==0 */
-	  
+
 	  /* Setting the stop time*/
-	  flag = IDASetStopTime(ida_mem, (realtype)tstop);  
-	  if (check_flag(&flag, "IDASetStopTime", 1)) {    
+	  flag = IDASetStopTime(ida_mem, (realtype)tstop);
+	  if (check_flag(&flag, "IDASetStopTime", 1)) {
 	    *ierr=200+(-flag);
 	    freeallx;
 	    return;
@@ -2167,22 +2176,22 @@ void cossimdaskr(told)
 	    }
 	  }
 
-	  
-	  for(j=0;j<=(nmod+*neq);j++){/* counter to reevaluate the 
-				  modes in  mode->CIC->mode->CIC-> loop 
+
+	  for(j=0;j<=(nmod+*neq);j++){/* counter to reevaluate the
+				  modes in  mode->CIC->mode->CIC-> loop
 				  do it once in the absence of mode (nmod=0)*/
-	    /* updating the modes through Flag==9, Phase==1 */	    
+	    /* updating the modes through Flag==9, Phase==1 */
 	    N_VConst(ONE, IDx); /* Initialize id to 1's. */
 	    scicos_xproperty=NV_DATA_S(IDx);
 	    reinitdoit(told,scicos_xproperty);/* filling up the scicos_xproperties */
  	    if(*ierr >0){
 	      freeallx;
-	      return; 
+	      return;
 	    }
 
 	    flag=IDASetId(ida_mem,IDx);
 	    if (check_flag(&flag, "IDASetId", 1)) {
-	      *ierr=200+(-flag); 
+	      *ierr=200+(-flag);
 	      freeallx
 	      return;
 	    }
@@ -2193,8 +2202,8 @@ void cossimdaskr(told)
 	      *ierr=200+(-flag);
 	      freeallx;
 	      return;
-	    };	
-	  
+	    };
+
 	    phase=2; /* IDACalcIC: PHI-> yy0: if (ok) yy0_cic-> PHI*/
 	    copy_IDA_mem->ida_kk=1;
 
@@ -2221,12 +2230,12 @@ void cossimdaskr(told)
 	    for (jj = 0; jj < nmod; ++jj) {
 	      Mode_save[jj] = mod[jj];
 	    }
-	    if (ng>0&&nmod>0){	 
+	    if (ng>0&&nmod>0){
 	      phase=1;
 	      zdoit(g, xd, x,told);
 	      if (*ierr != 0) {
 		freeallx;
-		return; 
+		return;
 	      }
 	    }
 	    /*------------------------------------*/
@@ -2244,17 +2253,17 @@ void cossimdaskr(told)
 		 ignore failure in IDACalcIC and try one more tie
 		 with IDASolve. /Masoud
 
-	      if (flagr>=0) break; 
+	      if (flagr>=0) break;
 	      else{
-		*ierr=200+(-flagr); 
+		*ierr=200+(-flagr);
 		freeallx;
 		return;
 	      }*/
 
 	    }
 	  }/* mode-CIC  counter*/
-	  if(Mode_change==1){ 
-	    /* In tghis case, we try again by relaxing all modes and calling IDA_calc again 
+	  if(Mode_change==1){
+	    /* In tghis case, we try again by relaxing all modes and calling IDA_calc again
 	       /Masoud */
 	    phase=1;
 	    copy_IDA_mem->ida_kk=1;
@@ -2301,8 +2310,8 @@ void cossimdaskr(told)
 	    sciprint("****SUNDIALS.Ida reached: %f\r\n",*told);
 	  hot = 1;
           cnt = 0;
-	} else if ( flagr==IDA_TOO_MUCH_WORK ||  flagr == IDA_CONV_FAIL || flagr==IDA_ERR_FAIL) {  
-	  sciprint("**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);	  
+	} else if ( flagr==IDA_TOO_MUCH_WORK ||  flagr == IDA_CONV_FAIL || flagr==IDA_ERR_FAIL) {
+	  sciprint("**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);
 	  hot = 0;
           cnt++;
           if (cnt>5) {
@@ -2315,7 +2324,7 @@ void cossimdaskr(told)
 	  freeallx;
 	  return;
 	};
-	
+
 	/*     update outputs of 'c' type  blocks if we are at the end*/
 	if (*told >= *tf) {
 	  cdoit(told);
@@ -2330,7 +2339,7 @@ void cossimdaskr(told)
 	  if (Discrete_Jump==0){
 	    flagr = IDAGetRootInfo(ida_mem, jroot);
 	    if (check_flag(&flagr, "IDAGetRootInfo", 1)) {
- 	      *ierr=200+(-flagr);    
+ 	      *ierr=200+(-flagr);
 	      freeallx;
 	      return;
 	    };
@@ -2349,10 +2358,10 @@ void cossimdaskr(told)
 	  for (jj = 0; jj < ng; ++jj) {
 	    C2F(curblk).kfun = zcros[jj];
 	    if (C2F(curblk).kfun == -1) {
-	      break; 
+	      break;
 	    }
 	    kev = 0;
-	    for (j = zcptr[C2F(curblk).kfun]-1 ; 
+	    for (j = zcptr[C2F(curblk).kfun]-1 ;
 		 j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
 	      if(jroot[j]!=0){
 		kev=1;
@@ -2406,11 +2415,11 @@ void cossimdaskr(told)
 	  }
 	}
 	// removed
-	/* 
+	/*
 	if (inxsci == 1 && scilab_timer_check() == 1) {
 	  C2F(sxevents)();
 	  otimer = ntimer;
-	  //     .     sxevents can modify halt 
+	  //     .     sxevents can modify halt
 	}
 	*/
 	if (C2F(coshlt).halt != 0) {
@@ -2434,7 +2443,7 @@ void cossimdaskr(told)
 	/*--discrete zero crossings----dzero--------------------*/
 	if (ng>0){ /* storing ZC signs just after a ddaskr call*/
 	  zdoit(g, xd, x, told); if (*ierr != 0) {freeallx;return;  }
-	  for (jj = 0; jj < ng; ++jj) 
+	  for (jj = 0; jj < ng; ++jj)
 	    if(g[jj]>=0)jroot[jj]=5;else jroot[jj]=-5;
 	}
 	/*--discrete zero crossings----dzero--------------------*/
@@ -2521,13 +2530,13 @@ void cossimdaskr(told)
       nclock = abs(ordclk[ii + nordclk]);
       flag__ = 1;
       callf(told, xd, x, x,x,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-    
+
     /*     .     Initialize tvec */
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
@@ -2669,13 +2678,13 @@ void cossimdaskr(told)
     if (funtyp[C2F(curblk).kfun] > -1){ /*    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) { */
       flag__ = 1;
       callf(told, xd, x, x,x,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-    
+
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 
@@ -2834,7 +2843,7 @@ void cossimdaskr(told)
       if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
 	if (funtyp[C2F(curblk).kfun] >= 0) {
 	  d__1 =  - 1.;
-	  C2F(dset)(&Blocks[C2F(curblk).kfun - 1].nevout, 
+	  C2F(dset)(&Blocks[C2F(curblk).kfun - 1].nevout,
 		    &d__1, Blocks[C2F(curblk).kfun-1].evout, &c__1);
 
 	  flag__ = 3;
@@ -2921,13 +2930,13 @@ void cossimdaskr(told)
       nclock = abs(ordclk[ii + nordclk]);
       flag__ = 1;
       callf(told, xd, x, x,x,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-    
+
     /*     .     Initialize tvec */
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
@@ -3069,17 +3078,17 @@ void cossimdaskr(told)
     if (funtyp[C2F(curblk).kfun] > -1){ /* if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {*/
       flag__ = 1;
       callf(told, xtd, xt, residual,x,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-    
+
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 	if(Blocks[C2F(curblk).kfun - 1].nmode > 0){
-	  i2 = Blocks[C2F(curblk).kfun - 1].mode[0] + 
+	  i2 = Blocks[C2F(curblk).kfun - 1].mode[0] +
 	    clkptr[C2F(curblk).kfun] - 1;
 	} else{
           /* if-then-else blk */
@@ -3196,7 +3205,7 @@ void cossimdaskr(told)
       }
     }
   }
-  
+
   /*     .  update states derivatives */
   for (ii = 1; ii <= noord; ++ii) {
     C2F(curblk).kfun = oord[ii];
@@ -3257,13 +3266,13 @@ void cossimdaskr(told)
     if (funtyp[C2F(curblk).kfun] > -1){ /*    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) { */
       flag__ = 1;
       callf(told, xd, x, x,x,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-    
+
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0 && funtyp[C2F(curblk).kfun] < 0) {
       /* if-then-else blk */
       if (funtyp[C2F(curblk).kfun] == -1) {
@@ -3455,14 +3464,14 @@ void cossimdaskr(told)
       nclock = abs(ordclk[ii + nordclk]);
       flag__ = 1;
       callf(told, xtd, xt, xt,x,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
     /*     .     Initialize tvec */
-    
+
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
 
       if (funtyp[C2F(curblk).kfun] < 0) {
@@ -3525,7 +3534,7 @@ void cossimdaskr(told)
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1 || Blocks[C2F(curblk).kfun - 1].nmode==0){
 /*            outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-	    i= max(min((integer) 
+	    i= max(min((integer)
                        outtbdptr[0],
 		       Blocks[C2F(curblk).kfun - 1].nevout),1);*/
             switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
@@ -3615,13 +3624,13 @@ void cossimdaskr(told)
     if (funtyp[C2F(curblk).kfun] > -1){ /*    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) { */
       flag__ = 1;
       callf(told, xtd, xt, xt,xt,&flag__);
-      
+
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-    
+
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 
@@ -3684,7 +3693,7 @@ void cossimdaskr(told)
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1|| Blocks[C2F(curblk).kfun - 1].nmode==0){
 /*            outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-	    i=max(min((integer) 
+	    i=max(min((integer)
                       outtbdptr[0],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);*/
             switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
@@ -4061,8 +4070,8 @@ void cossimdaskr(told)
 
 
 
-void 
-callf(t,xtd,xt,residual,g,flag) 
+void
+callf(t,xtd,xt,residual,g,flag)
      integer *flag;
      double *t,*xtd,*xt,*residual,*g;
 
@@ -4193,7 +4202,7 @@ callf(t,xtd,xt,residual,g,flag)
 
   case 1 :
     /* one entry for each input or output */
-    for (in = 0 ; in < Blocks[kf-1].nin ; in++) 
+    for (in = 0 ; in < Blocks[kf-1].nin ; in++)
       {
 	args[in]=Blocks[kf-1].inptr[in];
 	sz[in]=Blocks[kf-1].insz[in];
@@ -4222,7 +4231,7 @@ callf(t,xtd,xt,residual,g,flag)
 	      (double *)args[11],&sz[11],(double *)args[12],&sz[12],
 	      (double *)args[13],&sz[13],(double *)args[14],&sz[14],
 	      (double *)args[15],&sz[15],(double *)args[16],&sz[16],
-	      (double *)args[17],&sz[17]); 
+	      (double *)args[17],&sz[17]);
     }
     else {
       (*loc1)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
@@ -4376,7 +4385,7 @@ callf(t,xtd,xt,residual,g,flag)
     break;
   case 10001 :
     /* implicit block one entry for each input or output */
-      for (in = 0 ; in < Blocks[kf-1].nin ; in++) 
+      for (in = 0 ; in < Blocks[kf-1].nin ; in++)
 	{
 	  args[in]=Blocks[kf-1].inptr[in];
 	  sz[in]=Blocks[kf-1].insz[in];
@@ -4406,7 +4415,7 @@ callf(t,xtd,xt,residual,g,flag)
 	     (double *)args[13],&sz[13],(double *)args[14],&sz[14],
 	     (double *)args[15],&sz[15],(double *)args[16],&sz[16],
 	     (double *)args[17],&sz[17]);
-    break; 
+    break;
   case 10002 :
     /* implicit block, inputs and outputs given by a table of pointers */
 
@@ -4541,10 +4550,10 @@ integer C2F(funnum)(fname)
 
 
 int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
-{ 
+{
   double tx, *x, *xd;
   int i;
- 
+
   tx= (double) t;
   x=  (double *) NV_DATA_S(yy);
   xd= (double *) NV_DATA_S(yp);
@@ -4579,28 +4588,28 @@ int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *
   realtype alpha;
 
   UserData data;
-  
+
   realtype hh;
   int qlast;
   int jj,flag;
 
-  data = (UserData) rdata; 
+  data = (UserData) rdata;
 
   if(get_phase_simulation()==1) {
     /* Just to update mode in a very special case, i.e., when initialization using modes fails.
-       in this case, we relax all modes and try again one more time.     
+       in this case, we relax all modes and try again one more time.
     */
     zdoit((double *)data->gwork, NV_DATA_S(yp), NV_DATA_S(yy),&tx);
   }
 
   hh=ZERO;
   flag=IDAGetCurrentStep(data->ida_mem, &hh);
-  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};   
+  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};
 
   qlast=0;
   flag=IDAGetCurrentOrder(data->ida_mem, &qlast);
-  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};   
-  
+  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};
+
   alpha=ZERO;
   for (jj=0;jj<qlast;jj++)
     alpha=alpha -ONE/(jj+1);
@@ -4698,7 +4707,7 @@ int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_dat
 /* Subroutine */ void putevs(t, evtnb, ierr1)
      double *t;
      integer *evtnb, *ierr1;
-{ 
+{
 
   /* Function Body */
   *ierr1 = 0;
@@ -4794,7 +4803,7 @@ int setmode(W,x,told,jroot,ttol)
   k=0;
   while (diff!=0){
     /*save modes */
-    for(jj=0;jj<nmod;++jj){ 
+    for(jj=0;jj<nmod;++jj){
       jroot[jj]=mod[jj];
     }
     for(j=0;j<=*neq;++j){
@@ -4815,7 +4824,7 @@ int setmode(W,x,told,jroot,ttol)
     if (*ierr != 0) return 1;
     /*test against saved modes*/
     diff=0;
-    for(jj=0;jj<nmod;++jj){ 
+    for(jj=0;jj<nmod;++jj){
       if (jroot[jj]!=mod[jj]) {
 	if(k>*neq) {
 	  *ierr=22;
@@ -4919,20 +4928,20 @@ void Jdoit(residual, xt, xtd, told, job)
     nclock = oord[jj + noord];
     if (funtyp[C2F(curblk).kfun] > -1){ /*    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) { */
       flag__ = 1;
-      
+
       if ((*job==2)&&(oord[jj]==AJacobian_block)) {/* applying desired output */
       }else
-	callf(told, xtd, xt, residual,x,&flag__);      
+	callf(told, xtd, xt, residual,x,&flag__);
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-    
+
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 	if(Blocks[C2F(curblk).kfun - 1].nmode > 0){
-	  i2 = Blocks[C2F(curblk).kfun - 1].mode[0] + 
+	  i2 = Blocks[C2F(curblk).kfun - 1].mode[0] +
 	    clkptr[C2F(curblk).kfun] - 1;
 	} else{
           /* if-then-else blk */
@@ -5115,7 +5124,7 @@ int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   realtype hh;
   N_Vector ewt;
   double *ewt_data;
- 
+
   *ierr= 0;
   xc   =(double *) N_VGetArrayPointer(yy);
   xcdot  =(double *) N_VGetArrayPointer(yp);
@@ -5126,15 +5135,15 @@ int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   data = (UserData) jdata;
   ewt = data->ewt;
   flag=IDAGetCurrentStep(data->ida_mem, &hh);
-  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};   
+  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};
 
   flag=IDAGetErrWeights(data->ida_mem, ewt);
-  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};   
+  if (flag<0) {  *ierr=200+(-flag); return (*ierr);};
 
   ewt_data=NV_DATA_S(ewt);
   srur =(double) RSqrt(UNIT_ROUNDOFF);
 
-  n=Neq; 
+  n=Neq;
   nb=nblk;
   nx=Blocks[AJacobian_block-1].nx; /* quant on est là cela signifie que AJacobian_block>0 */
   m=n-nx;
@@ -5149,7 +5158,7 @@ int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   Gx=Fu+nx*ni;
   Gu=Gx+no*nx;
   Hx=Gu+no*ni;
-  Hu=Hx+m*m; 
+  Hu=Hx+m*m;
   Kx=Hu+m*no;
   Ku=Kx+ni*m;
   HuGx=Ku+ni*no;
@@ -5163,7 +5172,7 @@ int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   /* job=0;
      Jdoit(ERR1, xc, xcdot,&ttx,&job);
      if (*ierr < 0) return -1; */
-  /* "residual" already contains the current residual, 
+  /* "residual" already contains the current residual,
      so Masoud removed the first call to Jdoit*/
 
   for (i=0;i<m;i++)
@@ -5256,14 +5265,14 @@ int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   for (j=0;j<m;j++){
     Jacque_col=DENSE_COL(Jacque,j);
     for (i=0;i<m;i++){
-      Jacque_col[i]=Hx[i+j*m]+HuGuKx[i+j*m]; 
+      Jacque_col[i]=Hx[i+j*m]+HuGuKx[i+j*m];
     }
   }
 
   /*  chr='Z';   printf("\n\r t=%g",ttx); DISP(Z,n,n,chr);*/
   C2F(ierode).iero = *ierr;
  return 0;
- 
+
 }
 /*----------------------------------------------------*/
 void Multp(A,B,R,ra ,ca, rb,cb)
@@ -5289,9 +5298,9 @@ void Multp(A,B,R,ra ,ca, rb,cb)
   sciprint("\n\r");
   for (i=0;i<ca;i++)
     for (j=0;j<ra;j++){
-      if (A[j+i*ra]!=0) 
+      if (A[j+i*ra]!=0)
        sciprint(" %s(%d,%d)=%g;",name,j+1,i+1,A[j+i*ra]);
-    }; 
+    };
 }*/
 /* Jacobian*/
 

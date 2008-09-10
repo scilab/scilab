@@ -9,12 +9,80 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // test_run  --
+//   Launch unit tests.
+//   Search for .tst files in the unit test and non-regression test library
+//   execute them, and display a report about success of failures.
+//   The .tst files are searched in directories SCI+"/modules/*/tests/unit_tests"
+//   and SCI+"/modules/*/tests/nonreg_tests".
+//   Whenever a test is executed, a .dia file is generated which contains 
+//   the full list of commands executed along with message which appears in the
+//   console. When the script is done, the .dia file is compared with 
+//   the .dia.ref file which is expected to be in the same directory 
+//   as the .tst file. If the two file are different, the test fails.
+//   Special tags may be inserted in the .tst file, which help to 
+//   control the processing of the corresponding test. These tags
+//   are expected to be found in Scilab comments.
+//   These are the available tags :
+//     <-- INTERACTIVE TEST -->
+//       This test will be skipped because it is interactive.
+//     <-- NOT FIXED -->
+//       This test will be skipped because it is a known, but unfixed bug.
+//     <-- TEST WITH GRAPHIC -->
+//       This test will not be executed if the option "mode_nwni" is used.
+//     <-- NO TRY CATCH -->
+//     <-- NO CHECK ERROR OUTPUT -->
+//     <-- NO CHECK REF -->
+//       The .dia and the .dia.ref files are not compared.
+//   Each test is executed in a separated process, created with the "host" command.
+//   That enables the current command to continue, even if the test as
+//   created an unstable environment. It also enables the tests to be 
+//   independent from one another.
+//
 // Arguments:
-//   ???
+//   modulename, optional : a string or a vector of strings, where 
+//     each string is a the name of a module to test
+//   testname, optional : a string, a vector or a matrix of strings, where 
+//     each string is a the name of a test. For example, if testname is "foo",
+//     the associated test file is "foo.tst".
+//   options, optional : a string or a vector of strings, where options can
+//     have the following values :
+//       'no_check_ref' : does not check if the .dia and .dia.ref are equal
+//       'no_check_error_output'
+//       'create_ref' : create the .dia.ref file and does not check if the .dia and .dia.ref are equal
+//       'list' : does not process the tests but displays a list of available tests
+//       'mode_nw' : add the "-nw" option to the launch
+//       'mode_nwni' : add the "-nwni" option to the launch
+//       'help' : display some examples about how to use this command
+//       "nonreg_tests" : runs only the non-regression tests, skipping unit tests
+//       "unit_tests" : runs only the unit tests, skipping non-regression tests
+//       
 // =============================================================================
 // Launch tests
 // =============================================================================
-
+// Examples :
+//
+// Launch all tests
+// test_run();
+// test_run([]);
+// test_run([],[]);
+// 
+// Test one or several module
+// test_run('core');
+// test_run('core',[]);
+// test_run(['core','string']);
+// 
+// Launch one or several test in a specified module
+// test_run('core',['trycatch','opcode']);
+// 
+// With options
+// test_run([],[],'no_check_ref');
+// test_run([],[],'no_check_error_output');
+// test_run([],[],'create_ref');
+// test_run([],[],'list');
+// test_run([],[],'mode_nw');
+// test_run([],[],'mode_nwni');
+// test_run([],[],'help');
+// test_run([],[],['no_check_error_output','create_ref']);
 function test_run(varargin)
 	
 	lhs = argn(1);

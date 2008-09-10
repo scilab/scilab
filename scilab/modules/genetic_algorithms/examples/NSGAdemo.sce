@@ -94,7 +94,7 @@ if (size(fobj_pop_opt,2)==2) then
     plot(y_t(:,1), y_t(:,2), 'k-');
   end
   
-  legend(['Init']);
+  legend(['Init pop.','Pareto front.']);
   xtitle('Objective function space','f1','f2');
 
   subplot(2,1,2);
@@ -111,7 +111,7 @@ if (size(fobj_pop_opt,2)==2) then
     plot(y_t(:,1), y_t(:,2), 'k-');
   end
   
-  legend(['Final','Pareto']);
+  legend(['Final pop.','Pareto pop.','Pareto front.']);
   xtitle('Objective function space','f1','f2');
   drawnow;
 end

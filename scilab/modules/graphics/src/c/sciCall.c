@@ -507,6 +507,18 @@ void Objplot3d ( char    * fname ,
       }
       /*else no changes : the axes visible properties are driven by the previous plot */
     }
+    else if(iflag[2] == 2)
+    {
+      pSUBWIN_FEATURE (psubwin)->axes.rect = BT_HIDDEN_AXIS ; /* for 2d use only (when switching to 2d mode) */
+      
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE;
+      
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_x_label,FALSE);
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,FALSE);
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,FALSE);
+    }
     else if(iflag[2] == 3)
     {
       pSUBWIN_FEATURE (psubwin)->axes.rect = BT_ON ; /* for 2d use only (when switching to 2d mode) */

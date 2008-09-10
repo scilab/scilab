@@ -27,5 +27,6 @@ EXPORTS
  callFunctionFromGateway
  freeArrayOfString
  getWarningMode
+ IsAScalar
 ;
 

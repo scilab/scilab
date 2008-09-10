@@ -33,6 +33,7 @@ int setenvc(char *string,char *value)
 	int ret=0;
 	char* env;
 
+	/* @TODO Check where stands Mac OS X */
 #ifdef LINUX
 	if ( setenv(string,value,1) ) ret=FALSE;
 	else 

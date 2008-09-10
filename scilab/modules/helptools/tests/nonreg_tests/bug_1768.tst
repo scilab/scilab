@@ -16,23 +16,20 @@
 //    file, xmltohtml crashes. Apparently, it does not found the whatis file 
 //    even if it was just created successfully
 
+// <-- NO CHECK ERROR OUTPUT -->
+
 function y=foo1(a,b)
-	y=a+b
+  y=a+b
 endfunction
 
-T=help_skeleton('foo1')
-mputl(strsubst(T,"<LINK> add a key here</LINK>", ..
-	"<LINK>abs</LINK>"), ..
-	TMPDIR+"/foo1.xml");
+T=help_skeleton('foo1');
 
-try
-	xmltohtml(TMPDIR)
-catch
-	if %T then pause,end
-end
+mkdir(TMPDIR+"/bug_1768");
+mkdir(TMPDIR+"/bug_1768/help");
+mkdir(TMPDIR+"/bug_1768/help/en_US");
 
-try
-	xmltohtml('SCI/modules/elementary_functions/help/'+getlanguage())
-catch
-	if %T then pause,end
-end
+mputl(T,TMPDIR+"/bug_1768/help/en_US/foo1.xml");
+xmltohtml(TMPDIR+"/bug_1768/help/en_US","Bug 1768 Manual");
+
+if ~isdir(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help") then pause, end
+if fileinfo(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help/index.html") == [] then pause, end

@@ -33,7 +33,7 @@ public abstract class TextAlignementStrategy {
 	public static final int RIGHT_ALIGNED_INDEX = 3;
 	
 	/** Offset used to center text in a pixel */
-	protected static final double PIXEL_CENTERING_OFFSET = 0.5;
+	private static final double DISPLACEMENT_OFFSET = 1.0;
 	
 	/**
 	 * Draw the text matrix inside a position matrix using a specific text renderer.
@@ -69,7 +69,7 @@ public abstract class TextAlignementStrategy {
 	 * @return centered value
 	 */
 	protected double centerX(double xCoord) {
-		return Math.round(xCoord - PIXEL_CENTERING_OFFSET) + PIXEL_CENTERING_OFFSET;
+		return Math.round(xCoord) + DISPLACEMENT_OFFSET;
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public abstract class TextAlignementStrategy {
 	 * @return Y coocdinate of the text to draw
 	 */
 	protected double getYCoordinate(Vector3D[] textBox) {
-		return Math.round(textBox[1].getY() + getBoxHeight(textBox) * TextGrid.EXTEND_FACTOR_Y / 2.0) + PIXEL_CENTERING_OFFSET;
+		return Math.round(textBox[1].getY() + getBoxHeight(textBox) * TextGrid.EXTEND_FACTOR_Y / 2.0) + DISPLACEMENT_OFFSET;
 	}
 	
 }

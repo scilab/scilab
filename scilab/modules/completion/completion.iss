@@ -41,6 +41,6 @@ Source: modules\{#COMPLETION}\macros\cleanmacros.bat; DestDir: {app}\modules\{#C
 ;
 ;Source: modules\{#COMPLETION}\demos\*.*; DestDir: {app}\modules\{#COMPLETION}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#COMPLETION}\tests\*.*; DestDir: {app}\modules\{#COMPLETION}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#COMPLETION}\tests\*.*; DestDir: {app}\modules\{#COMPLETION}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

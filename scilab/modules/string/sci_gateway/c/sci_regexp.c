@@ -116,7 +116,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 	if (Rhs == 2 )
 	{
 		int x = 0;
-		int answer = 0;
+		pcre_error_code answer = PCRE_FINISHED_OK;
 		int start_point = 0;
 		int Output_Start = 0;
 		int Output_End = 0;
@@ -132,7 +132,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 				{
 					strcpy(save,Str2[x]);
 					answer = pcre_private(pointer,save,&Output_Start,&Output_End);
-					if ( answer == 0 )
+					if ( answer == PCRE_FINISHED_OK )
 					{
 						if (Output_Start != Output_End || Output_Start==0)
 						{
@@ -158,7 +158,8 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 						}
 					}
 				}
-				while( (answer == 0) && (Output_Start != Output_End) );
+				while( (answer == PCRE_FINISHED_OK) && (Output_Start != Output_End) );
+
 				if (save) {FREE(save);save=NULL;}
 			}
 			else
@@ -182,7 +183,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 		if (typ== STR_ONCE)
 		{
 			int x = 0;
-			int answer = 0;
+			pcre_error_code answer = PCRE_FINISHED_OK;
 
 			int Output_Start = 0;
 			int Output_End = 0;
@@ -190,7 +191,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
             for (x = 0; x < mn2; ++x)
             {
                 answer = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
-                if ( answer == 0)
+                if ( answer == PCRE_FINISHED_OK)
                 {
 					if (Output_Start!=Output_End || Output_Start==0)
 					{

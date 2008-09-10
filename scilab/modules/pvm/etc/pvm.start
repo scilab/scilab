@@ -19,10 +19,9 @@ load('SCI/modules/pvm/macros/lib');
 add_module_help_chapter('pvm');
 // ====================================================================
 //add demos
-path = get_absolute_file_path('pvm.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/pvm.dem',%f,%f);
-add_demo("PVM parallel Toolbox",pathdemos);
+pathdemos = pathconvert(SCI+"/modules/pvm/demos/pvm.dem",%f,%t);
+add_demo(gettext("PVM parallel Toolbox"),pathdemos);
+clear pathdemos
 // ====================================================================
 if MSDOS then
   if %pvm then

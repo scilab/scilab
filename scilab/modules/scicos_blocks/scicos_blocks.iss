@@ -39,6 +39,6 @@ Source: bin\modelicac.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\src\scripts\*.sce; DestDir: {app}\modules\{#SCICOS_BLOCKS}\src\scripts; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS_BLOCKS}\tests\*.*; DestDir: {app}\modules\{#SCICOS_BLOCKS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCICOS} and {#COMPN_TESTS}
+Source: modules\{#SCICOS_BLOCKS}\tests\*.*; DestDir: {app}\modules\{#SCICOS_BLOCKS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCICOS} and {#COMPN_TESTS}
 ;--------------------------------------------------------------------------------------------------------------
 ;

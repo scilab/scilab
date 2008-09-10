@@ -30,6 +30,7 @@ public final class BuildJavaHelp {
 	private static final String COULD_NOT_FIND = "buildDoc: Could not find/access to ";
 	private static final String LEFT_PAR = " ( ";
 	private static final String RIGHT_PAR = " )";
+	private static Indexer indexer = new Indexer();
 	
 	/**
 	 * Default constructor (must no be used)
@@ -132,14 +133,18 @@ public final class BuildJavaHelp {
      * @return The result of the process
 	 */
 	public static boolean buildJavaHelp(String outputDirectory, String language) {
-		Indexer indexer = new Indexer();
+        
+		String outputJavaHelp = new String(outputDirectory + JAVAHELPSEARCH_DIR);
+        
+        try {
+			/* Purge the directory before launching the index */
+			/* because the JavaHelp Indexer failed when launched twice on the same directory */
+			Helpers.deleteDirectory(outputJavaHelp); 
+			File directory = new File(outputJavaHelp);
+			directory.mkdirs();
 
-		try {
-			String[] args = new String[] {
-				"-db",
-				outputDirectory + JAVAHELPSEARCH_DIR, /* Where the Java Help Index should be created */
-				outputDirectory
-			};
+			String[] args = new String[] {"."};
+
 			indexer.compile(args);
 		} catch (Exception e) {
 			System.err.println("buildDoc: Error building search index: " + e.getLocalizedMessage());

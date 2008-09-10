@@ -34,7 +34,7 @@ extern sciLegendPlace string2LegendPlace(char * string);
 int sci_Legend( char * fname, unsigned long fname_len )
 {
   integer numrow,numcol,l1,l2,n,m2,n2;
-  long handelsvalue = NULL ;
+  long handelsvalue = 0 ;
   int outindex,i;
   sciPointObj *pobj;
   long long *tabofhandles;

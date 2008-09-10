@@ -21,7 +21,7 @@ extern int C2F(isbyref)(int *);
 static void str_copy_buf(register char *a, register char *b, long int la, long int lb);
 
 /** 
- * This function should be completely rewritten... 
+ * This function should be completely rewritten... (F2C effect)
  * It is not understable for someone normal
  *
  */

@@ -38,6 +38,6 @@ Source: modules\{#FFTW}\macros\cleanmacros.bat; DestDir: {app}\modules\{#FFTW}\m
 Source: bin\fftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: {#COMPN_FFTW}
 Source: bin\nofftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: not ({#COMPN_FFTW})
 ;
-;Source: modules\{#FFTW}\tests\*.*; DestDir: {app}\modules\{#FFTW}\tests; Flags: recursesubdirs; Components: {#COMPN_FFTW} and {#COMPN_TESTS}
+Source: modules\{#FFTW}\tests\*.*; DestDir: {app}\modules\{#FFTW}\tests; Flags: recursesubdirs; Components: {#COMPN_FFTW} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

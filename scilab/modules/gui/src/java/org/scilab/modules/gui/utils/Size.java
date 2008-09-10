@@ -61,4 +61,11 @@ public class Size {
 	public void setWidth(int width) {
 		this.width = width;
 	}
+	
+	/**
+	 * @return string representation of the object.
+	 */
+	public String toString() {
+		return "[" + getWidth() + ", " + getHeight() + "]";
+	}
 }

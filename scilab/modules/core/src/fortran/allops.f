@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine allops
@@ -39,11 +39,11 @@ c     compilation allops :<5 fin rhs lhs>
 c
  01   ir=r/100
       if(ir.eq.4) then
-         if (r.eq.401) then 
+         if (r.eq.401) then
             pt=pt-1
             call putid(syn(1),ids(1,pt))
             pt=pt-1
-         elseif (r.eq.402) then 
+         elseif (r.eq.402) then
             pt=pt-1
          elseif (r.ge.403.and.r.le.407) then
             goto 51
@@ -168,7 +168,7 @@ c
  81   call iset(rhs,0,infstk(max(top-lhs+1,1)),1)
       if(rstk(pt).eq.409)  rstk(pt)=406
 c
-      if(fun.ne.0) then 
+      if(fun.ne.0) then
 c     .  appel d'un matfn necessaire pour achever l'evaluation
          if (ptover(1,psiz)) return
          rstk(pt)=402
@@ -187,7 +187,7 @@ c
 
 c      if(rstk(pt).eq.406.or.rstk(pt).eq.405) then
       if(rstk(pt).eq.406) then
-c     .  list recursive extraction insertion 
+c     .  list recursive extraction insertion
          goto 51
       endif
       return

@@ -29,7 +29,7 @@
       <varlistentry>
         <term>liste_d_index</term>
         <listitem>
-          <para>liste d'indexes similaires aux indexes retournï¿½s par <link linkend="macr2tree">macr2tree</link>.</para>
+          <para>liste d'indexes similaires aux indexes retournés par <link linkend="macr2tree">macr2tree</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

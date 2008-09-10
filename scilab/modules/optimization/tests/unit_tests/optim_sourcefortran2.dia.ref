@@ -18,6 +18,12 @@
 //
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'C     -------------------------------------------'
+'c (DLL Digital Visual Fortran)'
+'c On Windows , we need to import common nird from scilab'
+'cDEC$ IF DEFINED (FORDLL)'
+'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
+'cDEC$ ENDIF'
+'C     -------------------------------------------'
 'c     Example of cost function given by a subroutine'
 'c     if n<=2 returns ind=0'
 'c     f.bonnans, oct 86'
@@ -63,7 +69,7 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
 '      return'
 '      end'];
-mputl(fortransource,TMPDIR+'/rosenf.f')
+mputl(fortransource,TMPDIR+'/rosenf.f');
 // compile the C code
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
    Generate a loader file
@@ -71,7 +77,6 @@ libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy rosenf.o to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
-Executing SCI/modules/dynamic_link/src/scripts/scicompile.sh rosenf  rosenf.o
    Running the Makefile
 // incremental linking
 linkid=link(libpath,'rosenf','f');
@@ -111,6 +116,9 @@ if norm(x-x1)/norm(x-xopt) > 0.1 then  bugmes();quit;end
 [f,x,g,to]=optim('rosenf','b',bi,bs,x0,'ar',100,3,'in');
 [f,x,g]   =optim('rosenf','b',bi,bs,x,to,'ar',100,3,'in');
 if norm(x-x1)/norm(x-xopt) > 0.1 then  bugmes();quit;end
+//
+// Test all possible stop criteria settings
+//
 [f,x,g]=optim('rosenf',x0,'ar','in');
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,x,g]=optim('rosenf',x0,'ar',100,'in');
@@ -153,4 +161,4 @@ if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
     x0,'gc','ar',100,100,%eps,'in','ti',ti,'td',td,'si','sd');
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 // Clean-up
-ulink(linkid)
+ulink(linkid);

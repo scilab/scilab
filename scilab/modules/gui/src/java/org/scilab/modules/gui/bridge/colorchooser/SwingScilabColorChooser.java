@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
@@ -53,6 +54,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
 	 */
 	public SwingScilabColorChooser(Color color) {
 		super(new JFrame(), "Color Chooser", true);
+		((JFrame) getParent()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		

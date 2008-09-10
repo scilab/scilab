@@ -922,6 +922,7 @@ AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
+AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
@@ -1782,11 +1783,11 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/fec/fec.dem.gateway.sce \
 @GUI_TRUE@demos/fec/fec.ex1 \
 @GUI_TRUE@demos/fec/fec.ex2 \
-@GUI_TRUE@demos/fec/fec.ex2.dem.gateway.sce \
+@GUI_TRUE@demos/fec/fec.ex2.dem.sce \
 @GUI_TRUE@demos/fec/fec.ex3 \
-@GUI_TRUE@demos/fec/fec.ex3.dem.gateway.sce \
+@GUI_TRUE@demos/fec/fec.ex3.dem.sce \
 @GUI_TRUE@demos/fec/fec.ex4 \
-@GUI_TRUE@demos/fec/fec.ex4.dem.gateway.sce \
+@GUI_TRUE@demos/fec/fec.ex4.dem.sce \
 @GUI_TRUE@demos/fec/fec.info \
 @GUI_TRUE@demos/fec/fec_demo.sci \
 @GUI_TRUE@demos/fec/MESH \

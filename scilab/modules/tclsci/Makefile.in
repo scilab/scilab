@@ -195,6 +195,7 @@ AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
+AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
@@ -476,15 +477,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/sciGUI/sciConfig.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciBrowseVar.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciEditVar.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/select.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/tree.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/basic.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/tmpldlg.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/demo.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/dnd.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/bwidget.xbm \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/manager.tcl \
-@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/x1.xbm \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/tests/entry.test \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/SelectColor.html \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/SpinBox.html \
@@ -648,6 +640,8 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@demos/tk/scroll.dem.sce \
 @TCLTK_TRUE@demos/tk/color.dem.sce \
 @TCLTK_TRUE@demos/tk/rolodex \
+@TCLTK_TRUE@demos/tk/uicontrol.sci \
+@TCLTK_TRUE@ demos/tk/uicontrol1.sce \
 @TCLTK_TRUE@demos/tk/vscale
 
 

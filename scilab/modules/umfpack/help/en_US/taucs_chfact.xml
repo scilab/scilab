@@ -43,12 +43,14 @@
     the factor C which then may take more memory than the initial matrix
     A).</para>
     <para>When such a factorisation have been computed, a linear system must
-    be solved with <link linkend="taucs_chsolve">taucs_chsolve</link>. To free
-    the memory used by the Cholesky factors, use <link linkend="taucs_chdel">taucs_chdel</link>(C_ptr) ; to retrieve the Cholesky
-    factors at the scilab level (for example to display their sparse
-    patterns), use <link linkend="taucs_chget">taucs_chget</link> ; to get
-    some informations (number of non zeros in C), use <link linkend="taucs_chinfo">taucs_chinfo</link>. To compute an approximation of
-    the condition number in norm 2 use <link linkend="cond2sp">cond2sp</link>.</para>
+    be solved with <link linkend="taucs_chsolve">taucs_chsolve</link>. <emphasis role="bold">To free the memory used by the Cholesky factors, use 
+	<link linkend="taucs_chdel">taucs_chdel</link>(C_ptr)</emphasis>; to 
+	retrieve the Cholesky factors at the scilab level (for example to display 
+	their sparse patterns), use <link linkend="taucs_chget">taucs_chget</link>;
+	 to get some information (number of non zeros in C), use 
+	<link linkend="taucs_chinfo">taucs_chinfo</link>. To compute an 
+	approximation of the condition number in norm 2 use 
+	<link linkend="cond2sp">cond2sp</link>.</para>
   </refsection>
   <refsection>
     <title>Remarks</title>

@@ -173,6 +173,19 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
     if i <>n ; mfprintf(fd,","); else mfprintf(fd,"],");end
   end
   
+  // we manage .f90 as .f on windows
+  if MSDOS then 
+   if findmsifortcompiler()<> 'unknown' then
+     if flag == 'f90' then
+      flag = 'f';
+     end
+   else
+     if flag == 'f90' then
+      error(gettext('F2C cannot build fortran 90'));
+     end
+   end
+  end
+
   mfprintf(fd,"''%s'');\n",flag);
   mfprintf(fd,"// remove temp. variables on stack\n");
   mfprintf(fd,"clear %s_path;\n",libname);

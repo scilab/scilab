@@ -64,7 +64,7 @@ BOOL finishMainScilabObject(void)
 	jint result = (*currentJVM)->AttachCurrentThread( currentJVM, (void **) &currentENV , NULL ) ;
 	if (result == 0) 
 	{
-		(*currentENV)->DeleteGlobalRef(currentENV, ScilabObject);
+		(*currentENV)->DeleteLocalRef(currentENV, ScilabObject);
 		return TRUE;
 	}
 	return FALSE;

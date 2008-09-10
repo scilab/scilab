@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 1768 -->
 //
 // <-- Bugzilla URL -->
@@ -8,222 +14,19 @@
 //    Whenever I write a new function and try to write the relative help
 //    file, xmltohtml crashes. Apparently, it does not found the whatis file
 //    even if it was just created successfully
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2005
-// Date : 20 janvier 2006
+// <-- NO CHECK ERROR OUTPUT -->
 function y=foo1(a,b)
-	y=a+b
+  y=a+b
 endfunction
-T=help_skeleton('foo1')
- T  =
- 
-!<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>           !
-!                                                                      !
-!<!DOCTYPE MAN SYSTEM "file://SCI/modules/helptools/h!
-!     elp.dtd">                                                        !
-!                                                                      !
-!<MAN>                                                                 !
-!                                                                      !
-!  <LANGUAGE>fr</LANGUAGE>                                             !
-!                                                                      !
-!  <TITLE>foo1</TITLE>                                                 !
-!                                                                      !
-!  <TYPE>Fonction Scilab</TYPE>                                        !
-!                                                                      !
-!  <DATE>14-02-2008</DATE>                                             !
-!                                                                      !
-!  <SHORT_DESCRIPTION name="foo1">Ajouter ici une description rapide de!
-!      la fonction</SHORT_DESCRIPTION>                                 !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <CALLING_SEQUENCE>                                                  !
-!                                                                      !
-!    <CALLING_SEQUENCE_ITEM>y = foo1(a,b)</CALLING_SEQUENCE_ITEM>      !
-!                                                                      !
-!  </CALLING_SEQUENCE>                                                 !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <PARAM>                                                             !
-!                                                                      !
-!    <PARAM_INDENT>                                                    !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!      <PARAM_ITEM>                                                    !
-!                                                                      !
-!        <PARAM_NAME>a</PARAM_NAME>                                    !
-!                                                                      !
-!        <PARAM_DESCRIPTION>                                           !
-!                                                                      !
-!          <SP>                                                        !
-!                                                                      !
-!            Ajouter ici la description du paramètre                   !
-!                                                                      !
-!         </SP>                                                        !
-!                                                                      !
-!       </PARAM_DESCRIPTION>                                           !
-!                                                                      !
-!      </PARAM_ITEM>                                                   !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!      <PARAM_ITEM>                                                    !
-!                                                                      !
-!        <PARAM_NAME>b</PARAM_NAME>                                    !
-!                                                                      !
-!        <PARAM_DESCRIPTION>                                           !
-!                                                                      !
-!          <SP>                                                        !
-!                                                                      !
-!            Ajouter ici la description du paramètre                   !
-!                                                                      !
-!         </SP>                                                        !
-!                                                                      !
-!       </PARAM_DESCRIPTION>                                           !
-!                                                                      !
-!      </PARAM_ITEM>                                                   !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!      <PARAM_ITEM>                                                    !
-!                                                                      !
-!        <PARAM_NAME>y</PARAM_NAME>                                    !
-!                                                                      !
-!        <PARAM_DESCRIPTION>                                           !
-!                                                                      !
-!          <SP>                                                        !
-!                                                                      !
-!            Ajouter ici la description du paramètre                   !
-!                                                                      !
-!         </SP>                                                        !
-!                                                                      !
-!       </PARAM_DESCRIPTION>                                           !
-!                                                                      !
-!      </PARAM_ITEM>                                                   !
-!                                                                      !
-!    </PARAM_INDENT>                                                   !
-!                                                                      !
-!  </PARAM>                                                            !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <DESCRIPTION>                                                       !
-!                                                                      !
-!    <DESCRIPTION_INDENT>                                              !
-!                                                                      !
-!      <DESCRIPTION_ITEM>                                              !
-!                                                                      !
-!        <P>                                                           !
-!                                                                      !
-!          Ajouter ici un paragraphe sur la description détaillée de la!
-!      fonction.                                                       !
-!                                                                      !
-!          D'autres paragraphes peuvent être ajoutés                   !
-!                                                                      !
-!        </P>                                                          !
-!                                                                      !
-!      </DESCRIPTION_ITEM>                                             !
-!                                                                      !
-!      <DESCRIPTION_ITEM>                                              !
-!                                                                      !
-!        <P>                                                           !
-!                                                                      !
-!          Ajouter ici un paragraphe sur la description détaillée de la!
-!      fonction.                                                       !
-!                                                                      !
-!        </P>                                                          !
-!                                                                      !
-!      </DESCRIPTION_ITEM>                                             !
-!                                                                      !
-!    </DESCRIPTION_INDENT>                                             !
-!                                                                      !
-!  </DESCRIPTION>                                                      !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <EXAMPLE>                                                           !
-!                                                                      !
-!    <![CDATA[                                                         !
-!                                                                      !
-!      Ajouter ici les instructions et commentaires scilab             !
-!                                                                      !
-!    ]]>                                                               !
-!                                                                      !
-!  </EXAMPLE>                                                          !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <SEE_ALSO>                                                          !
-!                                                                      !
-!    <SEE_ALSO_ITEM><LINK>Ajouter ici un lien</LINK></SEE_ALSO_ITEM>   !
-!                                                                      !
-!    <SEE_ALSO_ITEM><LINK>Ajouter ici un lien</LINK></SEE_ALSO_ITEM>   !
-!                                                                      !
-!  </SEE_ALSO>                                                         !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <AUTHORS>                                                           !
-!                                                                      !
-!    <AUTHORS_ITEM label="Entrer ici le nom de l'auteur">              !
-!                                                                      !
-!      Ajouter ici les références de l'auteur                          !
-!                                                                      !
-!    </AUTHORS_ITEM>                                                   !
-!                                                                      !
-!  </AUTHORS>                                                          !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <BIBLIO>                                                            !
-!                                                                      !
-!    <SP>                                                              !
-!                                                                      !
-!      S'il elle existe, ajouter ici la bibiographie de l'auteur       !
-!                                                                      !
-!    </SP>                                                             !
-!                                                                      !
-!  </BIBLIO>                                                           !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  <USED_FUNCTIONS>                                                    !
-!                                                                      !
-!    <SP>                                                              !
-!                                                                      !
-!      Ajouter ici les fonctions utilisées ainsi que leurs références  !
-!                                                                      !
-!    </SP>                                                             !
-!                                                                      !
-!  </USED_FUNCTIONS>                                                   !
-!                                                                      !
-!</MAN>                                                                !
-mputl(strsubst(T,"<LINK> add a key here</LINK>", ..
-	"<LINK>abs</LINK>"), ..
-	TMPDIR+"/foo1.xml");
-try
-	xmltohtml(TMPDIR)
+T=help_skeleton('foo1');
+mkdir(TMPDIR+"/bug_1768");
+mkdir(TMPDIR+"/bug_1768/help");
+mkdir(TMPDIR+"/bug_1768/help/en_US");
+mputl(T,TMPDIR+"/bug_1768/help/en_US/foo1.xml");
+xmltohtml(TMPDIR+"/bug_1768/help/en_US","Bug 1768 Manual");
 
-Creating whatis.htm in TMPDIR
+Building the master document in TMPDIR/bug_1768/help/en_US
 
-Processing chapter TMPDIR
-	Processing file foo1.xml
-Bad LINK "Ajouter ici un lien" in file foo1.xml
-Bad LINK "Ajouter ici un lien" in file foo1.xml
-
-Creating SCI/modules/helptools/index_fr_FR.htm
-
-Creating SCI/modules/helptools/contents_fr_FR.htm
-catch
-	if %T then bugmes();quit;end
-end
-try
-	xmltohtml('SCI/modules/elementary_functions/help/'+getlanguage())
-   !-- error 1001 :
-	Directory SCI/modules/elementary_functions/help/fr_FR does not exist or read access denied.
-catch
-	if %T then bugmes();quit;end
-end
+Building the manual file [html] in TMPDIR/bug_1768/help/en_US. (Please wait building ... this can take up to 10 minutes)
+if ~isdir(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help") then bugmes();quit;end
+if fileinfo(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help/index.html") == [] then bugmes();quit;end

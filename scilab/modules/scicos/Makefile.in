@@ -322,6 +322,7 @@ AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
+AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
@@ -769,6 +770,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @SCICOS_TRUE@demos/mechanical_systems.dem.gateway.sce \
 @SCICOS_TRUE@demos/modelica_demos.dem.gateway.sce \
 @SCICOS_TRUE@demos/old_demos.dem.gateway.sce \
+@SCICOS_TRUE@demos/old_gain_block.dem.sce \
 @SCICOS_TRUE@demos/OldGainTest.cosf \
 @SCICOS_TRUE@demos/PENDULUM_ANIM.sci \
 @SCICOS_TRUE@demos/pendulum_anim5.cosf \
@@ -2148,15 +2150,6 @@ install-data-local:
 # Build the binary
 @OCAML_TRUE@@SCICOS_TRUE@$(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
-
-#### WORKAROUND ####
-# Do not use the global clean-local rule because Scicos help is not managed
-# like the rest of Scilab
-#clean-local:
-#	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-#		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-#        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-#    done;
 
 .NOTPARALLEL: libscisundials.la libsciscicos.la
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

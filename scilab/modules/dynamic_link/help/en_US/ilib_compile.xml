@@ -21,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>libn=ilib_compile(lib_name,makename [,files])</synopsis>
+    <synopsis>libn=ilib_compile(lib_name,makename [,files,ldflags,cflags,fflags,cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -52,6 +52,12 @@
         </listitem>
       </varlistentry>
     </variablelist>
+      <varlistentry>
+        <term>ldflags,cflags,fflags,cc</term>
+        <listitem>
+          <para>character strings to provide options/flags for the loader, the C compiler, the Fortran compiler. cc provides the name of the compiler.</para>
+        </listitem>
+      </varlistentry>
   </refsection>
   <refsection>
     <title>Description</title>

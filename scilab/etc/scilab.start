@@ -1,5 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 // Main Scilab initialisation file
-// Copyright INRIA
+
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
@@ -8,38 +18,49 @@ clear  // erase all variables
 clearglobal();
 
 // Set stack size   ===================================================
-defaultstacksize=5000000;
-old=stacksize()
-params=sciargs();
-nparam=find(params=='-mem');
+defaultstacksize = 5000000;
+old = stacksize()
+params = sciargs();
+nparam = find(params=='-mem');
 if (nparam) then
-  ierr=execstr('newstacksize='+params(nparam+1),'errcatch');
-  if (ierr==0) then
-    if old(1)<>newstacksize then stacksize(newstacksize),end
+  ierr = execstr('newstacksize='+params(nparam+1),'errcatch');
+  if (ierr == 0) then
+    if old(1) <> newstacksize then
+      stacksize(newstacksize);
+    end
   else
-    if old(1)<>defaultstacksize then stacksize(defaultstacksize),end
+    if old(1) <> defaultstacksize then 
+      stacksize(defaultstacksize);
+    end
   end
 else
-  if old(1)<>defaultstacksize then stacksize(defaultstacksize),end
+  if old(1) <> defaultstacksize then 
+    stacksize(defaultstacksize);
+  end
 end
 clear nparam params ierr old newstacksize defaultstacksize
 
 // Special variables definition =======================================
-ieee(2);%inf=1/0;ieee(0);%nan=%inf-%inf;
-%T=%t;%F=%f;       // boolean variables
+ieee(2);
+%inf = 1/0;
+ieee(0);
+%nan = %inf-%inf;
+// boolean variables
+%T = %t;
+%F = %f;
 // Startup message  ===================================================
-verbose=sciargs()<>"-nb"
+verbose = (sciargs()<>"-nb");
 if verbose then
   if ~fromjava() & ~fromc() then
     banner();
-    write(%io(2),[' ';' ';gettext("Startup execution:")])
+    write(%io(2),[' ';' ';gettext("Startup execution:")]);
   end
 end
 
 // Load scilab functions libraries  ===================================
 if verbose then
   if ~fromjava() & ~fromc() then
-    write(%io(2),gettext("  loading initial environment"))
+    write(%io(2),gettext("  loading initial environment"));
   end
 end
 clear verbose
@@ -53,45 +74,46 @@ global %modalWarning;
 clear %modalWarning;
 
 // Create some configuration variables ================================
-PWD = getcwd()
+PWD = getcwd();
 
 // Define Initial demo tables  ========================================
 // demolist is a two column matrix of strings
 global demolist
-demolist=[];
+demolist = [];
 clear demolist;
 
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
-args=sciargs(); larg=find(args=="-l")
+args = sciargs();
+larg = find(args=="-l");
 if larg<>[] & larg<=size(args,"*") then
-  L=args(larg+1);
+  L = args(larg+1);
   setlanguage(L);
 end
 clear larg args L
 
 // loads modules ======================================================
 
-modules=getmodules();
-index=size(modules);
-for i=1:index(1) do
+modules = getmodules();
+index = size(modules);
+for i = 1:index(1) do
  exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
 end
 
 clear modules index i add_demo add_help_chapter add_module_help_chapter
 
 // Create some configuration variables ================================
-home=getenv('HOME',SCI);
+home = getenv('HOME',SCI);
 if MSDOS then
   // path of scilab main directory for Windows
-  WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
+  WSCI = getlongpathname(pathconvert(SCI,%f,%f,'w'));
   clear pathconvert
 else
-  if getenv('PRINTERS','ndef')=="ndef" then
-    setenv("PRINTERS","lp")
+  if getenv('PRINTERS','ndef') == "ndef" then
+    setenv("PRINTERS","lp");
   end
 end
-setenv("VERSION",getversion())
+setenv("VERSION",getversion());
 
 clear  pathconvert //remove the local variable
 
@@ -99,46 +121,54 @@ clear  pathconvert //remove the local variable
 predef('all')
 
 // load contrib menu if present ========================================
-[fd,ierr]=mopen(SCI+'/contrib/loader.sce');
-if ierr== 0 then;
-  mclose(fd);
+if fileinfo(SCI+'/contrib/loader.sce') <> [] then
   global %toolboxes
   global %toolboxes_dir
   exec(SCI+'/contrib/loader.sce');
   clear %toolboxes %toolboxes_dir
 end
-clear fd ierr
 
 // calling user initialization =========================================
 // Home dir startup (if any)
 if sciargs()<>'-nouserstartup' then
-  startup_path=SCIHOME+filesep();
+  startup_path = SCIHOME+filesep();
 
-  [startup,ierr]=mopen(startup_path+'.scilab','r')
-  if ierr==0 then
-    exec(startup,-1);mclose(startup)
+  [startup,ierr] = mopen(startup_path+'.scilab','r');
+  if ierr == 0 then
+    exec(startup,-1);mclose(startup);
   else
-    [startup,ierr]=mopen(startup_path+'scilab.ini','r')
-    if ierr==0 then
-      exec(startup,-1);mclose(startup)
+    [startup,ierr] = mopen(startup_path+'scilab.ini','r');
+    if ierr == 0 then
+      exec(startup,-1);mclose(startup);
     end
   end
   clear startup ierr startup_path
 
   // working dir startup (if any)
   if  home<>PWD then
-    [startup,ierr]=mopen('.scilab','r')
-    if ierr==0 then
-      exec(startup,-1);mclose(startup)
+    [startup,ierr] = mopen('.scilab','r');
+    if ierr == 0 then
+      exec(startup,-1);
+      mclose(startup);
     else
-      [startup,ierr]=mopen('scilab.ini','r')
-      if ierr==0 then
-		exec(startup,-1);mclose(startup)
+      [startup,ierr] = mopen('scilab.ini','r');
+      if ierr == 0 then
+		    exec(startup,-1);
+		    mclose(startup);
       end
     end
   end
 end
 clear startup ierr
+
+// Detects if the bug 3443  ====================================
+// ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
+// is present or not
+//foo = 8.8353017163510351e-10;
+//if ( ( sqrt(foo) == foo^(0.5) ) == %f & ~MSDOS ) then
+//	disp(gettext("This case should NOT occur. You are faced to the bug #3443. Please report to Scilab''s bugtracker ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 ) with your CPU (cat /proc/cpuinfo), your operating system, your kernel (uname -a) and the result of the Scilab command ''ver''."));
+//end
+//clear foo
 
 // Menus/toolbar can now be enabled ====================================
 if ( getscilabmode() == 'STD') then
@@ -163,6 +193,7 @@ if ( getscilabmode() == 'STD') then
           unsetmenu(gettext("&Applications"),10);
         end
         setmenu(gettext("&?"));
+        setmenu(gettext("&Toolboxes"));
         toolbar(-1, "on");
 end
 // =====================================================================

@@ -42,6 +42,7 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "WindowList.h"
+#include "machine.h"
 
 #include "math_graphics.h"
 #include "graphicSession.h"
@@ -64,9 +65,6 @@ extern HDC TryToGetDC(HWND hWnd);
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
-
-void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads );
-int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax );
 
 unsigned short defcolors[] = {
   0,   0,   0, /* Black: DEFAULTBLACK */
@@ -593,14 +591,7 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
 
 
   if(logflag =='l'){
-    if((grads[1]-grads[0])==1) /* intervalle de type ...10^n 10^(n+1)...*/
-      {
-	return 8; /* 9 subtics to have a pretty tics/grid in log.*/
-      }
-    else
-      {
-	return 0; /* no subtics at all (1 but draw on a tics place) */
-      }
+    return 8; /* 9 subtics to have a pretty tics/grid in log.*/
   }
   else{
     if(ppsubwin->flagNax == FALSE) /* if auto subtics mode == ON */

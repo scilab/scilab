@@ -13,7 +13,7 @@ if MSDOS then
 	       ' '];
   mputl(txt,TMPDIR+'/makefile.mak')
   current_dir = pwd();  
-  cd TMPDIR
+  cd TMPDIR;
   files = G_make(['',''],'message');
   cd(current_dir);
 end

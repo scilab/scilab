@@ -24,7 +24,7 @@ public class Messages {
     private static final String defaultLocaleCountry = "US"; 
 	private static final String pathToTheClass = "org.scilab.modules.localization.Messages";
     private static ResourceBundle resourceBundle;
-    private static boolean failedToLoadBundle;
+    private static boolean failedToLoadBundle = false;
     /**
      * Private method to load the bundle file
      *
@@ -40,8 +40,9 @@ public class Messages {
 				}
 
 				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(localeLanguageCountry[0],localeLanguageCountry[1]));
-
-				failedToLoadBundle = false;
+			}
+			else {
+				failedToLoadBundle = true;
 			}
 		} catch (java.util.MissingResourceException e) {
 			System.err.println("Could not file localization file for " + systemLocale);

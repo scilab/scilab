@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,46 +10,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="timer">
+<refentry version="5.0-subset Scilab" xml:id="timer" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>timer</refname>
-    <refpurpose>temps CPU consomm�</refpurpose>
+
+    <refpurpose>temps CPU consommé</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>S�quence d'appel</title>
+    <title>Séquence d'appel</title>
+
     <synopsis>timer()</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para>Renvoie le temps CPU consomm� par Scilab depuis le dernier appel � <literal>timer()</literal>.</para>
+
+    <para>Renvoie le temps CPU consommé par Scilab depuis le dernier appel à
+    <literal>timer()</literal>.</para>
+
+    <para>Remarque : Le temps CPU est le nombre de cycles processeur utilisé
+    pour l'execution.</para>
+
+    <para>Le temps CPU peut etre utilisé pour comparer l'usage CPU entre
+    différents programmes ou fonctions, indépendamment des processus en
+    arrière plan qui peuvent ralentir l'ordinateur.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 timer();A=rand(100,100);timer()
-	]]></programlisting>
+	</programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="getdate">getdate</link>
-      </member>
-      <member>
-        <link linkend="toc">toc</link>
-      </member>
-      <member>
-        <link linkend="tic">tic</link>
-      </member>
-      <member>
-        <link linkend="timer">timer</link>
-      </member>
-      <member>
-        <link linkend="etime">etime</link>
-      </member>
+      <member><link linkend="getdate">getdate</link></member>
+
+      <member><link linkend="toc">toc</link></member>
+
+      <member><link linkend="tic">tic</link></member>
+
+      <member><link linkend="timer">timer</link></member>
+
+      <member><link linkend="etime">etime</link></member>
     </simplelist>
   </refsection>
 </refentry>

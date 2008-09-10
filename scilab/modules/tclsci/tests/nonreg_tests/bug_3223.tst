@@ -11,5 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3223
 //
 
-ierr = execstr("TCL_EvalStr(''package require registry'')",'errcatch');
-if ierr <> 0 then pause,end
+if MSDOS then
+  ierr = execstr("TCL_EvalStr(''package require registry'')",'errcatch');
+  if ierr <> 0 then pause,end
+end

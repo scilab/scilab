@@ -39,6 +39,6 @@ Source: modules\{#LOCALIZATION}\xml\*.dtd; DestDir: {app}\modules\{#LOCALIZATION
 ;
 ;Source: modules\{#LOCALIZATION}\demos\*.*; DestDir: {app}\modules\{#LOCALIZATION}\demos; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#LOCALIZATION}\tests\*.*; DestDir: {app}\modules\{#LOCALIZATION}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#LOCALIZATION}\tests\*.*; DestDir: {app}\modules\{#LOCALIZATION}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

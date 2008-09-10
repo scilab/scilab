@@ -10,7 +10,7 @@
 function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,ismex,cc)
 
   if ~haveacompiler() then
-    error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'ilib_build'));
+    error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"),'ilib_build'));
   	return;
   end
   
@@ -54,6 +54,11 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   	  write(%io(2),sprintf(_("   Generate a Makefile")));
 	end
   end
+  
+  if ~MSDOS then // Needs to copy the libfoo.c which contains important stuff
+  files = [files,ilib_name+'.c'];
+  end
+
   ilib_gen_Make(ilib_name,table,files,libs,makename,%t,ldflags,cflags,fflags,cc);
   
   // we call make

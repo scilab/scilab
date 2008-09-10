@@ -12,6 +12,12 @@ function t=coth(x)
 //
 // hyperbolic co-tangent of x
 
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"coth",1));
+  end
+
   if type(a)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"coth",1));
   end

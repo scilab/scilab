@@ -57,7 +57,7 @@ if length(m) <> 2  then pause,end
 
 
 // = List (mixed) ==============================================================
-l = list(1,["a" "b"],[1 2 3 4],%T)
+l = list(1,["a" "b"],[1 2 3 4],%T);
 if length(l) <> 4  then pause,end
 
 
@@ -67,7 +67,7 @@ if length(M) <> 3  then pause,end
 
 
 // = tlist =====================================================================
-Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],1,2,3,4,5,'c')
+Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],1,2,3,4,5,'c');
 if length(Sys) <> 7  then pause,end
 
 

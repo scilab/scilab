@@ -8,26 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2008-05-22 07:53+0000\n"
-"Last-Translator: Arnaud Dessein <Unknown>\n"
+"PO-Revision-Date: 2008-08-21 20:16+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Plus de mémoire disponible.\n"
-
-#, fuzzy, c-format
-msgid "  (cont'd) %s"
-msgstr "  (suite) %s"
-
-#, c-format
-msgid "     (end) %s"
-msgstr "     (fin) %s"
 
 msgid "Incorrect assignment.\n"
 msgstr "Affectation incorrecte.\n"
@@ -36,8 +24,8 @@ msgid "Waiting for right parenthesis.\n"
 msgstr "En attente d'une parenthèse droite.\n"
 
 #, c-format
-msgid "Undefined variable : %s\n"
-msgstr "Variable non définie: %s\n"
+msgid "Undefined variable: %s\n"
+msgstr ""
 
 msgid "Inconsistent column/row dimensions.\n"
 msgstr "Dimension colonne/ligne incohérente.\n"
@@ -45,7 +33,6 @@ msgstr "Dimension colonne/ligne incohérente.\n"
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "Dimension ligne/colonne incohérente.\n"
 
-#, fuzzy
 msgid "Dot cannot be used as modifier for this operator.\n"
 msgstr ""
 "Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
@@ -68,7 +55,6 @@ msgstr "Division gauche incohérente.\n"
 msgid "Redefining permanent variable.\n"
 msgstr "Redéfinition d'une variable permanente.\n"
 
-#, fuzzy
 msgid "Eye variable undefined in this context.\n"
 msgstr "La variable Eye n'est pas définie dans ce contexte.\n"
 
@@ -85,16 +71,16 @@ msgid "Use stacksize function to increase it.\n"
 msgstr "Utiliser la fonction stacksize pour l'augmenter.\n"
 
 #, c-format
-msgid "Memory used for variables : %d\n"
-msgstr "Mémoire utilisée pour les variables: %d\n"
+msgid "Memory used for variables: %d\n"
+msgstr ""
 
 #, c-format
-msgid "Intermediate memory needed : %d\n"
-msgstr "Mémoire intermédiaire requise: %d\n"
+msgid "Intermediate memory needed: %d\n"
+msgstr ""
 
 #, c-format
-msgid "Total memory available : %d\n"
-msgstr "Mémoire totale disponible: %d\n"
+msgid "Total memory available: %d\n"
+msgstr ""
 
 msgid "Too many variables!\n"
 msgstr "Trop de variables!\n"
@@ -113,9 +99,8 @@ msgstr "Mauvais type pour l'argument %d: Une matrice carrée est attendue.\n"
 msgid "Invalid index.\n"
 msgstr "Index invalide.\n"
 
-#, fuzzy
 msgid "Recursion problems. Sorry...\n"
-msgstr "Problèmes de récurrence. Désolé ...\n"
+msgstr "Problèmes de récursion. Désolé ...\n"
 
 msgid "Matrix norms available are 1, 2, inf, and fro.\n"
 msgstr "Les normes matricielles disponibles sont 1, 2, inf et fro.\n"
@@ -123,9 +108,9 @@ msgstr "Les normes matricielles disponibles sont 1, 2, inf et fro.\n"
 msgid "Convergence problem...\n"
 msgstr "Problème de convergence ...\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Bad call to primitive: %s\n"
-msgstr "Mauvais appel de la primitive: %s\n"
+msgstr "Mauvais appel de la primitive : %s\n"
 
 msgid "Too complex recursion! (recursion tables are full)\n"
 msgstr "Récurrence trop complexe! (les tables de récurrence sont pleines)\n"
@@ -151,7 +136,6 @@ msgstr "Singularité de la fonction log ou tan.\n"
 msgid "Too many ':'\n"
 msgstr "Trop de ':'\n"
 
-#, fuzzy
 msgid "Incorrect control instruction syntax.\n"
 msgstr "Syntaxe de l'instruction de contrôle incorrecte.\n"
 
@@ -170,13 +154,15 @@ msgstr "Mauvais argument d'entrée %d.\n"
 msgid "Incorrect function at line %d.\n"
 msgstr "Fonction incorrecte à la ligne %d.\n"
 
+msgid "Incorrect function.\n"
+msgstr ""
+
 msgid "Wrong file name.\n"
 msgstr "Mauvais nom de fichier.\n"
 
 msgid "Incorrect number of input arguments.\n"
 msgstr "Nombre incorrect d'argument d'entrée.\n"
 
-#, fuzzy
 msgid "Waiting for end of command.\n"
 msgstr "En attente de la fin de la commande.\n"
 
@@ -186,9 +172,8 @@ msgstr "Argument de sortie incompatible.\n"
 msgid "Incompatible input argument.\n"
 msgstr "Argument d'entrée incompatible.\n"
 
-#, fuzzy
 msgid "Not implemented in scilab...\n"
-msgstr "Pas encore implémenté dans Scilab ...\n"
+msgstr "Pas encore implémenté dans Scilab...\n"
 
 #, c-format
 msgid "Wrong argument %d.\n"
@@ -204,16 +189,16 @@ msgstr "Syntaxe incorrecte.\n"
 msgid " end or else is missing...\n"
 msgstr " end ou else est manquant ...\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid " input line longer than buffer size: %d\n"
-msgstr " la ligne entrée est plus longue que la taille du buffer: %d\n"
+msgstr " la ligne entrée est plus longue que la taille du buffer : %d\n"
 
 msgid "Incorrect file or format.\n"
 msgstr "Fichier ou format incorrecte.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "subroutine not found: %s\n"
-msgstr "sous-programme non trouvé: %s\n"
+msgstr "sous-programme non trouvé : %s\n"
 
 #, c-format
 msgid "Wrong type for argument %d: Real matrix expected.\n"
@@ -258,9 +243,8 @@ msgstr "Nombre de sorties de la fonction incorrecte\n"
 msgid "Wrong size for argument: Incompatible dimensions.\n"
 msgstr "Mauvaise dimension for l'argument: Dimensions incompatibles.\n"
 
-#, fuzzy
 msgid "Direct access : give format.\n"
-msgstr "Accès directe: donner le format.\n"
+msgstr "Accès direct : donner le format.\n"
 
 #, c-format
 msgid "End of file at line %d.\n"
@@ -270,7 +254,6 @@ msgstr "Fin de fichier à la ligne %d.\n"
 msgid "%d graphic terminal?\n"
 msgstr "%d terminaux graphiques?\n"
 
-#, fuzzy
 msgid "Integration fails.\n"
 msgstr "Echec de l'intégration.\n"
 
@@ -284,15 +267,15 @@ msgstr "Plus d'unités logiques disponibles:\n"
 msgid "Unknown file format.\n"
 msgstr "Format de fichier inconnu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
 "Bad call to a scilab function ?\n"
 "Otherwise, send a bug report to :\n"
 msgstr ""
-"Erreur fatale!!! Vos variables ont été sauvegardées dans le fichier: %s\n"
+"Erreur fatale !!! Vos variables ont été sauvegardées dans le fichier : %s\n"
 "Mauvais appel à une fonction Scilab ?\n"
-"Sinon, envoyer un rapport de bug à:\n"
+"Sinon, envoyer un rapport de bug à :\n"
 
 #, fuzzy
 msgid "Floating point exception.\n"
@@ -330,6 +313,9 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée.\n"
 msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Mauvais nombre d'arguments de sortie.\n"
 
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
+
 #, c-format
 msgid "Incorrect function (argument n: %d).\n"
 msgstr "Fonction incorrecte (argument n: %d).\n"
@@ -342,7 +328,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s: type invalide pour l'argument %d: matrice réelle attendue.\n"
+msgstr "%s : Mauvais type pour l'argument %d : matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
@@ -459,7 +445,7 @@ msgid "Undefined fonction.\n"
 msgstr "Fonction non définie.\n"
 
 msgid "Function name already used.\n"
-msgstr "Non de fonction déjà utilisé.\n"
+msgstr "Nom de fonction déjà utilisé.\n"
 
 #, c-format
 msgid "Too many functions are defined (maximum #:%d).\n"
@@ -478,7 +464,7 @@ msgid "%s was a function when compiled but is now a primitive!\n"
 msgstr ""
 "%s était une fonction à la compilation mais est maintenant une primitive!\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Trying to re-define function %s.\n"
 msgstr "Essaye de redéfinir la fonction %s.\n"
 
@@ -492,7 +478,6 @@ msgstr "Chaîne de caractères trop longue.\n"
 msgid "Too many linked routines.\n"
 msgstr "Trop de routines liées.\n"
 
-#, fuzzy
 msgid ""
 "Stack problem detected within a loop.\n"
 "A primitive function has been called with a wrong number of output "
@@ -504,7 +489,7 @@ msgstr ""
 "Une fonction primitive a été appelée avec un mauvais nombre d'arguments de "
 "sortie.\n"
 "Aucun test sur les arguments de sortie n'a été fait dans cette fonction.\n"
-"Rapportez ce bug SVP:\n"
+"Rapportez ce bug s'il vous plaît :\n"
 
 #, c-format
 msgid "Wrong value for argument %d.\n"
@@ -591,6 +576,10 @@ msgstr "%s: Paramètres d'arrêts incorrects.\n"
 #, c-format
 msgid "%s: Incorrect bounds.\n"
 msgstr "%s: Bornes incorrectes.\n"
+
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr ""
 
 #, fuzzy, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
@@ -718,6 +707,9 @@ msgstr "Indice manquant.\n"
 msgid "reference to the cleared global variable %s.\n"
 msgstr "référence vers la variable global effacée %s.\n"
 
+msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgstr ""
+
 #, fuzzy
 msgid "semi def fails.\n"
 msgstr "Echec de semi def.\n"
@@ -738,7 +730,7 @@ msgstr "Nombre maximum d'interfaces dynamique atteint.\n"
 msgid "%s: expecting more than one argument.\n"
 msgstr "%s: attend plus d'un argument.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr "%s: problème avec un des points d'entrée.\n"
 
@@ -788,10 +780,14 @@ msgstr "Aucun fichier d'entrée n'est associé à l'unité logique %d.\n"
 msgid "Function not defined for given argument type(s),\n"
 msgstr "Fonction non définie pour le type d'argument donné.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr ""
 "  vérifier les arguments ou définir la fonction %s pour la surcharge.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for argument %d: Valid variable name expected.\n"
@@ -918,8 +914,24 @@ msgstr "Opérateur, virgule ou point-virgule manquant.\n"
 msgid "Too many commands defined.\n"
 msgstr "Trop de commandes définies.\n"
 
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr ""
+
 msgid "\"unknown data\""
 msgstr "\"Donnée inconnue\""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
 
 msgid "Warning :\n"
 msgstr "Attention:\n"
@@ -967,9 +979,8 @@ msgstr "les résultats sont peut être inexactes. rcond = %s\n"
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Attention: utilisation obsolète de '=' à la place de '=='.\n"
 
-#, fuzzy
 msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr "Attention: utilisation obsolète de eye, rand ou ones.\n"
+msgstr "Attention : utilisation obsolète de eye, rand ou ones.\n"
 
 #, c-format
 msgid "Rank defficient. rank = %d\n"
@@ -1029,41 +1040,30 @@ msgstr "Fichier d'aide invalide ...\n"
 msgid "Functions files location : %s.\n"
 msgstr "Emplacement des fichiers de fonctions: %s.\n"
 
-#, fuzzy
 msgid "Pause mode: enter empty lines to continue.\n"
-msgstr "Mode pause: entrer des lignes vides pour continuer.\n"
+msgstr "Mode pause : entrer des lignes vides pour continuer.\n"
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
 msgstr "Point d'arrêt de la fonction: %s\n"
 
-#, fuzzy
-msgid ""
-"Warning: recursion problem..., cleared.\n"
-" will be cleared with next error...\n"
+msgid "Warning: recursion problem..., cleared.\n"
 msgstr ""
-"Attention: problème de récurrence ..., nettoyé.\n"
-" sera nettoyé lors de la prochaine erreur ...\n"
 
-#, fuzzy
-msgid ""
-"Warning: stack problem..., cleared\n"
-" will be cleared with next error...\n"
+msgid "Warning: stack problem..., cleared.\n"
 msgstr ""
-"Attention: problème de pile ..., nettoyé.\n"
-" sera nettoyé lors de la prochaine erreur ...\n"
 
 #, c-format
 msgid "Stop after row %s in function %s.\n"
 msgstr "Arrêt après la ligne %s dans la fonction %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "The identifier : %s\n"
-msgstr "L'identifieur: %s\n"
+msgstr "L'identifiant : %s\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid " has been truncated to: %s.\n"
-msgstr " a été tronqué en: %s.\n"
+msgstr " a été tronqué en : %s.\n"
 
 msgid "Real part\n"
 msgstr "Partie réelle\n"
@@ -1097,8 +1097,9 @@ msgid "Commands:\n"
 msgstr "Commandes :\n"
 
 #, c-format
-msgid "Warning : redefining function: %s"
-msgstr "Attention: redéfinition de la fonction: %s"
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -1114,37 +1115,36 @@ msgstr "Vos variables globales sont ...\n"
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: Boucle sur deux niveaux détectée.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Impossible to reach required order.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
-"%s: impossible d'atteindre l'ordre demandé.\n"
+"%s : impossible d'atteindre l'ordre demandé.\n"
 "   le précédent ordre calculé est retourné.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Failure when looking for the intersection with domains boundaries.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
-"%s: défaillance pendant la recherche de l'intersection avec les bornes du "
+"%s : problème pendant la recherche de l'intersection avec les bornes du "
 "domaine.\n"
 "   le précédent ordre calculé est retourné.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Too many solutions found.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
-"%s: trop de solutions trouvée.\n"
+"%s : trop de solutions trouvées.\n"
 "   le précédent ordre calculé est retourné.\n"
 
-#, fuzzy
 msgid ""
 "Warning: loaded file has been created with a previous version of Scilab\n"
 "or you are trying to load a file saved on a different architecture.\n"
 msgstr ""
-"Attention: le fichier chargé a été créé avec une version précédente de "
+"Attention : le fichier chargé a été créé avec une version précédente de "
 "Scilab\n"
 "ou alors vous essayez de charger un fichier sauvé sur une architecture "
 "différente.\n"
@@ -1285,11 +1285,41 @@ msgstr "Le nom de la variable formel a été tronqué.\n"
 msgid "Unknown key <%s> ignored.\n"
 msgstr "La clef inconnue <%s> est ignorée.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: window dimensions have been set less than 2^16.\n"
-msgstr "%s: les dimensions de la fenêtre ont été réduite à moins de 2^16.\n"
+msgstr "%s: les dimensions de la fenêtre ont été réduites à moins de 2^16.\n"
 
-#, fuzzy
 msgid "Some data have not been computed they are replaced by NaN.\n"
 msgstr ""
 "Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""

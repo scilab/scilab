@@ -92,12 +92,23 @@
         <term>algo</term>
 
         <listitem>
-          <para>Character string used to sprecify the algorithm to use. The
-          possible values are <literal>'qn'</literal> for quasi-Newton
-          (default) or <literal>'gc'</literal> for conjugate gradient or
-          <literal>'nd'</literal> for non-differentiable. Note that
-          <literal>'nd'</literal> does not accept bounds on
-          <literal>x</literal>.</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>'qn'</literal> : quasi-Newton (this is the
+              default solver)</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>'gc'</literal> : conjugate gradient</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>'nd'</literal> : non-differentiable.</para>
+
+              <para>Note that the conjugate gradient solver does not accept
+              bounds on <literal>x</literal>.</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
 
@@ -194,84 +205,84 @@
         <listitem>
           <para>keyword representing the method to initialize the arguments
           <literal>ti, td</literal> passed to the objective function, provided
-          as a C or Fortran routine. &lt;params&gt; can be set to only one of
-          the following values.</para>
+          as a C or Fortran routine. This option has no meaning when the cost
+          function is a Scilab script. &lt;params&gt; can be set to only one
+          of the following values.</para>
 
-          <variablelist>
-            <varlistentry>
-              <term>"in"</term>
+          <itemizedlist>
+            <listitem>
+              <para>"in"</para>
 
-              <listitem>
-                <para>That mode allows to allocate memory in the internal
-                Scilab workspace so that the objective function can get arrays
-                with the required size, but without directly allocating the
-                memory. "in" stands for "initialization". In that mode, before
-                the value and derivative of the objective function is to be
-                computed, there is a dialog between the optim Scilab primitive
-                and the objective function. In this dialog, the objective
-                function is called two times, with particular values of the
-                "ind" parameter. The first time, ind is set to 10 and the
-                objective function is expected to set the nizs, nrzs and ndzs
-                integer parameters of the "nird" common. </para>
+              <para>That mode allows to allocate memory in the internal Scilab
+              workspace so that the objective function can get arrays with the
+              required size, but without directly allocating the memory. "in"
+              stands for "initialization". In that mode, before the value and
+              derivative of the objective function is to be computed, there is
+              a dialog between the optim Scilab primitive and the objective
+              function. In this dialog, the objective function is called two
+              times, with particular values of the "ind" parameter. The first
+              time, ind is set to 10 and the objective function is expected to
+              set the nizs, nrzs and ndzs integer parameters of the "nird"
+              common.</para>
 
-                <programlisting>
+              <programlisting>
       
       common /nird/ nizs,nrzs,ndzs
       
     </programlisting>
 
-                <para>This allows Scilab to allocate memory inside its
-                internal workspace. The second time the objective function is
-                called, ind is set to 11 and the objective function is
-                expected to set the ti, tr and tz arrays. After this
-                initialization phase, each time it is called, the objective
-                function is ensured that the ti, tr and tz arrays which are
-                passed to it have the values that have been previously
-                initialized.</para>
-              </listitem>
-            </varlistentry>
+              <para>This allows Scilab to allocate memory inside its internal
+              workspace. The second time the objective function is called, ind
+              is set to 11 and the objective function is expected to set the
+              ti, tr and tz arrays. After this initialization phase, each time
+              it is called, the objective function is ensured that the ti, tr
+              and tz arrays which are passed to it have the values that have
+              been previously initialized.</para>
+            </listitem>
 
-            <varlistentry>
-              <term>"ti",valti</term>
+            <listitem>
+              <para>"ti",valti</para>
 
-              <listitem>
-                <para>In this mode, valti is expected to be a Scilab vector
-                variable containing integers. Whenever the objective function
-                is called, the ti array it receives contains the values of the
-                Scilab variable. </para>
-              </listitem>
-            </varlistentry>
+              <para>In this mode, valti is expected to be a Scilab vector
+              variable containing integers. Whenever the objective function is
+              called, the ti array it receives contains the values of the
+              Scilab variable.</para>
+            </listitem>
 
-            <varlistentry>
-              <term>"td", valtd</term>
+            <listitem>
+              <para>"td", valtd</para>
 
-              <listitem>
-                <para>In this mode, valtd is expected to be a Scilab vector
-                variable containing double values. Whenever the objective
-                function is called, the td array it receives contains the
-                values of the Scilab variable. </para>
-              </listitem>
-            </varlistentry>
+              <para>In this mode, valtd is expected to be a Scilab vector
+              variable containing double values. Whenever the objective
+              function is called, the td array it receives contains the values
+              of the Scilab variable.</para>
+            </listitem>
 
-            <varlistentry>
-              <term>"ti",valti,"td",valtd</term>
+            <listitem>
+              <para>"ti",valti,"td",valtd</para>
 
-              <listitem>
-                <para>This mode combines the two previous. </para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
+              <para>This mode combines the two previous.</para>
+            </listitem>
+          </itemizedlist>
 
-          <para>The <literal>ti, td</literal> arrays may be necessary for the
-          objective function to be computed. For example, if the objective
-          function is a polynomial, the ti array may contain the coefficients
-          of that polynomial. The way that the arrays are passed to the
-          objective function depends on the fact that the arrays are Scilab
+          <para>The <literal>ti, td</literal> arrays may be used so that the
+          objective function can be computed. For example, if the objective
+          function is a polynomial, the ti array may may be used to store the
+          coefficients of that polynomial.</para>
+
+          <para>Users should choose carefully between the "in" mode and the
+          "ti" and "td" mode, depending on the fact that the arrays are Scilab
           variables or not. If the data is available as Scilab variables, then
           the "ti", valti, "td", valtd mode should be chosen. If the data is
           available directly from the objective function, the "in" mode should
           be chosen. Notice that there is no "tr" mode, since, in Scilab, all
           real values are of "double" type.</para>
+
+          <para>If neither the "in" mode, nor the "ti", "td" mode is chosen,
+          that is, if &lt;params&gt; is not present as an option of the optim
+          primitive, the user may should not assume that the ti,tr and td
+          arrays can be used : reading or writing the arrays may generate
+          unpredictable results.</para>
         </listitem>
       </varlistentry>
 
@@ -279,13 +290,28 @@
         <term>"imp=iflag"</term>
 
         <listitem>
-          <para>named argument used to set the trace mode.
-          <literal>iflag=0</literal> nothing (execpt errors) is reported,
-          <literal>iflag=1</literal> initial and final reports,
-          <literal>iflag=2</literal> adds a report per iteration,
-          <literal>iflag&gt;2</literal> add reports on linear search. Warning,
-          most of these reports are written on the Scilab standard
-          output.</para>
+          <para>named argument used to set the trace mode. The possible values
+          for iflag are 0,1,2 and &gt;2. Use this option with caution : most
+          of these reports are written on the Scilab standard output.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>iflag=0: nothing (except errors) is reported (this is the
+              default),</para>
+            </listitem>
+
+            <listitem>
+              <para>iflag=1: initial and final reports,</para>
+            </listitem>
+
+            <listitem>
+              <para>iflag=2: adds a report per iteration,</para>
+            </listitem>
+
+            <listitem>
+              <para>iflag&gt;2: add reports on linear search.</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
 
@@ -376,7 +402,7 @@
 
               <listitem>
                 <para>The interface of the Fortran subroutine computing the
-                objective must be : </para>
+                objective must be :</para>
 
                 <programlisting>
       
@@ -384,7 +410,7 @@
       
     </programlisting>
 
-                <para> with the following declarations:</para>
+                <para>with the following declarations:</para>
 
                 <programlisting>
       
@@ -410,7 +436,7 @@
 
               <listitem>
                 <para>The interface of the C function computing the objective
-                must be : </para>
+                must be :</para>
 
                 <programlisting>
       
@@ -677,6 +703,41 @@ x0=1.2*ones(1,5);
 // Solve the problem
 //
 [f,x,g]=optim('rosenf',x0,'in');
+    
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #5 : Fortran function with initialization on Windows with
+    Intel Fortran Compiler</title>
+
+    <para>Under the Windows operating system with Intel Fortran Compiler, one
+    must carefully design the fortran source code so that the dynamic link
+    works properly. On Scilab's side, the optimization component is
+    dynamically linked and the symbol "nird" is exported out of the
+    optimization dll. On the cost function's side, which is also dynamically
+    linked, the "nird" common must be imported in the cost function dll.
+    </para>
+
+    <para>The following example is a re-writing of the previous example, with
+    special attention for the Windows operating system with Intel Fortran
+    compiler as example. In that case, we introduce additionnal compiling
+    instructions, which allows the compiler to import the "nird"
+    symbol.</para>
+
+    <programlisting role="example">
+    
+fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+'cDEC$ IF DEFINED (FORDLL)'
+'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
+'cDEC$ ENDIF'
+'C     -------------------------------------------'
+'c     Example of cost function given by a subroutine'
+'c     if n&lt;=2 returns ind=0'
+'c     f.bonnans, oct 86'
+'      implicit double precision (a-h,o-z)'
+[etc...]
+
     
   </programlisting>
   </refsection>

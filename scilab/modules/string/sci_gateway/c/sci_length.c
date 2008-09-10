@@ -216,9 +216,6 @@ static int lengthPoly(int RhsPosition)
       int il = 0; int ilrd = 0;
       int l1 = 0;
 
-      int outIndex = 0 ;
-      int x = 0;
-      
       int lw = RhsPosition + Top - Rhs;
       
       l1 = *Lstk(lw);
@@ -252,9 +249,6 @@ static int lengthSparse(int RhsPosition)
 
     int il = 0; int ilrd = 0;
     int l1 = 0;
-
-    int outIndex = 0 ;
-    int x = 0;
       
     int lw = RhsPosition + Top - Rhs;
       

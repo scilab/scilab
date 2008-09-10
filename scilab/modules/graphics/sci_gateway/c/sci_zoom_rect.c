@@ -34,7 +34,8 @@
 #include "SetPropertyStatus.h"
 
 /*--------------------------------------------------------------------------*/
-sciPointObj * getZoomedObject(const char * fname);
+static sciPointObj * getZoomedObject(const char * fname);
+static BOOL getZoomRect(const char * fname, int attribPos, double rect[4]);
 /*--------------------------------------------------------------------------*/
 /**
  * Get the [xmin, ymin, xmax, ymax] vector specified as input argument
@@ -43,7 +44,7 @@ sciPointObj * getZoomedObject(const char * fname);
  * @param[out] rect retrieved rectangle
  * @return TRUE if the rect could be retrieved, false otherwise
  */
-BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
+static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
 {
   int nbRow;
   int nbCol;
@@ -81,7 +82,7 @@ BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
  * @return NULL if the input argument is not correct,
  *              the object to zoom otherwise
  */
-sciPointObj * getZoomedObject(const char * fname)
+static sciPointObj * getZoomedObject(const char * fname)
 {
   int nbRow;
   int nbCol;

@@ -13,16 +13,13 @@ mputl([
 '  sciprint(""%d %d %d\n"",dims[0],dims[1],dims[2]);'
 '}'
 ],'mexfunction16.c');
-if ~MSDOS then
-  ilib_mex_build('libmex',['mexf16','mexFunction','cmex'],['mexfunction16.c'],[],'Makelib','','','');
-else
-  ilib_mex_build('libmex',['mexf16','mexfunction16','cmex'],[],[],'Makelib','','','');
+ilib_mex_build('libmex',['mexf16','mexfunction16','cmex'],['mexfunction16.c'],[],'Makelib','','','');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile: Makelib
    Running the makefile
+   Compilation of mexfunction16.c
    Building shared library (be patient)
-end
 Shared archive loaded.
 Link done.
 mexf16(rand(2,3,2));

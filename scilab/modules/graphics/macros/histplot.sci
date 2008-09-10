@@ -34,7 +34,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 	[lhs,rhs]=argn()
 	
 	if rhs == 0 then   // demo
-		histplot([-4.5:0.25:4.5],rand(1,20000,'n'),style=2);
+		histplot([-4.5:0.25:4.5],rand(1,20000,'n'),style=2,axesflag=1);
 		deff("[y]=f(x)","y=exp(-x.*x/2)/sqrt(2*%pi);");
 		x=-4.5:0.125:4.5;
 		x=x';

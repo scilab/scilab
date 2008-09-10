@@ -24,48 +24,49 @@ static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
 static BOOL RemoveComments(char *line);
 static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs);
 static BOOL SetLastJob(char *JOB);
-static char *lastjob=NULL;
+static char *lastjob = NULL;
 /*--------------------------------------------------------------------------*/
 /* see CallScilab.h more informations*/
 /*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {
 	int retCode = -1;
-	int lencommand=0;
-	char *command=NULL;
+	int lencommand = 0;
+	static char *command = NULL;
 	
-	static char ScirunCommand[]="Err=execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;";
-	static char ClearTmpVariables[]="clear TMP_EXEC_STRING;clear Err;quit;";
+	static char ScirunCommand[] = "Err=execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;";
+	static char ClearTmpVariables[] = "clear TMP_EXEC_STRING;clear Err;quit;";
 	
-	command = strdup(job);
-	lencommand = (int)strlen(command);
+	lencommand = strlen(job);
+	command = MALLOC(sizeof(char)*(lencommand+1));
 
 	if (command)
 	{
 		/* clear prev. Err , TMP_EXEC_STRING scilab variables */
-		C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
+		C2F(scirun)(ClearTmpVariables,strlen(ClearTmpVariables));
 
+		strcpy(command,job);
 		SetLastJob(command);
 
 		/* Creation of a temp variable in Scilab */
 		if (!C2F(cwritechain)("TMP_EXEC_STRING",&lencommand,(char*)command,(int)strlen("TMP_EXEC_STRING"),(int)strlen(command)) )
 		{
 			/* Problem */
-			fprintf(stderr,"Error: SendScilabJob (1) 'TMP_EXEC_STRING'.\n");
+			fprintf(stderr,"Error : SendScilabJob (1) 'TMP_EXEC_STRING'.\n");
 			retCode = -1;
 
-			if (command) {FREE(command);command = NULL;}
+			if (command) {FREE(command);command=NULL;}
 			return retCode;
 		}
 		else
 		{
-			int m=0,n=0,lp=0;
+			int m = 0, n = 0, lp = 0;
 
-			C2F(scirun)(ScirunCommand,(long int)strlen(ScirunCommand));
+			C2F(scirun)(ScirunCommand,strlen(ScirunCommand));
 
 			/* get error code from scilab */
 
-			if ( ! C2F(cmatptr)("Err", &m, &n, &lp,(unsigned long)strlen("Err")))
+			if ( ! C2F(cmatptr)("Err", &m, &n, &lp,strlen("Err")))
 			{
 				fprintf(stderr,"Error : SendScilabJob (2) 'Err'.\n");
 				retCode = -2;
@@ -86,9 +87,9 @@ int SendScilabJob(char *job)
 			}
 
 			/* clear prev. Err , TMP_EXEC_STRING scilab variables */
-			C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
+			C2F(scirun)(ClearTmpVariables,strlen(ClearTmpVariables));
 		}
-		if (command) {FREE(command);command = NULL;}
+		if (command) {FREE(command);command=NULL;}
 	}
 	else
 	{
@@ -133,28 +134,35 @@ int SendScilabJobs(char **jobs,int numberjobs)
 {
 	#define BUFFERSECURITYSIZE 64
 
-	char *bufCommands = NULL;
-	int retcode=-10;
+	int retcode = -10;
 
 	if (jobs)
 	{
-		char **LOCALJOBS = (char**)MALLOC(sizeof(char*)*numberjobs);
+		int i = 0;
+		int nbcharsjobs = 0;
+		char *bufCommands = NULL;
+		char **LOCALJOBS = NULL;
+
+		int jobsloop = 0;
+
+		LOCALJOBS = (char**)MALLOC(sizeof(char*)*numberjobs);
 
 		if (LOCALJOBS)
 		{
-			int i = 0;
-			int nbcharsjobs = 0;
-
-			for (i = 0; i < numberjobs ;i++)
+			for (i = 0; i < numberjobs; i++)
 			{
 				if (jobs[i])
 				{
-					nbcharsjobs = nbcharsjobs + (int)strlen(jobs[i]);
-					LOCALJOBS[i] = strdup(jobs[i]);
-					if (LOCALJOBS[i] == NULL)
+					nbcharsjobs = nbcharsjobs+(int)strlen(jobs[i]);
+					LOCALJOBS[i] = (char*)MALLOC( sizeof(char)*(strlen(jobs[i])+BUFFERSECURITYSIZE) );
+					if (LOCALJOBS[i])
 					{
-						CleanBuffers(bufCommands,LOCALJOBS,i);
-						fprintf(stderr,"Error : SendScilabJobs (1) 'LOCALJOBS[%d] MALLOC'.\n",i);	
+						strcpy(LOCALJOBS[i],jobs[i]);
+					}
+					else
+					{
+						CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
+						fprintf(stderr,"Error : SendScilabJobs (1) 'LOCALJOBS[i] MALLOC'.\n",i);	
 						return retcode;
 					}
 				}
@@ -169,10 +177,9 @@ int SendScilabJobs(char **jobs,int numberjobs)
 
 			if (bufCommands)
 			{
-				int jobsloop = 0;
 				strcpy(bufCommands,"");
 
-				for (jobsloop = 0; jobsloop < numberjobs ; jobsloop++)
+				for (jobsloop = 0 ; jobsloop < numberjobs ; jobsloop++)
 				{
 					if (jobs[jobsloop])
 					{
@@ -183,7 +190,7 @@ int SendScilabJobs(char **jobs,int numberjobs)
 						else  AddSemiColon=TRUE;
 
 				DOTDOTLOOP:
-						currentline = strdup(LOCALJOBS[jobsloop]);
+						currentline = LOCALJOBS[jobsloop];
 
 						RemoveCharsFromEOL(currentline,'\n');
 						RemoveComments(currentline);
@@ -210,13 +217,11 @@ int SendScilabJobs(char **jobs,int numberjobs)
 							}
 							
 							strcat(bufCommands,currentline);
-							
 						}
 					}
 				}
 
 				retcode = SendScilabJob(bufCommands);
-
 				CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
 			}
 			else
@@ -235,7 +240,7 @@ int SendScilabJobs(char **jobs,int numberjobs)
 	}
 	else
 	{
-		fprintf(stderr,"Error : SendScilabJobs (5) 'jobs == NULL'.\n");
+		fprintf(stderr,"Error : SendScilabJobs (5) 'jobs == NULL'.\n");	
 		retcode = -10;
 	}
 	
@@ -244,17 +249,17 @@ int SendScilabJobs(char **jobs,int numberjobs)
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove)
 {
-	int l=0;
-	BOOL bOK=FALSE;
-	int len=0;
+	int l = 0;
+	BOOL bOK = FALSE;
+	int len = 0;
 
-	len=(int)strlen(line);
-	for (l=len-1;l>0;l--)
+	len = (int)strlen(line);
+	for (l = (len-1); l>0 ;l--)
 	{
 		if (line[l] == CharToRemove)
 		{
 			line[l] = '\0';
-			bOK=TRUE;
+			bOK = TRUE;
 		}
 		else break;
 	}
@@ -263,12 +268,12 @@ static BOOL RemoveCharsFromEOL(char *line,char CharToRemove)
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveComments(char *line)
 {
-	int l=0;
-	int len=0;
-	int idx=-1;
+	int l = 0;
+	int len = 0;
+	int idx = -1;
 
 	len=(int)strlen(line);
-	for (l=len-1;l>0;l--)
+	for (l=len-1 ; l > 0 ; l--)
 	{
 		if (line[l] == '/') 
 		{
@@ -276,24 +281,22 @@ static BOOL RemoveComments(char *line)
 			{
 				if (line[l-1] == '/') 
 				{
-					idx=l-1;
-					l=l-2;
+					idx = l-1;
+					l = l-2;
 				}
 			}
 		}
 	}
 
-	if (idx>=0) line[idx]='\0';
+	if (idx>=0) line[idx] = '\0';
 	
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs)
 {
-
-	if (bufCommands) {FREE(bufCommands);bufCommands=NULL;}
+	if (bufCommands) {FREE(bufCommands);bufCommands = NULL;}
 	freeArrayOfString(LOCALJOBS,numberjobs);
 	return TRUE;
-
 }
 /*--------------------------------------------------------------------------*/

@@ -18,6 +18,7 @@ package org.scilab.modules.renderer.polylineDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
+import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
@@ -43,6 +44,10 @@ public class PolylineLineDrawerGL extends LineDrawerGL implements PolylineDrawer
 	public void drawPolyline(double[] xCoords, double[] yCoords, double[] zCoords) {
 		
 		GL gl = getGL();
+		int nbLines = xCoords.length;
+		
+		// check if there is somthing to draw
+		if (nbLines == 0) { return; }
 		
 		// set dash mode
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
@@ -52,10 +57,25 @@ public class PolylineLineDrawerGL extends LineDrawerGL implements PolylineDrawer
 		gl.glColor3d(color[0], color[1], color[2]);
 		
 		
-		gl.glBegin(GL.GL_LINE_STRIP);
+		gl.glBegin(GL.GL_LINES);
 		// the three arrays should have the same size
-		for (int i = 0; i < xCoords.length; i++) {
-			gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
+		
+		int i = 0;
+		// search for the first finite element
+		while (!GeomAlgos.isVector3DFinite(xCoords[i], yCoords[i], zCoords[i])) {
+			i++;
+		}
+		
+		for ( ; i < nbLines - 1; i++) {
+			if (GeomAlgos.isVector3DFinite(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1])) {
+				gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
+				gl.glVertex3d(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]);
+				
+			} else {
+				//	this line can't be displayed neither the next one
+				i++;
+			}
+			
 		}
 		gl.glEnd();
 		

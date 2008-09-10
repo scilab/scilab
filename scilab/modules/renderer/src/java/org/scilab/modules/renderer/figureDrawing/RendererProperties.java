@@ -25,6 +25,13 @@ import javax.media.opengl.GL;
  */
 public interface RendererProperties {
 
+	/** return status when resize is ok */
+	int RESIZE_SUCCESS = 0;
+	/** Resize failed because other docked objects are present */
+	int RESIZE_MULTIPLE_DOCKED_TAB = -1;
+	/** Ressources are not enaough to allocate the new  */
+	int RESIZE_SIZE_TOO_LARGE = -2;
+	
 	/**
 	 * get the GL pipeline used by the canvas
 	 * @return current GL pipeline
@@ -66,7 +73,7 @@ public interface RendererProperties {
 	 * @param height new height in pixels
 	 * @return indicates if the size could be successfully modified
 	 */
-	boolean setCanvasSize(int width, int height);
+	int setCanvasSize(int width, int height);
 	
 	/**
 	 * Get the rendering window width

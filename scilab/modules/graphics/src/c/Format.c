@@ -43,6 +43,10 @@
 static double spans[18] = {10,12,14,15,16,18,20,25,30,35,40,45,50,60,70,80,90,100};
 static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};
 static double width[18] = {1,2,2,5,2,2,2,5,5,5,5,5,5,10,10,10,10,10};
+
+/** Maximum of ticks for log mode */
+#define MAX_LOG_TICKS 15
+
 /* end here */
 
 extern double C2F(dlamch)  (char *CMACH, unsigned long int);
@@ -65,7 +69,11 @@ static void newbnds  (double *xminv,double *xmaxv,double *xmin, double *xmax, do
 static int  gradu    (double *xmin, double *xmax, double *grads, int *nticks, double *thewidth, int *tst0, double *scal);
 static int  gradu2   (double *xmax, double *thewidth, double *scal);
 static void grds     (double *xminv, double *xmaxv, double *gr, int *nticks, double *thewidth, int *tst0, double *scal);
+
+static void removeIndex( double * changedArray, int size, int ind );
+static void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks );
 static int  agrandir (double *xmin, double *xmax, double *xlow, double *xup);
+static void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads );
 
 int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads) ;
 
@@ -874,7 +882,7 @@ int GradEqual(const double grads[],const int *ngrads)
 /*--------------------------------------------------------------------------*/
 /* remove an element in the array from translating the next
 elements on step backward */
-void removeIndex( double * changedArray, int size, int ind )
+static void removeIndex( double * changedArray, int size, int ind )
 {
   int i ;
   for ( i = ind + 1 ; i < size ; i++ )
@@ -885,21 +893,21 @@ void removeIndex( double * changedArray, int size, int ind )
 /*--------------------------------------------------------------------------*/
 /* remove in the ticks array the indices i such as removedTicks[i] */
 /* is true. The value nbtics is an in-out variable */
-void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks )
+static void removeBadTicks( double * curTicks, BOOL * removedTicks, int * nbTicks )
 {
   int i ;
   for ( i = *nbTicks - 1 ; i >= 0 ; i-- )
   {
     if ( removedTicks[i] )
     {
-      removeIndex( ticks, *nbTicks, i ) ;
+      removeIndex( curTicks, *nbTicks, i ) ;
       *nbTicks = *nbTicks - 1 ;
     }
   }
 }
 /*--------------------------------------------------------------------------*/
 /* compute the graduation of the segment [minVal,maxVal] knowing the number of ticks */
-void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
+static void GradFixedlog( double minVal, double maxVal, double * outTicks, int nbGrads )
 {
   int initSize ;
   int i ;
@@ -937,7 +945,7 @@ void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
     FREE( removedTicks ) ;
 
   }
-  doubleArrayCopy(ticks, tempTicks, nbGrads);
+  doubleArrayCopy(outTicks, tempTicks, nbGrads);
 
 }
 
@@ -972,7 +980,7 @@ int GradLog( double   _min   ,
 
   *n_grads = 0 ;
 
-  if(size<=7)    {
+  if(size <= MAX_LOG_TICKS)    {
     for(i=0;i<size;i++)
     {
       /*    _grads[i] = exp10(tab[i]); */
@@ -986,19 +994,22 @@ int GradLog( double   _min   ,
     int pas = 0, old_pas= 0,j;
     int val = size, passed = 0;
 
+    /* Try to reduce number of ticks, by finding the greatest divider */
     for(j=val-1;j>1;j--)
       if(val%j == 0){
         old_pas = pas;
         pas=j; 
         passed = 1;
 
-        if((7*pas)<=val){ 
+        if((MAX_LOG_TICKS * pas)<=val){ 
           if(old_pas != 0) {pas = old_pas; }
           break;
         }
       }
 
-      if(passed != 1 || (size/pas)>15 ) pas = size;
+      /* If we haven't found a divider or if the number of ticks will be to large */
+      /* Use only towo ticks */
+      if(passed != 1 || (size/pas) >  MAX_LOG_TICKS ) { pas = size; }
 
       if(pas==size)
       {

@@ -33,7 +33,7 @@
   <refsection>
     <title>References</title>
     <para>
-      <literal>http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222</literal>
+      <literal><ulink url="http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222">http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222</ulink></literal>
     </para>
     <para>
       Marple, S.L., "Computing the discrete-time analytic signal via FFT,"

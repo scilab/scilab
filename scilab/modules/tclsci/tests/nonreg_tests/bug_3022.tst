@@ -10,8 +10,8 @@
 //    TCL_SetVar and TCL_GetVar had some trouble
 //    with TCL thread synchro
 
-TCL_CreateSlave("testMe")
-TCL_SetVar("h","0", "testMe")
+TCL_CreateSlave("testMe");
+TCL_SetVar("h","0", "testMe");
 for i = 1:100000
   TCL_GetVar("h", "testMe");
   TCL_SetVar("h",string(i), "testMe");

@@ -138,7 +138,8 @@ public abstract class MarkDrawingStrategy {
 	}
 	
 	/**
-	 * Draw a dot
+	 * Draw a single mark.
+	 * Be sure that background is drawn before the foreground if any.
 	 * @param gl OpenGL pipeline to use
 	 * @param backColor RGB color of mark background
 	 * @param frontColor RGB color of mark foreground

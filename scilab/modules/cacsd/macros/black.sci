@@ -160,9 +160,16 @@ function black(varargin)
       d_d=d(k,ks(1:last)+1)-d(k,ks(1:last));
       dd=150*sqrt((d_phi/dx).^2+(d_d/dy).^2);
       if dd>0 then
-	xarrows([phi(k,ks(1:last));phi(k,ks(1:last))+d_phi./dd],..
-		[d(k,ks(1:last));d(k,ks(1:last))+d_d./dd],1.5)
-	e2=gce();e2.foreground=k;
+        // we should use xarrows or xsegs here.
+        // However their displayed arrow size depends
+        // on the data bounds and we want to avoid this.
+        xpolys([phi(k,ks(1:last));phi(k,ks(1:last))+d_phi./dd],..
+               	[d(k,ks(1:last));d(k,ks(1:last))+d_d./dd]);
+	//xarrows([phi(k,ks(1:last));phi(k,ks(1:last))+d_phi./dd],..
+	//	[d(k,ks(1:last));d(k,ks(1:last))+d_d./dd],1.5)
+	e2=gce();e2.children.foreground=k;
+        e2.children.polyline_style = 4;
+        e2.children.arrow_size_factor = 2;
       end
     end
     //add frequency values

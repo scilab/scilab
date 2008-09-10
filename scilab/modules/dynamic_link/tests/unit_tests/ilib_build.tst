@@ -6,13 +6,7 @@
 // =============================================================================
 
 
-if MSDOS then
-  TMP_OS_DIR = getenv('TMP','err');
-  if (TMP_OS_DIR == 'err') then pause,end;
-else
-  TMP_OS_DIR = '/tmp';
-  if ~isdir(TMP_OS_DIR) then pause,end;
-end
+TMP_OS_DIR=TMPDIR;
 
 TMP_DIR = TMP_OS_DIR+filesep()+'ilib_build';
 

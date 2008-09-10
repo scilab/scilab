@@ -14,16 +14,9 @@ A = sparse( [ 2  3  0  0  0;
 b = [8 ; 45; -3; 3; 19];
 Lup = umf_lufact(A);
 x = umf_lusolve(Lup,b);
-if x <> [ 1; 2; 3; 4; 5 ] then bugmes();quit;end
+if or( (x-[ 1; 2; 3; 4; 5 ]) > %eps) then bugmes();quit;end
 // solve now A'x=b
-x = umf_lusolve(Lup,b,"A''x=b")
- x  =
- 
-    1.8157895  
-    1.4561404  
-    1.5        
-  - 24.850877  
-    10.263158  
+x = umf_lusolve(Lup,b,"A''x=b");
 if norm(A'*x - b) <> 0, then bugmes();quit;end
 // don't forget to clear memory with
 umf_ludel(Lup)
@@ -37,17 +30,11 @@ Lup = umf_lufact(A);
 b = rand(size(A,1),1); // a random rhs
 // use umf_lusolve for solving Ax=b
 x = umf_lusolve(Lup,b);
-plop1=norm(A*x - b)
- plop1  =
- 
-    2.485D-10  
+firstNorm=norm(A*x - b);
 // now the same thing with iterative refiment
 x = umf_lusolve(Lup,b,"Ax=b",A);
-plop2=norm(A*x - b)
- plop2  =
- 
-    2.485D-10  
-if plop1 <> plop2 then bugmes();quit;end
+secondNorm=norm(A*x - b);
+if firstNorm <> secondNorm then bugmes();quit;end
 // don't forget to clear memory
 umf_ludel(Lup)
  ans  =

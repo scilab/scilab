@@ -8,7 +8,8 @@
 AUTOMAKE_OPTIONS = 1.9 dist-zip dist-bzip2
 
 SUBDIRS= libs \
-	modules
+	modules \
+	contrib
 
 ACLOCAL_AMFLAGS = -I m4/
 
@@ -20,14 +21,18 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 
-scilab_bin_LDFLAGS 		= 
-scilab_bin_CFLAGS 		= 
+scilab_bin_LDFLAGS 		=
+scilab_bin_CFLAGS 		=
 # --no-undefined --relax
 
 
 # libshell is mandatory here since main_linux.c depends on it.
+# Localization dep already exists because of the `exportLocaleToSystem' symbol
+# (causing issues on some platform)
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-$(top_builddir)/modules/shell/libscishell.la
+$(top_builddir)/modules/shell/libscishell.la \
+$(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/core/libscicore.la
 
 if NEED_JAVA
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
@@ -68,6 +73,17 @@ $(top_srcdir)/etc/modules.xml \
 $(top_srcdir)/etc/classpath.xml \
 $(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml
+
+
+infofilesdir=$(pkgdatadir)/
+infofiles_DATA = $(top_srcdir)/CHANGES \
+$(top_srcdir)/ACKNOWLEDGEMENTS \
+$(top_srcdir)/COPYING \
+$(top_srcdir)/COPYING-FR \
+$(top_srcdir)/README_Unix \
+$(top_srcdir)/RELEASE_NOTES \
+$(top_srcdir)/Readme_Visual.txt \
+$(top_srcdir)/README_Windows.txt
 
 
 profilingdir=$(pkgdatadir)/tools/profiling/
@@ -151,7 +167,7 @@ clean-localization:
 
 
 # The user wants to compile the localization files
-# Please note that ALL_LINGUAS is defined in configure.ac 
+# Please note that ALL_LINGUAS is defined in configure.ac
 if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \

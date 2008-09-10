@@ -64,7 +64,7 @@ void ChampDecomposer::getSegsPos(double startXCoords[], double endXCoords[],
   {
     defaultZvalue = 0.0;
   }
-  sciGetLogFlags(sciGetParentSubwin(pSegs), logFlags);
+
   for (int i = 0; i < nbSegs; i++)
   {
     startZCoords[i] = defaultZvalue;
@@ -73,7 +73,7 @@ void ChampDecomposer::getSegsPos(double startXCoords[], double endXCoords[],
 
   // apply log scale if needed
   m_pDrawed->pointScale(startXCoords, startYCoords, startZCoords, nbSegs);
-  m_pDrawed->pointScale(startXCoords, startYCoords, startZCoords, nbSegs);
+  m_pDrawed->pointScale(endXCoords, endYCoords, endZCoords, nbSegs);
 
 
 }
@@ -187,7 +187,6 @@ double ChampDecomposer::getMaxLength(void)
 /*---------------------------------------------------------------------------------*/
 double ChampDecomposer::computeMaxUsableLength(void)
 {
-  int nbSegs = getNbSegment();
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
   sciSegs * ppSegs = pSEGS_FEATURE(pSegs);
   
@@ -239,7 +238,6 @@ double ChampDecomposer::computeMaxUsableLength(void)
 void ChampDecomposer::getChampColors(int colors[])
 {
   int nbSegs = getNbSegment();
-  sciSegs * ppSegs = pSEGS_FEATURE(m_pDrawed->getDrawedObject());
   for (int i = 0; i < nbSegs; i++)
   {
     colors[i] = 0;

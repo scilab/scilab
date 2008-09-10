@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- Non-regression test for bug 612 -->
+// <-- NOT FIXED -->
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Bugzilla URL -->

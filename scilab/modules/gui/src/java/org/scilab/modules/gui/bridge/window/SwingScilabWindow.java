@@ -14,6 +14,7 @@
 
 package org.scilab.modules.gui.bridge.window;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
@@ -28,8 +29,6 @@ import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.defaults.DefaultDockingPort;
-import org.flexdock.docking.drag.effects.EffectsManager;
-import org.flexdock.docking.drag.preview.GhostPreview;
 import org.flexdock.view.View;
 
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -48,6 +47,7 @@ import org.scilab.modules.gui.utils.SciDockingListener;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.SimpleWindow;
+import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 /**
  * Swing implementation for Scilab windows in GUIs
@@ -87,7 +87,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		/* Create automatically a docking port associated to the window */
 		sciDockingPort = new DefaultDockingPort();
 
-		EffectsManager.setPreview(new GhostPreview());
+		//EffectsManager.setPreview(new GhostPreview());
 		
 		/* The docking port is the center of the Layout of the Window */
 		super.add(sciDockingPort, java.awt.BorderLayout.CENTER);
@@ -168,7 +168,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newWindowSize) {
-		this.setSize(newWindowSize.getWidth(), newWindowSize.getHeight());
+		
+		// get the greatest size we can use
+		int[] maxSize = RenderingCapabilities.getMaxWindowSize();
+		
+		// make suze size is not greater than the max size
+		Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
+										   Math.min(newWindowSize.getHeight(), maxSize[1]));
+		
+		this.setSize(finalDim);
 	}
 
 	/**

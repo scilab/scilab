@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -82,6 +83,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 	 */
 	public SwingScilabFontChooser(Font font) {
 		super(new JFrame(), "Font Chooser", true);
+		((JFrame) getParent()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		

@@ -15,6 +15,12 @@ function y= cell2mat(c)
 // Output : y, a matrix or a hypermatrix
 // F.B
 
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cell2mat",1));
+  end
+
 if isempty(c) then
   y=[]
   return

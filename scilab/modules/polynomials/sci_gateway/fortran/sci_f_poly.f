@@ -78,7 +78,7 @@ c     formal variable
          return
       endif
       n=istk(il+5)-1
-      if(n.gt.4) call msgs(109,0)
+      if(n.gt.4) call msgs(115,0)
       if (abs(istk(il+5+1)).lt.10) then
          err=2
          call error(248)

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe CHANCELIER
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-
 
 static  jmp_buf jmp_env;
 
@@ -133,7 +132,8 @@ int C2F(callinterf) (int *k)
 {
   int returned_from_longjump ;
   static int count = 0;
-  if ( count == 0)
+
+ if ( count == 0)
     {
       if (sig_ok) {
 		  signal(SIGINT,sci_sigint_addinter);

@@ -212,6 +212,7 @@ demos/lorentz.dem.sce \
 demos/mechanical_systems.dem.gateway.sce \
 demos/modelica_demos.dem.gateway.sce \
 demos/old_demos.dem.gateway.sce \
+demos/old_gain_block.dem.sce \
 demos/OldGainTest.cosf \
 demos/PENDULUM_ANIM.sci \
 demos/pendulum_anim5.cosf \
@@ -425,16 +426,5 @@ libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 endif
-
-
-
-#### WORKAROUND ####
-# Do not use the global clean-local rule because Scicos help is not managed
-# like the rest of Scilab
-#clean-local:
-#	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-#		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-#        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-#    done;
 
 .NOTPARALLEL: libscisundials.la libsciscicos.la

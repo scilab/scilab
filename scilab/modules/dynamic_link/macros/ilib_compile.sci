@@ -55,26 +55,41 @@ function libn = ilib_compile(lib_name,makename,files, ..
   else
     //** ---------- Linux section ---------------------  
     // Source tree version
+        defaultModulesCHeader=[ "core", "mexlib", "output_stream" ];
+        defaultModulesFHeader=[ "core" ];
 	if isdir(SCI+"/modules/core/includes/") then
-	  cflags="-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/ "
-	  cflags="-I"+SCI+"/modules/output_stream/includes/ -I"+SCI+"/libs/MALLOC/includes "+cflags
-	  fflags="-I"+SCI+"/modules/core/includes/"+fflags
+	  for x = defaultModulesCHeader(:)' 
+	      cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
+	  end
+	  cflags=" -I"+SCI+"/libs/MALLOC/includes/ " + cflags;
+
+ 	  for x = defaultModulesFHeader(:)' 
+	  	  fflags=" -I"+SCI+"/modules/"+x+"/includes/ " + fflags;
+          end
 	end
 
+	// Add MALLOC since that is this two cases, it is at the same place
+	defaultModulesCHeader=[ defaultModulesCHeader, "malloc" ]; 
 	// Binary version
 	if isdir(SCI+"/../../include/scilab/core/") then
-	  cflags="-I"+SCI+"/../../include/scilab/core/ -I"+SCI+"/../../include/scilab/mexlib/ "
-	  cflags="-I"+SCI+"/../../include/output_stream/includes/ -I"+SCI+"/../../include/malloc/includes/ "+cflags
-	  fflags="-I"+SCI+"/../../include/core/includes/"+fflags
+	  for x = defaultModulesCHeader(:)' 
+	  	  cflags="-I"+SCI+"/../../include/scilab/"+ x + "/ " + cflags
+	  end
+ 	  for x = defaultModulesFHeader(:)' 
+	  	  fflags="-I"+SCI+"/../../include/"+x+"/includes/ "+fflags
+	  end
 	end
 
 	// System version (ie: /usr/include/scilab/)	
 	if isdir("/usr/include/scilab/") then
-	  cflags="-I/usr/include/scilab/core/ -I/usr/include/scilab/mexlib/ "
-	  cflags="-I/usr/include/scilab/output_stream/ -I/usr/include/scilab/malloc/ "+cflags
-	  fflags="-I/usr/include/scilab/core/"+fflags
+	  for x = defaultModulesCHeader(:)' 
+	  	  cflags="-I/usr/include/scilab/"+x+"/ "+cflags
+	  end
+ 	  for x = defaultModulesFHeader(:)' 
+	  	  fflags="-I/usr/include/scilab/"+x+"/ "+fflags
+	  end
 	end
-	
+
       oldPath = pwd();
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);

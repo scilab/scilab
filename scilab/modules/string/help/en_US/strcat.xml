@@ -84,10 +84,16 @@ txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
 
     <para><literal>txt=strcat(vector_of_strings,string_added)</literal>
     returns
-    <literal>txt=vector_of_strings(1)+string_added+...+string_added+vector_of_strings(n)</literal>.
-    The plus symbol does the same: <literal>"a"+"b"</literal> is the same as
-    <literal>strcat(["a","b"]) If the number of vector_of_strings is one,
-    returns txt=vector_of_strings(1);</literal></para>
+    <literal>txt=vector_of_strings(1)+string_added+...+string_added+vector_of_strings(n)</literal>.</para>
+
+    <para>The plus symbol does the same: <literal>"a"+"b"</literal> is the
+    same as <literal>strcat(["a","b"]).</literal></para>
+
+    <para><literal>If size of vector_of_strings is one, it returns
+    txt=vector_of_strings(1); </literal></para>
+
+    <para><literal>strcat('A','B') returns 'A' and not 'AB' as
+    strcat(['A','B'])</literal></para>
   </refsection>
 
   <refsection>
@@ -95,6 +101,12 @@ txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
 
     <programlisting role="example">
 strcat(string(1:10),',')
+<literal>strcat(["a","b"])</literal>
+strcat(["a","b"],'|')
+strcat('A')
+strcat('A','B')
+strcat(['A','B'])
+strcat(['A','B'],'')
   </programlisting>
   </refsection>
 

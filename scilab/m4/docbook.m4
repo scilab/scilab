@@ -16,7 +16,7 @@ AC_ARG_WITH(docbook,
 		[with_docbook='yes']
 		)
 
-	for dir in $with_docbook /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/; do
+	for dir in $with_docbook $SCI_SRCDIR_FULL/thirdparty/docbook/ /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets-*/; do
 		if test -r "$dir/javahelp/javahelp.xsl" -a "$DOCBOOK_ROOT" == ""; then
 			DOCBOOK_ROOT=$dir
         fi
@@ -53,6 +53,12 @@ AC_ARG_WITH(docbook,
 	AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
 	XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
 	AC_SUBST(XMLGRAPHICS_COMMONS)
+	
+
+	# Avalon Framework (PDF)
+	AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
+	AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
+	AC_SUBST(AVALON_FRAMEWORK)
 	
 
 AC_SUBST(DOCBOOK_ROOT)

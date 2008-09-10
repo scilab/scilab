@@ -13,14 +13,22 @@ function t=asinhm(x)
 // Entries of t are in    ]-inf,inf[ x ]-pi/2,pi/2[
 //                             ]-inf, 0 ] x [-pi/2]
 //                      and    [ 0  ,inf[ x [ pi/2]
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asinhm",1));
+  end
 
   if type(x)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"asinhm",1));
   end
-  [m,n]=size(x)
+
+  [m,n]=size(x);
+
   if m<>n then
    error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"asinhm",1));
-  else
-    t=logm(x+sqrtm(x*x+eye()))
   end
+
+  t=logm(x+sqrtm(x*x+eye()));
+
 endfunction

@@ -333,9 +333,7 @@ public class Vector3D {
 	 * @return true is all the coordinates of the vector are finites
 	 */
 	public boolean isFinite() {
-		return !(Double.isInfinite(xCoord) || Double.isNaN(xCoord)
-				 || Double.isInfinite(yCoord) || Double.isNaN(yCoord)
-				 || Double.isInfinite(zCoord) || Double.isNaN(zCoord));
+		return GeomAlgos.isVector3DFinite(xCoord, yCoord, zCoord);
 	}
 	
 	/**

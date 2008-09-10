@@ -82,6 +82,7 @@ function ged(k,win)
     TCL_SetVar("msdos",string(MSDOS)) // to know the OS
     // get the number of the window associated with ged
     TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
+    TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
     
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
     
@@ -105,6 +106,7 @@ function ged(k,win)
     TCL_SetVar("msdos",string(MSDOS)) // to know the OS
     // get the number of the window associated with ged
     TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
+    TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
     
     ged_axes(gca())
     case 10 then //start Entity picker
@@ -1537,6 +1539,7 @@ end
 TCL_SetVar("msdos",string(MSDOS)) // to know the OS
 // get the number of the window associated with ged
 TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
+TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
 
 select h.type
 case "Polyline"

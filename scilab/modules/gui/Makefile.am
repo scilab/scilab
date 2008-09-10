@@ -215,12 +215,16 @@ libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_S
 
 #  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
 libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+
+
 #### Target ######
 modulename=gui
+
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
 libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
 
 #### gui : init scripts ####
 libscigui_la_etcdir = $(mydatadir)/etc
@@ -252,9 +256,13 @@ includes/CallFigure.h \
 includes/CallJxclick.h \
 includes/CallJxgetmouse.h \
 includes/CallMessageBox.h \
+includes/CallHelpBrowser.h \
+includes/CallMainWindow.h \
+includes/CallWaitBar.h \
 includes/CheckBox.h \
 includes/ContextMenu.h \
 includes/DestroyJavaUiobject.h \
+includes/DestroyWaitBar.h \
 includes/EditBox.h \
 includes/Frame.h \
 includes/GetScreenProperty.h \
@@ -334,10 +342,13 @@ libscigui_la_demos_DATA = demos/cb_uicontrol_plot3d.dem.sci \
 demos/dialog.dem.sce \
 demos/gui.dem.gateway.sce \
 demos/uicontrol.dem.sce \
-demos/uicontrol_plot3d.dem.sce
+demos/uicontrol_plot3d.dem.sce \
+demos/background.png \
+demos/test.png \
+demos/uicontrol.test.dem.sce \
+demos/uicontrol_plot3d.dem.html
 
-
-#### graphics : icons files ####
+#### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
 images/icons/document-open.png \

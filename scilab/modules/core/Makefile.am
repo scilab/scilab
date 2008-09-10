@@ -82,7 +82,9 @@ src/c/callDynamicGateway.c \
 src/c/gw_dynamic_generic.c \
 src/c/dynamic_gateways.c \
 src/c/readGateway.c \
-src/c/comparehandles.c
+src/c/comparehandles.c \
+src/c/setPrecisionFPU.c
+
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -371,6 +373,7 @@ includes/getcommandlineargs.h \
 includes/GetenvB.h \
 includes/GetExceptionCode.h \
 includes/getfunctionslist.h \
+includes/getmemory.h \
 includes/getmodules.h \
 includes/getvariablesname.h \
 includes/GetXmlFileEncoding.h \
@@ -424,7 +427,8 @@ includes/version.h \
 includes/warningmode.h \
 includes/x_main.h \
 includes/xscion.h \
-includes/Thread_Wrapper.h
+includes/Thread_Wrapper.h \
+includes/setPrecisionFPU.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/

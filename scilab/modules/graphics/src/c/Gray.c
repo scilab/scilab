@@ -35,7 +35,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
-extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect, int flag);

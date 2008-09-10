@@ -45,7 +45,9 @@ includes/gw_jvm.h \
 includes/addToClasspath.h \
 includes/addToLibrarypath.h \
 includes/catchIfJavaException.h \
-includes/getScilabObject.h
+includes/getScilabObject.h \
+includes/loadBackGroundClassPath.h \
+includes/loadOnUseClassPath.h 
 
 if GUI
 

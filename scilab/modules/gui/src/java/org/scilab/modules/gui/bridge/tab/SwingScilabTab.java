@@ -56,6 +56,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -599,8 +600,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	private int addMember(SwingScilabListBox member) {
 		//this.add(member.getScrollPane());
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
+		ScilabSwingUtilities.addToParent(member, this);
 		//return this.getComponentZOrder(member.getScrollPane());
 		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);

@@ -35,11 +35,11 @@
 #include "PloEch.h"
 #include "Vect2Matrix.h"
 #include "StringMatrix.h"
+#include "Format.h"
 
 char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
 double * AllocUserGrads(double * u_xgrads, int nb);
 int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
-char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 
 
 extern int cf_type ; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
@@ -89,8 +89,6 @@ extern void DrawAxes(sciPointObj*); /* DRAWINGS */
 extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
 extern int sciRefreshObj( sciPointObj * pobj ) ; /* DRAWINGS */
 
-
-extern int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, int * N, int checkdim); /* DRAWINGS */ /* inside matdes.c */
 
 /* Other functions coming from Entities.c (old file) */
 

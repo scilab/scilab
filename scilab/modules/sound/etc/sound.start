@@ -18,9 +18,7 @@ load('SCI/modules/sound/macros/lib');
 add_module_help_chapter('sound');
 // ====================================================================
 //add demos
-path = get_absolute_file_path('sound.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/sound.dem.sce',%f,%f);
-add_demo('Sound file handling',pathdemos);
-clear path pathdemos;
+pathdemos = pathconvert(SCI+"/modules/sound/demos/sound.dem.sce",%f,%t);
+add_demo(gettext('Sound file handling'),pathdemos);
+clear pathdemos;
 // ====================================================================

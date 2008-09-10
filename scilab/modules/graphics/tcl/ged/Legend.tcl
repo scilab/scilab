@@ -38,9 +38,9 @@ global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION msdos
 set ged_listofpref "MAIN_WINDOW_POSITION TICK_WINDOW_POSITION"
 set MAIN_WINDOW_POSITION "+0+0"
 set TICK_WINDOW_POSITION "+0+0"
-set envSCIHOME $env(SCIPATH)
-set preffilename $env(SCIPATH)/.GedPreferences.tcl
-#puts "preffilename vaut: -> $preffilename"
+
+set envSCIHOME $SCIHOME
+set preffilename $envSCIHOME/.GedPreferences.tcl
 catch {source $preffilename}
 
 

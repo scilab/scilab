@@ -467,7 +467,8 @@ includes/scoMemoryScope.h \
 includes/scoMisc.h \
 includes/scoSetProperty.h \
 includes/scoWindowScope.h \
-includes/blocks.h
+includes/blocks.h \
+includes/affich.h
 
 
 #### scicos_blocks : MACROS ####

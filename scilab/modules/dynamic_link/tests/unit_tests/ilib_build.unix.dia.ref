@@ -4,13 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-if MSDOS then
-  TMP_OS_DIR = getenv('TMP','err');
-  if (TMP_OS_DIR == 'err') then bugmes();quit;end;
-else
-  TMP_OS_DIR = '/tmp';
-  if ~isdir(TMP_OS_DIR) then bugmes();quit;end;
-end
+TMP_OS_DIR=TMPDIR;
 TMP_DIR = TMP_OS_DIR+filesep()+'ilib_build';
 rmdir(TMP_DIR,'s');
 mkdir(TMP_OS_DIR,'ilib_build');
@@ -54,6 +48,7 @@ ilib_build('foo',['scifun1','intfun1'],files,[]);
    ilib_gen_Make: Copy fun1.c to TMPDIR
    ilib_gen_Make: Copy fun2.c to TMPDIR
    ilib_gen_Make: Copy intfun1.c to TMPDIR
+   ilib_gen_Make: Copy libfoo.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
 // disable message
@@ -74,7 +69,7 @@ libfoo_path = get_file_path('loader.sce');
 list_functions = [ 'scifun1';
 ];
  
-addinter(libfoo_path+'/libfoo.so','intfun1',list_functions);
+addinter(libfoo_path+'/libfoo.so','libfoo',list_functions);
  
 // remove temp. variables on stack
  

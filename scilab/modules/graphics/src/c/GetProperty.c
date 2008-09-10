@@ -2347,7 +2347,9 @@ sciIsExistingSubWin (double WRect[4])
 
   /* Initialisation de WRectTmp a 0*/
   for(i=0;i<4;i++)
-    WRectTmp[i] = 0.;
+  {
+    WRectTmp[i] = 0.0;
+  }
 
   pparentfigure = (sciPointObj *)sciGetCurrentFigure();
   if (pparentfigure == NULL)
@@ -2357,48 +2359,41 @@ sciIsExistingSubWin (double WRect[4])
 
   /**  15/03/2002 **/
   if ((WRect[0] == 0.)&&(WRect[1] == 0.)&&(WRect[2] == 1.)&&(WRect[3] == 1.))
-    return (sciPointObj *) sciGetLastSons (pparentfigure)->pointobj;
+  {
+    /* return the last subwindow */
+    sciSons * curSon = sciGetLastSons(pparentfigure);
+    while (sciGetEntityType(curSon->pointobj) != SCI_SUBWIN)
+    {
+      curSon = curSon->pprev;
+    }
+    return curSon->pointobj;
+  }
 
   psonstmp = sciGetSons (pparentfigure);
-  /* init */
-  if (psonstmp != (sciSons *) NULL)
+  while (psonstmp != NULL)
+  {
+    sciPointObj * curObj = psonstmp->pointobj;
+    if (sciGetEntityType (curObj) == SCI_SUBWIN)
     {
-      /* on peut commencer sur le next */
-      /* tant que le fils  */
-      /* j'utilise l'ordre d'evaluation normalise C pour */
-      /* verifier d'abord qu'il s'agit d'une sous fenetre */
-      /* puis si les WRect et FRect sont bons */
-      stop = 0;
-      while ((psonstmp->pnext != (sciSons *) NULL) && (stop == 0))
-	{
-	  WRectTmp[0] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[0];
-	  WRectTmp[1] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[1];
-	  WRectTmp[2] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[2];
-	  WRectTmp[3] = pSUBWIN_FEATURE (psonstmp->pointobj)->WRect[3];
+      WRectTmp[0] = pSUBWIN_FEATURE (curObj)->WRect[0];
+      WRectTmp[1] = pSUBWIN_FEATURE (curObj)->WRect[1];
+      WRectTmp[2] = pSUBWIN_FEATURE (curObj)->WRect[2];
+      WRectTmp[3] = pSUBWIN_FEATURE (curObj)->WRect[3];
 
-	  if ((sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	      && (Abs(WRectTmp[0] - WRect[0]) < 1e-8)
-	      && (Abs(WRectTmp[1] - WRect[1]) < 1e-8)
-	      && (Abs(WRectTmp[2] - WRect[2]) < 1e-8)
-	      && (Abs(WRectTmp[3] - WRect[3]) < 1e-8))
-	    {
-	      stop = 1;
-	    }
-	  else 
-	    psonstmp = psonstmp->pnext;
-	}
-		
-      if ((sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	  && (Abs(WRectTmp[0] - WRect[0]) < 1e-8)
-	  && (Abs(WRectTmp[1] - WRect[1]) < 1e-8)
-	  && (Abs(WRectTmp[2] - WRect[2]) < 1e-8)
-	  && (Abs(WRectTmp[3] - WRect[3]) < 1e-8))
-
-	return (sciPointObj *) psonstmp->pointobj;
-      else return (sciPointObj *) NULL;
+      if (   (Abs(WRectTmp[0] - WRect[0]) < 1e-8)
+          && (Abs(WRectTmp[1] - WRect[1]) < 1e-8)
+          && (Abs(WRectTmp[2] - WRect[2]) < 1e-8)
+          && (Abs(WRectTmp[3] - WRect[3]) < 1e-8))
+      {
+        /* subwin found */
+        return curObj;
+      }
     }
+    psonstmp = psonstmp->pnext;
+  }
 
-  return (sciPointObj *)NULL;
+
+  return NULL;
 }
 
 /**sciGetScrollPosV
@@ -2459,7 +2454,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         *numrow = 2;
         *numcol = 2;
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	  return (double*)NULL;
+        {
+          *numrow = -1;
+          *numcol = -1;
+	  return NULL;
+        }
         sciGetScreenPosition( pthis, &posX, &posY ) ;
         tab[0] = (double) posX ;
         tab[1] = (double) posY ;
@@ -2471,7 +2470,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numrow = 3;
       *numcol = 2;
       if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
+      {
+        *numrow = -1;
+        *numcol = -1;
+	return NULL;
+      }
       tab[0] =  (double) sciGetSubwindowPosX (pthis);
       tab[1] =  (double) sciGetSubwindowPosY (pthis);
       tab[2] = (double)sciGetWidth (pthis);
@@ -2486,6 +2489,9 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 
       if ( (*numrow)*(*numcol) == 0 )
       {
+        /* empty data, no warnings */
+        *numrow = 0;
+        *numcol = 0;
         return NULL ;
       }
 
@@ -2494,7 +2500,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	  *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
 	  if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
           {
-            sciprint(_("%s: No more memory."), "sciGetPoint") ;
+            *numrow = -1;
+            *numcol = -1;
 	    return NULL;
           }
 	  for ( i = 0 ; i < *numrow ; i++ )
@@ -2508,7 +2515,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       {
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
         {
-          sciprint(_("%s: No more memory."), "sciGetPoint") ;
+          *numrow = -1;
+          *numcol = -1;
 	  return NULL ;
         }
 	for ( i = 0 ; i < *numrow ; i++ )
@@ -2527,7 +2535,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numrow = 1;
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 5: 4;
       if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
+      {
+        *numrow = -1;
+        *numcol = -1;
+	return NULL;
+      }
       tab[0] = pRECTANGLE_FEATURE (pthis)->x;
       tab[1] = pRECTANGLE_FEATURE (pthis)->y;
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
@@ -2547,7 +2559,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numrow = 1;
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 7: 6;
       if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
+      {
+        *numrow = -1;
+        *numcol = -1;
+	return NULL;
+      }
       tab[0] = pARC_FEATURE (pthis)->x;
       tab[1] =  pARC_FEATURE (pthis)->y;
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
@@ -2575,7 +2591,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numrow = 1;
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 3: 2;
       if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
+      {
+        *numrow = -1;
+        *numcol = -1;
+	return NULL;
+      }
       tab[0] = pTEXT_FEATURE (pthis)->x;
       tab[1] = pTEXT_FEATURE (pthis)->y;
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
@@ -2606,7 +2626,10 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         /**numcol = ( pSEGS_FEATURE (pthis)->vz != NULL ? 3 : 2 ) ;*/
 	if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
         {
-	  return (double*)NULL;
+          sciprint(_("%s: No more memory."), "sciGetPoint") ;
+          *numrow = -1;
+          *numcol = -1;
+	  return NULL;
         }
 	for ( i = 0 ; i < *numrow ; i++ )
         {
@@ -2628,6 +2651,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       }
       else {
 	sciprint(_("Impossible case happened in %s.\n"), "sciGetPoint");
+        *numrow = -1;
+        *numcol = -1;
 	return (double *) NULL;
       }
       return (double*)tab;
@@ -2635,6 +2660,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_SURFACE:
       /* F.Leray 17.03.04*/
       sciprint(_("Impossible case happened in %s.\n"), "sciGetPoint" );
+      *numrow = -1;
+      *numcol = -1;
       return (double*) NULL;
       break;
     case SCI_GRAYPLOT:
@@ -2643,7 +2670,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	*numrow = nx+1;
 	*numcol = ny+1;
 	if ((tab = CALLOC(*numrow * *numcol,sizeof(double))) == NULL)
+        {
+          *numrow = -1;
+          *numcol = -1;
 	  return (double*)NULL;
+        }
 	tab[0]=0;
 	for (i=0;i < nx;i++) 
 	  tab[i+1] = pGRAYPLOT_FEATURE (pthis)->pvecx[i];
@@ -2658,8 +2689,12 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	int ny=pGRAYPLOT_FEATURE (pthis)->ny-1,nx=pGRAYPLOT_FEATURE (pthis)->nx-1;
 	*numrow = nx;	*numcol = ny;
 	if ((tab = CALLOC(nx*ny,sizeof(double))) == NULL)
+        {
+          *numrow = -1;
+          *numcol = -1;
 	  return (double*)NULL;
-	for (i=0;i < nx*ny;i++) 
+        }
+        for (i=0;i < nx*ny;i++) 
 	  tab[i] = pGRAYPLOT_FEATURE (pthis)->pvecz[i];
       }
       return (double*)tab;
@@ -2668,7 +2703,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numcol = 3;
       *numrow = pFEC_FEATURE (pthis)->Nnode;
       if ((tab = CALLOC(*numrow * 3,sizeof(double))) == NULL)
+      {
+        *numrow = -1;
+        *numcol = -1;
 	return (double*)NULL;
+      }
 
       for (i=0;i < *numrow;i++) {
 	tab[i] = pFEC_FEATURE (pthis)->pvecx[i];
@@ -2687,6 +2726,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_UIMENU:
     default:
       printSetGetErrorMessage("points");
+      *numrow = -1;
+      *numcol = -1;
       return (double*)NULL;
       break;
     }

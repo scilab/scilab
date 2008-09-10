@@ -16,21 +16,21 @@
   </info>
   <refnamediv>
     <refname>A_propos_des_outils_M2SCI</refname>
-    <refpurpose>Prï¿½sentation gï¿½nï¿½rale des outils de conversion de fichiers Matlab vers Scilab...</refpurpose>
+    <refpurpose>Présentation générale des outils de conversion de fichiers Matlab vers Scilab...</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>Scilab 3.0 contient une nouvelle version d'outils pour convertir des fichiers Matlab vers Scilab.</para>
     <para>
   A partir d'un fichier Matlab, <literal>mfile2sci</literal> modifie ce fichier pour qu'il puisse être
-  compilï¿½ par Scilab. Puis, ce code compilï¿½ est converti en "arbre" d'instructions
+  compilé par Scilab. Puis, ce code compilé est converti en "arbre" d'instructions
   par <literal>macr2tree</literal>. Cet "arbre" est une imbrication de listes et de tlists Scilab et
   est la base de la conversion. Chaque instruction de cet "arbre" est convertie en langage Scilab et
-  l'inférence est rï¿½alisï¿½e pour savoir ce que sont les variables. Une fois cet "arbre" converti en Scilab,
-  le code est gï¿½nï¿½rï¿½ en utilisant <literal>tree2code</literal>.
+  l'inférence est réalisé pour savoir ce que sont les variables. Une fois cet "arbre" converti en Scilab,
+  le code est généré en utilisant <literal>tree2code</literal>.
   </para>
     <para>
-   Toutes les tlists utilisées pour coder cet arbre (et que nous appelons "tlists M2SCI") sont ï¿½numï¿½rï¿½es ci-dessous :
+   Toutes les tlists utilisées pour coder cet arbre (et que nous appelons "tlists M2SCI") sont énumérées ci-dessous :
   </para>
     <itemizedlist>
       <listitem>
@@ -93,21 +93,21 @@
       </listitem>
     </itemizedlist>
     <para>
-  Le contenu des ces tlists est dï¿½crit dans les pages d'aide correspondantes.
+  Le contenu des ces tlists est décrit dans les pages d'aide correspondantes.
   </para>
     <para>
-  Les opérations sont converties en utilisant une fonction appelï¿½e <literal>%&lt;codeop&gt;2sci</literal> avec codeop
+  Les opérations sont converties en utilisant une fonction appelée <literal>%&lt;codeop&gt;2sci</literal> avec codeop
   le code Scilab pour cette opérateur. Voir l'aide de overloading pour voir ces codes. Toutes
-  ces fonctions sont dï¿½jï¿½ écrites et sont dans le répertoire SCI/modules/m2sci/macros/percent/.
+  ces fonctions sont déjà écrites et sont dans le répertoire SCI/modules/m2sci/macros/percent/.
   </para>
     <para>
-  Les appels aux fonctions sont convertis en utilisant une fonction appelï¿½e <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>.
+  Les appels aux fonctions sont convertis en utilisant une fonction appelée <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>.
   Bon nombre de ces fonctions ont été écrites et sont dans le répertoire SCI/modules/m2sci/macros/sci_files/.
-  Nous travillons actuellemnt à l'augmentation du nombre de fonctions Matlab converties. Nï¿½anmoins, tout le monde peut
-  ï¿½crire ces fonctions en utilisant la pages d'aide sci_files.
+  Nous travillons actuellemnt à l'augmentation du nombre de fonctions Matlab converties. Néanmoins, tout le monde peut
+  écrire ces fonctions en utilisant la pages d'aide sci_files.
   </para>
     <para>
-  L'inférence est rï¿½alisï¿½e à l'aide de tlists de type "infer" contenant les champs :
+  L'inférence est réalisée à l'aide de tlists de type "infer" contenant les champs :
   </para>
     <itemizedlist>
       <listitem>

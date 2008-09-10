@@ -97,6 +97,7 @@ import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 
 /**
@@ -2178,6 +2179,7 @@ public class CallScilabBridge {
 	 */
 	public static void changeConsoleForeground() {
 		ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getForeground());
+		colorChooser.setTitle(Messages.gettext("Console Font..."));
 		colorChooser.displayAndWait();
 
 		Color selectedColor = colorChooser.getSelectedColor();
@@ -2196,6 +2198,7 @@ public class CallScilabBridge {
 	 */
 	public static void changeConsoleBackground() {
 		ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getBackground());
+		colorChooser.setTitle(Messages.gettext("Console Background..."));
 		colorChooser.displayAndWait();
 		
 		Color selectedColor = colorChooser.getSelectedColor();

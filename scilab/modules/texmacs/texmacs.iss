@@ -22,9 +22,18 @@ Source: modules\{#TEXMACS}\macros\buildmacros.sce; DestDir: {app}\modules\{#TEXM
 Source: modules\{#TEXMACS}\macros\buildmacros.bat; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 ;
+Source: modules\{#TEXMACS}\macros\overloading\lib; DestDir: {app}\modules\{#TEXMACS}\macros\overloading; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\overloading\names; DestDir: {app}\modules\{#TEXMACS}\macros\overloading; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\overloading\*.bin; DestDir: {app}\modules\{#TEXMACS}\macros\overloading; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\overloading\*.sci; DestDir: {app}\modules\{#TEXMACS}\macros\overloading; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\overloading\buildmacros.sce; DestDir: {app}\modules\{#TEXMACS}\macros\overloading; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\overloading\buildmacros.bat; DestDir: {app}\modules\{#TEXMACS}\macros\overloading; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\overloading\cleanmacros.bat; DestDir: {app}\modules\{#TEXMACS}\macros\overloading; Components: {#COMPN_TEXMACS}
+
+;
 ;Source: modules\{#TEXMACS}\demos\*.*; DestDir: {app}\modules\{#TEXMACS}\demos; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
-;Source: modules\{#TEXMACS}\tests\*.*; DestDir: {app}\modules\{#TEXMACS}\tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_TESTS}
+Source: modules\{#TEXMACS}\tests\*.*; DestDir: {app}\modules\{#TEXMACS}\tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_TESTS}
 ;
 ;
 ;--------------------------------------------------------------------------------------------------------------

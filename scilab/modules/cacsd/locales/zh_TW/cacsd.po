@@ -2,202 +2,204 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-08-18 13:49+0000\n"
-"PO-Revision-Date: 2008-08-14 16:04+0000\n"
+"POT-Creation-Date: 2008-08-19 14:45+0000\n"
+"PO-Revision-Date: 2008-08-22 15:07+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-19 11:44+0000\n"
+"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-06-02 15:46+0100\n"
 
 #, c-format
 msgid "Function %s is obsolete."
-msgstr ""
+msgstr "函數  %s 已淘汰."
 
 #, c-format
 msgid "Please use %s instead."
-msgstr ""
+msgstr "請轉用 %s."
 
 #, c-format
 msgid "This function will be permanently removed in Scilab %s"
-msgstr ""
+msgstr "此函數將從 Scilab %s 中永久移除 ."
 
 #, c-format
 msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
+msgstr "%s: 檔案 %s.sci 並不在目錄 %s  中.\n"
 
 #, c-format
 msgid "Checking: %s.\n"
-msgstr ""
+msgstr "檢查: %s.\n"
 
 #, c-format
 msgid "%s: Please check: %s\n"
-msgstr ""
+msgstr "%s: 請檢查: %s.\n"
 
 #, c-format
 msgid "%s: File %s doesn''t exist.\n"
-msgstr ""
+msgstr "%s: 檔案 %s 不存在.\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
-msgstr ""
+msgstr "%s:  延伸名為 %s 的檔案在 %s 內不存在.\n"
 
 #, c-format
 msgid "%s: %s file compilation forced\n"
-msgstr ""
+msgstr "%s: 強制編譯 %s 檔\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
-msgstr ""
+msgstr "%s: 處理檔案: %s\n"
 
 #, c-format
 msgid "%s: Regenerate names and lib\n"
-msgstr ""
+msgstr "%s: 重新產生 names 及 lib.\n"
 
 #, c-format
 msgid "%s: %s file cannot be created\n"
-msgstr ""
+msgstr "%s: %s 檔無法產生\n"
 
 #, c-format
 msgid ""
 "Library file %s has been updated,\n"
 "but cannot be loaded into Scilab because ''%s'' is a protected variable.\n"
 msgstr ""
+"程式庫 %s 已經更新,\n"
+"但無法載入到 Scilab 內因為 \"%s\" 為一保護(protected )變數\n"
 
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr ""
+msgstr "%s: 警告 : 檔案 %s 發生錯誤. 忽略 %s 檔\n"
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
-msgstr ""
+msgstr "%s: 無法開啟檔案 %s 以供寫入\n"
 
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
-msgstr ""
+msgstr "%s: 檔案 %s 未含任何函數.\n"
 
 #, c-format
 msgid "%s: The function has not been built for profiling"
-msgstr ""
+msgstr "%s: 未採用性能評估 (profiling) 模式建立此函數."
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr ""
+msgstr "%s: 輸入參數數值錯誤: 函數內未含性能評估 (profile ) 資料\n"
 
 msgid "Complexity"
-msgstr ""
+msgstr "複雜度"
 
 msgid "3D Rot."
-msgstr ""
+msgstr "3D 旋轉."
 
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 msgid "Editer"
-msgstr ""
+msgstr "編輯器"
 
 msgid "Insert"
-msgstr ""
+msgstr "插入"
 
 msgid "3D &Rot."
-msgstr ""
+msgstr "3D 旋轉( &R)"
 
 msgid "&Edit"
-msgstr ""
+msgstr "編輯(&E)"
 
 msgid "&Insert"
-msgstr ""
+msgstr "插入(&I)"
 
 msgid "Exit"
-msgstr ""
+msgstr "離開"
 
 msgid "Click to get corresponding line, move with a-z."
-msgstr ""
+msgstr "點選對應之行, 以 a-z 移動."
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
-msgstr ""
+msgstr "第 %s 行 [%s call, %s sec] :: "
 
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
-msgstr ""
+msgstr "第 %s 行 [%s calls, %s sec] :: "
 
 msgid "UnZoom"
-msgstr ""
+msgstr "聚焦回復"
 
 msgid "Zoom"
-msgstr ""
+msgstr "聚焦放大"
 
 msgid "File"
-msgstr ""
+msgstr "檔案"
 
 msgid "&File"
-msgstr ""
+msgstr "檔案(&F)"
 
 msgid "&Tools"
-msgstr ""
+msgstr "工具(&T)"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr ""
+msgstr "%s: 無法找到任何延伸名為 %s 的檔案 (在 %s 內)\n"
 
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
-msgstr ""
+msgstr "%s: 檔案 %s 內含不正確之函數.\n"
 
 #, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
-msgstr ""
+msgstr "-- 產生 [%s] (巨集)--\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
-msgstr ""
+msgstr "%s: 將淘汰的運算碼(op-code) %d.\n"
 
 #, c-format
 msgid "No variable named: %s"
-msgstr ""
+msgstr "變數名稱不存在: %s"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為一 Scilab 函數名稱.\n"
 
 #, c-format
 msgid "%s is already noncompiled, nothing to do!"
-msgstr ""
+msgstr "%s 已無法再編譯, 無事可做 !"
 
 #, c-format
 msgid "%s is already compiled, nothing to do!"
-msgstr ""
+msgstr "%s 已經編譯過, 無事可做 !"
 
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
-msgstr ""
+msgstr "%s 已經使用性能評估模式 (profiling) 編譯過, 無事可做 !"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
-msgstr ""
+msgstr "%s: 未定義之變數 %s.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為一 Scilab 函數名稱.\n"
 
 msgid "No comment available.\n"
-msgstr ""
+msgstr "未含任何註解.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一 Scilab 函數名稱.\n"

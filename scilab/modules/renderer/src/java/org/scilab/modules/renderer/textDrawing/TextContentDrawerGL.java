@@ -32,6 +32,9 @@ import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
  */
 public abstract class TextContentDrawerGL extends DrawableObjectGL implements TextRenderingPipeline {
 	
+	/** Offset used to center text in a pixel */
+	private static final double PIXEL_CENTERING_OFFSET = 0.5;
+	
 	private StringMatrixGL textMatrix;
 	private TextAlignementStrategy textDrawer;
 	private int fontColorIndex;
@@ -463,7 +466,9 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 				for (int i = 0; i < bounds.length; i++) {
 					// use round to center the box on the pixel
 					// and so avoid flickering
-					gl.glVertex3d(Math.round(bounds[i].getX()), Math.round(bounds[i].getY()), Math.round(bounds[i].getZ()));
+					gl.glVertex3d(roundHalf(bounds[i].getX()),
+								  roundHalf(bounds[i].getY()),
+								  bounds[i].getZ());
 				}
 				gl.glEnd();
 			}
@@ -475,7 +480,9 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 				for (int i = 0; i < bounds.length; i++) {
 					// use round to center the box on the pixel
 					// and so avoid flickering
-					gl.glVertex3d(Math.round(bounds[i].getX()), Math.round(bounds[i].getY()), Math.round(bounds[i].getZ()));
+					gl.glVertex3d(roundHalf(bounds[i].getX()),
+							  	  roundHalf(bounds[i].getY()),
+							      bounds[i].getZ());
 				}	
 				gl.glEnd();
 			}
@@ -519,6 +526,14 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	public float getFontSize() {
 		return getFont().getSize2D();
+	}
+	
+	/**
+	 * @param value a double
+	 * @return closest value of form i + 0.5 where i is an integer to value
+	 */
+	private double roundHalf(double value) {
+		return Math.round(value + PIXEL_CENTERING_OFFSET) - PIXEL_CENTERING_OFFSET;
 	}
 	
 	/**

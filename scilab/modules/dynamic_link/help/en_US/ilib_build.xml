@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags])</synopsis>
+    <synopsis>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,ismex, cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -40,7 +40,7 @@
       <varlistentry>
         <term>files</term>
         <listitem>
-          <para>string matrix giving objects files needed for shared library creation</para>
+          <para>string matrix giving source (from Scilab 5.0) or object files needed for shared library creation</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,6 +59,18 @@
         <term>ldflags,cflags,fflags</term>
         <listitem>
           <para>character strings to provide options for the loader, the C compiler and the Fortran compiler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ismex</term>
+        <listitem>
+          <para>Internal variable to specify if we are working with mex or not.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cc</term>
+        <listitem>
+          <para>Provide the name of the C compiler.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -109,7 +121,7 @@ mputl(i,'intfun1.c')
 //creating the shared library (a gateway, a Makefile and a loader are 
 //generated. 
 
-files=['fun1.o','fun2.o','intfun1.o'];
+files=['fun1.c','fun2.c','intfun1.c'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
 
 // load the shared library 

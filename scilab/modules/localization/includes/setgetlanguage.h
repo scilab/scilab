@@ -78,5 +78,14 @@ BOOL LanguageIsOK(char *lang);
  */
 BOOL needtochangelanguage(char *language);
 
+
+/**
+ * Export the locale to the system
+ *
+ * @param the locale we want to export
+ * @return if is worked
+ */
+BOOL exportLocaleToSystem(char *locale);
+
 #endif /* __SETGETLANGUAGE_H__ */
 /*--------------------------------------------------------------------------*/ 

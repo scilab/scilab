@@ -19,6 +19,8 @@
 #ifndef _INT_CHAMP_H_
 #define _INT_CHAMP_H_
 
+#include "machine.h"
+
 /**
 * interface function for the champ routine :
 * champ(x,y,fx,fy,[arfact=1.0,rect=[xMin,yMin,xMax,yMax],flag])
@@ -42,6 +44,8 @@ int sci_champ1( char * fname, unsigned long fname_len ) ;
 /**
  * Generic function for both champ and champ1.
  */
-int sci_champ_G( char *fname, int (*func) (),unsigned long fname_len ) ;
+int sci_champ_G( char *fname,
+                 int (*func) (double *, double *, double *, double *, integer *, integer *, char *, double *, double *, int),
+                 unsigned long fname_len ) ;
 
 #endif /* _INT_CHAMP_H_ */

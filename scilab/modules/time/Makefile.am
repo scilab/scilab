@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006
 ##########
 
-###  SOURCES ###
+### SOURCES ###
 TIME_C_SOURCES = src/c/realtime.c \
 src/c/timer.c \
 src/c/getdate.c \
@@ -42,15 +42,15 @@ libscitime_la_rootdir = $(mydatadir)
 libscitime_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### time : init scripts ####
+#### time : init scripts ####
 libscitime_la_etcdir = $(mydatadir)/etc
 libscitime_la_etc_DATA = etc/time.quit etc/time.start
 
-#### time : gateway declaration ####
+#### time : gateway declaration ####
 libscitime_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitime_la_sci_gateway_DATA = sci_gateway/time_gateway.xml
 
-#### time : include files ####
+#### time : include files ####
 libscitime_la_includedir=$(pkgincludedir)/time
 libscitime_la_include_HEADERS = includes/gw_time.h \
 includes/sci_getdate.h \

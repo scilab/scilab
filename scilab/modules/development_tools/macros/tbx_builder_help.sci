@@ -11,6 +11,5 @@
 // See devtools_run_builder
 function tbx_builder_help(toolbox_path)
 	mprintf(gettext('Building help...\n'));
-	mprintf(gettext('Please notice that you need JDK in your path to build the help.\n'));
 	devtools_run_builder(toolbox_path, 'help', 'builder_help.sce');
 endfunction

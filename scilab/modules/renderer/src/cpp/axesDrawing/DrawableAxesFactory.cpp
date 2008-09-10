@@ -50,10 +50,9 @@ void DrawableAxesFactory::update( void )
 void DrawableAxesFactory::setStrategies( ConcreteDrawableAxes * axes )
 {
   sciPointObj * pAxes = axes->getDrawedObject();
-  sciAxes * ppAxes = pAXES_FEATURE(pAxes);
 
   // create ticksDrawer
-  TicksDrawer * ticksDrawer = new TicksDrawer(axes);
+  TicksDrawer * ticksDrawer = new TicksDrawer();
   ticksDrawer->setTicksDrawer(new TicksDrawerJoGL(axes));
   ticksDrawer->setTicksComputer(new AxesTicksComputer(axes));
   ticksDrawer->setSubticksComputer(new AxesSubticksComputer(axes));

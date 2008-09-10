@@ -8,3 +8,8 @@ See http://www.kurims.kyoto-u.ac.jp/~ooura/index.html
 Takuya OOURA, Research Institute for Mathematical Sciences 
 Kyoto University, Kyoto 606-01 Japan
 e-mail : ooura@kurims.kyoto-u.ac.jp
+License: You may use, copy, modify this code for any purpose and without fee. 
+
+qsort :
+The Regents of the University of California.
+License: BSD license

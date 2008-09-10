@@ -36,6 +36,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -54,7 +55,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(libscihelptools_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/helptools
@@ -93,16 +95,23 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_etcdir)" \
 	"$(DESTDIR)$(libscihelptools_la_rootdir)" \
 	"$(DESTDIR)$(libscihelptools_la_schemadir)" \
+	"$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" \
-	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)"
+	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)" \
+	"$(DESTDIR)$(libscihelptools_la_examplesdir)" \
+	"$(DESTDIR)$(libscihelptools_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihelptools_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/jvm/libscijvm.la
-am__objects_1 = libscihelptools_la-sci_buildDoc.lo \
-	libscihelptools_la-gw_helptools.lo
-am__objects_2 = libscihelptools_la-BuildDocObject.lo \
-	libscihelptools_la-GiwsException.lo
+am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
+	sci_gateway/cpp/sci_buildDoc.cpp sci_gateway/c/gw_helptools.c \
+	src/jni/BuildDocObject.cpp src/jni/GiwsException.cpp
+@GUI_FALSE@am__objects_1 = libscihelptools_la-nogui.lo
+@GUI_TRUE@am__objects_1 = libscihelptools_la-sci_buildDoc.lo \
+@GUI_TRUE@	libscihelptools_la-gw_helptools.lo
+@GUI_TRUE@am__objects_2 = libscihelptools_la-BuildDocObject.lo \
+@GUI_TRUE@	libscihelptools_la-GiwsException.lo
 am_libscihelptools_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscihelptools_la_OBJECTS = $(am_libscihelptools_la_OBJECTS)
 libscihelptools_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -130,7 +139,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscihelptools_la_SOURCES)
-DIST_SOURCES = $(libscihelptools_la_SOURCES)
+DIST_SOURCES = $(am__libscihelptools_la_SOURCES_DIST)
 libscihelptools_la_binDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_cssDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_docDATA_INSTALL = $(INSTALL_DATA)
@@ -141,8 +150,10 @@ libscihelptools_la_doc_html_resourcesDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_schemaDATA_INSTALL = $(INSTALL_DATA)
+libscihelptools_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_convertDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_foDATA_INSTALL = $(INSTALL_DATA)
+nobase_libscihelptools_la_examplesDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_doc_DATA) \
 	$(libscihelptools_la_doc_html_DATA) \
@@ -151,8 +162,12 @@ DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_doc_html_resources_DATA) \
 	$(libscihelptools_la_etc_DATA) $(libscihelptools_la_root_DATA) \
 	$(libscihelptools_la_schema_DATA) \
+	$(libscihelptools_la_sci_gateway_DATA) \
 	$(libscihelptools_la_xsl_convert_DATA) \
-	$(libscihelptools_la_xsl_fo_DATA)
+	$(libscihelptools_la_xsl_fo_DATA) \
+	$(nobase_libscihelptools_la_examples_DATA)
+libscihelptools_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscihelptools_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -164,6 +179,7 @@ AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
+AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
@@ -346,12 +362,15 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
-	src/jni/GiwsException.cpp
+@GUI_TRUE@HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
+@GUI_TRUE@	src/jni/GiwsException.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
-			sci_gateway/c/gw_helptools.c
+@GUI_FALSE@GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
+@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
+@GUI_TRUE@			sci_gateway/c/gw_helptools.c
 
+@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 pkglib_LTLIBRARIES = libscihelptools.la
 libscihelptools_la_CFLAGS = -Iincludes/ 
 libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -363,8 +382,6 @@ libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
-GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
-@GIWS_TRUE@BUILT_SOURCES = giws
 
 #### Target ######
 modulename = helptools
@@ -377,16 +394,20 @@ libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
+#### helptools : include files ####
+libscihelptools_la_includedir = $(pkgincludedir)/helptools
+libscihelptools_la_include_HEADERS = includes/gw_helptools.h
+
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \
 bin/man2sci \
-bin/sci2pdf \
-bin/sci2jh \
-bin/manrev2sci \
-bin/sci2html \
-bin/sciviewhelp
+bin/manrev2sci 
 
+
+#### helptools : gateway declaration ####
+libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
 
 #### helptools : css files ####
 libscihelptools_la_cssdir = $(mydatadir)/css
@@ -416,6 +437,8 @@ doc/addonprefs.png \
 doc/doc.pdf \
 doc/doc.xml
 
+
+#### helptools : doc [html] files ####
 libscihelptools_la_doc_htmldir = $(mydatadir)/doc/html
 libscihelptools_la_doc_html_DATA = \
 doc/html/ch01.html \
@@ -428,8 +451,12 @@ doc/html/ch07.html \
 doc/html/html.css \
 doc/html/index.html
 
+
+#### helptools : doc [images] files ####
 libscihelptools_la_doc_html_imagesdir = $(mydatadir)/doc/html/images
 libscihelptools_la_doc_html_images_DATA = doc/html/images/draft.png
+
+#### helptools : doc [images - callouts] files ####
 libscihelptools_la_doc_html_images_calloutsdir = $(mydatadir)/doc/html/images/callouts
 libscihelptools_la_doc_html_images_callouts_DATA = \
 doc/html/images/callouts/1.png \
@@ -448,8 +475,20 @@ doc/html/images/callouts/7.png \
 doc/html/images/callouts/8.png \
 doc/html/images/callouts/9.png
 
+
+#### helptools : doc [html - resources] files ####
 libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
 libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
+
+#### helptools : example files ####
+libscihelptools_la_examplesdir = $(mydatadir)
+nobase_libscihelptools_la_examples_DATA = examples/example_1/help/fr_FR/example_1_function_3.xml \
+examples/example_1/help/fr_FR/example_1_function_2.xml \
+examples/example_1/help/fr_FR/example_1_function_1.xml \
+examples/example_1/help/en_US/example_1_function_3.xml \
+examples/example_1/help/en_US/example_1_function_1.xml \
+examples/example_1/help/en_US/example_1_function_2.xml
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -574,6 +613,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-BuildDocObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-gw_helptools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo@am__quote@
 
 .c.o:
@@ -596,6 +636,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscihelptools_la-nogui.lo: sci_gateway/nogui/nogui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(libscihelptools_la_CFLAGS) $(CFLAGS) -MT libscihelptools_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-nogui.Tpo -c -o libscihelptools_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.c' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscihelptools_la-nogui.Tpo $(DEPDIR)/libscihelptools_la-nogui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/nogui/nogui.c' object='libscihelptools_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(libscihelptools_la_CFLAGS) $(CFLAGS) -c -o libscihelptools_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.c' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.c
 
 libscihelptools_la-gw_helptools.lo: sci_gateway/c/gw_helptools.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(libscihelptools_la_CFLAGS) $(CFLAGS) -MT libscihelptools_la-gw_helptools.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-gw_helptools.Tpo -c -o libscihelptools_la-gw_helptools.lo `test -f 'sci_gateway/c/gw_helptools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_helptools.c
@@ -821,6 +868,23 @@ uninstall-libscihelptools_la_schemaDATA:
 	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_schemadir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscihelptools_la_schemadir)/$$f"; \
 	done
+install-libscihelptools_la_sci_gatewayDATA: $(libscihelptools_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihelptools_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)"
+	@list='$(libscihelptools_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscihelptools_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f'"; \
+	  $(libscihelptools_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libscihelptools_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscihelptools_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)/$$f"; \
+	done
 install-libscihelptools_la_xsl_convertDATA: $(libscihelptools_la_xsl_convert_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_xsl_convertdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)"
@@ -854,6 +918,42 @@ uninstall-libscihelptools_la_xsl_foDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f"; \
+	done
+install-nobase_libscihelptools_la_examplesDATA: $(nobase_libscihelptools_la_examples_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihelptools_la_examplesdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_examplesdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscihelptools_la_examples_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscihelptools_la_examplesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f'"; \
+	  $(nobase_libscihelptools_la_examplesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f"; \
+	done
+
+uninstall-nobase_libscihelptools_la_examplesDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscihelptools_la_examples_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f"; \
+	done
+install-libscihelptools_la_includeHEADERS: $(libscihelptools_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihelptools_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_includedir)"
+	@list='$(libscihelptools_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscihelptools_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_includedir)/$$f'"; \
+	  $(libscihelptools_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_includedir)/$$f"; \
+	done
+
+uninstall-libscihelptools_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscihelptools_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihelptools_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -933,9 +1033,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)" "$(DESTDIR)$(libscihelptools_la_examplesdir)" "$(DESTDIR)$(libscihelptools_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -993,10 +1093,13 @@ install-data-am: install-data-local install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_doc_html_images_calloutsDATA \
 	install-libscihelptools_la_doc_html_resourcesDATA \
 	install-libscihelptools_la_etcDATA \
+	install-libscihelptools_la_includeHEADERS \
 	install-libscihelptools_la_rootDATA \
 	install-libscihelptools_la_schemaDATA \
+	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
-	install-libscihelptools_la_xsl_foDATA
+	install-libscihelptools_la_xsl_foDATA \
+	install-nobase_libscihelptools_la_examplesDATA
 
 install-dvi: install-dvi-am
 
@@ -1042,10 +1145,13 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_doc_html_images_calloutsDATA \
 	uninstall-libscihelptools_la_doc_html_resourcesDATA \
 	uninstall-libscihelptools_la_etcDATA \
+	uninstall-libscihelptools_la_includeHEADERS \
 	uninstall-libscihelptools_la_rootDATA \
 	uninstall-libscihelptools_la_schemaDATA \
+	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
+	uninstall-nobase_libscihelptools_la_examplesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1066,10 +1172,13 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	install-libscihelptools_la_doc_html_images_calloutsDATA \
 	install-libscihelptools_la_doc_html_resourcesDATA \
 	install-libscihelptools_la_etcDATA \
+	install-libscihelptools_la_includeHEADERS \
 	install-libscihelptools_la_rootDATA \
 	install-libscihelptools_la_schemaDATA \
+	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
-	install-libscihelptools_la_xsl_foDATA install-man install-pdf \
+	install-libscihelptools_la_xsl_foDATA install-man \
+	install-nobase_libscihelptools_la_examplesDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1083,10 +1192,13 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_doc_html_images_calloutsDATA \
 	uninstall-libscihelptools_la_doc_html_resourcesDATA \
 	uninstall-libscihelptools_la_etcDATA \
+	uninstall-libscihelptools_la_includeHEADERS \
 	uninstall-libscihelptools_la_rootDATA \
 	uninstall-libscihelptools_la_schemaDATA \
+	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
+	uninstall-nobase_libscihelptools_la_examplesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
