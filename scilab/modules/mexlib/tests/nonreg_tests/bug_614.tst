@@ -20,8 +20,6 @@
 
 my_current_directory = pwd();
 cd(TMPDIR);
-cd('..');
-TMP_directory = pwd();
 mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[''mexfunction16.c''],[],''Makelib'','''','''','''')','builder.sce');
 
 mputl([
@@ -38,11 +36,6 @@ mputl([
 exec('builder.sce');
 exec('loader.sce');
 
-diary('bug614.dia')
 mexf16(rand(2,3,2))
-diary(0)
 
-dia = mgetl('bug614.dia');
 cd(my_current_directory);
-
-if find(dia == "2 3 2") == [] then pause,end
