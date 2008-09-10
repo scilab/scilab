@@ -1,5 +1,5 @@
-                                   Scilab
-                                   ******
+                                   Scilab 5.0
+                                   **********
  
  ******************************************************************************
  INSTALLATION GUIDE
@@ -9,344 +9,45 @@
  ********************
  
  Scilab is a free software released under the terms of the CeCILL license.
+ This license is compatibility with the GNU General Public License (GPL).
  See the included license: "COPYING" in English
                            "COPYING-FR" in French
  
  ******************************************************************************
  
- In the following, all the paths are relative to the Scilab directory 
- (scilab-5.0 directory).
- 
  I - TO INSTALL SCILAB
  *********************
+
+ 
+  IF YOU HAVE A BINARY VERSION
+  ----------------------------
+  Unpack Scilab and call the execution script:
+  # ./bin/scilab
+
+  For futher information: http://wiki.scilab.org/howto/install/linux
+
  
   IF YOU HAVE A SOURCE VERSION
   ----------------------------
-  
-    This distribution has been tested on the following machines:
-    SUN Sparcstation (Solaris 5.8), HPUX workstation c8000 (HP.UX 11.11) and PC linux
-    (Mandriva 9.2,2005,2006, Fedora Core IV, Red Hat 9.0, Suse 10.0). But it should work on
-    other UNIXes.
-    
-    You need X Window (X11R4, X11R5 or X11R6), C compiler and Fortran compiler.
-    
-    1 - Configure your system by issuing the following command in the Scilab 
-        directory:
-        ./configure
-        Use  "./configure  --without-tk" if you don't have tcl/tk 8.4 or later 
-        installed (not recommended).
- 
-        This will create and/or modify a few Makefile and other files for your 
-        system.
-        You can give options to configure command, see below.
+  Please see on our wiki:
+  http://wiki.scilab.org/Compiling_Scilab_5.x_under_GNU-Linux_Unix
 
-    2 - Do in the Scilab directory:
-        make all
- 
-        This will compile Scilab and set everything.
-
-    Configure options:
-    ------------------
-    
-        --enable-debug: compile with "-g" option and do not optimize.
- 
-        --with-gcc: use gcc C compiler (note that the compilation options
-           have not been tested on all machines, see C below).
- 
-        --with-g77: use g77 Fortran compiler (note that the compilations
-           options have not been tested on all machines, see C below).
-           
-        --with-gfortran : use gfortran, GNU Fortran 95 compiler (note that 
-           the compilations options have not been tested on all machines,
-           see C below).
- 
-        --with-gnu: use gcc C compiler and gun Fortran compiler (g77 or gfortran)
-           (note that the compilation options have not been tested on all machines,
-           see C below).
-
-        --with-f2c: on Linux systems, use f2c Fortran compiler.
- 
-        --x-libraries=DIR: X Window library files are in DIR.
-        --x-includes=DIR: X Window include files are in DIR.
- 
-        --with-local-xaw: compile and use Athena Widgets libraries given 
-           with Scilab; configure chooses local Athena Widgets 3D library 
-           when needed (not recommended).
-
-        --without-pvm: compile without PVM library. The default is to compile
-           with PVM library. In this case the PVM interface is not built.
-       
-      If your PVM libraries and include files are in customized places, 
-      you can specify them by hand with the following arguments:
-        --with-pvm-library=DIR: PVM library files are in DIR
-        --with-pvm-include=DIR: PVM include files are in DIR
- 
-        --without-tk: compile without TCL/TK library. The default is to compile
-           with TCL/TK library. Use this option if you do not have libraries of 
-           TCL/TK 8.4 or higher installed (not recommended, in this case the 
-           TCL/TK interface is not build, Scilab help browser, scipad edidor 
-           graphic editor, ... will not be available).
-
-      If your TCL/TK libraries and include files are in customized places, 
-      or if you have several versions of TCL/TK installed you can specify them 
-      by hand with all the following arguments:
-        --with-tcl-library=DIR: Tcl library files are in DIR
-        --with-tcl-include=DIR: Tcl include files are in DIR
-        --with-tk-library=DIR: Tk library files are in DIR
-        --with-tk-include=DIR: Tk include files are in DIR
-        
-        -without-ocaml : do not compile with ocaml.
-        
-        --without-java : do not compile  Java interface.
-
-        --with-atlas-library=DIR: use the optimized version of BLAS (ATLAS)
-
-        --prefix=DIR: scilab will install itself in DIR/scilab-4.0
-           and create 3 symlinks in DIR/bin
-        By default prefix=/usr
-        
-      If you already have PVM installed, you should set PVM_ROOT before
-      running configure. Usually, PVM_ROOT=/usr/local/lib/pvm
-
-      On FreeBSD, you should use the scilab port in /usr/ports/math/scilab
-      If you wish to build scilab by hand you should follow the following
-      rules (with PREFIX=/usr/local):
-        * If PVM is not already installed you should use --without-pvm.
-        * If PVM is installed you must set the PVM library and include
-        directories accordingly. Usually: --with-pvm-library=$PREFIX/lib and
-        --with-pvm-include=$PREFIX/include
-        * If you wish to use Tk (--with-tk), you must set the tcl/tk library
-        and include directories accordingly. Usually:
-        --with-tk-library=$PREFIX/lib
-        --with-tk-include=$PREFIX/include
-        --with-tcl-library=$PREFIX/lib
-        --with-tcl-include=$PREFIX/include
-        * You should set the CFLAGS variable before running configure to set
-        specific compilation options. Usually: CFLAGS="-O -pipe"
-        * You should set the correct prefix. Usually: --prefix=$PREFIX
-
-      On NetBSD, you should use the scilab package in /usr/pkgsrc/math/scilab
-      If you wish to build scilab by hand you should follow the following
-      rules (with PREFIX=/usr/local):
-         * If PVM is not already installed you should use --without-pvm.
-         * If PVM is installed you must set the PVM library and include
-         directories accordingly. Usually: --with-pvm-library=$PREFIX/lib and
-         --with-pvm-include=$PREFIX/include
-         * If you wish to use Tk (--with-tk), you must set the tcl/tk library
-         and include directories accordingly. Usually:
-         --with-tk-library=$PREFIX/lib
-         --with-tk-include=$PREFIX/include
-         --with-tcl-library=$PREFIX/lib
-         --with-tcl-include=$PREFIX/include
-         * You should set the CFLAGS variable before running configure to set
-         specific compilation options. Usually: CFLAGS="-O2 -pipe"
-         * You should set the correct prefix. Usually: --prefix=$PREFIX
-
- 
-  C - CHANGING THE COMPILATION OPTIONS (source version only)
-  ------------------------------------
-  
-      You may want to change the options used to compile Scilab, names of the
-      compilers, compilation options, linker options, and so on; you can easily 
-      do that.
- 
-      The main "Makefile" of Scilab includes "Makefile.incl" and
-      "config/Makefile.<machine>":
-       - "Makefile.incl" contains all the compilation options
-       - "config/Makefile.<machine>" is only used for the link of the executable 
-         "scilex" of Scilab.
- 
-      The file "Makefile.incl" is included by all the Makefiles of the 
-      distribution, so it is THE place where you can change compilation 
-      options (it is self documented).
- 
-      Note that "Makefile.incl" is automatically generated by "configure"
-      from "Makefile.incl.in", so your modifications of "Makefile.incl" are
-      discarded every time you run "configure". 
-      Users knowing the way "configure" works may want to modify directly the 
-      "configure" file.
-      
-      Even more, users knowing the way "autoconf" works may want to modify 
-      the "configure.in" file and then run "autoconf" to generate
-      the "configure" file.
- 
-  D - CUSTOMIZING YOUR SCILAB
-  ---------------------------
-  
-    1 - By default Scilab includes its own browser written in TCL/TK.
-        But it is possible to choose another one. See the section
-        "Browser choice" of "man" help to do it.
-
-    2 - If you want to recompile Scilab after modifications, execute only 
-        the "make all" command in Scilab directory (source version only).
- 
-        If you want to clean all executable, object files and libraries 
-        and then recompile Scilab, execute the following commands
-        (source version only):
-        make distclean
-        make all
-
-    3 - To print your postscript figures, the list of printers is defined
-        in the environment variable "PRINTERS" or in the beginning of 
-        the shell script "bin/scilab".
- 
-    4 - Icons for windows managers: icons for Scilab, Scilab graphics windows
-        are given in the X11_defaults subdirectory. See the README in
-        this subdirectory.
- 
-    5 - COLOR RESOURCES: if you want to change the colors of your 
-        customization you need to modify the files in the X11_defaults
-        subdirectory (essentially the Xscilab file) or to copy the same
-        color resources in your personal resource file (home directory).
+	 
  
  ******************************************************************************
  II - REMARKS
  *******************************
- 
-    0 - This binary version has been compiled with "libc.so.6" linked to 
-        "libc-2.3.X.so". So it may not work on old Linux distributions where 
-        "libc.so.6" is linked to older "libc" libraries.
 
-        A binary version for old "libc.so.6" libraries will be available soon.
-
-    1 - Note that C routines are not all ANSI.
- 
-    2 - If there is something wrong when you open the scilab window 
-        check your ".Xdefault" or ".Xresource" file.
- 
-    3 - Athena Widgets libraries libXaw.a and libXmu.a (and corresponding 
-        include files) are not systematically provided in some X11 
-        installations. If you are using X11R5 or X11R6, these libraries are 
-        provided for convenience with Scilab.
-        "configure" first tries to find existing Athena Widgets libraries.
-        If none are found and X Window release is not X11R4, it uses
-        local Athena Widgets libraries. Otherwise an error is issued.
-        You can impose the use of local Athena Widgets libraries by using
-        the option "--with-local-Xaw" with "configure".
- 
-    4 - For HP workstation, programs to be incrementally linked should
-        be compiled with the option "+z" or "+Z".
- 
-    5 - Binary versions compiled with Scilab's tcl/tk interface include TCL/TK
-        libraries in "tcl" directory.
-
-    6 - If you have any problem or suggestion to improve Scilab
-
+    1 - If you have any problem or suggestion to improve Scilab
           http://bugzilla.scilab.org/index.cgi
 
-        or better post a message to newsgroup:
+		Don't hesitate to browse other the bug reports to see workarounds.
+	
+	2 - User and development mailing lists are available:
 
+		http://www.scilab.org/contactus/index_contactus.php?page=mailing_lists
+
+		Archives of these mailing lists are available.
+
+	3 - The newsgroup is still available here:
           comp.soft-sys.math.scilab
-
- ******************************************************************************
- III - TO RUN SCILAB
- *******************
- 
- Run Scilab by executing "scilab" (shell script in bin).
- 
- If the name of the directory of Scilab distribution is not the same on 
- your machine than on the machine where Scilab was installed, copy the
- bin/scilab script file somewhere, set its execution rights on, edit
- it to modify the environment variable SCI definition (it should give
- the pathname to the directory of Scilab distribution) and use this
- modified script to start Scilab.
- 
- ****************************************************************************** 
- IV - DOCUMENTATION
- ******************
- 
- In addition to Scilab online documentation (obtained by typing "help item" or
- "apropos keyword" or clicking on the help button), you will find 
- compressed postscript from Web site
- "http://www.scilab.org":
- 
- Internals.ps.gz, Internals.pdf: Scilab's internals
- Intro.ps.gz, Intro.pdf: Introduction to Scilab
- Lmi.ps.gz, Lmi.pdf: Linear Matrix Inequalities Optimization Toolbox
- Manual.ps.gz, Manual.pdf: On line Manual
- Metanet.ps.gz, Metanet.pdf: Metanet User's Guide and Tutorial
- Scicos.ps.gz, Scicos.pdf: Scicos: a Dynamic System Builder and Simulator 
- Signal.ps.gz, Signal.pdf: Signal Processing Toolbox
- Intersci.ps.gz, Intersci.pdf: Interfacing Tool
-
- Note that these documents are not uptodate.
- 
- ******************************************************************************
- V - SOME IMPORTANT FILES AND DIRECTORIES
- ****************************************
- 
- scilab.start     : startup file for Scilab instructions in this file
-                    are executed when Scilab is executed. Note that
-                    you can also have your own startup file "SCIHOME/.scilab"
-                    or "SCIHOME/scilab.ini".
- 
- configure.in     : file used by "autoconf" to generate "configure".
- 
- configure        : file used to configure Scilab's unix versions.
- 
- Makefile.incl.in : file used by configure to generate Makefile.incl.
- 
- Makefile.incl    : file included by all Makefile's. It is automatically 
-                    generated by configure.
- 
- Path.incl        : contains the scilab directory pathname. It is included by
-                    scripts/Makefile. This file is automatically generated by
-                    configure.
- 
- Version.incl     : contains the scilab version. It is used by a few Makefile.
- 
- Makefile.in      : file used by configure to generate Makefile.
- 
- Makefile         : the main Makefile to make Scilab. It is automatically 
-                    generated by configure.
- 
- config/          : directory used by configure and by the main Makefile
- 
-                    Makefile.<host>: Makefile included by main Makefile. 
-                    It depends on the host and is used to created the 
-                    executable bin/scilex.
-                    
-                    configuration  : summarizes the configuration flags
-                                  computed by configure
- 
- demos/           : demos directory. Some of the demos can be executed by 
-                    clicking on the "demos" button.
- 
- examples/        : examples of dynamic links and interface code.
- 
- macros/          : functions directory: this directory is divided into 
-                    subdirectories corresponding to specific topics
-                    (control, polynomials,...). Each subdirectory contains 
-                    the source code of the macros (files *.sci). 
- 
- 
- libs/            : directory of libraries: archives of object files needed 
-                    to link Scilab.
- 
- routines/        : directory of fortran or C routines. Divided into 
-                    subdirectories (see below).
- 
- man/             : files for online help
- 
- util/            : useful routines and ASCII files to manage Scilab.
- 
- bin/             : executable code and scripts.
-                      
-                      scilab  : shell-script to call Scilab and miscellaneous 
-                                tools. execute scilab -help scilab for help.
-                      scilex  : executable code of Scilab.
-                      scilink : shell script called by scilab -link.
-                      intersci: generator of interface program between Scilab
-                                and routines.
- 
- intersci/        : Generator of interface program between Scilab and routines.
- 
- maple/           : Maple code to link Maple with Scilab.
- 
- pvm3/            : PVM   for Scilab.
- 
- tcl/             : TCL/TK for Scilab.
- 
- ******************************************************************************
- THAT'S ALL FOLKS
- ******************************************************************************
