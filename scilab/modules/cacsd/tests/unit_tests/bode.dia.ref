@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - rINRIA - Serge Steer
+// Copyright (C) 2008 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -17,9 +17,9 @@ function r=checkbode(h,leg)
   n=size(am.children($).children,'*')
   if n<>size(h,1) then bugmes();quit;end
   for k=1:n;
-    pm=am.children($).children(k);
-    pp=ap.children($).children(k);
-    if or(pm.data(:,1)<>pp.data(:,1)) then r=%f;return,end
+    pm=am.children($).children(n+1-k);
+    pp=ap.children($).children(n+1-k);
+    if or(pm.data(:,1)<>pp.data(:,1)) then ;r=%f;return,end
     [frq,rf]=repfreq(h(k,1),pm.data(:,1));[phi,d]=phasemag(rf);
     if norm(d(:)-pm.data(:,2))> 1d-15 then r=%f;return,end
   end
