@@ -33,6 +33,7 @@ mputl([
    Generate a loader file
    Generate a Makefile: Makelib
    Running the makefile
+   Compilation of mexfunction16.c
    Building shared library (be patient)
 Shared archive loaded.
 Link done.
