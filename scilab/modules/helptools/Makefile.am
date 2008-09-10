@@ -59,12 +59,7 @@ libscihelptools_la_include_HEADERS = includes/gw_helptools.h
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \
 bin/man2sci \
-bin/sci2pdf \
-bin/sci2jh \
-bin/manrev2sci \
-bin/sci2html \
-bin/sciviewhelp
-
+bin/manrev2sci 
 
 #### helptools : gateway declaration ####
 libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
