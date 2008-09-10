@@ -68,10 +68,18 @@ Graphics:
 
 Graphic file export:
 ====================
-  - xs2jpeg, xs2png, xs2svg, xs2pdf functions added to export graphics under JPEG, PNG, SVG and PDF formats.     	
+  - xs2jpeg, xs2png, xs2svg, xs2pdf functions added to export graphics under
+	JPEG, PNG, SVG and PDF formats.
   - Option color in xs2eps and xs2ps has been removed.
   - Export GUI has been rewritten to match the new Java Swing style.
 
+
+Numerical precision:
+====================
+ - Numerical precision of Scilab under Linux 32 bits has been switched to
+	double precision (53 bits). Therefore, the precision on some specific 
+	computations is improved and the consistency between Microsoft Windows &
+	GNU/Linux enhanced.
 
 Signal processing:
 ==================
@@ -308,17 +316,14 @@ Online Help management:
 	+ del_help_chapter
 	+ add_module_help_chapter
 	+ del_module_help_chapter
-	+ xmltojar
+	+ xmltojar (the documentation provided in Scilab)
 	+ xmltopdf
-	+ xmltops
-	+ xmltochm
- - xmltohtml function is now deprecated
- - loaddefaultbrowser function and %browsehelp global variable have been removed :
+	+ xmltohtml
+ - loaddefaultbrowser function and %browsehelp global variable have been removed:
    The new Java help browser is the only help browser.
  - For more information, have a look to :
     + http://wiki.scilab.org/howto/scilab_documentation_kit
     + SCI/modules/helptools/doc directory
-
 
 Metanet : graph and network toolbox
 ===================================
@@ -437,6 +442,7 @@ GNU/Linux - Unix:
  - Build by default with gfortran
  - Versioned libraries
  - Easier profiling (memory and call graph)
+ - Better support of 64 bits CPU
  - Better startup script
 	+ Debug
 	+ Profiling (valgrind)
@@ -547,6 +553,9 @@ Known incompatibilty
   - Due to license restrictions from the Universidad de Cantabria, the quapro 
 	and linpro functions are no more available in the Scilab distribution, 
 	but as an external toolbox.
+
+  - Some uses of the pow function could cause issues for base ~ 1.0 and large
+	exponent (see http://sources.redhat.com/bugzilla/show_bug.cgi?id=706)
 
                      Main Changes Scilab 3.0 -> 4.0
                      ==============================
