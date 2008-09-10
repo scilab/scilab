@@ -279,7 +279,7 @@ fi
 if test -n "$F77"; then
 dnl @TODO : il faut peut etre verifier que c'est bien gfortran
    if test "$enable_debug_fortran" = yes; then
-	  FFLAGS="$FFLAGS -g -Wall "
+	  FFLAGS="$FFLAGS -g -Wall -Wimplicit -Wsurprising"
 	  # -D_FORTIFY_SOURCE=2
    else
 	  FFLAGS="$FFLAGS -DNDEBUG"
@@ -365,7 +365,7 @@ fi
 if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall "
+	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -375,6 +375,7 @@ if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
    else
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
+   CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
 fi
 
 ##########"
@@ -387,7 +388,7 @@ IS_64_BITS_CPU=false
 if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing"
+	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
 	  case "$host" in
@@ -402,6 +403,7 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
    else
 	  CFLAGS="$CFLAGS  -DNDEBUG"
    fi
+   CFLAGS="$CFLAGS -fno-stack-protector" # bug 3131
 
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
