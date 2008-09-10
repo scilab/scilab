@@ -456,6 +456,9 @@ supernodal_frontal_create(int* firstcol_in_supernode,
 			  int* rowind)
 {
   supernodal_frontal_matrix* tmp;
+  int iDontCheckf1 = 0;
+  int iDontCheckf2 = 0;
+  int iDontChecku = 0;
 
   tmp = (supernodal_frontal_matrix*)MALLOC(sizeof(supernodal_frontal_matrix));
   if(tmp==NULL) return NULL;
@@ -472,20 +475,31 @@ supernodal_frontal_create(int* firstcol_in_supernode,
   tmp->sn_vertices = rowind;
   tmp->up_vertices = rowind + sn_size;
 
-  if (tmp->sn_size)
+  if (tmp->sn_size > 0)
 	  tmp->f1 = (double*)CALLOC((tmp->sn_size)*(tmp->sn_size),sizeof(double));
-  if (tmp->sn_size && tmp->up_size)
-	  tmp->f2 = (double*)CALLOC((tmp->up_size)*(tmp->sn_size),sizeof(double));
-  if (tmp->up_size)
-	  tmp->u  = (double*)CALLOC((tmp->up_size)*(tmp->up_size),sizeof(double));
+  else
+	iDontCheckf1 = 1;
 
-  if(tmp->f1 == NULL || tmp->f2==NULL || tmp->u==NULL) 
+  if (tmp->sn_size  > 0 && tmp->up_size > 0)
+	  tmp->f2 = (double*)CALLOC((tmp->up_size)*(tmp->sn_size),sizeof(double));
+  else
+	iDontCheckf2 = 1;
+
+  if (tmp->up_size > 0)
+	  tmp->u  = (double*)CALLOC((tmp->up_size)*(tmp->up_size),sizeof(double));
+  else
+	iDontChecku = 1;
+
+  /*check allocation only if size is > 0 */
+  if( (tmp->f1 == NULL && iDontCheckf1 == 0) || 
+	  (tmp->f2 == NULL && iDontCheckf2 == 0) || 
+	  (tmp->u  == NULL && iDontChecku  == 0)) 
   {
-    FREE(tmp->u);
-    FREE(tmp->f1);
-    FREE(tmp->f2);
-    FREE(tmp);
-    return NULL;
+	  FREE(tmp->u);
+	  FREE(tmp->f1);
+	  FREE(tmp->f2);
+	  FREE(tmp);
+	  return NULL;
   }
 
   assert(tmp);
