@@ -1,0 +1,19 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// unit tests for acos() function (element wise cosine inverse)
+// =============================================================================
+if execstr("acosh()"   ,"errcatch") == 0 then bugmes();quit;end
+if execstr("acosh(1,2)","errcatch") == 0 then bugmes();quit;end
+v = [0, %pi/2*%i , %pi*%i , %pi/2*%i];
+x = [1, 0        , -1     , 0       ];
+if or(abs(acosh(x)-v) > sqrt(%eps)) then bugmes();quit;end
+if ~isnan(acosh(%nan))        then bugmes();quit;end
+if ~isnan(acosh(-%nan))       then bugmes();quit;end
+if real(acosh(%inf)) <> %inf  then bugmes();quit;end
+if imag(acosh(%inf)) <> 0     then bugmes();quit;end
+if real(acosh(-%inf)) <> %inf then bugmes();quit;end
+if imag(acosh(-%inf)) <> %pi  then bugmes();quit;end
