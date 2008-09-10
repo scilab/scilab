@@ -855,7 +855,7 @@
 ::msgcat::mcset it_it "See also:" "Vedi anche:"
 ::msgcat::mcset it_it "Note: Scilab 4.x is offering this\
                        feature."\
-                      "Nota: Scilab 4.x offrono questa\
+                      "Nota: Scilab 4.x offre questa\
                        funzionalità."
 ::msgcat::mcset it_it "A solution is to use a backported version of Scipad\
                        inside one of these environments, for instance:"\
