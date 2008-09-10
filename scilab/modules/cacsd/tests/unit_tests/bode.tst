@@ -20,9 +20,9 @@ function r=checkbode(h,leg)
   n=size(am.children($).children,'*')
   if n<>size(h,1) then pause,end
   for k=1:n;
-    pm=am.children($).children(k);
-    pp=ap.children($).children(k);
-    if or(pm.data(:,1)<>pp.data(:,1)) then r=%f;return,end
+    pm=am.children($).children(n+1-k);
+    pp=ap.children($).children(n+1-k);
+    if or(pm.data(:,1)<>pp.data(:,1)) then ;r=%f;return,end
     [frq,rf]=repfreq(h(k,1),pm.data(:,1));[phi,d]=phasemag(rf);
     if norm(d(:)-pm.data(:,2))> 1d-15 then r=%f;return,end
   end
