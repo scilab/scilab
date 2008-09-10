@@ -10,17 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spreadsheet2sci">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="excel2sci">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>spreadsheet2sci</refname>
+    <refname>excel2sci</refname>
     <refpurpose> reads ascii Excel files</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>M=spreadsheet2sci(fname [,sep])</synopsis>
+    <synopsis>M=excel2sci(fname [,sep])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -49,8 +49,8 @@
     <title>Description</title>
     <para>
     Given an ascii  file created by Excel using "Text and comma" format
-    <literal>exel2sci(fname)</literal> returns the corresponding Scilab matrix of
-    strings. Use <literal>exel2sci(fname,sep )</literal> for an other choice of
+    <literal>excel2sci(fname)</literal> returns the corresponding Scilab matrix of
+    strings. Use <literal>excel2sci(fname,sep )</literal> for an other choice of
     separator.</para>
     <para>
     Note: You may eval all or part ot <literal>M</literal> using function <literal>evstr</literal>.</para>
