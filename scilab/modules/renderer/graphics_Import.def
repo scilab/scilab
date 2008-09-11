@@ -167,3 +167,4 @@ sciGetNbTypedObjects
 sciGetAutoSubticks
 sciisTextEmpty
 sciGetIsFilled
+sciGetRealVisibility

@@ -478,7 +478,12 @@ void ConcreteDrawableSubwin::displayTexts(void)
   vector<sciPointObj *>::iterator it = m_oDisplayedTexts.begin();
   for ( ; it != m_oDisplayedTexts.end(); it++)
   {
-    getHandleDrawer(*it)->display();
+    // HACK here. This patch is to force disepearance
+    // of text objects if one of there parents is not visible.
+    if (sciGetRealVisibility(*it))
+    {
+      getHandleDrawer(*it)->display();
+    }
   }
 }
 /*------------------------------------------------------------------------------------------*/
