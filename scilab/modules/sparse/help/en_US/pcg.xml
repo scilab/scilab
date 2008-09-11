@@ -31,7 +31,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>[x, flag, err, iter, res] = pcg(A, b [, tol [, maxit [, M [, M2 [, x0]]]]])
+    <synopsis>[x, flag, err, iter, res] = pcg(A, b [, tol [, maxIter [, M [, M2 [, x0 [, verbose]]]]]])
+[x, flag, err, iter, res] = pcg(A, b [key=value,...])
 </synopsis>
   </refsynopsisdiv>
 
@@ -62,7 +63,7 @@
 
             <listitem>
               <para><literal>function.</literal>If A is a function, it must
-              have the following header.</para>
+              have the following header :</para>
 
               <programlisting>
       
@@ -95,12 +96,12 @@
         <term>tol</term>
 
         <listitem>
-          <para>error tolerance (default: 1000*%eps)</para>
+          <para>error tolerance (default: 1e-8)</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>maxi</term>
+        <term>maxIter</term>
 
         <listitem>
           <para>maximum number of iterations (default: n)</para>
@@ -131,6 +132,14 @@
 
         <listitem>
           <para>initial guess vector (default: zeros(n,1))</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>verbose</term>
+
+        <listitem>
+          <para>set to 1 to enable verbose logging (default 0)</para>
         </listitem>
       </varlistentry>
 
@@ -197,10 +206,18 @@
   </refsection>
 
   <refsection>
-    <title>Examples</title>
+    <title>Example with well conditionned and ill conditionned
+    problems</title>
+
+    <para>In the following example, two linear systems are solved. The first
+    maxtrix has a condition number equals to ~0.02, which makes the algorithm
+    converge in exactly 10 iterations. Since this is the size of the matrix,
+    it is an expected behaviour for a gradient conjugate method. The second
+    one has a low condition number equals to 1.d-6, which makes the algorithm
+    converge in a larger 22 iterations. This is why the parameter maxIter is
+    set to 30. See below for other examples of the "key=value" syntax. </para>
 
     <programlisting role="example">
-
  //Well conditionned problem
  A=[ 94  0   0   0    0   28  0   0   32  0  
      0   59  13  5    0   0   0   10  0   0  
@@ -213,12 +230,11 @@
      32  0   0   0    12  33  0   8   82  11 
      0   0   65  55   0   0   0   0   11  100];
 
-  b=ones(10,1);
-  [x, fail, err, iter, res]=pcg(A,b,1d-12,15);
-  mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+ b=ones(10,1);
+ [x, fail, err, iter, res]=pcg(A,b,1d-12,15);
+ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
-
-  //Ill contionned one
+ //Ill contionned one
  A=[ 894     0   0     0   0   28  0   0   1000  70000
       0      5   13    5   0   0   0   0   0     0    
       0      13  72    34  0   0   0   0   0     6500 
@@ -232,26 +248,73 @@
  
   [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+</programlisting>
+  </refsection>
 
-   //sparse matrix
+  <refsection>
+    <title>Examples with A given as a sparse matrix, or function, or
+    list</title>
+
+    <para>The following example shows that the method can handle sparse
+    matrices as well. It also shows the case where a function, computing the
+    right-hand side, is given to the "pcg" primitive. The final case shown by
+    this example, is when a list is passed to the primitive.</para>
+
+    <programlisting role="example">
+   //Well conditionned problem
+   A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+   b=ones(10,1);
+
+   // Convert A into a sparse matrix
    Asparse=sparse(A);
    [x, fail, err, iter, res]=pcg(Asparse,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
-   //using a function
+   // Define a function which computes the right-hand side
    function y=Atimesx(x,A)
      y=A*x
    endfunction
 
-   //A passed by the calling context
+   // Pass the script Atimesx to the primitive
    [x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
-   // A passed as an argument
-   Alist = list(Atimesx,Asparse)
+   // Pass a list to the primitive
+   Alist = list(Atimesx,Asparse);
    [x, fail, err, iter, res]=pcg(Alist,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
- 
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Examples with key=value syntax</title>
+
+    <para>The following example shows how to pass arguments with the
+    "key=value" syntax. This allows to set non-positionnal arguments, that is,
+    to set arguments which are not depending on their order in the list of
+    arguments. The available keys are the names of the optionnal arguments,
+    that is : tol, maxIter, %M, %M2, x0, verbose. Notice that, in the
+    following example, the verbose option is given before the maxIter option.
+    Without the "key=value" syntax, the positionnal arguments would require
+    that maxIter come first and verbose after.</para>
+
+    <programlisting role="example"> 
+  // Example of an argument passed with key=value syntax
+  A=[100,1;1,10];
+  b=[101;11];
+  [xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1);
+
+  // With key=value syntax, the order does not matter
+  [xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1,maxIter=0);
   </programlisting>
   </refsection>
 
