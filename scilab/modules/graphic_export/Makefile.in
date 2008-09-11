@@ -68,12 +68,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/matio.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -250,7 +249,7 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
-MATIO_LIB = @MATIO_LIB@
+MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
@@ -273,6 +272,7 @@ PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
+PKG_CONFIG = @PKG_CONFIG@
 POW_LIB = @POW_LIB@
 PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@

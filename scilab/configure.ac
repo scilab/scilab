@@ -114,12 +114,13 @@ AC_ARG_ENABLE(build-giws,
     AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
 
 
-##############################
-########## compilator detection
-##############################
+################################################
+########## compilator & misc programs detection
+################################################
 
 AC_PROG_CPP
 AC_PROG_GREP
+PKG_PROG_PKG_CONFIG
 
 #####################################################
 ## check if options are correct (or not)
@@ -1006,7 +1007,20 @@ AC_ARG_WITH(matio,
 MATIO_ENABLE=no
 
 if test "$with_matio" != no; then
-   AC_MATIO()
+   PKG_CHECK_MODULES(MATIO, [matio >= 1.3.3])
+   
+   save_CFLAGS="$CFLAGS"
+   save_LIBS="$LIBS"
+   
+   AC_CHECK_HEADERS([matio.h matioConfig.h], [],
+     [AC_MSG_ERROR(Invalid MATIO_CFLAGS returned by pkg-config. Try to define MATIO_CFLAGS.)])
+   AC_CHECK_LIB([matio], [Mat_Open], []
+     [AC_MSG_ERROR(Invalid MATIO_LIBS returned by pkg-config. Try to define MATIO_LIBS.)])
+   
+   LIBS="$save_LIBS"
+   CFLAGS="$save_CFLAGS"
+   
+   AC_DEFINE([WITH_MATIO], [], [With the MATIO library])
    MATIO_ENABLE=yes
 fi
 
@@ -1349,7 +1363,7 @@ fi
 echo ""
 if test $MATIO_ENABLE = yes;  then
    echo "MATIO Configuration:"
-   echo "MATIO LIBS .......... = $MATIO_LIB"
+   echo "MATIO LIBS .......... = $MATIO_LIBS"
    echo "MATIO CFLAGS ........ = $MATIO_CFLAGS"
 else
    echo "Not using MATIO"

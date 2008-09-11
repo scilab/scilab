@@ -35,7 +35,7 @@ MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/GetStructVariable.c \
 		  src/c/GetSparseVariable.c
 
-libscimatio_la_LDFLAGS = $(MATIO_LIB)
+libscimatio_la_LDFLAGS = $(MATIO_LIBS)
 
 else
 
