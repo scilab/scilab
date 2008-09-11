@@ -1012,9 +1012,12 @@ if test "$with_matio" != no; then
    save_CFLAGS="$CFLAGS"
    save_LIBS="$LIBS"
    
+   CFLAGS="$CFLAGS $MATIO_CFLAGS"
+   LIBS="$LIBS $MATIO_LIBS"
+   
    AC_CHECK_HEADERS([matio.h matioConfig.h], [],
      [AC_MSG_ERROR(Invalid MATIO_CFLAGS returned by pkg-config. Try to define MATIO_CFLAGS.)])
-   AC_CHECK_LIB([matio], [Mat_Open], []
+   AC_CHECK_LIB([matio], [Mat_Open], [],
      [AC_MSG_ERROR(Invalid MATIO_LIBS returned by pkg-config. Try to define MATIO_LIBS.)])
    
    LIBS="$save_LIBS"
