@@ -72,3 +72,9 @@ libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
 #### matio : include files ####
 libscimatio_la_includedir=$(pkgincludedir)/matio
 libscimatio_la_include_HEADERS = includes/gw_matio.h
+
+#### matio : library file ####
+libscimatio_la_librariesdir=$(mydatadir)
+nobase_libscimatio_la_libraries_DATA = .libs/libscimatio.so \
+.libs/libscimatio.so.0 \
+.libs/libscimatio.so.0.0.0
