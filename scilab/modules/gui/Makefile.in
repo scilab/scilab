@@ -917,21 +917,24 @@ libscigui_la_iconsdir = $(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
 images/icons/document-open.png \
 images/icons/edit-copy.png \
+images/icons/edit-cut.png \
 images/icons/edit-paste.png \
+images/icons/emblem-readonly.png \
 images/icons/folder.png \
 images/icons/format-text-bold.png \
 images/icons/help-browser.png \
-images/icons/zoom-area.png \
 images/icons/original-view.png \
 images/icons/printer.png \
-images/icons/scilab.png \
+images/icons/process-working.png \
 images/icons/rotate.png \
-images/icons/window-new.png \
-images/icons/edit-cut.png \
+images/icons/scilab_close_active.png \
+images/icons/scilab_close_default.png \
+images/icons/scilab.png \
 images/icons/undock_active.png \
 images/icons/undock_default.png \
-images/icons/scilab_close_active.png \
-images/icons/scilab_close_default.png
+images/icons/window-new.png \
+images/icons/zoom-area-cursor.png \
+images/icons/zoom-area.png
 
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
