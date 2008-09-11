@@ -60,4 +60,20 @@ x0=[1;1];
 [xcomputed, flag, err, iter, res]=pcg(A,b,tol,maxit,M1,M2,x0);
 xexpected=[1;1];
 if norm(xcomputed-xexpected)>%eps then pause,end
+// Test with non-positionnal input parameters so that 0 iteration can happen
+A=[100,1;1,10];
+b=[101;11];
+[xcomputed, flag, err, iter, res]=pcg(A,b,maxIter=0);
+if (iter <> 0) then pause,end
+// Test with non-positionnal input parameters so that 1 iteration is sufficient
+A=[100,1;1,10];
+b=[101;11];
+[xcomputed, flag, err, iter, res]=pcg(A,b,tol=1.);
+if (iter <> 1) then pause,end
+// Test with non-positionnal input parameters so that pre-conditionning is necessary
+A=[100,1;1,0.0101]
+b=[101;11];
+M=A**-1
+[xcomputed, flag, err, iter, res]=pcg(A,b,%M=M,maxIter=3,tol=%eps);
+if (flag <> 0) then pause,end
 
