@@ -40,7 +40,7 @@ public class BuildDocObject extends StyleSheet {
 	private static final String COLON_WITH_QUOTES = "': ";
 	private static final String COLON = " : ";
 	private static final String PDF_FORMAT = "PDF";
-	private static final String PS_FORMAT = "PS";
+	private static final String POSTSCRIPT_FORMAT = "PS";
 	private static final String JH_FORMAT = "JH";
 	private static final String JAVAHELP_FORMAT = "JAVAHELP";
 	private static final String USE_EXTENSIONS_1 = "use.extensions=1";
@@ -123,7 +123,7 @@ public class BuildDocObject extends StyleSheet {
 		// Need to work with a String instead of a enum since it needs
 		// to be called from C/C++ and GIWS doesn't manage this type.
 		// Can be CHM, HTML, PDF, JavaHelp, Postscript
-		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(PS_FORMAT)) {
+		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
 			specificArgs.add("paper.type=A4");
@@ -136,6 +136,7 @@ public class BuildDocObject extends StyleSheet {
 
 		} 
 
+		/* HTML Format */
 		if (format.equalsIgnoreCase("HTML")) {
 			specificArgs.add("use.id.as.filename=1");
 			specificArgs.add("html.stylesheet=html.css");
@@ -156,6 +157,8 @@ public class BuildDocObject extends StyleSheet {
 			}
 			
 		}
+
+		/* Java Help */
 		if (format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
 			// JavaHelp
 			specificArgs.add(USE_EXTENSIONS_1);
@@ -213,8 +216,8 @@ public class BuildDocObject extends StyleSheet {
 		if (this.format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
 			BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
 		}
-		if (format.equalsIgnoreCase(PDF_FORMAT)) {
-			BuildPDF.buildPDF(this.outputDirectory, this.language);
+		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
+			BuildPDF.buildPDF(this.outputDirectory, this.language, format);
 		}
 	}
 
@@ -251,8 +254,8 @@ public class BuildDocObject extends StyleSheet {
 		    throw new FileNotFoundException("Unable to parse generated master file.");
 		}
 		
-		if (format.equalsIgnoreCase(PDF_FORMAT)) {
-			/* PDF takes others args */
+		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
+			/* PDF & postscript take other args */
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
 		}

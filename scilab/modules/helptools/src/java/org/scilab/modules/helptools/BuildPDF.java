@@ -55,15 +55,26 @@ public final class BuildPDF {
      * @param language In which language (for the file name)
      * @return The result of the process
 	 */
-	public static boolean buildPDF(String outputDirectory, String language) {
+	public static boolean buildPDF(String outputDirectory, String language, String format) {
 
 		String baseName = Helpers.getBaseName(language);
-		String fileName = outputDirectory + "/" + baseName + ".pdf";
+		String fileName = outputDirectory + "/" + baseName;
+		if (format.equalsIgnoreCase("PS")) {
+			 fileName+= ".ps";
+		}else{
+			 fileName+= ".pdf";
+		}
+
 		try {
 			FopFactory fopFactory = FopFactory.newInstance();
 			// Step 3: Construct fop with desired output format
 			OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
-			Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, out);
+			Fop fop;
+			if (format.equalsIgnoreCase("PS")) {
+				fop = fopFactory.newFop(MimeConstants.MIME_POSTSCRIPT, out);
+			} else {
+				fop = fopFactory.newFop(MimeConstants.MIME_PDF, out);
+			}
 
 			// Step 4: Setup JAXP using identity transformer
 			TransformerFactory factory = TransformerFactory.newInstance();
