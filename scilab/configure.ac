@@ -1004,10 +1004,23 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 AC_ARG_WITH(matio,
     AC_HELP_STRING([--without-matio],[Compile with the MAT File I/O library]))
 
+AC_ARG_WITH(matio_include,
+		AC_HELP_STRING([--with-matio-include=DIR],[Set the path to the MATIO headers]),
+		[with_matio_include="-I$withval"], [])
+
+AC_ARG_WITH(matio_library,
+		AC_HELP_STRING([--with-matio-library=DIR],[Set the path to the MATIO libraries]),
+		[with_matio_library="-L$withval"], [])
+
 MATIO_ENABLE=no
 
 if test "$with_matio" != no; then
-   PKG_CHECK_MODULES(MATIO, [matio >= 1.3.3])
+   if test -n "$with_matio_include" -o -n "$with_matio_library" ; then
+      MATIO_CFLAGS="$with_matio_include"
+      MATIO_LIBS="$with_matio_library -lm -lz -lmatio"
+   else
+      PKG_CHECK_MODULES(MATIO, [matio >= 1.3.3])
+   fi
    
    save_CFLAGS="$CFLAGS"
    save_LIBS="$LIBS"
