@@ -2625,7 +2625,7 @@ char *get_fname(char *fname,unsigned long fname_len)
  *     and the matrix is chnaged to its real part 
  *------------------------------------------------------------------ */
 
-int C2F(realmat)()
+int C2F(realmat)(void)
 {
   integer ix1;
   integer m, n, il;

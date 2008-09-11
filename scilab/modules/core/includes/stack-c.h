@@ -136,14 +136,14 @@ static void initial_c_local(void);
 
 /* Correction Warning variable "c_local" was declared but never referenced */
 /* initial_c_local not used */
-static void initial_c_local()
+static void initial_c_local(void)
 {
 	initial_c1_local();
 	c_local=0;
 }
 /* Correction Warning variable "c1_local" was declared but never referenced */
 /* initial_c1_local not used */
-static void initial_c1_local()
+static void initial_c1_local(void)
 {
 	initial_c_local();
 	c1_local=0;

@@ -81,7 +81,7 @@ int Istrue(int n)
 
 
 
-int C2F(run)()
+int C2F(run)(void)
 {
   /* Initialized data */
   /* Fortran common data equivalence */
@@ -1378,7 +1378,7 @@ int C2F(run)()
 
 
 
-int C2F(adjustrhs)()
+int C2F(adjustrhs)(void)
 {
   /* to adjust rhs in the case it is only fixed at run time example
   *  l=list(....); foo(a,l(2:3)).  the parser supposes that the rhs
