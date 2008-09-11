@@ -69,7 +69,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
      verbose=0;
   end
   if (verbose==1) then
-    printf("Arguments:\n");
+    printf(gettext("Arguments:\n"));
     printf("  tol="+string(tol)+"\n");
     printf("  maxIter="+string(maxIter)+"\n");
     printf("  M=\n")
@@ -184,11 +184,11 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   // initialization
   bnrm2 = norm(%b);
   if (verbose==1) then
-    printf("Norm of right-hand side :"+string(bnrm2)+"\n");
+    printf(gettext("Norm of right-hand side : %s\n"), string(bnrm2));
   end
   if  (bnrm2 == 0) then
     if (verbose==1) then
-      printf("Special processing where the right-hand side is zero.\n");
+      printf(gettext("Special processing where the right-hand side is zero.\n"));
     end
     // When rhs is 0, there is a trivial solution : x=0
     x = zeros(%b);
@@ -211,13 +211,13 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   for currentiter = 1:maxIter
     if (resNorm <= tol) then
       if (verbose==1) then
-        printf("  New residual = "+string(resNorm)+" < tol ="+string(tol)+" => break\n");
+        printf(gettext("  New residual = %s < tol = %s => break\n"),string(resNorm),string(tol));
       end
       break;
     end
     iter = iter + 1
     if (verbose==1) then
-      printf("  Iteration #"+string(currentiter)+"/"+string(maxIter)+" residual : "+string(resNorm)+"\n");
+      printf(gettext("  Iteration #%s/%s residual : %s\n"),string(currentiter),string(maxIter),string(resNorm));
       printf("  x=\n");
       disp(x);
     end
@@ -261,8 +261,8 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   // test for convergence
   if (resNorm > tol) then
       if (verbose==1) then
-        printf("Final residual = "+string(resNorm)+" > tol ="+string(tol)+"\n");
-        printf("Algorithm fails\n");
+        printf(gettext("Final residual = %s > tol =%s\n"),string(resNorm),string(tol));
+        printf(gettext("Algorithm fails\n"));
       end
     flag = 1; 
     if (lhs < 2) then 
@@ -271,7 +271,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   else
     flag = 0;
     if (verbose==1) then
-      printf("Algorithm pass\n");
+      printf(gettext("Algorithm pass\n"));
     end
   end
 endfunction
