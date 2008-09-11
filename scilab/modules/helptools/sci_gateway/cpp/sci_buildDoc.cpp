@@ -52,6 +52,7 @@ static void __slashToAntislash(std::string *in)
     static int l2 = 0,n2 = 0,m2 = 0;
     static int l3 = 0,n3 = 0,m3 = 0;
     static int l4 = 0,n4 = 0,m4 = 0;
+	//	static int Row_Output = 0, Col_Output = 0;
     std::string exportFormat;
     std::string SciPath = getSCIpath(); /* Scilab path */
     std::string masterXML; /* Which file contains all the doc stuff */
@@ -60,6 +61,7 @@ static void __slashToAntislash(std::string *in)
     std::string outputDirectoryTMP;
     std::string language;
     std::string styleSheet; /* the CSS */
+	//	std::string pathToGenerated;
     org_scilab_modules_helptools::BuildDocObject *doc = NULL;
 
     CheckRhs(0,4);
@@ -129,14 +131,14 @@ static void __slashToAntislash(std::string *in)
           }
         else
           {
-	    Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,4);
-	    return FALSE;
+			  Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,4);
+			  return FALSE;
           }
       }
     else /* Scilab help */
       {
         /* Update the path with the localization */
-        outputDirectoryTMP = std::string("/modules/helptools/build/doc/scilab_")+language+std::string("_help/");
+        outputDirectoryTMP = std::string("/modules/helptools/")+std::string(exportFormat)+std::string("/scilab_")+language+std::string("_help/");
 
         outputDirectory = SciPath+outputDirectoryTMP;
       }
@@ -151,11 +153,18 @@ static void __slashToAntislash(std::string *in)
 	__slashToAntislash(&masterXML);
 #endif
 
+
 	if (doc->setOutputDirectory((char *) outputDirectory.c_str()))
 	  {
 	    doc->setWorkingLanguage((char *) language.c_str());
 	    doc->setExportFormat((char *) exportFormat.c_str());
-	    doc->process((char *) masterXML.c_str(), (char *) styleSheet.c_str());
+
+		doc->process((char *) masterXML.c_str(), (char *) styleSheet.c_str());
+		/*		Row_Output = 1;
+		Col_Output = 1;
+		CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_Output, &Col_Output, &pathToGenerated.c_str() );
+		*/
+
 	  }
 	else
 	  {
@@ -170,8 +179,7 @@ static void __slashToAntislash(std::string *in)
       }
 
     if (doc != NULL) delete doc;
-
-    LhsVar(1) = 0;
+	LhsVar(1) = 0 ;
     C2F(putlhsvar)();
     return 0;
   }

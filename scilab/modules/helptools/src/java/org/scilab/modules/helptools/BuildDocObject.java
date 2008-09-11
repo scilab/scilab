@@ -182,7 +182,9 @@ public class BuildDocObject extends StyleSheet {
 		/* Create the output file which will be created by copyconvert.run into the working directory  */
 		File masterXMLTransformed = new File(this.outputDirectory 
 				+ File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
+		/* Where it will be stored */
 		String out = this.outputDirectory + File.separator + (String) new File(styleSheet).getName();
+
 		try {
 			Helpers.copyFile(new File(styleSheet), new File(out));
 		} catch (java.io.FileNotFoundException e) {
@@ -190,6 +192,7 @@ public class BuildDocObject extends StyleSheet {
 		} catch (java.io.IOException e) {
 			System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());			
 		}
+
         CopyConvert copyConvert = new CopyConvert();
         copyConvert.setVerbose(true);
         copyConvert.setPrintFormat(this.format);
@@ -210,15 +213,16 @@ public class BuildDocObject extends StyleSheet {
 
     /**
      * Private method which manages the post processing
-     *
+     * @return The path to the file/directory created.
      */
-	private void postProcess() {
+	private String postProcess() {
 		if (this.format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
-			BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
+			return BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
 		}
 		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
-			BuildPDF.buildPDF(this.outputDirectory, this.language, format);
+			return BuildPDF.buildPDF(this.outputDirectory, this.language, format);
 		}
+		return null;
 	}
 
 
@@ -227,9 +231,10 @@ public class BuildDocObject extends StyleSheet {
      *
      * @param sourceDoc Path to the XML master document
      * @param styleSheet Path to the CSS stylesheet
+	 * @return The path to the file/directory created.
 	 * @throws FileNotFoundException Raises an exception if no file/dir found
 	 */
-	public void process(String sourceDoc, String styleSheet) throws FileNotFoundException {
+	public String process(String sourceDoc, String styleSheet) throws FileNotFoundException {
 		ArrayList<String> args = new ArrayList<String>();
 
 		if (!new File(sourceDoc).isFile()) {
@@ -273,7 +278,7 @@ public class BuildDocObject extends StyleSheet {
 			new File(sourceDocProcessed).delete();
 		}
 
-		this.postProcess();
+		return this.postProcess();
 
 	}
 	

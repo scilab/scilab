@@ -13,7 +13,7 @@
       <param type="String" name="format" />
 	</method>
 
-    <method name="process" returnType="void">
+    <method name="process" returnType="String">
       <param type="String" name="sourceDoc" />
       <param type="String" name="styleSheet" />
     </method>

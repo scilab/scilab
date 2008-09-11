@@ -57,7 +57,7 @@ jclass instanceClass; // cache class
 jmethodID jbooleansetOutputDirectoryjstringID; // cache method id
 jmethodID voidsetWorkingLanguagejstringID; // cache method id
 jmethodID voidsetExportFormatjstringID; // cache method id
-jmethodID voidprocessjstringjstringID; // cache method id
+jmethodID jstringprocessjstringjstringID; // cache method id
 
 
 /**
@@ -105,7 +105,7 @@ void setWorkingLanguage(char * language);
 
 void setExportFormat(char * format);
 
-void process(char * sourceDoc, char * styleSheet);
+char * process(char * sourceDoc, char * styleSheet);
 
 
                         /**

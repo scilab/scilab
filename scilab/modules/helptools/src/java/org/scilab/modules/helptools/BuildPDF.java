@@ -55,10 +55,12 @@ public final class BuildPDF {
      * @param language In which language (for the file name)
      * @return The result of the process
 	 */
-	public static boolean buildPDF(String outputDirectory, String language, String format) {
+	public static String buildPDF(String outputDirectory, String language, String format) {
 
 		String baseName = Helpers.getBaseName(language);
-		String fileName = outputDirectory + "/" + baseName;
+		/* the following '..' is used because we are in the current working
+		   directory with all the tmp stuff in it */
+		String fileName = outputDirectory + "/../" + baseName; 
 		if (format.equalsIgnoreCase("PS")) {
 			 fileName+= ".ps";
 		}else{
@@ -105,7 +107,7 @@ public final class BuildPDF {
 			System.out.println(e.getLocalizedMessage());
 		}
 			
-		return true;
+		return fileName;
 	}
 
 }
