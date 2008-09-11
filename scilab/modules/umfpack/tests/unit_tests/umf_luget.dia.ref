@@ -19,20 +19,10 @@ if or(q <> [ 4; 3; 1; 5; 2 ]) then bugmes();quit;end
 if or(R <> [ 5; 13; 6; 1; 7 ]) then bugmes();quit;end
 B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
-B(p,q) - L*U  // must be a (quasi) nul matrix
- ans  =
- 
-(    5,    5) sparse matrix
- 
-   1.0D-16 *
- 
-(    5,    3)        0.2775558 
-(    5,    5)        0. 
+B(p,q) - L*U;  // must be a (quasi) nul matrix
 if nnz(L*U) <> 13 then bugmes();quit;end
 if nnz(B(p,q)) <> 12 then bugmes();quit;end
-umf_ludel(Lup) // clear memory
- ans  =
- 
+umf_ludel(Lup); // clear memory
 // the same with a complex matrix
 A = sparse( [ 2+%i  3+2*%i  0      0    0;
               3-%i  0       4+%i   0    6-3*%i;
@@ -48,17 +38,7 @@ if or(q <> [ 4; 3; 1; 5; 2 ]) then bugmes();quit;end
 if or(R <> [ 8; 18; 14; 6; 8 ]) then bugmes();quit;end
 B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
-B(p,q) - L*U  // must be a (quasi) nul matrix
- ans  =
- 
-(    5,    5) sparse matrix
- 
-   1.0D-16 *
- 
-(    4,    2)     - 0.1387779i 
-(    5,    2)       0.0693889i 
-(    5,    3)     - 0.2775558 + 0.0693889i 
-(    5,    5)       0. 
+B(p,q) - L*U;  // must be a (quasi) nul matrix
 if nnz(B(p,q)) <> 12 then bugmes();quit;end
 if nnz(L*U) <> 13 then bugmes();quit;end
 umf_ludel(Lup) // clear memory

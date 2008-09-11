@@ -23,12 +23,12 @@ if or(R <> [ 5; 13; 6; 1; 7 ]) then pause, end
 
 B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
-B(p,q) - L*U  // must be a (quasi) nul matrix
+B(p,q) - L*U;  // must be a (quasi) nul matrix
 
 if nnz(L*U) <> 13 then pause, end
 if nnz(B(p,q)) <> 12 then pause, end
 
-umf_ludel(Lup) // clear memory
+umf_ludel(Lup); // clear memory
 
 // the same with a complex matrix
 A = sparse( [ 2+%i  3+2*%i  0      0    0;
@@ -48,7 +48,7 @@ if or(R <> [ 8; 18; 14; 6; 8 ]) then pause, end
 
 B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
-B(p,q) - L*U  // must be a (quasi) nul matrix
+B(p,q) - L*U;  // must be a (quasi) nul matrix
 if nnz(B(p,q)) <> 12 then pause, end
 if nnz(L*U) <> 13 then pause, end
 
