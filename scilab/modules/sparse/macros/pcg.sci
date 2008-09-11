@@ -62,8 +62,8 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   if exists('%M2','local')==0 then
      %M2=[]
   end
- if exists('x','local')==0 then
-     x=zeros(%b);
+  if exists('x0','local')==0 then
+     x0=zeros(%b);
   end
   if exists('verbose','local')==0 then
      verbose=0;
@@ -76,8 +76,8 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     disp(%M)
     printf("  M2=\n");
     disp(%M2)
-    printf("  x=\n");
-    disp(x)
+    printf("  x0=\n");
+    disp(x0)
     printf("  verbose="+string(verbose)+"\n");
   end
   // Compute matrixType
@@ -158,6 +158,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     M2args=list(%M2(2:$))
     // Caution : modify the input argument %M2 !
     %M2=%M2(1);
+    // Caution : modify precondType again !
     precondType = 2;
   else
     error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",6));
@@ -170,40 +171,55 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
 	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",6,2));
     end
   end
-  // Check size of the initial vector x
-  if (size(x,2) ~= 1),
+  // Check size of the initial vector x0
+  if (size(x0,2) ~= 1),
 	error(msprintf(gettext("%s: Wrong value for input argument #%d: Column vector expected.\n"),"pcg",7));
   end
-  if (size(x,1) ~= size(%b,1)),
+  if (size(x0,1) ~= size(%b,1)),
 	error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",7,2));
   end 
   // ------------
   // Computations
   // ------------
   // initialization
-  flag = 0; 
   bnrm2 = norm(%b);
+  if (verbose==1) then
+    printf("Norm of right-hand side :"+string(bnrm2)+"\n");
+  end
   if  (bnrm2 == 0) then
+    if (verbose==1) then
+      printf("Special processing where the right-hand side is zero.\n");
+    end
+    // When rhs is 0, there is a trivial solution : x=0
     x = zeros(%b);
     resNorm = 0;
     resVec = resNorm;
-  end
-  // r = %b - %A*x;
-  if (matrixType ==1),
-    r = %b - %A*x;
   else
-    r = %b - %A(x,Aargs(:));
+    x = x0;
+    // r = %b - %A*x;
+    if (matrixType ==1),
+      r = %b - %A*x;
+    else
+      r = %b - %A(x,Aargs(:));
+    end
+    resNorm = norm(r) / bnrm2;
+    resVec = resNorm;
   end
-  resNorm = norm(r) / bnrm2;
-  resVec = resNorm;
-  if (resNorm < tol) then return; end
   // begin iteration
   // Distinguish the number of iterations processed from the currentiter index
   iter = 0
   for currentiter = 1:maxIter
+    if (resNorm <= tol) then
+      if (verbose==1) then
+        printf("  New residual = "+string(resNorm)+" < tol ="+string(tol)+" => break\n");
+      end
+      break;
+    end
     iter = iter + 1
     if (verbose==1) then
       printf("  Iteration #"+string(currentiter)+"/"+string(maxIter)+" residual : "+string(resNorm)+"\n");
+      printf("  x=\n");
+      disp(x);
     end
     // z  = %M \ r;
     if (precondType == 1),
@@ -240,12 +256,6 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     resNorm = norm(r) / bnrm2;
     // Caution : transform the scalar resVec into vector resVec !
     resVec = [resVec;resNorm];
-    if (resNorm <= tol) then 
-      if (verbose==1) then
-        printf("  New residual = "+string(resNorm)+" < tol ="+string(tol)+" => break\n");
-      end
-      break;
-    end 
     rho_1 = rho;
   end
   // test for convergence
@@ -259,6 +269,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
       warning(msprintf(gettext("%s: Convergence error.\n"),"pcg"));
     end
   else
+    flag = 0;
     if (verbose==1) then
       printf("Algorithm pass\n");
     end
