@@ -400,6 +400,9 @@ proc createmenues {} {
         eval "$pad.filemenu.options.messageboxes add radiobutton \
             [me "Copied in a &message box"] \
              -value true -variable ScilabErrorMessageBox"
+    eval "$pad.filemenu.options add check [me "Show closure &X"] \
+      -command {toggleclosureXcross}\
+      -offvalue false -onvalue true -variable showclosureXcross"
 
     # windows menu
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"]

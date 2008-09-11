@@ -100,6 +100,7 @@ proc textbox {textfile {wtitle ""}} {
     set tbox $pad.textbox
     catch {destroy $tbox}
     toplevel $tbox
+    setscipadicon $tbox
     wm title $tbox $wtitle
     wm withdraw $tbox
     frame $tbox.f1

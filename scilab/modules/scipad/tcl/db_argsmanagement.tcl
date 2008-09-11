@@ -79,6 +79,7 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
 
     set adda $w.adda
     toplevel $adda
+    setscipadicon $adda
     if {!$calledfromwatch_exps} {
         wm title $adda [mc "Add/Change"]
     } else {

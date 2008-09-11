@@ -45,6 +45,7 @@ proc findtextdialog {typ} {
     set find $pad.find
     catch {destroy $find}
     toplevel $find
+    setscipadicon $find
     wm title $find [mc "Find"]
     wm withdraw $find
     # cancelfind must be called when closing the dialog with the upper right

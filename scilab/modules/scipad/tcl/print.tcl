@@ -47,6 +47,7 @@ proc printsetup_unix {} {
     set print $pad.print
     catch {destroy $print}
     toplevel $print
+    setscipadicon $print
     wm title $print [mc "Print Setup"]
     wm withdraw $print
 

@@ -25,7 +25,7 @@
 #
 
 # Scipad texts in French by Francois Vogel
-# in sync at least with v6.155
+# in sync at least with v7.0
 
 
 # commons
@@ -48,6 +48,7 @@
 
 # buffernavigation.tcl
 ::msgcat::mcset fr_fr "Hide" "Cacher"
+::msgcat::mcset fr_fr "Close file (all tiles)" "Fermer ce fichier (toutes les vues)"
 ::msgcat::mcset fr_fr "Close this tile, keep content" "Fermer cette vue, conserver le contenu"
 ::msgcat::mcset fr_fr "Close this tile" "Fermer cette vue"
 ::msgcat::mcset fr_fr "Goto Line?" "Aller à la ligne ?"
@@ -636,6 +637,7 @@
     ::msgcat::mcset fr_fr "Execution &errors" "E&rreurs d'exécution"
         ::msgcat::mcset fr_fr "In Scilab &shell only" "Dans la fenêtre &Scilab seulement"
         ::msgcat::mcset fr_fr "Copied in a &message box" "Recopiées dans une &boîte de dialogue"
+    ::msgcat::mcset fr_fr "Show closure &X" "&Afficher la commande de fermeture"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset fr_fr "&Maximize" "&Maximiser"

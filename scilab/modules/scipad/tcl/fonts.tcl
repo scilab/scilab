@@ -71,6 +71,7 @@ proc choosefonts {} {
     set fch $pad.fch
     catch {destroy $fch}
     toplevel $fch
+    setscipadicon $fch
     wm title $fch [mc "Choose font"]
     wm withdraw $fch
 

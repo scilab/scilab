@@ -52,6 +52,7 @@ proc showwatch_bp {} {
         frame $watch
     } else {
         toplevel $watch
+        setscipadicon $watch
         wm title $watch [mc "Watch"]
         # hide the window until all elements are drawn, this avoids a flash
         # when positioning the window on screen

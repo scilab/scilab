@@ -57,6 +57,7 @@ proc configurefoo_bp {} {
     set conf $pad.conf
     catch {destroy $conf}
     toplevel $conf
+    setscipadicon $conf
     wm title $conf [mc "Configure execution"]
     # the configure box will be deiconified later selectively,
     # depending on the type of file (.sce, .sci, mixed)

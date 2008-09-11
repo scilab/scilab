@@ -187,7 +187,7 @@ proc closecurtile {quittype} {
 # the file information)
 # if the current textarea has no peers, the normal confirmation
 # process is required (which is required to prevent the user from
-# loosing data
+# loosing data)
     if {[llength [getpeerlist [gettextareacur]]] >= 1} {
         closecur "NoSaveQuestion"
     } else {
@@ -438,6 +438,7 @@ proc opensourceof {} {
     set opensof $pad.opensof
     catch {destroy $opensof}
     toplevel $opensof
+    setscipadicon $opensof
     wm withdraw $opensof
     wm title $opensof [mc "Open source of..."]
 

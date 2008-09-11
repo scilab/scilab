@@ -111,6 +111,7 @@ proc showbptgui_bp {} {
     set rhccolweight 1
 
     toplevel $bptsgui
+    setscipadicon $bptsgui
     wm title $bptsgui [mc "Breakpoints properties"]
     wm withdraw $bptsgui
     wm protocol $bptsgui WM_DELETE_WINDOW {closebptsgui}

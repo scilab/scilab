@@ -286,6 +286,7 @@ proc displaymatchresultswin {} {
     } else {
         catch {destroy $matchres}
         toplevel $matchres
+        setscipadicon $matchres
         updatematchrestitle ""
         # prevent from closing using the upper right cross
         wm protocol $matchres WM_DELETE_WINDOW {#}

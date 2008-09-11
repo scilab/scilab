@@ -124,7 +124,7 @@
 
 proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore ""}} {
 # this packs a textarea buffer in a new pane that will be added in an existing panedwindow
-    global pad textfontsize menuFont linenumbersmargins wordWrap
+    global pad textfontsize menuFont linenumbersmargins wordWrap showclosureXcross
     global Tk85
 
     # everything is packed in a frame whose name is provided by createpaneframename
@@ -148,7 +148,7 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
         -command "hidetext $textarea"
     pack $tapwfr.hibutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
 
-    # this is for the text widget, its margin, and the y scroll bar
+    # this is for the text widget, its margin, the close cross and the y scroll bar
     frame $tapwfr.top
     pack $tapwfr.top -side top -expand 1 -fill both
 
@@ -156,7 +156,7 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     frame $tapwfr.topleft
     pack $tapwfr.topleft   -in $tapwfr.top    -side left   -expand 1 -fill both
 
-    # this is where the y scrollbar is packed
+    # this is where the close cross and the y scrollbar are packed
     frame $tapwfr.topright
     pack  $tapwfr.topright -in $tapwfr.top    -side right  -expand 0 -fill both 
 
@@ -176,6 +176,14 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     }
 
     $targetpw paneconfigure $tapwfr -after $whereafter -before $wherebefore
+
+    canvas $tapwfr.clcanvas -width 18 -height 18 -background lightgrey
+    $tapwfr.clcanvas create line 6 6 14 14 -width 2
+    $tapwfr.clcanvas create line 6 14 14 6 -width 2
+    bind $tapwfr.clcanvas <Button-1> "focustextarea $textarea; closecurfile yesnocancel"
+
+    bind $tapwfr.clcanvas  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close file (all tiles)\"\]"
+    bind $tapwfr.clcanvas  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close file (all tiles)\"\]"
 
     scrollbar $tapwfr.yscroll -command "$textarea yview" -takefocus 0
     if {$wordWrap == "none"} {
@@ -200,10 +208,13 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     bind $tapwfr.hibutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
     pack $tapwfr.panetitle -in $tapwfr.topbar -expand 1 -fill none
 
-    pack $textarea       -in $tapwfr.topleft  -side left   -expand 1 -fill both
-    pack $tapwfr.yscroll -in $tapwfr.topright -side right  -expand 1 -fill y
+    pack $textarea            -in $tapwfr.topleft  -side left   -expand 1 -fill both
+    if {$showclosureXcross} {
+        pack $tapwfr.clcanvas -in $tapwfr.topright -side top    -expand 0
+    }
+    pack $tapwfr.yscroll      -in $tapwfr.topright -side right  -expand 1 -fill y
     if {$wordWrap == "none"} {
-        pack $tapwfr.xscroll -in $tapwfr.bottom   -side bottom -expand 1 -fill x
+        pack $tapwfr.xscroll  -in $tapwfr.bottom   -side bottom -expand 1 -fill x
     }
 
     if {[gettotnbpanes] > 1 || $forcetitlebar == 1} {
@@ -245,6 +256,10 @@ proc packbuffer {textarea} {
 
     $curtapwfr.clbutton configure -command "focustextarea $textarea; closecurtile yesnocancel"
     $curtapwfr.hibutton configure -command "hidetext $textarea"
+    bind $curtapwfr.clcanvas  <Button-1> "focustextarea $textarea; closecurfile yesnocancel"
+
+    bind $curtapwfr.clcanvas  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close file (all tiles)\"\]"
+    bind $curtapwfr.clcanvas  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close file (all tiles)\"\]"
 
     bind $curtapwfr.topbar    <ButtonRelease-1> "focustextarea $textarea"
     bind $curtapwfr.panetitle <ButtonRelease-1> "focustextarea $textarea"
@@ -267,6 +282,29 @@ proc packbuffer {textarea} {
     $textarea configure -yscrollcommand "managescroll $curtapwfr.yscroll"
 
     set pwframe($textarea) $curtapwfr
+}
+
+proc toggleclosureXcross {} {
+# toggle show/hide the closure X cross of each displayed textarea
+    global showclosureXcross listoftextarea
+    if {$showclosureXcross} {
+        # display
+        foreach ta $listoftextarea {
+            if {[isdisplayed $ta]} {
+                set tapwfr [getpaneframename $ta]
+                pack $tapwfr.clcanvas -in $tapwfr.topright -side top    -expand 0
+                pack configure $tapwfr.yscroll      -in $tapwfr.topright -side right  -expand 1 -fill y
+            }
+        }
+    } else {
+        # hide
+        foreach ta $listoftextarea {
+            if {[isdisplayed $ta]} {
+                set tapwfr [getpaneframename $ta]
+                pack forget $tapwfr.clcanvas
+            }
+        }
+    }
 }
 
 proc montretext {textarea} {
@@ -715,7 +753,7 @@ proc destroypaneframe {textarea {hierarchy "destroyit"}} {
 # the optional argument $hierarchy might be "destroyit" or
 # "nohierarchydestroy", the former being the normal mode, and the
 # latter being used when repacking to tell this proc not to destroy
-# the conatining panedwindow itself if there is no remaining pane
+# the containing panedwindow itself if there is no remaining pane
     global pad pwframe
 
     # remove scrollbars commands so that an unpacked textarea does not
@@ -1530,6 +1568,7 @@ proc gotoline {} {
     set gotln $pad.gotln
     catch {destroy $gotln}
     toplevel $gotln
+    setscipadicon $gotln
     wm title $gotln [mc "Goto Line?"]
     wm withdraw $gotln
 
