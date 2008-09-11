@@ -476,19 +476,34 @@ supernodal_frontal_create(int* firstcol_in_supernode,
   tmp->up_vertices = rowind + sn_size;
 
   if (tmp->sn_size > 0)
+  {
 	  tmp->f1 = (double*)CALLOC((tmp->sn_size)*(tmp->sn_size),sizeof(double));
+  }
   else
+  {
 	iDontCheckf1 = 1;
+	tmp->f1 = NULL;
+  }
 
   if (tmp->sn_size  > 0 && tmp->up_size > 0)
+  {
 	  tmp->f2 = (double*)CALLOC((tmp->up_size)*(tmp->sn_size),sizeof(double));
+  }
   else
+  {
 	iDontCheckf2 = 1;
-
+	tmp->f2 = NULL;
+  }
+  
   if (tmp->up_size > 0)
+  {
 	  tmp->u  = (double*)CALLOC((tmp->up_size)*(tmp->up_size),sizeof(double));
+  }
   else
+  {
 	iDontChecku = 1;
+	tmp->u = NULL;
+  }
 
   /*check allocation only if size is > 0 */
   if( (tmp->f1 == NULL && iDontCheckf1 == 0) || 
