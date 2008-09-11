@@ -960,7 +960,7 @@ msgid "The first %d singular values may be incorrect.\n"
 msgstr "Les premières %d valeurs singulières sont peut être incorrectes.\n"
 
 msgid "Warning:  Result may be inaccurate.\n"
-msgstr "Attention: Le résultat est peut être inexacte.\n"
+msgstr "Attention: Le résultat est peut être inexact.\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
