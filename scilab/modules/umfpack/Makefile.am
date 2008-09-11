@@ -89,6 +89,7 @@ examples/arc130.rua \
 examples/young1c.csa \
 examples/scisptdem1.dem \
 examples/scisptdem3.dem \
+examples/utm300.rua \
 examples/ex14.rua
 
 

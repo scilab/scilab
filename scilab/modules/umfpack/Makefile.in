@@ -435,6 +435,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@examples/young1c.csa \
 @UMFPACK_TRUE@examples/scisptdem1.dem \
 @UMFPACK_TRUE@examples/scisptdem3.dem \
+@UMFPACK_TRUE@examples/utm300.rua \
 @UMFPACK_TRUE@examples/ex14.rua
 
 
