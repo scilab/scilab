@@ -14,8 +14,12 @@ Scilab a better software.
 	- Genetic algorithm
 	- Generic probabilistic meta-algorithm
 	- Param/parameters module
+	- French localization
 	- Bug reports
 	- Bug Fixes
+
+* Arnaud Dessein
+	- French localization
 
 * Markus Dittrich 
 	- Misc patches for Gentoo
