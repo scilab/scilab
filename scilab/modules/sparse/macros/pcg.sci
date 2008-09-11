@@ -8,7 +8,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, varargin)
+function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x0, verbose)
 // PCG solves the symmetric positive definite linear system %Ax=b 
 // using the Preconditionned Conjugate Gradient.
 //
@@ -20,6 +20,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, varargin)
 //         %M, optional       REAL preconditioner matrix (default: none)
 //         %M2, optional      REAL preconditioner matrix (default: none)
 //         x0, optional       REAL initial guess vector (default: the zero vector)
+//         verbose, optional  INTEGER set to 1 to enable verbose logging (default : 0)
 //
 // output  x        REAL solution vector
 //         flag     INTEGER: 0 = solution found to tolerance
@@ -49,30 +50,35 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, varargin)
   if (rhs > 7),
 	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"pcg",2,7));
   end
-  if (rhs >= 3) then
-     tol = varargin(1)
-  else
+  if exists('tol','local')==0 then
      tol = 1e-8
   end
-  if (rhs >= 4) then
-     maxIter = varargin(2)
-  else
+  if exists('maxIter','local')==0 then
      maxIter = size(%b,1)
   end
-  if (rhs >= 5) then
-     %M = varargin(3)
-  else
+  if exists('%M','local')==0 then
      %M=[]
   end
-  if (rhs >= 6) then
-     %M2 = varargin(4)
-  else
+  if exists('%M2','local')==0 then
      %M2=[]
   end
-  if (rhs >= 7) then
-     x = varargin(5)
-  else
+ if exists('x','local')==0 then
      x=zeros(%b);
+  end
+  if exists('verbose','local')==0 then
+     verbose=0;
+  end
+  if (verbose==1) then
+    printf("Arguments:\n");
+    printf("  tol="+string(tol)+"\n");
+    printf("  maxIter="+string(maxIter)+"\n");
+    printf("  M=\n")
+    disp(%M)
+    printf("  M2=\n");
+    disp(%M2)
+    printf("  x=\n");
+    disp(x)
+    printf("  verbose="+string(verbose)+"\n");
   end
   // Compute matrixType
   select type(%A)
@@ -154,8 +160,8 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, varargin)
     %M2=%M2(1);
     precondType = 2;
   else
-	error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",6));
-   end
+    error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",6));
+  end
   if (precondBis == 1),
     if (size(%M2,1) ~= size(%M2,2)),
 	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"pcg",6));
@@ -192,7 +198,13 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, varargin)
   resVec = resNorm;
   if (resNorm < tol) then return; end
   // begin iteration
-  for iter = 1:maxIter
+  // Distinguish the number of iterations processed from the currentiter index
+  iter = 0
+  for currentiter = 1:maxIter
+    iter = iter + 1
+    if (verbose==1) then
+      printf("  Iteration #"+string(currentiter)+"/"+string(maxIter)+" residual : "+string(resNorm)+"\n");
+    end
     // z  = %M \ r;
     if (precondType == 1),
       z = %M \ r;
@@ -210,7 +222,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, varargin)
       z = r;
     end
     rho = (r'*z);
-    if (iter > 1) then
+    if (currentiter > 1) then
       bet = rho / rho_1;
       p = z + bet*p;
     else
@@ -229,15 +241,26 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, varargin)
     // Caution : transform the scalar resVec into vector resVec !
     resVec = [resVec;resNorm];
     if (resNorm <= tol) then 
+      if (verbose==1) then
+        printf("  New residual = "+string(resNorm)+" < tol ="+string(tol)+" => break\n");
+      end
       break;
     end 
     rho_1 = rho;
   end
   // test for convergence
   if (resNorm > tol) then
+      if (verbose==1) then
+        printf("Final residual = "+string(resNorm)+" > tol ="+string(tol)+"\n");
+        printf("Algorithm fails\n");
+      end
     flag = 1; 
     if (lhs < 2) then 
       warning(msprintf(gettext("%s: Convergence error.\n"),"pcg"));
+    end
+  else
+    if (verbose==1) then
+      printf("Algorithm pass\n");
     end
   end
 endfunction
