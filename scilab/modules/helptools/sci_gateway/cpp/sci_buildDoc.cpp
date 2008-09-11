@@ -73,20 +73,20 @@ static void __slashToAntislash(std::string *in)
       }
     else
       {
-	if (GetType(1) != sci_strings)
-	  {
-	    Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
-	    return 0;
-	    // Wrong type string
-	  }
-
-	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-	exportFormat = cstk(l1);
+		  if (GetType(1) != sci_strings)
+			  {
+				  Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
+				  return 0;
+				  // Wrong type string
+			  }
+		  
+		  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+		  exportFormat = cstk(l1);
       }
 
     if ( Rhs < 3) /* Language not provided */
       {
-	language = getlanguage();
+		  language = getlanguage();
       }
     else
       {
@@ -103,9 +103,9 @@ static void __slashToAntislash(std::string *in)
 
     if (Rhs < 2)
       {
-	/* Update the path with the localization */
-	masterXMLTMP = std::string("/modules/helptools/master_")+language+std::string("_help.xml");
-	masterXML = SciPath + masterXMLTMP;
+		  /* Update the path with the localization */
+		  masterXMLTMP = std::string("/modules/helptools/master_")+language+std::string("_help.xml");
+		  masterXML = SciPath + masterXMLTMP;
       }
     else
       {
@@ -159,14 +159,14 @@ static void __slashToAntislash(std::string *in)
 	  }
 	else
 	  {
-	    Scierror(999,_("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
-            return FALSE;
+		  Scierror(999,_("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
+		  return FALSE;
 	  }
       }
     catch(GiwsException::JniException ex)
       {
-	Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
-        return FALSE;
+		  Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
+		  return FALSE;
       }
 
     if (doc != NULL) delete doc;
