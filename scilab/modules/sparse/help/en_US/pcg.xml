@@ -301,7 +301,7 @@
     <para>The following example shows how to pass arguments with the
     "key=value" syntax. This allows to set non-positionnal arguments, that is,
     to set arguments which are not depending on their order in the list of
-    arguments. The available keys are the names of the optionnal arguments,
+    arguments. The available keys are the names of the optional arguments,
     that is : tol, maxIter, %M, %M2, x0, verbose. Notice that, in the
     following example, the verbose option is given before the maxIter option.
     Without the "key=value" syntax, the positionnal arguments would require
