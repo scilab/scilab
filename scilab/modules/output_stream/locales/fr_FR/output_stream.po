@@ -974,7 +974,7 @@ msgstr "les vecteurs propres sont mal conditionnés.\n"
 
 #, c-format
 msgid "results may be inaccurate. rcond = %s\n"
-msgstr "les résultats sont peut être inexactes. rcond = %s\n"
+msgstr "les résultats sont peut être inexacts. rcond = %s\n"
 
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Attention: utilisation obsolète de '=' à la place de '=='.\n"
