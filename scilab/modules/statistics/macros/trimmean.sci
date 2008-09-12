@@ -6,7 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-function t=trimmean(x,discard,orien)
+function t=trimmean(x,discard,orien, verbose)
 //
 //A  trimmed mean  is calculated  by discarding  a certain
 //percentage of the lowest and the highest scores and then
@@ -70,41 +70,66 @@ function t=trimmean(x,discard,orien)
 // modified by Bruno Pincon 2006-08-12 (to fix bug 2083)
 
   [lhs,rhs]=argn()
-  if rhs < 2 | rhs > 3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"trimmean",2,3)), end
-    
-  if type(discard)~=1 | ~isreal(discard) | length(discard) ~=1 | discard > 100 | discard < 0 then 
-	error(msprintf(gettext("%s: Wrong value for input argument #%d: Real number between %d to %d expected.\n"),"trimmean",2,0,100))
+  if rhs < 1 | rhs > 4 then 
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"trimmean",1,4))
   end
- 
-  if rhs == 3 then
-     if orien=='r' | orien==1 then
-        sizx=size(x,'r'); orient = 'r'
-     elseif orien=='c' | orien==2 then
-        sizx=size(x,'c'); orient = 'c'
-     else
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"trimmean",3,"c","r",1,2))
-     end
+    
+  if exists('discard','local')==0 then
+     discard = 50.
   else
-     sizx = length(x); orient = 'all'
+    if type(discard)~=1 | ~isreal(discard) | length(discard) ~=1 | discard > 100 | discard < 0 then
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Real number between %d to %d expected.\n"),"trimmean",2,0,100))
+    end
+  end
+  if exists('orien','local')==0 then
+     orien = 'all'
+  end
+  if exists('verbose','local')==0 then
+     verbose=0;
+  end
+  // Compute sizx
+  if (orien=='r' | orien==1) then
+    sizx=size(x,'r')
+  elseif (orien=='c' | orien==2) then
+    sizx=size(x,'c')
+  elseif (orien == 'all') then
+    sizx = length(x)
+  else
+    error(msprintf(gettext("Wrong value for input argument orien: %s.\n"),string(orien)))
   end
   
-  if sizx==0 then, t=%nan, return, end
+  if sizx==0 then
+    if (verbose==1) then
+      printf(gettext("Size of x is zero : returning NaN.\n"));
+    end  
+    t=%nan
+    return
+  end
   
   nomdis = floor(sizx*discard/200)
   k1 = 1 + nomdis
   k2 = sizx - nomdis
-  if k2 < k1 then, [k1,k2] = (k2,k1), end
+  if k2 < k1 then
+    [k1,k2] = (k2,k1)
+  end
   nb = k2-k1+1
-  
-  if orient == 'all' then
+  if (verbose==1) then
+    printf(gettext("discard=%s\n"),string(discard));
+    printf(gettext("orien=%s\n"),string(orien));
+    printf(gettext("Size of x:%i\n"),sizx);
+    printf(gettext("Keeping %i values from %i to %i in sorted order\n"),nb,k1,k2);
+  end  
+  if orien == 'all' then
      x = sort(x)
      t = sum(x(k1:k2)) / nb
-  elseif orient == 'r' then
+  elseif (orien=='r' | orien==1) then
      x = sort(x,'r')
      t = sum(x(k1:k2,:),'r') / nb
-  else
+  elseif (orien=='c' | orien==2) then
      x = sort(x,'c')
      t = sum(x(:,k1:k2),'c') / nb
+  else
+     error(msprintf(gettext("Unexpected value of orien : %s\n"),string(orien)))
   end
 endfunction
 
