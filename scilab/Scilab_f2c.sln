@@ -23,6 +23,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "statistics", "modules\statistics\src\c\statistics.vcproj", "{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0} = {18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab_f2c", "libs\LibScilab\LibScilab_f2c.vcproj", "{64BC155E-292F-484F-9404-76EE6AE67A43}"
@@ -578,9 +580,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "special_functions_f2c", "mo
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd_f2c", "modules\statistics\src\dcdflib\dcd_f\dcd_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd_f2c_DLL", "modules\statistics\src\dcdflib\dcd_f\dcd_DLL_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_f2c", "modules\string\src\fortran\string_f2c.vcproj", "{FAF6A7EB-8A36-4278-B34E-34EA89E55304}"

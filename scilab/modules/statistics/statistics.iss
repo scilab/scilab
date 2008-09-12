@@ -15,6 +15,9 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define STATS "statistics"
+
+Source: bin\statistics.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
+Source: bin\dcd.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATS}\VERSION.xml; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\readme.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}

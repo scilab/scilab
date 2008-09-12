@@ -8,7 +8,6 @@
 @del /Q core_f.vcdef
 @del /Q data_structures.vcdef
 @del /Q data_structures_f.vcdef
-@del /Q dcd_f.vcdef
 @del /Q differential_equations.vcdef
 @del /Q differential_equations_f.vcdef
 @del /Q double.vcdef
@@ -24,4 +23,4 @@
 @del /Q sparse.vcdef
 @del /Q special_functions.vcdef
 @del /Q special_functions_f.vcdef
-@del /Q statistics.vcdef
+

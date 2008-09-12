@@ -34,6 +34,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "statistics", "modules\statistics\src\c\statistics.vcproj", "{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0} = {18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab\LibScilab.vcproj", "{64BC155E-292F-484F-9404-76EE6AE67A43}"
@@ -512,7 +514,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cacsd", "modules\cacsd\src\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "dcd_f", "modules\statistics\src\dcdflib\dcd_f\dcd_f.vfproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "dcd_DLL", "modules\statistics\src\dcdflib\dcd_f\dcd_DLL.vfproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69296D00-0DE1-4F4B-B0CE-FE4F3CB43923} = {69296D00-0DE1-4F4B-B0CE-FE4F3CB43923}
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9} = {78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}
+	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "linear_algebra_f", "modules\linear_algebra\src\fortran\linear_algebra_f.vfproj", "{3735EFF9-925B-45B1-82CF-762658E69E70}"
 	ProjectSection(ProjectDependencies) = postProject
