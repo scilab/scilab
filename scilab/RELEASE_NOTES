@@ -1,5 +1,9 @@
-                      Scilab 5.0 Release_Notes
-                      ========================
+                      Scilab 5.0.1 Release_Notes
+                      ==========================
+
+Reason of Scilab-5.0.1: In the binary, a file was missing which was causing some 
+issues while handling Mat-Files. Please note that the Windows binary and sources
+releases are not impacted by this change.
 
 List of missing/buggy features:
 
