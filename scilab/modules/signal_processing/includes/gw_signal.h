@@ -48,7 +48,6 @@ int dfftmx ( double* _pdblA , double* _pdblB , int _iNtot, int _iN, int _iNspan,
              int* _piBt, int* _piSk ,int* _piNp, int* _piNfac);
 /* under functions used by dfftmx */
    void preliminaryWork (void);
-   void preliminaryWork (void);
    void permute_stage1 (void);
    void permute_stage2 (void);
    void f4t_150 (void);
