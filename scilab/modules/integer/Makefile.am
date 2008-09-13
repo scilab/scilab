@@ -114,8 +114,8 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
-libsciinteger_la_CFLAGS=  	-Iincludes/ \
-				-I$(top_builddir)/modules/output_stream/includes/
+libsciinteger_la_CFLAGS=  	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libsciinteger.la
 

@@ -94,8 +94,8 @@ sci_gateway/fortran/sci_vec2var.f
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
-libsciscicos_la_CFLAGS= -Iincludes/ \
-			-Isrc/scicos_sundials/ \
+libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/scicos_sundials/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -348,28 +348,28 @@ modelicac_SOURCES = $(MLS)
 
 OCAMLLIBS=nums.cma
 
-MLS = src/modelica_compiler/parseTree.ml src/modelica_compiler/linenum.ml src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml\
-	src/modelica_compiler/precompilation.ml src/modelica_compiler/compilation.ml src/modelica_compiler/instantiation.ml\
-	src/modelica_compiler/graphNodeSet.ml src/modelica_compiler/symbolicExpression.ml\
-	src/modelica_compiler/squareSparseMatrix.ml src/modelica_compiler/bipartiteGraph.ml src/modelica_compiler/hungarianMethod.ml\
-	src/modelica_compiler/causalityGraph.ml\
-	src/modelica_compiler/optimization.ml  src/modelica_compiler/xMLCodeGeneration.ml src/modelica_compiler/optimizingCompiler.ml\
-	src/modelica_compiler/scicosCodeGeneration.ml src/modelica_compiler/scicosOptimizingCompiler.ml
+MLS = $(srcdir)/src/modelica_compiler/parseTree.ml $(srcdir)/src/modelica_compiler/linenum.ml $(srcdir)/src/modelica_compiler/parser.ml $(srcdir)/src/modelica_compiler/lexer.ml\
+	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
+	$(srcdir)/src/modelica_compiler/graphNodeSet.ml $(srcdir)/src/modelica_compiler/symbolicExpression.ml\
+	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml $(srcdir)/src/modelica_compiler/bipartiteGraph.ml $(srcdir)/src/modelica_compiler/hungarianMethod.ml\
+	$(srcdir)/src/modelica_compiler/causalityGraph.ml\
+	$(srcdir)/src/modelica_compiler/optimization.ml  $(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml $(srcdir)/src/modelica_compiler/optimizingCompiler.ml\
+	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
-MLIS = src/modelica_compiler/parseTree.mli \
-	src/modelica_compiler/precompilation.mli src/modelica_compiler/compilation.mli src/modelica_compiler/instantiation.mli\
-	src/modelica_compiler/graphNodeSet.mli src/modelica_compiler/symbolicExpression.mli \
-	src/modelica_compiler/squareSparseMatrix.mli src/modelica_compiler/bipartiteGraph.mli src/modelica_compiler/hungarianMethod.mli \
-	src/modelica_compiler/causalityGraph.mli \
-	src/modelica_compiler/optimization.mli \
-	src/modelica_compiler/xMLCodeGeneration.mli \
-	src/modelica_compiler/optimizingCompiler.mli \
-	src/modelica_compiler/scicosCodeGeneration.mli
+MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
+	$(srcdir)/src/modelica_compiler/precompilation.mli $(srcdir)/src/modelica_compiler/compilation.mli $(srcdir)/src/modelica_compiler/instantiation.mli\
+	$(srcdir)/src/modelica_compiler/graphNodeSet.mli $(srcdir)/src/modelica_compiler/symbolicExpression.mli \
+	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli $(srcdir)/src/modelica_compiler/bipartiteGraph.mli $(srcdir)/src/modelica_compiler/hungarianMethod.mli \
+	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
+	$(srcdir)/src/modelica_compiler/optimization.mli \
+	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
+	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
+	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
 
 
-PARSER_SRC = src/modelica_compiler/parser.mly
-LEXER_SRC = src/modelica_compiler/lexer.mll
-BASE_PATH = src/modelica_compiler
+PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
+LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
+BASE_PATH = $(srcdir)/src/modelica_compiler
 INCLUDE = -I $(BASE_PATH)
 
 SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx

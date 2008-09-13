@@ -43,9 +43,9 @@ MATIO_C_SOURCES = src/nomatio/nomatio.c
 
 endif
 
-libscimatio_la_CFLAGS = -Iincludes/ \
-			-Isrc/c/ \
-			-Isrc/matio/ \
+libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/matio/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			$(MATIO_CFLAGS)

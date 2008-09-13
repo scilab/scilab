@@ -22,13 +22,13 @@ endif
 
 pkglib_LTLIBRARIES = libscihelptools.la
 
-libscihelptools_la_CFLAGS=  	-Iincludes/ 
+libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ 
 
 libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
-				-Isrc/jni/ \
-				-Iincludes/ \
+				-I$(srcdir)/src/jni/ \
+				-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes \
-				-I$(top_builddir)/modules/output_stream/includes/
+				-I$(top_srcdir)/modules/output_stream/includes/
 
 libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 

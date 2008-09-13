@@ -1,3 +1,7 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006
+##########
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
 

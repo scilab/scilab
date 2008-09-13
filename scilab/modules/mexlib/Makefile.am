@@ -5,14 +5,14 @@
 
 MEXLIB_C_SOURCES = src/c/mexlib.c
 
-MEXLIB_FLAGS = -Iincludes/ -I$(top_builddir)/modules/output_stream/includes/
+MEXLIB_FLAGS = -I$(srcdir)/includes/ -I$(top_srcdir)/modules/output_stream/includes/
 
 MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
 
 
 MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-$(top_builddir)/modules/data_structures/libscidata_structures.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
     $(top_builddir)/modules/string/libscistring.la
 

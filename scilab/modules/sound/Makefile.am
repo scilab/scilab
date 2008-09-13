@@ -13,8 +13,8 @@ sci_gateway/c/gw_sound.c \
 sci_gateway/c/sci_beep.c \
 sci_gateway/c/sci_PlaySound.c
 
-libscisound_la_CFLAGS=  -Iincludes/ \
-			-Isrc/c/ \
+libscisound_la_CFLAGS=  -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 

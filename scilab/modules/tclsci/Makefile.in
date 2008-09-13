@@ -411,9 +411,9 @@ top_srcdir = @top_srcdir@
 
 @TCLTK_TRUE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_TRUE@libscitclsci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
-@TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ \
-@TCLTK_TRUE@			-Isrc/c \
-@TCLTK_TRUE@			-Isci_gateway/c/ \
+@TCLTK_TRUE@libscitclsci_la_CFLAGS = -I$(srcdir)/includes/ \
+@TCLTK_TRUE@			-I$(srcdir)/src/c \
+@TCLTK_TRUE@			-I$(srcdir)/sci_gateway/c/ \
 @TCLTK_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @TCLTK_TRUE@			$(TCL_INC_PATH) \
 @TCLTK_TRUE@			$(TK_INC_PATH) \

@@ -216,9 +216,9 @@ demos/wheel/wheel2.dem.sce \
 demos/wheel/x.wrt
 
 
-libscidifferential_equations_la_CFLAGS=  	-Iincludes/ \
--I$(top_builddir)/modules/output_stream/includes \
--I$(top_builddir)/modules/dynamic_link/includes
+libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la
 

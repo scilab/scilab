@@ -452,7 +452,7 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
 @PVM_FALSE@libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/
-@PVM_TRUE@libscipvm_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/  -I$(top_srcdir)/modules/output_stream/includes/
+@PVM_TRUE@libscipvm_la_CFLAGS = -I$(srcdir)/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  -I$(top_srcdir)/modules/output_stream/includes/
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_FALSE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

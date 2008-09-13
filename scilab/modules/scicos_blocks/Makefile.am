@@ -397,14 +397,14 @@ src/fortran/zcross.f
 
 
 
-libsciscicos_blocks_la_CFLAGS= -Iincludes/ \
+libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/scicos/includes \
-                        -I$(top_srcdir)/modules/elementary_functions/includes
+            -I$(top_srcdir)/modules/elementary_functions/includes
 
 
 libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \

@@ -527,8 +527,8 @@ sci_gateway/fortran/sci_lusolve.f \
 sci_gateway/fortran/sci_fadj2sp.f \
 sci_gateway/fortran/sci_sfinit.f
 
-libscisparse_la_CFLAGS = -Iincludes/ \
-				-I$(top_builddir)/modules/output_stream/includes
+libscisparse_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisparse.la

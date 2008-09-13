@@ -29,9 +29,9 @@ sci_gateway/c/sci_splin3d.c \
 sci_gateway/c/sci_bsplin3val.c \
 sci_gateway/c/sci_eval_cshep2d.c
 
-libsciinterpolation_la_FFLAGS=  -Iincludes/
-libsciinterpolation_la_CFLAGS= 	-Iincludes/ \
-				-Isrc/c/ \
+libsciinterpolation_la_FFLAGS=  -I$(srcdir)/includes/
+libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
                 -I$(top_srcdir)/modules/string/includes

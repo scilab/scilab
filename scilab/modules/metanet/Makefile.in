@@ -472,7 +472,7 @@ sci_gateway/fortran/sci_m6umtree1.f \
 sci_gateway/fortran/sci_m6umtree.f \
 sci_gateway/fortran/sci_m6visitor.f
 
-libscimetanet_la_CFLAGS = -Iincludes/ \
+libscimetanet_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \

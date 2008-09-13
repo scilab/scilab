@@ -117,10 +117,10 @@ sci_gateway/fortran/Ex-optim.f \
 sci_gateway/fortran/Ex-fsolve.f \
 sci_gateway/fortran/Ex-lsqrsolve.f
 
-libscioptimization_la_CFLAGS=  	-Iincludes/ \
--I$(top_builddir)/modules/output_stream/includes \
--I$(top_builddir)/modules/dynamic_link/includes
-#-Isrc/c/
+libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes
+
 pkglib_LTLIBRARIES = libscioptimization.la
 
 libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

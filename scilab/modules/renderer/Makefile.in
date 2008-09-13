@@ -1085,9 +1085,9 @@ top_srcdir = @top_srcdir@
 
 # Includes need for the compilation
 @GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-@GUI_TRUE@				-Iincludes/ \
-@GUI_TRUE@				-Isrc/cpp/ \
-@GUI_TRUE@				-Isrc/jni/ \
+@GUI_TRUE@				-I$(srcdir)/includes/ \
+@GUI_TRUE@				-I$(srcdir)/src/cpp/ \
+@GUI_TRUE@				-I$(srcdir)/src/jni/ \
 @GUI_TRUE@				-I$(top_srcdir)/modules/jvm/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \

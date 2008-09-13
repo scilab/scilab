@@ -35,10 +35,10 @@ sci_gateway/c/sci_xs2pdf.c
 
 # Includes need for the compilation
 libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/cpp/ \
-				-Isrc/jni/ \
-				-Isrc/c/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/cpp/ \
+				-I$(srcdir)/src/jni/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/modules/jvm/includes \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/renderer/includes/ \

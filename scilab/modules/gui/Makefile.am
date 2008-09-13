@@ -157,9 +157,9 @@ sci_gateway/cpp/sci_setlookandfeel.cpp \
 sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
 sci_gateway/cpp/sci_getlookandfeel.cpp
 
-libscigui_la_CFLAGS=	-Isrc/c/ \
-			-Isrc/c/xsci/ \
-			-Iincludes/ \
+libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/c/xsci/ \
+			-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/core/src/c/ \
@@ -173,7 +173,7 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 			-I$(top_srcdir)/libs/hashtable \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-Isrc/cpp/ \
+			-I$(srcdir)/src/cpp/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
@@ -181,10 +181,10 @@ libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/string/includes/
 
 libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			-Iincludes/ \
-			-Isrc/cpp/ \
-			-Isrc/c/ \
-			-Isrc/jni/ \
+			-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/cpp/ \
+			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \

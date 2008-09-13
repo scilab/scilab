@@ -7,8 +7,8 @@
 libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-			-Iincludes/ \
-			-Isrc/c \
+			-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c \
 			$(XML_FLAGS) \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \

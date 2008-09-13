@@ -65,10 +65,10 @@ sci_gateway/c/sci_dsaupd.c \
 sci_gateway/c/sci_znaupd.c
 
 libsciarnoldi_la_CFLAGS= 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-Iincludes/ \
+				-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
-libsciarnoldi_la_FFLAGS= -Isrc/arpack/
+libsciarnoldi_la_FFLAGS= -I$(srcdir)/src/arpack/
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
 

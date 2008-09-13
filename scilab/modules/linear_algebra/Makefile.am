@@ -89,9 +89,9 @@ sci_gateway/c/sci_lsq.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
 sci_gateway/fortran/bschur.f
 
-libscilinear_algebra_la_CFLAGS=  	-Iincludes/ \
--I$(top_builddir)/modules/output_stream/includes \
--I$(top_builddir)/modules/dynamic_link/includes
+libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 

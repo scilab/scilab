@@ -36,9 +36,9 @@ libscispecial_functions_la_includedir=$(pkgincludedir)/special_functions
 libscispecial_functions_la_include_HEADERS = includes/gw_special_functions1.h \
 includes/gw_special_functions2.h
 
-libscispecial_functions_la_CFLAGS=  	-Iincludes/ \
--I$(top_builddir)/modules/elementary_functions/includes/ \
--I$(top_builddir)/modules/output_stream/includes/
+libscispecial_functions_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 

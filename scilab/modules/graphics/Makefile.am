@@ -6,9 +6,9 @@
 # the module Doublylinkedlist  is included here... of course, it is not
 # used in the mode without gui but It causes some silly problems with includes
 libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
-	-Iincludes/ \
-	-Isrc/c/ \
-	-Isrc/c/getHandleProperty/ \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/

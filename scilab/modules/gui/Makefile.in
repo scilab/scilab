@@ -738,7 +738,8 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
 
-@GUI_TRUE@libscigui_la_CFLAGS = -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ \
+@GUI_TRUE@libscigui_la_CFLAGS = -I$(srcdir)/src/c/ \
+@GUI_TRUE@	-I$(srcdir)/src/c/xsci/ -I$(srcdir)/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/libs/MALLOC/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/core/src/c/ \
@@ -751,16 +752,16 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@	-I$(top_srcdir)/libs/hashtable \
 @GUI_TRUE@	-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@	-I$(top_srcdir)/modules/dynamic_link/includes \
-@GUI_TRUE@	-Isrc/cpp/ \
+@GUI_TRUE@	-I$(srcdir)/src/cpp/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 @GUI_TRUE@	$(JAVA_JNI_INCLUDE) \
 @GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/string/includes/
 @GUI_TRUE@libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-@GUI_TRUE@			-Iincludes/ \
-@GUI_TRUE@			-Isrc/cpp/ \
-@GUI_TRUE@			-Isrc/c/ \
-@GUI_TRUE@			-Isrc/jni/ \
+@GUI_TRUE@			-I$(srcdir)/includes/ \
+@GUI_TRUE@			-I$(srcdir)/src/cpp/ \
+@GUI_TRUE@			-I$(srcdir)/src/c/ \
+@GUI_TRUE@			-I$(srcdir)/src/jni/ \
 @GUI_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/jni/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/includes/ \

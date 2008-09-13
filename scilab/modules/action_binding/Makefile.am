@@ -34,9 +34,9 @@ endif
 
 # Includes need for the compilation
 libsciaction_binding_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
--Iincludes/ \
--Isrc/c/ \
--Isrc/jni/ \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/jni/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes
 

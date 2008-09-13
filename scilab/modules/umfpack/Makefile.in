@@ -415,8 +415,8 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @UMFPACK_TRUE@	$(am__append_2) $(am__append_3)
 @UMFPACK_FALSE@libsciumfpack_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
-@UMFPACK_TRUE@libsciumfpack_la_CFLAGS = -Iincludes/ \
-@UMFPACK_TRUE@			-Isrc/c/ \
+@UMFPACK_TRUE@libsciumfpack_la_CFLAGS = -I$(srcdir)/includes/ \
+@UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/mexlib/includes

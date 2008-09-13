@@ -7,8 +7,8 @@
 WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
 
 # Includes need for the compilation
-libsciwindows_tools_la_CFLAGS=  -Iincludes/ \
-				-Isrc/c/ \
+libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 

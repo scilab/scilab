@@ -212,9 +212,9 @@ sci_gateway/fortran/sci_f_gspec.f \
 sci_gateway/fortran/sci_f_linmeq.f \
 sci_gateway/fortran/sci_f_rankqr.f
 
-libscicacsd_la_FFLAGS= -Iincludes/
-libscicacsd_la_CFLAGS= 	-Iincludes/ \
-			-I$(top_builddir)/modules/output_stream/includes/
+libscicacsd_la_FFLAGS= -I$(srcdir)/includes/
+libscicacsd_la_CFLAGS= 	-I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscicacsd.la
 

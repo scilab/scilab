@@ -350,8 +350,8 @@ sci_gateway/c/sci_getlanguage.c
 #sci_gateway/c/sci_addtext.c \
 #sci_gateway/c/sci_removetext.c
 libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/c/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/fileio/includes \

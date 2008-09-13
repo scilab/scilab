@@ -267,9 +267,9 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
 libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/cpp/ \
-				-Isrc/jni/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/cpp/ \
+				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/modules/jvm/includes \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \

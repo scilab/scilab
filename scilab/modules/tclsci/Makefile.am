@@ -40,9 +40,9 @@ pkglib_LTLIBRARIES = libscitclsci.la
 
 libscitclsci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
 
-libscitclsci_la_CFLAGS= -Iincludes/ \
-			-Isrc/c \
-			-Isci_gateway/c/ \
+libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c \
+			-I$(srcdir)/sci_gateway/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			$(TCL_INC_PATH) \
 			$(TK_INC_PATH) \

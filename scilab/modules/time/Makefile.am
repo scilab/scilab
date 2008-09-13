@@ -17,9 +17,9 @@ sci_gateway/c/sci_sleep.c \
 sci_gateway/c/sci_getdate.c \
 sci_gateway/c/gw_time.c
 
-libscitime_la_CFLAGS=  	-Iincludes/ \
+libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-Isrc/c/ \
+			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscitime.la

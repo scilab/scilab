@@ -22,8 +22,8 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/fileio/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
--Isrc/c/ \
--Iincludes/
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/includes/
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
 

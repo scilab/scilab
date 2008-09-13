@@ -9,7 +9,7 @@ libscidoublylinkedlist_la_includedir=$(pkgincludedir)/doublylinkedlist
 
 libscidoublylinkedlist_la_include_HEADERS = includes/DoublyLinkedList.h
 
-libscidoublylinkedlist_la_CFLAGS= -Isrc/ -Iincludes/
+libscidoublylinkedlist_la_CFLAGS= -I$(srcdir)/src/ -I$(srcdir)/includes/
 
 pkglib_LTLIBRARIES = libscidoublylinkedlist.la
 

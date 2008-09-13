@@ -343,8 +343,8 @@ sci_gateway/fortran/sci_mulf.f \
 sci_gateway/fortran/sci_ldivf.f \
 sci_gateway/fortran/sci_rdivf.f
 
-libscisymbolic_la_CFLAGS = -Iincludes/ \
-				-I$(top_builddir)/modules/output_stream/includes
+libscisymbolic_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la

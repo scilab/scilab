@@ -429,9 +429,9 @@ sci_gateway/c/sci_cdfbet.c \
 sci_gateway/c/sci_cdfnbn.c \
 sci_gateway/c/sci_cdfnor.c
 
-libscistatistics_la_CFLAGS = -Iincludes/ \
-				-Isrc/c/ \
-				-I$(top_builddir)/modules/output_stream/includes
+libscistatistics_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la

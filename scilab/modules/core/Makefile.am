@@ -302,8 +302,8 @@ sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS=  	-Iincludes/ \
-			-Isrc/c/ \
+libscicore_la_CFLAGS=  	-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
             -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \

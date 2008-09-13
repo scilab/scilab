@@ -240,23 +240,25 @@ libscisundials_la_OBJECTS = $(am_libscisundials_la_OBJECTS)
 @OCAML_TRUE@@SCICOS_TRUE@am__EXEEXT_1 = modelicac$(EXEEXT)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am__modelicac_SOURCES_DIST = src/modelica_compiler/parseTree.ml \
-	src/modelica_compiler/linenum.ml \
-	src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml \
-	src/modelica_compiler/precompilation.ml \
-	src/modelica_compiler/compilation.ml \
-	src/modelica_compiler/instantiation.ml \
-	src/modelica_compiler/graphNodeSet.ml \
-	src/modelica_compiler/symbolicExpression.ml \
-	src/modelica_compiler/squareSparseMatrix.ml \
-	src/modelica_compiler/bipartiteGraph.ml \
-	src/modelica_compiler/hungarianMethod.ml \
-	src/modelica_compiler/causalityGraph.ml \
-	src/modelica_compiler/optimization.ml \
-	src/modelica_compiler/xMLCodeGeneration.ml \
-	src/modelica_compiler/optimizingCompiler.ml \
-	src/modelica_compiler/scicosCodeGeneration.ml \
-	src/modelica_compiler/scicosOptimizingCompiler.ml
+am__modelicac_SOURCES_DIST =  \
+	$(srcdir)/src/modelica_compiler/parseTree.ml \
+	$(srcdir)/src/modelica_compiler/linenum.ml \
+	$(srcdir)/src/modelica_compiler/parser.ml \
+	$(srcdir)/src/modelica_compiler/lexer.ml \
+	$(srcdir)/src/modelica_compiler/precompilation.ml \
+	$(srcdir)/src/modelica_compiler/compilation.ml \
+	$(srcdir)/src/modelica_compiler/instantiation.ml \
+	$(srcdir)/src/modelica_compiler/graphNodeSet.ml \
+	$(srcdir)/src/modelica_compiler/symbolicExpression.ml \
+	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml \
+	$(srcdir)/src/modelica_compiler/bipartiteGraph.ml \
+	$(srcdir)/src/modelica_compiler/hungarianMethod.ml \
+	$(srcdir)/src/modelica_compiler/causalityGraph.ml \
+	$(srcdir)/src/modelica_compiler/optimization.ml \
+	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml \
+	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
+	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml \
+	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 am__objects_7 =
 @OCAML_TRUE@@SCICOS_TRUE@am_modelicac_OBJECTS = $(am__objects_7)
 modelicac_OBJECTS = $(am_modelicac_OBJECTS)
@@ -636,8 +638,8 @@ HELP_CHAPTERFILE = addchapter.sce
 
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
-@SCICOS_TRUE@libsciscicos_la_CFLAGS = -Iincludes/ \
-@SCICOS_TRUE@			-Isrc/scicos_sundials/ \
+@SCICOS_TRUE@libsciscicos_la_CFLAGS = -I$(srcdir)/includes/ \
+@SCICOS_TRUE@			-I$(srcdir)/src/scicos_sundials/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -896,27 +898,27 @@ HELP_CHAPTERFILE = addchapter.sce
 @OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac
 @OCAML_TRUE@@SCICOS_TRUE@modelicac_SOURCES = $(MLS)
 @OCAML_TRUE@@SCICOS_TRUE@OCAMLLIBS = nums.cma
-@OCAML_TRUE@@SCICOS_TRUE@MLS = src/modelica_compiler/parseTree.ml src/modelica_compiler/linenum.ml src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/precompilation.ml src/modelica_compiler/compilation.ml src/modelica_compiler/instantiation.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/graphNodeSet.ml src/modelica_compiler/symbolicExpression.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/squareSparseMatrix.ml src/modelica_compiler/bipartiteGraph.ml src/modelica_compiler/hungarianMethod.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/causalityGraph.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/optimization.ml  src/modelica_compiler/xMLCodeGeneration.ml src/modelica_compiler/optimizingCompiler.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/scicosCodeGeneration.ml src/modelica_compiler/scicosOptimizingCompiler.ml
+@OCAML_TRUE@@SCICOS_TRUE@MLS = $(srcdir)/src/modelica_compiler/parseTree.ml $(srcdir)/src/modelica_compiler/linenum.ml $(srcdir)/src/modelica_compiler/parser.ml $(srcdir)/src/modelica_compiler/lexer.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/graphNodeSet.ml $(srcdir)/src/modelica_compiler/symbolicExpression.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml $(srcdir)/src/modelica_compiler/bipartiteGraph.ml $(srcdir)/src/modelica_compiler/hungarianMethod.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/causalityGraph.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimization.ml  $(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml $(srcdir)/src/modelica_compiler/optimizingCompiler.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
-@OCAML_TRUE@@SCICOS_TRUE@MLIS = src/modelica_compiler/parseTree.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/precompilation.mli src/modelica_compiler/compilation.mli src/modelica_compiler/instantiation.mli\
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/graphNodeSet.mli src/modelica_compiler/symbolicExpression.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/squareSparseMatrix.mli src/modelica_compiler/bipartiteGraph.mli src/modelica_compiler/hungarianMethod.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/causalityGraph.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/optimization.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/xMLCodeGeneration.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/optimizingCompiler.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	src/modelica_compiler/scicosCodeGeneration.mli
+@OCAML_TRUE@@SCICOS_TRUE@MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.mli $(srcdir)/src/modelica_compiler/compilation.mli $(srcdir)/src/modelica_compiler/instantiation.mli\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/graphNodeSet.mli $(srcdir)/src/modelica_compiler/symbolicExpression.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli $(srcdir)/src/modelica_compiler/bipartiteGraph.mli $(srcdir)/src/modelica_compiler/hungarianMethod.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimization.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
 
-@OCAML_TRUE@@SCICOS_TRUE@PARSER_SRC = src/modelica_compiler/parser.mly
-@OCAML_TRUE@@SCICOS_TRUE@LEXER_SRC = src/modelica_compiler/lexer.mll
-@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH = src/modelica_compiler
+@OCAML_TRUE@@SCICOS_TRUE@PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
+@OCAML_TRUE@@SCICOS_TRUE@LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
+@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH = $(srcdir)/src/modelica_compiler
 @OCAML_TRUE@@SCICOS_TRUE@INCLUDE = -I $(BASE_PATH)
 @OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c

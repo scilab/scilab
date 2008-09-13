@@ -29,8 +29,8 @@ sci_gateway/c/gw_completion.c
 
 # Includes need for the compilation
 libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/c/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \

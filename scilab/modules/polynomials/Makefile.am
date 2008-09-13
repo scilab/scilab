@@ -107,8 +107,8 @@ sci_gateway/fortran/sci_f_simpmd.f
 
 
 
-libscipolynomials_la_CFLAGS= 	-Iincludes/ \
-				-I$(top_builddir)/modules/output_stream/includes
+libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 

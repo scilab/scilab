@@ -1225,14 +1225,14 @@ HELP_CHAPTERFILE = addchapter.sce
 #### scicos_blocks : GATEWAY_C_SOURCES ####
 
 #### scicos_blocks : GATEWAY_FORTRAN_SOURCES ####
-@SCICOS_TRUE@libsciscicos_blocks_la_CFLAGS = -Iincludes/ \
+@SCICOS_TRUE@libsciscicos_blocks_la_CFLAGS = -I$(srcdir)/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/renderer/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos/includes \
-@SCICOS_TRUE@                        -I$(top_srcdir)/modules/elementary_functions/includes
+@SCICOS_TRUE@            -I$(top_srcdir)/modules/elementary_functions/includes
 
 @SCICOS_FALSE@libsciscicos_blocks_la_SOURCES = 
 @SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \

@@ -349,9 +349,9 @@ OUTPUT_STREAM_FORTRAN_SOURCES =
 GATEWAY_C_SOURCES = 
 GATEWAY_FORTRAN_SOURCES = 
 libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
--Iincludes/ \
+-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
--Isrc/c/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la

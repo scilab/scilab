@@ -363,22 +363,24 @@ libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
 
 
-libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/
+libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) \
+	-I$(top_srcdir)/modules/core/includes/ \
+	-I$(srcdir)/includes/
 
 # Includes need for the compilation
-libscielementary_functions_la_FFLAGS= -Iincludes/
+libscielementary_functions_la_FFLAGS= -I$(srcdir)/includes/
 
 # Includes need for the compilation
-libscielementary_functions_la_CPPFLAGS = 	-Iincludes/ \
-	-Isrc/cpp/ \
-	-Isrc/c/ \
+libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes
 
 # Includes need for the compilation
-libscielementary_functions_la_CFLAGS= 	-Iincludes/ \
+libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--Isrc/c/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
@@ -403,7 +405,7 @@ libdummy_elementary_functions_la-pade.lo: src/fortran/pade.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
 
 libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
-	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
+	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFAULT_INCLUDES) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
 
 
 libdummy_elementary_functions_la-icopy.lo: src/fortran/icopy.f

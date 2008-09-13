@@ -354,8 +354,8 @@ sci_gateway/c/sci_iswaitingforinput.c
 
 
 # Includes need for the compilation
-libscishell_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ \
--Isrc/c/others/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscishell_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ \
+-I$(srcdir)/src/c/others/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 
 # Includes need for the compilation

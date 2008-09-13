@@ -432,9 +432,9 @@ HELP_CHAPTERFILE = addchapter.sce
 @MATIO_TRUE@		  src/c/GetSparseVariable.c
 
 @MATIO_TRUE@libscimatio_la_LDFLAGS = $(MATIO_LIBS)
-libscimatio_la_CFLAGS = -Iincludes/ \
-			-Isrc/c/ \
-			-Isrc/matio/ \
+libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/matio/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			$(MATIO_CFLAGS)

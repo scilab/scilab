@@ -70,8 +70,8 @@ if USE_EMBEDDED_BLAS
 libsciumfpack_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la 
 endif
 
-libsciumfpack_la_CFLAGS= -Iincludes/ \
-			-Isrc/c/ \
+libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/mexlib/includes
