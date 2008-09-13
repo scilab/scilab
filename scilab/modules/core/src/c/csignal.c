@@ -14,8 +14,6 @@
 #include "csignal.h"
 #include "sigbas.h"
 
-extern int C2F(sigbas)();
-
 void controlC_handler (int sig)
 {
   int j = SIGINT;
