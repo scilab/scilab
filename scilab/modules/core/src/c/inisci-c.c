@@ -67,7 +67,7 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
  * Set the SCI path and initialize the scilab environement path
  *
  */
-int SetSci()
+int SetSci(void)
 {
 	int ierr,iflag=0;
 	int lbuf=PATH_MAX;
