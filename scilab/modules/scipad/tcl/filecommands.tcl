@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 #####################################################################
 #
 # About the variables used:
@@ -96,6 +97,9 @@
 #     listoffile("$ta",language)
 #       Language scheme. Currently can be scilab, xml, or none
 #
+#     listoffile("$ta",undostackdepth)
+#       Depth of the undo stack. Used for enabling/disabling the undo menu entry
+#
 #     listoffile("$ta",redostackdepth)
 #       Depth of the redo stack. Used for enabling/disabling the redo menu entry
 #
@@ -144,6 +148,7 @@ proc filesetasnew {} {
     set listoffile("$pad.new$winopened",language) "scilab"
     setlistoffile_colorize "$pad.new$winopened" ""
     set listoffile("$pad.new$winopened",readonly) 0
+    set listoffile("$pad.new$winopened",undostackdepth) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
     lappend listoftextarea $pad.new$winopened
@@ -153,7 +158,7 @@ proc filesetasnew {} {
     newfilebind
     showinfo [mc "New script"]
     showtext $pad.new$winopened
-    resetmodified $pad.new$winopened
+    resetmodified $pad.new$winopened "clearundoredostacks"
 }
 
 ##################################################
@@ -319,6 +324,7 @@ proc byebye {textarea} {
         unset listoffile("$textarea",language)
         unset listoffile("$textarea",colorize)
         unset listoffile("$textarea",readonly)
+        unset listoffile("$textarea",undostackdepth)
         unset listoffile("$textarea",redostackdepth)
         unset listoffile("$textarea",progressbar_id)
 
@@ -820,6 +826,7 @@ proc notopenedfile {file} {
     } else {
         set listoffile("$pad.new$winopened",readonly) 0
     }
+    set listoffile("$pad.new$winopened",undostackdepth) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
 
@@ -830,7 +837,7 @@ proc shownewbuffer {file tiledisplay} {
     global pad winopened closeinitialbufferallowed
     if {[fileunreadable $file]} {return}
     openfileondisk $pad.new$winopened $file $tiledisplay
-    resetmodified $pad.new$winopened
+    resetmodified $pad.new$winopened "clearundoredostacks"
     # colorization must be launched before showing the textarea
     # so that foreground colorization while stepping into
     # libfun ancillaries works (example with calfrq)
@@ -1192,9 +1199,9 @@ proc backupfile { fname { levels 10 } } {
 proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
     global listoffile
     set thefile $listoffile("$textarea",fullname) 
-    if [ file exists $thefile ] {
-# check for the perverse case that someone changed the file to unreadable
-# in the meantime
+    if [file exists $thefile] {
+        # check for the perverse case that someone changed the file to unreadable
+        # in the meantime
         if {[fileunreadable $thefile]} {return}
         if {$ConfirmFlag == "ConfirmNeeded"} {
             set answer [tk_messageBox \
@@ -1210,7 +1217,7 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
                 $textarea insert end [read -nonewline $oldfile ] 
             }
             close $oldfile
-            resetmodified $textarea
+            resetmodified $textarea "clearundoredostacks"
             foreach ta [getfullpeerset $textarea] {
                 set listoffile("$ta",thetime) [file mtime $thefile]
             }

@@ -561,6 +561,7 @@ proc createnewemptytextarea {} {
     set listoffile("$pad.new$winopened",language) "scilab"
     setlistoffile_colorize "$pad.new$winopened" ""
     set listoffile("$pad.new$winopened",readonly) 0
+    set listoffile("$pad.new$winopened",undostackdepth) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
     lappend listoftextarea $pad.new$winopened
@@ -613,6 +614,7 @@ proc createpeertextwidget {ta} {
     set listoffile("$newta",language) $listoffile("$ta",language)
     set listoffile("$newta",colorize) $listoffile("$ta",colorize)
     set listoffile("$newta",readonly) $listoffile("$ta",readonly)
+    set listoffile("$newta",undostackdepth) $listoffile("$ta",undostackdepth)
     set listoffile("$newta",redostackdepth) $listoffile("$ta",redostackdepth)
     set listoffile("$newta",progressbar_id) $listoffile("$ta",progressbar_id)
     lappend listoftextarea $newta

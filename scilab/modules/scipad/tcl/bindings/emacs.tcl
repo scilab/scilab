@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 #emacs style bindings
 
 #prefixes: show them in the showinfo and validate the continuation

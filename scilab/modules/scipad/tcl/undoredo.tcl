@@ -33,6 +33,7 @@ proc undo {textarea} {
     global listoffile
     undoredo $textarea <<Undo>>
     foreach ta [getfullpeerset $textarea] {
+        incr listoffile("$ta",undostackdepth) -1
         incr listoffile("$ta",redostackdepth)
     }
     # update menues contextually
@@ -44,6 +45,7 @@ proc redo {textarea} {
     global listoffile
     undoredo $textarea <<Redo>>
     foreach ta [getfullpeerset $textarea] {
+        incr listoffile("$ta",undostackdepth)
         incr listoffile("$ta",redostackdepth) -1
     }
     # update menues contextually
@@ -58,7 +60,7 @@ proc undoredo {textarea action} {
     global linenumbersmargins
     if {[IsBufferEditable] == "No"} {return}
     set bef [$textarea get 1.0 end]
-    event generate $textarea $action 
+    event generate $textarea $action
     set aft [$textarea get 1.0 end]
     set pref [commonPrefix $bef $aft]
     set i1 [$textarea index "1.0 + [string length $pref] chars"]
@@ -126,19 +128,27 @@ proc changedmodified {textarea} {
     modifiedtitle $textarea
 }
 
-proc resetmodified {textarea} {
-# Reset the modified flag and the undo/redo stacks for the given textarea,
-# and update the visual indications relative to the modified state
+proc resetmodified {textarea {clearstacks "keepundoredostacks"}} {
+# Reset the modified flag for the given textarea, and update the visual
+# indications relative to the modified state
+# If $clearstacks is "clearundoredostacks", then reset also the undo/redo
+# stacks, otherwise don't do it
     global listoffile
 
-    # the undo stack is common to all peers
-    $textarea edit reset
+    if {$clearstacks == "clearundoredostacks"} {
+        # the undo stack is common to all peers, no need to loop on peers
+        # to reset the undo and redo stacks
+        $textarea edit reset
+    }
 
     # the modified flag is also common to all peers
     $textarea edit modified false
 
     foreach ta [getfullpeerset $textarea] {
-        set listoffile("$ta",redostackdepth) 0
+        if {$clearstacks == "clearundoredostacks"} {
+            set listoffile("$ta",undostackdepth) 0
+            set listoffile("$ta",redostackdepth) 0
+        }
         # Tk 8.4 sends automatically a <<Modified>> event to a text widget when
         # editing the modified flag of this text widget, but 8.5 does only when
         # the modified flag changes state (consistent with the manual) - See Tk

@@ -1,3 +1,7 @@
+Francois VOGEL, 13/09/08
+ * Fixed bug 3476 (undo stack cleared when saving)
+ * version --> 7.1
+
 Francois VOGEL, 11/09/08
  * Added a cross above the y scrollbar of each tile to let the user close
    a file with a single click (this closes all peers as well)

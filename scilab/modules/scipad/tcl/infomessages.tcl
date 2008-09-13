@@ -70,8 +70,11 @@ proc dokeyposn {textarea} {
     $pad.statusind configure -text " "
     scan $indexin "%d.%d" ypos xpos
     incr xpos
-    $pad.statusind configure -text [concat [mc "Line:"] \
-        $ypos [mc "Column:"] $xpos]
+    $pad.statusind configure -text [concat [mc "Line:"] $ypos [mc "Column:"] $xpos]
+
+    # <DEBUG>: uncomment this to display the undo and redo stack depths
+    #$pad.statusind configure -text [concat "undo:" $listoffile("$textarea",undostackdepth) "redo:" $listoffile("$textarea",redostackdepth)]
+
     set infun [whichfun $indexin $textarea]
     $pad.statusind2 configure -state normal
     $pad.statusind2 configure -text " "
@@ -104,8 +107,9 @@ proc dokeyposn {textarea} {
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state disabled
     }
 
-    # enable Undo if the buffer was modified
-    if {[ismodified $textarea]} {
+    # enable Undo if the undo stack is not empty
+    # (and not when the buffer was modified, see also bug 3476)
+    if {$listoffile("$textarea",undostackdepth) != 0} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Undo"]) -state normal
         bindenable Text {undo [gettextareacur]}
     } else {

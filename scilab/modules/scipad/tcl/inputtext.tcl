@@ -375,6 +375,7 @@ proc puttext {w text insertorreplace {blanksinsert false}} {
     stopcursorblink
 
     foreach ta [getfullpeerset $w] {
+        incr listoffile("$ta",undostackdepth)
         set listoffile("$ta",redostackdepth) 0
     }
 
@@ -457,16 +458,18 @@ proc puttext {w text insertorreplace {blanksinsert false}} {
 }
 
 proc printtime {} {
-# procedure to set the time change %R to %I:%M for 12 hour time display
+# procedure to set the time
+# change %R to %I:%M for 12 hour time display
 # Note: this proc is never called
     global listoffile buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
+# <TODO>: use puttext here instead of manually inserting text
+#         it will also take care of all colorization and undo/redo
+#         aspects, that are anyway not dealt with here
     foreach ta [getfullpeerset [gettextareacur]] {
+        incr listoffile("$ta",undostackdepth)
         set listoffile("$ta",redostackdepth) 0
     }
-# <TODO>: use puttext here instead of manually inserting text
-#         it will also take care of all colorization aspects,
-#         that are anyway not dealt with here
     [gettextareacur] tag remove sel 1.0 end
     [gettextareacur] insert insert [clock format [clock seconds] \
                     -format "%R %p %D"]

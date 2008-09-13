@@ -656,7 +656,7 @@ proc Obtainall_bp {} {
         $textarea configure -undo 1
         if {!$mflag} {
             # catched to avoid errors when quickly closing Scipad during debug
-            catch {after idle [list resetmodified $textarea]}
+            catch {after idle [list resetmodified $textarea "clearundoredostacks"]}
         }
 
         $textarea tag configure db_wrapper -background gray40
@@ -719,7 +719,7 @@ proc scedebugcleanup_bp {} {
         # restore the undo capability in the buffer
         $w configure -undo 1
         if {!$mflag} {
-            catch {after idle [list resetmodified $w]}
+            catch {after idle [list resetmodified $w "clearundoredostacks"]}
         }
 
     }

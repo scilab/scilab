@@ -23,8 +23,8 @@
 #
 # See the file scipad/license.txt
 #
-#mac (or, more recently, pc) style sbindings
 
+# mac (or, more recently, pc) style sbindings
 
 #delete "native" text sbindings in the textarea -- we want all text
 # manipulation to pass through our procs, so that e.g. colorization and

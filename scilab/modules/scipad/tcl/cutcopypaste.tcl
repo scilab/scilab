@@ -31,6 +31,7 @@ proc deletetext {} {
     if {[IsBufferEditable] == "No"} {return}
     stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
+        incr listoffile("$ta",undostackdepth)
         set listoffile("$ta",redostackdepth) 0
     }
     set oldSeparator [$textareacur cget -autoseparators]
@@ -78,6 +79,7 @@ proc backspacetext {} {
     if {[IsBufferEditable] == "No"} {return}
     stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
+        incr listoffile("$ta",undostackdepth)
         set listoffile("$ta",redostackdepth) 0
     }
     set oldSeparator [$textareacur cget -autoseparators]
@@ -154,6 +156,7 @@ proc cuttext {mode {tocutinblockmode ""}} {
 
     stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
+        incr listoffile("$ta",undostackdepth)
         set listoffile("$ta",redostackdepth) 0
     }
 
@@ -282,6 +285,7 @@ proc pastetext {mode {topasteinblockmode ""}} {
 
     stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
+        incr listoffile("$ta",undostackdepth)
         set listoffile("$ta",redostackdepth) 0
     }
     set oldSeparator [$textareacur cget -autoseparators]
@@ -353,6 +357,7 @@ proc button2copypaste {w x y} {
     stopcursorblink ; # see comments in proc puttext
     if {[catch {selection get}] == 0} {
         foreach ta [getfullpeerset $textareacur] {
+            incr listoffile("$ta",undostackdepth)
             set listoffile("$ta",redostackdepth) 0
         }
         clipboard clear
