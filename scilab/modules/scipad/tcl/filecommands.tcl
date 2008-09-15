@@ -675,11 +675,22 @@ proc showopenwin {tiledisplay} {
     global preselectedfilterinopensaveboxes
     if {$tileprocalreadyrunning} {return}
     showinfo [mc "Open file"]
+
+    # if the current textarea does not have an associated pathname, then
     # remember the latest path used for opening files
-    if {![info exists startdir]} {set startdir [pwd]}
+    # otherwise use this pathname and preselect the extension to
+    # match the one of this pathname
+    foreach {curtapath curtaext} [getpathandext [gettextareacur]] {}
+    if {$curtapath == {}} {
+        if {![info exists startdir]} {set startdir [pwd]}
+    } else {
+        set startdir $curtapath
+        set preselectedfilterinopensaveboxes [extenstoknowntypes $curtaext]
+    }
+
     if {$Tk85} {
         # make use of TIP242 (-typevariable option)
-        # note that $bug2672_shows_up is necessary false (see
+        # note that $bug2672_shows_up is necessarily false (see
         # definition of bug2672_shows_up)
         set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad \
                                  -initialdir $startdir -multiple 1 \
@@ -847,7 +858,7 @@ proc shownewbuffer {file tiledisplay} {
         showtext $pad.new$winopened
     } else {
         set closeinitialbufferallowed false
-        # pack the new buffer in a splitted window
+        # pack the new buffer in a split window
         splitwindow $tiledisplay $pad.new$winopened
     }
     RefreshWindowsMenuLabelsWrtPruning
@@ -953,6 +964,7 @@ proc filesaveas {textarea} {
     global listoffile pad
     global startdir
     global bug2672_shows_up
+    global Tk85 preselectedfilterinopensaveboxes
 
     # filesaveas cannot be executed since it uses getallfunsintextarea
     # which needs the colorization results
@@ -960,9 +972,19 @@ proc filesaveas {textarea} {
 
     showinfo [mc "Save as"]
 
+    # if the current textarea does not have an associated pathname, then
     # remember the latest path used for opening files
+    # otherwise use this pathname and preselect the extension to
+    # match the one of this pathname
+    foreach {curtapath curtaext} [getpathandext [gettextareacur]] {}
+    if {$curtapath == {}} {
+        if {![info exists startdir]} {set startdir [pwd]}
+    } else {
+        set startdir $curtapath
+        set preselectedfilterinopensaveboxes [extenstoknowntypes $curtaext]
+    }
+
     # proposedname is the first function name found in the buffer
-    if {![info exists startdir]} {set startdir [pwd]}
     set proposedname ""
     set firstfuninfo [lindex [getallfunsintextarea $textarea] 1]
     if {[lindex $firstfuninfo 0] != "0NoFunInBuf"} {
@@ -975,24 +997,44 @@ proc filesaveas {textarea} {
     }
 
     set writesucceeded 0
-    if {$bug2672_shows_up} {
-        set myfile [tk_getSaveFile -filetypes [knowntypes] \
-                        -initialfile $proposedname -initialdir $startdir]
-    } else {
+
+    if {$Tk85} {
+        # make use of TIP242 (-typevariable option)
+        # note that $bug2672_shows_up is necessarily false (see
+        # definition of bug2672_shows_up)
         set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
-                        -initialfile $proposedname -initialdir $startdir]
+                        -initialfile $proposedname -initialdir $startdir \
+                        -typevariable preselectedfilterinopensaveboxes]
+    } else {
+        if {$bug2672_shows_up} {
+            set myfile [tk_getSaveFile -filetypes [knowntypes] \
+                            -initialfile $proposedname -initialdir $startdir]
+        } else {
+            set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
+                            -initialfile $proposedname -initialdir $startdir]
+        }
     }
 
     if {$myfile != ""} {
         set startdir [file dirname $myfile]
+        set preselectedfilterinopensaveboxes [extenstoknowntypes [file extension $myfile]]
         set writesucceeded [writesave $textarea $myfile]
         while {!$writesucceeded} {
-            if {$bug2672_shows_up} {
-                set myfile [tk_getSaveFile -filetypes [knowntypes] \
-                                -initialfile $proposedname -initialdir $startdir]
-            } else {
+            if {$Tk85} {
+                # make use of TIP242 (-typevariable option)
+                # note that $bug2672_shows_up is necessarily false (see
+                # definition of bug2672_shows_up)
                 set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
-                                -initialfile $proposedname -initialdir $startdir]
+                                -initialfile $proposedname -initialdir $startdir \
+                                -typevariable preselectedfilterinopensaveboxes]
+            } else {
+                if {$bug2672_shows_up} {
+                    set myfile [tk_getSaveFile -filetypes [knowntypes] \
+                                    -initialfile $proposedname -initialdir $startdir]
+                } else {
+                    set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
+                                    -initialfile $proposedname -initialdir $startdir]
+                }
             }
             if {$myfile != ""} {
                 set startdir [file dirname $myfile]
@@ -1273,6 +1315,21 @@ proc checkifanythingchangedondisk {w} {
 ##################################################
 # ancillaries for file commands
 ##################################################
+proc getpathandext {ta} {
+# if textarea $ta has no associated pathname, return a flat list of two
+#   empty elements
+# otherwise return a flat list of two elements:
+#   {full_path_of_file_displayed_in_$ta  extension_of_file_displayed_in_$ta}
+    global listoffile
+    if {$listoffile("$ta",new) == 1} {
+        # new file, no associated pathname
+        return [list [list ] [list ]]
+    } else {
+        set fullpathname [file normalize $listoffile("$ta",fullname)]
+        return [list [file dirname $fullpathname] [file extension $fullpathname]]
+    }
+}
+
 proc knowntypes {} {
 # list of known file types - used for filtering items in the Open and Save dialogs
 # and in the Find dialog
@@ -1285,6 +1342,27 @@ proc knowntypes {} {
                       "{\"$xmlfiles\"" "{*.xml *.xsd *.dtd}}" \
                       "{\"$allfiles\"" "{*.* *}}" ]
     return $types
+}
+
+proc extenstoknowntypes {exttomatch} {
+# given a file extension (including the leading dot) $exttomatch such as .xzy
+# return the localized name of the file type from the known types
+# in case there is no match, return {}
+# in case there is more than one match, return the first match
+    set exttomatch "*$exttomatch"
+    foreach typenameandext [knowntypes] {
+        foreach {localizedtypename listofextens} $typenameandext {
+            foreach ext $listofextens {
+                if {$ext eq $exttomatch} {
+                    return $localizedtypename
+                } else {
+                    # nothing to do: same player, play again
+                }
+            }
+        }
+    }
+    # we didn't return before this, this means there is no match
+    return [list ]
 }
 
 proc extenstolang {file} {
@@ -1335,7 +1413,7 @@ proc fileunreadable {file} {
 #       A test with constraint "knownBug" has been added in fCmd.test
 #       (in the Tcl test suite)
 #     - Tcl bug 1613456: file readable checks wrong permissions on a
-#       Samba share - this bug has been filed in the Tcl tracked because
+#       Samba share - this bug has been filed in the Tcl tracker because
 #       it is the root cause for Scilab bug 2243, at least for the part
 #       of this bug related to readability (there is also a writability
 #       issue reported in bug 2243)
@@ -1375,7 +1453,7 @@ proc fileunwritable {file} {
 # comments about the way writability is checked:
 #   The instruction file writable has a number of bugs in Tcl:
 #     - Tcl bug 1613456: file writable checks wrong permissions on a
-#       Samba share - this bug has been filed in the Tcl tracked because
+#       Samba share - this bug has been filed in the Tcl tracker because
 #       it is the root cause for Scilab bug 2243, at least for the part
 #       of this bug related to writability (there is also a readability
 #       issue reported in bug 2243)

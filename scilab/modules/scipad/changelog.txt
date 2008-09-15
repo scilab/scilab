@@ -1,3 +1,10 @@
+Francois VOGEL, 15/09/08
+ * Implemented request 459 (remember path and extension from a textarea)
+   Note that for the extension it works only with Tk8.5 because Tk8.4 does
+   not have the -typevariable option to tk_getOpenFile (TIP242)
+ * Fixed English (splitted --> split)
+ * version --> 7.2
+
 Francois VOGEL, 13/09/08
  * Fixed bug 3476 (undo stack cleared when saving)
  * version --> 7.1
@@ -1501,7 +1508,7 @@ Francois VOGEL, 15/01/06
 
 Francois VOGEL, 12/01/06
  * Debugger works again with functions whose definition logical line is
-   splitted into many physical lines
+   split into many physical lines
  * version --> 5.75
 
 Francois VOGEL, 10/01/06
@@ -1723,7 +1730,7 @@ Francois VOGEL, 19/11/05
    no use of the rem2 tag anymore
  * Line number finding in functions and logical line number identification
    support:
-    - Mixed continued lines (i.e. single continued lines splitted in many
+    - Mixed continued lines (i.e. single continued lines split in many
       buffer lines, some of them containing dots and some other not)
     - Nested brackets or braces in continued lines
     - Single quote quoted bracket, e.g. mprintf('[');  this is no longer
@@ -1971,7 +1978,7 @@ Francois VOGEL, 05/09/05
    by F3 is now removed on buttonpress event (was fixed in 3.42 but broken
    again later when additional bindings for dnd were implemented)
  * Fixed: Moving of the Find/Replace dialog when it hides a match works also
-   when Scipad has splitted windows
+   when Scipad has split windows
  * Improved the overlapping detection in proc MoveDialogIfTaggedTextHidden:
    previously the find dialog was said to overlap whenever any part of the
    full line containing the match overlapped the dialog; now the overlap
@@ -2299,7 +2306,7 @@ Francois VOGEL, 30/05/05
  * Watching large arrays can quickly lead to ScilabEval commands exceeding the
    length limit, usually resulting in a shell error and messing the debug. This
    is now taken into account. Such long commands are saved in a file in tmpdir,
-   the command is splitted in parts whose size is smaller than bsiz, and the
+   the command is split in parts whose size is smaller than bsiz, and the
    file is executed by a ScilabEval. These file accesses are catched to avoid
    problems with permissions, disk size, etc. If there was such a problem, the
    user receives a warning. This allows for instance to watch big variables
@@ -2521,7 +2528,7 @@ Francois VOGEL, 19/03/05
  * Added an "Exec done" showinfo so that the user has a visual feedback of his
    action when it results in no change in the Scilab window.
  * F10 (Configure execution) in the debugger now accepts function definitions
-   splitted on multiple continued lines, possibly with interlaced comments.
+   split on multiple continued lines, possibly with interlaced comments.
    There is still a limitation due to the tcl fact that matches must be within
    a single text line. Therefore the keyword "function" and the function name
    must still be within a single line.
@@ -2587,7 +2594,7 @@ Francois VOGEL, 09/03/05
  * version --> 3.44
 
 ES 8/3/2005
- * Options menu splitted in Scheme and Options
+ * Options menu split in Scheme and Options
  * Word Wrap moved to Options menu
  * all scipad colors are configurable within scilab with the Option/Colors
    submenu, and immediately updated
@@ -3061,7 +3068,7 @@ Francois VOGEL, 17/06/04
  * the .sce file built by Scipad and containing the watch variable retrieving commands
    is now saved in TMPDIR instead of in SCI/tcl/scipadsources - should better cope with
    file permissions that way. TMPDIR is set for Scipad in scipad.sci
- * splitted debugger.tcl in several sub-files to ease maintainability
+ * split debugger.tcl in several sub-files to ease maintainability
  * version --> 3.0 (submitted to the Scilab team under bug #559). This is the version
    included in Scilab 3.0, but the debugger menu is hidden in the distribution (shortcuts
    do work however)
@@ -3319,7 +3326,7 @@ ES 9/10/2003
 
 ES 2/10/2003
  * $pad.statusind goes Salmon when the buffer is modified
- * splitted long lines in the code for improved readability
+ * split long lines in the code for improved readability
  * the popup menu doesn't pop on the bottom bar
  * bug fixed: upon closing a buffer, the radiobutton of the one previously
     opened (which becomes the current buffer) was not correctly checked

@@ -180,10 +180,10 @@ proc importmatlab {} {
     set dtitle [mc "Matlab file to convert"]
     if {$Tk85} {
         # make use of TIP242 (-typevariable option)
-        # note that $bug2672_shows_up is necessary false (see
+        # note that $bug2672_shows_up is necessarily false (see
         # definition of bug2672_shows_up)
-            set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle" \
-                                           -typevariable preselectedfilterinimportmatlabbox]
+        set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle" \
+                                       -typevariable preselectedfilterinimportmatlabbox]
     } else {
         if {$bug2672_shows_up} {
             set sourcefile [tk_getOpenFile -filetypes $types -title "$dtitle"]
@@ -307,7 +307,7 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
     } elseif {$commlength <= $lsiz_1} {
         # Command is too long for a direct ScilabEval but can be passed through an exec'ed file
         # Create a file in tmpdir, and save the command in it.
-        # Large (>$splitsize) commands are splitted into smaller parts, and trailing dots
+        # Large (>$splitsize) commands are split into smaller parts, and trailing dots
         # are added.
         # This part is catched to take into account possible access (permissions) errors
         if {[catch {
