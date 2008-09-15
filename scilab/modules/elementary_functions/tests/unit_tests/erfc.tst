@@ -4140,10 +4140,10 @@ x4=4;
 w4=4.1;
 z4=3.9;
 deff("y=f(t)","y=exp(-t^2)");
-if (abs(erf(x4)-2/sqrt(%pi)*intg(0,x4,f))>1d-15) then pause,end
+if (abs(erf(x4)-2/sqrt(%pi)*intg(0,x4,f))>10*%eps) then pause,end
 
-if (abs(erf(w4)-2/sqrt(%pi)*intg(0,w4,f))>1d-15) then pause,end
+if (abs(erf(w4)-2/sqrt(%pi)*intg(0,w4,f))>10*%eps) then pause,end
  
-if (abs(erf(z4)-2/sqrt(%pi)*intg(0,z4,f))>1d-15) then pause,end
+if (abs(erf(z4)-2/sqrt(%pi)*intg(0,z4,f))>10*%eps) then pause,end
 
 

@@ -2076,14 +2076,14 @@ x4=0.46875;
 w4=0.47;
 z4=0.46;
 deff("y=f(t)","y=exp(-t^2)");
-if (abs(erf(x4)-2/sqrt(%pi)*intg(0,x4,f))>1d-15) then pause,end
-if (abs(erf(w4)-2/sqrt(%pi)*intg(0,w4,f))>1d-15) then pause,end
-if (abs(erf(z4)-2/sqrt(%pi)*intg(0,z4,f))>1d-15) then pause,end
+if (abs(erf(x4)-2/sqrt(%pi)*intg(0,x4,f))>10*%eps) then pause,end
+if (abs(erf(w4)-2/sqrt(%pi)*intg(0,w4,f))>10*%eps) then pause,end
+if (abs(erf(z4)-2/sqrt(%pi)*intg(0,z4,f))>10*%eps) then pause,end
 
 x5=-0.001; 
 w5=-0.25;
 z5=-0.5;
 deff("y=f(t)","y=exp(-t^2)");
-if (abs(erf(x5)-2/sqrt(%pi)*intg(0,x5,f))>1d-15) then pause,end
-if (abs(erf(w5)-2/sqrt(%pi)*intg(0,w5,f))>1d-15) then pause,end
-if (abs(erf(z5)-2/sqrt(%pi)*intg(0,z5,f))>1d-15) then pause,end
+if (abs(erf(x5)-2/sqrt(%pi)*intg(0,x5,f))>10*%eps) then pause,end
+if (abs(erf(w5)-2/sqrt(%pi)*intg(0,w5,f))>10*%eps) then pause,end
+if (abs(erf(z5)-2/sqrt(%pi)*intg(0,z5,f))>10*%eps) then pause,end
