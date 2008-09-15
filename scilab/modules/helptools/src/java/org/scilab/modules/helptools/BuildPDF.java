@@ -60,7 +60,7 @@ public final class BuildPDF {
 		String baseName = Helpers.getBaseName(language);
 		/* the following '..' is used because we are in the current working
 		   directory with all the tmp stuff in it */
-		String fileName = outputDirectory + "/../" + baseName; 
+		String fileName = outputDirectory + "/" + baseName; 
 		if (format.equalsIgnoreCase("PS")) {
 			 fileName+= ".ps";
 		}else{

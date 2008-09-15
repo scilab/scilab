@@ -370,27 +370,59 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	end
 	
 	//----------------------------------------------------------------------
-	// perform the jar generation
+	// perform the help generation
 	//----------------------------------------------------------------------
 	
+	if output_format=="javaHelp" then
+		output_format_ext = "jar";
+	else
+		output_format_ext = output_format;
+	end
+	
 	if all_scilab_help then
-
+		
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take up to 10 minutes)\n"));
 		
-		// Create output directory if does not exist
-		outDir = SCI+"/modules/helptools/"+output_format+"/scilab_" + getlanguage() + "_help/";
-		if  ~isdir(outDir)
-		  if  ~isdir(outDir+"../") then
-		    mkdir(SCI+"/modules/helptools/"+output_format+"/");
-		  end
-	    mkdir(outDir);
+		// Define and create the path of buildDoc working directory
+		buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help",%t,%f);
+		
+		// Define and create the final output directory if does not exist
+		final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
+		if ~isdir(final_output_dir) then
+			mkdir(final_output_dir);
 		end
+		
+		// Define the final location of the generated file
+		final_help_file = pathconvert(final_output_dir+"/scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+		
+		// Define and create the path of buildDoc working directory
+		buildDoc_dir  = pathconvert(SCI+"/modules/helptools/"+ output_format + "/scilab_" + getlanguage() + "_help",%t,%f);
+		if ~isdir(pathconvert(SCI+"/modules/helptools/"+output_format,%f,%f)) then
+			mkdir(pathconvert(SCI+"/modules/helptools/"+output_format,%f,%f));
+		end
+		if ~isdir(buildDoc_dir) then
+			mkdir(buildDoc_dir);
+		end
+		
+		// Define the path of the generated file created by buildDoc
+		buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
 		
 		// Change Scilab current directory so that Java Indexer works
 		oldDir = getcwd();
-		chdir(outDir);
+		if ~chdir(buildDoc_dir) then
+			error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
+		end
 		buildDoc(output_format);
-		chdir(oldDir);
+		if ~chdir(oldDir) then
+			error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
+		end
+		
+		// move the generated file
+		copyfile(buildDoc_file,final_help_file);
+		mdelete(buildDoc_file);
+
+		
+		// Now, build toolboxes help (if any)
 		
 		displaydone = 0;
 		
@@ -399,28 +431,52 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				
 				mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
 				
-				// Create output directory if does not exist
-				if output_format=="javaHelp" & ~isdir(dirs_c(k)+"/../jar/")
-					mkdir(dirs_c(k)+"/../jar/")
+				// Define and create the final output directory if does not exist
+				final_output_dir = pathconvert(dirs_c(k)+"/../../"+output_format_ext,%f,%f);
+				if ~isdir(final_output_dir) then
+					mkdir(final_output_dir);
 				end
-				outDir = dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help/";
-				if  ~isdir(outDir)
-				  mkdir(outDir);
+				
+				// Define the final location of the generated file
+				final_help_file = pathconvert(final_output_dir+"/scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
+				
+				// Define and create the path of buildDoc working directory
+				buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help",%t,%f);
+				if ~isdir(buildDoc_dir) then
+					mkdir(buildDoc_dir);
 				end
+				
+				// Define the path of the generated file created by buildDoc
+				buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
 				
 				// Change Scilab current directory so that Java Indexer works
 				oldDir = getcwd();
-				chdir(outDir);
-				buildDoc(output_format,dirs_c(k)+"/master_help.xml",directory_language_c(k),dirs_c(k))
-				chdir(oldDir);
+				
+				if ~chdir(buildDoc_dir) then
+					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
+				end
+				
+				buildDoc(output_format,dirs_c(k)+"/master_help.xml",directory_language_c(k),dirs_c(k));
+				
+				if ~chdir(oldDir) then
+					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
+				end
+				
+				// move the generated file
+				copyfile(buildDoc_file,final_help_file);
+				mdelete(buildDoc_file);
 				
 			end
 		end
 		
 	else
 		
+		// Dirs are precised in the input arguments
+		
 		displaydone = 0;
+		
 		for k=1:size(dirs,"*");
+		
 			if need_to_be_build_tab(k) then
 				
 				if nb_dir > 1 then
@@ -432,20 +488,39 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				else
 					mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
 				end
-				// Create output directory if does not exist
-				if output_format=="javaHelp" & ~isdir(dirs(k)+"/../jar/")
-					mkdir(dirs(k)+"/../jar/")
+				
+				// Define and create the final output directory if does not exist
+				final_output_dir = pathconvert(dirs(k)+"/../../"+output_format_ext,%f,%f);
+				if ~isdir(final_output_dir) then
+					mkdir(final_output_dir);
 				end
-				outDir = dirs(k) + "/scilab_" + directory_language(k) + "_help/";
-				if  ~isdir(outDir)
-				  mkdir(outDir);
+				
+				// Define the final location of the generated file
+				final_help_file = pathconvert(final_output_dir+"/scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
+				
+				// Define and create the path of buildDoc working directory
+				buildDoc_dir  = pathconvert(dirs(k) + "/scilab_" + directory_language(k) + "_help",%t,%f);
+				if ~isdir(buildDoc_dir) then
+					mkdir(buildDoc_dir);
 				end
-
+				
+				// Define the path of the generated file created by buildDoc
+				buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
+				
 				// Change Scilab current directory so that Java Indexer works
 				oldDir = getcwd();
-				chdir(dirs(k) + "/scilab_" + directory_language(k) + "_help/");
-				buildDoc(output_format,dirs(k)+"/master_help.xml",directory_language(k),dirs(k))
-				chdir(oldDir);
+				
+				if ~chdir(buildDoc_dir) then
+					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
+				end
+				buildDoc(output_format,dirs(k)+"/master_help.xml",directory_language(k),dirs(k));
+				if ~chdir(oldDir) then
+					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
+				end
+				
+				// move the generated file
+				copyfile(buildDoc_file,final_help_file);
+				mdelete(buildDoc_file);
 				
 			end
 		end
