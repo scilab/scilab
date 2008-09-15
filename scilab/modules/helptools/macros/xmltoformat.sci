@@ -378,13 +378,10 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take up to 10 minutes)\n"));
 		
 		// Create output directory if does not exist
-		outDir = SCI+"/modules/helptools/build/doc/scilab_" + getlanguage() + "_help/";
+		outDir = SCI+"/modules/helptools/"+output_format+"/scilab_" + getlanguage() + "_help/";
 		if  ~isdir(outDir)
-		  if  ~isdir(outDir+"../..") then
-		    mkdir(SCI+"/modules/helptools/build/");
-		  end
-		  if ~isdir(outDir+"../") then
-		    mkdir(SCI+"/modules/helptools/build/doc");
+		  if  ~isdir(outDir+"../") then
+		    mkdir(SCI+"/modules/helptools/"+output_format+"/");
 		  end
 	    mkdir(outDir);
 		end
@@ -403,8 +400,8 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
 				
 				// Create output directory if does not exist
-				if output_format=="javaHelp" & ~isdir(dirs_c(k)+"/../../jar/")
-					mkdir(dirs_c(k)+"/../../jar/")
+				if output_format=="javaHelp" & ~isdir(dirs_c(k)+"/../jar/")
+					mkdir(dirs_c(k)+"/../jar/")
 				end
 				outDir = dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help/";
 				if  ~isdir(outDir)
@@ -436,8 +433,8 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
 				end
 				// Create output directory if does not exist
-				if output_format=="javaHelp" & ~isdir(dirs(k)+"/../../jar/")
-					mkdir(dirs(k)+"/../../jar/")
+				if output_format=="javaHelp" & ~isdir(dirs(k)+"/../jar/")
+					mkdir(dirs(k)+"/../jar/")
 				end
 				outDir = dirs(k) + "/scilab_" + directory_language(k) + "_help/";
 				if  ~isdir(outDir)

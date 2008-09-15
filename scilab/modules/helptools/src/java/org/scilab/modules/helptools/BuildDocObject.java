@@ -270,7 +270,11 @@ public class BuildDocObject extends StyleSheet {
 		args.add("base.dir=" + this.outputDirectory);
 		args.add("html.stylesheet=" + new File(styleSheet).getName());
 		args.addAll(specificArgs);
-		
+		/**
+		 * We are calling directly the method as we were using a command line
+		 * program because it is much easier ... 
+		 * However, this should be rewritted using the API 
+		 */
 		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
 
 		if (new File(sourceDocProcessed).isDirectory()) {

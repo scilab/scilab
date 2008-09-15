@@ -73,7 +73,7 @@ public final class BuildJavaHelp {
 		FileOutputStream fileOutputStream = null;
 		final int compressionLevel = 5;
 		/* Stored into SCI/modules/helptools/jar */
-		String fileName = outputDirectory + "/../../../jar/" + baseName + ".jar";
+		String fileName = outputDirectory + "/../../jar/" + baseName + ".jar";
 
 		try {
 
