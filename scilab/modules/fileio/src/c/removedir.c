@@ -19,28 +19,27 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <errno.h>
 #endif
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "localization.h"
+#include "sciprint.h"
 #include "removedir.h"
 #include "isdir.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 static int DeleteDirectory(char *refcstrRootDirectory);
-#ifndef _MSC_VER
-static void removefile(char *filename);
-#endif
 /*--------------------------------------------------------------------------*/ 
 BOOL removedir(char *path)
 {
-	BOOL bOK=FALSE;
 	if (isdir(path))
 	{
 		DeleteDirectory(path);
-		if (!isdir(path)) bOK=TRUE; 
+		if (!isdir(path)) return TRUE; 
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
@@ -107,43 +106,39 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 	return 0;
 }
 #endif
-/*--------------------------------------------------------------------------*/ 
-#ifndef _MSC_VER
-static void removefile(char *filename)
-{
-	FILE *f = fopen(filename, "r") ;
-	if (! f) return ;
-	fclose(f) ;
-	chmod(filename, S_IWRITE) ;
-	remove(filename) ;
-}
-#endif 
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static int DeleteDirectory(char *refcstrRootDirectory)
 {
 	DIR *dir;
 	struct dirent *ent;
-
 	dir = opendir(refcstrRootDirectory) ;
+	
+	if (dir==NULL)
+		{
+			sciprint(_("Warning: Error while opening %s: %s\n"),refcstrRootDirectory, strerror(errno));
+			return -1;
 
-	if (!dir)
-	{
-		removefile(refcstrRootDirectory) ;
-	} 
-	else
-	{
-		while((ent = readdir(dir)) != NULL)
+		}
+	while((ent = readdir(dir)) != NULL)
 		{
 			char *filename = NULL;
 			if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) continue ;
-
-			filename = MALLOC(strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1) ;
+			filename = MALLOC(sizeof(char)*(strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1)) ;
 			sprintf(filename,"%s/%s",refcstrRootDirectory,ent->d_name);
-			removefile(filename);
-			if (filename) {FREE(filename);filename=NULL;}
+			if (isdir(filename)) {
+				/* Delete recursively */
+				DeleteDirectory(filename);
+			} else {
+				/* Not a directory... It must be a file (at least, I hope it is a file */
+				if (remove(filename) != 0) {
+					sciprint(_("Warning: Could not remove file %s: %s\n"),filename, strerror(errno));
+				}
+				if (filename) {FREE(filename);filename=NULL;}
+			}
 		}
-		rmdir(refcstrRootDirectory);
+	if (rmdir(refcstrRootDirectory) != 0) {
+		sciprint(_("Warning: Could not remove directory %s: %s\n"),refcstrRootDirectory, strerror(errno));
 	}
 	return 0;
 }
