@@ -17,13 +17,13 @@ function y = linspace(d1, d2, n)
     n = 100;
   end
   if n<=1 then
-    error(msprintf(gettext("Unexpected value of n : %s. Expected value is greater than 1.\n"),string(n)));
+    error(msprintf(gettext("%s: Unexpected value of n: %d. Expected value is greater than %d.\n"),"linspace",n,1));
   end
   // Note:
   // If n is a real, using n directly may lead to approximation
   // problems. Instead, add 1/2 and round so that the real is 
   // correctly approximated into an integer.
-  // If n is allready an integer, this is a no-op.
+  // If n is already an integer, this is a no-op.
   appn = floor(n+0.5)
   alpha= (d2-d1)/(appn-1)
   // Computes a vector with size n-1
