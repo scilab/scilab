@@ -13,6 +13,19 @@ function y = linspace(d1, d2, n)
 // equally spaced points between x1 and x2.
 // linspace(x1, x2, n) generates n points between x1 and x2.
 
-  if argn(2) == 2 then n = 100;end
-  y = [d1*ones(1,n-1)+(0:n-2)*(d2-d1)/(n-1),d2];
+  if argn(2) == 2 then 
+    n = 100;
+  end
+  if n<=1 then
+    error(msprintf(gettext("Unexpected value of n : %s. Expected value is greater than 1.\n"),string(n)));
+  end
+  // If n is a real, using n directly may lead to approximation
+  // problems. Instead, add 1/2 and round so that the real is 
+  // correctly approximated into an integer.
+  // If n is allready an integer, this is a no-op.
+  appn = floor(n+0.5)
+  alpha= (d2-d1)/(appn-1)
+  y1 = d1*ones(1,appn-1)+(0:appn-2)*alpha
+  y = [y1,d2];
 endfunction
+
