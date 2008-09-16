@@ -20,11 +20,11 @@ extern "C"
   	CheckLhs(1,1); 
   	
   	/* Retrieve the first input argument */
-  	GetRhsVar(1, "c", &m1, &n1, &l1); 
+  	GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1); 
   	inputString1 = cstk(l1);
   	
   	/* Retrieve the second input argument */
-  	GetRhsVar(2, "c", &m2, &n2, &l2); 
+  	GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2); 
   	inputString2 = cstk(l2);
   	
   	std::string myMessage (inputString1);
@@ -45,7 +45,7 @@ extern "C"
   	
   	/* Create the output argument */
   	
-  	CreateVarFromPtr(Rhs+1,"d",&m3,&n3,&position); 
+  	CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE ,&m3,&n3,&position); 
   	LhsVar(1) = Rhs+1;
   	delete[] position;
   	return 0;

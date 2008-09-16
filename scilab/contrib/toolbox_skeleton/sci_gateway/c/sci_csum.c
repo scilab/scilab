@@ -24,11 +24,11 @@ int sci_csum(char *fname)
   CheckLhs(1,1) ;   
 
   /* get first parameter and put in 'a' */
-  GetRhsVar(1, "d", &m1, &n1, &l1);
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
   a = *stk(l1);
   
   /* get second parameter and put in 'a' */
-  GetRhsVar(2, "d", &m2, &n2, &l2);
+  GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
   b= *stk(l2) ;
  
   /* call fortran fsum subroutine */
@@ -37,7 +37,7 @@ int sci_csum(char *fname)
   /* create a variable on scilab's stack */
   m3=1;
   n3=1;
-  CreateVar(Rhs+1,"d",&m3,&n3,&l3);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
   *stk(l3) = c;
 
   LhsVar(1) = Rhs+1; 
