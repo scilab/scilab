@@ -222,7 +222,8 @@ public class BuildDocObject extends StyleSheet {
 		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
 			return BuildPDF.buildPDF(this.outputDirectory, this.language, format);
 		}
-		return null;
+		
+		return this.outputDirectory;
 	}
 
 
