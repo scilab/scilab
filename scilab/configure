@@ -24790,8 +24790,8 @@ echo "${ECHO_T}($TCL_VERSION) no" >&6; }
 echo "$as_me: error: can't happen" >&2;}
    { (exit 1); exit 1; }; }
         else
-	   { { echo "$as_me:$LINENO: error: you need at least version 8.4 of tcl" >&5
-echo "$as_me: error: you need at least version 8.4 of tcl" >&2;}
+	   { { echo "$as_me:$LINENO: error: You need at least version 8.4 of tcl" >&5
+echo "$as_me: error: You need at least version 8.4 of tcl" >&2;}
    { (exit 1); exit 1; }; }
 	fi
 fi
@@ -25024,6 +25024,156 @@ echo "$as_me: error: header file tcl.h has been found for 8.4* or 8.5* but no co
    { (exit 1); exit 1; }; }
         fi
   fi
+# Check if X11/Xlib.h is available or not (tk.h needs it ...)
+
+for ac_header in X11/Xlib.h
+do
+as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
+if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
+  { echo "$as_me:$LINENO: checking for $ac_header" >&5
+echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6; }
+if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+ac_res=`eval echo '${'$as_ac_Header'}'`
+	       { echo "$as_me:$LINENO: result: $ac_res" >&5
+echo "${ECHO_T}$ac_res" >&6; }
+else
+  # Is the header compilable?
+{ echo "$as_me:$LINENO: checking $ac_header usability" >&5
+echo $ECHO_N "checking $ac_header usability... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <$ac_header>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ echo "$as_me:$LINENO: checking $ac_header presence" >&5
+echo $ECHO_N "checking $ac_header presence... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <$ac_header>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: $ac_header: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: $ac_header: present but cannot be compiled" >&5
+echo "$as_me: WARNING: $ac_header: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: $ac_header:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: $ac_header: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: $ac_header: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: $ac_header: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: $ac_header: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------ ##
+## Report this to http://bugzilla.scilab.org/ ##
+## ------------------------------------------ ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ echo "$as_me:$LINENO: checking for $ac_header" >&5
+echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6; }
+if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  eval "$as_ac_Header=\$ac_header_preproc"
+fi
+ac_res=`eval echo '${'$as_ac_Header'}'`
+	       { echo "$as_me:$LINENO: result: $ac_res" >&5
+echo "${ECHO_T}$ac_res" >&6; }
+
+fi
+if test `eval echo '${'$as_ac_Header'}'` = yes; then
+  cat >>confdefs.h <<_ACEOF
+#define `echo "HAVE_$ac_header" | $as_tr_cpp` 1
+_ACEOF
+
+else
+  { { echo "$as_me:$LINENO: error: Could not find X11/Xlib.h ... This dependency is necessary because of tk.h... Provided by package libx11-dev under Debian/Ubuntu for example." >&5
+echo "$as_me: error: Could not find X11/Xlib.h ... This dependency is necessary because of tk.h... Provided by package libx11-dev under Debian/Ubuntu for example." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+
+done
+
 
   # Check for tk header file
   { echo "$as_me:$LINENO: checking for header file tk.h" >&5
@@ -25051,7 +25201,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 25054 "configure"
+#line 25204 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -25875,7 +26025,7 @@ echo $ECHO_N "checking batik... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25878 "configure"
+// #line 26028 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -25943,7 +26093,7 @@ echo $ECHO_N "checking saxon... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25946 "configure"
+// #line 26096 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -26011,7 +26161,7 @@ echo $ECHO_N "checking fop... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26014 "configure"
+// #line 26164 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -26079,7 +26229,7 @@ echo $ECHO_N "checking jeuclid-core... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26082 "configure"
+// #line 26232 "configure"
 import net.sourceforge.jeuclid.MathBase;
 
 public class conftest {
@@ -26147,7 +26297,7 @@ echo $ECHO_N "checking commons-io... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26150 "configure"
+// #line 26300 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -26215,7 +26365,7 @@ echo $ECHO_N "checking xmlgraphics-commons... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26218 "configure"
+// #line 26368 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -26284,7 +26434,7 @@ echo $ECHO_N "checking avalon-framework... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26287 "configure"
+// #line 26437 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -26924,7 +27074,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 26927 "configure"' > conftest.$ac_ext
+  echo '#line 27077 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -28794,11 +28944,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28797: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28947: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:28801: \$? = $ac_status" >&5
+   echo "$as_me:28951: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -29084,11 +29234,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29087: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29237: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:29091: \$? = $ac_status" >&5
+   echo "$as_me:29241: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -29188,11 +29338,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29191: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29341: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:29195: \$? = $ac_status" >&5
+   echo "$as_me:29345: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -31637,7 +31787,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 31640 "configure"
+#line 31790 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31737,7 +31887,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 31740 "configure"
+#line 31890 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -34158,11 +34308,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34161: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34311: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:34165: \$? = $ac_status" >&5
+   echo "$as_me:34315: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -34262,11 +34412,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34265: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34415: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:34269: \$? = $ac_status" >&5
+   echo "$as_me:34419: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -35860,11 +36010,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:35863: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36013: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:35867: \$? = $ac_status" >&5
+   echo "$as_me:36017: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -35964,11 +36114,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:35967: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36117: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:35971: \$? = $ac_status" >&5
+   echo "$as_me:36121: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -38188,11 +38338,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38191: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38341: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:38195: \$? = $ac_status" >&5
+   echo "$as_me:38345: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -38478,11 +38628,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38481: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38631: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:38485: \$? = $ac_status" >&5
+   echo "$as_me:38635: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -38582,11 +38732,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38585: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38735: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:38589: \$? = $ac_status" >&5
+   echo "$as_me:38739: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
