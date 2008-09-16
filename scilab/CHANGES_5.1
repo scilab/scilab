@@ -3,14 +3,14 @@ Changes between version 5.0.X and 5.1 of Scilab
 Version 5.0.1 begins at rev. 27555.
 
 * xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
-SCI/modules/helptools/{jar,html,ps,pdf}
+SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
 
 * More warnings in C/C++/Fortran during the compilation process.
 See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
 * libmatio is now detected thanks to pkg-config
 
-* Tests added for functions: umf_luget, taucs_chget, pcg.tst
+* Tests added for functions: umf_luget, taucs_chget, pcg
 
 * Scilab 5.1 uses GIWS 1.0
 
@@ -22,3 +22,4 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
 * bug 3322 fixed - trimmean primitive - rev 27627 - Added verbose option, added unit tests, updated doc.
 
+* bug in the script in charge of the dispatch of localization files fixed 
