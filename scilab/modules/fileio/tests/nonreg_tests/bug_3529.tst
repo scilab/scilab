@@ -19,6 +19,6 @@ mkdir(baseDir);
 mkdir(baseDir+"/aze");
 mkdir(baseDir+"/aze/aze");
 mkdir(baseDir+"/aze/aze/qsdq");
-res=removedir(baseDir);
-if res <> %t then pause,end
+res=rmdir(baseDir);
+if res <> 1 then pause,end
 if isdir(baseDir) <> %f then pause,end
