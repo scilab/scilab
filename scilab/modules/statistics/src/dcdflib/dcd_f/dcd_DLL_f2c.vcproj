@@ -945,6 +945,22 @@
 						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\psi.f"
