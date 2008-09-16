@@ -13,7 +13,7 @@
 // builder code for ext3f.c 
 link_name = 'ext3f';    // functions to be added to the call table 
 flag  = "f";		// ext3f is a C function 
-files = ['ext3f.o' ];   // objects files for ext3f 
+files = ['ext3f.f' ];   // objects files for ext3f 
 libs  = [];		// other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

@@ -13,7 +13,7 @@
 // builder code for ext12c.c 
 link_name = 'ext12c';    // functions to be added to the call table 
 flag  = "c";		 // ext12c is a C function 
-files = ['ext12c.o' ];   // objects files for ext12c 
+files = ['ext12c.c' ];   // objects files for ext12c 
 libs  = [];		 // other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

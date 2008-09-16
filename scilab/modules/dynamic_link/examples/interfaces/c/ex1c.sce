@@ -9,7 +9,7 @@
 
 
 
-files=['intex1c.o'];
+files=['intex1c.c'];
 ilib_build('gw_ex1c',['ex1c','intex1c'],files,[]);
 
 exec loader.sce;

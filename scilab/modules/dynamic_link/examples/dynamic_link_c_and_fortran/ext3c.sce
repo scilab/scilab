@@ -13,7 +13,7 @@
 // builder code for ext3c.c 
 link_name = 'ext3c';    // functions to be added to the call table 
 flag  = "c";		// ext3c is a C function 
-files = ['ext3c.o' ];   // objects files for ext3c 
+files = ['ext3c.c' ];   // objects files for ext3c 
 libs  = [];		// other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

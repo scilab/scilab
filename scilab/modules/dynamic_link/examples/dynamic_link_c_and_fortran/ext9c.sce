@@ -13,7 +13,7 @@
 // builder code for ext9c.c 
 link_name = 'ext9c';    // functions to be added to the call table 
 flag  = "c";		// ext9c is a C function 
-files = ['ext9c.o' ];   // objects files for ext9c 
+files = ['ext9c.c' ];   // objects files for ext9c 
 libs  = [];		// other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-files=['intex9c.o','as2osc.o'];
+files=['intex9c.c','as2osc.c'];
 ilib_build('gw_ex9c',['ex9c','intex9c'],files,[]);
 
 exec loader.sce;

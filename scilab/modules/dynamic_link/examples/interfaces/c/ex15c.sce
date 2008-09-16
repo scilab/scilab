@@ -9,7 +9,7 @@
 
 
 
-files=['intex15c.o'];
+files=['intex15c.c'];
 ilib_build('gw_ex15c',['ex15c','intex15c'],files,[]);
 
 exec loader.sce;

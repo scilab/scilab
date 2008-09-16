@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-files=['intex13c.o'];
+files=['intex13c.c'];
 ilib_build('gw_ex13c',['ex13c','intex13c'],files,[]);
 
 exec loader.sce;

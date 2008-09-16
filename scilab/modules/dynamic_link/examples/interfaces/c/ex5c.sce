@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-files=['intex5c.o','crestrc.o'];
+files=['intex5c.c','crestrc.c'];
 ilib_build('gw_ex5c',['ex5c','intex5c'],files,[]);
 
 exec loader.sce;

@@ -13,7 +13,7 @@
 // builder code for ext7c.c 
 link_name = 'ext7c';    // functions to be added to the call table 
 flag  = "c";		// ext7c is a C function 
-files = ['ext7c.o' ];   // objects files for ext7c 
+files = ['ext7c.c' ];   // objects files for ext7c 
 libs  = [];		// other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

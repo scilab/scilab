@@ -11,7 +11,7 @@
 // must be run from this directory 
 
 ilib_name  = 'libtutorial'; 		// interface library name 
-files = ['sci_view.o','displ.o','sci_matmul.o','matmul.o'];     // objects files 
+files = ['sci_view.c','displ.c','sci_matmul.c','matmul.c'];     // objects files 
 					// 
 libs  = []; 				// other libs needed for linking
 table = [ 'matmul','sci_matmul';

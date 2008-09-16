@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-files=['intex2f.o'];
+files=['intex2f.f'];
 ilib_build('gw_ex2f',['ex2f','C2F(intex2f)'],files,[]);
 
 exec loader.sce;

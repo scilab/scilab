@@ -13,7 +13,7 @@
 // builder code for ext8c.c 
 link_name = 'ext8c';    // functions to be added to the call table 
 flag  = "c";		// ext8c is a C function 
-files = ['ext8c.o' ];   // objects files for ext8c 
+files = ['ext8c.c' ];   // objects files for ext8c 
 libs  = [];		// other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

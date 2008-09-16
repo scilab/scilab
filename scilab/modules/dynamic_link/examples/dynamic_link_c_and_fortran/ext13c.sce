@@ -14,7 +14,7 @@
 // functions to be added to the call table 
 link_name = ['ext13ic','ext13oc']; 
 flag  = "c";		 // ext13c is a C function 
-files = ['ext13c.o' ];   // objects files for ext13c 
+files = ['ext13c.c' ];   // objects files for ext13c 
 libs  = [];		 // other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

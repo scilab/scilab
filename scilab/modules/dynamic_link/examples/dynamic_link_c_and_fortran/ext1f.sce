@@ -13,7 +13,7 @@
 // builder code for ext1f.c 
 link_name = 'ext1f';    // functions to be added to the call table 
 flag  = "f";		// ext1f is a C function 
-files = ['ext1f.o' ];   // objects files for ext1f 
+files = ['ext1f.f' ];   // objects files for ext1f 
 libs  = [];		// other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used

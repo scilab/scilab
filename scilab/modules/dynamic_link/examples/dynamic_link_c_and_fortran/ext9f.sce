@@ -14,7 +14,7 @@
 // functions to be added to the call table 
 link_name = ['ext9f']; 
 flag  = "f";		 // ext9f is a C function 
-files = ['ext9f.o' ];   // objects files for ext9f 
+files = ['ext9f.f' ];   // objects files for ext9f 
 libs  = [];		 // other libs needed for linking 
 
 // the next call generates files (Makelib,loader.sce) used
