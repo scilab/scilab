@@ -46,8 +46,8 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
 		if test ! -d $DIR; then
 			mkdir $DIR
 		fi
-		echo "cp $file $DIR/$MODULE.po"
-		cp $file $DIR/$MODULE.po
+		echo "cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po"
+		cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po
 		if test $? -ne 0; then
 			echo "Error detected in the copy"
 			exit 1;
