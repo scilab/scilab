@@ -5,6 +5,19 @@ Version 5.0.1 begins at rev. 27555.
 * xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
 SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
 
+* Online Help management:
+  + xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
+    SCI/modules/helptools/{jar,html,ps,pdf)
+  + Examples have been added :
+    - SCI/modules/helptools/example_2
+    - SCI/modules/helptools/example_3
+  + The system that complete an XML directory with the default language is
+    now available when building help per directory too (=> Toolboxes).
+    (see bug 3531 - http://bugzilla.scilab.org/show_bug.cgi?id=3531)
+  + xmltojar, xmltohtml, xmltops, xmltopdf : A list of generated file is returned
+    (see request 540 - http://requestzilla.scilab.org/show_bug.cgi?id=540)
+  + xmltojar, xmltohtml, xmltops, xmltopdf unitary tests have been added
+
 * More warnings in C/C++/Fortran during the compilation process.
 See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
