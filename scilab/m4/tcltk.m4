@@ -112,7 +112,7 @@ else
 	if $TCL_VERSION = "can't happen"; then
 		AC_MSG_ERROR([can't happen])
         else 
-	   AC_MSG_ERROR([you need at least version 8.4 of tcl])
+	   AC_MSG_ERROR([You need at least version 8.4 of tcl])
 	fi
 fi
 CFLAGS=$saved_cflags
@@ -415,6 +415,9 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 			AC_MSG_ERROR([header file tcl.h has been found for 8.4* or 8.5* but no corresponding tcl library (ie libtcl8.4.so or libtcl8.5.so)])
         fi	
   fi
+# Check if X11/Xlib.h is available or not (tk.h needs it ...)
+   AC_CHECK_HEADERS([X11/Xlib.h], [],
+     [AC_MSG_ERROR([Could not find X11/Xlib.h ... This dependency is necessary because of tk.h... Provided by package libx11-dev under Debian/Ubuntu for example.])])
 
   # Check for tk header file
   AC_MSG_CHECKING([for header file tk.h])
