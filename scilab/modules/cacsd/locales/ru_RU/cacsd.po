@@ -8,200 +8,212 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-08-19 14:45+0000\n"
-"PO-Revision-Date: 2008-07-02 14:26+0000\n"
-"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"PO-Revision-Date: 2008-09-13 20:55+0000\n"
+"Last-Translator: Petr E. Antonov <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-16 08:21+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "Function %s is obsolete."
-msgstr ""
+msgstr "Функция %s является устаревшей."
 
 #, c-format
 msgid "Please use %s instead."
-msgstr ""
+msgstr "Пожалуйста используйте %s вместо этого."
 
 #, c-format
 msgid "This function will be permanently removed in Scilab %s"
-msgstr ""
+msgstr "Эта функция будет навсегда удалена из Scilab %s"
 
 #, c-format
 msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
+msgstr "%s: Файл с именем %s.sci не существует в каталоге библиотеки %s.\n"
 
 #, c-format
 msgid "Checking: %s.\n"
-msgstr ""
+msgstr "Проверка: %s.\n"
 
 #, c-format
 msgid "%s: Please check: %s\n"
-msgstr ""
+msgstr "%s: Пожалуйста проверьте: %s\n"
 
 #, c-format
 msgid "%s: File %s doesn''t exist.\n"
-msgstr ""
+msgstr "%s: Файл %s не существует.\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
-msgstr ""
+msgstr "%s: Файлы с расширением %s не найдены в %s\n"
 
 #, c-format
 msgid "%s: %s file compilation forced\n"
-msgstr ""
+msgstr "%s: Вызвана компиляция файла %s\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
-msgstr ""
+msgstr "%s: Обработка файла: %s\n"
 
 #, c-format
 msgid "%s: Regenerate names and lib\n"
-msgstr ""
+msgstr "%s: Регенерация имен и библиотек\n"
 
 #, c-format
 msgid "%s: %s file cannot be created\n"
-msgstr ""
+msgstr "%s: %s файл не может быть создан\n"
 
 #, c-format
 msgid ""
 "Library file %s has been updated,\n"
 "but cannot be loaded into Scilab because ''%s'' is a protected variable.\n"
 msgstr ""
+"Библиотечный файл %s был обновлен,\n"
+"но не может быть загружен в Scilab потому что ''%s'' - защищенная "
+"переменная.\n"
 
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr ""
+msgstr "%s: Предупреждение: Ошибка в файле %s: %s. Файл проигнорирован\n"
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
-msgstr ""
+msgstr "%s: Невозможно открыть файл %s для записи\n"
 
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
-msgstr ""
+msgstr "%s: Файл %s не содержит функции.\n"
 
 #, c-format
 msgid "%s: The function has not been built for profiling"
-msgstr ""
+msgstr "%s: Функция не была создана для профилирования"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
+"%s: Неверные значения для введенного аргумента: Отсутствуют данные профиля в "
+"функции\n"
 
 msgid "Complexity"
-msgstr ""
+msgstr "Сложность"
 
 msgid "3D Rot."
-msgstr ""
+msgstr "3D Вращ."
 
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 msgid "Editer"
-msgstr ""
+msgstr "Редактор"
 
 msgid "Insert"
-msgstr ""
+msgstr "Вставить"
 
 msgid "3D &Rot."
-msgstr ""
+msgstr "3D &Вращ."
 
 msgid "&Edit"
-msgstr ""
+msgstr "&Изменить"
 
 msgid "&Insert"
-msgstr ""
+msgstr "&Вставить"
 
 msgid "Exit"
-msgstr ""
+msgstr "Выход"
 
 msgid "Click to get corresponding line, move with a-z."
 msgstr ""
+"Щелкните, чтобы получить соответствующую строку, a-z для перемещения."
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
-msgstr ""
+msgstr "строка %s [%s вызов, %s сек] :: "
 
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
-msgstr ""
+msgstr "строка %s [%s вызовов, %s сек] :: "
 
 msgid "UnZoom"
-msgstr ""
+msgstr "Уменьшить"
 
 msgid "Zoom"
-msgstr ""
+msgstr "Увеличить"
 
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 msgid "&File"
-msgstr ""
+msgstr "&Файл"
 
 msgid "&Tools"
-msgstr ""
+msgstr "&Инструменты"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента #%d.\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr ""
+msgstr "%s: Не могу найти файл с расширением %s в %s\n"
 
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
-msgstr ""
+msgstr "%s: Неверная функция в файле %s.\n"
 
 #, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
-msgstr ""
+msgstr "-- Создание [%s] (Макрос) --\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
-msgstr ""
+msgstr "%s: устаревший код операции %d.\n"
 
 #, c-format
 msgid "No variable named: %s"
-msgstr ""
+msgstr "Нет переменной с именем: %s"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
 msgstr ""
+"%s: Неверное значение для введенного аргумента #%d: Ожидается имя функции "
+"Scilab.\n"
 
 #, c-format
 msgid "%s is already noncompiled, nothing to do!"
-msgstr ""
+msgstr "%s уже не собран, действие не выполнено!"
 
 #, c-format
 msgid "%s is already compiled, nothing to do!"
-msgstr ""
+msgstr "%s уже не собран, действие не выполнено!"
 
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
-msgstr ""
+msgstr "%s уже собран для профилирования, действие не выполнено!"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
+"%s: Неверный тип для введенного аргумента #%d: Ожидается строка символов.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
-msgstr ""
+msgstr "%s: Неопределенная переменная %s.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
 msgstr ""
+"%s: Неверное значение введенного аргумента #%d: Ожидается имя функции "
+"Scilab.\n"
 
 msgid "No comment available.\n"
-msgstr ""
+msgstr "Комментарий отсутствует.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
+"%s:  Неверный тип для введенного аргумента #%d: Ожидается функция Scilab.\n"
