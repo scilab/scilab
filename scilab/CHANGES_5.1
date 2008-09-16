@@ -14,6 +14,8 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
 * Scilab 5.1 uses GIWS 1.0
 
+* rmdir & removedir had problems with the recursive delete under GNU/Linux
+
 * bug 3500 fixed - [pcre] match position but no character = no match
 
 * bug 3462 fixed - The match string returned by regexp is not the right one if the subject string contains backslashes.
@@ -21,5 +23,9 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 * bug 3131 fixed - version 'GLIBC_2.4' not found with the binary version under some GNU/Linux distro
 
 * bug 3322 fixed - trimmean primitive - rev 27627 - Added verbose option, added unit tests, updated doc.
+
+* bug 3530 fixed - Check that X11/Xlib.h is available since the Tk header needs it
+
+* bug 3529 fixed - rmdir was trying to change the permission on the file/directory. This behavior has been removed.
 
 * bug in the script in charge of the dispatch of localization files fixed 
