@@ -903,6 +903,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_blocks", "modules\sc
 	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "scicos_blocks_f", "modules\scicos_blocks\src\fortran\scicos_blocks_f.vfproj", "{2F7B6080-8D84-43A7-A967-13FC8AA83DEB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9} = {78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noumfpack", "modules\umfpack\src\noumfpack\noumfpack.vcproj", "{6B557C09-7D85-42A4-A2B3-E952E00ACD28}"
 	ProjectSection(ProjectDependencies) = postProject
