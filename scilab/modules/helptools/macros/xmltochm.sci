@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function xmltochm(dirs,titles,directory_language,default_language)
+function generated_files = xmltochm(dirs,titles,directory_language,default_language)
 	
 	if ~MSDOS then
 		warning(msprintf(gettext("%s: This function is only supported on Windows platforms.\n"),"xmltochm"));
@@ -20,15 +20,15 @@ function xmltochm(dirs,titles,directory_language,default_language)
 	select rhs
 	
 	case 0 then
-		xmltoformat("chm");
+		generated_files = xmltoformat("chm");
 	case 1 then
-		xmltoformat("chm",dirs);
+		generated_files = xmltoformat("chm",dirs);
 	case 2 then
-		xmltoformat("chm",dirs,titles);
+		generated_files = xmltoformat("chm",dirs,titles);
 	case 3 then
-		xmltoformat("chm",dirs,titles,directory_language);
+		generated_files = xmltoformat("chm",dirs,titles,directory_language);
 	case 4 then
-		xmltoformat("chm",dirs,titles,directory_language,default_language);
+		generated_files = xmltoformat("chm",dirs,titles,directory_language,default_language);
 	else
 		error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltochm",4));
 	

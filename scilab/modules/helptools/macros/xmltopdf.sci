@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function xmltopdf(dirs,titles,directory_language,default_language)
+function generated_files = xmltopdf(dirs,titles,directory_language,default_language)
 	
 	lhs=argn(1);
 	rhs=argn(2);
@@ -15,15 +15,15 @@ function xmltopdf(dirs,titles,directory_language,default_language)
 	select rhs
 	
 	case 0 then
-		xmltoformat("pdf");
+		generated_files = xmltoformat("pdf");
 	case 1 then
-		xmltoformat("pdf",dirs);
+		generated_files = xmltoformat("pdf",dirs);
 	case 2 then
-		xmltoformat("pdf",dirs,titles);
+		generated_files = xmltoformat("pdf",dirs,titles);
 	case 3 then
-		xmltoformat("pdf",dirs,titles,directory_language);
+		generated_files = xmltoformat("pdf",dirs,titles,directory_language);
 	case 4 then
-		xmltoformat("pdf",dirs,titles,directory_language,default_language);
+		generated_files = xmltoformat("pdf",dirs,titles,directory_language,default_language);
 	else
 		error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltopdf",4));
 	

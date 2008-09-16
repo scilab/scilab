@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function xmltoformat(output_format,dirs,titles,directory_language,default_language)
+function generated_files = xmltoformat(output_format,dirs,titles,directory_language,default_language)
 	
 	// =========================================================================
 	// + output_format : "javaHelp", "pdf", "chm", "ps"
@@ -49,6 +49,8 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	all_scilab_help     = %F;
 	
 	[lhs,rhs] = argn(0);
+	
+	generated_files = [];
 	
 	// Trop de paramêtres
 	// ---------------------------------------------------------------------
@@ -114,17 +116,17 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			for k=1:size(dirs,'*')
 				directory_language = [directory_language;getlanguage()];
 				default_language   = [default_language;getdefaultlanguage()];
-				language_system    = [language_system;%T];
+				language_system    = [language_system;%T]; // Enable the language system
 			end
 			for k=1:size(dirs_m,'*')
 				directory_language_m = [directory_language_m;getlanguage()];
 				default_language_m   = [default_language_m;getdefaultlanguage()];
-				language_system_m    = [language_system_m;%T];
+				language_system_m    = [language_system_m;%T]; // Enable the language system
 			end
 			for k=1:size(dirs_c,'*')
 				directory_language_c = [directory_language_c;getlanguage()];
 				default_language_c   = [default_language_c;getdefaultlanguage()];
-				language_system_c    = [language_system_c;%T];
+				language_system_c    = [language_system_c;%T]; // Enable the language system
 			end
 		end
 	
@@ -136,15 +138,18 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		language_system    = [];
 		titles             = [];
 		directory_language = [];
+		default_language   = [];
 		
 		for k=1:size(dirs,'*')
+			directory_language = [directory_language ; guess_lang(dirs(k)) ]; // Language detection
+			default_language   = [default_language   ; getdefaultlanguage()]; // Default Language
+			titles             = [titles;gettext("Help chapter")+" ("+dirs(k)+")"];
 			
-			// Language detection
-			// ------------------
-			directory_language = [directory_language ; guess_lang(dirs(k)) ];
-			
-			titles = [titles;gettext("Help chapter")+" ("+dirs(k)+")"];
-			language_system = [language_system;%F];
+			if directory_language(k) == default_language(k) then
+				language_system    = [language_system;%F]; // Enable the language system
+			else
+				language_system    = [language_system;%T]; // Enable the language system
+			end
 		end
 		
 	// Cas ou seulement le ou les répertoires ainsi que le ou les titres
@@ -155,14 +160,17 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		
 		language_system    = [];
 		directory_language = [];
+		default_language   = [];
 		
 		for k=1:size(dirs,'*')
+			directory_language = [directory_language ; guess_lang(dirs(k)) ]; // Language detection
+			default_language   = [default_language   ; getdefaultlanguage()]; // Default Language
 			
-			// Language detection
-			// ------------------
-			directory_language = [directory_language ; guess_lang(dirs(k)) ];
-			
-			language_system = [language_system;%F];
+			if directory_language(k) == default_language(k) then
+				language_system    = [language_system;%F]; // Enable the language system
+			else
+				language_system    = [language_system;%T]; // Enable the language system
+			end
 		end
 	
 	// Cas les répertoires,les titres ainsi que la
@@ -172,11 +180,16 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	elseif rhs == 4 then
 		
 		language_system   = [];
-		language_system_m = [];
-		language_system_c = [];
+		default_language  = [];
 		
 		for k=1:size(dirs,'*')
-			language_system = [language_system;%F];
+			default_language = [default_language   ; getdefaultlanguage()]; // Default Language
+			
+			if directory_language(k) == default_language(k) then
+				language_system    = [language_system;%F]; // Enable the language system
+			else
+				language_system    = [language_system;%T]; // Enable the language system
+			end
 		end
 	
 	// Cas où tous est précisé
@@ -185,12 +198,14 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	elseif rhs == 5 then
 		
 		language_system   = [];
-		language_system_m = [];
-		language_system_c = [];
 		
 		for k=1:size(dirs,'*')
 			if isdir(pathconvert(dirs(k)+"/../"+default_language(k),%f,%f)) then
-				language_system = [language_system;%T];
+				if directory_language(k) == default_language(k) then
+					language_system    = [language_system;%F]; // Enable the language system
+				else
+					language_system    = [language_system;%T]; // Enable the language system
+				end
 			end
 		end
 		
@@ -275,7 +290,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	end
 	
 	if ~or(need_to_be_build_tab) then
-		mprintf(gettext("\tHTML files are up-to-date.\n"));
+		mprintf(gettext("%s: The %s files are up-to-date."),"xmltoformat",output_format);
 		return;
 	end
 	
@@ -324,6 +339,27 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			end
 		end
 		
+	else
+	
+		if or(need_to_be_build_tab) then
+			
+			for k=1:size(dirs,'*')
+				if need_to_be_build_tab(k) & language_system(k) then
+					default_language_path = pathconvert(dirs(k)+"/../"+default_language(k),%f,%f);
+					if nb_dir > 1 then
+						if displaydone == 0 then
+							mprintf(_("\nCopying missing files copied from\n"));
+							displaydone = 1;
+						end
+						mprintf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+					else
+						mprintf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+					end
+					complete_with_df_lang(dirs(k),directory_language(k),default_language(k));
+				end
+			end
+		end
+	
 	end
 	
 	//----------------------------------------------------------------------
@@ -379,21 +415,35 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		output_format_ext = output_format;
 	end
 	
+	is_html = (output_format == "html");
+	
 	if all_scilab_help then
 		
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take up to 10 minutes)\n"));
 		
 		// Define and create the path of buildDoc working directory
-		buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help",%t,%f);
+		buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + getlanguage() + "_help",%t,%f);
 		
 		// Define and create the final output directory if does not exist
 		final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
+		
 		if ~isdir(final_output_dir) then
 			mkdir(final_output_dir);
 		end
 		
+		if is_html then
+			final_output_dir = pathconvert(final_output_dir+"/"+getlanguage(),%f,%f);
+			if ~isdir(final_output_dir) then
+				mkdir(final_output_dir);
+			end
+		end
+		
 		// Define the final location of the generated file
-		final_help_file = pathconvert(final_output_dir+"/scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+		if is_html then
+			final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
+		else
+			final_help_file = pathconvert(final_output_dir+"/scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+		end
 		
 		// Define and create the path of buildDoc working directory
 		buildDoc_dir  = pathconvert(SCI+"/modules/helptools/"+ output_format + "/scilab_" + getlanguage() + "_help",%t,%f);
@@ -405,22 +455,47 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		end
 		
 		// Define the path of the generated file created by buildDoc
-		buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+		if ~is_html then
+			buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+		end
+		
+		// Save the current directory
+		cur_dir = getcwd();
 		
 		// Change Scilab current directory so that Java Indexer works
-		oldDir = getcwd();
 		if ~chdir(buildDoc_dir) then
 			error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
 		end
+		
+		// process the build
 		buildDoc(output_format);
-		if ~chdir(oldDir) then
+		
+		// Check if the help file has been generated
+		if fileinfo(buildDoc_file)==[] then
+			error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
+		end
+		
+		// move the generated file(s)
+		if is_html then
+			my_html_files = listfiles(buildDoc_dir);
+			for k=1:size(my_html_files,'*')
+				if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+					error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
+				end
+				mdelete(my_html_files(k));
+			end
+		else
+			copyfile(buildDoc_file,final_help_file);
+			mdelete(buildDoc_file);
+		end
+		
+		// Move into the initial directory
+		if ~chdir(cur_dir) then
 			error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
 		end
 		
-		// move the generated file
-		copyfile(buildDoc_file,final_help_file);
-		mdelete(buildDoc_file);
-
+		// Now we can add the help file to the list of all generated files
+		generated_files = [ generated_files ; final_help_file ];
 		
 		// Now, build toolboxes help (if any)
 		
@@ -433,12 +508,24 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				
 				// Define and create the final output directory if does not exist
 				final_output_dir = pathconvert(dirs_c(k)+"/../../"+output_format_ext,%f,%f);
+				
 				if ~isdir(final_output_dir) then
 					mkdir(final_output_dir);
 				end
 				
+				if is_html then
+					final_output_dir = pathconvert(final_output_dir+"/"+directory_language_c(k),%f,%f);
+					if ~isdir(final_output_dir) then
+						mkdir(final_output_dir);
+					end
+				end
+				
 				// Define the final location of the generated file
-				final_help_file = pathconvert(final_output_dir+"/scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
+				if is_html then
+					final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
+				else
+					final_help_file = pathconvert(final_output_dir+"/scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
+				end
 				
 				// Define and create the path of buildDoc working directory
 				buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help",%t,%f);
@@ -447,24 +534,47 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				end
 				
 				// Define the path of the generated file created by buildDoc
-				buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
+				if ~is_html then
+					buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
+				end
+				
+				// Save the current directory
+				cur_dir = getcwd();
 				
 				// Change Scilab current directory so that Java Indexer works
-				oldDir = getcwd();
-				
 				if ~chdir(buildDoc_dir) then
 					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
 				end
 				
+				// process the build
 				buildDoc(output_format,dirs_c(k)+"/master_help.xml",directory_language_c(k),dirs_c(k));
 				
-				if ~chdir(oldDir) then
+				// Check if the help file has been generated
+				if fileinfo(buildDoc_file)==[] then
+					error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
+				end
+				
+				// move the generated file(s)
+				if is_html then
+					my_html_files = listfiles(buildDoc_dir);
+					for k=1:size(my_html_files,'*')
+						if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+							error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
+						end
+						mdelete(my_html_files(k));
+					end
+				else
+					copyfile(buildDoc_file,final_help_file);
+					mdelete(buildDoc_file);
+				end
+				
+				// Move into the initial directory
+				if ~chdir(cur_dir) then
 					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
 				end
 				
-				// move the generated file
-				copyfile(buildDoc_file,final_help_file);
-				mdelete(buildDoc_file);
+				// Now we can add the help file to the list of all generated files
+				generated_files = [ generated_files ; final_help_file ];
 				
 			end
 		end
@@ -491,12 +601,24 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				
 				// Define and create the final output directory if does not exist
 				final_output_dir = pathconvert(dirs(k)+"/../../"+output_format_ext,%f,%f);
+				
 				if ~isdir(final_output_dir) then
 					mkdir(final_output_dir);
 				end
 				
+				if is_html then
+					final_output_dir = pathconvert(final_output_dir+"/"+directory_language(k),%f,%f);
+					if ~isdir(final_output_dir) then
+						mkdir(final_output_dir);
+					end
+				end
+				
 				// Define the final location of the generated file
-				final_help_file = pathconvert(final_output_dir+"/scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
+				if is_html then
+					final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
+				else
+					final_help_file = pathconvert(final_output_dir+"/scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
+				end
 				
 				// Define and create the path of buildDoc working directory
 				buildDoc_dir  = pathconvert(dirs(k) + "/scilab_" + directory_language(k) + "_help",%t,%f);
@@ -505,22 +627,49 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				end
 				
 				// Define the path of the generated file created by buildDoc
-				buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
+				if is_html then
+					buildDoc_file = pathconvert(buildDoc_dir + "index.html",%f,%f);
+				else
+					buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
+				end
+				
+				// Save the current directory
+				cur_dir = getcwd();
 				
 				// Change Scilab current directory so that Java Indexer works
-				oldDir = getcwd();
-				
 				if ~chdir(buildDoc_dir) then
 					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
 				end
+				
+				// process the build
 				buildDoc(output_format,dirs(k)+"/master_help.xml",directory_language(k),dirs(k));
-				if ~chdir(oldDir) then
+				
+				// Check if the help file has been generated
+				if fileinfo(buildDoc_file)==[] then
+					error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
+				end
+				
+				// move the generated file(s)
+				if is_html then
+					my_html_files = listfiles(buildDoc_dir);
+					for k=1:size(my_html_files,'*')
+						if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+							error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
+						end
+						mdelete(my_html_files(k));
+					end
+				else
+					copyfile(buildDoc_file,final_help_file);
+					mdelete(buildDoc_file);
+				end
+				
+				// Move into the initial directory
+				if ~chdir(cur_dir) then
 					error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
 				end
 				
-				// move the generated file
-				copyfile(buildDoc_file,final_help_file);
-				mdelete(buildDoc_file);
+				// Now we can add the help file to the list of all generated files
+				generated_files = [ generated_files ; final_help_file ];
 				
 			end
 		end
@@ -564,6 +713,25 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 						printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 					end
 					del_df_lang_xml_files(dirs_c(k),directory_language_c(k));
+				end
+			end
+		end
+	else
+		
+		if or(need_to_be_build_tab) then
+			for k=1:size(dirs,'*')
+				if need_to_be_build_tab(k) & language_system(k) then
+					default_language_path = pathconvert(dirs(k)+"/../"+default_language(k),%f,%f);
+					if nb_dir > 1 then
+						if displaydone == 0 then
+							printf(_("\nDeleting files copied from\n"));
+							displaydone = 1;
+						end
+						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+					else
+						printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+					end
+					del_df_lang_xml_files(dirs(k),directory_language(k));
 				end
 			end
 		end
@@ -740,8 +908,7 @@ function result = need_to_be_build(directory,directory_language,default_language
 	//--------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0);
-	result = %T; // At the moment, we do need to rebuild all ... 
-	return;	
+	
 	// S'il n'y a pas de fichiers XML dans le répertoire ni dans son homologue,
 	// Le répertoire n'a pas besoin d'être construit.
 	// Cela est une sécurité pour éviter de detruire les whatis des versions binaires
