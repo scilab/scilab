@@ -525,84 +525,6 @@ do_lib()
 	exit 0
 }
 
-
-do_print()
-{
-	$SCI/bin/BEpsf $1 $2
-	lpr -P$3 $2.eps
-	rm -f $2 $2.eps
-}
-
-do_save()
-{
-	case $3 in
-           Postscript)
-
-                wantedName=$2.eps #add a .eps because BEpsf will do it wrong
-                mv $2 $wantedName
-
-                $SCI/bin/BEpsf $1 $wantedName
-                rm -f $wantedName.temp 1> /dev/null  2>&1
-                ;;
-          Postscript-Latex)
-
-                wantedEpsName=$2.eps
-                newEps=`echo $2 | cut -d . -f1`.eps
-                # move the file in case BEpsf will destroy it
-                mv $newEps $newEps.scilab.temp 1> /dev/null  2>&1
-
-                wantedTexName=$2.tex
-                newTex=`echo $2 | cut -d . -f1`.tex # get the name created by Blatexpr
-                # move the file in case BEpsf will destroy it
-                mv $newTex $newTex.scilab.temp 1> /dev/null  2>&1
-
-		$SCI/bin/Blatexpr $1 1.0 1.0 $2
-
-                if test $newEps != $wantedEpsName ; then
-                        mv $newEps $wantedEpsName
-                        mv $newEps.scilab.temp $newEps 1> /dev/null  2>&1 #move the temp file back
-                fi
-
-
-                if test $newTex != $wantedTexName ; then
-                        mv $newTex $wantedTexName
-                        mv $newTex.scilab.temp $newTex 1> /dev/null  2>&1 #move the temp file back
-                fi
-	   	;;
-	  Xfig)
-		case $1 in
-		-portrait)
-			mv $2 $2.fig
-		;;
-		-landscape)
-			sed -e "2s/Portrait/Landscape/" $2 >$2.fig
-			rm -f $2
-		;;
-		esac
-           	;;
-          Gif)
-		case $1 in
-		-portrait)
-			mv $2 $2.gif
-		;;
-		-landscape)
-			mv $2 $2.gif
-		;;
-		esac
-           	;;
-	   PPM)
-		case $1 in
-		-portrait)
-			mv $2 $2.ppm
-		;;
-		-landscape)
-			mv $2 $2.ppm
-		;;
-		esac
-           	;;
-	esac
-}
-
 # calling Scilab with no argument or special cases of calling Scilab
 rest="no"
 case $# in
@@ -630,18 +552,6 @@ case $# in
         case $1 in
             -lib)
 				do_lib $2 $3
-                ;;
-            -print_l)
-                do_print -landscape $2 $3
-                ;;
-            -print_p)
-                do_print -portrait $2 $3
-                ;;
-            -save_l)
-                do_save -landscape $2 $3
-                ;;
-            -save_p)
-                do_save -portrait $2 $3
                 ;;
             -link)
                 shift
