@@ -56,7 +56,7 @@ function [xm,fr]=frmag(num,den,npts)
 	error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',1));
       end
     elseif type(num)==1 then,
-      den=poly(den,'z','c');
+      num=poly(num,'z','c');
     else,
       error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',1));
     end,
@@ -69,7 +69,6 @@ function [xm,fr]=frmag(num,den,npts)
     else,
       error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',2));
     end,
-    
   end
   fr=linspace(0,1/2,npts)
   dfr=exp(2*%i*%pi*fr);
