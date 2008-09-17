@@ -15,9 +15,9 @@
 // linspace(0,1,(1-0.9)*22050) crashes. (Scilab 4.1.2 on linux Ubuntu 8.04)
 
 ierr = execstr('linspace(0,1,(1-0.9)*22050);','errcatch');
-if ierr <> 8 then pause,end
+if ierr <> 0 then pause,end
 
 a = (1-0.9)*22050;
 ierr = execstr('linspace(0,1,a);','errcatch');
-if ierr <> 8 then pause,end
+if ierr <> 0 then pause,end
 
