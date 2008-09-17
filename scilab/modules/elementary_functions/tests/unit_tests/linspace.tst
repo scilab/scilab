@@ -21,4 +21,8 @@ a = (1-0.9)*50;
 computed=linspace(0,1,a);
 expected=[0. 0.25 0.50 0.75 1.];
 if norm(computed-expected)>10*%eps then pause, end
+// Basic use with 12 and 14 which also test scaling
+computed=linspace(12,14,11);
+expected=[12. 12.2 12.4 12.6 12.8 13. 13.2 13.4 13.6 13.8 14.];
+if norm(computed-expected)>10*%eps then pause, end
 
