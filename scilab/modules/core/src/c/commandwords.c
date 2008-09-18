@@ -13,6 +13,7 @@
 #include "machine.h" 
 #include "commandwords.h"
 #include "MALLOC.h"
+#include "BOOL.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
