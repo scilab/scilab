@@ -82,6 +82,9 @@ ref1  = [2.    3.    9.    19.    22.    32.    39];
 if (ref2 <> r2) then pause,end;
 if (ref1 <> r1) then pause,end;
 //===============================
+ierr = execstr("strindex(''2'' ,''/2(]*)?$\1/'' ,''dummy'');","errcatch");
+if ierr <> 999 then pause,end 
+//===============================
 lf = ascii(10);
 
 if strindex('abc','/abc/','r') <>  1   then pause,end
@@ -516,7 +519,10 @@ if strindex('aaaXbX'                                  ,'/\GX.*X/'               
 if strindex('Changes'                                 ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  []  then pause,end
 if strindex('IO.c'                                    ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  3   then pause,end
 if strindex('C:/'                                     ,'/^([a-z]:)/'                           ,'r') <>  []  then pause,end
-if strindex(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ,'r') <>  1   then pause,end
+if strindex(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ,'r') <>  2   then pause,end
+[k,w] = strindex(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ,'r');
+if k <> 2 then pause,end
+if w <> 1 then pause,end
 if strindex('ab'                                      ,'/(^|a)b/'                              ,'r') <>  1   then pause,end
 if strindex('abcab'                                   ,'/(\w)?(abc)\1b/'                       ,'r') <>  []  then pause,end
 if strindex('a,b,c'                                   ,'/^(?:.,){2}c/'                         ,'r') <>  1   then pause,end

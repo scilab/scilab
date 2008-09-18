@@ -11,6 +11,18 @@
 
 lf = ascii(10);
 
+if regexp('abc','/abc/','o') <>  1 then pause,end
+ierr = execstr("regexp(''abc'',''/abc/'',''r'');","errcatch");
+if ierr <> 999 then pause,end
+
+t = 'aaa aab aac aad aae';
+pattern = '/aa/';
+[start_pos, end_pos, match_str] = regexp(t,pattern,'o');
+if size(start_pos,'*') <> 1 then pause,end
+if size(end_pos,'*') <> 1 then pause,end
+if start_pos <> 1 then pause,end
+if end_pos <> 2 then pause,end
+
 if regexp('abc'                                     ,'/abc/'                                 ) <>  1   then pause,end
 if regexp('xbc'                                     ,'/abc/'                                 ) <>  []  then pause,end
 if regexp('axc'                                     ,'/abc/'                                 ) <>  []  then pause,end
@@ -444,7 +456,11 @@ if regexp('aaaXbX'                                  ,'/\GX.*X/'                 
 if regexp('Changes'                                 ,'/\.c(pp|xx|c)?$/i'                     ) <>  []  then pause,end
 if regexp('IO.c'                                    ,'/\.c(pp|xx|c)?$/i'                     ) <>  3   then pause,end
 if regexp('C:/'                                     ,'/^([a-z]:)/'                           ) <>  []  then pause,end
-if regexp(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ) <>  1   then pause,end
+if regexp(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ) <>  2   then pause,end
+[start_pos, end_pos, match_str] = regexp(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          );
+if (start_pos <> 2) then pause,end
+if (end_pos <> 5) then pause,end
+if (match_str <> 'x aa') then pause,end
 if regexp('ab'                                      ,'/(^|a)b/'                              ) <>  1   then pause,end
 if regexp('abcab'                                   ,'/(\w)?(abc)\1b/'                       ) <>  []  then pause,end
 if regexp('a,b,c'                                   ,'/^(?:.,){2}c/'                         ) <>  1   then pause,end

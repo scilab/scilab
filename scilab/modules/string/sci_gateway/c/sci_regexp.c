@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Cong WU
+ * Copyright (C) 2008 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,17 +16,13 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
 #include "gw_string.h"
-#include "machine.h"
-#include "pcre.h"
-#include "pcreposix.h"
 #include "stack-c.h"
 #include "machine.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "pcre.h"
 #include "pcre_private.h"
 #include "pcre_error.h"
 #include "Scierror.h"
@@ -52,11 +49,10 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
     int outIndex = 0;
     int numRow = 1;
 
-    int *values = NULL;
+    int *values_start = NULL;
     int *values_end= NULL;
-    int *position = NULL;
 
-    int nbValues = 0;
+    int nbValues_start = 0;
     int nbValues_end=0;
     int nbposition = 0;
 
@@ -102,15 +98,13 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
     if ( (int)strlen(Str[0]) == 0 )
     {
-        values = (int *)MALLOC(sizeof(int));
+        values_start = (int *)MALLOC(sizeof(int));
         values_end = (int *)MALLOC(sizeof(int));
-        position = (int *)MALLOC(sizeof(int));
     }
     else
     {
-        values = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
+        values_start = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
         values_end = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
-        position = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
     }
     if (Rhs == 2 )
     {
@@ -130,20 +124,23 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                 do
                 {
                     strcpy(save,Str2[x]);
+					Output_Start = 0;
+					Output_End = 0;
+
                     answer = pcre_private(pointer,save,&Output_Start,&Output_End);
                     if ( answer == PCRE_FINISHED_OK )
                     {
                         /* Start = End means that we matched a position and 0 characters.
                          * Matching 0 characters, for us, means no match.
                          */
-                        if (Output_Start!=Output_End)
+                        if (Output_Start != Output_End)
                         {
                             /*adding the answer into the outputmatrix*/
-                            values[nbValues++] = Output_Start + start_point + 1;
+                            values_start[nbValues_start++] = Output_Start + start_point + 1;
                             values_end[nbValues_end++] = Output_End + start_point;
                             
                             /*The number according to the str2 matrix*/
-                            position[nbposition++]=x+1;
+                            nbposition++;
                         }
                         else if(Output_End == 0 && *pointer != '\0')
                         {
@@ -151,8 +148,8 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                             pointer++;
                         }
                         
-                        pointer = pointer + Output_End;
-                        start_point = start_point + Output_End;
+                        pointer = &pointer[Output_End];
+                        start_point = start_point + Output_End ;
                     }
                     else
                     {
@@ -175,7 +172,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
         }
     }
 
-    if (Rhs >= 3)
+    if (Rhs == 3)
     {
         int m3 = 0;
         int n3 = 0;
@@ -195,7 +192,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
             for (x = 0; x < mn2; ++x)
             {
-                answer = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
+                answer = pcre_private(Str[0], Str2[x], &Output_Start, &Output_End);
                 if ( answer == PCRE_FINISHED_OK)
                 {
                     /* Start = End means that we matched a position and 0 characters.
@@ -204,11 +201,11 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                     if (Output_Start!=Output_End)
                     {
                         /*adding the answer into the outputmatrix*/
-                        values[nbValues++]=Output_Start+1;
-                        values_end[nbValues_end++]=Output_End;
+                        values_start[nbValues_start++] = Output_Start+1;
+                        values_end[nbValues_end++] = Output_End;
                         
                         /*The number according to the str2 matrix*/
-                        position[nbposition++]=x+1;
+                        nbposition++;
                     }
                 }
                 else
@@ -220,13 +217,17 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                     }
                 }
             }
-
         }
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: '%s' expected.\n"),fname,3,"o");
+			return 0;
+		}
     }
 
-    if (nbValues!=0)
+    if (nbValues_start!=0)
     {
-        match = (char**)MALLOC(sizeof(char*)*(nbValues));
+        match = (char**)MALLOC(sizeof(char*)*(nbValues_start));
     }
     else
     {
@@ -234,25 +235,25 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
     }
 
-    for( i = 0; i < nbValues; i++)
+    for( i = 0; i < nbValues_start; i++)
     {
-        int len = values_end[i] - values[i] + 1;
+        int len = values_end[i] - values_start[i] + 1;
         match[i] = (char*)MALLOC(sizeof(char)*(len + 1));
-        strncpy(match[i], Str[0] + values[i] - 1, len);
+        strncpy(match[i], Str[0] + values_start[i] - 1, len);
         
         /* A char* always finished by \0 */
-        match[i][len]='\0';
+        match[i][len] = '\0';
     }
 
-    freeArrayOfString(Str,mn);
-    freeArrayOfString(Str2,mn2);
+    freeArrayOfString(Str, mn);
+    freeArrayOfString(Str2, mn2);
 
     numRow   = 1;/* Output values[] */
     outIndex = 0;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
-    for ( i = 0 ; i < nbValues ; i++ )
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues_start,&outIndex);
+    for ( i = 0 ; i < nbValues_start ; i++ )
     {
-        stk(outIndex)[i] = (double)values[i] ;
+        stk(outIndex)[i] = (double)values_start[i] ;
     }
     LhsVar(1) = Rhs+1 ;
 
@@ -270,7 +271,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
     if (Lhs == 3)
     {
-        numRow =  nbValues;
+        numRow =  nbValues_start;
         outIndex = 1 ;
         CreateVarFromPtr(Rhs + 3,MATRIX_OF_STRING_DATATYPE, &numRow, &outIndex, match );
         LhsVar(3) = Rhs + 3 ;
@@ -278,11 +279,10 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
     C2F(putlhsvar)();
 
-    if (values) {FREE(values); values = NULL;}
+    if (values_start) {FREE(values_start); values_start = NULL;}
     if (values_end) {FREE(values_end); values_end = NULL;}
-    if (position) {FREE(position); position = NULL;}
 
-    freeArrayOfString(match,nbValues);
+    freeArrayOfString(match,nbValues_start);
     return 0;
 }
 /*-----------------------------------------------------------------------------------*/

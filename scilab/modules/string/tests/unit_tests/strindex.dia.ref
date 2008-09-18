@@ -81,6 +81,9 @@ ref1  = [2.    3.    9.    19.    22.    32.    39];
 if (ref2 <> r2) then bugmes();quit;end;
 if (ref1 <> r1) then bugmes();quit;end;
 //===============================
+ierr = execstr("strindex(''2'' ,''/2(]*)?$\1/'' ,''dummy'');","errcatch");
+if ierr <> 999 then bugmes();quit;end
+//===============================
 lf = ascii(10);
 if strindex('abc','/abc/','r') <>  1   then bugmes();quit;end
 if strindex('xbc','/abc/','r') <>  []  then bugmes();quit;end
@@ -514,7 +517,10 @@ if strindex('aaaXbX'                                  ,'/\GX.*X/'               
 if strindex('Changes'                                 ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  []  then bugmes();quit;end
 if strindex('IO.c'                                    ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  3   then bugmes();quit;end
 if strindex('C:/'                                     ,'/^([a-z]:)/'                           ,'r') <>  []  then bugmes();quit;end
-if strindex(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ,'r') <>  1   then bugmes();quit;end
+if strindex(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ,'r') <>  2   then bugmes();quit;end
+[k,w] = strindex(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ,'r');
+if k <> 2 then bugmes();quit;end
+if w <> 1 then bugmes();quit;end
 if strindex('ab'                                      ,'/(^|a)b/'                              ,'r') <>  1   then bugmes();quit;end
 if strindex('abcab'                                   ,'/(\w)?(abc)\1b/'                       ,'r') <>  []  then bugmes();quit;end
 if strindex('a,b,c'                                   ,'/^(?:.,){2}c/'                         ,'r') <>  1   then bugmes();quit;end

@@ -18,11 +18,8 @@
 #include <ctype.h>
 #include <string.h>
 #include "gw_string.h"
-#include "machine.h"
 #include "pcre.h"
-#include "pcreposix.h"
 #include "stack-c.h"
-#include "machine.h"
 #include "MALLOC.h"
 #include "kmp.h"
 #include "localization.h"

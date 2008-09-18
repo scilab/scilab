@@ -8,6 +8,16 @@
 // unit tests regexp
 //===============================
 lf = ascii(10);
+if regexp('abc','/abc/','o') <>  1 then bugmes();quit;end
+ierr = execstr("regexp(''abc'',''/abc/'',''r'');","errcatch");
+if ierr <> 999 then bugmes();quit;end
+t = 'aaa aab aac aad aae';
+pattern = '/aa/';
+[start_pos, end_pos, match_str] = regexp(t,pattern,'o');
+if size(start_pos,'*') <> 1 then bugmes();quit;end
+if size(end_pos,'*') <> 1 then bugmes();quit;end
+if start_pos <> 1 then bugmes();quit;end
+if end_pos <> 2 then bugmes();quit;end
 if regexp('abc'                                     ,'/abc/'                                 ) <>  1   then bugmes();quit;end
 if regexp('xbc'                                     ,'/abc/'                                 ) <>  []  then bugmes();quit;end
 if regexp('axc'                                     ,'/abc/'                                 ) <>  []  then bugmes();quit;end
@@ -441,7 +451,11 @@ if regexp('aaaXbX'                                  ,'/\GX.*X/'                 
 if regexp('Changes'                                 ,'/\.c(pp|xx|c)?$/i'                     ) <>  []  then bugmes();quit;end
 if regexp('IO.c'                                    ,'/\.c(pp|xx|c)?$/i'                     ) <>  3   then bugmes();quit;end
 if regexp('C:/'                                     ,'/^([a-z]:)/'                           ) <>  []  then bugmes();quit;end
-if regexp(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ) <>  1   then bugmes();quit;end
+if regexp(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ) <>  2   then bugmes();quit;end
+[start_pos, end_pos, match_str] = regexp(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          );
+if (start_pos <> 2) then bugmes();quit;end
+if (end_pos <> 5) then bugmes();quit;end
+if (match_str <> 'x aa') then bugmes();quit;end
 if regexp('ab'                                      ,'/(^|a)b/'                              ) <>  1   then bugmes();quit;end
 if regexp('abcab'                                   ,'/(\w)?(abc)\1b/'                       ) <>  []  then bugmes();quit;end
 if regexp('a,b,c'                                   ,'/^(?:.,){2}c/'                         ) <>  1   then bugmes();quit;end

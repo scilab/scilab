@@ -423,7 +423,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		int callout_data_set = 0;
 		int count=0;
 		int c=0;
-		int copystrings = 0;
 		int find_match_limit = 0;
 		int getstrings = 0;
 		int gmatched = 0;
@@ -445,7 +444,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
 		len = 0;
 		p = INPUT_LINE;
-		while (isspace(*p)) p++;
 		bptr = q = buffer;
 		while ((c = *p++) != 0)
 		{
