@@ -1119,14 +1119,9 @@ AH_BOTTOM([
 #endif
 #define DIR_SEPARATOR "/"
 
-/* Defines PATH_MAX */
-#include "PATH_MAX.h"
-
-/* Defines BOOL type */
-#include "BOOL.h"
-
-/* Defines PARAMS type */
-#include "PARAMS.h"
+#ifndef integer
+typedef int integer;
+#endif
 
 /* Force usage of dynamically located stack on 64 bits */
 #ifdef IS_64_BITS_CPU
