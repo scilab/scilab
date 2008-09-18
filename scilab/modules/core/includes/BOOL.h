@@ -12,10 +12,6 @@
 #ifndef __BOOL_H__
 #define __BOOL_H__
 
-#ifndef integer
-typedef int integer;
-#endif
-
 /* define boolean type */
 #ifdef BOOL
 	#undef BOOL
