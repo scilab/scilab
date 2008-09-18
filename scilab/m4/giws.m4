@@ -16,7 +16,7 @@ AC_DEFUN([AC_GIWS], [
 if test "$enable_build_giws" != 'yes' -a "$enable_build_giws" != 'no'; then
 
    AC_MSG_CHECKING([giws])
-   GIWS_BIN="$enable_build_giws/giws.py" 
+   GIWS_BIN="$enable_build_giws/giws" 
    if test -f "$GIWS_BIN"; then
                 AC_MSG_RESULT([$GIWS_BIN])
         else
@@ -24,7 +24,7 @@ if test "$enable_build_giws" != 'yes' -a "$enable_build_giws" != 'no'; then
 		fi
 else
 # Looks for it in the path
-   AC_CHECK_PROGS(GIWS_BIN,giws.py,no)
+   AC_CHECK_PROGS(GIWS_BIN,giws,no)
    if test "x$GIWS_BIN" = "xno"; then
 		AC_MSG_ERROR([Could find giws.py in the PATH])
    fi
