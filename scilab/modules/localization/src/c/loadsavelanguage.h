@@ -13,7 +13,7 @@
 #ifndef __LOADSAVELANGUAGE_H__
 #define __LOADSAVELANGUAGE_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL loadlanguagepref(void);
 BOOL savelanguagepref(void);
