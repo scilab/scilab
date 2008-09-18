@@ -11,7 +11,7 @@
  */
 #ifndef _TERMINATECORE_H__
 #define _TERMINATECORE_H__
-#include "machine.h"
+#include "BOOL.h"
 
 /**
  * @TODO add comment

@@ -18,6 +18,7 @@
 #include "forbiddenToUseScilab.h"
 #include "realmain.h"
 #include "version.h"
+#include "PATH_MAX.h"
 #include "getScilabDirectory.h"
 #include "MALLOC.h"
 #include "FilesAssociations.h"

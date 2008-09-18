@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "machine.h"
+#include "PATH_MAX.h"
 #include "stack-c.h"
 #include "libraryinfo.h"
 #include "stackinfo.h"

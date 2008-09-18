@@ -16,7 +16,7 @@
 #define __JVM_FUNCTIONS_H__
 
 #include <jni.h> /* JVM functions */
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Load JVM dynamic library

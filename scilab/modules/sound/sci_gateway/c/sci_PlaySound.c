@@ -17,6 +17,7 @@
 	#pragma comment(lib, "winmm.lib")
 #endif
 #include "gw_sound.h"
+#include "PATH_MAX.h"
 #include "stack-c.h"
 #include "cluni0.h"
 #include "Scierror.h"

@@ -19,6 +19,7 @@
 #include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
 #include "Scierror.h"
 #include "cluni0.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/

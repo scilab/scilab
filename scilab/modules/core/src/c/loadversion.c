@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <libxml/xpath.h>
+#include <libxml/xmlreader.h>
 #include "loadversion.h"
 #include "with_module.h"
 #include "setgetSCIpath.h"

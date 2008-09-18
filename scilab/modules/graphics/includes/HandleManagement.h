@@ -24,6 +24,7 @@
 #define __SCI_HANDLE_MANAGEMENT__
 
 #include "ObjectStructure.h"
+#include "BOOL.h"
 
 /* Handle functions */
 extern void sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue);

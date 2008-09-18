@@ -15,7 +15,7 @@
 #ifndef __WINOPEN_H__
 #define __WINOPEN_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Opens the item specified by the filename parameter. The item can be a file or folder

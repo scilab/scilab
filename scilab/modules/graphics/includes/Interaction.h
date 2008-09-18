@@ -25,6 +25,8 @@
 #ifndef __SCI_INTERACTION__
 #define __SCI_INTERACTION__
 
+#include "BOOL.h"
+
 /**
  * Different status after resizing a canvas or a window.
  */

@@ -11,7 +11,7 @@
 #ifndef __FORBIDDENTOUSESCILAB_H__
 #define __FORBIDDENTOUSESCILAB_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /*
 * stop scilab if windows < 256 colors

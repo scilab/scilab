@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "MALLOC.h" /* MALLOC */
-#include "machine.h"
+#include "PATH_MAX.h"
 #include "systemc.h"
 #include "tmpdir.h"
 /*--------------------------------------------------------------------------*/

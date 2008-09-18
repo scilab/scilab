@@ -20,7 +20,7 @@
 #define _GET_CURRENT_OBJECTS_H_
 
 #include "ObjectStructure.h"
-
+#include "BOOL.h"
 /**
  * Returns the pointer to the current selected figure. 
  */

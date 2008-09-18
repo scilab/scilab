@@ -19,6 +19,7 @@
 #define _OBJECT_SELECTION_H_
 
 #include "ObjectStructure.h"
+#include "BOOL.h"
 #include "DoublyLinkedList.h" 
 
 /**

@@ -19,6 +19,9 @@
 #ifndef _GRAY_PLOT_H_
 #define _GRAY_PLOT_H_
 
+#include "machine.h"
+#include "BOOL.h"
+
 /**
  * - z is a (n1,n2) matrix 
  * - x is a (1,n1) matrix 

@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include "machine.h"
+#include "PATH_MAX.h"
 #include "LanguagePref.h"
 #include "MALLOC.h"
 #ifdef _MSC_VER

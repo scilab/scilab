@@ -19,7 +19,7 @@
 #ifndef _GRAPHIC_SESSION_H_
 #define _GRAPHIC_SESSION_H_
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
  * Specify that a graphic session has been opened.

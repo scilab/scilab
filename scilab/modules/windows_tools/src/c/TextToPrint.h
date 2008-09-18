@@ -23,7 +23,7 @@
 #include <ShlObj.h>
 #include <time.h>
 #include <math.h>
-
+#include "BOOL.h"
 
 /*--------------------------------------------------------------------------*/ 
 /* EzCreateFont */
@@ -37,7 +37,6 @@ void PrintString(char *lines,char *Entete);
 void PrintFile(char *filename);
 void PageHeader(HDC hdc,LPSTR Entete);
 void Footer(HDC hdc,int number);
-HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);
 HDC GetPrinterDC(void);
 BOOL ConfigurePrinterDialogBox(void);
 /*--------------------------------------------------------------------------*/ 

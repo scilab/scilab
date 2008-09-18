@@ -15,7 +15,7 @@
 #ifndef __TERMINATEJVM_H__
 #define __TERMINATEJVM_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
 * Terminate JVM 

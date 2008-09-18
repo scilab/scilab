@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef _TERMINATEGRAPHICS_H__
 #define _TERMINATEGRAPHICS_H__
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL TerminateGraphics(void);
 

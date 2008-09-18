@@ -15,7 +15,7 @@
 #ifndef __JVM_H__
 #define __JVM_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 #include <jni.h>
 /**
 * start JVM used in InitializeJVM function

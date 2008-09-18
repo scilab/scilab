@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -927,6 +928,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\BOOL.h"
+				>
+			</File>
+			<File
 				RelativePath=".\callDynamicGateway.h"
 				>
 			</File>
@@ -995,11 +1000,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -1127,11 +1132,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File
@@ -1140,6 +1145,10 @@
 			</File>
 			<File
 				RelativePath=".\parse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\PATH_MAX.h"
 				>
 			</File>
 			<File

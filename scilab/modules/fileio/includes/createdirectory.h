@@ -13,7 +13,7 @@
 #ifndef __CREATEDIRECTORY_H__
 #define __CREATEDIRECTORY_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Create a directory

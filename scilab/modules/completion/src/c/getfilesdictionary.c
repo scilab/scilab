@@ -12,6 +12,7 @@
 #include <string.h> /* strcmp */
 #include <stdio.h> /* sprintf */
 #include "getfilesdictionary.h"
+#include "PATH_MAX.h"
 #include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"

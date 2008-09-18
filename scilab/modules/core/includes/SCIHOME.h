@@ -13,7 +13,7 @@
 #ifndef __SCIHOME_H__
 #define __SCIHOME_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
 * Set SCIHOME environment variable

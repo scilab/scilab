@@ -18,7 +18,7 @@
 
 #ifndef _FEC_H_
 #define _FEC_H_
-
+#include "BOOL.h"
 /**
  *  Iso contour with grey level or colors 
  *  for a function defined by finite elements 

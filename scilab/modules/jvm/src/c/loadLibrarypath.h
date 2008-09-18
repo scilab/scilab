@@ -15,7 +15,7 @@
 #ifndef __LOADLIBRARYPATH_H__
 #define __LOADLIBRARYPATH_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * add paths to java.library.path

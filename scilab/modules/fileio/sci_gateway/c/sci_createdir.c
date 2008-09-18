@@ -22,6 +22,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_createdir)(char *fname,unsigned long l)
 {

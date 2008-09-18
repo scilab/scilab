@@ -20,7 +20,7 @@
 #include <limits.h>
 #include <math.h>
 #include <stdlib.h>
-#include "machine.h"
+#include "BOOL.h"
 #include "core_math.h"
 
 #ifdef _MSC_VER 

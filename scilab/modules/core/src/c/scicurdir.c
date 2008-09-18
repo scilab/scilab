@@ -24,6 +24,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "warningmode.h"
+#include "PATH_MAX.h"
 static char cur_dir[PATH_MAX];
 /*--------------------------------------------------------------------------*/
 /* checks if it is a UNC path */

@@ -15,7 +15,7 @@
 #include <tcl.h>
 #include <tk.h>
 
-#include "machine.h"
+#include "PATH_MAX.h"
 #include "MALLOC.h"
 #include "EnvTclTk.h"
 #include "setenvtcl.h"

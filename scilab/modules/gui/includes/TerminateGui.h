@@ -12,7 +12,7 @@
  */
 #ifndef __TERMINATEGUI_H__
 #define __TERMINATEGUI_H__
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL TerminateGUI(void);
 

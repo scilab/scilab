@@ -20,6 +20,7 @@ extern "C" {
 #endif
 
 #include "../../../graphics/includes/ObjectStructure.h"
+#include "BOOL.h"
 
 /**
  * Get the colormap of a figure. The colormap is stored in java

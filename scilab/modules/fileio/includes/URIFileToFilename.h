@@ -14,7 +14,7 @@
 #ifndef __URIFILETOFILENAME_H__
 #define __URIFILETOFILENAME_H__
 
-#include "machine.h"
+#include "BOOL.h"
 /**
 * convert URI File (file://path/filename.ext) to standard filename
 * @param[in] uri : a string URI file

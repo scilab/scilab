@@ -24,6 +24,7 @@ extern "C" {
 #endif
 
 #include "ObjectStructure.h"
+#include "BOOL.h"
 
 /**
  * Call rubber box on a figure

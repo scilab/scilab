@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __INTIALIZESHELL_H__
 #define __INTIALIZESHELL_H__
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL InitializeShell(void);
 

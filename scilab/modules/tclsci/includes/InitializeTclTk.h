@@ -13,7 +13,7 @@
 #ifndef __INITIALIZETCLTK_H__
 #define __INITIALIZETCLTK_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
  * Initialize TCL/TK env

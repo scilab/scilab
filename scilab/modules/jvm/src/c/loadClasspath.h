@@ -17,7 +17,7 @@
 
 #include <libxml/xmlreader.h>
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * add paths to CLASSPATH

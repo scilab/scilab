@@ -13,7 +13,7 @@
 #ifndef __CONVERTSLASH_H__
 #define __CONVERTSLASH_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 
 /* C:\Windows\system and C:/Windows/system */

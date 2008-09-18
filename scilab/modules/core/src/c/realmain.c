@@ -19,7 +19,7 @@
 #include "sciquit.h"
 #include "tmpdir.h"
 #include "inisci-c.h"
-
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 extern void sci_clear_and_exit(int n);
 extern void sci_usr1_signal(int n);

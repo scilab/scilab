@@ -18,6 +18,7 @@
 #include "StartupMessageBox.h"
 #include "getScilabDirectory.h"
 #include "version.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 static BOOL CALLBACK StartupMessageBoxDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);
 static BOOL ON_STARTUPMESSAGEBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam);

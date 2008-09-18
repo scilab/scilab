@@ -18,7 +18,7 @@
 extern "C" {
 #endif
 
-#include "machine.h"
+#include "BOOL.h"
 
 void joglFeedbackBuffer(int size, int type);
 

@@ -24,6 +24,7 @@
 #endif
 
 #include "gw_io.h"
+#include "PATH_MAX.h"
 #include "FileExist.h"
 #include "../../../core/src/c/scicurdir.h"
 #include "stack-c.h"

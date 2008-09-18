@@ -21,7 +21,7 @@
 #define _GET_COMMAND_ARG_H_
 
 #include "stack-c.h"
-#include "machine.h"
+#include "BOOL.h"
 
 /*------------------------------------------------------------------------*/
 /**

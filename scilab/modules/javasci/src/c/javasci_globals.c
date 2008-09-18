@@ -12,6 +12,7 @@
 
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
+#include "PATH_MAX.h"
 #include "getcommandlineargs.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"

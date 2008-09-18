@@ -14,6 +14,7 @@
 #define __TCL_ARRAYEXIST_H__
 
 #include "TCL_Global.h"
+#include "BOOL.h"
 
 /**
 * TCL_ArrayExist

@@ -13,7 +13,7 @@
 #ifndef __DELETEAFILE_H__
 #define __DELETEAFILE_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL deleteafile(char *filename);
 

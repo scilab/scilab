@@ -14,7 +14,7 @@
 #ifndef __FILEASSOCIATION_H__
 #define __FILEASSOCIATION_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 /*--------------------------------------------------------------------------*/
 /**
 * check if filename exists (windows only)

@@ -20,6 +20,7 @@ extern "C"
 #include <time.h>
 #include <stdlib.h>
 #include "sciprint.h"
+#include "PATH_MAX.h"
 #include "cluni0.h"
 #include "SCIHOME.h"
 #include "inffic.h"

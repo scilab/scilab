@@ -14,6 +14,7 @@
 #define __SCILINES_H__
 
 #include "machine.h" /* C2F */
+#include "BOOL.h" /* C2F */
 
 /**
 * set number of lines and columns to display data

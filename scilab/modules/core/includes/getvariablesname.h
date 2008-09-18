@@ -12,7 +12,7 @@
 #ifndef __GETVARIABLESNAME_H__
 #define __GETVARIABLESNAME_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * get names of all variables (global+local) on stack

@@ -15,7 +15,7 @@
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
-#include "machine.h"
+#include "BOOL.h"
 
 /**
  * Set the visibility of the toolbar

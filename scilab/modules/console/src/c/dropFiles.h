@@ -14,7 +14,7 @@
 #ifndef __DROPFILES_H__
 #define __DROPFILES_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 /**
 * drap & drop files
 * @param[in] list of files

@@ -13,7 +13,7 @@
 #ifndef __SCILABLINESUPDATE_H__
 #define __SCILABLINESUPDATE_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 /**
 * Update scilines variable with the size of Java console

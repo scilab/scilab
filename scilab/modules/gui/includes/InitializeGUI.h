@@ -12,7 +12,7 @@
  */
 #ifndef __INTIALIZEGUI_H__
 #define __INTIALIZEGUI_H__
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL InitializeGUI(void);
 

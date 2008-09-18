@@ -16,6 +16,7 @@
 #include "MALLOC.h" 
 #include "Scierror.h"
 #include "FindFileAssociation.h"
+#include "PATH_MAX.h"
 #include "stack-c.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/

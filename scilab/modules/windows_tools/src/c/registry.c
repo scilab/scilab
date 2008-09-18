@@ -12,6 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "registry.h"
+#include "PATH_MAX.h"
 #include "win_mem_alloc.h"
 #include "GetWindowsVersion.h"
 #include "strdup_windows.h"

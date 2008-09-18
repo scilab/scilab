@@ -14,7 +14,7 @@
 #ifndef __SETGETLANGUAGE_H__
 #define __SETGETLANGUAGE_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /** 
  * change language

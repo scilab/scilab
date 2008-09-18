@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
-#include "machine.h"
+#include "PATH_MAX.h"
 #include "MALLOC.h"
 #include "tmpdir.h" /* getTMPDIR */
 #include "../../fileio/includes/FileExist.h"

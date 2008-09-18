@@ -21,7 +21,7 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
-
+#include "PATH_MAX.h"
 #include "stack-c.h"
 #include "intfilestat.h"
 #include "cluni0.h"

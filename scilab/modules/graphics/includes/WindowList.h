@@ -19,7 +19,7 @@
 #ifndef _WINDOW_LIST_
 #define _WINDOW_LIST_
 
-#include "machine.h"
+#include "BOOL.h"
 #include "ObjectStructure.h"
 #include "DoublyLinkedList.h"
 

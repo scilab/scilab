@@ -14,7 +14,7 @@
 #ifndef __CREATEMAINSCILABOBJECT_H__
 #define __CREATEMAINSCILABOBJECT_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Create Scilab object (scilab main java)

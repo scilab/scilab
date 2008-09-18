@@ -12,7 +12,8 @@
 #ifndef __WARNINGMODE_H__
 #define __WARNINGMODE_H__
 
-#include "machine.h"
+#include "BOOL.h"
+#include "machine.h" /* C2F */
 
 /**
  * @TODO add comment

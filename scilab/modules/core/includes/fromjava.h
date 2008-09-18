@@ -12,7 +12,7 @@
 #ifndef __FROMJAVA__
 #define __FROMJAVA__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
  * <long-description>

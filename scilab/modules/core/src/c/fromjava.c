@@ -11,7 +11,7 @@
  */
 #include "fromjava.h"
 /*--------------------------------------------------------------------------*/ 
-static int bFromJava=FALSE;
+static int bFromJava = FALSE;
 /*--------------------------------------------------------------------------*/ 
 void SetFromJavaToON(void)
 {

@@ -12,7 +12,8 @@
 #ifndef __SCILABMODE_H__
 #define __SCILABMODE_H__
 
-#include "machine.h"
+#include "machine.h" /* C2F */
+#include "BOOL.h"
 
 typedef enum {
 	SCILAB_API=1, /* Scilab is launch as an API */

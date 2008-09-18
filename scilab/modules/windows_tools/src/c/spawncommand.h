@@ -15,7 +15,7 @@
 #define __SPAWNCOMMAND_H__
 /*--------------------------------------------------------------------------*/
 #include <Windows.h>
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 /*--------------------------------------------------------------------------*/
 typedef struct pipeinfo
 {

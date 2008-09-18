@@ -15,7 +15,7 @@
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
-
+#include "BOOL.h"
 /**
  * Create a Menu
  *

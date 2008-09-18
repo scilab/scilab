@@ -14,6 +14,7 @@
 #include "registry.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int sci_winqueryreg(char *fname,unsigned long l)
 {

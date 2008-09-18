@@ -13,7 +13,7 @@
 #ifndef __CLEARCONSOLEPART_H__
 #define __CLEARCONSOLEPART_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 /**
 * Clear Java console

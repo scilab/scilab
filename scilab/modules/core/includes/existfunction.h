@@ -12,6 +12,7 @@
 #ifndef __EXISTFUNCTION_H__
 #define __EXISTFUNCTION_H__
 
+#include "BOOL.h"
 /** 
  * Check if a function exists in the list
  * @param[in] name the name of the function

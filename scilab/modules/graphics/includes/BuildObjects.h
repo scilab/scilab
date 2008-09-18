@@ -30,6 +30,8 @@
 #ifndef __SCI_BUILD__
 #define __SCI_BUILD__
 
+#include "BOOL.h"
+
 sciPointObj *ConstructStatusBar (sciPointObj * pparentfigure); /* BUILD */
 
 sciPointObj * ConstructFigure (sciPointObj * pparent, int * figureIndex) ;/* BUILD */

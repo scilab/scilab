@@ -13,7 +13,8 @@
 #ifndef __WITHTK_H__
 #define __WITHTK_H__
 
-#include "machine.h" /* C2F , BOOL*/
+#include "machine.h" /* C2F */
+#include "BOOL.h" /* BOOL*/
 
 /** 
 * check if it is with TCL/TK

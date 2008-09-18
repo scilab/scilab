@@ -14,8 +14,8 @@
 #include <shlwapi.h>
 #include "FindFileAssociation.h"
 #include "MALLOC.h"
-#include "machine.h"
 #include "strdup_windows.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"shlwapi.lib") /* AssocQueryString */
 /*--------------------------------------------------------------------------*/ 

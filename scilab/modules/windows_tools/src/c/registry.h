@@ -15,7 +15,7 @@
 #define __REGISTY_H__
 
 #include <Windows.h>
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * WindowsQueryRegistry

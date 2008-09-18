@@ -17,6 +17,7 @@
 #include "scicurdir.h"
 #include "localization.h"
 #include "cluni0.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_chdir)(char *fname,unsigned long fname_len)
 {

@@ -31,6 +31,7 @@
 #include "ObjectStructure.h"
 #include "HandleManagement.h"
 #include "StringMatrix.h"
+#include "BOOL.h"
 
 void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
 void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */

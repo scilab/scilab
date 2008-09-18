@@ -13,7 +13,7 @@
 #ifndef __CALLFFTW_H__
 #define __CALLFFTW_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
+#include "BOOL.h"
 #include "fftw3.h"
 /*--------------------------------------------------------------------------*/
 BOOL IsLoadedFFTW(void);

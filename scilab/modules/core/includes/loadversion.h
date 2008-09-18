@@ -11,11 +11,7 @@
  *
  */
 
-#include "machine.h"
-
-#include <libxml/xpath.h>
-#include <libxml/xmlreader.h>
-
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/ 
 /**
  * Retrieve the version of the module from the XML description file 

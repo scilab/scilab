@@ -12,7 +12,7 @@
 #ifndef __INITIALIZECORE_H__
 #define __INITIALIZECORE_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Initialize core module

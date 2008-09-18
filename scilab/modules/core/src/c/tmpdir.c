@@ -38,6 +38,7 @@ extern  char  *getenv();
 #include <process.h>
 #include "strdup_windows.h"
 #endif
+#include "PATH_MAX.h"
 #include "prompt.h"
 #include "tmpdir.h"
 #include "localization.h"

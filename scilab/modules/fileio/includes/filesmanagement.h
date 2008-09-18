@@ -14,7 +14,7 @@
 #define __FILESMANAGEMENT_H__
 
 #include <stdio.h>
-#include "machine.h"
+#include "BOOL.h"
 
 
 /**

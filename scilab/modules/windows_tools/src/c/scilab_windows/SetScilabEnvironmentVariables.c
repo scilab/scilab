@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "SetScilabEnvironmentVariables.h"
-#include "machine.h"
+#include "PATH_MAX.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "setgetSCIpath.h"
 #include "getScilabDirectory.h"

@@ -15,7 +15,8 @@
 #ifndef __DYNAMIC_LINK_H__
 #define __DYNAMIC_LINK_H__
 
-#include "machine.h"
+#include "BOOL.h"
+#include "machine.h" /* C2F */
 
 #define ENTRYMAX 500
 

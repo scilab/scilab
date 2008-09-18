@@ -33,6 +33,8 @@
 #ifndef __SCI_SET_PROPERTY__
 #define __SCI_SET_PROPERTY__
 
+#include "BOOL.h"
+
 void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha); /* SET  */
 
 int sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */

@@ -13,7 +13,7 @@
 #ifndef __SETCONSOLEPROMPT_H__
 #define __SETCONSOLEPROMPT_H__
 /*--------------------------------------------------------------------------*/
-
+#include "BOOL.h"
 /**
 * SetConsolePrompt function
 * @param Sci_prompt new prompt to use for Scilab

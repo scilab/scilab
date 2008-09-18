@@ -13,7 +13,7 @@
 #ifndef __TOOLSDICTIONARY_H__
 #define __TOOLSDICTIONARY_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
 * Append Datas to a dictionary(string matrix)

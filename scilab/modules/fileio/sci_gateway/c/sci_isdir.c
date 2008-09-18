@@ -24,6 +24,7 @@
 #include "cluni0.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 {

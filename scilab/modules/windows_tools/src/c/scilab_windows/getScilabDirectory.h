@@ -14,7 +14,7 @@
 #ifndef __GETSCILABDIRECTORY_H__
 #define __GETSCILABDIRECTORY_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * get scilab directory (windows)

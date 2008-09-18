@@ -12,7 +12,7 @@
 #ifndef __SETMAINWINDOWTITLE_H__
 #define __SETMAINWINDOWTITLE_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * set Main Window Title

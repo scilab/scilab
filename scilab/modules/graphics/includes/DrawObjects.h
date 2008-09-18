@@ -31,7 +31,7 @@
 #define spINSIDE_SPARSE /* F.Leray to have LARGEST_REAL*/
 #include "../../sparse/includes/spConfig.h"
 
-
+#include "BOOL.h"
 #include "PloEch.h"
 #include "Vect2Matrix.h"
 #include "StringMatrix.h"
@@ -46,11 +46,6 @@ extern int cf_type ; /* used by gcf to determine if current figure is a graphic 
 
 
 /*******************************************************/
-
-#ifdef _MSC_VER
-extern HFONT sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight, int iDeciPtWidth, int iAttributes, BOOL fLogRes);  /* DRAWINGS */
-/* extern HDC sciGetHDC (sciPointObj * pobj);    /\* DRAWINGS *\/ */ /* inexistant in Entities.c */
-#endif
 
 extern void sciRedrawFigure(void); /* DRAWINGS */
 extern void sciRedrawF(int *num); /* DRAWINGS */

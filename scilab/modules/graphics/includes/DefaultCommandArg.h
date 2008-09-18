@@ -18,7 +18,7 @@
 #ifndef _DEFAULT_COMMAND_ARG_H_
 #define _DEFAULT_COMMAND_ARG_H_
 
-#include "machine.h"
+#include "BOOL.h"
 
 /*------------------------------------------------------------------------*/
 /* real default */

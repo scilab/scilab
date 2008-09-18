@@ -12,8 +12,8 @@
 
 #ifndef __INITIALIZELOCALIZATION_H__
 #define __INITIALIZELOCALIZATION_H__
-#include <stdio.h>
-#include "machine.h"
+
+#include "BOOL.h"
 
 BOOL InitializeLocalization(void);
 

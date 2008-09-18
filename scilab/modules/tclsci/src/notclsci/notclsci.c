@@ -13,6 +13,7 @@
  *
  */
 #include "machine.h"
+#include "BOOL.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

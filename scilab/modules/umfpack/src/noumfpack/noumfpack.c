@@ -10,6 +10,7 @@
  *
  */
 #include "machine.h" 
+#include "BOOL.h" 
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 

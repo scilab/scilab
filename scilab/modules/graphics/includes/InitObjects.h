@@ -27,6 +27,8 @@
 #ifndef __SCI_INIT_GRAPHICS__
 #define __SCI_INIT_GRAPHICS__
 
+#include "BOOL.h"
+
 extern int C2F(graphicsmodels) (void);
 extern int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */
 extern int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */

@@ -13,9 +13,9 @@
 #ifndef __GLOBALTCLINTERP_H___
 #define __GLOBALTCLINTERP_H___
 
-#include "tcl.h"
-#include "tk.h"
-#include "machine.h"
+#include <tcl.h>
+#include <tk.h>
+#include "BOOL.h"
 
 
 /*

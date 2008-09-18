@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __TERMINATESHELL_H__
 #define __TERMINATESHELL_H__
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL TerminateShell(void);
 

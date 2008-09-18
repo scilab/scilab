@@ -15,7 +15,7 @@
 #ifndef __GETSCILABJAVAVM_H__
 #define __GETSCILABJAVAVM_H__
 
-#include "jni.h" /* JavaVM */
+#include <jni.h> /* JavaVM */
 
 /**
 * returns Scilab JavaVM

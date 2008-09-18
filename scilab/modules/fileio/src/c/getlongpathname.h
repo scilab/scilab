@@ -13,7 +13,7 @@
 #ifndef __GETLONGPATHNAME_H__
 #define __GETLONGPATHNAME_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Retrieves the long path form of the specified path

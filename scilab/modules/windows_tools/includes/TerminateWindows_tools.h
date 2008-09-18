@@ -14,7 +14,7 @@
 #ifndef __TERMINATEWINDOWS_TOOLS_H__
 #define __TERMINATEWINDOWS_TOOLS_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Terminate Windows_tools module

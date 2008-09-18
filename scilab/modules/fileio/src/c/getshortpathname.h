@@ -13,7 +13,7 @@
 #ifndef __GETSHORTPATHNAME_H__
 #define __GETSHORTPATHNAME_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Retrieves the short path form of the specified path

@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include "hashtable.h"
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 struct key_string

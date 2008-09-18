@@ -13,7 +13,8 @@
 #ifndef __WITH_FFTW_H__
 #define __WITH_FFTW_H__
 
-#include "machine.h" /* C2F , BOOL*/
+#include "machine.h" /* C2F */
+#include "BOOL.h" 
 
 /** 
 * check if it is with FFTW

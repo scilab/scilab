@@ -15,7 +15,7 @@
 #define __SETVAR_H__
 
 #include "TCL_Global.h"
-
+#include "BOOL.h"
 /**
 * Set variable "strings array" in TCL
 * @param TCLinterpreter TCL interpreter   

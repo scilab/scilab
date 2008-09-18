@@ -13,7 +13,7 @@
 #ifndef __FILEEXIST_H__
 #define __FILEEXIST_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * verify if filename is a valid file

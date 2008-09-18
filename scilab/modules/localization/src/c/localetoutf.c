@@ -12,6 +12,7 @@
 
 #include <iconv.h>         /* use iconv library for UTF-8 converter */
 #include <stdio.h>
+#include "BOOL.h"
 #include "stack-def.h" /* bsiz */
 #include "stricmp.h"
 #include "localetoutf.h"

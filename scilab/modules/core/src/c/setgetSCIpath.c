@@ -11,13 +11,12 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "machine.h"
+#include <string.h>
 #include "setgetSCIpath.h"
-#include "MALLOC.h"
-#include "string.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/ 
 static char SCIPATH[PATH_MAX];
 /*--------------------------------------------------------------------------*/ 

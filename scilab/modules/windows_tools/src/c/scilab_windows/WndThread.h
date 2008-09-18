@@ -14,7 +14,7 @@
 #ifndef __WNDTHREAD_H__
 #define __WNDTHREAD_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /* format for title of hidden windows */
 #define FORMAT_TITLE_HIDDEN_WINDOWS "%s hidden window (%d)"

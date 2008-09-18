@@ -19,6 +19,7 @@
 
 #include "intersci.h"
 #include "machine.h"
+#include "PATH_MAX.h"
 #include "stack-def.h"
 
 static char buf[1024];

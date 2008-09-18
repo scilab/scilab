@@ -15,7 +15,7 @@
 #ifndef __ADDTOCLASSPATH_H__
 #define __ADDTOCLASSPATH_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 
 typedef enum { STARTUP = 0,

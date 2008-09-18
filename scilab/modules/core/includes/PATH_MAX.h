@@ -12,6 +12,8 @@
 #ifndef __PATH_MAX_H__
 #define __PATH_MAX_H__
 
+#include "machine.h"
+
 /* make sure we have PATH_MAX */
 #if HAVE_LIMITS_H
 # include <limits.h>

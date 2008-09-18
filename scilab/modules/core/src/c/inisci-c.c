@@ -29,6 +29,7 @@
 #include "inisci-c.h"
 #include "SCIHOME.h"
 #include "scilabmode.h"
+#include "PATH_MAX.h"
 #include "scilabDefaults.h"
 /*--------------------------------------------------------------------------*/
 int C2F(withmodelicac)(int *rep)

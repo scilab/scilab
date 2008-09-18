@@ -15,7 +15,8 @@
 #define __WMCOPYDATA_H__
 
 #include <windows.h>
-#include "machine.h"
+#include "PATH_MAX.h"
+#include "BOOL.h"
 
 typedef struct tagMYREC
 {

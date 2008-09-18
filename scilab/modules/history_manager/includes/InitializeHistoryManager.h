@@ -14,7 +14,7 @@
 #ifndef __INITIALIZEHISTORYMANAGER_H__
 #define __INITIALIZEHISTORYMANAGER_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 BOOL InitializeHistoryManager(void);
 

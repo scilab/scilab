@@ -12,6 +12,7 @@
  */
 
 #include "files.h"
+#include "PATH_MAX.h"
 
 int CheckGraphName(char *name,char *dir)
 {

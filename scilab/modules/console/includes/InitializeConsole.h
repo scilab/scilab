@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __INTIALIZECONSOLE_H__
 #define __INTIALIZECONSOLE_H__
-#include "machine.h"
+#include "BOOL.h"
 
 BOOL InitializeConsole(void);
 

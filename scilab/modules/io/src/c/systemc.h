@@ -9,10 +9,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#ifndef __SYSTEMC_H__
+#define __SYSTEMC_H__
+
+#include "machine.h" /* C2F */
 
 /**
  * Execute a command by the system
  * @param[in] command the command
  * @param[out] the status of the operation
  */
+
 int C2F(systemc)(char *command, integer *stat);
+
+#endif

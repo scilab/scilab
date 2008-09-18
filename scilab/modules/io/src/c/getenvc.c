@@ -21,6 +21,7 @@
 #include "getenvc.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "PATH_MAX.h"
 #include "FileExist.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER

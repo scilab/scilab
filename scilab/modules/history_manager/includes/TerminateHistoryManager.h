@@ -14,7 +14,7 @@
 #ifndef __TERMINATHISTORYMANAGER_H__
 #define __TERMINATHISTORYMANAGER_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 BOOL TerminateHistoryManager(void);
 

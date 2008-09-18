@@ -29,6 +29,7 @@
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 #include "BOOL.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 

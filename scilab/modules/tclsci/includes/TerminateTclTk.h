@@ -12,7 +12,7 @@
 
 #ifndef __TERMINATETCLTK_H__
 #define __TERMINATETCLTK_H__
-#include "machine.h"
+#include "BOOL.h"
 
 /**
  * Stops the TCL engine in Scilab

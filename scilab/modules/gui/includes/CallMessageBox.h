@@ -13,7 +13,7 @@
  *
  */
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
  * Create a new MessageBox

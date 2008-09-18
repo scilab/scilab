@@ -15,7 +15,7 @@
 #ifndef __CATCHIFJAVAEXCEPTION_H__
 #define __CATCHIFJAVAEXCEPTION_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
  * Check if there is an exception and print if it is the case

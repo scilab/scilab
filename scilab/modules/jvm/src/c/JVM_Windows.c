@@ -15,6 +15,7 @@
 #include "JVM_commons.h"
 #include "JVM_functions.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "PATH_MAX.h"
 #include "../../fileio/includes/FileExist.h"
 /*--------------------------------------------------------------------------*/ 
 #ifdef _WIN64

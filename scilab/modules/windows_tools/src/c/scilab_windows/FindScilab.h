@@ -14,7 +14,7 @@
 #ifndef __FINDSCILAB_H__
 #define __FINDSCILAB_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Check if exists another scilab window 

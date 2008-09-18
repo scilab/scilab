@@ -31,6 +31,7 @@
 #include "mgetstr.h"
 #include "Scierror.h"
 #include "stack-c.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 static char filename[PATH_MAX];
 static int out_n;

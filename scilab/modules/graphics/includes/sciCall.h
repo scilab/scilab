@@ -16,7 +16,7 @@
 /* desc : Graphic subroutines interface                                   */
 /*------------------------------------------------------------------------*/
 
-#include "machine.h"
+#include "BOOL.h"
 #include "ObjectStructure.h"
 
 #ifndef _SCI_CALL_H_

@@ -14,7 +14,7 @@
 #ifndef __INITIALIZEWINDOWS_TOOLS_H__
 #define __INITIALIZEWINDOWS_TOOLS_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Initialize Windows_tools module

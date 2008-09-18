@@ -19,9 +19,8 @@
 #ifndef _GET_PROPERTY_ASSIGNEMENT_VALUE_H_
 #define _GET_PROPERTY_ASSIGNEMENT_VALUE_H_
 
-#include "machine.h"
 #include <stdlib.h> /* for size_t */
-
+#include "BOOL.h"
 /*------------------------------------------------------------------------------*/
 /* Basic type parameters */
 /**

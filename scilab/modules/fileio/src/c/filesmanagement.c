@@ -14,7 +14,7 @@
 #endif
 #include <string.h>
 #include <stdlib.h>
-#include "machine.h"
+#include "PATH_MAX.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
 #include "MALLOC.h"

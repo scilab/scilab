@@ -14,7 +14,6 @@
 #ifndef __HISTORYMANAGER_C_H__
 #define __HISTORYMANAGER_C_H__
 #include "BOOL.h"
-#include "machine.h" /* BOOL */
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 extern "C" {

@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "PATH_MAX.h"
 #include "core_math.h"
 #include "Os_specific.h"
 #include "../../../io/includes/setenvc.h"

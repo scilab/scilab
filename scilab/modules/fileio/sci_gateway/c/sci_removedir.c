@@ -20,6 +20,7 @@
 #include "Scierror.h"
 #include "cluni0.h"
 #include "localization.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_removedir)(char *fname,unsigned long l)
 {

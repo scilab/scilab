@@ -20,7 +20,7 @@
 #define _GRAPHIC_ZOOM_H_
 
 #include "ObjectStructure.h"
-
+#include "BOOL.h"
 /*----------------------------------------------------------------------------------*/
 BOOL isZoom3dOn( void ) ;
 void setZoom3dStatus( BOOL status ) ;

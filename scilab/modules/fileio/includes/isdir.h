@@ -13,7 +13,7 @@
 #ifndef __ISDIR_H__
 #define __ISDIR_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * Check if a directory exists or not

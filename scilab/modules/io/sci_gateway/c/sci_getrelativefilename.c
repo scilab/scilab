@@ -16,6 +16,7 @@
 #include "MALLOC.h"
 #include "sci_getrelativefilename.h"
 #include "machine.h"
+#include "PATH_MAX.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

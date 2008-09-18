@@ -15,7 +15,7 @@
 #ifndef __INITIALIZEJVM_H__
 #define __INITIALIZEJVM_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /**
 * Initialize JVM 
