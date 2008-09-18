@@ -21,7 +21,7 @@
 #include <string.h>
 #include "findfiles.h"
 #include "MALLOC.h"
-#include "machine.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/ 
 #ifndef _MSC_VER
 static BOOL find_spec( char *filename ,char *filespec);

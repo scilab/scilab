@@ -13,7 +13,7 @@
 #ifndef __ISDRIVE_H__
 #define __ISDRIVE_H__
 
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 /**
 * check if strname is a drive (only for windows)

@@ -14,7 +14,7 @@
 #define __DYNAMICLIBRARY_OTHERS_H__
 
 #include <dlfcn.h>
-#include "machine.h" /* BOOL */
+#include "BOOL.h" /* BOOL */
 
 typedef void * DynLibHandle;
 typedef void * DynLibFuncPtr;

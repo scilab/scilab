@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <ctype.h>  /* isdigit */
 #include <string.h>
-#include "machine.h"
+#include "BOOL.h"
 #include "MALLOC.h"
 #include "do_xxscanf.h"
 #include "Scierror.h"
