@@ -17,10 +17,8 @@
 */
 #include "getmemory.h"
 #include <stdio.h>
-
 #define kooctet 1024
-
-int getfreememory()
+int getfreememory(void)
 {
 
 #if defined(_MSC_VER)
