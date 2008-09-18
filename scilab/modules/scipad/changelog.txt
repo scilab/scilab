@@ -1,3 +1,7 @@
+Francois VOGEL, 18/09/08
+ * Fixed default fallback of proc mcmax when package msgcat is not present
+ * version --> 7.3
+
 Francois VOGEL, 15/09/08
  * Implemented request 459 (remember path and extension from a textarea)
    Note that for the extension it works only with Tk8.5 because Tk8.4 does

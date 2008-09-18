@@ -354,7 +354,7 @@ if {[catch {package require msgcat}] == 0} {
         }
     }
     proc mc {str} {return $str}
-    proc mcmax {args} {return [eval {::msgcat::mcmax $args}]}
+    proc mcmax {args} {return [eval "::msgcat::mcmax $args"]}
 }
 
 

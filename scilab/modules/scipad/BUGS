@@ -165,7 +165,7 @@ Old bugs/whishes which have been hacked but could have been done better:
  -- Update August 2008: The opteam has now implemented functions toprint and
     printsetupbox in java. From their post on the dev mailing list:
     "functions *toprint* (printing without dialogs, no user action needed) and
-    *printsetupbox* are avaiblable under Linux and Windows and call standard
+    *printsetupbox* are available under Linux and Windows and call standard
     Java dialogs".
     TODO: check whether on Linux we should change the way printing works in
     Scipad or not (i.e. use toprint or stay as we do now). On Windows,
@@ -289,7 +289,8 @@ Debugger wishes:
  easy to add further margins and this could be used to tag breakpoints
  instead of tagging the line (but there is a lot of implications: for
  instance the debugger currently scans the textarea for breakpoint tags
- and does not maintain a list of breakpointed lines)
+ and does not maintain a list of breakpointed lines - Hmmm, is this
+ still true now that we have the bptsprops array?)
 
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin, and perhaps a breakpoint pink dot in that margin, or other
@@ -435,9 +436,6 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  Might be feasible: addhistory, gethistoryfile, but in trunk (Scilab5) only
 
 -Request 262: tabbed buffers (see discussion in this request)
-
--Request 459: memorize some informations related to a window (see discussion
- in this request)
 
 -Requests 461 and 462: improvements wrt to xml editing. However, the position
  expressed by Enrico says it all: "Scipad was never really conceived to be a
