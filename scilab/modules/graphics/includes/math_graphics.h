@@ -21,6 +21,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "BOOL.h"
+#include "machine.h" /* integer */
 #include "core_math.h"
 
 #ifdef _MSC_VER 
