@@ -57,11 +57,6 @@ public:
   double getDefaultFontSize(void) {return m_dDefaultFontSize;}
 
   /**
-   * Specify that we wants to update bounds of the text.
-   */
-  void requestBoundsUpdate(void);
-
-  /**
    * Keep the default font size used by FilledTextDrawers
    */
   void setDefaultFontSize(double fontSize) {m_dDefaultFontSize = fontSize;}

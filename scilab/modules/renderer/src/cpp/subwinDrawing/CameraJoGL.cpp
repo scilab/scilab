@@ -73,12 +73,6 @@ void CameraJoGL::renderPosition( void )
 
 }
 /*--------------------------------------------------------------------------*/
-void CameraJoGL::show(void)
-{
-  DrawableObjectJoGL::show();
-  
-}
-/*--------------------------------------------------------------------------*/
 void CameraJoGL::redraw(void)
 {
   getCameraJavaMapper()->redrawCamera();

@@ -186,7 +186,7 @@ DrawableObject::EDisplayStatus Camera::draw( void )
 {
   initializeDrawing();
   setCameraParameters();
-  getCameraImp()->renderPosition();
+  renderPosition();
   endDrawing();
   return SUCCESS;
 }

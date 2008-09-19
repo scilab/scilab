@@ -30,12 +30,8 @@ public:
 
   DrawableClippedObject( sciPointObj * drawed ) ;
 
-
-  /**
-   * To know wether the object is clipped or not.
-   */
-  bool isClipped( void ) { return m_bIsClipped ; }
-
+protected:
+  //-----------------------------------------------------------------
   /**
    * Automatically set the clipping of an object.
    */
@@ -65,11 +61,7 @@ public:
    */
   DrawableClippedObjectBridge * getClippedObjBridge( void ) ;
 
-protected:
-
-  /** To know if clipping is active */
-  bool m_bIsClipped ;
-
+  //-----------------------------------------------------------------
   /** To know if clipping along X axis is enable */
   bool m_bXClippingEnable;
 
@@ -78,6 +70,7 @@ protected:
 
   /** To know if clipping along Z axis is enable */
   bool m_bZClippingEnable;
+  //-----------------------------------------------------------------
 
 } ;
 

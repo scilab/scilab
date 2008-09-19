@@ -60,16 +60,6 @@ void GridDrawerJoGL::endDrawing(void)
   DrawableObjectJoGL::endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::initializeShowing(void)
-{
-  DrawableObjectJoGL::initializeDrawing();
-}
-/*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::endShowing(void)
-{
-  DrawableObjectJoGL::endDrawing();
-}
-/*------------------------------------------------------------------------------------------*/
 GridDrawerJavaMapper * GridDrawerJoGL::getGridDrawerJavaMapper(void)
 {
   return dynamic_cast<GridDrawerJavaMapper *>(getJavaMapper());

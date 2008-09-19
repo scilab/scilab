@@ -149,11 +149,6 @@ public:
     */
    void openRenderingCanvas( void ) ;
 
-   /**
-    * Draw the background of the figure
-    */
-   void drawBackground(void);
-
   /**
    * Set the figure title
    * @param[in] title the figure title
@@ -213,6 +208,7 @@ protected:
    * Return the real type of implementation object
    */
   DrawableFigureBridge * getFigureImp( void ) ;
+
   
   /*-----------------------------------------------------------------------------*/
   // Driver independent Algorithms
@@ -248,6 +244,11 @@ protected:
    * Set the background color of the figure
    */
   void setFigureParameters( void ) ;
+
+	 /**
+    * Draw the background of the figure
+    */
+   void drawBackground(void);
 
   /*-----------------------------------------------------------------------------*/
   /** Synchronizer object used to protect data of the figure and its children */

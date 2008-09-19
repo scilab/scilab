@@ -17,7 +17,7 @@
 
 
 #include "../DrawableObjectFactory.h"
-#include "DrawableArc.h"
+#include "ConcreteDrawableArc.h"
 
 namespace sciGraphics
 {
@@ -44,7 +44,7 @@ protected:
    * Create the drawing strategies.
    * @param arc Object on which to create the strategies
    */
-  void setStrategies( DrawableArc * arc ) ;
+  void setStrategies( ConcreteDrawableArc * arc ) ;
 
 } ;
 

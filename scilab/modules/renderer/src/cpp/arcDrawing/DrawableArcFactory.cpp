@@ -43,10 +43,10 @@ DrawableObject * DrawableArcFactory::create( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableArcFactory::update( void )
 {
-  setStrategies(getArcDrawer(m_pDrawed));
+  setStrategies(dynamic_cast<ConcreteDrawableArc *>(getArcDrawer(m_pDrawed)));
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableArcFactory::setStrategies( DrawableArc * arc )
+void DrawableArcFactory::setStrategies( ConcreteDrawableArc * arc )
 {
   arc->removeDrawingStrategies();
 

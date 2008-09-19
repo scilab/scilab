@@ -19,7 +19,7 @@ namespace sciGraphics
 GridDrawer::GridDrawer(void)
   : DrawableObjectBridge()
 {
-  m_bIsLogModeOn = false;
+  m_bDrawSubticksGrid = false;
 }
 /*------------------------------------------------------------------------------------------*/
 GridDrawer::~GridDrawer(void)
@@ -36,7 +36,7 @@ void GridDrawer::draw(const double firstAxisStart[3], const double firstAxisEnd[
   
 
   
-  if(m_bIsLogModeOn)
+  if(m_bDrawSubticksGrid)
   { 
     // in logarithmic mode ticks must also been drawn in front of subticks
     // so create a larger grid

@@ -27,27 +27,6 @@ public:
 
   DrawableSegs( sciPointObj * pObj ) : DrawableClippedObject( pObj ) {}
 
-  /**
-   * Compute the postions of the arraows to display
-   */
-  virtual void getSegsPos(double startXcoords[], double endXCoords[],
-                          double startYCoords[], double endYCoords[],
-                          double startZCoords[], double endZcoords[]) = 0;
-
-  /**
-   * Get the number of arrows in the segs or champ object
-   */
-  virtual int getNbSegment(void) = 0;
-
-  /**
-   * To know if each segs object has a distinct color
-   */
-  virtual bool isColored(void) = 0;
-
-  /**
-   * Get the color of each segement if needed
-   */
-  virtual void getSegsColors(int colors[]) = 0;
 
   /**
    * Compute the bounding box a segs object

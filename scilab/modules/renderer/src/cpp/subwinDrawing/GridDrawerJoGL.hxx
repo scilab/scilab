@@ -50,16 +50,6 @@ protected:
   virtual void endDrawing(void);
 
   /**
-   * Same as initialize drawing but doesn't set constant parameters
-   */
-  virtual void initializeShowing(void);
-
-  /**
-   * Same as end drawing but doesn't set constant parameters
-   */
-  virtual void endShowing(void);
-
-  /**
    * Get the object performing mapping with Java class.
    */
   GridDrawerJavaMapper * getGridDrawerJavaMapper(void);

@@ -188,18 +188,6 @@ DrawableObject::EDisplayStatus DrawableSubwin::redraw(void)
   endDrawing();
   return SUCCESS;
 }
-/*---------------------------------------------------------------------------------*/
-void DrawableSubwin::drawAxesBox(void)
-{
-  drawBox();
-  drawTicks();
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableSubwin::showAxesBox(void)
-{
-  showBox();
-  showTicks();
-}
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::drawSingleObjs(std::list<sciPointObj *>& singleObjs)
 {

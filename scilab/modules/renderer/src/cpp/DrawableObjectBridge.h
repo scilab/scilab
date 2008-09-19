@@ -52,17 +52,6 @@ public:
   virtual void endDrawing( void ) = 0 ;
 
   /**
-   * Initialize the context for showing (ie displaying recorded object)
-   * @param figureIndex index of parentFigure
-   */
-  virtual void initializeShowing( void ) = 0 ;
-
-  /**
-   * Close showing session
-   */
-  virtual void endShowing( void ) = 0 ;
-
-  /**
    * Translate the object with the record move in camera coordinates
    */
   virtual void translate(const double translation[3]) = 0;

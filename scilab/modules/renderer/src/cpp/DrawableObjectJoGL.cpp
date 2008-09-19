@@ -43,16 +43,6 @@ void DrawableObjectJoGL::endDrawing( void )
   getJavaMapper()->endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableObjectJoGL::initializeShowing( void )
-{
-  
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableObjectJoGL::endShowing( void )
-{   
-  
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::translate(const double translation[3])
 {
   getJavaMapper()->translate(translation);

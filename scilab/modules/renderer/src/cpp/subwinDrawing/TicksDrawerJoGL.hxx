@@ -29,8 +29,6 @@ public:
 
   virtual ~TicksDrawerJoGL(void);
 
-protected:
-
   /**
    * Redefined show since we can not use display lists.
    */
@@ -51,15 +49,18 @@ protected:
                            double ticksDirection[3]);
 
   /**
-   * Specify initialize drawing in setting all useful parameters.
-   */
-  virtual void initializeDrawing(void);
-
-  /**
    * To know if we need to check that ticks are concealing each others or
    * not.
    */
   virtual void setNeedTicksDecimation(bool needDecimation);
+
+protected:
+
+	/**
+   * Specify initialize drawing in setting all useful parameters.
+   */
+  virtual void initializeDrawing(void);
+
 
   /**
    * Get the object performing mapping with Java class.

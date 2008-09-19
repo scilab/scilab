@@ -137,7 +137,6 @@ src/jni/FilledTextDrawerGL.cpp \
 src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
 src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
 src/jni/CenteredTextDrawerGL.cpp \
-src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
 src/jni/IsoViewCameraGL.cpp \
 src/jni/IsometricCameraGL.cpp \
 src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \

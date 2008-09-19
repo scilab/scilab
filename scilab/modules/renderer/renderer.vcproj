@@ -1068,10 +1068,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\textDrawing\DrawTextBoxStrategy.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\src\jni\FilledTextDrawerGL.cpp"
 					>
 				</File>
@@ -2141,10 +2137,6 @@
 					RelativePath=".\src\cpp\arcDrawing\DrawArcStrategy.h"
 					>
 				</File>
-				<File
-					RelativePath=".\TestSwig.hxx"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="FigureDrawing"
@@ -2239,10 +2231,6 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\DrawableTextJoGL.hxx"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\textDrawing\DrawTextBoxStrategy.hxx"
 					>
 				</File>
 				<File

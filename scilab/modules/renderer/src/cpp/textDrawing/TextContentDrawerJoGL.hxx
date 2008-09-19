@@ -73,11 +73,6 @@ protected:
   void getTextDisplayPos(double pos[3]);
 
   /**
-   * Get the display size of text box specified by user.
-   */
-  void getTextBoxDisplaySize(double * width, double * height);
-
-  /**
    * Convert an array containing the coordinates of four corners
    * into 3 distincts vectors.
    */

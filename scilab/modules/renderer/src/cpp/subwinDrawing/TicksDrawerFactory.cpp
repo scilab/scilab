@@ -147,11 +147,11 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
     XGridDrawerJoGL * gridDrawer = new XGridDrawerJoGL(m_pDrawer);
     if (logFlags[0] == 'l')
     {
-      gridDrawer->setLogMode(true);
+      gridDrawer->drawSubticksGrid(true);
     }
     else
     {
-      gridDrawer->setLogMode(false);
+      gridDrawer->drawSubticksGrid(false);
     }
     newTicksDrawer->setGridDrawer(gridDrawer);
   }
@@ -254,11 +254,11 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
     YGridDrawerJoGL * gridDrawer = new YGridDrawerJoGL(m_pDrawer);
     if (logFlags[1] == 'l')
     {
-      gridDrawer->setLogMode(true);
+      gridDrawer->drawSubticksGrid(true);
     }
     else
     {
-      gridDrawer->setLogMode(false);
+      gridDrawer->drawSubticksGrid(false);
     }
     newTicksDrawer->setGridDrawer(gridDrawer);
   }
@@ -348,11 +348,11 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
     ZGridDrawerJoGL * gridDrawer = new ZGridDrawerJoGL(m_pDrawer);
     if (logFlags[2] == 'l')
     {
-      gridDrawer->setLogMode(true);
+      gridDrawer->drawSubticksGrid(true);
     }
     else
     {
-      gridDrawer->setLogMode(false);
+      gridDrawer->drawSubticksGrid(false);
     }
     newTicksDrawer->setGridDrawer(gridDrawer);
   }

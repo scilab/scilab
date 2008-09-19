@@ -151,16 +151,6 @@ protected:
   virtual EDisplayStatus redraw(void) ;
 
   /**
-   * Draw the bounding box and ticks of the subwin object.
-   */
-  void drawAxesBox(void);
-
-  /**
-   * Draw the bounding box and ticks of a subwin object with alredy computed data.
-   */
-  void showAxesBox(void);
-
-  /**
    * Draw the surrounding cube of the subwin object.
    */
   virtual void drawBox(void) = 0;

@@ -43,11 +43,6 @@ public:
   virtual void renderPosition( void ) ;
 
   /**
-   * Display an object which whose representation has been already saved (ie dl created).
-   */
-  virtual void show(void);
-
-  /**
    * Display the camera using precomputed data
    */
   virtual void redraw(void);

@@ -41,7 +41,7 @@ public:
   /**
    * Set whether the logarithmic mode is on or of.
    */
-  void setLogMode(bool isOn) {m_bIsLogModeOn = isOn;}
+  void drawSubticksGrid(bool drawGrid) {m_bDrawSubticksGrid = drawGrid;}
 
 protected:
 
@@ -60,7 +60,7 @@ protected:
   virtual int getGridStyle(void) = 0;
   /*----------------------------------------------------------------------*/
   /** To know if we need to draw subticks or not */
-  bool m_bIsLogModeOn;
+  bool m_bDrawSubticksGrid;
   /*----------------------------------------------------------------------*/
 
 };

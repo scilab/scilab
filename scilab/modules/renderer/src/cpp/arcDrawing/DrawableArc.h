@@ -33,16 +33,6 @@ public:
   virtual ~DrawableArc( void ) ;
 
   /**
-   * Add a rendering algorithm
-   */
-  virtual void addDrawingStrategy( DrawArcStrategy * strategy ) = 0 ;
-
-  /**
-   * Remove all drawing strategies.
-   */
-  virtual void removeDrawingStrategies( void ) = 0 ;
-
-  /**
    * The arc is a part of an ellipse. Get the representation of the ellipse.
    * The minor and major semiAxes create an orthogonal frame on the ellipse plane.
    * @param center center of the ellipse

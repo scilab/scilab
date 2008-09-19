@@ -46,16 +46,6 @@ public:
   virtual void endDrawing( void ) ;
 
   /**
-   * Initialize the context for showing (ie displaying recorded object)
-   */
-  virtual void initializeShowing( void ) ;
-
-  /**
-   * Close showing session
-   */
-  virtual void endShowing( void ) ;
-
-  /**
    * Translate the object with the record move in camera coordinates
    */
   virtual void translate(const double translation[3]);

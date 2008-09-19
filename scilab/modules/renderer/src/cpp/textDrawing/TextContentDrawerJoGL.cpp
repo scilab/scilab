@@ -173,21 +173,6 @@ void TextContentDrawerJoGL::getTextDisplayPos(double pos[3])
   m_pDrawed->pointScale(pos[0], pos[1], pos[2], &(pos[0]), &(pos[1]), &(pos[2]) );
 }
 /*---------------------------------------------------------------------------------*/
-void TextContentDrawerJoGL::getTextBoxDisplaySize(double * width, double * height)
-{
-  // get user size
-  sciGetUserSize(m_pDrawed->getDrawedObject(), width, height);
-
-  // get text position
-  double textPos[3];
-  sciGetTextPos(m_pDrawed->getDrawedObject(), textPos);
-  
-  // apply log scale if needed
-  m_pDrawed->directionScale(*width, *height, 0.0,
-                            textPos[0], textPos[1], textPos[2],
-                            width, height, NULL);
-}
-/*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::convertCornersArray(const double corners[12],
                                                 double corner1[3],
                                                 double corner2[3],

@@ -25,7 +25,6 @@ namespace sciGraphics
 DrawableClippedObject::DrawableClippedObject( sciPointObj * drawed )
   : DrawableObject( drawed )
 {
-  m_bIsClipped = false ;
   m_bXClippingEnable = false ;
   m_bYClippingEnable = false ;
   m_bZClippingEnable = false ;
@@ -94,16 +93,14 @@ void DrawableClippedObject::clip( void )
   {
     getClippedObjBridge()->clipZ();
   }
-  m_bIsClipped = true ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableClippedObject::unClip( void )
 {
-  if ( m_bIsClipped )
-  {
-    getClippedObjBridge()->unClip();
-    m_bIsClipped = false ;
-  }
+	if (m_bXClippingEnable || m_bYClippingEnable || m_bZClippingEnable)
+	{
+		getClippedObjBridge()->unClip();
+	}
 }
 /*---------------------------------------------------------------------------------*/
 DrawableClippedObjectBridge * DrawableClippedObject::getClippedObjBridge( void )
