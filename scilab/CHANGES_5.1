@@ -2,6 +2,9 @@ Changes between version 5.0.X and 5.1 of Scilab
 
 Version 5.0.1 begins at rev. 27555.
 
+Documentation:
+==============
+
 * xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
 SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
 
@@ -18,27 +21,45 @@ SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
     (see request 540 - http://requestzilla.scilab.org/show_bug.cgi?id=540)
   + xmltojar, xmltohtml, xmltops, xmltopdf unitary tests have been added
 
-* More warnings in C/C++/Fortran during the compilation process.
-See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
+* Update of the documentation: error_table
+
+Tests:
+======
+
+* Tests added for functions: umf_luget, taucs_chget, pcg, removedir, rmdir, ones
+
+
+Compilation:
+============
 
 * libmatio is now detected thanks to pkg-config
 
-* Tests added for functions: umf_luget, taucs_chget, pcg, removedir, rmdir, ones
+* More warnings in C/C++/Fortran during the compilation process.
+See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
+
+Enhancement:
+============
 
 * Scilab 5.1 uses GIWS 1.0
 
 * Some parts of the SCI/bin/scilab script relative to old and obsolete stuff 
   (graphic export) have been removed.
 
-* rmdir & removedir had problems with the recursive delete under GNU/Linux
-
 * Update of some output strings (standard, warning & error)
-
-* Update of the documentation: error_table
 
 * Update of the example in the dynamic_link modules and in the toolbox skeleton (use the actual filename instead of the .o)
 
+Localization:
+=============
+
 * Update of the russian localization
+
+Bug fixes:
+==========
+
+* rmdir & removedir had problems with the recursive delete under GNU/Linux
+
+* In the binary, the path to the fortran include directory was wrong.
 
 * bug 3500 fixed - [pcre] match position but no character = no match
 
