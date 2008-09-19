@@ -158,11 +158,10 @@ else
 				break
 			fi
 			curdir=`dirname "$progname"`
-			run_sci="$curdir/bin/$SCILABBIN"
-			if test -x "$run_sci"; then
-				cd "$curdir"
+			if test -x "$curdir"; then
+				cd "$curdir/../"
 				SCI=`pwd`
-				SCIBIN=$run_sci
+				SCIBIN="$curdir/$SCILABBIN"
 				found=1
 				break
 			fi
