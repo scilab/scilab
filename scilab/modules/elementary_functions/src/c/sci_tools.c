@@ -86,7 +86,6 @@
      TODO:use imatrix
 
 ***/
-#include "machine.h"
 
 #include <stdlib.h>
 #include <stdio.h>

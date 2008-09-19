@@ -10,9 +10,9 @@
  *
  */
 
-#include "machine.h"
 
 /* checks if all entries of a vector are finite */
+#include "machine.h"
 
 extern int finite(double v);
 

@@ -12,7 +12,7 @@
 
 #ifndef __SCI_TOOLS
 #define __SCI_TOOLS
-
+#include "machine.h"
 #define DATA_TYPE_SCALAR     1
 
 #define TYPE_DOUBLE  0

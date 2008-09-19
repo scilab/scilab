@@ -10,7 +10,6 @@
  *
  */
 
-#include "machine.h"
 
 #if !(defined HAVE_FINITE) && (defined hppa)
 

@@ -6,7 +6,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "machine.h" 
 /*--------------------------------------------------------------------------*/ 
 #include "qsort.h"
 #include "qsort-int.h"
