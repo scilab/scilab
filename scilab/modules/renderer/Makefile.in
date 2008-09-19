@@ -215,9 +215,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/jni/FilledTextDrawerGL.cpp \
 	src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
 	src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
-	src/jni/CenteredTextDrawerGL.cpp \
-	src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
-	src/jni/IsoViewCameraGL.cpp src/jni/IsometricCameraGL.cpp \
+	src/jni/CenteredTextDrawerGL.cpp src/jni/IsoViewCameraGL.cpp \
+	src/jni/IsometricCameraGL.cpp \
 	src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
 	src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
 	src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
@@ -463,7 +462,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-CenteredTextDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-CenteredTextDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-CenteredTextDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawTextBoxStrategy.lo \
 @GUI_TRUE@	libscirenderer_la-IsoViewCameraGL.lo \
 @GUI_TRUE@	libscirenderer_la-IsometricCameraGL.lo \
 @GUI_TRUE@	libscirenderer_la-IsoViewCameraJavaMapper.lo \
@@ -953,7 +951,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
 @GUI_TRUE@src/jni/CenteredTextDrawerGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
 @GUI_TRUE@src/jni/IsoViewCameraGL.cpp \
 @GUI_TRUE@src/jni/IsometricCameraGL.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
@@ -1355,7 +1352,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableText.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DecomposeSegsStrategy.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawTextBoxStrategy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawabelGrayplotJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcBridgeFactory.Plo@am__quote@
@@ -2541,13 +2537,6 @@ libscirenderer_la-CenteredTextDrawerGL.lo: src/jni/CenteredTextDrawerGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CenteredTextDrawerGL.cpp' object='libscirenderer_la-CenteredTextDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CenteredTextDrawerGL.lo `test -f 'src/jni/CenteredTextDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/CenteredTextDrawerGL.cpp
-
-libscirenderer_la-DrawTextBoxStrategy.lo: src/cpp/textDrawing/DrawTextBoxStrategy.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawTextBoxStrategy.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawTextBoxStrategy.Tpo -c -o libscirenderer_la-DrawTextBoxStrategy.lo `test -f 'src/cpp/textDrawing/DrawTextBoxStrategy.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawTextBoxStrategy.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawTextBoxStrategy.Tpo $(DEPDIR)/libscirenderer_la-DrawTextBoxStrategy.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/DrawTextBoxStrategy.cpp' object='libscirenderer_la-DrawTextBoxStrategy.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawTextBoxStrategy.lo `test -f 'src/cpp/textDrawing/DrawTextBoxStrategy.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawTextBoxStrategy.cpp
 
 libscirenderer_la-IsoViewCameraGL.lo: src/jni/IsoViewCameraGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsoViewCameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Tpo -c -o libscirenderer_la-IsoViewCameraGL.lo `test -f 'src/jni/IsoViewCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsoViewCameraGL.cpp
