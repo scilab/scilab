@@ -54,9 +54,10 @@ function libn = ilib_compile(lib_name,makename,files, ..
    
   else
     //** ---------- Linux section ---------------------  
+	defaultModulesCHeader=[ "core", "mexlib", "output_stream" ];
+	defaultModulesFHeader=[ "core" ];
+	
     // Source tree version
-        defaultModulesCHeader=[ "core", "mexlib", "output_stream" ];
-        defaultModulesFHeader=[ "core" ];
 	if isdir(SCI+"/modules/core/includes/") then
 	  for x = defaultModulesCHeader(:)' 
 	      cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
@@ -70,13 +71,14 @@ function libn = ilib_compile(lib_name,makename,files, ..
 
 	// Add MALLOC since that is this two cases, it is at the same place
 	defaultModulesCHeader=[ defaultModulesCHeader, "malloc" ]; 
+
 	// Binary version
 	if isdir(SCI+"/../../include/scilab/core/") then
 	  for x = defaultModulesCHeader(:)' 
 	  	  cflags="-I"+SCI+"/../../include/scilab/"+ x + "/ " + cflags
 	  end
  	  for x = defaultModulesFHeader(:)' 
-	  	  fflags="-I"+SCI+"/../../include/"+x+"/includes/ "+fflags
+	  	  fflags="-I"+SCI+"/../../include/scilab/"+x+"/ "+fflags
 	  end
 	end
 
