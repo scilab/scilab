@@ -20,27 +20,26 @@
 #include "setenvc.h"
 #include "../../tclsci/includes/setenvtcl.h"
 #include "MALLOC.h" /* MALLOC */
-#include "BOOL.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
 static char *env = NULL;
 #endif
 
-static int UpdateEnvVar=0;
+static int UpdateEnvVar = 0;
 /*--------------------------------------------------------------------------*/
-int setenvc(char *string,char *value)
+BOOL setenvc(char *string,char *value)
 {
-	int ret=0;
-	char* env;
+	int ret = 0;
+	char *env = NULL;
 
 	/* @TODO Check where stands Mac OS X */
 #ifdef LINUX
-	if ( setenv(string,value,1) ) ret=FALSE;
+	if ( setenv(string,value,1) ) return FALSE;
 	else 
 	{
-		ret = TRUE;
 		UpdateEnvVar = 1;
+		return TRUE;
     }
 #else /* others HP Solaris WIN32*/
 	env = (char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
@@ -63,7 +62,7 @@ int setenvc(char *string,char *value)
 	else 
 	{
 		setenvtcl(string,value);
-		ret=TRUE;
+		ret = TRUE;
 		UpdateEnvVar=1;
 	}
 	#ifdef _MSC_VER
@@ -85,6 +84,6 @@ int getUpdateEnvVar(void)
 /*--------------------------------------------------------------------------*/
 void setUpdateEnvVar(int val)
 {
-	UpdateEnvVar=val;
+	UpdateEnvVar = val;
 }
 /*--------------------------------------------------------------------------*/

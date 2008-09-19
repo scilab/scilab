@@ -13,13 +13,15 @@
 #ifndef __SETENVC_H__
 #define __SETENVC_H__
 
+#include "BOOL.h"
+
 /**
  * Set in the system environment a variable to a value
  * @param[in] string the name of the variable
  * @param[in] value the value of the variable "string"
- * @return 0 if there is a problem otherwise 1 
+ * @return FALSE if there is a problem otherwise TRUE
  */
-int setenvc(char *string,char *value);
+BOOL setenvc(char *string,char *value);
 
 /**
  * TODO : comment 
