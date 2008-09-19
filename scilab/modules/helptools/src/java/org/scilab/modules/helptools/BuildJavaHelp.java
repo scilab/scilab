@@ -72,7 +72,8 @@ public final class BuildJavaHelp {
 		JarOutputStream jarFile = null;
 		FileOutputStream fileOutputStream = null;
 		final int compressionLevel = 5;
-		String fileName = outputDirectory + "/../../../jar/" + baseName + ".jar";
+		/* Stored into SCI/modules/helptools/jar */
+		String fileName = outputDirectory + "/" + baseName + ".jar";
 
 		try {
 
@@ -132,7 +133,7 @@ public final class BuildJavaHelp {
      * @param language In which language (for the file name)
      * @return The result of the process
 	 */
-	public static boolean buildJavaHelp(String outputDirectory, String language) {
+	public static String buildJavaHelp(String outputDirectory, String language) {
         
 		String outputJavaHelp = new String(outputDirectory + JAVAHELPSEARCH_DIR);
         
@@ -148,12 +149,12 @@ public final class BuildJavaHelp {
 			indexer.compile(args);
 		} catch (Exception e) {
 			System.err.println("buildDoc: Error building search index: " + e.getLocalizedMessage());
-			return false;
+			return null;
 		}
 
 		BuildJavaHelp.buildJar(outputDirectory, language);
 			
-		return true;
+		return outputDirectory;
 	}
 
 }

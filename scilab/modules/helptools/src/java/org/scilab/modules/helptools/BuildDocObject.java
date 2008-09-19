@@ -40,7 +40,7 @@ public class BuildDocObject extends StyleSheet {
 	private static final String COLON_WITH_QUOTES = "': ";
 	private static final String COLON = " : ";
 	private static final String PDF_FORMAT = "PDF";
-	private static final String PS_FORMAT = "PS";
+	private static final String POSTSCRIPT_FORMAT = "PS";
 	private static final String JH_FORMAT = "JH";
 	private static final String JAVAHELP_FORMAT = "JAVAHELP";
 	private static final String USE_EXTENSIONS_1 = "use.extensions=1";
@@ -123,7 +123,7 @@ public class BuildDocObject extends StyleSheet {
 		// Need to work with a String instead of a enum since it needs
 		// to be called from C/C++ and GIWS doesn't manage this type.
 		// Can be CHM, HTML, PDF, JavaHelp, Postscript
-		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(PS_FORMAT)) {
+		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
 			specificArgs.add("paper.type=A4");
@@ -136,6 +136,7 @@ public class BuildDocObject extends StyleSheet {
 
 		} 
 
+		/* HTML Format */
 		if (format.equalsIgnoreCase("HTML")) {
 			specificArgs.add("use.id.as.filename=1");
 			specificArgs.add("html.stylesheet=html.css");
@@ -156,6 +157,8 @@ public class BuildDocObject extends StyleSheet {
 			}
 			
 		}
+
+		/* Java Help */
 		if (format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
 			// JavaHelp
 			specificArgs.add(USE_EXTENSIONS_1);
@@ -179,7 +182,9 @@ public class BuildDocObject extends StyleSheet {
 		/* Create the output file which will be created by copyconvert.run into the working directory  */
 		File masterXMLTransformed = new File(this.outputDirectory 
 				+ File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
+		/* Where it will be stored */
 		String out = this.outputDirectory + File.separator + (String) new File(styleSheet).getName();
+
 		try {
 			Helpers.copyFile(new File(styleSheet), new File(out));
 		} catch (java.io.FileNotFoundException e) {
@@ -187,6 +192,7 @@ public class BuildDocObject extends StyleSheet {
 		} catch (java.io.IOException e) {
 			System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());			
 		}
+
         CopyConvert copyConvert = new CopyConvert();
         copyConvert.setVerbose(true);
         copyConvert.setPrintFormat(this.format);
@@ -207,15 +213,17 @@ public class BuildDocObject extends StyleSheet {
 
     /**
      * Private method which manages the post processing
-     *
+     * @return The path to the file/directory created.
      */
-	private void postProcess() {
+	private String postProcess() {
 		if (this.format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
-			BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
+			return BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
 		}
-		if (format.equalsIgnoreCase(PDF_FORMAT)) {
-			BuildPDF.buildPDF(this.outputDirectory, this.language);
+		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
+			return BuildPDF.buildPDF(this.outputDirectory, this.language, format);
 		}
+		
+		return this.outputDirectory;
 	}
 
 
@@ -224,9 +232,10 @@ public class BuildDocObject extends StyleSheet {
      *
      * @param sourceDoc Path to the XML master document
      * @param styleSheet Path to the CSS stylesheet
+	 * @return The path to the file/directory created.
 	 * @throws FileNotFoundException Raises an exception if no file/dir found
 	 */
-	public void process(String sourceDoc, String styleSheet) throws FileNotFoundException {
+	public String process(String sourceDoc, String styleSheet) throws FileNotFoundException {
 		ArrayList<String> args = new ArrayList<String>();
 
 		if (!new File(sourceDoc).isFile()) {
@@ -251,8 +260,8 @@ public class BuildDocObject extends StyleSheet {
 		    throw new FileNotFoundException("Unable to parse generated master file.");
 		}
 		
-		if (format.equalsIgnoreCase(PDF_FORMAT)) {
-			/* PDF takes others args */
+		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
+			/* PDF & postscript take other args */
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
 		}
@@ -262,7 +271,11 @@ public class BuildDocObject extends StyleSheet {
 		args.add("base.dir=" + this.outputDirectory);
 		args.add("html.stylesheet=" + new File(styleSheet).getName());
 		args.addAll(specificArgs);
-		
+		/**
+		 * We are calling directly the method as we were using a command line
+		 * program because it is much easier ... 
+		 * However, this should be rewritted using the API 
+		 */
 		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
 
 		if (new File(sourceDocProcessed).isDirectory()) {
@@ -270,7 +283,7 @@ public class BuildDocObject extends StyleSheet {
 			new File(sourceDocProcessed).delete();
 		}
 
-		this.postProcess();
+		return this.postProcess();
 
 	}
 	
