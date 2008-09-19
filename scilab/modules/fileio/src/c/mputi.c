@@ -27,7 +27,7 @@
 #include "filesmanagement.h"
 #include "localization.h"
 
-extern struct soundstream ftf; /* Defined in mgeti.c */
+extern struct soundstream ftfi; /* Defined in mgeti.c */
 
 
 
@@ -62,7 +62,7 @@ void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
 
   fa = GetFileOpenedInScilab(*fd);
   swap = GetSwapStatus(*fd);
-  ft = &ftf; 
+  ft = &ftfi; 
   ft->fp = fa;
   nc=(int)strlen(type);
   if ( nc == 0) 
