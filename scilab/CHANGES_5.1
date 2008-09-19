@@ -30,8 +30,6 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 * Some parts of the SCI/bin/scilab script relative to old and obsolete stuff 
   (graphic export) have been removed.
 
-* 
-
 * rmdir & removedir had problems with the recursive delete under GNU/Linux
 
 * Update of some output strings (standard, warning & error)
@@ -65,6 +63,8 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 * bug 3546 fixed - frmag is broken when called with hn given by a vector of coefficients instead of a polynomial.
 
 * bug 3551 fixed - bvodeS and bvode hang and close Scilab 5.0.1
+
+* bug 3549 fixed - machine.h was including PATH_MAX.h, BOOL.h and PARAMS.h, includes have been cleaned up.
 
 * bug in the script in charge of the dispatch of localization files fixed (tools/localization/dispatchLocalizationFile.sh)
 
