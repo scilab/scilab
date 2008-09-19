@@ -13,7 +13,6 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include "gw_dynamic_link.h"
-#include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intfort)(char *fname,unsigned long fname_len); /* fortran */

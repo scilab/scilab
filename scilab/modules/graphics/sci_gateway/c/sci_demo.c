@@ -18,7 +18,6 @@
 
 #include <string.h>
 
-#include "machine.h"
 #include "stack-c.h"
 #include "sci_demo.h"
 #include "sciprint.h"

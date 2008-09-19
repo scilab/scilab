@@ -15,8 +15,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-#include "machine.h"
+#include "machine.h" /*  HAVE_LIBINTL_H &  HAVE_LOCALE_H */
 
 #ifndef _MSC_VER
  #ifdef HAVE_LIBINTL_H

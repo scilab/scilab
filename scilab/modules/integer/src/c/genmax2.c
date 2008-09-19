@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genmax2.h"
 
 #define MAX2(Xtype,Ytype) {\

@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 #include "scicos_block4.h"
-#include "machine.h"
 extern int C2F(dprxc)();
 void root_coef(scicos_block *block,int flag)
 {

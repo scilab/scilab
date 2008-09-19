@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genmmax.h"
 
 #define MMAX(Type) {\

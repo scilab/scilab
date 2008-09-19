@@ -1,5 +1,4 @@
 /* C driver over ddassl to handle longjump from xerhlt*/
-#include "machine.h"
 #include "../../../elementary_functions/includes/xerhlt.h"
 
 

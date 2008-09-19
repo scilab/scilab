@@ -11,7 +11,6 @@
  */
 #include <stdio.h>
 #include <string.h>
-#include "machine.h"
 #include "../../../fileio/includes/removedir.h"
 #include "../../../fileio/includes/createdirectory.h"
 #include <string.h>

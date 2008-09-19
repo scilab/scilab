@@ -11,7 +11,6 @@
  */
 #include <string.h>
 #include "gw_core.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "stackinfo.h"

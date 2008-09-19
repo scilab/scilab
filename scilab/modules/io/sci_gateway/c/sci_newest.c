@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 #include "PATH_MAX.h"
 #include "gw_io.h"
 #include "MALLOC.h"

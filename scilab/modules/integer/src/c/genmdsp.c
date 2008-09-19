@@ -13,7 +13,6 @@
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
-#include "machine.h"
 #include "core_math.h"
 #include "genmdsp.h"
 

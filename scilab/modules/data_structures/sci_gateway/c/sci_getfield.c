@@ -12,7 +12,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-
 extern int C2F(intgetfield)();
 
 int C2F(sci_getfield)(char *fname,unsigned long fname_len);

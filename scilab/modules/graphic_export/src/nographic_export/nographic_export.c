@@ -11,7 +11,6 @@
  *
  */
 
-#include "machine.h" 
 #include "nographic_export.h"
 #include "Scierror.h"
 #include "localization.h"

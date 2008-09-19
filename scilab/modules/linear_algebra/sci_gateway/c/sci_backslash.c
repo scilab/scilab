@@ -13,7 +13,6 @@
 
 #include <string.h>
 #include <stdio.h>
-#include "machine.h"
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"

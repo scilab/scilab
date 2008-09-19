@@ -11,7 +11,6 @@
  */
 
 #include "InterpreterManagement.h"
-#include "machine.h"
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {

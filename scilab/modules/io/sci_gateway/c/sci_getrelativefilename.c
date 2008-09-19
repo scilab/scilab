@@ -15,7 +15,6 @@
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "sci_getrelativefilename.h"
-#include "machine.h"
 #include "PATH_MAX.h"
 #include "Scierror.h"
 #include "localization.h"

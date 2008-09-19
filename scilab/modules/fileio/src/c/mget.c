@@ -23,7 +23,6 @@
 #include "sciprint.h"
 #include "islittleendian.h"
 #include "../../../libs/libst/misc.h"
-#include "machine.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 struct soundstream ftf;

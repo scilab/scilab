@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genconcatrow.h"
 
 #define RCONC(Type) {\

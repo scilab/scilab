@@ -2,7 +2,6 @@
 /* INRIA 2006 */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
-#include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "gw_fileio.h"

@@ -42,7 +42,6 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "WindowList.h"
-#include "machine.h"
 
 #include "math_graphics.h"
 #include "graphicSession.h"

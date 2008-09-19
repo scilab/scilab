@@ -11,7 +11,6 @@
  *
  */
 
-#include "machine.h"
 #include "msgout.h"
 #include "msgstore.h"
 #include "basout.h"

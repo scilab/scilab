@@ -14,7 +14,6 @@
 #define __PROMPTTOHOME_HXX__
 /*--------------------------------------------------------------------------*/
 #include <jni.h>
-#include "machine.h"
 
 extern "C"
 {

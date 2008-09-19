@@ -13,7 +13,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_dynamic_link.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "dynamic_link.h"
 #include "MALLOC.h"

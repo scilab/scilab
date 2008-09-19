@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genvmul.h"
 
 #define VMUL(Type) {\

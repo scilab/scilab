@@ -10,7 +10,6 @@
  *
  */
 #include <stdlib.h>
-#include "machine.h"
 #include "dynamic_gateways.h"
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"

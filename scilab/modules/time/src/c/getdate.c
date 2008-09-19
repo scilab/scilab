@@ -23,7 +23,6 @@
 #include <stdio.h>
 #include <errno.h>
 #include "getdate.h"
-#include "machine.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"

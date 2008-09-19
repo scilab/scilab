@@ -13,7 +13,6 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
-#include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(sciarl2)(char *fname,unsigned long fname_len);

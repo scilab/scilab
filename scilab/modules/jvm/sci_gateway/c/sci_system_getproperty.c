@@ -14,7 +14,6 @@
 #include <string.h>
 #include "gw_jvm.h"
 #include "MALLOC.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "system_getproperty.h"
 #include "Scierror.h"

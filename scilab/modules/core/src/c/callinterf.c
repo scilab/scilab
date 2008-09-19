@@ -17,7 +17,6 @@
 #include "addinter.h" /* for DynInterfStart */
 #include "Os_specific.h" /* for DynInterfStart */
 #include "callinterf.h"
-#include "machine.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"

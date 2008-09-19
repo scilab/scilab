@@ -11,7 +11,6 @@
  */
 #include <math.h>
 #include <string.h>
-#include "machine.h"
 #include "version.h"
 #include "sciprint.h"
 #include "banier.h"

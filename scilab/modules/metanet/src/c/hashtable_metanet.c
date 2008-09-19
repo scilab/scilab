@@ -14,7 +14,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "MALLOC.h"
-#include "machine.h"
 #include "hashtable_metanet.h"
 /*--------------------------------------------------------------------------*/
 static struct hashtable *Table_Metanet=NULL;

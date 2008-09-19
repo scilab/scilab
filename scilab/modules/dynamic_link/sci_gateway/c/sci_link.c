@@ -14,7 +14,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "gw_dynamic_link.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "dynamic_link.h"

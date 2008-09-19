@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 #include <math.h>
-#include "machine.h"
 #include "scicos_block4.h"
 
 void gainblk_ui8s(scicos_block *block,int flag)

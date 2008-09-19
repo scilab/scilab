@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genkron.h"
 
 #define KRON(Type) {\

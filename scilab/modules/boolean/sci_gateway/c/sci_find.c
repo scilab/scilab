@@ -10,7 +10,6 @@
  *
  */
 
-#include "machine.h"
 #include "gw_boolean.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_find)(char *fname,unsigned long fname_len)

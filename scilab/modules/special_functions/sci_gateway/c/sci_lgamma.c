@@ -12,7 +12,6 @@
  */
 
 #include "gw_special_functions1.h"
-#include "machine.h"
 #include "stack-c.h"
 #include <string.h>
 /*--------------------------------------------------------------------------*/

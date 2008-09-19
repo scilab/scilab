@@ -8,7 +8,6 @@
 #include "pldstr.h"
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
-#include "machine.h"
 #include "localization.h"
 #include "MALLOC.h"
 #ifdef _MSC_VER

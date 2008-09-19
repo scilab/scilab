@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genbitops.h"
 
 #define BIT2(Type,Op) {\

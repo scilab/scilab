@@ -19,7 +19,6 @@
 
 #include <stdio.h>
 #include "gw_core.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #ifdef _MSC_VER

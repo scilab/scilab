@@ -11,7 +11,6 @@
 */
 
 
-#include "machine.h"
 #include "gencopy.h"
 
 #define COPYINT(Type) {\

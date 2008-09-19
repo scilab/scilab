@@ -25,7 +25,6 @@
  * Simone MANNORI
  */
 #include <stdio.h>
-#include "machine.h"
 #include "stack-c.h"
 
 typedef struct {

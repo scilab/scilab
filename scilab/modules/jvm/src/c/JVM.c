@@ -187,7 +187,7 @@ BOOL startJVM(char *SCI_PATH)
 
 				vm_args.options = jvm_options;
 				vm_args.nOptions = nOptions;
-				vm_args.ignoreUnrecognized = TRUE;
+				vm_args.ignoreUnrecognized = FALSE;
 				status = SciJNI_CreateJavaVM(&jvm_SCILAB, (JNIEnv**) &env, &vm_args);
 
 				if (status != JNI_OK)

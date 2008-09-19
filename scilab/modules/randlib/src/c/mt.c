@@ -51,7 +51,6 @@
  */
 
 #include <math.h>
-#include "machine.h"
 #include "grand.h"            /* to check prototypes */
 #include "sciprint.h"
 #include "others_generators.h"

@@ -21,7 +21,6 @@
 #include <stdio.h>
 #include <memory.h>
 #include "machine.h"
-
 #include "MALLOC.h"  /* malloc */
 
 int ctree2(int* vect,int nb,int* deput,int* depuptr,int* outoin,int* outoinptr,

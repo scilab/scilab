@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 #include <stdio.h>
-#include "machine.h"
 #include "math_graphics.h"
 #include "sciprint.h"
 

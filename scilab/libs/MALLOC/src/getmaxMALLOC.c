@@ -6,7 +6,6 @@
 	#include <Windows.h>
 #else
 	#include <sys/resource.h>
-	#include "machine.h"
 	#include "getmemory.h"
 	
 	#ifdef HAVE_LIMITS_H

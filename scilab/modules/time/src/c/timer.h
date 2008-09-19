@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Sylvestre LEDRU
+ * Copyright (C) INRIA 
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,5 +12,12 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include "machine.h"
 
+/**
+ * @TODO add comment
+ *
+ * @param etime 
+ * @return <ReturnValue>
+ */
 int C2F(timer)(double *etime);

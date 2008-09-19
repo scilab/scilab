@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <string.h> 
 #include <stdio.h>
-#include "machine.h"
 #include "stack-c.h" 
 #include "sciprint.h"
 

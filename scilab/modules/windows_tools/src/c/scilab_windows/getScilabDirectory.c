@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include <windows.h>
 #include <stdlib.h>
-#include "machine.h"
 #include "getScilabDirectory.h"
 #include "MALLOC.h"
 #include "setgetSCIpath.h"

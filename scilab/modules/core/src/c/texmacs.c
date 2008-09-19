@@ -1,6 +1,5 @@
 
 #include <stdio.h> 
-#include "machine.h" /* for C2F */
 #include "stack-def.h" /* for paus */
 #include "texmacs.h"
 #include "prompt.h"

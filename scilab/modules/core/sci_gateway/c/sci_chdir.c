@@ -11,7 +11,6 @@
  */
 #include <stdio.h>
 #include "gw_core.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "scicurdir.h"

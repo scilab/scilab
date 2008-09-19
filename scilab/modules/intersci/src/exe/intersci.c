@@ -18,7 +18,6 @@
 #include <stdlib.h>
 
 #include "intersci.h"
-#include "machine.h"
 #include "PATH_MAX.h"
 #include "stack-def.h"
 

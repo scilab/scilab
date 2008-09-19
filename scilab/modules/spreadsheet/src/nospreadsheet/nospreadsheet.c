@@ -11,7 +11,6 @@
  *
  */
 
-#include "machine.h" 
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 

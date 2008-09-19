@@ -13,7 +13,6 @@
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
 #include "ConsoleRead.h"
-#include "machine.h"
 #include "SetConsolePrompt.h"
 #include "scilabmode.h"
 #include "MALLOC.h"

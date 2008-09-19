@@ -10,7 +10,6 @@
  *
  */
 
-#include "machine.h"
 #include "AddFunctionInTable.h"
 /***********************************
 * corr ( dgetx dgety )

@@ -20,7 +20,7 @@
 */
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
-
+#include "machine.h"
 #ifdef __STDC__
 	#include <stdlib.h>
 #else

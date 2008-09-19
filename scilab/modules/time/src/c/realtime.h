@@ -11,6 +11,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include "machine.h"
 
 int C2F(realtimeinit)(double *t,double *scale);
 int C2F(realtime)(double *t);

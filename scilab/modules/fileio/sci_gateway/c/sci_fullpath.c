@@ -18,7 +18,6 @@
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "machine.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"

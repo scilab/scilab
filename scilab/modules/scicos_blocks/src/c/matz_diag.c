@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 #include "scicos_block4.h"
-#include "machine.h"
 
 void matz_diag(scicos_block *block,int flag)
 {

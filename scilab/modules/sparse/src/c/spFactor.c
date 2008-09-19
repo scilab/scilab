@@ -55,7 +55,6 @@
  *  spDefs.h
  *    Matrix type and macro definitions for the sparse matrix routines.
  */
-#include "machine.h"
 
 #define spINSIDE_SPARSE
 

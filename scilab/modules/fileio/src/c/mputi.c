@@ -20,7 +20,6 @@
 #define uint32_t unsigned long
 #endif
 
-#include "machine.h"
 #include "mputi.h"
 #include "../../../../libs/libst/misc.h"
 #include "sciprint.h"

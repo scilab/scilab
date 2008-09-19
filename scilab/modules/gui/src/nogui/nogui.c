@@ -14,7 +14,6 @@
 #include <errno.h>
 #include <stdio.h> /* fileno */
 #include <sys/select.h> /* fd_set */
-#include "machine.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "nogui.h"

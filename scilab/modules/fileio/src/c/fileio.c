@@ -11,7 +11,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"

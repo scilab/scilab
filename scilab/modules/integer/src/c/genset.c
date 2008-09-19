@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genset.h"
 
 #define SET(Type) {\

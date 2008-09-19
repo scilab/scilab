@@ -21,9 +21,10 @@
 #include <stdio.h>
 #include <math.h> 
 #include <string.h> 
+#include "sciprint.h"
 #include "machine.h"
+
 extern  int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
-extern void sciprint(char *fmt,...);
 extern void mget2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr);
 void 
 readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

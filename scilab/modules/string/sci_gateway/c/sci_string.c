@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "gw_string.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"

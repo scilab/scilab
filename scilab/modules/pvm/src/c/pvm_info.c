@@ -28,7 +28,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "machine.h" 
 #include "stack-c.h" 
 #include "sci_pvm.h"
 #include "localization.h"

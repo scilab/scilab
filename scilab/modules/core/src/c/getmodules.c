@@ -15,7 +15,6 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "getmodules.h"
-#include "machine.h"
 #include "MALLOC.h"
 #include "setgetSCIpath.h"
 #include "localization.h"

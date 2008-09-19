@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genrdiv.h"
 
 #define RDIV(Type) {\

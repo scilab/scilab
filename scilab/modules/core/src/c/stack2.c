@@ -26,7 +26,6 @@
 #include <stdio.h>
 
 #include "MALLOC.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "sciprint.h"
 #include "stack2.h"

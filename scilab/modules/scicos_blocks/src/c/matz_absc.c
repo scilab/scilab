@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 #include "scicos_block4.h"
-#include "machine.h"
 #include <math.h>
 void matz_absc(scicos_block *block,int flag)
 {

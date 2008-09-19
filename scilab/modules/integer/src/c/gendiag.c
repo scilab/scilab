@@ -11,7 +11,6 @@
 */
 
 
-#include "machine.h"
 #include "gendiag.h"
 #include "core_math.h"
 

@@ -15,7 +15,6 @@
 #include "mputstr.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
-#include "machine.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)

@@ -29,7 +29,6 @@
 #include <string.h>
 #include <math.h>
 #include "stack-c.h"
-#include "machine.h"
 
 
 #if _MSC_VER

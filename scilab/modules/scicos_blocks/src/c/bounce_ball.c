@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 #include <math.h>
-#include "machine.h"
 #include "scicos_block.h"
 
 void 

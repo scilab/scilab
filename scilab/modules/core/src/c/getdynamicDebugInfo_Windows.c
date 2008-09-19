@@ -14,7 +14,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "machine.h"
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"

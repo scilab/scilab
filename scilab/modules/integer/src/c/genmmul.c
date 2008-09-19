@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "gendot.h"
 #include "genmmul.h"
 static integer c1 = 1;

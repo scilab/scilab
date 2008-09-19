@@ -12,7 +12,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "machine.h"
 #include "stack-c.h"
 #include "sci_contr.h"
 #include "Scierror.h"

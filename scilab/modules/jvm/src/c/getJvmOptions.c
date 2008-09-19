@@ -16,7 +16,6 @@
 #include <libxml/xmlreader.h>
 #include "getJvmOptions.h"
 #include "GetXmlFileEncoding.h"
-#include "machine.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "stricmp.h"

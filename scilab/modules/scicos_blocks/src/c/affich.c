@@ -12,7 +12,6 @@
  */
 
 #include <stdio.h>
-#include "machine.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "ObjectSelection.h"

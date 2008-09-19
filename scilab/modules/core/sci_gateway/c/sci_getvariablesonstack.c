@@ -9,7 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "machine.h"
 #include "stack-c.h"
 #include "gw_core.h"
 #include "getvariablesname.h"

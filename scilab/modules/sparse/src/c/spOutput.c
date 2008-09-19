@@ -36,7 +36,6 @@
 
 #include <stdio.h>
 #include "spmalloc.h"
-#include "machine.h"
 #include "localization.h"
 /*
  *  IMPORTS

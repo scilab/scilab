@@ -176,7 +176,6 @@
 #define stat _stat 
 #endif 
 
-#include "machine.h"
 #include "sci_pvm.h"
 #include "setgetSCIpath.h"
 #include "sciprint.h"

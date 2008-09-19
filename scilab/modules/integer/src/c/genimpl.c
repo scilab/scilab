@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genimpl.h"
 
 #define IMPL2(Type) {\

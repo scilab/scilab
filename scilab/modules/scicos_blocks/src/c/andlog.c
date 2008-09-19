@@ -21,7 +21,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "machine.h"
 #include "core_math.h"
 
 #include "scicos.h"

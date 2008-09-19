@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genextrac1.h"
 
 #define EXTRAC1(Type) {\

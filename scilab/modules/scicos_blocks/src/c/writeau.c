@@ -21,10 +21,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-
 #include "machine.h"
+#include "sciprint.h"
 
-extern void sciprint(char *fmt,...);
 void mput2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr);
 
 void 

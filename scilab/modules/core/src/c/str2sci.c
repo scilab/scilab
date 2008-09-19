@@ -12,7 +12,6 @@
  
 #include <string.h>
 #include "stack-c.h"
-#include "machine.h"
 #include "str2sci.h"
 #include "cvstr.h"
 

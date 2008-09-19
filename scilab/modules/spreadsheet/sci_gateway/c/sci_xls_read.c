@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "machine.h"
 #include "stack-c.h"
 #include "gw_spreadsheet.h"
 #include "xls.h"

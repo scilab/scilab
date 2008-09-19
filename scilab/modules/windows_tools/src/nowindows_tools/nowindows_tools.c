@@ -8,7 +8,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h" 
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
 int gw_windows_tools(void);

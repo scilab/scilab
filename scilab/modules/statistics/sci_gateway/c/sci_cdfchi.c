@@ -11,7 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "machine.h"
 #include "gw_statistics.h"
 #include "stack-c.h"
 #include "CdfBase.h"

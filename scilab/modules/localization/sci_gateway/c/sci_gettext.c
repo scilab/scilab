@@ -11,7 +11,6 @@
  */
 #include <string.h>
 #include "MALLOC.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "gw_localization.h"

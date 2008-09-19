@@ -12,7 +12,6 @@
  */
 
 #include "gw_gui.h"
-#include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "localization.h"

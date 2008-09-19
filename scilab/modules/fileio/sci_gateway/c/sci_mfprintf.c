@@ -2,7 +2,6 @@
 /* INRIA 2006 */
 /*--------------------------------------------------------------------------*/ 
 #include "Scierror.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "gw_fileio.h"

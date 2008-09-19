@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 #include "scicos_block4.h"
-#include "machine.h"
 extern int C2F(mtran)();
 void matztran_m(scicos_block *block,int flag)
 {

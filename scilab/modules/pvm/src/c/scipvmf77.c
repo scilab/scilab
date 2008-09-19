@@ -47,7 +47,6 @@
 
 #include <stdio.h>
 #include "stack-c.h"
-#include "machine.h"
 #include "sci_pvm.h"
 
 

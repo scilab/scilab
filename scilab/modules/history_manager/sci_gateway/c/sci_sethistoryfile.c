@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_history_manager.h"
 #include "MALLOC.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/

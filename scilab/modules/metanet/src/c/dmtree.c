@@ -16,7 +16,6 @@
 
 extern void cerro();
 
-#include "machine.h"
 #include "MALLOC.h"
 #include "localization.h"
 

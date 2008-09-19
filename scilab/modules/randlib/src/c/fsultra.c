@@ -60,7 +60,6 @@ See Also:	README		for a brief description
 */
 #include <math.h>             /* to use floor    */
 #include "others_generators.h"
-#include "machine.h" 
 #include "sciprint.h"
 #include "localization.h"
 

@@ -21,7 +21,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "convstr.h"

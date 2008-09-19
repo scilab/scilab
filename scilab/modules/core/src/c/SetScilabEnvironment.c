@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include "machine.h"
 #include "SetScilabEnvironment.h"
 #include "SCIHOME.h"
 #include "inisci-c.h" /* SetSci */

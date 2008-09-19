@@ -15,7 +15,6 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_history_manager.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"

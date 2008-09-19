@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "merror.h"
-#include "machine.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
 void C2F(merror) (integer *fd, double *res)

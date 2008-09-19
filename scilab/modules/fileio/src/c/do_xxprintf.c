@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <ctype.h>  
-#include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"

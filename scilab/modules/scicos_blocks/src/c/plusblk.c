@@ -19,9 +19,9 @@
 * See the file ./license.txt
 */
 /* Copyright INRIA */
-#include "machine.h"
 
 /* Element wise som */
+#include "machine.h"
 
 void 
 plusblk(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

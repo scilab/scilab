@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include "localization.h"
 #include "MALLOC.h"
-#include "machine.h"
 #include "paths.h"
 #include "cerro.h"
 

@@ -28,7 +28,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "core_math.h"
 #include "MALLOC.h"

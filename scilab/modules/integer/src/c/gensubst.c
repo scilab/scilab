@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "gensubst.h"
 
 #define SUBST(Type) {\

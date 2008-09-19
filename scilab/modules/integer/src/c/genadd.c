@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genadd.h"
 
 #define ADD(Type) {\

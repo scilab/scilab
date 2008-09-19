@@ -11,7 +11,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 #include "mclose.h"
 #include "filesmanagement.h"
 #include "delfile.h"

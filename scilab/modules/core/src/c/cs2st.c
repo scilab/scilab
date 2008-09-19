@@ -10,7 +10,6 @@
  *
  */
 
-#include "machine.h" 
 #include "cs2st.h"
 
 int C2F(cs2st)(integer *i,integer *ires)

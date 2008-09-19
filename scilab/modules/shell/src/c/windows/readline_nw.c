@@ -22,7 +22,6 @@
 #include <conio.h>
 #include <string.h>
 #include <Windows.h>	
-#include "machine.h"
 #include "readline_nw.h"
 #include "prompt.h"
 #include "MALLOC.h"

@@ -18,7 +18,6 @@
 *
 * See the file ./license.txt
 */
-#include "machine.h"
 #include "scicos_block4.h"
 
 extern int C2F(dmmul)();

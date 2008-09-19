@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "machine.h"
 #include "core_math.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"

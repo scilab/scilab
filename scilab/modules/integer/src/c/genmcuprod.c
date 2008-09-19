@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genmcuprod.h"
 #include "gencuprod.h"
 static integer c__1 = 1;

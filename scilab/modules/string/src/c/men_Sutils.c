@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include <string.h>
-#include "machine.h"
 #include "men_Sutils.h"
 #include "getfastcode.h"
 #include "MALLOC.h" /* MALLOC */

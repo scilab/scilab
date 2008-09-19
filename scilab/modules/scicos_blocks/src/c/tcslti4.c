@@ -22,7 +22,6 @@
 #include <memory.h>
 
 #include "scicos_block.h"
-#include "machine.h"
 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();

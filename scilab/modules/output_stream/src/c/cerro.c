@@ -12,7 +12,6 @@
  */
 
 #include <string.h>
-#include "machine.h"
 #include "cerro.h"
 #include "erro.h"
 /*--------------------------------------------------------------------------*/ 

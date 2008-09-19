@@ -50,7 +50,6 @@
 /* clcg4.c   Implementation module                                     */
 /*---------------------------------------------------------------------*/
 
-#include "machine.h"
 #include "clcg4.h"
 #include <math.h>             /* for floor */
 #include "sciprint.h"

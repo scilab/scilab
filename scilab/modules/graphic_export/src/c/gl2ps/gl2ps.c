@@ -73,7 +73,6 @@
 #include <png.h>
 #endif
 
-#include "machine.h"
 #include "JoGLInterface.h"
 
 /********************************************************************* 

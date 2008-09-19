@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "gw_optim.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"

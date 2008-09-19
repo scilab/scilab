@@ -12,7 +12,6 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"

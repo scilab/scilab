@@ -19,7 +19,6 @@
 #include "sciprint.h"
 #include "cvstr.h"
 #include "localization.h"
-#include "machine.h"
 #include "Scierror.h"
 
 /* Table to store variable names */

@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "machine.h"
 #include "setenvc.h"
 #include "../../tclsci/includes/setenvtcl.h"
 #include "MALLOC.h" /* MALLOC */

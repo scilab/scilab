@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genmdiag.h"
 #include "core_math.h"
 

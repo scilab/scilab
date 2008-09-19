@@ -37,7 +37,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "machine.h"
 
 #include "dynamic_link.h"
 #include "scicos-def.h"
@@ -159,7 +158,7 @@ int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_dat
 int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data);
 void addevs(double ,integer *,integer *);
 void putevs(double *,integer *,integer *);
-void FREE_blocks();
+void FREE_blocks(void);
 int setmode(double *,double *,double *,integer *,double);
 
 /* Jacobian*/
@@ -4728,7 +4727,7 @@ int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_dat
 
 
 
-void FREE_blocks()
+void FREE_blocks(void)
 
 {
   int kf;
@@ -4840,40 +4839,35 @@ int setmode(W,x,told,jroot,ttol)
 }
 
 
-int get_phase_simulation()
-
+int get_phase_simulation(void)
 {
   return phase;
 }
 
 
-void do_cold_restart()
-
+void do_cold_restart(void)
 {
   hot=0;
   return;
 }
 
-double get_scicos_time()
-
+double get_scicos_time(void)
 {
   return scicos_time;
 }
-int get_block_number()
 
+int get_block_number(void)
 {
   return C2F(curblk).kfun;
 }
 
 void set_block_error(int err)
-
 {
   *block_error=err;
   return;
 }
 
-void end_scicos_sim()
-
+void end_scicos_sim(void)
 {
   C2F(coshlt).halt = 2;
    return;

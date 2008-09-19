@@ -21,7 +21,6 @@
 	#include <winbase.h> /* header du compteur haute résolution */
 #endif 
 
-#include "machine.h"
 #include "timer.h"
 
 

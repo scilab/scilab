@@ -11,7 +11,6 @@
  *
  */
 
-#include "machine.h"
 #include "stack-c.h"
 #include "basout.h"
 #include "msgstxt.h"

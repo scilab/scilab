@@ -13,7 +13,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
-#include "machine.h"
 #include "ConsolePrintf.h"
 #include "ConsoleRead.h"
 #include "ClearConsolePart.h"

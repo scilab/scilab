@@ -12,7 +12,6 @@
  */
 
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h" 
 #include "Scierror.h"
 #include "with_java.h"
 #include "InitializeJVM.h"

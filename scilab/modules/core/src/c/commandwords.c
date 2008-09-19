@@ -10,7 +10,6 @@
  *
  */
 #include <string.h>
-#include "machine.h" 
 #include "commandwords.h"
 #include "MALLOC.h"
 #include "BOOL.h"

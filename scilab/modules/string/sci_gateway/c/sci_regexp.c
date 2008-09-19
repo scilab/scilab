@@ -18,7 +18,6 @@
 #include <stdio.h>
 #include "gw_string.h"
 #include "stack-c.h"
-#include "machine.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

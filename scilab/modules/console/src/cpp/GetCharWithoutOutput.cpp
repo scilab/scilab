@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <jni.h>
-#include "machine.h"
 extern "C" {
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"

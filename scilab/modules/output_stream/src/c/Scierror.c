@@ -13,7 +13,6 @@
 
 #include <string.h>
 #include <stdio.h>
-#include "machine.h"
 #include "Scierror.h"
 #include "stack-def.h" /* bsiz */
 #include "error_internal.h"

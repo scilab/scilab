@@ -19,7 +19,6 @@
 #include "gw_string.h"
 #include "pcre.h"
 #include "pcreposix.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "pcre_private.h"

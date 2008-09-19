@@ -11,7 +11,6 @@
  */
 
 #include <string.h>
-#include "machine.h"
 
 #include "MALLOC.h"
 

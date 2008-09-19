@@ -11,7 +11,6 @@
  */
 #include "getmemory.h"
 #include "gw_core.h"
-#include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmemory) (char *fname,unsigned long fname_len)

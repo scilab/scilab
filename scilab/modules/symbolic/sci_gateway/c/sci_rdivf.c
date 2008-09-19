@@ -10,7 +10,6 @@
  *
  */
 #include "gw_symbolic.h"
-#include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scirdivf)(char *fname,unsigned long fname_len);

@@ -38,7 +38,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "import.h"
-#include "machine.h"
 
 /*********************************************
  * external structure and function declaration

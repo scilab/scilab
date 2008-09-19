@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "db2int.h"
 
 #define CONV(Type) {\

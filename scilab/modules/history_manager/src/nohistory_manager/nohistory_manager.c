@@ -11,7 +11,6 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 #include "HistoryManager.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"

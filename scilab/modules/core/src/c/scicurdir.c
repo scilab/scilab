@@ -11,7 +11,6 @@
  *
  */
 #include <string.h>
-#include "machine.h"
 #ifdef _MSC_VER 
 	#include <windows.h>
 	#include <direct.h>

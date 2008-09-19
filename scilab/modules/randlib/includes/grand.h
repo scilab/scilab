@@ -13,7 +13,7 @@
  
 #ifndef SCI_GRAND
 #define SCI_GRAND
-
+#include "machine.h"
 int C2F(setgmn) (double *meanv, double *covm, int *ldcovm, int *p, double *parm, int *ierr);
 double C2F(genbet) (double *aa, double *bb);
 double C2F(genchi) (double *df);

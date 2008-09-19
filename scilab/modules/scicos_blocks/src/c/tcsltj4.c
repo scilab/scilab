@@ -20,7 +20,6 @@
 */
 #include <math.h>
 #include <memory.h>
-#include "machine.h"
 #include "scicos_block.h"
 #include "MALLOC.h"  /* malloc */
 

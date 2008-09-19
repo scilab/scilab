@@ -18,7 +18,6 @@
 #include "filesmanagement.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "machine.h"
 /*--------------------------------------------------------------------------*/
 #if (defined(sun) && !defined(SYSV)) 
 char *strerror (int errcode);

@@ -20,7 +20,6 @@
 */
 #include "scicos_block4.h"
 #include <math.h>
-#include "machine.h"
 extern int C2F(wsqrt)();
 
 void matz_sqrt(scicos_block *block,int flag)

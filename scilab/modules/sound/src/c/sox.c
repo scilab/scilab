@@ -20,7 +20,6 @@
 
 #include <ctype.h>
 #include <errno.h>
-#include "machine.h"
 #include "sox.h" 
 #include "sciprint.h"
 #include "localization.h"

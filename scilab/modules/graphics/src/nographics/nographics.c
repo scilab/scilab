@@ -15,7 +15,6 @@
 /*--------------------------------------------------------------------------*/
 #include "nographics.h"
 #include "WindowList.h"
-#include "machine.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/

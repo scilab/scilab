@@ -15,7 +15,6 @@
 #include "SCIHOME.h"
 #include "MALLOC.h"
 #include "version.h"
-#include "machine.h"
 #include "PATH_MAX.h"
 #include "../../../fileio/includes/createdirectory.h"
 #include "../../../fileio/includes/isdir.h"

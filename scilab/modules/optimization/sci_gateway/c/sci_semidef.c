@@ -11,7 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_optim.h"
-#include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_semidef)(char *fname,unsigned long fname_len)

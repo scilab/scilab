@@ -17,7 +17,6 @@
 #else
 	#include <sys/time.h>
 #endif
-#include "machine.h"
 #include "timerEvents.h"
 /*--------------------------------------------------------------------------*/
 #define DT_TIMER 10000

@@ -1,7 +1,6 @@
 #include "stack-c.h"
 #include <math.h>
 #include "grand.h"
-#include "machine.h" 
 #include "core_math.h"
 
 

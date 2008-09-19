@@ -9,7 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "machine.h"
 #include "gw_completion.h"
 #include "MALLOC.h"
 #include "stack-c.h"

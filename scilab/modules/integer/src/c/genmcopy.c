@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genmcopy.h"
 
 #define MCOPY(Type) {\

@@ -11,7 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "scilines.h"
 #include "Scierror.h"

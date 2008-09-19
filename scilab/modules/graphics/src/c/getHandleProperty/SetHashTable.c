@@ -17,7 +17,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "SetHashTable.h"
-#include "machine.h"
 #include "setHandleProperty.h"
 #include "sciprint.h"
 #include "localization.h"

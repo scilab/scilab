@@ -11,7 +11,6 @@
 */
 
 
-#include "machine.h"
 #include "gencusum.h"
 #define CUSUM(Type) {\
 Type *W;\

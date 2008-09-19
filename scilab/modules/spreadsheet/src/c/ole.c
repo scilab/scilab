@@ -15,7 +15,6 @@
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
 #include "ole.h"
-#include "machine.h"
 #include "localization.h"
 
 /** Sector ID values (predefined) **/

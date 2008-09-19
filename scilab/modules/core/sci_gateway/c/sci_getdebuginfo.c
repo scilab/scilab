@@ -11,7 +11,6 @@
  */
 #include <string.h>
 #include <stdio.h>
-#include "machine.h"
 #include "gw_core.h"
 #include "stack-c.h"
 #include "version.h"

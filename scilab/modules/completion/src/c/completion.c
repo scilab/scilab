@@ -11,7 +11,6 @@
  */
 #include <string.h>
 #include <stdlib.h>
-#include "machine.h"
 #include "completion.h"
 #include "MALLOC.h"
 #include "getvariablesname.h"

@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "gencuprod.h"
 
 #define CUPROD(Type) {\

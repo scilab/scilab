@@ -16,7 +16,6 @@
 #include "filesmanagement.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-#include "machine.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 /*

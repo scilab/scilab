@@ -13,7 +13,6 @@
 
 /*---------------------------------------------------------------------------*/ 
 #include "gw_dynamic_link.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "addinter.h"
 #include "localization.h"

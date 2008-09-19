@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genmin2.h"
 
 #define MIN2(Xtype,Ytype) {\

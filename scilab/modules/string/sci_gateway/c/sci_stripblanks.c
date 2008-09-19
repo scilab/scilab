@@ -19,7 +19,6 @@ tabs : if TRUE then tabs are also stripped (default value is FALSE)*/
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include "machine.h"
 #include "gw_string.h"
 #include "stack-c.h"
 #include "MALLOC.h"

@@ -13,7 +13,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "GL2PSWrapping.hxx"
-#include "machine.h"
 
 #include "gl2ps/gl2ps.h"
 

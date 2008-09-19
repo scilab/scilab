@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "gensum.h"
 #include "genmsum.h"
 

@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "genmtran.h"
 
 #define MTRAN(Type) {\

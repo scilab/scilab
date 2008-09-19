@@ -11,7 +11,6 @@
  *
  */
 #include <string.h>
-#include "machine.h"
 #include "core_math.h"
 #include "inffic.h"
 #include "scilabDefaults.h"

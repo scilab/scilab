@@ -20,7 +20,6 @@
 */
 #include "scicos_block.h"
 #include <math.h>
-#include "machine.h"
 
 /* Common Block Declarations */
 int bfrdr();

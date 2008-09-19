@@ -21,7 +21,6 @@
 #include "../../../io/includes/getenvc.h"
 #include "../../../fileio/includes/FileExist.h"
 #include "localization.h"
-#include "machine.h" 
 #include "Os_specific.h"
 #include "core_math.h" 
 #include "setgetSCIpath.h"

@@ -16,7 +16,6 @@
 #include <xmlwin32version.h>
 #include <tcl.h>
 #include <tk.h>
-#include "machine.h"
 #include "MALLOC.h"
 #include "getstaticDebugInfo_Windows.h"
 #include "localization.h"

@@ -9,7 +9,6 @@
 
 #include <string.h> 
 
-#include "machine.h"
 #include "stack-c.h"
 #include "CallScilab.h"
 

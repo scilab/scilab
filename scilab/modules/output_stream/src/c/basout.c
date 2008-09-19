@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "machine.h"
 #include "stack-def.h"
 #include "basout.h"
 #include "../../../fileio/includes/diary.h"

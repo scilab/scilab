@@ -10,7 +10,6 @@
  *
  */
 
-#include "machine.h"
 #include "i_nextj.h"
 #include "stack-c.h"
 

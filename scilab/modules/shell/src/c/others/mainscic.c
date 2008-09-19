@@ -11,7 +11,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 #include "math.h"
 #include "version.h"
 #include "realmain.h" /* realmain */

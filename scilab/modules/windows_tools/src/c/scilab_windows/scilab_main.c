@@ -17,7 +17,6 @@
 #include <signal.h>
 #include "Thread_Wrapper.h"
 #include "scilab_main.h"
-#include "machine.h"
 #include "scilabmode.h"
 #include "realmain.h"
 #include "sciprint.h"

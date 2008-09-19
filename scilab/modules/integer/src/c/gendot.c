@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "gendot.h"
 
 #define DOT(Type) {\

@@ -19,7 +19,6 @@
 extern "C"
 {
 	#include <time.h>
-	#include "machine.h" /* BOOL */
 };
 /*------------------------------------------------------------------------*/
 #include <list>

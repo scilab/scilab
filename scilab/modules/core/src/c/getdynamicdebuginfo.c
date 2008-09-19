@@ -9,7 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "machine.h"
 #include <string.h>
 #include <stdio.h>
 #ifndef _MSC_VER

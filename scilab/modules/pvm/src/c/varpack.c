@@ -25,7 +25,6 @@
  *---------------------------------------------------------------*/ 
 
 #include <stdio.h>
-#include "machine.h"
 #include "stack-c.h"
 #include "sci_pvm.h"
 

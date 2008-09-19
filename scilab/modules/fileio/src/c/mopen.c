@@ -18,7 +18,6 @@
 #include "getfiledesc.h"
 #include "addfile.h"
 #include "sciprint.h"
-#include "machine.h"
 #include "localization.h"
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/

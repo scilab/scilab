@@ -1,4 +1,3 @@
-#include "machine.h"
 /****************************************************
  * Scilab interface for the AddMenu function 
  *  Add a menu in  window  number win_num or in Main window
@@ -13,6 +12,7 @@
  *                typ!=0 : hard coded a routine is called
  *  fname;      : name of the action function  
  *******************************************************/
+#include "machine.h"
 
 int C2F(addmen)(integer *win_num,
 				char *button_name,

@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "gensum.h"
 
 #define SUM(Type) {\

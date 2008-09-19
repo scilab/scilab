@@ -10,7 +10,6 @@
 *
 */
 
-#include "machine.h"
 #include "geninsert1.h"
 
 #define INSERT1(Type) {\

@@ -19,7 +19,6 @@
 #define int32_t long
 #define uint32_t unsigned long
 #endif
-#include "machine.h"
 #include "mgeti.h"
 #include "sciprint.h"
 #include "../../../../libs/libst/misc.h"
