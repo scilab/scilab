@@ -20,6 +20,7 @@
 #include "setenvc.h"
 #include "../../tclsci/includes/setenvtcl.h"
 #include "MALLOC.h" /* MALLOC */
+#include "BOOL.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
