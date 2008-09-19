@@ -44,13 +44,17 @@ public abstract class CallBack extends AbstractAction {
      */
     public static final int SCILAB_FUNCTION = 2;
     /**
-     * Scilab function type constant
+     * Scilab function type constant (not trapped by scilab event listeners)
      */
     public static final int SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE = -2;
     /**
      * Java function type constant
      */
     public static final int JAVA = 3;
+    /**
+     * Java function type constant (not trapped by scilab event listeners)
+     */
+    public static final int JAVA_OUT_OF_XCLICK_AND_XGETMOUSE = -3;
 
     /**
      * Scilab instruction without GCBO setting (old addmenu compatibility)
@@ -92,6 +96,8 @@ public abstract class CallBack extends AbstractAction {
 	switch (callbackType) {
 	case JAVA :
 	    return JavaCallBack.create(command);
+	case JAVA_OUT_OF_XCLICK_AND_XGETMOUSE :
+	    return JavaCallBack.createOutOfXclickAndXgetmouse(command);
 	case SCILAB_INSTRUCTION_WITHOUT_GCBO :
 	    return ScilabCallBack.create(command);
 	case SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
@@ -112,6 +118,8 @@ public abstract class CallBack extends AbstractAction {
 	switch (callbackType) {
 	case JAVA :
 	    return JavaCallBack.create(command);
+	case JAVA_OUT_OF_XCLICK_AND_XGETMOUSE :
+	    return JavaCallBack.createOutOfXclickAndXgetmouse(command);
 	case SCILAB_INSTRUCTION_WITHOUT_GCBO :
 	    return ScilabCallBack.create(command);
 	case SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :

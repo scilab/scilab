@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.gui.events.callback;
 
+import java.awt.event.ActionEvent;
 import java.lang.reflect.Method;
 
 /**
@@ -48,5 +49,37 @@ public abstract class JavaCallBack extends CallBack {
 				}
 			}
 		});
+	}
+	
+	/**
+	 * Callback Factory to easily create a callback
+	 * just like in scilab.
+	 * @param command : the command to execute.
+	 * @return a usable Java callback
+	 */
+	public static CallBack createOutOfXclickAndXgetmouse(String command) {
+		return (new JavaCallBack(command) {
+			public void callBack() {
+				try {
+					int lastPoint = command.lastIndexOf(".");
+					Class invokedClass = Class.forName(command.substring(0, lastPoint));
+					Method runMe = invokedClass.getMethod(command.substring(lastPoint + 1));
+					// Only able to launch method Class.
+					runMe.invoke(invokedClass.getClass(), (Object[]) null);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			/**
+			 * To match the standard Java Action management.
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+			 * @param e The event that launch the callback.
+			 */
+			public void actionPerformed(ActionEvent e) {
+			    callBack();
+			} 
+		});	   
 	}
 }
