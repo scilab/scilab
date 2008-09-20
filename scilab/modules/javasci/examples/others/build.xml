@@ -11,18 +11,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<project name="javasci Examples Others" default="compile">
+<project name="javasci Examples Others" default="jar">
+  
+  <property name="rootdirectory"  location="../../../.." />
+  <property name="dist"  location="${rootdirectory}/modules/javasci/examples/others/jar" />
+  <property name="src"  location="." />
 
-	<import file="../build-common.xml" optional="false" />
+       
+  <description>
+			build javasci examples others
+  </description>
+	
+  <path id="classpath">
+  	<fileset dir="${rootdirectory}/modules/javasci/jar" includes="**/javasci.jar"/>
+  </path>
+	  
+	  
+  <target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+	</target>    
 
-   <description>
-        Build examples "others" in the Scilab/Java connector called javasci
-    </description>
-    
-    
-    <target name="clean" description="clean sources">
-        <delete dir="build"/>
-        <delete file="others.jar"/>
-    </target>
+  <target name="clean" description="clean sources">
+  	<delete dir="build"/>
+    <delete file="${dist}/others.jar"/>
+  </target>
 
+  <target name="compile" description="build sources" depends="init">
+  	<mkdir dir="build/classes"/>
+  		<mkdir dir="jar"/>
+    <javac srcdir="${src}" destdir="build/classes" classpathref="classpath"/>
+  </target>
+
+  <target name="jar" description="do .jar file" depends="compile">
+		<jar destfile="${dist}/others.jar" basedir="build/classes">
+    	<manifest>
+			</manifest>
+		</jar>
+  </target>
 </project>
+

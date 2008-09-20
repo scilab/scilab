@@ -1,6 +1,6 @@
 execute Make.bat to compile these examples
 
-or "ant compile" in this directory
+or "ant jar" in this directory
 
 execute :
 	Examples.bat

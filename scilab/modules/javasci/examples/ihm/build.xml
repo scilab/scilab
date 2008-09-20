@@ -14,15 +14,44 @@
 <!--
 TODO : change the name of the module : IHM is a french acronym which means Human-computer interaction
 -->
-<project name="javasci Examples ihm" default="compile">
-  	<import file="../build-common.xml"/>
 
-   <description>
-        Build examples of the Scilab/Java connector (javasci)
-    </description>
+<project name="javasci Examples ihm" default="jar">
+  
+  <property name="rootdirectory"  location="../../../.." />
+  <property name="dist"  location="${rootdirectory}/modules/javasci/examples/ihm/jar" />
+  <property name="src"  location="." />
 
-    <target name="clean" description="clean sources">
-        <delete dir="build"/>
-        <delete file="ihm.jar"/>
-    </target>
+       
+  <description>
+			build javasci examples ihm
+  </description>
+	
+  <path id="classpath">
+  	<fileset dir="${rootdirectory}/modules/javasci/jar" includes="**/javasci.jar"/>
+  </path>
+	  
+	  
+  <target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+	</target>    
+
+  <target name="clean" description="clean sources">
+  	<delete dir="build"/>
+    <delete file="${dist}/ihm.jar"/>
+  </target>
+
+  <target name="compile" description="build sources" depends="init">
+  	<mkdir dir="build/classes"/>
+  		<mkdir dir="jar"/>
+    <javac srcdir="${src}" destdir="build/classes" classpathref="classpath"/>
+  </target>
+
+  <target name="jar" description="do .jar file" depends="compile">
+		<jar destfile="${dist}/ihm.jar" basedir="build/classes">
+    	<manifest>
+			</manifest>
+		</jar>
+  </target>
 </project>
+
