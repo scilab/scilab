@@ -442,14 +442,6 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #    the debugger goes out of nestedfun and enters the libfun ancillary
     #    from the line that called nestedfun, i.e. the same depth level is
     #    kept, which is the exact purpose of step over
-#
-# <TODO> Warning! The syntax below is NOT compatible with the BUILD4 environment
-#        since it makes use of the result from TCL_EvalStr, which is not available
-#        in BUILD4. No error will be thrown but $stoppedonarealbpt always evaluates
-#        as true while $breakwashit and $stoppedinsamefun evaluate as false. The
-#        desired behavior is thus not obtained for these tests
-#        Note however that this syntax is available in the BUILD_412 environment
-#
     set stoppedonarealbpt "TCL_EvalStr(\"lsearch -sorted -increasing -integer -exact \[getfunlinesfrombptsprops \" + db_m(3) + \"\] \" + string(db_l(3)) + \"\",\"scipad\") <> string(-1)"
     set breakwashit "TCL_EvalStr(\"isbreakhit_bp\",\"scipad\") == \"true\""
     set stoppedinsamefun "TCL_EvalStr(\"hasstoppedinthesamefun\",\"scipad\") == \"true\""
@@ -505,12 +497,6 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # Note: in "nostep" mode, the break command must be tested to set $muststop
     # to true when the user has hit Break because in this case Scilab doesn't stop
     # on a real breakpoint as it would be expected when $stepmode is "nostep"
-#
-# <TODO> Warning! The syntax below is NOT compatible with the BUILD4 environment
-#        since it makes use of the result from TCL_EvalStr, which is not available
-#        in BUILD4. An error will be thrown "undefined index" or something alike
-#        Note however that this syntax is available in the BUILD_412 environment
-#
     switch -- $stepmode {
         "nostep"   {
                     # the syntax below would create a too long ScilabEval command

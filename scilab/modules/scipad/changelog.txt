@@ -1,3 +1,11 @@
+Francois VOGEL, 20/09/08
+ * Geared in $sciprompt when not running in Scilab 5
+ * Cleaned comments about request 319 (TCL_EvalStr returns a result)
+   since this is now implemented in Scilab 4.1.2 and in Scilab-gtk 4.2
+ * Checked for bug fixing in Scilab-gtk 4.2 and updated relevant comments
+ * Removed a duplicate section in scipad.xml
+ * version --> 7.4
+
 Francois VOGEL, 18/09/08
  * Fixed default fallback of proc mcmax when package msgcat is not present
  * version --> 7.3

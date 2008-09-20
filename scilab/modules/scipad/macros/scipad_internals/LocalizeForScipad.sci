@@ -33,6 +33,10 @@ function locstr = LocalizeForScipad(strtag)
 // Note: this doesn't make use of request 319 implementation (TCL_EvalStr
 //       returns the result of the evaluation) to ease backporting work in
 //       the 4.x environment
+// <TODO>: Checked again (19/09/08) in scilab-gtk-4.2 and in 4.1.2
+//         Request 319 is now implemented in both. So let's get rid of this
+//         old syntax creating a temporary variable in Scilab
+
     TCL_EvalStr("set locstring_scipad [mc """+strtag+"""]","scipad")
     locstr = TCL_GetVar("locstring_scipad","scipad")
 endfunction

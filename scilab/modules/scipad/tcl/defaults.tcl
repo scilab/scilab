@@ -111,6 +111,7 @@ set cursorblink true
 # The break command can only be used with Scilab versions having bug 2384 fixed
 # Currently (26/08/07), this is done in svn trunk and BUILD4 branches
 # but nowhere else, e.g. in scilab-gtk
+# Checked again (19/09/08) in scilab-gtk-4.2: it is fixed
 # The flag below allows for easy adjustment of Scipad to Scilab versions,
 # especially with backported Scipad versions in mind
 # Bug 2384 in fact fixes the sync seq options of ScilabEval (interruptibility)
@@ -123,6 +124,7 @@ set bug2384_fixed true
 # although this is reported by Scilab only when inside a loop
 # Currently (26/08/07) this bug is fixed in svn trunk and BUILD4 branches
 # but nowhere else, e.g. in scilab-gtk
+# Checked again (19/09/08) in scilab-gtk-4.2: it is fixed
 
 set bug2474_fixed true
 
@@ -143,9 +145,10 @@ if {$Scilab5 && !$standaloneScipad} {
 # There are other bugs, such as:
 #
 #   2226 (concurrent launch of many Scipad): Fixed in trunk, not fixed in BUILD4
-#        nor in scilab-gtk as of 26/08/07
+#        nor in scilab-gtk as of 26/08/07 - Checked again 19/09/08: ditto in scilab-gtk-4.2
+#
 #   2393 (macrovar doesn't reset lasterror): Fixed in trunk and BUILD4, not fixed
-#        in scilab-gtk as of 26/08/07
+#        in scilab-gtk as of 26/08/07 - Checked again 19/09/08: fixed in scilab-gtk-4.2
 #
 # but there is no workaround implemented in Scipad for them, therefore no flag here
 

@@ -34,7 +34,7 @@ function scipad(varargin)
       scilab5=%f;
     end
     if ~scilab5 then
-      // fake gettext function - no localization of Scilab in Scilab 4.x
+      // fake gettext function - no localization of Scilab in Scilab 4.x or Scilab-gtk
       function sss=gettext(sss)
       endfunction
     end
@@ -65,7 +65,9 @@ function scipad(varargin)
             TCL_EvalStr("load {'+gettklib()+'} Tk scipad")
             TCL_EvalStr("wm withdraw .","scipad")
             TCL_EvalStr("scipad alias ScilabEval ScilabEval")
-            TCL_EvalStr("set sciprompt 0", "scipad")   ; // <TODO>: FIX THIS! SCILAB TEAM WORK IN PROGRESS...
+            if scilab5 then
+                TCL_EvalStr("set sciprompt 0", "scipad")   ; // <TODO>: FIX THIS! SCILAB TEAM WORK IN PROGRESS...
+            end
         end
         if exists("SCIHOME") then
             if MSDOS then
