@@ -121,7 +121,7 @@ if type(F_)==15 then
                              // But if the extraction syntax is used within a function
 			     // input calling sequence each returned list component is
 			     // added to the function calling sequence.
-elseif  type(F_)==13  then
+elseif  type(F_)==13 | type(F_)==11 then
   y=F_(x);
 else
   error(msprintf(gettext("%s: Wrong type for input argument #%d: A function expected.\n"),'%%R_',1));
