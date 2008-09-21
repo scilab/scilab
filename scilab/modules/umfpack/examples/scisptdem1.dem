@@ -24,10 +24,10 @@ x_message(["To load a sparse matrix  stored  in  the  Harwell";
 	   "       CLICK ON OK TO CONTINUE                   "]);
 
 mode(1)
-[A1,descr1,ref1,mtype1] = ReadHBSparse(DIR_SCISPT_DEM+"arc130.rua");
-[A2,descr2,ref2,mtype2] = ReadHBSparse(DIR_SCISPT_DEM+"bcsstk24.rsa");
-[A3,descr3,ref3,mtype3] = ReadHBSparse(DIR_SCISPT_DEM+"ex14.rua");
-[A4,descr4,ref4,mtype4] = ReadHBSparse(DIR_SCISPT_DEM+"young1c.csa");
+[A1,descr1,ref1,mtype1] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+[A2,descr2,ref2,mtype2] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A3,descr3,ref3,mtype3] = ReadHBSparse(SCI+"/modules/umfpack/examples/ex14.rua");
+[A4,descr4,ref4,mtype4] = ReadHBSparse(SCI+"/modules/umfpack/examples/young1c.csa");
 
 mode(-1)
 x_message(["To see the pattern of non zeros elements";
