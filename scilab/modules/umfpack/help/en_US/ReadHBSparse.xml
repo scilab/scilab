@@ -107,7 +107,7 @@
     <title>Examples</title>
 
     <programlisting role="example">
-[A] = ReadHBSparse(DIR_SCISPT_DEM+"arc130.rua");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
  </programlisting>
   </refsection>
 
