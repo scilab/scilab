@@ -28,7 +28,7 @@ Graphical User Interface:
  - Uimenus are now Java objects and are managed as graphic handles in Scilab
  - Uimenus and Uicontrols can be saved and loaded like other graphic entities using save and load functions
  - Dialogs are now Java objects (x_message, x_dialog...)
- - Completion on variable and function names avaible using TAB key or CTRL-SPACE
+ - Completion on variable and function names available using TAB key or CTRL-SPACE
 
 Event Handling Functions:
 =========================
