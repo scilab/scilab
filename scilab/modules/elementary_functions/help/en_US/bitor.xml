@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>bitor</refname>
     <refpurpose>OR applied to binary representation of
-  inputs arguments</refpurpose>
+  input arguments</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
