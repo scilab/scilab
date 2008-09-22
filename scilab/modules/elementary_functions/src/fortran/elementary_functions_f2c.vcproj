@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="elementary_functions_f2c"
 	ProjectGUID="{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
 	RootNamespace="elementary_functions_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -848,6 +848,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_f_sort.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_spones.c"
 				>
 			</File>
@@ -1609,6 +1613,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_size.f"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_f_sort.f"
 				>
 			</File>
 			<File

@@ -65,6 +65,7 @@ int C2F(sci_isequal)(char *fname,unsigned long fname_len);
 int C2F(sci_spones)(char *fname,unsigned long fname_len);
 int C2F(sci_gsort)(char *fname, unsigned long fname_len);
 int C2F(sci_isequalbitwise)(char *fname, unsigned long fname_len);
+int C2F(sci_sort)(char *fname, unsigned long fname_len);
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/
 

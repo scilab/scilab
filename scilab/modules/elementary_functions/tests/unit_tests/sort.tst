@@ -5,6 +5,35 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+
+//================================
+a=[5 1 3 2 4];
+if or(sort(a)<>[5 4 3 2 1]) then pause,end
+if or(sort(a+0)<>[5 4 3 2 1]) then pause,end
+[s,k]=sort(a);
+if or(k<>[1 5 3 4 2]) then pause,end
+if or(s<>[5 4 3 2 1]) then pause,end
+[s,k]=sort(a+0);
+if or(k<>[1 5 3 4 2]) then pause,end
+if or(s<>[5 4 3 2 1]) then pause,end
+//================================
+a=string([5 1 3 2 4]);
+if or(sort(a)<>string(1:5)) then pause,end
+if or(sort(string([5 1 3 2 4]))<>string(1:5)) then pause,end
+[s,k]=sort(a);
+if or(k<>[2 4 3 5 1]) then pause,end
+if or(s<>string(1:5)) then pause,end
+[s,k]=sort(string([5 1 3 2 4]));
+if or(k<>[2 4 3 5 1]) then pause,end
+if or(s<>string(1:5)) then pause,end
+//================================
+a=[];
+if sort(a)<>[] then pause,end
+[s,k]=sort(a);if s<>[]|k<>[] then pause,end
+//================================
+if sort([])<>[] then pause,end
+[s,k]=sort([]);
+if s<>[]|k<>[] then pause,end
 //================================
 //sort string
 [s]=sort(['abc','abd','aa','bxe']);

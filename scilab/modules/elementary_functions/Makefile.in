@@ -67,12 +67,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/matio.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -397,6 +396,7 @@ am__objects_4 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_exp.lo \
 	libscielementary_functions_la-sci_maxi.lo \
 	libscielementary_functions_la-sci_gsort.lo \
+	libscielementary_functions_la-sci_sort.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo
 am__objects_5 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
@@ -443,7 +443,8 @@ am__objects_5 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_conj.lo \
 	libscielementary_functions_la-sci_f_int.lo \
 	libscielementary_functions_la-sci_f_imult.lo \
-	libscielementary_functions_la-sci_f_exp.lo
+	libscielementary_functions_la-sci_f_exp.lo \
+	libscielementary_functions_la-sci_f_sort.lo
 am__objects_6 = libscielementary_functions_la-sortTemplate.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -570,9 +571,7 @@ LOOKS = @LOOKS@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
-MATIO_LIB = @MATIO_LIB@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
@@ -986,6 +985,7 @@ sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
+sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_isequalbitwise.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
@@ -1033,7 +1033,8 @@ sci_gateway/fortran/sci_f_round.f \
 sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
-sci_gateway/fortran/sci_f_exp.f
+sci_gateway/fortran/sci_f_exp.f \
+sci_gateway/fortran/sci_f_sort.f 
 
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
@@ -1045,23 +1046,26 @@ libdummy_elementary_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/icopy.f
 
 libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
-libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/
+libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) \
+	-I$(top_srcdir)/modules/core/includes/ \
+	-I$(srcdir)/includes/
+
 
 # Includes need for the compilation
-libscielementary_functions_la_FFLAGS = -Iincludes/
+libscielementary_functions_la_FFLAGS = -I$(srcdir)/includes/
 
 # Includes need for the compilation
-libscielementary_functions_la_CPPFLAGS = -Iincludes/ \
-	-Isrc/cpp/ \
-	-Isrc/c/ \
+libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes
 
 
 # Includes need for the compilation
-libscielementary_functions_la_CFLAGS = -Iincludes/ \
+libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--Isrc/c/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
@@ -1284,6 +1288,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_size.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_spones.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sum.Plo@am__quote@
@@ -1804,6 +1809,13 @@ libscielementary_functions_la-sci_gsort.lo: sci_gateway/c/sci_gsort.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gsort.c' object='libscielementary_functions_la-sci_gsort.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
+
+libscielementary_functions_la-sci_sort.lo: sci_gateway/c/sci_sort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_sort.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo $(DEPDIR)/libscielementary_functions_la-sci_sort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sort.c' object='libscielementary_functions_la-sci_sort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
 
 libscielementary_functions_la-sci_isequalbitwise.lo: sci_gateway/c/sci_isequalbitwise.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isequalbitwise.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequalbitwise.Tpo -c -o libscielementary_functions_la-sci_isequalbitwise.lo `test -f 'sci_gateway/c/sci_isequalbitwise.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequalbitwise.c
@@ -2653,6 +2665,9 @@ libscielementary_functions_la-sci_f_imult.lo: sci_gateway/fortran/sci_f_imult.f
 libscielementary_functions_la-sci_f_exp.lo: sci_gateway/fortran/sci_f_exp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_exp.lo `test -f 'sci_gateway/fortran/sci_f_exp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_exp.f
 
+libscielementary_functions_la-sci_f_sort.lo: sci_gateway/fortran/sci_f_sort.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_sort.lo `test -f 'sci_gateway/fortran/sci_f_sort.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sort.f
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -2941,7 +2956,7 @@ libdummy_elementary_functions_la-pade.lo: src/fortran/pade.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
 
 libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
-	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
+	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFAULT_INCLUDES) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
 
 libdummy_elementary_functions_la-icopy.lo: src/fortran/icopy.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f

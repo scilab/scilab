@@ -11,5 +11,5 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2795
 //
 
-t=fun2string(sort);
+t=fun2string(dir);
 msprintf("%s\n",t); 
