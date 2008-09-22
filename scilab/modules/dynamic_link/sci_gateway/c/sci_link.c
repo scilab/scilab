@@ -101,9 +101,10 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 			{
 				int m2 = 0, n2 = 0;
 				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&subname);
-				if (m2 == 1)
+				if ( ((m2 == 1) && (n2 >= 1)) || ((m2 >= 1) && (n2 == 1)) )
 				{
-					sizesubname = n2;
+					if ((m2 == 1) && (n2 >= 1)) sizesubname = n2;
+					if ((m2 >= 1) && (n2 == 1)) sizesubname = m2;
 				}
 				else
 				{
