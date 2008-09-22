@@ -1,12 +1,77 @@
-Scilab 5.0.2
-============
-* bug 3526 fixed - File loader.sce missing from the SCI/contrib directory for Linux
-* bug 3510 fixed - Bug with the simplified chinese and russian localization made Scilab unusuable under Windows localized in these languages.
+                          Changes Scilab 5.0.1 -> 5.0.2
+                          =============================
 
-Scilab 5.0.1
+Documentation:
+==============
+
+- xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
+SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
+
+- Online Help management:
+  + xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
+    SCI/modules/helptools/{jar,html,ps,pdf)
+  + Examples have been added :
+    - SCI/modules/helptools/example_2
+    - SCI/modules/helptools/example_3
+  + The system that complete an XML directory with the default language is
+    now available when building help per directory too (=> Toolboxes).
+    (see bug 3531 - http://bugzilla.scilab.org/show_bug.cgi?id=3531)
+  + xmltojar, xmltohtml, xmltops, xmltopdf : A list of generated file is returned
+    (see request 540 - http://requestzilla.scilab.org/show_bug.cgi?id=540)
+  + xmltojar, xmltohtml, xmltops, xmltopdf unitary tests have been added
+
+- Update of the documentation: error_table
+
+- Update of path in the UMFPACK modules help & demos
+
+Enhancement:
 ============
 
-In the binary, a file was missing which was causing some issues while handling Mat-Files. Please note that the Windows binary and sources releases are not impacted by this change.
+ - Some parts of the SCI/bin/scilab script relative to old and obsolete stuff 
+  (graphic export) have been removed.
+
+ - Update of the example in the dynamic_link modules and in the toolbox skeleton
+  (use the actual filename instead of the .o)
+
+Localization:
+=============
+
+ - Update of the russian localization
+
+Bug fixes:
+==========
+
+ - In the binary, the path to the fortran include directory was wrong.
+
+ - bug 3532 fixed - link doesn't manage column vector for "sub-names" argument 
+                    (as scilab 4.x).
+
+ - bug 3540 fixed - With the linux binary version, a symbolic link of 
+                    <SCILAB INSTALL PATH>/bin/scilab in /usr/local/bin (for example)
+                    did not work.
+
+ - bug 3551 fixed - bvodeS and bvode hang and close Scilab 5.0.1
+
+ - bug 3520 fixed - lex_sort returns incorrect results
+
+ - bug fixed when trying to plot a polyline with only one point 
+   (causes PlotSparse to fail)
+
+ - bug in sort compatibility with scilab 4.x
+
+ - bug 3557 fixed - popupmenu uicontrols did not work correctly
+
+ - bug 3560 fixed - property enable used with uicontrols produced an error
+
+ - bug 3526 fixed - File loader.sce missing from the SCI/contrib directory for Linux
+ 
+ - bug 3510 fixed - Bug with the simplified chinese and russian localization 
+                    made Scilab unusuable under Windows localized in these languages.
+
+ - In the binary, a file was missing which was causing some issues while 
+   handling Mat-Files. Please note that the Windows binary and sources releases
+   are not impacted by this change.
+
 
                      Main Changes Scilab 4.X -> 5.0
                      ==============================

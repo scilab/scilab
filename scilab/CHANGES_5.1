@@ -1,29 +1,8 @@
-Changes between version 5.0.X and 5.1 of Scilab
+               Changes between version 5.0.X and 5.1 of Scilab
+               ===============================================
+
 
 Version 5.0.1 begins at rev. 27555.
-
-Documentation:
-==============
-
-* xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
-SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
-
-* Online Help management:
-  + xmltojar, xmltohtml, xmltops, xmltopdf now export by default into
-    SCI/modules/helptools/{jar,html,ps,pdf)
-  + Examples have been added :
-    - SCI/modules/helptools/example_2
-    - SCI/modules/helptools/example_3
-  + The system that complete an XML directory with the default language is
-    now available when building help per directory too (=> Toolboxes).
-    (see bug 3531 - http://bugzilla.scilab.org/show_bug.cgi?id=3531)
-  + xmltojar, xmltohtml, xmltops, xmltopdf : A list of generated file is returned
-    (see request 540 - http://requestzilla.scilab.org/show_bug.cgi?id=540)
-  + xmltojar, xmltohtml, xmltops, xmltopdf unitary tests have been added
-
-* Update of the documentation: error_table
-
-* Update of path in the UMFPACK modules help & demos
 
 Tests:
 ======
@@ -44,17 +23,9 @@ Enhancement:
 
 * Scilab 5.1 uses GIWS 1.0
 
-* Some parts of the SCI/bin/scilab script relative to old and obsolete stuff 
-  (graphic export) have been removed.
-
 * Update of some output strings (standard, warning & error)
 
 * Update of the example in the dynamic_link modules and in the toolbox skeleton (use the actual filename instead of the .o)
-
-Localization:
-=============
-
-* Update of the russian localization
 
 Bug fixes:
 ==========
@@ -79,8 +50,6 @@ Bug fixes:
 
 * bug 3529 fixed - rmdir was trying to change the permission on the file/directory. This behavior has been removed.
 
-* bug 3532 fixed - link doesn't manage column vector for "sub-names" argument (as scilab 4.x).
-
 * bug 3540 fixed - With the linux binary version, a symbolic link of <SCILAB INSTALL PATH>/bin/scilab in /usr/local/bin (for example) did not work.
 
 * bug 3546 fixed - frmag is broken when called with hn given by a vector of coefficients instead of a polynomial.
@@ -89,18 +58,8 @@ Bug fixes:
 
 * bug 3549 fixed - machine.h was including PATH_MAX.h, BOOL.h and PARAMS.h, includes have been cleaned up.
 
-* bug 3520 fixed - lex_sort returns incorrect results
-
 * bug in the script in charge of the dispatch of localization files fixed (tools/localization/dispatchLocalizationFile.sh)
-
-* bug fixed when trying to plot a polyline with only one point (causes PlotSparse to fail)
-
-* bug in sort compatibility with scilab 4.x
 
 * paths in examples.bat in SCI/modules/javasci/examples were wrong
 
 * bug 3556 fixed - derivative was not supporting non compiled functions
-
-* bug 3557 fixed - popupmenu uicontrols did not work correctly
-
-* bug 3560 fixed - property enable used with uicontrols produced an error
