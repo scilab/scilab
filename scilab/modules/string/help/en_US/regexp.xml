@@ -46,7 +46,7 @@
         <term>input</term>
 
         <listitem>
-          <para>a matrix of strings.</para>
+          <para>a string.</para>
         </listitem>
       </varlistentry>
 
@@ -72,7 +72,7 @@
         <term>end</term>
 
         <listitem>
-          <para>:the ending index of each substring of str that matches the
+          <para>the ending index of each substring of str that matches the
           regular expression string pattern</para>
         </listitem>
       </varlistentry>
