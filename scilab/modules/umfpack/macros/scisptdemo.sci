@@ -54,9 +54,9 @@ function [] = scisptdemo()
    a;title.font_style = 6;
    
 
-   scisptdemolist = [gettext("how to use this stuff")           , DIR_SCISPT_DEM+"scisptdem1.dem";
-                     gettext("display a speed comparison test") , DIR_SCISPT_DEM+"scisptdem2.dem";
-	             gettext("small tests for condestsp")       , DIR_SCISPT_DEM+"scisptdem3.dem"];
+   scisptdemolist = [gettext("how to use this stuff")           , SCI+"/modules/umfpack/examples/scisptdem1.dem";
+                     gettext("display a speed comparison test") , SCI+"/modules/umfpack/examples/scisptdem2.dem";
+	             gettext("small tests for condestsp")       , SCI+"/modules/umfpack/examples/scisptdem3.dem"];
    while %t
       num=x_choose(scisptdemolist(:,1), gettext("Click to choose a demo"));
       if num==0 then 
