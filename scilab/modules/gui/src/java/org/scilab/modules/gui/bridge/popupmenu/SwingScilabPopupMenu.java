@@ -183,7 +183,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * Set the selected index of the PopupMenu
 	 * @param index the index of the item to be selected
 	 */
-	public void setSelectedIndex(int index) {
+	public void setUserSelectedIndex(int index) {
 		/* Remove the listener to avoid the callback to be executed */
 		if (this.callback != null) {
 			removeActionListener(this.callback);

@@ -234,8 +234,8 @@ public class ScilabPopupMenuBridge {
 	 * @param popupMenu the PopupMenu we want to set the selected index of
 	 * @param index the index of the item to be selected
 	 */
-	public static void setSelectedIndex(PopupMenu popupMenu, int index) {
-		popupMenu.getAsSimplePopupMenu().setSelectedIndex(index);
+	public static void setUserSelectedIndex(PopupMenu popupMenu, int index) {
+		popupMenu.getAsSimplePopupMenu().setUserSelectedIndex(index);
 	}
 	
 	/**
