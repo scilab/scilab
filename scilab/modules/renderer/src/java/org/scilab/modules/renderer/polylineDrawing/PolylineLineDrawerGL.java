@@ -46,7 +46,8 @@ public class PolylineLineDrawerGL extends LineDrawerGL implements PolylineDrawer
 		GL gl = getGL();
 		int nbLines = xCoords.length;
 		
-		// check if there is somthing to draw
+		// check if there is something to draw
+		// the three arrays should have the same size
 		if (nbLines == 0) { return; }
 		
 		// set dash mode
@@ -58,11 +59,10 @@ public class PolylineLineDrawerGL extends LineDrawerGL implements PolylineDrawer
 		
 		
 		gl.glBegin(GL.GL_LINES);
-		// the three arrays should have the same size
 		
 		int i = 0;
 		// search for the first finite element
-		while (!GeomAlgos.isVector3DFinite(xCoords[i], yCoords[i], zCoords[i])) {
+		while (i < nbLines && !GeomAlgos.isVector3DFinite(xCoords[i], yCoords[i], zCoords[i])) {
 			i++;
 		}
 		
