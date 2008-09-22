@@ -126,9 +126,10 @@
         <term>mem :</term>
 
         <listitem>
-          <para>integer, number of variables used to approximate the Hessian,
-          (<literal>algo='gc' or 'nd'</literal>). Default value is around
-          6.</para>
+          <para>integer, number of variables used to approximate the Hessian.
+          Default value is 10. This feature is available for the
+          Gradient-Conjugate algorithm "gc" without constraints and the
+          non-smooth algorithm "nd" without constraints.</para>
         </listitem>
       </varlistentry>
 
@@ -362,8 +363,11 @@
 
         <listitem>
           <para>If <literal>costf</literal> is a Scilab function, the calling
-          sequence for <literal>costf</literal> must be:
-          <literal>[f,g,ind]=costf(x,ind)</literal></para>
+          sequence for <literal>costf</literal> must be: </para>
+
+          <programlisting>      
+      [f,g,ind]=costf(x,ind)
+    </programlisting>
 
           <para>Here, <literal>costf</literal> is a function which returns
           <literal>f</literal>, value (real number) of cost function at
@@ -405,19 +409,15 @@
                 objective must be :</para>
 
                 <programlisting>
-      
       subroutine costf(ind,n,x,f,g,ti,tr,td)
-      
     </programlisting>
 
                 <para>with the following declarations:</para>
 
-                <programlisting>
-      
+                <programlisting>      
       integer ind,n ti(*)
       double precision x(n),f,g(n),td(*)
       real tr(*)
-      
     </programlisting>
 
                 <para>The argument <literal>ind</literal> is described
@@ -716,8 +716,8 @@ x0=1.2*ones(1,5);
     works properly. On Scilab's side, the optimization component is
     dynamically linked and the symbol "nird" is exported out of the
     optimization dll. On the cost function's side, which is also dynamically
-    linked, the "nird" common must be imported in the cost function dll.
-    </para>
+    linked, the "nird" common must be imported in the cost function
+    dll.</para>
 
     <para>The following example is a re-writing of the previous example, with
     special attention for the Windows operating system with Intel Fortran
