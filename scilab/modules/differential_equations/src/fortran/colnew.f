@@ -504,7 +504,7 @@ C
 c		   replaces write(6 ...) by basout bug 2598                  
 c      WRITE(6,99)
         OUT = 6
-        WRITE(BUF,99)
+        WRITE(BUF,*) 99
         CALL BASOUT(io,OUT,BUF)
       ENDIF
   99  FORMAT(//,33H VERSION *COLNEW* OF COLSYS .    ,//)
