@@ -23,7 +23,7 @@ public interface SimplePopupMenu extends Widget {
 	 * Set the selected index of the PopupMenu
 	 * @param index the index of the item to be selected
 	 */
-	void setSelectedIndex(int index);
+	void setUserSelectedIndex(int index);
 	
 	/**
 	 * Get the selected index of the PopupMenu

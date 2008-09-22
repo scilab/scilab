@@ -1840,7 +1840,7 @@ public class CallScilabBridge {
 	 * @param index the index of the item to be selected
 	 */
 	public static void setPopupMenuSelectedIndex(int id, int index) {
-		((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).setSelectedIndex(index);
+		((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).setUserSelectedIndex(index);
 	}
 	
 	/**

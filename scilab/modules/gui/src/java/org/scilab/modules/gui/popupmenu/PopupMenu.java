@@ -29,13 +29,13 @@ public interface PopupMenu extends Widget {
 	SimplePopupMenu getAsSimplePopupMenu();
 	
 	/**
-	 * Set the selected index of the ListBox
+	 * Set the selected index of the PopupMenu
 	 * @param index the index of the item to be selected
 	 */
-	void setSelectedIndex(int index);
+	void setUserSelectedIndex(int index);
 	
 	/**
-	 * Get the selected index of the ListBox
+	 * Get the selected index of the PopupMenu
 	 * @return the index of the item selected
 	 */
 	int getSelectedIndex();

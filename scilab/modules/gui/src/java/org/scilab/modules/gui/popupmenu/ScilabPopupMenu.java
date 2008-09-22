@@ -220,8 +220,8 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
 	 * Set the selected index of the ListBox
 	 * @param index the index of the item to be selected
 	 */
-	public void setSelectedIndex(int index) {
-		ScilabBridge.setSelectedIndex(this, index);
+	public void setUserSelectedIndex(int index) {
+		ScilabBridge.setUserSelectedIndex(this, index);
 	}
 	
 	/**
