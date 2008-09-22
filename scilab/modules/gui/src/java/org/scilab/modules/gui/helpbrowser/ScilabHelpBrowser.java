@@ -64,7 +64,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 			helpTab.addMember(instance);
 			 /* Action when the Browser tab is closed */
 			helpTab.setCallback(ScilabCallBack
-					.createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser", ScilabCallBack.JAVA));
+					.createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
 			
 			MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
 			helpTab.addMenuBar(menubar);
