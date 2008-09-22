@@ -15,7 +15,7 @@
 #include "PATH_MAX.h"
 #include "MALLOC.h"
 #include "tmpdir.h" /* getTMPDIR */
-#include "../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #include "scilabmode.h"
 #include "spawncommand.h"
 /*--------------------------------------------------------------------------*/

@@ -19,7 +19,7 @@
 #include "spawncommand.h"
 #include "sciprint.h"
 #include "tmpdir.h"
-#include "../../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

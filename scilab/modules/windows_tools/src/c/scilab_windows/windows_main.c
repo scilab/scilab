@@ -26,7 +26,7 @@
 #include "scilab_main.h"
 #include "stristr.h"
 #include "console.h"
-#include "../WinConsole.h"
+#include "WinConsole.h"
 #include "StartupMessageBox.h"
 #include "splashScreen.h"
 #include "WndThread.h"

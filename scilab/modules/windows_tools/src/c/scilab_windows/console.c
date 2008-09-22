@@ -18,7 +18,7 @@
 #include <stdio.h>
 #pragma comment(lib, "shlwapi.lib")
 
-#include "../WinConsole.h"
+#include "WinConsole.h"
 #include "WndThread.h"
 #include "console.h"
 #include "version.h"
