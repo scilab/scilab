@@ -12,7 +12,6 @@
 #ifndef __FUNTAB_H__
 #define __FUNTAB_H__
 
-#include "machine.h"
 /**
  *    Hash table for scilab functions 
  *    job is used to specify a job

@@ -14,7 +14,6 @@
 #ifndef __DYNAMIC_MENUS_H__
 #define __DYNAMIC_MENUS_H__
 
-#include "machine.h"
 
 /*
  * Checks if there's something on the

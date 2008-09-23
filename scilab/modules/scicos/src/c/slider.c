@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include "math_graphics.h"
 #include "sciprint.h"
-
+#include "machine.h"
 extern int C2F(getgeom)(double *);
 
 /*----------------------------------------------------

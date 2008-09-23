@@ -11,7 +11,7 @@
  *
  */
 #include "AddFunctionInTable.h"
-
+#include "machine.h"
 #define ARGS_fintg double *
 
 /**************** fintg ***************/

@@ -13,7 +13,6 @@
 #ifndef __INTFILESTAT_H__
 #define __INTFILESTAT_H__
 
-#include "machine.h"
 
 /**
  * TODO 

@@ -14,7 +14,6 @@
 #ifndef __ZZLEDT_H__
 #define __ZZLEDT_H__
 
-#include "machine.h" /* C2F */
 
 /**
 * line editor

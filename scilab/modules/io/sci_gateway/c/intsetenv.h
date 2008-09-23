@@ -12,7 +12,6 @@
 
 #ifndef __INTSETENV_H__
 #define __INTSETENV_H__
-#include "machine.h"
 /**
  * TODO
  * @param[in]

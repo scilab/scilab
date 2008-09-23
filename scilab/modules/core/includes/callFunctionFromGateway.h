@@ -13,7 +13,6 @@
 #ifndef __CALLFUNCTIONFROMGATEWAY_H__
 #define __CALLFUNCTIONFROMGATEWAY_H__
 
-#include "machine.h"
 
 typedef int (*function_Interf)(char *fname,unsigned long l);
 

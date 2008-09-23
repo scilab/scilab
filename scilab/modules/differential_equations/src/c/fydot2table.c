@@ -11,6 +11,7 @@
  *
  */
 #include "AddFunctionInTable.h"
+#include "machine.h"
 
 extern int C2F(getcodc)(int *nd1, int *iflag1);
 

@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * Copyright (C) 2008 - INRIA - Sylvest LEDRU
+ * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "machine.h"
 #include "callDynamicGateway.h"
 #include "MALLOC.h"
 #include "Scierror.h"

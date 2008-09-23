@@ -12,7 +12,6 @@
 #ifndef __HASHTABLE_CORE_H__
 #define __HASHTABLE_CORE_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 #include "stack-def.h"
 #include "existfunction.h"
 /*--------------------------------------------------------------------------*/

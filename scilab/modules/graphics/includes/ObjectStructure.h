@@ -27,7 +27,6 @@
   sauf pour les callback (il faudrait creer une fonction et l'appeler) */
 #include "stack-c.h"
 #include "StringMatrix.h"
-#include "machine.h"
 #include "DoublyLinkedList.h"
 
 #ifdef _MSC_VER

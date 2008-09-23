@@ -23,6 +23,7 @@
 #ifndef __SAVEG_H__
 #define __SAVEG_H__
 
+#include "machine.h"
 #include "files.h"
 
 void C2F(saveg) (char *path, int *lpath,

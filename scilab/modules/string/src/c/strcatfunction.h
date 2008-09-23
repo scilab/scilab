@@ -14,7 +14,6 @@
 /*----------------------------------------------------------------------------*/
 #ifndef __STRCATFUNCTION_H__
 #define __STRCATFUNCTION_H__
-#include "machine.h"
 #define STAR '*'
 #define COL 'c'
 #define ROW 'r'

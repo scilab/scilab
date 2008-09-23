@@ -11,7 +11,6 @@
  *
  */
 
-#include "machine.h"
 #include "Scierror.h"
 #include "ObjectStructure.h"
 #include "Events.h"

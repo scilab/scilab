@@ -21,7 +21,6 @@
   #pragma comment(lib, "User32.lib")
 #endif
 #include "jni.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "tmpdir.h"
 #include "scirun.h"

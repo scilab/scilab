@@ -21,7 +21,6 @@
 #ifndef _BASIC_ALGOS_H_
 #define _BASIC_ALGOS_H_
 
-#include "machine.h"
 #include <string.h>
 
 /**

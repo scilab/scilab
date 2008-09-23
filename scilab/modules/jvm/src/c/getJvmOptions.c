@@ -18,6 +18,7 @@
 #include "GetXmlFileEncoding.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "machine.h"
 #include "stricmp.h"
 #include "FileExist.h"
 #ifdef _MSC_VER

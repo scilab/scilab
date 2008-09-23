@@ -15,7 +15,6 @@
 #ifndef __ADDFUNCTIONINTABLE_H__
 #define __ADDFUNCTIONINTABLE_H__
 
-#include "machine.h"
 
 typedef void (*voidf)();
 

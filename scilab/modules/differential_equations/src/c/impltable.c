@@ -11,6 +11,7 @@
  *
  */
 #include "AddFunctionInTable.h"
+#include "machine.h"
 /***********************************
 * impl   (  fres, fadda, fj2 )
 ***********************************/

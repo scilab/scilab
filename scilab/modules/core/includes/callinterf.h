@@ -12,7 +12,6 @@
 
 #ifndef __CALLINTERF__
 #define __CALLINTERF__
-#include "machine.h"
 
 /********************************************************
  * Table of hard coded Scilab interface

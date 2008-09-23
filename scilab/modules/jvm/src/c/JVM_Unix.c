@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <stdlib.h>
+#include "machine.h"
 #include "JVM_commons.h"
 #include "JVM_functions.h"
 #include "sci_mem_alloc.h"

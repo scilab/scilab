@@ -13,7 +13,6 @@
 #ifndef __TEXMACS_H__
 #define __TEXMACS_H__
 
-#include "machine.h"
 
 void settexmacs(void);
 int  C2F(intexmacs)(void);

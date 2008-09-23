@@ -15,7 +15,6 @@
  */
 #ifndef __SCILABDEFAULT_H__
 #define __SCILABDEFAULT_H__
-#include "machine.h"
 
 /* Where is stored the history by default */
 #ifdef _MSC_VER

@@ -22,7 +22,6 @@
 #include <tcl.h>
 #include <string.h>
 
-#include "machine.h"
 #include "Thread_Wrapper.h"
 
 /*

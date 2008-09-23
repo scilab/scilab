@@ -17,7 +17,6 @@
 extern "C" {
 #endif
 
-#include "machine.h"
 
 /**
  * Get the clipboard contents

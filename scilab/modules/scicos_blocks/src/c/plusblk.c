@@ -21,7 +21,6 @@
 /* Copyright INRIA */
 
 /* Element wise som */
-#include "machine.h"
 
 void 
 plusblk(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

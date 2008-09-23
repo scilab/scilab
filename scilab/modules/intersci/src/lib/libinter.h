@@ -14,7 +14,6 @@
 #ifndef __LIBINTER_H__
 #define __LIBINTER_H__
 
-#include "machine.h"
 #include "stack-c.h"
 
 void C2F(out) (char *str,unsigned int);

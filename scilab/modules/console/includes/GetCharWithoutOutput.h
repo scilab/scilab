@@ -13,7 +13,6 @@
 #ifndef __GETCHARWITHOUTOUTPUT_H__
 #define __GETCHARWITHOUTOUTPUT_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 /*--------------------------------------------------------------------------*/
 /**
 * Make the console wait for a user input character (used for [more (y or n) ?])

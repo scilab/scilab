@@ -11,7 +11,6 @@
  */
 #ifndef __STR2SCI_H__
 #define __STR2SCI_H__
-#include "machine.h"
 /** C string  var2vec  to scilab
  *  @param x is supposed to be a fortran image of var2vec result
  */

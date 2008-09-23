@@ -11,7 +11,6 @@
  */
 #ifndef __TERMINATELOCALIZATION_H__
 #define __TERMINATELOCALIZATION_H__
-#include "machine.h"
 
 BOOL TerminateLocalization(void);
 

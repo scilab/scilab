@@ -15,7 +15,6 @@
 #define __FILEIO_H__
 
 #include <stdio.h>
-#include "machine.h"
 #include "stack-c.h"
 #include "do_xxscanf.h"
 

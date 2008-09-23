@@ -10,7 +10,6 @@
  *
  */
 
-#include "machine.h"
 
 void fill_grid_rectangles(int x[],int y[],double *z,int n1,int n2);
 void fill_grid_rectangles1(int x[],int y[],double *z,int n1,int n2);

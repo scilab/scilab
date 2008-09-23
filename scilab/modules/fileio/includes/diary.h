@@ -13,7 +13,6 @@
 #ifndef __DIARY_H__
 #define __DIARY_H__
 
-#include "machine.h"
 
 /**
 * TODO

@@ -15,7 +15,6 @@
 #ifndef __LOCALIZATION_H__
 #define __LOCALIZATION_H__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h" /* HAVE_LIBINTL_H */
 
 #ifdef HAVE_LIBINTL_H
 /* Have been able to find the libintl.h file on the system */

@@ -19,7 +19,6 @@
 #ifndef _GRAY_PLOT_H_
 #define _GRAY_PLOT_H_
 
-#include "machine.h"
 #include "BOOL.h"
 
 /**

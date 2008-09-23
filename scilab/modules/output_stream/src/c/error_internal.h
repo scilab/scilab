@@ -17,7 +17,6 @@
 #define ERROR_FROM_FORTRAN 0
 #define ERROR_FROM_C 1
 
-#include "machine.h"
 
 /**
 * error_internal

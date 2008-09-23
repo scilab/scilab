@@ -14,7 +14,6 @@
 #ifndef __LINEAR_FTABLES_H__
 #define __LINEAR_FTABLES_H__
 
-#include "machine.h"
 
 
 #define OK 1

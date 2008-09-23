@@ -11,6 +11,7 @@
  */
 
 #include <string.h>
+#include "machine.h"
 #include "AddFunctionInTable.h"
 
 

@@ -21,7 +21,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "machine.h"
 #include "sciprint.h"
 
 void mput2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);

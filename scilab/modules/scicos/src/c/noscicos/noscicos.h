@@ -5,7 +5,6 @@
 #ifndef __NOSCICOS_H__
 #define __NOSCICOS_H__
 
-#include "machine.h" /* int */
 
 int gw_scicos(void);
 int haltscicos(char *name, int *win, int *entry,long int name_len);

@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 /* Copyright INRIA */
-#include "machine.h"
 
 void 
 switchn(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

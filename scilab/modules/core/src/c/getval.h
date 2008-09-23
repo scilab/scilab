@@ -13,7 +13,6 @@
 #ifndef __GETVAL_H__
 #define __GETVAL_H__
 
-#include "machine.h"
 
 /**
  * @TODO add comment

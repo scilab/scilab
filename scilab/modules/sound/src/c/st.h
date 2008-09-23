@@ -248,7 +248,6 @@ IMPORT int soxpreview;	/* Preview mode: be fast and ugly */
 #define REMOVE unlink
 #endif
 
-#include "machine.h" 
 
 #if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
 int wavread (ft_t ft, int *buf, long int len);

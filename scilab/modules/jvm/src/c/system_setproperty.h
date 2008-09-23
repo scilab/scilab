@@ -15,8 +15,6 @@
 #ifndef __SYSTEM_SETPROPERTY_H__
 #define __SYSTEM_SETPROPERTY_H__
 
-#include "machine.h" /* BOOL */
-
 /**
 * set a system property
 * @param property name

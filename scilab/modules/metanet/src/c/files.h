@@ -51,7 +51,6 @@
 #include <unistd.h>
 #endif
 
-#include "machine.h"
 #include "MALLOC.h"
 
 #define MAXNAM 80

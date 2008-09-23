@@ -22,7 +22,7 @@
 
 #ifndef __LOADG_H__
 #define __LOADG_H__
-
+#include "machine.h"
 #include "files.h"
 
 void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, int *n, int **tail, int **head,

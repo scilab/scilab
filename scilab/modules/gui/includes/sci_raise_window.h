@@ -15,7 +15,6 @@
 #ifndef _INT_RAISE_WINDOW_H_
 #define _INT_RAISE_WINDOW_H_
 
-#include "machine.h" /* C2F */
 
 
 /**

@@ -19,7 +19,6 @@
 #ifndef _INT_CHAMP_H_
 #define _INT_CHAMP_H_
 
-#include "machine.h"
 
 /**
 * interface function for the champ routine :

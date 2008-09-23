@@ -11,6 +11,7 @@
  *
  */
 #include "AddFunctionInTable.h"
+#include "machine.h"
 /***********************************
 * Search Table for colnew 
 *   corr uses : fcoldg , fcolg, fcoldf,fcolf,fcolgu

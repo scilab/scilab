@@ -11,7 +11,6 @@
  */
 #ifndef __RUN_H__
 #define __RUN_H__
-#include "machine.h"
 
 /**
  * @TODO : add comment

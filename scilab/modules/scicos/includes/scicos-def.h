@@ -4,7 +4,6 @@
 #ifndef SCICOS_DEF 
 #define SCICOS_DEF 
 
-#include "machine.h"
 
 #if _LCC_ & FORDLL 
 	#define IMPORT __declspec (dllimport)

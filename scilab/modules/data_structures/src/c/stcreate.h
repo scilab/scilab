@@ -13,7 +13,6 @@
 #ifndef  __STCREATE_H__
 #define __STCREATE_H__
 
-#include "machine.h"
 int C2F(stcreate)(int *lw, int *nz, int *sz, int *nf, char *fnames[], int *retval);
 
 int sttyp(int *ivt, char *job, int *nf, char *fnames[]);

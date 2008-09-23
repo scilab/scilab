@@ -13,7 +13,7 @@
  
 #include <string.h>
 #include <stdlib.h>
-
+#include "machine.h"
 extern void cerro();
 
 #include "MALLOC.h"

@@ -22,7 +22,6 @@
 #include <tcl.h>
 #include <tk.h>
 
-#include "machine.h"
 #include "stack-c.h"
 #include "version.h"
 

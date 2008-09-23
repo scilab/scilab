@@ -17,7 +17,6 @@
 
 #include <string.h>
 #include "stack-c.h"
-#include "machine.h"
 #include "MALLOC.h"
 
 static int IsEqualDoubleMat(double *d1, double *d2);

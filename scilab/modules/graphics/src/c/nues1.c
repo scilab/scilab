@@ -11,6 +11,7 @@
  */
 
 #include <math.h>
+#include "machine.h"
 #include "math_graphics.h"
 
 

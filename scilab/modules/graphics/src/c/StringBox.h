@@ -19,7 +19,6 @@
 #ifndef _STRING_BOX_H_
 #define _STRING_BOX_H_
 
-#include "machine.h"
 #include "ObjectStructure.h"
 
 /*----------------------------------------------------------------------------------*/

@@ -14,7 +14,6 @@
 #ifndef __SYNCEXEC_H__
 #define __SYNCEXEC_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
 
 /**
 * execute a macro in scilab

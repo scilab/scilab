@@ -14,7 +14,6 @@
 #ifndef __WINCONSOLE_H__
 #define __WINCONSOLE_H__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
 /*--------------------------------------------------------------------------*/ 
 /* Theses functions are used to manipulate console 'dos' added to GUI */
 /* only for windows */
