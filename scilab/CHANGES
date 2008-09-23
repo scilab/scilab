@@ -20,9 +20,10 @@ SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
     (see request 540 - http://requestzilla.scilab.org/show_bug.cgi?id=540)
   + xmltojar, xmltohtml, xmltops, xmltopdf unitary tests have been added
 
-- Update of the documentation: error_table
+- Update of the documentation: error_table, ilib_gen_Make (Bug 1403)
 
 - Update of path in the UMFPACK modules help & demos
+
 
 Enhancement:
 ============
@@ -32,6 +33,8 @@ Enhancement:
 
  - Update of the example in the dynamic_link modules and in the toolbox skeleton
   (use the actual filename instead of the .o)
+
+ - Useless input argument removed in the function ilib_gen_Make
 
 Localization:
 =============
