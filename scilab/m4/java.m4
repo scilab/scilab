@@ -482,6 +482,24 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             fi
         fi
 
+        # IBM Java Compiler under Suse (and probably others)
+
+        F=jre/bin/classic/libjvm.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljvm"
+
+                D=$ac_java_jvm_dir/bin/
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+            fi
+        fi
+
         # Sun on MacOS X Java Compiler
 
         F=../Libraries/libjava.jnilib
