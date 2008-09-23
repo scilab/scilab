@@ -39,7 +39,7 @@ void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha); /* SET 
 
 int sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */
 int sciSetColormap (sciPointObj * pobj, double *rgbmat,
-			   integer m, integer n); /* SET */
+			   int m, int n); /* SET */
 int sciInitNumColors( sciPointObj * pobj, int numcolors ) ; /* SET */
 int sciSetNumColors ( sciPointObj * pobj, int numcolors ) ; /* SET */
 

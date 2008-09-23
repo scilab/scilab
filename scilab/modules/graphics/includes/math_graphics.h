@@ -21,7 +21,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "BOOL.h"
-#include "machine.h" /* integer */
+#include "machine.h" /* int */
 #include "core_math.h"
 
 #ifdef _MSC_VER 
@@ -43,7 +43,7 @@
 #endif 
 
 
-#define PI0 (integer *) 0
+#define PI0 (int *) 0
 #define PD0 (double *) 0
 #define SMDOUBLE 1.e-200 /* Smalest number to avoid dividing by zero */
 
@@ -56,7 +56,7 @@
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 #define EPSILON 1.0e-13
 
-#define linint(x) ((integer) floor(x + 0.5 )) 
+#define linint(x) ((int)  floor(x + 0.5 )) 
 #define inint(x) ((int) floor(x + 0.5 ))  
 
 #if (defined(sun) && defined(SYSV)) 
@@ -79,9 +79,9 @@
 #define M_PI 3.14159265358979323846 
 #endif
 
-double Mini(double *vect, integer n) ;
+double Mini(double *vect, int n) ;
 
-double Maxi(double *vect,integer n) ;
+double Maxi(double *vect,int n) ;
 
 
 
@@ -254,13 +254,13 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
-/* truncate an integer to a 16 bits integer. Overflow value are truncated to the min */
+/* truncate an int to a 16 bits integer. Overflow value are truncated to the min */
 /* and max of 16 bits integer. */
 #define INT_2_16B(i) ( (i) > INT16MAX ? (INT16MAX) : ( (i) < INT16MIN ? INT16MIN : ((SCIINT16) i)) )
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
-/* truncate an integer to a char. Overflow value are truncated to the min */
+/* truncate an int to a char. Overflow value are truncated to the min */
 /* and max of char integer. */
 #define INT_2_UCHAR(i) ( (i) > UCHAR_MAX ? (UCHAR_MAX) : ( (i) < 0  ? 0 : ((char) i)) )
 /*----------------------------------------------------------------------------*/
@@ -272,13 +272,13 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
-/* return the number of digits of a positive integer (ie for 10236 it is 5 )  */
+/* return the number of digits of a positive int (ie for 10236 it is 5 )  */
 /* the added 0.5 is to avoid trouble with 10^i which could become 9.999999999 */
 #define GET_NB_DIGITS_POS(i) ( (i) == 0 ? 1 : ((int) floor( log10( (i) + 0.5 ) ) ) + 1 )
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
-/* return the number of digits of an integer (ie for 10236 it is 5 or -102 it is 4 )  */
+/* return the number of digits of an int (ie for 10236 it is 5 or -102 it is 4 )  */
 /* For negative values, the length is increased by 1 because of the '-' sign" */
 #define GET_NB_DIGITS(i) ( (i) > 0 ? GET_NB_DIGITS_POS(i) : GET_NB_DIGITS_POS(-i) + 1 )
 /*----------------------------------------------------------------------------*/

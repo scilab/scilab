@@ -22,7 +22,7 @@
 * sig == 8 Floating point exception
 * sig == 11 fatal error!!!
 */
-int C2F(sigbas)(integer *sig);
+int C2F(sigbas)(int *sig);
 
 #endif /* __SIGBAS_H__  */
 /*--------------------------------------------------------------------------*/

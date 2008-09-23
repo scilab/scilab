@@ -26,7 +26,7 @@
  * @param char type[]   
  * @param ierr  
  */
-void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr);
+void C2F(mputi) (int *fd,int *res,int *n,char type[],int *ierr);
 
 #endif /* __MPUTI_H__ */
 

@@ -28,9 +28,9 @@ Type *DY;\
  }
 
 
-int C2F(genmdiag)(integer *typ,integer *m,integer *n,integer *k,int *dx,int *dy) 
+int C2F(genmdiag)(int *typ,int *m,int *n,int *k,int *dx,int *dy) 
 {
-  static integer i, ix, mn;
+  static int i, ix, mn;
 
   if (*k >= 0) 
     mn=Max(0,Min(*m,*n-*k));
@@ -45,7 +45,7 @@ int C2F(genmdiag)(integer *typ,integer *m,integer *n,integer *k,int *dx,int *dy)
     MDIAG(integer2);
     break;
   case 4:
-    MDIAG(integer);
+    MDIAG(int) ;
     break;
   case 11:
     MDIAG(unsigned char);

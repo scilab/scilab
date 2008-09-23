@@ -17,6 +17,6 @@
 #include "machine.h"
 #include "def.h"
 
-int C2F(genmdiag)(integer *typ,integer *m,integer *n,integer *k,int *dx,int *dy);
+int C2F(genmdiag)(int *typ,int *m,int *n,int *k,int *dx,int *dy);
 
 #endif /* __GENMDIAG_H__ */

@@ -26,17 +26,17 @@
  * - y is a (1,n2) matrix 
  * - x,y,z are stored as one dimensionnal array in C 
  * - if *flagnz =0 
- * -   then  nz is an integer pointer to the number of level curves. 
+ * -   then  nz is an int pointer to the number of level curves. 
  *     else  zz is an array which gives th requested level values.
  *            (and nz is the size of thos array)
  * Computed from min and max of z
  * Example Contour(1:5,1:10,rand(5,10),5);
  */
-int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style) ;
+int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagnz, int *nz, double *zz, int *style) ;
 
 /**
  * used to bring back data to Scilab Stack
  */
-int C2F(getconts)(double **x, double **y, integer *mm, integer *n) ;
+int C2F(getconts)(double **x, double **y, int *mm, int *n) ;
 
 #endif /* _CONTOUR_H_ */

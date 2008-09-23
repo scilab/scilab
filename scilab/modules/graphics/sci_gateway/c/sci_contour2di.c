@@ -28,7 +28,7 @@
 int sci_contour2di( char * fname, unsigned long fname_len )
 {
   int flagx=0,nz=10; /* default number of level curves : 10 */
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,l5;
+  int m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,l5;
   double  *hl1, *hl2;
   double *znz= NULL;
   int ix4, i, un = 1;
@@ -55,7 +55,7 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   {
     GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l4);
     if (m4 * n4 == 1) {
-      flagx = 0;  nz = Max(1,(integer) *stk(l4)),znz= stk(l4);
+      flagx = 0;  nz = Max(1,(int)  *stk(l4)),znz= stk(l4);
     } else {
       flagx = 1;  nz = m4 * n4; znz=stk(l4);
     }

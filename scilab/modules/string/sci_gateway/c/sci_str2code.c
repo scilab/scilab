@@ -11,7 +11,7 @@
  *
  */
 
-/* desc : This function return scilab integer codes associated with a
+/* desc : This function return scilab int codes associated with a
           character string                                                */
 /*------------------------------------------------------------------------*/
 #include <string.h>

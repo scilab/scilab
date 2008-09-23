@@ -146,14 +146,14 @@ int ReverseDataFor3D( sciPointObj * psubwin, double xvect[], double yvect[], dou
 }
 /*------------------------------------------------------------------------------*/
 int trans3d( sciPointObj * pobj,
-             integer       n   ,
-             integer       xm[],
-             integer       ym[],
+             int       n   ,
+             int       xm[],
+             int       ym[],
              double        x[] ,
              double        y[] ,
              double        z[]  )
 {
-  integer i;
+  int i;
   double tmpx,tmpy,tmpz;
   double  tmpx1,tmpy1,tmpz1;
   /* TEST F.Leray 20.04.04: I fix HERE temporarily BOOL cube_scaling = FALSE; */

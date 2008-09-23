@@ -14,7 +14,7 @@
 /***********************************
 * Search Table for foptim 
 ***********************************/
-#define ARGS_foptim integer*,integer*,double *,double*,double*,integer*,float*,double*
+#define ARGS_foptim int*,int*,double *,double*,double*,int*,float*,double*
 typedef void (*foptimf)(ARGS_foptim);
 
 /**************** foptim ***************/
@@ -43,7 +43,7 @@ static foptimf foptimfonc ;
 
 /** function call : foptim  **/
 
-void C2F(foptim)(integer *indsim, integer *n, double *x, double *f, double *g, integer *izs, float *rzs, double *dzs)
+void C2F(foptim)(int *indsim, int *n, double *x, double *f, double *g, int *izs, float *rzs, double *dzs)
 {
 	(*foptimfonc)(indsim,n,x,f,g,izs,rzs,dzs);
 }

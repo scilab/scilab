@@ -962,7 +962,7 @@ register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
  *   user sets the value of each element, then spInitialize() replaces
  *   spClear().
  *
- *   The user function is expected to return a nonzero integer if there
+ *   The user function is expected to return a nonzero int if there
  *   is a fatal error and zero otherwise.  Upon encountering a nonzero
  *   return code, spInitialize() terminates and returns the error code.
  *

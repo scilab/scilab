@@ -27,5 +27,5 @@
  * @param incy
  * @return
  */
-int C2F(gencopy)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integer *incy);
+int C2F(gencopy)(int *typ,int *n, int *dx, int *incx, int *dy, int *incy);
 #endif /* __GENCOPY_H__ */

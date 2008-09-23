@@ -15,14 +15,14 @@
 * impl   (  fres, fadda, fj2 )
 ***********************************/
 
-#define ARGS_fres integer*,double *,double *,double *,double*,integer*
+#define ARGS_fres int*,double *,double *,double *,double*,int*
 typedef void (*fresf)(ARGS_fres);
 
 
-#define ARGS_fadda integer*,double *,double *,integer*,integer*,double*,integer*
+#define ARGS_fadda int*,double *,double *,int*,int*,double*,int*
 typedef void (*faddaf)(ARGS_fadda);
 
-#define ARGS_fj2 integer *,double *,double *,double *,integer *,integer *,double*,integer *
+#define ARGS_fj2 int *,double *,double *,double *,int *,int *,double*,int *
 typedef void (*fj2f)(ARGS_fj2);
 
 /**************** fres ***************/
@@ -61,7 +61,7 @@ static fresf fresfonc ;
 
 /** function call **/
 
-void C2F(fres)(integer *ny, double *t, double *y, double *s, double *r, integer *ires)
+void C2F(fres)(int *ny, double *t, double *y, double *s, double *r, int *ires)
 {
 	(*fresfonc)(ny,t,y,s,r,ires);
 }
@@ -78,7 +78,7 @@ void C2F(setfres)(char *name, int *rep)
 
 static faddaf faddafonc ;
 
-void C2F(fadda)(integer *ny, double *t, double *y, integer *ml, integer *mu, double *p, integer *nrowp)
+void C2F(fadda)(int *ny, double *t, double *y, int *ml, int *mu, double *p, int *nrowp)
 {
 	(*faddafonc)(ny,t,y,ml,mu,p,nrowp);
 }
@@ -97,7 +97,7 @@ static fj2f fj2fonc ;
 
 /** function call **/
 
-void C2F(fj2)(integer *ny, double *t, double *y, double *s, integer *ml, integer *mu, double *p, integer *nrowp)
+void C2F(fj2)(int *ny, double *t, double *y, double *s, int *ml, int *mu, double *p, int *nrowp)
 {
 	(*fj2fonc)(ny,t,y,s,ml,mu,p,nrowp);
 }

@@ -44,7 +44,7 @@ int set_state_urand(double g)
     }
   else
     {
-      sciprint(_("\nBad seed for urand, must be an integer in [0,  2147483647]\n"));
+      sciprint(_("\nBad seed for urand, must be an int in [0,  2147483647]\n"));
       return ( 0 );
     }
 }

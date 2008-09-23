@@ -44,11 +44,11 @@
 #define TNm1      ptr->workt[nPoints-1]
 #define TP        (TNm1-0)
 
-extern int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
+extern int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
 extern int C2F(mgetnc)();
 extern void C2F(mopen)();
-extern int C2F(cluni0)(char *name, char *nams, integer *ln, long int name_len,long int nams_len);
-extern void C2F(mclose)(integer *fd, double *res);
+extern int C2F(cluni0)(char *name, char *nams, int *ln, long int name_len,long int nams_len);
+extern void C2F(mclose)(int *fd, double *res);
 extern void sciprint(char *fmt,...);
 int Mytridiagldltsolve(double *d, double * l, double * b, int n);
 int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
@@ -233,7 +233,7 @@ void fromws_c(scicos_block *block,int flag)
              break;
      }
    }
-   else if(Ytype==8) { /*integer cases*/
+   else if(Ytype==8) { /*int cases*/
      switch (YsubType)
      {
      case 1: if (ytype!=81) {
@@ -323,7 +323,7 @@ void fromws_c(scicos_block *block,int flag)
        break;
      }
    }
-   else if(Ytype==8) { /*integer case*/
+   else if(Ytype==8) { /*int case*/
      switch (YsubType) {
      case 1 :/* int8 */
        if((ptr->work=(void *) scicos_malloc(nPoints*mY*nY*sizeof(char)))==NULL) {

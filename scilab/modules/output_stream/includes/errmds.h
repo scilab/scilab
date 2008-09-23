@@ -25,7 +25,7 @@
 * @param num  : error to catch, if num=-1 all errors are catched
 * @return 0
 */
-int C2F(errmds)(integer *num, integer *imess, integer *imode);
+int C2F(errmds)(int *num, int *imess, int *imode);
 
 #endif /* __ERRMDS_H__ */
 /*--------------------------------------------------------------------------*/

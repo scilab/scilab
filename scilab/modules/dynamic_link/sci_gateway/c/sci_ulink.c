@@ -41,7 +41,7 @@ int C2F(sci_ulink)(char *fname,unsigned long fname_len)
 			params=stk(l1);
 			for(i=0;i<m1*n1;i++)
 			{
-				integer ilib = (integer)params[i];
+				int ilib = (int) params[i];
 				unlinksharedlib(&ilib);
 			}
 		}

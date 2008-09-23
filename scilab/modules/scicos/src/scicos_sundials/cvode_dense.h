@@ -156,7 +156,7 @@ int CVDenseSetJacFn(void *cvode_mem, CVDenseJacFn djac, void *jac_data);
  * Optional outputs from the CVDENSE linear solver
  * -----------------------------------------------------------------
  *
- * CVDenseGetWorkSpace returns the real and integer workspace used
+ * CVDenseGetWorkSpace returns the real and int workspace used
  *                     by CVDENSE.
  * CVDenseGetNumJacEvals returns the number of calls made to the
  *                       Jacobian evaluation routine djac.

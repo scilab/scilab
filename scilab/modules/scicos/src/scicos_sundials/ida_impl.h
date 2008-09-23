@@ -172,9 +172,9 @@ extern "C" {
     /* Space requirements for IDA */
 
     long int ida_lrw1;     /* no. of realtype words in 1 N_Vector               */
-    long int ida_liw1;     /* no. of integer words in 1 N_Vector                */
+    long int ida_liw1;     /* no. of int words in 1 N_Vector                */
     long int ida_lrw;      /* number of realtype words in IDA work vectors      */
-    long int ida_liw;      /* no. of integer words in IDA work vectors          */
+    long int ida_liw;      /* no. of int words in IDA work vectors          */
 
     realtype ida_tolsf;    /* tolerance scale factor (saved value)              */
 

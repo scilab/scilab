@@ -12,7 +12,7 @@
 
 #include "gendot.h"
 #include "genmmul.h"
-static integer c1 = 1;
+static int c1 = 1;
 
 #define MMUL(Type) {\
 Type *A;\
@@ -32,10 +32,10 @@ Type *C;\
     }\
 }
 
-int C2F(genmmul)(integer *typ, int *a, integer *na, int *b, integer *nb, int *c, integer *nc, integer *l, integer *m, integer *n)
+int C2F(genmmul)(int *typ, int *a, int *na, int *b, int *nb, int *c, int *nc, int *l, int *m, int *n)
 {
-  static integer i1, i2;
-  static integer i, j, ib, ic;
+  static int i1, i2;
+  static int i, j, ib, ic;
   ib = 1;
   ic = 0;
   i1 = *n;
@@ -49,7 +49,7 @@ int C2F(genmmul)(integer *typ, int *a, integer *na, int *b, integer *nb, int *c,
     MMUL(integer2);
     break;
   case 4:
-    MMUL(integer);
+    MMUL(int) ;
     break;
   case 11:
     MMUL(unsigned char);

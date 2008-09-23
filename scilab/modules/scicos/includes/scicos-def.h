@@ -33,7 +33,7 @@ typedef struct {
 
 
 typedef struct {
-  integer kfun;
+  int kfun;
 } CURBLK_struct;
 
 
@@ -44,12 +44,12 @@ typedef struct {
 
 
 typedef struct {
-  integer ptr;
+  int ptr;
 }  SCSPTR_struct;
 
 
 typedef struct {
-	integer idb;
+	int idb;
 } DBCOS_struct;
 
 
@@ -59,7 +59,7 @@ typedef struct {
 
 
 typedef struct {
-	integer halt;
+	int halt;
 }  COSHLT_struct;
 
 

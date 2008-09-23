@@ -18,7 +18,7 @@
 /**
 * seek function 
 */
-void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err);
+void C2F(mseek) (int *fd, int *offset, char *flag, int *err);
 
 #endif /* __MSEEK_H__ */
 /*--------------------------------------------------------------------------*/

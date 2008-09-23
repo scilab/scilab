@@ -45,7 +45,7 @@ static int INTERNAL_CHARACTERS_TABLE_CODES_FOR_SCILAB[NUMBER_INTERNAL_CHARACTERS
    23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
    33, 34, 35,-54, 57,-55, 61, 227 };
 /*--------------------------------------------------------------------------*/
-integer C2F(getfastcode)(unsigned char *c, unsigned long c_len) 
+int C2F(getfastcode)(unsigned char *c, unsigned long c_len) 
 {
 	return convertAsciiCodeToScilabCode(c[0]);
 } 

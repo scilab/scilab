@@ -6,7 +6,7 @@
 
   /*        this subroutine is called by getsym when this last one */
   /*        have detected the beginning of a lexical token which corresponds */
-  /*        to a positive number (an integer or a float). There are two */
+  /*        to a positive number (an int or a float). There are two */
   /*        cases (whom this routine is informed by the logical */
   /*        dotdet (as "dot detected")) : */
 
@@ -33,7 +33,7 @@
   /*        In the others cases we call an "intrinsic" function of Fortran */
   /*        (as strtod in C) to do the job (what fortran called an internal file). */
   /*        The overhead comes from the fact that at this level the "scilab characters" */
-  /*        are actually integers (a first convertion string -> integer is already */
+  /*        are actually integers (a first convertion string -> int is already */
   /*        done) so a "reconversion" to a string is necessary. */
 
   /*     A BRIEF EXPLANATION */
@@ -44,19 +44,19 @@
   /*           digits of the mantissa are red) */
   /*           -> the dot is detected and a correction of -11 will be */
   /*              bring in the exponent */
-  /*        2/ the exponent is computed directly in integer arithmetic, then the */
+  /*        2/ the exponent is computed directly in int arithmetic, then the */
   /*           correction is brought to got the final exponent : 23-11 = 12 */
 
   /*        All that to say that the string number to convert is equal to */
-  /*           123456789012345 * 10^12 and in general  x = integer 10^expo */
+  /*           123456789012345 * 10^12 and in general  x = int 10^expo */
 
-  /*        So if integer <= 2^53 (all integer n such that |n| <= 2^53 belong */
-  /*        in the ieee754 double float number) then we must compute this integer */
+  /*        So if int <= 2^53 (all int n such that |n| <= 2^53 belong */
+  /*        in the ieee754 double float number) then we must compute this int */
   /*        (from the digit array) exactly in double precision (if all intermediary */
   /*        computed quantities are integers <= 2^53 which is the case). */
   /*        A simple way to impose this condition is the following : */
   /*            2^53 = 9007199254740992 > 8 10^15 > 10^15 */
-  /*        So that if our integer has 15 digits (or 16 digits with d1 <= 8) then */
+  /*        So that if our int has 15 digits (or 16 digits with d1 <= 8) then */
   /*        it is OK. */
 
   /*        For the exponent : 10^0, 10^1, 10^2, ...., 10^22 are all exactly representable */
@@ -64,7 +64,7 @@
   /*        but 5^23 > 2^53 so that 10^23 is not a float point number) */
 
   /*        Conclusion : */
-  /*          (i) if our integer have less than 15 digits and if |expo|<= 22 */
+  /*          (i) if our int have less than 15 digits and if |expo|<= 22 */
   /*              then only one non exact operation (a multiplication or a division */
   /*              depending the sign of expo) will be done (eventually) and we */
   /*              got the near float ; */
@@ -92,7 +92,7 @@
   /*              of epsm = (approx) 1.11 10^(-16))) */
   /*     digit  : array of length ndgmax to record the mantissa 's digits */
   /*     ndgrec : number of recorded digits (<= ndgmax) */
-  /*     ndg    : to count the number of digits of the integer part of */
+  /*     ndg    : to count the number of digits of the int part of */
   /*              the mantissa (which may be superior to ndgmax => in */
   /*              this case a correction must be bring in the exponent) */
   /*     sgnexp : sign of the exponent part (see SYMBOL AFTER) */
@@ -100,12 +100,12 @@
   /*              the mantissa begin an integer, p.e. 123.456 => 123456 */
   /*              in this case the correction is -3) */
   /*     ndgexp : number of digits of the exponent (to control spurious */
-  /*              integer overflow if the exponent is something like */
+  /*              int overflow if the exponent is something like */
   /*              e+2147483648  (=2^31  (= -2^31 with the usual 32 bits */
-  /*              integer arithmetic ))) */
-  /*     expo   : the exponent (directly computed with integer arithmetic */
-  /*              but ndgexp may control integer "overflow") */
-  /*     code0  : integer code of the character "0" */
+  /*              int arithmetic ))) */
+  /*     expo   : the exponent (directly computed with int arithmetic */
+  /*              but ndgexp may control int "overflow") */
+  /*     code0  : int code of the character "0" */
   /*     string : string to hold the "number" to be converted in double */
   /*              when the "number" is such that a direct straitforward */
   /*              conversion will be not enough accurate */
@@ -114,7 +114,7 @@
   /*     EXPMAX may be such that 10^EXPMAX > max positive float num */
   /*     EXPMIN may be such that 10^EXPMIN < min positive float num */
   /*     NDEMAX may be such that 10^5 <= 10^NDEMAX < MAX_INTEGER : */
-  /*            when we compute (with integer arithmetic) the exponent */
+  /*            when we compute (with int arithmetic) the exponent */
   /*            the number of digits of the exponent is recorded in */
   /*            ndgexp and the test  ndgexp <= NDEMAX validate this */
   /*            calculus. */
@@ -175,7 +175,7 @@ int C2F(getval)(double *s, int *dotdet)
   ndg = 0;
   ndgrec = 0;
   if (! detdot) {
-    /*  1) got the integer part of the mantissa of the pattern
+    /*  1) got the int part of the mantissa of the pattern
       1-a) may be there is some 0 at the beginning */
     while(C2F(com).char1 == 0) {
       C2F(fortrangetch)();
@@ -243,7 +243,7 @@ int C2F(getval)(double *s, int *dotdet)
       C2F(fortrangetch)();
     }
     /*now form the exponent : the var ndgexp is here
-      to treat spurious integer overflow ... */
+      to treat spurious int overflow ... */
     while(abs(C2F(com).char1) <= 9) {
       expo = expo * 10 + C2F(com).char1;
       ++ndgexp;
@@ -260,7 +260,7 @@ int C2F(getval)(double *s, int *dotdet)
     return 0;
   }
   /*4-2/ ndgexp is to large => the exponent expo is perhaps badly 
-    computed (integer "overflow") or in all cases the 
+    computed (int "overflow") or in all cases the 
     exponent is too large (positive or negative) such that it result 
     (for s) in a overflow or underflow depending the exponent sign */
   if (ndgexp >= NDEMAX) {
@@ -325,8 +325,8 @@ int C2F(getval)(double *s, int *dotdet)
     return 0;
   }
   /*4-6/ The other easy case where we can compute s : 
-    if expo = EXPLIM + k  but [integer part]*10^k < max_int_coded_in_double 
-    then it is OK (retrieve k in the exponent and multiply the integer 
+    if expo = EXPLIM + k  but [int part]*10^k < max_int_coded_in_double 
+    then it is OK (retrieve k in the exponent and multiply the int 
     part by 10^k and do the same job as previus) */
   if (expo > EXPLIM && expo - EXPLIM + ndgrec <= DGLIM) {
     *s = 0.;

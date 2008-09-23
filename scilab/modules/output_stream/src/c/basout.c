@@ -26,10 +26,10 @@
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(writelunitstring)();
 /*--------------------------------------------------------------------------*/ 
-int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
+int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
 	char *buffer = NULL;
-	static integer ich;
+	static int ich;
 
 	if (*lunit == C2F(iop).wte)
 	{

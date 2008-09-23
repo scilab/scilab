@@ -12,7 +12,7 @@
  *
  */
 
-/* desc : For usual or polynomial matrix  n  is the integer equal to 
+/* desc : For usual or polynomial matrix  n  is the int equal to 
    number of rows times number of columns of  M . (Also valid for  M  
    a boolean matrix) 
 

@@ -202,7 +202,7 @@ void RemoveInterf(int id)
 * with addinterf the dynamic interface number 
 * is given by *k - (DynInterfStart+1)
 ************************************************/
-void C2F(userlk)(integer *k)
+void C2F(userlk)(int *k)
 {
 	int k1 = *k - (DynInterfStart+1) ;
 	int imes = 9999;

@@ -6,7 +6,7 @@
  *  long *fmat
  *  *fmat = (long)spCreate(*n,0,&error);
  *
- * At fortran level the integer must be an integer *4
+ * At fortran level the int must be an int *4
  * in order to store a C long
  * since we  are in scilab
  * the pointer transmitted to f_ is an istk(il1) it can in fact contain

@@ -47,10 +47,10 @@ Type *R = 0;\
     }\
 }
 
-int C2F(genrdiv)(integer *typ,int *a, integer *ia, int *b, integer *ib, int *r, integer *ir, integer *n, integer *ierr)
+int C2F(genrdiv)(int *typ,int *a, int *ia, int *b, int *ib, int *r, int *ir, int *n, int *ierr)
 {
-  integer i1 = 0;
-  static integer k = 0, jb = 0, ja = 0, jr = 0;
+  int i1 = 0;
+  static int k = 0, jb = 0, ja = 0, jr = 0;
 
   i1 = *n;
   switch (*typ) {
@@ -61,7 +61,7 @@ int C2F(genrdiv)(integer *typ,int *a, integer *ia, int *b, integer *ib, int *r, 
     RDIV(integer2);
     break;
   case 4:
-    RDIV(integer);
+    RDIV(int) ;
     break;
   case 11:
     RDIV(unsigned char);

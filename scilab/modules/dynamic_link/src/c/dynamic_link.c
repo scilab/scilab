@@ -49,7 +49,7 @@ __declspec (dllexport) CINTER_struct C2F(cinter);
 /* struct used by fortran (F2C) */
 /* required to be defined in C */
 typedef struct {
-	integer ibuf[lsiz];
+	int ibuf[lsiz];
 } IBFU_struct;
 __declspec (dllexport) CINTER_struct C2F(ibfu);
 
@@ -232,7 +232,7 @@ BOOL c_link(char *routinename,int *ilib)
 	return TRUE;
 }
 /*---------------------------------------------------------------------------*/
-void C2F(iislink)(char *routinename, integer *ilib)
+void C2F(iislink)(char *routinename, int *ilib)
 {
 	c_link(routinename,ilib);
 }
@@ -297,7 +297,7 @@ void unlinkallsharedlib(void)
 	for ( i = 0 ; i < Nshared ; i++) if ( hd[i].ok == TRUE) Sci_Delsym(i);
 }
 /*---------------------------------------------------------------------------*/
-void unlinksharedlib(integer *i) 
+void unlinksharedlib(int *i) 
 {
 	/* delete entry points in shared lib *i */
 	Sci_Delsym(*i);

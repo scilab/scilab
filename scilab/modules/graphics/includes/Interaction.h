@@ -49,7 +49,7 @@ extern char *sciGetCallback (sciPointObj * pthis); /* INTERACTION */
 extern int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
 
 int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
-extern BOOL sciIsAreaZoom(integer *box, integer *box1 ,integer *section); /* INTERACTION */
+extern BOOL sciIsAreaZoom(int *box, int *box1 ,int *section); /* INTERACTION */
 
 /**
  * Call rubber box on a figure in pixels

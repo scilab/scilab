@@ -35,18 +35,18 @@ void z2double(double *ptrz, double *ptrsci, int size, int lda);
 
 /* from int */
 
-extern  int C2F(tpconv)(integer *,integer *,integer *,void *, integer *,void *, integer *);
+extern  int C2F(tpconv)(int *,int *,int *,void *, int *,void *, int *);
 
 /* from system */
 
-extern int C2F(mklist)(integer *);
-extern int C2F(mklistt)(integer *,integer *);
-extern int C2F(funs)(integer *);
-extern int C2F(putid)(integer *,integer *);
-extern int C2F(allowptr)(integer *);
+extern int C2F(mklist)(int *);
+extern int C2F(mklistt)(int *,int *);
+extern int C2F(funs)(int *);
+extern int C2F(putid)(int *,int *);
+extern int C2F(allowptr)(int *);
 extern int C2F(ref2val)(void);
 extern int C2F(allops)(void);
-extern int C2F(putfunnam)(char *fname,integer *lw, unsigned long);
+extern int C2F(putfunnam)(char *fname,int *lw, unsigned long);
 
 
 /* from intersci */
@@ -60,10 +60,10 @@ extern void C2F(cbool)(     int *n,     int *ip[],     int *op);
 /* from somewhere (maybe stack1.h) */
 
 extern void C2F(setfeval)(char *,int *);
-extern int C2F(fakecresmat2)(integer *lw, integer *nchar, integer *lr);
+extern int C2F(fakecresmat2)(int *lw, int *nchar, int *lr);
 /* from stack2.h */
-int C2F(isoptlw)(integer *topk,integer  *lw, char *namex, unsigned long name_len);
-integer C2F(numopt)(void);
+int C2F(isoptlw)(int *topk,int  *lw, char *namex, unsigned long name_len);
+int C2F(numopt)(void);
 
 int C2F(convert2sci)(int *);
 
@@ -72,7 +72,7 @@ int C2F(convert2sci)(int *);
  * @param lw position
  * @return the type of object at position lw in the stack
  */
-integer C2F(gettype)(integer *lw);
+int C2F(gettype)(int *lw);
 
 
 /**
@@ -86,9 +86,9 @@ integer C2F(gettype)(integer *lw);
  */
 int C2F(putlhsvar)(void);
 
-int C2F(isref)(integer *lw);
-integer C2F(vartype)(integer *number);
-integer C2F(elementtype)(integer *lnumber,integer *number);
+int C2F(isref)(int *lw);
+int C2F(vartype)(int *number);
+int C2F(elementtype)(int *lnumber,int *number);
 
 /**
  * Create a variable into the Scilab stack
@@ -101,11 +101,11 @@ integer C2F(elementtype)(integer *lnumber,integer *number);
  * @param[out] lr the address of the data in Scilab Stack
  * @param type_len length of the char *type__
  */
-int C2F(createvar)(integer *lw, char *type__, integer *m, integer *n, integer *lr, unsigned long type_len);
+int C2F(createvar)(int *lw, char *type__, int *m, int *n, int *lr, unsigned long type_len);
 
-int C2F(creatework) (integer *number,integer *m,integer  *lr);
+int C2F(creatework) (int *number,int *m,int  *lr);
 
-int C2F(setworksize) (integer *number,integer *size);
+int C2F(setworksize) (int *number,int *size);
 
 
 /**
@@ -130,15 +130,15 @@ int C2F(setworksize) (integer *number,integer *size);
  * @param type_len length of the char *type__
  * @return the result of the operation
  */
-int C2F(createcvar)(integer *lw, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len);
+int C2F(createcvar)(int *lw, char *type__, int *it, int *m, int *n, int *lr, int *lc, unsigned long type_len);
 
 
-int C2F(createlist)(integer *lw, integer *nel);
-int C2F(createvarfrom)(integer *lw, char *type__, integer *m, integer *n, integer *lr, integer *lar, unsigned long type_len);
-int C2F(createcvarfrom)(integer *lw, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, integer *lar, integer *lac, unsigned long type_len);
-int C2F(createlistvarfrom)(integer *lnumber, integer *number, char *type__, integer *m, integer *n, integer *lr, integer *lar, unsigned long type_len);
+int C2F(createlist)(int *lw, int *nel);
+int C2F(createvarfrom)(int *lw, char *type__, int *m, int *n, int *lr, int *lar, unsigned long type_len);
+int C2F(createcvarfrom)(int *lw, char *type__, int *it, int *m, int *n, int *lr, int *lc, int *lar, int *lac, unsigned long type_len);
+int C2F(createlistvarfrom)(int *lnumber, int *number, char *type__, int *m, int *n, int *lr, int *lar, unsigned long type_len);
 
-int C2F(getmatdims) (integer *number, integer *m, integer *n);
+int C2F(getmatdims) (int *number, int *m, int *n);
 
 
 /**
@@ -163,7 +163,7 @@ int C2F(getmatdims) (integer *number, integer *m, integer *n);
  * @param type_len length of the char *type__
  * @return the result of the operation
  */
-int C2F(getrhsvar)(integer *number, char *type__, integer *m, integer *n, integer *lr, unsigned long type_len);
+int C2F(getrhsvar)(int *number, char *type__, int *m, int *n, int *lr, unsigned long type_len);
 
 
 /**
@@ -183,11 +183,11 @@ int C2F(getrhsvar)(integer *number, char *type__, integer *m, integer *n, intege
  * @param type_len length of the char *type__
  * @return the result of the operation
  */
-int C2F(getrhscvar)(integer *number, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len);
+int C2F(getrhscvar)(int *number, char *type__, int *it, int *m, int *n, int *lr, int *lc, unsigned long type_len);
 
 
-int C2F(getlistrhsvar)(integer *lnumber, integer *number, char *type__, integer *m, integer *n, integer *lr,  unsigned long type_len);
-int C2F(getlistrhscvar)(integer *lnumber, integer *number, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len);
+int C2F(getlistrhsvar)(int *lnumber, int *number, char *type__, int *m, int *n, int *lr,  unsigned long type_len);
+int C2F(getlistrhscvar)(int *lnumber, int *number, char *type__, int *it, int *m, int *n, int *lr, int *lc, unsigned long type_len);
 
 
 
@@ -200,7 +200,7 @@ int C2F(getlistrhscvar)(integer *lnumber, integer *number, char *type__, integer
  * @param iptr the data we want to add into the stack
  * @param type_len length of the char *type__
  */
-int C2F(createvarfromptr)(integer *number, char *type__, integer *m, integer *n,void *iptr, unsigned long type_len);
+int C2F(createvarfromptr)(int *number, char *type__, int *m, int *n,void *iptr, unsigned long type_len);
 
 
 /**
@@ -213,28 +213,28 @@ int C2F(createvarfromptr)(integer *number, char *type__, integer *m, integer *n,
  * @param iptc the complex data we want to add into the stack
  * @param type_len length of the char *type__
  */
-int C2F(createcvarfromptr)(integer *number, char *type__, integer *it, integer *m, integer *n, double *iptr, double *iptc, unsigned long type_len);
+int C2F(createcvarfromptr)(int *number, char *type__, int *it, int *m, int *n, double *iptr, double *iptc, unsigned long type_len);
 
-int C2F(mklistfromvars)(integer *pos, integer *n);
-int C2F(mktlistfromvars)(integer *pos, integer *n);
-int C2F(mkmlistfromvars)(integer *pos, integer *n);
-int C2F(in2str)(integer *n, integer *line, char *str, unsigned long str_len);
+int C2F(mklistfromvars)(int *pos, int *n);
+int C2F(mktlistfromvars)(int *pos, int *n);
+int C2F(mkmlistfromvars)(int *pos, int *n);
+int C2F(in2str)(int *n, int *line, char *str, unsigned long str_len);
 int C2F(callscifun)(char *string, unsigned long string_len);
-int C2F(scifunction)(integer *number, integer *ptr, integer *mlhs, integer *mrhs);
-int C2F(scistring)(integer *ifirst, char *thestring, integer *mlhs, integer *mrhs, unsigned long thestring_len);
-integer C2F(getopcode)(char *string, unsigned long string_len);
-int C2F(scibuiltin)(integer *number, integer *ifun, integer *ifin, integer *mlhs, integer *mrhs);
-int C2F(sciops)(integer *number, integer *op, integer *mlhs, integer *mrhs);
-int C2F(getrhssys)(integer *lw, integer *n, integer *m, integer *p, integer *ptra, integer *ptrb, integer *ptrc, integer *ptrd, integer *ptrx0, double *h__);
-int C2F(errorinfo)(char *fname, integer *info, unsigned long fname_len);
-integer C2F(maxvol)(integer *lw, char *type__, unsigned long type_len);
+int C2F(scifunction)(int *number, int *ptr, int *mlhs, int *mrhs);
+int C2F(scistring)(int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned long thestring_len);
+int C2F(getopcode)(char *string, unsigned long string_len);
+int C2F(scibuiltin)(int *number, int *ifun, int *ifin, int *mlhs, int *mrhs);
+int C2F(sciops)(int *number, int *op, int *mlhs, int *mrhs);
+int C2F(getrhssys)(int *lw, int *n, int *m, int *p, int *ptra, int *ptrb, int *ptrc, int *ptrd, int *ptrx0, double *h__);
+int C2F(errorinfo)(char *fname, int *info, unsigned long fname_len);
+int C2F(maxvol)(int *lw, char *type__, unsigned long type_len);
 
-int  C2F(createlistvarfromptr) (integer *lnumber, integer *number, char *typex, integer *m, integer *n, void *iptr, long unsigned int type_len);
+int  C2F(createlistvarfromptr) (int *lnumber, int *number, char *typex, int *m, int *n, void *iptr, long unsigned int type_len);
 
-int C2F(createlistcvarfromptr) (integer * lnumber,integer * number, char * typex,integer *it,integer * m,integer * n, void *iptr, void * iptc, unsigned long ttype_len);
-int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, integer *it, integer *m,integer *n,integer *lr,integer *lc,integer *lar,integer *lac, unsigned long type_len);
+int C2F(createlistcvarfromptr) (int * lnumber,int * number, char * typex,int *it,int * m,int * n, void *iptr, void * iptc, unsigned long ttype_len);
+int C2F(createlistcvarfrom)(int *lnumber, int *number, char *typex, int *it, int *m,int *n,int *lr,int *lc,int *lar,int *lac, unsigned long type_len);
 
-int C2F(createdata)(integer *lw, integer n);
+int C2F(createdata)(int *lw, int n);
 
 char * ArgPosition(int i);
 char * ArgsPosition(int i,int j);

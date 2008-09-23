@@ -17,6 +17,6 @@
 #include "machine.h"
 #include "def.h"
 
-void C2F(genmin2)(integer *n, void *dx, integer *incx, integer *xtyp, void *dy, integer *ytyp, integer *ind, integer *no);
+void C2F(genmin2)(int *n, void *dx, int *incx, int *xtyp, void *dy, int *ytyp, int *ind, int *no);
 
 #endif /* __GENMIN2_H__ */

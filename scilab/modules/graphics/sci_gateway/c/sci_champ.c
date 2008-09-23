@@ -41,12 +41,12 @@ int sci_champ1 (char *fname,unsigned long fname_len)
 }
 /*--------------------------------------------------------------------------*/
 int sci_champ_G(char *fname,
-                int (*func) (double *, double *, double *, double *, integer *, integer *, char *, double *, double *, int),
+                int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
                 unsigned long fname_len)
 {
   double arfact_def=1.0;
   double * arfact=&arfact_def;
-  integer m1, n1, l1, m2, n2, l2, m3, n3, l3, m4, n4, l4;
+  int m1, n1, l1, m2, n2, l2, m3, n3, l3, m4, n4, l4;
   static rhs_opts opts[]= { {-1,"arfact","?",0,0,0},
   {-1,"rect","?",0,0,0},
   {-1,"strf","?",0,0,0},

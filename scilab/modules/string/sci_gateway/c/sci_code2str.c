@@ -12,8 +12,8 @@
  */
 
 /* desc : str=code2str(c)
-          Returns character string associated with Scilab integer codes.
-          str is such that c(i) is the Scilab integer code of part(str,i))*/
+          Returns character string associated with Scilab int codes.
+          str is such that c(i) is the Scilab int code of part(str,i))*/
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>

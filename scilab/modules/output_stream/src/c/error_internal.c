@@ -23,13 +23,13 @@
 extern int C2F(errloc)(); /* fortran */
 extern int C2F(errmgr)(); /* fortran */
 /*--------------------------------------------------------------------------*/ 
-int error_internal(integer *n,char *buffer,int mode)
+int error_internal(int *n,char *buffer,int mode)
 {
-	integer num = 0;
-	integer lct1 = 0;
-	integer imode = 0;
-	integer imess = 0;
-	integer errtyp = 0;
+	int num = 0;
+	int lct1 = 0;
+	int imode = 0;
+	int imess = 0;
+	int errtyp = 0;
 
 	/* extract error modes out of errct variable */
 	C2F(errmds)(&num, &imess, &imode);
@@ -61,7 +61,7 @@ int error_internal(integer *n,char *buffer,int mode)
 		}
 		else /* ERROR_FROM_C */
 		{
-			int len = (integer)strlen(buffer);
+			int len = (int) strlen(buffer);
 
 			/* free message table */
 			C2F(freemsgtable)();

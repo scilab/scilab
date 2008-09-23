@@ -171,8 +171,8 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   sciSurface * psurf = pSURFACE_FEATURE (pobj);
 
 
-  integer m1, n1, m2, n2, m3, n3 ;
-  integer m3n, n3n, ii;
+  int m1, n1, m2, n2, m3, n3 ;
+  int m3n, n3n, ii;
 
   double * pvecx = NULL ;
   double * pvecy = NULL ;

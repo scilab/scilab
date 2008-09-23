@@ -1,5 +1,5 @@
 /* A C-program for MT19937: Integer version (1999/10/28)          */
-/*  genrand() generates one pseudorandom unsigned integer (32bit) */
+/*  genrand() generates one pseudorandom unsigned int (32bit) */
 /* which is uniformly distributed among 0 to 2^32-1  for each     */
 /* call. sgenrand(seed) sets initial values to the working area   */
 /* of 624 words. Before genrand(), sgenrand(seed) must be         */
@@ -135,7 +135,7 @@ int set_state_mt_simple(double s)
     }
   else
     {
-      sciprint(_("Bad seed for mt, must be an integer in [0, 2^32-1]\n"));
+      sciprint(_("Bad seed for mt, must be an int in [0, 2^32-1]\n"));
       return ( 0 );
     }
 }
@@ -162,7 +162,7 @@ int set_state_mt(double seed_array[])
     mti_try = (int) seed_array[0];
     if (mti_try < 1  ||  mti_try > 624)
       {
-	sciprint(_("The first component of the mt state mt, must be an integer in [1, 624]\n"));
+	sciprint(_("The first component of the mt state mt, must be an int in [1, 624]\n"));
 	return ( 0 );
       }
     is_init = 1;

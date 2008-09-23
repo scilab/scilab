@@ -35,9 +35,9 @@ Type *DX;\
     }\
  }
 
-int C2F(gentril)(integer *typ,integer *m,integer *n,integer *k,int *dx) 
+int C2F(gentril)(int *typ,int *m,int *n,int *k,int *dx) 
 {
-  static integer kk, l, ls, ll, j, i, nn;
+  static int kk, l, ls, ll, j, i, nn;
 
   switch (*typ) {
   case 1:
@@ -47,7 +47,7 @@ int C2F(gentril)(integer *typ,integer *m,integer *n,integer *k,int *dx)
     TRIL(integer2);
     break;
   case 4:
-    TRIL(integer);
+    TRIL(int) ;
     break;
   case 11:
     TRIL(unsigned char);

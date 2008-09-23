@@ -23,9 +23,9 @@ Type *DA;\
     }\
 }
 
-int C2F(genscal)(integer *typ, integer *n, int *da, int *dx, integer *incx)
+int C2F(genscal)(int *typ, int *n, int *da, int *dx, int *incx)
 {
-  static integer i, i1, i2, nincx;
+  static int i, i1, i2, nincx;
   if (*n <= 0 || *incx <= 0) return 0;
   nincx = *n * (*incx);
   i1 = nincx;
@@ -39,7 +39,7 @@ int C2F(genscal)(integer *typ, integer *n, int *da, int *dx, integer *incx)
     SCAL(integer2);
     break;
   case 4:
-    SCAL(integer);
+    SCAL(int) ;
     break;
   case 11:
     SCAL(unsigned char);

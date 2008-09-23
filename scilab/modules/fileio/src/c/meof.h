@@ -13,7 +13,7 @@
  * @param fd    
  * @param res   
  */
-void C2F(meof) (integer *fd, double *res);
+void C2F(meof) (int *fd, double *res);
 
 #endif /* __MEOF_H__ */
 /*--------------------------------------------------------------------------*/

@@ -14,7 +14,7 @@
 #define __STATUS2MODE_H__
 
 /** 
-* convert status to an integer (open a file)
+* convert status to an int (open a file)
 * @param status path example : "rt" "rb"
 * @return a integer
 */

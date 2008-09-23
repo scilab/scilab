@@ -21,7 +21,7 @@
 /* Copyright INRIA */
 #include "machine.h"
 
-extern integer C2F(scierr)();
+extern int C2F(scierr)();
 extern void C2F(itosci)();
 extern void C2F(dtosci)();
 extern void C2F(vvtosci)();
@@ -38,7 +38,7 @@ void
 sciblk2i(flag,nevprt,t,residual,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
 
-integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
+int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
 double residual[],x[],xd[],z[],tvec[],rpar[];
 double *inptr[],*outptr[],*t;
 
@@ -47,10 +47,10 @@ double *inptr[],*outptr[],*t;
     double *y;
     double *u;
 /*    int nev,ic;*/
-    integer one=1,skip;
-    integer nu,ny;
-    integer mlhs=6,mrhs=9;
-    integer ltop;
+    int one=1,skip;
+    int nu,ny;
+    int mlhs=6,mrhs=9;
+    int ltop;
     /*
  
     [y,  x,  z,  tvec,xd]=func(flag,nevprt,t,xd,x,z,rpar,ipar,u)

@@ -926,7 +926,7 @@ int IDARootInit(void *ida_mem, int nrtfn, IDARootFn g, void *gdata)
  * and returns.  In the IDA_NORMAL_TSTOP and IDA_ONE_STEP_TSTOP modes, it also
  * takes steps so as to reach tstop exactly and never to go past it.
  *
- * IDASolve returns integer values corresponding to success and failure as below:
+ * IDASolve returns int values corresponding to success and failure as below:
  *
  * successful returns: 
  *
@@ -1412,7 +1412,7 @@ static booleantype IDACheckNvector(N_Vector tmpl)
  * TRUE. Otherwise all allocated memory is freed and IDAAllocVectors 
  * returns FALSE.
  * This routine also sets the optional outputs lrw and liw, which are
- * (respectively) the lengths of the real and integer work spaces
+ * (respectively) the lengths of the real and int work spaces
  * allocated here.
  */
 

@@ -523,7 +523,7 @@ void Check(FILE *f,VARPTR var,int nel)
     }
   if (isdigit(var1->name[0]) != 0)
     {
-      /* the dimension of the variable is a constant integer */
+      /* the dimension of the variable is a constant int */
       if ( strcmp(var1->for_name[0],var1->name) != 0)
 	{
 	  if (var->list_el ==0 )

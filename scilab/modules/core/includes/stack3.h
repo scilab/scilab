@@ -49,12 +49,12 @@
  * @param name_len
  * @return if the operation successed (true) or not (false)
  */
-int C2F(readmat)  (char *name__, integer *m, integer *n, double *scimat, unsigned long name_len);
+int C2F(readmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
 
 
-int C2F(creadmat)  (char *name__, integer *m, integer *n, double *scimat, unsigned long name_len);
-int C2F(creadcmat)  (char *name__, integer *m, integer *n, double *scimat, unsigned long name_len);
-int C2F(creadsmat)  (char *name__, integer *m, integer *n, double *scimat, unsigned long name_len);
+int C2F(creadmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
+int C2F(creadcmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
+int C2F(creadsmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
 
 /**
  * cwritemat writes vector/matrix in scilab's internal stack
@@ -66,34 +66,34 @@ int C2F(creadsmat)  (char *name__, integer *m, integer *n, double *scimat, unsig
  * @param name_len strlen of name__ (Fortran needs it)
  * @return if the operation successed (true) or not (false)
  */
-int C2F(cwritemat)  (char *name__, integer *m, integer *n, double *mat, unsigned long name_len);
-int C2F(cwritecmat)  (char *name__, integer *m, integer *n, double *mat, unsigned long name_len);
-int C2F(readchain)  (char *name__, integer *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
-int C2F(creadchain)  (char *name__, integer *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
-int C2F(creadchains)  (char *name__, integer *ir, integer *ic, integer *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
-int C2F(cwritechain)  (char *name__, integer *m, char *chai, unsigned long name_len, unsigned long chai_len);
-int C2F(matptr)  (char *name__, integer *m, integer *n, integer *lp, unsigned long name_len);
-int C2F(cmatptr)  (char *name__, integer *m, integer *n, integer *lp, unsigned long name_len);
-int C2F(cmatcptr)  (char *name__, integer *m, integer *n, integer *lp, unsigned long name_len);
-int C2F(cmatsptr)  (char *name__, integer *m, integer *n, integer *ix, integer *j, integer *lp, integer *nlr, unsigned long name_len);
+int C2F(cwritemat)  (char *name__, int *m, int *n, double *mat, unsigned long name_len);
+int C2F(cwritecmat)  (char *name__, int *m, int *n, double *mat, unsigned long name_len);
+int C2F(readchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
+int C2F(creadchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
+int C2F(creadchains)  (char *name__, int *ir, int *ic, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
+int C2F(cwritechain)  (char *name__, int *m, char *chai, unsigned long name_len, unsigned long chai_len);
+int C2F(matptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
+int C2F(cmatptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
+int C2F(cmatcptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
+int C2F(cmatsptr)  (char *name__, int *m, int *n, int *ix, int *j, int *lp, int *nlr, unsigned long name_len);
 
 /** 
 read a boolean matrix in scilab stack
 */
-int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned long name_len);
+int C2F(creadbmat)(char *namex, int *m, int *n, int *scimat, unsigned long name_len);
 
 /**
 write a boolean matrix in scilab stack
 */
-int C2F(cwritebmat)(char *namex, integer *m, integer *n, int *mat, unsigned long name_len);
+int C2F(cwritebmat)(char *namex, int *m, int *n, int *mat, unsigned long name_len);
 
 /**
 get pointer on a named boolean matrix 
 */
-int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len);
+int C2F(cmatbptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len);
 
-int C2F(str2name)  (char *name__, integer *id, unsigned long name_len);
-int C2F(objptr)  (char *name__, integer *lp, integer *fin, unsigned long name_len);
+int C2F(str2name)  (char *name__, int *id, unsigned long name_len);
+int C2F(objptr)  (char *name__, int *lp, int *fin, unsigned long name_len);
 int C2F(putvar) (int *number, char *namex, unsigned long name_len );
 
 

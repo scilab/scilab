@@ -18,8 +18,8 @@
 ***********************************/
 
 
-#define ARGS_fbutn char *,integer*,integer*
-typedef integer * (*fbutnf)(ARGS_fbutn);
+#define ARGS_fbutn char *,int*,int*
+typedef int * (*fbutnf)(ARGS_fbutn);
 
 /***************** fbutn ***************/
 extern void haltscicos(ARGS_fbutn);
@@ -45,7 +45,7 @@ static fbutnf fbutnfonc ;
 
 /** function call **/
 
-void C2F(fbutn)(char *name, integer *win, integer *entry)
+void C2F(fbutn)(char *name, int *win, int *entry)
 {
 	(*fbutnfonc)(name,win,entry);
 }

@@ -17,18 +17,18 @@ Type *DX;\
  DX=(Type *)dx;\
  --DX;\
  if (*incx == 1) {\
-   for (i = 1; i <= *n; ++i) dtemp += (integer)DX[i];\
+   for (i = 1; i <= *n; ++i) dtemp += (int) DX[i];\
  }\
  else {\
    i1 = *n * *incx;i2 = *incx;\
-   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) dtemp += (integer)DX[i];\
+   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) dtemp += (int) DX[i];\
  }\
 }
 
-integer C2F(gensum)(integer *typ, integer *n, void *dx, integer *incx)
+int C2F(gensum)(int *typ, int *n, void *dx, int *incx)
 {
-    integer  i1, i2;
-    static integer i, dtemp;
+    int  i1, i2;
+    static int i, dtemp;
 
 
     dtemp = 0;
@@ -42,7 +42,7 @@ integer C2F(gensum)(integer *typ, integer *n, void *dx, integer *incx)
       SUM(integer2);
       break;
     case 4:
-      SUM(integer);
+      SUM(int) ;
       break;
     case 11:
       SUM(unsigned char);

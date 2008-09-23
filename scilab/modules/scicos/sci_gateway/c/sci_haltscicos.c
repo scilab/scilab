@@ -28,7 +28,7 @@
 #include "stack-c.h"
 
 typedef struct {
-  integer halt;
+  int halt;
 }  COSHLT_struct;
 extern COSHLT_struct  C2F(coshlt);
 /*--------------------------------------------------------------------------*/

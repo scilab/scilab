@@ -26,7 +26,7 @@
 * @param [in] mode : ERROR_FROM_FORTRAN (not use buffer) or ERROR_FROM_C
 * @return 0
 */
-int error_internal(integer *n,char *buffer,int mode);
+int error_internal(int *n,char *buffer,int mode);
 
 #endif /* __ERROR_INTERNAL_H__ */
 /*--------------------------------------------------------------------------*/ 

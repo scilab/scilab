@@ -27,6 +27,6 @@
  * @param n
  * @return 
  */
-int C2F(genmcuprod)(integer *typ,integer *job,integer * a,integer * na,integer * m,integer * n);
+int C2F(genmcuprod)(int *typ,int *job,int * a,int * na,int * m,int * n);
 #endif /* __GENMCUPROD_H__ */
 

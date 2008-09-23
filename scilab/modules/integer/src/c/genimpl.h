@@ -25,7 +25,7 @@
  * @param res
  * @return 
  */
-int C2F(genimpl2)(integer *typ,integer *first,integer *last,integer *res);
+int C2F(genimpl2)(int *typ,int *first,int *last,int *res);
 
 /**
  * TODO : comment 
@@ -36,7 +36,7 @@ int C2F(genimpl2)(integer *typ,integer *first,integer *last,integer *res);
  * @param res
  * @return 
  */
-int C2F(genimpl3)(integer *typ,integer *first,integer *step,integer *last,integer *res);
+int C2F(genimpl3)(int *typ,int *first,int *step,int *last,int *res);
 
 /**
  * TODO : comment 
@@ -46,7 +46,7 @@ int C2F(genimpl3)(integer *typ,integer *first,integer *step,integer *last,intege
  * @param res
  * @return 
  */
-int C2F(genimpl2dim)(integer *typ,integer *first,integer *last,integer *res);
+int C2F(genimpl2dim)(int *typ,int *first,int *last,int *res);
 
 /**
  * TODO : comment 
@@ -57,6 +57,6 @@ int C2F(genimpl2dim)(integer *typ,integer *first,integer *last,integer *res);
  * @param res
  * @return 
  */
-int C2F(genimpl3dim)(integer * typ,integer * first,integer * step,integer * last,integer * res);
+int C2F(genimpl3dim)(int * typ,int * first,int * step,int * last,int * res);
 
 #endif /* __GENIMPL_H__ */

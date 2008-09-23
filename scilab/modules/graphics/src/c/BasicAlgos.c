@@ -47,9 +47,9 @@ double sciFindStPosMin( double x[], int n )
   return min ;
 }
 /*------------------------------------------------------------------------*/
-void MaxiInd( double vect[], integer n, integer * ind, double maxi )
+void MaxiInd( double vect[], int n, int * ind, double maxi )
 {
-  integer i ;
+  int i ;
   if ( *ind+1 < n )
   {
     for ( i = *ind+1 ; i < n ; i++ )
@@ -63,9 +63,9 @@ void MaxiInd( double vect[], integer n, integer * ind, double maxi )
   }
 }
 /*------------------------------------------------------------------------*/
-int C2F(entier2d)( integer * n, double * dx,integer * s )
+int C2F(entier2d)( int * n, double * dx,int * s )
 {
-  integer ix;
+  int ix;
   for (ix = *n -1 ; ix >= 0; --ix) { dx[ix] = (double) s[ix]; }
   return 0;
 }  

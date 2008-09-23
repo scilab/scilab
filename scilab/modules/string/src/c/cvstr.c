@@ -18,24 +18,24 @@
 #include "getfastcode.h"
 /*--------------------------------------------------------------------------*/
 /* Table of constant values */
-static integer cx1 = 1;
-static integer c_n1 = -1;
+static int cx1 = 1;
+static int c_n1 = -1;
 /*--------------------------------------------------------------------------*/
-int C2F(cvstr)(integer * n,integer * line,char * str,integer * job,unsigned long str_len)
+int C2F(cvstr)(int * n,int * line,char * str,int * job,unsigned long str_len)
 {
   if (*job == 0) C2F(asciitocode)(n, line, str, &cx1, str_len);
   else C2F(codetoascii)(n, line, str, str_len);
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(cvstr1)(integer *n,integer * line,char * str,integer * job,	unsigned long  str_len)
+int C2F(cvstr1)(int *n,int * line,char * str,int * job,	unsigned long  str_len)
 {
   if (*job == 0) C2F(asciitocode)(n, line, str, &c_n1, str_len);
   else C2F(codetoascii)(n, line, str, str_len);
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(codetoascii)(integer *n,integer * line,char * str, unsigned long str_len)
+int C2F(codetoascii)(int *n,int * line,char * str, unsigned long str_len)
 {
   int j = 0;
   int nn = *n;
@@ -48,13 +48,13 @@ int C2F(codetoascii)(integer *n,integer * line,char * str, unsigned long str_len
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsigned long  str_len)
+int C2F(asciitocode)(int * n,int * line,char * str,int * flagx,unsigned long  str_len)
 {
 	int nn = 0;
 
 	if (*flagx == 1) 
 	{
-		integer j = 0;
+		int j = 0;
 		nn = *n; 
 		while (nn--)
 		{

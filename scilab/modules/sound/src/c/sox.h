@@ -17,6 +17,6 @@
 #include "machine.h"
 
 int C2F(playsound)(char *filename,char *command,unsigned long fname_len);
-int C2F(loadwave)(char *filename, double *res, integer *size_res, integer flag,WavInfo *, integer *ierr);
-int C2F(savewave)(char *filename, double *res, integer *rate, integer *size_res,integer *nchannels, integer *ierr);
+int C2F(loadwave)(char *filename, double *res, int *size_res, int flag,WavInfo *, int *ierr);
+int C2F(savewave)(char *filename, double *res, int *rate, int *size_res,int *nchannels, int *ierr);
 #endif

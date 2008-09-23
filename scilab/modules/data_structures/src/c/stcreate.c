@@ -20,17 +20,17 @@
 #define memused(it,mn) ((((mn)*( it % 10))/sizeof(int))+1)
 
 /* Table of constant values */
-static integer c17 = 17;
-static integer c1 = 1;
-static integer c4 = 4;
+static int c17 = 17;
+static int c1 = 1;
+static int c4 = 4;
 
 
-int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnames[], integer *retval)
+int C2F(stcreate)(int *lw, int *nz, int *sz, int *nf, char *fnames[], int *retval)
 {
-    integer next,k,lr,nels;
+    int next,k,lr,nels;
 
-    static integer l;
-    static integer l0, n1, il;
+    static int l;
+    static int l0, n1, il;
 
     *retval = 0;
     l0 = *Lstk(*lw);
@@ -95,7 +95,7 @@ int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnam
     return 1;
 }
 
-int creonevoid(integer *slw,integer *lw)
+int creonevoid(int *slw,int *lw)
 {
   int il;
   il = iadr(*slw);
@@ -108,7 +108,7 @@ int creonevoid(integer *slw,integer *lw)
   return 0;
 }
 
-int crelistofvoids(integer *slw,integer *lw,integer *nels)
+int crelistofvoids(int *slw,int *lw,int *nels)
 {
   int il,k;
   il = iadr(*slw);

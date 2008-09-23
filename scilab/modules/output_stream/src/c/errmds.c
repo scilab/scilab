@@ -14,7 +14,7 @@
 #include "errmds.h"
 #include "stack-def.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(errmds)(integer *num, integer *imess, integer *imode)
+int C2F(errmds)(int *num, int *imess, int *imode)
 {
 	/* 100000 is a constant used in fortran to code errct value :( */
 	#define ERRCATCH_CONST_ERRCT 100000

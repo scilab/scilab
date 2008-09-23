@@ -25,8 +25,8 @@
 #include "localization.h"
 #include "Scierror.h" 
 #include "code2str.h"
-extern int C2F(dmcopy)(double *a, integer *na, double *b, integer *nb, integer *m, integer *n);
-extern int C2F(stackp)(integer *id, integer *macmod);
+extern int C2F(dmcopy)(double *a, int *na, double *b, int *nb, int *m, int *n);
+extern int C2F(stackp)(int *id, int *macmod);
 
 /*------------------------------------------------------*/
 void *Name2ptr(char *namex);
@@ -34,14 +34,14 @@ int Name2where(char *namex);
 
 /* Table of constant values */
 
-static integer cx0 = 0;
-static integer cx1 = 1;
+static int cx0 = 0;
+static int cx1 = 1;
 
 /*------------------------------------------------------
  * read a matrix
  *------------------------------------------------------*/
 
-int C2F(readmat)(char *namex,integer *m, integer *n, double *scimat, unsigned long name_len)
+int C2F(readmat)(char *namex,int *m, int *n, double *scimat, unsigned long name_len)
 {
   C2F(creadmat)(namex, m, n, scimat, name_len);
   return 0;
@@ -69,10 +69,10 @@ int C2F(readmat)(char *namex,integer *m, integer *n, double *scimat, unsigned lo
  *                      scimat(6)=Amat(3,2)
  *----------------------------------------------------------------*/
 
-int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned long name_len)
+int C2F(creadmat)(char *namex, int *m, int *n, double *scimat, unsigned long name_len)
 {
-    integer l;
-    integer id[nsiz];
+    int l;
+    int id[nsiz];
 
     C2F(str2name)(namex, id, name_len);
     /* read   : from scilab stack -> fortran variable */
@@ -118,10 +118,10 @@ int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned 
  *
  *----------------------------------------------------------------*/
 
-int C2F(creadcmat)(char *namex, integer *m, integer *n, double *scimat, unsigned long name_len)
+int C2F(creadcmat)(char *namex, int *m, int *n, double *scimat, unsigned long name_len)
 {
-    integer l, ix1;
-    integer id[nsiz];
+    int l, ix1;
+    int id[nsiz];
 
     C2F(str2name)(namex, id, name_len);
     /* read   : from scilab stack -> fortran variable */
@@ -151,11 +151,11 @@ int C2F(creadcmat)(char *namex, integer *m, integer *n, double *scimat, unsigned
  * mat: matrix entries stored columnwise in Scilab object
 ----------------------------------------------------------------*/
 
-int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned long name_len)
+int C2F(cwritemat)(char *namex, int *m, int *n,  double *mat, unsigned long name_len)
 {
-  integer   ix1 = *m * *n;
-  integer Rhs_k = Rhs , Top_k = Top ;
-  integer l4, id[nsiz], lc, lr;
+  int   ix1 = *m * *n;
+  int Rhs_k = Rhs , Top_k = Top ;
+  int l4, id[nsiz], lc, lr;
 
   C2F(str2name)(namex, id, name_len);
 
@@ -184,11 +184,11 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
 * for complex number
 */
 /*--------------------------------------------------------------------------*/
-int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long name_len)
+int C2F(cwritecmat)(char *namex,int *m, int*n,double *mat,unsigned long name_len)
 {
-	integer   ix1 = *m * *n *2; /* real part + imaginary part */
-	integer Rhs_k = Rhs , Top_k = Top ;
-	integer l4, id[nsiz], lc, lr;
+	int   ix1 = *m * *n *2; /* real part + imaginary part */
+	int Rhs_k = Rhs , Top_k = Top ;
+	int l4, id[nsiz], lc, lr;
 	int IT=1; /* Type Complex */
 
 	C2F(str2name)(namex, id, name_len);
@@ -210,8 +210,8 @@ int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long 
  /* Put variable number into Scilab internal stack with name "namex" */
 int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
 {
-  integer Rhs_k = Rhs , Top_k = Top ;
-  integer l4, id[nsiz],/* lc, lr,*/ cx0_2=1;
+  int Rhs_k = Rhs , Top_k = Top ;
+  int l4, id[nsiz],/* lc, lr,*/ cx0_2=1;
 
   C2F(str2name)(namex, id, name_len);
   Top = *number + Top -Rhs;
@@ -230,7 +230,7 @@ int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
  *     see creadchain
  *------------------------------------------------------*/
 
-int C2F(readchain)(char *namex,  integer *itslen, char *chai,  unsigned long name_len, unsigned long chai_len)
+int C2F(readchain)(char *namex,  int *itslen, char *chai,  unsigned long name_len, unsigned long chai_len)
 {
     C2F(creadchain)(namex, itslen, chai, name_len, chai_len);
     return 0;
@@ -240,7 +240,7 @@ int C2F(readchain)(char *namex,  integer *itslen, char *chai,  unsigned long nam
  *     this routine reads a string in scilab's  memory
  *     and store it into chai
  * !calling sequence
- *     integer       itslen
+ *     int       itslen
  *     character*(*) chai,name
  *     name    : character string = name of scilab variable (input)
  *     chai    : chain to be read (output)
@@ -254,13 +254,13 @@ int C2F(readchain)(char *namex,  integer *itslen, char *chai,  unsigned long nam
  *     logic= creadchain('x',l,ch) returns l=5 and ch='qwert'
  *------------------------------------------------------*/
 
-int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long name_len,  unsigned long chai_len)
+int C2F(creadchain)(char *namex,  int *itslen,  char *chai,  unsigned long name_len,  unsigned long chai_len)
 {
-    integer ix1;
-    integer m1, n1;
-    integer id[nsiz];
-    integer lr1;
-    integer nlr1;
+    int ix1;
+    int m1, n1;
+    int id[nsiz];
+    int lr1;
+    int nlr1;
 
     Err = 0;
     C2F(str2name)(namex, id, name_len);
@@ -295,7 +295,7 @@ int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long n
  *     if ir=ic=-1 on entry then the routines returns in ir,ic
  *     the size of the matrix
  * !calling sequence
- *     integer       itslen
+ *     int       itslen
  *     character*(*) chai,name
  *     name    : character string = name of scilab variable (input)
  *     chai    : chain to be read (output)
@@ -310,13 +310,13 @@ int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long n
  *----------------------------------------------------------------------*/
 
 
-int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, char *chai, unsigned long name_len,  unsigned long chai_len)
+int C2F(creadchains)(char *namex, int *ir, int *ic, int *itslen, char *chai, unsigned long name_len,  unsigned long chai_len)
 {
-    integer ix1;
-    integer m1, n1;
-    integer id[nsiz];
-    integer lr1;
-    integer nlr1;
+    int ix1;
+    int m1, n1;
+    int id[nsiz];
+    int lr1;
+    int nlr1;
 
     Err = 0;
     C2F(str2name)(namex, id, name_len);
@@ -358,11 +358,11 @@ int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, cha
  *  mat: matrix entries stored columnwise in Scilab object
  *----------------------------------------------------------------*/
 
-int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len, unsigned long chai_len)
+int C2F(cwritechain)(char *namex, int *m, char *chai, unsigned long name_len, unsigned long chai_len)
 {
-    integer Rhs_k, Top_k;
-    integer l4;
-    integer id[nsiz], lr;
+    int Rhs_k, Top_k;
+    int l4;
+    int id[nsiz], lr;
     C2F(str2name)(namex, id, name_len);
     Top_k = Top;
 
@@ -387,7 +387,7 @@ int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len
  *     see cmatptr
  *----------------------------------------------------------------*/
 
-int C2F(matptr)(char *namex, integer *m, integer *n, integer *lp, unsigned long name_len)
+int C2F(matptr)(char *namex, int *m, int *n, int *lp, unsigned long name_len)
 {
   C2F(cmatptr)(namex, m, n, lp, name_len);
   return 0;
@@ -416,9 +416,9 @@ int C2F(matptr)(char *namex, integer *m, integer *n, integer *lp, unsigned long 
  *   see also  readmat.f, matz.f
  *----------------------------------------------------------------*/
 
-int C2F(cmatptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len)
+int C2F(cmatptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len)
 {
-    integer id[nsiz];
+    int id[nsiz];
     C2F(str2name)(namex, id, name_len);
     /* get the position in fin */
     Fin = -1;
@@ -468,9 +468,9 @@ int C2F(cmatptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long n
  *
  *----------------------------------------------------------------*/
 
-int C2F(cmatcptr)(char *namex, integer *m, integer *n, integer *lp, unsigned long name_len)
+int C2F(cmatcptr)(char *namex, int *m, int *n, int *lp, unsigned long name_len)
 {
-    integer id[nsiz];
+    int id[nsiz];
     C2F(str2name)(namex, id, name_len);
     /* get the position in fin */
     Fin = -1;
@@ -514,9 +514,9 @@ int C2F(cmatcptr)(char *namex, integer *m, integer *n, integer *lp, unsigned lon
  *   see also  readmat.f, matz.f
  *----------------------------------------------------------------*/
 
-int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *ix,integer *j,integer *lp,integer *nlr, unsigned long name_len)
+int C2F(cmatsptr)(char *namex, int *m, int *n,int *ix,int *j,int *lp,int *nlr, unsigned long name_len)
 {
-    integer id[nsiz];
+    int id[nsiz];
     C2F(str2name)(namex, id, name_len);
     /* get the position in fin */
     Fin = -1;
@@ -546,7 +546,7 @@ int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *ix,integer *j,int
 void *Name2ptr(char *namex)
 {
   int l1; int *loci;
-  integer id[nsiz];
+  int id[nsiz];
   C2F(str2name)(namex, id, (unsigned long)strlen(namex));
   /* get the position in fin */
   Fin = -1;
@@ -582,7 +582,7 @@ void *Name2ptr(char *namex)
 */
 int Name2where(char *namex)
 {
-  integer id[nsiz];
+  int id[nsiz];
   C2F(str2name)(namex, id, (unsigned long)strlen(namex));
   /* get the position in fin */
   Fin = -1;
@@ -602,12 +602,12 @@ int Name2where(char *namex)
  *             since it can be wrong (ex when name is transmited
  *             by fort (intfort : function )
  *----------------------------------------------------------------*/
-int C2F(str2name)(char *namex, integer *id, unsigned long name_len)
+int C2F(str2name)(char *namex, int *id, unsigned long name_len)
 {
-	integer ix = 0;
-	integer lon = 0;
+	int ix = 0;
+	int lon = 0;
 
-	for (ix = 0 ; ix < (integer) name_len ; ix++ ) 
+	for (ix = 0 ; ix < (int)  name_len ; ix++ ) 
 	{
 		if ( namex[ix] == '\0') break;
 		lon++;
@@ -632,9 +632,9 @@ int C2F(str2name)(char *namex, integer *id, unsigned long name_len)
  *     in scilab's internal stack
  *----------------------------------------------------------------*/
 
-int C2F(objptr)(char *namex, integer *lp, integer *fin, unsigned long name_len)
+int C2F(objptr)(char *namex, int *lp, int *fin, unsigned long name_len)
 {
-    integer id[nsiz];
+    int id[nsiz];
     *lp = 0;
     /*     ---- get the id */
     C2F(str2name)(namex, id, name_len);
@@ -657,10 +657,10 @@ int C2F(objptr)(char *namex, integer *lp, integer *fin, unsigned long name_len)
 /*--------------------------------------------------------------------------*/
 /* read and write a boolean matrix in scilab stack */
 /*--------------------------------------------------------------------------*/
-int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned long name_len)
+int C2F(creadbmat)(char *namex, int *m, int *n, int *scimat, unsigned long name_len)
 {
-	integer l = 0;
-	integer id[nsiz];
+	int l = 0;
+	int id[nsiz];
 	int c_x = 1;
 	int N = 0;
 
@@ -684,11 +684,11 @@ int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned lo
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned long name_len)
+int C2F(cwritebmat)(char *namex, int *m, int *n,  int *mat, unsigned long name_len)
 {
-	integer   ix1 = *m * *n;
-	integer Rhs_k = Rhs , Top_k = Top ;
-	integer l4, id[nsiz], lr;
+	int   ix1 = *m * *n;
+	int Rhs_k = Rhs , Top_k = Top ;
+	int l4, id[nsiz], lr;
 
 	C2F(str2name)(namex, id, name_len);
 	Top = Top + Nbvars + 1;
@@ -707,9 +707,9 @@ int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned lon
 
 }
 /*--------------------------------------------------------------------------*/
-int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len)
+int C2F(cmatbptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len)
 {
-	integer id[nsiz];
+	int id[nsiz];
 	C2F(str2name)(namex, id, name_len);
 	/* get the position in fin */
 	Fin = -1;
@@ -742,10 +742,10 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 */
 int getlengthchain(char *namex)
 {
-	integer m1, n1;
-	integer id[nsiz];
-	integer lr1;
-	integer nlr1;
+	int m1, n1;
+	int id[nsiz];
+	int lr1;
+	int nlr1;
 	unsigned long name_len= (unsigned long)strlen(namex);
 
 	Err = 0;

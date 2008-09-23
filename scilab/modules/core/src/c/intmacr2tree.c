@@ -42,7 +42,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   char *pgrm_tlist[] = {"program","name","outputs","inputs","statements","nblines"};
 
   int *stkdata = NULL; /* Pointeur to rhs arguments */
-  int *data = NULL; /* Macro integer vector (pointer to copy of rhs argument) */
+  int *data = NULL; /* Macro int vector (pointer to copy of rhs argument) */
 
   int il = 0,ils = 0,ile = 0,ilt = 0,codelength = 0;
 
@@ -1772,7 +1772,7 @@ static int CreateCommentTList(int *data,int *index2)
  *  Create on Scilab stack a list for recursive insertion or extraction
  *  First list item is a matrix which contains number of row/column indexes
  * @param data pointer to compiled macro code
- * @param index index of current integer in data
+ * @param index index of current int in data
  *
  * @return 0 if execution succeeds
  * @return not null if execution fails

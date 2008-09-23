@@ -53,13 +53,13 @@ void scivprint(char *fmt,va_list args)
 	{
 		int count = 0;
 		char s_buf[MAXPRINTF];
-		integer lstr = 0;
+		int lstr = 0;
 
 		count= vsnprintf(s_buf,MAXPRINTF-1, fmt, savedargs );
 
 		if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
-		lstr = (integer)strlen(s_buf);
+		lstr = (int) strlen(s_buf);
 		diary_nnl(s_buf,&lstr);
 	}
 	

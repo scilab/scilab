@@ -20,7 +20,7 @@
 * @param fd (id)
 * @param[out] fd (-1 error)
 */
-void C2F(getfiledesc)(integer *fd); 
+void C2F(getfiledesc)(int *fd); 
 
 #endif /* __GETFILEDESC_H__ */
 /*--------------------------------------------------------------------------*/

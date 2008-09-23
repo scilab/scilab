@@ -51,7 +51,7 @@ int set_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   flagcolor = psurf->flagcolor;
 
-  psurf->flag[0]= (integer) getDoubleFromStack( stackPointer ) ;
+  psurf->flag[0]= (int)  getDoubleFromStack( stackPointer ) ;
 
   if( flagcolor != 0 && flagcolor != 1 )
   {

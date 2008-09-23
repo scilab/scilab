@@ -312,7 +312,7 @@ int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
  *  are several things to take into account when choosing the scale
  *  factors.  First, the scale factors are directly multiplied against
  *  the elements in the matrix.  To prevent roundoff, each scale factor
- *  should be equal to an integer power of the number base of the
+ *  should be equal to an int power of the number base of the
  *  machine.  Since most machines operate in base two, scale factors
  *  should be a power of two.  Second, the matrix should be scaled such
  *  that the matrix of element uncertainties is equilibrated.  Third,
@@ -431,7 +431,7 @@ RealNumber  ScaleFactor;
  *  are several things to take into account when choosing the scale
  *  factors.  First, the scale factors are directly multiplied against
  *  the elements in the matrix.  To prevent roundoff, each scale factor
- *  should be equal to an integer power of the number base of the
+ *  should be equal to an int power of the number base of the
  *  machine.  Since most machines operate in base two, scale factors
  *  should be a power of two.  Second, the matrix should be scaled such
  *  that the matrix of element uncertainties is equilibrated.  Third,

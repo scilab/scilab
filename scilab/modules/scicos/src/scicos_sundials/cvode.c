@@ -1585,7 +1585,7 @@ static booleantype CVCheckNvector(N_Vector tmpl)
  * If all memory allocations are successful, CVAllocVectors returns TRUE. 
  * Otherwise all allocated memory is freed and CVAllocVectors returns FALSE.
  * This routine also sets the optional outputs lrw and liw, which are
- * (respectively) the lengths of the real and integer work spaces
+ * (respectively) the lengths of the real and int work spaces
  * allocated here.
  */
 

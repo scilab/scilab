@@ -47,7 +47,7 @@
 /*to be removed*/
 extern void Objstring(char *fname,
                 unsigned long fname_len,
-                integer str,
+                int str,
                 double x,
                 double y,
                 double *angle,
@@ -63,7 +63,7 @@ extern void Objstring(char *fname,
 
 /* variable defined in scicos.c */
 extern CURBLK_struct C2F(curblk);
-struct {integer isrun;} C2F(cosim); /* declaration of cosim -valable partout- */
+struct {int isrun;} C2F(cosim); /* declaration of cosim -valable partout- */
 
 /* TO DO new graphics function */
 /*
@@ -557,7 +557,7 @@ int intscicosimc(char *fname,unsigned long fname_len)
  static int id[nsiz];
 
  /*declaration of static structure*/
- static struct {integer idb;} C2F(dbcos);   /*declaration of dbcos*/
+ static struct {int idb;} C2F(dbcos);   /*declaration of dbcos*/
 
  typedef struct inter_s_
  {
@@ -2124,7 +2124,7 @@ int intscicosimc(char *fname,unsigned long fname_len)
                          break;
 
                default : Scierror(888,\
-                                 "%s : error. Type %d of integer scalar matrix not yet supported "
+                                 "%s : error. Type %d of int scalar matrix not yet supported "
                                  "for outtb.\n",\
                                  fname,subheader[3]);
                          FREE(outtbptr); FREE(outtbtyp); FREE(outtbsz);
@@ -2217,25 +2217,25 @@ int intscicosimc(char *fname,unsigned long fname_len)
  C2F(cosim).isrun=1;  /*set isrun=1 to say that we enter in the simulator*/
 
  /* Calling sequence :
-  * int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
-  *                 void **work,integer *zptr,integer *modptr_in,
-  *                 void **oz,integer *ozsz,integer *oztyp,integer *ozptr,
-  *                 integer *iz,integer *izptr,double *t0_in,
-  *                 double *tf_in,double *tevts_in,integer *evtspt_in,
-  *                 integer *nevts,integer *pointi_in,void **outtbptr_in,
-  *                 integer *outtbsz_in,integer *outtbtyp_in,
-  *                 outtb_el *outtb_elem_in,integer *nelem1,integer *nlnk1,
-  *                 integer *funptr,integer *funtyp_in,integer *inpptr_in,
-  *                 integer *outptr_in, integer *inplnk_in,integer *outlnk_in,
-  *                 double *rpar,integer *rpptr,integer *ipar,integer *ipptr,
-  *                 void **opar,integer *oparsz,integer *opartyp,integer *opptr,
-  *                 integer *clkptr_in,integer *ordptr_in,integer *nordptr1,
-  *                 integer *ordclk_in,integer *cord_in,integer *ncord1,
-  *                 integer *iord_in,integer *niord1,integer *oord_in,
-  *                 integer *noord1,integer *zord_in,integer *nzord1,
-  *                 integer *critev_in,integer *nblk1,integer *ztyp,
-  *                 integer *zcptr_in,integer *subscr,integer *nsubs,
-  *                 double *simpar,integer *flag__,integer *ierr_out)
+  * int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
+  *                 void **work,int *zptr,int *modptr_in,
+  *                 void **oz,int *ozsz,int *oztyp,int *ozptr,
+  *                 int *iz,int *izptr,double *t0_in,
+  *                 double *tf_in,double *tevts_in,int *evtspt_in,
+  *                 int *nevts,int *pointi_in,void **outtbptr_in,
+  *                 int *outtbsz_in,int *outtbtyp_in,
+  *                 outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
+  *                 int *funptr,int *funtyp_in,int *inpptr_in,
+  *                 int *outptr_in, int *inplnk_in,int *outlnk_in,
+  *                 double *rpar,int *rpptr,int *ipar,int *ipptr,
+  *                 void **opar,int *oparsz,int *opartyp,int *opptr,
+  *                 int *clkptr_in,int *ordptr_in,int *nordptr1,
+  *                 int *ordclk_in,int *cord_in,int *ncord1,
+  *                 int *iord_in,int *niord1,int *oord_in,
+  *                 int *noord1,int *zord_in,int *nzord1,
+  *                 int *critev_in,int *nblk1,int *ztyp,
+  *                 int *zcptr_in,int *subscr,int *nsubs,
+  *                 double *simpar,int *flag__,int *ierr_out)
   */
 
 C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
@@ -2604,7 +2604,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
  *  int CopyVarFromlistentry(int lw, int *header, int i)
  *
  * Input parameters : lw : integer, the free position
- *                    header : integer pointer, a pointer of a list.
+ *                    header : int pointer, a pointer of a list.
  *                    i : integer, give the number of the element to copy
  *
  * Output : FALSE if failed, TRUE else.
@@ -2940,7 +2940,7 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int kfun)
   int nv,mv;          /* length of data                                        */
   int nblk,ng;        /* to store number of blocks and number of zero cross.   */
   void *ptr;          /* ptr for data comming from import structure            */
-  int *ptr_int;       /* ptr to store ptr on integer                           */
+  int *ptr_int;       /* ptr to store ptr on int                           */
   double *ptr_double; /* ptr to store ptr on double                            */
   int *xptr, *zcptr;  /* to retrieve xptr by import and zcptr of scicos_blocks */
   double *x,*xd,*g;   /* ptr for x, xd and g for scicos_blocks              */
@@ -3253,8 +3253,8 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int kfun)
  *               - 'zptr' to retrieve ptr of discrete state
  *               - 'rpar' to retrieve real parameters
  *               - 'rpptr' to retrieve ptr of real parameters
- *               - 'ipar' to retrieve integer parameters
- *               - 'ipptr' to retrieve  ptr of integer parameters
+ *               - 'ipar' to retrieve int parameters
+ *               - 'ipptr' to retrieve  ptr of int parameters
  *               - 'outtb' to retrieve output register (list of scilb object)
  *               - 'inpptr' to retrieve number of input ports
  *               - 'outptr' to retrieve number of output ports
@@ -3298,7 +3298,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
   /* auxilary variables */
   int nv,mv;                /* length of data                                      */
   void *ptr;                /* ptr for data comming from import structure          */
-  int *ptr_int;             /* ptr to store ptr on integer                         */
+  int *ptr_int;             /* ptr to store ptr on int                         */
   double *ptr_dd;           /* ptr to store ptr on double                          */
   scicos_block *ptr_scsblk; /* ptr to store ptr of scicos_block structure          */
   outtb_el *ptr_elem;       /* ptr to store ptr of outtb_el structure              */
@@ -3365,7 +3365,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
   /*******************
    * Check str (rhs 1)
    *******************/
-  il_str = (int *) GetData(1); /* get ptr of integer header of rsh 1 */
+  il_str = (int *) GetData(1); /* get ptr of int header of rsh 1 */
   if(il_str[0]!=10) /* Check if input argument is a character string matrix */
   {
    Scierror(55,"%s : First argument must be a string.\n",fname);
@@ -3474,13 +3474,13 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     ierr=CopyVarFromlistentry(j+2,il_sim_save,15);
 
    /*************************************************
-    * integer variables coming from import structure
+    * int variables coming from import structure
     *************************************************/
    else if ((strcmp(C2F(cha1).buf,"mod") == 0)      || /* retrieve mode */
             (strcmp(C2F(cha1).buf,"nmod") == 0)     || /* retrieve nmode */
-            (strcmp(C2F(cha1).buf,"iz") == 0)       || /* label integer code of blocks */
+            (strcmp(C2F(cha1).buf,"iz") == 0)       || /* label int code of blocks */
             (strcmp(C2F(cha1).buf,"nblk") == 0)     || /* number of block */
-            (strcmp(C2F(cha1).buf,"izptr") == 0)    || /* label integer code of blocks ptr*/
+            (strcmp(C2F(cha1).buf,"izptr") == 0)    || /* label int code of blocks ptr*/
             (strcmp(C2F(cha1).buf,"outtbptr") == 0) || /* outtb ptr */
             (strcmp(C2F(cha1).buf,"outtbsz") == 0)  || /* outtb size */
             (strcmp(C2F(cha1).buf,"outtbtyp") == 0) || /* outtb type */
@@ -3537,7 +3537,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     /* check ierr flag */
     if (ierr==TRUE_)
     {
-     l_tmp = I_INT32; /* define type of integer */
+     l_tmp = I_INT32; /* define type of int */
      CreateVar(j+2,"I",&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 pos in the stack */
      il_tmp = (int *) istk(l_tmp);      /* Store value of address of istk(l_tmp) in il_tmp */
      ptr_int = (int *) ptr;             /* cast void* ptr to int* ptr */
@@ -3686,7 +3686,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     /* check ierr flag */
     if (ierr==TRUE_)
     {
-     l_tmp = I_INT32; /* define type of integer */
+     l_tmp = I_INT32; /* define type of int */
      CreateVar(j+2,"I",&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
      il_tmp = (int *) istk(l_tmp);      /* Store value of address of istk(l_tmp) in il_tmp */
      ptr_elem = (outtb_el *) ptr;       /* cast void* ptr to int* ptr */

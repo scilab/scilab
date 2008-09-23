@@ -150,7 +150,7 @@ static int IsDefinedVar(char *name);
  See CreateEqualTList and GetControlInstruction
  Input:
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
   - nblines: pointer to number of lines in macro
  Output:
   - nblines: pointer to number of lines in macro
@@ -173,7 +173,7 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr);
    OR tlist(["ifthenelse","expression","then","elseifs","else"],...)
  Input:
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
   - nblines: pointer to number of lines in macro
  Output:
   - nblines: pointer to number of lines in macro
@@ -191,7 +191,7 @@ static int GetControlInstruction(int *data,int *index,int *nblines);
  Input:
   - type: type of constant ("number","string","code23" or "emptymatrix")
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
  Output:
   - No output
  Returned value:
@@ -207,7 +207,7 @@ static int CreateCsteTList(char *type,int *data,int *index);
    tlist(["operation","operands","operator"],list_of_operands,operator_symbol)
  Input:
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
  Output:
   - No output
  Returned value:
@@ -224,7 +224,7 @@ static int CreateOperationTList(int *data,int *index);
  Input:
   - fromwhat: from what it has to be made ("funptr","datacode" or "macro")
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
  Output:
   - No output
  Returned value:
@@ -241,7 +241,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index);
  Input:
   - fromwhat: from what it has to be made ("code29","code1" or "forexpr")
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
  Output:
   - No output
  Returned value:
@@ -257,7 +257,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index);
   tlist(["comment","text"],text_of_comment)
  Input:
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
  Output:
   - No output
  Returned value:
@@ -291,7 +291,7 @@ static int VCopyObj(char *fname,int *orig,int *dest,unsigned long fname_length);
   in a compiled macro code or a part of this code
  Input:
   - data: pointer to compiled macro code
-  - index: index of current integer in data
+  - index: index of current int in data
   - lgth: length of code to eval
  Output:
   - No output

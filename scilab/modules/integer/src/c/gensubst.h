@@ -27,6 +27,6 @@
  * @param incy
  * @return 
  */
-int C2F(gensubst)(integer *typ, integer *n, int *dx, integer *incx, int *dy, integer *incy);
+int C2F(gensubst)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy);
 
 #endif /* __GENSUBST_H__ */

@@ -21,54 +21,54 @@ void loadGraphicModule(void);
 
 BOOL TerminateGraphics(void);
 
-int scig_2dzoom(integer win_num);
+int scig_2dzoom(int win_num);
 
 int GetDriverId(void);
 
-void scig_unzoom(integer win_num);
+void scig_unzoom(int win_num);
 
 int sciSetViewport( sciPointObj * pObj, int xSize, int ySize );
 
 void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize );
 
-int get_window_scale( integer i, double * subwin );
+int get_window_scale( int i, double * subwin );
 
-double Maxi(double *vect,integer n);
+double Maxi(double *vect,int n);
 
-double Mini(double *vect, integer n);
+double Mini(double *vect, int n);
 
-int scig_3drot(integer win_num);
+int scig_3drot(int win_num);
 
-void scig_replay(integer win_num);
+void scig_replay(int win_num);
 
-void scig_erase(integer win_num);
+void scig_erase(int win_num);
 
 void scig_loadsg(int win_num, char *filename);
 
-void del_window_scale(integer i);
+void del_window_scale(int i);
 
 void scig_savesg(int win_num, char * filename);
 
 void Cscale2default(void);
 
-int scig_toPs(integer win_num, integer colored, char * bufname, char * driver);
+int scig_toPs(int win_num, int colored, char * bufname, char * driver);
 
 void delete_sgwin_entities(int win_num);
 
-int C2F(entier2d)( integer * n, double * dx,integer * s );
+int C2F(entier2d)( int * n, double * dx,int * s );
 
-int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6, integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,integer lx0, integer lx1);
+int C2F(dr)(char x0[],char x1[],int *x2,int *x3,int *x4,int *x5,int *x6, int *x7,double *dx1,double *dx2,double *dx3,double *dx4,int lx0, int lx1);
 
-void scig_sel(integer win_num);
+void scig_sel(int win_num);
 
-void DeleteObjs(integer win_num);
+void DeleteObjs(int win_num);
 
-int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6, integer *x7,double *dx1,double *dx2,double *dx3,double *dx4, integer lx0, integer lx1);
+int C2F(dr1)( char x0[],char x1[],int *x2,int *x3,int *x4,int *x5,int *x6, int *x7,double *dx1,double *dx2,double *dx3,double *dx4, int lx0, int lx1);
 
 void sciRedrawF(int *num);
 
 int C2F(SetDriver)(void);
 
-void GetDriver1(char *str, integer *v2,integer * v3,integer * v4, integer *v5,integer * v6,integer * v7,double * dv1,double * dv2,double * dv3,double * dv4);
+void GetDriver1(char *str, int *v2,int * v3,int * v4, int *v5,int * v6,int * v7,double * dv1,double * dv2,double * dv3,double * dv4);
 
 void sciGetIdFigure (int *vect, int *id, int *flag);

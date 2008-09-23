@@ -13,9 +13,9 @@
 #ifndef __CALELM_H 
 #define  __CALELM_H 
 
-#include "machine.h" /* integer , C2F */
+#include "machine.h" /* int , C2F */
 
-typedef integer(*I_fp)();
+typedef int(*I_fp)();
 
 int C2F(vfinite)(int *n, double *v);
 

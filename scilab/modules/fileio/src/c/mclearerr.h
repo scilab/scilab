@@ -19,7 +19,7 @@
 * clear errors 
 * @param fd
 */
-void C2F(mclearerr) (integer *fd);
+void C2F(mclearerr) (int *fd);
 
 #endif /* __MCLEARERR_H__ */
 /*--------------------------------------------------------------------------*/

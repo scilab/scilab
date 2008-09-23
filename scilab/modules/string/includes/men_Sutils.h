@@ -15,11 +15,11 @@
 #define __MEN_SUTILS_H__
 
 /**
-* Converts a Scilab String coded as integer array
+* Converts a Scilab String coded as int array
 * into a C string [ the C string is allocated with MALLOC ]
-* @param[in] size of integer array
-* @param[in] integer array
-* @param[out] C string converted from integer array
+* @param[in] size of int array
+* @param[in] int array
+* @param[out] C string converted from int array
 * @param[out] error code 0 = OK , 1 = Problem
 */
 void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr);
@@ -27,19 +27,19 @@ void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr);
 
 /**
 * Converts a Scilab array of 
-* String coded as integer array
+* String coded as int array
 * into a C array of strings [ NULL terminated ]
 * @param[in] Scistring
 * @param[in] nstring
 * @param[in] ptrstrings
-* @param[out] C string converted from integer array
+* @param[out] C string converted from int array
 * @param[out] error code 0 = OK , 1 = Problem
 */
 void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, int *ierr);
 
 /**
 * Converts a Scilab array of 
-* String coded as integer array
+* String coded as int array
 * into a C string where all the Scilab strings are
 * separated by '\n' or '\r\n' (windows)
 * desc,nd,ptrdesc : scilab string info 
@@ -47,7 +47,7 @@ void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, 
 * @param[in] descriptor
 * @param[in] size of array of integer
 * @param[in] pointer on descriptor
-* @param[out] C string converted from integer array
+* @param[out] C string converted from int array
 * @param[out] error code 0 = OK , 1 = Problem
 */
 void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr);

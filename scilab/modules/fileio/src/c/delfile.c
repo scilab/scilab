@@ -18,7 +18,7 @@
 #include "delfile.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-void C2F(delfile)(integer *fd)
+void C2F(delfile)(int *fd)
 {
 	if (*fd>=0 && *fd<GetMaximumFileOpenedInScilab() ) 
 	{

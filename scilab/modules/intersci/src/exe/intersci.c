@@ -1156,7 +1156,7 @@ FType[] = {
   };
 
 /* Type Fortran:  renvoit un codage du type en nombre entier etant donne une chaine */
-/* convert string to integer FORTRAN type */
+/* convert string to int FORTRAN type */
 
 int GetForType(char *type)
 {
@@ -1220,7 +1220,7 @@ void WriteHeader(FILE *f,char *fname0,char *fname)
   Fprintf(f,indent,"character*(*) fname\n");
   Fprintf(f,indent,"include 'stack.h'\n");
   FCprintf(f,"c\n");
-  Fprintf(f,indent,"integer iadr, sadr\n");
+  Fprintf(f,indent,"int iadr, sadr\n");
   WriteDeclaration(f);
   Fprintf(f,indent,"iadr(l)=l+l-1\n");
   Fprintf(f,indent,"sadr(l)=(l/2)+1\n");
@@ -1607,7 +1607,7 @@ void Check(f,str,var,i1,nel)
   strcpy(str1,variables[var->el[nel]-1]->name);
   if (isdigit(str1[0]) != 0)
     {
-      /* the dimension of the variable is a constant integer */
+      /* the dimension of the variable is a constant int */
       if ( strcmp(str,str1) != 0)
 	{
 	  AddDeclare(DEC_LOGICAL,"checkval");

@@ -42,7 +42,7 @@
 
 void absblk( flag, nevprt, t, xd, x, nx, z, nz, tvec, 
 	     ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
-             integer *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
+             int *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
              double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
   int i;

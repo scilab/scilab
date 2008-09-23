@@ -39,7 +39,7 @@ int dblearrayc(double **a,int *m,int *n,int *ierr)
 }
 
 
-/*     integer array    */
+/*     int array    */
 int intarrayc(int **a,int *m,int *n,int *ierr) 
 {
   int i ;

@@ -28,8 +28,8 @@
 int sci_xstring( char *fname, unsigned long fname_len )
 {
   double rect[4],x,y,yi,angle=0.0;
-  integer flagx=0;
-  integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
+  int flagx=0;
+  int m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str = NULL;
   long hdlstr ;
   BOOL isboxed = FALSE;
@@ -55,7 +55,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
   { 
     GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE,&m5,&n5,&l5);
     CheckScalar(5,m5,n5);
-    flagx = (integer) *stk(l5);
+    flagx = (int)  *stk(l5);
   }
 
 

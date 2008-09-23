@@ -21,7 +21,7 @@
 * @param[out] used
 * @return 0
 */
-integer C2F(getstackinfo)(integer *total,integer *used);
+int C2F(getstackinfo)(int *total,int *used);
 
 /**
 * returns some infos about stack (global)
@@ -29,7 +29,7 @@ integer C2F(getstackinfo)(integer *total,integer *used);
 * @param[out] used
 * @return 0
 */
-integer C2F(getgstackinfo)(integer *total,integer *used);
+int C2F(getgstackinfo)(int *total,int *used);
 
 /* elements on stacks */
 
@@ -39,7 +39,7 @@ integer C2F(getgstackinfo)(integer *total,integer *used);
 * @param[out] used
 * @return 0
 */
-integer C2F(getvariablesinfo)(integer *total,integer *used);
+int C2F(getvariablesinfo)(int *total,int *used);
 
 /**
 * returns some infos about variables on stack (global)
@@ -47,13 +47,13 @@ integer C2F(getvariablesinfo)(integer *total,integer *used);
 * @param[out] used
 * @return 0
 */
-integer C2F(getgvariablesinfo)(integer *total,integer *used);
+int C2F(getgvariablesinfo)(int *total,int *used);
 
 /**
 * returns Intermediate Memory size needed (stack) used by "error(17)"
 * @return Intermediate Memory size needed
 */
-integer getIntermediateMemoryNeeded(void);
+int getIntermediateMemoryNeeded(void);
 
 /**
 * check if sizestack is a valid size for scilab's stack

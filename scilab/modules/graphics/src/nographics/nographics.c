@@ -34,7 +34,7 @@ BOOL TerminateGraphics(void)
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-int scig_2dzoom(integer win_num)
+int scig_2dzoom(int win_num)
 {
 	return 0;
 }
@@ -49,7 +49,7 @@ int CheckClickQueue(int *win,int *x,int *y,int *ibut,int *motion,int *release)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-void scig_unzoom(integer win_num)
+void scig_unzoom(int win_num)
 {
 
 }
@@ -74,32 +74,32 @@ void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize )
 
 }
 /*--------------------------------------------------------------------------*/
-int get_window_scale( integer i, double * subwin )
+int get_window_scale( int i, double * subwin )
 {
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-double Maxi(double *vect,integer n)
+double Maxi(double *vect,int n)
 {
 	return 0.0;
 }
 /*--------------------------------------------------------------------------*/
-double Mini(double *vect, integer n)
+double Mini(double *vect, int n)
 {
 	return 0.0;
 }
 /*--------------------------------------------------------------------------*/
-int scig_3drot(integer win_num)
+int scig_3drot(int win_num)
 {
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-void scig_replay(integer win_num)
+void scig_replay(int win_num)
 {
 
 }
 /*--------------------------------------------------------------------------*/
-void scig_erase(integer win_num)
+void scig_erase(int win_num)
 {
 
 }
@@ -109,7 +109,7 @@ void scig_loadsg(int win_num, char *filename)
 
 }
 /*--------------------------------------------------------------------------*/
-void del_window_scale( integer i )
+void del_window_scale( int i )
 {
 
 }
@@ -124,7 +124,7 @@ void Cscale2default( void )
 
 }
 /*--------------------------------------------------------------------------*/
-int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
+int scig_toPs( int win_num, int colored, char * bufname, char * driver )
 {
 	return 0;
 }
@@ -144,17 +144,17 @@ void set_event_select(int val)
 
 }
 /*--------------------------------------------------------------------------*/
-int C2F(entier2d)( integer * n, double * dx,integer * s )
+int C2F(entier2d)( int * n, double * dx,int * s )
 {
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-void scig_sel(integer win_num)
+void scig_sel(int win_num)
 {
 
 }
 /*--------------------------------------------------------------------------*/
-void DeleteObjs(integer win_num)
+void DeleteObjs(int win_num)
 {
 
 }
@@ -169,8 +169,8 @@ void sciRedrawF(int *num)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
- void GetDriver1(char *str, integer *v2,integer * v3,integer * v4, integer *v5,integer * v6,
-	 integer * v7,double * dv1,double * dv2,double * dv3,double * dv4)
+ void GetDriver1(char *str, int *v2,int * v3,int * v4, int *v5,int * v6,
+	 int * v7,double * dv1,double * dv2,double * dv3,double * dv4)
 {
 
 }

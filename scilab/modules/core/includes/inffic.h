@@ -28,9 +28,9 @@
 #define SAVE_ID 3
 #define QUIT_ID 4
 
-void C2F(inffic)(integer *iopt, char *name, integer *nc);
+void C2F(inffic)(int *iopt, char *name, int *nc);
 
-void C2F(infficl)(integer *iopt, integer *nc);
+void C2F(infficl)(int *iopt, int *nc);
 
 char *get_sci_data_strings(int n);
 

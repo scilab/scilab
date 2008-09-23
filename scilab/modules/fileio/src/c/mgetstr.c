@@ -22,7 +22,7 @@
 Commented by Sylvestre
 Seems to be unused ... 
 @TODO check if it is really the case
-void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
+void C2F(mgetstr) (int *fd, char **start, int *n, int *ierr)
 { 
 	int count=0;
 	FILE *fa=NULL;
@@ -50,7 +50,7 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 } 
 */
 /*--------------------------------------------------------------------------*/
-void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr)
+void C2F(mgetstr1) (int *fd, char *start, int *n, int *ierr)
 { 
 	int count=0;
 	FILE *fa=NULL;

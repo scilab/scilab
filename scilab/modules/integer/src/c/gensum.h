@@ -24,6 +24,6 @@
  * @param incx
  * @return 
  */
-integer C2F(gensum)(integer *typ, integer *n, void *dx, integer *incx);
+int C2F(gensum)(int *typ, int *n, void *dx, int *incx);
 
 #endif /* __GENSUM_H__ */

@@ -31,5 +31,5 @@
  * @param cw_len
  * @return 
  */
-int C2F(genmdsp)(integer *typ, integer *x, integer *nx, integer *mm, integer *nn, integer *ll, integer *lunit, char cw[], integer *iw, int cw_len);
+int C2F(genmdsp)(int *typ, int *x, int *nx, int *mm, int *nn, int *ll, int *lunit, char cw[], int *iw, int cw_len);
 #endif /* __GENMDSP_H__ */

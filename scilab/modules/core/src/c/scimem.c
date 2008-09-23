@@ -17,7 +17,7 @@
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 #ifdef USE_DYNAMIC_STACK
-extern integer scimem64(integer *n, integer newsize, BOOL isglobal);
+extern int scimem64(int *n, int newsize, BOOL isglobal);
 extern void freemem64(BOOL isglobal);
 #else
 static char *the_p=NULL;
@@ -26,7 +26,7 @@ static char *the_gp=NULL;
 static char *the_gps=NULL;
 #endif
 /*--------------------------------------------------------------------------*/
-integer C2F(scimem)(integer *n, integer *ptr)
+int C2F(scimem)(int *n, int *ptr)
 {
 #ifdef USE_DYNAMIC_STACK
   return scimem64(ptr, *n, FALSE);
@@ -58,7 +58,7 @@ integer C2F(scimem)(integer *n, integer *ptr)
 #endif
 }
 /*--------------------------------------------------------------------------*/
-integer C2F(scigmem)(integer *n, integer *ptr)
+int C2F(scigmem)(int *n, int *ptr)
 {
 #ifdef USE_DYNAMIC_STACK
   return scimem64(ptr, *n, TRUE);

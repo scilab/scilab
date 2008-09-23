@@ -18,7 +18,7 @@
 /**
 * delete a file in the files table
 */
-void C2F(delfile)(integer *fd);
+void C2F(delfile)(int *fd);
 
 #endif /* __DELFILE_H__ */
 /*--------------------------------------------------------------------------*/

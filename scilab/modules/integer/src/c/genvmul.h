@@ -27,6 +27,6 @@
  * @param incy
  * @return 
  */
-int C2F(genvmul)(integer *typ,integer *n, integer1 *dx, integer *incx, integer1 *dy, integer *incy);
+int C2F(genvmul)(int *typ,int *n, integer1 *dx, int *incx, integer1 *dy, int *incy);
 
 #endif /* __GENVMUL_H__ */

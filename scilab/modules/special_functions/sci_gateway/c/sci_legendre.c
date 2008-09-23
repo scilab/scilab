@@ -36,8 +36,8 @@ int sci_legendre(char *fname,unsigned long fname_len)
    *      x is a vector with mnx elements (it is better to
    *        have a row vector but this is not forced)
    *
-   *      n : a non negative integer scalar (or a vector of such
-   *          integer regularly speced with an increment of 1)
+   *      n : a non negative int scalar (or a vector of such
+   *          int regularly speced with an increment of 1)
    *      m : same constraints than for n
    *
    *      n and m may not be both vectors

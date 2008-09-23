@@ -28,6 +28,6 @@
  * @param n2
  * @return 
  */
-int C2F(genconcatrow)(integer *typ,integer *x1,integer *m1,integer *n1,integer *x2,integer *m2,integer *n2);
+int C2F(genconcatrow)(int *typ,int *x1,int *m1,int *n1,int *x2,int *m2,int *n2);
 
 #endif /* __GENCONCATROW_H__ */

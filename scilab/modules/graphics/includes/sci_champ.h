@@ -45,7 +45,7 @@ int sci_champ1( char * fname, unsigned long fname_len ) ;
  * Generic function for both champ and champ1.
  */
 int sci_champ_G( char *fname,
-                 int (*func) (double *, double *, double *, double *, integer *, integer *, char *, double *, double *, int),
+                 int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
                  unsigned long fname_len ) ;
 
 #endif /* _INT_CHAMP_H_ */

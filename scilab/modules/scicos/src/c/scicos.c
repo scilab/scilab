@@ -68,7 +68,7 @@
 #endif
 
 typedef struct {
-	integer iero;
+	int iero;
 } IERSCODE_struct;
 
 IERSCODE_struct C2F(ierscode);
@@ -144,22 +144,22 @@ void cosend(double *);
 void cdoit(double *);
 void doit(double *);
 void ddoit(double *);
-void edoit(double *,integer *);
+void edoit(double *,int *);
 void odoit(double *,double *,double *,double *);
-void ozdoit(double *,double *,double *,integer *);
+void ozdoit(double *,double *,double *,int *);
 void zdoit(double *,double *,double *,double *);
 void reinitdoit(double *, realtype *);
 void cossimdaskr(double *);
 void cossim(double *);
-void callf(double *, double *, double *, double *,double *,integer *);
+void callf(double *, double *, double *, double *,double *,int *);
 int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data);
 int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata);
 int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data);
 int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data);
-void addevs(double ,integer *,integer *);
-void putevs(double *,integer *,integer *);
+void addevs(double ,int *,int *);
+void putevs(double *,int *,int *);
 void FREE_blocks(void);
-int setmode(double *,double *,double *,integer *,double);
+int setmode(double *,double *,double *,int *,double);
 
 /* Jacobian*/
 void Jdoit(double *,double *,double *,double *,int *);
@@ -193,25 +193,25 @@ extern void  GetDynFunc();
 extern void  C2F(iislink)();
 
 
-extern  integer C2F(cvstr)();
-extern  integer C2F(dset)();
-extern  integer C2F(dcopy)();
-extern  integer C2F(iset)();
-extern  integer C2F(realtime)();
-extern  integer C2F(realtimeinit)();
-extern  integer C2F(sxevents)();
-extern  integer C2F(stimer)();
-extern  integer C2F(xscion)();
+extern  int C2F(cvstr)();
+extern  int C2F(dset)();
+extern  int C2F(dcopy)();
+extern  int C2F(iset)();
+extern  int C2F(realtime)();
+extern  int C2F(realtimeinit)();
+extern  int C2F(sxevents)();
+extern  int C2F(stimer)();
+extern  int C2F(xscion)();
 
 extern int scilab_timer_check();
 
-static integer nblk, nordptr, nlnk, ng, ncord, noord, nzord,niord,
+static int nblk, nordptr, nlnk, ng, ncord, noord, nzord,niord,
   nclock,nordclk,niord,nmod;
 
-static integer *neq;
+static int *neq;
 
 static  double Atol, rtol, ttol, deltat,hmax;
-static integer hot;
+static int hot;
 
 /* Variable declaration moved to scicos.c because it was in the scicos-def.h therefore
  * multiple declaration of the variable and linkers were complaining about duplicate
@@ -231,11 +231,11 @@ IMPORT_SCICOS COSDEBUG_struct C2F(cosdebug);
 /* defined in scicos-def.h */
 /*
 extern struct {
-  integer iero;
+  int iero;
 } C2F(ierode);
 
 extern  struct {
-  integer kfun;
+  int kfun;
 } C2F(curblk);
 
 struct {
@@ -243,33 +243,33 @@ struct {
 }  C2F(rtfactor);
 
 extern struct {
-  integer halt;
+  int halt;
 }  C2F(coshlt);
 */
 /* Table of constant values */
 
-static integer c__90 = 90;
-static integer c__0 = 0;
-static integer c__91 = 91;
+static int c__90 = 90;
+static int c__0 = 0;
+static int c__91 = 91;
 static double c_b14 = 0.;
-static integer c__1 = 1;
-static integer *iwa;
+static int c__1 = 1;
+static int *iwa;
 
-static integer *xptr,*modptr, *evtspt;
-static integer  *funtyp, *inpptr, *outptr, *inplnk, *outlnk;
-static integer *clkptr, *ordptr, *ordclk, *cord,
+static int *xptr,*modptr, *evtspt;
+static int  *funtyp, *inpptr, *outptr, *inplnk, *outlnk;
+static int *clkptr, *ordptr, *ordclk, *cord,
   *iord, *oord,  *zord,  *critev,  *zcptr;
-static integer *pointi;
-static integer *ierr;
+static int *pointi;
+static int *ierr;
 
 static double *x,*xd,*tevts,*g;
-static integer *mod;
+static int *mod;
 static double *t0,*tf,scicos_time;
 
 /* declaration of ptr for typed port */
 static void **outtbptr;     /*pointer array of object of outtb*/
-static integer *outtbsz;    /*size of object of outtb*/
-static integer *outtbtyp;   /*type of object of outtb*/
+static int *outtbsz;    /*size of object of outtb*/
+static int *outtbtyp;   /*type of object of outtb*/
 
 SCSREAL_COP *outtbdptr;     /*to store double of outtb*/
 SCSINT8_COP *outtbcptr;     /*to store int8 of outtb*/
@@ -283,58 +283,58 @@ static outtb_el *outtb_elem;
 static int nelem;
 static scicos_block *Blocks;
 
-static integer phase;
+static int phase;
 
 realtype *pointer_xproperty;
 
-integer n_pointer_xproperty;
+int n_pointer_xproperty;
 
-static integer *block_error;
+static int *block_error;
   /* Jacobian*/
-static integer Jacobian_Flag;
-static integer AJacobian_block;
+static int Jacobian_Flag;
+static int AJacobian_block;
 static double  CJJ;
 static double SQuround;
   /* Jacobian*/
 
-void call_debug_scicos(double *, double *, double *, double *,double *,integer
- *,integer,integer,integer);
+void call_debug_scicos(double *, double *, double *, double *,double *,int
+ *,int,int,int);
 
-static integer debug_block;
+static int debug_block;
 
 
 //** ----------- The Very Scicos simulation engine start here ---------------------------
 
 /* Subroutine */
-int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
-                void **work,integer *zptr,integer *modptr_in,
-                void **oz,integer *ozsz,integer *oztyp,integer *ozptr,
-                integer *iz,integer *izptr,double *t0_in,
-                double *tf_in,double *tevts_in,integer *evtspt_in,
-                integer *nevts,integer *pointi_in,void **outtbptr_in,
-                integer *outtbsz_in,integer *outtbtyp_in,
-                outtb_el *outtb_elem_in,integer *nelem1,integer *nlnk1,
-                integer *funptr,integer *funtyp_in,integer *inpptr_in,
-                integer *outptr_in, integer *inplnk_in,integer *outlnk_in,
-                double *rpar,integer *rpptr,integer *ipar,integer *ipptr,
-                void **opar,integer *oparsz,integer *opartyp,integer *opptr,
-                integer *clkptr_in,integer *ordptr_in,integer *nordptr1,
-                integer *ordclk_in,integer *cord_in,integer *ncord1,
-                integer *iord_in,integer *niord1,integer *oord_in,
-                integer *noord1,integer *zord_in,integer *nzord1,
-                integer *critev_in,integer *nblk1,integer *ztyp,
-                integer *zcptr_in,integer *subscr,integer *nsubs,
-                double *simpar,integer *flag__,integer *ierr_out)
+int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
+                void **work,int *zptr,int *modptr_in,
+                void **oz,int *ozsz,int *oztyp,int *ozptr,
+                int *iz,int *izptr,double *t0_in,
+                double *tf_in,double *tevts_in,int *evtspt_in,
+                int *nevts,int *pointi_in,void **outtbptr_in,
+                int *outtbsz_in,int *outtbtyp_in,
+                outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
+                int *funptr,int *funtyp_in,int *inpptr_in,
+                int *outptr_in, int *inplnk_in,int *outlnk_in,
+                double *rpar,int *rpptr,int *ipar,int *ipptr,
+                void **opar,int *oparsz,int *opartyp,int *opptr,
+                int *clkptr_in,int *ordptr_in,int *nordptr1,
+                int *ordclk_in,int *cord_in,int *ncord1,
+                int *iord_in,int *niord1,int *oord_in,
+                int *noord1,int *zord_in,int *nzord1,
+                int *critev_in,int *nblk1,int *ztyp,
+                int *zcptr_in,int *subscr,int *nsubs,
+                double *simpar,int *flag__,int *ierr_out)
 {
-  integer i1,kf,lprt,in,out,job=1;
+  int i1,kf,lprt,in,out,job=1;
 
   extern /* Subroutine */ int C2F(msgs)();
-  static integer mxtb, ierr0, kfun0, i, j, k, jj;
+  static int mxtb, ierr0, kfun0, i, j, k, jj;
   extern /* Subroutine */ int C2F(makescicosimport)();
   extern /* Subroutine */ int C2F(getscsmax)();
-  static integer ni, no;
+  static int ni, no;
   extern /* Subroutine */ int C2F(clearscicosimport)();
-  static integer nx, nz, noz, nopar;
+  static int nx, nz, noz, nopar;
   double *W;
 
   // Set FPU Flag to Extended for scicos simulation
@@ -391,7 +391,7 @@ int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
   ttol = simpar[3];
   deltat = simpar[4];
   C2F(rtfactor).scale = simpar[5];
-  C2F(cmsolver).solver = (integer) simpar[6];
+  C2F(cmsolver).solver = (int)  simpar[6];
   hmax=simpar[7];
 
   nordptr = *nordptr1;
@@ -837,11 +837,11 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
      double *told;
 
 {
-  static integer flag__;
-  static integer i;
+  static int flag__;
+  static int i;
 
-  static integer kfune;
-  static integer jj;
+  static int kfune;
+  static int jj;
 
   SCSREAL_COP *outtbd=NULL;    /*to save double of outtb*/
   SCSINT8_COP *outtbc=NULL;    /*to save int8 of outtb*/
@@ -1132,18 +1132,18 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 /* Subroutine */ void idoit(told)
      double *told;
 {
-  static integer flag__;
-  static integer i,jj;
-  static integer ierr1;
-  static integer i2;
-  static integer cond;
+  static int flag__;
+  static int i,jj;
+  static int ierr1;
+  static int i2;
+  static int cond;
   /*     Copyright INRIA */
 
 
   /* ..   Parameters .. */
   /*     maximum number of clock output for one block */
 
-  /*     neq must contain after #states all integer data for simblk and grblk */
+  /*     neq must contain after #states all int data for simblk and grblk */
   /*     X must contain after state values all real data for simblk and grblk */
   /* Parameter adjustments */
 
@@ -1215,47 +1215,47 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
         /* eselect blk */
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 /*          outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-          i=max(min((integer) outtbdptr[0],
+          i=max(min((int)  outtbdptr[0],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);*/
 	  switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
           {
            case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbcptr,
+                               i=max(min((int)  *outtbcptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbsptr,
+                               i=max(min((int)  *outtbsptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtblptr,
+                               i=max(min((int)  *outtblptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbucptr,
+                               i=max(min((int)  *outtbucptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbusptr,
+                               i=max(min((int)  *outtbusptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbulptr,
+                               i=max(min((int)  *outtbulptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
@@ -1284,7 +1284,7 @@ void cossim(told)
      double *told;
 {
   /* System generated locals */
-  integer i3;
+  int i3;
 
   /* La vita e bella ! */
   //** used for the [stop] button
@@ -1295,16 +1295,16 @@ void cossim(told)
   static int one = 1;
 
   /* Local variables */
-  static integer flag__;
-  static integer ierr1;
-  static integer j, k;
+  static int flag__;
+  static int ierr1;
+  static int j, k;
   static double t;
-  static integer jj;
+  static int jj;
   static double rhotmp, tstop;
-  static integer inxsci;
-  static integer kpo, kev;
+  static int inxsci;
+  static int kpo, kev;
   int Discrete_Jump;
-  integer *jroot,*zcros;
+  int *jroot,*zcros;
   realtype reltol, abstol;
   N_Vector y;
   void *cvode_mem;
@@ -1739,9 +1739,9 @@ void cossimdaskr(told)
      double *told;
 {
   /* Initialized data */
-  static integer otimer = 0;
+  static int otimer = 0;
   /* System generated locals */
-  integer i3;
+  int i3;
 
   /* La vita e bella ! */
   //** used fot the [stop] button
@@ -1752,20 +1752,20 @@ void cossimdaskr(told)
   static int one = 1;
 
   /* Local variables */
-  static integer flag__;
-  static integer ierr1;
-  static integer j, k;
+  static int flag__;
+  static int ierr1;
+  static int j, k;
   static double t;
-  static integer jj, jt;
-  static integer  ntimer;
+  static int jj, jt;
+  static int  ntimer;
   static double rhotmp,tstop;
-  static integer inxsci;
-  static integer kpo, kev;
+  static int inxsci;
+  static int kpo, kev;
 
-  integer *jroot,*zcros;
-  integer maxord;
-  integer *Mode_save;
-  integer Mode_change;
+  int *jroot,*zcros;
+  int maxord;
+  int *Mode_save;
+  int Mode_change;
 
   int flag, flagr;
   N_Vector   yy, yp;
@@ -1804,7 +1804,7 @@ void cossimdaskr(told)
 
   Mode_save=NULL;
   if (nmod!=0) {
-    if((Mode_save=MALLOC(sizeof(integer)*nmod))== NULL ){
+    if((Mode_save=MALLOC(sizeof(int) *nmod))== NULL ){
       *ierr =10000;
       if (ng!=0) FREE(jroot);
       if (ng!=0) FREE(zcros);
@@ -2476,9 +2476,9 @@ void cossimdaskr(told)
      double *told;
 {
   /* Local variables */
-  static integer flag__;
+  static int flag__;
 
-  static integer kfune;
+  static int kfune;
 
   /* Function Body */
   *ierr = 0;
@@ -2504,14 +2504,14 @@ void cossimdaskr(told)
      double *told;
 {
   /* System generated locals */
-  integer i,i2;
+  int i,i2;
 
   /* Local variables */
-  static integer flag__, nord;
+  static int flag__, nord;
 
-  static integer ierr1;
-  integer ii, kever;
-  integer cond;
+  static int ierr1;
+  int ii, kever;
+  int cond;
 
   /* Function Body */
   kever = *pointi;
@@ -2594,47 +2594,47 @@ void cossimdaskr(told)
         /* eselect blk */
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 /*          outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-          i=max(min((integer) outtbdptr[0],
+          i=max(min((int)  outtbdptr[0],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);*/
           switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
           {
            case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbcptr,
+                               i=max(min((int)  *outtbcptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbsptr,
+                               i=max(min((int)  *outtbsptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtblptr,
+                               i=max(min((int)  *outtblptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbucptr,
+                               i=max(min((int)  *outtbucptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbusptr,
+                               i=max(min((int)  *outtbusptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbulptr,
+                               i=max(min((int)  *outtbulptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
@@ -2662,13 +2662,13 @@ void cossimdaskr(told)
      double *told;
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__;
-  static integer ierr1;
-  static integer i,jj;
-  static integer cond;
+  static int flag__;
+  static int ierr1;
+  static int i,jj;
+  static int cond;
 
   /* Function Body */
   for (jj = 1; jj <= ncord; ++jj) {
@@ -2740,47 +2740,47 @@ void cossimdaskr(told)
         /* eselect blk */
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 /*          outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-	  i= max(min((integer) outtbdptr[0],
+	  i= max(min((int)  outtbdptr[0],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);*/
           switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
           {
            case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbcptr,
+                               i=max(min((int)  *outtbcptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbsptr,
+                               i=max(min((int)  *outtbsptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtblptr,
+                               i=max(min((int)  *outtblptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbucptr,
+                               i=max(min((int)  *outtbucptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbusptr,
+                               i=max(min((int)  *outtbusptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbulptr,
+                               i=max(min((int)  *outtbulptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
@@ -2809,13 +2809,13 @@ void cossimdaskr(told)
 
 {
   /* System generated locals */
-  integer i2,j;
+  int i2,j;
 
   /* Local variables */
-  static integer flag__, kiwa;
+  static int flag__, kiwa;
 
-  static integer i,i3,ierr1;
-  static integer  ii, keve;
+  static int i,i3,ierr1;
+  static int  ii, keve;
   double d__1;
 
   /* Function Body */
@@ -2898,18 +2898,18 @@ void cossimdaskr(told)
 
 /* Subroutine */ void edoit(told,kiwa)
      double *told;
-     integer *kiwa;
+     int *kiwa;
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__;
-  static integer nord;
+  static int flag__;
+  static int nord;
 
-  static integer ierr1, i;
-  integer kever, ii;
-  integer cond;
+  static int ierr1, i;
+  int kever, ii;
+  int cond;
 
   /* Function Body */
   kever = *pointi;
@@ -2993,47 +2993,47 @@ void cossimdaskr(told)
         /* eselect blk */
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 /*          outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-	  i= max(min((integer) outtbdptr[0],
+	  i= max(min((int)  outtbdptr[0],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);*/
           switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
           {
            case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbdptr,
+                               i=max(min((int)  *outtbdptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbcptr,
+                               i=max(min((int)  *outtbcptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbsptr,
+                               i=max(min((int)  *outtbsptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtblptr,
+                               i=max(min((int)  *outtblptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbucptr,
+                               i=max(min((int)  *outtbucptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbusptr,
+                               i=max(min((int)  *outtbusptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
            case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                               i=max(min((integer) *outtbulptr,
+                               i=max(min((int)  *outtbulptr,
                                          Blocks[C2F(curblk).kfun - 1].nevout),1);
                                break;
 
@@ -3060,13 +3060,13 @@ void cossimdaskr(told)
 
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
-  static integer ierr1, i;
-  static integer ii, jj;
-  static integer cond;
+  static int flag__, keve, kiwa;
+  static int ierr1, i;
+  static int ii, jj;
+  static int cond;
 
   /* Function Body */
   kiwa = 0;
@@ -3143,48 +3143,48 @@ void cossimdaskr(told)
           /* eselect blk */
 	  } else if (funtyp[C2F(curblk).kfun] == -2) {
 /*            outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-            i=max(min((integer) outtbdptr[0],
+            i=max(min((int)  outtbdptr[0],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);*/
 
             switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
             {
              case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbcptr,
+                                 i=max(min((int)  *outtbcptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbsptr,
+                                 i=max(min((int)  *outtbsptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtblptr,
+                                 i=max(min((int)  *outtblptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbucptr,
+                                 i=max(min((int)  *outtbucptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbusptr,
+                                 i=max(min((int)  *outtbusptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbulptr,
+                                 i=max(min((int)  *outtbulptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
@@ -3248,14 +3248,14 @@ void cossimdaskr(told)
      realtype *scicos_xproperty;
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
+  static int flag__, keve, kiwa;
 
-  static integer ierr1, i;
-  static integer ii, jj;
-  static integer cond;
+  static int ierr1, i;
+  static int ii, jj;
+  static int cond;
 
   /* Function Body */
   kiwa = 0;
@@ -3328,47 +3328,47 @@ void cossimdaskr(told)
       /* eselect blk */
       } else if (funtyp[C2F(curblk).kfun] == -2) {
 /*        outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-	i= max(min((integer) outtbdptr[0],
+	i= max(min((int)  outtbdptr[0],
 		  Blocks[C2F(curblk).kfun - 1].nevout),1);*/
         switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
         {
          case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtbdptr,
+                             i=max(min((int)  *outtbdptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
          case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtbdptr,
+                             i=max(min((int)  *outtbdptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
          case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtbcptr,
+                             i=max(min((int)  *outtbcptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
          case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtbsptr,
+                             i=max(min((int)  *outtbsptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
          case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtblptr,
+                             i=max(min((int)  *outtblptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
          case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtbucptr,
+                             i=max(min((int)  *outtbucptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
          case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtbusptr,
+                             i=max(min((int)  *outtbusptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
          case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                             i=max(min((integer) *outtbulptr,
+                             i=max(min((int)  *outtbulptr,
                                        Blocks[C2F(curblk).kfun - 1].nevout),1);
                              break;
 
@@ -3433,17 +3433,17 @@ void cossimdaskr(told)
 /* Subroutine */ void ozdoit(xtd, xt, told, kiwa)
      double *xtd, *xt;
      double *told;
-     integer *kiwa;
+     int *kiwa;
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, nord;
+  static int flag__, nord;
 
-  static integer ierr1, i;
-  integer ii, kever;
-  integer cond;
+  static int ierr1, i;
+  int ii, kever;
+  int cond;
 
   /* Function Body */
   kever = *pointi;
@@ -3533,48 +3533,48 @@ void cossimdaskr(told)
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1 || Blocks[C2F(curblk).kfun - 1].nmode==0){
 /*            outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-	    i= max(min((integer)
+	    i= max(min((int) 
                        outtbdptr[0],
 		       Blocks[C2F(curblk).kfun - 1].nevout),1);*/
             switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
             {
              case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbcptr,
+                                 i=max(min((int)  *outtbcptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbsptr,
+                                 i=max(min((int)  *outtbsptr,
                                             Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtblptr,
+                                 i=max(min((int)  *outtblptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbucptr,
+                                 i=max(min((int)  *outtbucptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbusptr,
+                                 i=max(min((int)  *outtbusptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbulptr,
+                                 i=max(min((int)  *outtbulptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
@@ -3605,13 +3605,13 @@ void cossimdaskr(told)
      double *told;
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
-  static integer ierr1, i,j;
-  static integer ii, jj;
-  static integer cond;
+  static int flag__, keve, kiwa;
+  static int ierr1, i,j;
+  static int ii, jj;
+  static int cond;
 
   /* Function Body */
   C2F(dset)(&ng, &c_b14,g , &c__1);
@@ -3692,48 +3692,48 @@ void cossimdaskr(told)
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1|| Blocks[C2F(curblk).kfun - 1].nmode==0){
 /*            outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-	    i=max(min((integer)
+	    i=max(min((int) 
                       outtbdptr[0],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);*/
             switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
             {
              case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbcptr,
+                                 i=max(min((int)  *outtbcptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbsptr,
+                                 i=max(min((int)  *outtbsptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtblptr,
+                                 i=max(min((int)  *outtblptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbucptr,
+                                 i=max(min((int)  *outtbucptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbusptr,
+                                 i=max(min((int)  *outtbusptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbulptr,
+                                 i=max(min((int)  *outtbulptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
@@ -3863,39 +3863,39 @@ void cossimdaskr(told)
 	  }
 	  if(phase==1&&Blocks[C2F(curblk).kfun - 1].nmode>0){
 /*            outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-            j=max(min((integer) outtbdptr[0],Blocks[C2F(curblk).kfun - 1].nevout),1);*/
+            j=max(min((int)  outtbdptr[0],Blocks[C2F(curblk).kfun - 1].nevout),1);*/
             switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
             {
              case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtbcptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtbcptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtbsptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtbsptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtblptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtblptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtbucptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtbucptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtbusptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtbusptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 j=max(min((integer) *outtbulptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                 j=max(min((int)  *outtbulptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              default  : /* Add a message here */
@@ -3978,7 +3978,7 @@ void cossimdaskr(told)
 	    }
 	    if(phase==1&&Blocks[C2F(curblk).kfun - 1].nmode>0){
               outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-              j=max(min((integer) outtbdptr[0],Blocks[C2F(curblk).kfun - 1].nevout),1);*/
+              j=max(min((int)  outtbdptr[0],Blocks[C2F(curblk).kfun - 1].nevout),1);*/
             for (jj=0;jj<Blocks[C2F(curblk).kfun - 1].nevout-1;++jj) {
              switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
              {
@@ -4022,35 +4022,35 @@ void cossimdaskr(told)
              switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
              {
               case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtbdptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtbcptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtbcptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtbsptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtbsptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtblptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtblptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtbucptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtbucptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtbusptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtbusptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                  j=max(min((integer) *outtbulptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
+                                  j=max(min((int)  *outtbulptr,Blocks[C2F(curblk).kfun - 1].nevout),1);
                                   break;
 
               default  : /* Add a message here */
@@ -4071,13 +4071,13 @@ void cossimdaskr(told)
 
 void
 callf(t,xtd,xt,residual,g,flag)
-     integer *flag;
+     int *flag;
      double *t,*xtd,*xt,*residual,*g;
 
 {
   voidf loc ;
   double* args[SZ_SIZE];
-  integer sz[SZ_SIZE];
+  int sz[SZ_SIZE];
   double intabl[TB_SIZE],outabl[TB_SIZE];
   int ii,kf,in,out,ki,ko,no,k,j;
   int ni = 0 ;
@@ -4474,7 +4474,7 @@ callf(t,xtd,xt,residual,g,flag)
 
 
 void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
-     integer *flag,kf,flagi,deb_blk;
+     int *flag,kf,flagi,deb_blk;
      double *t,*xtd,*xt,*residual,*g;
 {
   voidf loc ;
@@ -4531,11 +4531,11 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
 
 
 
-integer C2F(funnum)(fname)
+int C2F(funnum)(fname)
      char * fname;
 {
   int i=0,ln;
-  integer loc=-1;
+  int loc=-1;
   while ( tabsim[i].name != (char *) NULL) {
     if ( strcmp(fname,tabsim[i].name) == 0 ) return(i+1);
     i++;
@@ -4644,9 +4644,9 @@ int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_dat
 
 /* Subroutine */ void addevs(t, evtnb, ierr1)
      double t;
-     integer *evtnb, *ierr1;
+     int *evtnb, *ierr1;
 {
-  static integer i, j;
+  static int i, j;
 
   /* Function Body */
   *ierr1 = 0;
@@ -4705,7 +4705,7 @@ int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_dat
 
 /* Subroutine */ void putevs(t, evtnb, ierr1)
      double *t;
-     integer *evtnb, *ierr1;
+     int *evtnb, *ierr1;
 {
 
   /* Function Body */
@@ -4907,13 +4907,13 @@ void Jdoit(residual, xt, xtd, told, job)
      int *job;
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
-  static integer ierr1, i;
-  static integer ii, jj;
-  static integer cond;
+  static int flag__, keve, kiwa;
+  static int ierr1, i;
+  static int ii, jj;
+  static int cond;
 
   /* Function Body */
   kiwa = 0;
@@ -4992,47 +4992,47 @@ void Jdoit(residual, xt, xtd, told, job)
           /* eselect blk */
 	  } else if (funtyp[C2F(curblk).kfun] == -2) {
             /*outtbdptr=(double *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-            i=max(min((integer) outtbdptr[0],
+            i=max(min((int)  outtbdptr[0],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);*/
             switch(outtbtyp[-1+inplnk[inpptr[C2F(curblk).kfun]]])
             {
              case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbdptr,
+                                 i=max(min((int)  *outtbdptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbcptr,
+                                 i=max(min((int)  *outtbcptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbsptr,
+                                 i=max(min((int)  *outtbsptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtblptr,
+                                 i=max(min((int)  *outtblptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbucptr,
+                                 i=max(min((int)  *outtbucptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbusptr,
+                                 i=max(min((int)  *outtbusptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 
              case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[C2F(curblk).kfun]]];
-                                 i=max(min((integer) *outtbulptr,
+                                 i=max(min((int)  *outtbulptr,
                                            Blocks[C2F(curblk).kfun - 1].nevout),1);
                                  break;
 

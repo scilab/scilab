@@ -15,7 +15,7 @@
 /*        With no input argument returns a zero length character string   */
 /*        With a matrix for input argument returns a zero length character*/
 /*              strings matrix of the same size                           */
-/*        With two integer arguments returns a mxn zero length character  */
+/*        With two int arguments returns a mxn zero length character  */
 /*                strings matrix                                          */
 /*------------------------------------------------------------------------*/
 #include <string.h>
@@ -121,7 +121,7 @@ static int sci_emptystr_two_rhs(char *fname)
 	int Type_One = VarType(1);
 	int Type_Two = VarType(2);
 	
-	/*With two integer arguments returns a m*n zero length character strings matrix */
+	/*With two int arguments returns a m*n zero length character strings matrix */
 	if (Type_One == sci_matrix) 
 	{
 		int m1 = 0, n1 = 0, l1 = 0;

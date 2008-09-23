@@ -37,7 +37,7 @@ int CreateMatlabVariable(int stkPos, matvar_t *matVariable);
  * Create a Scilab Integer variable on stack from a Matlab variable
  * 
  * @param stkPos position on the stack
- * @param integerType Scilab integer type (See stack-c.h)
+ * @param integerType Scilab int type (See stack-c.h)
  * @param matVariable Matlab variable (See MATIO library)
  *
  * @return TRUE if the variable has been written without problem

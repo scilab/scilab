@@ -22,9 +22,9 @@ Type *DX;\
     }\
 }
 
-int C2F(genabs)(integer *typ, integer *n, int *dx, integer *incx)
+int C2F(genabs)(int *typ, int *n, int *dx, int *incx)
 {
-  static integer i, i1, i2, nincx;
+  static int i, i1, i2, nincx;
   if (*n <= 0 || *incx <= 0) return 0;
   nincx = *n * (*incx);
   i1 = nincx;
@@ -38,7 +38,7 @@ int C2F(genabs)(integer *typ, integer *n, int *dx, integer *incx)
     ABS(integer2);
     break;
   case 4:
-    ABS(integer);
+    ABS(int) ;
     break;
   case 11:
     ABS(unsigned char);

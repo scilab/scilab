@@ -14,7 +14,7 @@
 #include "getfiletype.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-void C2F(getfiletype)(integer *fd, integer *type, integer *ierr)
+void C2F(getfiletype)(int *fd, int *type, int *ierr)
 {
 	if (*fd<0 || *fd>=GetMaximumFileOpenedInScilab() ) 
 	{

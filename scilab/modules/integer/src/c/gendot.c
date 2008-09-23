@@ -33,10 +33,10 @@ Type C;\
     return C;\
 }
 
-int C2F(gendot)(integer *typ,integer *n, void *dx, integer *incx, void *dy, integer *incy)
+int C2F(gendot)(int *typ,int *n, void *dx, int *incx, void *dy, int *incy)
 {
-  integer i1;
-  static integer i, itemp, ix, iy;
+  int i1;
+  static int i, itemp, ix, iy;
 
   itemp = 0;
   i1 = *n;
@@ -49,7 +49,7 @@ int C2F(gendot)(integer *typ,integer *n, void *dx, integer *incx, void *dy, inte
     DOT(integer2);
     break;
   case 4:
-    DOT(integer);
+    DOT(int) ;
     break;
   case 11:
     DOT(unsigned char);

@@ -16,7 +16,7 @@
 * feval (ffeval)
 ***********************************/
 
-#define ARGS_ffeval integer*,double *,double *,double *,integer*,char *
+#define ARGS_ffeval int*,double *,double *,double *,int*,char *
 typedef void (*ffevalf)(ARGS_ffeval);
 
 /**************** ffeval ***************/
@@ -39,7 +39,7 @@ static ffevalf fevalfonc ;
 
 /** function call **/
 
-void C2F(ffeval)(integer *nn, double *x1, double *x2, double *xres, integer *itype, char *name)
+void C2F(ffeval)(int *nn, double *x1, double *x2, double *xres, int *itype, char *name)
 {
 	(*fevalfonc)(nn,x1,x2,xres,itype,name);
 }

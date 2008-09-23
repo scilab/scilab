@@ -252,7 +252,7 @@ void C2F(freeptr)(double *ip[])
  * int2cint  : fill *ip with contents of int array op
  *--------------------------------------------------------------*/
 
-void C2F(int2cint)(int *n,integer *ip[],integer *op)
+void C2F(int2cint)(int *n,int *ip[],int *op)
 {
   int i;
   for (i = 0; i < *n; i++)  (*ip)[i]=op[i];

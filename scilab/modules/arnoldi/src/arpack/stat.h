@@ -8,7 +8,7 @@ c
       real       t0, t1, t2, t3, t4, t5
       save       t0, t1, t2, t3, t4, t5
 c
-      integer    nopx, nbx, nrorth, nitref, nrstrt
+      int    nopx, nbx, nrorth, nitref, nrstrt
       real       tsaupd, tsaup2, tsaitr, tseigt, tsgets, tsapps, tsconv,
      &           tnaupd, tnaup2, tnaitr, tneigh, tngets, tnapps, tnconv,
      &           tcaupd, tcaup2, tcaitr, tceigh, tcgets, tcapps, tcconv,

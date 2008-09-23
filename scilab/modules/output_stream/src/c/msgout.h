@@ -22,6 +22,6 @@
  * @param str
  * @param str_len
  */
-int C2F(msgout)(integer *io,integer *lunit,char *str,long int str_len);
+int C2F(msgout)(int *io,int *lunit,char *str,long int str_len);
 
 #endif /* __MSGOUT_H__ */

@@ -72,7 +72,7 @@ int intinterp2d(char *fname,unsigned long fname_len)
   if ( Lhs == 1 )
     {
       /*   subroutine BiCubicInterp(x, y, C, nx, ny, x_eval, y_eval, z_eval, m, outmode)
-       *     integer nx, ny, m, outmode
+       *     int nx, ny, m, outmode
        *     double precision x(nx), y(ny), C(4,4,nx-1,ny-1), x_eval(m), y_eval(m), z_eval(m)
        */
       C2F(bicubicinterp)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp), stk(lyp), stk(lzp),

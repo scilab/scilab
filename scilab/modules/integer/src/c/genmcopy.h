@@ -28,5 +28,5 @@
  * @param n
  * @return 
  */
-int C2F(genmcopy)(integer *typ,int *a, integer *na, int *b, integer *nb, integer *m, integer *n);
+int C2F(genmcopy)(int *typ,int *a, int *na, int *b, int *nb, int *m, int *n);
 #endif /* __GENMCOPY_H__ */

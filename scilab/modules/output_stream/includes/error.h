@@ -23,7 +23,7 @@
 * @param[in]  n : error number 
 * @return 0
 */
-int C2F(error)(integer *n);
+int C2F(error)(int *n);
 
 
 /**

@@ -12,15 +12,15 @@
  */
 #include "AddFunctionInTable.h"
 
-extern int C2F(getcodc)(integer *nd1, integer *iflag1);
+extern int C2F(getcodc)(int *nd1, int *iflag1);
 
 /***********************************
 * Search Table for odedc
 ***********************************/
 
-#define ARGS_fydot2 integer*, integer*,integer*,double *,double*,double* 
-#define ARGS_fydot2f integer *, double *, double *, double *
-typedef integer * (*fydot2f)(ARGS_fydot2);
+#define ARGS_fydot2 int*, int*,int*,double *,double*,double* 
+#define ARGS_fydot2f int *, double *, double *, double *
+typedef int * (*fydot2f)(ARGS_fydot2);
 
 
 /**************** fydot2 ***************/
@@ -52,9 +52,9 @@ static fydot2f fydot2fonc ;
 
 /** function call **/
 
-void C2F(fydot2)(integer *n, double *t, double *y, double *ydot)
+void C2F(fydot2)(int *n, double *t, double *y, double *ydot)
 {
-	integer nd1,iflag1;
+	int nd1,iflag1;
 	C2F(getcodc)(&nd1,&iflag1);
 	(*fydot2fonc)(&iflag1,n,&nd1,t,y,ydot);
 }

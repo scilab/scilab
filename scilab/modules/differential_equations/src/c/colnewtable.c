@@ -16,10 +16,10 @@
 *   corr uses : fcoldg , fcolg, fcoldf,fcolf,fcolgu
 ***********************************/
 
-#define ARGS_fcoldg integer*,double *,double*
+#define ARGS_fcoldg int*,double *,double*
 typedef void (*fcoldgf)(ARGS_fcoldg);
 
-#define ARGS_fcolg integer*,double *,double*
+#define ARGS_fcolg int*,double *,double*
 typedef void (*fcolgf)(ARGS_fcolg);
 
 #define ARGS_fcoldf double *,double *,double*
@@ -84,7 +84,7 @@ static fcoldgf fcoldgfonc ;
 
 /** function call **/
 
-void C2F(fcoldg)(integer *i, double *z, double *dg)
+void C2F(fcoldg)(int *i, double *z, double *dg)
 {
 	(*fcoldgfonc)(i,z,dg);
 }
@@ -103,7 +103,7 @@ static fcolgf fcolgfonc ;
 
 /** function call **/
 
-void C2F(fcolg)(integer *i, double *z, double *g)
+void C2F(fcolg)(int *i, double *z, double *g)
 {
 	(*fcolgfonc)(i,z,g);
 }

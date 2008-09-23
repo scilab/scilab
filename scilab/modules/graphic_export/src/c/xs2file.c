@@ -41,7 +41,7 @@ int xs2file(char * fname, ExportFileType fileType )
   
   if ( (GetType(2) == sci_strings) && IsAScalar(1) )
   {
-    integer m1,n1,l1;
+    int m1,n1,l1;
     int figurenum=-1;
     GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
     figurenum = *istk(l1);
@@ -104,7 +104,7 @@ int xs2file(char * fname, ExportFileType fileType )
     }
     else
     {
-      Scierror(999,_("%s: Wrong type for input argument #%d: Positive integer expected.\n"),fname, 1);
+      Scierror(999,_("%s: Wrong type for input argument #%d: Positive int expected.\n"),fname, 1);
       return 0;
     }
 
@@ -113,7 +113,7 @@ int xs2file(char * fname, ExportFileType fileType )
   {
     if ( IsAScalar(1) )
     {
-		Scierror(999,_("%s: Wrong type for input argument #%d: Positive integer expected.\n"),fname, 1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Positive int expected.\n"),fname, 1);
         return 0;
     }
     if ( GetType(2) != sci_strings)

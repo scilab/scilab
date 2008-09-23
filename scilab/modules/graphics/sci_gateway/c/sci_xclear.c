@@ -27,8 +27,8 @@
 /*--------------------------------------------------------------------------*/
 int sci_xclear( char * fname, unsigned long fname_len )
 {
-  integer wid;
-  integer ix,m1,n1,l1/*,v=0*/;
+  int wid;
+  int ix,m1,n1,l1/*,v=0*/;
 
   CheckRhs(0,2); /* NG  */ /*CheckRhs(-1,1) */ 
   CheckLhs(0,1);
@@ -37,7 +37,7 @@ int sci_xclear( char * fname, unsigned long fname_len )
     GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     for (ix = 0 ; ix < m1*n1 ; ++ix) 
     {
-      wid = (integer) *stk(l1 +ix );
+      wid = (int)  *stk(l1 +ix );
       sciClearFigure(getFigureFromIndex(wid));
     }
   }

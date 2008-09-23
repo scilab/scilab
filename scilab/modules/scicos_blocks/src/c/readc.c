@@ -23,8 +23,8 @@
 #include "sciprint.h"
 #include "machine.h"
 
-extern  int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
-extern void mget2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr);
+extern  int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
+extern void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
 
 
 int worldsize(type)
@@ -64,8 +64,8 @@ readc(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
      ipar[10:9+lfil] = character codes for file name
      ipar[10+lfil:9+lfil++ny+ievt] = reading mask
      */
-integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar;
-integer insz[],*nin,outsz[],*nout;
+int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar;
+int insz[],*nin,outsz[],*nout;
 double x[],xd[],z[],tvec[],rpar[];
 double *inptr[],*outptr[],*t;
 

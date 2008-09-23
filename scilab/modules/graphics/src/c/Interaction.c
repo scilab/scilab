@@ -748,7 +748,7 @@ int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
 }
 
 
-BOOL sciIsAreaZoom(integer box[4],integer box1[4],integer section[4])
+BOOL sciIsAreaZoom(int box[4],int box1[4],int section[4])
 {
   if ( (box[0]<=box1[0]) && (box[2]>box1[0]) && (box[2]<=box1[2]) 
        && (box[1]<box1[1]) && (box[3]>box1[1]) && (box[3]<=box1[3]) )

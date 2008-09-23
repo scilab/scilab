@@ -15,10 +15,10 @@
 * Search Table for lsqrsolve 
 ***********************************/
 
-#define ARGS_lsqrsolvf integer*,integer*,double *,double*,integer*
+#define ARGS_lsqrsolvf int*,int*,double *,double*,int*
 typedef void (*lsqrsolvff)(ARGS_lsqrsolvf);
 
-#define ARGS_lsqrsolvj integer*,integer*,double*,double*,integer*,integer*
+#define ARGS_lsqrsolvj int*,int*,double*,double*,int*,int*
 typedef void (*lsqrsolvjf)(ARGS_lsqrsolvj);
 
 /**************** lsqrsolvf ***************/
@@ -53,7 +53,7 @@ static lsqrsolvff lsqrsolvffonc ;
 
 /** function call : lsqrsolvf  **/
 
-void C2F(lsqrsolvf)(integer *m, integer *n, double *x, double *fvec, integer *iflag)
+void C2F(lsqrsolvf)(int *m, int *n, double *x, double *fvec, int *iflag)
 {
 	(*lsqrsolvffonc)(m,n,x,fvec,iflag);
 }
@@ -71,7 +71,7 @@ static lsqrsolvjf lsqrsolvjfonc ;
 
 /** function call   **/
 
-void C2F(lsqrsolvj)(integer *m, integer *n, double *x, double *fjac, integer *ldfjac, integer *iflag)
+void C2F(lsqrsolvj)(int *m, int *n, double *x, double *fjac, int *ldfjac, int *iflag)
 {
 	(*lsqrsolvjfonc)(m,n,x,fjac,ldfjac,iflag);
 }

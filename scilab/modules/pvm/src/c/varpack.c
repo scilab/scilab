@@ -158,7 +158,7 @@ static void C2F(spak)(int *il, int *pack, int *n, int *nMax)
   pack[1] = *istk(*il +1) * *istk(*il + 1 +1) * (*istk(*il + 2 +1) + 1);
 } 
 
-/*     matrix of integer */
+/*     matrix of int */
 
 static void C2F(ipak)(int *il, int *pack, int *n, int *nMax)
 {
@@ -169,7 +169,7 @@ static void C2F(ipak)(int *il, int *pack, int *n, int *nMax)
   pack[0] = 4;
   pack[1] = 0;
 
-  /* il + 2 +1  : type of integer */
+  /* il + 2 +1  : type of int */
   /*     char */
   if (*istk(*il + 2 +1) == 1) {
     ix2 = *istk(*il +1) * *istk(*il + 1 +1);

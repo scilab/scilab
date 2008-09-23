@@ -23,7 +23,7 @@
 int sci_exportUI( char * fname, unsigned long fname_len )
 {
   // call, exportUI(figId) exportUI(fig)
-  // with figId an integer and fig a figure handle
+  // with figId an int and fig a figure handle
 
   // id of the figure to export
   int figureId = 0;

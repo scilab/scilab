@@ -15,7 +15,7 @@
 #include "getfileinfo.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap2, integer *type, integer *mode, char *filename, integer *lf, integer *ierr)
+void C2F(getfileinfo)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *lf, int *ierr)
 {
 	char *filenamefromfd = NULL;
 	if (*fd<0 || *fd>=GetMaximumFileOpenedInScilab() ) 

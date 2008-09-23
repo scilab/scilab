@@ -70,7 +70,7 @@ int swap = 0;
     }								\
 }
 /*--------------------------------------------------------------------------*/
-void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr)
+void C2F(mgetnc)(int *fd, void * res, int *n1, char *type, int *ierr)
 {  
   char c1,c2;
   int i,items=*n1,n=*n1;
@@ -133,7 +133,7 @@ void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr
 #define MGET_CHAR(NumType)    MGET_CHAR_NC(NumType);   CONVGD(NumType); 
 /*--------------------------------------------------------------------------*/
 /* reads data and store them in double  */
-void mget2(FILE *fa, integer swap2, double *res, integer n, char *type, integer *ierr)
+void mget2(FILE *fa, int swap2, double *res, int n, char *type, int *ierr)
 {  
 	char c1,c2;
 	int i,items=n;
@@ -173,7 +173,7 @@ void mget2(FILE *fa, integer swap2, double *res, integer n, char *type, integer 
 	return;
 }
 /*--------------------------------------------------------------------------*/
-void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
+void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
 {  
   int nc,swap2;
   FILE *fa;

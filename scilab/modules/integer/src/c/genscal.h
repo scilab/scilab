@@ -26,7 +26,7 @@
  * @param incx
  * @return 
  */
-int C2F(genscal)(integer *typ, integer *n, int *da, int *dx, integer *incx);
+int C2F(genscal)(int *typ, int *n, int *da, int *dx, int *incx);
 
 #endif /* __GENSCAL_H__ */
 

@@ -15,10 +15,10 @@
 * corr ( dgetx dgety )
 ***********************************/
 
-#define ARGS_dgetx double *,integer*,integer*
+#define ARGS_dgetx double *,int*,int*
 typedef void (*dgetxf)(ARGS_dgetx);
 
-#define ARGS_dgety double *,integer*,integer*
+#define ARGS_dgety double *,int*,int*
 typedef void (*dgetyf)(ARGS_dgety);
 
 
@@ -56,7 +56,7 @@ static dgetxf dgetxfonc ;
 
 /** function call **/
 
-void C2F(dgetx)(double *x, integer *incr, integer *istart)
+void C2F(dgetx)(double *x, int *incr, int *istart)
 {
 	(*dgetxfonc)(x, incr, istart);
 }
@@ -73,7 +73,7 @@ void C2F(setdgetx)(char *name, int *rep)
 
 static dgetyf dgetyfonc ;
 
-void C2F(dgety)(double *y, integer *incr, integer *istart)
+void C2F(dgety)(double *y, int *incr, int *istart)
 {
 	(*dgetyfonc)(y, incr, istart);
 }

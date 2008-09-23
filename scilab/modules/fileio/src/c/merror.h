@@ -21,7 +21,7 @@
  * @param fd    
  * @param res   
  */
-void C2F(merror) (integer *fd, double *res);
+void C2F(merror) (int *fd, double *res);
 
 #endif /* __MERROR_H__ */
 /*--------------------------------------------------------------------------*/

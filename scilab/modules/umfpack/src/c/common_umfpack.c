@@ -341,7 +341,7 @@ int test_size_for_mat(int pos, int m, int n, int it, int * pl_miss)
 
   if (lw + 1 >= Bot) return FALSE;
 
-  /* 4 is the number of integer "cases" required for a classic matrix
+  /* 4 is the number of int "cases" required for a classic matrix
    * (type , m, n, it)
    */
   il = iadr(*Lstk(lw )) + 4;

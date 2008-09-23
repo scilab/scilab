@@ -25,7 +25,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xdel(char *fname,unsigned long fname_len)
 { 
-  integer m1,n1,l1;
+  int m1,n1,l1;
   CheckRhs(-1,1);
   if (Rhs >= 1) {
     int i;

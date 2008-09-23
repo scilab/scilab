@@ -30,7 +30,7 @@
  * @param incy
  * @return 
  */
-int C2F(genmmax)(integer *typ, integer *job, integer *m, integer *n, int *dx, integer *incx, int *dy, int *dk, integer *incy);
+int C2F(genmmax)(int *typ, int *job, int *m, int *n, int *dx, int *incx, int *dy, int *dk, int *incy);
 
 #endif /* __GENMMAX_H__ */
 

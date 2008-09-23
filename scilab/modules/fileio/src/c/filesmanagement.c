@@ -67,7 +67,7 @@ void SetFileOpenedInScilab(int Id,FILE *fptr)
 	ScilabFileList[Id].ftformat=fptr;
 }
 /*--------------------------------------------------------------------------*/
-int GetSwapStatus(integer Id)
+int GetSwapStatus(int Id)
 {
 	int fd1;
 	fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : GetCurrentFileId() ;

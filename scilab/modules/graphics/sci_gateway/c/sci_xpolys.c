@@ -31,7 +31,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xpolys(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3 ;
+  int m1,n1,l1,m2,n2,l2,m3,n3,l3 ;
   int i;
   long hdl;
   sciPointObj * pFigure = NULL;

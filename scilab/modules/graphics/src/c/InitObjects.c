@@ -765,7 +765,7 @@ int InitAxesModel()
 int ResetFigureToDefaultValues(sciPointObj * pobj)
 {
 
-  integer x[2];
+  int x[2];
 
 
   if(sciGetEntityType(pobj)!=SCI_FIGURE) /* MUST BE used for figure entities only */

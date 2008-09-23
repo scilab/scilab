@@ -91,7 +91,7 @@ static double inprd(double *X, double *Z, int L, int *blck_szs)
  *            blck_szs[j] times blck_szs[j].  Every block is stored
  *            using packed storage of the lower triangle.
  * L:         number of blocks
- * blck_szs:  integer vector of length L
+ * blck_szs:  int vector of length L
  *            blck_szs[i], i=0,...,L-1 is the size of block i
  *
  */
@@ -202,7 +202,7 @@ int sp(
  *             F_1^{L-1}, ..., F_m^0, ..., F_m^{L-1}, in this order,
  *             using packed storage for the lower triangular part of
  *             F_i^j.
- * - blck_szs: an integer L-vector. blck_szs[j], j=0,....L-1 gives the
+ * - blck_szs: an int L-vector. blck_szs[j], j=0,....L-1 gives the
  *             size of block j, ie, F_i^j has size blck_szs[j]
  *             times blck_szs[j].
  * - c:        m-vector, primal objective.

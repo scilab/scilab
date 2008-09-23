@@ -22,7 +22,7 @@
  ***********************************/
 
 #define ARGS_schsel double *,double*
-typedef integer * (*schself)(ARGS_schsel);
+typedef int * (*schself)(ARGS_schsel);
 
 /** 
  * function call : schsel  
@@ -30,7 +30,7 @@ typedef integer * (*schself)(ARGS_schsel);
  * @param beta
  * @return
  */
-integer *C2F(schsel)(double *alpha, double *beta);
+int *C2F(schsel)(double *alpha, double *beta);
 
 /** 
  * fixes the function associated to name 
@@ -61,7 +61,7 @@ FTAB FTab_schsel[] ={
  * @param beta
  * @return <ReturnValue>
  */
-integer *C2F(gshsel)(double *alphar, double *alphai, double *beta);
+int *C2F(gshsel)(double *alphar, double *alphai, double *beta);
 
 /**
  *  fixes the function associated to name 
@@ -84,7 +84,7 @@ void C2F(setgshsel)(int *len, char *name, int *rep);
  * @param beta
  * @return <ReturnValue>
  */
-integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
+int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
 
 /**
  *  fixes the function associated to name 
@@ -105,7 +105,7 @@ void C2F(setgzhsel)(int *len, char *name, int *rep);
  * @param beta
  * @return <ReturnValue>
  */
-integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
+int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
 
 /**
  *  fixes the function associated to name 
@@ -126,7 +126,7 @@ void C2F(setgzhsel)(int *len, char *name, int *rep);
  * @param alpha 
  * @return <ReturnValue>
  */
-integer *C2F(zchsel)(doublecmplx *alpha);
+int *C2F(zchsel)(doublecmplx *alpha);
 
 /**
  *  fixes the function associated to name 
@@ -151,7 +151,7 @@ integer *C2F(zchsel)(doublecmplx *alpha);
  * @param p 
  * @return <ReturnValue>
  */
-integer *C2F(fschur)(integer *lsize, double *alpha, double *beta, double *s, double *p);
+int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p);
 
 /**
  *  fixes the function associated to name 
@@ -168,7 +168,7 @@ void C2F(setfschur)(char *name, int *rep);
  ***********************************/
 
 #define ARGS_zchsel doublecmplx *
-typedef integer * (*zchself)(ARGS_zchsel);
+typedef int * (*zchself)(ARGS_zchsel);
 
 
 /**************** zchsel ***************/

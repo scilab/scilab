@@ -33,10 +33,10 @@
 /*--------------------------------------------------------------------------*/
 int sci_xgetmouse( char *fname,unsigned long fname_len )
 {
-  integer  m1=1,n1=3,l1,l2;
+  int  m1=1,n1=3,l1,l2;
   int mouseButtonNumber = 0;
   int windowsID = 0;
-  integer sel[2],m,n;
+  int sel[2],m,n;
 
   int pixelCoords[2];
   double userCoords2D[2];

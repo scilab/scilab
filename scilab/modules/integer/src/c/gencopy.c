@@ -38,9 +38,9 @@ Type *DY;\
 
 
 
-int C2F(gencopy)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integer *incy)
+int C2F(gencopy)(int *typ,int *n, int *dx, int *incx, int *dy, int *incy)
 {
-  static integer i, ix, iy;
+  static int i, ix, iy;
   switch (*typ) {
   case 1:
     COPYINT(integer1);
@@ -49,7 +49,7 @@ int C2F(gencopy)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integ
     COPYINT(integer2);
     break;
   case 4:
-    COPYINT(integer);
+    COPYINT(int) ;
     break;
   case 11:
     COPYINT(unsigned char);

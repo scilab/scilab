@@ -34,7 +34,7 @@
  *  values of colors in the current colormap 
  *  the color associated to zmoy is used for filling a specific rectangle 
  */
-int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1) ;
+int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1) ;
 
 
 /**
@@ -43,7 +43,7 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
  *  the z value is interpreted as a color number inside the current colormap
  *  z[i,j] is used as the color of a square [i-0.5,i+0.5] [j-0.5,j+0.5]
  */
-int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1) ;
+int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1) ;
 
 
 /**
@@ -51,6 +51,6 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
  * but xrect here give the rectangle in which the 
  * grayplot is to be drawn using the current scale
  */
-int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect) ;
+int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect) ;
 
 #endif /* _GRAY_PLOT_H_ */

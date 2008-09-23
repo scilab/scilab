@@ -30,7 +30,7 @@
 int sci_addcb(char *fname,unsigned long fname_len)
 {  
   unsigned long hdl;
-  integer m1, n1, l1,m2, n2, l2;
+  int m1, n1, l1,m2, n2, l2;
   sciPointObj *pobj;
 
   CheckRhs(2,3);

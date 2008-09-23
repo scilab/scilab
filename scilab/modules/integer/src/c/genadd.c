@@ -33,9 +33,9 @@ Type *DY;\
     }\
 }
 
-int C2F(genadd1)(integer *typ, integer *n, int *dx, integer *incx, int *dy, integer *incy)
+int C2F(genadd1)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy)
 {
-  static integer i, ix, iy, nv;
+  static int i, ix, iy, nv;
   nv=*n;
   if (nv <= 0) return 0;
 
@@ -48,7 +48,7 @@ int C2F(genadd1)(integer *typ, integer *n, int *dx, integer *incx, int *dy, inte
     ADD(integer2);
     break;
   case 4:
-    ADD(integer);
+    ADD(int) ;
     break;
   case 11:
     ADD(unsigned char);

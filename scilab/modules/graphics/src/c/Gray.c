@@ -42,10 +42,10 @@ extern int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
-int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1)
+int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1)
 {
   double xx[2],yy[2];
-  integer nn1=1,nn2=2;
+  int nn1=1,nn2=2;
   sciPointObj  *psubwin = NULL;
   double drect[6];
   BOOL bounds_changed = FALSE;
@@ -161,10 +161,10 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 
 
 
-int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1)
+int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1)
 {
   double xx[2],yy[2];
-  static integer nn1=1,nn2=2;
+  static int nn1=1,nn2=2;
   sciPointObj * psubwin = NULL;
   sciPointObj * pGrayplot = NULL;
   double drect[6];
@@ -283,7 +283,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
  * grayplot is to be drawn using the current scale
  -------------------------------------------------------*/
 
-int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
+int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
 {
 
   BOOL isRedrawn ;

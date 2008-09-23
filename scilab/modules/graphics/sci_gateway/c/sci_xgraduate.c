@@ -24,8 +24,8 @@
 int sci_xgraduate(char *fname,unsigned long fname_len)
 {
   double xa,xi;
-  integer m1,n1,l1,m2,n2,l2,i;
-  integer kMinr,kMaxr,ar,lr,np1,np2,un=1;
+  int m1,n1,l1,m2,n2,l2,i;
+  int kMinr,kMaxr,ar,lr,np1,np2,un=1;
 
   CheckRhs(2,2);
   CheckLhs(2,7);

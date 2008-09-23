@@ -58,12 +58,12 @@ typedef enum {
  * Structure used for sparse matrix
  */
 typedef struct scisparse {
-	integer m;
-	integer n;
-	integer it;
-	integer nel; /**< number of non nul elements */
-	integer *mnel;/**< mnel[i]: number of non nul elements of row i, size m */
-	integer *icol; /**< icol[j]: column of the j-th non nul element, size nel */
+	int m;
+	int n;
+	int it;
+	int nel; /**< number of non nul elements */
+	int *mnel;/**< mnel[i]: number of non nul elements of row i, size m */
+	int *icol; /**< icol[j]: column of the j-th non nul element, size nel */
 	double *R; /**< R[j]: real value of the j-th non nul element, size nel */
 	double *I ; /**< I[j]: imag value of the j-th non nul element, size nel */
 } SciSparse ;
@@ -112,9 +112,9 @@ See if it is interesting including them here
  * sciintmat
  */
 typedef struct sciintmat {
-	integer m,n;
-	integer it ; /**< it : 1,2,4,11,12,14  */
-	integer l;   /**< if l != -1 then istk(l) == D */
+	int m,n;
+	int it ; /**< it : 1,2,4,11,12,14  */
+	int l;   /**< if l != -1 then istk(l) == D */
 	void *D;     /**< data : should be casted according to it */
 } SciIntMat ;
 
@@ -171,8 +171,8 @@ typedef struct { double r, i; } doublecomplex;
 #define zstk(x) (((doublecomplex *) C2F(stack).Stk) + x-1 )
 
 
-#define Lstk(x) (((integer *) C2F(vstk).lstk) + x-1 )
-#define Infstk(x) (((integer *) C2F(vstk).infstk) + x-1 )
+#define Lstk(x) (((int *) C2F(vstk).lstk) + x-1 )
+#define Infstk(x) (((int *) C2F(vstk).infstk) + x-1 )
 
 /* to retreive handles on the stack */
 #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
@@ -219,7 +219,7 @@ typedef struct { double r, i; } doublecomplex;
  * @param lx
  * @return <ReturnValue>
  */
-#define GetRhsVar(n,ct,mx,nx,lx) if (! C2F(getrhsvar)((c_local=n,&c_local),ct,mx,nx,(integer *) lx,1L))\
+#define GetRhsVar(n,ct,mx,nx,lx) if (! C2F(getrhsvar)((c_local=n,&c_local),ct,mx,nx,(int *) lx,1L))\
         { return 0;  }
 
 #define CreateVar(n,ct,mx,nx,lx) if(! C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(void *)lx, 1L))\
@@ -276,9 +276,9 @@ typedef struct { double r, i; } doublecomplex;
 
 
 
-#define  GetListRhsVar(n,m,ct,m1e1,n1e1,l1e1)  if(!C2F(getlistrhsvar)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,m1e1,n1e1,(integer *) l1e1,1L)) {return 0;}
+#define  GetListRhsVar(n,m,ct,m1e1,n1e1,l1e1)  if(!C2F(getlistrhsvar)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,m1e1,n1e1,(int *) l1e1,1L)) {return 0;}
 
-#define  GetListRhsCVar(n,m,ct,it,m1e1,n1e1,l1e1,l1e2)  if(!C2F(getlistrhscvar)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,m1e1,n1e1,(integer *) l1e1,(integer *) l1e2,1L)) {return 0;}
+#define  GetListRhsCVar(n,m,ct,it,m1e1,n1e1,l1e1,l1e2)  if(!C2F(getlistrhscvar)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,m1e1,n1e1,(int *) l1e1,(int *) l1e2,1L)) {return 0;}
 
 #ifdef _MSC_VER
 #define CheckRhs(minrhs,maxrhs)  \
@@ -408,10 +408,10 @@ int get_optionals(char *name,rhs_opts opts[]);
 extern int C2F(firstopt)(void);
 extern int C2F(findopt)(char *, rhs_opts *);
 
-extern int C2F(isopt)(integer *,char *,unsigned long);
+extern int C2F(isopt)(int *,char *,unsigned long);
 
-extern int C2F(checkrhs)(char *fname, integer *imin, integer *imax, unsigned long fname_len);
-extern int C2F(checklhs)(char *fname, integer *imin, integer *imax, unsigned long fname_len);
+extern int C2F(checkrhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
+extern int C2F(checklhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
 
 extern void C2F(freeptr)(double *ip[]);
 

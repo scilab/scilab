@@ -177,7 +177,7 @@ static int xlfont_n_rhs(char * fname)
 			char *fontname = cstk(l1);
 			if (fontIndex < 0)
 			{
-				Scierror(999,_("%s: Wrong value for input argument #%d: Non-negative integer expected.\n"),fname,2);
+				Scierror(999,_("%s: Wrong value for input argument #%d: Non-negative int expected.\n"),fname,2);
 				return 0;
 			}
 
@@ -219,7 +219,7 @@ static int xlfont_n_rhs(char * fname)
 
 		if ( VarType(2) == sci_matrix )
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Non-negative integer expected.\n"),fname,2); 
+			Scierror(999,_("%s: Wrong type for input argument #%d: Non-negative int expected.\n"),fname,2); 
 			return 0;
 		}
 	}

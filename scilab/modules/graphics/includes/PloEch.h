@@ -31,12 +31,12 @@ typedef struct wcscalelist
   /* XXXX : c'est redondant avec aaint et quelquefois avec frect ? */
   double Wxofset1,Wyofset1,Wscx1,Wscy1; /* ofsets and scale factor for pixel<->double transf.*/
   char logflag[2];                      /* are we using logscale */
-  integer WIRect1[4];                   /* frame bounds in pixel */
-  integer Waaint1[4];                   /* tics and subtics numbers: [xint,xsubint,yint,ysubint] */
+  int WIRect1[4];                   /* frame bounds in pixel */
+  int Waaint1[4];                   /* tics and subtics numbers: [xint,xsubint,yint,ysubint] */
   double m[3][3];                       /* 3d geometric transformation */
   double bbox1[6];                      /* 3d bounds */
   double alpha,theta;                   /* polar coordinates of visualization point */
-  integer metric3d;                     /* added by es - metric mode for 3d -> 2d */
+  int metric3d;                     /* added by es - metric mode for 3d -> 2d */
   struct wcscalelist *next;             /* points to next one */
   struct wcscalelist *prev;             /* points to previous one */
 }  WCScaleList ;
@@ -45,7 +45,7 @@ typedef struct scalelist
 {
   WCScaleList *scales;                  /* list of Scales for window Win */
                                         /* one scale for each subwin */
-  integer Win;                          /* window number */
+  int Win;                          /* window number */
   struct scalelist *next;
 } ScaleList ;
 
@@ -68,14 +68,14 @@ int C2F(Nsetscale2d)( double    WRect[4],
                       double    ARect[4],
                       double    FRect[4],
                       char    * logscale,
-                      integer   l1       ) ;
+                      int   l1       ) ;
 
 int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[4] ) ;
 
 void set_scale( char    flag[6]        ,
                 double  subwin[4]      ,
                 double  frame_values[4],
-                integer aaint[4]       ,
+                int aaint[4]       ,
                 char    logflag[3]     ,
                 double  axis_values[4]  ) ;
 
@@ -120,7 +120,7 @@ extern int YLogScale(double y);
 /* #define YPi2R(y)  Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1) */
 
 
-/* change of frame with integer values */ 
+/* change of frame with int values */ 
 extern double XPi2R(int x);
 extern double YPi2R(int y);
 
@@ -197,37 +197,37 @@ void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
                             int           edgesX[4]    ,
                             int           edgesY[4]     ) ;
 
-void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
-void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
-void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
+void Plo2d2RealToPixel(int *n1, int *n2, double *x, double *y, int *xm, int *ym, char *xf) ;
+void Plo2d3RealToPixel(int *n1, int *n2, double *x, double *y, int *xm, int *ym, char *xf) ;
+void Plo2d4RealToPixel(int *n1, int *n2, double *x, double *y, int *xm, int *ym, char *xf) ;
 
 int C2F(echelle2d)( double    x[]  ,
                     double    y[]  ,
-                    integer   x1[] ,
-                    integer   yy1[],
-                    integer * n1   ,
-                    integer * n2   ,
+                    int   x1[] ,
+                    int   yy1[],
+                    int * n1   ,
+                    int * n2   ,
                     char      dir[],
-                    integer   lstr ) ;
+                    int   lstr ) ;
 
 void C2F(echelle2dl)( double    x[]  ,
                       double    y[]  ,
-                      integer   x1[] ,
-                      integer   yy1[],
-                      integer * n1   ,
-                      integer * n2   ,
+                      int   x1[] ,
+                      int   yy1[],
+                      int * n1   ,
+                      int * n2   ,
                       char    * dir   ) ;
 
-void C2F(rect2d)( double x[], integer x1[], integer * n, char * dir ) ;
-void C2F(ellipse2d)( double x[], integer x1[], integer * n, char * dir) ;
+void C2F(rect2d)( double x[], int x1[], int * n, char * dir ) ;
+void C2F(ellipse2d)( double x[], int x1[], int * n, char * dir) ;
 void C2F(axis2d)( double  * alpha     ,
                   double  * initpoint ,
                   double  * size      ,
-                  integer * initpoint1,
+                  int * initpoint1,
                   double  * size1       ) ;
 
-int get_window_scale( integer i, double * subwin ) ;
-void del_window_scale( integer i ) ;
+int get_window_scale( int i, double * subwin ) ;
+void del_window_scale( int i ) ;
 
 void Cscale2default( void ) ;
 

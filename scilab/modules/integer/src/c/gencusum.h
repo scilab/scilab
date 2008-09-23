@@ -25,6 +25,6 @@
  * @param iw
  * @return 
  */
-int C2F(gencusum)(integer *typ,integer *n, integer *w, integer *iw);
+int C2F(gencusum)(int *typ,int *n, int *w, int *iw);
 
 #endif /* __GENCUSUM_H__ */

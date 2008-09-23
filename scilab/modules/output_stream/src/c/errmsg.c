@@ -48,7 +48,7 @@ typedef enum {
 	CVNAME_READING_TYPE_6 = 5,
 } CVNAME_TYPE;
 /*--------------------------------------------------------------------------*/
-int C2F(errmsg)(integer *n,integer *errtyp)
+int C2F(errmsg)(int *n,int *errtyp)
 {
 	resetLastError();
 	
@@ -1160,7 +1160,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("%s: Wrong type for argument %d: Working integer matrix expected.\n"),NameVarOnStack,Err);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Working int matrix expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1547,7 +1547,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 
 		default:
 		{
-			integer bufl;
+			int bufl;
 			char *buffer = NULL;
 			/* message d'erreur soft */
 			/* Bug 1422 corrected - Francois VOGEL June 2006 */

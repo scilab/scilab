@@ -12,7 +12,7 @@
 
 #include "genmprod.h"
 
-static integer c__1 = 1;
+static int c__1 = 1;
 #define MPROD(Type) {\
 Type *A;\
 Type *V;\
@@ -37,10 +37,10 @@ Type *V;\
     }\
 }
 
-int C2F(genmprod)(integer *typ,integer *job, integer *a, integer *na, integer *m, integer *n, integer *v, integer *nv)
+int C2F(genmprod)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv)
 {
-  extern integer  C2F(genprod)();
-  static integer  i, j, t, iv;
+  extern int  C2F(genprod)();
+  static int  i, j, t, iv;
 
   switch (*typ) {
   case 1:
@@ -50,7 +50,7 @@ int C2F(genmprod)(integer *typ,integer *job, integer *a, integer *na, integer *m
     MPROD(integer2);
     break;
   case 4:
-    MPROD(integer);
+    MPROD(int) ;
     break;
   case 11:
     MPROD(unsigned char);

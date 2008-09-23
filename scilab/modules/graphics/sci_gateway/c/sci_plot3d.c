@@ -38,14 +38,14 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 {
   static double  ebox_def [6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
-  static integer iflag_def[3]={2,2,4};
-  integer *iflag = iflag_def;
+  static int iflag_def[3]={2,2,4};
+  int *iflag = iflag_def;
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
-  integer m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
-  integer m3n = 0, n3n = 0, l3n = 0, m3l = 0, n3l = 0, l3l = 0;
+  int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
+  int m3n = 0, n3n = 0, l3n = 0, m3l = 0, n3l = 0, l3l = 0;
 
-  integer izcol,  isfac;
+  int izcol,  isfac;
   double *zcol=NULL;
 
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},

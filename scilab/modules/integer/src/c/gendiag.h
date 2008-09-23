@@ -26,6 +26,6 @@
  * @param dy
  * @return 
  */
-int C2F(gendiag)(integer *typ,integer *n,integer *k,int *dx,int *dy);
+int C2F(gendiag)(int *typ,int *n,int *k,int *dx,int *dy);
 
 #endif /* __GENDIAG_H__ */

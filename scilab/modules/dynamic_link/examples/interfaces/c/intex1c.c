@@ -39,7 +39,7 @@ int intex1c(char *fname)
    */
   GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1);
 
-  /*  a=variable #2 is an integer ('i') matrix, getrhsvar returns its
+  /*  a=variable #2 is an int ('i') matrix, getrhsvar returns its
    *   dimensions: m2 = # of rows , n2 = # of columns
    * values in matrix a are istk(l2), istk(l2+1), ... (columnwise) 
    */

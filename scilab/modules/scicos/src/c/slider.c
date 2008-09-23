@@ -28,18 +28,18 @@ extern int C2F(getgeom)(double *);
  * erase a rectangle 
  *----------------------------------------------------*/ 
 /*
-extern int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
-			 integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
-			 integer lx0, integer lx1) ;
+extern int C2F(dr1)( char x0[],char x1[],int *x2,int *x3,int *x4,int *x5,int *x6,
+			 int *x7,double *dx1,double *dx2,double *dx3,double *dx4,
+			 int lx0, int lx1) ;
 
-extern int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
-			integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
-			integer lx0, integer lx1) ;
+extern int C2F(dr)(char x0[],char x1[],int *x2,int *x3,int *x4,int *x5,int *x6,
+			int *x7,double *dx1,double *dx2,double *dx3,double *dx4,
+			int lx0, int lx1) ;
 */
 static void block_draw_rect_1(double r[],double percent)
 {
-  integer verbose=0;
-  static integer in=6;
+  int verbose=0;
+  static int in=6;
   double w = r[2]*percent;
   double x = r[0];
   /* disabled */
@@ -54,9 +54,9 @@ static void block_draw_rect_1(double r[],double percent)
 
 static void block_draw_rect_2(double r[],double percent)
 {
-  integer verbose=0;
-  /* integer flag =0;  double ang=0.0;  char foo[24]; */
-  static integer in=6;
+  int verbose=0;
+  /* int flag =0;  double ang=0.0;  char foo[24]; */
+  static int in=6;
   double x = r[0]+ r[2]*percent-2;
   double w = 4;
   /* disabled */
@@ -76,9 +76,9 @@ static void block_draw_rect_2(double r[],double percent)
 
 static void block_draw_rect_3(double r[],double percent)
 {
-  integer verbose=0;
-  integer flag =0;  double ang=0.0;
-  static integer in=6;
+  int verbose=0;
+  int flag =0;  double ang=0.0;
+  static int in=6;
   double x = r[0] + (1.0/10)*r[2];
   double y = r[1] - r[3] + 2 ;
   /* disabled */
@@ -159,11 +159,11 @@ static int set_slider_color( int color)
  *  z = [val,window,x,y,w,h] 
  *----------------------------------------------------*/
 
-void slider(integer *flag, integer *nevprt, double *t, double *xd,
-	    double *x, integer *nx, double *z, integer *nz,
-	    double *tvec, integer *ntvec, double *rpar,
-	    integer *nrpar, integer *ipar, integer *nipar,
-	    double * u, integer *nu, double * y, integer *ny) 
+void slider(int *flag, int *nevprt, double *t, double *xd,
+	    double *x, int *nx, double *z, int *nz,
+	    double *tvec, int *ntvec, double *rpar,
+	    int *nrpar, int *ipar, int *nipar,
+	    double * u, int *nu, double * y, int *ny) 
 {
   
   int wid, idb = 0 ; /* XXX remettre idb avec son common */

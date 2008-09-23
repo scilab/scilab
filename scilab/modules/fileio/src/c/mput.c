@@ -69,7 +69,7 @@ extern int swap; /* defined in mget.c */
     }
 /*--------------------------------------------------------------------------*/
 /* write data without convertion (res is supposed to have type type) */
-void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ierr)
+void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
 {
   char c1,c2;
   int i,swap2,n;
@@ -157,7 +157,7 @@ void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ier
       *ierr=1;return;							\
     }
 /*--------------------------------------------------------------------------*/
-void mput2 (FILE *fa, integer swap2, double *res, integer n, char *type, integer *ierr)
+void mput2 (FILE *fa, int swap2, double *res, int n, char *type, int *ierr)
 {
   char c1,c2;
   int i;
@@ -189,7 +189,7 @@ void mput2 (FILE *fa, integer swap2, double *res, integer n, char *type, integer
     }
 }
 /*--------------------------------------------------------------------------*/
-void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
+void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
 {
   int nc = 0,swap2 = 0;
   FILE *fa = NULL;

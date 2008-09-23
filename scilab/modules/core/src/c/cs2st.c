@@ -12,7 +12,7 @@
 
 #include "cs2st.h"
 
-int C2F(cs2st)(integer *i,integer *ires)
+int C2F(cs2st)(int *i,int *ires)
 {
   unsigned int ui;
   ui = (unsigned int) *i;

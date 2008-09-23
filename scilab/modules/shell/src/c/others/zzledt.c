@@ -886,7 +886,7 @@ static int translate(int ichar)
       if(ichar == *pstr[i]) {
 	/* if next character, this sequence, null */
 	if(!*(++pstr[i]))
-	  /* return sequence mapped to integer */
+	  /* return sequence mapped to int */
 	  return(key_map[i]);
 	else
 	  /* flag not done with this sequence yet */

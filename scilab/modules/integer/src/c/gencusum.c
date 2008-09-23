@@ -17,15 +17,15 @@ Type *W;\
     W=(Type *)w;\
     t = 0; kk = 0;\
     for (k = 0; k < *n; ++k) {\
-        t += (integer)W[kk];\
+        t += (int) W[kk];\
 	W[kk] =(Type)t;kk += (*iw);\
     }\
 }
 
 
-int C2F(gencusum)(integer *typ,integer *n, integer *w, integer *iw)
+int C2F(gencusum)(int *typ,int *n, int *w, int *iw)
 {
-  integer k, kk, t;
+  int k, kk, t;
 
   switch (*typ) {
   case 1:
@@ -35,7 +35,7 @@ int C2F(gencusum)(integer *typ,integer *n, integer *w, integer *iw)
     CUSUM(integer2);
     break;
   case 4:
-    CUSUM(integer);
+    CUSUM(int) ;
     break;
   case 11:
     CUSUM(unsigned char);

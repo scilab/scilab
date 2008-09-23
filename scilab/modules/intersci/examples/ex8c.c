@@ -14,7 +14,7 @@
 #include <stdlib.h>
 
 /*************************************************************
- * Example of an integer array created by C code
+ * Example of an int array created by C code
  * converted to output Scilab variable by cintf
  *************************************************************/
 

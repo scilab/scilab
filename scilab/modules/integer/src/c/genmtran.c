@@ -32,10 +32,10 @@ Type *B;\
 }
 
 
-int C2F(genmtran)(integer *typ,int *a, integer *na, int *b, integer *nb, integer *m, integer *n)
+int C2F(genmtran)(int *typ,int *a, int *na, int *b, int *nb, int *m, int *n)
 {
-  integer i1, i2;
-  static integer i, j, ia, ib;
+  int i1, i2;
+  static int i, j, ia, ib;
   switch (*typ) {
   case 1:
     MTRAN(integer1);
@@ -44,7 +44,7 @@ int C2F(genmtran)(integer *typ,int *a, integer *na, int *b, integer *nb, integer
     MTRAN(integer2);
     break;
   case 4:
-    MTRAN(integer);
+    MTRAN(int) ;
     break;
   case 11:
     MTRAN(unsigned char);

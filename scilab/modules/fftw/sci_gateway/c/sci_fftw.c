@@ -208,7 +208,7 @@ int sci_fftw(char *fname,unsigned long fname_len)
     if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) 
 	{ 
 		/* int */
-		Scierror(53,_("%s: Wrong type for input argument #%d: integer matrix expected.\n"),fname,3);
+		Scierror(53,_("%s: Wrong type for input argument #%d: int matrix expected.\n"),fname,3);
 		return(0);
     }
 

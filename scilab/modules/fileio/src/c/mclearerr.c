@@ -15,7 +15,7 @@
 #include "mclearerr.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-void C2F(mclearerr) (integer *fd)
+void C2F(mclearerr) (int *fd)
 {       
 	FILE *fa= GetFileOpenedInScilab(*fd);
 	clearerr(fa);

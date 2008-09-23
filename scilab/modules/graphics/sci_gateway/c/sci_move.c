@@ -31,7 +31,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_move( char * fname, unsigned long fname_len )
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3;
+  int m1,n1,l1,m2,n2,l2,m3,n3,l3;
   int nbDim = 2;
   BOOL alone = FALSE;
   sciPointObj * pobj = NULL;

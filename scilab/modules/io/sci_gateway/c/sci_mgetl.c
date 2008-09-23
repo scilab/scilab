@@ -22,14 +22,14 @@ int C2F(sci_mgetl)(char *fname,unsigned long fname_len)
 	{
 		if (VarType(2) != sci_matrix)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: An integer scalar expected.\n"),fname,2); 
+			Scierror(999,_("%s: Wrong type for input argument #%d: An int scalar expected.\n"),fname,2); 
 			return 0;
 		}
 		else
 		{
 			if ( !IsAScalar(2) )
 			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: An integer scalar expected.\n"),fname,2); 
+				Scierror(999,_("%s: Wrong type for input argument #%d: An int scalar expected.\n"),fname,2); 
 				return 0;
 			}
 		}

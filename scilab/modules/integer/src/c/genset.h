@@ -26,6 +26,6 @@
  * @param incy
  * @return 
  */
-int C2F(genset)(integer *typ, integer *n, int *dx, int *dy, integer *incy);
+int C2F(genset)(int *typ, int *n, int *dx, int *dy, int *incy);
  
 #endif /* __GENSET_H__ */

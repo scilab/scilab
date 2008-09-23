@@ -12,7 +12,7 @@
 
 #include "stack-c.h"
 
-int C2F(dscal)(integer *n, double *da,double *dx,integer *incx);
+int C2F(dscal)(int *n, double *da,double *dx,int *incx);
 
 /**************************************************
  * Calling the scilab function "mypoly" inside the interface 

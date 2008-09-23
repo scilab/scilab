@@ -28,7 +28,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_unglue(char *fname,unsigned long fname_len)
 { 
-  integer m1,n1,l1; 
+  int m1,n1,l1; 
   unsigned long hdl;
   int numrow, numcol, outindex, i;
   sciPointObj *pobj;  

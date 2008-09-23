@@ -29,6 +29,6 @@
  * @param incy
  * @return 
  */
-int C2F(genbitops)(integer *typ,integer *op,integer * n,int * dx,integer * incx,int * dy,integer * incy);
+int C2F(genbitops)(int *typ,int *op,int * n,int * dx,int * incx,int * dy,int * incy);
 
 #endif /* __GENBITOPS_H__ */

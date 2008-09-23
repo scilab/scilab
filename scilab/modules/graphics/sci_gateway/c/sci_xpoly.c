@@ -33,7 +33,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
 {
-  integer m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2;
+  int m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2;
 
   long hdl;/* NG */
   int mark;/* NG */
@@ -65,7 +65,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     mark=1; /* NG */
   }
 
-  if (Rhs >= 4) { GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);} 
+  if (Rhs >= 4) { GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (int)  *stk(l4);} 
   /* NG beg */
 
   

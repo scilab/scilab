@@ -15,7 +15,7 @@
 * Search Table for int3d
 ***********************************/
 
-#define ARGS_fint3d double *,integer*,double *
+#define ARGS_fint3d double *,int*,double *
 typedef void (*fint3df)(ARGS_fint3d);
 
 /**************** fint3d ***************/
@@ -41,7 +41,7 @@ static fint3df fint3dfonc ;
 
 /** function call : WARNING fintg returns a double  **/
 
-void C2F(fint3d)(double *xyz, integer *numfun, double *v)
+void C2F(fint3d)(double *xyz, int *numfun, double *v)
 {
 	(*fint3dfonc)(xyz,numfun,v);
 }

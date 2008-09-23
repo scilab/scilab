@@ -6,17 +6,17 @@
 #include <stdio.h>
 #include <string.h>
 
-void Fibomain1(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer *nipar);
+void Fibomain1(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int *nipar);
 
-void Fibomain2(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer *nipar) ;
+void Fibomain2(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int *nipar) ;
 
-void Fibo_init(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer *nipar) ;
+void Fibo_init(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int *nipar) ;
 
-void Fibo_end(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer * nipar) ;
+void Fibo_end(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int * nipar) ;
 
 void Fibo_sim(double tf) ;
 
@@ -24,9 +24,9 @@ void Fibo_events(int *nevprt, double *t);
 
 void set_nevprt(int nevprt);
 static double RPAR1[1];
-static integer NRPAR1  = 0;
-static integer IPAR1[ ]= {1,1};
-static integer NIPAR1  = 2;
+static int NRPAR1  = 0;
+static int IPAR1[ ]= {1,1};
+static int NIPAR1  = 2;
 /*Main program */
 int main()
 {
@@ -101,8 +101,8 @@ Fibo_actuator(flag,nport,nevprt,t,u,nu)
       * u     : the vector inputs value
       * nu    : the input  vector size
       */
-     integer *flag,*nevprt,*nport;
-     integer *nu;
+     int *flag,*nevprt,*nport;
+     int *nu;
 
      double  *t, u[];
 {

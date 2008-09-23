@@ -81,7 +81,7 @@ extern void sciDeleteWindow( int winNum ) ;
 
 extern int updateMerge( sciPointObj * pSubwin ) ;
 
-void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void CleanPlots(char *unused, int *winnumber, int *v3, int *v4, int *v5, int *v6, int *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
 
 int sciStandardDestroyOperations( sciPointObj * pThis ) ;
 

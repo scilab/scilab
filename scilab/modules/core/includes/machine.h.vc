@@ -70,10 +70,6 @@
        size of C int = 4 bytes
 */
 
-#ifndef integer
-typedef int integer;
-#endif
-
 #define SHARED_LIB_EXT ".dll"
 
 /* PATH_SEPARATOR : Under Windows by default is ; */

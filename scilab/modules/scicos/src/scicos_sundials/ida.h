@@ -838,7 +838,7 @@ extern "C" {
    * and statistics related to the main integrator.                 
    * ---------------------------------------------------------------- 
    *                                                                
-   * IDAGetWorkSpace returns the IDA real and integer workspace sizes      
+   * IDAGetWorkSpace returns the IDA real and int workspace sizes      
    * IDAGetNumSteps returns the cumulative number of internal       
    *       steps taken by the solver                                
    * IDAGetNumRhsEvals returns the number of calls to the user's    

@@ -626,7 +626,7 @@ int DestroyCompound (sciPointObj * pthis)
   return sciStandardDestroyOperations(pthis) ;
 }
 
-void DeleteObjs(integer win_num)
+void DeleteObjs(int win_num)
 {
   sciPointObj *figure;
    
@@ -763,7 +763,7 @@ void sciDeleteWindow( int winNum )
 void AllGraphWinDelete( void )
 {
 
-  integer iflag=0 ;
+  int iflag=0 ;
   int num = sciGetNbFigure() ;
   int *ArrayWGraph = NULL ;
 
@@ -786,7 +786,7 @@ void AllGraphWinDelete( void )
   }
 }
 /*--------------------------------------------------------------------------------*/
-void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
+void CleanPlots(char *unused, int *winnumber, int *v3, int *v4, int *v5, int *v6, int *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 {
   
   /* we remove scales in window number i */

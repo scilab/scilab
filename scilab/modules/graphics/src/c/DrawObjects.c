@@ -63,7 +63,7 @@ extern HDC TryToGetDC(HWND hWnd);
 
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 
-extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
+extern int scilab_shade(int *polyx, int *polyy, int *fill, int polysize, int flag);
 
 unsigned short defcolors[] = {
   0,   0,   0, /* Black: DEFAULTBLACK */
@@ -157,7 +157,7 @@ void sciXclear()
  * @author Djalel Abdemouche 10/2003
  * Should be in Action.c file
  */
-void Nextind(integer ind1, integer *ind2, integer *ind3)
+void Nextind(int ind1, int *ind2, int *ind3)
 {
   *ind2 = ind1+1;
   *ind3 = ind1-1;
@@ -622,7 +622,7 @@ BOOL GetIsAxes2D(sciPointObj *psubwin)
     return TRUE;
 }
 
-int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integer *xind, integer *InsideU, integer *InsideD)
+int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, int *xind, int *InsideU, int *InsideD)
 {
   double xbox[8], ybox[8], zbox[8];
 
@@ -691,7 +691,7 @@ void DrawAxes(sciPointObj * pobj)
 }
 
 
-int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, integer whiteid, double zmin, double zmax, double *x, double *y, double *z, integer i, integer j, integer jj1, integer *p, integer dc, integer fg, sciPointObj * psurface)
+int Gen3DPoints(int type,int *polyx, int *polyy, int *fill, int whiteid, double zmin, double zmax, double *x, double *y, double *z, int i, int j, int jj1, int *p, int dc, int fg, sciPointObj * psurface)
 {
   sciPointObj *pobj;
   int facteur = 1;
@@ -870,11 +870,11 @@ void sciUpdateScaleAngles( double theta, double alpha )
 
 /*----------------------------------------------------------------------------*/
 /* compute the drawing order of the axes box vertices int xind */
-void sciAxesVerticesIndices( integer insideU[4],
-                             integer insideD[4],
+void sciAxesVerticesIndices( int insideU[4],
+                             int insideD[4],
                              double  xbox[8]   ,
                              double  ybox[8]   ,
-                             integer xind[8]    )
+                             int xind[8]    )
 {
   int    i      ;
   int    ind    ;
@@ -935,7 +935,7 @@ void sciAxesVerticesIndices( integer insideU[4],
     insideU[3] = insideU[0] + 4 ;
   }
   xind[2]=ind2;
-  /* le pointeger en bas qui correspond */	  
+  /* le point en bas qui correspond */	  
   if ( ind2 > 3 )
   {
     xind[3] = ind2 - 4 ;

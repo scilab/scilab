@@ -30,7 +30,7 @@ extern struct soundstream ftfi; /* Defined in mgeti.c */
 
 
 
-extern int SWAP(char type[],integer *fd); /* Defined in mgeti.c */
+extern int SWAP(char type[],int *fd); /* Defined in mgeti.c */
 
 #define MPUTI(Type,Fswap) {\
 Type *RES;\
@@ -43,7 +43,7 @@ for ( i=0; i< *n; i++)  { \
 }
 
 
-void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
+void C2F(mputi) (int *fd,int *res,int *n,char type[],int *ierr)
 {  
   char c1,c2;
   int i,nc,swap;

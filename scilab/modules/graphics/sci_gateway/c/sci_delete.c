@@ -38,7 +38,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1,m2,n2,l2,num, lw;
+  int m1,n1,l1,m2,n2,l2,num, lw;
   unsigned long hdl;
   sciPointObj * pobj;
   sciPointObj * parentFigure;

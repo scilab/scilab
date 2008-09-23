@@ -17,11 +17,11 @@
 #ifndef _CHAMP_H_
 #define _CHAMP_H_
 
-int C2F(champ) (double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr) ; 
-int C2F(champ1) (double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr) ; 
+int C2F(champ) (double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr) ; 
+int C2F(champ1) (double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr) ; 
 
-void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, 
-            integer *n2, char *strflag, double *brect, double *arfact, integer lstr) ;
+void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1, 
+            int *n2, char *strflag, double *brect, double *arfact, int lstr) ;
 
 void getChampDataBounds( double   xCoords[]  ,
                         double   yCoords[]  ,

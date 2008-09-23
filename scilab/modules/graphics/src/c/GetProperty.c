@@ -3232,9 +3232,9 @@ sciPointObj * sciGetSurface( sciPointObj * pObj )
   return NULL;
 }
 
-sciPointObj *CheckClickedSubwin(integer x, integer y)
+sciPointObj *CheckClickedSubwin(int x, int y)
 { 
-  integer box[4]; 
+  int box[4]; 
   sciSons *psonstmp;
   sciPointObj *psubwin; 
  

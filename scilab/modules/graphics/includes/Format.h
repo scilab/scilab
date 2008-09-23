@@ -36,7 +36,7 @@
  * @param ar    
  * @return <ReturnValue>
  */
-int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, integer *np1, integer *np2, integer *kminr, integer *kmaxr, integer *ar) ;
+int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar) ;
 
 /**
  * @TODO add comment
@@ -82,7 +82,7 @@ int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads )
  * same as ChoixFormatE when numbers are given through an 
  * array xx[0:nx-1];
  */
-void ChoixFormatE1(char *fmt, double *xx, integer nx) ;
+void ChoixFormatE1(char *fmt, double *xx, int nx) ;
 
 /**
  * ChoixFormatE returns a format ("%.*f" or "%.*e")

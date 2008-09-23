@@ -50,7 +50,7 @@ int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len);
 int C2F(sci_setenv)(char *fname,unsigned long fname_len);
 int C2F(intexecstr)(char *fname,unsigned long fname_len);
 int C2F(intgetenv)(char *fname,unsigned long fname_len);
-int C2F(intload) (integer *id1, integer *k1); /* FORTRAN subroutine */
+int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */
 int C2F(intexec) (char *fname,unsigned long fname_len);
 int C2F(intgetf)(void);
 int C2F(intsave)(void);

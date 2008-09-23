@@ -100,7 +100,7 @@ vraiptrst stkptr(long int ptr_lstk)
 
 int *Header(const mxArray *ptr)
 {
-  /* Retuns an integer pointer to the header of a mxArray */
+  /* Retuns an int pointer to the header of a mxArray */
   int *header = (int *) stkptr((long int)ptr);
   if (header[0] < 0) header = (int *) stk(header[1]);
   return header;
@@ -388,7 +388,7 @@ bool mxIsNaN(double x)
 
 int *RawHeader(const mxArray *ptr)
 {
-  /* Utility function : return an integer pointer to   *
+  /* Utility function : return an int pointer to   *
    * a Scilab variable. The variable can be            *
    * a reference (header[0] < 0)                       */
   int *header = (int *) stkptr((long int)ptr);
@@ -2028,7 +2028,7 @@ int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
   return retval;
 }
 
-int C2F(mexcallscilab)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs, char *name, int namelen)
+int C2F(mexcallscilab)(int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs, char *name, int namelen)
 {
   return mexCallSCILAB(*nlhs, plhs, *nrhs, prhs, name);
 }
@@ -2077,7 +2077,7 @@ int mxGetElementSize(const mxArray *ptr)
    return 2*sizeof(char);    /* ? Matlab returns 2 */
  case MLIST:
    k=header[4];
-   /*   header[6+2*(k-1)]  =  1 if double matrix, 8 if integer  */
+   /*   header[6+2*(k-1)]  =  1 if double matrix, 8 if int  */
    if (header[6+2*(k-1)]==DOUBLEMATRIX)  return sizeof(double);
    if (header[6+2*(k-1)]==INTMATRIX) {
      it= header[6+2*(k-1)+3]; return( it%10 );
@@ -2109,7 +2109,7 @@ mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
   if( ! C2F(cresmat4)("mxCreateString:", &lw, &m, &nmax, &lr1, 15L)) {
     return (mxArray *) 0;
   }
-  /*    Convert string to integer code    */
+  /*    Convert string to int code    */
   /*   subroutine cvstr(n,line,str,job) */
   for (k=0; k<m; ++k) {
     n=(int)strlen(str[k]);
@@ -2406,7 +2406,7 @@ mxLOGICAL *mxGetLogicals(mxArray *array_ptr)
   return (mxLOGICAL *) &header[3];
 }
 
-int C2F(initmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
+int C2F(initmex)(int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs)
 {
   int *header;int *header1;
   static int output, k, RhsVar;
@@ -2470,7 +2470,7 @@ vraiptrst C2F(locptr)(void * x)
   return((vraiptrst) x);
 }
 
-int C2F(createstkptr)(integer *m, vraiptrst *ptr)
+int C2F(createstkptr)(int *m, vraiptrst *ptr)
 {
   int lr, n=1, lw;
   Nbvars++;
@@ -2495,7 +2495,7 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
   return 1;
 }
 
-int C2F(endmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
+int C2F(endmex)(int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs)
 {
   int nv,kk,k,plhsk;
   for (k = 1; k <= *nlhs; k++) {
@@ -2523,7 +2523,7 @@ int C2F(endmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
 
 /* a utility function to recover available Vars position */
 
-void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs)
+void clear_mex(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs)
 {
   int nv=Nbvars ,k;
   int max = (int) plhs[0] ;
@@ -2749,7 +2749,7 @@ mxArray * C2F(mxcreatestring)(char *string, long int l)
 }
 
 
-int C2F(mxcopyreal8toptr)(double *y, mxArray *ptr, integer *n)
+int C2F(mxcopyreal8toptr)(double *y, mxArray *ptr, int *n)
 {
   int one=1;
   double *value = ((double *) *ptr);
@@ -2757,7 +2757,7 @@ int C2F(mxcopyreal8toptr)(double *y, mxArray *ptr, integer *n)
   return 0;
 }
 
-int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, integer *n)
+int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, int *n)
 {
   int one=1; int two=2;
   double *value = ((double *) *ptr);
@@ -2767,7 +2767,7 @@ int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, integer *n)
   return 0;
 }
 
-int C2F(mxcopyptrtoreal8)(mxArray *ptr, double *y, integer *n)
+int C2F(mxcopyptrtoreal8)(mxArray *ptr, double *y, int *n)
 {
   int one=1;
   double *value = ((double *) *ptr);
@@ -2775,7 +2775,7 @@ int C2F(mxcopyptrtoreal8)(mxArray *ptr, double *y, integer *n)
   return 0;
 }
 
-int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, integer *n)
+int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, int *n)
 {
   int one=1; int two=2;
   double *value = ((double *) *ptr);

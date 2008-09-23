@@ -177,7 +177,7 @@ sciSetEntityType (sciPointObj * pobj, sciEntityType value)
  * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE
  */
 int
-sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
+sciSetColormap ( sciPointObj * pobj, double *rgbmat, int m, int n )
 {
   int oldNbColors = sciGetNumColors(pobj) ;
 
@@ -3935,9 +3935,9 @@ int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double
   /* set number of digits so format is %.xf where x is ANGLE_DECIMAL_NUMBERS */
   sprintf(angleDisplayFormat, "%%.%df", ANGLE_DECIMAL_NUMBERS);
 
-  /* compute size of alpha wich is the length of its integer part plus 1 for the dot */
+  /* compute size of alpha wich is the length of its int part plus 1 for the dot */
   /* and the number of decimals */
-  modf(alpha, &intPart); /* get integer part of alpha */
+  modf(alpha, &intPart); /* get int part of alpha */
   infoMessageSize += GET_NB_DIGITS(intPart) + 1 + ANGLE_DECIMAL_NUMBERS;
 
   /* same for theta */
@@ -3947,7 +3947,7 @@ int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double
   /* We use also infomessage string to store the formated massage */
   /* The needed size might be 19 plus twice the format length so 8 => 27 */
 
-  /* Add alpha size, which is the size of its integer part plus 1 for the dot and only  */
+  /* Add alpha size, which is the size of its int part plus 1 for the dot and only  */
 
   infoMessage = MALLOC(infoMessageSize * sizeof(char));
   if (infoMessage == NULL)

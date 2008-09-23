@@ -25,7 +25,7 @@
 BOOL CallWindowsShell(char *command,BOOL WaitInput);
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(systemc)(char *command, integer *stat)
+int C2F(systemc)(char *command, int *stat)
 {
 #ifdef _MSC_VER
 	{
@@ -33,18 +33,18 @@ int C2F(systemc)(char *command, integer *stat)
 		Status=CallWindowsShell(command,FALSE);
 		if (Status)
 		{
-			*stat=(integer)0;
+			*stat=(int) 0;
 		}
 		else
 		{
-			*stat=(integer)1;
+			*stat=(int) 1;
 		}
 	}
 #else
 	{
 		int status;
 		status=system(command);
-		*stat=(integer)status;
+		*stat=(int) status;
 	}
 #endif
 

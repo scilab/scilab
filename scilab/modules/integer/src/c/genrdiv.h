@@ -17,5 +17,5 @@
 #include "machine.h"
 #include "def.h"
 
-int C2F(genrdiv)(integer *typ,int *a, integer *ia, int *b, integer *ib, int *r, integer *ir, integer *n, integer *ierr);
+int C2F(genrdiv)(int *typ,int *a, int *ia, int *b, int *ib, int *r, int *ir, int *n, int *ierr);
 #endif /* __GENRDIV_H__ */

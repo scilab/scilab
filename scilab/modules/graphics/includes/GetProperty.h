@@ -144,7 +144,7 @@ int sciType (char *marker, sciPointObj *pobj); /* GET */
 
 sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
 
-sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
+sciPointObj *CheckClickedSubwin(int x, int y); /* GET */
 
 /* BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
 BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */

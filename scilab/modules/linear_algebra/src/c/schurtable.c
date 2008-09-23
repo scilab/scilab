@@ -25,8 +25,8 @@
 * Search Table for fschur
 ***********************************/
 
-#define ARGS_fschur integer*,double *,double*,double*,double*
-typedef integer * (*fschurf)(ARGS_fschur);
+#define ARGS_fschur int*,double *,double*,double*,double*
+typedef int * (*fschurf)(ARGS_fschur);
 
 
 /***********************************
@@ -34,14 +34,14 @@ typedef integer * (*fschurf)(ARGS_fschur);
 ***********************************/
 
 #define ARGS_gshsel double *,double*,double*
-typedef integer * (*gshself)(ARGS_gshsel);
+typedef int * (*gshself)(ARGS_gshsel);
 
 /***********************************
 * Search Table for gzhsel
 ***********************************/
 
 #define ARGS_gzhsel doublecmplx *,doublecmplx *
-typedef integer * (*gzhself)(ARGS_gzhsel);
+typedef int * (*gzhself)(ARGS_gzhsel);
 
 /**************** fschur ***************/
 extern void C2F(folhp)(ARGS_fschur);
@@ -85,7 +85,7 @@ static schself schselfonc ;
 
 /** function call : schsel  **/
 
-integer *C2F(schsel)(double *alpha, double *beta)
+int *C2F(schsel)(double *alpha, double *beta)
 {
 	return((*schselfonc)(alpha,beta));
 }
@@ -112,7 +112,7 @@ static zchself zchselfonc ;
 
 /** function call : zchsel  **/
 
-integer *C2F(zchsel)(doublecmplx *alpha)
+int *C2F(zchsel)(doublecmplx *alpha)
 {
 	return((*zchselfonc)(alpha));
 }
@@ -139,7 +139,7 @@ static gshself gshselfonc ;
 
 /** function call : gshsel  **/
 
-integer *C2F(gshsel)(double *alphar, double *alphai, double *beta)
+int *C2F(gshsel)(double *alphar, double *alphai, double *beta)
 {
 	return((*gshselfonc)(alphar,alphai,beta));
 }
@@ -166,7 +166,7 @@ static gzhself gzhselfonc ;
 
 /** function call : gzhsel  **/
 
-integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta)
+int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta)
 {
 	return((*gzhselfonc)(alpha,beta));
 }
@@ -193,7 +193,7 @@ static fschurf fschurfonc ;
 
 /** function call : fschur  **/
 
-integer *C2F(fschur)(integer *lsize, double *alpha, double *beta, double *s, double *p)
+int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p)
 {
 	return((*fschurfonc)(lsize,alpha,beta,s,p));
 }

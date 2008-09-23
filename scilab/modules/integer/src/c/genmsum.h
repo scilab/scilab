@@ -30,7 +30,7 @@
  * @param nv
  * @return 
  */
-int C2F(genmsum)(integer *typ,integer *job, integer *a, integer *na, integer *m, integer *n, integer *v, integer *nv);
+int C2F(genmsum)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv);
 
 #endif /* __GENMSUM_H__ */
 

@@ -19,10 +19,10 @@
 ***********************************/
 
 #define ARGS_interf void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *
-typedef integer * (*interff)(ARGS_interf);
+typedef int * (*interff)(ARGS_interf);
 
 #define ARGS_interf1 char *,long int
-typedef integer * (*interff1)(ARGS_interf1);
+typedef int * (*interff1)(ARGS_interf1);
 
 /**************** interf ***************/
 void C2F(interf)(ARGS_interf);

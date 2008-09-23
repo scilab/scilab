@@ -30,6 +30,6 @@
  * @return
  */
 
-int C2F(gencheck)(integer *typ, integer *op, integer *n, int *a, integer *ia, int *b, integer *ib, int *r);
+int C2F(gencheck)(int *typ, int *op, int *n, int *a, int *ia, int *b, int *ib, int *r);
 
 #endif /* __GENCHECK_H__ */

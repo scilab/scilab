@@ -25,6 +25,6 @@
  * @param iw
  * @return 
  */
-int C2F(gencuprod)(integer *typ,integer *n, void *w, integer *iw);
+int C2F(gencuprod)(int *typ,int *n, void *w, int *iw);
 
 #endif /* __GENCUPROD_H__ */

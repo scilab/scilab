@@ -28,32 +28,32 @@
 #include "GetProperty.h"
 #include "localization.h"
 
-typedef void (level_f)(integer ival, double Cont, double xncont,double yncont);
-typedef void (*ptr_level_f)(integer ival, double Cont, double xncont,double yncont);
+typedef void (level_f)(int ival, double Cont, double xncont,double yncont);
+typedef void (*ptr_level_f)(int ival, double Cont, double xncont,double yncont);
 
 
 static void 
-contourI (ptr_level_f,double *, double *, double *, double *, integer *, integer *, integer *);
+contourI (ptr_level_f,double *, double *, double *, double *, int *, int *, int *);
 
 static void
-look(ptr_level_f, integer i, integer j, integer ib,integer jb, integer qq,double Cont, integer style);
+look(ptr_level_f, int i, int j, int ib,int jb, int qq,double Cont, int style);
 
-static integer ffnd (ptr_level_f,integer,integer,integer,integer,integer,
-			     integer,integer,integer,integer,integer,
-			     double,integer *);
+static int ffnd (ptr_level_f,int,int,int,int,int,
+			     int,int,int,int,int,
+			     double,int *);
 
 static int Gcont_size = 0;
 
 static level_f GContStore2;
 static void GContStore2Last(void);
-static double x_cont(integer i);
-static double y_cont (integer i);
-static double phi_cont (integer, integer); 
+static double x_cont(int i);
+static double y_cont (int i);
+static double phi_cont (int, int); 
 static double f_intercept  (double, double, double, double, double );
-static integer not_same_sign  (double val1, double val2); 
-static integer get_itg_cont  (integer i, integer j); 
-static void inc_itg_cont  (integer i, integer j, integer val); 
-static integer oddp  (integer i);
+static int not_same_sign  (double val1, double val2); 
+static int get_itg_cont  (int i, int j); 
+static void inc_itg_cont  (int i, int j, int val); 
+static int oddp  (int i);
 
 /*-----------------------------------------------------------------------
  *  Level curves 
@@ -69,19 +69,19 @@ static integer oddp  (integer i);
  *---------------------------------------------------------------------------*/
 
 static double *GX,*GY,*GZ;
-static integer Gn1,Gn2;
+static int Gn1,Gn2;
 
 static double * Gxcont = NULL ;
 static double * Gycont = NULL ;
 
-static void InitValues(double *x, double *y, double *z, integer n1, integer n2)
+static void InitValues(double *x, double *y, double *z, int n1, int n2)
 {
   Gn1=n1;  Gn2=n2;  GX = x;  GY = y;  GZ = z;
 }
 
-/*--------return the  value of f for a pointeger on the grid-----*/
+/*--------return the  value of f for a point on the grid-----*/
 
-static double phi_cont(integer i, integer j)
+static double phi_cont(int i, int j)
 {
   return(GZ[i+Gn1*j]);
 }
@@ -96,26 +96,26 @@ static double f_intercept(double zCont, double fi, double xi, double fj, double 
 
 /* check for boundary points */
 
-static integer  bdyp(integer i, integer j)
+static int  bdyp(int i, int j)
 {
   return (  j == 0 || i == 0 || j == Gn2-1 || i == Gn1-1 );
 }
 
 /* store or get flag values */
 
-static  integer *itg_cont, *xbd_cont,*ybd_cont;
+static  int *itg_cont, *xbd_cont,*ybd_cont;
 
-static integer get_itg_cont(integer i, integer j)
+static int get_itg_cont(int i, int j)
 {
   return( itg_cont[i+Gn1*j]);
 }
 
-static void inc_itg_cont(integer i, integer j, integer val)
+static void inc_itg_cont(int i, int j, int val)
 {
   itg_cont[i+Gn1*j] += val;
 }
 
-static integer not_same_sign(double val1, double val2)
+static int not_same_sign(double val1, double val2)
 {
   if ( ISNAN(val1) ==1 || ISNAN(val2) == 1) return(0);
   /** 0.0 est consid\'er\'e comme positif **/
@@ -127,15 +127,15 @@ static integer not_same_sign(double val1, double val2)
       if ( val2 >= 0.0) return(1) ; else return(0);}
 }
 
-static integer oddp(integer i) { return( i == 1 || i ==3 );}
+static int oddp(int i) { return( i == 1 || i ==3 );}
 
 /*---------return the x-value of a grid point--------*/
 
-static double x_cont(integer i) { return GX[i] ;}
+static double x_cont(int i) { return GX[i] ;}
 
 /*---------return the y-value of a grid point --------*/
 
-static double y_cont(integer i) { return GY[i] ;}
+static double y_cont(int i) { return GY[i] ;}
 
 
 static char   ContNumFormat[100];
@@ -148,9 +148,9 @@ static char   ContNumFormat[100];
 *  c: indice of the contour Cont 
 *---------------------------------------------------------------------*/
 
-static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb, integer qq, double Cont, integer style)
+static void look(ptr_level_f func, int i, int j, int ib, int jb, int qq, double Cont, int style)
 {
-  integer ip,jp,im,jm,zds,ent=0,flag=0,wflag;
+  int ip,jp,im,jm,zds,ent=0,flag=0,wflag;
   jp= j+1; ip= i+1; jm=j-1;im=i-1;
   /*  on regarde comment est le segment de depart */
   if  ( jb == jm)  flag = 1; 
@@ -288,16 +288,16 @@ static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb,
 *  x : of size N[0] gives the x-values of the grid 
 *  y : of size N[1] gives the y-values of the grid 
 *  z : of size N[0]*N[1]  gives the f-values on the grid 
-*  style: size ncont (=N[2]) or empty integer pointer 
+*  style: size ncont (=N[2]) or empty int pointer 
 *  gives the dash style for contour i
 *-------------------------------------------------------*/
 
-static void contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, integer *N, integer *style, integer *err)
+static void contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, int *N, int *style, int *err)
 {
   int check = 1;
   char *F;
-  integer n1,n2,ncont,i,c,j,k,n5;
-  integer stylec;
+  int n1,n2,ncont,i,c,j,k,n5;
+  int stylec;
   n1=N[0];n2=N[1];ncont=N[2];
   F=getFPF();
   if ( F[0] == '\0') 
@@ -343,14 +343,14 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
   }
   for ( c= 0 ; c < ncont ; c++)
   {
-    stylec = ( style != (integer *) 0) ? style[c] : c;
+    stylec = ( style != (int *) 0) ? style[c] : c;
     /** itg-cont is a flag array to memorize checked parts of the grid **/
     for ( i = 0 ; i < n1; i++)
       for ( j =0 ; j < n2 ; j++)
         itg_cont[i+n1*j]=0 ;
     /** all the boundary segments **/
     for ( k = 1 ; k < n5 ; k++)
-    { integer ib,jb;
+    { int ib,jb;
     i = xbd_cont[k] ; j = ybd_cont[k];
     ib = xbd_cont[k-1] ; jb= ybd_cont[k-1];
     if  (not_same_sign (phi_cont(i,j)-zCont[c] , 
@@ -370,12 +370,12 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
 
 }
 
-int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style)
+int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagnz, int *nz, double *zz, int *style)
 {
-  integer err=0;
+  int err=0;
   static double *zconst;
   double zmin,zmax;
-  integer N[3],i;
+  int N[3],i;
 
   zmin=(double) Mini(z,*n1*(*n2)); 
   zmax=(double) Maxi(z,*n1*(*n2));
@@ -415,10 +415,10 @@ int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, in
  *       suivant a explorer 
  *-----------------------------------------------------------------------*/
 
-static integer ffnd (ptr_level_f func, integer i1, integer i2, integer i3, integer i4, integer jj1, integer jj2, integer jj3, integer jj4, integer ent, integer qq, double Cont, integer *zds)
+static int ffnd (ptr_level_f func, int i1, int i2, int i3, int i4, int jj1, int jj2, int jj3, int jj4, int ent, int qq, double Cont, int *zds)
 {
   double phi1,phi2,phi3,phi4,xav,yav,phiav;
-  integer revflag,i;
+  int revflag,i;
   phi1=phi_cont(i1,jj1)-Cont;
   phi2=phi_cont(i2,jj2)-Cont;
   phi3=phi_cont(i3,jj3)-Cont;
@@ -435,7 +435,7 @@ static integer ffnd (ptr_level_f func, integer i1, integer i2, integer i3, integ
     }
   if (  not_same_sign( phiav,phi4)) 
     {
-      integer l1, k1; 
+      int l1, k1; 
       double phi;
       revflag = 1 ; 
       l1= i4; k1= jj4;
@@ -453,7 +453,7 @@ static integer ffnd (ptr_level_f func, integer i1, integer i2, integer i3, integ
    * on sort 
    */
   for  ( i = 0 ;  ; i++)
-    { integer l1,k1;
+    { int l1,k1;
       double phi;
       if ( not_same_sign ( phi1,phi2))   /** sortir du for **/ break ; 
       if  ( phiav != 0.0 ) 
@@ -483,7 +483,7 @@ static int count=0;
  
 /** used to bring back data to Scilab Stack **/
 
-int C2F(getconts)(double **x, double **y, integer *mm, integer *n)
+int C2F(getconts)(double **x, double **y, int *mm, int *n)
 {
   *x = Gxcont;
   *y = Gycont;
@@ -492,7 +492,7 @@ int C2F(getconts)(double **x, double **y, integer *mm, integer *n)
   return 0;
 }
 
-static void GContStore2(integer ival, double Cont, double xncont, double yncont)
+static void GContStore2(int ival, double Cont, double xncont, double yncont)
 {
   int n;
   if ( ival == 0) 

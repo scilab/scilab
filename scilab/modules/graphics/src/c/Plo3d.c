@@ -33,7 +33,7 @@
 
 
 extern char GetDriver(void);
-extern int Check3DPlots(char *, integer *);
+extern int Check3DPlots(char *, int *);
 /** PGEOX and PGEOY are like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 #define PGEOX(x1,y1,z1) inint(xx1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
 #define PGEOY(x1,y1,z1) inint(yy1= Cscale.Wscy1*(-TRY(x1,y1,z1)+Cscale.frect[3])+Cscale.Wyofset1);
@@ -47,19 +47,19 @@ extern int Check3DPlots(char *, integer *);
  * if flag==0      we only change m without changing scales 
  */
 
-void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag)
+void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, int flag)
 {
   double xmmin = 0 ;
   double ymmax = 0 ;
   double xmmax = 0 ;
   double ymmin = 0 ;
   double FRect[4],WRect[4],ARect[4];
-  integer ib;
-  static integer aaint[]={2,10,2,10};
+  int ib;
+  static int aaint[]={2,10,2,10};
   int wdim[2];
   char logf_[2];
   double R,xo,yo,zo,dx,dy,dz,hx,hy,hx1,hy1,Teta,Alpha;
-  integer wmax = 0, hmax = 0 ;
+  int wmax = 0, hmax = 0 ;
   static double cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
   Teta=*teta;
   Alpha=*alpha;
@@ -166,9 +166,9 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
   /* end of code added by es */
 }
 
-/** Returns the [x,y,z] values of a pointeger given its xbox or ybox indices **/
+/** Returns the [x,y,z] values of a point given its xbox or ybox indices **/
 
-void BBoxToval(double *x, double *y, double *z, integer ind, double bbox[6] )
+void BBoxToval(double *x, double *y, double *z, int ind, double bbox[6] )
 {
   switch ( ind)
     {
@@ -187,9 +187,9 @@ void BBoxToval(double *x, double *y, double *z, integer ind, double bbox[6] )
  *This function sorts the vertices such that the color value is in decreasing order
  *---------------------------------------------------------------------------------*/
 
-int  triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *polyx, integer *polyy, integer *fill)
+int  triangleSort(int *polyxin, int *polyyin, int *fillin, int *polyx, int *polyy, int *fill)
 { 
-  integer tmp,k;
+  int tmp,k;
   for (k=0;k<3;k++) {polyx[k]=polyxin[k]; polyy[k]=polyyin[k]; fill[k]=Abs(fillin[k]);}
       
   if (fill[0]<fill[1]) {  

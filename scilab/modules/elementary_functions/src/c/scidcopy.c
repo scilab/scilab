@@ -13,7 +13,7 @@
 /* rewrite scidcopy.f */
 /*--------------------------------------------------------------------------*/
 /* alternative to dcopy for copying array with mixed datatypes */
-/* integer*8 declaration used instead of double precision used to fix a */
+/* int*8 declaration used instead of double precision used to fix a */
 /* efficiency problem with pentium M processors */
 /*--------------------------------------------------------------------------*/
 #include <string.h>

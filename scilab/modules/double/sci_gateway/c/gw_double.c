@@ -13,18 +13,18 @@
 
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-static integer colon = 44;
-static integer quote = 53;
-static integer less = 59;
-static integer equal = 50;
-static integer ou = 57;
-static integer et = 58;
-static integer non = 61;
-static integer star = 47;
-static integer dstar = 62;
-static integer slash = 48;
-static integer bslash = 49;
-static integer dot = 51;
+static int colon = 44;
+static int quote = 53;
+static int less = 59;
+static int equal = 50;
+static int ou = 57;
+static int et = 58;
+static int non = 61;
+static int star = 47;
+static int dstar = 62;
+static int slash = 48;
+static int bslash = 49;
+static int dot = 51;
 /*--------------------------------------------------------------------------*/
 static int ChooseOtherOperation(int op);
 int C2F(matops)(void);
@@ -54,7 +54,7 @@ extern int C2F(matxpow)();
 /*--------------------------------------------------------------------------*/
 int C2F(matops)(void)
 {
-    static integer op;
+    static int op;
 
     op = Fin;
 

@@ -34,10 +34,10 @@ Type *DY;\
 }
 
 
-int C2F(genvmul)(integer *typ,integer *n, integer1 *dx, integer *incx, integer1 *dy, integer *incy)
+int C2F(genvmul)(int *typ,int *n, integer1 *dx, int *incx, integer1 *dy, int *incy)
 {
-  integer i1;
-  static integer i, ix, iy;
+  int i1;
+  static int i, ix, iy;
 
   i1 = *n;
 
@@ -52,7 +52,7 @@ int C2F(genvmul)(integer *typ,integer *n, integer1 *dx, integer *incx, integer1 
     VMUL(integer2);
     break;
   case 4:
-    VMUL(integer);
+    VMUL(int) ;
     break;
   case 11:
     VMUL(unsigned char);

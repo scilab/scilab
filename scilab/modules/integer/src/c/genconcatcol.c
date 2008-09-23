@@ -34,10 +34,10 @@ Type *XR;\
 }
 
 
-int C2F(genconcatcol)(integer *typ,integer *x1,integer *m1,integer *n1,integer *x2,integer *m2,integer *n2,integer *xr)
+int C2F(genconcatcol)(int *typ,int *x1,int *m1,int *n1,int *x2,int *m2,int *n2,int *xr)
 {
-static integer i, j, i1, i2, ir1, ir2;
-integer m;
+static int i, j, i1, i2, ir1, ir2;
+int m;
 
 m=(*m1)+(*m2);
   switch (*typ) {
@@ -48,7 +48,7 @@ m=(*m1)+(*m2);
     COLCONC(integer2);
     break;
   case 4:
-    COLCONC(integer);
+    COLCONC(int) ;
     break;
   case 11:
     COLCONC(unsigned char);

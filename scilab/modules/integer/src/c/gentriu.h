@@ -27,6 +27,6 @@
  * @param dx
  * @return 
  */
-int C2F(gentriu)(integer *typ,integer *m,integer *n,integer *k,int *dx);
+int C2F(gentriu)(int *typ,int *m,int *n,int *k,int *dx);
 
 #endif /*__GENTRIU_H__*/

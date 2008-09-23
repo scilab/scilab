@@ -13,7 +13,7 @@
 #include "gensum.h"
 #include "genmsum.h"
 
-static integer c__1 = 1;
+static int c__1 = 1;
 #define MSUM(Type) {\
 Type *A;\
 Type *V;\
@@ -38,9 +38,9 @@ Type *V;\
     }\
 }
 
-int C2F(genmsum)(integer *typ,integer *job, integer *a, integer *na, integer *m, integer *n, integer *v, integer *nv)
+int C2F(genmsum)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv)
 {
-  static integer  i, j, t, iv;
+  static int  i, j, t, iv;
 
   switch (*typ) {
   case 1:
@@ -50,7 +50,7 @@ int C2F(genmsum)(integer *typ,integer *job, integer *a, integer *na, integer *m,
     MSUM(integer2);
     break;
   case 4:
-    MSUM(integer);
+    MSUM(int) ;
     break;
   case 11:
     MSUM(unsigned char);

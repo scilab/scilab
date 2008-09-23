@@ -74,9 +74,9 @@ int sci_set(char *fname, unsigned long fname_len)
   }
   else /* others types */
   {
-	  integer m1,n1,l1,m2,n2,l2;
-	  integer numrow3 = 0 ;
-	  integer numcol3 = 0 ;
+	  int m1,n1,l1,m2,n2,l2;
+	  int numrow3 = 0 ;
+	  int numcol3 = 0 ;
 	  size_t l3 = 0 ;
 	  unsigned long hdl;
 	  int t2;

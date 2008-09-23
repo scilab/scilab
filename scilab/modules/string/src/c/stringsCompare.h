@@ -24,7 +24,7 @@
 * @param[in] String matrix Two
 * @param[in] Dimension m*n of String matrix two
 * @param[in] BOOL to do stricmp
-* @return a integer matrix (result of strcmp)
+* @return a int matrix (result of strcmp)
 */
 int * stringsCompare(char **Input_String_One,int dim_One,char **Input_String_Two,int dim_Two,BOOL dostricmp);
 

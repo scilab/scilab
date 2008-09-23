@@ -19,7 +19,7 @@
 /**
 * get file info in the files table
 */
-void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap, integer *type, integer *mode, char *filename, integer *lf, integer *ierr);
+void C2F(getfileinfo)(int *fd, FILE *fa, int *swap, int *type, int *mode, char *filename, int *lf, int *ierr);
 
 #endif /* __GETFILEINFO_H__ */
 

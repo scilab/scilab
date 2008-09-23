@@ -24,12 +24,12 @@
 #include "machine.h"
 #include "sciprint.h"
 
-void mput2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr);
+void mput2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
 
 void 
 writeau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
+int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
 double x[],xd[],z[],tvec[],rpar[];
 double *inptr[],*outptr[],*t;
      /*

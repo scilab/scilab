@@ -32,7 +32,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_matplot(char *fname,unsigned long fname_len)
 {
-  integer m1, n1, l1;
+  int m1, n1, l1;
   int frame_def=8;
   int *frame=&frame_def;
   int axes_def=1;

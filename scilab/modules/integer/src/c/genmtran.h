@@ -28,6 +28,6 @@
  * @param n
  * @return 
  */
-int C2F(genmtran)(integer *typ,int *a, integer *na, int *b, integer *nb, integer *m, integer *n);
+int C2F(genmtran)(int *typ,int *a, int *na, int *b, int *nb, int *m, int *n);
 
 #endif /* __GENMTRAN_H__ */

@@ -17,7 +17,7 @@
 #include "sciprint.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-void C2F(mtell) (integer *fd, double *offset, integer *err)
+void C2F(mtell) (int *fd, double *offset, int *err)
 {     
 	FILE *fa= GetFileOpenedInScilab(*fd);
 	if ( fa == (FILE *) 0 ) 

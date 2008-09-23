@@ -17,18 +17,18 @@ Type *DX;\
  DX=(Type *)dx;\
  --DX;\
  if (*incx == 1) {\
-   for (i = 1; i <= *n; ++i) dtemp *= (integer)DX[i];\
+   for (i = 1; i <= *n; ++i) dtemp *= (int) DX[i];\
  }\
  else {\
    i1 = *n * *incx;i2 = *incx;\
-   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) dtemp *= (integer)DX[i];\
+   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) dtemp *= (int) DX[i];\
  }\
 }
 
-integer C2F(genprod)(integer *typ, integer *n, integer *dx, integer *incx)
+int C2F(genprod)(int *typ, int *n, int *dx, int *incx)
 {
-    integer  i1, i2;
-    static integer i, dtemp;
+    int  i1, i2;
+    static int i, dtemp;
 
 
     dtemp = 1;
@@ -42,7 +42,7 @@ integer C2F(genprod)(integer *typ, integer *n, integer *dx, integer *incx)
       PROD(integer2);
       break;
     case 4:
-      PROD(integer);
+      PROD(int) ;
       break;
     case 11:
       PROD(unsigned char);

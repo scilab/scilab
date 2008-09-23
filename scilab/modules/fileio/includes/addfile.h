@@ -27,7 +27,7 @@
  * @param filename  
  * @param ierr  
  */
-void C2F(addfile)(integer *fd, FILE *fa, integer *swap2, integer *type, integer *mode, char *filename, integer *ierr);
+void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *ierr);
 
 #endif /*  __ADDFILE_H__ */
 /*--------------------------------------------------------------------------*/

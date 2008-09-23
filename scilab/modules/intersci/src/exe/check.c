@@ -358,7 +358,7 @@ void CheckOptDim(f,var,nel)
     }
   if (isdigit(var1->name[0]) != 0)
     {
-      /* the dimension of the variable is a constant integer */
+      /* the dimension of the variable is a constant int */
       if ( strcmp(var1->for_name[0],var1->name) != 0)
 	{
 	  Fprintf(f,indent,"CheckOneDim(opts[%d].position,%d,%s,%s);\n",

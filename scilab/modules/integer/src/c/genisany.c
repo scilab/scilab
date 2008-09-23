@@ -17,18 +17,18 @@ Type *DX;\
  DX=(Type *)dx;\
  --DX;\
  if (*incx == 1) {\
-   for (i = 1; i <= *n; ++i) if ((integer)DX[i]!=0) {dtemp = 1;break;}\
+   for (i = 1; i <= *n; ++i) if ((int) DX[i]!=0) {dtemp = 1;break;}\
  }\
  else {\
    i1 = *n * *incx;i2 = *incx;\
-   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) if ((integer)DX[i]!=0) {dtemp = 1;break;}\
+   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) if ((int) DX[i]!=0) {dtemp = 1;break;}\
  }\
 }
 
-integer C2F(genisany)(integer *typ, integer *n, integer *dx, integer *incx)
+int C2F(genisany)(int *typ, int *n, int *dx, int *incx)
 {
-    integer  i1, i2;
-    static integer i, dtemp;
+    int  i1, i2;
+    static int i, dtemp;
 
 
     dtemp = 0;
@@ -42,7 +42,7 @@ integer C2F(genisany)(integer *typ, integer *n, integer *dx, integer *incx)
       ISANY(integer2);
       break;
     case 4:
-      ISANY(integer);
+      ISANY(int) ;
       break;
     case 11:
       ISANY(unsigned char);

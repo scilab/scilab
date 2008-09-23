@@ -1119,10 +1119,6 @@ AH_BOTTOM([
 #endif
 #define DIR_SEPARATOR "/"
 
-#ifndef integer
-typedef int integer;
-#endif
-
 /* Force usage of dynamically located stack on 64 bits */
 #ifdef IS_64_BITS_CPU
 #define USE_DYNAMIC_STACK

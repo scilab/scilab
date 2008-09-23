@@ -297,7 +297,7 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
       CheckLength(pos,m*n,4);
       for (i = 0 ; i < 4; ++i)
       {
-        *istk(l+i) = Max((integer) *istk(l+i),0);
+        *istk(l+i) = Max((int)  *istk(l+i),0);
       }
       *nax=istk(l);
       *flagNax = TRUE;
@@ -314,7 +314,7 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
     CheckLength(kopt,m*n,4);
     for (i = 0 ; i < 4; ++i)
     {
-      *istk(l+i) = Max((integer) *istk(l+i),0);
+      *istk(l+i) = Max((int)  *istk(l+i),0);
     }
     *nax=istk(l);
     *flagNax = TRUE;

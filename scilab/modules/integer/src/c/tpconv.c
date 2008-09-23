@@ -34,10 +34,10 @@ Ytype *DY;\
     }\
 }
 
-int C2F(tpconv)(integer *xtyp, integer *ytyp, integer *n, void *dx, integer *incx, void *dy, integer *incy)
+int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int *incy)
 {
-  integer i1;
-  static integer i, ix, iy;
+  int i1;
+  static int i, ix, iy;
 
   i1 = *n;
   if (i1 <= 0) return 0;

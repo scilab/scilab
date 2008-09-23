@@ -75,12 +75,12 @@ int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 				for(i=fdmax-1;i>=0;i--)
 				{
 					FILE fa;
-					integer swap2 = 0;
-					integer type = 0;
-					integer mode = 0;
+					int swap2 = 0;
+					int type = 0;
+					int mode = 0;
 
-					integer lf = 0;
-					integer ierr = 0;
+					int lf = 0;
+					int ierr = 0;
 
 					int posBeginFileName = 0;
 

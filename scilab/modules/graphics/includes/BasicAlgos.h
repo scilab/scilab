@@ -31,7 +31,7 @@
  */
 double sciFindStPosMin( double x[], int n ) ;
 
-void MaxiInd( double vect[], integer n, integer * ind, double maxi ) ;
+void MaxiInd( double vect[], int n, int * ind, double maxi ) ;
 
 /**
  *     convertion d'entier vers double
@@ -39,7 +39,7 @@ void MaxiInd( double vect[], integer n, integer * ind, double maxi ) ;
  *     car la recopie est fait de n,1,-1
  *      implicit undefined (a-z)
  */
-int C2F(entier2d)( integer * n, double * dx,integer * s ) ;
+int C2F(entier2d)( int * n, double * dx,int * s ) ;
 
 /**
  * check the strict monotony of a vector

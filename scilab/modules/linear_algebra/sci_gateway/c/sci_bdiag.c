@@ -16,8 +16,8 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-static integer cx1 = 1;
-static integer cx0 = 0;
+static int cx1 = 1;
+static int cx0 = 0;
 static double c_b40 = 0.;
 /*--------------------------------------------------------------------------*/
 extern int C2F(vfinite)(int *n, double *v);
@@ -28,16 +28,16 @@ extern int C2F(bdiag)();
 /*--------------------------------------------------------------------------*/
 int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 {
-    integer ix1, ix2;
+    int ix1, ix2;
     double dx1;
     int fail;
     double rMax;
-    integer ix, j, k, m, n;
+    int ix, j, k, m, n;
     double t;
-    integer nbloc, lrMax;
-    integer m1, n1, la, le, lj, it;
-    integer lw, lx ;
-    integer lai, lib, lbs, lxi, lxr;
+    int nbloc, lrMax;
+    int m1, n1, la, le, lj, it;
+    int lw, lx ;
+    int lai, lib, lbs, lxi, lxr;
 
     CheckRhs(1,2);
     CheckLhs(1,3);

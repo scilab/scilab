@@ -21,12 +21,12 @@ __declspec (dllexport) struct {
 } C2F(optim);
 
 __declspec (dllexport) struct {
-    integer nizs, nrzs, ndzs;
+    int nizs, nrzs, ndzs;
 } C2F(nird);
 
 __declspec (dllexport) struct {
     double u1;
-    integer nc;
+    int nc;
 } C2F(fprf2c);
 #endif
 /*--------------------------------------------------------------------------*/

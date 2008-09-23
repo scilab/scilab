@@ -26,6 +26,6 @@
  * @return
  */
 
-int C2F(genabs)(integer *typ, integer *n, int *dx, integer *incx);
+int C2F(genabs)(int *typ, int *n, int *dx, int *incx);
 
 #endif /* __GENABS_H__ */

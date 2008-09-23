@@ -129,7 +129,7 @@ int LOGGER_set_logfile( char *lfname )
 /*------------------------------------------------------------------------
 Procedure:     LOGGER_set_wraplength ID:1
 Purpose:       Sets the character count at which LOGGER will break a line
-Input:         int length: Positive integer indicating number of chracters at which to wrap at
+Input:         int length: Positive int indicating number of chracters at which to wrap at
 Output:
 Errors:
 ------------------------------------------------------------------------*/

@@ -35,9 +35,9 @@ Type *DY;\
 
 
 
-int C2F(gensubst)(integer *typ, integer *n, int *dx, integer *incx, int *dy, integer *incy)
+int C2F(gensubst)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy)
 {
-  static integer i, ix, iy, i1;
+  static int i, ix, iy, i1;
 
   i1 = *n;
   if (i1 <= 0) return 0;
@@ -50,7 +50,7 @@ int C2F(gensubst)(integer *typ, integer *n, int *dx, integer *incx, int *dy, int
     SUBST(integer2);
     break;
   case 4:
-    SUBST(integer);
+    SUBST(int) ;
     break;
   case 11:
     SUBST(unsigned char);

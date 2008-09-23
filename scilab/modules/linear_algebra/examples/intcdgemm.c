@@ -13,9 +13,9 @@
 
 #include "stack-c.h"
 
-extern int C2F(dgemm)(char *,char *,integer *,integer *,integer *,
-			    double *,double *,integer *,double *,integer *,
-			    double *,double *,integer *);
+extern int C2F(dgemm)(char *,char *,int *,int *,int *,
+			    double *,double *,int *,double *,int *,
+			    double *,double *,int *);
 
 int intcdgemm(fname)
      char* fname;

@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern integer C2F(adjustgstacksize)();
+extern int C2F(adjustgstacksize)();
 /*--------------------------------------------------------------------------*/
 #define MIN_GSTACKSIZE 11000
 /*--------------------------------------------------------------------------*/
@@ -87,8 +87,8 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 
 						if (MEMGSTACKSIZE != currentgstacksize)
 						{
-							integer ptr=0;
-							integer l=0;
+							int ptr=0;
+							int l=0;
 
 							C2F(scigmem)((int *)&MEMGSTACKSIZE,&ptr);
 							l = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1];
@@ -140,15 +140,15 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 
 				if ( strcmp("max",param) == 0 )
 				{
-					integer ptr=0;
-					integer memgstacktotal=0;
-					integer memgstackused=0;
+					int ptr=0;
+					int memgstacktotal=0;
+					int memgstackused=0;
 
-					integer memstacktotal=0;
-					integer memstackused=0;
+					int memstacktotal=0;
+					int memstackused=0;
 
-					integer newmaxgstack=0;
-					integer l;
+					int newmaxgstack=0;
+					int l;
 
 					unsigned long memmaxavailablebyscilab=get_max_memory_for_scilab_stack();
 					unsigned long maxmemfree=(GetLargestFreeMemoryRegion())/sizeof(double);
@@ -158,7 +158,7 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 
 					newmaxgstack = maxmemfree-memgstackused-memstackused;
 
-					if ( newmaxgstack > (integer)memmaxavailablebyscilab )
+					if ( newmaxgstack > (int) memmaxavailablebyscilab )
 					{
 						newmaxgstack = memmaxavailablebyscilab;
 					}
@@ -185,11 +185,11 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 				}
 				else if ( strcmp("min",param) == 0 )
 				{
-					integer ptr=0;
-					integer memgstacktotal=0;
-					integer memgstackused=0;
-					integer newmingstack=0;
-					integer l;
+					int ptr=0;
+					int memgstacktotal=0;
+					int memgstackused=0;
+					int newmingstack=0;
+					int l;
 
 					C2F(getgstackinfo)(&memgstacktotal,&memgstackused);
 

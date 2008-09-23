@@ -15,22 +15,22 @@
 * Search Table for dassl 
 ***********************************/
 
-#define ARGS_fresd double *,double*,double*,double*,integer*,double*,integer*
-typedef integer * (*fresdf)(ARGS_fresd);
+#define ARGS_fresd double *,double*,double*,double*,int*,double*,int*
+typedef int * (*fresdf)(ARGS_fresd);
 
-#define ARGS_fjacd double *,double*,double*,double*,double*,double*,integer*
-typedef integer * (*fjacdf)(ARGS_fjacd);
+#define ARGS_fjacd double *,double*,double*,double*,double*,double*,int*
+typedef int * (*fjacdf)(ARGS_fjacd);
 
 /***********************************
 * Search Table for dasrt 
 ***********************************/
 
-#define ARGS_fsurfd integer*,double *,double*,integer*,double*,double*,integer*
-typedef integer * (*fsurfdf)(ARGS_fsurfd);
+#define ARGS_fsurfd int*,double *,double*,int*,double*,double*,int*
+typedef int * (*fsurfdf)(ARGS_fsurfd);
 
 
-#define ARGS_fsurf integer*,double *,double*,integer*,double*
-typedef integer * (*fsurff)(ARGS_fsurf);
+#define ARGS_fsurf int*,double *,double*,int*,double*
+typedef int * (*fsurff)(ARGS_fsurf);
 
 /**************** fresd ***************/
 extern void C2F(dres1)(ARGS_fresd);
@@ -92,7 +92,7 @@ static fresdf fresdfonc ;
 
 /** function call **/
 
-void C2F(fresd)(double *t, double *y, double *ydot, double *res, integer *ires, double *rpar, integer *ipar)
+void C2F(fresd)(double *t, double *y, double *ydot, double *res, int *ires, double *rpar, int *ipar)
 {
 	(*fresdfonc)(t,y,ydot,res,ires,rpar,ipar);
 }
@@ -111,7 +111,7 @@ static fjacdf fjacdfonc ;
 
 /** function call **/
 
-void C2F(fjacd)(double *t, double *y, double *ydot, double *pd, double *cj, double *rpar, integer *ipar)
+void C2F(fjacd)(double *t, double *y, double *ydot, double *pd, double *cj, double *rpar, int *ipar)
 {
 	(*fjacdfonc)(t,y,ydot,pd,cj,rpar,ipar);
 }
@@ -131,7 +131,7 @@ static fsurfdf fsurfdfonc ;
 /** function call **/
 
 
-void C2F(fsurfd)(integer *neq, double *t, double *y, integer *ng, double *gout, double *rpar, integer *ipar)
+void C2F(fsurfd)(int *neq, double *t, double *y, int *ng, double *gout, double *rpar, int *ipar)
 {
 	(*fsurfdfonc)(neq,t,y,ng,gout,rpar,ipar);
 }
@@ -153,7 +153,7 @@ static fsurff fsurffonc ;
 
 /** function call **/
 
-void C2F(fsurf)(integer *ny, double *t, double *y, integer *ng, double *gout)
+void C2F(fsurf)(int *ny, double *t, double *y, int *ng, double *gout)
 {
 	(*fsurffonc)(ny, t, y, ng, gout) ;
 }

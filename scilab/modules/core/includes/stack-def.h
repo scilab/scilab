@@ -237,7 +237,7 @@ IMPORT MTLBC_struct C2F(mtlbc);
  * @TODO : add comment 
  */
 typedef struct {
-	integer iero; /**< @TODO : add comment */
+	int iero; /**< @TODO : add comment */
 } IERODE_struct;
 
 IMPORT IERODE_struct C2F(ierode);
@@ -250,14 +250,14 @@ typedef struct {
 	double t0; /**< @TODO : add comment */
 	double tlast; /**< @TODO : add comment */
 	double toutc; /**< @TODO : add comment */ 
-	integer lg0; /**< @TODO : add comment */
-	integer lg1; /**< @TODO : add comment */
-	integer lgx; /**< @TODO : add comment */
-	integer iownr3[2]; /**< @TODO : add comment */
-	integer irfnd; /**< @TODO : add comment */
-	integer itaskc; /**< @TODO : add comment */
-	integer ngc; /**< @TODO : add comment */
-	integer nge; /**< @TODO : add comment */
+	int lg0; /**< @TODO : add comment */
+	int lg1; /**< @TODO : add comment */
+	int lgx; /**< @TODO : add comment */
+	int iownr3[2]; /**< @TODO : add comment */
+	int irfnd; /**< @TODO : add comment */
+	int itaskc; /**< @TODO : add comment */
+	int ngc; /**< @TODO : add comment */
+	int nge; /**< @TODO : add comment */
 } LSR001_struct;
 
 IMPORT LSR001_struct C2F(lsr001);
@@ -277,42 +277,42 @@ typedef struct {
 	double rc; /**< @TODO : add comment */
 	double tn; /**< @TODO : add comment */
 	double uround; /**< @TODO : add comment */
-	integer illin; /**< @TODO : add comment */
-	integer init; /**< @TODO : add comment */
-	integer lyh; /**< @TODO : add comment */
-	integer lewt; /**< @TODO : add comment */
-	integer lacor; /**< @TODO : add comment */
-	integer lsavf; /**< @TODO : add comment */
-	integer lwm; /**< @TODO : add comment */
-	integer liwm; /**< @TODO : add comment */
-	integer mxstep; /**< @TODO : add comment */
-	integer mxhnil; /**< @TODO : add comment */
+	int illin; /**< @TODO : add comment */
+	int init; /**< @TODO : add comment */
+	int lyh; /**< @TODO : add comment */
+	int lewt; /**< @TODO : add comment */
+	int lacor; /**< @TODO : add comment */
+	int lsavf; /**< @TODO : add comment */
+	int lwm; /**< @TODO : add comment */
+	int liwm; /**< @TODO : add comment */
+	int mxstep; /**< @TODO : add comment */
+	int mxhnil; /**< @TODO : add comment */
 
-	integer nhnil; /**< @TODO : add comment */
-	integer ntrep; /**< @TODO : add comment */
-	integer nslast; /**< @TODO : add comment */
-	integer nyh; /**< @TODO : add comment */
-	integer iowns[6]; /**< @TODO : add comment */
-	integer icf; /**< @TODO : add comment */
-	integer ierpj; /**< @TODO : add comment */
-	integer iersl; /**< @TODO : add comment */
-	integer jcur; /**< @TODO : add comment */
+	int nhnil; /**< @TODO : add comment */
+	int ntrep; /**< @TODO : add comment */
+	int nslast; /**< @TODO : add comment */
+	int nyh; /**< @TODO : add comment */
+	int iowns[6]; /**< @TODO : add comment */
+	int icf; /**< @TODO : add comment */
+	int ierpj; /**< @TODO : add comment */
+	int iersl; /**< @TODO : add comment */
+	int jcur; /**< @TODO : add comment */
 
-	integer jstart; /**< @TODO : add comment */
-	integer kflag; /**< @TODO : add comment */
-	integer l; /**< @TODO : add comment */
-	integer meth; /**< @TODO : add comment */
-	integer miter; /**< @TODO : add comment */
-	integer maxord; /**< @TODO : add comment */
-	integer maxcor; /**< @TODO : add comment */
-	integer msbp; /**< @TODO : add comment */
-	integer mxncf; /**< @TODO : add comment */
-	integer n; /**< @TODO : add comment */
-	integer nq; /**< @TODO : add comment */
-	integer nst; /**< @TODO : add comment */
-	integer nfe; /**< @TODO : add comment */
-	integer nje; /**< @TODO : add comment */
-	integer nqu; /**< @TODO : add comment */
+	int jstart; /**< @TODO : add comment */
+	int kflag; /**< @TODO : add comment */
+	int l; /**< @TODO : add comment */
+	int meth; /**< @TODO : add comment */
+	int miter; /**< @TODO : add comment */
+	int maxord; /**< @TODO : add comment */
+	int maxcor; /**< @TODO : add comment */
+	int msbp; /**< @TODO : add comment */
+	int mxncf; /**< @TODO : add comment */
+	int n; /**< @TODO : add comment */
+	int nq; /**< @TODO : add comment */
+	int nst; /**< @TODO : add comment */
+	int nfe; /**< @TODO : add comment */
+	int nje; /**< @TODO : add comment */
+	int nqu; /**< @TODO : add comment */
 } LS0001_struct;
 
 IMPORT LS0001_struct C2F(ls0001);
@@ -325,14 +325,14 @@ typedef struct {
 	double tsw; /**< @TODO : add comment */
 	double rowns2[20]; /**< @TODO : add comment */
 	double pdnorm; /**< @TODO : add comment */
-	integer insufr; /**< @TODO : add comment */
-	integer insufi; /**< @TODO : add comment */
-	integer ixpr; /**< @TODO : add comment */
-	integer iowns2[2]; /**< @TODO : add comment */
-	integer jtyp; /**< @TODO : add comment */
-	integer mused; /**< @TODO : add comment */
-	integer mxordn; /**< @TODO : add comment */
-	integer mxords; /**< @TODO : add comment */
+	int insufr; /**< @TODO : add comment */
+	int insufi; /**< @TODO : add comment */
+	int ixpr; /**< @TODO : add comment */
+	int iowns2[2]; /**< @TODO : add comment */
+	int jtyp; /**< @TODO : add comment */
+	int mused; /**< @TODO : add comment */
+	int mxordn; /**< @TODO : add comment */
+	int mxords; /**< @TODO : add comment */
 } LSA001_struct;
 
 IMPORT LSA001_struct C2F(lsa001);
@@ -342,7 +342,7 @@ IMPORT LSA001_struct C2F(lsa001);
  * @TODO : add comment 
  */
 typedef struct {
-    integer iero; /**< @TODO : add comment */
+    int iero; /**< @TODO : add comment */
 } IERINV_struct;
 
 IMPORT IERINV_struct C2F(ierinv);
@@ -352,9 +352,9 @@ IMPORT IERINV_struct C2F(ierinv);
  * @TODO : add comment 
  */
 typedef struct {
-    integer lf; /**< @TODO : add comment */
-	integer nfree; /**< @TODO : add comment */
-	integer nf; /**< @TODO : add comment */
+    int lf; /**< @TODO : add comment */
+	int nfree; /**< @TODO : add comment */
+	int nf; /**< @TODO : add comment */
 } SCIGSCH_struct;
 
 IMPORT SCIGSCH_struct C2F(scigsch);
@@ -363,9 +363,9 @@ IMPORT SCIGSCH_struct C2F(scigsch);
  * @TODO : add comment 
  */
 typedef struct {
-    integer lf; /**< @TODO : add comment */
-	integer nx; /**< @TODO : add comment */
-	integer nf; /**< @TODO : add comment */
+    int lf; /**< @TODO : add comment */
+	int nx; /**< @TODO : add comment */
+	int nf; /**< @TODO : add comment */
 } SCISCH_struct;
 
 IMPORT SCISCH_struct C2F(scisch);
@@ -375,14 +375,14 @@ IMPORT SCISCH_struct C2F(scisch);
  */
 typedef union {
     struct {
-		integer lf; /**< @TODO : add comment */
-		integer nfree; /**< @TODO : add comment */
-		integer nf; /**< @TODO : add comment */
+		int lf; /**< @TODO : add comment */
+		int nfree; /**< @TODO : add comment */
+		int nf; /**< @TODO : add comment */
     } _1; /**< @TODO : add comment */
     struct {
-		integer lf; /**< @TODO : add comment */
-		integer nx; /**< @TODO : add comment */
-		integer nf; /**< @TODO : add comment */
+		int lf; /**< @TODO : add comment */
+		int nx; /**< @TODO : add comment */
+		int nf; /**< @TODO : add comment */
     } _2; /**< @TODO : add comment */
 } SCIZGSCH_union;
 

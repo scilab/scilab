@@ -17,6 +17,6 @@
 #include "machine.h"
 #include "def.h"
 
-int C2F(genmprod)(integer *typ,integer *job, integer *a, integer *na, integer *m, integer *n, integer *v, integer *nv);
+int C2F(genmprod)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv);
 
 #endif /* __GENMPROD_H__ */

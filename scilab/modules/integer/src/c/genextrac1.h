@@ -17,6 +17,6 @@
 #include "machine.h"
 #include "def.h"
 
-int C2F(genextrac1)(integer *typ,integer *mi,integer *indx,integer *from,integer *to);
+int C2F(genextrac1)(int *typ,int *mi,int *indx,int *from,int *to);
 
 #endif /* __GENEXTRACT1_H__ */

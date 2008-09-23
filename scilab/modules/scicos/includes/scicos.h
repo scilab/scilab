@@ -32,7 +32,7 @@ of type 0 */
 /* defined in scicos-def.h */
 /*
 extern struct {
-  integer ptr;
+  int ptr;
 } C2F(scsptr);
 */
 /* scicos common for debug */
@@ -40,14 +40,14 @@ extern struct {
 /* defined in scicos-def.h */
 /*
 extern struct {
-    integer idb;
+    int idb;
 } C2F(dbcos);
 */
 typedef void (*voidf)();
 
 /* Blocks prototypes */
-#define I integer
-#define IP integer*
+#define I int
+#define IP int*
 #define DP double*
 #define DPP double**
 #define DB scicos_block*

@@ -196,7 +196,7 @@ void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
 /** \fn void canimxy3d(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
-    \param flag An integer which indicates the state of the block (init, update, ending)
+    \param flag An int which indicates the state of the block (init, update, ending)
 */
 void canimxy3d(scicos_block * block, int flag)
 {

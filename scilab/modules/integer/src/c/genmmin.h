@@ -30,6 +30,6 @@
  * @param incy
  * @return 
  */
-int C2F(genmmin)(integer *typ, integer *job, integer *m, integer *n, int *dx, integer *incx, int *dy, int *dk, integer *incy);
+int C2F(genmmin)(int *typ, int *job, int *m, int *n, int *dx, int *incx, int *dy, int *dk, int *incy);
 
 #endif /* __GENMMIN_H__ */

@@ -17,15 +17,15 @@ Type *W;\
     W=(Type *)w;\
     t = 1; kk = 0;\
     for (k = 0; k < *n; ++k) {\
-        t *= (integer)W[kk];\
+        t *= (int) W[kk];\
 	W[kk] =(Type)t;kk += (*iw);\
     }\
 }
 
 
-int C2F(gencuprod)(integer *typ,integer *n, void *w, integer *iw)
+int C2F(gencuprod)(int *typ,int *n, void *w, int *iw)
 {
-  integer k, kk, t;
+  int k, kk, t;
 
   switch (*typ) {
   case 1:
@@ -35,7 +35,7 @@ int C2F(gencuprod)(integer *typ,integer *n, void *w, integer *iw)
     CUPROD(integer2);
     break;
   case 4:
-    CUPROD(integer);
+    CUPROD(int) ;
     break;
   case 11:
     CUPROD(unsigned char);

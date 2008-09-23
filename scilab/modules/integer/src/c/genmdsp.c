@@ -77,11 +77,11 @@ X=(Type *)x;\
     }\
 }
 
-int C2F(genmdsp)(integer *typ, integer *x, integer *nx, integer *mm, integer *nn, integer *ll, integer *lunit, char cw[], integer *iw, int cw_len)
+int C2F(genmdsp)(int *typ, int *x, int *nx, int *mm, int *nn, int *ll, int *lunit, char cw[], int *iw, int cw_len)
 {
-  static integer k, l, m, n, s, lbloc, nbloc, k1, l1, k2, ib;
+  static int k, l, m, n, s, lbloc, nbloc, k1, l1, k2, ib;
   static char dl;
-  static integer fl, io, lp;
+  static int fl, io, lp;
   extern  int C2F(blktit)(), C2F(basout)();
 
   switch (*typ) {

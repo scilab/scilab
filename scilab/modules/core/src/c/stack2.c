@@ -42,11 +42,11 @@
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
 #endif
 /* Table of constant values */
-static integer cx1 = 1;
-static integer cx0 = 0;
+static int cx1 = 1;
+static int cx0 = 0;
 
 static char *Get_Iname(void);
-static int C2F(mvfromto)(integer *itopl,integer *);
+static int C2F(mvfromto)(int *itopl,int *);
 
 static int rhs_opt_find(char *name,rhs_opts opts[]);
 static void rhs_opt_print_names(rhs_opts opts[]);
@@ -55,7 +55,7 @@ extern int C2F(isbyref)(int * fun);
 
 /*------------------------------------------------*/
 void strcpy_tws(char *str1,char *str2, int len);
-int C2F(copyvarfromsciptr)(integer lw, integer n,integer l);
+int C2F(copyvarfromsciptr)(int lw, int n,int l);
 static int intersci_push(void);
 static void intersci_pop(void);
 
@@ -65,7 +65,7 @@ static void ConvertData(unsigned char *type, int size,int l);
  * checkrhs: checks right hand side arguments
  *-----------------------------------------------*/
 
-int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fname_len)
+int C2F(checkrhs)(char *fname, int *iMin, int *iMax, unsigned long  fname_len)
 {
   /*
    * store the name in recu array, fname can be a non null terminated char array
@@ -90,7 +90,7 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
  * checkrhs: checks left hand side arguments
  *-----------------------------------------------*/
 
-int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fname_len)
+int C2F(checklhs)(char *fname, int *iMin, int *iMax, unsigned long  fname_len)
 {
   if ( Lhs < *iMin || Lhs > *iMax)
     {
@@ -112,9 +112,9 @@ int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
  * namex must have a size of nlgh + 1
  *---------------------------------------------------------------------*/
 
-int C2F(isopt)(integer *k, char *namex,unsigned long name_len)
+int C2F(isopt)(int *k, char *namex,unsigned long name_len)
 {
-  integer i1 =  *k + Top - Rhs;
+  int i1 =  *k + Top - Rhs;
   if ( C2F(isoptlw)(&Top, &i1, namex, name_len) == FALSE) return FALSE ;
   /* add a '\0' at the end of the string removing trailing blanks */
   for ( i1 = nlgh-1 ; i1 >=0 ; i1--) { if ( namex[i1] != ' ') break ;}
@@ -129,7 +129,7 @@ int C2F(isopt)(integer *k, char *namex,unsigned long name_len)
  * returns .true. and variable name in namex
  *--------------------------------------- */
 
-int C2F(isoptlw)(integer *topk,integer  *lw, char *namex, unsigned long name_len)
+int C2F(isoptlw)(int *topk,int  *lw, char *namex, unsigned long name_len)
 {
   if (*Infstk(*lw ) != 1) return FALSE ;
   C2F(cvname)(&C2F(vstk).idstk[(*lw) * nsiz - nsiz], namex, &cx1, name_len);
@@ -142,10 +142,10 @@ int C2F(isoptlw)(integer *topk,integer  *lw, char *namex, unsigned long name_len
  * given as xx=val in the calling sequence.
  * If no such argument it returns Rhs+1.
  *--------------------------------------- */
-integer C2F(firstopt)()
+int C2F(firstopt)()
 
 {
-  integer k;
+  int k;
   for (k = 1; k <= Rhs ; ++k)
     if (*Infstk(k + Top - Rhs )==1)
       return k;
@@ -179,9 +179,9 @@ int C2F(findopt)(char * str,rhs_opts opts[])
  *  top must have a correct value when using this function
  *--------------------------------------- */
 
-integer C2F(numopt)()
+int C2F(numopt)()
 {
-  integer k, ret=0;
+  int k, ret=0;
   for (k = 1; k <= Rhs ; ++k)
     if ( *Infstk(k + Top - Rhs) == 1 ) ret++;
   return ret;
@@ -192,9 +192,9 @@ integer C2F(numopt)()
  *   type of variable number number in the stack
  *---------------------------------------------------------------------*/
 
-integer C2F(vartype)(integer *number)
+int C2F(vartype)(int *number)
 {
-  integer ix1=  *number + Top - Rhs;
+  int ix1=  *number + Top - Rhs;
   return C2F(gettype)(&ix1);
 }
 
@@ -203,9 +203,9 @@ integer C2F(vartype)(integer *number)
  *    returns the type of object at position lw in the stack
  *------------------------------------------------*/
 
-integer C2F(gettype)(integer *lw)
+int C2F(gettype)(int *lw)
 {
-  integer il;
+  int il;
   il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   return *istk(il);
@@ -218,10 +218,10 @@ integer C2F(gettype)(integer *lw)
  *    does not fit given type
  *------------------------------------------------*/
 
-static integer overloadtype(integer *lw,char *fname,unsigned char *typ)
+static int overloadtype(int *lw,char *fname,unsigned char *typ)
 {
-  integer il=0;
-  integer ityp=0;
+  int il=0;
+  int ityp=0;
   il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   switch (*typ) {
@@ -276,7 +276,7 @@ static integer overloadtype(integer *lw,char *fname,unsigned char *typ)
  *    set mechanism to overloaded function fname for object lw
  *------------------------------------------------*/
 
-integer C2F(overload)(integer *lw,char *fname,unsigned long l)
+int C2F(overload)(int *lw,char *fname,unsigned long l)
 {
   C2F(putfunnam)(fname,lw,l);
   C2F(com).fun=-1;
@@ -288,7 +288,7 @@ integer C2F(overload)(integer *lw,char *fname,unsigned long l)
 /*------------------------------------------------
  * ogettype : unused
  *------------------------------------------------*/
-integer C2F(ogettype)(integer *lw)
+int C2F(ogettype)(int *lw)
 {
   return  *istk(iadr(*Lstk(*lw )) );
 }
@@ -403,9 +403,9 @@ int IsRef(int number) {
   return C2F(isref)(&number);
 }
 
-int C2F(isref)(integer *number)
+int C2F(isref)(int *number)
 {
-  integer il,lw;
+  int il,lw;
   lw = *number + Top - Rhs;
   if ( *number > Rhs) {
     Scierror(999,_("%s: bad call to %s! (1rst argument).\n"),"isref","isref");
@@ -433,9 +433,9 @@ int C2F(isref)(integer *number)
  *     see examples in addinter-examples
  *---------------------------------------------------------------------*/
 
-int C2F(createvar)(integer *lw,char *typex,integer *m,integer *n,integer  *lr,unsigned long type_len)
+int C2F(createvar)(int *lw,char *typex,int *m,int *n,int  *lr,unsigned long type_len)
 {
-  integer ix1, ix, it=0, lw1, lcs, IT;
+  int ix1, ix, it=0, lw1, lcs, IT;
   unsigned char Type = *typex;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
@@ -549,10 +549,10 @@ int C2F(createvar)(integer *lw,char *typex,integer *m,integer *n,integer  *lr,un
  *     Like createvar but for complex matrices
  *---------------------------------------------------------------------*/
 
-int C2F(createcvar)(integer *lw, char *typex,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long type_len)
+int C2F(createcvar)(int *lw, char *typex,int *it,int *m,int *n,int *lr,int *lc,unsigned long type_len)
 {
   unsigned char Type = *typex ;
-  integer lw1;
+  int lw1;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
     Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createcvar");
@@ -596,10 +596,10 @@ int C2F(createcvar)(integer *lw, char *typex,integer *it,integer *m,integer *n,i
  *     list with nel elements
  *---------------------------------------------------------------------*/
 
-int C2F(createlist)(integer *lw,integer *nel)
+int C2F(createlist)(int *lw,int *nel)
 {
   char *fname = Get_Iname();
-  integer lr, lw1;
+  int lr, lw1;
   if (*lw > intersiz) {
 	Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlist");
     return FALSE;
@@ -626,12 +626,12 @@ int C2F(createlist)(integer *lw,integer *nel)
  *     if lar != -1 var is filled with data stored at lar
  *---------------------------------------------------------------------*/
 
-int C2F(createvarfrom)(integer *lw,char *typex,integer *m,integer *n,integer *lr,integer *lar,unsigned long type_len)
+int C2F(createvarfrom)(int *lw,char *typex,int *m,int *n,int *lr,int *lar,unsigned long type_len)
 {
   int M=*m,N=*n,MN=M*N;
   unsigned char Type = *typex;
-  integer inc=1;
-  integer it=0, lw1, lcs;
+  int inc=1;
+  int it=0, lw1, lcs;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
     Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createvarfrom");
@@ -710,11 +710,11 @@ int C2F(createvarfrom)(integer *lw,char *typex,integer *m,integer *n,integer *lr
  *     ==> like createvarfrom for complex matrices
 *---------------------------------------------------------------------*/
 
-int C2F(createcvarfrom)(integer *lw,char *typex,integer *it,integer *m,integer *n,integer *lr,integer *lc,integer *lar,integer *lac,unsigned long type_len)
+int C2F(createcvarfrom)(int *lw,char *typex,int *it,int *m,int *n,int *lr,int *lc,int *lar,int *lac,unsigned long type_len)
 {
   unsigned char Type = *typex;
   int MN;
-  integer lw1, lcs;
+  int lw1, lcs;
   char *fname =     Get_Iname();
   if (*lw > intersiz) {
     Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createcvarfrom");
@@ -777,10 +777,10 @@ int C2F(createcvarfrom)(integer *lw,char *typex,integer *it,integer *m,integer *
  *     d,r,i : matrix of double,float or integer
  *---------------------------------------------------------------------*/
 
-int C2F(createlistvarfrom)(integer *lnumber,integer *number,char * typex,integer *m,integer *n,integer *lr,integer *lar,unsigned long type_len)
+int C2F(createlistvarfrom)(int *lnumber,int *number,char * typex,int *m,int *n,int *lr,int *lar,unsigned long type_len)
 {
   unsigned Type = *typex;
-  integer lc, ix1, it = 0, mn = (*m)*(*n),inc=1;
+  int lc, ix1, it = 0, mn = (*m)*(*n),inc=1;
   char *fname = Get_Iname();
   if (*lnumber > intersiz) {
     Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlistvar");
@@ -879,9 +879,9 @@ int C2F(createlistvarfrom)(integer *lnumber,integer *number,char * typex,integer
  * create a complex list variable from data
  *---------------------------------------------------------------------*/
 
-int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, integer *it, integer *m,integer *n,integer *lr,integer *lc,integer *lar,integer *lac, unsigned long type_len)
+int C2F(createlistcvarfrom)(int *lnumber, int *number, char *typex, int *it, int *m,int *n,int *lr,int *lc,int *lar,int *lac, unsigned long type_len)
 {
-  integer ix1;
+  int ix1;
   int mn = (*m)*(*n);
   unsigned char Type = *typex;
   char *fname = Get_Iname();
@@ -951,10 +951,10 @@ int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, inte
  *     d,r,i : matrix of double,float or integer
  *---------------------------------------------------------------------*/
 
-int C2F(createlistvarfromptr)(integer *lnumber,integer * number,char *typex,integer *m,integer *n,void *iptr,unsigned long type_len)
+int C2F(createlistvarfromptr)(int *lnumber,int * number,char *typex,int *m,int *n,void *iptr,unsigned long type_len)
 {
   unsigned Type = *typex;
-  integer lc, ix1, it = 0, lr,inc=1;
+  int lc, ix1, it = 0, lr,inc=1;
   char *fname = Get_Iname();
   if (*lnumber > intersiz) {
     Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlistvarfromptr");
@@ -1056,10 +1056,10 @@ int C2F(createlistvarfromptr)(integer *lnumber,integer * number,char *typex,inte
  *     d,r,i : matrix of double,float or integer
  *---------------------------------------------------------------------*/
 
-int C2F(createlistcvarfromptr)(integer *lnumber,integer *number,char *typex,integer *it,integer *m,integer *n,void *iptr,void *iptc,unsigned long type_len)
+int C2F(createlistcvarfromptr)(int *lnumber,int *number,char *typex,int *it,int *m,int *n,void *iptr,void *iptc,unsigned long type_len)
 {
   unsigned Type = *typex;
-  integer lr,lc, ix1;
+  int lr,lc, ix1;
   char *fname = Get_Iname();
   if (*lnumber > intersiz) {
     Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlistvarfromptr");
@@ -1110,7 +1110,7 @@ int C2F(createlistcvarfromptr)(integer *lnumber,integer *number,char *typex,inte
  * the allowed size (in double) is returned in m
  *---------------------------------------------------------------------*/
 
-int C2F(creatework)(integer *number,integer *m,integer *lr)
+int C2F(creatework)(int *number,int *m,int *lr)
 {
   int n,it=0,lw1,lcs,il;
   char *fname = Get_Iname();
@@ -1140,7 +1140,7 @@ int C2F(creatework)(integer *number,integer *m,integer *lr)
  * Moreover informations the objet is recorded
  *---------------------------------------------------------------------*/
 
-int C2F(setworksize)(integer *number,integer *size)
+int C2F(setworksize)(int *number,int *size)
 {
   int lw1;
   char *fname = Get_Iname();
@@ -1168,10 +1168,10 @@ int C2F(setworksize)(integer *number,integer *size)
  *     returns its dimensions
  *---------------------------------------------------------------------*/
 
-int C2F(getmatdims)(integer *number,integer *m,integer *n)
+int C2F(getmatdims)(int *number,int *m,int *n)
 {
   char *fname = Get_Iname();
-  integer il,lw,typ;
+  int il,lw,typ;
 
   lw = *number + Top - Rhs;
   if ( *number > Rhs) {
@@ -1207,15 +1207,15 @@ int C2F(getmatdims)(integer *number,integer *m,integer *n)
  *     see examples in addinter-examples
  *---------------------------------------------------------------------*/
 
-int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr,unsigned long type_len)
+int C2F(getrhsvar)(int *number,char *typex,int *m,int *n,int *lr,unsigned long type_len)
 {
 	int ierr = 0,il1 = 0,ild1 = 0,nn = 0;
 	int lrr = 0;
 	char *fname = Get_Iname();
 	char **items = NULL, namex[nlgh+1];
 	unsigned char Type = *(unsigned char *) typex;
-	integer topk = 0,ltype = 0, m1 = 0, n1 = 0, lc = 0,lr1 = 0, it = 0, lw = 0, ile = 0, ils = 0, ix1 = 0,ix2 = 0;
-	integer mnel = 0,icol = 0;
+	int topk = 0,ltype = 0, m1 = 0, n1 = 0, lc = 0,lr1 = 0, it = 0, lw = 0, ile = 0, ils = 0, ix1 = 0,ix2 = 0;
+	int mnel = 0,icol = 0;
 	SciSparse *Sp = NULL;
 	SciIntMat *Im = NULL;
 	/* we accept a call to getrhsvar after a createvarfromptr call */
@@ -1413,9 +1413,9 @@ int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr
  *     like getrhsvar but for complex matrices
  *---------------------------------------------------------------------*/
 
-int C2F(getrhscvar)(integer *number,char *typex,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long type_len)
+int C2F(getrhscvar)(int *number,char *typex,int *it,int *m,int *n,int *lr,int *lc,unsigned long type_len)
 {
-  integer ix1, lw, topk;
+  int ix1, lw, topk;
   unsigned char Type = *typex;
   char *fname = Get_Iname();
 
@@ -1461,9 +1461,9 @@ int C2F(getrhscvar)(integer *number,char *typex,integer *it,integer *m,integer *
  *   the function returns 0.
  *---------------------------------------------------------------------*/
 
-int C2F(elementtype)(integer *lnumber, integer *number)
+int C2F(elementtype)(int *lnumber, int *number)
 {
-  integer il,lw,itype,n,ix,ili;
+  int il,lw,itype,n,ix,ili;
   char *fname = Get_Iname();
 
   if (*lnumber > Rhs) {
@@ -1504,15 +1504,15 @@ int C2F(elementtype)(integer *lnumber, integer *number)
  *     d,r,i : matrix of double,float or integer
  *---------------------------------------------------------------------*/
 
-int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,integer *n,integer *lr,unsigned long type_len)
+int C2F(getlistrhsvar)(int *lnumber,int *number,char *typex,int *m,int *n,int *lr,unsigned long type_len)
 {
   int lr1;
   char **items;
   int il1,ild1,nn,ierr=0;
   char *fname = Get_Iname();
-  integer m1, n1, lc, it, lw, topk = Top, ix1,ix2;
+  int m1, n1, lc, it, lw, topk = Top, ix1,ix2;
   unsigned char Type = *typex;
-  integer mnel,icol;
+  int mnel,icol;
   SciSparse *Sp;
   SciIntMat *Im;
 
@@ -1631,9 +1631,9 @@ int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,i
  * for complex
  *---------------------------------------------------------------------*/
 
-int C2F(getlistrhscvar)(integer *lnumber,integer *number,char *typex,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long type_len)
+int C2F(getlistrhscvar)(int *lnumber,int *number,char *typex,int *it,int *m,int *n,int *lr,int *lc,unsigned long type_len)
 {
-  integer ix1, topk= Top, lw;
+  int ix1, topk= Top, lw;
   char *fname = Get_Iname();
   unsigned  char    Type = * typex;
 
@@ -1683,7 +1683,7 @@ int C2F(getlistrhscvar)(integer *lnumber,integer *number,char *typex,integer *it
  *
  *---------------------------------------------------------------------*/
 
-int C2F(createvarfromptr)(integer *number,char *typex,integer *m,integer *n,void *iptr,unsigned long type_len)
+int C2F(createvarfromptr)(int *number,char *typex,int *m,int *n,void *iptr,unsigned long type_len)
 {
 	static int un=1;
 	unsigned char Type = *typex;
@@ -1750,11 +1750,11 @@ int C2F(createvarfromptr)(integer *number,char *typex,integer *m,integer *n,void
  *     for complex
  *---------------------------------------------------------------------*/
 
-int C2F(createcvarfromptr)(integer *number,char *typex,integer *it,integer *m,integer *n,double *iptr,double *iptc,unsigned long type_len)
+int C2F(createcvarfromptr)(int *number,char *typex,int *it,int *m,int *n,double *iptr,double *iptc,unsigned long type_len)
 {
   unsigned char Type = *typex;
   char *fname = Get_Iname();
-  integer lw1, lcs, lrs, ix1;
+  int lw1, lcs, lrs, ix1;
 
   Nbvars = Max(Nbvars,*number);
   if (*number > intersiz) {
@@ -1799,9 +1799,9 @@ int C2F(createcvarfromptr)(integer *number,char *typex,integer *it,integer *m,in
  *     by a list of these variables at position pos
  *---------------------------------------------------------------------*/
 
-int C2F(mklistfromvars)(integer *pos,integer *n)
+int C2F(mklistfromvars)(int *pos,int *n)
 {
-  integer tops =  Top;
+  int tops =  Top;
   int k;
   for ( k= *pos; k < *pos+*n; k++) C2F(convert2sci)(&k);
   Top = Top - Rhs + *pos - 1 + *n;
@@ -1815,10 +1815,10 @@ int C2F(mklistfromvars)(integer *pos,integer *n)
  *     similar to mklistfromvars but create a tlist
  *---------------------------------------------------------------------*/
 
-int C2F(mktlistfromvars)(integer *pos,integer *n)
+int C2F(mktlistfromvars)(int *pos,int *n)
 {
-  integer type=16;
-  integer tops =  Top;
+  int type=16;
+  int tops =  Top;
   int k;
   for ( k= *pos; k < *pos+*n; k++) C2F(convert2sci)(&k);
   Top = Top - Rhs + *pos - 1 + *n;
@@ -1832,10 +1832,10 @@ int C2F(mktlistfromvars)(integer *pos,integer *n)
  *     similar to mklistfromvars but create a mlist
  *---------------------------------------------------------------------*/
 
-int C2F(mkmlistfromvars)(integer *pos,integer *n)
+int C2F(mkmlistfromvars)(int *pos,int *n)
 {
-  integer type=sci_mlist;
-  integer tops =  Top;
+  int type=sci_mlist;
+  int tops =  Top;
   int k;
   for ( k= *pos; k < *pos+*n; k++) C2F(convert2sci)(&k);
   Top = Top - Rhs + *pos - 1 + *n;
@@ -1851,7 +1851,7 @@ int C2F(mkmlistfromvars)(integer *pos,integer *n)
 
 int C2F(callscifun)(char *string,unsigned long string_len)
 {
-  integer id[nsiz];
+  int id[nsiz];
   C2F(cvname)(id, string, &cx0, string_len);
   C2F(putid)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], id);
   C2F(com).fun = -1;
@@ -1866,11 +1866,11 @@ int C2F(callscifun)(char *string,unsigned long string_len)
  *     at positions top-mrhs+1:top
  *---------------------------------------------------------------------*/
 
-int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
+int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
 {
-  integer cx26 = 26;
-  integer ix1, ix, k, intop,  ir, lw;
-  integer imode,ireftop;
+  int cx26 = 26;
+  int ix1, ix, k, intop,  ir, lw;
+  int imode,ireftop;
 
   if ( intersci_push() == 0 )
     {
@@ -1990,7 +1990,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
     goto L91;
   }
   if (Fin == 0) {
-    integer cx4 = 246;
+    int cx4 = 246;
     Error(cx4);
     if (Err > 0) goto L97;
     goto L90;
@@ -2045,10 +2045,10 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
  *     ifisrt,thestring,mlhs and mrhs are input parameters.
  *---------------------------------------------------------------------*/
 
-int C2F(scistring)(integer *ifirst,char *thestring,integer *mlhs,integer *mrhs,unsigned long thestring_len)
+int C2F(scistring)(int *ifirst,char *thestring,int *mlhs,int *mrhs,unsigned long thestring_len)
 {
   int ret = FALSE;
-  integer ifin, ifun, tops, moutputs, id[nsiz], lf, op, ile, ils, nnn, ninputs;
+  int ifin, ifun, tops, moutputs, id[nsiz], lf, op, ile, ils, nnn, ninputs;
   nnn =  thestring_len;
   op = 0;
   if (nnn <= 2) {
@@ -2088,10 +2088,10 @@ int C2F(scistring)(integer *ifirst,char *thestring,integer *mlhs,integer *mrhs,u
   return ret;
 }
 
-integer C2F(getopcode)(char *string,unsigned long string_len)
+int C2F(getopcode)(char *string,unsigned long string_len)
 {
   unsigned char ch = string[0];
-  integer op = 0;
+  int op = 0;
   if (  string_len >= 2) {
     /*     .op  or op. */
     if ( ch  == '.') ch = string[1];
@@ -2118,11 +2118,11 @@ integer C2F(getopcode)(char *string,unsigned long string_len)
  *     mlhs,mrhs = # of lhs and rhs parameters of the function.
  *---------------------------------------------------------------------*/
 
-int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,integer *mrhs)
+int C2F(scibuiltin)(int *number,int *ifun,int *ifin,int *mlhs,int *mrhs)
 {
-  integer srhs, slhs;
-  integer ix, k, intop, ir, lw, pt0;
-  integer imode,ireftop;
+  int srhs, slhs;
+  int ix, k, intop, ir, lw, pt0;
+  int imode,ireftop;
   intop = Top;
 
   if ( intersci_push() == 0 )
@@ -2227,7 +2227,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
     goto L91;
   }
   if (Fin == 0) {
-    integer cx4 = 246;
+    int cx4 = 246;
     Error(cx4);
     if (Err > 0) goto L97;
     goto L90;
@@ -2273,9 +2273,9 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
  *     mlhs,mrhs = # of lhs and rhs parameters of the operation.
  *---------------------------------------------------------------------*/
 
-int C2F(sciops)(integer *number,integer *op,integer *mlhs,integer *mrhs)
+int C2F(sciops)(int *number,int *op,int *mlhs,int *mrhs)
 {
-  integer ifin, ifun, srhs= Rhs , slhs= Lhs, ix, intop=Top , lw;
+  int ifin, ifun, srhs= Rhs , slhs= Lhs, ix, intop=Top , lw;
 
   Fin   = *op;
   Top = Top - Rhs + *number + *mrhs - 1;
@@ -2321,13 +2321,13 @@ int C2F(sciops)(integer *number,integer *op,integer *mlhs,integer *mrhs)
  *              h=h    sampled system h=sampling period
  -------------------------------------------------------------*/
 
-int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,integer *ptrb,integer *ptrc,integer *ptrd,integer *ptrx0,double *hx)
+int C2F(getrhssys)(int *lw,int *n,int *m,int *p,int *ptra,int *ptrb,int *ptrc,int *ptrd,int *ptrx0,double *hx)
 {
-  integer cx2 = 2, cx3 = 3, cx4 = 4, cx5 = 5, cx6 = 6;
-  integer ix1, junk, msys, nsys, ix, icord;
-  integer ma, na, mb, nb, mc, nc, il, md, nd;
-  integer mx0, nx0, ptrsys, itimedomain;
-  static integer iwork[23] = { 10,1,7,0,1,4,5,6,7,8,10,12,21,28,28,-10,-11,
+  int cx2 = 2, cx3 = 3, cx4 = 4, cx5 = 5, cx6 = 6;
+  int ix1, junk, msys, nsys, ix, icord;
+  int ma, na, mb, nb, mc, nc, il, md, nd;
+  int mx0, nx0, ptrsys, itimedomain;
+  static int iwork[23] = { 10,1,7,0,1,4,5,6,7,8,10,12,21,28,28,-10,-11,
 			       -12,-13,-33,0,13,29 };
   if (! C2F(getrhsvar)(lw, "t", &msys, &nsys, &ptrsys, 1L)) return FALSE;
   il = iadr(ptrsys) - msys - 1;
@@ -2407,7 +2407,7 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
  * call Scilab error function (for Fortran use)
  *---------------------------------------------------*/
 
-int C2F(errorinfo)(char *fname,integer *info,unsigned long fname_len)
+int C2F(errorinfo)(char *fname,int *info,unsigned long fname_len)
 {
   Scierror(998,_("%s: internal error, info=%d.\n"),get_fname(fname,fname_len),*info);
   return 0;
@@ -2428,11 +2428,11 @@ int C2F(errorinfo)(char *fname,integer *info,unsigned long fname_len)
  *     call pipo(   ,stk(idwork),[lwork],...)
  *-------------------------------------------------------------*/
 
-integer C2F(maxvol)(integer *lw,char *lw_type,unsigned long type_len)
+int C2F(maxvol)(int *lw,char *lw_type,unsigned long type_len)
 {
   unsigned char Type =  *(unsigned char *)lw_type ;
   /* I like this one a lot: a kind of free jazz pattern  */
-  integer m = *Lstk(Bot) - sadr(iadr(*Lstk(*lw + Top - Rhs)) +4);
+  int m = *Lstk(Bot) - sadr(iadr(*Lstk(*lw + Top - Rhs)) +4);
   switch ( Type )
     {
     case 'd' : return m; break;
@@ -2513,8 +2513,8 @@ static int Check_references()
 
 int C2F(putlhsvar)()
 {
-  integer ix2, ivar, ibufprec, ix, k, lcres, nbvars1;
-  integer plhsk;
+  int ix2, ivar, ibufprec, ix, k, lcres, nbvars1;
+  int plhsk;
   Check_references();
 
   for (k = 1; k <= Lhs; k++)
@@ -2608,17 +2608,17 @@ int C2F(putlhsvar)()
  *                         position itopl
  *---------------------------------------------------------------------*/
 
-static int C2F(mvfromto)(integer *itopl,integer *ix)
+static int C2F(mvfromto)(int *itopl,int *ix)
 {
-  integer ix1=0;
-  integer m=0;
-  integer n=0;
-  integer it=0;
-  integer lcs=0;
-  integer lrs=0;
-  integer l=0;
-  integer size=0;
-  integer pointed=0;
+  int ix1=0;
+  int m=0;
+  int n=0;
+  int it=0;
+  int lcs=0;
+  int lrs=0;
+  int l=0;
+  int size=0;
+  int pointed=0;
   unsigned long int ilp=0;
   unsigned char Type;
   double wsave;
@@ -2761,7 +2761,7 @@ static int C2F(mvfromto)(integer *itopl,integer *ix)
 
 int Ref2val(int from , int to )
 {
-  integer il,lw;
+  int il,lw;
   lw = from + Top - Rhs;
   if ( from  > Rhs)
   {
@@ -2787,9 +2787,9 @@ int Ref2val(int from , int to )
  *     see how it is used in matdes.c
  *---------------------------------------------------------------------*/
 
-int C2F(convert2sci)(integer *ix)
+int C2F(convert2sci)(int *ix)
 {
-  integer ix1 = Top - Rhs + *ix;
+  int ix1 = Top - Rhs + *ix;
   if (! C2F(mvfromto)(&ix1, ix)) return FALSE;
   C2F(intersci).ntypes[*ix - 1] = '$';
   return TRUE;
@@ -2816,7 +2816,7 @@ void strcpy_tws(char *str1,char *str2, int len)
  *     + add a 0 at end of string
  *---------------------------------------------------------------------*/
 
-int C2F(in2str)(integer *n,integer *line,char *str,unsigned long str_len)
+int C2F(in2str)(int *n,int *line,char *str,unsigned long str_len)
 {
   C2F(codetoascii)(n,line, str, str_len);
   str[*n] = '\0';
@@ -3056,9 +3056,9 @@ int check_list_one_dim(int lpos,int posi,int dim,int val,int valref)
  * Utility for hand writen data extraction or creation
  *---------------------------------------------------------------------*/
 
-int C2F(createdata)(integer *lw, integer n)
+int C2F(createdata)(int *lw, int n)
 {
-  integer lw1;
+  int lw1;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
     Scierror(999,_("%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createdata");
@@ -3084,7 +3084,7 @@ int C2F(createdata)(integer *lw, integer n)
  *      - its size n
  *    to the variable position  lw
  *----------------------------------------------------------------------*/
-int C2F(copyvarfromsciptr)(integer lw, integer n,integer l)
+int C2F(copyvarfromsciptr)(int lw, int n,int l)
 {
   int ret,un=1;
   if ((ret=C2F(createdata)(&lw, n))==FALSE) return ret;
@@ -3093,7 +3093,7 @@ int C2F(copyvarfromsciptr)(integer lw, integer n,integer l)
 }
 
 void * GetVarPtr(int n)
-     /* return  the pointer on the first integer of the n th variable  data structure  */
+     /* return  the pointer on the first int of the n th variable  data structure  */
 
 {
   int l1 = *Lstk(n + Top - Rhs);

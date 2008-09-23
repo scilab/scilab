@@ -24,7 +24,7 @@
  * @param fd    
  * @return <ReturnValue>
  */
-int SWAP(char type[],integer *fd); 
+int SWAP(char type[],int *fd); 
 
 /**
  * <long-description>
@@ -35,7 +35,7 @@ int SWAP(char type[],integer *fd);
  * @param char type[]   
  * @param ierr  
  */
-void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr);
+void C2F(mgeti) (int *fd,int *res,int *n,char type[],int *ierr);
 
 #endif /* __MGETI_H__ */
 

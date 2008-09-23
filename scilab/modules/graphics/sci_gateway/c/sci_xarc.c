@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xarc(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1,l2,l3,l4,l5,l6;
+  int m1,n1,l1,l2,l3,l4,l5,l6;
   long hdl;
   int curcolor ;
   sciPointObj * psubwin = NULL;

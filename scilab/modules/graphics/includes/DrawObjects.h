@@ -54,9 +54,9 @@ extern void sciXbasc(void);  /* DRAWINGS */
 extern void sciXclear(void); /* DRAWINGS */
  
 /* 3 next are in plo3d.c*/
-extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag); /* DRAWINGS */
+extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, int flag); /* DRAWINGS */
 
-extern void Nextind(integer ind1, integer *ind2, integer *ind3); /* DRAWINGS */
+extern void Nextind(int ind1, int *ind2, int *ind3); /* DRAWINGS */
 extern BOOL Ishidden(sciPointObj *pobj); /* DRAWINGS */
 extern BOOL IsDownAxes(sciPointObj *pobj); /* DRAWINGS */
 extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
@@ -70,8 +70,8 @@ extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 
 extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
-extern int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD); /* DRAWINGS */
-extern int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind); /* DRAWINGS */
+extern int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, int *xind, int *InsideU, int *InsideD); /* DRAWINGS */
+extern int Axes3dStrings2(int *ixbox, int *iybox, int *xind); /* DRAWINGS */
 
 extern int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect);
 
@@ -90,7 +90,7 @@ extern int sciRefreshObj( sciPointObj * pobj ) ; /* DRAWINGS */
 
 /**DJ.Abdemouche 2003**/
 
-extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg, sciPointObj *psurface); /* DRAWINGS */
+extern int Gen3DPoints (int type,int *polyx,int *polyy,int *fill,int whiteid,double zmin,double zmax,double *,double *,double *,int i,int j,int jj1,int *p,int dc,int fg, sciPointObj *psurface); /* DRAWINGS */
 
 extern int CheckPixelStatus(void);
 
@@ -100,11 +100,11 @@ extern double FindWidth(sciPointObj * pobj, int n1, int bar_number, double *x);
 
 extern void sciGetAxisBox( double limits[6], double xbox[8], double ybox[8], double zbox[8] ) ;
 extern void sciUpdateScaleAngles( double theta, double alpha ) ;
-extern void sciAxesVerticesIndices( integer insideU[4],
-                                    integer insideD[4],
+extern void sciAxesVerticesIndices( int insideU[4],
+                                    int insideD[4],
                                     double  xbox[8]   ,
                                     double  ybox[8]   ,
-                                    integer xind[8]    ) ;
+                                    int xind[8]    ) ;
 
 extern void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest ) ;
 

@@ -14,17 +14,17 @@
 #include "math_graphics.h"
 
 
-static int nnuees(double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr);
+static int nnuees(double *x, double *y, double *z, int *n, double *bx, double *by, double *bz, int *nbbary, int *chaine, int *ierr);
 
-static int heapi2(integer *criter, integer *record, integer *n);
-static int bblocs(double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr);
-int C2F(nues1)(double *xyz, integer *n, double *bxyz, integer *nbbary, integer *chaine, integer *ierr);
+static int heapi2(int *criter, int *record, int *n);
+static int bblocs(double *x, double *y, double *z, int *n, double *bx, double *by, double *bz, int *nbbary, int *chaine, int *ierr);
+int C2F(nues1)(double *xyz, int *n, double *bxyz, int *nbbary, int *chaine, int *ierr);
 
 /*------------------------------------------------------
  *------------------------------------------------------*/
 
 
-int C2F(nues1)(double *xyz, integer *n, double *bxyz, integer *nbbary, integer *chaine, integer *ierr)
+int C2F(nues1)(double *xyz, int *n, double *bxyz, int *nbbary, int *chaine, int *ierr)
 {
   bblocs(xyz, xyz+(*n), xyz+2*(*n), n, bxyz, bxyz+(*nbbary), 
 	 bxyz+2*(*nbbary), nbbary, chaine, ierr); 
@@ -41,21 +41,21 @@ int C2F(nues1)(double *xyz, integer *n, double *bxyz, integer *nbbary, integer *
  * belongs 
  *------------------------------------------------------*/
 
-static int nnuees(double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr)
+static int nnuees(double *x, double *y, double *z, int *n, double *bx, double *by, double *bz, int *nbbary, int *chaine, int *ierr)
 {
-  integer i1, i2;
+  int i1, i2;
   double d1, d2, d3;
   static double d;
-  static integer i, k, l, m, iclas;
+  static int i, k, l, m, iclas;
   static int vvide;
   static double id;
-  static integer im;
+  static int im;
   static double ax[256], ay[256], az[256];
-  static integer nn[256];
+  static int nn[256];
   static double ix;
-  static integer nbiter;
+  static int nbiter;
   static double idx;
-  static integer nnn;
+  static int nnn;
 
     /* Parameter adjustments */
   --chaine;
@@ -261,21 +261,21 @@ static int nnuees(double *x, double *y, double *z, integer *n, double *bx, doubl
  *     le point x(i),y(i),z(i) appartient 
  *------------------------------------------------------*/
 
-static int bblocs(double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr)
+static int bblocs(double *x, double *y, double *z, int *n, double *bx, double *by, double *bz, int *nbbary, int *chaine, int *ierr)
 {
   /* System generated locals */
-  integer i1, i2;
+  int i1, i2;
   double d1, d2;
 
   /* Local variables */
-  static integer bmin[256], bmax[256], rang, dmax, kmin, tete[256], 
+  static int bmin[256], bmax[256], rang, dmax, kmin, tete[256], 
     rmin[256], rmax[256], vmin[256], vmax[256], next, b, i, j, k, m, r,
     v, w, itmax, histo[256];
-  static integer bi, ri, nbbloc, vi, diagon[256], nbbouc;
+  static int bi, ri, nbbloc, vi, diagon[256], nbbouc;
   static int manque;
-  static integer weight, clasvo[256], icompt;
+  static int weight, clasvo[256], icompt;
   static double xma, yma, zma;
-  static integer var;
+  static int var;
   static double xmi, ymi, zmi;
 
   --chaine;
@@ -460,7 +460,7 @@ L31:
       }
     L1:
       if (j != 0) {
-	ri = (integer) ((x[j] - xmi) * 255 / (xma - xmi) + 1);
+	ri = (int)  ((x[j] - xmi) * 255 / (xma - xmi) + 1);
 	++histo[ri - 1];
 	++weight;
 	j = chaine[j];
@@ -469,7 +469,7 @@ L31:
       goto L4;
     L2:
       if (j != 0) {
-	vi = (integer) ((y[j] - ymi) * 255 / (yma - ymi) + 1);
+	vi = (int)  ((y[j] - ymi) * 255 / (yma - ymi) + 1);
 	++histo[vi - 1];
 	++weight;
 	j = chaine[j];
@@ -478,7 +478,7 @@ L31:
       goto L4;
     L3:
       if (j != 0) {
-	bi = (integer) ((z[j] - zmi) * 255 / (zma - zmi) + 1);
+	bi = (int)  ((z[j] - zmi) * 255 / (zma - zmi) + 1);
 	++histo[bi - 1];
 	++weight;
 	j = chaine[j];
@@ -528,9 +528,9 @@ L31:
     L6:
       if (j != 0) {
 	next = chaine[j];
-	ri = (integer) ((x[j] - xmi) * 255 / (xma - xmi));
-	vi = (integer) ((y[j] - ymi) * 255 / (yma - ymi));
-	bi = (integer) ((z[j] - zmi) * 255 / (zma - zmi));
+	ri = (int)  ((x[j] - xmi) * 255 / (xma - xmi));
+	vi = (int)  ((y[j] - ymi) * 255 / (yma - ymi));
+	bi = (int)  ((z[j] - zmi) * 255 / (zma - zmi));
 	switch ((int)dmax) {
 	case 1:  goto L7;
 	case 2:  goto L8;
@@ -631,9 +631,9 @@ L100:
  *     record suit le reordonnancement 
  *------------------------------------------------------*/
 
-static int heapi2(integer *criter, integer *record, integer *n)
+static int heapi2(int *criter, int *record, int *n)
 {
-  static integer crit, i, j, l, r, rec;
+  static int crit, i, j, l, r, rec;
   --record;
   --criter;
   if (*n <= 1) return 0;

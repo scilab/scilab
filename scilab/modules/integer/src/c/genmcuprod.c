@@ -12,7 +12,7 @@
 
 #include "genmcuprod.h"
 #include "gencuprod.h"
-static integer c__1 = 1;
+static int c__1 = 1;
 
 #define MCUPROD(Type) {\
 Type *A;\
@@ -31,9 +31,9 @@ Type *A;\
     }\
 }
 
-int C2F(genmcuprod)(integer *typ,integer *job,integer * a,integer * na,integer * m,integer * n)
+int C2F(genmcuprod)(int *typ,int *job,int * a,int * na,int * m,int * n)
 {
-  static integer  i, j, mn;
+  static int  i, j, mn;
 
   mn=(*m)*(*n);
 
@@ -45,7 +45,7 @@ int C2F(genmcuprod)(integer *typ,integer *job,integer * a,integer * na,integer *
     MCUPROD(integer2);
     break;
   case 4:
-    MCUPROD(integer);
+    MCUPROD(int) ;
     break;
   case 11:
     MCUPROD(unsigned char);

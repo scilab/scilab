@@ -19,7 +19,7 @@
 * @param value to check
 * @return 1 if a Nan is found and 0 elsewhere
 */
-integer C2F(isanan)(double *x);
+int C2F(isanan)(double *x);
 
 #endif /* __ISANAN_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -33,7 +33,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xfpolys( char *fname, unsigned long fname_len )
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,mn2,v1=0;
+  int m1,n1,l1,m2,n2,l2,m3,n3,l3,mn2,v1=0;
   /* v1 is the flag used for flat (v1==1) or interpolated (v1==2) shading */
 
   int i,color;

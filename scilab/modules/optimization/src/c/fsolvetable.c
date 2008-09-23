@@ -15,10 +15,10 @@
 * Search Table for fsolve 
 ***********************************/
 
-#define ARGS_fsolvf integer*,double *,double*,integer*
+#define ARGS_fsolvf int*,double *,double*,int*
 typedef void (*fsolvff)(ARGS_fsolvf);
 
-#define ARGS_fsolvj integer*,double*,double*,integer*
+#define ARGS_fsolvj int*,double*,double*,int*
 typedef void (*fsolvjf)(ARGS_fsolvj);
 
 
@@ -51,7 +51,7 @@ static fsolvff fsolvffonc ;
 
 /** function call : fsolvf  **/
 
-void C2F(fsolvf)(integer *n, double *x, double *fvec, integer *iflag)
+void C2F(fsolvf)(int *n, double *x, double *fvec, int *iflag)
 {
 	(*fsolvffonc)(n,x,fvec,iflag);
 }
@@ -69,7 +69,7 @@ static fsolvjf fsolvjfonc ;
 
 /** function call   **/
 
-void C2F(fsolvj)(integer *n, double *x, double *fjac, integer *iflag)
+void C2F(fsolvj)(int *n, double *x, double *fjac, int *iflag)
 {
 	(*fsolvjfonc)(n,x,fjac,iflag);
 }

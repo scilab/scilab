@@ -27,6 +27,6 @@
  * @param incy
  * @return 
  */
-int C2F(db2int)(integer *typ, integer *n, double *dx, integer *incx, int *dy, integer *incy);
+int C2F(db2int)(int *typ, int *n, double *dx, int *incx, int *dy, int *incy);
 
 #endif /* __DB2INT_H__ */

@@ -345,7 +345,7 @@ void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data)
 }
 /*--------------------------------------------------------------------------*/
 /********************************************************
- * Converts a Scilab array of  String coded as integer array
+ * Converts a Scilab array of  String coded as int array
  * into a regular string.
  * entries of the original array are catenated, separated by
  * '\n'   char

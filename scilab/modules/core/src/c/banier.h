@@ -23,6 +23,6 @@ void banner(void);
  * TODO : comment
  * @param flag
  */
-int C2F(banier)(integer *flag);
+int C2F(banier)(int *flag);
 
 #endif /* __BANNER_H__ */

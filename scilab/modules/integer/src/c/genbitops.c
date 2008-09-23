@@ -50,9 +50,9 @@ Type *DX;\
     }\
 }
 
-int C2F(genbitops)(integer *typ,integer *op,integer * n,int * dx,integer * incx,int * dy,integer * incy)
+int C2F(genbitops)(int *typ,int *op,int * n,int * dx,int * incx,int * dy,int * incy)
 {
-  static integer i, ix, iy, nv;
+  static int i, ix, iy, nv;
   nv=*n;
   if (nv <= 0) return 0;
 

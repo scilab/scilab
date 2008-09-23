@@ -11,8 +11,8 @@
  */
 
 /** 
- * Get the style name corresponding to the integer value from UicontrolStyle enum
- * @param style integer value from UicontrolStyle enum
- * @return the style name corresponding to the integer value
+ * Get the style name corresponding to the int value from UicontrolStyle enum
+ * @param style int value from UicontrolStyle enum
+ * @return the style name corresponding to the int value
  */
 char * UicontrolStyleToString(int style);

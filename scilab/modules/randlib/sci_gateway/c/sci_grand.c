@@ -95,7 +95,7 @@ double C2F(ignuin)(double *a, double *b)
    *  (these verif are done at the calling level)
    *
    *  We use the classic method with a minor difference : to choose
-   *  uniformly an integer in [a,b] (ie d=b-a+1 numbers) with a generator
+   *  uniformly an int in [a,b] (ie d=b-a+1 numbers) with a generator
    *  which provides uniformly integers in [0,RngMaxInt] (ie m=RngMaxInt+1
    *  numbers) we do the Euclidian division :
    *                                           m = q d + r,   r in [0,d-1]
@@ -103,7 +103,7 @@ double C2F(ignuin)(double *a, double *b)
    *  and accept only numbers l in [0, qd-1], then the output is k = a + (l mod d)
    *  (ie numbers falling in [qd , RngMaxInt] are rejected).
    *  The problem is that RngMaxInt is 2^32-1 for mt and kiss so that RngMaxInt+1 = 0
-   *  with the 32 bits unsigned integer arithmetic. So in place of rejected r
+   *  with the 32 bits unsigned int arithmetic. So in place of rejected r
    *  numbers we reject r+1 by using RngMaxInt in place of m. The constraint is
    *  then that (b-a+1) <= RngMaxInt and if we doesn't want to deal we each generator
    *  we take (b-a+1) <= Min RngMaxInt =  2147483561 (clcg2)
@@ -674,7 +674,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       double a, b;
       if ( Rhs != suite + 1)
-	{ Scierror(999,_("Missing Low and High for Uniform integer law\n"));return 0;}
+	{ Scierror(999,_("Missing Low and High for Uniform int law\n"));return 0;}
       GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);return 0;}
       GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);

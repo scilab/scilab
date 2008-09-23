@@ -102,7 +102,7 @@ int GetCharWithEventsLoop(int interrupt)
 static void initializeScilabMask(void)
 {
 	/*
-	 * Examines the  argument  stream  and  returns  its integer descriptor.
+	 * Examines the  argument  stream  and  returns  its int descriptor.
 	 */
 	fd_in = fileno(stdin) ;
 	fd_out = fileno(stdout);
@@ -114,7 +114,7 @@ static void initializeScilabMask(void)
 	FD_ZERO(&Write_mask_ref); /* clears the set. */
 
 
-	/* This is an integer  one  more  than  the  maximum  of  any  file
+	/* This is an int  one  more  than  the  maximum  of  any  file
 	 * descriptor  in  any  of  the sets.
 	 * See man select for more information
 	 */

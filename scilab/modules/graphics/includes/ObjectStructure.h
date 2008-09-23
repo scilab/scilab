@@ -852,7 +852,7 @@ typedef struct
   int hiddenAxisColor ; /* the color and style of the hidden axis */
 
   double  limits[7]; /* = 1 set tight limits = 0 set axes auto shape */
-  integer flag[3]; /* 3d options */
+  int flag[3]; /* 3d options */
   
   /* F.Leray 07.10.04 REMOVE AAINT*/
   int nbsubtics[3]; /* Don't touch to subint because also deals with drawaxis: AXES structure has multiple uses... */ /* F.Leray 07.10.04 */
@@ -933,7 +933,7 @@ typedef struct
   double clip_region[4];
   int clip_region_set;
   /**DJ.Abdemouche 2003**/
-  integer project[3];
+  int project[3];
   BOOL isoview; 
   int hiddencolor;
   int hiddenstate;
@@ -1085,8 +1085,8 @@ typedef struct
   double width;
   double height;
   int str; 
-  integer strwidth;
-  integer strheight;
+  int strwidth;
+  int strheight;
   double horzcurvature;		  /** to do rectangle with round corner */ /*F.Leray not implemented till now... 19.03.04 to see...*/
   double vertcurvature;		  /** to do rectangle with round corner */ /*F.Leray not implemented till now... 19.03.04 to see...*/
   BOOL isselected;
@@ -1144,9 +1144,9 @@ typedef struct
   int cdatamapping; /* like in Matlab, it determines how the color is computed ('scaled' or 'direct' mode) */
                     /* 0: scaled */
                     /* 1: direct (default) */
-  integer izcol; /* 0 : no color; 1 : color is a vector, 2 : color is a matrix */
-  integer dimzx; /* == m3 */
-  integer dimzy; /* == n3 */
+  int izcol; /* 0 : no color; 1 : color is a vector, 2 : color is a matrix */
+  int dimzx; /* == m3 */
+  int dimzy; /* == n3 */
 
   /*F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz*/
 
@@ -1160,7 +1160,7 @@ typedef struct
   int m3,n3; /* size of pvecz */
   int m3n,n3n; /* size of color */
 
-  integer flag[3]; /* only the first value is used as color_mode */
+  int flag[3]; /* only the first value is used as color_mode */
   double ebox[6]; /* apparently unused */
   int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored 
 		    0: uniformed color
@@ -1309,14 +1309,14 @@ typedef struct
   double *vy;  /** vy vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr2 ? No depending on the type ptype*/
   double *vfx; /* size Nbr1 * Nbr2 */
   double *vfy; /* size Nbr1 * Nbr2 */
-  integer Nbr1; /**< size of vx and vy id segs handle, or size of vx if champ */ 
-  integer Nbr2; /**< size of vy if champ handle */
-  integer *pstyle;
-  integer iflag;      /**0 or 1, flag which control the drawing of the segment  **/
+  int Nbr1; /**< size of vx and vy id segs handle, or size of vx if champ */ 
+  int Nbr2; /**< size of vy if champ handle */
+  int *pstyle;
+  int iflag;      /**0 or 1, flag which control the drawing of the segment  **/
   double arrowsize;  /*F.Leray units : hundreds (i.e. 100, 150,...)*/
   double parfact;
-  integer ptype; /* if ptype=0, it is segments; if ptype=1, it is champ (champ or champ1)*/
-  integer typeofchamp; /* when ptype=0, if typeofchamp=0 => champ is invoked else champ1 is invoked (typeofchamp==1) */
+  int ptype; /* if ptype=0, it is segments; if ptype=1, it is champ (champ or champ1)*/
+  int typeofchamp; /* when ptype=0, if typeofchamp=0 => champ is invoked else champ1 is invoked (typeofchamp==1) */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  
@@ -1396,8 +1396,8 @@ typedef struct
   int Nnode; /* number of nodes */
   int Ntr;   /* number of triangles */
   double zminmax[2]; /* Array of size 2 containing zmin and zmax */
-  integer colminmax[2]; /*  */
-  integer colout[2]; /* */
+  int colminmax[2]; /*  */
+  int colout[2]; /* */
   BOOL with_mesh;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */

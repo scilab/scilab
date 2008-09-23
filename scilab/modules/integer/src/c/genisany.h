@@ -25,5 +25,5 @@
  * @param incx
  * @return 
  */
-integer C2F(genisany)(integer *typ, integer *n, integer *dx, integer *incx);
+int C2F(genisany)(int *typ, int *n, int *dx, int *incx);
 #endif /* __GENISANY_H__*/

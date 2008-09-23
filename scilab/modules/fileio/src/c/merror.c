@@ -15,7 +15,7 @@
 #include "merror.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-void C2F(merror) (integer *fd, double *res)
+void C2F(merror) (int *fd, double *res)
 {       
 	FILE *fa= GetFileOpenedInScilab(*fd);
 	*res = fa ? ferror(fa) : 1;

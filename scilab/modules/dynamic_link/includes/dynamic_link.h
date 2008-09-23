@@ -49,7 +49,7 @@ BOOL c_link(char *routinename,int *ilib);
 * @param[in] routinename
 * @param[in/out] ilib
 */
-void C2F(iislink)(char *routinename, integer *ilib);
+void C2F(iislink)(char *routinename, int *ilib);
 
 
 /**
@@ -81,7 +81,7 @@ void unlinkallsharedlib(void);
 * Unlink a shared lib 
 * @param i (number of shared lib)
 */
-void unlinksharedlib(integer *i);
+void unlinksharedlib(int *i);
 
 
 /**

@@ -29,9 +29,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)
 {
-  integer dstyle = -1, *style,flag;
-  integer mn2;
-  integer m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3; 
+  int dstyle = -1, *style,flag;
+  int mn2;
+  int m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3; 
   double arsize = 0.0 ;
   sciPointObj * psubwin = NULL ;
 

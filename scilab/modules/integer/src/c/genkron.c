@@ -40,9 +40,9 @@ Type *DR;\
 }
 
 
-int C2F(genkron)(integer *typ,int *dx,integer *incx,integer *mx,integer *nx,int *dy,integer *incy,integer *my,integer *ny,int *dr,integer *incr)
+int C2F(genkron)(int *typ,int *dx,int *incx,int *mx,int *nx,int *dy,int *incy,int *my,int *ny,int *dr,int *incr)
 {
-  static integer i, ix, iy, ir, jx, jy, l, kk1, kx1, kk, kx, ky;
+  static int i, ix, iy, ir, jx, jy, l, kk1, kx1, kk, kx, ky;
   ix = *incx;
   iy = *incy;
   ir = *incr;
@@ -55,7 +55,7 @@ int C2F(genkron)(integer *typ,int *dx,integer *incx,integer *mx,integer *nx,int 
     KRON(integer2);
     break;
   case 4:
-    KRON(integer);
+    KRON(int) ;
     break;
   case 11:
     KRON(unsigned char);

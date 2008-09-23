@@ -175,7 +175,7 @@ int set_state_fsultra(double *s)
   try = s[0];
   if ( floor(try) != try || try < 0.0  ||  try > (double) N)
     {
-      sciprint(_("\nThe first component of the fsultra state, must be an integer in [0, %d]\n"),N);
+      sciprint(_("\nThe first component of the fsultra state, must be an int in [0, %d]\n"),N);
       return 0;
     }
   swb_index = (int) try;
@@ -191,7 +191,7 @@ int set_state_fsultra(double *s)
   try = s[2];
   if ( floor(try) != try  ||  try <= 0 ||  try > 4294967295.0 )
     {
-      sciprint(_("\nThe third component of the fsultra state, must be an integer in [1, 2^32-1]\n"));
+      sciprint(_("\nThe third component of the fsultra state, must be an int in [1, 2^32-1]\n"));
       return 0;
     }
   cong_state = (unsigned long) try;

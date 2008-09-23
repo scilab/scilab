@@ -21,6 +21,6 @@
 * routines displays the error message contained in buf
 * @param[out] errtyp : error type (recoverable:0 or not:1)
 */
-int C2F(errmsg)(integer *n,integer *errtyp);
+int C2F(errmsg)(int *n,int *errtyp);
 
 #endif 	    /* !__ERRMSG_H__ */

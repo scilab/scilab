@@ -41,8 +41,8 @@
 #include "localization.h"
 
 /* @TODO : remove that stuff */
-void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect);
-void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, integer n1,integer n2, double *drect);
+void compute_data_bounds(int cflag, char dataflag,double *x,double *y,int n1,int n2,double *drect);
+void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, int n1,int n2, double *drect);
 BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
@@ -53,7 +53,7 @@ extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 extern int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, double * grads);
 int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads);
 
-int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint,BOOL flagNax, integer lstr1,integer lstr2);
+int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint,BOOL flagNax, int lstr1,int lstr2);
 
 static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag);
 
@@ -62,7 +62,7 @@ static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u
  *  
  *  Draw *n1 curves of *n2 points each
  *
- *  ptype is an integer which gives the polyline drawind mode (0,1,2,3,4)
+ *  ptype is an int which gives the polyline drawind mode (0,1,2,3,4)
  *
  *  Logflags is a two character string
  *
@@ -102,7 +102,7 @@ static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u
  * lstr* : unused ( but used by Fortran ) 
  *--------------------------------------------------------------------------*/
   
-int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint,BOOL flagNax, integer lstr1,integer lstr2)
+int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint,BOOL flagNax, int lstr1,int lstr2)
 {
   int closeflag = 0;
   int jj = 0;
@@ -343,7 +343,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
  *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] taking into account the logflag
  *  -> means we have to find among the data the min > 0.
  */
-void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, integer n1,integer n2, double *drect)
+void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, int n1,int n2, double *drect)
 {
   int size_x,size_y;
   double xd[2];
@@ -418,7 +418,7 @@ void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,do
 /* Given two set of coordinates x and y this routine computes the corresponding 
  *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] 
  */
-void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect)
+void compute_data_bounds(int cflag, char dataflag,double *x,double *y,int n1,int n2,double *drect)
 {
   int size_x,size_y;
   double xd[2];

@@ -26,5 +26,5 @@
  * @param dx
  * @return 
  */
-int C2F(gentril)(integer *typ,integer *m,integer *n,integer *k,int *dx);
+int C2F(gentril)(int *typ,int *m,int *n,int *k,int *dx);
 #endif /* __GENTRIL_H__ */

@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xname(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1;
+  int m1,n1,l1;
   CheckRhs(1,1);
   CheckLhs(1,1);
   GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);

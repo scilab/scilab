@@ -19,4 +19,4 @@
  * @param ierr  
  * @return <ReturnValue>
  */
-int C2F(msgs)(integer *n, integer *ierr);
+int C2F(msgs)(int *n, int *ierr);

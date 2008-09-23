@@ -21,7 +21,7 @@
  * commandQueue
  * @return
  */
-integer ismenu(void);
+int ismenu(void);
 
 /**
  * try to execute a command or add it to the end of command queue

@@ -32,7 +32,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xrects( char *fname, unsigned long fname_len )
 {
-  integer m1,n1,l1,m2,n2,l2;
+  int m1,n1,l1,m2,n2,l2;
   long  hdl;
   int i;
   sciPointObj * psubwin = NULL;

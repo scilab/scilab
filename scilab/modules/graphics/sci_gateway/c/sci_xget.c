@@ -32,11 +32,11 @@
 #include "localization.h"
 #include "returnProperty.h"
 /*--------------------------------------------------------------------------*/
-int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1);
+int C2F(xgetg)( char * str, char * str1, int * len,int  lx0,int lx1);
 /*--------------------------------------------------------------------------*/
 int sci_xget(char *fname,unsigned long fname_len)
 {
-  integer flagx=0,x1[10],x2=0, m1,n1,l1,m2,n2,l2,l3,i ;
+  int flagx=0,x1[10],x2=0, m1,n1,l1,m2,n2,l2,l3,i ;
   int one = 1 ;
   BOOL keyFound = FALSE ;
 
@@ -74,7 +74,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   if (Rhs == 2) {
     GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); 
     CheckScalar(2,m2,n2);  
-    flagx = (integer) *stk(l2); }
+    flagx = (int)  *stk(l2); }
   else
     flagx = 0;
 
@@ -157,12 +157,12 @@ int sci_xget(char *fname,unsigned long fname_len)
     sciPointObj *psubwin = sciGetCurrentSubWin();
     x2=0;
     if(strcmp(cstk(l1),"font")==0){
-      x1[0] = (integer)sciGetFontStyle(psubwin);
-      x1[1] = (integer)sciGetFontSize(psubwin);
+      x1[0] = (int) sciGetFontStyle(psubwin);
+      x1[1] = (int) sciGetFontSize(psubwin);
       x2 = 2;
     }
     else if(strcmp(cstk(l1),"font size")==0){
-      x1[0] = (integer)sciGetFontSize(psubwin);
+      x1[0] = (int) sciGetFontSize(psubwin);
       x2 = 1;
     }
     else if(strcmp(cstk(l1),"dashes")==0){
@@ -304,12 +304,12 @@ int sci_xget(char *fname,unsigned long fname_len)
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
+int C2F(xgetg)( char * str, char * str1, int * len,int  lx0,int lx1)
 {
   if ( strcmp(str,"fpf") == 0) 
   {
     strncpy(str1,getFPF(),32);
-    *len= (integer)strlen(str1);
+    *len= (int) strlen(str1);
   }
   else if ( strcmp(str,"auto clear")==0) 
   {

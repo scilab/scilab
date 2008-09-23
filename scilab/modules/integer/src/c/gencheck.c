@@ -85,12 +85,12 @@ Type *B;\
 
 
 
-int C2F(gencheck)(integer *typ, integer *op, integer *n, int *a, integer *ia, int *b, integer *ib, int *r)
+int C2F(gencheck)(int *typ, int *op, int *n, int *a, int *ia, int *b, int *ib, int *r)
 {
-  static integer i, i1, i2, ii1;
-  static integer less = 59;
-  static integer great = 60;
-  static integer equal = 50;
+  static int i, i1, i2, ii1;
+  static int less = 59;
+  static int great = 60;
+  static int equal = 50;
 
   --r;
   i1 = 1;i2 = 1;
@@ -106,7 +106,7 @@ int C2F(gencheck)(integer *typ, integer *op, integer *n, int *a, integer *ia, in
     CHECK(integer2);
     break;
   case 4:
-    CHECK(integer);
+    CHECK(int) ;
     break;
   case 11:
     CHECK(unsigned char);

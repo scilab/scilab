@@ -14,12 +14,12 @@
 #define __STCREATE_H__
 
 #include "machine.h"
-int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnames[], integer *retval);
+int C2F(stcreate)(int *lw, int *nz, int *sz, int *nf, char *fnames[], int *retval);
 
 int sttyp(int *ivt, char *job, int *nf, char *fnames[]);
 
-int creonevoid(integer *slw,integer *lw);
+int creonevoid(int *slw,int *lw);
 
-int crelistofvoids(integer *slw,integer *lw,integer *nels);
+int crelistofvoids(int *slw,int *lw,int *nels);
 
 #endif /* __STCREATE_H__ */

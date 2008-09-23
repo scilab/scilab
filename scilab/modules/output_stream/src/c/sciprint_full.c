@@ -37,13 +37,13 @@
 /*--------------------------------------------------------------------------*/
 void sciprint_full(char *fmt,...)
 {
-	integer lstr;
+	int lstr;
 	va_list ap;
 	char *s_buf=NULL;
 	char *split_s_buf=NULL;
 	int count=0;
 	int p_s=0;
-	static integer colwidth;
+	static int colwidth;
 
 	s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
 	if (s_buf == (char *) 0)
@@ -76,7 +76,7 @@ void sciprint_full(char *fmt,...)
 
 	va_end(ap);
 
-	lstr=(integer)strlen(s_buf);
+	lstr=(int) strlen(s_buf);
 
 	if (lstr<colwidth)
 	{

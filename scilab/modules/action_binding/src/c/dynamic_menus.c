@@ -27,8 +27,8 @@
  *  This function is used to store Scilab command in a queue
  *
  *  PUBLIC : int StoreCommand( char *command)
- *           integer C2F(ismenu)()
- *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
+ *           int C2F(ismenu)()
+ *           int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
  */
 /*--------------------------------------------------------------------------*/
 
@@ -135,7 +135,7 @@ int GetCommand ( char *str)
  return flag;
 }
 
-integer ismenu(void)
+int ismenu(void)
 {
   /* Do not manage commands while compiling scilab function */
   if ( (commandQueue == NULL) || (C2F(com).comp[0] != 0))
@@ -149,13 +149,13 @@ integer ismenu(void)
  * menu/button info for Scilab
  */
 /*--------------------------------------------------------------------------*/
-int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
+int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
 {
   int flag;
   if (ismenu()==1)
     {
       flag=GetCommand(btn_cmd);
-      *lb=(integer)strlen(btn_cmd);
+      *lb=(int) strlen(btn_cmd);
       *entry=0;  /* This parameter entry seems to be unused. Probably a very old thing... */
     }
   else

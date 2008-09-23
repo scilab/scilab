@@ -401,12 +401,12 @@ extern int s_cmp();
 #define Getuint32OutPortPtrs(blk,x) (SCSUINT32_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get number of integer parameters.
+   \brief Get number of int parameters.
 */
 #define GetNipar(blk) (blk->nipar)
 
 /**
-   \brief Get pointer of the integer parameters register
+   \brief Get pointer of the int parameters register
 */
 #define GetIparPtrs(blk) (blk->ipar)
 

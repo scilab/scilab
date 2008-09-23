@@ -18,12 +18,12 @@
 #ifndef _PLO3D_H_
 #define _PLO3D_H_
 
-void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style) ;
+void DrawAxis(double *xbox, double *ybox, int *Indices, int style) ;
 
-int triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *polyx, integer *polyy, integer *fill);
+int triangleSort(int *polyxin, int *polyyin, int *fillin, int *polyx, int *polyy, int *fill);
 
-int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag) ;
+int scilab_shade(int *polyx, int *polyy, int *fill, int polysize, int flag) ;
 
-void BBoxToval(double *x, double *y, double *z, integer ind, double bbox[6] ) ;
+void BBoxToval(double *x, double *y, double *z, int ind, double bbox[6] ) ;
 
 #endif /* _PLO3D_H_ */

@@ -13,7 +13,7 @@
 #include "i_nextj.h"
 #include "stack-c.h"
 
-extern integer C2F(memused)(integer  *it,integer *n);
+extern int C2F(memused)(int  *it,int *n);
 
 #define GETCOL(Type) {\
 Type *A;\
@@ -34,7 +34,7 @@ Type *B;\
     }\
 }
 
-int gengetcol(integer typ, integer j,integer m,integer n,integer *a,integer *b)
+int gengetcol(int typ, int j,int m,int n,int *a,int *b)
 {
   int r=0,i;
   switch (typ) {
@@ -45,7 +45,7 @@ int gengetcol(integer typ, integer j,integer m,integer n,integer *a,integer *b)
     GETCOL(integer2);
     break;
   case 4:
-    GETCOL(integer);
+    GETCOL(int) ;
     break;
   case 11:
     GETCOL(unsigned char);
@@ -61,10 +61,10 @@ int gengetcol(integer typ, integer j,integer m,integer n,integer *a,integer *b)
 }
 
 
-int C2F(inextj)(integer *j)
+int C2F(inextj)(int *j)
 {
-  integer il,m,n,it,l,ilr,lr,r;
-  integer one=1;
+  int il,m,n,it,l,ilr,lr,r;
+  int one=1;
   il = iadr(*Lstk(Top-1));
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   m = *istk(il + 1);

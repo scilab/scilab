@@ -28,9 +28,9 @@ Type *DY;\
 
 
 
-int C2F(genset)(integer *typ, integer *n, int *dx, int *dy, integer *incy)
+int C2F(genset)(int *typ, int *n, int *dx, int *dy, int *incy)
 {
-  static integer i, iy;
+  static int i, iy;
   switch (*typ) {
   case 0:
     SET(double);
@@ -42,7 +42,7 @@ int C2F(genset)(integer *typ, integer *n, int *dx, int *dy, integer *incy)
     SET(integer2);
     break;
   case 4:
-    SET(integer);
+    SET(int) ;
     break;
   case 11:
     SET(unsigned char);

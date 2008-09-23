@@ -295,15 +295,15 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
  /*--------------------------------------------------------------------------*/
  static int NoRhs(struct VariableStruct* GVstruct,int GlenStructArray,struct VariableStruct* LVstruct,int LlenStructArray,BOOL Sorted)
  {
-	 integer memtotal=0;
-	 integer memused=0;
-	 integer vartotal=0;
-	 integer varused=0;
+	 int memtotal=0;
+	 int memused=0;
+	 int vartotal=0;
+	 int varused=0;
 
-	 integer gmemtotal=0;
-	 integer gmemused=0;
-	 integer gvartotal=0;
-	 integer gvarused=0;
+	 int gmemtotal=0;
+	 int gmemused=0;
+	 int gvartotal=0;
+	 int gvarused=0;
 
 	 C2F(getstackinfo)(&memtotal,&memused);
 	 C2F(getvariablesinfo)(&vartotal,&varused);

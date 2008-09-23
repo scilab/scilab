@@ -687,7 +687,7 @@ extern "C" {
    * The following functions can be called to get optional outputs
    * and statistics related to the main integrator.
    * -----------------------------------------------------------------
-   * CVodeGetWorkSpace returns the CVODE real and integer workspaces
+   * CVodeGetWorkSpace returns the CVODE real and int workspaces
    * CVodeGetNumSteps returns the cumulative number of internal
    *                  steps taken by the solver
    * CVodeGetNumRhsEvals returns the number of calls to the user's

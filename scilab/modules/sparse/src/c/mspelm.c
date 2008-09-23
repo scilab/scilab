@@ -33,33 +33,33 @@
 
 /* Table of constant values */
 
-static integer c1 = 1;
-static integer c41 = 41;
-static integer c39 = 39;
-static integer c17 = 17;
-static integer c44 = 44;
-static integer c_n1 = -1;
+static int c1 = 1;
+static int c41 = 41;
+static int c39 = 39;
+static int c17 = 17;
+static int c44 = 44;
+static int c_n1 = -1;
 static double c_b46 = 0.;
 
-extern  int  C2F(intmfull)(integer *id),  C2F(intmspget)(integer *id);
-extern  int  C2F(intmsparse)(integer *id);
+extern  int  C2F(intmfull)(int *id),  C2F(intmspget)(int *id);
+extern  int  C2F(intmsparse)(int *id);
 
-static int wmspful(integer *ma, integer *na, double *ar, double *ai, integer *nela, integer *inda, double *rr, double *ri);
-static int dmspful(integer *ma, integer *na, double *a, integer *nela, integer *inda, double *r__);
+static int wmspful(int *ma, int *na, double *ar, double *ai, int *nela, int *inda, double *rr, double *ri);
+static int dmspful(int *ma, int *na, double *a, int *nela, int *inda, double *r__);
 
 extern  int C2F(dspt)();
 extern  int C2F(wspt)();
 extern  int empty(void);
 
-int C2F(intmsparse)(integer *id)
+int C2F(intmsparse)(int *id)
 {
     /* System generated locals */
-    integer I1;
+    int I1;
     /* Local variables */
-    static integer tops;
-    static integer I, l, m, n;
-    static integer ia, il, it, lr, lw, ilc, nel, ilr, iat, irc, lat, top0;
-    static integer kkk;
+    static int tops;
+    static int I, l, m, n;
+    static int ia, il, it, lr, lw, ilc, nel, ilr, iat, irc, lat, top0;
+    static int kkk;
     
     if( Rhs==2) {
       return empty();
@@ -164,17 +164,17 @@ int empty(void)
  * %msp_get 
  *---------------------------------------*/
 
-int C2F(intmspget)(integer *id)
+int C2F(intmspget)(int *id)
 {
-    integer I1, I2, I3;
+    int I1, I2, I3;
 
     /* Local variables */
-    static integer ilrs;
-    static integer ityp, j, l, m, n;
-    static integer j1_;
-    static integer nc, il, it, lv, lw;
+    static int ilrs;
+    static int ityp, j, l, m, n;
+    static int j1_;
+    static int nc, il, it, lv, lw;
     static double tv;
-    static integer ilc, nel, nelmax, ilr, lij, ilv, top0, kkk;
+    static int ilc, nel, nelmax, ilr, lij, ilv, top0, kkk;
 
     /* Parameter adjustments */
     --id;
@@ -323,14 +323,14 @@ int C2F(intmspget)(integer *id)
  * %msp_full 
  *---------------------------------------*/
 
-int C2F(intmfull)(integer *id)
+int C2F(intmfull)(int *id)
 {
-    integer I1, I2, I3;
+    int I1, I2, I3;
 
     /* Local variables */
-    static integer l, m, n;
-    static integer il, it, ls, lw, ilc, nel, ilr, ils, kkk;
-    static integer top0;
+    static int l, m, n;
+    static int il, it, ls, lw, ilc, nel, ilr, ils, kkk;
+    static int top0;
 
     /* Parameter adjustments */
     --id;
@@ -388,10 +388,10 @@ int C2F(intmfull)(integer *id)
     return 0;
 }
 
-static int dmspful(integer *ma, integer *na, double *a, integer *nela, integer *inda, double *rr)
+static int dmspful(int *ma, int *na, double *a, int *nela, int *inda, double *rr)
 {
-    integer I1, I2;
-    static integer I, j, k, ii, nj;
+    int I1, I2;
+    static int I, j, k, ii, nj;
 
     I1 = *ma * *na;
     C2F(dset)(&I1, &c_b46,rr, &c1);
@@ -411,10 +411,10 @@ static int dmspful(integer *ma, integer *na, double *a, integer *nela, integer *
     return 0;
 } 
 
-static int wmspful(integer *ma, integer *na, double *ar, double *ai, integer *nela, integer *inda, double *rr, double *ri)
+static int wmspful(int *ma, int *na, double *ar, double *ai, int *nela, int *inda, double *rr, double *ri)
 {
-  integer I1, I2;
-  static integer I, j, k, ii, nj;
+  int I1, I2;
+  static int I, j, k, ii, nj;
 
   I1 = *ma * *na;
   C2F(dset)(&I1, &c_b46, rr, &c1);

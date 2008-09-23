@@ -22,11 +22,11 @@
 * or can be used to read in little or big endian 
 * if read fails *ierr contains the number of properly read items 
 */
-void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr);
+void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr);
 
-void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr);
+void C2F(mgetnc)(int *fd, void * res, int *n1, char *type, int *ierr);
 
-void mget2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr);
+void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
 
 #endif /* __MGET_H__ */
 /*--------------------------------------------------------------------------*/

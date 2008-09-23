@@ -64,7 +64,7 @@ int intinterp1(char *fname,unsigned long fname_len)
   CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mt,  &nt, &ldddst);
 
   /*      subroutine EvalPWHermite(t, st, dst, ddst, dddst, m, x, y, d, n, outmode)
-   *      integer m, n, outmode
+   *      int m, n, outmode
    *      double precision t(m), st(m), dst(m), ddst(m), dddst(m), x(n), y(n), d(n)
    */
   C2F(evalpwhermite) (stk(lt), stk(lst), stk(ldst), stk(lddst), stk(ldddst),

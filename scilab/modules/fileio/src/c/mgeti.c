@@ -46,7 +46,7 @@ for ( i=0; i< *n; i++)  { \
 
 
 
-void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
+void C2F(mgeti) (int *fd,int *res,int *n,char type[],int *ierr)
 {  
   char c1,c2;
   int i,items=-1,nc,swap;
@@ -197,7 +197,7 @@ void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
   *ierr=1;
 }
 
-int SWAP(char type[],integer *fd)
+int SWAP(char type[],int *fd)
 {
 int nc,swap;
   nc=(int)strlen(type);

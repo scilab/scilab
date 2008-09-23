@@ -18,5 +18,5 @@
 #include "machine.h"
 #include "def.h"
 
-int C2F(tpconv)(integer *xtyp, integer *ytyp, integer *n, void *dx, integer *incx, void *dy, integer *incy);
+int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int *incy);
 #endif /* __TPCONV_H__ */

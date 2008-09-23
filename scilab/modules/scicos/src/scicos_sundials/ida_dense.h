@@ -174,7 +174,7 @@ extern "C" {
    * -----------------------------------------------------------------
    * Optional outputs from the IDADENSE linear solver
    * -----------------------------------------------------------------
-   * IDADenseGetWorkSpace returns the real and integer workspace used 
+   * IDADenseGetWorkSpace returns the real and int workspace used 
    *     by IDADENSE.                                                  
    * IDADenseGetNumJacEvals returns the number of calls made to the 
    *     Jacobian evaluation routine djac.                          

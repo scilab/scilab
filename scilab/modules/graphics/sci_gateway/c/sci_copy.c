@@ -33,7 +33,7 @@ int sci_copy(char *fname,unsigned long fname_len)
 {  
   unsigned long hdl, hdlparent;
   sciPointObj *pobj, *psubwinparenttarget, *pcopyobj;
-  integer m1, n1, l1,l2;
+  int m1, n1, l1,l2;
   int numrow, numcol, outindex,lw;
   sciEntityType typ;
 

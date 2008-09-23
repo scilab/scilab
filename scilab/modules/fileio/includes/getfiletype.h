@@ -22,7 +22,7 @@
  * @param type  
  * @param ierr  
  */
-void C2F(getfiletype)(integer *fd, integer *type, integer *ierr);
+void C2F(getfiletype)(int *fd, int *type, int *ierr);
 
 #endif /* __GETFILETYPE_H__ */
 /*--------------------------------------------------------------------------*/

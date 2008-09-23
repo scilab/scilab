@@ -22,7 +22,7 @@ __declspec (dllexport) struct {
 
 __declspec (dllexport) struct {
     double t0, tf, dti, dtf, ermx;
-    integer iu[5], nuc, nuv, ilin, nti, ntf, ny, nea, itmx, nex, nob, ntob, 
+    int iu[5], nuc, nuv, ilin, nti, ntf, ny, nea, itmx, nex, nob, ntob, 
 	    ntobi, nitu, ndtu;
 } C2F(icsez);
 

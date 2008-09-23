@@ -216,7 +216,7 @@ mxArray *C2F(mxcreatedoublematrix)(int *m, int *n, int *it);
  * @param n
  * @return
 */
-int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, integer *n);
+int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, int *n);
 
 
 /**
@@ -227,7 +227,7 @@ int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, integer *n)
  * @param n
  * @return
 */
-int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, integer *n);
+int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, int *n);
 
 
 

@@ -29,7 +29,7 @@ char *strerror (int errcode);
 #define SEEK_END 2
 #endif 
 /*--------------------------------------------------------------------------*/
-void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
+void C2F(mseek) (int *fd, int *offset, char *flag, int *err)
 {     
 	int iflag;
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)

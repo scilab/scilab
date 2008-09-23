@@ -1548,7 +1548,7 @@ void C2F(parsecomment)()
   static int *Comp    = C2F(com).comp-1;
 
 
-  static integer l, ll, lkp, l0,c1=1;
+  static int l, ll, lkp, l0,c1=1;
   /* look for eol */
   l0=Lpt[4]-1;
   if( (Lin[l0]==slash) &&(Lin[l0-1]==slash)&(Lin[l0+1]==eol)) l0=l0+1;

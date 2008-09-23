@@ -11,7 +11,7 @@ int gw_scicos(void)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-int haltscicos(char *name, integer *win, integer *entry,long int name_len)
+int haltscicos(char *name, int *win, int *entry,long int name_len)
 {
 	return 0;
 } 

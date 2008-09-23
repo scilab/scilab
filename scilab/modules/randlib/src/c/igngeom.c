@@ -34,7 +34,7 @@
  *      not meaningful...)
  *
  *  NOTE
- *     this function returns a double instead of an integer type : this is 
+ *     this function returns a double instead of an int type : this is 
  *     to avoid an extra conversion because in scilab it will be a double.
  *
  *  ASSUMPTION

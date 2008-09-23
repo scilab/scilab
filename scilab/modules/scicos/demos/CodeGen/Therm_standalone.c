@@ -7,17 +7,17 @@
 #include <string.h>
 static  FILE * fd;
 
-void thermmain1(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer *nipar);
+void thermmain1(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int *nipar);
 
-void thermmain2(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer *nipar) ;
+void thermmain2(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int *nipar) ;
 
-void therm_init(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer *nipar) ;
+void therm_init(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int *nipar) ;
 
-void therm_end(double *z, double *t, double * rpar, integer *nrpar,
-  integer *ipar,integer * nipar) ;
+void therm_end(double *z, double *t, double * rpar, int *nrpar,
+  int *ipar,int * nipar) ;
 
 void therm_sim(double tf) ;
 
@@ -25,9 +25,9 @@ void therm_events(int *nevprt, double *t);
 
 void set_nevprt(int nevprt);
 static double RPAR1[ ] = {0,0,6,-6,10,-10,1,1,0.1,0};
-static integer NRPAR1  = 10;
-static integer IPAR1[ ]= {1,1,1,2};
-static integer NIPAR1  = 4;
+static int NRPAR1  = 10;
+static int IPAR1[ ]= {1,1,1,2};
+static int NIPAR1  = 4;
 /*Main program */
 int main()
 {
@@ -103,8 +103,8 @@ therm_actuator(flag,nport,nevprt,t,u,nu)
       * u     : the vector inputs value
       * nu    : the input  vector size
       */
-     integer *flag,*nevprt,*nport;
-     integer *nu;
+     int *flag,*nevprt,*nport;
+     int *nu;
 
      double  *t, u[];
 {
@@ -157,8 +157,8 @@ therm_sensor(flag,nport,nevprt,t,y,ny)
       * y     : the vector outputs value
       * ny    : the output  vector size
       */
-     integer *flag,*nevprt,*nport;
-     integer *ny;
+     int *flag,*nevprt,*nport;
+     int *ny;
 
      double  *t, y[];
 {

@@ -27,7 +27,7 @@
 #include "Scierror.h"
 
 /* Define external function */
-extern integer C2F(scierr)();
+extern int C2F(scierr)();
 extern void C2F(scifunc)();
 extern int *listentry(int *header, int i);
 extern void C2F(itosci)();
@@ -112,7 +112,7 @@ int sci2var(void *x,void *y,int typ_var);
 /* prototype */
 void sciblk4(Blocks,flag)
      scicos_block *Blocks;
-     integer flag;
+     int flag;
 {
   /*counter and address variable declaration*/
   int i,j,k,topsave;
@@ -531,7 +531,7 @@ void sciblk4(Blocks,flag)
      {
       /* 39 - mode */
       il_mode = (int *) listentry(header,39);
-      // Alan, 16/10/07 : fix : mode is an integer array
+      // Alan, 16/10/07 : fix : mode is an int array
       l_mode = (double *)(il_mode + 4);
       for (nv=0;nv<(il_mode[1]*il_mode[2]);nv++) {
          Blocks[0].mode[nv]=(int) l_mode[nv];
@@ -587,13 +587,13 @@ void sciblk4(Blocks,flag)
    {
     switch (ierr)
     {
-     case 1001  : Scierror(888,"sci2var : error %d. Only integer or double object are accepted.\n",ierr);
+     case 1001  : Scierror(888,"sci2var : error %d. Only int or double object are accepted.\n",ierr);
                   break;
 
      case 1002  : Scierror(888,"sci2var : error %d. Bad double object sub_type.\n",ierr);
                   break;
 
-     case 1003  : Scierror(888,"sci2var : error %d. Bad integer object sub_type.\n",ierr);
+     case 1003  : Scierror(888,"sci2var : error %d. Bad int object sub_type.\n",ierr);
                   break;
 
      case 1004  : Scierror(888,"sci2var : error %d. A type of a scilab object has changed.\n",ierr);
@@ -727,7 +727,7 @@ int sci2var(void *x,void *y, int typ_var)
           break;
 
   case 8 :
-          {/*check type of integer matrix*/
+          {/*check type of int matrix*/
            if ((sub_typ!=1)  & (sub_typ!=2) &(sub_typ!=4) /
                (sub_typ!=11) & (sub_typ!=12)&(sub_typ!=14))
            {
@@ -765,7 +765,7 @@ int sci2var(void *x,void *y, int typ_var)
             return err;
            }
 
-           /*copy integer matrix*/
+           /*copy int matrix*/
            switch (typ_var)
            {
             case SCSINT_N    : ptr_i = (SCSINT_COP *) (header+4);

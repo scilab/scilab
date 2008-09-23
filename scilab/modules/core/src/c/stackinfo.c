@@ -40,35 +40,35 @@
 /*--------------------------------------------------------------------------*/
 static void cleanFortranString(char *fortanbuffer);
 /*--------------------------------------------------------------------------*/
-integer C2F(getstackinfo)(integer *total,integer *used)
+int C2F(getstackinfo)(int *total,int *used)
 {
 	*used = C2F(vstk).lstk[C2F(vstk).isiz - 1] - C2F(vstk).lstk[Bot - 1] + 1;
 	*total = C2F(vstk).lstk[C2F(vstk).isiz - 1] - C2F(vstk).lstk[0];
 	return(0);
 }
 /*--------------------------------------------------------------------------*/
-integer C2F(getgstackinfo)(integer *total,integer *used)
+int C2F(getgstackinfo)(int *total,int *used)
 {
 	*used = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1] + 1;
 	*total = C2F(vstk).lstk[C2F(vstk).gbot - 1] - C2F(vstk).lstk[C2F(vstk).isiz + 1] ;
 	return(0);
 }
 /*--------------------------------------------------------------------------*/
-integer C2F(getvariablesinfo)(integer *total,integer *used)
+int C2F(getvariablesinfo)(int *total,int *used)
 {
 	*used = C2F(vstk).isiz - Bot ;
 	*total = C2F(vstk).isiz - 1;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-integer C2F(getgvariablesinfo)(integer *total,integer *used)
+int C2F(getgvariablesinfo)(int *total,int *used)
 {
 	*used = C2F(vstk).gtop - C2F(vstk).isiz - 1;
 	*total = 10000 - C2F(vstk).isiz - 1;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-integer getIntermediateMemoryNeeded(void)
+int getIntermediateMemoryNeeded(void)
 {
 	return (Err + C2F(vstk).lstk[Bot - 1] - C2F(vstk).lstk[0]);
 }
@@ -104,8 +104,8 @@ unsigned long get_max_memory_for_scilab_stack(void)
 /*--------------------------------------------------------------------------*/
 char *getLocalNamefromId(int n)
 {
-	integer *id=NULL;	
-	integer one = 1;
+	int *id=NULL;	
+	int one = 1;
 	char *Name=NULL;
 	char fortranName[nlgh+1];
 
@@ -125,8 +125,8 @@ char *getLocalNamefromId(int n)
 /*--------------------------------------------------------------------------*/
 char *getGlobalNamefromId(int n)
 {
-	integer *id=NULL;	
-	static integer one = 1;
+	int *id=NULL;	
+	static int one = 1;
 	char *Name=NULL;
 	char fortranName[nlgh+1];
 

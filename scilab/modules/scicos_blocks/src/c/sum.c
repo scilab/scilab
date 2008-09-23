@@ -26,8 +26,8 @@
 void 
 sum(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-     integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[];
-     integer *nin,outsz[],*nout;
+     int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[];
+     int *nin,outsz[],*nout;
      double x[],xd[],z[],tvec[],rpar[];
      double *inptr[],*outptr[],*t;
 {

@@ -14,7 +14,7 @@
 #include "getfiledesc.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-void C2F(getfiledesc)(integer *fd) 
+void C2F(getfiledesc)(int *fd) 
 {
 	int i ;
 	for ( i = 1 ; i < GetMaximumFileOpenedInScilab() ; i++) 

@@ -28,6 +28,6 @@
  * @param incy
  * @return 
  */
-int C2F(genadd1)(integer *typ, integer *n, int *dx, integer *incx, int *dy, integer *incy);
+int C2F(genadd1)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy);
 
 #endif /* __GENADD_H__ */

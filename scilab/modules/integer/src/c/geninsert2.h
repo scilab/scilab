@@ -30,5 +30,5 @@
  * @param inc3
  * @return 
  */
-int C2F(geninsert2)(integer *typ,integer *mj,integer *mi,integer *indxj,integer *indxi,integer *to,integer *mr,integer *from,integer *m3,integer *inc3);
+int C2F(geninsert2)(int *typ,int *mj,int *mi,int *indxj,int *indxi,int *to,int *mr,int *from,int *m3,int *inc3);
 #endif /* __GENINSERT2_H__ */

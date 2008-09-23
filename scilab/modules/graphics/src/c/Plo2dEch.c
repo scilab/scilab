@@ -46,26 +46,26 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
-extern void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
-extern void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
+extern void xgetmouse2(char *fname, char *str, int *ibutton, int *iflag, int *x1, int *yy1, int *x6, int *x7, double *x, double *y, double *dx3, double *dx4, int lx0, int lx1);
+extern void xclick_2(char *fname, char *str, int *ibutton, int *iflag, int *istr, int *x1, int *yy1, int *x7, double *x, double *y, double *dx3, double *dx4, int lx0, int lx1);
 
 /*----------------------------------------------
  * A List for storing Window scaling information 
  *----------------------------------------------*/
 
 static void scale_copy (WCScaleList *s1, WCScaleList *s2);
-static integer curwin (void);
-static void set_scale_win (ScaleList **listptr, integer i, WCScaleList *s);
+static int curwin (void);
+static void set_scale_win (ScaleList **listptr, int i, WCScaleList *s);
 static WCScaleList *new_wcscale ( WCScaleList *val);
 static WCScaleList *check_subwin_wcscale (WCScaleList *listptr, double *);
 static int same_subwin (double lsubwin_rect[4],double subwin_rect[4]);
-static void set_window_scale (integer i,WCScaleList  *scale);
-int C2F(setscale2d)(double WRect[4],double FRect[4], char * logscale, integer l1) ;
-void get_margin_in_pixel(integer Margin[]) ;
-int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer lstr) ;
-int C2F(yechelle2d)(double y[], integer yy1[], integer * n2,char dir[], integer lstr) ;
+static void set_window_scale (int i,WCScaleList  *scale);
+int C2F(setscale2d)(double WRect[4],double FRect[4], char * logscale, int l1) ;
+void get_margin_in_pixel(int Margin[]) ;
+int C2F(xechelle2d)(double x[], int x1[], int *  n1,char dir[],int lstr) ;
+int C2F(yechelle2d)(double y[], int yy1[], int * n2,char dir[], int lstr) ;
 int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel) ;
-void Gr_Rescale(char *logFlags, double *FRectI, integer *Xdec, integer *Ydec, integer *xnax, integer *ynax) ;
+void Gr_Rescale(char *logFlags, double *FRectI, int *Xdec, int *Ydec, int *xnax, int *ynax) ;
 
 /* The scale List : one for each graphic window */
 
@@ -138,14 +138,14 @@ void set_window_scale_with_default( int i ) { set_window_scale(i,&Defscale);}
  *   
  *-------------------------------------------------------------*/
 
-static int get_scale_win (ScaleList *listptr, integer wi, double *subwin);
+static int get_scale_win (ScaleList *listptr, int wi, double *subwin);
 
-int get_window_scale( integer i, double * subwin )
+int get_window_scale( int i, double * subwin )
 { 
   return get_scale_win(The_List,Max(0L,i),subwin);
 }
 
-static int get_scale_win(ScaleList *listptr,integer wi,double *subwin)
+static int get_scale_win(ScaleList *listptr,int wi,double *subwin)
 {
   if (listptr != (ScaleList  *) NULL)
     { 
@@ -182,12 +182,12 @@ static int get_scale_win(ScaleList *listptr,integer wi,double *subwin)
  * (which is also modified) making Cscale the current scale of window i 
  *-------------------------------------------------------------*/
 
-static void set_window_scale(integer i,WCScaleList  *scale)
+static void set_window_scale(int i,WCScaleList  *scale)
 { 
   set_scale_win(&The_List,Max(0L,i),scale);
 }
 
-static void set_scale_win(ScaleList **listptr, integer i, WCScaleList *scale)
+static void set_scale_win(ScaleList **listptr, int i, WCScaleList *scale)
 {
   if ( *listptr == (ScaleList  *) NULL)
     {
@@ -286,7 +286,7 @@ static int same_subwin(double lsubwin_rect[4],double subwin_rect[4])
 
 static void DeleteWCScale (WCScaleList *l);
 
-void del_window_scale( integer i )
+void del_window_scale( int i )
 { 
   ScaleList *loc, *loc1;
   /* check head of The_List */
@@ -371,7 +371,7 @@ static void scale_copy( WCScaleList * s1, WCScaleList * s2 )
  * return current window : ok if driver is Rec
  *-------------------------------------------*/
 
-static integer curwin( void )
+static int curwin( void )
 {
   return sciGetNum(sciGetCurrentFigure());
 }
@@ -423,9 +423,9 @@ static void show_scales( ScaleList *listptr)
  *            quarter of the window 
  *-------------------------------------------*/
 
-int C2F(setscale2d)(double WRect[4],double FRect[4], char * logscale, integer l1)
+int C2F(setscale2d)(double WRect[4],double FRect[4], char * logscale, int l1)
 {
-  static integer aaint[]={2,10,2,10};
+  static int aaint[]={2,10,2,10};
   if (logscale[0]=='l') 
     {
       FRect[0]=log10(FRect[0]);
@@ -466,7 +466,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
                       double    ARect[4],
                       double    FRect[4],
                       char    * logscale,
-                      integer   l1       )
+                      int   l1       )
 {
   /* if some arguments are null pointer we set them to 
    * the corresponding Cscale value. 
@@ -596,7 +596,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 /* used to send values to Scilab */
 int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[4] )
 {
-  integer i;
+  int i;
   static double ten=10.0;
   logscale[0] = Cscale.logflag[0];
   logscale[1] = Cscale.logflag[1];
@@ -619,7 +619,7 @@ int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[
   return(0);
 }
 
-void get_frame_in_pixel(integer WIRect[])
+void get_frame_in_pixel(int WIRect[])
 {
   /* ajout bruno */
   WIRect[0] = Cscale.WIRect1[0];
@@ -628,7 +628,7 @@ void get_frame_in_pixel(integer WIRect[])
   WIRect[3] = Cscale.WIRect1[1] +  Cscale.WIRect1[3];
 }
 
-void get_margin_in_pixel(integer Margin[])
+void get_margin_in_pixel(int Margin[])
 {
   /* added by bruno 
    *       Margin[0]: left margin 
@@ -638,10 +638,10 @@ void get_margin_in_pixel(integer Margin[])
    */
   double coef_w = 1.0 - Cscale.axis[0] - Cscale.axis[1];
   double coef_h = 1.0 - Cscale.axis[2] - Cscale.axis[3];
-  Margin[0] = (integer) ( Cscale.axis[0]/coef_w * (double) Cscale.WIRect1[2]);
-  Margin[1] = (integer) ( Cscale.axis[1]/coef_w * (double) Cscale.WIRect1[2]);
-  Margin[2] = (integer) ( Cscale.axis[2]/coef_h * (double) Cscale.WIRect1[3]);
-  Margin[3] = (integer) ( Cscale.axis[3]/coef_h * (double) Cscale.WIRect1[3]);
+  Margin[0] = (int)  ( Cscale.axis[0]/coef_w * (double) Cscale.WIRect1[2]);
+  Margin[1] = (int)  ( Cscale.axis[1]/coef_w * (double) Cscale.WIRect1[2]);
+  Margin[2] = (int)  ( Cscale.axis[2]/coef_h * (double) Cscale.WIRect1[3]);
+  Margin[3] = (int)  ( Cscale.axis[3]/coef_h * (double) Cscale.WIRect1[3]);
 }
 
 /*-------------------------------------------
@@ -658,7 +658,7 @@ void get_margin_in_pixel(integer Margin[])
 void set_scale( char    flag[6]        ,
                 double  subwin[4]      ,
                 double  frame_values[4],
-                integer aaint[4]       ,
+                int aaint[4]       ,
                 char    logflag[3]     ,
                 double  axis_values[4]  )
      /* flag[i] = 't' or 'f' */
@@ -672,7 +672,7 @@ void set_scale( char    flag[6]        ,
   char frame_values_changed='f',aaint_changed='f';
   char logflag_changed='f';
   char axis_changed = 'f';
-  integer wdim[2];
+  int wdim[2];
   int i;
   if ( flag[0] == 't'  ) 
     {
@@ -813,9 +813,9 @@ void get_cwindow_dims(int wdims[2])
 
 /* for x only */
 
-int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer lstr)
+int C2F(xechelle2d)(double x[], int x1[], int *  n1,char dir[],int lstr)
 {
-  integer i;
+  int i;
   if (strcmp("f2i",dir)==0) 
   {
 
@@ -839,9 +839,9 @@ int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer l
 
 /* for y only */
 
-int C2F(yechelle2d)(double y[], integer yy1[], integer * n2,char dir[], integer lstr)
+int C2F(yechelle2d)(double y[], int yy1[], int * n2,char dir[], int lstr)
 {
-  integer i;
+  int i;
   if (strcmp("f2i",dir)==0) 
   {
     if (Cscale.logflag[1] == 'n') 
@@ -867,19 +867,19 @@ int C2F(yechelle2d)(double y[], integer yy1[], integer * n2,char dir[], integer 
  * 
  *  C2F(echelle2d)(x,y,x1,y1,n1,n2,rect,dir)
  *    x,y,x1,y1 of size [n1*n2] 
- *    dir     : "f2i" -> double to integer (you give x and y and get x1,y1)
- *            : "i2f" -> integer to double (you give x1 and y1 and get x,y)
+ *    dir     : "f2i" -> double to int (you give x and y and get x1,y1)
+ *            : "i2f" -> int to double (you give x1 and y1 and get x,y)
  *    lstr    : unused (Fortran/C) 
  * --------------------------------------------------------------------------*/
 
 int C2F(echelle2d)( double    x[]  ,
                     double    y[]  ,
-                    integer   x1[] ,
-                    integer   yy1[],
-                    integer * n1   ,
-                    integer * n2   ,
+                    int   x1[] ,
+                    int   yy1[],
+                    int * n1   ,
+                    int * n2   ,
                     char      dir[],
-                    integer   lstr )
+                    int   lstr )
 
 {
   int n=(*n1)*(*n2);
@@ -898,13 +898,13 @@ int C2F(echelle2d)( double    x[]  ,
 
 void C2F(echelle2dl)( double    x[]  ,
                       double    y[]  ,
-                      integer   x1[] ,
-                      integer   yy1[],
-                      integer * n1   ,
-                      integer * n2   ,
+                      int   x1[] ,
+                      int   yy1[],
+                      int * n1   ,
+                      int * n2   ,
                       char    * dir   )
 {
-  integer i;
+  int i;
   if (strcmp("f2i",dir)==0) 
     {
       for ( i=0 ; i < (*n1)*(*n2) ; i++)
@@ -927,12 +927,12 @@ void C2F(echelle2dl)( double    x[]  ,
 
 /** meme chose mais pour transformer des ellipses **/
 
-void C2F(ellipse2d)( double x[], integer x1[], integer * n, char * dir)
+void C2F(ellipse2d)( double x[], int x1[], int * n, char * dir)
 {
-  integer i;
+  int i;
   if (strcmp("f2i",dir)==0) 
     {
-      /** double to integer (pixel) direction **/
+      /** double to int (pixel) direction **/
       for ( i=0 ; i < (*n) ; i=i+6)
 	{
 	  x1[i  ]= XScale(x[i]);
@@ -961,12 +961,12 @@ void C2F(ellipse2d)( double x[], integer x1[], integer * n, char * dir)
 
 /** meme chose mais pour transformer des rectangles **/
 
-void C2F(rect2d)( double x[], integer x1[], integer * n, char * dir)
+void C2F(rect2d)( double x[], int x1[], int * n, char * dir)
 {
-  integer i;
+  int i;
   if (strcmp("f2i",dir)==0) 
     {
-      /** double to integer (pixel) direction **/
+      /** double to int (pixel) direction **/
       for ( i=0 ; i < (*n) ; i= i+4)
 	{
 	  if ( Cscale.logflag[0] == 'n' ) 
@@ -1029,7 +1029,7 @@ void C2F(rect2d)( double x[], integer x1[], integer * n, char * dir)
 void C2F(axis2d)( double  * alpha     ,
                   double  * initpoint ,
                   double  * size      ,
-                  integer * initpoint1,
+                  int * initpoint1,
                   double  * size1       )
 {
   double sina ,cosa;
@@ -1087,7 +1087,7 @@ int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
 
 int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 {
-  integer min,max,puiss,deux=2,dix=10,box[4],box1[4],section[4];
+  int min,max,puiss,deux=2,dix=10,box[4],box1[4],section[4];
 
   double fmin,fmax,lmin,lmax;
   sciPointObj *psousfen,*tmpsousfen;
@@ -1307,7 +1307,7 @@ extern void unzoom()
 {
   /** 17/09/2002 ***/
   double fmin,fmax,lmin,lmax;
-  integer min,max,puiss,deux=2,dix=10;
+  int min,max,puiss,deux=2,dix=10;
   sciPointObj *psousfen;
   sciSons *psonstmp;
 
@@ -1353,7 +1353,7 @@ extern void unzoom()
 extern void unzoom_one_axes(sciPointObj *psousfen)
 {
   double fmin,fmax,lmin,lmax;
-  integer min,max,puiss,deux=2,dix=10;
+  int min,max,puiss,deux=2,dix=10;
 
   if (sciGetEntityType (psousfen) == SCI_SUBWIN) {
     if (sciGetZooming(psousfen)) 	{
@@ -1389,7 +1389,7 @@ extern void unzoom_one_axes(sciPointObj *psousfen)
  *  (voir les fonctions qui suivent )
  */
 
-void Gr_Rescale(char *logFlags, double *FRectI, integer *Xdec, integer *Ydec, integer *xnax, integer *ynax)
+void Gr_Rescale(char *logFlags, double *FRectI, int *Xdec, int *Ydec, int *xnax, int *ynax)
 {
   double FRectO[4];
   sciPointObj *psubwin; 
@@ -1610,7 +1610,7 @@ void scizoom( double bbox[4], sciPointObj * pobj )
 {
   sciPointObj *psousfen;
   double fmin,fmax,lmin,lmax;
-  integer min,max,puiss,deux=2,dix=10;
+  int min,max,puiss,deux=2,dix=10;
   psousfen= pobj; /* ??? */
 
   if ( !( sciGetZooming(pobj) ) )
@@ -1770,9 +1770,9 @@ void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
   }
 }
 /*--------------------------------------------------------------------------*/
-void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+void Plo2d2RealToPixel(int *n1, int *n2, double *x, double *y, int *xm, int *ym, char *xf)
 {
-  integer i,j;
+  int i,j;
   /** Computing y-values **/
   if ((int)strlen(xf) >= 3 && xf[2]=='l')	  
   {
@@ -1873,9 +1873,9 @@ void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
   }
 }
 /*--------------------------------------------------------------------------*/
-void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+void Plo2d3RealToPixel(int *n1, int *n2, double *x, double *y, int *xm, int *ym, char *xf)
 {
-  integer i,j;
+  int i,j;
   /** Computing y-values **/
   double y_zero = 0.;
   sciPointObj *  psubwin =  sciGetCurrentSubWin();
@@ -1980,9 +1980,9 @@ void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
   }
 }
 /*--------------------------------------------------------------------------*/
-void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+void Plo2d4RealToPixel(int *n1, int *n2, double *x, double *y, int *xm, int *ym, char *xf)
 {
-  integer i,j;
+  int i,j;
   /** Computing y-values **/
   if ((int)strlen(xf) >= 3 && xf[2]=='l')	  
   {

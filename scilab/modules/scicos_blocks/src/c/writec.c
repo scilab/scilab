@@ -23,13 +23,13 @@
 #include "sciprint.h"
 #include "machine.h"
 
-extern  int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
-void mput2  (FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr);
+extern  int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
+void mput2  (FILE *fa, int swap, double *res, int n, char *type, int *ierr);
 
 void 
 writec(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
+int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
 double x[],xd[],z[],tvec[],rpar[];
 double *inptr[],*outptr[],*t;
      /*

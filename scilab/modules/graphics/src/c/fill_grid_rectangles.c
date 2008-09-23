@@ -18,7 +18,7 @@
  *  z : is the value of a function on the grid defined by x,y 
  *  on each rectangle the average value of z is computed 
  *----------------------------------------------------------------------------------*/
-void fill_grid_rectangles(integer x[],integer y[],double *z,integer n1,integer n2)
+void fill_grid_rectangles(int x[],int y[],double *z,int n1,int n2)
 {
 	/* TODO */
 }
@@ -32,7 +32,7 @@ void fill_grid_rectangles(integer x[],integer y[],double *z,integer n1,integer n
  *  z[i,j] is the value on the middle of rectangle 
  *        P1= x[i],y[j] x[i+1],y[j+1]
  *----------------------------------------------------------------------------------*/
-void fill_grid_rectangles1(integer *x, integer *y, double *z,integer n1,integer n2)
+void fill_grid_rectangles1(int *x, int *y, double *z,int n1,int n2)
 {
 	/* TODO */
 }

@@ -89,10 +89,10 @@ sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y
 
 sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 				      double * pvecx, double * pvecy, double * pvecz,
-				      double *zcol, integer izcol, integer dimzx, integer dimzy, 
-				      integer *flag, double *ebox, integer flagcolor, integer *isfac,
-				      integer *m1, integer *n1, integer *m2, integer *n2, 
-				      integer *m3, integer *n3, integer *m3n, integer *n3n); /* BUILD */
+				      double *zcol, int izcol, int dimzx, int dimzy, 
+				      int *flag, double *ebox, int flagcolor, int *isfac,
+				      int *m1, int *n1, int *m2, int *n2, 
+				      int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
 
 
 sciPointObj *ConstructGrayplot (sciPointObj * pparentfigure,double *vx,double *vy, 
@@ -104,11 +104,11 @@ sciPointObj *ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, do
 
 sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
 				  double *pfun, int Nnode, int Ntr, double *zminmax, 
-				  integer *colminmax, integer *colout, BOOL with_mesh); /* BUILD */
+				  int *colminmax, int *colout, BOOL with_mesh); /* BUILD */
 
-sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy, integer Nbr1, 
-               integer Nbr2, double *vfx, double *vfy, integer flag, 
-              integer *style, double arsize1,  integer colored, double arfact, int typeofchamp);  /* BUILD */
+sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, int Nbr1, 
+               int Nbr2, double *vfx, double *vfy, int flag, 
+              int *style, double arsize1,  int colored, double arfact, int typeofchamp);  /* BUILD */
 
 sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
 sciPointObj *ConstructCompoundSeq (int number); /* BUILD */

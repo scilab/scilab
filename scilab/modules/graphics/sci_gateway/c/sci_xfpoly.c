@@ -31,7 +31,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xfpoly(char *fname,unsigned long fname_len)
 {
-  integer close=0,m1,n1,l1,m2,n2 ,l2,m3,n3,l3,mn1 ;
+  int close=0,m1,n1,l1,m2,n2 ,l2,m3,n3,l3,mn1 ;
 
   long hdl; /* NG */
   sciPointObj * psubwin = NULL ;
@@ -45,7 +45,7 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
   if (Rhs == 3) {
     GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
     CheckScalar(3,m3,n3);
-    close = (integer) *stk(l3);
+    close = (int)  *stk(l3);
   } 
   mn1 = m1 * n1;
 

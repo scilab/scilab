@@ -49,7 +49,7 @@ Type j;\
 #define IMPL2DIM(Type) {\
 Type FIRST = (Type)*((Type *)first);\
 Type LAST  = (Type)*((Type *)last);\
-     *res = (integer)(LAST-FIRST)+1;\
+     *res = (int) (LAST-FIRST)+1;\
 }
 #define IMPL3DIM(Type) {\
 Type FIRST = (Type)*((Type *)first);\
@@ -69,7 +69,7 @@ Type j;\
    *res = i;\
 }
 
-int C2F(genimpl2)(integer *typ,integer *first,integer *last,integer *res)
+int C2F(genimpl2)(int *typ,int *first,int *last,int *res)
 {
   static int i;
 
@@ -81,7 +81,7 @@ int C2F(genimpl2)(integer *typ,integer *first,integer *last,integer *res)
     IMPL2(integer2);
     break;
   case 4:
-    IMPL2(integer);
+    IMPL2(int) ;
     break;
   case 11:
     IMPL2(unsigned char);
@@ -96,7 +96,7 @@ int C2F(genimpl2)(integer *typ,integer *first,integer *last,integer *res)
   return 0;
 }
 
-int C2F(genimpl3)(integer *typ,integer *first,integer *step,integer *last,integer *res)
+int C2F(genimpl3)(int *typ,int *first,int *step,int *last,int *res)
 {
   static int i;
 
@@ -108,7 +108,7 @@ int C2F(genimpl3)(integer *typ,integer *first,integer *step,integer *last,intege
     IMPL3(integer2);
     break;
   case 4:
-    IMPL3(integer);
+    IMPL3(int) ;
     break;
   case 11:
     IMPL3(unsigned char);
@@ -123,7 +123,7 @@ int C2F(genimpl3)(integer *typ,integer *first,integer *step,integer *last,intege
   return 0;
 }
 
-int C2F(genimpl2dim)(integer *typ,integer *first,integer *last,integer *res)
+int C2F(genimpl2dim)(int *typ,int *first,int *last,int *res)
 {
 
   switch (*typ) {
@@ -134,7 +134,7 @@ int C2F(genimpl2dim)(integer *typ,integer *first,integer *last,integer *res)
     IMPL2DIM(integer2);
     break;
   case 4:
-    IMPL2DIM(integer);
+    IMPL2DIM(int) ;
     break;
   case 11:
     IMPL2DIM(unsigned char);
@@ -148,7 +148,7 @@ int C2F(genimpl2dim)(integer *typ,integer *first,integer *last,integer *res)
   }
   return 0;
 }
-int C2F(genimpl3dim)(integer * typ,integer * first,integer * step,integer * last,integer * res)
+int C2F(genimpl3dim)(int * typ,int * first,int * step,int * last,int * res)
 {
   static int i;
 
@@ -160,7 +160,7 @@ int C2F(genimpl3dim)(integer * typ,integer * first,integer * step,integer * last
     IMPL3DIM(integer2);
     break;
   case 4:
-    IMPL3DIM(integer);
+    IMPL3DIM(int) ;
     break;
   case 11:
     IMPL3DIM(unsigned char);

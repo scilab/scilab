@@ -59,20 +59,20 @@ extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
  * - lstr : (used when called from Fortran code)
  -------------------------------------------------------------------*/
 
-void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, 
-	    integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
+void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1, 
+	    int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
-  integer n;
+  int n;
   double  xx[2],yy[2];
   double boundingBox[6];
-  integer nn1=1,nn2=2;  
+  int nn1=1,nn2=2;  
   /* NG */
   sciPointObj  * psubwin = NULL;
   sciPointObj * newSegs = NULL;
-  integer flag,type =1;
+  int flag,type =1;
   double arsize1;
-  integer *style;
-  integer i;
+  int *style;
+  int i;
   double drect[6];
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
@@ -88,7 +88,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   
   /* First create champ object */
   /* F.Leray Allocation de style[dim = Nbr1] */
-  if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
+  if ((style = MALLOC ((*n1) * sizeof (int) )) == NULL)
   {
     sciprint(_("%s: No more memory.\n"),"champg");
     return;
@@ -190,13 +190,13 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   
 }
 
-int C2F(champ)(double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
+int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
   champg("champ",0,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
   return(0); 
 }
 
-int C2F(champ1)(double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
+int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
   champg("champ1",1,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
   return(0);

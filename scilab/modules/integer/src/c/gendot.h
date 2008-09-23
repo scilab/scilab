@@ -27,6 +27,6 @@
  * @param incy
  * @return 
  */
-int C2F(gendot)(integer *typ,integer *n, void *dx, integer *incx, void *dy, integer *incy);
+int C2F(gendot)(int *typ,int *n, void *dx, int *incx, void *dy, int *incy);
 #endif /* __GENDOT_H__ */
 

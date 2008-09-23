@@ -67,7 +67,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   if ( Rhs == 4 )
   {
     int type = GetType(4);
-    if ( type == 1 || type == 8 )/* double or integer */
+    if ( type == 1 || type == 8 )/* double or int */
     {
       int n,m ;
       int boxPtr   = -1 ; /* pointer of box on the stack */

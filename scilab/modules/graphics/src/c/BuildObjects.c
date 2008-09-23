@@ -125,7 +125,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 {
 
   sciPointObj *pobj = (sciPointObj *) NULL;
-  integer x[2];
+  int x[2];
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;
@@ -1475,10 +1475,10 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 sciPointObj *
 ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 		  double * pvecx, double * pvecy, double * pvecz,double *zcol,
-		  integer izcol, integer dimzx, integer dimzy,
-		  integer *flag, double *ebox,integer flagcolor,
-		  integer *isfac, integer *m1, integer *n1, integer *m2,
-		  integer *n2, integer *m3, integer *n3, integer *m3n, integer *n3n)
+		  int izcol, int dimzx, int dimzy,
+		  int *flag, double *ebox,int flagcolor,
+		  int *isfac, int *m1, int *n1, int *m2,
+		  int *n2, int *m3, int *n3, int *m3n, int *n3n)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   /*debug F.Leray*/
@@ -2044,8 +2044,8 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
  */
 sciPointObj *
 ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud,
-	      double *pfun, int Nnode, int Ntr, double *zminmax, integer *colminmax,
-	      integer *colout, BOOL with_mesh)
+	      double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax,
+	      int *colout, BOOL with_mesh)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciFec *pfec = (sciFec *) NULL;
@@ -2168,13 +2168,13 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
  * @see sciSetCurrentObj
  */
 sciPointObj *
-ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
-               integer Nbr1,integer Nbr2, double *vfx, double *vfy, integer flag,
-	       integer *style, double arsize, integer colored, double arfact, int typeofchamp)
+ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
+               int Nbr1,int Nbr2, double *vfx, double *vfy, int flag,
+	       int *style, double arsize, int colored, double arfact, int typeofchamp)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciSegs * ppSegs = (sciSegs *) NULL;
-  integer i;
+  int i;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
@@ -2248,7 +2248,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	{
 	  ppSegs->typeofchamp = -1; /* useless property in the case type == 0 */
 	  ppSegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
-	  if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
+	  if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (int) )) == NULL)
 	    {
 	      FREE(ppSegs->vx);
 	      FREE(ppSegs->vy);

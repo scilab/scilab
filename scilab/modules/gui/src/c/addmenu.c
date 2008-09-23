@@ -14,14 +14,14 @@
  *******************************************************/
 #include "machine.h"
 
-int C2F(addmen)(integer *win_num,
+int C2F(addmen)(int *win_num,
 				char *button_name,
-				integer *entries,
-				integer *ptrentries,
-				integer *ne
-				,integer *typ,
+				int *entries,
+				int *ptrentries,
+				int *ne
+				,int *typ,
 				char *fname,
-				integer *ierr)
+				int *ierr)
 {
 	return 0;
 }

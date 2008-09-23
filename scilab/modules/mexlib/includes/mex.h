@@ -120,7 +120,7 @@ void *mxGetImagData(const mxArray *ptr);
 extern void diary_nnl(char *str,int *n);
 extern int getdiary();
 
-void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs);
+void clear_mex(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs);
 
 extern void errjump (int n);
 int  C2F(mxgetm)  (mxArray *ptr);
@@ -153,7 +153,7 @@ int C2F(createptr)  (char *type, int *m, int *n, int *it, int *lr, int *ptr, lon
  * @param ptr
  * @return
 */
-int C2F(createstkptr)  (integer *m, vraiptrst *ptr);
+int C2F(createstkptr)  (int *m, vraiptrst *ptr);
 
 
 /**
@@ -164,7 +164,7 @@ int C2F(createstkptr)  (integer *m, vraiptrst *ptr);
  * @param prhs
  * @return
 */
-int C2F(endmex)  (integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs);
+int C2F(endmex)  (int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs);
 
 
 /**
@@ -175,11 +175,11 @@ int C2F(endmex)  (integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs);
  * @param prhs
  * @return
 */
-int C2F(initmex)  (integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs);
+int C2F(initmex)  (int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs);
 
-int C2F(mexcallscilab)  (integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs, char *name, int namelen);
-int C2F(mxcopyptrtoreal8)  (mxArray *ptr, double *y, integer *n);
-int C2F(mxcopyreal8toptr)  (double *y, mxArray *ptr, integer *n);
+int C2F(mexcallscilab)  (int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs, char *name, int namelen);
+int C2F(mxcopyptrtoreal8)  (mxArray *ptr, double *y, int *n);
+int C2F(mxcopyreal8toptr)  (double *y, mxArray *ptr, int *n);
 int fortran_mex_gateway (char *fname, FGatefuncH F);
 int mexAtExit (mxArray *ptr);
 int mexCallSCILAB (int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);

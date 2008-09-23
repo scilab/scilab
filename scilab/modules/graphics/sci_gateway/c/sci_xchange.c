@@ -29,9 +29,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_xchange( char * fname, unsigned long fname_len )
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,l5;
-  integer four = VIEWING_RECT_SIZE ;
-  integer one  = 1 ;
+  int m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,l5;
+  int four = VIEWING_RECT_SIZE ;
+  int one  = 1 ;
   int * xPixCoords;
   int * yPixCoords;
   double * xCoords;

@@ -62,7 +62,7 @@ void SetCurrentFileId(int Id);
 * @param Id
 * @return swap status
 */
-int GetSwapStatus(integer Id);
+int GetSwapStatus(int Id);
 
 /**
 * Set the swap status of file Id

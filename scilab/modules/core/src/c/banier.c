@@ -46,7 +46,7 @@ void banner(void)
   #endif
 }
 /*--------------------------------------------------------------------------*/
-int C2F(banier)(integer *flag)
+int C2F(banier)(int *flag)
 {
 	if (*flag != 999)
 	{

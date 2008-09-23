@@ -39,7 +39,7 @@ int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
   
   /*     subroutine dmmul1(a,na,b,nb,c,nc,l,m,n) */
   /*     double precision a(na,m),b(nb,n),c(nc,n) */
-  /*     integer na,nb,nc,l,m,n */
+  /*     int na,nb,nc,l,m,n */
   
   /*     a            tableau de taille na*m contenant la matrice a */
   /*     na           nombre de lignes du tableau a dans le programme appel */

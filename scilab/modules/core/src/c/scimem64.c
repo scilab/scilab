@@ -30,13 +30,13 @@
 #define SKIPSIZE 1024
 /*--------------------------------------------------------------------------*/
 static double *ref = NULL;
-static integer ssize = 0, gssize = 0, nextsize = 0;
+static int ssize = 0, gssize = 0, nextsize = 0;
 /*--------------------------------------------------------------------------*/
 extern void C2F(relocstack)(void *p, void *pi, void *ps, void *pc, void *pz,
                             int *n, int *ni, int *ns, int *nc, int *nz);
-extern void C2F(adjustgstacksize)(integer *mem, integer *offset, integer *l);
+extern void C2F(adjustgstacksize)(int *mem, int *offset, int *l);
 /*--------------------------------------------------------------------------*/
-static void setref(double *p1, integer allocsz)
+static void setref(double *p1, int allocsz)
 {
 	int ni = (allocsz * sizeof(double))/sizeof(int);
 	int ns = (allocsz * sizeof(double))/sizeof(float);
@@ -49,7 +49,7 @@ static void setref(double *p1, integer allocsz)
 
 static void movegstack()
 {
-	integer l, gptr;
+	int l, gptr;
 	
 	if(gssize) {
 		/* Stack is like this:
@@ -62,10 +62,10 @@ static void movegstack()
 	}
 }
 
-integer scimem64(integer *ptr, integer newsize, BOOL isglobal)
+int scimem64(int *ptr, int newsize, BOOL isglobal)
 {
 	double *p1;
-	integer othersize, oldsize, allocsz;
+	int othersize, oldsize, allocsz;
 	
 	if(newsize++ < 0) /* Add 1 for alignment problems */
 		return 0;
@@ -121,7 +121,7 @@ integer scimem64(integer *ptr, integer newsize, BOOL isglobal)
 
 void freemem64(BOOL isglobal) {
 	double *p1;
-	integer allocsz;
+	int allocsz;
 	
 	if(nextsize == 0)
 		return;

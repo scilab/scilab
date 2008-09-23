@@ -42,7 +42,7 @@ static int filetype (int fd);
  * if flag == 1, res is read 
  * if flag == 0, size of res is computed but res is not read
  ************************************************************/
-int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,WavInfo *Wi, integer *ierr)
+int C2F(loadwave)(char * filename,double *res, int * size_res,int flag,WavInfo *Wi, int *ierr)
 {
   long i,size_max;
 #if defined(__alpha) || defined(__ia64__) || SIZEOF_LONG == 8
@@ -144,7 +144,7 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
 /************************************************************
  * savewave 
  ************************************************************/
-int C2F(savewave)(char * filename,double *res,integer * rate,integer *size_res,integer *nchannels, integer *ierr)
+int C2F(savewave)(char * filename,double *res,int * rate,int *size_res,int *nchannels, int *ierr)
 {
   long buf[BUFSIZ];
   long i,size_max;

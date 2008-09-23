@@ -42,7 +42,7 @@
 
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 
-int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax, integer lstr1,integer lstr2);
+int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint, BOOL flagNax, int lstr1,int lstr2);
 
 /*------------------------------------------------
  * Objrect : 
@@ -120,8 +120,8 @@ void Objarc( double * angle1    ,
 
 void Objpoly ( double  * x     ,
                double  * y     ,
-               integer   n     ,
-               integer   closed,
+               int   n     ,
+               int   closed,
                int       mark  ,
                long    * hdl    )
 { 
@@ -156,10 +156,10 @@ void Objpoly ( double  * x     ,
 
 void Objfpoly ( double  * x    ,
                 double  * y    ,
-                integer   n    ,
-                integer * style,
+                int   n    ,
+                int * style,
                 long    * hdl  ,
-                integer   shading )
+                int   shading )
 { 
   int fillcolor, contourcolor;
   sciPointObj *psubwin, *pobj;
@@ -204,14 +204,14 @@ void Objfpoly ( double  * x    ,
 /*-----------------------------------------------------------
  *   Objsegs :
  *-----------------------------------------------------------*/
-void Objsegs ( integer * style,
-               integer   flag ,
-               integer   n1   ,
+void Objsegs ( int * style,
+               int   flag ,
+               int   n1   ,
                double  * x    ,
                double  * y    ,
                double    arsize )
 {
-  integer type=0,n2, colored=0;
+  int type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
   sciPointObj *psubwin = sciGetCurrentSubWin();
@@ -310,13 +310,13 @@ void Objplot2d ( int       ptype     ,
                  char      logflags[],
                  double    x[]       ,
                  double    y[]       ,
-                 integer * n1        ,
-                 integer * n2        ,
-                 integer   style[]   ,
+                 int * n1        ,
+                 int * n2        ,
+                 int   style[]   ,
                  char      strflag[] ,
                  char      legend[]  ,
                  double    brect[]   ,
-                 integer   aaint[]   ,
+                 int   aaint[]   ,
                  BOOL      flagNax    )
 {
   plot2dn(ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax,4L,bsiz);
@@ -328,11 +328,11 @@ void Objplot2d ( int       ptype     ,
 void Objgrayplot ( double    x[]      ,
                    double    y[]      ,
                    double    z[]      ,
-                   integer * n1       ,
-                   integer * n2       ,
+                   int * n1       ,
+                   int * n2       ,
                    char      strflag[],
                    double    brect[]  ,
-                   integer   aaint[]  ,
+                   int   aaint[]  ,
                    BOOL      flagNax   ) 
 { 
   C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );       
@@ -342,11 +342,11 @@ void Objgrayplot ( double    x[]      ,
  *  Matplot
  *-----------------------------------------------*/   
 void Objmatplot (double    z[]      ,
-                 integer * n1       ,
-                 integer * n2       ,
+                 int * n1       ,
+                 int * n2       ,
                  char      strflag[],
                  double    brect[]  ,
-                 integer    aaint[]  ,
+                 int    aaint[]  ,
                  BOOL      flagNax   ) 
 { 
   C2F(xgray1)(z,n1,n2,strflag, brect, aaint, flagNax, bsiz);
@@ -356,8 +356,8 @@ void Objmatplot (double    z[]      ,
  *  Matplot1
  *-----------------------------------------------*/   
 void Objmatplot1 ( double    z[],
-                   integer * n1 ,
-                   integer * n2 ,
+                   int * n1 ,
+                   int * n2 ,
                    double    xrect[] ) 
 { 
   C2F(xgray2)(z, n1, n2,xrect);
@@ -367,32 +367,32 @@ void Objmatplot1 ( double    z[],
  *  plot3d 
  *-----------------------------------------------*/   
 void Objplot3d ( char    * fname ,
-                 integer * isfac ,
-                 integer * izcol ,
+                 int * isfac ,
+                 int * izcol ,
                  double    x[]   ,
                  double    y[]   ,
                  double    z[]   ,
                  double  * zcol  ,
-                 integer * m     ,
-                 integer * n     ,
+                 int * m     ,
+                 int * n     ,
                  double  * theta ,
                  double  * alpha ,
                  char    * legend,
-                 integer * iflag ,
+                 int * iflag ,
                  double  * ebox  ,
-                 integer * m1    , /*Adding F.Leray 12.03.04 and 19.03.04*/
-                 integer * n1    ,
-                 integer * m2    ,
-                 integer * n2    ,
-                 integer * m3    ,
-                 integer * n3    ,
-                 integer * m3n   ,
-                 integer * n3n    )
+                 int * m1    , /*Adding F.Leray 12.03.04 and 19.03.04*/
+                 int * n1    ,
+                 int * m2    ,
+                 int * n2    ,
+                 int * m3    ,
+                 int * n3    ,
+                 int * m3n   ,
+                 int * n3n    )
      /* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
      /* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
 {
   sciTypeOf3D typeof3d;
-  integer flagcolor;  
+  int flagcolor;  
   long *hdltab;
   int i, mn;
   sciPointObj *psubwin = NULL, *pobj = NULL;
@@ -795,8 +795,8 @@ void Objdrawaxis ( char     dir    ,
 
 void Objnumb( char          * fname    ,
               unsigned long   fname_len,
-              integer         n        ,
-              integer         flag     ,
+              int         n        ,
+              int         flag     ,
               double          x        ,
               double          y        ,
               double        * angle    ,
@@ -814,15 +814,15 @@ void Objfec ( double    x[]        ,
               double    y[]        ,
               double    noeud[]    ,
               double  * fun        ,
-              integer * n          ,
-              integer * m          ,
+              int * n          ,
+              int * m          ,
               char      strflag[]  ,
               char      legend[]   ,
               double    brect[]    ,
-              integer   aaint[]    ,
+              int   aaint[]    ,
               double    Zminmax[]  ,
-              integer   Colminmax[],
-              integer   ColOut[]   ,
+              int   Colminmax[],
+              int   ColOut[]   ,
               BOOL      WithMesh   ,
               BOOL      flagNax     )
 {

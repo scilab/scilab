@@ -44,9 +44,9 @@ Type *DY;\
 }
 
 
-int C2F(genmmin)(integer *typ, integer *job, integer *m, integer *n, int *dx, integer *incx, int *dy, int *dk, integer *incy)
+int C2F(genmmin)(int *typ, int *job, int *m, int *n, int *dx, int *incx, int *dy, int *dk, int *incy)
 {
-  static integer ix, iy, l, k, kk, *DK;
+  static int ix, iy, l, k, kk, *DK;
 
   DK=--dk;
   ix = *incx;
@@ -60,7 +60,7 @@ int C2F(genmmin)(integer *typ, integer *job, integer *m, integer *n, int *dx, in
     MMIN(integer2);
     break;
   case 4:
-    MMIN(integer);
+    MMIN(int) ;
     break;
   case 11:
     MMIN(unsigned char);

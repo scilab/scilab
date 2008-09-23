@@ -30,9 +30,9 @@ Type *DY;\
        DY[iy+i*(nn+1)] = DX[i];}\
  }
 
-int C2F(gendiag)(integer *typ,integer *n,integer *k,int *dx,int *dy) 
+int C2F(gendiag)(int *typ,int *n,int *k,int *dx,int *dy) 
 {
-  static integer i, iy, nn;
+  static int i, iy, nn;
 
   nn = *n+Abs(*k);
 
@@ -44,7 +44,7 @@ int C2F(gendiag)(integer *typ,integer *n,integer *k,int *dx,int *dy)
     DIAG(integer2);
     break;
   case 4:
-    DIAG(integer);
+    DIAG(int) ;
     break;
   case 11:
     DIAG(unsigned char);

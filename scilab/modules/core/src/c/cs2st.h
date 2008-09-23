@@ -21,6 +21,6 @@
  * @param ires  
  * @return <ReturnValue>
  */
-int C2F(cs2st)(integer *i,integer *ires);
+int C2F(cs2st)(int *i,int *ires);
 
 #endif /* __CS2ST_H__ */

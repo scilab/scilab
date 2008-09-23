@@ -32,16 +32,16 @@
 /*--------------------------------------------------------------------------*/
 int sci_param3d1( char *fname, unsigned long fname_len )
 {
-  integer izcol, isfac;
+  int izcol, isfac;
   double *zcol=NULL;
   static double  ebox_def [6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
-  static integer iflag_def[3]={1,2,4};
-  integer iflag[3] , *ifl;
+  static int iflag_def[3]={1,2,4};
+  int iflag[3] , *ifl;
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
-  integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n = 0, n3n = 0, l3n, m3l, n3l, l3l;
+  int m1, n1, l1, m2, n2, l2, m3, n3, l3;
+  int m3n = 0, n3n = 0, l3n, m3l, n3l, l3l;
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
                             {-1,"ebox","?",0,0,0},
                             {-1,"flag","?",0,0,0},

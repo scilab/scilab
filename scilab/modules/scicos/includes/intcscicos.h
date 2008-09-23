@@ -65,7 +65,7 @@ extern void C2F(vvtosci)();
 extern void C2F(itosci)();
 extern int C2F(mktlist)();
 extern void str2sci(char** x,int n,int m);
-extern integer C2F(scierr)();
+extern int C2F(scierr)();
 extern int C2F(namstr)();
 
 extern int Max1(int* vect);
@@ -87,24 +87,24 @@ extern int ctree4(int* vec,int nb,int *nd,
                   int* outoinptr,int* r1,int* r2,
                   int* nr);
 
-extern int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
-                       void **work,integer *zptr,integer *modptr_in,
-                       void **oz,integer *ozsz,integer *oztyp,integer *ozptr,
-                       integer *iz,integer *izptr,double *t0_in,
-                       double *tf_in,double *tevts_in,integer *evtspt_in,
-                       integer *nevts,integer *pointi_in,void **outtbptr_in,
-                       integer *outtbsz_in,integer *outtbtyp_in,
-                       outtb_el *outtb_elem_in,integer *nelem1,integer *nlnk1,
-                       integer *funptr,integer *funtyp_in,integer *inpptr_in,
-                       integer *outptr_in, integer *inplnk_in,integer *outlnk_in,
-                       double *rpar,integer *rpptr,integer *ipar,integer *ipptr,
-                       void **opar,integer *oparsz,integer *opartyp,integer *opptr,
-                       integer *clkptr_in,integer *ordptr_in,integer *nordptr1,
-                       integer *ordclk_in,integer *cord_in,integer *ncord1,
-                       integer *iord_in,integer *niord1,integer *oord_in,
-                       integer *noord1,integer *zord_in,integer *nzord1,
-                       integer *critev_in,integer *nblk1,integer *ztyp,
-                       integer *zcptr_in,integer *subscr,integer *nsubs,
-                       double *simpar,integer *flag__,integer *ierr_out);
+extern int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
+                       void **work,int *zptr,int *modptr_in,
+                       void **oz,int *ozsz,int *oztyp,int *ozptr,
+                       int *iz,int *izptr,double *t0_in,
+                       double *tf_in,double *tevts_in,int *evtspt_in,
+                       int *nevts,int *pointi_in,void **outtbptr_in,
+                       int *outtbsz_in,int *outtbtyp_in,
+                       outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
+                       int *funptr,int *funtyp_in,int *inpptr_in,
+                       int *outptr_in, int *inplnk_in,int *outlnk_in,
+                       double *rpar,int *rpptr,int *ipar,int *ipptr,
+                       void **opar,int *oparsz,int *opartyp,int *opptr,
+                       int *clkptr_in,int *ordptr_in,int *nordptr1,
+                       int *ordclk_in,int *cord_in,int *ncord1,
+                       int *iord_in,int *niord1,int *oord_in,
+                       int *noord1,int *zord_in,int *nzord1,
+                       int *critev_in,int *nblk1,int *ztyp,
+                       int *zcptr_in,int *subscr,int *nsubs,
+                       double *simpar,int *flag__,int *ierr_out);
 
 #endif

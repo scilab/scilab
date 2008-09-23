@@ -93,7 +93,7 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
   return(info);
 }
 /*--------------------------------------------------------------------------*/ 
-void C2F(readnextline)(integer *fd,char buf[],integer *n,integer *count,integer *nr,integer *ierr)
+void C2F(readnextline)(int *fd,char buf[],int *n,int *count,int *nr,int *ierr)
 {
 	FILE *fa= GetFileOpenedInScilab(*fd);
 	*ierr=LineRead(fa,buf,*n,count,nr);

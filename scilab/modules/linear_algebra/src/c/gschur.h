@@ -23,7 +23,7 @@
  ***********************************/
 
 #define ARGS_gzhsel doublecmplx *,doublecmplx *
-typedef integer * (*gzhself)(ARGS_gzhsel);
+typedef int * (*gzhself)(ARGS_gzhsel);
 
 /**************** gzhsel ***************/
 extern void C2F(zb02ow)(ARGS_gzhsel);
@@ -40,7 +40,7 @@ FTAB FTab_gzhsel[] ={
  ***********************************/
 
 #define ARGS_gshsel double *,double*,double*
-typedef integer * (*gshself)(ARGS_gshsel);
+typedef int * (*gshself)(ARGS_gshsel);
 
 
 /**************** gshsel ***************/

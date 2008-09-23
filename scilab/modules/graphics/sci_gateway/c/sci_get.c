@@ -55,7 +55,7 @@ static char error_message[128];
 /*--------------------------------------------------------------------------*/
 int sci_get(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,numrow2,numcol2,l2 ;
+  int m1,n1,numrow2,numcol2,l2 ;
   int l1;
   unsigned long hdl;
 

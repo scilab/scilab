@@ -134,8 +134,8 @@
  *  Example of a FORTRAN Program Calling Sparse
  *
 
-      integer matrix, error, sfCreate, sfGetElement, spFactor
-      integer element(10)
+      int matrix, error, sfCreate, sfGetElement, spFactor
+      int element(10)
       double precision rhs(4), solution(4)
 c
       matrix = sfCreate(4,0,error)
@@ -1099,7 +1099,7 @@ sfMNA_Preorder( long *Matrix )
  *  are several things to take into account when choosing the scale
  *  factors.  First, the scale factors are directly multiplied against
  *  the elements in the matrix.  To prevent roundoff, each scale factor
- *  should be equal to an integer power of the number base of the
+ *  should be equal to an int power of the number base of the
  *  machine.  Since most machines operate in base two, scale factors
  *  should be a power of two.  Second, the matrix should be scaled such
  *  that the matrix of element uncertainties is equilibrated.  Third,

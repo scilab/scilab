@@ -15,7 +15,7 @@
 #define __CREATEGUID_H__
 
 /**
-* Creates a GUID, a unique 128-bit integer used for CLSIDs and interface identifiers.
+* Creates a GUID, a unique 128-bit int used for CLSIDs and interface identifiers.
 * @return a string (GUID)
 */
 char *createGUID(void);

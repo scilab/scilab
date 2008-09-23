@@ -29,10 +29,10 @@ Type *TO;\
     }\
 }
 
-int C2F(geninsert2)(integer *typ,integer *mj,integer *mi,integer *indxj,integer *indxi,integer *to,integer *mr,integer *from,integer *m3,integer *inc3)
+int C2F(geninsert2)(int *typ,int *mj,int *mi,int *indxj,int *indxi,int *to,int *mr,int *from,int *m3,int *inc3)
 {
-  integer i1, i2;
-  static integer i, j, ljj,jj;
+  int i1, i2;
+  static int i, j, ljj,jj;
 
   --indxi;
   --indxj;
@@ -45,7 +45,7 @@ int C2F(geninsert2)(integer *typ,integer *mj,integer *mi,integer *indxj,integer 
     INSERT2(integer2);
     break;
   case 4:
-    INSERT2(integer);
+    INSERT2(int) ;
     break;
   case 11:
     INSERT2(unsigned char);

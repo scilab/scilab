@@ -18,7 +18,7 @@
 /**
 * tell function 
 */
-void C2F(mtell) (integer *fd, double *offset, integer *err);
+void C2F(mtell) (int *fd, double *offset, int *err);
 
 #endif /* __MTELL_H__ */
 /*--------------------------------------------------------------------------*/

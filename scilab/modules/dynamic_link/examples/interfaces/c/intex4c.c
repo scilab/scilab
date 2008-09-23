@@ -168,7 +168,7 @@ int C2F(dblearray)(double **a,int *m,int *n,int*ierr)
 }
 
 
-/*     integer array    */
+/*     int array    */
 
 int C2F(intarray)(int **a,int *m,int *n,int *ierr) 
 {

@@ -15,7 +15,7 @@
 #include "MALLOC.h" /* NULL*/
 #include "error_internal.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(error)(integer *n)
+int C2F(error)(int *n)
 {
 	return error_internal(n,NULL,ERROR_FROM_FORTRAN);
 } 

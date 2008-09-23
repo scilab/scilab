@@ -18,7 +18,7 @@
 #include "stackinfo.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern integer C2F(adjuststacksize)();
+extern int C2F(adjuststacksize)();
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
 /*--------------------------------------------------------------------------*/
@@ -85,7 +85,7 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 
 						if (MEMSTACKSIZE != currentstacksize)
 						{
-							integer ptr;
+							int ptr;
 							C2F(scimem)( (int *)&MEMSTACKSIZE,&ptr);
 							if (ptr) 
 								{
@@ -139,14 +139,14 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 
 				if ( strcmp("max",param) == 0 )
 				{
-					integer ptr=0;
+					int ptr=0;
 
-					integer memstacktotal=0;
-					integer memstackused=0;
-					integer memgstacktotal=0;
-					integer memgstackused=0;
+					int memstacktotal=0;
+					int memstackused=0;
+					int memgstacktotal=0;
+					int memgstackused=0;
 
-					integer newmaxstack=0;
+					int newmaxstack=0;
 
 					unsigned long memmaxavailablebyscilab=get_max_memory_for_scilab_stack();
 					unsigned long maxmemfree=(GetLargestFreeMemoryRegion())/sizeof(double);
@@ -164,7 +164,7 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 
 					newmaxstack = maxmemfree;
 
-					if ( newmaxstack > (integer)memmaxavailablebyscilab )
+					if ( newmaxstack > (int) memmaxavailablebyscilab )
 					{
 						newmaxstack = memmaxavailablebyscilab;
 					}
@@ -189,10 +189,10 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 				}
 				else if ( strcmp("min",param) == 0 )
 				{
-					integer ptr=0;
-					integer memstacktotal=0;
-					integer memstackused=0;
-					integer newminstack=0;
+					int ptr=0;
+					int memstacktotal=0;
+					int memstackused=0;
+					int newminstack=0;
 
 					C2F(getstackinfo)(&memstacktotal,&memstackused);
 

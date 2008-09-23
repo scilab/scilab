@@ -18,7 +18,7 @@
 #include "sciprint.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-void C2F(mclose) (integer *fd, double *res)
+void C2F(mclose) (int *fd, double *res)
 {     
 	int fd1;
 	int res1 = 1;

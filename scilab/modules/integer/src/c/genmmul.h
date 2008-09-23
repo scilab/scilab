@@ -31,6 +31,6 @@
  * @param n
  * @return 
  */
-int C2F(genmmul)(integer *typ, int *a, integer *na, int *b, integer *nb, int *c, integer *nc, integer *l, integer *m, integer *n);
+int C2F(genmmul)(int *typ, int *a, int *na, int *b, int *nb, int *c, int *nc, int *l, int *m, int *n);
 
 #endif /* __GENMMUL_H__ */

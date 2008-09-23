@@ -21,20 +21,20 @@
  **/
 
 
-typedef void (*fydotf)(integer*,double *,double *,double *);
+typedef void (*fydotf)(int*,double *,double *,double *);
 
-#define ARGS_fjac integer*,double *,double *,integer*,integer*,double*,integer*
+#define ARGS_fjac int*,double *,double *,int*,int*,double*,int*
 typedef void (*fjacf)(ARGS_fjac);
 
 /**************** fydot ***************/
-extern void C2F(fex)(integer*,double *,double *,double *);
-extern void C2F(fex2)(integer*,double *,double *,double *);
-extern void C2F(fex3)(integer*,double *,double *,double *);
-extern void C2F(fexab)(integer*,double *,double *,double *);
-extern void C2F(loren)(integer*,double *,double *,double *);
-extern void C2F(bcomp)(integer*,double *,double *,double *);
-extern void C2F(lcomp)(integer*,double *,double *,double *);
-void C2F(fydot)(integer*,double *,double *,double *);
+extern void C2F(fex)(int*,double *,double *,double *);
+extern void C2F(fex2)(int*,double *,double *,double *);
+extern void C2F(fex3)(int*,double *,double *,double *);
+extern void C2F(fexab)(int*,double *,double *,double *);
+extern void C2F(loren)(int*,double *,double *,double *);
+extern void C2F(bcomp)(int*,double *,double *,double *);
+extern void C2F(lcomp)(int*,double *,double *,double *);
+void C2F(fydot)(int*,double *,double *,double *);
 void C2F(setfydot)(char *name, int *rep);
 
 FTAB FTab_fydot[] ={
@@ -68,7 +68,7 @@ static fydotf fydotfonc ;
 
 /** function call **/
 
-void C2F(fydot)(integer *n, double *t, double *y, double *ydot)
+void C2F(fydot)(int *n, double *t, double *y, double *ydot)
 {
 	(*fydotfonc)(n,t,y,ydot);
 }
@@ -87,7 +87,7 @@ static fjacf fjacfonc ;
 
 /** function call **/
 
-void C2F(fjac)(integer *neq, double *t, double *y, integer *ml, integer *mu, double *pd, integer *nrpd)
+void C2F(fjac)(int *neq, double *t, double *y, int *ml, int *mu, double *pd, int *nrpd)
 {
 	(*fjacfonc)(neq, t, y, ml, mu, pd, nrpd);
 }

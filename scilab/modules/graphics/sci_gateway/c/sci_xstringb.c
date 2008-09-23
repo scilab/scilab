@@ -33,7 +33,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xstringb(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
+  int m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
   BOOL autoSize = TRUE ;
   double x,y,w,hx;
   char **Str;

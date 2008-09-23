@@ -16,6 +16,6 @@
 
 #include "machine.h" /* C2F */
 
-int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters);
+int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters);
 
 #endif /* __BASOUT_H__ */

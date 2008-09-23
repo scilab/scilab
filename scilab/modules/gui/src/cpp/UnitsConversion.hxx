@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Return the style name corresponding to the integer value from UicontrolStyle enum
+ * Return the style name corresponding to the int value from UicontrolStyle enum
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which

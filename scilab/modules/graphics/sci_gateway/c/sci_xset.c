@@ -38,12 +38,12 @@
 #include "Scierror.h"
 #include "DrawingBridge.h"
 /*--------------------------------------------------------------------------*/
-int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1) ;
+int C2F(xsetg)(char * str,char * str1,int lx0,int lx1) ;
 /*--------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )
 {
-  integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v;
-  integer lr;
+  int m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v;
+  int lr;
   double  xx[5];
   sciPointObj *subwin = NULL; 
   BOOL keyFound = FALSE ;
@@ -98,7 +98,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   for ( i = 2 ; i <= Rhs ; i++ ) 
   {
     GetRhsVar(i,MATRIX_OF_DOUBLE_DATATYPE,&xm[i-2],&xn[i-2],&lr);
-    x[i - 2] = (integer) *stk(lr); xx[i - 2] = *stk(lr);
+    x[i - 2] = (int)  *stk(lr); xx[i - 2] = *stk(lr);
   }
   if (strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0) {
     /* Xwindows limits dimensions to 2^16 */
@@ -360,7 +360,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
+int C2F(xsetg)(char * str,char * str1,int lx0,int lx1)
 {
   if ( strcmp(str,"fpf") == 0) 
   {

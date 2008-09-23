@@ -29,9 +29,9 @@ int ReverseDataFor3DZonly( sciPointObj * psubwin, double zvect[], int n1 ) ;
 int ReverseDataFor3D(      sciPointObj * psubwin, double xvect[], double yvect[], double zvect[], int n1 ) ;
 /*------------------------------------------------------------------------------*/
 int trans3d( sciPointObj * pobj,
-             integer       n   ,
-             integer       xm[],
-             integer       ym[],
+             int       n   ,
+             int       xm[],
+             int       ym[],
              double        x[] ,
              double        y[] ,
              double        z[]  ) ;

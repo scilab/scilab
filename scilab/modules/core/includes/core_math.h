@@ -44,7 +44,7 @@
 #define Max(x,y)	(((x)>(y))?(x):(y))
 #endif
 
-#define PI0 (integer *) 0
+#define PI0 (int *) 0
 #define PD0 (double *) 0
 #define SMDOUBLE 1.e-200 /* Smalest number to avoid dividing by zero */
 
@@ -68,7 +68,7 @@
   #define inint(x) (( x > 0 ) ? ((int) (x + 0.5)) : ((int) (x - 0.5));
  **/
 
-#define linint(x) ((integer) floor(x + 0.5 )) 
+#define linint(x) ((int)  floor(x + 0.5 )) 
 #define inint(x) ((int) floor(x + 0.5 ))  
 
 #if (defined(sun) && defined(SYSV)) 

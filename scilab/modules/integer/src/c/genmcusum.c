@@ -12,7 +12,7 @@
 
 #include "genmcusum.h"
 
-static integer c__1 = 1;
+static int c__1 = 1;
 #define MCUSUM(Type) {\
 Type *A;\
     A=(Type *)a;\
@@ -30,10 +30,10 @@ Type *A;\
     }\
 }
 
-int C2F(genmcusum)(integer *typ,integer *job,integer * a,integer * na,integer * m,integer * n)
+int C2F(genmcusum)(int *typ,int *job,int * a,int * na,int * m,int * n)
 {
-  extern integer  C2F(gencusum)();
-  static integer  i, j, mn;
+  extern int  C2F(gencusum)();
+  static int  i, j, mn;
 
   mn=(*m)*(*n);
 
@@ -45,7 +45,7 @@ int C2F(genmcusum)(integer *typ,integer *job,integer * a,integer * na,integer * 
     MCUSUM(integer2);
     break;
   case 4:
-    MCUSUM(integer);
+    MCUSUM(int) ;
     break;
   case 11:
     MCUSUM(unsigned char);
