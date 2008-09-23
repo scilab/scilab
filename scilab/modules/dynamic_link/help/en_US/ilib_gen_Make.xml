@@ -78,6 +78,12 @@
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>cc</term>
+        <listitem>
+          <para>a string. The name of the C compiler. Default value is the C compiler detected on the host.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>Makename</term>
         <listitem>
           <para>character string. The path of the really generated Makefile file.</para>
@@ -103,6 +109,10 @@
     <para>
     Files are not required to exist, when makefile is generated, but of
     course are required for executing the makefile.</para>
+    <para>
+      <emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis>
+    </para>
+
   </refsection>
   <refsection>
     <title>See Also</title>
