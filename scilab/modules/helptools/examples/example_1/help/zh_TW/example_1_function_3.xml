@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" 
+          xml:lang="zh_TW" 
+          xml:id="example_1_function_3">
+  <info>
+    <pubdate>01-08-2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>example_1_function_3</refname>
+    <refpurpose>"example_1_function_3" 說明</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>語法</title>
+    <synopsis>a = example_1_function_3(b,c)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>參數</title>
+    <variablelist>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>
+            "b" 參數說明
+         </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>
+            "c" 參數說明
+         </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>
+            "a" 參數說明
+         </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>說明</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          example_1_function_3 完整說明
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>範例</title>
+    <programlisting role="example"><![CDATA[
+    
+// 註解
+b = 2;
+c = 3;
+a = example_1_function_3(b,c);
+    
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>其他參考</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="example_1_function_1">example_1_function_1</link>
+      </member>
+      <member>
+        <link linkend="example_1_function_2">example_1_function_2</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>
+      Scilab 團隊
+    </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>翻譯</title>
+    <simplelist type="vert">
+      <member>
+      中文翻譯群
+    </member>
+    </simplelist>
+  </refsection> 
+</refentry>
