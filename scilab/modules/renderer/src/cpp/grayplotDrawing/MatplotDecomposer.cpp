@@ -70,12 +70,12 @@ void MatplotDecomposer::decomposeGrayplot(double xGrid[], double yGrid[], int co
   }
 
   // fill color
-  for (int i = 0; i < nbCol - 1; i++)
+  for (int j = 0; j < nbRow - 1; j++)
   {
-    for (int j = 0; j < nbRow - 1; j++)
+    for (int i = 0; i < nbCol - 1; i++)
     {
       // scilab data are stored column wise
-      colors[j + (nbRow - 1) * i] = (int) ppGray->pvecz[j + (nbRow - 1) * i];
+      colors[i + (nbCol - 1) * j] = (int) ppGray->pvecz[j + (nbRow - 1) * i];
     }
   }
 
