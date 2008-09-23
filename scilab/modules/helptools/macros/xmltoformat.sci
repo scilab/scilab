@@ -1,4 +1,4 @@
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+﻿// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 //
 // This file must be used under the terms of the CeCILL.
@@ -990,7 +990,7 @@ function create_MD(dirs,titles,output_filename)
 	titles = my_mat(:,1);
 	dirs   = my_mat(:,2);
 	
-	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 	xml_files          = listfiles(dirs+"/*.xml");
@@ -1005,7 +1005,7 @@ function create_MD(dirs,titles,output_filename)
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
 		"]>"; ..
-		"<book version=""5.0-subset Scilab"" xml:lang=""en"""; ..
+		"<book version=""5.0-subset Scilab"" xml:lang="""+getlanguage()+""""; ..
 		"      xmlns=""http://docbook.org/ns/docbook"""; ..
 		"      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
 		"      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
@@ -1053,7 +1053,7 @@ function create_MD_dir(my_dir,my_title,output_filename)
 
 	xml_files   = basename(listfiles(my_dir+"/*.xml"));
 	
-	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 		
@@ -1073,7 +1073,7 @@ function create_MD_dir(my_dir,my_title,output_filename)
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
 		"]>"; ..
-		"<book version=""5.0-subset Scilab"" xml:lang=""en"""; ..
+		"<book version=""5.0-subset Scilab"" xml:lang="""+getlanguage()+""""; ..
 		"      xmlns=""http://docbook.org/ns/docbook"""; ..
 		"      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
 		"      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..

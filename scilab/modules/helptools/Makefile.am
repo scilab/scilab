@@ -160,7 +160,11 @@ examples/example_3/help/fr_FR/example_1_function_2.xml \
 examples/example_3/help/fr_FR/example_1_function_3.xml \
 examples/example_3/help/fr_FR/example_1_function_4.xml \
 examples/example_3/help/en_US/example_1_function_1.xml \
-examples/example_3/help/en_US/example_1_function_2.xml
+examples/example_3/help/en_US/example_1_function_2.xml \
+examples/example_1/help/zh_TW/example_1_function_1.xml \
+examples/example_1/help/zh_TW/example_1_function_2.xml \
+examples/example_1/help/zh_TW/example_1_function_3.xml
+
 
 include $(top_srcdir)/Makefile.incl.am
 
