@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldflags,cflags,fflags,flag,cc)
+function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldflags,cflags,fflags,cc)
 // flag 'c' or 'f' used with lcc 
 //------------------------------------
 // generate a Makefile for gateway
@@ -39,15 +39,14 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
   comp_target = COMPILER;
   if with_lcc() == %T then
   	Makename = makename+'.lcc'
-  	flag='c'
-  	ilib_gen_Make_lcc(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags,flag)
+  	ilib_gen_Make_lcc(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags,'c')
   else if getenv('WIN32','NO')=='OK' then
     select comp_target
      case 'VC++'   then Makename = makename+'.mak'
       ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
      case 'gcc' then 
       Makename = makename;
-      ilib_gen_Make_unix(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
+      ilib_gen_Make_unix(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags,cc)
     else
        Makename = makename;
        ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)

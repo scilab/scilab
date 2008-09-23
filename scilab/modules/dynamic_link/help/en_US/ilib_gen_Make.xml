@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags])</synopsis>
+    <synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags,cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
