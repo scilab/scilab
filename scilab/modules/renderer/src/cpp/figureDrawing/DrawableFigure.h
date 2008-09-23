@@ -17,7 +17,7 @@
 
 #include <list>
 
-#include "../DrawableObject.h"
+#include "DrawableObject.h"
 #include "DrawableFigureBridge.h"
 #include "GraphicSynchronization/GraphicSynchronizer.h"
 

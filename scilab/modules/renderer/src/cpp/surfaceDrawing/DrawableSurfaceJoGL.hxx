@@ -19,7 +19,7 @@
 #include "DrawableSurfaceBridge.hxx"
 #include "DrawableSurface.h"
 #include "DrawableSurfaceJavaMapper.hxx"
-#include "../DrawableClippedObjectJoGL.h"
+#include "DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {

@@ -16,7 +16,7 @@
 #define _DRAWABLE_FEC_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableFec.hxx"
 
 namespace sciGraphics

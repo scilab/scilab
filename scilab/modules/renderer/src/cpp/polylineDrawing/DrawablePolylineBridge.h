@@ -15,8 +15,8 @@
 #ifndef _DRAWABLE_POLYLINE_BRIDGE_HXX_
 #define _DRAWABLE_POLYLINE_BRIDGE_HXX_
 
-#include "../DrawableObject.h"
-#include "../DrawableClippedObjectBridge.h"
+#include "DrawableObject.h"
+#include "DrawableClippedObjectBridge.h"
 
 namespace sciGraphics
 {

@@ -15,7 +15,7 @@
 #define _DRAWABLE_RECTANGLE_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "DrawableClippedObject.h"
 #include "DrawableRectangleBridge.h"
 
 namespace sciGraphics

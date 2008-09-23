@@ -15,7 +15,7 @@
 #define _DRAW_AXES_BOX_STRATEGY_HXX_
 
 #include "DrawableSubwin.h"
-#include "../DrawableObjectBridge.h"
+#include "DrawableObjectBridge.h"
 
 namespace sciGraphics
 {

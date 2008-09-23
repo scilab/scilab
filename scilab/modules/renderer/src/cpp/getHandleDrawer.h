@@ -16,7 +16,7 @@
 
 extern "C"
 {
-#include "../../../graphics/includes/ObjectStructure.h"
+#include "ObjectStructure.h"
 }
 #include "DrawableObject.h"
 #include "figureDrawing/DrawableFigure.h"

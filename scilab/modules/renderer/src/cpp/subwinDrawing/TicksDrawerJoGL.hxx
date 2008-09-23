@@ -14,7 +14,7 @@
 #ifndef _TICKS_DRAWER_JOGL_HXX_
 #define _TICKS_DRAWER_JOGL_HXX_
 
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "TicksDrawerBridge.hxx"
 #include "TicksDrawerJavaMapper.hxx"
 

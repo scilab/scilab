@@ -15,8 +15,8 @@
 #ifndef _DRAWABLE_FIGURE_FACTORY_H_
 #define _DRAWABLE_FIGURE_FACTORY_H_
 
-#include "../DrawableObject.h"
-#include "../DrawableObjectFactory.h"
+#include "DrawableObject.h"
+#include "DrawableObjectFactory.h"
 
 namespace sciGraphics
 {

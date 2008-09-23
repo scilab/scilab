@@ -14,7 +14,7 @@
 #ifndef _GRID_DRAWER_JAVA_MAPPER_HXX_
 #define _GRID_DRAWER_JAVA_MAPPER_HXX_
 
-#include "../DrawableObjectJavaMapper.hxx"
+#include "DrawableObjectJavaMapper.hxx"
 #include "GridDrawerGL.hxx"
 
 

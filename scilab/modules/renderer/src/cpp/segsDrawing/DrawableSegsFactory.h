@@ -16,7 +16,7 @@
 #define _DRAWABLE_SEGS_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableSegs.hxx"
 
 namespace sciGraphics

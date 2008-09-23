@@ -15,7 +15,7 @@
 #define _FULL_BOX_DRAWER_JOGL_HXX_
 
 #include "DrawAxesBoxStrategy.hxx"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "FullBoxDrawerJavaMapper.hxx"
 
 namespace sciGraphics

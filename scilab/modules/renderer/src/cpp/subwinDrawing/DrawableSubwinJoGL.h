@@ -17,7 +17,7 @@
 
 #include "DrawableSubwinBridge.h"
 #include "DrawableSubwin.h"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "DrawableSubwinJavaMapper.hxx"
 
 namespace sciGraphics

@@ -15,7 +15,7 @@
 #define _DRAWABLE_GRAYPLOT_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "DrawableClippedObject.h"
 #include "DrawableGrayplotBridge.hxx"
 
 namespace sciGraphics

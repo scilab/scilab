@@ -19,7 +19,7 @@
 #include "DrawableGrayplotBridge.hxx"
 #include "DrawableGrayplot.h"
 #include "DrawableGrayplotJavaMapper.hxx"
-#include "../DrawableClippedObjectJoGL.h"
+#include "DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {

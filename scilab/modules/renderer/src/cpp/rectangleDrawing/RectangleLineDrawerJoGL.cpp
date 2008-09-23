@@ -12,7 +12,7 @@
  */
 
 #include "RectangleLineDrawerJoGL.h"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "RectangleLineDrawerJavaMapper.hxx"
 
 extern "C"

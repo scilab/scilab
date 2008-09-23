@@ -14,7 +14,7 @@
 #ifndef _TICKS_DRAWER_BRIDGE_HXX_ 
 #define _TICKS_DRAWER_BRIDGE_HXX_
 
-#include "../DrawableObjectBridge.h"
+#include "DrawableObjectBridge.h"
 
 namespace sciGraphics
 {

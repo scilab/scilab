@@ -14,7 +14,7 @@
 #ifndef _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_
 #define _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_
 
-#include "../DrawableObjectJavaMapper.hxx"
+#include "DrawableObjectJavaMapper.hxx"
 #include "BackTrihedronDrawerGL.hxx"
 
 

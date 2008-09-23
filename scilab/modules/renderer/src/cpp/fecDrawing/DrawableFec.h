@@ -15,7 +15,7 @@
 #define _DRAWABLE_FEC_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "DrawableClippedObject.h"
 
 namespace sciGraphics
 {

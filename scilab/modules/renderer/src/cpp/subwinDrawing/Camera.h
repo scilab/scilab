@@ -16,7 +16,7 @@
 #define _CAMERA_H_
 
 #include "CameraBridge.h"
-#include "../DrawableObject.h"
+#include "DrawableObject.h"
 
 namespace sciGraphics
 {

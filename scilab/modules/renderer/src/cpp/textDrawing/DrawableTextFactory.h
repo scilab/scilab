@@ -16,7 +16,7 @@
 #define _DRAWABLE_TEXT_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableText.hxx"
 
 namespace sciGraphics

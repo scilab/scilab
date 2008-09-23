@@ -16,7 +16,7 @@
 
 extern "C"
 {
-#include "../../../graphics/includes/ObjectStructure.h"
+#include "ObjectStructure.h"
 }
 
 #include "HandleObserver.h"

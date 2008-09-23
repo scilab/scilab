@@ -14,7 +14,7 @@
 #ifndef _GRID_DRAWER_HXX_ 
 #define _GRID_DRAWER_HXX_
 
-#include "../DrawableObjectBridge.h"
+#include "DrawableObjectBridge.h"
 #include "DrawableSubwin.h"
 #include "ComputeTicksStrategy.hxx"
 

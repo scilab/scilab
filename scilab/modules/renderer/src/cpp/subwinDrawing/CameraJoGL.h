@@ -14,7 +14,7 @@
 #ifndef _CAMERA_JOGL_H_
 #define _CAMERA_JOGL_H_
 
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "CameraBridge.h"
 #include "DrawableSubwin.h"
 #include "CameraJavaMapper.hxx"

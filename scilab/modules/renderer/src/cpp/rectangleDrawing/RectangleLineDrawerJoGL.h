@@ -16,7 +16,7 @@
 
 #include "DrawRectangleStrategy.h"
 #include "DrawableRectangleJoGL.h"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "RectangleLineDrawerJavaMapper.hxx"
 
 namespace sciGraphics

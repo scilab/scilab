@@ -16,7 +16,7 @@
 #define _DRAWABLE_POLYLINE_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawablePolyline.hxx"
 
 namespace sciGraphics

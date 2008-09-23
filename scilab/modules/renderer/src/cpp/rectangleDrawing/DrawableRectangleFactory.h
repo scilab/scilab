@@ -16,7 +16,7 @@
 #define _DRAWABLE_RECTANGLE_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableRectangle.h"
 
 namespace sciGraphics

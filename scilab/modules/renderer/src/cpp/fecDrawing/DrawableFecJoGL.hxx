@@ -18,7 +18,7 @@
 #include "DrawableFecBridge.hxx"
 #include "DrawableFec.h"
 #include "DrawableFecJavaMapper.hxx"
-#include "../DrawableClippedObjectJoGL.h"
+#include "DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {

@@ -15,7 +15,7 @@
 #define _RECTANGLE_FILL_DRAWER_JOGL_H_
 
 #include "DrawRectangleStrategy.h"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "RectangleFillDrawerJavaMapper.hxx"
 
 namespace sciGraphics

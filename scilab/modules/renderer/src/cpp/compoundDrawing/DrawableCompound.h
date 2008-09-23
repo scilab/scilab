@@ -15,7 +15,7 @@
 #define _DRAWABLE_COMPOUND_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "DrawableClippedObject.h"
 
 namespace sciGraphics
 {

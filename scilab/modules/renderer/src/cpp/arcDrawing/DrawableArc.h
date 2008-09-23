@@ -15,7 +15,7 @@
 #define _DRAWABLE_ARC_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "DrawableClippedObject.h"
 #include "DrawArcStrategy.h"
 #include "DrawableArcBridge.h"
 

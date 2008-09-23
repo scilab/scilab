@@ -15,7 +15,7 @@
 #define _FEC_FACET_DRAWER_JOGL_HXX_
 
 #include "DrawFecStrategy.hxx"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "FecFacetDrawerJavaMapper.hxx"
 
 namespace sciGraphics

@@ -18,7 +18,7 @@
 #include "DrawablePolylineBridge.h"
 #include "DrawablePolyline.h"
 #include "DrawablePolylineJavaMapper.hxx"
-#include "../DrawableClippedObjectJoGL.h"
+#include "DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {

@@ -12,8 +12,8 @@
  */
 
 #include "DrawableText.h"
-#include "../DrawableObject.h"
-#include "../getHandleDrawer.h"
+#include "DrawableObject.h"
+#include "getHandleDrawer.h"
 
 extern "C"
 {

@@ -14,7 +14,7 @@
 #ifndef _LABEL_POSITIONER_HXX_ 
 #define _LABEL_POSITIONER_HXX_
 
-#include "../DrawableObjectBridge.h"
+#include "DrawableObjectBridge.h"
 
 namespace sciGraphics
 {

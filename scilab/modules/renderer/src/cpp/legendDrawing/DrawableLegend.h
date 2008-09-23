@@ -15,7 +15,7 @@
 #define _DRAWABLE_LEGEND_H_
 
 
-#include "../DrawableObject.h"
+#include "DrawableObject.h"
 
 namespace sciGraphics
 {

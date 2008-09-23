@@ -16,7 +16,7 @@
 
 #include <list>
 
-#include "../DrawableObjectBridge.h"
+#include "DrawableObjectBridge.h"
 
 namespace sciGraphics
 {

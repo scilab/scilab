@@ -15,7 +15,7 @@
 #define _DRAWABLE_POLYLINE_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "DrawableClippedObject.h"
 #include "DrawablePolylineBridge.h"
 
 namespace sciGraphics

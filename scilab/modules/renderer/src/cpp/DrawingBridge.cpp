@@ -21,7 +21,7 @@
 
 extern "C"
 {
-#include "../../../graphics/includes/GetProperty.h"
+#include "GetProperty.h"
 }
 
 using namespace sciGraphics ;

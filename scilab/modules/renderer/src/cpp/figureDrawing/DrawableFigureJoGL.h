@@ -19,7 +19,7 @@
 #include "DrawableFigureBridge.h"
 #include "DrawableFigure.h"
 #include "DrawableFigureJavaMapper.hxx"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "ScilabGraphicWindow.hxx"
 
 namespace sciGraphics

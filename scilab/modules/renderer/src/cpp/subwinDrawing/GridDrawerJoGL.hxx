@@ -14,7 +14,7 @@
 #ifndef _GRID_DRAWER_JOGL_HXX_
 #define _GRID_DRAWER_JOGL_HXX_
 
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "GridDrawer.hxx"
 #include "GridDrawerJavaMapper.hxx"
 

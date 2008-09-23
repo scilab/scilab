@@ -14,7 +14,7 @@
 #ifndef _FULL_BOX_DRAWER_JAVA_MAPPER_HXX_
 #define _FULL_BOX_DRAWER_JAVA_MAPPER_HXX_
 
-#include "../DrawableObjectJavaMapper.hxx"
+#include "DrawableObjectJavaMapper.hxx"
 #include "FullBoxDrawerGL.hxx"
 
 

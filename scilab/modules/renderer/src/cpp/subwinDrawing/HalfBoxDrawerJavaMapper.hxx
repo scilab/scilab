@@ -14,7 +14,7 @@
 #ifndef _HALF_BOX_DRAWER_JAVA_MAPPER_HXX_
 #define _HALF_BOX_DRAWER_JAVA_MAPPER_HXX_
 
-#include "../DrawableObjectJavaMapper.hxx"
+#include "DrawableObjectJavaMapper.hxx"
 #include "HalfBoxDrawerGL.hxx"
 
 

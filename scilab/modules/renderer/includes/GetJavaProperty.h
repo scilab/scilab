@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-#include "../../../graphics/includes/ObjectStructure.h"
+#include "ObjectStructure.h"
 #include "BOOL.h"
 
 /**

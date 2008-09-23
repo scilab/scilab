@@ -16,7 +16,7 @@
 
 #include "DrawSegsStrategy.hxx"
 #include "SegsLineDrawerJavaMapper.hxx"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 
 namespace sciGraphics
 {

@@ -18,7 +18,7 @@
 
 extern "C"
 {
-#include "../../../graphics/includes/ObjectStructure.h"
+#include "ObjectStructure.h"
 }
 
 namespace sciGraphics

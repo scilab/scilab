@@ -15,7 +15,7 @@
 #include "DrawableRectangleFactory.h"
 #include "DrawableRectangleBridgeFactory.h"
 #include "ConcreteDrawableRectangle.h"
-#include "../getHandleDrawer.h"
+#include "getHandleDrawer.h"
 #include "RectangleLineDrawerJoGL.h"
 #include "RectangleFillDrawerJoGL.h"
 #include "RectangleMarkDrawerJoGL.h"

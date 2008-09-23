@@ -15,7 +15,7 @@
 #define _DRAWABLE_LABEL_H_
 
 
-#include "../DrawableObject.h"
+#include "DrawableObject.h"
 #include "LabelPositioner.hxx"
 
 namespace sciGraphics

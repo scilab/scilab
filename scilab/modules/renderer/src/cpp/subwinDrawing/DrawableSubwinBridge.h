@@ -15,8 +15,8 @@
 #ifndef _DRAWABLE_SUBWIN_BRIDGE_H_
 #define _DRAWABLE_SUBWIN_BRIDGE_H_
 
-#include "../DrawableObject.h"
-#include "../DrawableObjectBridge.h"
+#include "DrawableObject.h"
+#include "DrawableObjectBridge.h"
 
 namespace sciGraphics
 {

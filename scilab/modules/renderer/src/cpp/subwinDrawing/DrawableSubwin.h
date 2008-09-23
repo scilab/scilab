@@ -16,7 +16,7 @@
 
 #include <list>
 
-#include "../DrawableObject.h"
+#include "DrawableObject.h"
 #include "Camera.h"
 #include "DrawableSubwinBridge.h"
 

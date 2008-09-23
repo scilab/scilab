@@ -16,7 +16,7 @@
 #define _DRAWABLE_LEGEND_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 
 namespace sciGraphics
 {

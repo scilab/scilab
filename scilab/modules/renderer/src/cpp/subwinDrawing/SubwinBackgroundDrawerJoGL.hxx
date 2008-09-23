@@ -14,7 +14,7 @@
 #define _SUBWIN_BACKGROUND_DRAWER_JOGL_HXX_
 
 #include "DrawAxesBoxStrategy.hxx"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "SubwinBackgroundDrawerJavaMapper.hxx"
 
 namespace sciGraphics

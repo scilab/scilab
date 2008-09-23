@@ -16,7 +16,7 @@
 #define _DRAWABLE_AXES_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableAxes.hxx"
 
 namespace sciGraphics

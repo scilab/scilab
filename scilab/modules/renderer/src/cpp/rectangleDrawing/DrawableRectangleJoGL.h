@@ -20,7 +20,7 @@
 #include "DrawableRectangleBridge.h"
 #include "DrawableRectangle.h"
 #include "DrawableRectangleJavaMapper.hxx"
-#include "../DrawableClippedObjectJoGL.h"
+#include "DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {

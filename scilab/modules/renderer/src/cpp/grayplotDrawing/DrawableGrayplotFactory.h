@@ -16,7 +16,7 @@
 #define _DRAWABLE_GRAYPLOT_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableGrayplot.hxx"
 
 namespace sciGraphics

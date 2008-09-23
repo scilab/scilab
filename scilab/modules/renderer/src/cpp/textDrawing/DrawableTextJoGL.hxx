@@ -18,7 +18,7 @@
 #include "DrawableTextBridge.hxx"
 #include "DrawableText.h"
 #include "DrawableTextJavaMapper.hxx"
-#include "../DrawableClippedObjectJoGL.h"
+#include "DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {

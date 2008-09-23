@@ -16,7 +16,7 @@
 #define _DRAWABLE_ARC_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableArc.h"
 
 namespace sciGraphics

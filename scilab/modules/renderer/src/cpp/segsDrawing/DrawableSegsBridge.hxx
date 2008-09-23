@@ -15,8 +15,8 @@
 #ifndef _DRAWABLE_SEGS_BRIDGE_
 #define _DRAWABLE_SEGS_BRIDGE_
 
-#include "../DrawableObject.h"
-#include "../DrawableClippedObjectBridge.h"
+#include "DrawableObject.h"
+#include "DrawableClippedObjectBridge.h"
 
 namespace sciGraphics
 {

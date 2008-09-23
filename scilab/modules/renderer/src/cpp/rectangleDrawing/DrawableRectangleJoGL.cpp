@@ -13,7 +13,7 @@
  */
 
 #include <list>
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "DrawableRectangle.h"
 #include "DrawableRectangleJoGL.h"
 

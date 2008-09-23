@@ -16,7 +16,7 @@
 #define _DRAWABLE_SURFACE_FACTORY_HXX_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "ConcreteDrawableSurface.hxx"
 
 namespace sciGraphics

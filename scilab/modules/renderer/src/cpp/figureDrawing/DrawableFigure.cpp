@@ -14,8 +14,8 @@
 
 #include "DrawableFigure.h"
 #include "DrawableFigureBridge.h"
-#include "../subwinDrawing/DrawableSubwin.h"
-#include "../getHandleDrawer.h"
+#include "subwinDrawing/DrawableSubwin.h"
+#include "getHandleDrawer.h"
 
 // here for static methods
 #include "DrawableFigureJoGL.h"

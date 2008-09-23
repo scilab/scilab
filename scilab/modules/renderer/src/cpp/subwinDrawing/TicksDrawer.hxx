@@ -14,7 +14,7 @@
 #ifndef _TICKS_DRAWER_HXX_ 
 #define _TICKS_DRAWER_HXX_
 
-#include "../DrawableObjectBridge.h"
+#include "DrawableObjectBridge.h"
 #include "ComputeTicksStrategy.hxx"
 #include "ComputeSubticksStrategy.hxx"
 #include "DrawableSubwin.h"

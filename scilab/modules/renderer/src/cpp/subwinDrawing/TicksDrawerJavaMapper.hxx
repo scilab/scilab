@@ -14,7 +14,7 @@
 #ifndef _TICKS_DRAWER_JAVA_MAPPER_HXX_
 #define _TICKS_DRAWER_JAVA_MAPPER_HXX_
 
-#include "../DrawableObjectJavaMapper.hxx"
+#include "DrawableObjectJavaMapper.hxx"
 #include "TicksDrawerGL.hxx"
 
 

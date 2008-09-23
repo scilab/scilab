@@ -16,7 +16,7 @@
 #define _DRAWABLE_LABEL_FACTORY_H_
 
 
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 #include "DrawableLabel.h"
 
 namespace sciGraphics

@@ -15,7 +15,7 @@
 #define _DRAWABLE_SEGS_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "DrawableClippedObject.h"
 
 namespace sciGraphics
 {

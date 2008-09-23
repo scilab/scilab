@@ -15,8 +15,8 @@
 
 #include "DrawableSubwinJoGL.h"
 #include "DrawableSubwin.h"
-#include "../DrawableObjectJoGL.h"
-#include "../DrawableObjectBridge.h"
+#include "DrawableObjectJoGL.h"
+#include "DrawableObjectBridge.h"
 
 extern "C"
 {

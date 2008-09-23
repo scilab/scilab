@@ -13,7 +13,7 @@
 #ifndef _SUBWIN_BACKGROUND_DRAWER_JAVA_MAPPER_HXX_
 #define _SUBWIN_BACKGROUND_DRAWER_JAVA_MAPPER_HXX_
 
-#include "../DrawableObjectJavaMapper.hxx"
+#include "DrawableObjectJavaMapper.hxx"
 #include "SubwinBackgroundDrawerGL.hxx"
 
 

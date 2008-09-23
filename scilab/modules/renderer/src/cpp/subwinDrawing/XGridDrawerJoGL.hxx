@@ -14,7 +14,7 @@
 #ifndef _X_GRID_DRAWER_JOGL_HXX_
 #define _X_GRID_DRAWER_JOGL_HXX_
 
-#include "../DrawableObjectJoGL.h"
+#include "DrawableObjectJoGL.h"
 #include "GridDrawerJoGL.hxx"
 
 namespace sciGraphics

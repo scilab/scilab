@@ -13,7 +13,7 @@
 
 #include "LabelPositioner.hxx"
 #include "DrawableLabel.h"
-#include "../textDrawing/DrawableText.h"
+#include "textDrawing/DrawableText.h"
 #include "getHandleDrawer.h"
 
 extern "C"

@@ -16,7 +16,7 @@
 
 #include "Camera.h"
 #include "DrawableSubwin.h"
-#include "../DrawableObjectFactory.h"
+#include "DrawableObjectFactory.h"
 
 namespace sciGraphics
 {
