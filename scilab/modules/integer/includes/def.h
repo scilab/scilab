@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,16 +15,10 @@
 
 #ifdef integer
 #undef integer
-typedef long int /* long int */ integer;
 #endif
+typedef long int /* long int */ integer;
 
 typedef double doublereal;
-
-#ifdef doublecomplex
-#undef doublecomplex
-typedef struct { doublereal r, i; } doublecomplex;
-#endif
-
 
 typedef unsigned long int /* long */ uinteger;
 typedef char *address;
