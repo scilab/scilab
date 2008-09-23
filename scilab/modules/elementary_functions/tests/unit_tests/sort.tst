@@ -66,6 +66,6 @@ A = [18 21 10 7 5];
 B = [1  3  22 8 4];
 y = complex(A,B);
 [a,b] = sort(y);
-if ( b <> [3 2 1 4 5] ) then pause,end
+if or( b <> [3 2 1 4 5] ) then pause,end
 if ( y(b) <> a  ) then pause,end
 //================================

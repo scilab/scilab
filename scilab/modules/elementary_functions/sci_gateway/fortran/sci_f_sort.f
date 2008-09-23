@@ -22,10 +22,6 @@ c
 c
       tops=top
 c
-      if(rhs.gt.2) then
-         call error(42)
-         return
-      endif
       il=iadr(lstk(top+1-rhs))
       if(istk(il).lt.0) il=iadr(istk(il+1))
       if(istk(il).ne.1) then
@@ -179,15 +175,6 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 
-      if(rhs.gt.2) then
-         call error(42)
-         return
-      endif
-      if(lhs.gt.2) then
-         call error(41)
-         return
-      endif
-
       tops=top
 
 c     select type of sort to perform
@@ -210,12 +197,10 @@ c
       id1=il1+4
       l1=id1+mn+1
       vol=istk(id1+mn)-1
-
 c
       id1r=id1
       ls=iadr(lstk(top+1))
       lsz=ls+vol
-
 
       lind=lsz+mn
       lw=lind+mn

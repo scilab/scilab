@@ -23,13 +23,32 @@ int C2F(sci_sort) (char *fname,unsigned long fname_len)
 	/* compatibility with scilab 4.x */
 
 	static int id[6];
+
+	CheckRhs(1,2);
+	CheckLhs(1,2);
+
 	if ( VarType(1) == sci_strings ) 
 	{
 		C2F(intssort)(id);
 	}
 	else
 	{
-		C2F(intsort)(id);
+		/* bug 3567 : previous version of scilab didn't sort correctly complex */
+		/* we use same algorithm than gsort with complex case */
+		#define COMPLEX 1
+		int *header = NULL;
+		int Cmplx = 0; /* real */
+		header = (int *) GetData(1);   
+		Cmplx = header[3];
+
+		if (Cmplx == COMPLEX)
+		{
+			C2F(sci_gsort)(fname,fname_len);
+		}
+		else
+		{
+			C2F(intsort)(id);
+		}
 	}
 	return 0;
 }
