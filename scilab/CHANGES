@@ -67,6 +67,8 @@ Bug fixes:
  
  - bug 3510 fixed - Bug with the simplified chinese and russian localization 
                     made Scilab unusuable under Windows localized in these languages.
+					
+ - bug 3572 fixed - Bug with grayplot handles having different dimensions on X and Y.
 
  - In the binary, a file was missing which was causing some issues while 
    handling Mat-Files. Please note that the Windows binary and sources releases

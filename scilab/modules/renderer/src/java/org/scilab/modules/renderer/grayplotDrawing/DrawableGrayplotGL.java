@@ -57,13 +57,13 @@ public class DrawableGrayplotGL extends DrawableClippedObjectGL {
 		
 		// rectangles are used to render each pixel
 		// Using textures would be much faster
-		// hower it would not be compatible with GL2PS, so for now we keep th eslow version
+		// hower it would not be compatible with GL2PS, so for now we keep the slow version
 		
 		startRecordDL();
 		gl.glBegin(GL.GL_QUADS);
-		for (int i = 0; i < nbCol; i++) {
-			for (int j = 0; j < nbRow; j++) {
-				double[] curColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[j + nbRow * i]));
+		for (int j = 0; j < nbRow; j++) {
+			for (int i = 0; i < nbCol; i++) {
+				double[] curColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[i + nbCol * j]));
 				gl.glColor3d(curColor[0], curColor[1], curColor[2]);
 				gl.glVertex3d(xGrid[i], yGrid[j], zCoord);
 				gl.glVertex3d(xGrid[i], yGrid[j + 1], zCoord);

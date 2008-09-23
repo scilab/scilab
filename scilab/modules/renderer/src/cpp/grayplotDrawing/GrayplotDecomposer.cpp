@@ -34,12 +34,12 @@ GrayplotDecomposer::~GrayplotDecomposer(void)
 /*---------------------------------------------------------------------------------*/
 int GrayplotDecomposer::getNbRow(void)
 {
-  return pGRAYPLOT_FEATURE(m_pDrawed->getDrawedObject())->nx;
+  return pGRAYPLOT_FEATURE(m_pDrawed->getDrawedObject())->ny;
 }
 /*---------------------------------------------------------------------------------*/
 int GrayplotDecomposer::getNbCol(void)
 {
-  return pGRAYPLOT_FEATURE(m_pDrawed->getDrawedObject())->ny;
+  return pGRAYPLOT_FEATURE(m_pDrawed->getDrawedObject())->nx;
 }
 /*---------------------------------------------------------------------------------*/
 int GrayplotDecomposer::getNbColors(void)
@@ -125,16 +125,16 @@ void GrayplotDecomposer::decomposeScaledColors(int colors[])
   int colorMapSize = sciGetNumColors(sciGetParentFigure(pGray));
 
   // fill color
-  for (int i = 0; i < nbRow - 1; i++)
+  for (int j = 0; j < nbRow - 1; j++)
   {
-    for (int j = 0; j < nbCol - 1; j++)
+    for (int i = 0; i < nbCol - 1; i++)
     {
       // current value is the average on the facet
-      double curZvalue = getFacetZvalue(ppGray->pvecz, nbRow, i, j);
+      double curZvalue = getFacetZvalue(ppGray->pvecz, nbCol, i, j);
       // colors is of size (nx - 1) x (ny -1) and pvecz of size nx x ny.
       // a 1 is added here and I don't know why
       // scilab data are stored column wise
-      colors[j + (nbRow - 1) * i]
+      colors[i + (nbCol - 1) * j]
         = 1 + (int) floor( (colorMapSize - 1) * (curZvalue - lowColor) / zRange + 0.5);
     }
   }
@@ -155,17 +155,17 @@ void GrayplotDecomposer::decomposeDirectColors(int colors[])
     {
       // colors is of size (nx - 1) x (ny -1) and pvecz of size nx x ny.
       // scilab data are stored column wise
-      colors[j + (nbRow - 1) * i] = (int) ppGray->pvecz[i + nbCol * j];
+      colors[j + (nbCol - 1) * i] = (int) ppGray->pvecz[i + nbCol * j];
     }
   }
 
 }
 /*---------------------------------------------------------------------------------*/
-double GrayplotDecomposer::getFacetZvalue(const double zValues[], int nbRow, int i, int j)
+double GrayplotDecomposer::getFacetZvalue(const double zValues[], int nbCol, int i, int j)
 {
   // mean on the facet
-   return 0.25 * (  zValues[i + nbRow * j] + zValues[i + 1 + nbRow * j]
-                  + zValues[i + 1 + nbRow * (j + 1)] + zValues[i + nbRow * (j + 1)]);
+   return 0.25 * (  zValues[i + nbCol * j] + zValues[i + 1 + nbCol * j]
+                  + zValues[i + 1 + nbCol * (j + 1)] + zValues[i + nbCol * (j + 1)]);
 }
 /*---------------------------------------------------------------------------------*/
 }
