@@ -2033,40 +2033,40 @@ function Code=make_computational42()
 
   Code=[Code;
         '/* Table of constant values */'
-        'static integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';']
+        'static int nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';']
 
   if maxtotal<10 then
     Code=[Code;
-          'static integer nrd_10 = 10;']
+          'static int nrd_10 = 10;']
   end
   if maxtotal<11 then
     Code=[Code;
-          'static integer nrd_11 = 11;']
+          'static int nrd_11 = 11;']
   end
 
   if maxtotal<81 then
     Code=[Code;
-          'static integer nrd_81 = 81;']
+          'static int nrd_81 = 81;']
   end
   if maxtotal<82 then
     Code=[Code;
-          'static integer nrd_82 = 82;']
+          'static int nrd_82 = 82;']
   end
   if maxtotal<84 then
     Code=[Code;
-          'static integer nrd_84 = 84;']
+          'static int nrd_84 = 84;']
   end
   if maxtotal<811 then
     Code=[Code;
-          'static integer nrd_811 = 811;']
+          'static int nrd_811 = 811;']
   end
   if maxtotal<812 then
     Code=[Code;
-          'static integer nrd_812 = 812;']
+          'static int nrd_812 = 812;']
   end
   if maxtotal<814 then
     Code=[Code;
-          'static integer nrd_814 = 814;']
+          'static int nrd_814 = 814;']
   end
 
   Code=[Code;
@@ -3285,7 +3285,7 @@ function Code=make_standalone42()
     Code=[Code
           '/* Code prototype for standalone use  */'
           'int C2F('+rdnom+'simblk)(double , double *, double *);'
-          'extern  integer C2F(dset)();'
+          'extern  int C2F(dset)();'
           'int ode1();'
           'int ode2();'
           'int ode4();'
@@ -3294,40 +3294,40 @@ function Code=make_standalone42()
 
   Code=[Code;
         '/* Table of constant values */'
-        'static integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';']
+        'static int nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';']
 
   if maxtotal<10 then
     Code=[Code;
-          'static integer nrd_10 = 10;']
+          'static int nrd_10 = 10;']
   end
   if maxtotal<11 then
     Code=[Code;
-          'static integer nrd_11 = 11;']
+          'static int nrd_11 = 11;']
   end
 
   if maxtotal<81 then
     Code=[Code;
-          'static integer nrd_81 = 81;']
+          'static int nrd_81 = 81;']
   end
   if maxtotal<82 then
     Code=[Code;
-          'static integer nrd_82 = 82;']
+          'static int nrd_82 = 82;']
   end
   if maxtotal<84 then
     Code=[Code;
-          'static integer nrd_84 = 84;']
+          'static int nrd_84 = 84;']
   end
   if maxtotal<811 then
     Code=[Code;
-          'static integer nrd_811 = 811;']
+          'static int nrd_811 = 811;']
   end
   if maxtotal<812 then
     Code=[Code;
-          'static integer nrd_812 = 812;']
+          'static int nrd_812 = 812;']
   end
   if maxtotal<814 then
     Code=[Code;
-          'static integer nrd_814 = 814;']
+          'static int nrd_814 = 814;']
   end
 
   Code=[Code;
@@ -4300,9 +4300,9 @@ function txt=make_static_standalone42()
         '/* def continuous state */'
         cformatline('double x[]={'+strcat(string(x),',')+'};',70)
         cformatline('double xd[]={'+strcat(string(x),',')+'};',70)
-        'static integer c__1 = 1;'
+        'static int c__1 = 1;'
         'static double c_b14 = 0.;'
-        'static integer neq='+string(nX)+';'
+        'static int neq='+string(nX)+';'
         '']
   end
   //************************//
@@ -4377,7 +4377,7 @@ function txt=make_static_standalone42()
   if size(ipar,1) <> 0 then
     txt=[txt;
          '/* def integer parameters */'
-         'static integer IPAR1[ ] = {'];
+         'static int IPAR1[ ] = {'];
 
     for i=1:(length(ipptr)-1)
       if ipptr(i+1)-ipptr(i)>0  then
@@ -4424,7 +4424,7 @@ function txt=make_static_standalone42()
          '};'
          '']
   else
-    txt($+1)='static integer IPAR1[1];';
+    txt($+1)='static int IPAR1[1];';
   end
   //**************************//
 
@@ -4984,7 +4984,7 @@ function [txt]=write_code_cdoit(flag)
         //** C **//
         tmp_='*(('+TYPE+' *)'+rdnom+'_block_outtbptr['+string(ix)+'])'
         txt=[txt;
-             '    i=max(min((integer) '+...
+             '    i=max(min((int) '+...
               tmp_+',block_'+rdnom+'['+string(bk-1)+'].evout),1);'
              '    switch(i)'
              '    {']
@@ -5096,7 +5096,7 @@ function [txt]=write_code_doit(ev,flag)
         tmp_='*(('+TYPE+' *)'+rdnom+'_block_outtbptr['+string(ix)+'])'
         //** C **//
         txt=[txt;
-             '    i=max(min((integer) '+...
+             '    i=max(min((int) '+...
               tmp_+',block_'+rdnom+'['+string(bk-1)+'].evout),1);'
              '    switch(i)'
              '    {']
@@ -5207,7 +5207,7 @@ function [txt]=write_code_idoit()
         //** C **//
         tmp_='*(('+TYPE+' *)'+rdnom+'_block_outtbptr['+string(ix)+'])'
         txt=[txt;
-             '    i=max(min((integer) '+...
+             '    i=max(min((int) '+...
               tmp_+',block_'+rdnom+'['+string(bk-1)+'].evout),1);']
         txt=[txt;
              '    switch(i)'
@@ -5320,7 +5320,7 @@ function [txt]=write_code_odoit(flag)
         tmp_='*(('+TYPE+' *)'+rdnom+'_block_outtbptr['+string(ix)+'])'
         txt=[txt;
              '    if (block_'+rdnom+'['+string(bk-1)+'].nmode<0) {';
-             '      i=max(min((integer) '+...
+             '      i=max(min((int) '+...
                 tmp_+',block_'+rdnom+'['+string(bk-1)+'].evout),1);'
              '    }'
              '    else {'
@@ -5449,7 +5449,7 @@ function [txt]=write_code_ozdoit(ev,flag)
         tmp_='*(('+TYPE+' *)'+rdnom+'_block_outtbptr['+string(ix)+'])'
         txt=[txt;
              '    if (phase==1 || block_'+rdnom+'['+string(bk-1)+'].nmode==0) {';
-             '      i=max(min((integer) '+...
+             '      i=max(min((int) '+...
               tmp_+',block_'+rdnom+'['+string(bk-1)+'].evout),1);'
              '    }'
              '    else {'
@@ -5580,7 +5580,7 @@ function [txt]=write_code_zdoit()
         tmp_='*(('+TYPE+' *)'+rdnom+'_block_outtbptr['+string(ix)+'])'
         txt=[txt;
              '    if (phase==1 || block_'+rdnom+'['+string(bk-1)+'].nmode==0){';
-             '      i=max(min((integer) '+...
+             '      i=max(min((int) '+...
                tmp_+',block_'+rdnom+'['+string(bk-1)+'].evout),1);'
              '    else {'
              '      i=block_'+rdnom+'['+string(bk-1)+'].mode[0];'
@@ -5702,7 +5702,7 @@ function [txt]=write_code_zdoit()
         if II<>[] then
           //** C **//
           txt=[txt;
-               '    j=max(min((integer) '+...
+               '    j=max(min((int) '+...
                 tmp_+',block_'+rdnom+'['+string(bk-1)+'].nevout),1);']
           txt=[txt;
                '    switch(j)'
@@ -5731,7 +5731,7 @@ function [txt]=write_code_zdoit()
              '    g['+string(zcptr(bk)-1)+'+jj]=(double)'+tmp_+'-(double)(jj+2);'
              '  }'
              '  if(phase==1 && block_'+rdnom+'['+string(bk-1)+'].nmode>0){'
-             '    j=max(min((integer) '+tmp_+','
+             '    j=max(min((int) '+tmp_+','
              '              block_'+rdnom+'['+string(bk-1)+'].nevout),1);'
              '    block_'+rdnom+'['+string(bk-1)+'].mode[0]= j;'
              '  }']
@@ -5845,7 +5845,7 @@ function [txt]=write_code_zzdoit(ev,flag)
         if II<>[] then
           //** C **//
           txt=[txt;
-               '    j=max(min((integer) '+...
+               '    j=max(min((int) '+...
                 tmp_+',block_'+rdnom+'['+string(bk-1)+'].nevout),1);']
           txt=[txt;
                '    switch(j)'
@@ -5874,7 +5874,7 @@ function [txt]=write_code_zzdoit(ev,flag)
              '    g['+string(zcptr(bk)-1)+'+jj]=(double)'+tmp_+'-(double)(jj+2);'
              '  }'
              '  if(phase==1 && block_'+rdnom+'['+string(bk-1)+'].nmode>0){'
-             '    j=max(min((integer) '+tmp_+','
+             '    j=max(min((int) '+tmp_+','
              '              block_'+rdnom+'['+string(bk-1)+'].nevout),1);'
              '    block_'+rdnom+'['+string(bk-1)+'].mode[0]= j;'
              '  }']

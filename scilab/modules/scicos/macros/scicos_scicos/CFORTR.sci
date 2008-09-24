@@ -42,7 +42,7 @@ if tt==[] then
   tete2=tete2+')'
 
   tete3=['      double *t,xd[],x[],z[],tvec[];';..
-    '      integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar'+decl+';']
+    '      int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar'+decl+';']
 
 
   tete4= '      double rpar[]'
