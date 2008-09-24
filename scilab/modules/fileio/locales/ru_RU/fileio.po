@@ -14,8 +14,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-16 08:21+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s: Неверный тип аргумента: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество аргументов.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
+msgstr "%s: Неверное значение аргумента #%d: Должно быть ''%s''.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Не удалось открыть файл %s.\n"
+
+#, c-format
+msgid "%s: Cannot go to directory %s\n"
+msgstr "%s: Не удалось перейти в директорию %s\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s expected.\n"
@@ -52,92 +76,25 @@ msgid "%s: Options ignored.\n"
 msgstr "%s: Опции проигнорированы.\n"
 
 #, c-format
-msgid "%s: Cannot go to directory %s\n"
-msgstr "%s: Не удалось перейти в директорию %s\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Неверное количество аргументов.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
-msgstr "%s: Неверное значение аргумента #%d: Должно быть ''%s''.\n"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Не удалось открыть файл %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
+msgid "%s: Wrong type for input argument: A string expected.\n"
 msgstr "%s: Неверный тип аргумента: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr "%s: Неверный размер аргумента #%d: Ожидалось число.\n"
-
-#, c-format
-msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: Неверный дескриптор файла: %d.\n"
-
-#, c-format
-msgid "%s: Data mismatch.\n"
-msgstr "%s: Данные несовпадают.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
-msgstr "%s: Неверный тип аргумента: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
-msgstr "%s: Неверный размер аргумента: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument: Must be less than %d characters.\n"
-msgstr "%s: Неверный размер аргумента: Должно быть не более %d символов.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-msgstr "%s: Неверное количество аргументов: Должно быть > 0.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr "%s: Неверное количество аргументов: ожидалось не более %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
 msgstr ""
-"%s: Неверное количество аргументов: данные не соответствуют формату.\n"
+"%s: Неверное значение аргумента #%d: '%s' не является корректным путём.\n"
 
 #, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s: Не удалось открыть файл '%s'.\n"
-
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s: Не удалось прочитать данные из файла '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s: Внимание: Директория '%s' уже существует.\n"
-
-msgid "Not enough entries."
-msgstr "Не достаточно элементов."
 
 #, c-format
 msgid ""
@@ -170,8 +127,60 @@ msgid "%s: Wrong type for input argument: Matrix expected.\n"
 msgstr "%s: Неверный тип аргумента: Ожидалась матрица.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+msgstr "%s: Неверное количество аргументов: Должно быть > 0.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s: Неверное количество аргументов: ожидалось не более %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+msgstr ""
+"%s: Неверное количество аргументов: данные не соответствуют формату.\n"
+
+#, c-format
+msgid "%s: Cannot open file '%s'.\n"
+msgstr "%s: Не удалось открыть файл '%s'.\n"
+
+#, c-format
+msgid "%s: Cannot read data in file '%s'.\n"
+msgstr "%s: Не удалось прочитать данные из файла '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалось число.\n"
+
+#, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
 msgstr "%s: Задаваемый формат не может включать любые '\\n'\n"
+
+#, c-format
+msgid "%s: Data mismatch.\n"
+msgstr "%s: Данные несовпадают.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: Неверный дескриптор файла: %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидались вещественные значения.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалась матрица чисел с плавающей точкой.\n"
 
 #, c-format
 msgid ""
@@ -187,56 +196,23 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: Неверны типы аргументов: Ожидались строки.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+msgid "%s: Wrong size for input argument: A string expected.\n"
+msgstr "%s: Неверный размер аргумента: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Must be less than %d characters.\n"
+msgstr "%s: Неверный размер аргумента: Должно быть не более %d символов.\n"
+
+msgid "Not enough entries."
+msgstr "Не достаточно элементов."
+
+#, c-format
+msgid "%s: Error while opening, reading or writing '%s'.\n"
+msgstr "%s: Ошибка в процессе открытия, чтения или записи в '%s'.\n"
+
+#, c-format
+msgid "%s: Error while opening, reading or writing.\n"
 msgstr ""
-"%s: Неверное значение аргумента #%d: '%s' не является корректным путём.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидались вещественные значения.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип аргумента #%d: Ожидалась матрица чисел с плавающей точкой.\n"
-
-#, c-format
-msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
-msgstr "%s: Не удалось закрыть файл с дескриптором %d: Файл не активен.\n"
-
-#, c-format
-msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
-msgstr ""
-"%s: Не удалось закрыть файл с дескриптором %d: Нет файла для закрытия.\n"
-
-#, c-format
-msgid "%s: No input file.\n"
-msgstr "%s: Нет входного файла.\n"
-
-#, c-format
-msgid "%s: format is of 0 length.\n"
-msgstr "%s: формати имеет длину 0.\n"
-
-#, c-format
-msgid "%s: %s format not recognized.\n"
-msgstr "%s: %s формат не распознан.\n"
-
-msgid "No input file\n"
-msgstr "Нет входного файла\n"
-
-#, c-format
-msgid "%s: unknown format %s.\n"
-msgstr "%s: неизвестный формат %s.\n"
-
-#, c-format
-msgid "Warning: file '%s' already opened in Scilab.\n"
-msgstr "Внимание: файл '%s' уже открыт в Scilab.\n"
 
 #, c-format
 msgid ""
@@ -255,13 +231,27 @@ msgstr ""
 "%s: Неверный размер аргумента #%d ('%s'): Ожидалась непустая строка.\n"
 
 #, c-format
+msgid "%s: No File opened in Scilab.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s: Неверное значение аргумента #%d ('%s'): Формат не распознан.\n"
 
 #, c-format
-msgid "%s: Error while opening, reading or writing '%s'.\n"
-msgstr "%s: Ошибка в процессе открытия, чтения или записи в '%s'.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: An error occurred in %s: errno=%s\n"
+msgstr "%s: В %s произошла ошибка: errno=%s\n"
+
+#, c-format
+msgid "Warning: file '%s' already opened in Scilab.\n"
+msgstr "Внимание: файл '%s' уже открыт в Scilab.\n"
 
 #, c-format
 msgid "%s: Not enough arguments.\n"
@@ -287,32 +277,16 @@ msgid "'o' format not allowed."
 msgstr "Формат 'o' недопустим."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s' или '%s'.\n"
+msgid "%s: format is of 0 length.\n"
+msgstr "%s: формати имеет длину 0.\n"
 
 #, c-format
-msgid "%s: An error occurred in %s: errno=%s\n"
-msgstr "%s: В %s произошла ошибка: errno=%s\n"
+msgid "%s: %s format not recognized.\n"
+msgstr "%s: %s формат не распознан.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s' или '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr "%s: Неверный размер аргумента #%d: Ожидалась непустая строка.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
-msgstr "%s: Неверное значение аргумента #%d: Формат не распознан.\n"
-
-#, c-format
-msgid "%s: Too many directives in scanf.\n"
-msgstr "%s: Слишком много директив в scanf.\n"
+msgid "%s: No input file.\n"
+msgstr "%s: Нет входного файла.\n"
 
 msgid "unclosed [ directive."
 msgstr "незакрытая директива '['."
@@ -343,3 +317,49 @@ msgstr ""
 #, c-format
 msgid "%s: An error occurred: format is too long (> %d).\n"
 msgstr "%s: Произошла ошибка: формат слишком длинный (> %d).\n"
+
+msgid "No input file\n"
+msgstr "Нет входного файла\n"
+
+#, c-format
+msgid "%s: unknown format %s.\n"
+msgstr "%s: неизвестный формат %s.\n"
+
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
+msgstr "%s: Не удалось закрыть файл с дескриптором %d: Файл не активен.\n"
+
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
+msgstr ""
+"%s: Не удалось закрыть файл с дескриптором %d: Нет файла для закрытия.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась непустая строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
+msgstr "%s: Неверное значение аргумента #%d: Формат не распознан.\n"
+
+#, c-format
+msgid "Warning: Error while opening %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Warning: Could not remove file %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Warning: Could not remove directory %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many directives in scanf.\n"
+msgstr "%s: Слишком много директив в scanf.\n"

@@ -8,14 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2008-08-21 20:16+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2008-09-11 08:49+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
 
 msgid "Incorrect assignment.\n"
 msgstr "Affectation incorrecte.\n"
@@ -250,9 +262,9 @@ msgstr "Accès direct : donner le format.\n"
 msgid "End of file at line %d.\n"
 msgstr "Fin de fichier à la ligne %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%d graphic terminal?\n"
-msgstr "%d terminaux graphiques?\n"
+msgstr ""
 
 msgid "Integration fails.\n"
 msgstr "Echec de l'intégration.\n"
@@ -277,9 +289,8 @@ msgstr ""
 "Mauvais appel à une fonction Scilab ?\n"
 "Sinon, envoyer un rapport de bug à :\n"
 
-#, fuzzy
 msgid "Floating point exception.\n"
-msgstr "Exception en virgule flottante.\n"
+msgstr ""
 
 msgid "Too many arguments in fort (max 30).\n"
 msgstr "Trop d'arguments dans fort (max 30).\n"
@@ -294,16 +305,15 @@ msgstr "%s n'est pas valide dans ce contexte.\n"
 msgid "Error while linking.\n"
 msgstr "Erreur pendant l'édition de liens.\n"
 
-#, fuzzy
 msgid "Leading coefficient is zero.\n"
-msgstr "Le premier coefficient est zéro.\n"
+msgstr ""
 
 msgid "Too high degree (max 100).\n"
 msgstr "Degré trop grand (max 100).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
-msgstr "pour x=val avec type(val)=%d n'est pas implémenté dans Scilab.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
@@ -341,9 +351,8 @@ msgstr "%s: Mauvais type for l'argument %d: Scalaire attendu.\n"
 msgid "Host does not answer...\n"
 msgstr "L'hôte ne répond pas ...\n"
 
-#, fuzzy
 msgid "Uncontrollable system.\n"
-msgstr "Système non commandable.\n"
+msgstr ""
 
 msgid "Unobservable system.\n"
 msgstr "Système non observable.\n"
@@ -360,18 +369,17 @@ msgstr "Mauvaise dimension pour l'argument %d.\n"
 msgid "Wrong type for argument %d: Transfer matrix expected.\n"
 msgstr "Mauvais type pour l'argument %d: Matrice de transfert attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for argument %d: In state space form expected.\n"
 msgstr ""
-"Mauvais type pour l'argument %d: Attendu sous la forme espace d'état.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: Rational matrix expected.\n"
 msgstr "Mauvais type pour l'argument %d: Matrice rationnelle attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for argument %d: In continuous time expected.\n"
-msgstr "Mauvais type pour l'argument %d: Attendu en temps continu.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for argument %d: In discrete time expected.\n"
@@ -385,19 +393,14 @@ msgstr "Mauvais type pour l'argument %d: SISO attendu.\n"
 msgid "time domain of argument %d is not defined.\n"
 msgstr "le domaine temporel de l'argument %d n'est pas défini.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
-"Mauvais type pour l'argument %d: Un système sous la forme espace d'état ou "
-"sous la forme matrice de transfert est attendu.\n"
 
-#, fuzzy
 msgid "Variable returned by scilab argument function is incorrect.\n"
 msgstr ""
-"La variable retournée par la fonction scilab passée en argument est "
-"invalide.\n"
 
 #, c-format
 msgid "Elements of %dth argument must be in increasing order.\n"
@@ -419,9 +422,9 @@ msgstr ""
 "Les éléments du premier argument ne sont pas rangés en ordre (strictement) "
 "décroissant.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Last element of %dth argument <> first.\n"
-msgstr "Le dernier élément du %dième argument <> d'abord.\n"
+msgstr ""
 
 msgid "Last element of first argument does not match the first one.\n"
 msgstr ""
@@ -459,10 +462,9 @@ msgstr ""
 msgid "Too large, can't be displayed.\n"
 msgstr "Trop large, ne peut pas être affiché.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s was a function when compiled but is now a primitive!\n"
 msgstr ""
-"%s était une fonction à la compilation mais est maintenant une primitive!\n"
 
 #, c-format
 msgid "Trying to re-define function %s.\n"
@@ -474,9 +476,8 @@ msgstr "Plus de mémoire.\n"
 msgid "Too large string.\n"
 msgstr "Chaîne de caractères trop longue.\n"
 
-#, fuzzy
 msgid "Too many linked routines.\n"
-msgstr "Trop de routines liées.\n"
+msgstr ""
 
 msgid ""
 "Stack problem detected within a loop.\n"
@@ -551,9 +552,8 @@ msgstr "%s: Arrêt demandé par le simulateur (ind=0)\n"
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: Mauvais paramètres d'entrée.\n"
 
-#, fuzzy
 msgid "Too small memory.\n"
-msgstr "Mémoire trop limitée.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Problem with initial constants in simul.\n"
@@ -581,10 +581,9 @@ msgstr "%s: Bornes incorrectes.\n"
 msgid "Variable : %s must be a list\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
-"Redémarrage à chaud: dimension de l'espace de travail (argument n°:%d).\n"
 
 #, c-format
 msgid "%s: df0 must be positive !\n"
@@ -635,10 +634,9 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
 msgstr "%s: Mauvais type pour l'argument %d: Polynôme attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument %d: Matrice temporaire d'entier attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
@@ -660,11 +658,9 @@ msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
 msgstr ""
 "Mauvais type pour l'argument %d: Matrice creuse ou scalaires attendus.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
 msgstr ""
-"Mauvais type pour l'argument %d: Un handle vers des facteurs lu creux est "
-"attendu.\n"
 
 #, c-format
 msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
@@ -679,9 +675,9 @@ msgid "A sparse matrix entry is defined with two differents values.\n"
 msgstr ""
 "Une entrée de matrice creuse est définie avec deux valeurs différentes.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s not yet implemented for full input parameter.\n"
-msgstr "%s pas encore implémenté pour les paramètres d'entrée pleins.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -696,9 +692,8 @@ msgstr "La base de données des types est pleine.\n"
 msgid "This data type is already defined.\n"
 msgstr "Ce type de donnée est déjà définie.\n"
 
-#, fuzzy
 msgid "Inequality comparison with empty matrix.\n"
-msgstr "Comparaison de type inégalité avec une matrice vide.\n"
+msgstr ""
 
 msgid "Missing index.\n"
 msgstr "Indice manquant.\n"
@@ -710,18 +705,16 @@ msgstr "référence vers la variable global effacée %s.\n"
 msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
 msgstr ""
 
-#, fuzzy
 msgid "semi def fails.\n"
-msgstr "Echec de semi def.\n"
+msgstr ""
 
 msgid "Wrong type for first input argument: Single string expected.\n"
 msgstr ""
 "Mauvais type pour le premier argument d'entrée: Une seule chaîne de "
 "caractères attendue.\n"
 
-#, fuzzy
 msgid "Entry name not found.\n"
-msgstr "Nom d'entrée non trouvé.\n"
+msgstr ""
 
 msgid "Maximum number of dynamic interfaces reached.\n"
 msgstr "Nombre maximum d'interfaces dynamique atteint.\n"
@@ -751,16 +744,12 @@ msgid "You cannot link more functions, maxentry reached.\n"
 msgstr "Vous ne pouvez pas lier plus de fonctions, maxentry atteint.\n"
 
 #, c-format
-msgid "File %s already exists or directory write access denied.\n"
+msgid "File \"%s\" already exists or directory write access denied.\n"
 msgstr ""
-"Le fichier %s existe déjà ou l'accès en écriture au répertoire n'est pas "
-"autorisé.\n"
 
 #, c-format
-msgid "File %s does not exist or read access denied.\n"
+msgid "File \"%s\" does not exist or read access denied.\n"
 msgstr ""
-"Le fichier %s n'existe pas ou l'accès en lecture du fichier n'est pas "
-"autorisé.\n"
 
 msgid "Binary direct acces files must be opened by 'file'.\n"
 msgstr ""
@@ -802,13 +791,13 @@ msgstr ""
 msgid "Recursive extraction is not valid in this context.\n"
 msgstr "L'extraction récursive n'est pas valide dans ce contexte.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: ipar dimensioned at least 11.\n"
-msgstr "%s: ipar doit être de dimension au moins 11.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: ltol must be of size ipar(4).\n"
-msgstr "%s: ltol doit être de dimension ipar(4).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: fixpnt must be of size ipar(11).\n"
@@ -830,17 +819,16 @@ msgstr "%s: sum(m) doit être inférieur à 40.\n"
 msgid "%s: input data error.\n"
 msgstr "%s: erreur de données d'entrée.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: no. of subintervals exceeds storage.\n"
-msgstr "%s: no. de sous intervalles dépasse la capacité de stockage.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Th colocation matrix is singular.\n"
-msgstr "%s: La matrice de colocation Th est singulière.\n"
+msgstr ""
 
-#, fuzzy
 msgid "Interface property table is full.\n"
-msgstr "La table des propriétés d'interface est pleine.\n"
+msgstr ""
 
 #, c-format
 msgid "Too many global variables! , max number is %d.\n"
@@ -886,24 +874,19 @@ msgstr ""
 "Mauvaise valeur pour l'argument %d: le module des valeurs propres doivent "
 "être inférieurs à un.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
-"L'argument de taille variable*eye(), (arg %d) n'est pas autorisé ici.\n"
 
 msgid "endfunction is missing.\n"
 msgstr "endfunction est manquant.\n"
 
-#, fuzzy
 msgid ""
 "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
-"Partie gauche de l'instruction: en attente d'un point ou d'une parenthèse "
-"ouvrante.\n"
 
-#, fuzzy
 msgid "Instruction left hand side: waiting for a name.\n"
-msgstr "Partie de gauche de l'instruction: en attente d'un nom.\n"
+msgstr ""
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Le mot clef varargout ne peut pas être utilisé ici.\n"
@@ -921,34 +904,18 @@ msgstr ""
 msgid "\"unknown data\""
 msgstr "\"Donnée inconnue\""
 
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
-
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr ""
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr ""
-
 msgid "Warning :\n"
 msgstr "Attention:\n"
 
-#, fuzzy
 msgid "Non convergence in the QZ algorithm.\n"
-msgstr "Non convergence de l'algorithme QZ.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
 msgstr ""
-"Les %d x %d blocks supérieurs ne sont peut être pas sous la forme de Schur "
-"généralisée.\n"
 
-#, fuzzy
 msgid "Non convergence in QR steps.\n"
-msgstr "Non convergence dans les itérations QR.\n"
+msgstr ""
 
 #, c-format
 msgid "The top %d x %d block may not be in Schur form.\n"
@@ -986,9 +953,8 @@ msgstr "Attention : utilisation obsolète de eye, rand ou ones.\n"
 msgid "Rank defficient. rank = %d\n"
 msgstr "Rang défaillant. rang = %d\n"
 
-#, fuzzy
 msgid "Quapro encounters cycles on degenerate point.\n"
-msgstr "Quapro a rencontré des cycles sur un point dégénéré.\n"
+msgstr ""
 
 #, c-format
 msgid "Norm of projected gradient lower than %s.\n"
@@ -1008,11 +974,8 @@ msgstr "Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.\n"
 msgid "Optim stops: maximum number of iterations is reached.\n"
 msgstr "Optim s'est arrêté: le nombre maximum d'itérations a été atteint.\n"
 
-#, fuzzy
 msgid "Optim stops: too small variations in gradient direction.\n"
 msgstr ""
-"Optim s'est arrêté: les variations de direction du gradient sont trop "
-"petites.\n"
 
 msgid "Stop during calculation of descent direction.\n"
 msgstr "Arrêt pendant le calcul de la direction de descente.\n"
@@ -1026,15 +989,13 @@ msgstr "Fin de l'optimisation.\n"
 msgid "End of optimization (linear search fails).\n"
 msgstr "Fin de l'optimisation (échec de la recherche en ligne).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
-"sfact : convergence incomplète. Précision relative atteinte: 10**(%s).\n"
 
-#, fuzzy
 msgid "Help file inconsistent...\n"
-msgstr "Fichier d'aide invalide ...\n"
+msgstr ""
 
 #, c-format
 msgid "Functions files location : %s.\n"
@@ -1075,9 +1036,9 @@ msgstr "Partie imaginaire\n"
 msgid "Maximum size of buffer : %d characters.\n"
 msgstr "Taille maximum du buffer: %d caractères.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
-msgstr "Défaillance du rang : rang = %s - tol = %s.\n"
+msgstr ""
 
 msgid "Your variables are:\n"
 msgstr "Vos variables sont:\n"
@@ -1111,9 +1072,9 @@ msgstr "Pas suffisamment de mémoire pour effectuer la simplification.\n"
 msgid "Your global variables are...\n"
 msgstr "Vos variables globales sont ...\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Loop on two orders detected.\n"
-msgstr "%s: Boucle sur deux niveaux détectée.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1192,21 +1153,15 @@ msgstr ""
 "Attention: intégration incomplète! vérifiez les paramètres de tolérance ou "
 "la taille du pas.\n"
 
-#, fuzzy
 msgid ""
 "Warning: Jacobian external is given, but\n"
 " not used!,  see %ODEOPTIONS(6).\n"
 msgstr ""
-"Attention: le Jacobien externe est donnée, mais\n"
-" pas utilisé!, voir %ODEOPTIONS(6).\n"
 
-#, fuzzy
 msgid ""
 "Warning: No Jacobian external given but\n"
 " one is required by %ODEOPTIONS(6) value !\n"
 msgstr ""
-"Attention: Pas de Jacobien externe donnée mais\n"
-" un est requis par %ODEOPTIONS(6) !\n"
 
 msgid ""
 "itask=2,3 or 5: At most one value of t\n"
@@ -1215,48 +1170,42 @@ msgstr ""
 "itask=2,3 ou 5: Au moins une valeur de t\n"
 " est autorisée, le dernier élément de t est utilisé.\n"
 
-#, fuzzy
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"
 " tcrit.\n"
 msgstr ""
-"Attention: odedc impose itask=4 et gère\n"
-" tcrit.\n"
 
 msgid "Warning: function is already compiled.\n"
 msgstr "Attention: la fonction est déjà compilée.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: termination for lack of space to divide triangle.\n"
-msgstr "%s: fin pour cause de manque d'espace pour découper un triangle.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: termination because of roundoff noise.\n"
-msgstr "%s: fin pour cause de bruit d'arrondi.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: termination for relative error < (5.0*%eps).\n"
-msgstr "%s: fin pour cause d'erreur relative < (5.0*%eps).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: termination: function evaluations > MEVALS.\n"
-msgstr "%s: fin pour cause de nombre d'évaluation de la fonction > MEVALS.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
 msgstr "%s: maxpts était trop petit pour obtenir la précision demandée.\n"
 
-#, fuzzy
 msgid "Too many input/output ports for hilited block.\n"
-msgstr "Trop de ports entrée / sortie pour le bloc souligné.\n"
+msgstr ""
 
-#, fuzzy
 msgid "Too many input/output entries for hilited block.\n"
-msgstr "Trop de ports entrée / sortie pour le bloc souligné.\n"
+msgstr ""
 
-#, fuzzy
 msgid "Undefined display for this data type.\n"
-msgstr "Affichage non défini pour ce type de donnée.\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: primitive function %s has moved.\n"
@@ -1270,13 +1219,10 @@ msgid "Warning: primitive function %s is now a Scilab function.\n"
 msgstr ""
 "Attention: la fonction primitive %s est maintenant une fonction Scilab.\n"
 
-#, fuzzy
 msgid ""
 "Roundoff errors make leading eigenvalues\n"
 " in the Schur form no longer satisfy criterion.\n"
 msgstr ""
-"Les erreurs d'arrondi font que les premières valeurs\n"
-" propres de la forme de Schur ne satisfont plus le critère.\n"
 
 msgid "Formal variable name has been truncated.\n"
 msgstr "Le nom de la variable formel a été tronqué.\n"
@@ -1322,4 +1268,7 @@ msgstr ""
 msgid ""
 "%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
+msgstr ""
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr ""

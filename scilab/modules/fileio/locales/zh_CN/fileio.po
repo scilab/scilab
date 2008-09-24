@@ -14,8 +14,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s：输入参数的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
+msgstr "%s：输入参数#%d的值错误：必须为''%s''。\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s：无法打开文件%s。\n"
+
+#, c-format
+msgid "%s: Cannot go to directory %s\n"
+msgstr "%s：无法进入目录 %s\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s expected.\n"
@@ -48,92 +72,24 @@ msgid "%s: Options ignored.\n"
 msgstr "%s：可选项被忽略。\n"
 
 #, c-format
-msgid "%s: Cannot go to directory %s\n"
-msgstr "%s：无法进入目录 %s\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s：输入参数的数目错误。\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s：出现错误：%s\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
-msgstr "%s：输入参数#%d的值错误：必须为''%s''。\n"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s：无法打开文件%s。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr "%s：输入参数的类型错误：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为标量。\n"
-
-#, c-format
-msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s：错误的文件描述符：%d。\n"
-
-#, c-format
-msgid "%s: Data mismatch.\n"
-msgstr "%s：数据不匹配。\n"
+msgid "%s: Wrong type for input argument: A string expected.\n"
+msgstr "%s：输入参数的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
-msgstr "%s：输入参数的类型错误：应该为一个字符串。\n"
+msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+msgstr "%s：输入参数#%d的值错误：'%s'是一个不正确的路径。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
-msgstr "%s：输入参数的大小错误：应该为一个字符串。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument: Must be less than %d characters.\n"
-msgstr "%s：输入参数的大小错误：必须少于%d个字符。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-msgstr "%s：输入参数的数目错误：必须 > 0。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该做多为%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
-msgstr "%s：输入参数的数目错误：数据跟格式不符。\n"
-
-#, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s：无法打开文件 '%s'。\n"
-
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s：无法从文件 '%s 中读数据。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误，应该为%d个。\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s：警告：目录 '%s' 已经存在。\n"
-
-#, fuzzy
-msgid "Not enough entries."
-msgstr "入口不足。"
 
 #, c-format
 msgid ""
@@ -161,8 +117,58 @@ msgid "%s: Wrong type for input argument: Matrix expected.\n"
 msgstr "%s：输入参数的类型错误：应该为矩阵。\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+msgstr "%s：输入参数的数目错误：必须 > 0。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该做多为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+msgstr "%s：输入参数的数目错误：数据跟格式不符。\n"
+
+#, c-format
+msgid "%s: Cannot open file '%s'.\n"
+msgstr "%s：无法打开文件 '%s'。\n"
+
+#, c-format
+msgid "%s: Cannot read data in file '%s'.\n"
+msgstr "%s：无法从文件 '%s 中读数据。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为标量。\n"
+
+#, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
 msgstr "%s：制定的格式不能包含如何'\\n'符号\n"
+
+#, c-format
+msgid "%s: Data mismatch.\n"
+msgstr "%s：数据不匹配。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
+
+#, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s：错误的文件描述符：%d。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
+"expected.\n"
+msgstr "%s：输入参数#%d的类型错误：\n"
 
 #, c-format
 msgid ""
@@ -178,53 +184,23 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s：输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr "%s：输入参数#%d的值错误：'%s'是一个不正确的路径。\n"
+msgid "%s: Wrong size for input argument: A string expected.\n"
+msgstr "%s：输入参数的大小错误：应该为一个字符串。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+msgid "%s: Wrong size for input argument: Must be less than %d characters.\n"
+msgstr "%s：输入参数的大小错误：必须少于%d个字符。\n"
+
+msgid "Not enough entries."
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+msgid "%s: Error while opening, reading or writing '%s'.\n"
+msgstr "%s：当打开或读写'%s'时发生错误。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
-"expected.\n"
-msgstr "%s：输入参数#%d的类型错误：\n"
-
-#, c-format
-msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
-msgstr "%s：无法关闭文件描述符为%d的文件：文件不是激活状态。\n"
-
-#, c-format
-msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
-msgstr "%s：无法关闭文件描述符为%d的文件：没有文件需要关闭。\n"
-
-#, c-format
-msgid "%s: No input file.\n"
-msgstr "%s：无输入文件。\n"
-
-#, c-format
-msgid "%s: format is of 0 length.\n"
-msgstr "%s：格式长度为 0。\n"
-
-#, c-format
-msgid "%s: %s format not recognized.\n"
-msgstr "%s：无法识别格式 %s 。\n"
-
-msgid "No input file\n"
-msgstr "无输入文件。\n"
-
-#, c-format
-msgid "%s: unknown format %s.\n"
-msgstr "%s：未知的格式 %s。\n"
-
-#, c-format
-msgid "Warning: file '%s' already opened in Scilab.\n"
-msgstr "警告：文件 '%s' 已经在Scilab中被打开。\n"
+msgid "%s: Error while opening, reading or writing.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -241,13 +217,26 @@ msgid ""
 msgstr "%s：输入参数#%d（%s）的大小错误：应该为非空字符串。\n"
 
 #, c-format
+msgid "%s: No File opened in Scilab.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s：输入参数#%d（%s）的值错误：格式未被识别。\n"
 
 #, c-format
-msgid "%s: Error while opening, reading or writing '%s'.\n"
-msgstr "%s：当打开或读写'%s'时发生错误。\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid "%s: An error occurred in %s: errno=%s\n"
+msgstr "%s：在 %s 中发生了一个错误：errno=%s\n"
+
+#, c-format
+msgid "Warning: file '%s' already opened in Scilab.\n"
+msgstr "警告：文件 '%s' 已经在Scilab中被打开。\n"
 
 #, c-format
 msgid "%s: Not enough arguments.\n"
@@ -256,9 +245,9 @@ msgstr "%s：无足够参数。\n"
 msgid "Buffer too small."
 msgstr "缓冲区太小。"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
-msgstr "%s：不可将转换标志 'l' 或 'h' 与 's'标志混在一起。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
@@ -271,37 +260,23 @@ msgid "'o' format not allowed."
 msgstr "不允许使用 'o' 格式。"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
+msgid "%s: format is of 0 length.\n"
+msgstr "%s：格式长度为 0。\n"
 
 #, c-format
-msgid "%s: An error occurred in %s: errno=%s\n"
-msgstr "%s：在 %s 中发生了一个错误：errno=%s\n"
+msgid "%s: %s format not recognized.\n"
+msgstr "%s：无法识别格式 %s 。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
-msgstr "%s：输入参数#%d的值错误：格式无法识别。\n"
-
-#, c-format
-msgid "%s: Too many directives in scanf.\n"
-msgstr "%s：在scanf中的标志太多。\n"
+msgid "%s: No input file.\n"
+msgstr "%s：无输入文件。\n"
 
 msgid "unclosed [ directive."
 msgstr "未关闭的 [ 标志。"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: An error occurred: too many (> %d) conversion required.\n"
-msgstr "%s：发生了一个错误：需要太多（>%d）转换。\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -321,3 +296,47 @@ msgstr "%s：发生了一个错误：对 %%c 标志来说域 %d 太长（>%d）�
 #, c-format
 msgid "%s: An error occurred: format is too long (> %d).\n"
 msgstr "%s：发生了一个错误：格式太长（>%d）。\n"
+
+msgid "No input file\n"
+msgstr "无输入文件。\n"
+
+#, c-format
+msgid "%s: unknown format %s.\n"
+msgstr "%s：未知的格式 %s。\n"
+
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
+msgstr "%s：无法关闭文件描述符为%d的文件：文件不是激活状态。\n"
+
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
+msgstr "%s：无法关闭文件描述符为%d的文件：没有文件需要关闭。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
+msgstr "%s：输入参数#%d的值错误：格式无法识别。\n"
+
+#, c-format
+msgid "Warning: Error while opening %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Warning: Could not remove file %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Warning: Could not remove directory %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many directives in scanf.\n"
+msgstr "%s：在scanf中的标志太多。\n"

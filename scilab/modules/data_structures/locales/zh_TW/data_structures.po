@@ -9,14 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-06-13 13:34+0100\n"
-
-# File: macros/iscellstr.sci, line: 16
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d"
 
 #
 # File: macros/struct.sci, line: 25
@@ -24,10 +19,10 @@ msgstr "%s: 輸入參數之數目錯誤: 應為 %d"
 msgid "%s: Wrong number of input argument(s)."
 msgstr "%s: 輸入參數之數目錯誤(s)."
 
-#
-# File: src/c/stcreate.c, line: 43
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr "堆疊中太多參數，編輯 stack.h 並加大 intersiz 數值.\n"
+# File: macros/iscellstr.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d"
 
 #
 # File: src/c/hmops.c, line: 657
@@ -66,3 +61,8 @@ msgstr " 參數並非一超矩陣. "
 # File: src/c/hmops.c, line: 919
 msgid " Bad hypermatrix insertion. "
 msgstr " 錯誤之超矩陣插入運算 (insertion) "
+
+#
+# File: src/c/stcreate.c, line: 43
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr "堆疊中太多參數，編輯 stack.h 並加大 intersiz 數值.\n"

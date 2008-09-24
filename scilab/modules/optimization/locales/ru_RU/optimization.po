@@ -14,20 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-16 08:21+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Неверное количество аргументов.\n"
-
-#, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: Весовая матрица должна быть квадратной.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: Исходное предположение неправдоподобно.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -51,6 +39,26 @@ msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: Неверный тип аргумента #%d: Ожидалась функция.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество аргументов.\n"
+
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s: Весовая матрица должна быть квадратной.\n"
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: Исходное предположение неправдоподобно.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: Неверный тип аргумента.\n"
+
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr " количество ограничений (%s)'),'lmisolver',%m,%fm));"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d."
 msgstr "%s: Неверный размер аргумента #%d."
 
@@ -61,14 +69,6 @@ msgstr "%s: неподходящий x0."
 #, c-format
 msgid "%s: Unbounded problem!"
 msgstr "%s: Проблема неограниченности!"
-
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
-msgstr "%s: Неверный тип аргумента.\n"
-
-#, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " количество ограничений (%s)'),'lmisolver',%m,%fm));"
 
 #, c-format
 msgid "%s: Argument 3: wrong number of columns %d expected\n"
@@ -85,6 +85,9 @@ msgstr "%s: Проблема минимизации не имеет решени
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr "%s: Q не явлляется симметричной положительно определённой.\n"
+
+msgid "Optimization and Simulation"
+msgstr ""
 
 msgid "m must be at least one.\n"
 msgstr "m должна быть как минимум одна.\n"

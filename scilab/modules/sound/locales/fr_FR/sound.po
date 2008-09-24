@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -22,22 +22,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Une erreur s'est produite: %s\n"
-
-#, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Ne peut pas ouvrir le fichier %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) en entrée: Au moins %d attendus.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr ""
-"%s: Mauvaise valeurs pour l'argument d'entréet: Filename doit être une "
-"chaîne de caractères.\n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Une erreur s'est produite: %s\n"
 
 #, c-format
 msgid ""
@@ -62,6 +52,16 @@ msgstr ""
 "supporté.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument(s) en entrée: Au moins %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entréet: Filename doit être une "
+"chaîne de caractères.\n"
+
+#, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: Mauvais argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
 
@@ -70,79 +70,6 @@ msgstr "Ne peux pas jouer le fichier."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Le module Scilab sound n'est pas installé.\n"
-
-#, c-format
-msgid "Can't open input file '%s': %s\n"
-msgstr "Ne peux pas ouvrir le fichier '%s': %s\n"
-
-msgid "Error while reading\n"
-msgstr "Erreur pendant la lecture\n"
-
-#, c-format
-msgid "Input file: using sample rate %lu\n"
-msgstr "Fichier d'entrée: utiliser la période d'échantillonnage %lu\n"
-
-#, c-format
-msgid "\tsize %s, style %s, %d %s\n"
-msgstr "\tdimension %s, style %s, %d %s\n"
-
-msgid "Sorry wav file too big\n"
-msgstr "Désole fichier wav trop gros\n"
-
-#, c-format
-msgid "Can't open output file '%s': %s\n"
-msgstr "Ne peux pas ouvrir le fichier de sorti '%s': %s\n"
-
-#, c-format
-msgid "Sampling rate for %s file was not given\n"
-msgstr ""
-"La période d'échantillonnage pour le fichier %s file n'a pas été donnée\n"
-
-#, c-format
-msgid "Sampling rate %lu for %s file is bogus\n"
-msgstr "La période d'échantillonnage %lu pour le fichier %s est mauvaise\n"
-
-#, c-format
-msgid "Data size was not given for %s file\n"
-msgstr "La dimension des données n'a pas été donnée pour le fichier %s\n"
-
-#, c-format
-msgid "Data style was not given for %s file\n"
-msgstr "Le style des données n'a pas été donné pour le fichier %s\n"
-
-#, fuzzy
-msgid "No U-Law support for shorts\n"
-msgstr "Pas de support pour la loi U pour les shorts\n"
-
-#, fuzzy
-msgid "No A-Law support for shorts\n"
-msgstr "Pas de support pour la loi A for les shorts\n"
-
-#, fuzzy
-msgid "Drop through in rawread!\n"
-msgstr "Perte dans rawread!\n"
-
-#, c-format
-msgid "Sorry, don't have code to read %s, %s\n"
-msgstr "Désolé, il n'y a pas de code pour lire %s, %s\n"
-
-msgid "No U-Law support for shorts (try -b option ?)\n"
-msgstr ""
-"Pas de supports pour la loi U pour les shorts (avez vous essayé l'option -b "
-"?)\n"
-
-msgid "No A-Law support for shorts (try -b option ?)\n"
-msgstr ""
-"Pas de supports pour la loi A pour les shorts (avez vous essayé l'option -b "
-"?)\n"
-
-#, fuzzy
-msgid "Drop through in rawwrite!\n"
-msgstr "Perte dans rawwrite!\n"
-
-#, c-format
-msgid "Sorry, don't have code to write %s, %s\n"
-msgstr "Désolé, il n'y a pas de code pour écrire %s, %s\n"
 
 #, c-format
 msgid "%s: .wav input file must be a file, not a pipe.\n"
@@ -156,13 +83,13 @@ msgstr "%s : pas un fichier RIFF.\n"
 msgid "%s: not a WAVE file.\n"
 msgstr "%s : pas un fichier WAVE.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: missing fmt spec.\n"
-msgstr "%s: fmt spec. manquant.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s : fmt chunk is too short\n"
-msgstr "%s : le morceau fmt est trop petit\n"
+msgstr ""
 
 #, c-format
 msgid "%s: this WAV file is in Microsoft Official Unknown format.\n"
@@ -244,27 +171,23 @@ msgstr "%s: morceau de donnée manquant.\n"
 msgid "Reading Wave file: %s format, %d channel%s, %d samp/sec\n"
 msgstr "Lecture du fichier Wave: format %s, canal %d%s, %d ech./sec\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n"
 msgstr ""
-"        %d byte/sec, %d align bloc, %d bits/ech, %u bytes de données\n"
 
 msgid "Premature EOF on .wav input file.\n"
 msgstr "EOF prématuré dans le fichier d'entrée .wav.\n"
 
-#, fuzzy
 msgid "Length in output .wav header will wrong since can't seek to fix it.\n"
 msgstr ""
-"La longueur de l'en-tête du fichier de sortie .wav sera fausse tant qu'on ne "
-"peut pas la réparer.\n"
 
 msgid "User options overiding style written to .wav header.\n"
 msgstr ""
 "Les options utilisateur surpassent le style écrit dans l'entête .wav.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Sciprinting - writing bad .wav file using %s\n"
-msgstr "Sciprinting - écrit un mauvais fichier .wav en utilisant %s\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -306,44 +229,74 @@ msgstr "        %d byte/sec, %d align. bloc, %d bits/éch.\n"
 msgid "Finished writing Wave file, %u data bytes\n"
 msgstr "Fin d'écriture du fichier Wave, %u bytes de données\n"
 
-#, fuzzy
 msgid "Sorry, can't rewind output file to rewrite .wav header.\n"
 msgstr ""
-"Désolé, ne peux pas revenir au début du fichier pour écrire l'entête .wav.\n"
 
-msgid "Microsoft Official Unknown"
-msgstr "Microsoft Officiel Inconnu"
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr "Ne peux pas ouvrir le fichier '%s': %s\n"
 
-msgid "Microsoft PCM"
-msgstr "Microsoft PCM"
+msgid "Error while reading\n"
+msgstr "Erreur pendant la lecture\n"
 
-msgid "Microsoft ADPCM"
-msgstr "Microsoft PCM"
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr "Fichier d'entrée: utiliser la période d'échantillonnage %lu\n"
 
-msgid "Microsoft A-law"
-msgstr "Microsoft loi A"
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr "\tdimension %s, style %s, %d %s\n"
 
-msgid "Microsoft U-law"
-msgstr "Microsoft loi U"
+msgid "Sorry wav file too big\n"
+msgstr "Désole fichier wav trop gros\n"
 
-#, fuzzy
-msgid "OKI ADPCM format."
-msgstr "OK! Format ADPCM."
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr "Ne peux pas ouvrir le fichier de sorti '%s': %s\n"
 
-msgid "Digistd format."
-msgstr "Format Digistd."
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr ""
+"La période d'échantillonnage pour le fichier %s file n'a pas été donnée\n"
 
-msgid "Digifix format."
-msgstr "Format Digifix."
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr "La période d'échantillonnage %lu pour le fichier %s est mauvaise\n"
 
-msgid "IBM U-law format."
-msgstr "Format IBM loi U."
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr "La dimension des données n'a pas été donnée pour le fichier %s\n"
 
-msgid "IBM A-law"
-msgstr "IBM loi A"
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr "Le style des données n'a pas été donné pour le fichier %s\n"
 
-msgid "IBM ADPCM"
-msgstr "IBM ADPCM"
+msgid "No U-Law support for shorts\n"
+msgstr ""
 
-msgid "Unknown"
-msgstr "Inconnu"
+msgid "No A-Law support for shorts\n"
+msgstr ""
+
+msgid "Drop through in rawread!\n"
+msgstr ""
+
+#, c-format
+msgid "Sorry, don't have code to read %s, %s\n"
+msgstr "Désolé, il n'y a pas de code pour lire %s, %s\n"
+
+msgid "No U-Law support for shorts (try -b option ?)\n"
+msgstr ""
+"Pas de supports pour la loi U pour les shorts (avez vous essayé l'option -b "
+"?)\n"
+
+msgid "No A-Law support for shorts (try -b option ?)\n"
+msgstr ""
+"Pas de supports pour la loi A pour les shorts (avez vous essayé l'option -b "
+"?)\n"
+
+msgid "Drop through in rawwrite!\n"
+msgstr ""
+
+#, c-format
+msgid "Sorry, don't have code to write %s, %s\n"
+msgstr "Désolé, il n'y a pas de code pour écrire %s, %s\n"

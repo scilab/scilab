@@ -9,55 +9,51 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-06-13 13:33+0100\n"
 
-# File: macros/ilib_gen_gateway.sci, line: 54
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d.\n"
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 20
-msgid "A Fortran or C compiler is required."
-msgstr "須要 Fortran  或 C 編譯器."
-
-#
-# File: macros/ilib_compile.sci, line: 29
-# File: sci_gateway/c/sci_c_link.c, line: 103
+# File: macros/ilib_gen_Make_unix.sci, line: 49
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: A 應為字串.\n"
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr "   %s: 複製編譯工具檔 (Makefile*, libtool...) 到 TMPDIR 子目錄\n"
 
 #
-# File: macros/ilib_compile.sci, line: 47
-msgid "   compilation of "
-msgstr "   正在編譯 "
-
-#
-# File: macros/ilib_compile.sci, line: 52
-msgid "   building shared library (be patient)"
-msgstr "   建立共用程式庫中 (稍待片刻)"
-
-#
-# File: macros/ilib_compile.sci, line: 83
+# File: macros/ilib_gen_Make_unix.sci, line: 72
+# File: macros/ilib_gen_Make_unix.sci, line: 119
+# File: src/c/dl_genErrorMessage.c, line: 43
 #, c-format
-msgid "%s: An error occured during the compilation:\n"
-msgstr "%s: 編譯時產生錯誤:\n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
 
 #
-# File: macros/ilib_compile.sci, line: 85
+# File: macros/ilib_gen_Make_unix.sci, line: 90
 #, c-format
-msgid "%s: The command was:\n"
-msgstr "%s: 指令為:\n"
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: 複製 %s 到 TMPDIR 子目錄\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr ""
 
 #
-# File: macros/ilib_gen_Make.sci, line: 33
-# File: macros/ilib_gen_loader.sci, line: 24
+# File: macros/ilib_gen_Make_unix.sci, line: 127
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: 修改 TMPDIR 子目錄內之 Makefile.\n"
+
+#, c-format
+msgid "%s: Error while modifing the reference Makefile:\n"
+msgstr ""
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr ""
 
 #
 # File: macros/gencompilationflags_unix.sci, line: 14
@@ -83,6 +79,45 @@ msgid "   Running the Makefile"
 msgstr "   執行 Makefile"
 
 #
+# File: macros/ilib_gen_Make.sci, line: 33
+# File: macros/ilib_gen_loader.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#
+# File: macros/ilib_compile.sci, line: 29
+# File: sci_gateway/c/sci_c_link.c, line: 103
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: A 應為字串.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr ""
+
+# File: macros/ilib_gen_gateway.sci, line: 54
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d.\n"
+
+#
 # File: macros/ilib_build.sci, line: 35
 msgid "   Generate a gateway file"
 msgstr "   產生 geteway 檔"
@@ -99,42 +134,61 @@ msgid "   Running the makefile"
 msgstr "   執行 Makefile"
 
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 49
-#, c-format
-msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr "   %s: 複製編譯工具檔 (Makefile*, libtool...) 到 TMPDIR 子目錄\n"
+# File: macros/ilib_compile.sci, line: 20
+msgid "A Fortran or C compiler is required."
+msgstr "須要 Fortran  或 C 編譯器."
+
+msgid "   Compilation of "
+msgstr ""
+
+msgid "   Building shared library (be patient)"
+msgstr ""
 
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 72
-# File: macros/ilib_gen_Make_unix.sci, line: 119
-# File: src/c/dl_genErrorMessage.c, line: 43
+# File: macros/ilib_compile.sci, line: 83
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: 錯誤產生: %s\n"
+msgid "%s: An error occured during the compilation:\n"
+msgstr "%s: 編譯時產生錯誤:\n"
 
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 90
+# File: macros/ilib_compile.sci, line: 85
 #, c-format
-msgid "   %s: Copy %s to TMPDIR\n"
-msgstr "   %s: 複製 %s 到 TMPDIR 子目錄\n"
+msgid "%s: The command was:\n"
+msgstr "%s: 指令為:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串向量.\n"
 
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 127
+# File: sci_gateway/c/sci_link.c, line: 92
+# File: sci_gateway/c/sci_addinter.c, line: 87
 #, c-format
-msgid "   %s: Modification of the Makefile in TMPDIR.\n"
-msgstr "   %s: 修改 TMPDIR 子目錄內之 Makefile.\n"
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 154
-#, c-format
-msgid "   %s: configure : Generate Makefile in %s\n"
-msgstr "   %s: 組態 : 在 %s 中產生 Makefile\n"
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
 
 #
 # File: sci_gateway/c/sci_ulink.c, line: 51
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
+
+#
+# File: sci_gateway/c/sci_c_link.c, line: 46
+# File: sci_gateway/c/sci_c_link.c, line: 52
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr "%s : 第二參數必須為共用程式庫之唯一 id.\n"
 
 #
 # File: sci_gateway/c/sci_link.c, line: 64
@@ -158,13 +212,6 @@ msgstr "%s : 第 %d 個輸入參數型態錯誤: %s\n"
 msgid "Unique dynamic library name expected."
 msgstr "動態程式庫之名稱必須唯一."
 
-#
-# File: sci_gateway/c/sci_link.c, line: 92
-# File: sci_gateway/c/sci_addinter.c, line: 87
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
 msgstr "%s: 輸入參數型態錯誤. 應為字串向量.\n"
@@ -182,19 +229,16 @@ msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s' .\n"
 
 #
-# File: sci_gateway/c/sci_c_link.c, line: 46
-# File: sci_gateway/c/sci_c_link.c, line: 52
+# File: src/c/addinter.c, line: 211
 #, c-format
-msgid "%s : second argument must be a unique id of a shared library.\n"
-msgstr "%s : 第二參數必須為共用程式庫之唯一 id.\n"
+msgid " results may be inaccurate. rcond = %s\n"
+msgstr " 計算結果可能不精確. rcond = %s\n"
 
+#
+# File: src/c/addinter.c, line: 237
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串向量.\n"
+msgid "Interface %s not linked.\n"
+msgstr "介面 %s 未聯結.\n"
 
 #
 # File: src/c/dl_genErrorMessage.c, line: 25
@@ -223,18 +267,6 @@ msgstr "%s: 已經從程式庫 %s 中載入\n"
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr "%s: 其中一個進入點 (entry point) 出問題.\n"
-
-#
-# File: src/c/addinter.c, line: 211
-#, c-format
-msgid " results may be inaccurate. rcond = %s\n"
-msgstr " 計算結果可能不精確. rcond = %s\n"
-
-#
-# File: src/c/addinter.c, line: 237
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "介面 %s 未聯結.\n"
 
 #
 # File: src/c/dynamic_link.c, line: 96

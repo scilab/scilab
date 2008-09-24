@@ -9,9 +9,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-05-28 16:53+0100\n"
+
+#
+# File: macros/ssprint.sci, line: 91
+# File: macros/ssprint.sci, line: 94
+# File: macros/ssprint.sci, line: 152
+# File: macros/ssprint.sci, line: 155
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: 系統無法在此頁中顯示.\n"
 
 # File: macros/unix_w.sci, line: 30
 # File: macros/unix_s.sci, line: 29
@@ -72,33 +81,6 @@ msgid "%s: The system interpreter does not answer..."
 msgstr "%s: 系統解譯器 (interpreter)  未回應..."
 
 #
-# File: macros/halt.sci, line: 22
-#, c-format
-msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: 輸入參數之數目錯誤.\n"
-
-#
-# File: macros/input.sci, line: 27
-# File: macros/input.sci, line: 31
-msgid ": "
-msgstr ": "
-
-#
-# File: macros/unix_g.sci, line: 44
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: 輸出參數之數目錯誤(s).\n"
-
-#
-# File: macros/ssprint.sci, line: 91
-# File: macros/ssprint.sci, line: 94
-# File: macros/ssprint.sci, line: 152
-# File: macros/ssprint.sci, line: 155
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: 系統無法在此頁中顯示.\n"
-
-#
 # File: macros/sscanf.sci, line: 42
 #, c-format
 msgid "%s: Incorrect format.\n"
@@ -118,11 +100,22 @@ msgid "%s: end of input reached before final conversion.\n"
 msgstr "%s: 完成轉換前輸入已結束.\n"
 
 #
-# File: sci_gateway/c/intsetenv.c, line: 53
-# File: sci_gateway/c/intsetenv.c, line: 57
+# File: macros/input.sci, line: 27
+# File: macros/input.sci, line: 31
+msgid ": "
+msgstr ": "
+
+#
+# File: macros/unix_g.sci, line: 44
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: 輸出參數之數目錯誤(s).\n"
+
+#
+# File: macros/halt.sci, line: 22
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: 輸入參數之數目錯誤.\n"
 
 #
 # File: sci_gateway/c/sci_getrelativefilename.c, line: 67
@@ -157,6 +150,17 @@ msgstr "%s: 輸入參數數值錯誤: 不應有空字串.\n"
 #, c-format
 msgid "%s: The file %s not found. current directory returned.\n"
 msgstr "%s: 檔案 %s 不存在. 傳回目前目錄.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/intsetenv.c, line: 53
+# File: sci_gateway/c/intsetenv.c, line: 57
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
 
 #
 # File: src/c/getenvc.c, line: 28

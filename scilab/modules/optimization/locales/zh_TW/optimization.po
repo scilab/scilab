@@ -9,26 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-06-13 13:32+0100\n"
-
-# File: macros/fit_dat.sci, line: 78
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 輸入參數之數目錯誤(s).\n"
-
-#
-# File: macros/fit_dat.sci, line: 81
-#, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: 權重矩陣 (Weighting matrix) 應為方陣.\n"
-
-#
-# File: macros/fit_dat.sci, line: 100
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: 初始猜值不可行.\n"
 
 #
 # File: macros/derivative.sci, line: 29
@@ -61,6 +44,36 @@ msgstr "%s: Order 應  1, 2 or 4.\n"
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
 
+# File: macros/fit_dat.sci, line: 78
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 輸入參數之數目錯誤(s).\n"
+
+#
+# File: macros/fit_dat.sci, line: 81
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s: 權重矩陣 (Weighting matrix) 應為方陣.\n"
+
+#
+# File: macros/fit_dat.sci, line: 100
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: 初始猜值不可行.\n"
+
+#
+# File: macros/bvodeS.sci, line: 69
+# File: macros/bvodeS.sci, line: 114
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: 輸入參數型態錯誤.\n"
+
+#
+# File: macros/lmisolver.sci, line: 135
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr " 限制條件數目 (%s)'),'lmisolver',%m,%fm));"
+
 #
 # File: macros/karmarkar.sci, line: 28
 # File: macros/karmarkar.sci, line: 32
@@ -80,19 +93,6 @@ msgstr "%s: x0 不可行."
 #, c-format
 msgid "%s: Unbounded problem!"
 msgstr "%s: 無界問題!"
-
-#
-# File: macros/bvodeS.sci, line: 69
-# File: macros/bvodeS.sci, line: 114
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
-msgstr "%s: 輸入參數型態錯誤.\n"
-
-#
-# File: macros/lmisolver.sci, line: 135
-#, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " 限制條件數目 (%s)'),'lmisolver',%m,%fm));"
 
 #
 # File: sci_gateway/c/sci_qp_solve.c, line: 81
@@ -119,6 +119,9 @@ msgstr "%s: 此最小化問題無解.\n"
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr "%s: Q 不是對稱正定.\n"
+
+msgid "Optimization and Simulation"
+msgstr ""
 
 #
 # File: src/c/sp.c, line: 261

@@ -14,8 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-16 08:20+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
 
 msgid "Incorrect assignment.\n"
 msgstr "Некорректное присвоение.\n"
@@ -725,12 +737,12 @@ msgid "You cannot link more functions, maxentry reached.\n"
 msgstr "Вы не можете связать больше функций, достигнуто значение maxentry.\n"
 
 #, c-format
-msgid "File %s already exists or directory write access denied.\n"
-msgstr "Файл %s уже существует или нет доступа на запись в каталог.\n"
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
 
 #, c-format
-msgid "File %s does not exist or read access denied.\n"
-msgstr "Файл %s не существует или нет доступа на чтение в каталог.\n"
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr ""
 
 msgid "Binary direct acces files must be opened by 'file'.\n"
 msgstr ""
@@ -882,18 +894,6 @@ msgstr "%s: Аргументы должны содержать такое же �
 
 msgid "\"unknown data\""
 msgstr "\"неизвестные данные\""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr ""
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr ""
 
 msgid "Warning :\n"
 msgstr "Внимание :\n"
@@ -1267,4 +1267,7 @@ msgstr ""
 msgid ""
 "%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
+msgstr ""
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr ""

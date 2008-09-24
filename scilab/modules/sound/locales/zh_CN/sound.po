@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -22,20 +22,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s：出现错误：%s\n"
-
-#, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少%d个。\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr "%s：输入参数的值错误：文件名必须为一个字符串。\n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
 
 #, c-format
 msgid ""
@@ -54,6 +46,14 @@ msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s：一个错误发生：不支持格式%s的数据压缩。\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s：输入参数的值错误：文件名必须为一个字符串。\n"
+
+#, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
 
@@ -62,70 +62,6 @@ msgstr "无法播放文件。"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab sound模块没有被安装。\n"
-
-#, c-format
-msgid "Can't open input file '%s': %s\n"
-msgstr "无法打开输入文件'%s':%s\n"
-
-msgid "Error while reading\n"
-msgstr "读数据时发生错误\n"
-
-#, c-format
-msgid "Input file: using sample rate %lu\n"
-msgstr "输入文件：使用采样率%lu\n"
-
-#, c-format
-msgid "\tsize %s, style %s, %d %s\n"
-msgstr "\t大小%s，风格%s，%d %s\n"
-
-msgid "Sorry wav file too big\n"
-msgstr "抱歉，wav文件太大。\n"
-
-#, c-format
-msgid "Can't open output file '%s': %s\n"
-msgstr "无法打开输出文件'%s'：%s\n"
-
-#, c-format
-msgid "Sampling rate for %s file was not given\n"
-msgstr "没有指定%s文件的采样率，\n"
-
-#, c-format
-msgid "Sampling rate %lu for %s file is bogus\n"
-msgstr "采样率%lu用于%s文件是假（bogus）的。\n"
-
-#, c-format
-msgid "Data size was not given for %s file\n"
-msgstr "没有指定%s文件的数据大小。\n"
-
-#, c-format
-msgid "Data style was not given for %s file\n"
-msgstr "没有为%s文件制定数据风格。\n"
-
-msgid "No U-Law support for shorts\n"
-msgstr "U-Law 编码不支持 shorts\n"
-
-msgid "No A-Law support for shorts\n"
-msgstr "A-Law 编码不支持 shorts\n"
-
-msgid "Drop through in rawread!\n"
-msgstr "rawread调用失败！\n"
-
-#, c-format
-msgid "Sorry, don't have code to read %s, %s\n"
-msgstr "抱歉，没读%s，%s的代码\n"
-
-msgid "No U-Law support for shorts (try -b option ?)\n"
-msgstr "U-Law 编码不支持 shorts（尝试 -b 选项？）\n"
-
-msgid "No A-Law support for shorts (try -b option ?)\n"
-msgstr "A-Law 编码不支持 shorts（尝试 -b 选项？）\n"
-
-msgid "Drop through in rawwrite!\n"
-msgstr "rawwrite调用失败！\n"
-
-#, c-format
-msgid "Sorry, don't have code to write %s, %s\n"
-msgstr "抱歉，没写%s，%s的代码\n"
 
 #, c-format
 msgid "%s: .wav input file must be a file, not a pipe.\n"
@@ -269,38 +205,66 @@ msgstr "写Wave文件结束，%u字节。\n"
 msgid "Sorry, can't rewind output file to rewrite .wav header.\n"
 msgstr "抱歉，不能返回输出文件来重写.wav头。\n"
 
-msgid "Microsoft Official Unknown"
-msgstr "Microsoft Official Unknown"
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr "无法打开输入文件'%s':%s\n"
 
-msgid "Microsoft PCM"
-msgstr "Microsoft PCM"
+msgid "Error while reading\n"
+msgstr "读数据时发生错误\n"
 
-msgid "Microsoft ADPCM"
-msgstr "Microsoft ADPCM"
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr "输入文件：使用采样率%lu\n"
 
-msgid "Microsoft A-law"
-msgstr "Microsoft A-law"
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr "\t大小%s，风格%s，%d %s\n"
 
-msgid "Microsoft U-law"
-msgstr "Microsoft U-law"
+msgid "Sorry wav file too big\n"
+msgstr "抱歉，wav文件太大。\n"
 
-msgid "OKI ADPCM format."
-msgstr "OKI ADPCM格式。"
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr "无法打开输出文件'%s'：%s\n"
 
-msgid "Digistd format."
-msgstr "Digistd格式。"
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr "没有指定%s文件的采样率，\n"
 
-msgid "Digifix format."
-msgstr "Digifix格式。"
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr "采样率%lu用于%s文件是假（bogus）的。\n"
 
-msgid "IBM U-law format."
-msgstr "IBM U-law格式。"
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr "没有指定%s文件的数据大小。\n"
 
-msgid "IBM A-law"
-msgstr "IBM A-law"
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr "没有为%s文件制定数据风格。\n"
 
-msgid "IBM ADPCM"
-msgstr "IBM ADPCM"
+msgid "No U-Law support for shorts\n"
+msgstr "U-Law 编码不支持 shorts\n"
 
-msgid "Unknown"
-msgstr "未知"
+msgid "No A-Law support for shorts\n"
+msgstr "A-Law 编码不支持 shorts\n"
+
+msgid "Drop through in rawread!\n"
+msgstr "rawread调用失败！\n"
+
+#, c-format
+msgid "Sorry, don't have code to read %s, %s\n"
+msgstr "抱歉，没读%s，%s的代码\n"
+
+msgid "No U-Law support for shorts (try -b option ?)\n"
+msgstr "U-Law 编码不支持 shorts（尝试 -b 选项？）\n"
+
+msgid "No A-Law support for shorts (try -b option ?)\n"
+msgstr "A-Law 编码不支持 shorts（尝试 -b 选项？）\n"
+
+msgid "Drop through in rawwrite!\n"
+msgstr "rawwrite调用失败！\n"
+
+#, c-format
+msgid "Sorry, don't have code to write %s, %s\n"
+msgstr "抱歉，没写%s，%s的代码\n"

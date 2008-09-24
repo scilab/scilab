@@ -14,60 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-16 08:21+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Неверный размер аргумента #%d: Ожидался %d.\n"
-
-msgid "A Fortran or C compiler is required."
-msgstr "Необходим компилятор Fortran или C."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
-
-msgid "   compilation of "
-msgstr "   компиляция "
-
-msgid "   building shared library (be patient)"
-msgstr "   сборка разделяемой библиотеки (будьте терпеливы)"
-
-#, c-format
-msgid "%s: An error occured during the compilation:\n"
-msgstr "%s: Во время компиляции произошла ошибка:\n"
-
-#, c-format
-msgid "%s: The command was:\n"
-msgstr "%s: Была комманда:\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Неверный размер аргумента #%d.\n"
-
-#, c-format
-msgid "%s: Feature not available under Microsoft Windows.\n"
-msgstr "%s: Функционально не доступна в Microsoft Windows.\n"
-
-msgid "   Generate a loader file"
-msgstr "   Генерируется файл-загрузчик"
-
-msgid "   Generate a Makefile"
-msgstr "   Генерируется Makefile"
-
-msgid "   Running the Makefile"
-msgstr "   Выполняется Makefile"
-
-msgid "   Generate a gateway file"
-msgstr "   Генерируется файл-шлюз (gateway file)"
-
-#, c-format
-msgid "   Generate a Makefile: %s"
-msgstr "   Формирование Makefile: %s"
-
-msgid "   Running the makefile"
-msgstr "   Выполнение makefile"
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr ""
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
@@ -83,16 +35,119 @@ msgid "   %s: Copy %s to TMPDIR\n"
 msgstr "   %s: Копирование %s в TMPDIR\n"
 
 #, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr ""
+
+#, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
 msgstr "   %s: Изменение Makefile в TMPDIR.\n"
 
 #, c-format
-msgid "   %s: configure : Generate Makefile in %s\n"
-msgstr "   %s: configure : Формируется Makefile в %s\n"
+msgid "%s: Error while modifing the reference Makefile:\n"
+msgstr ""
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: Функционально не доступна в Microsoft Windows.\n"
+
+msgid "   Generate a loader file"
+msgstr "   Генерируется файл-загрузчик"
+
+msgid "   Generate a Makefile"
+msgstr "   Генерируется Makefile"
+
+msgid "   Running the Makefile"
+msgstr "   Выполняется Makefile"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер аргумента #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался %d.\n"
+
+msgid "   Generate a gateway file"
+msgstr "   Генерируется файл-шлюз (gateway file)"
+
+#, c-format
+msgid "   Generate a Makefile: %s"
+msgstr "   Формирование Makefile: %s"
+
+msgid "   Running the makefile"
+msgstr "   Выполнение makefile"
+
+msgid "A Fortran or C compiler is required."
+msgstr "Необходим компилятор Fortran или C."
+
+msgid "   Compilation of "
+msgstr ""
+
+msgid "   Building shared library (be patient)"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occured during the compilation:\n"
+msgstr "%s: Во время компиляции произошла ошибка:\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: Была комманда:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: Неверны типы аргументов: Ожидались строки.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: Неверный тип аргумента #%d: Ожидалось целое число.\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s : второй аргумент должен быть уникальным id разделямой библиотеки.\n"
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
@@ -109,10 +164,6 @@ msgid "Unique dynamic library name expected."
 msgstr "Ожидалось уникальное имя динамической библиотеки."
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: Неверны типы аргументов: Ожидались строки.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
 msgstr "%s: Неверный тип аргумента. Ожидался вектор строк.\n"
 
@@ -125,17 +176,12 @@ msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s Неверное значение аргумента #%d: Ожидалось '%s' или '%s'.\n"
 
 #, c-format
-msgid "%s : second argument must be a unique id of a shared library.\n"
-msgstr ""
-"%s : второй аргумент должен быть уникальным id разделямой библиотеки.\n"
+msgid " results may be inaccurate. rcond = %s\n"
+msgstr " результаты могут быть неточны. rcond = %s\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер аргумента #%d: Ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr "%s: Неверный размер аргумента #%d: Ожидался вектор строк.\n"
+msgid "Interface %s not linked.\n"
+msgstr "Интерфейс %s не связан.\n"
 
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
@@ -156,14 +202,6 @@ msgstr "%s: Уже загружена из библиотеки %s\n"
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr "%s: проблема с одной из точек входа.\n"
-
-#, c-format
-msgid " results may be inaccurate. rcond = %s\n"
-msgstr " результаты могут быть неточны. rcond = %s\n"
-
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "Интерфейс %s не связан.\n"
 
 #, c-format
 msgid "Link failed for dynamic library '%s'.\n"

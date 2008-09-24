@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-16 08:21+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -22,20 +22,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
-
-#, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr "%s: Неверное значение аргумента: Имя файла должно быть строкой.\n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
 
 #, c-format
 msgid ""
@@ -58,6 +50,14 @@ msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: Произошла ошибка: Формат сжатия данных %s не поддерживается.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s: Неверное значение аргумента: Имя файла должно быть строкой.\n"
+
+#, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: Неверный аргумент #%d: Ожидался '%s' или '%s'.\n"
 
@@ -66,70 +66,6 @@ msgstr "Не удалось проиграть файл."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Модуль Scilab 'sound' не установлен.\n"
-
-#, c-format
-msgid "Can't open input file '%s': %s\n"
-msgstr "Не удалось открыть входной файл '%s': %s\n"
-
-msgid "Error while reading\n"
-msgstr "Ошибка в процессе чтения\n"
-
-#, c-format
-msgid "Input file: using sample rate %lu\n"
-msgstr "Входной файл: используется частота сэмплов %lu\n"
-
-#, c-format
-msgid "\tsize %s, style %s, %d %s\n"
-msgstr "\tразмер %s, стиль %s, %d %s\n"
-
-msgid "Sorry wav file too big\n"
-msgstr "Простите, wav-файл слишком велик\n"
-
-#, c-format
-msgid "Can't open output file '%s': %s\n"
-msgstr "Не удалось открыть выходной файл '%s': %s\n"
-
-#, c-format
-msgid "Sampling rate for %s file was not given\n"
-msgstr "Не задана частота сэмплов для файла %s\n"
-
-#, c-format
-msgid "Sampling rate %lu for %s file is bogus\n"
-msgstr "Частота сэмплов %lu для файла %s ошибочна\n"
-
-#, c-format
-msgid "Data size was not given for %s file\n"
-msgstr "Размер данных не был задан для файла %s\n"
-
-#, c-format
-msgid "Data style was not given for %s file\n"
-msgstr "Стиль данных не был задан для файла %s\n"
-
-msgid "No U-Law support for shorts\n"
-msgstr ""
-
-msgid "No A-Law support for shorts\n"
-msgstr ""
-
-msgid "Drop through in rawread!\n"
-msgstr ""
-
-#, c-format
-msgid "Sorry, don't have code to read %s, %s\n"
-msgstr "Простите, нет кода для чтения %s, %s\n"
-
-msgid "No U-Law support for shorts (try -b option ?)\n"
-msgstr ""
-
-msgid "No A-Law support for shorts (try -b option ?)\n"
-msgstr ""
-
-msgid "Drop through in rawwrite!\n"
-msgstr ""
-
-#, c-format
-msgid "Sorry, don't have code to write %s, %s\n"
-msgstr "Простите, нет кода для записи %s, %s\n"
 
 #, c-format
 msgid "%s: .wav input file must be a file, not a pipe.\n"
@@ -283,38 +219,66 @@ msgstr ""
 msgid "Sorry, can't rewind output file to rewrite .wav header.\n"
 msgstr ""
 
-msgid "Microsoft Official Unknown"
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr "Не удалось открыть входной файл '%s': %s\n"
+
+msgid "Error while reading\n"
+msgstr "Ошибка в процессе чтения\n"
+
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr "Входной файл: используется частота сэмплов %lu\n"
+
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr "\tразмер %s, стиль %s, %d %s\n"
+
+msgid "Sorry wav file too big\n"
+msgstr "Простите, wav-файл слишком велик\n"
+
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr "Не удалось открыть выходной файл '%s': %s\n"
+
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr "Не задана частота сэмплов для файла %s\n"
+
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr "Частота сэмплов %lu для файла %s ошибочна\n"
+
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr "Размер данных не был задан для файла %s\n"
+
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr "Стиль данных не был задан для файла %s\n"
+
+msgid "No U-Law support for shorts\n"
 msgstr ""
 
-msgid "Microsoft PCM"
+msgid "No A-Law support for shorts\n"
 msgstr ""
 
-msgid "Microsoft ADPCM"
+msgid "Drop through in rawread!\n"
 msgstr ""
 
-msgid "Microsoft A-law"
+#, c-format
+msgid "Sorry, don't have code to read %s, %s\n"
+msgstr "Простите, нет кода для чтения %s, %s\n"
+
+msgid "No U-Law support for shorts (try -b option ?)\n"
 msgstr ""
 
-msgid "Microsoft U-law"
+msgid "No A-Law support for shorts (try -b option ?)\n"
 msgstr ""
 
-msgid "OKI ADPCM format."
+msgid "Drop through in rawwrite!\n"
 msgstr ""
 
-msgid "Digistd format."
-msgstr ""
-
-msgid "Digifix format."
-msgstr ""
-
-msgid "IBM U-law format."
-msgstr ""
-
-msgid "IBM A-law"
-msgstr ""
-
-msgid "IBM ADPCM"
-msgstr ""
-
-msgid "Unknown"
-msgstr ""
+#, c-format
+msgid "Sorry, don't have code to write %s, %s\n"
+msgstr "Простите, нет кода для записи %s, %s\n"

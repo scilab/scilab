@@ -1,32 +1,28 @@
-# Localization of the module renderer
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"PO-Revision-Date: 2008-09-24 14:24+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-#
-# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 76
-# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 63
-# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 55
-# File: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp, line: 52
-# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 61
-# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 71
-msgid "Unable to render polyline, memory full.\n"
-msgstr ""
-
-#
-# File: src/norenderer/norenderer.c, line: 12
 msgid "Scilab Renderer module not installed.\n"
-msgstr ""
+msgstr "Module de rendu Scilab non installé.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+msgid "Unable to render polyline, memory full.\n"
+msgstr "Impossible d'afficher la polyline. La mémoire est pleine.\n"
