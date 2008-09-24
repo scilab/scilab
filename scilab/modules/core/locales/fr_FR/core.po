@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2008-08-31 07:53+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2008-09-24 20:18+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 20:20+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #
@@ -667,16 +667,6 @@ msgstr ""
 #~ msgstr "Argument invalide d'entrée.\n"
 
 #
-# File: etc/scilab.start, line: 34
-#~ msgid "Startup execution:"
-#~ msgstr "Initialisation:"
-
-#
-# File: etc/scilab.start, line: 40
-#~ msgid "  loading initial environment"
-#~ msgstr "  Chargement de l'environnement de travail"
-
-#
 # File: etc/scilab.start, line: 94
 # File: etc/scilab.start, line: 95
 #~ msgid "Help"
@@ -710,7 +700,7 @@ msgstr ""
 "Erreur(s) : voir help powershell'';''vérifiez votre script sans Scilab."
 
 msgid "Only for Microsoft Windows."
-msgstr ""
+msgstr "Seulement disponible sous Microsoft Windows"
 
 msgid "Powershell not found."
 msgstr "Powershell introuvable."
@@ -718,26 +708,27 @@ msgstr "Powershell introuvable."
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s : Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "Checking: %s\n"
-msgstr ""
+msgstr "Vérification : %s\n"
 
 #, c-format
 msgid "%s: Please check: %s.\n"
-msgstr ""
+msgstr "%s : Merci de vérifier: %s.\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
-msgstr ""
+msgstr "%s : Le fichier n''existe pas: %s"
 
 #, c-format
 msgid "%s: Requires Scipad.\n"
-msgstr ""
+msgstr "%s : Nécessite Scipad.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s : Mauvais nombre d'argument(s) en entrée: Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
@@ -832,14 +823,16 @@ msgstr "%s: Mauvais nombre d'argument d'entrée: %d à %d attendus.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s : Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' ou ''%s'' "
+"attendu.\n"
 
 #, c-format
 msgid "Warning: Problems with %s.\n"
-msgstr ""
+msgstr "Attention: Problèmes avec %s.\n"
 
 #, c-format
 msgid "%s: Invalid '%s' value.\n"
-msgstr ""
+msgstr "%s : Valeur '%s' incorrecte.\n"
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
@@ -865,14 +858,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n° %d: Un scalaire "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s : Mauvais type pour l'argument d'entrée n° %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
-msgstr ""
+msgstr "%s : Mauvais type pour l'argument d'entrée.\n"
 
 #, c-format
 msgid ""
@@ -892,23 +887,29 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n° %d : Scalaire, '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s : Mauvaise valeur pour l'argument d'entrée n° %d: '%s', '%s', '%s' ou "
+"'%s' attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
+"%s : Mauvaise valeur pour l'argument d'entrée n° %d : '%s', '%s', '%s' or "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s : Mauvaise valeur pour l'argument d'entrée n° %d: '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: '%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
@@ -946,7 +947,7 @@ msgid "Internal Functions:\n"
 msgstr ""
 
 msgid "Commands:\n"
-msgstr ""
+msgstr "Commandes :\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
@@ -959,14 +960,15 @@ msgstr "%s: Mauvais nombre d'arguments de sortie: %d attendus.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s : Mauvaise valeur pour l'argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "ATTENTION: %s"
 
 #, c-format
 msgid "WARNING: %s\n"
-msgstr ""
+msgstr "AVERTISSEMENT : %s\n"
 
 #, c-format
 msgid ""
@@ -1025,54 +1027,54 @@ msgstr ""
 
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Version : %s"
 
 #, c-format
 msgid "Compilation date: %s"
-msgstr ""
+msgstr "Date de compilation : %s"
 
 #, c-format
 msgid "Compilation time: %s"
-msgstr ""
+msgstr "Heure de compilation : %s"
 
 #, c-format
 msgid "Compiler Architecture: %s"
-msgstr ""
+msgstr "Architecture de compilation : %s"
 
 #, c-format
 msgid "Compiled with %s"
-msgstr ""
+msgstr "Compilé avec %s"
 
 #, c-format
 msgid "XML version: %s"
-msgstr ""
+msgstr "Version de la bibliothèque XML : %s"
 
 #, c-format
 msgid "Tcl/Tk: %s"
-msgstr ""
+msgstr "Tcl/Tk : %s"
 
 msgid "Enable"
-msgstr ""
+msgstr "Activé"
 
 #, c-format
 msgid "TCL version: %s"
-msgstr ""
+msgstr "Version de Tcl : %s"
 
 #, c-format
 msgid "TK version: %s"
-msgstr ""
+msgstr "Version de Tk : %s"
 
 #, c-format
 msgid "Path separator: %s"
-msgstr ""
+msgstr "Séparateur de path : %s"
 
 #, c-format
 msgid "Directory separator: %s"
-msgstr ""
+msgstr "Séparateur de répertoire : %s"
 
 #, c-format
 msgid "PCRE Version: %d.%d"
-msgstr ""
+msgstr "Version de PCRE : %d.%d"
 
 #
 # File: src/c/LoadFunctionsTab.c, line: 96
@@ -1084,7 +1086,7 @@ msgstr "Erreur: Impossible d'analyser (parser) le fichier %s\n"
 
 #, c-format
 msgid "Error: Memory allocation.\n"
-msgstr ""
+msgstr "Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid ""
@@ -1145,7 +1147,7 @@ msgstr "Impossible de créer : %s"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
-msgstr ""
+msgstr "Erreur : Impossible d'analyser le fichier %s\n"
 
 #, c-format
 msgid ""
@@ -1161,30 +1163,32 @@ msgstr ""
 
 #, c-format
 msgid "Impossible to load %s library: %s\n"
-msgstr ""
+msgstr "Impossible de charger la bibliothèque %s : %s\n"
 
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
-msgstr ""
+msgstr "Impossible de charger la fonction %s dans la bibliothèque %s : %s\n"
 
 #, c-format
 msgid "Impossible to call %s in %s library: %s\n"
-msgstr ""
+msgstr "Impossible d'appeler %s dans la bibliothèque %s : %s\n"
 
 #, c-format
 msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
+"Saisissez '%s' ou '%s' pour revenir au niveau de prompt normal.\n"
+"\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr ""
+msgstr "                 Consortium Scilab (DIGITEO)\n"
 
 msgid "               Copyright (c) 1989-2008 (INRIA)\n"
-msgstr ""
+msgstr "               Copyright (c) 1989-2008 (INRIA)\n"
 
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr ""
+msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
 
 #
 # File: src/c/banier.c, line: 50
@@ -1228,7 +1232,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unknown code %d at index2 %d.\n"
-msgstr ""
+msgstr "%s: code inconnu %d à index2 %d.\n"
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
@@ -1419,7 +1423,7 @@ msgid "%s: Wrong type for argument %d : Polygon expected.\n"
 msgstr "%s: Mauvais type pour l'argument %d: Polygone attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -1457,6 +1461,8 @@ msgstr "%s: Mauvais type pour l'argument %d: Matrice attendue.\n"
 #, c-format
 msgid "%s: entry point %s not found in predefined tables or link table.\n"
 msgstr ""
+"%s: point d'entré %s non trouvé dans la table prédéfinie ou dans la table de "
+"liens.\n"
 
 #, c-format
 msgid ""
@@ -1515,11 +1521,11 @@ msgstr "La variable d'environnement SCI n'est pas définie.\n"
 
 #, c-format
 msgid "Cannot load the module declaration file: %s.\n"
-msgstr ""
+msgstr "Impossible de charger le fichier de déclaration de module : %s.\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
-msgstr ""
+msgstr "Erreur : Ne peux pas analyser le fichier %s.\n"
 
 #
 # File: src/c/getmodules.c, line: 202
@@ -1554,19 +1560,20 @@ msgstr "%s: argument doit être une chaîne de caractères.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
+"Code opérateur inattendu. Merci de reporter un bug sur le bug tracker Scilab."
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
 
 #, c-format
 msgid "Memory in use: %*ld %%"
-msgstr ""
+msgstr "Mémoire en court d'utilisateur : %*ld%%"
 
 msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr ""
+msgstr "Mémoire total physique (Kbytes): %*I64d"
 
 msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr ""
+msgstr "Mémoire physique libre (Kbytes): %*I64d"
 
 msgid "Total Paging File (Kbytes): %*I64d"
 msgstr ""
@@ -1584,15 +1591,15 @@ msgid "Free Extended Memory (Kbytes): %*I64d"
 msgstr ""
 
 msgid "Operating System: "
-msgstr ""
+msgstr "Système d'exploitation : "
 
 #, c-format
 msgid "Number of processors: %d"
-msgstr ""
+msgstr "Nombre de processeur : %d"
 
 #, c-format
 msgid "Video card: %s"
-msgstr ""
+msgstr "Carte graphique : %s"
 
 #, c-format
 msgid "%s: %d x %d %d bits"
@@ -1600,15 +1607,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Mauvais nombre d'argument(s) en entrée: %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Mauvais nombre d'argument(s) d'entrée: %d à %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Mauvais nombre d'argument(s) de sortie: %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -1820,3 +1827,31 @@ msgstr "GetDataFromName: variable %s non trouvée.\n"
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr "%s: Variable %s introuvable.\n"
+
+#
+# File: etc/scilab.start, line: 34
+msgid "Startup execution:"
+msgstr "Initialisation:"
+
+#
+# File: etc/scilab.start, line: 40
+msgid "  loading initial environment"
+msgstr "  Chargement de l'environnement de travail"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "&Edit"
+msgstr "&Edition"
+
+msgid "&Preferences"
+msgstr "&Préférences"
+
+msgid "&Control"
+msgstr "&Contrôle"
+
+msgid "&Applications"
+msgstr "&Applications"
+
+msgid "&?"
+msgstr "&?"
