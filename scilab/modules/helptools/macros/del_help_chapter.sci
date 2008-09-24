@@ -58,14 +58,14 @@ function del_help_chapter(help_to_del,modulemode)
 	
 	if modulemode then
 		
-		k1 = find( %helps_modules == help_to_del);
+		k1 = find( %helps_modules(:,2) == help_to_del);
 		if k1 <> [] then
 			%helps_modules(k1,:) = [];
 		end
 		
 	else
 		
-		k1 = find( %helps == help_to_del);
+		k1 = find( %helps(:,2) == help_to_del);
 		if k1 <> [] then
 			%helps(k1,:) = [];
 		end
