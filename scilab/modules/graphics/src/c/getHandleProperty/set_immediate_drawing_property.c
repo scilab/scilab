@@ -54,7 +54,7 @@ int set_immediate_drawing_property( sciPointObj * pobj, size_t stackPointer, int
   }
   else
   {
-    sciprint("Nothing to do (value must be 'on' or 'off')") ;
+    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
   

@@ -29,7 +29,7 @@ int get_pixmap_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s undefined for this object.\n"), "pixmap") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"pixmap");
     return -1;
   }
   if ( sciGetPixmapMode(pobj) )

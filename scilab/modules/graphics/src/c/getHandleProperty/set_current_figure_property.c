@@ -51,7 +51,7 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
 
     if ( sciGetEntityType( curFig ) != SCI_FIGURE )
     {
-      sciprint(_("Wrong type for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
+      sciprint(_("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
       return -1;
     }
     startGraphicDataReading();
@@ -64,7 +64,7 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
-    sciprint(_("Wrong type for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
+    sciprint(_("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
     return -1 ;
   }
 

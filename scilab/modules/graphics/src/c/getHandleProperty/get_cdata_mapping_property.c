@@ -34,7 +34,7 @@ int get_cdata_mapping_property( sciPointObj * pobj )
   }
   if ( pSURFACE_FEATURE (pobj)->typeof3d != SCI_FAC3D )
   {
-    sciprint("cdata_mapping property only exists for Fac3d surfaces.\n");
+    sciprint(_("%s property only exists for %s surfaces.\n"),"cdata_mapping","Fac3d");
     return -1;
   }
 

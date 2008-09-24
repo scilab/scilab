@@ -51,3 +51,4 @@ int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueT
   return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/
+

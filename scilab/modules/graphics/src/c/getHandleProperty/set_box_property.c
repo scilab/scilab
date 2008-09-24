@@ -56,7 +56,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      sciprint(_("%s: Wrong type for second input argument: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property","on","off","hidden_axis","back_half") ;
+      sciprint(_("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property",2,"on","off","hidden_axis","back_half") ;
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -72,7 +72,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      sciprint(_("%s: Wrong second input argument: '%s' or '%s' expected."),"set_box_property","on","off") ;
+      sciprint(_("%s: Wrong input argument #%d: '%s' or '%s' expected."),"set_box_property",2,"on","off") ;
       return SET_PROPERTY_SUCCEED ;
     }
   }

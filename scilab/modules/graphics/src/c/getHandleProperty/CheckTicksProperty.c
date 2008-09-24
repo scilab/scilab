@@ -31,7 +31,7 @@ AssignedList * createTlistForTicks( void )
 
   if( !isListCurrentElementDoubleMatrix( tlist ) )
   {
-    sciprint("locations should be a vector of double.\n") ;
+    sciprint(_("%s should be a vector of double.\n"),"locations") ;
     return NULL ;
   }
 
@@ -42,7 +42,7 @@ AssignedList * createTlistForTicks( void )
     /* labels should also be an empty matrix */
     if ( !isListCurrentElementEmptyMatrix( tlist ) )
     {
-      sciprint("Ticks location and label vectors must have the same size.\n") ;
+      sciprint(_("Ticks location and label vectors must have the same size.\n")) ;
       return NULL ;
     }  
   }
@@ -50,7 +50,7 @@ AssignedList * createTlistForTicks( void )
   {
     if ( !isListCurrentElementStringMatrix( tlist ) )
     {
-      sciprint("labels should be a string vector.\n") ;
+      sciprint(_("%s should be a string vector.\n"),"labels") ;
       return NULL ;
     }
 
@@ -58,7 +58,7 @@ AssignedList * createTlistForTicks( void )
 
     if ( nbRowLoc != nbRowLab || nbColLoc != nbColLab )
     {
-      sciprint("Ticks location and label vectors must have the same size.\n") ;
+      sciprint(_("Ticks location and label vectors must have the same size.\n"));
       return NULL ;
     }
   }

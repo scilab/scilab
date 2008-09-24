@@ -48,3 +48,4 @@ int set_arrow_size_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
 }
 /*------------------------------------------------------------------------*/
+

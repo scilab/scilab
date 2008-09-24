@@ -53,7 +53,7 @@ int set_tics_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
        && !isStringParamEqual( stackPointer, "r" )
        && !isStringParamEqual( stackPointer, "i" ) )
   {
-    sciprint("tics must be 'v' or 'r' or 'i'.\n") ;
+    sciprint(_("Wrong value for %s: '%s' or '%s' or '%s' expected.\n"),"tics","v","r","i") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -64,12 +64,12 @@ int set_tics_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
   {
     if( ComputeXIntervals(pobj,xy_type,&vector,&N,1) != 0 )
     {
-      sciprint("Error: Bad size in tics_coord ; you must first increase the size of the tics_coord.\n");
+      sciprint(_("Error: Bad size in %s ; you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
       return SET_PROPERTY_ERROR ;
     }
     if( pAXES_FEATURE(pobj)->nb_tics_labels < N )
     {
-      sciprint("Warning: tics_labels has been set by user ; you must first increase the size of the tics_labels string vector before switching to the new tics_style mode.\n");
+		sciprint(_("Warning: %s has been set by user ; you must first increase the size of the %s string vector before switching to the new %s mode.\n"),"tics_labels","tics_labels","tics_style");
       return SET_PROPERTY_ERROR;
     }
   }

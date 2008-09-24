@@ -44,3 +44,4 @@ int set_arrow_size_factor_property( sciPointObj * pobj, size_t stackPointer, int
   return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
+

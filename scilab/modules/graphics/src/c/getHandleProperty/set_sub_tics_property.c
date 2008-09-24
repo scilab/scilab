@@ -47,7 +47,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
     if ( (nbCol != 3 ) && (nbCol != 2) )
     {
-      sciprint("Value must have two elements (three if in 3D).\n") ;
+      sciprint(_("Value must have %d elements (%d if in 3D).\n"),2,3) ;
       return  SET_PROPERTY_ERROR ;
     }
     ppSubWin->flagNax = TRUE;

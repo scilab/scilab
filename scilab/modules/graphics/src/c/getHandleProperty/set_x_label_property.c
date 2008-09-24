@@ -36,7 +36,7 @@ int set_x_label_property( sciPointObj * pobj, size_t stackPointer, int valueType
   }
   else
   {
-    sciprint("can not set directly a label object.\n") ;
+    sciprint(_("Can not set directly a label object.\n")) ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

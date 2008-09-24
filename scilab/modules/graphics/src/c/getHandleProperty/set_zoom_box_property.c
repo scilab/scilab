@@ -58,7 +58,7 @@ int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   }
   else
   {
-    sciprint("Argument must be a vector of size 6 (or 4 in 2d).\n");
+    sciprint(_("Argument must be a vector of size %d (or %d in 2d).\n"),6,4);
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

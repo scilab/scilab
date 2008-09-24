@@ -40,7 +40,7 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint("Wrong size for screen_position property, argument should be a vector of size 2.\n") ;
+    sciprint(_("Wrong size for %s property: Vector of size %d expected.\n"),"screen_position",2) ;
     return SET_PROPERTY_ERROR ;
   }
 

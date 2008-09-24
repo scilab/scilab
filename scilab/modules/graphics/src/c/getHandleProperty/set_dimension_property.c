@@ -38,7 +38,7 @@ int set_dimension_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint("Wrong size for dimension property, argument should be a vector of size 2.\n") ;
+    sciprint(_("Wrong size for %s property: Vector of size %d expected.\n"),"dimension",2) ;
     return SET_PROPERTY_ERROR ;
   }
 

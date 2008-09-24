@@ -52,7 +52,7 @@ int set_closed_property( sciPointObj * pobj, size_t stackPointer, int valueType,
   }
   else
   {
-    sciprint("Nothing to do (value must be 'on' or 'off').\n") ;
+    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

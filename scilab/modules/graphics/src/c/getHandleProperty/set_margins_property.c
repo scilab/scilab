@@ -46,7 +46,7 @@ int set_margins_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( nbRow * nbCol != 4 )
   {
-    sciprint("Second argument must have 4 elements.\n") ;
+    sciprint(_("Wrong size for argument #%d: %d elements expected.\n"),2,4);
     return SET_PROPERTY_ERROR ;
   }
 

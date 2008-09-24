@@ -32,7 +32,7 @@ int get_color_map_property( sciPointObj * pobj )
   int status        = -1   ;
   if ( sciGetEntityType( pobj ) != SCI_FIGURE )
   {
-    Scierror(999, "color_map property does not exist for this handle.\n");
+    Scierror(999, _("%s property does not exist for this handle.\n"),"color_map");
     return -1;
   }
 
@@ -40,7 +40,7 @@ int get_color_map_property( sciPointObj * pobj )
   colorMap = MALLOC( cmapSize * 3 * sizeof(double) ) ;
   if ( colorMap == NULL )
   {
-    Scierror(999, "Unable to allocate colormap, memory full.\n");
+    Scierror(999, _("No more memory.\n"));
     return -1;
   }
 

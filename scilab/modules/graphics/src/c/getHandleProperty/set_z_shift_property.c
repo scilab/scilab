@@ -41,19 +41,19 @@ int set_z_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint("This handle has no z_shift property.\n") ;
+    sciprint(_("This handle has no %s property.\n"),"z_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow > 1 && nbCol > 1 )
   {
-    sciprint("Bad input, z_shift should be a row or column vector.\n") ;
+    sciprint(_("Bad input, %s should be a row or column vector.\n"),"z_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbElement != 0 && nbElement != pPOLYLINE_FEATURE (pobj)->n1 ) /* we can specify [] (null vector) to reset to default */
   {
-    sciprint("Wrong size for input vector.\n");
+    sciprint(_("Wrong size for input vector.\n"));
     return SET_PROPERTY_ERROR ;
   }
 

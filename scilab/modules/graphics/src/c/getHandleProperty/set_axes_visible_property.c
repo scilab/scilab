@@ -63,7 +63,7 @@ int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valu
     }
     else
     {
-      sciprint(_("%s: Wrong second input argument: '%s' or '%s' expected."),"set_axes_visible_property","on","off") ;
+      sciprint(_("%s: Wrong input argument #%d: '%s' or '%s' expected."),"set_axes_visible_property",2,"on","off") ;
       return SET_PROPERTY_ERROR ;
     }
     return SET_PROPERTY_SUCCEED ;
@@ -83,7 +83,7 @@ int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valu
       }
       else
       {
-        sciprint(_("%s: Wrong type for second input argument: '%s' or '%s' expected.\n"), "set_axes_visible_property","on","off") ;
+        sciprint(_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "set_axes_visible_property",2,"on","off") ;
         return SET_PROPERTY_ERROR ;
       }
     }
@@ -91,7 +91,7 @@ int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint("Number of the second argument must be taken between 1 to 3.\n") ;
+    sciprint(_("Wrong value for input argument #%d: Between %d to %d expected.\n"),2,1,3) ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

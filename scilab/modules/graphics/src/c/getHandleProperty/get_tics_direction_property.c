@@ -29,7 +29,7 @@ int get_tics_direction_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType( pobj ) != SCI_AXES )
   {
-    sciprint(_("%s property undefined for this handle.\n"), "tics_direction") ;
+    sciprint(_("%s property does not exist for this handle.\n"), "tics_direction") ;
     return -1 ;
   }
 

@@ -90,7 +90,7 @@ int set_legend_location_property( sciPointObj * pobj, size_t stackPointer, int v
 
   else  
   {
-    sciprint(_("%s: Wrong type for second input argument: '%s', '%s' or '%s' expected.\n"), "set_legend_location_property","top","bottom","origin") ;
+    sciprint(_("%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"), "set_legend_location_property",2,"top","bottom","origin") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

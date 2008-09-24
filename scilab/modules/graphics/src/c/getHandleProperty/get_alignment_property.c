@@ -39,7 +39,7 @@ int get_alignment_property( sciPointObj * pobj )
       return sciReturnString("center");
       break ;
     default:
-      sciprint("error accessing alignment property.\n");
+      sciprint(_("Error accessing alignment property.\n"));
       return -1 ;
     }
   }

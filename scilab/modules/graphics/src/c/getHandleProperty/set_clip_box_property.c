@@ -38,10 +38,10 @@ int set_clip_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     return SET_PROPERTY_ERROR ;
   }
 
-  /* On doit avoir avoir une matrice 4x1 */
+  /* We must have a matrix of 4x1 */
   if ( nbRow * nbCol != 4 )
   {
-    sciprint("Argument must be a vector of size 4.\n");
+    sciprint(_("Argument must be a vector of size %d.\n"),4);
     return SET_PROPERTY_ERROR ;
   }
   status1 = sciSetClipping( pobj, getDoubleMatrixFromStack( stackPointer ) ) ;

@@ -1285,7 +1285,7 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
     if(checkdim){
       if(nval != 4)
-        sciprint(_("Warning: %s must be changed, %s is '%S' and %s dimension is not %d.\n"),"tics_coord","xy_type","i","tics_coord",4);
+        sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"),"tics_coord","xy_type","i","tics_coord",4);
 
       if(nval < 4){
         sciprint(_("Error: %s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","i","tics_coord",4);

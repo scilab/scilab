@@ -1,4 +1,4 @@
-/*
+ /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
@@ -29,7 +29,7 @@ int get_auto_position_property( sciPointObj * pobj )
 {
   if( sciGetEntityType(pobj) != SCI_LABEL )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "auto_position") ;
+    sciprint(_("%s property does not exist for this handle.\n"), "auto_position") ;
     return -1 ;
   }
 

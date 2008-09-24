@@ -52,9 +52,10 @@ int set_tight_limits_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint(_("%s: Wrong second input argument: '%s' or '%s' expected."),"set_tight_limits_property","on","off") ;
+    sciprint(_("%s: Wrong value for input argument #%d: '%s' or '%s' expected."),"set_tight_limits_property",2,"on","off") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
+

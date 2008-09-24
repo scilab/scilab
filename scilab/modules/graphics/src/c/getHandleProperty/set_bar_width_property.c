@@ -45,3 +45,4 @@ int set_bar_width_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
+

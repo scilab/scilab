@@ -48,7 +48,7 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
   if ( nbRow != 1 || nbCol > 3 )
   {
-    sciprint("grid must be a 1x2 or 1x3 vector.\n") ;
+    sciprint(_("Wrong size for argument: %s or %s expected.\n"),"1x2","1x3");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -59,7 +59,7 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     int curValue = (int) values[i];
     if ( values[i] < -1 || !sciCheckColorIndex(pobj, curValue) )
     {
-      sciprint("Argument must be -1 (no grid) or number of color.\n");
+      sciprint(_("Wrong value for argument: %d (no grid) or number of color expected.\n"),-1);
       return SET_PROPERTY_ERROR ;
     }
     gridStyles[i] = curValue ;

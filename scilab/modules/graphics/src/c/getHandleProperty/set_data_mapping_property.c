@@ -51,7 +51,7 @@ int set_data_mapping_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint("Value must be 'direct' or 'scaled'.\n") ;
+    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"scaled","direct");
     return SET_PROPERTY_ERROR ;
   }
 
