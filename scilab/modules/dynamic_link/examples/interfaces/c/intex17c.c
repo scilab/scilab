@@ -30,7 +30,7 @@ typedef struct {
 typedef int (*funcex)(ARGS_ex17c);
 extern int f1c(ARGS_ex17c);
 extern int f2c(ARGS_ex17c);
-extern int ex17c(double *,int ,double *,integer,double *, funcex);
+extern int ex17c(double *,int ,double *,int,double *, funcex);
  
 FTAB FTab_ex17c[] ={
   {"f1c", (voidf) f1c},
