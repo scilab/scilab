@@ -496,7 +496,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
                 D=$ac_java_jvm_dir/bin/
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljava"
             fi
         fi
 

@@ -67,10 +67,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
