@@ -1,5 +1,8 @@
 # pkg.m4 - Macros to locate and utilise pkg-config.            -*- Autoconf -*-
 # 
+# Incorporated into Scilab source tree because aclocal had issue to
+# find the macro from time to time
+#
 # Copyright © 2004 Scott James Remnant <scott@netsplit.com>.
 #
 # This program is free software; you can redistribute it and/or modify
