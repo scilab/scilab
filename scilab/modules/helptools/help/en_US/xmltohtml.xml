@@ -89,15 +89,22 @@ xmltohtml(my_french_help_dir,my_french_help_title,'fr_FR');
 // Build the english help
 // =============================================================================
 my_english_help_dir   =  my_module_path+'/help/en_US';
-my_english_help_title =  'Example 1 [EN_US]';
+my_english_help_title =  'Example 1 [en_US]';
 xmltohtml(my_english_help_dir,my_english_help_title,'en_US');
+
+
+// Build the chinese help
+// =============================================================================
+my_chinese_help_dir   =  my_module_path+'/help/zh_TW';
+my_chinese_help_title =  'Example 1 [zh_TW]';
+xmltohtml(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
 
 
 // Your HTML tree is created in :
 // =============================================================================
-my_french_html_dir  = my_french_help_dir +'/scilab_fr_FR_help'
-my_english_html_dir = my_english_help_dir+'/scilab_en_US_help'
-
+my_french_html_dir  = my_french_help_dir +'/html/fr_FR'
+my_english_html_dir = my_english_help_dir+'/html/en_US'
+my_chinese_html_dir = my_chinese_help_dir+'/html/zh_TW'
 
     </programlisting>
   </refsection>

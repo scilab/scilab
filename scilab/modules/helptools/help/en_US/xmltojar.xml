@@ -89,15 +89,26 @@ xmltojar(my_french_help_dir,my_french_help_title,'fr_FR');
 // Build the english help
 // =============================================================================
 my_english_help_dir   =  my_module_path+'/help/en_US';
-my_english_help_title =  'Example 1 [EN_US]';
+my_english_help_title =  'Example 1 [en_US]';
 xmltojar(my_english_help_dir,my_english_help_title,'en_US');
 
 
-// Add french or english help chapters
+// Build the chinese help
+// =============================================================================
+my_chinese_help_dir   =  my_module_path+'/help/zh_TW';
+my_chinese_help_title =  'Example 1 [zh_TW]';
+xmltojar(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
+
+
+// Add french, english or chinese help chapters
 // =============================================================================
 
 if getlanguage() == 'fr_FR' then
   add_help_chapter(my_french_help_title,my_module_path+"/jar");
+
+elseif getlanguage() == 'zh_TW' then
+  add_help_chapter(my_chinese_help_title,my_module_path+"/jar");
+
 else
   add_help_chapter(my_english_help_title,my_module_path+"/jar");
 end
