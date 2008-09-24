@@ -12,6 +12,7 @@
  */
 
 /*--------------------------------------------------------------------------*/ 
+#include "machine.h" /* SHARED_LIB_EXT */
 #include "JVM_commons.h"
 #include "JVM_functions.h"
 #include "win_mem_alloc.h" /* MALLOC */

@@ -14,6 +14,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/ 
+#include "machine.h" /* C2F */
 #include "BOOL.h"
 #include "localization.h"
 #include "Scierror.h"
