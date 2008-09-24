@@ -24,6 +24,7 @@
 #include "pixel_mode.h"
 #include "returnProperty.h"
 #include "Scierror.h"
+#include "localization.h"
 /*------------------------------------------------------------------------*/
 
 int get_pixel_drawing_mode_property( sciPointObj * pobj )

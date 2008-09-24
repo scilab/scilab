@@ -23,6 +23,8 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "localization.h"
+
 
 /*--------------------------------------------------------------------------*/
 int get_color_map_property( sciPointObj * pobj )
