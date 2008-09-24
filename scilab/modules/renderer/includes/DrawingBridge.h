@@ -70,7 +70,7 @@ extern "C" {
   void forceHierarchyRedraw( sciPointObj * pObj ) ;
 
   /**
-   * Specify that an object has been modifeied and need to be redrawn.
+   * Specify that an object has been modified and need to be redrawn.
    * To be used when several objects are modified in the same time.
    */
   void forceRedraw(sciPointObj * pObj);

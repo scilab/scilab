@@ -73,8 +73,8 @@ public final class RenderingCapabilities {
 		GraphicsDevice[] screens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
 		
 		int[] res = {0, 0};
-		// take the sum of each screen width and screen heigth.
-		// It might be a bit large, but ot's better than using a too small value.
+		// take the sum of each screen width and screen height.
+		// It might be a bit large, but it's better than using a too small value.
 		for (int i = 0; i < screens.length; i++) {
 			DisplayMode dm = screens[i].getDisplayMode();
 			res[0] += dm.getWidth();
@@ -89,7 +89,7 @@ public final class RenderingCapabilities {
 	 * Get the maximum width and height for a canvas.
 	 * By default return the maximum window size. However it advised to wait until
 	 * the values can be updated using OpenGL values.
-	 * @return array of size 2 containing mawimum width and height
+	 * @return array of size 2 containing maximum width and height
 	 */
 	public static int[] getMaxCanvasSize() {
 		
@@ -115,7 +115,7 @@ public final class RenderingCapabilities {
 			// getting max viewport size
 			gl.glGetIntegerv(GL.GL_MAX_VIEWPORT_DIMS, maxCanvasSize, 0);
 			
-			// also use GL_MAX_RENDERBUFFER_SIZE_EXT if possible
+			// try to estimate maximum size for the GLJPanel
 			int[] maxRenderBufferSize = {0, 0};
 			
 			// available only if GL_EXT_framebuffer_object extension is available
@@ -132,9 +132,16 @@ public final class RenderingCapabilities {
 				// frame buffer extension might not be available or
 				// getting GL_MAX_RENDERBUFFER_SIZE_EXT might fail (this happens
 				// with some MESA drivers revisions).
-				// In this case update with max window size instead
-				// the view port size is actually often too large
-				maxRenderBufferSize = getMaxWindowSize();
+				// In this case update with max texture size
+				
+				// one value is retrieved
+				gl.glGetIntegerv(GL.GL_MAX_TEXTURE_SIZE, maxRenderBufferSize, 0);
+				maxRenderBufferSize[1] = maxRenderBufferSize[0];
+			}
+			
+			if (maxRenderBufferSize[0] == 0 || maxRenderBufferSize[1] == 0) {
+				// still errors, finally use the screen size
+				maxRenderBufferSize = getScreenSize();
 			}
 			
 			// update values in consequences

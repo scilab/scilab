@@ -32,23 +32,6 @@ public:
   ~ConcreteDrawableSegs(void);
 
   /**
-   * Compute the postions of the arraows to display
-   */
-  virtual void getSegsPos(double startXcoords[], double endXCoords[],
-                          double startYCoords[], double endYCoords[],
-                          double startZCoords[], double endZcoords[]);
-
-  /**
-   * Get the number of arrows in the segs or champ object
-   */
-  virtual int getNbSegment(void);
-
-  /**
-   * To know if each segs object has a distinct color
-   */
-  virtual bool isColored(void);
-
-  /**
    * Get the color of each segement if needed
    */
   virtual void getSegsColors(int colors[]);
@@ -91,6 +74,23 @@ protected:
    * Redraw the segs
    */
   virtual void redrawSegs(void);
+
+	  /**
+   * Compute the postions of the arraows to display
+   */
+  virtual void getSegsPos(double startXcoords[], double endXCoords[],
+                          double startYCoords[], double endYCoords[],
+                          double startZCoords[], double endZcoords[]);
+
+  /**
+   * Get the number of arrows in the segs or champ object
+   */
+  virtual int getNbSegment(void);
+
+  /**
+   * To know if each segs object has a distinct color
+   */
+  virtual bool isColored(void);
   /*---------------------------------------------------------------------------------*/
   std::list<DrawSegsStrategy *> m_oDrawers;
   DecomposeSegsStrategy * m_pDecomposer;
