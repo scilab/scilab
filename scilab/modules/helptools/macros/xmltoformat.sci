@@ -372,7 +372,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		
 		if or(need_to_be_build_tab_m) then
 			mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
-			create_MD(dirs_m,titles_m,master_doc);
+			create_MD(dirs_m,titles_m,master_doc,getlanguage());
 			
 		end
 		
@@ -380,7 +380,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			for k=1:size(dirs_c,"*")
 				if need_to_be_build_tab_c(k) then
 					mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
-					create_MD_dir(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml");
+					create_MD_dir(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml",directory_language_c(k));
 				end
 			end
 		end
@@ -399,7 +399,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				else
 					mprintf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 				end
-				create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml");
+				create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml",directory_language(k));
 			end
 		end
 	
@@ -980,7 +980,13 @@ function result = need_to_be_build(directory,directory_language,default_language
 endfunction
 
 
-function create_MD(dirs,titles,output_filename)
+function create_MD(dirs,titles,output_filename,language)
+	
+	if language == "fr_FR" then
+		encoding = "ISO-8859-1";
+	else
+		encoding = "UTF-8";
+	end
 	
 	// Sort dirs and titles
 	my_mat = [titles,dirs];
@@ -990,7 +996,7 @@ function create_MD(dirs,titles,output_filename)
 	titles = my_mat(:,1);
 	dirs   = my_mat(:,2);
 	
-	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding="""+encoding+"""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 	xml_files          = listfiles(dirs+"/*.xml");
@@ -1049,11 +1055,17 @@ function create_MD(dirs,titles,output_filename)
 
 endfunction
 
-function create_MD_dir(my_dir,my_title,output_filename)
-
+function create_MD_dir(my_dir,my_title,output_filename,language)
+	
+	if language == "fr_FR" then
+		encoding = "ISO-8859-1";
+	else
+		encoding = "UTF-8";
+	end
+	
 	xml_files   = basename(listfiles(my_dir+"/*.xml"));
 	
-	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding="""+encoding+"""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 		
@@ -1073,7 +1085,7 @@ function create_MD_dir(my_dir,my_title,output_filename)
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
 		"]>"; ..
-		"<book version=""5.0-subset Scilab"" xml:lang="""+getlanguage()+""""; ..
+		"<book version=""5.0-subset Scilab"" xml:lang="""+language+""""; ..
 		"      xmlns=""http://docbook.org/ns/docbook"""; ..
 		"      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
 		"      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
