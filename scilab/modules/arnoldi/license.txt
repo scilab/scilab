@@ -1,3 +1,14 @@
+Copyright:
+Copyright (c) 1989-2008 (INRIA)
+Copyright (c) 1989-2007 (ENPC)
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 ARPACK is an open-source software package released with a BSD-like license (see http://www.caam.rice.edu/software/ARPACK/RiceBSD.doc)
 
-INRIA 2006
