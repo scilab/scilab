@@ -6,19 +6,19 @@
 // ============================================================================
 
 // ============================================================================
-// Unitary tests for removedir function
+// Unitary tests for rmdir function
 // ============================================================================
 
-baseDir=pathconvert(TMPDIR+"/test_removedir",%F,%F);
+baseDir=pathconvert(TMPDIR+"/test_rmdir",%F,%F);
 
 mkdir(baseDir);
-mkdir(pathconvert(baseDir+"/test_removedir_1",%F,%F));
-mkdir(pathconvert(baseDir+"/test_removedir_1/test_removedir_2",%F,%F));
-mkdir(pathconvert(baseDir+"/test_removedir_1/test_removedir_2/test_removedir_3",%F,%F));
+mkdir(pathconvert(baseDir+"/test_rmdir_1",%F,%F));
+mkdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2",%F,%F));
+mkdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2/test_rmdir_3",%F,%F));
 
-if ~isdir(pathconvert(baseDir+"/test_removedir_1/test_removedir_2/test_removedir_3",%F,%F)) then pause,end
+if ~isdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2/test_rmdir_3",%F,%F)) then pause,end
 
-res=removedir(baseDir);
+res=rmdir(baseDir);
 
 if ~res then pause,end
 if isdir(baseDir) then pause,end
