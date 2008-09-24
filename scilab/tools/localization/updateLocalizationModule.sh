@@ -91,6 +91,11 @@ for MODULE in $MODULES; do
 # Extract label from xml files
 	process_XML_files
 	FILES=`eval $FILESCMD|tr "\n" " "`
+	if test "$MODULE" = "core"; then
+		# We want some strings from the ROOTDIR when it is the core module
+		FILES="$FILES `ls $SCI/etc/scilab.*`"
+	fi
+
 	# Also extract string straight from the XML because we have some gettext calls in it
 	FILES="$FILES `ls etc/*.xml`"
 	MODULE_NAME=`echo $MODULE|sed -e 's|./||'` # avoid to have ./module_name
