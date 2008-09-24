@@ -11,7 +11,6 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/charEncoding.c \
 src/c/loadsavelanguage.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
