@@ -1,7 +1,5 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c Copyright (C) {date_debut_2}-{date_fin_2} - {organisme 2} {auteur 2}
-c ...
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
