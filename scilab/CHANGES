@@ -24,6 +24,7 @@ SCI/modules/helptools/{jar,html,ps,pdf} (bug 3492)
 
 - Update of path in the UMFPACK modules help & demos
 
+- Unable the documentation in UTF8
 
 Enhancement:
 ============
@@ -39,7 +40,7 @@ Enhancement:
 Localization:
 =============
 
- - Update of the russian localization
+ - Update of the russian, french and chinese localization
 
 Bug fixes:
 ==========
@@ -77,7 +78,7 @@ Bug fixes:
    handling Mat-Files. Please note that the Windows binary and sources releases
    are not impacted by this change.
 
-
+ - bug 3586 fixed - xmltopdf fails on windows
 
                      Main Changes Scilab 4.X -> 5.0
                      ==============================
