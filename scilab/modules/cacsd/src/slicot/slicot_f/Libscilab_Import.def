@@ -1,4 +1,4 @@
-	LIBRARY    linear_algebra_f.dll
+	LIBRARY    libscilab.dll
 
 
 EXPORTS

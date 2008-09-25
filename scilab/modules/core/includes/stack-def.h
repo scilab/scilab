@@ -338,15 +338,6 @@ typedef struct {
 IMPORT LSA001_struct C2F(lsa001);
 
 
-/**
- * @TODO : add comment 
- */
-typedef struct {
-    int iero; /**< @TODO : add comment */
-} IERINV_struct;
-
-IMPORT IERINV_struct C2F(ierinv);
-
 
 /**
  * @TODO : add comment 
