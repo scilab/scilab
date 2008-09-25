@@ -1,5 +1,5 @@
 /*
- *  hmdops_new.c
+ *  hmdops.c
  *
  *  PURPOSE
  *     codes to accelerate scilab hypermatrices operations
