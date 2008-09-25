@@ -101,12 +101,16 @@ src/slicot/sb03sy.f \
 src/slicot/mb04nd.f \
 src/slicot/mb01rd.f \
 src/slicot/mb01vd.f \
-src/slicot/sb10qd.f
-
-
+src/slicot/sb10qd.f \
+src/slicot/ereduc.f \
+src/slicot/fstair.f \
+src/slicot/inva.f \
+src/slicot/polmc.f \
+src/slicot/ssxmc.f \
+src/slicot/ZB03OD.f \
+src/slicot/riccpack.f
 
 CACSD_FORTRAN_SOURCES = \
-src/fortran/riccpack.f \
 src/fortran/jacl2.f \
 src/fortran/onface.f \
 src/fortran/hhdml.f \
@@ -114,10 +118,8 @@ src/fortran/tild.f \
 src/fortran/degl2.f \
 src/fortran/dqrdc.f \
 src/fortran/qvalz.f \
-src/fortran/ssxmc.f \
 src/fortran/dfrmg.f \
 src/fortran/hessl2.f \
-src/fortran/ZB03OD.f \
 src/fortran/rtitr.f \
 src/fortran/watfac.f \
 src/fortran/sszer.f \
@@ -131,7 +133,6 @@ src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
 src/fortran/rilac.f \
-src/fortran/inva.f \
 src/fortran/scaleg.f \
 src/fortran/arl2.f \
 src/fortran/wesidu.f \
@@ -141,9 +142,7 @@ src/fortran/wgeco.f \
 src/fortran/lq.f \
 src/fortran/outl2.f \
 src/fortran/dhetr.f \
-src/fortran/ereduc.f \
 src/fortran/domout.f \
-src/fortran/polmc.f \
 src/fortran/rootgp.f \
 src/fortran/feq.f \
 src/fortran/dgedi.f \
@@ -159,7 +158,6 @@ src/fortran/storl2.f \
 src/fortran/dqrsm.f \
 src/fortran/calsca.f \
 src/fortran/qitz.f \
-src/fortran/fstair.f \
 src/fortran/front.f \
 src/fortran/calcsc.f \
 src/fortran/wgefa.f

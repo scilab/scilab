@@ -103,25 +103,22 @@ libscicacsd_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmx.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_1) $(am__append_2)
-am__objects_1 = libscicacsd_la-riccpack.lo libscicacsd_la-jacl2.lo \
-	libscicacsd_la-onface.lo libscicacsd_la-hhdml.lo \
-	libscicacsd_la-tild.lo libscicacsd_la-degl2.lo \
-	libscicacsd_la-dqrdc.lo libscicacsd_la-qvalz.lo \
-	libscicacsd_la-ssxmc.lo libscicacsd_la-dfrmg.lo \
-	libscicacsd_la-hessl2.lo libscicacsd_la-ZB03OD.lo \
-	libscicacsd_la-rtitr.lo libscicacsd_la-watfac.lo \
-	libscicacsd_la-sszer.lo libscicacsd_la-mzdivq.lo \
-	libscicacsd_la-expan.lo libscicacsd_la-optml2.lo \
-	libscicacsd_la-wdegre.lo libscicacsd_la-phi.lo \
-	libscicacsd_la-dgeco.lo libscicacsd_la-ricd.lo \
-	libscicacsd_la-shrslv.lo libscicacsd_la-qhesz.lo \
-	libscicacsd_la-rilac.lo libscicacsd_la-inva.lo \
+am__objects_1 = libscicacsd_la-jacl2.lo libscicacsd_la-onface.lo \
+	libscicacsd_la-hhdml.lo libscicacsd_la-tild.lo \
+	libscicacsd_la-degl2.lo libscicacsd_la-dqrdc.lo \
+	libscicacsd_la-qvalz.lo libscicacsd_la-dfrmg.lo \
+	libscicacsd_la-hessl2.lo libscicacsd_la-rtitr.lo \
+	libscicacsd_la-watfac.lo libscicacsd_la-sszer.lo \
+	libscicacsd_la-mzdivq.lo libscicacsd_la-expan.lo \
+	libscicacsd_la-optml2.lo libscicacsd_la-wdegre.lo \
+	libscicacsd_la-phi.lo libscicacsd_la-dgeco.lo \
+	libscicacsd_la-ricd.lo libscicacsd_la-shrslv.lo \
+	libscicacsd_la-qhesz.lo libscicacsd_la-rilac.lo \
 	libscicacsd_la-scaleg.lo libscicacsd_la-arl2.lo \
 	libscicacsd_la-wesidu.lo libscicacsd_la-dzdivq.lo \
 	libscicacsd_la-arl2a.lo libscicacsd_la-wgeco.lo \
 	libscicacsd_la-lq.lo libscicacsd_la-outl2.lo \
-	libscicacsd_la-dhetr.lo libscicacsd_la-ereduc.lo \
-	libscicacsd_la-domout.lo libscicacsd_la-polmc.lo \
+	libscicacsd_la-dhetr.lo libscicacsd_la-domout.lo \
 	libscicacsd_la-rootgp.lo libscicacsd_la-feq.lo \
 	libscicacsd_la-dgedi.lo libscicacsd_la-fout.lo \
 	libscicacsd_la-deg1l2.lo libscicacsd_la-modul.lo \
@@ -129,9 +126,8 @@ am__objects_1 = libscicacsd_la-riccpack.lo libscicacsd_la-jacl2.lo \
 	libscicacsd_la-dlslv.lo libscicacsd_la-giv.lo \
 	libscicacsd_la-dqrsl.lo libscicacsd_la-storl2.lo \
 	libscicacsd_la-dqrsm.lo libscicacsd_la-calsca.lo \
-	libscicacsd_la-qitz.lo libscicacsd_la-fstair.lo \
-	libscicacsd_la-front.lo libscicacsd_la-calcsc.lo \
-	libscicacsd_la-wgefa.lo
+	libscicacsd_la-qitz.lo libscicacsd_la-front.lo \
+	libscicacsd_la-calcsc.lo libscicacsd_la-wgefa.lo
 am__objects_2 = libscicacsd_la-sb04pd.lo libscicacsd_la-ib01ad.lo \
 	libscicacsd_la-tb01wd.lo libscicacsd_la-ib01py.lo \
 	libscicacsd_la-mb01rx.lo libscicacsd_la-ib01md.lo \
@@ -180,7 +176,11 @@ am__objects_2 = libscicacsd_la-sb04pd.lo libscicacsd_la-ib01ad.lo \
 	libscicacsd_la-sb03oy.lo libscicacsd_la-sb03qx.lo \
 	libscicacsd_la-ib01rd.lo libscicacsd_la-sb03sy.lo \
 	libscicacsd_la-mb04nd.lo libscicacsd_la-mb01rd.lo \
-	libscicacsd_la-mb01vd.lo libscicacsd_la-sb10qd.lo
+	libscicacsd_la-mb01vd.lo libscicacsd_la-sb10qd.lo \
+	libscicacsd_la-ereduc.lo libscicacsd_la-fstair.lo \
+	libscicacsd_la-inva.lo libscicacsd_la-polmc.lo \
+	libscicacsd_la-ssxmc.lo libscicacsd_la-ZB03OD.lo \
+	libscicacsd_la-riccpack.lo
 am__objects_3 = libscicacsd_la-sci_f_hinf.lo \
 	libscicacsd_la-sci_f_zrankqr.lo libscicacsd_la-sci_f_tzer.lo \
 	libscicacsd_la-sci_f_residu.lo libscicacsd_la-sci_f_sylv.lo \
@@ -532,10 +532,16 @@ src/slicot/sb03sy.f \
 src/slicot/mb04nd.f \
 src/slicot/mb01rd.f \
 src/slicot/mb01vd.f \
-src/slicot/sb10qd.f
+src/slicot/sb10qd.f \
+src/slicot/ereduc.f \
+src/slicot/fstair.f \
+src/slicot/inva.f \
+src/slicot/polmc.f \
+src/slicot/ssxmc.f \
+src/slicot/ZB03OD.f \
+src/slicot/riccpack.f
 
 CACSD_FORTRAN_SOURCES = \
-src/fortran/riccpack.f \
 src/fortran/jacl2.f \
 src/fortran/onface.f \
 src/fortran/hhdml.f \
@@ -543,10 +549,8 @@ src/fortran/tild.f \
 src/fortran/degl2.f \
 src/fortran/dqrdc.f \
 src/fortran/qvalz.f \
-src/fortran/ssxmc.f \
 src/fortran/dfrmg.f \
 src/fortran/hessl2.f \
-src/fortran/ZB03OD.f \
 src/fortran/rtitr.f \
 src/fortran/watfac.f \
 src/fortran/sszer.f \
@@ -560,7 +564,6 @@ src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
 src/fortran/rilac.f \
-src/fortran/inva.f \
 src/fortran/scaleg.f \
 src/fortran/arl2.f \
 src/fortran/wesidu.f \
@@ -570,9 +573,7 @@ src/fortran/wgeco.f \
 src/fortran/lq.f \
 src/fortran/outl2.f \
 src/fortran/dhetr.f \
-src/fortran/ereduc.f \
 src/fortran/domout.f \
-src/fortran/polmc.f \
 src/fortran/rootgp.f \
 src/fortran/feq.f \
 src/fortran/dgedi.f \
@@ -588,7 +589,6 @@ src/fortran/storl2.f \
 src/fortran/dqrsm.f \
 src/fortran/calsca.f \
 src/fortran/qitz.f \
-src/fortran/fstair.f \
 src/fortran/front.f \
 src/fortran/calcsc.f \
 src/fortran/wgefa.f
@@ -1013,9 +1013,6 @@ libscicacsd_la-gw_cacsd3.lo: sci_gateway/c/gw_cacsd3.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-libscicacsd_la-riccpack.lo: src/fortran/riccpack.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-riccpack.lo `test -f 'src/fortran/riccpack.f' || echo '$(srcdir)/'`src/fortran/riccpack.f
-
 libscicacsd_la-jacl2.lo: src/fortran/jacl2.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-jacl2.lo `test -f 'src/fortran/jacl2.f' || echo '$(srcdir)/'`src/fortran/jacl2.f
 
@@ -1037,17 +1034,11 @@ libscicacsd_la-dqrdc.lo: src/fortran/dqrdc.f
 libscicacsd_la-qvalz.lo: src/fortran/qvalz.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-qvalz.lo `test -f 'src/fortran/qvalz.f' || echo '$(srcdir)/'`src/fortran/qvalz.f
 
-libscicacsd_la-ssxmc.lo: src/fortran/ssxmc.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ssxmc.lo `test -f 'src/fortran/ssxmc.f' || echo '$(srcdir)/'`src/fortran/ssxmc.f
-
 libscicacsd_la-dfrmg.lo: src/fortran/dfrmg.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dfrmg.lo `test -f 'src/fortran/dfrmg.f' || echo '$(srcdir)/'`src/fortran/dfrmg.f
 
 libscicacsd_la-hessl2.lo: src/fortran/hessl2.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-hessl2.lo `test -f 'src/fortran/hessl2.f' || echo '$(srcdir)/'`src/fortran/hessl2.f
-
-libscicacsd_la-ZB03OD.lo: src/fortran/ZB03OD.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ZB03OD.lo `test -f 'src/fortran/ZB03OD.f' || echo '$(srcdir)/'`src/fortran/ZB03OD.f
 
 libscicacsd_la-rtitr.lo: src/fortran/rtitr.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-rtitr.lo `test -f 'src/fortran/rtitr.f' || echo '$(srcdir)/'`src/fortran/rtitr.f
@@ -1088,9 +1079,6 @@ libscicacsd_la-qhesz.lo: src/fortran/qhesz.f
 libscicacsd_la-rilac.lo: src/fortran/rilac.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-rilac.lo `test -f 'src/fortran/rilac.f' || echo '$(srcdir)/'`src/fortran/rilac.f
 
-libscicacsd_la-inva.lo: src/fortran/inva.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-inva.lo `test -f 'src/fortran/inva.f' || echo '$(srcdir)/'`src/fortran/inva.f
-
 libscicacsd_la-scaleg.lo: src/fortran/scaleg.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-scaleg.lo `test -f 'src/fortran/scaleg.f' || echo '$(srcdir)/'`src/fortran/scaleg.f
 
@@ -1118,14 +1106,8 @@ libscicacsd_la-outl2.lo: src/fortran/outl2.f
 libscicacsd_la-dhetr.lo: src/fortran/dhetr.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dhetr.lo `test -f 'src/fortran/dhetr.f' || echo '$(srcdir)/'`src/fortran/dhetr.f
 
-libscicacsd_la-ereduc.lo: src/fortran/ereduc.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ereduc.lo `test -f 'src/fortran/ereduc.f' || echo '$(srcdir)/'`src/fortran/ereduc.f
-
 libscicacsd_la-domout.lo: src/fortran/domout.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-domout.lo `test -f 'src/fortran/domout.f' || echo '$(srcdir)/'`src/fortran/domout.f
-
-libscicacsd_la-polmc.lo: src/fortran/polmc.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-polmc.lo `test -f 'src/fortran/polmc.f' || echo '$(srcdir)/'`src/fortran/polmc.f
 
 libscicacsd_la-rootgp.lo: src/fortran/rootgp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-rootgp.lo `test -f 'src/fortran/rootgp.f' || echo '$(srcdir)/'`src/fortran/rootgp.f
@@ -1171,9 +1153,6 @@ libscicacsd_la-calsca.lo: src/fortran/calsca.f
 
 libscicacsd_la-qitz.lo: src/fortran/qitz.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-qitz.lo `test -f 'src/fortran/qitz.f' || echo '$(srcdir)/'`src/fortran/qitz.f
-
-libscicacsd_la-fstair.lo: src/fortran/fstair.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-fstair.lo `test -f 'src/fortran/fstair.f' || echo '$(srcdir)/'`src/fortran/fstair.f
 
 libscicacsd_la-front.lo: src/fortran/front.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
@@ -1477,6 +1456,27 @@ libscicacsd_la-mb01vd.lo: src/slicot/mb01vd.f
 
 libscicacsd_la-sb10qd.lo: src/slicot/sb10qd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb10qd.lo `test -f 'src/slicot/sb10qd.f' || echo '$(srcdir)/'`src/slicot/sb10qd.f
+
+libscicacsd_la-ereduc.lo: src/slicot/ereduc.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ereduc.lo `test -f 'src/slicot/ereduc.f' || echo '$(srcdir)/'`src/slicot/ereduc.f
+
+libscicacsd_la-fstair.lo: src/slicot/fstair.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-fstair.lo `test -f 'src/slicot/fstair.f' || echo '$(srcdir)/'`src/slicot/fstair.f
+
+libscicacsd_la-inva.lo: src/slicot/inva.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-inva.lo `test -f 'src/slicot/inva.f' || echo '$(srcdir)/'`src/slicot/inva.f
+
+libscicacsd_la-polmc.lo: src/slicot/polmc.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-polmc.lo `test -f 'src/slicot/polmc.f' || echo '$(srcdir)/'`src/slicot/polmc.f
+
+libscicacsd_la-ssxmc.lo: src/slicot/ssxmc.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ssxmc.lo `test -f 'src/slicot/ssxmc.f' || echo '$(srcdir)/'`src/slicot/ssxmc.f
+
+libscicacsd_la-ZB03OD.lo: src/slicot/ZB03OD.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ZB03OD.lo `test -f 'src/slicot/ZB03OD.f' || echo '$(srcdir)/'`src/slicot/ZB03OD.f
+
+libscicacsd_la-riccpack.lo: src/slicot/riccpack.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-riccpack.lo `test -f 'src/slicot/riccpack.f' || echo '$(srcdir)/'`src/slicot/riccpack.f
 
 libscicacsd_la-sci_f_hinf.lo: sci_gateway/fortran/sci_f_hinf.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sci_f_hinf.lo `test -f 'sci_gateway/fortran/sci_f_hinf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_hinf.f
