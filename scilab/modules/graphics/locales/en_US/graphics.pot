@@ -945,12 +945,6 @@ msgstr ""
 msgid "Default axes cannot be create.\n"
 msgstr ""
 #
-# File: src/c/InitObjects.c, line: 511
-# File: src/c/InitObjects.c, line: 512
-#, c-format
-msgid "Graphic window number %d"
-msgstr ""
-#
 # File: src/c/InitObjects.c, line: 893
 msgid "This object has not any graphic mode\n"
 msgstr ""
