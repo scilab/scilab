@@ -1,6 +1,6 @@
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) 2007 - INRIA - Allan CORNET
-; 
+;
 ; This file is distributed under the same license as the Scilab package.
 ;
 ;##############################################################################################################
@@ -12,6 +12,9 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define INTERPOLATION "interpolation"
+;
+Source: bin\interpolation_f.dll; DestDir: {app}\bin; Components: {#COMPN_INTERP}
+Source: bin\interpolation.dll; DestDir: {app}\bin; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\VERSION.xml; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\readme.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}

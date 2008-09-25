@@ -39,7 +39,6 @@
 #pragma comment(lib,"../../bin/slatec_f.lib")
 #pragma comment(lib,"../../bin/string_f.lib")
 #pragma comment(lib,"../../bin/io_f.lib")
-#pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/data_structures_f.lib")
 #pragma comment(lib,"../../libs/boolean_f.lib")
 #pragma comment(lib,"../../libs/double_f.lib")

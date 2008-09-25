@@ -14,8 +14,6 @@
 @del /Q double_f.vcdef
 @del /Q elementary_functions.vcdef
 @del /Q elementary_functions_f.vcdef
-@del /Q interpolation.vcdef
-@del /Q interpolation_f.vcdef
 @del /Q polynomials.vcdef
 @del /Q polynomials_f.vcdef
 @del /Q signal.vcdef
