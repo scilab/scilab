@@ -47,7 +47,7 @@
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
-#include "SetUiObjectTag.h"
+#include "SetUiobjectTag.h"
 
 #include "../../../tclsci/includes/GedManagement.h"
 
@@ -684,11 +684,6 @@ void AllGraphWinDelete( void )
     FREE (ArrayWGraph);
     ArrayWGraph=NULL;
   }
-}
-/*--------------------------------------------------------------------------------*/
-int sciDestroyConsole( sciPointObj * pThis )
-{
-  return sciStandardDestroyOperations( pThis ) ;
 }
 /*--------------------------------------------------------------------------------*/
 /**
