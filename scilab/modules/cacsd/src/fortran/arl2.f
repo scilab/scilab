@@ -1,4 +1,3 @@
-
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA - M Cardelli, L Baratchart  INRIA sophia-Antipolis 1989, S Steer 
 c 
