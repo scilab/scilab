@@ -79,3 +79,34 @@ int SetUiobjectTag(sciPointObj* sciObj, size_t stackPointer, int valueType, int 
     }
 }
 
+void destroyUiobjectTag(sciPointObj * pobj) {
+
+	switch(sciGetEntityType(pobj))
+	{
+	case SCI_UICONTROL:
+		if (pUICONTROL_FEATURE(pobj)->tag != NULL)
+		{
+			delete[] pUICONTROL_FEATURE(pobj)->tag;
+			pUICONTROL_FEATURE(pobj)->tag = NULL;
+		}
+		break;
+	case SCI_UIMENU:
+		if (pUIMENU_FEATURE(pobj)->tag != NULL)
+		{
+			delete[] pUIMENU_FEATURE(pobj)->tag;
+			pUIMENU_FEATURE(pobj)->tag = NULL;
+		}
+		break;
+	case SCI_FIGURE:
+		if (pFIGURE_FEATURE(pobj)->tag != NULL)
+		{
+			delete[] pUIMENU_FEATURE(pobj)->tag;
+			pFIGURE_FEATURE(pobj)->tag = NULL;
+		}
+		break;
+	default:
+		sciprint(_("No '%s' property for this object.\n"), "Tag");
+		break;
+	}
+
+}

@@ -47,6 +47,7 @@
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
+#include "SetUiObjectTag.h"
 
 #include "../../../tclsci/includes/GedManagement.h"
 
@@ -247,12 +248,7 @@ int DestroyFigure (sciPointObj * pthis)
 
   FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   
-  if (pFIGURE_FEATURE(pthis)->tag != NULL)
-  {
-    /* TO DO : Memory leaks not a FREE but a delete [] */
-    /* allocated in setUiobjectTag.cpp by a new */
-    FREE( pFIGURE_FEATURE(pthis)->tag ) ;
-  }
+	destroyUiobjectTag(pthis);
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   pFIGURE_FEATURE(pthis)->pModelData = NULL;
   sciStandardDestroyOperations(pthis) ;

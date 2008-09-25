@@ -16,7 +16,7 @@
 #include "ObjectStructure.h"
 
 /**
- * Set the tag property of a uicontrol or a uimenu
+ * Set the tag property of a uicontrol, a uimenu or a figure
  *
  * @param pobj Scilab object corresponding to the uicontrol
  * @param stackPointer position on the stack of the tag value to set
@@ -26,5 +26,11 @@
  * @return true if the tag property set has been correcty done
  */
 int SetUiobjectTag(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+
+/**
+ * Destroy the tag for a uicontrol a uimenu or a figure handle.
+ * It must be done in C++ code since it must use delete[].
+ */
+void destroyUiobjectTag(sciPointObj * pobj);
 
 #endif /* __SET_UIOBJECT_TAG_H__ */
