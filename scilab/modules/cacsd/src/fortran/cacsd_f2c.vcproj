@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="cacsd_f2c"
 	ProjectGUID="{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}"
 	RootNamespace="cacsd_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -400,10 +400,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ereduc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\expan.c"
 				>
 			</File>
@@ -420,10 +416,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fstair.c"
-				>
-			</File>
-			<File
 				RelativePath=".\giv.c"
 				>
 			</File>
@@ -433,10 +425,6 @@
 			</File>
 			<File
 				RelativePath=".\hhdml.c"
-				>
-			</File>
-			<File
-				RelativePath=".\inva.c"
 				>
 			</File>
 			<File
@@ -472,10 +460,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\polmc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\qhesz.c"
 				>
 			</File>
@@ -485,10 +469,6 @@
 			</File>
 			<File
 				RelativePath=".\qvalz.c"
-				>
-			</File>
-			<File
-				RelativePath=".\riccpack.c"
 				>
 			</File>
 			<File
@@ -620,10 +600,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ssxmc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sszer.c"
 				>
 			</File>
@@ -657,10 +633,6 @@
 			</File>
 			<File
 				RelativePath=".\wgesl.c"
-				>
-			</File>
-			<File
-				RelativePath=".\ZB03OD.c"
 				>
 			</File>
 		</Filter>
@@ -744,10 +716,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ereduc.f"
-				>
-			</File>
-			<File
 				RelativePath=".\expan.f"
 				>
 			</File>
@@ -764,10 +732,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fstair.f"
-				>
-			</File>
-			<File
 				RelativePath=".\giv.f"
 				>
 			</File>
@@ -777,10 +741,6 @@
 			</File>
 			<File
 				RelativePath=".\hhdml.f"
-				>
-			</File>
-			<File
-				RelativePath=".\inva.f"
 				>
 			</File>
 			<File
@@ -816,10 +776,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\polmc.f"
-				>
-			</File>
-			<File
 				RelativePath=".\qhesz.f"
 				>
 			</File>
@@ -829,10 +785,6 @@
 			</File>
 			<File
 				RelativePath=".\qvalz.f"
-				>
-			</File>
-			<File
-				RelativePath=".\riccpack.f"
 				>
 			</File>
 			<File
@@ -964,10 +916,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ssxmc.f"
-				>
-			</File>
-			<File
 				RelativePath=".\sszer.f"
 				>
 			</File>
@@ -1001,10 +949,6 @@
 			</File>
 			<File
 				RelativePath=".\wgesl.f"
-				>
-			</File>
-			<File
-				RelativePath=".\ZB03OD.f"
 				>
 			</File>
 		</Filter>
