@@ -63,7 +63,7 @@ int set_clip_state_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   {
-    sciprint("Value must be 'clipgrf', 'on' or 'off'.\n") ;
+    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

@@ -57,7 +57,7 @@ int set_y_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else  
   {
-    sciprint(_("%s: Wrong type for second input argument: '%s', '%s' or '%s' expected.\n"), "set_y_location_property","left","right","origin") ;
+    sciprint(_("%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"), "set_y_location_property",2, "left","right","origin") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

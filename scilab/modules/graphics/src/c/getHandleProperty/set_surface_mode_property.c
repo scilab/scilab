@@ -40,7 +40,7 @@ int set_surface_mode_property( sciPointObj * pobj, size_t stackPointer, int valu
        sciGetEntityType(pobj) != SCI_FAC3D  &&
        sciGetEntityType(pobj) != SCI_SURFACE   )
   {
-    sciprint("Surface_mode can not be set with this object, use line_mode.\n") ;
+    sciprint(_("Surface_mode can not be set with this object, use %s.\n"),"line_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_surface_mode_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint("Value must be 'on' or 'off'.\n") ;
+    sciprint(_("Wrong value for input argument: '%s' or '%s' expected.\n"),"on","off") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

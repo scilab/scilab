@@ -39,7 +39,7 @@ int set_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( value > 10 || value < 0 )
   {
-    sciprint("The value must be in [0 10].\n") ;
+    sciprint(_("Wrong value: In [%d %d] expected.\n"),0,10) ;
     return SET_PROPERTY_ERROR ;
   }
   

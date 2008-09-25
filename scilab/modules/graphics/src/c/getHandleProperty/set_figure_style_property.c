@@ -42,7 +42,7 @@ int set_figure_style_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( isStringParamEqual( stackPointer, "old" ) )
   {
-    sciprint("Old graphic mode is no longer available. Please refer to the set help page.\n") ;
+    sciprint(_("Old graphic mode is no longer available. Please refer to the set help page.\n")) ;
     return SET_PROPERTY_ERROR ;
   }
   else if ( isStringParamEqual( stackPointer, "new" ) )
@@ -53,7 +53,7 @@ int set_figure_style_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint("Figure style must be 'old' or 'new'.\n") ;
+    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"old","new");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

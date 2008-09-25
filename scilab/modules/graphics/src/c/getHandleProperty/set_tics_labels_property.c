@@ -45,13 +45,13 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( nbRow != 1)
   {
-    sciprint(_("%s: Wrong type for second input argument: row vector expected.\n"), "set_tics_labels_property");
+    sciprint(_("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_tics_labels_property",2);
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->nb_tics_labels > nbCol )
   {
-    sciprint("Value must have at least %d elements",pAXES_FEATURE(pobj)->nb_tics_labels) ;
+    sciprint(_("Value must have at least %d elements.\n"),pAXES_FEATURE(pobj)->nb_tics_labels) ;
     return SET_PROPERTY_ERROR ;
   }
 

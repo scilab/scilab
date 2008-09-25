@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid " For this demo the current stack size is not enought "
@@ -36,9 +36,8 @@ msgstr "           ensuite re-saisissez scisptdemo()                "
 msgid "               CLICK TO  CONTINUE                    "
 msgstr "               CLIQUEZ POUR CONTINUER                    "
 
-#, fuzzy
 msgid "how to use this stuff"
-msgstr "comment utiliser cette chose"
+msgstr ""
 
 msgid "display a speed comparison test"
 msgstr "afficher un test comparatif de vitesse"
@@ -64,13 +63,10 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
 
-#, fuzzy
 msgid ""
 "\n"
 " approximate (lM,vM) with the iterative power method \n"
 msgstr ""
-"\n"
-" approxime (lM,vM) avec la méthode des puissances itérées \n"
 
 msgid " ----------------------------------------------------- \n"
 msgstr " ----------------------------------------------------- \n"
@@ -79,9 +75,9 @@ msgstr " ----------------------------------------------------- \n"
 msgid " iteration %3d : lM = %e  \n"
 msgstr " itération %3d : lM = %e  \n"
 
-#, fuzzy, c-format
+#, c-format
 msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr " Attention : pour la convergence lM à rtol = %e \n"
+msgstr ""
 
 #, c-format
 msgid "           don''t reached after %d iterations (got only %e) \n"
@@ -108,22 +104,18 @@ msgid " Warning : for lm convergence at rtol = %e \n"
 msgstr " Attention : pour la convergence lm à rtol = %e \n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for first input argument: Square sparse matrix expected.\n"
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour le premier argument d'entrée: Une matrice creuse "
-"carrée attendue.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for first input argument: Square sparse matrix expected.\n"
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour le premier argument d'entrée: Une matrice creuse "
-"carrée attendue.\n"
 
 #, c-format
 msgid "%s: The matrix and the LU factors have not the same dimension !\n"
@@ -148,11 +140,9 @@ msgstr "%s: Mauvais nombre d'argument(s) en entrée: Au moins %d attendus.\n"
 msgid "%s: The file contains a rhs but it will not be read !"
 msgstr "%s: Le fichier contient un rhs mais ne sera pas lu !"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
 msgstr ""
-"%s: actuellement, ne lit pas les matrices creuses non assemblées "
-"(élémentaires)."
 
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
@@ -220,12 +210,10 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr "%s: Plus de mémoire disponible.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: No more memory : increase stacksize %d supplementary words needed.\n"
 msgstr ""
-"%s: Plus de mémoire disponible: augmentez stacksize %d mots supplémentaires "
-"sont requis.\n"
 
 #, c-format
 msgid ""

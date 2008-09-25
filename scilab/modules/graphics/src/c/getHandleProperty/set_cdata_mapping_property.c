@@ -83,7 +83,7 @@ int set_cdata_mapping_property( sciPointObj * pobj, size_t stackPointer, int val
   }
   else
   {
-    sciprint("cdata_mapping value must be 'scaled' or 'direct'.\n") ;
+    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"scaled","direct");
     return SET_PROPERTY_ERROR ;
   }
 

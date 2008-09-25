@@ -45,7 +45,7 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint("Argument must be a vector of size 4.\n");
+    sciprint(_("Argument must be a vector of size %d.\n"),4);
     return SET_PROPERTY_ERROR ;
   }
 

@@ -54,7 +54,7 @@ int set_alignment_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   }
   else
   {
-    sciprint(_("%s: Wrong type for second input argument: '%s','%s' or '%s' expected.\n"), "set_alignment_property","left","center","right");
+    sciprint(_("%s: Wrong type for input argument #%d: '%s','%s' or '%s' expected.\n"), "set_alignment_property",2,"left","center","right");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

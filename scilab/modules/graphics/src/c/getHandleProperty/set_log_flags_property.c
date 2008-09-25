@@ -56,14 +56,14 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
   if(cmpteur != nbtics)
   {
     if((ticklabel=(char **)MALLOC(cmpteur*sizeof(char *)))==NULL){
-      sciprint("No more place for allocating ticklabel");
+      sciprint(_("%s: No more memory.\n"),"CaseLogflagN");
     }
 
     cmpteur2 = 0;
     offset = nbtics - cmpteur;
     for(i=0;i<cmpteur;i++){
       if((ticklabel[cmpteur2]=(char *)MALLOC((strlen(u_xlabels[i+offset])+1)*sizeof(char )))==NULL){
-        sciprint("No more place for allocating ticklabel");
+      sciprint(_("%s: No more memory.\n"),"CaseLogflagN");
       }
       strcpy(ticklabel[cmpteur2],u_xlabels[i+offset]);
       cmpteur2++;
@@ -130,7 +130,7 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   
   if ( nbRow * nbCol != 2 && nbRow * nbCol != 3 )
   {
-    sciprint("log_flags must have a size of 2 or 3.\n") ;
+    sciprint(_("%s: Wrong size for argument: %d or %d expected.\n"),"log_flags",2,3) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -138,7 +138,7 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   if (   (flags[0] != 'n' && flags[0] != 'l')
       || (flags[1] != 'n' && flags[1] != 'l') )
   {
-    sciprint("flags must be 'n' or 'l'.\n") ;
+    sciprint(_("%s: Wrong value for argument: '%s' or '%s' expected.\n"),"flags","n","l");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -151,7 +151,7 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   /* X axes */
   if( ( ppSubWin->SRect[0] <= 0. || ppSubWin->SRect[1] <= 0.) && flags[0] == 'l' )
   {
-    sciprint("Error: data_bounds on x axis must be strictly positive to switch to logarithmic mode.\n") ;
+    sciprint(_("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"x");
     return SET_PROPERTY_ERROR ;
   }
   ppSubWin->axes.u_xlabels = ReBuildUserTicks( curLogFlags[0], flags[0],
@@ -163,7 +163,7 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   /* Y axes */
   if( ( ppSubWin->SRect[2] <= 0. || ppSubWin->SRect[3] <= 0. ) && flags[1] == 'l' )
   { 
-      sciprint("Error: data_bounds on y axis must be strictly positive to switch to logarithmic mode.\n");
+      sciprint(_("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"y");
       return SET_PROPERTY_ERROR ;
   }
   ppSubWin->axes.u_ylabels = ReBuildUserTicks( curLogFlags[1], flags[1],  
@@ -184,7 +184,7 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
     if ( ( ppSubWin->SRect[4] <= 0. || ppSubWin->SRect[5] <= 0. ) && flags[2] == 'l' )
     {
-      sciprint("Error: data_bounds on z axis must be strictly positive to switch to logarithmic mode") ;
+      sciprint(_("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"z");
       return SET_PROPERTY_ERROR ;
     }
 

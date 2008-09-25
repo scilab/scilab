@@ -8,14 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2008-08-17 20:01+0000\n"
-"Last-Translator: Tao Wei <Unknown>\n"
+"PO-Revision-Date: 2008-09-17 08:20+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
 
 msgid "Incorrect assignment.\n"
 msgstr "不正确的赋值\n"
@@ -25,7 +37,7 @@ msgstr "等待右括号\n"
 
 #, c-format
 msgid "Undefined variable: %s\n"
-msgstr ""
+msgstr "未定义的变量：%s\n"
 
 msgid "Inconsistent column/row dimensions.\n"
 msgstr "不一致的列维数／行维数。\n"
@@ -71,15 +83,15 @@ msgstr "请使用 stacksize 函数增加栈大小。\n"
 
 #, c-format
 msgid "Memory used for variables: %d\n"
-msgstr ""
+msgstr "变量已用的内存：%d\n"
 
 #, c-format
 msgid "Intermediate memory needed: %d\n"
-msgstr ""
+msgstr "需要的临时内存：%d\n"
 
 #, c-format
 msgid "Total memory available: %d\n"
-msgstr ""
+msgstr "总共可用的内存：%d\n"
 
 msgid "Too many variables!\n"
 msgstr "变量太多！\n"
@@ -153,7 +165,7 @@ msgid "Incorrect function at line %d.\n"
 msgstr "在第%d行存在不正确的函数。\n"
 
 msgid "Incorrect function.\n"
-msgstr ""
+msgstr "不正确的函数。\n"
 
 msgid "Wrong file name.\n"
 msgstr "错误的文件名。\n"
@@ -239,9 +251,8 @@ msgstr "函数中有不正确的#输出。\n"
 msgid "Wrong size for argument: Incompatible dimensions.\n"
 msgstr "参数的大小错误：不兼容的维数。\n"
 
-#, fuzzy
 msgid "Direct access : give format.\n"
-msgstr "直接读取：指定格式。\n"
+msgstr ""
 
 #, c-format
 msgid "End of file at line %d.\n"
@@ -486,15 +497,13 @@ msgstr "非零元素的索引不兼容。\n"
 msgid "Logical unit number should be larger than %d.\n"
 msgstr "逻辑单元数字必须大于%d。\n"
 
-#, fuzzy
 msgid "Function not bounded from below.\n"
-msgstr "下面的函数不是有界函数。\n"
+msgstr ""
 
-#, fuzzy
 msgid ""
 "Problem may be unbounded: too high distance between two consecutive "
 "iterations.\n"
-msgstr "问题可能无界：两个连续迭代之间的距离太远。\n"
+msgstr ""
 
 msgid "Inconsistent constraints.\n"
 msgstr "不一致的限制。\n"
@@ -526,9 +535,9 @@ msgstr "内存太少。\n"
 msgid "%s: Problem with initial constants in simul.\n"
 msgstr "%s：仿真中的初始限制错误。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
-msgstr "%s：界限和初始猜测不兼容。\n"
+msgstr ""
 
 msgid "%: This method is NOT implemented.\n"
 msgstr "%：该方法尚未实现。\n"
@@ -546,7 +555,7 @@ msgstr "%s：不正确的界限。\n"
 
 #, c-format
 msgid "Variable : %s must be a list\n"
-msgstr ""
+msgstr "变量：%s必须为一个list\n"
 
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
@@ -597,9 +606,9 @@ msgstr "%s：参数%d的类型错误：应该为函数或者字符串（外部�
 msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
 msgstr "%s：参数%d的类型错误：应该为多项式。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
-msgstr "%s：参数%d的类型错误：应该为working整数矩阵。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
@@ -662,9 +671,8 @@ msgstr "引用已经被清除的全局变量%s。\n"
 msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
 msgstr ""
 
-#, fuzzy
 msgid "semi def fails.\n"
-msgstr "半正定失败。\n"
+msgstr ""
 
 msgid "Wrong type for first input argument: Single string expected.\n"
 msgstr "第一个输入参数的类型错误：应该为一个字符串。\n"
@@ -699,12 +707,12 @@ msgid "You cannot link more functions, maxentry reached.\n"
 msgstr "你不能链接更多函数，已经达到最大入口。\n"
 
 #, c-format
-msgid "File %s already exists or directory write access denied.\n"
-msgstr "文件%s已经存在，或者目录禁止写操作。\n"
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
 
 #, c-format
-msgid "File %s does not exist or read access denied.\n"
-msgstr "文件%s不存在，或者禁止读操作。\n"
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr ""
 
 msgid "Binary direct acces files must be opened by 'file'.\n"
 msgstr "二进制直接读文件必须以'file'方式打开。\n"
@@ -741,9 +749,9 @@ msgstr "参数%d的值错误：应该为空字符串。\n"
 msgid "Recursive extraction is not valid in this context.\n"
 msgstr "在此处上下文中的递归提取不正确。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: ipar dimensioned at least 11.\n"
-msgstr "%s：ipar是少为11维。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: ltol must be of size ipar(4).\n"
@@ -803,9 +811,9 @@ msgstr "%s和%s必须列数相等。\n"
 msgid "%s and %s must have equal dimensions.\n"
 msgstr "%s和%s必须同样大小。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid return value for function passed in arg %d.\n"
-msgstr "在参数%d处输入的函数的返回值错误。\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -824,14 +832,12 @@ msgstr "参数大小不定，此处不允许使用a*eys()(arg %d）。\n"
 msgid "endfunction is missing.\n"
 msgstr "缺少endfunction。\n"
 
-#, fuzzy
 msgid ""
 "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
-msgstr "指令左侧：等待一个点活一个左括号。\n"
+msgstr ""
 
-#, fuzzy
 msgid "Instruction left hand side: waiting for a name.\n"
-msgstr "指令左侧：等待一个名字。\n"
+msgstr ""
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "varargout关键词在此处不能使用。\n"
@@ -848,18 +854,6 @@ msgstr ""
 
 msgid "\"unknown data\""
 msgstr "\"未知数据\""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr ""
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr ""
 
 msgid "Warning :\n"
 msgstr "警告：\n"
@@ -892,9 +886,8 @@ msgstr "矩阵接近奇异或病态scaled. rcond=%s\n"
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "计算最小二乘结（参考 lsq）。\n"
 
-#, fuzzy
 msgid "eigenvectors are badly conditioned.\n"
-msgstr "特征向量badly conditioned。\n"
+msgstr ""
 
 #, c-format
 msgid "results may be inaccurate. rcond = %s\n"
@@ -917,9 +910,9 @@ msgstr ""
 msgid "Norm of projected gradient lower than %s.\n"
 msgstr "投影后的梯度的范数小于%s。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "at last iteration f decreases by less than %s.\n"
-msgstr "最终迭代f降低了少于%s。\n"
+msgstr ""
 
 msgid "Optimization stops because too small variations for x.\n"
 msgstr "优化停止，因为对x来说变化太小。\n"
@@ -1001,11 +994,11 @@ msgstr "您的变量是：\n"
 
 #, c-format
 msgid "Using %s elements out of %s.\n"
-msgstr "使用了%s个元素，总共%s个。\n"
+msgstr "使用了%s个元素，总共可用数为%s个。\n"
 
 #, c-format
 msgid " and %s variables out of %s.\n"
-msgstr " 并且%s个变量，总共%s个。\n"
+msgstr " 使用了%s个变量，总共可用数为%s个。\n"
 
 msgid "System functions:\n"
 msgstr "系统函数：\n"
@@ -1219,4 +1212,7 @@ msgstr ""
 msgid ""
 "%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
+msgstr ""
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr ""

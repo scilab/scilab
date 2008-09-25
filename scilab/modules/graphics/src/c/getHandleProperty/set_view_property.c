@@ -56,7 +56,7 @@ int set_view_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
   }
   else
   {
-    sciprint(_("%s: Wrong type for second input argument: '%s' or '%s' expected.\n"), "set_view_property","2d","3d") ;
+    sciprint(_("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_view_property",2,"2d","3d") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

@@ -14,71 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数向量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s：输入参数#%d的大小错误：必须介于%d与%d之间。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
-msgstr "%s：输入参数的大小错误：应该为同样的大小。\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr "%s：输入参数的类型错误：必须为标量。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr "%s：输入参数的值错误：必须介于%d与%d之间。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s：输入参数的数目错误。\n"
-
-msgid "Jan"
-msgstr "1月"
-
-msgid "Feb"
-msgstr "2月"
-
-msgid "Mar"
-msgstr "3月"
-
-msgid "Apr"
-msgstr "4月"
-
-msgid "May"
-msgstr "5月"
-
-msgid "Jun"
-msgstr "6月"
-
-msgid "Jul"
-msgstr "7月"
-
-msgid "Aug"
-msgstr "8月"
-
-msgid "Sep"
-msgstr "9月"
-
-msgid "Oct"
-msgstr "10月"
-
-msgid "Nov"
-msgstr "11月"
-
-msgid "Dec"
-msgstr "12月"
-
-msgid "   M      Tu     W      Th     F     Sat     Sun"
-msgstr "   周一 周二 周三 周四 周五 周六 周日"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -135,6 +72,57 @@ msgstr "星期四"
 msgid "Friday"
 msgstr "星期五"
 
+msgid "Jan"
+msgstr "1月"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgstr "%s：输入参数的类型错误：必须为标量。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr "%s：输入参数的值错误：必须介于%d与%d之间。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+msgid "Feb"
+msgstr "2月"
+
+msgid "Mar"
+msgstr "3月"
+
+msgid "Apr"
+msgstr "4月"
+
+msgid "May"
+msgstr "5月"
+
+msgid "Jun"
+msgstr "6月"
+
+msgid "Jul"
+msgstr "7月"
+
+msgid "Aug"
+msgstr "8月"
+
+msgid "Sep"
+msgstr "9月"
+
+msgid "Oct"
+msgstr "10月"
+
+msgid "Nov"
+msgstr "11月"
+
+msgid "Dec"
+msgstr "12月"
+
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   周一 周二 周三 周四 周五 周六 周日"
+
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s：第一个输入参数值错误：应该为%d。\n"
@@ -185,21 +173,20 @@ msgid "%s: Wrong number of input argument.\n"
 msgstr "%s：输入参数数目错误。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr "%s：输入参数的大小错误：应该为同样的大小。\n"
+
+#, c-format
 msgid "%s: Wrong type for input arguments: Integer expected.\n"
 msgstr "%s：输入参数的类型错误：应该为整数。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s：输入参数#%d的值错误：必须 > %d。\n"
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数向量。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr "%s：输入参数#%d的值错误：必须 < %d。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s：输入参数#%d的大小错误：必须介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -212,3 +199,16 @@ msgstr "%s：出现错误：%s\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为整数或者'%s'。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s：输入参数#%d的值错误：必须 > %d。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
+msgstr "%s：输入参数#%d的值错误：必须 < %d。\n"

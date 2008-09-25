@@ -28,7 +28,7 @@ int get_filled_property( sciPointObj * pobj )
 
   if (sciGetEntityType(pobj) != SCI_SUBWIN)
   {
-    sciprint(_("%s property undefined for this object.\n"), "filled") ;
+    sciprint(_("%s property does not exist for this handle.\n"), "filled") ;
     return -1;
   }
 

@@ -62,7 +62,7 @@ int set_text_box_mode_property( sciPointObj * pobj, size_t stackPointer, int val
   }
   else
   {
-    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_text_box_mode_property","off', 'centered","filled");
+    sciprint(_("%s: Wrong value for input argument: '%s', '%s' or '%s' expected.\n"),"set_text_box_mode_property","off", "centered","filled");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

@@ -33,7 +33,7 @@ int set_callback_type_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if ( !isParameterDoubleMatrix(valueType) || nbRow !=1 || nbCol != 1 )
   {
-    sciprint(_("Incompatible value for property %s: must be -1, 0, 1 or 2.\n"),"callback_type") ;
+    sciprint(_("Incompatible value for property %s: Must be %d, %d, %d or %d.\n"),"callback_type",-1,0,1,2) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -41,7 +41,7 @@ int set_callback_type_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if (cbType < -1 || cbType > 2)
     {
-      sciprint(_("Incompatible value for property %s: must be -1, 0, 1 or 2.\n"),"callback_type") ;
+      sciprint(_("Incompatible value for property %s: Must be %d, %d, %d or %d.\n"),"callback_type",-1,0,1,2) ;
       return SET_PROPERTY_ERROR ;
     }
 

@@ -1,158 +1,100 @@
-# Localization of the module metanet
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 18:15+0100\n"
+"PO-Revision-Date: 2008-09-24 14:30+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-# File: src/c/nometanet/nometanet.c, line: 11
-msgid "Scilab module metanet not installed.\n"
-msgstr "Module Scilab metanet non installé.\n"
-
-#
-# File: src/c/saveg.c, line: 38
-# File: src/c/paths.c, line: 47
-# File: src/c/paths.c, line: 67
-# File: src/c/paths.c, line: 79
-# File: src/c/paths.c, line: 115
-# File: src/c/paths.c, line: 193
-# File: src/c/paths.c, line: 210
-# File: src/c/dmtree.c, line: 24
-# File: src/c/dmtree.c, line: 28
-# File: src/c/dmtree.c, line: 32
-# File: src/c/dmtree.c, line: 36
-# File: src/c/dmtree.c, line: 40
-# File: src/c/dmtree.c, line: 44
-# File: src/c/dmtree.c, line: 48
-# File: src/c/dmtree.c, line: 52
-# File: src/c/loadg.c, line: 70
-# File: src/c/loadg.c, line: 133
-# File: src/c/loadg.c, line: 139
-# File: src/c/loadg.c, line: 144
-# File: src/c/loadg.c, line: 149
-# File: src/c/loadg.c, line: 154
-# File: src/c/loadg.c, line: 159
-# File: src/c/loadg.c, line: 164
-# File: src/c/loadg.c, line: 169
-# File: src/c/loadg.c, line: 175
-# File: src/c/loadg.c, line: 183
-# File: src/c/loadg.c, line: 189
-# File: src/c/loadg.c, line: 194
-# File: src/c/loadg.c, line: 199
-# File: src/c/loadg.c, line: 204
-# File: src/c/loadg.c, line: 209
-# File: src/c/loadg.c, line: 214
-# File: src/c/loadg.c, line: 220
-# File: src/c/loadg.c, line: 225
-# File: src/c/loadg.c, line: 230
-# File: src/c/loadg.c, line: 235
-# File: src/c/loadg.c, line: 240
-# File: src/c/loadg.c, line: 245
-# File: src/c/loadg.c, line: 250
-# File: src/c/loadg.c, line: 272
-# File: src/c/loadg.c, line: 291
-# File: src/c/loadg.c, line: 300
-# File: src/c/loadg.c, line: 315
-# File: src/c/loadg.c, line: 363
-# File: src/c/loadg.c, line: 370
-# File: src/c/loadg.c, line: 394
-# File: src/c/transc.c, line: 16
-# File: src/c/transc.c, line: 20
-# File: src/c/transc.c, line: 25
-# File: src/c/transc.c, line: 29
-# File: src/c/transc.c, line: 33
-# File: src/c/transc.c, line: 37
-# File: src/c/transc.c, line: 41
-# File: src/c/transc.c, line: 45
-# File: src/c/transc.c, line: 49
-# File: src/c/transc.c, line: 53
-# File: src/c/transc.c, line: 57
-# File: src/c/transc.c, line: 61
-# File: src/c/transc.c, line: 65
-# File: src/c/transc.c, line: 69
-# File: src/c/transc.c, line: 73
-# File: src/c/connex.c, line: 9
-msgid "Running out of memory"
-msgstr "Pas assez de mémoire"
-
-#
-# File: src/c/saveg.c, line: 46
-# File: src/c/saveg.c, line: 54
-# File: src/c/loadg.c, line: 327
-# File: src/c/loadg.c, line: 337
 #, c-format
-msgid "Bad graph file. Node \"%s\" is duplicated"
-msgstr "Mauvais fichier graphe. Le sommet \"%s\" est dupliqué"
+msgid "%s: First argument must be a vector of size greater or equal to 2.\n"
+msgstr ""
 
-#
-# File: src/c/saveg.c, line: 96
-# File: src/c/loadg.c, line: 57
+#, c-format
+msgid ""
+"%s: Second argument must be a vector with same dimension as the first one.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Third argument must be a vector of size greater or equal to 1.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: First argument must be a vector with positive integer values.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Second argument must be a vector with positive integer values.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Third argument must be a vector with positive integer values.\n"
+msgstr ""
+
+msgid "&File"
+msgstr ""
+
+msgid "&Tools"
+msgstr "&Outils"
+
+msgid "&Edit"
+msgstr "&Edition"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "Metanet"
+msgstr ""
+
+msgid "Running out of memory"
+msgstr ""
+
+#, c-format
+msgid "\"%s\" is a directory"
+msgstr "Â« %s Â» est un rÃ©pertoire"
+
 #, c-format
 msgid "Directory \"%s\" does not exist"
-msgstr "Le répertoire \"%s\" n'existe pas"
-
-#
-# File: src/c/saveg.c, line: 117
-#, c-format
-msgid "Unable to write file in directory %s, check access"
 msgstr ""
-"Impossible d'écrire le fichier dans le répertoire %s, vérifiez les droits"
 
-#
-# File: src/c/paths.c, line: 37
-# File: src/c/paths.c, line: 42
-# File: src/c/paths.c, line: 85
-# File: src/c/paths.c, line: 91
+#, c-format
+msgid "Graph file \"%s/%s.graph\" does not exist"
+msgstr ""
+
+#, c-format
+msgid "Unable to open file \"%s/%s.graph\""
+msgstr ""
+
+#, c-format
+msgid "Bad graph file. Node \"%s\" is duplicated"
+msgstr ""
+
+#, c-format
+msgid "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found"
+msgstr ""
+
 #, c-format
 msgid "Bad internal node number %d"
 msgstr ""
 
-#
-# File: src/c/paths.c, line: 122
 #, c-format
 msgid "Bad internal arc number %d"
 msgstr ""
 
-#
-# File: src/c/loadg.c, line: 44
 #, c-format
-msgid "Cannot find file \"%s\""
-msgstr "Impossible de trouver le fichier \"%s\""
-
-#
-# File: src/c/loadg.c, line: 46
-#, c-format
-msgid "\"%s\" is a directory"
-msgstr "\"%s\" est un répertoire"
-
-#
-# File: src/c/loadg.c, line: 80
-#, c-format
-msgid "Graph file \"%s/%s.graph\" does not exist"
-msgstr "Le fichier graphe \"%s/%s.graph\" n'existe pas"
-
-#
-# File: src/c/loadg.c, line: 95
-#, c-format
-msgid "Unable to open file \"%s/%s.graph\""
-msgstr "Impossible d'ouvrir le fichier \"%s/%s.graph\""
-
-#
-# File: src/c/loadg.c, line: 378
-# File: src/c/loadg.c, line: 403
-#, c-format
-msgid "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found"
+msgid "Unable to write file in directory %s, check access"
 msgstr ""
-"Mauvais fichier graphe. Le sommet \"%s\" référencé par l'arc \"%s\" est "
-"introuvable"
+
+msgid "Scilab module metanet not installed.\n"
+msgstr ""

@@ -14,673 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
-
-#, c-format
-msgid "%s: Wrong type for %s: A list expected.\n"
-msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一串列 (list).\n"
-
-#, c-format
-msgid "%s: Wrong type for %s: A string expected.\n"
-msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一字串.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
-msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一字串行向量.\n"
-
-#, c-format
-msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
-msgstr "%s: 參數 %s 長度錯誤: 應為一字串行向量.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s: A real expected.\n"
-msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "%s: Wrong size for %s: A real expected.\n"
-msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "%s: Type %s is not implemented.\n"
-msgstr "%s: 型態 %s 未實作.\n"
-
-#, c-format
-msgid ""
-"Answer given for %s \n"
-" has invalid dimension: \n"
-" waiting for dimension %s.\n"
-msgstr ""
-"%s 之答案\n"
-" 維度錯誤: \n"
-" 等待輸入維度 %s.\n"
-
-#, c-format
-msgid ""
-"Answer given for %s \n"
-" has incorrect type %s.\n"
-msgstr ""
-"%s 之答案\n"
-" 錯誤之型態  %s\n"
-
-#, c-format
-msgid ""
-"Answer given for %s \n"
-" is incorrect see error message in scilab window.\n"
-msgstr ""
-"%s 之答案錯誤\n"
-" 請參考 Scilab 視窗之錯誤訊息.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為具兩元素之串列 (list).\n"
-
-#, c-format
-msgid "%s: Wrong input arguments: %s or %s expected.\n"
-msgstr "%s: 輸入參數錯誤: 應為 %s 或 %s.\n"
-
-#, c-format
-msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
-msgstr "%s: 輸入參數錯誤: 應為 %s, %s 或 %s.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
-
-#, c-format
-msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
-msgstr "%s: 屬性 ''%s'' 數值錯誤: %d, 應為 %d 或 %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
-msgstr "%s:  屬性 ''%s'' 之型態錯誤: 應為一字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: ''%s'', 應為 ''%s'' 或 ''%s''.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 ''%s''.\n"
-
-#, c-format
-msgid "%s: function not available in NWNI mode.\n"
-msgstr "%s: 此函數在 NWNI 模式中不存在.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle) 或實數.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle) 或實數.\n"
-
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: 找到一空的串聯選單 (cascading menu)."
-
-msgid ""
-"Scilab 5 alpha and future versions are released under the terms of the "
-"CeCILL license.\n"
-msgstr "Scilab 5 alpha 及未來之版本以 CeCILL 版權形式發行。\n"
-
-msgid ""
-"Some Scilab modules are released under the GPLv2 license.\n"
-"\n"
-msgstr ""
-"但部分 Scilab 模組以 GPLv2 版權形式發行.\n"
-"\n"
-
-msgid ""
-"Authors:\n"
-"Scilab Consortium / INRIA / ENPC / Contributors\n"
-"\n"
-msgstr ""
-"作者:\n"
-"Scilab 協會 / INRIA / ENPC / 其他貢獻者\n"
-"\n"
-
-#, c-format
-msgid ""
-"Version %s (%s)\n"
-"\n"
-msgstr ""
-"版本 %s (%s)\n"
-"\n"
-
-msgid "http://www.scilab.org/"
-msgstr "http://www.scilab.org/"
-
-msgid "Loading help browser..."
-msgstr "載入線上手冊瀏覽器..."
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab '%s' 模組未安裝.\n"
-
-#, c-format
-msgid "%s: Only available under 'STANDARD' mode.\n"
-msgstr "%s: 只在 'STANDARD' 模式下可用.\n"
-
-msgid "Error. A signal has been caught.\n"
-msgstr "錯誤. 捕捉到一錯誤訊號.\n"
-
-#, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s: 無法產生型態 %s 的 uicontrol."
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
-msgstr "屬性 '%s' 長度錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
-msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
-msgstr "屬性 '%s' 型態錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為一圖形代碼 (handle).\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "屬性 '%s' 不屬於在  uicontrols 之型態: %s .\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A 'Figure' handle expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為一圖形代碼 (handle).\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: A string expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為一字串.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A string expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為一字串.\n"
-
-#, c-format
-msgid "No '%s' property for this object.\n"
-msgstr "屬性 '%s' 不屬於此物件.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s: 父層(上一層)之型態錯誤: 應為 Figure 或 uimenu.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
-msgstr "'%s' 屬性長度錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
-msgstr "'%s' 屬性數值錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
-msgstr "'%s' 屬性型態錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為具兩元素之串列 (list).\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s' 或  '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 'light', 'normal', 'demi' 或 'bold'.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤:  應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: A real expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為一字串.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: A string or a vector of strings expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為一字串或字串向量d.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A real row vector expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為實數行向量.\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為實數行向量或字串.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s', '%s'或 '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤:  應為 '%s', '%s', 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s', 或  '%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', 或  '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "屬性 '%s' 長度錯誤:  應為 1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "屬性 '%s' 型態錯誤:  應為 1 x %d 之實數行向量.\n"
-
-msgid "Could not destroy this object.\n"
-msgstr "無法清除此物件.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: '%s' or 應為 '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s: 屬性 ''%s'' 數值錯誤: 應為 points, normalized, inches, centimeters 或 pixels.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應 > %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
-"exist.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: '編號 %d 之圖形' 不存在.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 此代碼 (handle ) 不存在.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數或圖形代碼 (handle).\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數或圖形代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串向量.\n"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Scilab 多值選單"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串向量.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d x %d 字串矩陣d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串矩陣.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
-
-msgid "Scilab Choose Message"
-msgstr "Scilab 選擇訊息"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體耗盡.\n"
-
-#, c-format
-msgid "%s: Wrong name for optional input argument #%d: '%s' expected.\n"
-msgstr "%s: 第 #%d 選擇性輸入參數名稱錯誤 : 應為 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Could not set property '%s'.\n"
-msgstr "%s: 無法設定屬性 '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一 '%s', '%s' 或 '%s' 代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一 '%s' 代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一 '%s' 代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Unknown property: %s for '%s' handles.\n"
-msgstr "%s: 未知屬性 : %s , 不屬於 '%s' 代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Could not create 'Uicontrol' handle.\n"
-msgstr "%s: 無法產生 'Uicontrol' 代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或字串.\n"
-
-#, c-format
-msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 輸入參數錯誤: 應為 '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr "%s: 輸入參數錯誤: 應為 '%s' 或 '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數向量.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Scilab 選取選單"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-msgstr "Scilab '%s' 模組在-nogui 或 -nwni 模式下不啟用."
-
-msgid "Scilab Input Value Request"
-msgstr "要求 Scilab 輸入數值"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: A '%s' or '%s' handle expected.\n"
-
-#, c-format
-msgid "%s: Not yet implemented.\n"
-msgstr "%s: 尚未實作.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a string vector "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串或字串向量.\n"
-
-msgid "Scilab Message"
-msgstr "Scilab 訊息"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: Must be >= 應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串或實數.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s:在  NWNI 模式時函數不存在.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串向量.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A graphic handle or a string "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle) 或字串.\n"
-
-#, c-format
-msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr "%s: 輸入參數錯誤: 應為 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 輸出參數之數目錯誤: 應為 %d 或 %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 應為  1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 第 %d 輸入參數型態錯誤: 應為  1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
-"expected.\n"
-msgstr "%s:  第 %d 輸入參數之長度錯誤 : 應為一實數純量或一 'Figure'  代碼 (handle).\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
-"expected.\n"
-msgstr "%s:  第 %d 輸入參數之型態錯誤 : 應為一實數純量或一 'Figure'  代碼 (handle).\n"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: 檔案 %s 不存在.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為非負整數.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
-msgstr "%s: Wrong input argument #%d: 應為 '%s' 或 '%s'"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Non-negative integers expected\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為非負整數\n"
-
-#, c-format
-msgid "%s: An error occurred: %s.\n"
-msgstr "%s: 產生錯誤: %s.\n"
-
-msgid "Impossible to get current look and feel"
-msgstr "無法取得目前之 look and feel"
-
-msgid "Control Plot3d"
-msgstr "控制 Plot3d"
 
 msgid "&File"
 msgstr "檔案(&F)"
-
-msgid "&Tools"
-msgstr "工具(&T)"
-
-msgid "&Edit"
-msgstr "編輯(&E)"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "File"
-msgstr "檔案:"
-
-msgid "Close"
-msgstr "關閉"
-
-msgid "Jetcolormap"
-msgstr "Jetcolormap"
-
-msgid "Hotcolormap"
-msgstr ""
-
-msgid "Graycolormap"
-msgstr ""
-
-msgid "Tics"
-msgstr "刻線"
-
-msgid "Title"
-msgstr "標題"
-
-msgid "Labels"
-msgstr "標示"
-
-msgid "Edges"
-msgstr "邊界"
 
 msgid "&New figure..."
 msgstr "新圖(&F)"
@@ -739,6 +77,9 @@ msgstr "列印(&P)..."
 msgid "C&lose"
 msgstr "關閉(&L)"
 
+msgid "&Tools"
+msgstr "工具(&T)"
+
 msgid "Show/Hide &Toolbar"
 msgstr "顯示/隱藏工具列(&T)"
 
@@ -750,6 +91,9 @@ msgstr "&UnZoom (回復正常)"
 
 msgid "2D/3D &Rotation"
 msgstr "2維/3維旋轉(&R)"
+
+msgid "&Edit"
+msgstr "編輯(&E)"
 
 msgid "&Select as current figure"
 msgstr "選為目前圖形(&S)"
@@ -771,6 +115,9 @@ msgstr "開始挑選實體(&S)"
 
 msgid "S&top entity picker"
 msgstr "停止選取實體項目(&t)"
+
+msgid "&?"
+msgstr "&?"
 
 msgid "&Scilab Help"
 msgstr "&Scilab 協助"
@@ -859,9 +206,6 @@ msgstr "編輯器(&E)"
 msgid "&Scicos"
 msgstr "&Scicos"
 
-msgid "Edit&Graph"
-msgstr "編輯圖形(&Graph)"
-
 msgid "&Matlab to Scilab translator"
 msgstr "Matlab 轉 Scilab 工具(&M)"
 
@@ -924,6 +268,675 @@ msgstr "選擇字型..."
 
 msgid "Print..."
 msgstr "列印..."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為具兩元素之串列 (list).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: 輸入參數錯誤: 應為 %s 或 %s.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: 輸入參數錯誤: 應為 %s, %s 或 %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+msgstr "%s: 屬性 ''%s'' 數值錯誤: %d, 應為 %d 或 %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+msgstr "%s:  屬性 ''%s'' 之型態錯誤: 應為一字串.\n"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"但部分 Scilab 模組以 GPLv2 版權形式發行.\n"
+"\n"
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"作者:\n"
+"Scilab 協會 / INRIA / ENPC / 其他貢獻者\n"
+"\n"
+
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"版本 %s (%s)\n"
+"\n"
+
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "About Scilab..."
+msgstr ""
+
+msgid "Acknowledgements"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Scilab Contributors..."
+msgstr ""
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: 型態 %s 未實作.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"%s 之答案\n"
+" 維度錯誤: \n"
+" 等待輸入維度 %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"%s 之答案\n"
+" 錯誤之型態  %s\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect see error message in scilab window.\n"
+msgstr ""
+"%s 之答案錯誤\n"
+" 請參考 Scilab 視窗之錯誤訊息.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle) 或實數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: ''%s'', 應為 ''%s'' 或 ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 ''%s''.\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: 此函數在 NWNI 模式中不存在.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一串列 (list).\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一字串行向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr "%s: 參數 %s 長度錯誤: 應為一字串行向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle) 或實數.\n"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: 找到一空的串聯選單 (cascading menu)."
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一實數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: Must be >= 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串或實數.\n"
+
+#, c-format
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s:在  NWNI 模式時函數不存在.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: A '%s' or '%s' handle expected.\n"
+
+#, c-format
+msgid "%s: Could not set property '%s'.\n"
+msgstr "%s: 無法設定屬性 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串向量.\n"
+
+#, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一 '%s', '%s' 或 '%s' 代碼 (handle).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown property: %s for '%s' handles.\n"
+msgstr "%s: 未知屬性 : %s , 不屬於 '%s' 代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Could not create 'Uicontrol' handle.\n"
+msgstr "%s: 無法產生 'Uicontrol' 代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: 輸出參數之數目錯誤: 應為 %d 或 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 應為  1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為  1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應 > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
+"exist.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: '編號 %d 之圖形' 不存在.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 此代碼 (handle ) 不存在.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數或圖形代碼 (handle).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數或圖形代碼 (handle).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a string vector "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串或字串向量.\n"
+
+msgid "Scilab Message"
+msgstr "Scilab 訊息"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串向量.\n"
+
+msgid "Scilab Choose Message"
+msgstr "Scilab 選擇訊息"
+
+msgid "Scilab Input Value Request"
+msgstr "要求 Scilab 輸入數值"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr "%s:  第 %d 輸入參數之長度錯誤 : 應為一實數純量或一 'Figure'  代碼 (handle).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr "%s:  第 %d 輸入參數之型態錯誤 : 應為一實數純量或一 'Figure'  代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一 '%s' 代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 輸入參數錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一 '%s' 代碼 (handle).\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "Scilab '%s' 模組在-nogui 或 -nwni 模式下不啟用."
+
+msgid "Scilab Multiple Values Request"
+msgstr "Scilab 多值選單"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d x %d 字串矩陣d.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
+msgstr "%s: 輸入參數錯誤: 應為 '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong name for optional input argument #%d: '%s' expected.\n"
+msgstr "%s: 第 #%d 選擇性輸入參數名稱錯誤 : 應為 '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數向量.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Scilab 選取選單"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a string "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle) 或字串.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' expected.\n"
+msgstr "%s: 輸入參數錯誤: 應為 '%s'.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s: 產生錯誤: %s.\n"
+
+msgid "Impossible to get current look and feel"
+msgstr "無法取得目前之 look and feel"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為非負整數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
+msgstr "%s: Wrong input argument #%d: 應為 '%s' 或 '%s'"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為非負整數\n"
+
+msgid "GUI"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab '%s' 模組未安裝.\n"
+
+#, c-format
+msgid "%s: Only available under 'STANDARD' mode.\n"
+msgstr "%s: 只在 'STANDARD' 模式下可用.\n"
+
+msgid "Error. A signal has been caught.\n"
+msgstr "錯誤. 捕捉到一錯誤訊號.\n"
+
+#, c-format
+msgid "%s: Could not create uicontrol of type %s."
+msgstr "%s: 無法產生型態 %s 的 uicontrol."
+
+msgid "Console Font..."
+msgstr ""
+
+msgid "Console Background..."
+msgstr ""
+
+msgid "Loading help browser..."
+msgstr "載入線上手冊瀏覽器..."
+
+#, c-format
+msgid "Wrong size for '%s' property: A graphic handle expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為一圖形代碼 (handle).\n"
+
+#, c-format
+msgid "No '%s' property for uicontrols of style: %s.\n"
+msgstr "屬性 '%s' 不屬於在  uicontrols 之型態: %s .\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' property: A string expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "No '%s' property for this object.\n"
+msgstr "屬性 '%s' 不屬於此物件.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 長度錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s' 或  '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤:  應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "屬性 '%s' 長度錯誤:  應為 '%s', '%s', 或 '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s', 或  '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', 或  '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為一實數.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A real expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為一實數.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: A string or a vector of strings expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為一字串或字串向量d.\n"
+
+#, c-format
+msgid ""
+"Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
+"property value.\n"
+msgstr ""
+
+msgid "Could not destroy this object.\n"
+msgstr "無法清除此物件.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s', '%s'或 '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real row vector expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為實數行向量.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為實數行向量或字串.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "屬性 '%s' 長度錯誤:  應為 1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "屬性 '%s' 型態錯誤:  應為 1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr "'%s' 屬性長度錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr "'%s' 屬性數值錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr "'%s' 屬性型態錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: '%s' or 應為 '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
+"expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: 應為 'light', 'normal', 'demi' 或 'bold'.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
+msgstr "%s: 父層(上一層)之型態錯誤: 應為 Figure 或 uimenu.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A real expected.\n"
+msgstr "屬性 ''%s'' 數值錯誤: 應為一實數.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr "屬性 '%s' 長度錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr "屬性 '%s' 型態錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
+"or pixels expected.\n"
+msgstr ""
+"%s: 屬性 ''%s'' 數值錯誤: 應為 points, normalized, inches, centimeters 或 pixels.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為具兩元素之串列 (list).\n"
+
+msgid "Control Plot3d"
+msgstr "控制 Plot3d"
+
+msgid "File"
+msgstr "檔案:"
+
+msgid "Close"
+msgstr "關閉"
 
 msgid "Select a file to load"
 msgstr "選擇一檔案以載入系統"

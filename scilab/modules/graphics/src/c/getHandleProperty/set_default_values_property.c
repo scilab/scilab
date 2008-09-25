@@ -37,7 +37,7 @@ int set_default_values_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( getDoubleFromStack( stackPointer ) != 1 )
   {
-    sciprint("Value must be 1 to set default values.\n") ;
+    sciprint(_("Value must be %d to set default values.\n"),1) ;
     return SET_PROPERTY_ERROR ;
   }
 

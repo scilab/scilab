@@ -1,128 +1,57 @@
 # Localization of the module console
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
-msgid	""
-msgstr	"Project-Id-Version: Scilab - console\n"
-	"Report-Msgid-Bugs-To: \n"
-	"POT-Creation-Date: 2007-10-03 17:11+0200\n"
-	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
-	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-	"Language-Team: Scilab <localization@scilab.org>\n"
-	"MIME-Version: 1.0\n"
-	"Content-Type: text/plain; charset=CHARSET\n"
-	"Content-Transfer-Encoding: 8bit\n"
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
-# File: src/noconsole/noconsole.c, line: 18
-msgid	"console interface not installed.\n"
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 44
-msgid	"Could not get the Class "
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 50
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 91
-msgid	"Could not create a Global Ref of "
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 56
-msgid	"Could not retrieve the constructor of the class "
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 56
-msgid	" with the profile : "
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 62
-msgid	"Could not instance the object "
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 62
-msgid	" with the constructor : "
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 68
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 97
-msgid	"Could not create a new global ref of "
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 118
-msgid	"Fail to enter monitor."
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 126
-msgid	"Fail to exit monitor."
-msgstr	""
-#
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 141
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 164
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 192
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 213
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 234
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 257
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 278
-# File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 299
-msgid	"Could not access to the method "
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/InterpreterManagementJNI.java, line: 30
-# File: src/java/org/scilab/modules/console/GuiManagementJNI.java, line: 30
-# File: src/java/org/scilab/modules/console/DropFilesJNI.java, line: 29
-msgid	"A security manager exists and does not allow the loading of the "
-	"specified dynamic library :"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/InterpreterManagementJNI.java, line: 33
-# File: src/java/org/scilab/modules/console/GuiManagementJNI.java, line: 33
-# File: src/java/org/scilab/modules/console/DropFilesJNI.java, line: 32
-msgid	"The native library sciconsole does not exist or cannot be found."
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 221
-msgid	"Out of Screen"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 357
-msgid	"Command is too long (more than "
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 358
-msgid	" characters long): could not send it to Scilab\n"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 44
-msgid	"Scilab Command"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 47
-msgid	"File or Directory"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 50
-msgid	"Scilab Function"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 53
-msgid	"Graphics handle field"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 56
-msgid	"Scilab Macro"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 59
-msgid	"Scilab Variable"
-msgstr	""
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 90
-msgid	"No help"
-msgstr	""
-#
-# File: src/c/dropFiles.c, line: 38
-#, possible-c-format
-msgid	"disp('unknown file type : %s\n"
-	"');"
-msgstr	""
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 	2007-10-03 17:11+0200\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:08+0100\n"
 
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 272
+msgid "Out of Screen"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 486
+msgid "Could not change the Console Font."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 547
+msgid "Could not change the Console Foreground."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 57
+msgid "File or Directory"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 64
+msgid "Scilab Command"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 67
+msgid "Scilab Function"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 70
+msgid "Graphics handle field"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 73
+msgid "Scilab Macro"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 76
+msgid "Scilab Variable"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 107
+msgid "No help"
+msgstr ""

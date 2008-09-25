@@ -7,204 +7,724 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-08-19 14:45+0000\n"
-"PO-Revision-Date: 2008-08-22 15:09+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-09-15 13:35+0000\n"
+"Last-Translator: rainofchaos <rainofchaos@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "Function %s is obsolete."
-msgstr "函数 %s 已被弃用。"
-
-#, c-format
-msgid "Please use %s instead."
-msgstr "请使用 %s 替代。"
-
-#, c-format
-msgid "This function will be permanently removed in Scilab %s"
-msgstr "该函数将被永久地从 Scilab %s 中移除。"
-
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s：没有文件名为 %s.sci 存在于库目录 %s 中。\n"
-
-#, c-format
-msgid "Checking: %s.\n"
-msgstr "检查中：%s。\n"
-
-#, c-format
-msgid "%s: Please check: %s\n"
-msgstr "%s：请检查：%s\n"
-
-#, c-format
-msgid "%s: File %s doesn''t exist.\n"
-msgstr "%s：文件 %s 不存在。\n"
-
-#, c-format
-msgid "%s: No files with extension %s found in %s\n"
-msgstr "%s：没有扩展名为 %s 的文件存在于 %s\n"
-
-#, c-format
-msgid "%s: %s file compilation forced\n"
-msgstr "%s：文件 %s 强制编译\n"
-
-#, c-format
-msgid "%s: Processing file: %s\n"
-msgstr "%s：处理文件：%s\n"
-
-#, c-format
-msgid "%s: Regenerate names and lib\n"
-msgstr "%s：重新生成 names 和 lib\n"
-
-#, c-format
-msgid "%s: %s file cannot be created\n"
-msgstr "%s：不能创建文件 %s\n"
+msgid ""
+"%s: System not stabilizable (or detectable) => Stabilizing the stabilizable "
+"part.\n"
+msgstr "%s：系统不稳定（或不可检测）=> 请稳定可稳定部分。\n"
 
 #, c-format
 msgid ""
-"Library file %s has been updated,\n"
-"but cannot be loaded into Scilab because ''%s'' is a protected variable.\n"
-msgstr ""
-"库文件 %s 已被更新，但是因为\n"
-"''%s''是一个被保护变量所以库文件不能装载到Scilab。\n"
-
-#, c-format
-msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr "%s：警告：在文件 %s 中有错误：忽略 %s.File 。\n"
-
-#, c-format
-msgid "%s: Impossible to open file %s for writing\n"
-msgstr "%s：不能打开文件 %s 进行写操作\n"
-
-#, c-format
-msgid "%s: File %s does not contain any function.\n"
-msgstr "%s：文件 %s 不包含任何函数。\n"
-
-#, fuzzy, c-format
-msgid "%s: The function has not been built for profiling"
-msgstr "%s：该函数没有被为 profiling 生成。"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong values for input argument: No profile data in the function\n"
-msgstr "%s：输入参数的值错误：函数中无 profile 数据。\n"
-
-msgid "Complexity"
-msgstr "复杂度"
-
-msgid "3D Rot."
-msgstr "3维旋转"
-
-msgid "Edit"
-msgstr "编辑"
-
-msgid "Editer"
+"%s: Wrong size for input argument #%d: Single input, single output system "
+"expected.\n"
 msgstr ""
 
-msgid "Insert"
-msgstr "插入"
-
-msgid "3D &Rot."
-msgstr "3维旋转( &R)"
-
-msgid "&Edit"
-msgstr "编辑( &E)"
-
-msgid "&Insert"
-msgstr "插入( &I)"
-
-msgid "Exit"
-msgstr "退出"
-
-#, fuzzy
-msgid "Click to get corresponding line, move with a-z."
-msgstr "点击以得到相关行，move with a-z。"
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d或%d个。\n"
 
 #, c-format
-msgid "line %s [%s call, %s sec] :: "
-msgstr "行 %s [从 %s 调用, %s sec] :: "
-
-#, c-format
-msgid "line %s [%s calls, %s sec] :: "
-msgstr "行 %s [从 %s 调用, %s sec] :: "
-
-msgid "UnZoom"
-msgstr "不缩放"
-
-msgid "Zoom"
-msgstr "缩放"
-
-msgid "File"
-msgstr "文件"
-
-msgid "&File"
-msgstr "文件( &F)"
-
-msgid "&Tools"
-msgstr "工具( &T)"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误。\n"
-
-#, c-format
-msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr "%s：无法找到扩展名为 %s 的文件于 %s 中。\n"
-
-#, c-format
-msgid "%s: Incorrect function in file %s.\n"
-msgstr "%s：文件 %s 中存在不正确的函数。\n"
-
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- 创建 [%s]（宏） --\n"
-
-#, c-format
-msgid "%s: obsolete op-code %d.\n"
-msgstr "%s：弃用的操作码 %d。\n"
-
-#, c-format
-msgid "No variable named: %s"
-msgstr "没有名为 %s 的变量"
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为\"%s\"。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
-
-#, c-format
-msgid "%s is already noncompiled, nothing to do!"
-msgstr "%s 已经没有编译，无操作。"
-
-#, c-format
-msgid "%s is already compiled, nothing to do!"
-msgstr "%s 已经编译，无操作。"
-
-#, c-format
-msgid "%s is already compiled for profiling, nothing to do!"
-msgstr "%s 已经 for profiling 编译，无操作。"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
-
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s：没定义的变量 %s。\n"
+"%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
-
-msgid "No comment available.\n"
-msgstr "没有注释可用。\n"
+"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+"with %s.\n"
+msgstr "%s：输入参数#%d的大小错误：列数与%s不兼容。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为Scilab函数。\n"
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Input argument %d is assumed continuous time.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Direct feedthrough set to zero.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space or a transfer "
+"function expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same formal variable names "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为方阵。\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: "
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row vector with length>%d "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
+"of floats expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of elements "
+"expected.\n"
+msgstr ""
+
+msgid "Frequency (Hz)"
+msgstr ""
+
+msgid "Magnitude (Db)"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
+
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr "%s：时间域不兼容。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Continuous time system expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+msgid "Nyquist plot"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A linear dynamical system or a "
+"polynomial expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Square system expected.\n"
+"'),"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot find the state dimension.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space system expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Stationary Riccati solver failed.\n"
+msgstr "%s：Stationary Riccati 方程式求解失败。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: State-space linear system expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Continuous-time linear system "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s not full rank.\n"
+msgstr "%s：%s非满秩。\n"
+
+#, c-format
+msgid "%s: Stable subspace is too small.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Bad conditionning.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s non symmetric.\n"
+msgstr "%s：%s非对称。\n"
+
+#, c-format
+msgid "%s: Dimensions of %s are inadequate.\n"
+msgstr "%s：%s的维数不对。\n"
+
+#, c-format
+msgid "%s: %s is not full rank at the machine precision.\n"
+msgstr "%s：以机器的精度，%s非满秩。\n"
+
+#, c-format
+msgid "%s: %s is nearly unstabilizable.\n"
+msgstr "%s：%s接近不稳定。\n"
+
+#, c-format
+msgid "%s: %s has zero(s) near the imaginary axis.\n"
+msgstr "%s：%s在虚轴附近为零。\n"
+
+#, c-format
+msgid "%s: %s has pure imaginary eigenvalue(s).\n"
+msgstr "%s：%s有纯叙述特征值。\n"
+
+#, c-format
+msgid "%s: %s is indefinite.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : No feasible ro in bounds [%g  %g]\n"
+msgstr ""
+
+#, c-format
+msgid "%s:  %s is not stabilizable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s is stabilizable.\n"
+msgstr "%s：%s是稳定的。\n"
+
+#, c-format
+msgid "%s:   %s is not detectable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s is detectable.\n"
+msgstr "%s：%s是可检测的。\n"
+
+#, c-format
+msgid "%s: %s has a zero on/close the imaginary axis.\n"
+msgstr "%s：%s在虚轴上或虚轴附近存在一个零值。\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: gamma too small.\n"
+msgstr "%s：gamma太小。\n"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
+msgstr "%s：%s（控制器）的特征值过于靠近虚轴。\n"
+
+#, c-format
+msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s：%s（观察者）的特征值过于靠近虚轴。\n"
+
+msgid "Unfeasible (Hx hamiltonian)"
+msgstr ""
+
+msgid "Unfeasible (Hy hamiltonian)"
+msgstr ""
+
+msgid "Unfeasible (spectral radius)"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该介于%d与%d之间。\n"
+
+#, c-format
+msgid "%s: Francis equations not satisfied.\n"
+msgstr "%s：不满足弗朗西斯（Francis）方程。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Input argument #%d must be strictly positive.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
+
+#, c-format
+msgid "%s: At least %s past values needed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s：%s是非零值！（请设置为零）"
+
+#, c-format
+msgid "%s: Residual norm = %g\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
+msgstr "%s：输出参数的数目错误：至少应有%d个。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为%d或%d。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s：输入参数的数目错误：应该为%d个。"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type of input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: System is not stable.\n"
+msgstr "%s：系统不稳定。\n"
+
+#, c-format
+msgid ""
+"%s: norm cannot be computed. Relative accuracy smaller than 1e-3\n"
+"Hinfnorm is probably exactly max sv(D)\n"
+"The system might be all-pass"
+msgstr ""
+
+#, c-format
+msgid "%s: More than %d iterations.\n"
+msgstr "%s：超过%d次迭代。\n"
+
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr ""
+
+msgid "phase(y) (degree)"
+msgstr ""
+
+msgid "magnitude(y) (Db)"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Infinite solution.\n"
+msgstr "%s：无限解。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s is numerically singular.\n"
+msgstr "%s：%s数值奇异。\n"
+
+#, c-format
+msgid "%s: Standard deviation of the estimator %s:\n"
+msgstr "%s：控制器%s的标准差：\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgstr ""
+
+msgid "Autocorrelation Function"
+msgstr "自相关系数"
+
+msgid "Phase (degree)"
+msgstr ""
+
+#, c-format
+msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+
+#, c-format
+msgid "%s: Undefined type ''%s''.\n"
+msgstr "%s：未定义的类型\"%s\"。\n"
+
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Discrete time system expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Needs %s => Use default value %s=%d.\n"
+msgstr "%s：需要 %s => 使用默认值 %s=%d。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
+msgid "Zeros"
+msgstr "零"
+
+msgid "Poles"
+msgstr ""
+
+msgid "Transmission zeros and poles"
+msgstr "转换零和极点"
+
+msgid "Real axis"
+msgstr "实轴"
+
+msgid "Imaginary axis"
+msgstr ""
+
+#, c-format
+msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
+msgstr "%s：警告：矩阵A具有接近虚轴的特征值。\n"
+
+#, c-format
+msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
+msgstr "%s：A的控制性和观察性模式接近虚轴。"
+
+#, c-format
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The computed value of || G || may be inaccurate.\n"
+msgstr "%s：计算出的|| G ||值可能不准确。\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Square but singular system.\n"
+msgstr "%s：奇异方阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Bad conditioning.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Iteration %s, error=%s.\n"
+msgstr "%s：迭代 %s，错误=%s。\n"
+
+#, c-format
+msgid "%s: Number of rows of %s are incompatible with %s object.\n"
+msgstr "%s：%s的行数与%s对象不兼容。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s must be of dimension (%s, %s).\n"
+msgstr "%s：%s的维数必须为(%s, %s)。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+
+msgid "open loop zeroes"
+msgstr ""
+
+msgid "open loop poles"
+msgstr ""
+
+msgid "asymptotic directions"
+msgstr ""
+
+msgid "Evans root locus"
+msgstr ""
+
+#, c-format
+msgid "%s: Curve truncated to the first %d discretization points.\n"
+msgstr ""
+
+msgid "Gain :"
+msgstr ""
+
+msgid "Numerator :"
+msgstr ""
+
+msgid "Denominator :"
+msgstr ""
+
+msgid "Irreducible Factors of transfer function (click below)"
+msgstr "传递函数的不可约系数（点击下面）"
+
+msgid ""
+"Irreducible Factors of transfer function natural frequency and damping "
+"factor (click below)"
+msgstr ""
+
+msgid "Denominator : "
+msgstr ""
+
+#, c-format
+msgid "%s: Incorrect answer.\n"
+msgstr "%s：不正确的答案。\n"
+
+#, c-format
+msgid "%s: Hybrid system not implemented.\n"
+msgstr "%s：混合系统尚未实现。\n"
+
+#, c-format
+msgid "%s: Multi rate discrete system not implemented.\n"
+msgstr "%s：多速率离散系统尚未实现。\n"
+
+#, c-format
+msgid "%s: Incorrect link: %s"
+msgstr "%s：不正确的链接：%s"
+
+#, c-format
+msgid "%s: Wrong size for link from block %s.\n"
+msgstr "%s：块%s的连接的大小错误。\n"
+
+#, c-format
+msgid "%s: Invalid sizes found during the process.\n"
+msgstr "%s：在执行过程中发现不正确的大小。\n"
+
+#, c-format
+msgid "%s: No output found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No input found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
+msgstr ""
+
+#, c-format
+msgid "%s Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s：输入参数#%d和#%d的值错误。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgstr "%s：输入参数#%d的值错误：必须在[%d %d]之间。\n"
+
+msgid "CACSD"
+msgstr ""

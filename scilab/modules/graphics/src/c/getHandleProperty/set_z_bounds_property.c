@@ -49,7 +49,7 @@ int set_z_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint("Second argument must have 2 elements.\n") ;
+    sciprint(_("Argument #%d must have %d elements.\n"),2,2) ;
     return SET_PROPERTY_ERROR ;
   }
   ppFec = pFEC_FEATURE(pobj);

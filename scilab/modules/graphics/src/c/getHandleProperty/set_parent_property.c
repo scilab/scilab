@@ -41,7 +41,7 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
     }
   else
     {
-      sciprint("Parent property can not be modified directly.\n") ;
+		sciprint(_("Parent property can not be modified directly.\n"));
       return SET_PROPERTY_ERROR ;
     }
 }

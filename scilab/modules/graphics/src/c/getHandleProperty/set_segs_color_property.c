@@ -62,7 +62,7 @@ int set_segs_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   { 
-    sciprint("segs color has a wrong size (%d), expecting 1 or (%d)", nbRow * nbCol , nbSegs );
+    sciprint("%s color has a wrong size (%d), expecting %d or (%d)", "segs", nbRow * nbCol , 1, nbSegs );
     return SET_PROPERTY_ERROR ;
   }
 

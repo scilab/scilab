@@ -1,109 +1,18 @@
-# Localization of the module Scipad
+# Localization of the module scipad
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
-
-msgid   ""
-msgstr  "Project-Id-Version: Scilab\n"
-        "Report-Msgid-Bugs-To: localization@scilab.org\n"
-        "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-        "PO-Revision-Date: 2007-10-08 16:41:22+02:00\n"
-        "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-        "Language-Team: Scilab Localization <localization@scilab.org>\n"
-        "MIME-Version: 1.0\n"
-        "Content-Type: text/plain; charset=ISO-8859-1\n"
-        "Content-Transfer-Encoding: 8bit\n"
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 59
-msgid	"Finding missing entries in  "
-msgstr	""
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 60
-msgid	" and writing the result..."
-msgstr	""
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 61
-msgid	"Translations missing in file "
-msgstr	""
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 62
-msgid	"Finding unused entries in "
-msgstr	""
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 63
-msgid	"Unused strings in file "
-msgstr	""
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 64
-msgid	"Parsing file "
-msgstr	""
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 65
-msgid	", be patient..."
-msgstr	""
-#
-# File: macros/scipad_internals/msgdiff.sci, line: 66
-msgid	"WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED"
-msgstr	""
-#
-# File: macros/scipad.sci, line: 13
-msgid	"Scilab has not been built with Tcl/Tk: Scipad unavailable."
-msgstr	""
-#
-# File: macros/scipad.sci, line: 14
-msgid	" Scilab in no window no interactive mode : Scipad "
-	"unavailable"
-msgstr	""
-#
-# File: macros/scipad.sci, line: 15
-msgid	"Function "
-msgstr	""
-#
-# File: macros/scipad.sci, line: 16
-msgid	"is not contained in a loaded library, "
-msgstr	""
-#
-# File: macros/scipad.sci, line: 17
-msgid	"Scipad doesn''t know where to find its source"
-msgstr	""
-#
-# File: macros/scipad.sci, line: 18
-msgid	"Scipad cannot open a "
-msgstr	""
-#
-# File: macros/scipad.sci, line: 18
-msgid	" object!"
-msgstr	""
-#
-# File: macros/scipad.sci, line: 19
-msgid	" Scilab has not been built with tk: Scipad unavailable"
-msgstr	""
-#
-# File: macros/editor.sci, line: 5
-msgid	"Editor works only with Tcl/Tk."
-msgstr	""
-#
-# File: macros/edit_error.sci, line: 6
-msgid	"the last error did not occur inside a library function."
-msgstr	""
-#
-# File: macros/edit_error.sci, line: 12
-msgid	"opening file "
-msgstr	""
-#
-# File: macros/edit_error.sci, line: 12
-msgid	" on line "
-msgstr	""
-#
-# File: macros/edit_error.sci, line: 12
-# File: macros/edit_error.sci, line: 14
-msgid	"the source file of the function "
-msgstr	""
-#
-# File: macros/edit_error.sci, line: 15
-# File: macros/edit_error.sci, line: 19
-msgid	" was not found in any library path"
-msgstr	""
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date:         2007-09-27 16:24+0200\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:07+0100\n"
 

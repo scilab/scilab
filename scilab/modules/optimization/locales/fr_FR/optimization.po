@@ -14,20 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s : Mauvais nombre d'argument(s) en entrée.\n"
-
-#, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: La matrice de pondération doit être carrée.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: La solution initiale n'est pas faisable.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -56,6 +44,26 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Une fonction est attendue.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s : Mauvais nombre d'argument(s) en entrée.\n"
+
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s: La matrice de pondération doit être carrée.\n"
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: La solution initiale n'est pas faisable.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée.\n"
+
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr " nombre de contraintes (%s)'),'lmisolver',%m,%fm));"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d."
 msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d."
 
@@ -66,14 +74,6 @@ msgstr "%s: x0 n'est pas faisable."
 #, c-format
 msgid "%s: Unbounded problem!"
 msgstr "%s: Problème non-borné!"
-
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée.\n"
-
-#, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " nombre de contraintes (%s)'),'lmisolver',%m,%fm));"
 
 #, c-format
 msgid "%s: Argument 3: wrong number of columns %d expected\n"
@@ -90,6 +90,9 @@ msgstr "%s: Le problème de minimisation n'a pas de solution.\n"
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr "%s: Q n'est pas symétrique définie positive.\n"
+
+msgid "Optimization and Simulation"
+msgstr ""
 
 msgid "m must be at least one.\n"
 msgstr "m doit valoir au moins un.\n"
@@ -120,9 +123,8 @@ msgstr ""
 msgid "Error in dspgv, info = %d.\n"
 msgstr "Erreur dans dspgv, info = %d.\n"
 
-#, fuzzy
 msgid "x0 is not strictly primal feasible.\n"
-msgstr "x0 n'est pas strictement primale faisable.\n"
+msgstr ""
 
 msgid "Z0 is not positive definite.\n"
 msgstr "Z0 n'est pas définie positive.\n"
@@ -130,13 +132,10 @@ msgstr "Z0 n'est pas définie positive.\n"
 msgid "F(x)*Z has a negative eigenvalue.\n"
 msgstr "F(x)*Z a une valeur propre négative.\n"
 
-#, fuzzy
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
-"\n"
-"    primal obj. dual obj. saut dual. \n"
 
 #, c-format
 msgid "Error in dgels, info = %d.\n"

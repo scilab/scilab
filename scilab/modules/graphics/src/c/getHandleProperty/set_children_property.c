@@ -28,7 +28,7 @@
 /*------------------------------------------------------------------------*/
 int set_children_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  sciprint("Children property can not be modified directly.\n") ;
+  sciprint(_("Children property can not be modified directly.\n"));
   return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

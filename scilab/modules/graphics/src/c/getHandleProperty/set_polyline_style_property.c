@@ -46,7 +46,7 @@ int set_polyline_style_property( sciPointObj * pobj, size_t stackPointer, int va
   value = (int) getDoubleFromStack( stackPointer ) ;
   if ( value < 1 || value > 7 )
   {
-    sciprint("Style must be 1,2,3,4,5,6 or 7.\n") ;
+    sciprint(_("Wrong value for %s property: Must be between %d and %d.\n"),"Style",1,7);
     return SET_PROPERTY_ERROR ;
   }
 

@@ -1,4 +1,4 @@
-/*
+ /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
@@ -30,7 +30,7 @@ int get_auto_clear_property( sciPointObj * pobj )
   if (   sciGetEntityType(pobj) != SCI_SUBWIN 
       && sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "auto_clear property") ;
+    sciprint(_("%s property does not exist for this handle.\n"), "auto_clear property") ;
     return -1 ;
   }
 

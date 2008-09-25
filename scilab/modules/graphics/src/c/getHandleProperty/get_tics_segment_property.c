@@ -30,7 +30,7 @@ int get_tics_segment_property( sciPointObj * pobj )
 
   if ( sciGetEntityType( pobj ) != SCI_AXES )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "tics_segment property") ;
+    sciprint(_("%s property does not exist for this handle.\n"), "tics_segment property") ;
     return -1 ;
   }
 

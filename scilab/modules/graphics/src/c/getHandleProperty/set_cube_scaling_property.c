@@ -44,7 +44,7 @@ int set_cube_scaling_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if( !sciGetIs3d(pobj) )
   {
-    sciprint("Warning: cube_scaling property is only used in 3D mode.\n");
+    sciprint(_("Warning: %s property is only used in 3D mode.\n"),"cube_scaling");
   }
 
   if ( isStringParamEqual(stackPointer, "on" ) )
@@ -57,7 +57,7 @@ int set_cube_scaling_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint("Value must be 'on' or 'off' / Only use for 3D mode.\n") ;
+    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

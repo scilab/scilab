@@ -62,7 +62,7 @@ int get_position_property( sciPointObj * pobj )
       sciGetLegendPos( pobj, position ) ;
       return sciReturnRowVector( position, 2 ) ;
     }
-  sciprint(_("%s does not exist for this handle.\n"), "position") ;
+  sciprint(_("%s property does not exist for this handle.\n"), "position") ;
   return -1;
 }
-/*------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------*/ 

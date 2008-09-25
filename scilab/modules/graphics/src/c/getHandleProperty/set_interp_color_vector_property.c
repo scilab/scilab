@@ -38,7 +38,7 @@ int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, i
 
   if( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint("interp_color_vector can only be set on Polyline objects.\n");
+    sciprint(_("%s can only be set on %s objects.\n"),"interp_color_vector","Polyline");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, i
   }
   else
   {
-    sciprint("Under interpolated color moden the column dimension of the color vector must match the number of points defining the line (which must be 3 or 4).\n") ;
+    sciprint(_("Under interpolated color mode the column dimension of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
     return SET_PROPERTY_ERROR ;
   }
 

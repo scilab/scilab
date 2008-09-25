@@ -9,9 +9,23 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:48+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 18:01+0100\n"
+
+# File: src/c/sciprint_full.c, line: 38
+# File: src/c/sciprint_full.c, line: 56
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 55
@@ -1063,17 +1077,13 @@ msgstr "%s: 第一參數不能是一數字.\n"
 msgid "You cannot link more functions, maxentry reached.\n"
 msgstr "無法再聯結更多函數， 已達最高數 maxentry .\n"
 
-#
-# File: src/c/errmsg.c, line: 1308
 #, c-format
-msgid "File %s already exists or directory write access denied.\n"
-msgstr "檔案 %s 已存在或目錄拒絕寫入之限制.\n"
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
 
-#
-# File: src/c/errmsg.c, line: 1319
 #, c-format
-msgid "File %s does not exist or read access denied.\n"
-msgstr "檔案 %s 已存在或目錄拒絕讀出之限制.\n"
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1327
@@ -1287,20 +1297,6 @@ msgstr ""
 # File: src/c/errmsg.c, line: 1614
 msgid "\"unknown data\""
 msgstr "\"未知數據\""
-
-# File: src/c/sciprint_full.c, line: 38
-# File: src/c/sciprint_full.c, line: 56
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體耗盡.\n"
-
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr ""
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr ""
 
 msgid "Warning :\n"
 msgstr "警告 :\n"
@@ -1806,4 +1802,7 @@ msgstr ""
 msgid ""
 "%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
+msgstr ""
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr ""

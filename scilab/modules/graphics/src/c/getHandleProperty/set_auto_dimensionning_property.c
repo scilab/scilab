@@ -58,3 +58,4 @@ int set_auto_dimensionning_property( sciPointObj * pobj, size_t stackPointer, in
 
 }
 /*------------------------------------------------------------------------*/
+

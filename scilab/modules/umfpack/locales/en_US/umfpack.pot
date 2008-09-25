@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-05-27 18:59+0100\n"
+"Revision-Date: 2008-09-22 14:09+0100\n"
 
 # File: macros/scisptdemo.sci, line: 37
 msgid " For this demo the current stack size is not enought "
@@ -122,19 +122,17 @@ msgstr ""
 #
 # File: macros/condestsp.sci, line: 71
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 #
 # File: macros/condestsp.sci, line: 75
 #, c-format
-msgid ""
-"%s: Wrong type for first input argument: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 #
 # File: macros/condestsp.sci, line: 79
 #, c-format
-msgid ""
-"%s: Wrong size for first input argument: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 #
 # File: macros/condestsp.sci, line: 103
@@ -256,7 +254,7 @@ msgstr ""
 # File: sci_gateway/c/sci_umf_luget.c, line: 210
 # File: sci_gateway/c/sci_taucs_chfact.c, line: 98
 # File: src/c/taucs_scilab.c, line: 256
-# File: src/c/taucs_scilab.c, line: 2079
+# File: src/c/taucs_scilab.c, line: 2122
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -351,11 +349,11 @@ msgstr ""
 msgid "%s: No more memory (n=%d, nnz=%d).\n"
 msgstr ""
 #
-# File: src/c/taucs_scilab.c, line: 544
+# File: src/c/taucs_scilab.c, line: 587
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
 msgstr ""
 #
-# File: src/c/taucs_scilab.c, line: 545
+# File: src/c/taucs_scilab.c, line: 588
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
 msgstr ""

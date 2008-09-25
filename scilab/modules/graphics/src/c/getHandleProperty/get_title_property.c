@@ -29,7 +29,7 @@ int get_title_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property undefined for this object.\n"), "title") ;
+    sciprint(_("%s property does not exist for this handle.\n"), "title") ;
     return -1 ;
   }
   return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_title ) ) ;

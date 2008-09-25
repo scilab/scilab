@@ -14,8 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: невозможно отобразить систему на этой странице.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -38,21 +42,6 @@ msgid "%s: The system interpreter does not answer..."
 msgstr "%s: Системный интерпретатор не отвечает..."
 
 #, c-format
-msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: Неверное количество аргументов.\n"
-
-msgid ": "
-msgstr ": "
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Неверное количество выходных аргументов.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: невозможно отобразить систему на этой странице.\n"
-
-#, c-format
 msgid "%s: Incorrect format.\n"
 msgstr "%s: Некорректный формат.\n"
 
@@ -64,9 +53,16 @@ msgstr "%s: Неправильное преобразование.\n"
 msgid "%s: end of input reached before final conversion.\n"
 msgstr "%s: входной поток закончился до окончания преобразования.\n"
 
+msgid ": "
+msgstr ": "
+
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица строк.\n"
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Неверное количество выходных аргументов.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Неверное количество аргументов.\n"
 
 #, c-format
 msgid ""
@@ -89,6 +85,14 @@ msgstr "%s: Неверное значение аргумента: пустые �
 #, c-format
 msgid "%s: The file %s not found. current directory returned.\n"
 msgstr "%s: Файл %s не найден. Возвращаю текущую директорию.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица строк.\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"

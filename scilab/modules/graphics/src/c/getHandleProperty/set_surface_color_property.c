@@ -49,7 +49,7 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
   {
     if (pSURFACE_FEATURE (pobj)->dimzy != nbRow * nbCol )
     {
-      sciprint( "Second argument must have %d elements.\n", pSURFACE_FEATURE (pobj)->dimzy);
+      sciprint( _("Argument #%d must have %d elements.\n"), 2, pSURFACE_FEATURE (pobj)->dimzy);
       return SET_PROPERTY_ERROR ;
     }
     copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE(pobj)->zcol, pSURFACE_FEATURE (pobj)->dimzy ) ;
@@ -67,14 +67,14 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
     }
     if ( nbRow * nbCol != N)
     {
-      sciprint("Second argument must have %d elements.\n",N) ;
+      sciprint(_("Argument #%d must have %d elements.\n"),2,N) ;
       return SET_PROPERTY_ERROR ;
     }
     copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE (pobj)->zcol, N ) ;
   }
   else
   {
-    sciprint("surface_color cannot be set in this case.\n") ;
+    sciprint(_("%s cannot be set in this case.\n"),"surface_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

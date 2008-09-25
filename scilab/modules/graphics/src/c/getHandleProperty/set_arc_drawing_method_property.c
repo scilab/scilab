@@ -50,7 +50,7 @@ int set_arc_drawing_method_property( sciPointObj * pobj, size_t stackPointer, in
   }
   else
   {
-    sciprint(_("Wrong value for property %s: value must be 'nurbs' or 'lines'.\n"), "drawing_method") ;
+    sciprint(_("Wrong value for property %s: value must be '%s' or '%s'.\n"), "drawing_method","nurbs","lines") ;
     return SET_PROPERTY_ERROR ;
   }
 

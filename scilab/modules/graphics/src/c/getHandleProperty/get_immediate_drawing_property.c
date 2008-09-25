@@ -28,8 +28,8 @@
 int get_immediate_drawing_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_FIGURE)
-  {
-    sciprint(_("%s undefined for this object.\n"), "immediate_drawing") ;
+  { 
+	sciprint(_("%s property does not exist for this handle.\n"),"immediate_drawing") ;	
     return -1;
   }
   if ( sciGetImmediateDrawingMode(pobj) )

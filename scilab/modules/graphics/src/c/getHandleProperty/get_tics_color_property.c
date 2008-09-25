@@ -33,7 +33,7 @@ int get_tics_color_property( sciPointObj * pobj )
   }
   else if (sciGetEntityType (pobj) == SCI_SUBWIN)
   {
-    sciprint("Warning: tics_color use is deprecated and no more taken into account, use foreground property to edit Axes color.\n");
+    sciprint(_("Warning: %s use is deprecated and no more taken into account, use %s property to edit Axes color.\n"),"tics_color","foreground");
     return sciReturnDouble( pSUBWIN_FEATURE(pobj)->axes.ticscolor ) ;
   }
   else

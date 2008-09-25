@@ -70,7 +70,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
+      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -94,7 +94,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
+      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -109,7 +109,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
+      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -125,12 +125,12 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
+      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
   default:
-    sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
+    sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;
@@ -200,7 +200,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
   {
     if ( nbRow * nbCol != 6 )
     {
-      sciprint("Second argument must have 6 elements.\n") ;
+      sciprint(_("Argument #%d must have %d elements.\n"),2,6) ;
       return SET_PROPERTY_ERROR ;
     }
     sciSetDataBounds(pobj, getDoubleMatrixFromStack(stackPointer) ) ;

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid " For this demo the current stack size is not enought "
@@ -100,18 +100,18 @@ msgid " Warning : for lm convergence at rtol = %e \n"
 msgstr " 警告：对lm在 rtol =%e 处收敛 \n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s：输入参数的数目错误。\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for first input argument: Square sparse matrix expected.\n"
-msgstr "%s：第一个输入参数的类型错误：应该为稀疏方阵。\n"
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for first input argument: Square sparse matrix expected.\n"
-msgstr "%s：第一个输入参数的大小错误：应该为稀疏方阵。\n"
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The matrix and the LU factors have not the same dimension !\n"

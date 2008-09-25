@@ -14,8 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s：系统无法显示在此页面中。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -38,21 +42,6 @@ msgid "%s: The system interpreter does not answer..."
 msgstr "%s：系统解释器无返回..."
 
 #, c-format
-msgid "%s: Wrong number of input argument.\n"
-msgstr "%s：输入参数数目错误。\n"
-
-msgid ": "
-msgstr ": "
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s：输出参数的数目错误。\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s：系统无法显示在此页面中。\n"
-
-#, c-format
 msgid "%s: Incorrect format.\n"
 msgstr "%s：不正确的格式。\n"
 
@@ -64,9 +53,16 @@ msgstr "%s：不正确的转换。\n"
 msgid "%s: end of input reached before final conversion.\n"
 msgstr "%s：最终转换尚未完成，但输入已经结束。\n"
 
+msgid ": "
+msgstr ": "
+
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s：输出参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s：输入参数数目错误。\n"
 
 #, c-format
 msgid ""
@@ -88,6 +84,14 @@ msgstr "%s：输入参数的值错误：不可为空字符串。\n"
 #, c-format
 msgid "%s: The file %s not found. current directory returned.\n"
 msgstr "%s：未发现文件%s，返回了目前目录。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"

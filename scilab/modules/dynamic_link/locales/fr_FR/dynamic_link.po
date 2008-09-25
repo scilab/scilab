@@ -14,62 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d: %d attendu.\n"
-
-msgid "A Fortran or C compiler is required."
-msgstr "Un compilateur Fortran ou C est nécessaire."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: A Fortran or C compiler is required.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
-"est attendue.\n"
-
-msgid "   compilation of "
-msgstr "   compilation de "
-
-msgid "   building shared library (be patient)"
-msgstr "   construction de la bibliothèque partagée (soyez patient)"
-
-#, c-format
-msgid "%s: An error occured during the compilation:\n"
-msgstr "%s: Une erreur est survenue lors de la compilation:\n"
-
-#, c-format
-msgid "%s: The command was:\n"
-msgstr "%s: La commande était:\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
-
-#, c-format
-msgid "%s: Feature not available under Microsoft Windows.\n"
-msgstr "%s: Fonction non disponible sous Microsoft Windows.\n"
-
-msgid "   Generate a loader file"
-msgstr "   Génère un fichier loader"
-
-msgid "   Generate a Makefile"
-msgstr "   Génère un Makefile"
-
-msgid "   Running the Makefile"
-msgstr "   Exécute le Makefile"
-
-msgid "   Generate a gateway file"
-msgstr "   Génère un fichier gateway"
-
-#, c-format
-msgid "   Generate a Makefile: %s"
-msgstr "   Génère un Makefile: %s"
-
-msgid "   Running the makefile"
-msgstr "   Exécute le makefile"
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
@@ -86,16 +36,126 @@ msgid "   %s: Copy %s to TMPDIR\n"
 msgstr "   %s: Copie %s vers TMPDIR\n"
 
 #, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr ""
+
+#, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
 msgstr "   %s: Modification du Makefile dans TMPDIR.\n"
 
 #, c-format
-msgid "   %s: configure : Generate Makefile in %s\n"
-msgstr "   %s: configure : Génère le Makefile dans %s\n"
+msgid "%s: Error while modifing the reference Makefile:\n"
+msgstr ""
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: Fonction non disponible sous Microsoft Windows.\n"
+
+msgid "   Generate a loader file"
+msgstr "   Génère un fichier loader"
+
+msgid "   Generate a Makefile"
+msgstr "   Génère un Makefile"
+
+msgid "   Running the Makefile"
+msgstr "   Exécute le Makefile"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"est attendue.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d: %d attendu.\n"
+
+msgid "   Generate a gateway file"
+msgstr "   Génère un fichier gateway"
+
+#, c-format
+msgid "   Generate a Makefile: %s"
+msgstr "   Génère un Makefile: %s"
+
+msgid "   Running the makefile"
+msgstr "   Exécute le makefile"
+
+msgid "A Fortran or C compiler is required."
+msgstr "Un compilateur Fortran ou C est nécessaire."
+
+msgid "   Compilation of "
+msgstr ""
+
+msgid "   Building shared library (be patient)"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occured during the compilation:\n"
+msgstr "%s: Une erreur est survenue lors de la compilation:\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: La commande était:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Vecteur de chaîne de "
+"caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+"%s: Mauvais type pour les arguments en entrée: Chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Entier attendu.\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s : le second argument doit être un id unique d'une bibliothèque partagée.\n"
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
@@ -110,12 +170,6 @@ msgstr "%s : Mauvais type pour l'argument d'entrée n° %d: %s\n"
 
 msgid "Unique dynamic library name expected."
 msgstr "Un nom unique de bibliothèque partégée attendu."
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr ""
-"%s: Mauvais type pour les arguments en entrée: Chaîne de caractères "
-"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
@@ -134,20 +188,12 @@ msgstr ""
 "%s Mauvaise valeur pour l'argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s : second argument must be a unique id of a shared library.\n"
-msgstr ""
-"%s : le second argument doit être un id unique d'une bibliothèque partagée.\n"
+msgid " results may be inaccurate. rcond = %s\n"
+msgstr " résultats peuvent être imprécis. rcond = %s\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Vecteur de chaîne de "
-"caractères attendu.\n"
+msgid "Interface %s not linked.\n"
+msgstr "Interface %s non liée.\n"
 
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
@@ -170,14 +216,6 @@ msgstr "%s: Déjà chargé à partir de la bibliothèque %s\n"
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr "%s : problème avec un des points d'entrée.\n"
-
-#, c-format
-msgid " results may be inaccurate. rcond = %s\n"
-msgstr " résultats peuvent être imprécis. rcond = %s\n"
-
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "Interface %s non liée.\n"
 
 #, c-format
 msgid "Link failed for dynamic library '%s'.\n"

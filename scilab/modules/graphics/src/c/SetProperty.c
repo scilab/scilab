@@ -2647,7 +2647,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       n1=pPOLYLINE_FEATURE (pthis)->n1;
       if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
 	{
-	  sciprint(_("Number of columns must be 2 (3 if z coordinate).\n"));
+	  sciprint(_("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
 	}
       if (*numrow != n1) /* SS 30/1/02 */
@@ -2727,7 +2727,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       int size = *numrow * *numcol ;
       if ( size != 5 && size != 4 )
       {
-        sciprint(_("Number of element must be %d (%d if z coordinate).\n"),4,5);
+        sciprint(_("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
         return -1;
       }
 
@@ -2781,7 +2781,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_TEXT:
       if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
 	{
-	  sciprint(_("Number of elements must be %d (%d if z coordinate)\n"),2,3);
+	  sciprint(_("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
 	}
       pTEXT_FEATURE (pthis)->x = tab[0];
@@ -2793,7 +2793,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype <= 0) {
 	if ((*numcol != 3)&&(*numcol != 2)) {
-	  sciprint(_("Number of columns must be %d (%d if if z coordinate)\n"),2,3);
+	  sciprint(_("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
 	}
 	n1=pSEGS_FEATURE (pthis)->Nbr1;

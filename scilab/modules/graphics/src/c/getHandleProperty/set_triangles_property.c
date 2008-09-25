@@ -47,7 +47,7 @@ int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( nbCol != 5 )
   {
-    sciprint("Second argument must have 5 columns.\n") ;
+    sciprint(_("Argument #%d must have %d columns.\n"),2,5) ;
     return SET_PROPERTY_ERROR ;
   }
 

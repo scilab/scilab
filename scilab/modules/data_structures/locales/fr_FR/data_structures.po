@@ -14,20 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected"
-msgstr "%s: Mauvais nombre d'arguments d'entrée: %d attendu"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s)."
 msgstr "%s: Mauvais nombre d'argument(s) d'entrée."
 
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"Trop d'arguments sur la pile, éditez stack.h et augmentez intersiz.\n"
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d attendu"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr " Une extraction d'hypermatrice doit avoir au moins 2 arguments. "
@@ -35,9 +31,8 @@ msgstr " Une extraction d'hypermatrice doit avoir au moins 2 arguments. "
 msgid " Argument is not an hypermatrix. "
 msgstr " L'argument n'est pas une hypermatrice. "
 
-#, fuzzy
 msgid " Incompatible hypermatrix extraction. "
-msgstr " Extraction d'une hypermatrice incompatible. "
+msgstr ""
 
 #, c-format
 msgid "Bad (%d th) index in hypermatrix extraction. "
@@ -52,3 +47,7 @@ msgstr " L'argument n'est pas une hypermatrice "
 
 msgid " Bad hypermatrix insertion. "
 msgstr " Mauvaise insertion dans une hypermatrice. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"Trop d'arguments sur la pile, éditez stack.h et augmentez intersiz.\n"

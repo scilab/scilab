@@ -45,7 +45,7 @@ int set_text_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint("text_box must be a 2D vector.\n");
+    sciprint(_("%s must be a 2D vector.\n"),"text_box");
     return SET_PROPERTY_ERROR ;
   }
   return sciSetUserSize( pobj, values[0], values[1] ) ;

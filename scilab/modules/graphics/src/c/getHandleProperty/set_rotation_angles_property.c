@@ -41,7 +41,7 @@ int set_rotation_angles_property( sciPointObj * pobj, size_t stackPointer, int v
   /* DJ.A 2003 */
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("rotation_angles property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"rotation_angles") ;
     return SET_PROPERTY_ERROR ;
   }
 

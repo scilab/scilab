@@ -14,21 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-09 07:49+0000\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负整数。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个方阵。\n"
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -44,8 +35,30 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负标量。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负整数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个方阵。\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个列向量。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d。\n"
 
 #, c-format
 msgid ""
@@ -70,17 +83,8 @@ msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
 msgstr "%s：输入参数#%d的值错误：应该为是半正定阵。"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负标量。\n"
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s：QR分解的迭代中不收敛。\n"
 
 #, c-format
 msgid ""
@@ -90,7 +94,3 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数或复数矩阵。\
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵。\n"
-
-#, c-format
-msgid "%s: Non convergence in QR steps.\n"
-msgstr "%s：QR分解的迭代中不收敛。\n"

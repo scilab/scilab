@@ -44,7 +44,7 @@ int set_mark_size_unit_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
-    sciprint("Value must be 'point/tabulated'.\n") ;
+     sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"point","tabulated");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;
