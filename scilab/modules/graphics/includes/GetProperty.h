@@ -146,7 +146,6 @@ int CheckForCompound (long *tabpointobj, int number); /* GET */
 
 /* UNUSED ? */
 sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
-HMENU sciGethPopMenu (sciPointObj * pthis);
 
 int * sciGetInterpVector(sciPointObj * pobj); /* GET */
 BOOL sciGetIsColorInterpolated(sciPointObj * pobj); /* GET */

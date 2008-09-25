@@ -2765,42 +2765,6 @@ sciGetOriginalSubWin (sciPointObj * pfigure)
   return (sciPointObj *)pFIGURE_FEATURE(pfigure)->originalsubwin0011;
 }
 
-/*sciGethPopMenu
- * This function returns the handle of the menu associated with this object and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-HMENU
-sciGethPopMenu (sciPointObj * pthis)
-{
-  /* structure BCG periWIN ! winuser.h "Window"*/
-  /*  HWND hwnd_window_pointed; */
-
-  /* On cherche le handle de la fenetre selectionnnee */
-  /* hwnd_window_pointed = WindowFromPoint(Point);    */
-  switch(sciGetEntityType(pthis)) {
-  case SCI_SUBWIN:
-    return sciGethPopMenu(pSUBWIN_FEATURE (pthis)->pPopMenu);
-    break;
-  case SCI_FIGURE:
-  case SCI_TEXT:
-  case SCI_LEGEND:
-  case SCI_ARC:
-  case SCI_SEGS: 
-  case SCI_FEC: 
-  case SCI_GRAYPLOT: 
-  case SCI_POLYLINE:
-  case SCI_RECTANGLE:
-  case SCI_SURFACE: 
-  case SCI_AXES:
-  case SCI_AGREG:
-  case SCI_LABEL: /* F.Leray 28.05.04 */
-  case SCI_UIMENU:
-  default: 
-    return (HMENU) NULL ;
-    break;
-  }
-  return (HMENU) NULL;
-}
 
 /* get the property of the axes box */
 EAxesBoxType sciGetBoxType( sciPointObj * pobj )

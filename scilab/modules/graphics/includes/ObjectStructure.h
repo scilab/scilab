@@ -35,28 +35,6 @@
 #define Top C2F(vstk).top
 #endif
 
-#ifndef _MSC_VER
-#define PS_SOLID 0
-#define HS_HORIZONTAL 0
-#define PLANES 0
-#define RASTERCAPS 0
-#define RC_PALETTE 0
-#define BITSPIXEL 0
-#define FLOAT 0
-#define TEXTMETRIC 0
-#define GM_ADVANCED 0
-#define MWT_IDENTITY 0
-#define HORZRES 0
-#define VERTRES 0
-#define VERTSIZE 0
-#define DEFAULT_CHARSET 0
-#define HORZSIZE 0                                                     
-#define MF_SEPARATOR 0
-#define SW_MINIMIZE 0
-#define SW_SHOWNORMAL 0
-#define SB_VERT 0
-#define SB_HORZ 0
-#endif 
 #define NUMCOLORS_SCI 32
 #define SCI_FIGURE_NAME_LENGTH 256
 /* Renvoi le pointeur sur la structure */
@@ -80,12 +58,6 @@
 #define pUICONTROL_FEATURE(pointobj)   ((sciUicontrol     *)pointobj->pfeatures)/** */
 #define pWAITBAR_FEATURE(pointobj)     ((sciWaitbar        *)pointobj->pfeatures)/** */
 #define pPROGRESSIONBAR_FEATURE(pointobj)     ((sciProgressionbar        *)pointobj->pfeatures)/** */
-
-#ifndef _MSC_VER
-typedef unsigned short HMENU;
-typedef void *HFONT;
-typedef unsigned long DWORD;
-#endif
 
 typedef struct tagPOINT2D
 {

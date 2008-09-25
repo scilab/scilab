@@ -232,7 +232,7 @@ sciInitGraphicContext (sciPointObj * pobj)
       (sciGetGraphicContext(pobj))->foregroundcolor = /*-2;*/ 32;  /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method*/
       (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
       (sciGetGraphicContext(pobj))->linewidth = 1;
-      (sciGetGraphicContext(pobj))->linestyle = PS_SOLID;
+      (sciGetGraphicContext(pobj))->linestyle = 0; /* solid */
       (sciGetGraphicContext(pobj))->ismark    = FALSE;
       (sciGetGraphicContext(pobj))->isline    = TRUE;
       (sciGetGraphicContext(pobj))->isfilled  = FALSE;
