@@ -221,11 +221,9 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
 
 
   if((sciGetEntityType(pobj) != SCI_TEXT)        &&
-     (sciGetEntityType(pobj) != SCI_TITLE)       &&
      (sciGetEntityType(pobj) != SCI_LEGEND)      &&
      (sciGetEntityType(pobj) != SCI_AXES)        &&
      (sciGetEntityType(pobj) != SCI_UICONTROL)   &&
-     (sciGetEntityType(pobj) != SCI_STATUSB)    &&
      (sciGetEntityType(pobj) != SCI_LABEL)      &&
      (sciGetEntityType(pobj) != SCI_UIMENU) )
     {
@@ -253,10 +251,8 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
 
   if((sciGetEntityType(pobj) == SCI_TEXT)        ||
      (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
-     (sciGetEntityType(pobj) == SCI_TITLE)       ||
      (sciGetEntityType(pobj) == SCI_LEGEND)      ||
      (sciGetEntityType(pobj) == SCI_AXES)        ||
-     (sciGetEntityType(pobj) == SCI_STATUSB)     ||
      (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
      (sciGetEntityType(pobj) == SCI_FIGURE)      ||
      (sciGetEntityType(pobj) == SCI_LABEL))
@@ -347,20 +343,14 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_GRAYPLOT:
 	case SCI_RECTANGLE:
 	case SCI_SURFACE:
-	case SCI_LIGHT:
 	case SCI_AXES:
-	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_TEXT:
 	  sciSetForeground(pobj,value);
 	  break;
 	case SCI_UIMENU:
 	case SCI_AGREG:
-	case SCI_TITLE:
 	case SCI_LEGEND:
-	case SCI_PANNER:		/* pas de context graphics */
-	case SCI_SBH:		/* pas de context graphics */
-	case SCI_SBV:		/* pas de context graphics */
 	default:
 	  return -1;
 	  break;
@@ -378,20 +368,14 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_POLYLINE:
 	case SCI_RECTANGLE:
 	case SCI_SURFACE:
-	case SCI_LIGHT:
 	case SCI_AXES:
-	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_TEXT:
 	  sciSetBackground(pobj,value);
 	  break;
 	case SCI_UIMENU:
 	case SCI_AGREG:
-	case SCI_TITLE:
 	case SCI_LEGEND:
-	case SCI_PANNER:		/* pas de context graphics */
-	case SCI_SBH:		/* pas de context graphics */
-	case SCI_SBV:		/* pas de context graphics */
 	default:
 	  return -1;
 	  break;
@@ -401,9 +385,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
       switch (sciGetEntityType (pobj))
 	{
 	case SCI_AXES:
-	case SCI_STATUSB:
 	case SCI_TEXT:
-	case SCI_TITLE:
 	case SCI_LEGEND:
 	case SCI_FIGURE:
 	case SCI_SUBWIN:
@@ -419,9 +401,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
       switch (sciGetEntityType (pobj))
 	{
 	case SCI_AXES:
-	case SCI_STATUSB:
 	case SCI_TEXT:
-	case SCI_TITLE:
 	case SCI_LEGEND:
 	case SCI_FIGURE:
 	case SCI_SUBWIN:
@@ -1038,14 +1018,6 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
         return -1 ;
       }
       break;
-    case SCI_TITLE:
-      deleteMatrix( pTITLE_FEATURE (pObjDest)->text.pStrings ) ;
-      pTITLE_FEATURE (pObjDest)->text.pStrings = copyStringMatrix( pStrings ) ;
-      if ( pTITLE_FEATURE (pObjDest)->text.pStrings == NULL )
-      {
-        return -1 ;
-      }
-      break;
     case SCI_LEGEND:
       deleteMatrix( pLEGEND_FEATURE (pObjDest)->text.pStrings ) ;
       pLEGEND_FEATURE (pObjDest)->text.pStrings = copyStringMatrix( pStrings ) ;
@@ -1067,12 +1039,7 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     default:
       printSetGetErrorMessage("text");
@@ -1103,14 +1070,6 @@ sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
         return -1 ;
       }
       break;
-    case SCI_TITLE:
-      deleteMatrix( pTITLE_FEATURE (pobj)->text.pStrings ) ;
-      pTITLE_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( pTITLE_FEATURE (pobj)->text.pStrings == NULL )
-      {
-        return -1 ;
-      }
-      break;
     case SCI_LEGEND:
       deleteMatrix( pLEGEND_FEATURE (pobj)->text.pStrings ) ;
       pLEGEND_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
@@ -1132,12 +1091,7 @@ sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     default:
       printSetGetErrorMessage("text");
@@ -1157,19 +1111,11 @@ int sciInitFontBackground( sciPointObj * pobj, int colorindex )
       (sciGetFontContext(pobj))->backgroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));;
       break;
-    case SCI_TITLE:
-      (sciGetFontContext(pobj))->backgroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
     case SCI_LEGEND:
       (sciGetFontContext(pobj))->backgroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_AXES:
-      (sciGetFontContext(pobj))->backgroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
-    case SCI_STATUSB:
       (sciGetFontContext(pobj))->backgroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
@@ -1193,10 +1139,6 @@ int sciInitFontBackground( sciPointObj * pobj, int colorindex )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
     default:
       printSetGetErrorMessage("font_background");
@@ -1235,19 +1177,11 @@ int sciInitFontForeground( sciPointObj * pobj, int colorindex )
       (sciGetFontContext(pobj))->foregroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
-    case SCI_TITLE:
-      (sciGetFontContext(pobj))->foregroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
     case SCI_LEGEND:
       (sciGetFontContext(pobj))->foregroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_AXES:
-      (sciGetFontContext(pobj))->foregroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
-    case SCI_STATUSB:
       (sciGetFontContext(pobj))->foregroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
@@ -1271,10 +1205,6 @@ int sciInitFontForeground( sciPointObj * pobj, int colorindex )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
     default:
       printSetGetErrorMessage("font_foreground");
@@ -1309,7 +1239,6 @@ int sciInitFontStyle( sciPointObj * pobj, int iAttributes )
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_SUBWIN:
     case SCI_FIGURE:
@@ -1324,12 +1253,7 @@ int sciInitFontStyle( sciPointObj * pobj, int iAttributes )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     default:
       printSetGetErrorMessage("font_style");
@@ -1379,16 +1303,6 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
 	      (sciGetFontContext(pobj))->fontnamelen = n;*/
       return -1 ;
       break;
-    case SCI_TITLE:
-      /*if (realloc
-	(	(sciGetFontContext(pobj))->pfontname,
-	n * sizeof (char)) == NULL)
-	return -1;
-	strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname,
-	n);
-	(sciGetFontContext(pobj))->fontnamelen = n;*/
-      return -1 ;
-      break;
     case SCI_LEGEND:
       /*if (realloc
 	(	(sciGetFontContext(pobj))->pfontname,
@@ -1408,12 +1322,7 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1422,79 +1331,6 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
       break;
     }
 }
-
-
-/**sciSetTitlePos
- * Sets the Title Position in the graphique window. This function is actualy private
- * @param sciPointObj * pobj: the pointer to the entity
- * @return 0 if ok, -1 if not
- */
-int
-sciSetTitlePos (sciPointObj * pobj, int x, int y)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TITLE:
-      pTITLE_FEATURE (pobj)->pos.x = x;
-      pTITLE_FEATURE (pobj)->pos.y = y;
-      break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL:
-    case SCI_UIMENU:
-    default:
-      sciprint(_("You are not using a title object.\n"));
-      return -1;
-      break;
-    }
-  return 0;
-}
-
-
-
-/**sciSetTitlePlace
- * Sets the Title Place  with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
- * @param sciPointObj * pobj: the pointer to the entity
- * @return 0 if ok, -1 if not
- */
-int
-sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place)
-{
-  int x = 0;
-  int y = 0;
-
-  if (sciGetEntityType (pobj) == SCI_TITLE)
-    {
-      pTITLE_FEATURE (pobj)->titleplace = place;
-      /* calcul de l emplacement relatif du titre
-       * en fonction de la taille de la police
-       * de la fenetre...
-       */
-      sciSetTitlePos (pobj, x, y);
-      return 0;
-    }
-  else
-    sciprint(_("You are not using a title object.\n"));
-  return -1;
-}
-
-
 
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
@@ -1541,7 +1377,6 @@ int sciInitLegendPos( sciPointObj * pobj, double position[] )
       pLEGEND_FEATURE (pobj)->pos.x = position[0];
       pLEGEND_FEATURE (pobj)->pos.y = position[1];
       break;
-    case SCI_TITLE:
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_TEXT:
@@ -1552,12 +1387,7 @@ int sciInitLegendPos( sciPointObj * pobj, double position[] )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL:
     case SCI_UIMENU:
@@ -1615,10 +1445,6 @@ int sciInitIsClipping( sciPointObj * pobj, int value )
       pTEXT_FEATURE (pobj)->isclip = value;
       if(value>0) pTEXT_FEATURE (pobj)->clip_region_set=1;
       break;
-    case SCI_LIGHT:
-      pLIGHT_FEATURE (pobj)->isclip = value;
-      if(value>0) pLIGHT_FEATURE (pobj)->clip_region_set=1;
-      break;
     case SCI_AXES:
       pAXES_FEATURE (pobj)->isclip = value;
       if(value>0) pAXES_FEATURE (pobj)->clip_region_set=1;
@@ -1636,13 +1462,8 @@ int sciInitIsClipping( sciPointObj * pobj, int value )
       if(value>0) pGRAYPLOT_FEATURE (pobj)->clip_region_set=1;
       break;
     case SCI_LEGEND:
-    case SCI_TITLE:
     case SCI_AGREG:
     case SCI_FIGURE:
-    case SCI_SBH:
-    case SCI_PANNER:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
@@ -1698,9 +1519,6 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
     case SCI_TEXT:
       for(i=0;i<4;i++) {pTEXT_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
-    case SCI_LIGHT:
-      for(i=0;i<4;i++) {pLIGHT_FEATURE (pobj)->clip_region[i] = pclip[i];} /* not used for now 04.04.2005 */
-      break;
     case SCI_AXES:
       for(i=0;i<4;i++) {pAXES_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
@@ -1710,12 +1528,6 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
     case SCI_LEGEND:
       for(i=0;i<4;i++) {pLEGEND_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
-      /*     case SCI_TITLE:   */
-      /*       for(i=0;i<4;i++) pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i]; */
-      /*       break; */
-      /*     case SCI_AGREG:  */
-      /*       for(i=0;i<4;i++) pAGREG_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
-      /*       break; */
     case SCI_FEC:
       for(i=0;i<4;i++) {pFEC_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
@@ -1725,7 +1537,6 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
     case SCI_LABEL:
       return sciSetClipping( pLABEL_FEATURE (pobj)->text, pclip ) ;
       break;
-    case SCI_TITLE:
     case SCI_AGREG:
     case SCI_FIGURE:
     case SCI_UIMENU:
@@ -1736,59 +1547,6 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
     }
   return 0;
 
-}
-
-
-int sciInitHighLight( sciPointObj * pobj, BOOL value )
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /* (sciGetGraphicMode (pobj))->highlight = value; unused */
-      break;
-    case SCI_SUBWIN:
-      /* la valeur est herite du parent...pour le moment */
-
-      /* (sciGetGraphicMode (pobj))->highlight = value;
-	 sciSetHighLight (sciGetParentFigure (pobj), value);unused */
-      break;
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      printSetGetErrorMessage("highlight");
-      return -1 ;
-      break;
-    }
-  return 0 ;
-}
-
-/**sciSetHighLight
- * Tunrs ON or OFF the highlighting of the objects when there are selected
- */
-
-int
-sciSetHighLight (sciPointObj * pobj, BOOL value)
-{
-
-  if (  sciGetHighLight( pobj ) == value )
-  {
-    /* nothing to do */
-    return 1 ;
-  }
-  return sciInitHighLight( pobj, value ) ;
 }
 
 
@@ -1804,7 +1562,6 @@ int sciInitAddPlot( sciPointObj * pobj, BOOL value )
       /*(sciGetGraphicMode (sciGetParentFigure(pobj)))->addplot = value;*/
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS:
@@ -1813,7 +1570,6 @@ int sciInitAddPlot( sciPointObj * pobj, BOOL value )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1857,7 +1613,6 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
       (sciGetGraphicMode (pobj))->autoscaling = value;
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS:
@@ -1866,7 +1621,6 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1909,7 +1663,6 @@ int sciInitZooming( sciPointObj * pobj, BOOL value )
       sciSetZooming (sciGetParentFigure (pobj), value);
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS:
@@ -1918,7 +1671,6 @@ int sciInitZooming( sciPointObj * pobj, BOOL value )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1980,7 +1732,6 @@ int sciInitXorMode( sciPointObj * pobj, int value )
       sciSetXorMode (sciGetParentFigure (pobj), value);
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS:
@@ -1989,7 +1740,6 @@ int sciInitXorMode( sciPointObj * pobj, int value )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -2035,9 +1785,6 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
     case SCI_SUBWIN:
       pSUBWIN_FEATURE (pobj)->visible = value;
       break;
-    case SCI_TITLE:
-      pTITLE_FEATURE (pobj)->visible = value;
-      break;
     case SCI_LEGEND:
       pLEGEND_FEATURE (pobj)->visible = value;
       break;
@@ -2065,9 +1812,6 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
     case SCI_TEXT:
       pTEXT_FEATURE (pobj)->visible = value;
       break;
-    case SCI_LIGHT:
-      pLIGHT_FEATURE (pobj)->visible = value;
-      break;
     case SCI_AXES:
       pAXES_FEATURE (pobj)->visible = value;
       break;
@@ -2077,27 +1821,8 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciInitVisibility( pLABEL_FEATURE(pobj)->text, value ) ;
       break;
-    case SCI_CONSOLE:
-      pCONSOLE_FEATURE(pobj)->visible = value ;
-      break;
-    case SCI_FRAME:
-      pFRAME_FEATURE(pobj)->visible = value ;
-      break;
-    case SCI_WINDOW:
-      pWINDOW_FEATURE(pobj)->visible = value ;
-      break;
-    case SCI_WINDOWFRAME:
-      pWINDOWFRAME_FEATURE(pobj)->visible = value ;
-      break;
-    case SCI_SCREEN:
-      pSCREEN_FEATURE(pobj)->visible = value ;
-      break;
     case SCI_UIMENU:
     case SCI_UICONTROL:
-    case SCI_SBH:
-    case SCI_PANNER:
-    case SCI_SBV:
-    case SCI_STATUSB:
     default:
       return -1 ;
       break;
@@ -2138,7 +1863,6 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
       sciInitResize(sciGetParentFigure(pobj), value);
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS:
@@ -2147,7 +1871,6 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -2318,15 +2041,6 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
       pSUBWIN_FEATURE (pobj)->windimwidth = newWidth ;
       pSUBWIN_FEATURE (pobj)->windimheight = newHeight;
       break;
-    case SCI_CONSOLE:
-      /* TODO */
-      break;
-    case SCI_WINDOW:
-      /* TODO */
-      break ;
-    case SCI_WINDOWFRAME:
-      /* TODO */
-      break ;
     case SCI_AGREG:
     default:
       printSetGetErrorMessage("size");
@@ -2409,21 +2123,6 @@ int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
         sciSetJavaWindowPosition(pobj, pos) ;
       }
       return 0;
-    case SCI_CONSOLE:
-      /* nothing for now */
-      break ;
-    case SCI_FRAME:
-      /* nothing for now */
-      break ;
-    case SCI_WINDOW:
-      /* nothing for now */
-      break ;
-    case SCI_WINDOWFRAME:
-      /* nothing for now */
-      break ;
-    case SCI_SCREEN:
-      /* nothing for now */
-      break ;
     default:
       printSetGetErrorMessage("figure_position");
       return -1;
@@ -3034,16 +2733,10 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	}
       }
       break;
-    case SCI_SBV:
-    case SCI_SBH:
     case SCI_FIGURE:
     case SCI_SUBWIN:
-    case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -3241,13 +2934,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
     case SCI_SEGS:
     case SCI_FEC:
     case SCI_GRAYPLOT:
-    case SCI_STATUSB:
-    case SCI_LIGHT:
     case SCI_AGREG:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_TITLE:
     case SCI_UIMENU:
     default:
       printSetGetErrorMessage("box_type");
@@ -3310,13 +2997,7 @@ int sciInitAutoRotation( sciPointObj * pObj, BOOL value )
   case SCI_SEGS:
   case SCI_LEGEND:
   case SCI_GRAYPLOT:
-  case SCI_LIGHT:
-  case SCI_STATUSB:
-  case SCI_PANNER:
-  case SCI_SBH:
-  case SCI_SBV:
   case SCI_AGREG:
-  case SCI_TITLE:
   case SCI_UIMENU:
   default:
     printSetGetErrorMessage("auto_rotation");
@@ -3359,13 +3040,7 @@ int sciInitAutoPosition( sciPointObj * pObj, BOOL value )
   case SCI_SEGS:
   case SCI_LEGEND:
   case SCI_GRAYPLOT:
-  case SCI_LIGHT:
-  case SCI_STATUSB:
-  case SCI_PANNER:
-  case SCI_SBH:
-  case SCI_SBV:
   case SCI_AGREG:
-  case SCI_TITLE:
   case SCI_UIMENU:
   default:
     printSetGetErrorMessage("auto_position");

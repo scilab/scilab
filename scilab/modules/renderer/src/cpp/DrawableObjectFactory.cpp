@@ -114,18 +114,7 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
   case SCI_RECTANGLE: 
     return new DrawableRectangleFactory() ;
     break ;
-  case SCI_TITLE:    
-  case SCI_LIGHT:
-  case SCI_PANNER:
-  case SCI_SBH:
-  case SCI_SBV:
-  case SCI_STATUSB:
-  case SCI_UIMENU: 
-  case SCI_CONSOLE:
-  case SCI_FRAME:
-  case SCI_WINDOW:
-  case SCI_WINDOWFRAME:
-  case SCI_SCREEN:
+  case SCI_UIMENU:
   default:
     return NULL;
   }

@@ -85,9 +85,6 @@ int sciGetFontStyle (sciPointObj * pobj); /* GET */
 char *sciGetFontName (sciPointObj * pobj); /* GET */
 unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
 
-/*Title Functions */
-POINT2D sciGetTitlePos (sciPointObj * pobj); /* GET */
-sciTitlePlace sciGetTitlePlace (sciPointObj * pobj); /* GET */
 
 /* Legend */
 sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
@@ -103,7 +100,6 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
 int sciGetIsClipRegionValuated (sciPointObj * pobj);
 int sciGetIsClipping (sciPointObj * pobj); /* GET */
 double *sciGetClipping (sciPointObj * pobj); /* GET */
-BOOL sciGetHighLight (sciPointObj * pobj);  /* GET */
 BOOL sciGetAddPlot (sciPointObj * pobj);  /* GET */
 BOOL sciGetAutoScale (sciPointObj * pobj);  /* GET */
 BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
@@ -126,15 +122,11 @@ BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */
 sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
-int sciGetScrollPosV (sciPointObj * pobj);  /* GET */
-int sciGetScrollPosH (sciPointObj * pobj);  /* GET */
 
 BOOL sciGetReplay (void); /* GET */
 
 
 double *sciGetPoint (sciPointObj * pthis, int *num, int *numco); /* GET */
-sciPointObj *sciGetObjClicked (sciPointObj *pthis,int x, int y); /* GET */ /* unused */
-BOOL sciIsClicked(sciPointObj *pthis,int x, int y);  /* GET */
 
 BOOL sciGetdrawmode (sciPointObj *pobj); /* GET */
 sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GET */
@@ -143,8 +135,6 @@ sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GE
 int sciType (char *marker, sciPointObj *pobj); /* GET */
 
 sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
-
-sciPointObj *CheckClickedSubwin(int x, int y); /* GET */
 
 /* BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
 BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */

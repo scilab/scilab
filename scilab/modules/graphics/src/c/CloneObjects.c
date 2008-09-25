@@ -38,28 +38,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
-/**sciCloneColormap
- * This function clone a colormap from the figure. It must be FREE a lesat.
- * It's the same for all sons
- * Setting the colormap rgbmat must be a m x 3 double RGB matrix:
- * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE
- */
-double *
-sciCloneColormap (sciPointObj * pobj)
-{
-  double *rgbmat;
-  int m = sciGetNumColors (pobj);
-
-  if ((rgbmat = MALLOC (m * 3 * sizeof (double))) == NULL)
-  {
-    return NULL;
-  }
-
-  sciGetColormap( pobj, rgbmat ) ;
-
-  return rgbmat;
-}
-
 
 
 /**CloneText
@@ -168,16 +146,6 @@ sciCloneObj (sciPointObj * pobj)
     case SCI_RECTANGLE:
       return CloneRectangle(pobj);
       break;
-    case SCI_CONSOLE:
-      return sciCloneConsole(pobj) ;
-    case SCI_FRAME:
-      return sciCloneFrame(pobj) ;
-    case SCI_WINDOW:
-      return sciCloneWindow(pobj) ;
-    case SCI_WINDOWFRAME:
-      return sciCloneWindowFrame(pobj) ;
-    case SCI_SCREEN:
-      return sciCloneScreen(pobj) ;
     case SCI_AGREG:
 
     case SCI_SEGS: 
@@ -186,14 +154,8 @@ sciCloneObj (sciPointObj * pobj)
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_LEGEND:
-    case SCI_TITLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
@@ -465,94 +427,3 @@ int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
   destFC->useFractionalMetrics = sourceFC->useFractionalMetrics;
   return 0 ;
 }
-/*--------------------------------------------------------------------------*/
-sciPointObj * sciCloneConsole( sciPointObj * pthis )
-{
-  sciPointObj * newObj = NULL ;
-  int posX ;
-  int posY ;
-
-  newObj = sciConstructConsole( sciGetParent(pthis) ) ;
-
-  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
-  sciGetScreenPosition( pthis, &posX, &posY ) ;
-  sciInitScreenPosition( newObj, posX, posY ) ;
-
-  /* copy user_data */
-  cloneUserData( pthis, newObj ) ;
-
-  return newObj ;
-}
-/*--------------------------------------------------------------------------*/
-sciPointObj * sciCloneFrame( sciPointObj * pthis )
-{
-  sciPointObj * newObj = NULL ;
-  int posX ;
-  int posY ;
-
-  newObj = sciConstructFrame( sciGetParent(pthis) ) ;
-
-  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
-  sciGetScreenPosition( pthis, &posX, &posY ) ;
-  sciInitScreenPosition( newObj, posX, posY ) ;
-
-  /* copy user_data */
-  cloneUserData( pthis, newObj ) ;
-
-  return newObj ;
-}
-/*--------------------------------------------------------------------------*/
-sciPointObj * sciCloneWindow( sciPointObj * pthis )
-{
-  sciPointObj * newObj = NULL ;
-  int posX ;
-  int posY ;
-
-  newObj = sciConstructWindow( sciGetParent(pthis) ) ;
-
-  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
-  sciGetScreenPosition( pthis, &posX, &posY ) ;
-  sciInitScreenPosition( newObj, posX, posY ) ;
-
-  /* copy user_data */
-  cloneUserData( pthis, newObj ) ;
-
-  return newObj ;
-}
-/*--------------------------------------------------------------------------*/
-sciPointObj * sciCloneWindowFrame( sciPointObj * pthis )
-{
-  sciPointObj * newObj = NULL ;
-  int posX ;
-  int posY ;
-
-  newObj = sciConstructWindowFrame( sciGetParent(pthis) ) ;
-
-  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
-  sciGetScreenPosition( pthis, &posX, &posY ) ;
-  sciInitScreenPosition( newObj, posX, posY ) ;
-
-  /* copy user_data */
-  cloneUserData( pthis, newObj ) ;
-
-  return newObj ;
-}
-/*--------------------------------------------------------------------------*/
-sciPointObj * sciCloneScreen( sciPointObj * pthis )
-{
-  sciPointObj * newObj = NULL ;
-  int posX ;
-  int posY ;
-
-  newObj = sciConstructScreen( sciGetParent(pthis) ) ;
-
-  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
-  sciGetScreenPosition( pthis, &posX, &posY ) ;
-  sciInitScreenPosition( newObj, posX, posY ) ;
-
-  /* copy user_data */
-  cloneUserData( pthis, newObj ) ;
-
-  return newObj ;
-}
-/*--------------------------------------------------------------------------*/

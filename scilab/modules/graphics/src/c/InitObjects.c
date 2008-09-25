@@ -270,9 +270,7 @@ sciInitGraphicContext (sciPointObj * pobj)
   case SCI_POLYLINE:
   case SCI_RECTANGLE:
   case SCI_SURFACE:
-  case SCI_LIGHT:
   case SCI_AXES:
-  case SCI_STATUSB:
   case SCI_LEGEND: /* Adding a graphic context to legend object F.Leray 21.01.05 */
   case SCI_TEXT:
     cloneGraphicContext( sciGetParent (pobj), pobj ) ;
@@ -311,10 +309,6 @@ sciInitGraphicContext (sciPointObj * pobj)
       return 0 ;
     }
   case SCI_AGREG:
-  case SCI_TITLE:
-  case SCI_PANNER:		/* pas de context graphics */
-  case SCI_SBH:		/* pas de context graphics */
-  case SCI_SBV:		/* pas de context graphics */
   case SCI_UIMENU:
   default:
     return -1;
@@ -357,10 +351,8 @@ sciInitFontContext (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
   {
   case SCI_TEXT:
-  case SCI_TITLE:
   case SCI_LEGEND:
   case SCI_AXES:
-  case SCI_STATUSB:
   {
     initFCfromCopy( sciGetParent(pobj), pobj ) ;
   }
@@ -430,9 +422,6 @@ sciInitFontContext (sciPointObj * pobj)
       initFCfromCopy( pfiguremdl, pobj ) ;
     }
     break;
-  case SCI_PANNER:		/* pas de context graphics */
-  case SCI_SBH:		/* pas de context graphics */
-  case SCI_SBV:		/* pas de context graphics */
   case SCI_ARC:
   case SCI_SEGS:
   case SCI_FEC:
@@ -440,7 +429,6 @@ sciInitFontContext (sciPointObj * pobj)
   case SCI_POLYLINE:
   case SCI_RECTANGLE:
   case SCI_SURFACE:
-  case SCI_LIGHT:
   case SCI_AGREG:
   case SCI_UIMENU:
   default:
@@ -448,42 +436,6 @@ sciInitFontContext (sciPointObj * pobj)
     break;
   }
   return 0;
-}
-
-void initsubwin()  /* Interesting / F.Leray 05.04.04 */
-{
-  sciPointObj  * psubwin  ;
-  sciSubWindow * ppSubWin ;
-
-
-  Cscale2default();
-  psubwin = sciGetCurrentSubWin();
-  ppSubWin = pSUBWIN_FEATURE (psubwin) ;
-
-
-  initSubWinSize( psubwin  ) ;
-
-  clearUserData( psubwin ) ;
-
-  reinitSubWin( psubwin ) ;
-
-  (ppSubWin->axes).axes_visible[0] = FALSE;
-  (ppSubWin->axes).axes_visible[1] = FALSE;
-  (ppSubWin->axes).axes_visible[2] = FALSE;
-
-  (ppSubWin->axes).reverse[0] = FALSE;
-  (ppSubWin->axes).reverse[1] = FALSE;
-  (ppSubWin->axes).reverse[2] = FALSE;
-
-  ppSubWin->axes.rect = BT_OFF;
-  sciInitIsFilled(psubwin, TRUE);
-
-  ppSubWin->axes.ticscolor = -1;
-  ppSubWin->axes.subint[0] =  1;
-  ppSubWin->axes.subint[1] =  1;
-  ppSubWin->axes.subint[2] =  1;
-  ppSubWin->axes.limits[0]  = 0;
-
 }
 
 int InitFigureModel( void )
@@ -871,7 +823,6 @@ sciInitGraphicMode (sciPointObj * pobj)
       	}
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS:
@@ -880,12 +831,7 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:

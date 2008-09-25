@@ -284,22 +284,6 @@ void Objstring( char            ** fname      ,
   endFigureDataReading(pFigure);
  
 }
-/*-----------------------------------------------------------
- * Objtitle:
- *-----------------------------------------------------------*/
-
-void Objtitle( char * str,
-               int    n  ,
-               long * hdl )
-{ 
-  checkRedrawing() ;
-  sciSetCurrentObj (ConstructTitle
-  		(sciGetCurrentSubWin(),str,n));
-  
-  *hdl=sciGetHandle(sciGetCurrentObj ());
-
-  sciDrawObjIfRequired(sciGetCurrentObj ()) ;
-}
 
 
 /*------------------------------------------------

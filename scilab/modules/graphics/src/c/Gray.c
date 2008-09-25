@@ -35,7 +35,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
-/*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect, int flag);
 extern int re_index_brect(double * brect, double * drect);
@@ -95,7 +94,6 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         break;
       case '2' : case '4' : case '6' : case '8': case '9':
         /* Force psubwin->Srect to the x and y bounds */
-        /* compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
         compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
         break;
     }
@@ -208,8 +206,6 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
       re_index_brect(brect, drect);
       break;
     case '2' : case '4' : case '6' : case '8': case '9':
-      /* Force psubwin->Srect to the x and y bounds */
-      /* 	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
       compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
       break;
     }

@@ -101,10 +101,6 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       DestroyText (pthis);
       return 0;
       break;
-    case SCI_TITLE:
-      DestroyTitle (pthis);
-      return 0;
-      break;
     case SCI_LEGEND:
       DestroyLegend (pthis);
       return 0;
@@ -137,24 +133,8 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       DestroySurface (pthis);
       return 0;
       break;
-    case SCI_LIGHT:
-      break;
     case SCI_AXES:
       DestroyAxes (pthis);
-      return 0;
-      break;
-    case SCI_PANNER:
-      break;
-    case SCI_SBH:
-      DestroyScrollH (pthis);
-      return 0;
-      break;
-    case SCI_SBV:
-      DestroyScrollV (pthis);
-      return 0;
-      break;
-    case SCI_STATUSB:
-      DestroyStatusBar (pthis);
       return 0;
       break;
     case SCI_AGREG:
@@ -173,21 +153,6 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       DestroyUicontrol (pthis);
       return 0;
       break;
-    case SCI_CONSOLE:
-      sciDestroyConsole( pthis ) ;
-      return 0 ;
-    case SCI_FRAME:
-      sciDestroyFrame( pthis ) ;
-      return 0 ;
-    case SCI_WINDOW:
-      sciDestroyWindow(pthis) ;
-      return 0 ;
-    case SCI_WINDOWFRAME:
-      sciDestroyWindowFrame(pthis) ;
-      return 0 ;
-    case SCI_SCREEN:
-      sciDestroyScreen(pthis) ;
-      return 0 ;
     default:
       sciprint (_("Entity with type %d cannot be destroyed.\n"),sciGetEntityType (pthis));
       return -1;
@@ -210,7 +175,6 @@ sciDelGraphicObj (sciPointObj * pthis)
 {
   switch (sciGetEntityType (pthis))
     {
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -224,11 +188,6 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_TEXT:
     case SCI_LABEL:
     case SCI_FIGURE:
-    case SCI_CONSOLE:
-    case SCI_FRAME:
-    case SCI_WINDOW:
-    case SCI_WINDOWFRAME:
-    case SCI_SCREEN:
       destroyGraphicHierarchy (pthis);
       return 0;
       break;
@@ -238,12 +197,7 @@ sciDelGraphicObj (sciPointObj * pthis)
       else
         destroyGraphicHierarchy (pthis);
       return 0;
-      break;         
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
+      break;
     default:
       sciprint(_("This object cannot be deleted.\n"));
       return -1;
@@ -307,20 +261,6 @@ int DestroyFigure (sciPointObj * pthis)
 
 
 
-/**DestroyStatusBar
- * This function destroies the StatusBar of Figure and the elementaries structures and returns pthis with NULL pointer and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyStatusBar (sciPointObj * pthis)
-{
-  sciDelThisToItsParent(pthis, sciGetParent (pthis));
-  FREE ((sciGetFontContext(pthis))->pfontname);
-  return sciStandardDestroyOperations(pthis) ;
-}
-
-
-
 /**DestroySubWin
  * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
@@ -363,27 +303,8 @@ DestroySubWin (sciPointObj * pthis)
 
 
 
-/**DestroyScrollV
- * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyScrollV (sciPointObj * pthis)
-{
-   return sciStandardDestroyOperations(pthis) ;
-}
 
 
-
-/**DestroyScrollH
- * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyScrollH (sciPointObj * pthis)
-{
-  return sciStandardDestroyOperations(pthis) ;
-}
 
 /**
  * free the structure used by the text object but does not remove the relationship links.
@@ -412,23 +333,6 @@ int DestroyText (sciPointObj * pthis)
   FREE ((sciGetFontContext(pthis))->pfontname);
   return sciStandardDestroyOperations(pthis) ;
 }
-
-
-
-
-/**DestroyTitle
- * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyTitle (sciPointObj * pthis)
-{
-  deleteMatrix( pTITLE_FEATURE (pthis)->text.pStrings ) ;
-  FREE ((sciGetFontContext(pthis))->pfontname);
-  return sciStandardDestroyOperations(pthis) ;
-}
-
-
 
 
 /**DestroyLegend
@@ -786,23 +690,6 @@ void AllGraphWinDelete( void )
   }
 }
 /*--------------------------------------------------------------------------------*/
-void CleanPlots(char *unused, int *winnumber, int *v3, int *v4, int *v5, int *v6, int *v7, double *dx1, double *dx2, double *dx3, double *dx4)
-{
-  
-  /* we remove scales in window number i */
-  del_window_scale(*winnumber);
-  /* if *winnumber is also the current window we reset Cscale to default value */
-  if ( *winnumber == sciGetNum(sciGetCurrentFigure()) ) 
-  {
-    Cscale2default();
-  }
-  else
-  {
-    set_window_scale_with_default(*winnumber);
-  }
-}
-
-/*--------------------------------------------------------------------------------*/
 int sciDestroyConsole( sciPointObj * pThis )
 {
   return sciStandardDestroyOperations( pThis ) ;
@@ -842,26 +729,6 @@ int sciStandardDestroyOperations( sciPointObj * pThis )
   FREE( pThis->pfeatures ) ;
   FREE( pThis ) ;
   return res ;
-}
-/*--------------------------------------------------------------------------------*/
-int sciDestroyFrame( sciPointObj * pThis )
-{
-  return sciStandardDestroyOperations( pThis ) ;
-}
-/*--------------------------------------------------------------------------------*/
-int sciDestroyWindow( sciPointObj * pThis )
-{
-  return sciStandardDestroyOperations( pThis ) ;
-}
-/*--------------------------------------------------------------------------------*/
-int sciDestroyWindowFrame( sciPointObj * pThis )
-{
-  return sciStandardDestroyOperations( pThis ) ;
-}
-/*--------------------------------------------------------------------------------*/
-int sciDestroyScreen( sciPointObj * pThis )
-{
-  return sciStandardDestroyOperations( pThis ) ;
 }
 /*--------------------------------------------------------------------------------*/
 /**

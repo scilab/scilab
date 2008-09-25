@@ -23,17 +23,6 @@ int C2F(champ1) (double *x, double *y, double *fx, double *fy, int *n1, int *n2,
 void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1, 
             int *n2, char *strflag, double *brect, double *arfact, int lstr) ;
 
-void getChampDataBounds( double   xCoords[]  ,
-                        double   yCoords[]  ,
-                        double   xLength[]  ,
-                        double   yLength[]  ,
-                        int      nbRow      ,
-                        int      nbCol      ,
-                        int      typeOfChamp,
-                        double * xMin       ,
-                        double * xMax       ,
-                        double * yMin       ,
-                        double * yMax        ) ;
 
 
 double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol ) ;

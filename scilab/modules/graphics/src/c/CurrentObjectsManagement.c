@@ -30,13 +30,8 @@
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
 /* singleton, there is only one screen */
-static sciPointObj * sciScreenRoot     = NULL ;
 static sciPointObj * sciCurrentObject  = NULL ;
 static sciPointObj * sciCurrentFigure  = NULL ;
-
-/* there can be only one console and one screen root */
-BOOL sciIsConsoleCreated = FALSE ;
-BOOL sciIsScreenCreated  = FALSE ;
 /*----------------------------------------------------------------------------------*/
 static sciPointObj * getCurrentPointedFigure(void);
 /*----------------------------------------------------------------------------------*/
@@ -97,31 +92,6 @@ long sciGetCurrentHandle( void )
 {
   return sciGetHandle( sciGetCurrentObj() );
 }
-/*----------------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentFrame( void )
-{
-  return NULL ;
-}
-/*----------------------------------------------------------------------------------*/
-int sciInitCurrentFrame( sciPointObj * pFrame ) ;
-/*----------------------------------------------------------------------------------*/
-int sciSetCurrentFrame(  sciPointObj * pFrame ) ;
-/*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentWindow( void )
-{
-  return sciGetFirstTypedSelectedSon( sciGetCurrentWindowFrame(), SCI_WINDOW ) ;
-}
-/*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentWindowFrame( void )
-{
-  return sciGetFirstTypedSelectedSon( sciGetCurrentScreen(), SCI_WINDOWFRAME ) ;
-}
-/*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentScreen( void )
-{
-  /* the screen */
-  return sciScreenRoot ;
-}
 /*-----------------------------------------------------------------------------*/
 sciPointObj * sciGetCurrentSubWin( void )
 {
@@ -132,8 +102,4 @@ sciPointObj * sciGetCurrentSubWin( void )
   return currentSubwin;
 }
 /*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentConsole( void )
-{
-  return sciGetFirstTypedSelectedSon( sciGetCurrentFrame(), SCI_CONSOLE ) ;
-}
-/*-----------------------------------------------------------------------------*/
+

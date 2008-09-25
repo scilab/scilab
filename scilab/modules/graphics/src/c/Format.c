@@ -1166,7 +1166,6 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   case 'u' : 
   case 'd' :
     /** Horizontal axes **/
-    /*   barlength =  (int)  (Cscale.WIRect1[3]/50.0); */
     /** compute a format **/
     /*   if (str == NULL && format == NULL )   */
     if (format == NULL )  
@@ -1186,8 +1185,6 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   case 'l' :
 
     /** Vertical axes **/
-    /*   barlength =  (int)  (Cscale.WIRect1[2]/75.0); */
-    /*   if (str == NULL &&  format == NULL )   */
     if (format == NULL ) 
       switch (xy_type ) {
   case 'v' : ChoixFormatE1(c_format,y,Ny);break;

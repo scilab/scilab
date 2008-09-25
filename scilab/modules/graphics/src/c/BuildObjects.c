@@ -64,55 +64,6 @@ extern int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
 
 extern unsigned short defcolors[];
 
-/**ConstructStatusBar
- * this function creates the StatusBar of Figure and the elementaries structures
- */
-sciPointObj *
-ConstructStatusBar (sciPointObj * pparentfigure)
-{
-  sciPointObj *pobj = (sciPointObj *) NULL;
-
-  if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return NULL;
-      sciSetEntityType (pobj, SCI_STATUSB);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciStatusBar)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
-
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if (sciInitFontContext (pobj) == -1)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      return (sciPointObj *)pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a FIGURE\n"));
-      return (sciPointObj *) NULL;
-    }
-}
 /*-----------------------------------------------------------------------------*/
 
 /**ConstructFigure
@@ -308,8 +259,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
       }
 
       ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
-
-      ppsubwin->vertices_list = (Vertices*) NULL;
 
 
       ppsubwin->callback = (char *)NULL;
@@ -604,79 +553,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
 
 
 
-/**ConstructScrollV
- * This function creates the scroll bar erticall
- */
-sciPointObj *
-ConstructScrollV (sciPointObj * pparentfigure)
-{
-  sciPointObj *pobjsbv = (sciPointObj *) NULL;
-
-  if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
-    {
-      /* definition of scrollbars with original code */
-      /* definition of the vertical scroll bar in the new struct */
-      if ((pobjsbv = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return NULL;
-      sciSetEntityType (pobjsbv, SCI_SBV);
-      if ((pobjsbv->pfeatures = MALLOC ((sizeof (sciScrollBarVert)))) == NULL)
-	{
-	  FREE(pobjsbv);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobjsbv, pparentfigure ) == NULL )
-      {
-        FREE( pobjsbv->pfeatures ) ;
-        FREE( pobjsbv ) ;
-        return NULL ;
-      }
-      return pobjsbv;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a FIGURE\n"));
-      return (sciPointObj *) NULL;
-    }
-}
-
-
-
-/**ConstructScrollH
- * This function creates horizontal scroll bar
- */
-sciPointObj *
-ConstructScrollH (sciPointObj * pparentfigure)
-{
-  sciPointObj *pobjsbh = (sciPointObj *) NULL;
-
-  if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
-    {
-      /* definition of scrollbars with original code */
-      /* definition of the horizontal scroll bar in the new struct */
-      if ((pobjsbh = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return NULL;
-      sciSetEntityType (pobjsbh, SCI_SBH);
-      if ((pobjsbh->pfeatures = MALLOC ((sizeof (sciScrollBarHorz)))) == NULL)
-	{
-	  FREE(pobjsbh);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobjsbh, pparentfigure ) == NULL )
-      {
-        FREE( pobjsbh->pfeatures ) ;
-        FREE( pobjsbh ) ;
-        return NULL ;
-      }
-      return pobjsbh;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a FIGURE\n"));
-      return (sciPointObj *) NULL;
-    }
-}
-
-
 /**
  * creates a new text object. However the object is not added in the handle list.
  * Its graphic and font context are also not initialized.
@@ -860,85 +736,6 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
   sciprint(_("The parent has to be a SUBWIN\n"));
   return NULL;
 }
-
-
-
-/**ConstructTitle
- * This function creates Title structure
- * @param  sciPointObj *pparentsubwin
- * @param  char text[] : intial text string.
- * @param  int n the number of element in text
- * @param  sciTitlePlace place : the title's place  (SCI_TITLE_IN_TOP, SCI_TITLE_IN_BOTTOM)
- * @return  : pointer sciPointObj if ok , NULL if not
- */
-sciPointObj *
-ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
-{
-  sciPointObj * pobj    = (sciPointObj *) NULL;
-  sciTitle    * ppTitle ;
-
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_TITLE);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciTitle)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      ppTitle = pTITLE_FEATURE(pobj) ;
-
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
-
-      ppTitle->text.callback = (char *)NULL;
-      ppTitle->text.callbacklen = 0;
-      ppTitle->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-      ppTitle->text.isboxed = FALSE ;
-
-      ppTitle->text.pStrings = newFullStringMatrix( &text, 1, 1 ) ;
-
-      if ( ppTitle->text.pStrings == NULL )
-      {
-        sciprint(_("No more place to allocates text string, try a shorter string.\n"));
-        sciDelThisToItsParent (pobj, sciGetParent (pobj));
-        sciDelHandle (pobj);
-        FREE(ppTitle);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-      }
-      /* on copie le texte du titre dans le champs specifique de l'objet */
-
-      ppTitle->ptype = type;
-
-      ppTitle->text.fontcontext.textorientation = 0.0;
-
-      ppTitle->titleplace = SCI_TITLE_IN_TOP;
-      ppTitle->isselected = TRUE;
-      if (sciInitFontContext (pobj) == -1 )
-      {
-        deleteMatrix(ppTitle->text.pStrings);
-        sciDelThisToItsParent (pobj, sciGetParent (pobj));
-        sciDelHandle (pobj);
-        FREE(ppTitle);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-      }
-      return (sciPointObj *) pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
-}
-
 
 
 /**constructLegend
@@ -2551,34 +2348,6 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
   }
 }
 /*----------------------------------------------------------------------------*/
-sciPointObj * sciConstructConsole( sciPointObj * pparent )
-{
-  sciPointObj * pObj = NULL ;
-
-  pObj = MALLOC(sizeof(sciPointObj)) ;
-  if ( pObj == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructConsole") ;
-    return NULL ;
-  }
-
-  sciSetEntityType( pObj, SCI_CONSOLE ) ;
-
-  pObj->pfeatures = MALLOC(sizeof(sciConsole)) ;
-  if ( pObj->pfeatures == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructConsole") ;
-    FREE(pObj) ;
-    return NULL ;
-
-  }
-
-  pObj = sciStandardBuildOperations( pObj, pparent ) ;
-
-  return pObj ;
-
-}
-/*----------------------------------------------------------------------------*/
 /**
  * contains the functions always called when creating an object
  * pObj should have just been allocated.
@@ -2622,118 +2391,6 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
 
 
   pObj->pDrawer = NULL ;
-
-  return pObj ;
-
-}
-/*----------------------------------------------------------------------------*/
-sciPointObj * sciConstructFrame( sciPointObj * pparent )
-{
-  sciPointObj * pObj = NULL ;
-
-  pObj = MALLOC(sizeof(sciPointObj)) ;
-  if ( pObj == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructFrame") ;
-    return NULL ;
-  }
-
-  sciSetEntityType( pObj, SCI_FRAME ) ;
-
-  pObj->pfeatures = MALLOC(sizeof(sciFrame)) ;
-  if ( pObj->pfeatures == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructFrame") ;
-    FREE(pObj) ;
-    return NULL ;
-
-  }
-
-  pObj = sciStandardBuildOperations( pObj, pparent ) ;
-
-  return pObj ;
-
-}
-/*----------------------------------------------------------------------------*/
-sciPointObj * sciConstructWindow( sciPointObj * pparent )
-{
-  sciPointObj * pObj = NULL ;
-
-  pObj = MALLOC(sizeof(sciPointObj)) ;
-  if ( pObj == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructWindow");
-    return NULL ;
-  }
-
-  sciSetEntityType( pObj, SCI_WINDOW ) ;
-
-  pObj->pfeatures = MALLOC(sizeof(sciWindow)) ;
-  if ( pObj->pfeatures == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructWindow");
-    FREE(pObj) ;
-    return NULL ;
-
-  }
-
-  pObj = sciStandardBuildOperations( pObj, pparent ) ;
-
-  return pObj ;
-
-}
-/*----------------------------------------------------------------------------*/
-sciPointObj * sciConstructWindowFrame( sciPointObj * pparent )
-{
-  sciPointObj * pObj = NULL ;
-
-  pObj = MALLOC(sizeof(sciPointObj)) ;
-  if ( pObj == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructWindowFrame");
-    return NULL ;
-  }
-
-  sciSetEntityType( pObj, SCI_WINDOWFRAME ) ;
-
-  pObj->pfeatures = MALLOC(sizeof(sciWindowFrame)) ;
-  if ( pObj->pfeatures == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructWindowFrame");
-    FREE(pObj) ;
-    return NULL ;
-
-  }
-
-  pObj = sciStandardBuildOperations( pObj, pparent ) ;
-
-  return pObj ;
-
-}
-/*----------------------------------------------------------------------------*/
-sciPointObj * sciConstructScreen( sciPointObj * pparent )
-{
-  sciPointObj * pObj = NULL ;
-
-  pObj = MALLOC(sizeof(sciPointObj)) ;
-  if ( pObj == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructScreen");
-    return NULL ;
-  }
-
-  sciSetEntityType( pObj, SCI_SCREEN ) ;
-
-  pObj->pfeatures = MALLOC(sizeof(sciScreen)) ;
-  if ( pObj->pfeatures == NULL )
-  {
-    sciprint(_("%s: No more memory.\n"),"sciConstructScreen");
-    FREE(pObj) ;
-    return NULL ;
-
-  }
-
-  pObj = sciStandardBuildOperations( pObj, pparent ) ;
 
   return pObj ;
 

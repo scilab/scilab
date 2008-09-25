@@ -85,9 +85,6 @@ void Objstring( char            ** fname      ,
                 BOOL               isfilled   ,
                 sciTextAlignment   alignment   ) ;
 
-void Objtitle( char * str,
-               int    n  ,
-               long * hdl ) ;
 
 void Objplot2d ( int       ptype     ,
                  char      logflags[],

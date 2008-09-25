@@ -36,7 +36,6 @@ extern int sciInitGraphicMode (sciPointObj * pobj);
 
 extern sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
 
-extern void initsubwin(void); /* INITOBJECT */
 extern void reinitSubwin( void ) ;
 
 FigureModelData * newFigureModelData( void ) ;

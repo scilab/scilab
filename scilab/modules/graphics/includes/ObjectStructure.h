@@ -62,34 +62,22 @@
 /* Renvoi le pointeur sur la structure */
 
 #define pFIGURE_FEATURE(pointobj)      ((sciFigure        *)pointobj->pfeatures)/** */
-#define pSTATUSB_FEATURE(pointobj)     ((sciStatusBar     *)pointobj->pfeatures)/** */
 #define pSUBWIN_FEATURE(pointobj)      ((sciSubWindow     *)pointobj->pfeatures)/** */
 #define pTEXT_FEATURE(pointobj)        ((sciText          *)pointobj->pfeatures)/** */
-#define pTITLE_FEATURE(pointobj)       ((sciTitle         *)pointobj->pfeatures)/** */
 #define pLEGEND_FEATURE(pointobj)      ((sciLegend        *)pointobj->pfeatures)/** */
 #define pPOLYLINE_FEATURE(pointobj)    ((sciPolyline      *)pointobj->pfeatures)/** */
 #define pARC_FEATURE(pointobj)         ((sciArc           *)pointobj->pfeatures)/** */
 #define pRECTANGLE_FEATURE(pointobj)   ((sciRectangle     *)pointobj->pfeatures)/** */
 #define pSURFACE_FEATURE(pointobj)     ((sciSurface       *)pointobj->pfeatures)/** */
-#define pLIGHT_FEATURE(pointobj)       ((sciLightSource   *)pointobj->pfeatures)/** */ 
-/*#define pAXIS_FEATURE(pointobj)        ((sciAxis          *)pointobj->pfeatures)*/ /** */
 #define pAXES_FEATURE(pointobj)        ((sciAxes          *)pointobj->pfeatures)/** */
 #define pGRAYPLOT_FEATURE(pointobj)    ((sciGrayplot      *)pointobj->pfeatures)/** */
 #define pFEC_FEATURE(pointobj)         ((sciFec           *)pointobj->pfeatures)/** */
-#define pPANNER_FEATURE(pointobj)      ((sciPanner        *)pointobj->pfeatures)/** */
-#define pSBH_FEATURE(pointobj)         ((sciScrollBarHorz *)pointobj->pfeatures)/** */
-#define pSBV_FEATURE(pointobj)         ((sciScrollBarVert *)pointobj->pfeatures)/** */
 #define pAGREG_FEATURE(pointobj)       ((sciAgreg         *)pointobj->pfeatures)/** */
 #define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
 #define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
 #define pUIMENU_FEATURE(pointobj)      ((sciUimenu        *)pointobj->pfeatures)/** */
 #define pUICONTEXTMENU_FEATURE(pointobj)      ((sciUicontextmenu *)pointobj->pfeatures)/** */
 #define pUICONTROL_FEATURE(pointobj)   ((sciUicontrol     *)pointobj->pfeatures)/** */
-#define pCONSOLE_FEATURE(pointobj)     ((sciConsole       *)pointobj->pfeatures)/** */
-#define pFRAME_FEATURE(pointobj)       ((sciFrame         *)pointobj->pfeatures)/** */
-#define pWINDOW_FEATURE(pointobj)      ((sciWindow        *)pointobj->pfeatures)/** */
-#define pWINDOWFRAME_FEATURE(pointobj) ((sciWindowFrame   *)pointobj->pfeatures)/** */
-#define pSCREEN_FEATURE(pointobj)      ((sciScreen        *)pointobj->pfeatures)/** */
 #define pWAITBAR_FEATURE(pointobj)     ((sciWaitbar        *)pointobj->pfeatures)/** */
 #define pPROGRESSIONBAR_FEATURE(pointobj)     ((sciProgressionbar        *)pointobj->pfeatures)/** */
 
@@ -106,13 +94,6 @@ typedef struct tagPOINT2D
 }
 POINT2D;
 
-typedef struct tagPOINT3D
-{/** */
-  double x;/** */
-  double y;/** */
-  double z;/** */
-}/**used to specifie a 3D coordinates */
-POINT3D;  
 
 /**@name sciEntityType
  * Used to determine the type of the entity
@@ -144,9 +125,7 @@ typedef enum
     /**Entity type SUBWINDOW*/
     SCI_SUBWIN,		
     /**Entity type TEXT*/
-    SCI_TEXT,			
-    /**Entity type TITLE */
-    SCI_TITLE,		
+    SCI_TEXT,
     /**Entity type LEGEND */
     SCI_LEGEND,		
     /**Entity type ARC */
@@ -156,11 +135,7 @@ typedef enum
     /**Entity type RECTANGLE*/
     SCI_RECTANGLE,    
     /**Entity type SURFACE*/
-    SCI_SURFACE,
-    /**Entity type LIGHT*/
-    SCI_LIGHT,		
-    /**Entity type AXIS*/
-    SCI_AXIS,	
+    SCI_SURFACE,	
     /**Entity type AXES*/
     SCI_AXES,	  
     /**Entity type SEGS*/
@@ -168,17 +143,9 @@ typedef enum
     /**Entity type GRAYPLOT*/
     SCI_GRAYPLOT, 
     /**Entity type FEC*/
-    SCI_FEC,				
-    /**Entity type PANNER*/
-    SCI_PANNER,		
-    /**Entity type HORIZONTALL SCROLL BAR */
-    SCI_SBH,			
-    /**Entity type VERTICALL SCROLL BAR*/
-    SCI_SBV,			
+    SCI_FEC,						
     /**Entity type CONTEXT MENU*/
-    SCI_UICONTEXTMENU,	
-    /**Entity type STATUS BAR*/
-    SCI_STATUSB,	    
+    SCI_UICONTEXTMENU,		    
     /**Entity type Compound */
     SCI_AGREG,			
     /**Entity type LABEL created by F.Leray 26.05.04 */
@@ -187,16 +154,6 @@ typedef enum
     SCI_UIMENU,
     /**Entity type UICONTROL **/
     SCI_UICONTROL,
-    /** Entity type CONSOLE created by JB Silvy 27/02/07 */
-    SCI_CONSOLE,
-    /** Entity type FRAME created by JB Silvy 27/02/07 */
-    SCI_FRAME,
-    /** Entity type WINDOW created by JB Silvy 27/02/07 */
-    SCI_WINDOW,
-    /** Entity type WINDOWFRAME created by JB Silvy 27/02/07 */
-    SCI_WINDOWFRAME,
-    /** Entity type SCREEN created by JB Silvy 27/02/07 */
-    SCI_SCREEN,
     /** Entity type WAITBAR */
     SCI_WAITBAR,
     /** Entity type PROGRESSIONBAR */
@@ -205,17 +162,6 @@ typedef enum
 /**Struct of Entity type*/
 sciEntityType;	
 
-typedef struct _Vertices 
-{
-  int value_xm;
-  int value_ym;
-  double value_x;
-  double value_y;
-  double value_z;
-  
-  struct _Vertices * pNext;
-} 
-Vertices;
 
 
 /**@name sciPointObj
@@ -338,25 +284,6 @@ typedef struct
   int markforeground;
 }/** */
 sciGraphicContext;  
-
-
-/*----------------------
-  SCIFONT.H header file no more used
-  ----------------------*/
-
-/* Changing those lines, be carreful that
-   the new attribut is update in the sciset and sciget routines
-*/
-/** */
-#define SCI_DONT_CARE          0
-/** */
-#define SCI_ATTR_BOLD          1
-/** */
-#define SCI_ATTR_ITALIC        2
-/** */
-#define SCI_ATTR_UNDERLINE     4
-/** */
-#define SCI_ATTR_STRIKEOUT     8
 
 
 /**@name sciFont
@@ -620,39 +547,6 @@ typedef struct
 }/** */
 sciLegend;  
 
-
-/**@name sciTitlePlace
- * Enumeration used to specify the title place 
- */
-typedef enum
-  {
-    /** */
-    SCI_TITLE_IN_TOP = 0,
-    /** */
-    SCI_TITLE_IN_BOTTOM = 1
-  }/** */
-sciTitlePlace;	
-
-
-/**@name Titre
- * Structure used to specify Texte
- */
-typedef struct
-{
-  /** */
-  sciText text;
-  /** absolut position in subindow*/
-  POINT2D pos;
-  int ptype;
-  /** up, down */
-  sciTitlePlace titleplace;
-  /** */
-  BOOL isselected;
-  /** specifies if this object is visble             */
-  BOOL visible;
-  int isclip;
-}/** */
-sciTitle;
 
 /**@name Titre
  * Structure used to specify Labels like Title or classic labels
@@ -958,8 +852,6 @@ typedef struct
 
   BOOL firsttime_x;
   BOOL firsttime_y;
-
-  Vertices * vertices_list; /* F.Leray 30.08.05 : stores the (x,y) coord. in term of user data coord. + pixel value on screen */
 }/** */
 sciSubWindow;  
 
@@ -1011,21 +903,6 @@ typedef struct
   /* the isline property is inside the associated graphiccontext */
 }  /** */
 sciArc;
-
-
-/**@name listPoints
- * Structure used to specify 
- */
-typedef struct taglistPoints
-{
-  /** */
-  double x;
-  /** */
-  double y;
-  /** */
-  struct taglistPoints *pnextpoints;
-}  /** */
-sciListPoints;
 
 
 /**@name Polyline
@@ -1185,65 +1062,6 @@ typedef struct
   int size_of_user_data;
 }
 sciSurface;  /** */
-
-
-/**@name LightSource
- * Structure used to specify 
- */
-typedef struct
-{
-  sciRelationShip relationship;
-  sciGraphicContext graphiccontext;
-  POINT3D org;
-  BOOL switchon;		/* on or off */
-  /** specifies if this object is visble             */
-  BOOL visible;
-  int isclip;
-  double clip_region[4];
-  int clip_region_set;
-  int * user_data; /* adding 27.06.05 */
-  int size_of_user_data;
-}
-sciLightSource;	 /** */
-
-
-/**@name Axis
- * Structure used to specify axis feature 
- */
-/* NOT USED IN FACT */
-/* typedef struct */
-/* { */
-/*   sciRelationShip relationship; */
-/*   sciGraphicContext graphiccontext;  */
-/*   sciText text; */
-/*   char strflag[4]; */
-/*   int strflaglen; */
-/*   double aaint[4]; */
-/*   double minx; */
-/*   double miny; */
-/*   double minz; */
-/*   double maxx; */
-/*   double maxy; */
-/*   double maxz; */
-/*   int styledimension;		/\* 2=2d 3=3d *\/ */
-/*   int stylecrossing; */
-/*   double orgcrossing; */
-/*   char *plabelx; */
-/*   char *plabely; */
-/*   char *plabelz; */
-/*   BOOL manualscale; */
-/*   BOOL plotit; */
-/*   BOOL isselected; */
-/*   int grid; */
-/*   char *callback; /\** specifies the text scilab code for the callback associated with this entity *\/ */
-/*   int callbacklen; /\** the length of the callback code *\/   */
-/*   int callbackevent; */
-/*   /\** specifies if this object is visble             *\/ */
-/*   BOOL visible; */
-/*   int isclip; /\* Adding F.Leray 10.03.04*\/ */
-/* } */
-/* sciAxis;  /\** *\/ */
-
 
 
 /**@name Axes
@@ -1415,57 +1233,6 @@ typedef struct
 sciFec;  /** */
 
 
-/**@name Panner
- * Structure used to specify 
- */
-typedef struct
-{
-  sciRelationShip relationship;
-  int posx;
-  int posy;
-  int width;
-  int height;
-  int totalheigth;		/* the height in the menu bar */
-}
-sciPanner;  /** */
-
-
-/**@name ScrollBarHorz
- * Structure used to specify 
- */
-typedef struct
-{
-  sciRelationShip relationship;
-  int poshorz;
-  int totalheight;
-}
-sciScrollBarHorz;  /** */
-
-
-/**@name ScrollBarVert
- * Structure used to specify 
- */
-typedef struct
-{
-  sciRelationShip relationship;
-  int posvert;
-  int totalwidth;
-}
-sciScrollBarVert;  /** */
-
-
-/**@name StatusBar
- * Structure used to specify 
- */
-typedef struct
-{
-  sciRelationShip relationship;
-  sciGraphicContext graphiccontext;
-  sciText text;
-  char *ptext;
-}
-sciStatusBar;  /** */
-
 
 /**@name Panner
  * Structure used to specify 
@@ -1488,76 +1255,5 @@ typedef struct
   int size_of_user_data;
 }
 sciAgreg;  /** */
-
-/**
- * Console window Object
- */
-typedef struct 
-{
-  sciRelationShip relationship ;
-
-  BOOL visible ;
-
-  int * user_data ;
-  int size_of_user_data;
-
-} sciConsole ;
-
-/**
- * Frame Object
- */
-typedef struct 
-{
-  sciRelationShip relationship ;
-
-  BOOL visible ;
-
-  int * user_data ;
-  int size_of_user_data;
-
-} sciFrame ;
-
-/**
- * Window object
- */
-typedef struct 
-{
-  sciRelationShip relationship ;
-
-  BOOL visible ;
-
-  int * user_data ;
-  int size_of_user_data;
-
-} sciWindow ;
-
-/**
-* WindowFrame object
-*/
-typedef struct 
-{
-  sciRelationShip relationship ;
-
-  BOOL visible ;
-
-  int * user_data ;
-  int size_of_user_data;
-
-} sciWindowFrame ;
-
-/**
-* Screen object
-*/
-typedef struct 
-{
-  sciRelationShip relationship ;
-
-  BOOL visible ;
-
-  int * user_data ;
-  int size_of_user_data;
-
-} sciScreen ;
-
 
 #endif /*__SCI_OBJECT_STRUCTURE__ */

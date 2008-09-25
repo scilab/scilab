@@ -108,10 +108,6 @@ void sciRedrawFigure( void )
   sciDrawObj(sciGetCurrentFigure ());
 }
 
-void sciRedrawF(int *value)
-{ 
-  sciDrawObj(getFigureFromIndex(*value));
-}
 
 void sciClearFigure(sciPointObj * pFigure)
 {
@@ -151,71 +147,6 @@ void sciXclear()
     }
   sciSetSelectedSubWin (tmpsousfen);
   notifyObservers(sciGetCurrentFigure ());      
-}
-
-/**Nextind
- * @author Djalel Abdemouche 10/2003
- * Should be in Action.c file
- */
-void Nextind(int ind1, int *ind2, int *ind3)
-{
-  *ind2 = ind1+1;
-  *ind3 = ind1-1;
-  if (ind1 > 3)
-    {
-      if (*ind2 == 8) *ind2 = 4;
-      if (*ind3 == 3) *ind3 = 7;
-    }
-  else
-    {
-      if (*ind2 == 4) *ind2 = 0;
-      if (*ind3 == -1) *ind3 = 3;
-    }
-}
-
-
-
-
-BOOL Ishidden(sciPointObj *pobj)
-{
-  double alpha;
-  if (sciGetEntityType(pobj) == SCI_SUBWIN){
-    alpha = pSUBWIN_FEATURE (pobj)->alpha;
-    if ((alpha <0.0 ) && (alpha > -90.0))
-      return TRUE;
-    if ((alpha <360.0 ) && (alpha > 270.0)) /* missing case added to fix bug 839 F.Leray */
-      return TRUE;
-    if ((alpha <-180.0 ) && (alpha > -270.0))
-      return TRUE;
-    if ((alpha <180.0 ) && (alpha > 90.0))
-      return TRUE;
-  }
-  return FALSE;
-}
-
-/* When alpha is close to a singularity (90,-90,270...), use to determine how to draw the x and y graduations */
-/* depending on cof */
-BOOL IsDownAxes(sciPointObj *pobj)
-{
-  double alpha,cof;
-  
-  if (sciGetEntityType(pobj) == SCI_SUBWIN){
-    alpha = pSUBWIN_FEATURE (pobj)->alpha;   
-    if (!(pSUBWIN_FEATURE (pobj)->isoview))
-      cof=10.0;
-    else
-      cof = 5.0; /* F.Leray : hard fixed here */
-    if (cof == 0 ) cof =5;
-    if ((alpha <=(-90.0+cof) ) && (alpha >= (-90.0-cof))) 
-      return TRUE;
-    if ((alpha <=(-270.0+cof) ) && (alpha >= (-270.0-cof)))
-      return TRUE;
-    if ((alpha <=(90.0+cof) ) && (alpha >= (90.0-cof)))
-      return TRUE;
-    if ((alpha <=(270.0+cof) ) && (alpha >= (270.0-cof)))
-      return TRUE;
-  }
-  return FALSE;
 }
 
 
@@ -622,47 +553,6 @@ BOOL GetIsAxes2D(sciPointObj *psubwin)
     return TRUE;
 }
 
-int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, int *xind, int *InsideU, int *InsideD)
-{
-  double xbox[8], ybox[8], zbox[8];
-
-  Teta = 0.1; /* Little offset to compute correct values for xind,  InsideU and InsideD */
-
-  /* update Cscale.m from the new viewing angles */
-  sciUpdateScaleAngles( Teta, Alpha ) ;
- 
-  sciGetAxisBox( dbox, xbox, ybox, zbox ) ;
- 
-  sciAxesVerticesIndices( InsideU, InsideD, xbox, ybox, xind ) ;
-
-  return 0;
-}
-
-
-
-int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double * fx, double *fy, double *fz)
-{
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-
-  
-  double tmp_fx = *fx;
-  double tmp_fy = *fy;
-  double tmp_fz = *fz;
-  
-  if(ppsubwin->logflags[0] == 'l')
-    tmp_fx = exp10(tmp_fx);
-  
-  if(ppsubwin->logflags[1] == 'l')
-    tmp_fy = exp10(tmp_fy);
-  
-  if(ppsubwin->logflags[2] == 'l')
-    tmp_fz = exp10(tmp_fz);
-  
-  trans3d(psubwin, n, xm, ym, &tmp_fx, &tmp_fy, &tmp_fz);
-  
-  return 0;
-}
-
 
 /**DrawAxesIfRequired
  * Draws Axes (only the basic  graphicobject under subwindows) in its SubWindow or figure
@@ -690,71 +580,6 @@ void DrawAxes(sciPointObj * pobj)
   sciDrawObj(psubwin);
 }
 
-
-int Gen3DPoints(int type,int *polyx, int *polyy, int *fill, int whiteid, double zmin, double zmax, double *x, double *y, double *z, int i, int j, int jj1, int *p, int dc, int fg, sciPointObj * psurface)
-{
-  sciPointObj *pobj;
-  int facteur = 1;
-
-  sciPointObj *psubwin = sciGetCurrentSubWin();
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-  sciSurface * ppsurface = pSURFACE_FEATURE (psurface);
-  
-  pobj = sciGetCurrentSubWin(); 
-  if (trans3d(pobj ,1, &(polyx[  5*jj1]),&(polyy[  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
-  if (trans3d(pobj ,1, &(polyx[1+  5*jj1]),&(polyy[1+  5*jj1]),&(x[i]),&(y[j+1]),&(z[i+(*p)*(j+1)]))==0) return 0; 
-  if (trans3d(pobj ,1, &(polyx[2+  5*jj1]),&(polyy[2+  5*jj1]),&(x[i+1]),&(y[j+1]),&(z[(i+1)+(*p)*(j+1)]))==0) return 0; 
-  if (trans3d(pobj ,1, &(polyx[3+  5*jj1]),&(polyy[3+  5*jj1]),&(x[i+1]),&(y[j]),&(z[(i+1)+(*p)*j]))==0) return 0;   
-  if (trans3d(pobj ,1, &(polyx[4+  5*jj1]),&(polyy[4+  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
-  
-  
-  if(ppsubwin->axes.reverse[0] == TRUE) facteur = -facteur;
-  if(ppsubwin->axes.reverse[1] == TRUE) facteur = -facteur;
-  if(ppsubwin->axes.reverse[2] == TRUE) facteur = -facteur;
-  
-  /* try */
-  facteur = ppsurface->flag_x * ppsurface->flag_y * facteur;
-  
-  /* type == flagcolor and dc == color_mode */
-  /* fg = hidden color */
-  
-  if ((((polyx[1+5*jj1]-polyx[0+5*jj1])*(polyy[2+5*jj1]-polyy[0+5*jj1])-
-	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1]))*facteur <  0) && (fg >=0 )) 
-    {
-      
-      /* ------------------- */
-      /* Beneath the surface */
-      /* ------------------- */
-
-      if (type != 0) /* flagcolor = 1 case : special treatment compared to flagcolor = 0 */
-	             /* don't know why... F.Leray */
-	fill[jj1]= (dc < 0 ) ? -fg : fg ;
-      else           /* flagcolor = 0 :  No shading at all, fixed facecolor. */
-	fill[jj1]=  (dc != 0 ) ? fg : dc ;
-    }
-  else
-    {
-
-      /* ------------------- */
-      /* Above the surface */
-      /* ------------------- */
-
-     if (type != 0)
-	{  /* flagcolor = 1 :  Z-level flat shading. */
-	  fill[jj1]=inint((whiteid-1)*((1/4.0*( z[i+(*p)*j]+ z[i+1+(*p)*j]+
-						z[i+(*p)*(j+1)]+ z[i+1+(*p)*(j+1)])-zmin)
-				       /(zmax-zmin)))+1;
-	  if ( dc < 0 ) fill[jj1]= -fill[jj1];  
-	}
-      else
-	fill[jj1]= dc;     
-    }
-  
-  return(1);
-  
-}
-
-
 /*---------------------------------------------------------------------------------*/
 /**
  * draw the figure number numFigure.
@@ -768,17 +593,6 @@ void sciDrawFigure( int numFigure )
 }
 /*---------------------------------------------------------------------------------*/
 
-/*----------------------------------------------------------------------------------*/
-/* sciRefreshObj                                                                             */
-/* draw an object but before select the rigth figure for display                             */
-/*----------------------------------------------------------------------------------*/
-int sciRefreshObj( sciPointObj * pobj )
-{
-  
-  /* draw the object */
-  int status = sciDrawObjIfRequired( pobj ) ;
-  return status ;
-}
 
 
 
@@ -802,170 +616,6 @@ sciDrawObjIfRequired (sciPointObj * pobj)
   sciDrawObj( pobj ) ;
 
   return 0;
-}
-
-
-/*----------------------------------------------------------------------------*/
-/* compute the 8 vertices (xbox[i],ybox[i],zbox[i]) of an axis aligned box knowing */
-/* xmin, xmax, ymin, ymax, zmin and zmax in limits */
-void sciGetAxisBox( double limits[6], double xbox[8], double ybox[8], double zbox[8] )
-{
-  xbox[0]=TRX(limits[0],limits[2],limits[4]); /* transfo. 3D of [xmin,ymin,zmin] */
-  ybox[0]=TRY(limits[0],limits[2],limits[4]); /* into [xbox[0],ybox[0],zbox[0] ] */
-  zbox[0]=TRZ(limits[0],limits[2],limits[4]); /*                                 */ 
-  
-  xbox[1]=TRX(limits[0],limits[3],limits[4]); /* transfo. 3D of [xmin,ymax,zmin] */
-  ybox[1]=TRY(limits[0],limits[3],limits[4]); /* into [xbox[1],ybox[1],zbox[1] ] */
-  zbox[1]=TRZ(limits[0],limits[3],limits[4]); /*                                 */
-  
-  xbox[2]=TRX(limits[1],limits[3],limits[4]); /* transfo. 3D of [xmax,ymax,zmin] */
-  ybox[2]=TRY(limits[1],limits[3],limits[4]); /* into [xbox[2],ybox[2],zbox[2] ] */
-  zbox[2]=TRZ(limits[1],limits[3],limits[4]); /*                                 */
-  
-  xbox[3]=TRX(limits[1],limits[2],limits[4]); /* transfo. 3D of [xmax,ymin,zmin] */
-  ybox[3]=TRY(limits[1],limits[2],limits[4]); /* into [xbox[3],ybox[3],zbox[3] ] */
-  zbox[3]=TRZ(limits[1],limits[2],limits[4]); /*                                 */
-  
-  xbox[4]=TRX(limits[0],limits[2],limits[5]); /* transfo. 3D of [xmin,ymin,zmax] */
-  ybox[4]=TRY(limits[0],limits[2],limits[5]); /* into [xbox[4],ybox[4],zbox[4] ] */
-  zbox[4]=TRZ(limits[0],limits[2],limits[5]); /*                                 */
-  
-  xbox[5]=TRX(limits[0],limits[3],limits[5]); /* transfo. 3D of [xmin,ymax,zmax] */
-  ybox[5]=TRY(limits[0],limits[3],limits[5]); /* into [xbox[5],ybox[5],zbox[5] ] */
-  zbox[5]=TRZ(limits[0],limits[3],limits[5]); /*                                 */
-  
-  xbox[6]=TRX(limits[1],limits[3],limits[5]); /* transfo. 3D of [xmax,ymax,zmax] */
-  ybox[6]=TRY(limits[1],limits[3],limits[5]); /* into [xbox[6],ybox[6],zbox[6] ] */
-  zbox[6]=TRZ(limits[1],limits[3],limits[5]); /*                                 */
-  
-  xbox[7]=TRX(limits[1],limits[2],limits[5]); /* transfo. 3D of [xmax,ymin,zmax] */
-  ybox[7]=TRY(limits[1],limits[2],limits[5]); /* into [xbox[7],ybox[7],zbox[7] ] */
-  zbox[7]=TRZ(limits[1],limits[2],limits[5]); /*                                 */
-}
-/*----------------------------------------------------------------------------*/
-/* update the Csacle value from new viewing angles */
-void sciUpdateScaleAngles( double theta, double alpha )
-{
-  double cost = 0.5 ;
-  double sint = 0.5 ;
-  double cosa = 0.5 ;
-  double sina = 0.5 ;
-
-  cost = cos( DEG2RAD(theta) ) ;
-  cosa = cos( DEG2RAD(alpha) ) ;
-  sint = sin( DEG2RAD(theta) ) ;
-  sina = sin( DEG2RAD(alpha) ) ;
-  
-  Cscale.m[0][0]= -sint        ;
-  Cscale.m[0][1]=  cost        ;
-  Cscale.m[0][2]=  0           ;
-  Cscale.m[1][0]= -cost * cosa ;
-  Cscale.m[1][1]= -sint * cosa ;
-  Cscale.m[1][2]=  sina        ;
-  Cscale.m[2][0]=  cost * sina ;
-  Cscale.m[2][1]=  sint * sina ;
-  Cscale.m[2][2]=  cosa        ;
-
-}
-
-/*----------------------------------------------------------------------------*/
-/* compute the drawing order of the axes box vertices int xind */
-void sciAxesVerticesIndices( int insideU[4],
-                             int insideD[4],
-                             double  xbox[8]   ,
-                             double  ybox[8]   ,
-                             int xind[8]    )
-{
-  int    i      ;
-  int    ind    ;
-  int    ind2   ;
-  int    ind3   ;
-  double xmaxi  ;
-  int    tmpind ;
-
-  /* F.Leray 23.02.04 Mise a 0 du tableau xind pour corriger bug*/
-  /* dans le cas ind < 3 ET ybox[tmpind] < ybox[tmpind]*/
-  for( i = 0 ; i < 8 ; i++ )
-  { 
-    xind[i] = 0 ;
-  }
-
-  /* indices */
-  /* determine the indices for the 3d represention */
-  xmaxi = ( (double) Maxi(xbox,8L) ) ;
-  ind = -1 ;
-  MaxiInd( xbox, 8L, &ind, xmaxi ) ;
-  if ( ind > 3 )
-  {
-    xind[0]=ind;
-  }
-  tmpind = ind ;  
-  MaxiInd(xbox,8L,&ind,xmaxi);
-  if ( ind > 3 )
-  {
-    xind[0] = ind ;
-  }
-  if (ybox[tmpind] > ybox[ind] )
-  {
-    xind[0] = tmpind ;
-  }
-  
-  if (ind < 0 || ind > 8) 
-  {
-    sciprint(_("xind out of bounds"));
-    xind[0]=0;
-  }
-  Nextind(xind[0],&ind2,&ind3);
-  if (ybox[ind2] > ybox[ind3]) 
-  {
-    xind[1]=ind2;insideU[0]=ind3;
-  }
-  else 
-  {
-    xind[1]=ind3;insideU[0]=ind2;
-  }
-  Nextind(ind2,&ind2,&ind3); insideU[1]=xind[0];
-  insideU[2]=ind2; 
-  if ( insideU[0] > 3 )
-  {
-    insideU[3] = insideU[0] - 4 ;
-  }
-  else
-  {
-    insideU[3] = insideU[0] + 4 ;
-  }
-  xind[2]=ind2;
-  /* le point en bas qui correspond */	  
-  if ( ind2 > 3 )
-  {
-    xind[3] = ind2 - 4 ;
-  }
-  else
-  {
-    xind[3] = ind2 + 4 ;
-  }
-  Nextind(xind[3],&ind2,&ind3);
-  if (ybox[ind2] < ybox[ind3]) 
-  {
-    xind[4]=ind2;insideD[0]=ind3;
-  }
-  else  
-  {
-    xind[4]=ind3;insideD[0]=ind2;
-  }
-  Nextind(ind2,&ind2,&ind3);
-  insideD[1]=xind[3];
-  insideD[2]=ind2;
-  if ( insideD[0] > 3 )
-  {
-    insideD[3]=insideD[0] - 4 ;
-  }
-  else
-  {
-    insideD[3]=insideD[0] + 4 ;
-  }
-  xind[5]=ind2;
-         
 }
 /*---------------------------------------------------------------------------------*/
 void showPixmap(sciPointObj * pFigure)

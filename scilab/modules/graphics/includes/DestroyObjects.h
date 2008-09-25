@@ -39,13 +39,9 @@ void AllGraphWinDelete( void ) ;
 int C2F(scigerase)( void ) ;
 
 extern int DestroyFigure (sciPointObj * pthis); /* DESTROY */
-extern int DestroyStatusBar (sciPointObj * pthis); /* DESTROY */
 extern int DestroySubWin (sciPointObj * pthis); /* DESTROY */
-extern int DestroyScrollV (sciPointObj * pthis); /* DESTROY */
-extern int DestroyScrollH (sciPointObj * pthis); /* DESTROY */
 extern int deallocateText( sciPointObj * pthis ) ;
 extern int DestroyText (sciPointObj * pthis); /* DESTROY */
-extern int DestroyTitle (sciPointObj * pthis); /* DESTROY */
 extern int DestroyLegend (sciPointObj * pthis); /* DESTROY */
 int deallocatePolyline (sciPointObj * pthis);
 extern int DestroyPolyline (sciPointObj * pthis); /* DESTROY */
@@ -64,11 +60,6 @@ extern int sciUnCompound (sciPointObj * pobj); /* DESTROY */
 extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 
 extern int DestroyLabel (sciPointObj * pthis); /* DESTROY */
-int sciDestroyConsole(     sciPointObj * pthis ) ; /* DESTROY */
-int sciDestroyFrame(       sciPointObj * pThis ) ;
-int sciDestroyWindow(      sciPointObj * pThis ) ;
-int sciDestroyWindowFrame( sciPointObj * pThis ) ;
-int sciDestroyScreen(      sciPointObj * pThis ) ;
 
 /* ADDED */
 
@@ -80,8 +71,6 @@ extern void clearUserData( sciPointObj * pObj ) ;
 extern void sciDeleteWindow( int winNum ) ;
 
 extern int updateMerge( sciPointObj * pSubwin ) ;
-
-void CleanPlots(char *unused, int *winnumber, int *v3, int *v4, int *v5, int *v6, int *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
 
 int sciStandardDestroyOperations( sciPointObj * pThis ) ;
 

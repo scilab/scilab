@@ -115,10 +115,6 @@ int sciSetFontStyle (sciPointObj * pobj, int iAttributes ) ; /* SET */
 
 int sciSetFontName (sciPointObj * pobj, char pfontname[], int n); /* SET */
 
-/*Title Functions */
-int sciSetTitlePos (sciPointObj * pobj, int x, int y); /* SET */
-int sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place); /* SET */
-
 /* Legend */
 int sciInitLegendPlace(sciPointObj * pobj, sciLegendPlace place);
 int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place); /* SET */
@@ -131,9 +127,6 @@ int sciInitIsClipping(sciPointObj * pobj, int value) ;
 int sciSetIsClipping (sciPointObj * pobj, int value); /* SET */
 
 int sciSetClipping (sciPointObj * pobj, double pclip[4] ); /* SET */
-
-int sciInitHighLight(sciPointObj * pobj, BOOL value);
-int sciSetHighLight (sciPointObj * pobj, BOOL value); /* SET */
 
 int sciInitAddPlot (sciPointObj * pobj, BOOL value);
 int sciSetAddPlot (sciPointObj * pobj, BOOL value); /* SET */

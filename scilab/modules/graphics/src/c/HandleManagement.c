@@ -257,9 +257,6 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_TEXT:
       return  &(pTEXT_FEATURE (pobj)->relationship);
       break;
-    case SCI_TITLE:
-      return  &(pTITLE_FEATURE (pobj)->text.relationship);
-      break;
     case SCI_LEGEND:
       return  &(pLEGEND_FEATURE (pobj)->text.relationship);
       break;
@@ -284,26 +281,11 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_SURFACE:
       return  &(pSURFACE_FEATURE (pobj)->relationship);
       break;
-    case SCI_LIGHT:
-      return  &(pLIGHT_FEATURE (pobj)->relationship);
-      break;
     case SCI_AXES:
       return  &(pAXES_FEATURE (pobj)->relationship);
       break;
-    case SCI_PANNER:
-      return  &(pPANNER_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SBH:
-      return  &(pSBH_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SBV:
-      return  &(pSBV_FEATURE (pobj)->relationship);
-      break;
     case SCI_UICONTEXTMENU:
       return  &(pUICONTEXTMENU_FEATURE (pobj)->relationship);
-      break;
-    case SCI_STATUSB:
-      return  &(pSTATUSB_FEATURE (pobj)->relationship);
       break;
     case SCI_AGREG:
       return  &(pAGREG_FEATURE (pobj)->relationship);
@@ -316,21 +298,6 @@ sciGetRelationship (sciPointObj * pobj)
       break;
     case SCI_UICONTROL: 
       return  &(pUICONTROL_FEATURE (pobj)->relationship);
-      break;
-    case SCI_CONSOLE:
-      return  &(pCONSOLE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_FRAME:
-      return  &(pFRAME_FEATURE (pobj)->relationship);
-      break;
-    case SCI_WINDOW:
-      return  &(pWINDOW_FEATURE (pobj)->relationship);
-      break;
-    case SCI_WINDOWFRAME:
-      return  &(pWINDOWFRAME_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SCREEN:
-      return  &(pSCREEN_FEATURE (pobj)->relationship);
       break;
     case SCI_WAITBAR:
       return  &(pWAITBAR_FEATURE (pobj)->relationship);
@@ -708,18 +675,9 @@ BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent )
   parentType = sciGetEntityType( parent ) ;
   switch ( sciGetEntityType( son ) )
   {
-  case SCI_SCREEN:
-    return FALSE ;
-  case SCI_WINDOWFRAME:
-    return ( parentType == SCI_SCREEN ) ;
-  case SCI_WINDOW:
-    return ( parentType == SCI_WINDOWFRAME ) ;
-  case SCI_FRAME:
-    return ( parentType == SCI_WINDOW || parentType == SCI_FRAME ) ;
-  case SCI_CONSOLE:
-    return ( parentType == SCI_FRAME ) ;
   case SCI_FIGURE:
-    return ( parentType == SCI_FRAME ) ;
+		/* figure are the top objects of the hierarchy */
+    return FALSE ;
   case SCI_SUBWIN:
     /* axes can only have figure parents */
     return ( parentType == SCI_FIGURE ) ;

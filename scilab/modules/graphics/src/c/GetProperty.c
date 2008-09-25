@@ -52,7 +52,6 @@ extern sciHandleTab *PENDOFHANDLETAB;
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 
-extern int cf_type;
 
 
 /**sciGetPointerToFeature
@@ -73,9 +72,6 @@ sciGetPointerToFeature (sciPointObj * pobj)
       break;
     case SCI_TEXT:
       return (sciText *) pTEXT_FEATURE (pobj);
-      break;
-    case SCI_TITLE:
-      return (sciTitle *) pTITLE_FEATURE (pobj);
       break;
     case SCI_LEGEND:
       return (sciLegend *) pLEGEND_FEATURE (pobj);
@@ -101,23 +97,8 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_SURFACE:
       return (sciSurface *) pSURFACE_FEATURE (pobj);
       break;
-    case SCI_LIGHT:
-      return (sciLightSource *) pLIGHT_FEATURE (pobj);
-      break;
     case SCI_AXES:
       return (sciAxes *) pAXES_FEATURE (pobj);
-      break;
-    case SCI_PANNER:
-      return (sciPanner *) pPANNER_FEATURE (pobj);
-      break;
-    case SCI_SBH:
-      return (sciScrollBarHorz *) pSBH_FEATURE (pobj);
-      break;
-    case SCI_SBV:
-      return (sciScrollBarVert *) pSBV_FEATURE (pobj);
-      break;
-    case SCI_STATUSB:
-      return (sciStatusBar *) pSTATUSB_FEATURE (pobj);
       break;
     case SCI_AGREG:
       return (sciAgreg *) pAGREG_FEATURE (pobj);
@@ -170,9 +151,6 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_TEXT:
       return "Text";
       break;
-    case SCI_TITLE:
-      return "Title";
-      break;
     case SCI_LEGEND:
       return "Legend";
       break;
@@ -208,23 +186,8 @@ sciGetCharEntityType (sciPointObj * pobj)
 	  break;
 	}
       break;
-    case SCI_LIGHT:
-      return "Light";
-      break;
     case SCI_AXES:
       return "Axis";
-      break;
-    case SCI_PANNER:
-      return "Panner";
-      break;
-    case SCI_SBH:
-      return "Scollbar_hor";
-      break;
-    case SCI_SBV:
-      return "Scollbar_ver";
-      break;
-    case SCI_STATUSB:
-      return "Statut_bar";
       break;
     case SCI_AGREG:
       return "Compound";
@@ -238,21 +201,6 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_UICONTROL: 
       return "uicontrol";
       break;
-    case SCI_CONSOLE:
-      return "Console" ;
-      break ;
-    case SCI_FRAME:
-      return "Frame" ;
-      break ;
-    case SCI_WINDOW:
-      return "Window" ;
-      break ;
-    case SCI_WINDOWFRAME:
-      return "WindowFrame" ;
-      break ;
-    case SCI_SCREEN:
-      return "Screen" ;
-      break ;
     case SCI_WAITBAR:
       return "Waitbar" ;
       break ;
@@ -302,14 +250,8 @@ sciGetGraphicContext (sciPointObj * pobj)
     case SCI_SURFACE:
       return  &(pSURFACE_FEATURE (pobj)->graphiccontext);
       break;
-    case SCI_LIGHT:
-      return  &(pLIGHT_FEATURE (pobj)->graphiccontext);
-      break;
     case SCI_AXES:
       return  &(pAXES_FEATURE (pobj)->graphiccontext);
-      break;
-    case SCI_STATUSB:
-      return  &(pSTATUSB_FEATURE (pobj)->graphiccontext);
       break;
     case SCI_LEGEND:
       return  &(pLEGEND_FEATURE (pobj)->graphiccontext);
@@ -320,10 +262,6 @@ sciGetGraphicContext (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04, modif JB.Silvy 03/06 */
       return sciGetGraphicContext( pLABEL_FEATURE(pobj)->text );
     case SCI_AGREG:
-    case SCI_TITLE:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_UIMENU:
     default:
       return (sciGraphicContext *) NULL;
@@ -700,12 +638,6 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_TEXT:
       return  &(pTEXT_FEATURE (pobj)->fontcontext);
       break;
-    case SCI_STATUSB:
-      return  &(pSTATUSB_FEATURE (pobj)->text.fontcontext);
-      break;
-    case SCI_TITLE:
-      return  &(pTITLE_FEATURE (pobj)->text.fontcontext);
-      break;
     case SCI_LEGEND:
       return  &(pLEGEND_FEATURE (pobj)->text.fontcontext);
       break;
@@ -728,11 +660,7 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AGREG:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_UIMENU:
     default:
       return (sciFont *)NULL;
@@ -794,9 +722,6 @@ StringMatrix * sciGetText( sciPointObj * pobj )
     case SCI_TEXT:
       return pTEXT_FEATURE (pobj)->pStrings;
       break;
-    case SCI_TITLE:
-      return pTITLE_FEATURE (pobj)->text.pStrings;
-      break;
     case SCI_LEGEND:
       return pLEGEND_FEATURE (pobj)->text.pStrings;
       break;
@@ -813,12 +738,7 @@ StringMatrix * sciGetText( sciPointObj * pobj )
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     default:
       return  NULL;
@@ -890,10 +810,8 @@ sciGetFontBackground (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_AXES:
-    case SCI_STATUSB:
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
     case SCI_FIGURE: /* F.Leray 08.04.04 */
     case SCI_LABEL:  /* F.Leray 28.05.04 */
@@ -906,10 +824,6 @@ sciGetFontBackground (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
     case SCI_UIMENU:
     default:
@@ -934,10 +848,8 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_AXES:
-    case SCI_STATUSB:
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
     case SCI_FIGURE: /* F.Leray 08.04.04 */
     case SCI_LABEL:  /* F.Leray 28.05.04 */
@@ -950,10 +862,6 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
     case SCI_UIMENU:
     default:
@@ -985,10 +893,8 @@ sciGetFontForeground (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_AXES:
-    case SCI_STATUSB:
     case SCI_SUBWIN:  /* F.Leray 08.04.04 */
     case SCI_FIGURE:  /* F.Leray 08.04.04 */
     case SCI_LABEL:   /* F.Leray 28.05.04 */
@@ -1001,10 +907,6 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
     case SCI_UIMENU:
     default:
@@ -1030,10 +932,8 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_AXES:
-    case SCI_STATUSB:
     case SCI_SUBWIN:  /* F.Leray 08.04.04 */
     case SCI_FIGURE:  /* F.Leray 08.04.04 */
     case SCI_LABEL:   /* F.Leray 28.05.04 */
@@ -1046,10 +946,6 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
     case SCI_UIMENU:
     default:
@@ -1080,7 +976,6 @@ sciGetFontStyle (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_SUBWIN:
     case SCI_FIGURE:
@@ -1095,10 +990,6 @@ sciGetFontStyle (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_UIMENU:
     default:
@@ -1123,9 +1014,6 @@ sciGetFontName (sciPointObj * pobj)
     case SCI_TEXT:
       return 	(sciGetFontContext(pobj))->pfontname;
       break;
-    case SCI_TITLE:
-      return 	(sciGetFontContext(pobj))->pfontname;
-      break;
     case SCI_LEGEND:
       return 	(sciGetFontContext(pobj))->pfontname;
       break;
@@ -1145,12 +1033,7 @@ sciGetFontName (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_UIMENU:
     default:
@@ -1175,9 +1058,6 @@ sciGetFontNameLength (sciPointObj * pobj)
     case SCI_TEXT:
       return 	(sciGetFontContext(pobj))->fontnamelen;
       break;
-    case SCI_TITLE:
-      return 	(sciGetFontContext(pobj))->fontnamelen;
-      break;
     case SCI_LEGEND:
       return 	(sciGetFontContext(pobj))->fontnamelen;
       break;
@@ -1197,12 +1077,7 @@ sciGetFontNameLength (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_UIMENU:
     default:
@@ -1210,43 +1085,6 @@ sciGetFontNameLength (sciPointObj * pobj)
       return 0;
       break;
     }
-}
-
-
-
-/**sciGetTitlePos
- * Returns the Title Position in the graphique window. This function is actualy reserved for internal use, not for scilab users
- */
-POINT2D
-sciGetTitlePos (sciPointObj * pobj)
-{
-  POINT2D tmppoint;
-  if (sciGetEntityType (pobj) == SCI_TITLE)
-    return pTITLE_FEATURE (pobj)->pos;
-  else
-    {
-      tmppoint.x = -1;
-      tmppoint.y = -1;
-      sciprint(_("You are not using a title object.\n"));
-      return tmppoint;
-    }
-}
-
-
-
-/**sciGetTitlePlace
- * Returns the Title Position
- * @param sciPointObj * pobj: the pointer to the entity
- * @return sciTitlePlace if ok, -1 if not
- */
-sciTitlePlace
-sciGetTitlePlace (sciPointObj * pobj)
-{
-  if (sciGetEntityType (pobj) == SCI_TITLE)
-    return pTITLE_FEATURE (pobj)->titleplace;
-  else
-    sciprint(_("You are not using a title object.\n"));
-  return (sciTitlePlace)-1;
 }
 
 
@@ -1314,7 +1152,6 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_FIGURE:
       return pobj ;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1323,13 +1160,8 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_SUBWIN:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UICONTROL:
@@ -1361,7 +1193,6 @@ sciGetParentSubwin (sciPointObj * pobj)
       break;
     case SCI_SUBWIN:
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1370,12 +1201,7 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1405,7 +1231,6 @@ sciGetNumFigure (sciPointObj * pobj)
       break;
     case SCI_SUBWIN:
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1414,12 +1239,7 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1454,15 +1274,9 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_LEGEND:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1499,10 +1313,7 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
       break;      
     case SCI_TEXT: 
       return pTEXT_FEATURE (pobj)->clip_region_set;
-      break;   
-    case SCI_LIGHT: 
-      return pLIGHT_FEATURE (pobj)->clip_region_set;
-      break;   
+      break;  
     case SCI_AXES: 
       return pAXES_FEATURE (pobj)->clip_region_set;
       break;
@@ -1515,14 +1326,9 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
     case SCI_GRAYPLOT:
       return pGRAYPLOT_FEATURE (pobj)->clip_region_set;
       break;
-    case SCI_LEGEND: 
-    case SCI_TITLE:    
+    case SCI_LEGEND:    
     case SCI_AGREG: 
     case SCI_FIGURE: 
-    case SCI_SBH:   
-    case SCI_PANNER:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
@@ -1558,9 +1364,6 @@ sciGetIsClipping (sciPointObj * pobj)
     case SCI_TEXT: 
       return pTEXT_FEATURE (pobj)->isclip;
       break;   
-    case SCI_LIGHT: 
-      return pLIGHT_FEATURE (pobj)->isclip;
-      break;   
     case SCI_AXES: 
       return pAXES_FEATURE (pobj)->isclip;
       break;
@@ -1573,14 +1376,9 @@ sciGetIsClipping (sciPointObj * pobj)
     case SCI_GRAYPLOT:
       return pGRAYPLOT_FEATURE(pobj)->isclip;
       break;
-    case SCI_LEGEND: 
-    case SCI_TITLE:    
+    case SCI_LEGEND:    
     case SCI_AGREG: 
     case SCI_FIGURE: 
-    case SCI_SBH:   
-    case SCI_PANNER:
-    case SCI_SBV:
-    case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
@@ -1618,10 +1416,7 @@ sciGetClipping (sciPointObj * pobj)
       break;      
     case SCI_TEXT: 
       return pTEXT_FEATURE (pobj)->clip_region;
-      break;   
-    case SCI_LIGHT: 
-      return pLIGHT_FEATURE (pobj)->clip_region; /* not used for now 04.04.2005 */
-      break;   
+      break;    
     case SCI_AXES: 
       return pAXES_FEATURE (pobj)->clip_region;
       break;
@@ -1640,8 +1435,7 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_GRAYPLOT:
       return pGRAYPLOT_FEATURE (pobj)->clip_region;
       break;
-    case SCI_UIMENU:
-    case SCI_TITLE:    
+    case SCI_UIMENU:  
     case SCI_AGREG:
     case SCI_FIGURE: 
     default:
@@ -1658,41 +1452,6 @@ sciGetClipping (sciPointObj * pobj)
 /**sciGetHighLight
  * Returns the highlight mode where the object are.
  */
-
-BOOL
-sciGetHighLight (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /*return (sciGetGraphicMode (pobj))->highlight; */
-      break;
-    case SCI_SUBWIN:
-      /* the value is inhirated by the parent */
-      /*return sciGetHighLight (sciGetParentFigure (pobj));*/
-      break;
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      printSetGetErrorMessage("highlight");
-      return FALSE;
-      break;
-    }
-  return FALSE;
-}
 
 
 /**sciGetAddPlot
@@ -1714,7 +1473,6 @@ sciGetAddPlot (sciPointObj * pobj)
       return (sciGetGraphicMode (pobj))->addplot; 
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1723,7 +1481,6 @@ sciGetAddPlot (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1752,7 +1509,6 @@ sciGetAutoScale (sciPointObj * pobj)
       return (sciGetGraphicMode (pobj))->autoscaling;
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1761,7 +1517,6 @@ sciGetAutoScale (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1791,7 +1546,6 @@ sciGetZooming (sciPointObj * pobj)
       return (sciGetGraphicMode (pobj))->zooming;
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1800,7 +1554,6 @@ sciGetZooming (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:  
     case SCI_AGREG:
     case SCI_UIMENU:
@@ -1834,7 +1587,6 @@ sciGetXorMode (sciPointObj * pobj)
       return sciGetXorMode (sciGetParentFigure (pobj));
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1843,7 +1595,6 @@ sciGetXorMode (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES:  
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1869,7 +1620,7 @@ sciGetRealVisibility (sciPointObj * pobj)
     return FALSE ;
   }
 
-  if ( sciGetEntityType( pobj ) == SCI_FIGURE || sciGetEntityType(pobj) == SCI_SCREEN )
+  if ( sciGetEntityType( pobj ) == SCI_FIGURE )
   {
     return sciGetVisibility( pobj ) ;
   }
@@ -1894,9 +1645,6 @@ sciGetVisibility (sciPointObj * pobj)
       break;
     case SCI_SUBWIN:
       return pSUBWIN_FEATURE (pobj)->visible;
-      break;
-    case SCI_TITLE:
-      return pTITLE_FEATURE (pobj)->visible;
       break;
     case SCI_LEGEND:
       return pLEGEND_FEATURE (pobj)->visible;
@@ -1925,9 +1673,6 @@ sciGetVisibility (sciPointObj * pobj)
     case SCI_TEXT: 
       return pTEXT_FEATURE (pobj)->visible;
       break;   
-    case SCI_LIGHT: 
-      return pLIGHT_FEATURE (pobj)->visible;
-      break;
     case SCI_AXES: 
       return pAXES_FEATURE (pobj)->visible;
       break;    
@@ -1937,26 +1682,7 @@ sciGetVisibility (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciGetVisibility ( pLABEL_FEATURE (pobj)->text ) ;
       break;
-    case SCI_CONSOLE:
-      return pCONSOLE_FEATURE(pobj)->visible ;
-      break ;
-    case SCI_FRAME:
-      return pFRAME_FEATURE(pobj)->visible ;
-      break ;
-    case SCI_WINDOW:
-      return pWINDOW_FEATURE(pobj)->visible ;
-      break ;
-    case SCI_WINDOWFRAME:
-      return pWINDOWFRAME_FEATURE(pobj)->visible ;
-      break ;
-    case SCI_SCREEN:
-      return pSCREEN_FEATURE(pobj)->visible ;
-      break ;
     case SCI_UIMENU:
-    case SCI_SBH:   
-    case SCI_PANNER:
-    case SCI_SBV:
-    case SCI_STATUSB:
     default:
       return TRUE;
       break;
@@ -1990,7 +1716,6 @@ sciGetResize (sciPointObj * pobj)
       return sciGetResize (sciGetParent (pobj));
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1999,7 +1724,6 @@ sciGetResize (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
     case SCI_AXES: 
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -2111,17 +1835,6 @@ int sciGetWidth (sciPointObj * pobj)
     case SCI_SUBWIN:
        return pSUBWIN_FEATURE (pobj)->windimwidth;
       break;
-    case SCI_CONSOLE:
-      return -1 ;
-      break ;
-    case SCI_FRAME:
-      return -1 ;
-    case SCI_WINDOW:
-      return -1 ;
-    case SCI_WINDOWFRAME:
-      return -1 ;
-    case SCI_SCREEN:
-      return -1 ;
     default:
       printSetGetErrorMessage("width");
       return -1;
@@ -2154,16 +1867,6 @@ int sciGetHeight (sciPointObj * pobj)
     case SCI_SUBWIN:
        return pSUBWIN_FEATURE (pobj)->windimheight;
       break;
-    case SCI_CONSOLE:
-      return -1 ;
-    case SCI_FRAME:
-      return -1 ;
-    case SCI_WINDOW:
-      return -1 ;
-    case SCI_WINDOWFRAME:
-      return -1 ;
-    case SCI_SCREEN:
-      return -1 ;
     default:
       printSetGetErrorMessage("height");
       return -1;
@@ -2396,43 +2099,6 @@ sciIsExistingSubWin (double WRect[4])
   return NULL;
 }
 
-/**sciGetScrollPosV
- * Returns the vertical scrollbar position
- * @param sciPointObj * pobj: the pointer to the entity
- * @return the scroll bar position
- */
-int
-sciGetScrollPosV (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_SBV:
-    default:
-      /*   return GetScrollPos ((sciGetScilabXgc (pobj))->CWindow, SB_VERT);*/ /* GetScrollPos fct stand dans WIN */
-      return -1;
-      break;
-    }
-}
-
-
-
-/**sciGetScrollPosH
- * Returns the vertical scrollbar position
- * @param sciPointObj * pobj: the pointer to the entity
- * @return the scroll bar position
- */
-int
-sciGetScrollPosH (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_SBH:
-    default:
-      /* return GetScrollPos ((sciGetScilabXgc (pobj))->CWindow, SB_HORZ);*/ /* GetScrollPos fct stand dans WIN */
-      return -1;
-      break;
-    }
-}
 /*--------------------------------------------------------------------------*/
 
 
@@ -2602,11 +2268,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	tab[2] =  pTEXT_FEATURE (pthis)->z;
       return (double*)tab;
       break;
-    case SCI_SBV:
-      return (double*)NULL;
-      break;
-    case SCI_SBH:
-      return (double*)NULL;			/* les coordonnees sont (x,0) */
     
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype == 0) {
@@ -2716,12 +2377,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       }
       return (double*)tab;
       break;
-    case SCI_TITLE: 
     case SCI_LEGEND:
-    case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
@@ -2732,168 +2389,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       break;
     }
   return (double*)NULL;
-}
-
-
-
-/**sciGetObjClicked
- * returns the sons' entity wich is cliked on x,y coordinates. If none, then returns this entity
- */
-sciPointObj 
-*sciGetObjClicked (sciPointObj *pthis,int x, int y)
-{
-  sciSons *sons;
-  sciPointObj *result;
-
-  /* 06/11/2002 */
-  if (sciGetEntityType(pthis) != SCI_AGREG)/* We stop the recursivity at Compound */
-    {
-      sons = sciGetSons (pthis);
-      while ((sons != (sciSons *) NULL) && (sons->pointobj != (sciPointObj *) NULL))
-	{
-	  result = sciGetObjClicked (sons->pointobj, x, y);
-
-	  if (result == (sciPointObj *)NULL)
-	    sons = sons->pnext;
-	  else return result;
-	}
-    }
-  if (sciIsClicked(pthis, x, y))
-    return (sciPointObj *)pthis;
-  else return (sciPointObj *)NULL;
-  return (sciPointObj *)NULL;
-}
-
-
-
-/**sciIsClicked
- * returns true if this entity wich is cliked on x,y coordinates. Here is the algorithm for click detection
- */
-/* 06/11/2002 */
-BOOL 
-sciIsClicked(sciPointObj *pthis,int x, int y)
-{
-  double xtmp, ytmp, xtmp2, ytmp2;
-  double DELTAX, DELTAY, vect[4];
-  int n, xm[4];
-  double *tab;
-  int numrow, numcol, i;
-
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_SUBWIN:
-      xtmp = (sciGetWidth (pthis)*(pSUBWIN_FEATURE (pthis)->WRect[0]));
-      xtmp2 = xtmp + (sciGetWidth (pthis)*(pSUBWIN_FEATURE (pthis)->WRect[2]));
-      ytmp = (sciGetHeight(pthis)*(pSUBWIN_FEATURE (pthis)->WRect[1]));
-      ytmp2 = ytmp + (sciGetHeight(pthis)*(pSUBWIN_FEATURE (pthis)->WRect[3]));
-      if (
-	  (x >= xtmp)
-	  && (y >= ytmp)
-	  && (x <= xtmp2)
-	  && (y <= ytmp2)
-	  )
-	{
-	  /*set_scale ("tttfff", pSUBWIN_FEATURE (pthis)->WRect, 
-	    pSUBWIN_FEATURE (pthis)->FRect, NULL, "nn", NULL);*/
-	  set_scale ("tttftf", pSUBWIN_FEATURE (pthis)->WRect, 
-		     pSUBWIN_FEATURE (pthis)->FRect, NULL, "nn", NULL);
-	  return TRUE;
-	}
-      else
-	return FALSE;
-      break;
-    case SCI_ARC:
-      /* on recupere la dimension de la sous fenetre parente */
-      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
-      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
-      DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
-      DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
-      n = 4;
-      vect[0] = pARC_FEATURE (pthis)->x;
-      vect[1] = pARC_FEATURE (pthis)->y;
-      vect[2] = pARC_FEATURE (pthis)->width;
-      vect[3] = pARC_FEATURE (pthis)->height;
-      C2F(rect2d)(vect, xm, &n,"f2i");
-      if (
-	  ((abs(x - xm[0]) < DELTAX) && ((y - xm[1]) < DELTAY)) ||
-	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1]) < DELTAY)) ||
-	  ((abs(x - xm[0]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY)) ||
-	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY))
-	  )
-	{
-	  return TRUE;
-	}
-      return FALSE;
-      break;
-    case SCI_RECTANGLE:
-      /* on recupere la dimension de la sous fenetre parente */
-      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
-      DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
-      DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
-      n=4;
-      vect[0] = pRECTANGLE_FEATURE (pthis)->x;
-      vect[1] = pRECTANGLE_FEATURE (pthis)->y;
-      vect[2] = pRECTANGLE_FEATURE (pthis)->width;
-      vect[3] = pRECTANGLE_FEATURE (pthis)->height;
-      C2F(rect2d)(vect, xm, &n,"f2i");
-      if (
-	  ((abs(x - xm[0]) < DELTAX) && ((y - xm[1]) < DELTAY)) ||
-	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1]) < DELTAY)) ||
-	  ((abs(x - xm[0]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY)) ||
-	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY))
-	  )
-	{
-	  return TRUE;
-	}
-      return FALSE;
-      break;
-    case SCI_POLYLINE:
-      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
-      DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
-      DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
-      tab = sciGetPoint(pthis, &numrow, &numcol);
-      i   = 0;
-      while((i < numrow) && 
-	    ((abs(XDouble2Pixel(tab[2*i]) - x) > DELTAX) || 
-	     (abs(YDouble2Pixel(tab[2*i+1]) - y) > DELTAY)))
-	{
-	  i++;
-	}
-      if ((i < numrow)   && (abs(XDouble2Pixel(tab[2*i]) - x) < DELTAX) && 
-	  (abs(YDouble2Pixel(tab[2*i+1]) - y) < DELTAY))
-	{
-	  FREE(tab);
-	  return TRUE;
-	}
-      FREE(tab);
-      return FALSE;
-      break;
-    case SCI_AGREG:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_STATUSB:
-    case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      return FALSE;
-      break;
-    }
-  return FALSE;
 }
 
 
@@ -2961,10 +2456,6 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       *user_data_ptr = &(((sciText *) pTEXT_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciText *) pTEXT_FEATURE (pobj))->size_of_user_data);
       break;
-    case SCI_TITLE:
-      *user_data_ptr = (int **)NULL;
-      *size_ptr =  (int *)NULL;
-      break;
     case SCI_LEGEND:
       *user_data_ptr = &(((sciLegend *) pLEGEND_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciLegend *) pLEGEND_FEATURE (pobj))->size_of_user_data);
@@ -2997,29 +2488,9 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       *user_data_ptr = &(((sciSurface *) pSURFACE_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciSurface *) pSURFACE_FEATURE (pobj))->size_of_user_data);
       break;
-    case SCI_LIGHT:
-      *user_data_ptr = &(((sciLightSource *) pLIGHT_FEATURE (pobj))->user_data);
-      *size_ptr =  &(((sciLightSource *) pLIGHT_FEATURE (pobj))->size_of_user_data);
-      break;
     case SCI_AXES:
       *user_data_ptr = &(((sciAxes *) pAXES_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciAxes *) pAXES_FEATURE (pobj))->size_of_user_data);
-      break;
-    case SCI_PANNER:
-      *user_data_ptr = (int **)NULL;
-      *size_ptr =  (int *)NULL;
-      break;
-    case SCI_SBH:
-      *user_data_ptr = (int **)NULL;
-      *size_ptr =  (int *)NULL;
-      break;
-    case SCI_SBV:
-      *user_data_ptr = (int **)NULL;
-      *size_ptr =  (int *)NULL;
-      break;
-    case SCI_STATUSB:
-      *user_data_ptr = (int **)NULL;
-      *size_ptr =  (int *)NULL;
       break;
     case SCI_AGREG:
       *user_data_ptr = &(((sciAgreg *) pAGREG_FEATURE (pobj))->user_data);
@@ -3027,22 +2498,6 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       break;
     case SCI_LABEL:
       sciGetPointerToUserData ( pLABEL_FEATURE(pobj)->text, user_data_ptr, size_ptr ) ;
-      break;
-    case SCI_CONSOLE:
-      *user_data_ptr = &(pCONSOLE_FEATURE (pobj)->user_data);
-      *size_ptr=&(pCONSOLE_FEATURE (pobj)->size_of_user_data);
-    case SCI_FRAME:
-      *user_data_ptr = &(pFRAME_FEATURE (pobj)->user_data);
-      *size_ptr=&(pFRAME_FEATURE (pobj)->size_of_user_data);
-    case SCI_WINDOW:
-      *user_data_ptr = &(pWINDOW_FEATURE (pobj)->user_data);
-      *size_ptr=&(pWINDOW_FEATURE (pobj)->size_of_user_data);
-    case SCI_WINDOWFRAME:
-      *user_data_ptr = &(pWINDOWFRAME_FEATURE (pobj)->user_data);
-      *size_ptr=&(pWINDOWFRAME_FEATURE (pobj)->size_of_user_data);
-    case SCI_SCREEN:
-      *user_data_ptr = &(pSCREEN_FEATURE (pobj)->user_data);
-      *size_ptr=&(pSCREEN_FEATURE (pobj)->size_of_user_data);
       break;
     case SCI_UIMENU:
       *user_data_ptr = &(pUIMENU_FEATURE (pobj)->user_data);
@@ -3232,30 +2687,6 @@ sciPointObj * sciGetSurface( sciPointObj * pObj )
   return NULL;
 }
 
-sciPointObj *CheckClickedSubwin(int x, int y)
-{ 
-  int box[4]; 
-  sciSons *psonstmp;
-  sciPointObj *psubwin; 
- 
-  psonstmp = sciGetSons (sciGetCurrentFigure());  
-  while (psonstmp != (sciSons *) NULL)	
-    {  
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
-	{
-	  psubwin= (sciPointObj *) psonstmp->pointobj;
-	  sciSetSelectedSubWin(psubwin); 
-	  box[0]= Cscale.WIRect1[0]; 
-	  box[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
-	  box[1]= Cscale.WIRect1[1]; 
-	  box[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
-	  if ((x >= box[0]) && (x <= box[2]) && (y >= box[1]) && (y <= box[3])) 
-	    return (sciPointObj *) psubwin;                
-	}
-      psonstmp = psonstmp->pnext;
-    } 
-  return (sciPointObj *) NULL;                
-}
 
 
 
@@ -3282,10 +2713,8 @@ int CheckForCompound(long *handelsvalue, int number)
 	case SCI_GRAYPLOT: 
 	case SCI_POLYLINE:
 	case SCI_TEXT:
-	case SCI_TITLE:
 	case SCI_SURFACE:
 	case SCI_AXES:
-	case SCI_LIGHT:
 	  /* We verify  if the basics entities are not packed, and are all associated to a subwindow */
 	  if (
 	      (sciGetEntityType(sciGetParent(sciGetPointerFromHandle(xtmp))) != SCI_SUBWIN)
@@ -3313,11 +2742,7 @@ int CheckForCompound(long *handelsvalue, int number)
 	  break;
 	  /* we verify if the entity is not */
 	case SCI_SUBWIN:
-	case SCI_PANNER:
-	case SCI_STATUSB:
 	case SCI_FIGURE:
-	case SCI_SBV:
-	case SCI_SBH:
 	case SCI_LABEL: /* F.Leray 28.05.04 A REVOIR...*/
 	case SCI_UIMENU:
 	case SCI_LEGEND:
@@ -3358,7 +2783,6 @@ sciGethPopMenu (sciPointObj * pthis)
     break;
   case SCI_FIGURE:
   case SCI_TEXT:
-  case SCI_TITLE:
   case SCI_LEGEND:
   case SCI_ARC:
   case SCI_SEGS: 
@@ -3367,12 +2791,7 @@ sciGethPopMenu (sciPointObj * pthis)
   case SCI_POLYLINE:
   case SCI_RECTANGLE:
   case SCI_SURFACE: 
-  case SCI_LIGHT:
   case SCI_AXES:
-  case SCI_PANNER:
-  case SCI_SBH:
-  case SCI_SBV:
-  case SCI_STATUSB:
   case SCI_AGREG:
   case SCI_LABEL: /* F.Leray 28.05.04 */
   case SCI_UIMENU:
@@ -3422,13 +2841,7 @@ sciGetIsBoxed (sciPointObj * pobj)
     case SCI_SEGS:
     case SCI_FEC:
     case SCI_GRAYPLOT:
-    case SCI_STATUSB:
-    case SCI_LIGHT:
     case SCI_AGREG:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_TITLE:
     case SCI_UIMENU:
     default:
       printSetGetErrorMessage("box_type");
@@ -3479,13 +2892,7 @@ BOOL sciGetAutoRotation ( sciPointObj * pObj )
     case SCI_SEGS:
     case SCI_LEGEND:
     case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_STATUSB:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
-    case SCI_TITLE:
     case SCI_UIMENU:
     default:
       return FALSE;
@@ -3513,13 +2920,7 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
     case SCI_SEGS:
     case SCI_LEGEND:
     case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_STATUSB:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
     case SCI_AGREG:
-    case SCI_TITLE:
     case SCI_UIMENU:
     default:
       return FALSE;
@@ -3850,13 +3251,6 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
       *posX = pos[0] ;
       *posY = pos[1] ;
     }
-    break ;
-  case SCI_CONSOLE:
-    *posX = -1 ;
-    *posY = -1 ;
-  case SCI_WINDOW:
-    *posX = -1 ;
-    *posY = -1 ;
     break ;
   default:
     printSetGetErrorMessage("figure_position");

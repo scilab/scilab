@@ -32,12 +32,9 @@
 
 #include "BOOL.h"
 
-sciPointObj *ConstructStatusBar (sciPointObj * pparentfigure); /* BUILD */
 
 sciPointObj * ConstructFigure (sciPointObj * pparent, int * figureIndex) ;/* BUILD */
 sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
-sciPointObj *ConstructScrollV (sciPointObj * pparentfigure); /* BUILD */
-sciPointObj *ConstructScrollH (sciPointObj * pparentfigure); /* BUILD */
 
 sciPointObj * allocateText( sciPointObj        * pparentsubwin,
                                    char             ** text          ,
@@ -58,9 +55,7 @@ sciPointObj * allocateText( sciPointObj        * pparentsubwin,
 sciPointObj * ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
                                     double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background, 
                                     BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align ) ;
-     
-sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
-				    int type); /* BUILD */
+    
 
 sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char *text[], long long tabofhandles[],
 				     int nblegends);  /* BUILD */
@@ -76,11 +71,6 @@ sciPointObj *ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, doub
 sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 				  double height, double width, double alphabegin, double alphaend, 
 				  int *foreground, int *background, BOOL isfilled, BOOL isline);
-
-sciPointObj *allocateRectangle (sciPointObj * pparentsubwin, double x, double y,
-					double height, double width, double horzcurvature,
-					double vertcurvature,  int *foreground, int *background,
-					int isfilled, int isline, int str, BOOL flagstring);
 
 sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 					double height, double width, double horzcurvature,
@@ -114,12 +104,6 @@ sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
 sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
 
 sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
-
-sciPointObj * sciConstructConsole(     sciPointObj * pparent ) ;
-sciPointObj * sciConstructFrame(       sciPointObj * pparent ) ;
-sciPointObj * sciConstructWindow(      sciPointObj * pparent ) ;
-sciPointObj * sciConstructWindowFrame( sciPointObj * pparent ) ;
-sciPointObj * sciConstructScreen(      sciPointObj * pparent ) ;
 
 sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent ) ;
 

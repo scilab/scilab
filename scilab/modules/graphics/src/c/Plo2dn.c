@@ -41,7 +41,6 @@
 #include "localization.h"
 
 /* @TODO : remove that stuff */
-void compute_data_bounds(int cflag, char dataflag,double *x,double *y,int n1,int n2,double *drect);
 void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, int n1,int n2, double *drect);
 BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
@@ -281,7 +280,6 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       
     }
     endFigureDataWriting(curFigure);
-    /*DrawAxesIfRequired(sciGetCurrentObj ());*/ /* force axes redrawing once is sufficient (F.Leray 10.01.05) */
     forceRedraw(psubwin);
     
     /*---- Drawing the Legends ----*/
@@ -413,61 +411,6 @@ void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,do
 }
 
 
-
-
-/* Given two set of coordinates x and y this routine computes the corresponding 
- *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] 
- */
-void compute_data_bounds(int cflag, char dataflag,double *x,double *y,int n1,int n2,double *drect)
-{
-  int size_x,size_y;
-  double xd[2];
-  double *x1;
-  switch ( dataflag ) {
-  case 'e' : 
-    xd[0] = 1.0; 
-	xd[1] = (double)n2;
-    x1 = xd;
-	size_x = (n2 != 0) ? 2 : 0 ;
-    break; 
-  case 'o' : 
-    x1 = x;
-	size_x = n2;
-    break;
-  case 'g' : 
-  default  : 
-    x1 = x;
-	size_x = (cflag == 1) ? n1 : (n1*n2) ;
-    break; 
-  }
-
-  if (size_x != 0) {
-    drect[0] =  Mini(x1, size_x); 
-    drect[1] =  Maxi(x1,size_x); 
-  }
-  else {
-    drect[0] = 0.0;
-    drect[1] = 10.0;
-  }
-
-  size_y = (cflag == 1) ? n2 : (n1*n2) ;
-  if (size_y != 0) {
-    drect[2] =  Mini(y, size_y); 
-    drect[3] =  Maxi(y,size_y); 
-  }
-  else {
-    drect[2] = 0.0;
-    drect[3] = 10.0;
-  }
-  /* back to default values for  x=[] and y = [] */
-  if ( drect[2] == LARGEST_REAL ) { 
-	  drect[2] = 0.0; drect[3] = 10.0 ;
-  } 
-  if ( drect[0] == LARGEST_REAL ) {
-	  drect[0] = 0.0; drect[1] = 10.0 ;
-  }
-
-}
 
 BOOL update_specification_bounds(sciPointObj  *psubwin,double rect[6],int flag)
 {

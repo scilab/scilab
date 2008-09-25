@@ -59,17 +59,7 @@ void sciSetCurrentObj( sciPointObj * pobj ) ;
  */
 long sciGetCurrentHandle( void ) ;
 /*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentFrame( void ) ;
-/*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentWindow( void ) ;
-/*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentWindowFrame( void ) ;
-/*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentScreen( void ) ;
-/*-----------------------------------------------------------------------------*/
 sciPointObj * sciGetCurrentSubWin( void ) ;
-/*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentConsole( void ) ;
 /*-----------------------------------------------------------------------------*/
 
 #endif /* _GET_CURRENT_OBJECTS_H_ */

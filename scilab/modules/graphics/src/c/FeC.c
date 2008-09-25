@@ -30,14 +30,12 @@ for entities handling
 
 /* @TODO : remove this stuff */
 
-/*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
-void get_frame_in_pixel(int WIRect[]);
 
 int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, 
 	     char *strflag, char *legend, double *brect, int *aaint, double *zminmax, 
@@ -128,8 +126,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         re_index_brect(brect, drect);
         break;
       case '2' : case '4' : case '6' : case '8':case '9':
-        /* Force psubwin->Srect to the x and y bounds */
-        /* compute_data_bounds(0,'g',x,y,n1,*Nnode,drect); */
         compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,n1,*Nnode,drect);
         break;
     }
@@ -195,22 +191,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   hdltab[cmpt] = sciGetHandle(pptabofpointobj);   
   cmpt++;   
   
-  /** Drawing the Legends **/
-  /*
-  if ((int)strlen(strflag) >=1  && strflag[0] == '1')
-  {
-    n1=1; styl[0]=1;styl[1]=0;
-    sciSetCurrentObj (ConstructLegend
-                      (sciGetCurrentSubWin(),
-                       legend,  (int)strlen(legend), n1, styl, &(hdltab[cmpt])); 
-    
-    
-    sciDrawObj(sciGetCurrentObj ()); 
-    DrawAxesIfRequired(sciGetCurrentObj ()); 
-    hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
-    cmpt++;
-  }
-  */
   parentCompound = ConstructCompound (hdltab, cmpt);
   sciSetCurrentObj(parentCompound);  /** construct Compound **/
 

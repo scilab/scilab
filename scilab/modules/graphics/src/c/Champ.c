@@ -36,7 +36,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
-/* extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect); */
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
@@ -83,8 +82,6 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
   /** The arrowsize acording to the windowsize **/
   n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
   
-  /* get the bounding rect of the displayed champ */
-  /*getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;*/
   
   /* First create champ object */
   /* F.Leray Allocation de style[dim = Nbr1] */
@@ -203,111 +200,6 @@ int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, 
 }
 
 
-/*----------------------------------------------------------------------------------*/
-/**
-* Compute the size of the area used by a champ object( ie scisegs with ptype = 1).
-* @param[in]  xCoords     position of the champ grid
-* @param[in]  yCoords     position of the champ grid
-* @param[in]  xLength     size of the arrow
-* @param[in]  yLength     size of the arrow
-* @param      nbRow       number of row in the champ grid
-* @param      nbCol       number of column in the champ grid.
-* @param      typeOfChamp 0 for champ and 1 for champ1
-* @param[out] xMin        bounding rect of the champ object
-* @param[out] xMax        bounding rect of the champ object
-* @param[out] yMin        bounding rect of the champ object
-* @param[out] yMax        bounding rect of the champ object
-*/
-void getChampDataBounds( double   xCoords[]  ,
-                        double   yCoords[]  ,
-                        double   xLength[]  ,
-                        double   yLength[]  ,
-                        int      nbRow      ,
-                        int      nbCol      ,
-                        int      typeOfChamp,
-                        double * xMin       ,
-                        double * xMax       ,
-                        double * yMin       ,
-                        double * yMax        )
-{
-  int      i                                ;
-  int    * xPixCoords   = NULL              ;
-  int    * yPixCoords   = NULL              ;
-  int    * zPixCoords   = NULL              ;
-  int      nbArrowEnds  = 2 * nbRow * nbCol ; /* 2 time the number of arrows */
-  int      nbArrows     = 0                 ;
-  //int      arrowSize     = 0                ; /* arrow size does not modify bounds for now */
-  //double   arrowSizeFact = 0.0              ;
-
-
-  if ( nbArrowEnds == 0 )
-  {
-    *xMin = 0.0 ;
-    *xMax = 0.0 ;
-    *yMin = 0.0 ;
-    *yMax = 0.0 ;
-    return ;
-  }
-
-  xPixCoords = MALLOC( nbArrowEnds   * sizeof(int) ) ;
-  yPixCoords = MALLOC( nbArrowEnds   * sizeof(int) ) ;
-  zPixCoords = MALLOC( nbRow * nbCol * sizeof(int) ) ;
-
-  if ( xPixCoords == NULL || yPixCoords == NULL || zPixCoords == NULL )
-  {
-    FREE( xPixCoords ) ;
-    FREE( yPixCoords ) ;
-    FREE( zPixCoords ) ;
-    sciprint(_("%s: No more memory.\n"),"getChampDataBounds");
-    *xMin = 0.0 ;
-    *xMax = 0.0 ;
-    *yMin = 0.0 ;
-    *yMax = 0.0 ;
-    return ;
-  }
-
-  /* get the bounds in pixels */
-  /*sciChamp2DRealToPixel( xPixCoords    ,
-    yPixCoords    ,
-    zPixCoords    ,
-    &nbArrows     ,
-    &arrowSize    ,
-    xCoords       ,
-    yCoords       ,
-    xLength       ,
-    yLength       ,
-    &nbRow        ,
-    &nbCol        ,
-    &arrowSizeFact,
-    &typeOfChamp  ,
-    FALSE          ) ;*/
-
-
-
-  /* get extrema on X and Y */
-  *xMin = XPixel2Double( xPixCoords[0] ) ;
-  *xMax = *xMin ;
-
-  *yMin = YPixel2Double( yPixCoords[0] ) ;
-  *yMax = *yMin ;
-
-  for ( i = 1 ; i < nbArrows ; i++ )
-  {
-    double currentCoordX = XPixel2Double( xPixCoords[i] ) ;
-    double currentCoordY = YPixel2Double( yPixCoords[i] ) ;
-
-    *xMin = Min( *xMin, currentCoordX ) ;
-    *xMax = Max( *xMax, currentCoordX ) ;
-
-    *yMin = Min( *yMin, currentCoordY ) ;
-    *yMax = Max( *yMax, currentCoordY ) ;
-  }
-
-  FREE( xPixCoords ) ;
-  FREE( yPixCoords ) ;
-  FREE( zPixCoords ) ;
-
-}
 /*----------------------------------------------------------------------------------*/
 double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
 {

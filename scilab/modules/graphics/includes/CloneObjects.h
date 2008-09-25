@@ -27,18 +27,12 @@
 #ifndef __SCI_CLONE__
 #define __SCI_CLONE__
 
-extern double *sciCloneColormap (sciPointObj * pobj); /* CLONE */
 extern sciPointObj *CloneText (sciPointObj * pthis); /* CLONE */
 extern sciPointObj *sciCloneObj (sciPointObj * pobj); /* CLONE */
 
 extern sciPointObj *CloneRectangle (sciPointObj * pthis);
 extern sciPointObj *ClonePolyline (sciPointObj * pthis);
 extern sciPointObj *CloneArc (sciPointObj * pthis);
-sciPointObj * sciCloneConsole(     sciPointObj * pthis ) ;
-sciPointObj * sciCloneFrame(       sciPointObj * pthis ) ;
-sciPointObj * sciCloneWindow(      sciPointObj * pthis ) ;
-sciPointObj * sciCloneWindowFrame( sciPointObj * pthis ) ;
-sciPointObj * sciCloneScreen(      sciPointObj * pthis ) ;
 
 extern sciPointObj * sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
 

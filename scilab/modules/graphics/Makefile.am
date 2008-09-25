@@ -289,7 +289,6 @@ src/c/graphicSession.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
 src/c/DrawObjects.c \
-src/c/Vect2Matrix.c \
 src/c/Plo3d.c \
 src/c/GetProperty.c \
 src/c/Contour.c \
@@ -314,12 +313,9 @@ src/c/Interaction.c \
 src/c/HandleManagement.c \
 src/c/StringBox.c \
 src/c/axesScale.c \
-src/c/Vertices.c \
-src/c/GraphicZoom.c \
 src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
-src/c/CheckColormap.c \
 src/c/deletePoints.c \
 src/c/fill_grid_rectangles.c \
 src/c/get_rgb.c \
@@ -515,7 +511,6 @@ includes/sci_glue.h \
 includes/sci_xstringb.h \
 includes/sci_xname.h \
 includes/DrawObjects.h \
-includes/Vect2Matrix.h \
 includes/sci_xpoly.h \
 includes/sci_xchange.h \
 includes/sci_demo.h \

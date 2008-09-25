@@ -159,16 +159,10 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_UIMENU:
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_SURFACE:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
 	
@@ -226,14 +220,8 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_UICONTROL:
       return (char *)(pUICONTROL_FEATURE(pthis)->callback);
       break;
-    case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
@@ -282,14 +270,8 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
       return pAXES_FEATURE(pthis)->callbackevent;
       break;
     case SCI_UIMENU:
-    case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
@@ -337,14 +319,8 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_AXES:	
       pAXES_FEATURE(pthis)->callbackevent = mevent;
       break;
-    case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -395,16 +371,10 @@ sciGetCallbackLen (sciPointObj * pthis)
       return (int)strlen(pUICONTROL_FEATURE(pthis)->callback);
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_SURFACE:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
@@ -468,16 +438,10 @@ sciDelCallback (sciPointObj * pthis)
       break;
     case SCI_UIMENU:
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_SURFACE:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
@@ -522,16 +486,10 @@ sciExecCallback (sciPointObj * pthis)
       return 0;
       break;
     case SCI_TEXT:
-    case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_SURFACE:
     case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_STATUSB:
     case SCI_FIGURE:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -711,12 +669,6 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
     }
   case SCI_FIGURE:
   case SCI_AXES:
-  case SCI_LIGHT:
-  case SCI_STATUSB:
-  case SCI_PANNER:	
-  case SCI_SBH:		
-  case SCI_SBV:	      
-  case SCI_TITLE:
   case SCI_LEGEND:
   case SCI_UIMENU:
   default:
