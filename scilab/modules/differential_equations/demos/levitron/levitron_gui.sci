@@ -17,7 +17,6 @@ function [H]=build_levitron(h)
   np=1+size(X,2)/N
   drawlater()
   f=gcf();f.color_map=graycolormap(N);
-  a=gca();
   
   s=[((N/2)):(N-1),N:-1:((N/2)+1)];
   clf(),plot3d(X,Y,list(Z,ones(1,np-1).*.s))// the top
@@ -37,6 +36,7 @@ function [H]=build_levitron(h)
   plot3d([-1 1]*1.5,[-1 1]*1.5,zeros(2,2))
   e=gce();e.color_mode=color('red');
   //set axes properties
+  a=gca();
   a.clip_state='off';
   a.data_bounds=[-1 -1 0;1 1 2];
   a.axes_bounds=[0 0 0.8 1];
