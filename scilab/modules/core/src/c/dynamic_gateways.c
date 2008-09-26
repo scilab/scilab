@@ -190,3 +190,51 @@ int gw_dynamic_metanet(void)
 							  &ptr_gw_metanet);
 }
 /*--------------------------------------------------------------------------*/
+/* interpolation module */
+#define INTERPOLATION_MODULE_NAME "interpolation"
+static DynLibHandle hInterpolationLib = NULL;
+static PROC_GATEWAY ptr_gw_interpolation = NULL;
+static char* dynlibname_interpolation = NULL;
+static char* gatewayname_interpolation = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_interpolation(void)
+{
+	return gw_dynamic_generic(INTERPOLATION_MODULE_NAME,
+		                      &dynlibname_interpolation,
+							  &gatewayname_interpolation,
+							  &hInterpolationLib,
+							  &ptr_gw_interpolation);
+}
+/*--------------------------------------------------------------------------*/
+/* statistics module */
+#define STATISTICS_MODULE_NAME "statistics"
+static DynLibHandle hStatisticsLib = NULL;
+static PROC_GATEWAY ptr_gw_statistics = NULL;
+static char* dynlibname_statistics = NULL;
+static char* gatewayname_statistics = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_statistics(void)
+{
+	return gw_dynamic_generic(STATISTICS_MODULE_NAME,
+		                      &dynlibname_statistics,
+							  &gatewayname_statistics,
+							  &hStatisticsLib,
+							  &ptr_gw_statistics);
+}
+/*--------------------------------------------------------------------------*/
+/* statistics module */
+#define SIGNAL_PROCESSING_MODULE_NAME "signal_processing"
+static DynLibHandle hSignal_processingLib = NULL;
+static PROC_GATEWAY ptr_gw_signal_processing = NULL;
+static char* dynlibname_signal_processing = NULL;
+static char* gatewayname_signal_processing = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_signal_processing(void)
+{
+	return gw_dynamic_generic(SIGNAL_PROCESSING_MODULE_NAME,
+		                      &dynlibname_signal_processing,
+							  &gatewayname_signal_processing,
+							  &hSignal_processingLib,
+							  &ptr_gw_signal_processing);
+}
+/*--------------------------------------------------------------------------*/

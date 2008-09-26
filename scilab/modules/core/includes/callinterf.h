@@ -38,8 +38,8 @@
 /* 15 */						#include "dynamic_gateways.h" /* metanet */
 /* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
-/* 18 */						#include "../../signal_processing/includes/gw_signal.h"
-/* 19 */						#include "../../interpolation/includes/gw_interpolation.h"
+/* 18 */						#include "dynamic_gateways.h" /* signal_processing */
+/* 19 */						#include "dynamic_gateways.h" /* interpolation */
 /* 20 */						#include "../../cacsd/includes/gw_cacsd3.h"
 /* 21 */						#include "../../string/includes/gw_string.h"
 /* 22 */						#include "dynamic_gateways.h" /* symbolic */
@@ -57,7 +57,7 @@
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
 /* 35 */						#include "dynamic_gateways.h" /* arnoldi */
 /* 36 */						#include "../../special_functions/includes/gw_special_functions1.h"
-/* 37 */						#include "../../statistics/includes/gw_statistics.h"
+/* 37 */						#include "dynamic_gateways.h" /* statistics */
 /* 38 */						#include "dynamic_gateways.h" /* randlib */
 /* 39 */						#include "../../special_functions/includes/gw_special_functions2.h"
 

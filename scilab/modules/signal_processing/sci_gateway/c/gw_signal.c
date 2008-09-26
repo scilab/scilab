@@ -27,7 +27,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_syredi),"syredi"}
 };
 /*--------------------------------------------------------------------------*/
-int gw_signal(void)
+int gw_signal_processing(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

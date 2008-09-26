@@ -126,15 +126,12 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
@@ -158,6 +155,9 @@ $(top_builddir)/modules/mexlib/libmex.la \
 #	$(top_builddir)/modules/symbolic/libscisymbolic.la
 #	$(top_builddir)/modules/metanet/libscimetanet.la
 #	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la
+#	$(top_builddir)/modules/statistics/libscistatistics.la
+#	$(top_builddir)/modules/signal_processing/libscisignal_processing.la
+#	$(top_builddir)/modules/interpolation/libsciinterpolation.la
 
 # Dev in progress
 

@@ -13,6 +13,29 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* interpolation gateway
+* interpolation is loaded dynamically at runtime
+* load gw_interpolation in SCI/modules/interpolation/sci_gateway/gw_interpolation.c
+*/
+int gw_dynamic_interpolation(void);
+
+/**
+* statistics gateway
+* statistics is loaded dynamically at runtime
+* load gw_statistics in SCI/modules/statistics/sci_gateway/gw_statistics.c
+*/
+int gw_dynamic_statistics(void);
+
+
+/**
+* signal_processing gateway
+* signal_processing is loaded dynamically at runtime
+* load gw_signal_processing in SCI/modules/signal_processing/sci_gateway/gw_signal_processing.c
+*/
+int gw_dynamic_signal_processing(void);
+
+
+/**
 * helptools gateway
 * helptools is loaded dynamically at runtime
 * load gw_helptools in SCI/modules/helptools/sci_gateway/gw_helptools.c
