@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="9.10" ProjectIdGuid="{959384FC-016C-4B01-B848-1B18D26B6CC4}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib /DLL signal_processing.lib" OutputFile="$(SolutionDir)bin\signal_processing_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\signal_processing_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib scioutput_stream.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing_f.dll %%f &gt;nul
+copy *.def signal_processing_f.def &gt;nul
+copy signal_processing_f.def ..\signal_processing_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_f.def &gt;nul" Description="Build signal_processing.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib /DLL signal_processing.lib" OutputFile="$(SolutionDir)bin\signal_processing_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\signal_processing_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib scioutput_stream.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing_f.dll %%f &gt;nul
+copy *.def signal_processing_f.def &gt;nul
+copy signal_processing_f.def ..\signal_processing_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_f.def &gt;nul" Description="Build signal_processing.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib /DLL signal_processing.lib" OutputFile="$(SolutionDir)bin\signal_processing_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\signal_processing_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib scioutput_stream.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing_f.dll %%f &gt;nul
+copy *.def signal_processing_f.def &gt;nul
+copy signal_processing_f.def ..\signal_processing_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_f.def &gt;nul" Description="Build signal_processing.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib /DLL signal_processing.lib" OutputFile="$(SolutionDir)bin\signal_processing_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\signal_processing_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib scioutput_stream.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing_f.dll %%f &gt;nul
+copy *.def signal_processing_f.def &gt;nul
+copy signal_processing_f.def ..\signal_processing_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_f.def &gt;nul" Description="Build signal_processing.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath=".\amell.f"/>
+		<File RelativePath=".\belan.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bgetx.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bgety.f"/>
+		<File RelativePath=".\bldenz.f"/>
+		<File RelativePath=".\blnumz.f"/>
+		<File RelativePath=".\bounn.f"/>
+		<File RelativePath=".\chebc.f"/>
+		<File RelativePath=".\cheby.f"/>
+		<File RelativePath=".\cmpse2.f"/>
+		<File RelativePath=".\cmpse3.f"/>
+		<File RelativePath=".\coeft.f"/>
+		<File RelativePath=".\compel.f"/>
+		<File RelativePath=".\degree.f"/>
+		<File RelativePath=".\deli1.f"/>
+		<File RelativePath=".\deli11.f"/>
+		<File RelativePath=".\deli2.f"/>
+		<File RelativePath=".\delip.f"/>
+		<File RelativePath=".\dellk.f"/>
+		<File RelativePath=".\desi00.f"/>
+		<File RelativePath=".\desi01.f"/>
+		<File RelativePath=".\desi11.f"/>
+		<File RelativePath=".\desi12.f"/>
+		<File RelativePath=".\desi14.f"/>
+		<File RelativePath=".\desi21.f"/>
+		<File RelativePath=".\desi22.f"/>
+		<File RelativePath=".\desi24.f"/>
+		<File RelativePath=".\desia.f"/>
+		<File RelativePath=".\desib.f"/>
+		<File RelativePath=".\dfft2.f"/>
+		<File RelativePath=".\dfftbi.f"/>
+		<File RelativePath=".\dfftmx.f"/>
+		<File RelativePath=".\dgee01.f"/>
+		<File RelativePath=".\dpspln.f"/>
+		<File RelativePath=".\dsn2.f"/>
+		<File RelativePath=".\dspln.f"/>
+		<File RelativePath=".\dsqrtc.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-corr.f"/>
+		<File RelativePath=".\fft842.f"/>
+		<File RelativePath=".\filbut.f"/>
+		<File RelativePath=".\freque.f"/>
+		<File RelativePath=".\gee.f"/>
+		<File RelativePath=".\hammin.f"/>
+		<File RelativePath=".\ino.f"/>
+		<File RelativePath=".\kaiser.f"/>
+		<File RelativePath=".\nstabl.f"/>
+		<File RelativePath=".\ouch.f"/>
+		<File RelativePath=".\parcha.f"/>
+		<File RelativePath=".\poles.f"/>
+		<File RelativePath=".\r2tx.f"/>
+		<File RelativePath=".\r4tx.f"/>
+		<File RelativePath=".\r8tx.f"/>
+		<File RelativePath=".\remez.f"/>
+		<File RelativePath=".\romeg.f"/>
+		<File RelativePath=".\rpem.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_amell.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_corr.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_delip.f"/>
+		<File RelativePath=".\sci_ffir.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_fft.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_fiir.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_remez.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_rpem.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_syredi.f"/>
+		<File RelativePath=".\sn.f"/>
+		<File RelativePath=".\snell.f"/>
+		<File RelativePath=".\syredi.f"/>
+		<File RelativePath=".\tg02ad.f"/>
+		<File RelativePath=".\tranpo.f"/>
+		<File RelativePath=".\transn.f"/>
+		<File RelativePath=".\tranze.f"/>
+		<File RelativePath=".\trbipo.f"/>
+		<File RelativePath=".\trbize.f"/>
+		<File RelativePath=".\tscccf.f"/></Filter>
+		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
+		<File RelativePath="..\..\..\..\bin\lapack.lib"/>
+		<File RelativePath="..\..\Makefile.am"/>
+		<File RelativePath="..\..\sci_gateway\signal_processing_gateway.xml"/></Files>
+	<Globals/></VisualStudioProject>

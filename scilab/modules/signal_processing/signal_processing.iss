@@ -10,6 +10,9 @@
 ;
 #define SIGPROC "signal_processing"
 ;
+Source: bin\signal_processing_f.dll; DestDir: {app}\bin; Components:  {#COMPN_SIGPROC}
+Source: bin\signal_processing.dll; DestDir: {app}\bin; Components:  {#COMPN_SIGPROC}
+;
 Source: modules\{#SIGPROC}\VERSION.xml; DestDir: {app}\modules\{#SIGPROC}; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\readme.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\license.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
@@ -34,3 +37,4 @@ Source: modules\{#SIGPROC}\demos\*.*; DestDir: {app}\modules\{#SIGPROC}\demos; F
 ;
 Source: modules\{#SIGPROC}\tests\*.*; DestDir: {app}\modules\{#SIGPROC}\tests; Flags: recursesubdirs; Components: {#COMPN_SIGPROC} and {#COMPN_TESTS}
 ;--------------------------------------------------------------------------------------------------------------
+
