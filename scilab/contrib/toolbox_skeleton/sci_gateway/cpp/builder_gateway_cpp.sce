@@ -1,6 +1,7 @@
 // ====================================================================
 // Allan CORNET
 // DIGITEO 2008
+/* This file is released into the public domain */
 // ====================================================================
 
 tbx_build_gateway('skeleton_cpp', ['cpp_find','sci_cpp_find'], ['sci_cpp_find.cxx'], ..

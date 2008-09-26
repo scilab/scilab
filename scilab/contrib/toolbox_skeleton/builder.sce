@@ -2,6 +2,7 @@
 // Copyright INRIA 2008
 // Allan CORNET
 // Simon LIPP
+// This file is released into the public domain
 // ====================================================================
 mode(-1);
 lines(0);

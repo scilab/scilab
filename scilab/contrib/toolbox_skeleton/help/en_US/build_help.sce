@@ -2,6 +2,7 @@
 // Copyright INRIA 2008
 // Allan CORNET
 // Simon LIPP
+// This file is released into the public domain
 // ====================================================================
 
 help_lang_dir = get_absolute_file_path('build_help.sce');

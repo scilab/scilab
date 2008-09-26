@@ -2,6 +2,7 @@
 // Allan CORNET
 // Simon LIPP
 // INRIA 2008
+// This file is released into the public domain
 // ====================================================================
 sci_gateway_dir = get_absolute_file_path('builder_gateway.sce');
 
