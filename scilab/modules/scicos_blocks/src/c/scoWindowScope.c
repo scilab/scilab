@@ -890,7 +890,7 @@ void scoAddCoupleOfSpheres(ScopeMemory * pScopeMemory, double * radius, int * co
 scoGraphicalObject scoCreateRectangle(scoGraphicalObject pAxes, double x, double y, double width, double height)
 {
   scoGraphicalObject pRectangle;
-  pRectangle = ConstructRectangle(pAxes,x,y,height,width,0,0,NULL,NULL,0,1);
+  pRectangle = ConstructRectangle(pAxes,x,y,height,width,NULL,NULL,0,1);
   return pRectangle;
 }
 
