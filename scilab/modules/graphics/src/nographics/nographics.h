@@ -13,7 +13,6 @@
 
 #include "Scierror.h"
 #include "ObjectStructure.h"
-#include "Events.h"
 int gw_graphics(void);
 
 void loadGraphicModule(void);
