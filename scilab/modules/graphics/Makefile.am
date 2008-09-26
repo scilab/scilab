@@ -68,7 +68,6 @@ src/c/getHandleProperty/get_auto_resize_property.c \
 src/c/getHandleProperty/get_fill_mode_property.c \
 src/c/getHandleProperty/get_tight_limits_property.c \
 src/c/getHandleProperty/get_auto_ticks_property.c \
-src/c/getHandleProperty/get_font_name_property.c \
 src/c/getHandleProperty/get_x_label_property.c \
 src/c/getHandleProperty/get_auto_scale_property.c \
 src/c/getHandleProperty/get_auto_dimensionning_property.c \
@@ -175,7 +174,6 @@ src/c/getHandleProperty/set_figure_style_property.c \
 src/c/ColorMapManagement.c \
 src/c/getHandleProperty/set_mark_size_property.c \
 src/c/getHandleProperty/set_y_shift_property.c \
-src/c/getHandleProperty/set_font_name_property.c \
 src/c/getHandleProperty/set_auto_scale_property.c \
 src/c/getHandleProperty/set_auto_dimensionning_property.c \
 src/c/getHandleProperty/set_text_box_property.c \

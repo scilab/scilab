@@ -2161,11 +2161,6 @@ int sciInitSelectedSubWin( sciPointObj * psubwinobj )
 
   sciInitSelectedObject( psubwinobj ) ;
 
-  set_scale ("tttftt", ppSubWin->WRect,
-	     ppSubWin->FRect, NULL,
-	     ppSubWin->logflags, ppSubWin->ARect);
-
-
   return 0 ;
 }
 

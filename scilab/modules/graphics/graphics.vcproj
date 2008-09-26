@@ -651,10 +651,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getHandleProperty\get_font_name_property.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\getHandleProperty\get_font_size_property.c"
 				>
 			</File>
@@ -1520,10 +1516,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_font_foreground_property.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\getHandleProperty\set_font_name_property.c"
 				>
 			</File>
 			<File

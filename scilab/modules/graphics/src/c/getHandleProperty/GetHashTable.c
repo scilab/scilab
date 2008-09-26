@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 155
+#define NB_PROPERTIES 154
 
 /**
  * list of all property names and associated functions in scilab
@@ -106,7 +106,6 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "font_foreground"     , get_font_foreground_property      },
   { "font_color"          , get_font_color_property           },
   { "font_style"          , get_font_style_property           },
-  { "font_name"           , get_font_name_property            },
   { "text_box_mode"       , get_text_box_mode_property        },
   { "auto_dimensionning"  , get_auto_dimensionning_property   },
   { "alignment"           , get_alignment_property            },

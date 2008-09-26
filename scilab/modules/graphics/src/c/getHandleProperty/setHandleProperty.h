@@ -95,7 +95,6 @@ int set_font_angle_property(           sciPointObj * pobj, size_t stackPointer, 
 int set_font_foreground_property(      sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_font_color_property(           sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_font_style_property(           sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
-int set_font_name_property(            sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_text_box_mode_property(        sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_auto_dimensionning_property(   sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_alignment_property(            sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;

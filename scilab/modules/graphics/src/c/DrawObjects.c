@@ -340,14 +340,7 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
    
     /* END ISO if */
   }
-  
-  /* Changement ci-dessous F.Leray 21.09.04 */
-  ppsubwin->axes.xlim[0]=xmin;
-  ppsubwin->axes.xlim[1]=xmax;
-  ppsubwin->axes.xlim[2]=0;
-  ppsubwin->axes.ylim[0]=ymin;
-  ppsubwin->axes.ylim[1]=ymax;
-  ppsubwin->axes.ylim[2]=0;
+
    
    
    
@@ -360,15 +353,6 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
   ppsubwin->FRect[2]=xmax;
   ppsubwin->FRect[1]=ymin;
   ppsubwin->FRect[3]=ymax;
-   
-  ppsubwin->axes.xlim[3] = ppsubwin->axes.nxgrads;
-  ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
-   
-  /*   ppsubwin->axes.reverse[0] = FALSE; /\*TRUE;*\/  /\* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 *\/ */
-  /*    ppsubwin->axes.reverse[1] = FALSE; /\*TRUE;*\/  */
-   
-   
-  set_scale("tftftf",NULL,ppsubwin->FRect,NULL,ppsubwin->logflags,NULL); 
    
    
   for(i=0;i<4;i++)
@@ -463,15 +447,6 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
       zmax = ppsubwin->axes.zgrads[ ppsubwin->axes.nzgrads - 1];
     }
 
-  ppsubwin->axes.xlim[0]=xmin;
-  ppsubwin->axes.xlim[1]=xmax;
-  ppsubwin->axes.xlim[2]=0;
-  ppsubwin->axes.ylim[0]=ymin;
-  ppsubwin->axes.ylim[1]=ymax;
-  ppsubwin->axes.ylim[2]=0;
-  ppsubwin->axes.zlim[0]=zmin; /* rajout pour z */
-  ppsubwin->axes.zlim[1]=zmax;
-  ppsubwin->axes.zlim[2]=0;
      
   ppsubwin->FRect[0]=xmin;
   ppsubwin->FRect[2]=xmax;
@@ -479,12 +454,8 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   ppsubwin->FRect[3]=ymax;
   ppsubwin->FRect[4]=zmin;
   ppsubwin->FRect[5]=zmax;
-    
-  ppsubwin->axes.xlim[3] = ppsubwin->axes.nxgrads;
-  ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
-  ppsubwin->axes.zlim[3] = ppsubwin->axes.nzgrads;
    
-  set_scale("tftftf",NULL,ppsubwin->FRect,NULL,ppsubwin->logflags,NULL); 
+ 
     
   for(i=0;i<6;i++)
     if(ppsubwin->FRect[i] != ExistingFRect[i]){

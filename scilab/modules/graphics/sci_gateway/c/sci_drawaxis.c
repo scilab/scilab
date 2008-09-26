@@ -25,6 +25,7 @@
 #include "Scierror.h"
 #include "PloEch.h"
 #include "localization.h"
+#include "GetProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_drawaxis( char * fname, unsigned long fname_len )
@@ -119,12 +120,15 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   else 
   {
     static double x_def[1];
+		sciPointObj * currentSubwin = sciGetCurrentSubWin();
+		double bounds[6];
+		sciGetDataBounds(currentSubwin, bounds);
     nx = 1;
     x = x_def ;
     if ( dir == 'l' ) 
-      x_def[0] = Cscale.frect[0];
+      x_def[0] = bounds[0]; /* xMin */
     else if ( dir == 'r' ) 
-      x_def[0] = Cscale.frect[2];
+      x_def[0] = bounds[1]; /* xMax */
   }
 
   if ( opts[10].position != -1 ) 
@@ -135,12 +139,15 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   else 
   {
     static double y_def[1];
+		sciPointObj * currentSubwin = sciGetCurrentSubWin();
+		double bounds[6];
+		sciGetDataBounds(currentSubwin, bounds);
     ny = 1;
     y = y_def ;
     if ( dir == 'd' ) 
-      y_def[0] = Cscale.frect[1];
+      y_def[0] = bounds[2]; /* yMin */
     else if ( dir == 'u' ) 
-      y_def[0] = Cscale.frect[3]; 
+      y_def[0] = bounds[3]; /* yMax */
  }
 
   /* compatibility test */

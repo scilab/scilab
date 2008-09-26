@@ -51,7 +51,6 @@ int set_axes_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
   
   copyDoubleVectorFromStack( stackPointer, pSUBWIN_FEATURE (pobj)->WRect, 4 ) ;
 
-  set_scale( "ttffff", pSUBWIN_FEATURE (pobj)->WRect, NULL, NULL, NULL, NULL ) ;
   return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

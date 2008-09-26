@@ -12,8 +12,7 @@
 
 /*------------------------------------------------------------------------*/
 /* file: WindowList.h                                                     */
-/* desc : routine to access and modify the window list (The_List)         */
-/*        routines taken from periX11 and periWin                         */
+/* desc : routines which modify subwindows scale                          */
 /*------------------------------------------------------------------------*/
 
 #ifndef _WINDOW_LIST_

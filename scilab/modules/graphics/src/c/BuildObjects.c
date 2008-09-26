@@ -323,12 +323,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
       ppsubwin->theta_kp  = ppaxesmdl->theta_kp;
       ppsubwin->is3d  = ppaxesmdl->is3d;
 
-      for (i=0 ; i<4 ; i++)
-        {
-	  ppsubwin->axes.xlim[i]= ppaxesmdl->axes.xlim[i];
-	  ppsubwin->axes.ylim[i]= ppaxesmdl->axes.ylim[i];
-	}
-
       /* F.Leray 22.09.04 */
 
       ppsubwin->axes.u_xlabels = (char **) NULL; /* init. ci-apres */
@@ -391,8 +385,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
       sciInitAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
       /* end 22.09.04 */
 
-      ppsubwin->axes.zlim[0]= ppaxesmdl->axes.zlim[0];
-      ppsubwin->axes.zlim[1]= ppaxesmdl->axes.zlim[1];
       ppsubwin->axes.flag[0]= ppaxesmdl->axes.flag[0];
       ppsubwin->axes.flag[1]= ppaxesmdl->axes.flag[1];
       ppsubwin->axes.flag[2]= ppaxesmdl->axes.flag[2];

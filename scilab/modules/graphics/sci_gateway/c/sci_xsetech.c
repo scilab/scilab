@@ -39,7 +39,7 @@ int sci_xsetech(char* fname,unsigned long fname_len)
     {-1,"wrect","d",0,0,0},
     {-1,NULL,NULL,0,0}
   };
-  int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1,nopt;
+  int minrhs = 1,maxrhs = 0,minlhs=0,maxlhs=1,nopt;
 
   nopt = NumOpt();
 
@@ -48,25 +48,27 @@ int sci_xsetech(char* fname,unsigned long fname_len)
     /** compatibility with old version **/
 
     int m1,n1,l1,m2,n2,l2,m3,n3,l3;
-    minrhs = -1,maxrhs = 3,minlhs=0,maxlhs=1;
+    minrhs = 1,maxrhs = 3,minlhs=0,maxlhs=1;
     CheckRhs(minrhs,maxrhs) ;
     CheckLhs(minlhs,maxlhs) ;
-
-    if ( Rhs <= 0) 
-    {
-      ShowScales();
-      LhsVar(1) = 0;
-      return 0;
-    }
 
     GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
     CheckDims(1,m1,n1,1,4);
     wrect = stk(l1);
 
-    if (Rhs >= 2) { GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2); CheckDims(2,m2,n2,1,4); frect=stk(l2);} 
-    if (Rhs >= 3) { GetRhsVar(3,STRING_DATATYPE, &m3, &n3, &l3); CheckLength(3,m3,2); logflag = cstk(l3);}
-    else
+    if (Rhs >= 2) {
+			GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+			CheckDims(2,m2,n2,1,4);
+			frect=stk(l2);
+		} 
+    if (Rhs >= 3) {
+			GetRhsVar(3,STRING_DATATYPE, &m3, &n3, &l3);
+			CheckLength(3,m3,2);
+			logflag = cstk(l3);
+		}
+		else {
       logflag = logflag_def ; /* compatibility with old version */
+		}
   }
   else 
   {
@@ -93,10 +95,11 @@ int sci_xsetech(char* fname,unsigned long fname_len)
     }
     if ( opts[3].position != -1 )
     {
-      wrect = stk(opts[3].l);	CheckLength(opts[3].position,opts[3].m*opts[3].n,4);
+      wrect = stk(opts[3].l);
+			CheckLength(opts[3].position,opts[3].m*opts[3].n,4);
     } 
   }
-  C2F(Nsetscale2d)(wrect,arect,frect,logflag,0L);
+  setscale2d(wrect,arect,frect,logflag);
   LhsVar(1)=0;
   return 0;
 

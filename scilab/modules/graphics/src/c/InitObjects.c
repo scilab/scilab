@@ -561,12 +561,6 @@ int InitAxesModel()
   ppaxesmdl->theta_kp  = 215.0;
   ppaxesmdl->is3d  = FALSE;
 
-  for (i=0 ; i<4 ; i++)
-    {
-      ppaxesmdl->axes.xlim[i]= Cscale.xtics[i];
-      ppaxesmdl->axes.ylim[i]= Cscale.ytics[i];
-    }
-
   /* F.Leray 22.09.04 */
   (ppaxesmdl->axes).axes_visible[0] = FALSE;
   (ppaxesmdl->axes).axes_visible[1] = FALSE;
@@ -612,8 +606,6 @@ int InitAxesModel()
   sciInitAutoTicks(paxesmdl, TRUE, TRUE, TRUE);
   /* end 22.09.04 */
 
-  ppaxesmdl->axes.zlim[0]= -1.0;
-  ppaxesmdl->axes.zlim[1]= 1.0;
   ppaxesmdl->axes.flag[0]= 2;
   ppaxesmdl->axes.flag[1]= 2;
   ppaxesmdl->axes.flag[2]= 4;
@@ -719,9 +711,6 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   if(sciGetEntityType(pobj)!=SCI_FIGURE) /* MUST BE used for figure entities only */
     return -1;
 
-  pFIGURE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-  pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
-
   /** Initialize the colormap */
   /* try to install the colormap in the graphic context */
   sciSetColormap( pobj, pFIGURE_FEATURE(pfiguremdl)->pModelData->colorMap, sciGetNumColors(pfiguremdl), 3 ) ;
@@ -753,15 +742,14 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
     }
   /* sciSetNum(pobj, getUnusedFigureIndex()); Number can not be modified */
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
-  sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
-  sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
-  if (sciSetDimension( pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl) ) != RESIZE_SUCCESS)
-  {
-    sciDelHandle (pobj);
-    FREE(pobj->pfeatures);
-    FREE(pobj);
-    return -1;
-  }
+  sciSetResize(pobj,sciGetResize(pfiguremdl));
+	sciSetDimension( pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl) );
+	if (!sciGetResize(pobj))
+	{
+		/* window size and axes size may change independently */
+		sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;	
+	}
+
 
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciSetScreenPosition(pobj,x[0],x[1]);

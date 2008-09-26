@@ -59,11 +59,6 @@ void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize )
 
 }
 /*--------------------------------------------------------------------------*/
-int get_window_scale( int i, double * subwin )
-{
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 double Maxi(double *vect,int n)
 {
 	return 0.0;

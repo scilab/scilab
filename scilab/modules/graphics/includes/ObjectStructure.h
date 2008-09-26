@@ -659,10 +659,6 @@ typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXIS, BT_BACK_HALF } EAxe
 
 typedef struct 
 {  
-  double  xlim[4];  /* [xmin,xmax,ar,nint]           */ /* F.Leray 21.09.04 : NOUVEAU sens pour xlim,ylim,zlim: NON! Comme avant valeurs en tight limits on/off */ /* F.Leray 07.10.04 */
-  double  ylim[4];  /* [ymin,ymax,ar,nint]           */ /* pour afficher les graduations automatiques on a calcule des xyzgrads provenant de TheTicks */
-  double  zlim[4];  /* [zmin,zmax,ar,nint]         */ 
-
   /* tics data from algo */
   double  xgrads[20], ygrads[20], zgrads[20];                   /* Here they are  */
   int nxgrads, nygrads, nzgrads;                         /* with their size <=> nber of tics */
