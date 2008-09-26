@@ -1,6 +1,6 @@
 c
-c   This program is derived from the Berwin A. Turlach code qpgen1.f
-c   by S. Steer INRIA for Scilab. 
+c   This program  by S. Steer INRIA for Scilab is derived from the 
+c   Berwin A. Turlach code qpgen1 from solve.QP.compact.f.
 c   This version uses a  more compact column-compressed sparse matrix storage:
 c   the linear constraint matrix is supposed stored as follow
 c   -  colnnz (q x 1) array (int) stores the number of non-zero entries  for
