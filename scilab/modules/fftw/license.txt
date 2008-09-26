@@ -1,12 +1,25 @@
-See SCI/COPYING for the CeCILL license:
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
 
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-The file src/c/fftw3.h is released under the following license:
+FFTW3:
+======
 
+Files: 
+src/c/fftw3.h
 
- * Copyright (c) 2003, 2006 Matteo Frigo
- * Copyright (c) 2003, 2006 Massachusetts Institute of Technology
- *
+Copyright:
+2003, 2006 Matteo Frigo
+2003, 2006 Massachusetts Institute of Technology
+
+License:
  * The following statement of license applies *only* to this header file,
  * and *not* to the other files distributed with FFTW or derived therefrom:
  * 
