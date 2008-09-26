@@ -34,19 +34,12 @@ public:
   virtual ~DrawableFigure( void ) ;
 
   /**
-   * Real operations to draw the figure.
-   * Can only be called within the OpenGL thread
+   * Force display of the graphic window from the Scilab thread.
    */
-  virtual void drawInContext( void ) ;
+  virtual void forceDisplay( void ) ;
 
   /**
-   * redraw all the figure and all its children
-   * Can only be called within the OpenGL thread
-   */
-  void redrawInContext( void );
-
-  /**
-   * Redraw all subwindows contained in the figure.
+   * Force a future redraw all subwindows contained in the figure.
    */
   void redrawSubwins( void );
 
@@ -153,7 +146,7 @@ public:
    * Set the figure title
    * @param[in] title the figure title
    */
-  void setTitle(const char * title);
+   void setTitle(const char * title);
 
   /**
    * Get current displacement in the graphic window, to be used for axes rotation.

@@ -47,12 +47,6 @@
 #include "MALLOC.h" /* MALLOC */
 
 
-extern sciHandleTab *PENDOFHANDLETAB;
-
-extern sciPointObj *pfiguremdl;
-extern sciPointObj *paxesmdl;
-
-
 
 /**sciGetPointerToFeature
  * Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
@@ -1773,10 +1767,6 @@ sciGetNameLength (sciPointObj * pobj)
     case SCI_FIGURE:
       return pFIGURE_FEATURE (pobj)->namelen;
       break;
-    case SCI_SUBWIN:
-      return pSUBWIN_FEATURE (pobj)->namelen;
-      break;
-    case SCI_AGREG:
     default:
       printSetGetErrorMessage("name");
       return 0;
@@ -1832,9 +1822,6 @@ int sciGetWidth (sciPointObj * pobj)
         return size[0];
       }      
       break;
-    case SCI_SUBWIN:
-       return pSUBWIN_FEATURE (pobj)->windimwidth;
-      break;
     default:
       printSetGetErrorMessage("width");
       return -1;
@@ -1863,9 +1850,6 @@ int sciGetHeight (sciPointObj * pobj)
         sciGetJavaFigureSize(pobj, size);
         return size[1];
       }
-      break;
-    case SCI_SUBWIN:
-       return pSUBWIN_FEATURE (pobj)->windimheight;
       break;
     default:
       printSetGetErrorMessage("height");
@@ -1897,10 +1881,6 @@ void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight )
         *pWidth = size[0] ;
         *pHeight = size[1] ;
       }
-      break;
-    case SCI_SUBWIN:
-      *pWidth  = pSUBWIN_FEATURE (pobj)->windimwidth ;
-      *pHeight = pSUBWIN_FEATURE (pobj)->windimheight ;
       break;
     default:
       printSetGetErrorMessage("size");
@@ -1956,77 +1936,6 @@ int sciGetWindowHeight(sciPointObj * pObj)
     break;
   }
   return -1;
-}
-
-/**sciGetIsFigureIconified
- * Determines whether the specified Figure is minimized (iconic). 
- * @param sciPointObj * pobj: the pointer to the entity
- * @return TRUE if yes, FALSE if no
- */
-BOOL
-sciGetIsFigureIconified (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /* hWndParent de Type HWND (BCG) "WIN" */
-      /*return (pFIGURE_FEATURE (pobj)->isiconified =
-	IsIconic ((sciGetScilabXgc (pobj))->hWndParent)); */
-      return FALSE;
-      break;
-    case SCI_AGREG:
-    default:
-      sciprint(_("Only Figure can return iconic status.\n"));
-      return FALSE;
-      break;
-    }
-}
-
-/**sciGetSubwindowPosX
- * Gets scrollbar position; 
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int vertical position in pixel
- **/
-int
-sciGetSubwindowPosX (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_SUBWIN:
-      /* selectionner le xgc correspondant puis */
-      return pSUBWIN_FEATURE (pobj)->infigureposx;
-      /* C2F(getwindowpos)( width, height, PI0, PI0); */
-      break;
-    case SCI_AGREG:
-    default:
-      printSetGetErrorMessage("figure_position");
-      return -1;
-      break;
-    }
-}
-
-
-/**sciGetSubwindowPosY
- * Gets subwindow position; 
- * @param sciPointObj * pobj: the pointer to the entity in pixel
- * @return  int vertical position 
- **/
-int
-sciGetSubwindowPosY (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_SUBWIN:
-      /* selectionner le xgc correspondant puis */
-      return pSUBWIN_FEATURE (pobj)->infigureposy;
-      /* C2F(getwindowpos)( width, height, PI0, PI0); */
-      break;
-    case SCI_AGREG:
-    default:
-      printSetGetErrorMessage("figure_position");
-      return -1;
-      break;
-    }
 }
 
 
@@ -2132,23 +2041,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         tab[3] = (double)sciGetHeight (pthis);
         return tab;
       }
-    case SCI_SUBWIN:
-      *numrow = 3;
-      *numcol = 2;
-      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-      {
-        *numrow = -1;
-        *numcol = -1;
-	return NULL;
-      }
-      tab[0] =  (double) sciGetSubwindowPosX (pthis);
-      tab[1] =  (double) sciGetSubwindowPosY (pthis);
-      tab[2] = (double)sciGetWidth (pthis);
-      tab[3] = (double)sciGetHeight (pthis);
-      tab[4] = (double)sciGetWindowWidth(sciGetParentFigure(pthis));
-      tab[5] = (double)sciGetWindowHeight(sciGetParentFigure(pthis)); 
-      return (double*)tab;
-      break;
     case SCI_POLYLINE:
       *numrow = pPOLYLINE_FEATURE (pthis)->n1;
       *numcol=(pPOLYLINE_FEATURE (pthis)->pvz != NULL)? 3:2;
@@ -3367,16 +3259,6 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
     *theta = 0.0;
     break;
   }
-}
-/*----------------------------------------------------------------------------------*/
-int sciGetWhiteColorIndex(sciPointObj * pObj)
-{
-  return sciGetNumColors(pObj) + 1;
-}
-/*----------------------------------------------------------------------------------*/
-int sciGetBlackColorIndex(sciPointObj * pObj)
-{
-  return sciGetNumColors(pObj) + 2;
 }
 /*----------------------------------------------------------------------------------*/
 /**

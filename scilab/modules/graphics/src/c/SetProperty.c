@@ -510,14 +510,6 @@ int sciSetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
     return colorindex;
 }
 
-/**
- * This function must be used to set the background of model objects.
- */
-int sciInitMdlBackground( sciPointObj * pobj, int colorIndex )
-{
-  return sciInitBackground( pobj, colorIndex ) ;
-}
-
 int sciInitBackground( sciPointObj * pobj, int colorindex )
 {
   int m = sciGetNumColors(pobj);
@@ -558,13 +550,6 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
 
 }
 
-/**
- * This function must be used to set the foreground of model objects.
- */
-int sciInitMdlForeground( sciPointObj * pObj, int colorIndex )
-{
-  return sciInitForeground( pObj, colorIndex ) ;
-}
 
 int sciInitForeground( sciPointObj * pobj, int colorindex )
 {
@@ -1991,10 +1976,6 @@ int sciInitNum( sciPointObj * pobj, int value )
     case SCI_FIGURE:
       pFIGURE_FEATURE(pobj)->number = value;
       break;
-    case SCI_SUBWIN:
-      pSUBWIN_FEATURE(pobj)->number = value;
-      sciSetNum(sciGetParentFigure (pobj), value);
-      break;
     default:
       printSetGetErrorMessage("figure_id");
       return -1 ;
@@ -2037,11 +2018,6 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
         return sciSetJavaFigureSize(pobj, size) ;
       }
       break;
-    case SCI_SUBWIN:
-      pSUBWIN_FEATURE (pobj)->windimwidth = newWidth ;
-      pSUBWIN_FEATURE (pobj)->windimheight = newHeight;
-      break;
-    case SCI_AGREG:
     default:
       printSetGetErrorMessage("size");
       return -1 ;
@@ -2149,75 +2125,6 @@ sciSetScreenPosition(sciPointObj * pobj, int pposx, int pposy)
 
 }
 
-int sciInitFigureIconify( sciPointObj * pobj, BOOL value )
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      pFIGURE_FEATURE (pobj)->isiconified = value;
-      break;
-    default:
-      return sciSetFigureIconify(sciGetCurrentFigure(), value);
-      break;
-    }
-  return 0 ;
-}
-
-/**sciSetFigureIconified
- * Minimizes or Restores the window if TRUE or FALSE (useful to get the Window on front)
- * @param sciPointObj * pobj: the pointer to the entity
- * @param BOOL value: TRUE the window will be iconify, FALSE the window will be raise
- * @return
- */
-int
-sciSetFigureIconify (sciPointObj * pobj, BOOL value)
-{
-  if ( sciGetIsFigureIconified( pobj ) == value )
-  {
-    return 1 ;
-  }
-  return sciInitFigureIconify( pobj, value ) ;
-
-}
-
-int sciInitSubWindowPos( sciPointObj * pobj, int *pposx, int *pposy)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_SUBWIN:
-      /* selectionner le xgc correspondant puis */
-      pSUBWIN_FEATURE (pobj)->infigureposx = *pposx;
-      pSUBWIN_FEATURE (pobj)->infigureposy = *pposy;
-      return 0;
-      /* C2F(setwindowpos)( width, height, PI0, PI0); */
-      break;
-    case SCI_AGREG:
-    default:
-      printSetGetErrorMessage("axes_size");
-      return -1;
-      break;
-    }
-}
-
-/**sciSetSubwindowPos
- * Sets subwindow position
- * @param sciPointObj * pobj: the pointer to the entity
- * @param int pposx: the pointer to the x position
- * @param int pposy: the pointer to the y position
- * @return  0 if OK , else -1
- * @version 0.1.
- **/
-int
-sciSetSubWindowPos (sciPointObj * pobj, int *pposx, int *pposy)
-{
-
-  if ( sciGetSubwindowPosX( pobj ) == *pposx && sciGetSubwindowPosY( pobj ) == *pposy  )
-  {
-    return 1 ;
-  }
-  return sciInitSubWindowPos( pobj, pposx, pposy ) ;
-}
-
 
 /*--------------------------------------------------------------------------*/
 /* sciSelectFirstSubwin                                                              */
@@ -2294,20 +2201,6 @@ int sciInitSelectedObject( sciPointObj * pObj )
 {
   sciAddUniqueSelectedSon(sciGetParent(pObj), pObj ) ;
   return 0 ;
-}
-/*-------------------------------------------------------------------------------*/
-/**
- * The object become selected within its siblings
- * For subwin object, use sciSetSelectedSubWin instead.
- */
-int sciSetSelectedObject( sciPointObj * pObj )
-{
-  if ( sciGetIsSelected(pObj) )
-  {
-    /* nothing to do */
-    return 1 ;
-  }
-  return sciInitSelectedObject( pObj ) ;
 }
 /*-------------------------------------------------------------------------------*/
 

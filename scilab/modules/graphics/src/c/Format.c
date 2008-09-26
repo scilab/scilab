@@ -1397,50 +1397,6 @@ int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads )
 
 }
 /*--------------------------------------------------------------------------*/
-double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
-{
-  int flag_limit = 0,i;
-  double * tmp = NULL;
-
-  if ( nbtics <= 0 || ( tmp = MALLOC( nbtics * sizeof(double) ) ) == NULL )
-  {
-    return NULL ;
-  }
-
-  if(logflag=='l')
-  {
-    for(i=0;i<nbtics;i++)
-    {
-      flag_limit = 0;
-
-      /* 10^(-307) == -Inf */
-      flag_limit = flag_limit + ((grads[i])<-307)?-1:0;
-      /* 10^(+307) == +Inf */
-      flag_limit = flag_limit + ((grads[i])>307)?1:0;
-
-      if( flag_limit == -1)
-      {
-        tmp[i] = 0.;
-      }
-      else if ( flag_limit == 1)
-      {
-        tmp[i] = exp10(307);
-      }
-      else  if ( flag_limit == 0) /* general case */
-      {
-        tmp[i]=exp10(grads[i]);
-      }
-    }
-  }
-  else
-  {
-    for(i=0;i<nbtics;i++)
-      tmp[i] = grads[i];
-  }
-
-  return tmp;
-}
-/*--------------------------------------------------------------------------*/
 char * copyFormatedValue( double value, const char format[5], int bufferSize )
 {
   char * buffer = MALLOC( bufferSize * sizeof(char) ) ;

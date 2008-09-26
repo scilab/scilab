@@ -334,58 +334,6 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
 
 
 
-
-/**sciGetCallbackLen
- * returns the length of the scilab callback code
- */
-int
-sciGetCallbackLen (sciPointObj * pthis)
-{
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_SUBWIN:
-      return pSUBWIN_FEATURE (pthis)->callbacklen;
-      break;
-    case SCI_ARC:
-      return pARC_FEATURE (pthis)->callbacklen;
-      break;
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE (pthis)->callbacklen;
-      break;
-    case SCI_SEGS: 
-      return pSEGS_FEATURE (pthis)->callbacklen;
-      break; 
-    case SCI_FEC:  
-      return pFEC_FEATURE (pthis)->callbacklen;
-      break;  
-    case SCI_GRAYPLOT: 
-      return pGRAYPLOT_FEATURE (pthis)->callbacklen;
-      break;     
-    case SCI_POLYLINE:
-      return pPOLYLINE_FEATURE (pthis)->callbacklen;
-      break;    
-    case SCI_UIMENU:
-      return (int)strlen(pUIMENU_FEATURE(pthis)->callback);
-      break;
-    case SCI_UICONTROL:
-      return (int)strlen(pUICONTROL_FEATURE(pthis)->callback);
-      break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_FIGURE:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint (_("No Callback is associated with this Entity.\n"));
-      return -1;
-      break;
-    }
-}
-
-
-
 /**sciDelCallback
  * returns the length of the scilab callback code
  */
@@ -452,53 +400,6 @@ sciDelCallback (sciPointObj * pthis)
   return 0;
 }
 
-
-/**sciExecCallback
- * exec the callback associated with pthis
- */
-int
-sciExecCallback (sciPointObj * pthis)
-{
-  int mlhs = 0, mrhs = 1, ibegin = 1, l1, m1, n1 = 1;
-  char name[] = "execstr" ;
-  m1 = sciGetCallbackLen(pthis);
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_RECTANGLE:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-      if (sciGetCallback(pthis))
-	{
-	  CreateVar(1,STRING_DATATYPE, &m1, &n1, &l1);
-	  strncpy(cstk(l1), sciGetCallback(pthis), sciGetCallbackLen(pthis));
-	  /* back conversion to Scilab coding */
-	  Convert2Sci(1);
-	  SciString(&ibegin,name,&mlhs,&mrhs);
-	  /* check if an error has occured while running a_function */
-	  LhsVar(1) = 0; 
-	  return 0;
-	}
-      else sciprint(_("No Callback is associated with this Entity\n."));
-      return 0;
-      break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_FIGURE:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      sciprint (_("No Callback is associated with this Entity.\n"));
-      return -1;
-      break;
-    }
-}
 
 /************************************ End of callback Functions ************************************/
 
@@ -699,72 +600,6 @@ int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
   return status;
 }
 
-
-BOOL sciIsAreaZoom(int box[4],int box1[4],int section[4])
-{
-  if ( (box[0]<=box1[0]) && (box[2]>box1[0]) && (box[2]<=box1[2]) 
-       && (box[1]<box1[1]) && (box[3]>box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box1[0];  section[2]=box[2];  section[1]=box1[1];  section[3]=box[3];return TRUE;}
-  
-  if ( (box[0]<=box1[0]) && (box[2]>box1[0]) && (box[2]<=box1[2]) 
-       && (box[1]>=box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box1[0];  section[2]=box[2];  section[1]=box[1];  section[3]=box[3];return TRUE;}
-  
-  if ( (box[0]<=box1[0]) && (box[2]>box1[0]) && (box[2]<=box1[2]) 
-       && (box[1]>=box1[1]) && (box[1]<=box1[3]) && (box[3]>=box1[3]) )
-    {section[0]=box1[0];  section[2]=box[2];  section[1]=box[1];  section[3]=box1[3];return TRUE;}
-
-  if ( (box[0]<=box1[0]) && (box[2]>box1[0]) && (box[2]<=box1[2]) 
-       && (box[1]<box1[1]) &&  (box[3]>box1[3]) )
-    {section[0]=box1[0];  section[2]=box[2];  section[1]=box1[1];  section[3]=box1[3];return TRUE;}
-  /*********************/
- 
-  if ( (box[0]>box1[0])  && (box[2]<=box1[2]) 
-       && (box[1]<box1[1]) && (box[3]>box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box[0];  section[2]=box[2];  section[1]=box1[1];  section[3]=box[3]; return TRUE;}
-  
-  if ( (box[0]>box1[0])  && (box[2]<=box1[2]) 
-       && (box[1]>=box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box[0];  section[2]=box[2];  section[1]=box[1];  section[3]=box[3]; return TRUE;}
-  
-  if ( (box[0]>box1[0])  && (box[2]<=box1[2]) 
-       && (box[1]>=box1[1]) && (box[1]<=box1[3]) && (box[3]>=box1[3]) )
-    {section[0]=box[0];  section[2]=box[2];  section[1]=box[1];  section[3]=box1[3]; return TRUE;}
-
-  if ( (box[0]>box1[0])  && (box[2]<=box1[2]) 
-       && (box[1]<box1[1]) &&  (box[3]>box1[3]) )
-    {section[0]=box[0];  section[2]=box[2];  section[1]=box1[1];  section[3]=box1[3];return TRUE;}
-  /*********************/ 
-  if ( (box[0]>box1[0]) && (box[0]<box1[2]) && (box[2]>=box1[2]) 
-       && (box[1]<box1[1]) && (box[3]>box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box[0];  section[2]=box1[2];  section[1]=box1[1];  section[3]=box[3]; return TRUE;}
-  
-  if ( (box[0]>box1[0]) && (box[0]<box1[2]) && (box[2]>=box1[2]) 
-       && (box[1]>=box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box[0];  section[2]=box1[2];  section[1]=box[1];  section[3]=box[3];return TRUE;}
-  
-  if ( (box[0]>box1[0]) && (box[0]<box1[2]) && (box[2]>=box1[2]) 
-       && (box[1]>=box1[1]) && (box[1]<=box1[3]) && (box[3]>=box1[3]) )
-    {section[0]=box[0];  section[2]=box1[2];  section[1]=box[1];  section[3]=box1[3];return TRUE;}
-
-  if ( (box[0]>box1[0]) && (box[0]<box1[2]) && (box[2]>=box1[2]) 
-       && (box[1]<box1[1]) &&  (box[3]>box1[3]) )
-    {section[0]=box[0];  section[2]=box1[2];  section[1]=box1[1];  section[3]=box1[3]; return TRUE;}
-  /*********************/  
-  if ( (box[0]<box1[0])  && (box[2]>box1[2]) 
-       && (box[1]<box1[1]) && (box[3]>box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box1[0];  section[2]=box1[2];  section[1]=box1[1];  section[3]=box[3];return TRUE;}
-  
-  if ( (box[0]<box1[0])  && (box[2]>box1[2])
-       && (box[1]>=box1[1]) && (box[3]<=box1[3]) )
-    {section[0]=box1[0];  section[2]=box1[2];  section[1]=box[1];  section[3]=box[3];return TRUE;}
-  
-  if ( (box[0]<box1[0])  && (box[2]>box1[2])
-       && (box[1]>=box1[1]) && (box[1]<=box1[3]) && (box[3]>=box1[3]) )
-    {section[0]=box1[0];  section[2]=box1[2];  section[1]=box[1];  section[3]=box1[3];return TRUE;}
-  return FALSE;
-
-}
 /*---------------------------------------------------------------------------------*/
 void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom,
                     const int initialRect[4], int endRect[4], int * usedButton)

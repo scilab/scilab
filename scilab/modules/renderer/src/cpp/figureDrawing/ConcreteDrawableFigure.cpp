@@ -45,7 +45,7 @@ void ConcreteDrawableFigure::drawSingleObjs(list<sciPointObj *>& singleObjects)
 
   // launch display
   // displaySingleObject will be called
-  display();
+  forceDisplay();
 
   // restore normal mode
   m_oSingleObjects.clear();

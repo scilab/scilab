@@ -187,8 +187,7 @@ CloneRectangle (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructRectangle (subwinparent, pRECTANGLE_FEATURE(pthis)->x, 
 				   pRECTANGLE_FEATURE(pthis)->y, pRECTANGLE_FEATURE(pthis)->height,pRECTANGLE_FEATURE(pthis)->width, 
-				   pRECTANGLE_FEATURE(pthis)->horzcurvature, pRECTANGLE_FEATURE(pthis)->vertcurvature,
-				   &foreground,&background,sciGetIsFilled(pthis),sciGetIsLine(pthis),0,pRECTANGLE_FEATURE(pthis)->flagstring))){
+				   &foreground,&background,sciGetIsFilled(pthis),sciGetIsLine(pthis)))){
     return (sciPointObj *)NULL;
   }
   else {

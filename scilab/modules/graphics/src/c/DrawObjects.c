@@ -44,7 +44,6 @@
 #include "WindowList.h"
 
 #include "math_graphics.h"
-#include "graphicSession.h"
 #include "Format.h"
 #include "axesScale.h"
 #include "BasicAlgos.h"
@@ -541,17 +540,6 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   return -1;
 }
 
-/* test on x and y axes only : used in 2D routines only */
-BOOL GetIsAxes2D(sciPointObj *psubwin)
-{
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-  
-  if((ppsubwin->axes.axes_visible[0] == FALSE)
-     && (ppsubwin->axes.axes_visible[1] == FALSE))
-    return FALSE;
-  else
-    return TRUE;
-}
 
 
 /**DrawAxesIfRequired

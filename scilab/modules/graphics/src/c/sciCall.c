@@ -59,9 +59,7 @@ void Objrect ( double * x         ,
                int    * background,
                BOOL     isfilled  ,
                BOOL     isline    ,
-               int      n         ,
-               long   * hdl       ,
-               BOOL     flagstring )
+               long   * hdl       )
 {
   sciPointObj * newObj = NULL ;
   sciPointObj *psubwin;
@@ -70,8 +68,8 @@ void Objrect ( double * x         ,
   psubwin = sciGetCurrentSubWin();
   /* check if the auto_clear property is on and then erase everything */
   checkRedrawing() ;
-  newObj = ConstructRectangle(psubwin ,*x,*y,*height, *width, 0, 0,
-                              foreground, background, isfilled, isline, n, flagstring) ;
+  newObj = ConstructRectangle(psubwin ,*x,*y,*height, *width,
+                              foreground, background, isfilled, isline) ;
     
   if ( newObj == NULL )
   {

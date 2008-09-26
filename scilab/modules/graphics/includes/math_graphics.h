@@ -101,26 +101,6 @@ void rotate2Dim( double from[2]   ,
                  double sinAngle  ,
                  double dest[2]    ) ;
 
-/* perform the rotation of point from to point dest given in int with angle in radian  */
-void iRotate2D( int from[2], int center[2], double angle, int dest[2] ) ;
-
-/* perform the rotation of point from to point dest given in int. */
-/* the angle is directly given with its sine and cosine for speed */
-void iRotate2Dim( int    from[2]   ,
-                  int    center[2] ,
-                  double cosAngle  ,
-                  double sinAngle  ,
-                  int    dest[2]    ) ;
-
-/* perform an homethety point from to point dest. The 2 factors stand for the ration */
-/* along the 2 coordinates */
-void homothety2D( double from[2], double center[2], double factors[2], double dest[2] ) ;
-
-/* perform an homethety point from to point dest given in pixels. */
-/* The 2 factors stand for the ration along the 2 coordinates */
-void iHomothety2D( int from[2], int center[2], double factors[2], int dest[2] ) ;
-
-
 /* perform the translation of point from to point dest with vector trans */
 void translate2D( double from[2], double trans[2], double dest[2] ) ;
 
@@ -240,10 +220,8 @@ void setToIdentity(double mat4D[4][4]);
 void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3]);
 
 /*----------------------------------------------------------------------------*/
-/* check if two values can be considered equal given an accurracy */
-int safeEqual( double val1, double val2, double accuracy ) ;
 
-/* with a macro it is faster */
+/* check if two values can be considered equal given an accurracy */
 /* the x == y test is put to avoid division by 0 */
 #define SAFE_EQUAL(x,y,acc) ( (x) == (y) ) || ( Abs( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
 

@@ -61,8 +61,6 @@ static int oddp  (int i);
  *  from the Lisp Macsyma source (M.I.T)
  * -------------------------------------------------------------------------*/
 
-#define HIDDENFRAMECOLOR 2L /* default color for hidden frame */
-
 /*---------------------------------------------------------------------------
  * General functions (could be changed in #define or
  *   inline functions to increase speed)

@@ -54,13 +54,13 @@ int sci_xrect( char *fname, unsigned long fname_len )
     {
       int foreground = sciGetForeground(psubwin);
       Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
-        &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
+        &foreground,NULL,FALSE,TRUE,&hdl);
     }
     else
     { /* xfrect case */
       int foreground = sciGetForeground(psubwin);
       Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
-        NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+        NULL,&foreground,TRUE,FALSE,&hdl);
     }
     endFigureDataWriting(pFigure);
 
@@ -88,12 +88,12 @@ int sci_xrect( char *fname, unsigned long fname_len )
       if (strcmp(fname,"xrect")==0)
       {
         Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
-                 &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE) ;
+                 &foreground,NULL,FALSE,TRUE,&hdl) ;
       }
       else
       {
         Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
-                 NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+                 NULL,&foreground,TRUE,FALSE,&hdl);
       }
       endFigureDataWriting(pFigure);
 

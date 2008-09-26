@@ -73,9 +73,8 @@ sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 				  int *foreground, int *background, BOOL isfilled, BOOL isline);
 
 sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
-					double height, double width, double horzcurvature,
-					double vertcurvature,  int *foreground, int *background,
-					int isfilled, int isline, int str, BOOL flagstring);
+					double height, double width,  int *foreground, int *background,
+					int isfilled, int isline);
 
 sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 				      double * pvecx, double * pvecy, double * pvecz,

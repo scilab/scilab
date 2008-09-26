@@ -41,15 +41,12 @@ typedef enum
 
 
 extern int sciAddCallback (sciPointObj * pthis, char *code, int len, int mevent); /* INTERACTION */
-extern int sciExecCallback (sciPointObj * pthis); /* INTERACTION */
 extern int sciGetCallbackMouseEvent (sciPointObj * pthis); /* INTERACTION */
 extern int sciSetCallbackMouseEvent (sciPointObj * pthis, int mevent); /* INTERACTION */
-extern int sciGetCallbackLen (sciPointObj * pthis); /* INTERACTION */
 extern char *sciGetCallback (sciPointObj * pthis); /* INTERACTION */
 extern int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
 
 int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
-extern BOOL sciIsAreaZoom(int *box, int *box1 ,int *section); /* INTERACTION */
 
 /**
  * Call rubber box on a figure in pixels

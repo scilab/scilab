@@ -30,15 +30,6 @@
  */
 double sciFindStPosMin( double x[], int n ) ;
 
-void MaxiInd( double vect[], int n, int * ind, double maxi ) ;
-
-/**
- *     convertion d'entier vers double
- *     d et s peuvent en fait pointer sur le meme tableau
- *     car la recopie est fait de n,1,-1
- *      implicit undefined (a-z)
- */
-int C2F(entier2d)( int * n, double * dx,int * s ) ;
 
 /**
  * check the strict monotony of a vector

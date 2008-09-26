@@ -21,7 +21,6 @@
 
 #include "sci_plot3d.h"
 #include "stack-c.h"
-#include "Plo3d.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"

@@ -17,7 +17,6 @@ if GUI
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/WindowList.c \
-src/c/Events.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -285,14 +284,11 @@ src/c/getHandleProperty/set_links_property.c \
 src/c/getHandleProperty/set_legend_location_property.c \
 src/c/getHandleProperty/set_filled_property.c \
 src/c/DefaultCommandArg.c \
-src/c/graphicSession.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
 src/c/DrawObjects.c \
-src/c/Plo3d.c \
 src/c/GetProperty.c \
 src/c/Contour.c \
-src/c/nues1.c \
 src/c/SetProperty.c \
 src/c/BasicAlgos.c \
 src/c/BuildObjects.c \
@@ -316,11 +312,6 @@ src/c/axesScale.c \
 src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
-src/c/deletePoints.c \
-src/c/fill_grid_rectangles.c \
-src/c/get_rgb.c \
-src/c/getcolordef.c \
-src/c/getwindowdim.c \
 src/c/periEmpty.c\
 src/c/scitokenize.c
 
@@ -444,13 +435,11 @@ libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
 includes/sci_addcb.h \
 includes/sci_grayplot.h \
-includes/Events.h \
 includes/sci_xlfont.h \
 includes/GetCommandArg.h \
 includes/sci_xgrid.h \
 includes/sci_geom3d.h \
 includes/DefaultCommandArg.h \
-includes/graphicSession.h \
 includes/sci_xgraduate.h \
 includes/sci_unzoom.h \
 includes/sci_xsegs.h \
@@ -465,9 +454,7 @@ includes/sci_show_window.h \
 includes/sci_param3d1.h \
 includes/graphicModuleLoad.h \
 includes/sci_matplot.h \
-includes/color.h \
 includes/sci_drawaxis.h \
-includes/Plo3d.h \
 includes/sci_xrect.h \
 includes/sci_plot2d1.h \
 includes/GetProperty.h \

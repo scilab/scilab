@@ -189,7 +189,6 @@ int C2F(graphicsmodels) (void)
   /* Is it a missing ? */
 
   ppaxesmdl->FirstPlot = TRUE;
-  ppaxesmdl->with_leg = 0;
 
   ppaxesmdl->ARect[0]   = 0.125;
   ppaxesmdl->ARect[1]   = 0.125;
@@ -467,7 +466,6 @@ int InitFigureModel( void )
   /* Set figure model attributes */
   ppFigure->pModelData = newFigureModelData() ;
 
-  pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
   pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
@@ -624,7 +622,6 @@ int InitAxesModel()
   ppaxesmdl->project[1]= 1;
   ppaxesmdl->project[2]= 0;
   sciInitHiddenColor(paxesmdl, 4);
-  ppaxesmdl->hiddenstate=0;
   ppaxesmdl->isoview= FALSE;/*TRUE;*/
 
   ppaxesmdl->WRect[0]   = 0;
@@ -642,7 +639,6 @@ int InitAxesModel()
   /*   ppaxesmdl->drawlater = FALSE; */
 
   ppaxesmdl->isclip = -1; /* off */
-  ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
 
   /* Les SRect sont rentres dans l'ordre:
      [xmin ymin zmin xmax ymax zmax] */
@@ -769,7 +765,6 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciSetScreenPosition(pobj,x[0],x[1]);
-  pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
   pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected;
   pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
   pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;

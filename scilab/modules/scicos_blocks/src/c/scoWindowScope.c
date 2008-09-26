@@ -162,7 +162,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
             /*sciSetDim(pTemp, &win_dim[0], &win_dim[1]);
             sciSetDim(pTemp2, &win_dim[0], &win_dim[1]);*/
                   sciSetDimension(pTemp, win_dim[0], win_dim[1]);
-                  sciSetDimension(pTemp2,win_dim[0], win_dim[1]);
+                  /*sciSetDimension(pTemp2,win_dim[0], win_dim[1]);*/
           }
         }
 
@@ -890,7 +890,7 @@ void scoAddCoupleOfSpheres(ScopeMemory * pScopeMemory, double * radius, int * co
 scoGraphicalObject scoCreateRectangle(scoGraphicalObject pAxes, double x, double y, double width, double height)
 {
   scoGraphicalObject pRectangle;
-  pRectangle = ConstructRectangle(pAxes,x,y,height,width,0,0,NULL,NULL,0,1,0,FALSE);
+  pRectangle = ConstructRectangle(pAxes,x,y,height,width,0,0,NULL,NULL,0,1);
   return pRectangle;
 }
 

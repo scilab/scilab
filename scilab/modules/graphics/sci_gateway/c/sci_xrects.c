@@ -77,7 +77,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
       int foreground;
       foreground = sciGetForeground(psubwin);
       Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-        &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
+        &foreground,NULL,FALSE,TRUE,&hdl);
     }
     else
     {
@@ -85,13 +85,13 @@ int sci_xrects( char *fname, unsigned long fname_len )
         /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
         int tmp = - (*istk(l2+i));
         Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-          &tmp,NULL,FALSE,TRUE,0,&hdl,FALSE);
+          &tmp,NULL,FALSE,TRUE,&hdl);
       }
       else
       {
         /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
         Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-        NULL,istk(l2+i),TRUE,FALSE,0,&hdl,FALSE);
+        NULL,istk(l2+i),TRUE,FALSE,&hdl);
       }
     }
   }

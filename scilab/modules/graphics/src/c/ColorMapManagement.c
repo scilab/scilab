@@ -22,7 +22,6 @@
 #include "localization.h"
 /*------------------------------------------------------------------------*/
 int LinearScaling2Colormap( sciPointObj * pobj );
-void convertColorMap2BW( double * bwColorMap, double * colorMap, int colorMapSize );
 /*------------------------------------------------------------------------*/
 int LinearScaling2Colormap( sciPointObj * pobj )
 {
@@ -76,18 +75,4 @@ int LinearScaling2Colormap( sciPointObj * pobj )
   return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
-void convertColorMap2BW( double * bwColorMap, double * colorMap, int colorMapSize )
-{
-  int i ;
-  for ( i = 0 ; i < colorMapSize ; i++ )
-  {
-    /* use parameter 0.299 for red, 0.587 for green and 0.114 for blue */
-    double curColor = Max( Min(  0.299 * colorMap[i]
-                               + 0.587 * colorMap[i + colorMapSize]
-                               + 0.114 * colorMap[i + 2 * colorMapSize] , 1.0 ), 0.0 ) ;
-    bwColorMap[i                   ] = curColor ;
-    bwColorMap[i + colorMapSize    ] = curColor ;
-    bwColorMap[i + 2 * colorMapSize] = curColor ;
-  }
-}
-/*------------------------------------------------------------------------*/
+

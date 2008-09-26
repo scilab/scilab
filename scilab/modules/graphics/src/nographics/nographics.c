@@ -44,24 +44,9 @@ int GetDriverId( void )
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int CheckClickQueue(int *win,int *x,int *y,int *ibut,int *motion,int *release)
-{
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 void scig_unzoom(int win_num)
 {
 
-}
-/*--------------------------------------------------------------------------*/
-void set_wait_click(int val)
-{
-
-}
-/*--------------------------------------------------------------------------*/
-int ClearClickQueue(int win)
-{
-	return 0;
 }
 /*--------------------------------------------------------------------------*/
 int sciSetViewport( sciPointObj * pObj, int xSize, int ySize )
@@ -124,21 +109,6 @@ void delete_sgwin_entities(int win_num)
 
 }
 /*--------------------------------------------------------------------------*/
-Scig_deletegwin_handler get_scig_deletegwin_handler ( void )
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-void set_event_select(int val)
-{
-
-}
-/*--------------------------------------------------------------------------*/
-int C2F(entier2d)( int * n, double * dx,int * s )
-{
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 void scig_sel(int win_num)
 {
 
@@ -158,11 +128,6 @@ void DeleteObjs(int win_num)
 	 int * v7,double * dv1,double * dv2,double * dv3,double * dv4)
 {
 
-}
-/*--------------------------------------------------------------------------*/
-int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
-{
-	return 0;
 }
 /*--------------------------------------------------------------------------*/
 BOOL sciHasFigures( void )

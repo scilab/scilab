@@ -98,15 +98,6 @@ void ChoixFormatE1(char *fmt, double *xx, int nx) ;
  */
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas) ;
 
-/**
- * @TODO add comment
- *
- * @param logflag   
- * @param nbtics    
- * @param grads 
- * @return <ReturnValue>
- */
-double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads) ;
 
 /**
  * @TODO add comment

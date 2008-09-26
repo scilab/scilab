@@ -24,9 +24,4 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
             int *n2, char *strflag, double *brect, double *arfact, int lstr) ;
 
 
-
-double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol ) ;
-
-double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy ) ;
-
 #endif

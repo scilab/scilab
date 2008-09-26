@@ -37,7 +37,7 @@ void displayFigure(int figureId)
   }
 
   startFigureDataDisplaying(curFig);
- (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
+ (sciGraphics::getFigureDrawer(curFig))->display() ;
   endFigureDataDisplaying(curFig);
 }
 /*--------------------------------------------------------------------------*/
@@ -55,7 +55,7 @@ void redrawFigure(int figureId)
   }
 
   startFigureDataDisplaying(curFig);
-  (sciGraphics::getFigureDrawer(curFig))->redrawInContext() ;
+  (sciGraphics::getFigureDrawer(curFig))->familyHasChanged();
   endFigureDataDisplaying(curFig);
 }
 /*--------------------------------------------------------------------------*/

@@ -47,29 +47,6 @@ double sciFindStPosMin( double x[], int n )
   return min ;
 }
 /*------------------------------------------------------------------------*/
-void MaxiInd( double vect[], int n, int * ind, double maxi )
-{
-  int i ;
-  if ( *ind+1 < n )
-  {
-    for ( i = *ind+1 ; i < n ; i++ )
-    {
-      if ( vect[i] >= maxi)
-      {
-        *ind=i;
-        return ;
-      }
-    }
-  }
-}
-/*------------------------------------------------------------------------*/
-int C2F(entier2d)( int * n, double * dx,int * s )
-{
-  int ix;
-  for (ix = *n -1 ; ix >= 0; --ix) { dx[ix] = (double) s[ix]; }
-  return 0;
-}  
-/*------------------------------------------------------------------------*/
 int checkMonotony( double vector[], int nbElement )
 {
   int i ;

@@ -198,56 +198,5 @@ int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, 
   champg("champ1",1,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
   return(0);
 }
-
-
 /*----------------------------------------------------------------------------------*/
-double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
-{
-  int i ;
-  double min = 0 ;
-  double minX = Abs( gridX[1] - gridX[0] ) ;
-  double minY = Abs( gridY[1] - gridY[0] ) ;
 
-  for ( i = 1 ; i < nbRow-1 ; i++ )
-  {
-    double tmp = Abs( gridX[i+1] - gridX[i] ) ;
-    if ( tmp < minX )
-    {
-      minX = tmp ;
-    }
-  }
-
-  for ( i = 1 ; i < nbCol-1 ; i++ )
-  {
-    double tmp = Abs( gridY[i+1] - gridY[i] ) ;
-    if ( tmp < minY )
-    {
-      minY = tmp ;
-    }
-  }
-
-
-  min = minX * minX + minY * minY ;
-  min = ( min < SMDOUBLE) ? SMDOUBLE : sqrt(min) ;
-
-  return min ;
-}
-/*----------------------------------------------------------------------------------*/
-double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy )
-{
-  int i ;
-
-  double scx2 = scx * scx ;
-  double scy2 = scy * scy ;
-  double max  = ( scx2 * vectX[0] * vectX[0] ) + ( scy2 * vectY[0] * vectY[0] ) ;
-
-  for ( i = 1 ; i < nbRow * nbCol ; i++ )
-  {
-    double tmp = ( scx2 * vectX[i] * vectX[i] ) + ( scy2 * vectY[i] * vectY[i] ) ;
-    if ( tmp > max ) { max = tmp ; }
-  }
-  max = ( max < SMDOUBLE) ? SMDOUBLE : sqrt(max) ;
-
-  return max ;
-}
-/*----------------------------------------------------------------------------------*/

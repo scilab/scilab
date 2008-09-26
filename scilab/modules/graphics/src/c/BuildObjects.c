@@ -157,7 +157,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciInitResize(pobj,sciGetResize(pfiguremdl));
 
-  ppFigure->isiconified = ppModel->isiconified;
   ppFigure->isselected = ppModel->isselected;
   ppFigure->rotstyle = ppModel->rotstyle;
   ppFigure->visible = ppModel->visible;
@@ -402,7 +401,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
       ppsubwin->project[1]= ppaxesmdl->project[1];
       ppsubwin->project[2]= ppaxesmdl->project[2];
       sciInitHiddenColor(pobj, sciGetHiddenColor(paxesmdl));
-      ppsubwin->hiddenstate= ppaxesmdl->hiddenstate;
       ppsubwin->isoview= ppaxesmdl->isoview;
       ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
       ppsubwin->WRect[1]   = ppaxesmdl->WRect[1];
@@ -438,7 +436,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
 
       ppsubwin->tight_limits = ppaxesmdl->tight_limits;
       ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
-      ppsubwin->with_leg =  ppaxesmdl->with_leg;
 
       sciInitUseNurbs(pobj, sciGetUseNurbs(paxesmdl));
 
@@ -538,7 +535,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
       cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label ) ;
       cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
 
-      ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
       endFigureDataWriting(pparentfigure);
 
       return (sciPointObj *)pobj;
@@ -1184,9 +1180,8 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
  */
 sciPointObj *
 ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
-		    double height, double width, double horzcurvature,
-		    double vertcurvature,  int *foreground, int *background,
-		    int isfilled, int isline, int str, BOOL flagstring)
+		    double height, double width,  int *foreground, int *background,
+		    int isfilled, int isline)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
 
@@ -1218,17 +1213,11 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->callbackevent = 100;
 
 
-      pRECTANGLE_FEATURE (pobj)->flagstring = flagstring;
       pRECTANGLE_FEATURE (pobj)->x = x;
       pRECTANGLE_FEATURE (pobj)->y = y;
       pRECTANGLE_FEATURE (pobj)->z = 0.0;
       pRECTANGLE_FEATURE (pobj)->height = height;
       pRECTANGLE_FEATURE (pobj)->width = width;
-      pRECTANGLE_FEATURE (pobj)->str = str;
-      pRECTANGLE_FEATURE (pobj)->strheight = 0;
-      pRECTANGLE_FEATURE (pobj)->strwidth = 0;
-      pRECTANGLE_FEATURE (pobj)->horzcurvature = horzcurvature;
-      pRECTANGLE_FEATURE (pobj)->vertcurvature = vertcurvature;
       pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
       pRECTANGLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
@@ -1714,18 +1703,9 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     pAXES_FEATURE (pobj)->tics =tics;
 
     paxes = pAXES_FEATURE (pobj);
-    if ((paxes->vector = MALLOC (Max(nx,ny) * sizeof (POINT2D))) == NULL)
-	  {
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(pPOLYLINE_FEATURE(pobj));
-	    FREE(pobj);
-	    return (sciPointObj *) NULL;
-	  }
     /* pour le moment je garde les vecteurs separes, et non en POINT2D */
     if ((paxes->vx = MALLOC (nx * sizeof (double))) == NULL)
 	  {
-	    FREE(pAXES_FEATURE (pobj)->vector);
 	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	    sciDelHandle (pobj);
 	    FREE(pAXES_FEATURE(pobj));
@@ -1734,7 +1714,6 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	  }
     if ((paxes->vy = MALLOC (ny * sizeof (double))) == NULL)
 	  {
-	    FREE(pAXES_FEATURE (pobj)->vector);
 	    FREE(pAXES_FEATURE (pobj)->vx);
 	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	    sciDelHandle (pobj);
@@ -1788,8 +1767,6 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 
     pAXES_FEATURE (pobj)->subint = subint;
     pAXES_FEATURE (pobj)->seg =seg;
-    /*    pAXES_FEATURE (pobj)->format =format; */ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
-    pAXES_FEATURE (pobj)->logscale=logscale;
     if(format != (char *) NULL)
 	  {
 	    if((pAXES_FEATURE (pobj)->format = MALLOC( (strlen(format)+1) * sizeof(char))) == NULL)
@@ -2081,7 +2058,6 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 	  ppSegs->Nbr2 = Nbr2;
 	  sciInitForeground(pobj,sciGetForeground(sciGetCurrentSubWin())); /* set sciGetForeground(psubwin) as the current foreground */
 	  ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
-	  ppSegs->parfact = arfact;
 	  if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
 	    {
 	      FREE(ppSegs->vx);

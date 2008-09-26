@@ -192,7 +192,6 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
   ppsubwin->FirstPlot = FALSE; /* just after strflag2axes_properties */
    
   with_leg= (strflag[0] == '1');
-  ppsubwin->with_leg = with_leg;
 
   /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
      u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */

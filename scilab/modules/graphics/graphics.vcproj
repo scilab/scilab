@@ -415,10 +415,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\deletePoints.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\DestroyObjects.c"
 				>
 			</File>
@@ -431,15 +427,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\Events.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\FeC.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\fill_grid_rectangles.c"
 				>
 			</File>
 			<File
@@ -807,10 +795,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\get_rgb.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\getHandleProperty\get_rotation_angles_property.c"
 				>
 			</File>
@@ -975,10 +959,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getcolordef.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\GetCommandArg.c"
 				>
 			</File>
@@ -995,15 +975,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getwindowdim.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\graphicModuleLoad.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\graphicSession.c"
 				>
 			</File>
 			<File
@@ -1031,10 +1003,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\nues1.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\ObjectSelection.c"
 				>
 			</File>
@@ -1048,10 +1016,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Plo2dn.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Plo3d.c"
 				>
 			</File>
 			<File
@@ -1925,10 +1889,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\color.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\ColorMapManagement.h"
 				>
 			</File>
@@ -1953,15 +1913,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\Events.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\Fec.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\fill_grid_rectangles.h"
 				>
 			</File>
 			<File
@@ -1970,10 +1922,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_data_property.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\get_rgb.h"
 				>
 			</File>
 			<File
@@ -2013,14 +1961,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\graphicSession.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Gray.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\GrayPlot.h"
 				>
 			</File>
@@ -2054,10 +1994,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\pixel_mode.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\Plo3d.h"
 				>
 			</File>
 			<File
@@ -2397,15 +2333,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\w_rottext.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\WindowList.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\xs2file.h"
 				>
 			</File>
 			<File

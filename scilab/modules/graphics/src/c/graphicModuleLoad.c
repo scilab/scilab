@@ -22,7 +22,6 @@
 #include "InitObjects.h"
 
 #include "getScilabJavaVM.h"
-#include "deletePoints.h"
 
 #include "GraphicSynchronizerInterface.h"
 
@@ -59,9 +58,6 @@ void closeGraphicModule( void )
 
   /* destroy default objects */
   destroyDefaultObjects() ;
-
-  /* deleteTemporary points points in peri***.c */
-  deletePoints() ;
   
   /* Delete synchronization data */
   destroyGraphicSynchronizer();

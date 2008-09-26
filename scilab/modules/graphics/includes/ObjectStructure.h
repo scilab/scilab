@@ -72,24 +72,18 @@ POINT2D;
  * @memo SCI_FIGURE,
  * @memo SCI_SUBWIN,
  * @memo SCI_TEXT,
- * @memo SCI_TITLE,
  * @memo SCI_LEGEND,
  * @memo SCI_ARC,
  * @memo SCI_POLYLINE,
  * @memo SCI_RECTANGLE,
  * @memo SCI_SURFACE,
- * @memo SCI_LIGHT,
  * @memo SCI_AXIS, 
  * @memo SCI_AXES, 
  * @memo SCI_SEGS 
  * @memo SCI_GRAYPLOT, 
  * @memo SCI_FEC,
- * @memo SCI_PANNER,
- * @memo SCI_SBH,
- * @memo SCI_SBV,
  * @memo SCI_UIMENU,
  * @memo SCI_UICONTEXTMENU,
- * @memo SCI_STATUSB,
  */
 typedef enum
   {/**Entity type FIGURE*/
@@ -208,22 +202,6 @@ sciRelationShip;
 
 /**@name GraphicContext
  * Used to know what are the contexte value attached with the Graphic area  
- * 
- * LineStyle:
- * PS_SOLID The pen is solid. 
- * PS_DASH The pen is dashed. This style is valid only when the pen width is one 
- *         or less in device units. 
- * PS_DOT The pen is dotted. This style is valid only when the pen width is one 
- *         or less in device units. 
- * PS_DASHDOT The pen has alternating dashes and dots. This style is valid only 
- *         when the pen width is one or less in device units. 
- * PS_DASHDOTDOT The pen has alternating dashes and double dots. This style is 
- *         valid only when the pen width is one or less in device units. 
- * PS_NULL The pen is invisible. 
- * PS_INSIDEFRAME The pen is solid. When this pen is used in any GDI drawing 
- *         function that takes a bounding rectangle, the dimensions of the 
- *         figure are shrunk so that it fits entirely in the bounding rectangle, 
- *         taking into account the width of the pen. This applies only to geometric pens. 
  */
 typedef struct
 {
@@ -359,9 +337,7 @@ typedef struct
   int number;
 
   int numcolors;
-
-  /** specifies if this window is iconified*/
-  BOOL isiconified;		     
+     
   /** specifies if this window is selected             */
   BOOL isselected; 
   int rotstyle;
@@ -740,29 +716,8 @@ typedef struct
   scigMode gmode;
   /** */
   sciGraphicContext graphiccontext;
-  /** */
-  /** specifies the title for this window  */
-  char name[sizeof ("ScilabGraphic") + 4];	    
-  /** */
-  int namelen;
-  /** specifies the number for this window                   */
-  int number;			
   /** specifies if this subwindow is selected                */
-  /*BOOL isselected;*/			 
-  /** specifies the position in the parent figure            */
-  int infigureposx;			 
-  /** specifies the position in the parent figure            */
-  int infigureposy;			 
-  /** specifies the width of the subplot                     */
-  int windimwidth;		       
-  /** specifies the width of the subplot                     */
-  int windimheight;		      
-  /** specifies the limite of the plot                       */
-  sciRange range;			 
-  /** specifies the factor of the x zoom                     */
-  int zoomx;				 
-  /** specifies the factor of the y zoom                     */
-  int zoomy;
+      
   double SRect[6]; /* [xmin xmax ymin ymax zmin zmax] : Strict rect. coming from update_specification_bounds function or from a set(a,"data_bounds",[...]) */
   double FRect[6]; /* real data_bounds */
   double WRect[4]; /* size of the subplot */
@@ -781,9 +736,7 @@ typedef struct
   double alpha_kp;
   /* viewing angles */
   double theta;
-  double alpha;	
-  /** specifie the associated entity popup menu */
-  sciPointObj *pPopMenu;    
+  double alpha;	  
   /** specifies the text scilab code for the callback associated with this entity */
   char *callback; 
   /** the length of the callback code */
@@ -801,8 +754,6 @@ typedef struct
   int project[3];
   BOOL isoview; 
   int hiddencolor;
-  int hiddenstate;
-  int with_leg; /* Adding F.Leray 07.05.04 */ /* for strflag[0] support : not needed today */
   BOOL cube_scaling; /* Matlab like view in 3D when one or two range is/are preferential */
   BOOL FirstPlot; /* An internal state used to indicated that high level functions must not use SRect*/
 
@@ -816,14 +767,8 @@ typedef struct
   BOOL flagNax;
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
-  
-  int YGradMostOnLeft;
-  int YGradMostOnRight;
-  int XGradMostOnTop;
-  int XGradMostOnBottom;
 
-  BOOL firsttime_x;
-  BOOL firsttime_y;
+
 }/** */
 sciSubWindow;  
 
@@ -932,11 +877,6 @@ typedef struct
   double y;			   /** original */
   double width;
   double height;
-  int str; 
-  int strwidth;
-  int strheight;
-  double horzcurvature;		  /** to do rectangle with round corner */ /*F.Leray not implemented till now... 19.03.04 to see...*/
-  double vertcurvature;		  /** to do rectangle with round corner */ /*F.Leray not implemented till now... 19.03.04 to see...*/
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  
@@ -948,7 +888,6 @@ typedef struct
   int clip_region_set;
   double z;  /** rectangle */
 
-  BOOL flagstring; /* flag used to determine wether the rectangle is used to surround a string : used when axes is reversed */
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }
@@ -1052,7 +991,6 @@ typedef struct
   sciFont fontcontext;
   char dir;   /** dir = 'r' | 'l' | 'u' | 'd' : gives the tics directions **/  
   char tics;  /** tics = 'v' (for vector) or 'r' (for range) or i **/
-  POINT2D *vector;		/* vecteur de points redondant, for future developpement*/
   double *vx;  /** vx vector of size nx **/
   double *vy;  /** vy vector of size ny **/ 
   /**DJ.Abdemouche 2003**/
@@ -1065,7 +1003,6 @@ typedef struct
   char **str ;  /** string vector **/
   int subint;  /** subints : number of sub intervals **/ 
   char *format; /** format for tick marks **/
-  char logscale; /* not used */
   int seg;      /**0 or 1, flag which control the drawing of the segment associated to the axes **/
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  
@@ -1103,7 +1040,6 @@ typedef struct
   int *pstyle;
   int iflag;      /**0 or 1, flag which control the drawing of the segment  **/
   double arrowsize;  /*F.Leray units : hundreds (i.e. 100, 150,...)*/
-  double parfact;
   int ptype; /* if ptype=0, it is segments; if ptype=1, it is champ (champ or champ1)*/
   int typeofchamp; /* when ptype=0, if typeofchamp=0 => champ is invoked else champ1 is invoked (typeofchamp==1) */
   BOOL isselected;

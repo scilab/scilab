@@ -104,7 +104,7 @@ void DrawableFigure::drawBackground(void)
   getFigureImp()->drawBackground();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::drawInContext( void )
+DrawableObject::EDisplayStatus DrawableFigure::draw( void )
 {
   
   // retest on auto_redraw
@@ -136,19 +136,12 @@ void DrawableFigure::drawInContext( void )
     endDrawing() ;
 
   }
+	return SUCCESS;
   //clock_gettime(0, &t_t3);
 
   //double timeSpent = (double) (t_toc.tv_sec - t_tic.tv_sec) + (double) (t_toc.tv_nsec - t_tic.tv_nsec) * 1.0E-9;
   //std::cout << "BB " << timeSpent * 1000.0 << std::endl;
 
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableFigure::redrawInContext( void )
-{
-  // force update of all the graphic hierarchy
-  familyHasChanged();
-  // draw as usual
-  //drawInContext();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::redrawSubwins(void)
@@ -165,19 +158,18 @@ void DrawableFigure::redrawSubwins(void)
   }
 }
 /*---------------------------------------------------------------------------------*/
-DrawableObject::EDisplayStatus DrawableFigure::draw( void )
+void DrawableFigure::forceDisplay( void )
 { 
   if ( !checkAutoRedraw() && !isDisplayingSingleObject() )
   {
     // if a single object is available this override drawlater()/ drawnow()
-    return UNCHANGED;
+    return;
   }
 
   // make sure the context is created
  
   //clock_gettime(0, &t_t1);
   drawCanvas() ;
-  return SUCCESS;
   //clock_gettime(0, &t_t4);
 
 //   double aa = (double) (t_t4.tv_sec - t_t1.tv_sec)

@@ -47,11 +47,9 @@ int sciSetGoodIndex(sciPointObj * pobj, int colorindex);  /* SET */
 void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m);  /* SET */
 int sciUpdateBaW (sciPointObj * pobj, int flag, int value ) ; /* SET */
 
-int  sciInitMdlBackground( sciPointObj * pobj, int colorIndex ) ;
 int sciInitBackground( sciPointObj * pobj, int colorindex ) ;
 int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
-int sciInitMdlForeground( sciPointObj * pObj, int colorIndex ) ;
 int sciInitForeground( sciPointObj * pobj, int colorindex ) ;
 int sciSetForeground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
@@ -163,11 +161,6 @@ int sciSetWindowDim(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET
 int sciInitScreenPosition(sciPointObj * pobj, int pposx, int pposy);
 int sciSetScreenPosition( sciPointObj * pobj, int pposx, int pposy); /* SET */
 
-int sciInitFigureIconify(sciPointObj * pobj, BOOL value);
-int sciSetFigureIconify( sciPointObj * pobj, BOOL value); /* SET */
-
-int sciInitSubWindowPos(sciPointObj * pobj, int *x, int *y);
-int sciSetSubWindowPos( sciPointObj * pobj, int *x, int *y); /* SET */
 
 void sciSelectFirstSubwin( sciPointObj * parentFigure ) ; /* SET */
 
@@ -176,8 +169,6 @@ int sciSetSelectedSubWin (sciPointObj * psubwinobj); /* SET */
 
 int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin); /* SET */
 
-int sciSetReplay (BOOL value); /* SET */
-/* int sciSetHDC (sciPointObj * pobj); /\* SET *\/ /\* unused?? *\/ */
 int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol); /* SET */
 
 int sciSetdrawmode(BOOL mode); /* SET */
@@ -236,7 +227,6 @@ int sciSetEventHandler(  sciPointObj * pObj, char * name ) ;
 int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable ) ;
 int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 
-int sciSetSelectedObject( sciPointObj * pObj ) ;
 int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
 int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6]); /* SET */
 

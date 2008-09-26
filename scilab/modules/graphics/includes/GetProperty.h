@@ -118,12 +118,7 @@ int sciGetHeight (sciPointObj * pobj);  /* GET */
 void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
 int sciGetWindowWidth(sciPointObj * pObj) ; /* GET */
 int sciGetWindowHeight(sciPointObj * pObj) ; /* GET */
-BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
-int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
-int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */
 sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
-
-BOOL sciGetReplay (void); /* GET */
 
 
 double *sciGetPoint (sciPointObj * pthis, int *num, int *numco); /* GET */
@@ -136,8 +131,6 @@ int sciType (char *marker, sciPointObj *pobj); /* GET */
 
 sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
 
-/* BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
-BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */
 char sciGetxLocation(sciPointObj * pObj);
 char sciGetyLocation(sciPointObj * pObj);
 
@@ -207,9 +200,6 @@ void sciGetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
 void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6]); /* GET */
 
 void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; /* GET */
-
-int sciGetWhiteColorIndex(sciPointObj * pObj); /* GET */
-int sciGetBlackColorIndex(sciPointObj * pObj); /* GET */
 
 void sciGetLogFlags(sciPointObj * pObj, char flags[3]); /* GET */
 

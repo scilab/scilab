@@ -30,9 +30,7 @@ void Objrect ( double * x         ,
                int    * background,
                BOOL     isfilled  ,
                BOOL     isline    ,
-               int      n         ,
-               long   * hdl       ,
-               BOOL     flagstring ) ;
+               long   * hdl       ) ;
 
 void Objarc( double * angle1    ,
              double * angle2    ,
