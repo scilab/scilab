@@ -1,4 +1,3 @@
-function tic()
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - V.C & A.C
 // 
@@ -8,6 +7,7 @@ function tic()
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function tic()
 // tic() start a stopwatch timer.
 // The sequence of commands tic(), operation, toc()
 // prints the number of milliseconds required for the operation.
