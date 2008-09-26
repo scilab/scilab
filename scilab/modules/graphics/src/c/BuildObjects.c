@@ -54,15 +54,12 @@
 #include "GetJavaProperty.h"
 #include "SetJavaProperty.h"
 #include "Interaction.h"
+#include "ColorMapManagement.h"
+#include "DrawObjects.h"
+#include "get_ticks_utils.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
-
-extern int LinearScaling2Colormap(sciPointObj* pobj);
-extern double * AllocUserGrads(double * u_xgrads, int nb);
-extern int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
-
-extern unsigned short defcolors[];
 
 /*-----------------------------------------------------------------------------*/
 

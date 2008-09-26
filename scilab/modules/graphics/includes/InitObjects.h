@@ -57,6 +57,4 @@ void destroyDefaultObjects( void ) ;
 
 void sciSetDefaultColorMap(sciPointObj * pFigure);
 
-char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
-
 #endif /* __SCI_INIT_GRAPHICS__ */

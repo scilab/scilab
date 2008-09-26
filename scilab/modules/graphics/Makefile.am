@@ -136,7 +136,7 @@ src/c/getHandleProperty/get_info_message_property.c \
 src/c/getHandleProperty/get_y_ticks_property.c \
 src/c/getHandleProperty/get_z_ticks_property.c \
 src/c/getHandleProperty/get_x_ticks_property.c \
-src/c/getHandleProperty/get_ticks_utils.c \
+src/c/get_ticks_utils.c \
 src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/get_screen_position_property.c \
@@ -533,7 +533,8 @@ includes/sci_rubberbox.h \
 includes/sci_rotate_axes.h \
 includes/sci_is_handle_valid.h \
 includes/sci_show_pixmap.h \
-includes/sci_Legend.h
+includes/sci_Legend.h \
+includes/Plot2d.h
 
 ### graphics : ged files ###
 libscigraphics_la_geddir = $(mydatadir)

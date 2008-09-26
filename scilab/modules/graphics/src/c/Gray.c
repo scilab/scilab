@@ -34,12 +34,8 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
-
-extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect, int flag);
-extern int re_index_brect(double * brect, double * drect);
-extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
-extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
+#include "Plot2d.h"
+#include "get_ticks_utils.h"
 
 int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1)
 {

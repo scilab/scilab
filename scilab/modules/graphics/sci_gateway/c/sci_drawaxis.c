@@ -26,6 +26,7 @@
 #include "PloEch.h"
 #include "localization.h"
 #include "GetProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_drawaxis( char * fname, unsigned long fname_len )

@@ -39,10 +39,7 @@
 #include "Scierror.h"
 #include "sciCall.h"
 #include "DrawingBridge.h"
-
-extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
-
-int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint, BOOL flagNax, int lstr1,int lstr2);
+#include "Plot2d.h"
 
 /*------------------------------------------------
  * Objrect : 

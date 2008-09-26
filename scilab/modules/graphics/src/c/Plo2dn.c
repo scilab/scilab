@@ -20,6 +20,7 @@
 #include <math.h>
 #include "math_graphics.h"
 #include "PloEch.h"
+#include "Plot2d.h"
 
 #define spINSIDE_SPARSE
 #include "../../sparse/includes/spConfig.h"
@@ -39,22 +40,8 @@
 #include "DrawingBridge.h"
 #include "scitokenize.h"
 #include "localization.h"
-
-/* @TODO : remove that stuff */
-void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, int n1,int n2, double *drect);
-BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
-int re_index_brect(double * brect, double * drect);
-extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
-
-double * FreeUserGrads(double * u_xgrads);
-
-extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
-extern int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, double * grads);
-int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads);
-
-int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint,BOOL flagNax, int lstr1,int lstr2);
-
-static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag);
+#include "get_ticks_utils.h"
+#include "Format.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
@@ -436,83 +423,6 @@ BOOL update_specification_bounds(sciPointObj  *psubwin,double rect[6],int flag)
 
 
 
-static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag)
-{
-  int i;
-  char c_format[5]; 
-  int nbtics = u_nxgrads;
-
-  if(u_xgrads == NULL)
-    return (char **) NULL;
-  
-  if(u_xlabels != NULL)
-    {
-      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xlabels");
-      return (char **) NULL;
-    }
-  
-
-  if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-	  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabels");
-	  return (char **) NULL;
-  }
-
-  ChooseGoodFormat(c_format,logflag,u_xgrads,u_nxgrads);
-  
-  for(i=0;i<nbtics;i++)
-    {  
-      char foo[100];
-      
-      sprintf(foo,c_format, u_xgrads[i]);
-      
-      if((u_xlabels[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
-		  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabels");
-		  return (char **) NULL;
-      }
-      
-      strcpy(u_xlabels[i],foo);
-    }
-  
-  return u_xlabels;
-}
-
-
-
-char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads)
-{
-  int i;
-  int nbtics = u_nxgrads;
-
-  if(u_nxgrads == 0)
-    return (char **) NULL;
-  
-  if(u_xlabels != NULL)
-    {
-      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xlabels");
-      return (char **) NULL;
-    }
-  
-  if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-	  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
-	  return (char **) NULL;
-  }
-
-  
-  for(i=0;i<nbtics;i++)
-    {  
-		if((u_xlabels[i]=(char *)MALLOC((strlen(u_xlabels_MDL[i])+1)*sizeof(char )))==NULL){
-			sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
-			return (char **) NULL;
-      }
-      
-      strcpy(u_xlabels[i],u_xlabels_MDL[i]);
-    }
-  
-  return u_xlabels;
-}
-
-
-
 
 /* F.Leray */
 /* brect must have the same format as drect i.e.: [xmin,xmax,ymin,ymax] */
@@ -523,8 +433,6 @@ int re_index_brect(double * brect, double * drect)
   drect[1] = brect[2];
   drect[2] = brect[1];
   drect[3] = brect[3];
-/*  drect[4] = brect[4];
-    drect[5] = brect[5];*/
   
   return 0;
 }
@@ -662,146 +570,4 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
 }
 
 
-int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax)
-{
-  double xmin = 0, xmax = 0;
-  double ymin = 0, ymax = 0;
-  int nbtics_x = Nax[1];
-  int nbtics_y = Nax[3];
-  int nbsubtics_x = Nax[0];
-  int nbsubtics_y = Nax[2];
-
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-  
-  if(sciGetZooming(psubwin) == TRUE) {
-    xmin= ppsubwin->FRect[0]; 
-    ymin= ppsubwin->FRect[1]; 
-    xmax= ppsubwin->FRect[2];
-    ymax= ppsubwin->FRect[3];
-  }
-  else {
-    xmin = ppsubwin->SRect[0];
-    ymin = ppsubwin->SRect[2];
-    xmax = ppsubwin->SRect[1];
-    ymax = ppsubwin->SRect[3];
-  }
-  
-  /* x graduations */
-  ppsubwin->axes.u_xgrads  = FreeUserGrads (ppsubwin->axes.u_xgrads);
-  ppsubwin->axes.u_xlabels = FreeUserLabels(ppsubwin->axes.u_xlabels,
-					    &ppsubwin->axes.u_nxgrads);
-  
-  ppsubwin->axes.u_nxgrads = nbtics_x;
-  ppsubwin->axes.u_xgrads = AllocUserGrads(ppsubwin->axes.u_xgrads, nbtics_x);
-  
-/*   GraduateWithNax(ppsubwin,xmin,xmax,xoutmin,xoutmax,nbtics_x,nbsubtics_x,  */
-/* 		  ppsubwin->axes.u_xgrads, ppsubwin->axes.u_nxgrads); */
-  
-  GraduateWithNax(ppsubwin,&xmin,&xmax,nbtics_x,ppsubwin->axes.u_xgrads);
-
-  ppsubwin->axes.u_xlabels = AllocAndSetUserLabels(ppsubwin->axes.u_xlabels, 
-						   ppsubwin->axes.u_xgrads, 
-						   ppsubwin->axes.u_nxgrads, 
-						   ppsubwin->logflags[0]);
-  
-  /* y graduations */
-  ppsubwin->axes.u_ygrads  = FreeUserGrads (ppsubwin->axes.u_ygrads);
-  ppsubwin->axes.u_ylabels = FreeUserLabels(ppsubwin->axes.u_ylabels,
-					    &ppsubwin->axes.u_nygrads);
-  
-  ppsubwin->axes.u_nygrads = nbtics_y;
-  ppsubwin->axes.u_ygrads = AllocUserGrads(ppsubwin->axes.u_ygrads, nbtics_y);
-  
-  /*   GraduateWithNax(ppsubwin,ymin,ymax,youtmin,youtmax,nbtics_y,nbsubtics_y,  */
-/* 		  ppsubwin->axes.u_ygrads, ppsubwin->axes.u_nygrads); */
-  
-  GraduateWithNax(ppsubwin,&ymin,&ymax,nbtics_y,ppsubwin->axes.u_ygrads);
-  
-  ppsubwin->axes.u_ylabels = AllocAndSetUserLabels(ppsubwin->axes.u_ylabels, 
-						   ppsubwin->axes.u_ygrads, 
-						   ppsubwin->axes.u_nygrads, 
-						   ppsubwin->logflags[1]);
-    
-  /* Subtics storage here */
-  ppsubwin->axes.nbsubtics[0] = nbsubtics_x;
-  ppsubwin->axes.nbsubtics[1] = nbsubtics_y;
-
-  return 0;
-}
-
-int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, double * grads)
-{
-  int i;
-  double pas;
-  
-  if(nbtics == 1){
-    pas = 0.;
-    grads[0] = (*min);
-  }
-  else{
-    pas = (*max - *min) / (nbtics -1);
-    
-    for(i=0;i<nbtics;i++) 
-      grads[i] = (*min) + pas*i;
-  }
-
-  return 0;
-}
-
-char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads)
-{
-  int i;
-  
-  if(u_xlabels != NULL){
-    for(i=0;i<(*u_nxgrads);i++)
-      {FREE(u_xlabels[i]); u_xlabels[i] = (char *) NULL;}
-  }
-  
-  u_xlabels = (char **) NULL;
-    
-  *u_nxgrads = 0;
-  
-  return u_xlabels;
-}
-
-
-double * FreeUserGrads(double * u_xgrads)
-{
-  FREE(u_xgrads); u_xgrads = NULL;
-  return u_xgrads;
-}
-
-double * AllocUserGrads(double * u_xgrads, int nb)
-{
-  
-  if(nb == 0)
-    return (double *) NULL;
-  
-  if(u_xgrads != NULL)
-    {
-      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xgrads");
-      return (double *) NULL;
-    }
-  
-  if((u_xgrads=(double *)MALLOC(nb*sizeof(double)))==NULL){
-	  sciprint(_("%s: No more memory.\n"),"AllocUserGrads");
-	  return (double *) NULL;
-  }
-    
-  return u_xgrads;
-
-}
-
-int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim)
-{
-  int i;
-
-  if(u_xgrad_SRC == NULL)
-    return 0;
-
-  for(i=0;i<dim;i++)
-    u_xgrad_DEST[i] = u_xgrad_SRC[i];
-  
-  return 0;
-}
 

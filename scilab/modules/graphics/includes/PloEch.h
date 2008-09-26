@@ -40,6 +40,11 @@ void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords
                                     double xUserCoords[], double yUserCoords[], int nbCoords,
                                     int rect[4]);
 
+void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, int n1,int n2, double *drect);
+
+BOOL update_specification_bounds(sciPointObj  *psubwin,double rect[6],int flag);
+
+
 #endif  /* _SCI_ECH */
 
 

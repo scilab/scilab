@@ -48,6 +48,7 @@
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
 #include "SetUiobjectTag.h"
+#include "get_ticks_utils.h"
 
 #include "../../../tclsci/includes/GedManagement.h"
 

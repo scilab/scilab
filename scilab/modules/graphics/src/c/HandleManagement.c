@@ -49,8 +49,8 @@
 
 sciHandleTab * PENDOFHANDLETAB;
 
-int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject );
-int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
+static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject );
+static int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
 
 /*********************************** Handle ******************************************/
 
@@ -617,7 +617,7 @@ sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj )
  * @param[in/out] newParent graphical object under which the movedObj will be placed.
  * @return        0 if everything was achieved, -1 otherwise.
  */
-int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
+static int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
 {
   sciPointObj * oldParent = sciGetParent( movedObj ) ;
   
@@ -792,7 +792,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
  * The two objects should be compatible with their new parents.
  * @return 0 if the swap was successful, -1 otherwise.
  */
-int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
+static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
 {
   sciSons * firstSon  = NULL ; /* the two sons entitities pointing on the objects */
   sciSons * secondSon = NULL ;

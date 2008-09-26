@@ -33,10 +33,6 @@
 #include "StringMatrix.h"
 #include "Format.h"
 
-char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
-double * AllocUserGrads(double * u_xgrads, int nb);
-int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
-
 
 /*******************************************************/
 

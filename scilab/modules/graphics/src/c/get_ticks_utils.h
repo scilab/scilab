@@ -26,4 +26,18 @@
 
 int buildTListForTicks( const double * locations, char * labels[], int nbTics ) ;
 
+int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
+
+double * FreeUserGrads(double * u_xgrads);
+
+int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, double * grads);
+
+char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
+
+char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
+
+double * AllocUserGrads(double * u_xgrads, int nb);
+int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
+
+
 #endif /* _GET_TICKS_UTILS_H_ */

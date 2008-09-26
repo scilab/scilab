@@ -27,19 +27,9 @@ for entities handling
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "localization.h"
-
-/* @TODO : remove this stuff */
-
-extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
-extern int re_index_brect(double * brect, double * drect);
-extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
-extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
-
-
-int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, 
-	     char *strflag, char *legend, double *brect, int *aaint, double *zminmax, 
-	     int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2) ;
+#include "PloEch.h"
+#include "Plot2d.h"
+#include "get_ticks_utils.h"
 
 /*------------------------------------------------------------
  *  Iso contour with grey level or colors 

@@ -835,7 +835,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getHandleProperty\get_ticks_utils.c"
+				RelativePath=".\src\c\get_ticks_utils.c"
 				>
 			</File>
 			<File
@@ -1917,7 +1917,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getHandleProperty\get_ticks_utils.h"
+				RelativePath=".\src\c\get_ticks_utils.h"
 				>
 			</File>
 			<File
@@ -1990,6 +1990,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\PloEch.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\Plot2d.h"
 				>
 			</File>
 			<File

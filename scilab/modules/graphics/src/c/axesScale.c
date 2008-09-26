@@ -36,8 +36,8 @@
 #include "DoublyLinkedList.h"
 
 /*------------------------------------------------------------------------------*/
-void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);
-void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height);
+static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);
+static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height);
 /*------------------------------------------------------------------------------*/
 /**
  * Specify new zoom box for a subwin object.
@@ -162,7 +162,7 @@ int sciFigureZoom2D(sciPointObj * figure, const double zoomRect[4])
 /**
  * Try to zoom on a single subwindow using a selection area
  */
-void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height)
+static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
   if (sciJavaZoomRect(pSubwin, posX, posY, width, height))
   {
@@ -178,7 +178,7 @@ void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height
 /**
  * Zoom a figure using an already computed selection area
  */
-void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height)
+static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height)
 {
   /* try to zoom on all the subwindows */
   sciSons * pSons = sciGetSons(pFigure);
