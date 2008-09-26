@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine permuto(n,n3,n4,c,f,d, crit,loc3n,work4n)
       implicit doubleprecision (a-h,o-z)
       dimension c(n,n),f(n,n),d(n,n),loc3n(n3),work4n(n4)

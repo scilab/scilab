@@ -1,3 +1,13 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
       subroutine mesh2b(nbs,n6,n4,lfront,cr,c,nu,tri,front,nbt,err)
 c-----------------------------------------------------------------------
 c triangulation  2d a partir d'un ensemble de points et d'une frontiere

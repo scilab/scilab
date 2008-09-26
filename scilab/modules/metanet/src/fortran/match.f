@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine match(beta,c,deg,ex,hp1,hp2,ihp1,ihp2,ind,itmin,l1,l2,
      &     la2,lp2,m1,m2,ma,mm,modif,n,n1dim,ndim,or,p1w,
      &     p2w,pimin,pivw,q,r,s1,s2,sat,sortie,x)
