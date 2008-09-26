@@ -1,0 +1,9 @@
+
+LIBRARY    slicot_f.dll
+
+
+EXPORTS
+ricdmf_
+ricdsl_
+riccms_
+riccsl_
