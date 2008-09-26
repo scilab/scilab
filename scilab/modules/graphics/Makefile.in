@@ -174,7 +174,6 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/getHandleProperty/get_fill_mode_property.c \
 	src/c/getHandleProperty/get_tight_limits_property.c \
 	src/c/getHandleProperty/get_auto_ticks_property.c \
-	src/c/getHandleProperty/get_font_name_property.c \
 	src/c/getHandleProperty/get_x_label_property.c \
 	src/c/getHandleProperty/get_auto_scale_property.c \
 	src/c/getHandleProperty/get_auto_dimensionning_property.c \
@@ -281,7 +280,6 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/ColorMapManagement.c \
 	src/c/getHandleProperty/set_mark_size_property.c \
 	src/c/getHandleProperty/set_y_shift_property.c \
-	src/c/getHandleProperty/set_font_name_property.c \
 	src/c/getHandleProperty/set_auto_scale_property.c \
 	src/c/getHandleProperty/set_auto_dimensionning_property.c \
 	src/c/getHandleProperty/set_text_box_property.c \
@@ -491,7 +489,6 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-get_fill_mode_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_tight_limits_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_auto_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_font_name_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_x_label_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_auto_scale_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_auto_dimensionning_property.lo \
@@ -598,7 +595,6 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-ColorMapManagement.lo \
 @GUI_TRUE@	libscigraphics_la-set_mark_size_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_y_shift_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_font_name_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_auto_scale_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_auto_dimensionning_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_text_box_property.lo \
@@ -1151,7 +1147,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/getHandleProperty/get_fill_mode_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_tight_limits_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_auto_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_font_name_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_x_label_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_auto_scale_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_auto_dimensionning_property.c \
@@ -1258,7 +1253,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/ColorMapManagement.c \
 @GUI_TRUE@src/c/getHandleProperty/set_mark_size_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_y_shift_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_font_name_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_auto_scale_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_auto_dimensionning_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_text_box_property.c \
@@ -2002,7 +1996,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_font_angle_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_font_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_font_foreground_property.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_font_name_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_font_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_font_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_foreground_property.Plo@am__quote@
@@ -2210,7 +2203,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_font_angle_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_font_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_font_foreground_property.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_font_name_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_font_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_font_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_foreground_property.Plo@am__quote@
@@ -2684,13 +2676,6 @@ libscigraphics_la-get_auto_ticks_property.lo: src/c/getHandleProperty/get_auto_t
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_auto_ticks_property.c' object='libscigraphics_la-get_auto_ticks_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_auto_ticks_property.lo `test -f 'src/c/getHandleProperty/get_auto_ticks_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_auto_ticks_property.c
-
-libscigraphics_la-get_font_name_property.lo: src/c/getHandleProperty/get_font_name_property.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_font_name_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_font_name_property.Tpo -c -o libscigraphics_la-get_font_name_property.lo `test -f 'src/c/getHandleProperty/get_font_name_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_font_name_property.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_font_name_property.Tpo $(DEPDIR)/libscigraphics_la-get_font_name_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_font_name_property.c' object='libscigraphics_la-get_font_name_property.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_font_name_property.lo `test -f 'src/c/getHandleProperty/get_font_name_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_font_name_property.c
 
 libscigraphics_la-get_x_label_property.lo: src/c/getHandleProperty/get_x_label_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_x_label_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_x_label_property.Tpo -c -o libscigraphics_la-get_x_label_property.lo `test -f 'src/c/getHandleProperty/get_x_label_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_x_label_property.c
@@ -3433,13 +3418,6 @@ libscigraphics_la-set_y_shift_property.lo: src/c/getHandleProperty/set_y_shift_p
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_y_shift_property.c' object='libscigraphics_la-set_y_shift_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_y_shift_property.lo `test -f 'src/c/getHandleProperty/set_y_shift_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_y_shift_property.c
-
-libscigraphics_la-set_font_name_property.lo: src/c/getHandleProperty/set_font_name_property.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_font_name_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_font_name_property.Tpo -c -o libscigraphics_la-set_font_name_property.lo `test -f 'src/c/getHandleProperty/set_font_name_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_font_name_property.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_font_name_property.Tpo $(DEPDIR)/libscigraphics_la-set_font_name_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_font_name_property.c' object='libscigraphics_la-set_font_name_property.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_font_name_property.lo `test -f 'src/c/getHandleProperty/set_font_name_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_font_name_property.c
 
 libscigraphics_la-set_auto_scale_property.lo: src/c/getHandleProperty/set_auto_scale_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_auto_scale_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_auto_scale_property.Tpo -c -o libscigraphics_la-set_auto_scale_property.lo `test -f 'src/c/getHandleProperty/set_auto_scale_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_auto_scale_property.c
