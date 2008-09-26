@@ -551,8 +551,8 @@ includes/sci_show_pixmap.h \
 includes/sci_Legend.h
 
 ### graphics : ged files ###
-libscigraphics_la_geddir = $(mydatadir)/tcl/ged
-libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
+libscigraphics_la_geddir = $(mydatadir)
+nobase_libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
 tcl/ged/Axes.tcl \
 tcl/ged/Axis.tcl \
 tcl/ged/Champ.tcl \

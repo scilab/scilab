@@ -101,10 +101,10 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphics_la_etcdir)" \
-	"$(DESTDIR)$(libscigraphics_la_geddir)" \
 	"$(DESTDIR)$(libscigraphics_la_rootdir)" \
 	"$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscigraphics_la_demosdir)" \
+	"$(DESTDIR)$(libscigraphics_la_geddir)" \
 	"$(DESTDIR)$(libscigraphics_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -842,14 +842,14 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscigraphics_la_SOURCES)
 DIST_SOURCES = $(am__libscigraphics_la_SOURCES_DIST)
 libscigraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libscigraphics_la_gedDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libscigraphics_la_demosDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_ged_DATA) \
-	$(libscigraphics_la_root_DATA) \
+nobase_libscigraphics_la_gedDATA_INSTALL = $(install_sh_DATA)
+DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_root_DATA) \
 	$(libscigraphics_la_sci_gateway_DATA) \
-	$(nobase_libscigraphics_la_demos_DATA)
+	$(nobase_libscigraphics_la_demos_DATA) \
+	$(nobase_libscigraphics_la_ged_DATA)
 am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_winsid.h includes/sci_addcb.h \
 	includes/sci_grayplot.h includes/Events.h \
@@ -1639,8 +1639,8 @@ libscigraphics_la_CFLAGS =  \
 
 
 ### graphics : ged files ###
-@GUI_TRUE@libscigraphics_la_geddir = $(mydatadir)/tcl/ged
-@GUI_TRUE@libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
+@GUI_TRUE@libscigraphics_la_geddir = $(mydatadir)
+@GUI_TRUE@nobase_libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
 @GUI_TRUE@tcl/ged/Axes.tcl \
 @GUI_TRUE@tcl/ged/Axis.tcl \
 @GUI_TRUE@tcl/ged/Champ.tcl \
@@ -5018,23 +5018,6 @@ uninstall-libscigraphics_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscigraphics_la_etcdir)/$$f"; \
 	done
-install-libscigraphics_la_gedDATA: $(libscigraphics_la_ged_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigraphics_la_geddir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_geddir)"
-	@list='$(libscigraphics_la_ged_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscigraphics_la_gedDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigraphics_la_geddir)/$$f'"; \
-	  $(libscigraphics_la_gedDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigraphics_la_geddir)/$$f"; \
-	done
-
-uninstall-libscigraphics_la_gedDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraphics_la_ged_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_geddir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscigraphics_la_geddir)/$$f"; \
-	done
 install-libscigraphics_la_rootDATA: $(libscigraphics_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscigraphics_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_rootdir)"
@@ -5087,6 +5070,25 @@ uninstall-nobase_libscigraphics_la_demosDATA:
 	  $(am__vpath_adj) \
 	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_demosdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscigraphics_la_demosdir)/$$f"; \
+	done
+install-nobase_libscigraphics_la_gedDATA: $(nobase_libscigraphics_la_ged_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscigraphics_la_geddir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_geddir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscigraphics_la_ged_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscigraphics_la_gedDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigraphics_la_geddir)/$$f'"; \
+	  $(nobase_libscigraphics_la_gedDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigraphics_la_geddir)/$$f"; \
+	done
+
+uninstall-nobase_libscigraphics_la_gedDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscigraphics_la_ged_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_geddir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigraphics_la_geddir)/$$f"; \
 	done
 install-libscigraphics_la_includeHEADERS: $(libscigraphics_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
@@ -5184,7 +5186,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_geddir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_demosdir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_demosdir)" "$(DESTDIR)$(libscigraphics_la_geddir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -5233,11 +5235,11 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscigraphics_la_etcDATA \
-	install-libscigraphics_la_gedDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA \
-	install-nobase_libscigraphics_la_demosDATA
+	install-nobase_libscigraphics_la_demosDATA \
+	install-nobase_libscigraphics_la_gedDATA
 
 install-dvi: install-dvi-am
 
@@ -5276,11 +5278,11 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscigraphics_la_etcDATA \
-	uninstall-libscigraphics_la_gedDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \
 	uninstall-nobase_libscigraphics_la_demosDATA \
+	uninstall-nobase_libscigraphics_la_gedDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -5294,22 +5296,22 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscigraphics_la_etcDATA \
-	install-libscigraphics_la_gedDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA install-man \
-	install-nobase_libscigraphics_la_demosDATA install-pdf \
+	install-nobase_libscigraphics_la_demosDATA \
+	install-nobase_libscigraphics_la_gedDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscigraphics_la_etcDATA \
-	uninstall-libscigraphics_la_gedDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \
 	uninstall-nobase_libscigraphics_la_demosDATA \
+	uninstall-nobase_libscigraphics_la_gedDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
