@@ -1,1 +1,0 @@
-scilab to C language module readme
