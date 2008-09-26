@@ -546,8 +546,6 @@ demos/n_pendulum/Maple/all.tex \
 demos/n_pendulum/Maple/dlslv.f \
 demos/n_pendulum/Maple/ener.f \
 demos/n_pendulum/Maple/Euler.map \
-demos/n_pendulum/Maple/Makefile \
-demos/n_pendulum/Maple/Makefile.mak \
 demos/n_pendulum/Maple/np.f \
 demos/n_pendulum/Maple/npend.f \
 demos/n_pendulum/Maple/Npend.map \
