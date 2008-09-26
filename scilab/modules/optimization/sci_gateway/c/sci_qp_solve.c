@@ -34,7 +34,8 @@ extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *ptr,
 int C2F(sci_qp_solve)(char *fname,unsigned long fname_len)
 {
 	static int un = 1,deux = 2;
-
+        // n : first dimension of Q
+        // nbis : second dimension of Q (nbis is expected to be equal to n)
 	static int Q = 0, n = 0, nbis = 0;
 	static int p = 0, unbis = 0;
 	static int C = 0, m = 0;
@@ -79,7 +80,7 @@ int C2F(sci_qp_solve)(char *fname,unsigned long fname_len)
 	{
 		Scierror(205,_("%s: Argument 3: wrong number of columns %d expected\n"), fname, n);
 		return 0;
-    }
+        }
 
 	/*   Variable 4 (b)   */
 	GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mbis, &unbis, &b);
@@ -141,6 +142,7 @@ int C2F(sci_qp_solve)(char *fname,unsigned long fname_len)
 			Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
 		}
    
+   // Transpose the sparse matrix A
 		C2F(spt)(&n, &m, &(Sp.nel) ,  &(Sp.it), (int *)work, 
 				Sp.R,  Sp.I,  Sp.mnel,  Sp.icol, R, I,ind,ind+m);
 
