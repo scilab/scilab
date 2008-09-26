@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="helptools-Ant"
 	ProjectGUID="{899DECF1-D4DC-4C84-BB3C-3A343401A5B4}"
 	RootNamespace="helptools-Ant"
 	Keyword="MakeFileProj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -114,6 +114,10 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\helptools\BuildJavaHelp.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\helptools\BuildPDF.java"
 				>
 			</File>
 			<File
