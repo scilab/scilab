@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
 //
@@ -8,9 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-//------------------------------------
-// Allan CORNET INRIA 2007
-//------------------------------------
 function ret=check_gateways(varargin)
   [lhs,rhs]=argn(0);
   ret=%T;

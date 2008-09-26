@@ -6,6 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function c1=bytecodewalk(code,query,job)
   //walk along bytecode looking for a particular opcode (query) and
   //applying a function (job) at this point

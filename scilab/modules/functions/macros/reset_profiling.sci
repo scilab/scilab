@@ -6,6 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function reset_profiling(funname)
 //reset profiling data in bytecode
   nsiz=6
