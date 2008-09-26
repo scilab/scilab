@@ -20,7 +20,11 @@
   <refsection>
     <title>Description</title>
 
-    <para>This function has been replaced by qpsolve.</para>
+    <para>This function is superseded by qpsolve.</para>
+
+    <para>Users who are still interested by quapro may consider the Scilab
+    quapro toolbox which provide the same features as in older Scilab
+    releases.</para>
   </refsection>
 
   <refsection>
