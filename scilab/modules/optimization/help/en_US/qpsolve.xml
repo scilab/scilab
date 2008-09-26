@@ -48,8 +48,7 @@
 
         <listitem>
           <para>real matrix (dimension <literal> (me + md) x n</literal>).
-          This matrix may be stored as either a dense matrix either a sparse
-          one.</para>
+          This matrix may be dense or sparse.</para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +56,7 @@
         <term>b</term>
 
         <listitem>
-          <para>RHS column vector (dimension <literal> (me +
+          <para>RHS column vector (dimension <literal> m=(me +
           md)</literal>)</para>
         </listitem>
       </varlistentry>
@@ -137,9 +136,17 @@
    
     </programlisting>
 
-    <para>This function requires <literal>Q</literal> to be positive definite,
-    if it is not the case, one may use the <link
-    linkend="quapro">quapro</link> function.</para>
+    <para>This function requires <literal>Q</literal> to be symmetric positive
+    definite. If that hypothesis is not satisfied, one may use the <link
+    linkend="quapro">quapro</link> function, which is provided in the Scilab
+    quapro toolbox.</para>
+
+    <para>The qpsolve solver is implemented as a Scilab script, which calls
+    the compiled qp_solve primitive. It is provided as a facility, in order to
+    be a direct replacement for the former quapro solver : indeed, the qpsolve
+    solver has been designed so that it provides the same interface, that is,
+    the same input/output arguments. But the x0 and imp input arguments are
+    available in quapro, but not in qpsolve.</para>
   </refsection>
 
   <refsection>
@@ -176,11 +183,27 @@ me=3;
 
     <simplelist type="inline">
       <member><link linkend="optim">optim</link></member>
+
       <member><link linkend="qp_solve">qp_solve</link></member>
+
       <member><link linkend="qld">qld</link></member>
     </simplelist>
+
     <para>The contributed toolbox "quapro" may also be of interest, in
-    particular for singular <literal>Q</literal>. </para>
+    particular for singular <literal>Q</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Memory requirements</title>
+
+    <para>Let r be</para>
+
+    <programlisting>r=min(m,n)</programlisting>
+
+    <para>Then the memory required by qpsolve during the computations
+    is</para>
+
+    <programlisting>2*n+r*(r+5)/2 + 2*m +1</programlisting>
   </refsection>
 
   <refsection>
@@ -191,7 +214,7 @@ me=3;
         <term>S. Steer</term>
 
         <listitem>
-          <para>, INRIA (Scilab interface)</para>
+          <para>INRIA (Scilab interface)</para>
         </listitem>
       </varlistentry>
 
@@ -199,11 +222,37 @@ me=3;
         <term>Berwin A. Turlach</term>
 
         <listitem>
-          <para>,School of Mathematics and Statistics (M019), The University
-          of Western Australia, Crawley, AUSTRALIA (solver code)</para>
+          <para>School of Mathematics and Statistics (M019), The University of
+          Western Australia, Crawley, AUSTRALIA (solver code)</para>
         </listitem>
       </varlistentry>
     </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1982). "Dual and Primal-Dual
+        Methods for Solving Strictly Convex Quadratic Programs", in J.P.
+        Hennart (ed.), Numerical Analysis, Proceedings, Cocoyoc, Mexico 1981,
+        Vol. 909 of Lecture Notes in Mathematics, Springer-Verlag, Berlin, pp.
+        226-239.</para>
+      </listitem>
+
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1983). "A numerically stable dual
+        method for solving strictly convex quadratic programs", Mathematical
+        Programming 27: 1-33.</para>
+      </listitem>
+
+      <listitem>
+        <para>QuadProg (Quadratic Programming Routines), Berwin A
+        Turlach,<ulink
+        url="http://www.maths.uwa.edu.au/~berwin/software/quadprog.html">http://www.maths.uwa.edu.au/~berwin/software/quadprog.html</ulink></para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>

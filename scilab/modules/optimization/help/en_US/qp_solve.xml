@@ -48,8 +48,7 @@
 
         <listitem>
           <para>real matrix (dimension <literal> (me + md) x n</literal>).
-          This matrix may be stored as either a dense matrix either a sparse
-          one.</para>
+          This matrix may be dense or sparse.</para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +56,7 @@
         <term>b</term>
 
         <listitem>
-          <para>RHS column vector (dimension <literal> (me +
+          <para>RHS column vector (dimension <literal> m=(me +
           md)</literal>)</para>
         </listitem>
       </varlistentry>
@@ -92,7 +91,7 @@
         <term>iter</term>
 
         <listitem>
-          <para>. 2x1 vector, first component gives the number of "main"
+          <para>2x1 vector, first component gives the number of "main"
           iterations, the second one says how many constraints were deleted
           after they became active.</para>
         </listitem>
@@ -114,14 +113,9 @@
    
     </programlisting>
 
-    <para>This function requires <literal>Q</literal> to be positive definite,
-    if it is not the case, one may use the contributed <emphasis
-    role="bold">quapro toolbox</emphasis>.</para>
-
-    <para>This is a builtin associated with the Berwin A. Turlach code. Use
-    preferabily the <link linkend="qpsolve">qpsolve</link> function built on it
-    which handles variable boundaries and match the <emphasis
-    role="bold">quapro</emphasis> problem definition</para>
+    <para>This function requires <literal>Q</literal> to be symmetric positive
+    definite. If this hypothesis is not satisfied, one may use the contributed
+    <emphasis role="bold">quapro toolbox</emphasis>.</para>
   </refsection>
 
   <refsection>
@@ -165,11 +159,25 @@ me=3;
       <member><link linkend="optim">optim</link></member>
 
       <member><link linkend="qld">qld</link></member>
+
       <member><link linkend="qpsolve">qpsolve</link></member>
     </simplelist>
 
     <para>The contributed toolbox "quapro" may also be of interest, in
     particular for singular <literal>Q</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Memory requirements</title>
+
+    <para>Let r be </para>
+
+    <programlisting>r=min(m,n)</programlisting>
+
+    <para>Then the memory required by qp_solve during the computations is
+    </para>
+
+    <programlisting>2*n+r*(r+5)/2 + 2*m +1</programlisting>
   </refsection>
 
   <refsection>
@@ -180,7 +188,7 @@ me=3;
         <term>S. Steer</term>
 
         <listitem>
-          <para>, INRIA (Scilab interface)</para>
+          <para>INRIA (Scilab interface)</para>
         </listitem>
       </varlistentry>
 
@@ -188,11 +196,37 @@ me=3;
         <term>Berwin A. Turlach</term>
 
         <listitem>
-          <para>,School of Mathematics and Statistics (M019), The University
-          of Western Australia, Crawley, AUSTRALIA (solver code)</para>
+          <para>School of Mathematics and Statistics (M019), The University of
+          Western Australia, Crawley, AUSTRALIA (solver code)</para>
         </listitem>
       </varlistentry>
     </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1982). "Dual and Primal-Dual
+        Methods for Solving Strictly Convex Quadratic Programs", in J.P.
+        Hennart (ed.), Numerical Analysis, Proceedings, Cocoyoc, Mexico 1981,
+        Vol. 909 of Lecture Notes in Mathematics, Springer-Verlag, Berlin, pp.
+        226-239.</para>
+      </listitem>
+
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1983). "A numerically stable dual
+        method for solving strictly convex quadratic programs", Mathematical
+        Programming 27: 1-33.</para>
+      </listitem>
+
+      <listitem>
+        <para>QuadProg (Quadratic Programming Routines), Berwin A
+        Turlach,<ulink
+        url="http://www.maths.uwa.edu.au/~berwin/software/quadprog.html">http://www.maths.uwa.edu.au/~berwin/software/quadprog.html</ulink></para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>
