@@ -419,7 +419,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	if all_scilab_help then
 		
-		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take up to 10 minutes)\n"));
+		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
 		
 		// Define and create the path of buildDoc working directory
 		buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + getlanguage() + "_help",%t,%f);
@@ -504,7 +504,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		for k=1:size(dirs_c,"*");
 			if need_to_be_build_tab_c(k) then
 				
-				mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
+				mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take a while)\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
 				
 				// Define and create the final output directory if does not exist
 				final_output_dir = pathconvert(dirs_c(k)+"/../../"+output_format_ext,%f,%f);
@@ -591,12 +591,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				
 				if nb_dir > 1 then
 					if displaydone == 0 then
-						mprintf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take up to 10 minutes)\n"),output_format);
+						mprintf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take a while)\n"),output_format);
 						displaydone = 1;
 					end
 					mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 				else
-					mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take up to 10 minutes)\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
+					mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take a while)\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
 				end
 				
 				// Define and create the final output directory if does not exist
