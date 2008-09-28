@@ -71,6 +71,11 @@ int C2F(sci_stripblanks)(char *fname,unsigned long fname_len)
 					C2F(putlhsvar)();
 					return 0;
 				}
+				else
+				{
+					Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"),fname,1);
+					return 0;
+				}
 			}
 			break;
 		case sci_strings :
