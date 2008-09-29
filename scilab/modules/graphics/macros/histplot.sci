@@ -1,3 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// Copyright (C) Bruno Pincon
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,normalization)
 // histplot(n,data,<opt_arg_seq>)
 // draws histogram of entries in  data put into n classes
