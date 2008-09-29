@@ -19,6 +19,9 @@ function files=ls(varargin)
 		path = "./";
 	else
 		path = varargin(1);
+		if type(path) <> 10 then 
+      error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'ls',1));
+    end 
 		for k=2:size(varargin)
 			opts = [opts varargin(k)];
 		end

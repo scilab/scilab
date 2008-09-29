@@ -13,6 +13,11 @@ function L=dir(str)
 	dirtype  = 16384;
 	
 	if argn(2)==1 then
+	
+    if type(str) <> 10 then 
+      error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'dir',1));
+    end 
+
 		files    = listfiles(str);
 		basepath = str;
 	else

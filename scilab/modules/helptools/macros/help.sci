@@ -20,6 +20,10 @@ if (fileinfo('SCI/modules/helptools/help') <> []) then
       return
     end
     
+    if type(key) <> 10 then 
+      error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'help',1));
+    end 
+    
     // Search a function name
     key=stripblanks(key)
     
