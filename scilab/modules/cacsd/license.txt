@@ -80,7 +80,8 @@ src/fortran/{dqrdc.f,wgesl.f,dqrsm.f,qvalz.f,qhesz.f,dqrsl.f,wgeco.f,hhdml.f, dg
 
 Copyright:
 
-License (BSD):
+License:
+BSD
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
    1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -100,7 +101,6 @@ Alan j. Laub
 
 License:
 Domain public
-
 
 Files:
 src/fortran/sszer.f
