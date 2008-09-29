@@ -1,3 +1,8 @@
+Files: *
+
+Copyright:
+
+License:
 This software is in the public domain
 
 
