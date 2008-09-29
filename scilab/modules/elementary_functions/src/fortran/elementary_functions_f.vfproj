@@ -67,7 +67,6 @@ cd .."/></Configuration></Configurations>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="arcosh.f"/>
-		<File RelativePath="balanc.f"/>
 		<File RelativePath="bdiag.f"/>
 		<File RelativePath="calerf.f"/>
 		<File RelativePath="cbal.f"/>
@@ -95,8 +94,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="ddpowe.f"/>
 		<File RelativePath="ddrdiv.f"/>
 		<File RelativePath="dexpm1.f"/>
-		<File RelativePath="dgefa.f"/>
-		<File RelativePath="dgesl.f"/>
 		<File RelativePath="dipow.f"/>
 		<File RelativePath="dipowe.f"/>
 		<File RelativePath="dlblks.f"/>
@@ -125,9 +122,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="getdimfromvar.f"/>
 		<File RelativePath="getorient.f"/>
 		<File RelativePath="hilber.f"/>
-		<File RelativePath="hqror2.f"/>
 		<File RelativePath="i1mach.f"/>
-		<File RelativePath="icopy.f"/>
 		<File RelativePath="imcopy.f"/>
 		<File RelativePath="infinity.f"/>
 		<File RelativePath="intp.f"/>
@@ -145,7 +140,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="nearfloat.f"/>
 		<File RelativePath="orthes.f"/>
 		<File RelativePath="ortran.f"/>
-		<File RelativePath="pade.f"/>
 		<File RelativePath="psi.f"/>
 		<File RelativePath="pythag.f"/>
 		<File RelativePath="rat.f"/>
@@ -215,7 +209,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="wbdiag.f"/>
 		<File RelativePath="wcerr.f"/>
 		<File RelativePath="wclmat.f"/>
-		<File RelativePath="wcopy.f"/>
 		<File RelativePath="wddiv.f"/>
 		<File RelativePath="wdiv.f"/>
 		<File RelativePath="wdotci.f"/>
@@ -234,7 +227,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="wmsum.f"/>
 		<File RelativePath="wmul.f"/>
 		<File RelativePath="wnrm2.f"/>
-		<File RelativePath="wpade.f"/>
 		<File RelativePath="wrscal.f"/>
 		<File RelativePath="wscal.f"/>
 		<File RelativePath="wshrsl.f"/>

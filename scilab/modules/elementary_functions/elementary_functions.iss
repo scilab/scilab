@@ -11,6 +11,8 @@
 #define ELEMFUNCTIONS "elementary_functions"
 ;
 Source: bin\slatec_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\linpack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\eispack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}

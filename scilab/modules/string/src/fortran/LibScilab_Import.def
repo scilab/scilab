@@ -27,7 +27,6 @@ namstr_
 ;
 ;elementary_functions_f
 ;
-icopy_
 iset_
 unsfdcopy_
 getorient_

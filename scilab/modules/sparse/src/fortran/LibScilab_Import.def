@@ -39,7 +39,6 @@ checklhs_
 formatnumber_
 ;
 ; elementary_functions
-icopy_
 unsfdcopy_
 wdpow_
 dwpow_

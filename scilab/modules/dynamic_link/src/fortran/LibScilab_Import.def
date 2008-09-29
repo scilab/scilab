@@ -26,7 +26,6 @@ cvname_
 getscalar_
 getrhsvar_
 cs2st_
-icopy_
 cremat_
 interf_
 objvide_

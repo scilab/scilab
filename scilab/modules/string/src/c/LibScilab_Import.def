@@ -21,5 +21,3 @@ EXPORTS
  vartype_
  createvarfromptr_
  overload_
- ; elementary_functions
- icopy_

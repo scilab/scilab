@@ -30,7 +30,6 @@ ref2val_
 
 ;
 ;elementary_functions
-icopy_
 unsfdcopy_
 mtlbsel_
 getorient_

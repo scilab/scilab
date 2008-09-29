@@ -1,0 +1,14 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+iop_
+returnanan_
+;
+;elementary_functions_f
+d1mach_
+i1mach_
+xerhlt_  
+  

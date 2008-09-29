@@ -1,0 +1,19 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+dmmul_
+dclmat_
+cerr_
+dmcopy_
+wmmul_
+wclmat_
+wcerr_
+coef_
+;
+;cacsd_f
+dgeco_
+wgesl_
+wgeco_
