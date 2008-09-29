@@ -122,7 +122,6 @@ src/fortran/linpack/wpade.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/wasum.f \
-src/fortran/dexpm1.f \
 src/fortran/wwdiv.f \
 src/fortran/wdotcr.f \
 src/fortran/iset.f \
@@ -189,7 +188,6 @@ src/fortran/getorient.f \
 src/fortran/cusum.f \
 src/fortran/dbesig.f \
 src/fortran/d1mach.f \
-src/fortran/wbdiag.f \
 src/fortran/ddpow1.f \
 src/fortran/vpythag.f \
 src/fortran/isova0.f \
@@ -217,7 +215,6 @@ src/fortran/coef.f \
 src/fortran/dwdiv.f \
 src/fortran/arcosh.f \
 src/fortran/wasin.f \
-src/fortran/wexpm1.f \
 src/fortran/ddpowe.f \
 src/fortran/nearfloat.f \
 src/fortran/dmprod.f \
@@ -240,7 +237,6 @@ src/fortran/dtild.f \
 src/fortran/i1mach.f \
 src/fortran/zbesyg.f \
 src/fortran/dclmat.f \
-src/fortran/bdiag.f \
 src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsort.f \
@@ -347,13 +343,10 @@ sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f \
 sci_gateway/fortran/sci_f_sort.f 
 
-# Disable optimisation of the file hqror2.f comqr3.f pade.f
+# Disable optimisation of the file unsfdcopy & icopy
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
 
-libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
-	src/fortran/comqr3.f \
-	src/fortran/linpack/pade.f \
-	src/c/unsfdcopy.c \
+libdummy_elementary_functions_la_SOURCES = src/c/unsfdcopy.c \
 	src/fortran/linpack/icopy.f
 
 libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
@@ -389,17 +382,6 @@ libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIO
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 # Commented because it is one of the first module to be compiled
 #libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
-
-libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
-
-
-libdummy_elementary_functions_la-comqr3.lo: src/fortran/comqr3.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
-
-
-libdummy_elementary_functions_la-pade.lo: src/fortran/linpack/pade.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/linpack/pade.f' || echo '$(srcdir)/'`src/fortran/linpack/pade.f
 
 libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
 	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFAULT_INCLUDES) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
