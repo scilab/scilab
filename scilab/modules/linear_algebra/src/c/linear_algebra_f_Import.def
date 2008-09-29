@@ -10,14 +10,6 @@ EXPORTS
 	dgelsy1_
 	zgelsy1_
 	doldqr_
-	sb02mv_
-	sb02mw_
-	sb02ow_
-	sb02ox_
-	zb02mv_
-	zb02mw_
-	zb02ow_
-	zb02ox_
 	intddet_
 	intdgebal_
 	intdgecon_

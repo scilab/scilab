@@ -409,14 +409,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dtensbs.c"
-				>
-			</File>
-			<File
-				RelativePath=".\pchim.c"
-				>
-			</File>
-			<File
 				RelativePath=".\somespline.c"
 				>
 			</File>
@@ -442,14 +434,6 @@
 			</File>
 			<File
 				RelativePath=".\dspfit.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dtensbs.f"
-				>
-			</File>
-			<File
-				RelativePath=".\pchim.f"
 				>
 			</File>
 			<File

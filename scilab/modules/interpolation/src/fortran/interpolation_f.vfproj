@@ -74,8 +74,6 @@ lib /DEF:&quot;$(InputDir)interpolation_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\cshep2d.f"/>
 		<File RelativePath=".\dspfit.f"/>
-		<File RelativePath=".\dtensbs.f"/>
-		<File RelativePath=".\pchim.f"/>
 		<File RelativePath=".\somespline.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\interpolation_gateway.xml"/>

@@ -76,6 +76,7 @@ lib /DEF:&quot;$(InputDir)Libscilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE
 		<File RelativePath="..\ab01od.f"/>
 		<File RelativePath="..\ab13md.f"/>
 		<File RelativePath="..\ereduc.f"/>
+		<File RelativePath="..\Ex-schur.f"/>
 		<File RelativePath="..\fstair.f"/>
 		<File RelativePath="..\ib01ad.f"/>
 		<File RelativePath="..\ib01bd.f"/>
