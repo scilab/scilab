@@ -7,11 +7,12 @@
 # Please see in SCI/tools/localization for localization management
 #
 
+SLATEC_SOURCES = src/fortran/slatec/dtensbs.f \
+src/fortran/slatec/pchim.f
+
 INTERPOLATION_FORTRAN_SOURCES = src/fortran/somespline.f \
 src/fortran/dspfit.f \
-src/fortran/cshep2d.f \
-src/fortran/dtensbs.f \
-src/fortran/pchim.f
+src/fortran/cshep2d.f
 
 INTERPOLATION_C_SOURCES = src/c/interpolation.c \
 src/c/someinterp.c
@@ -40,13 +41,13 @@ pkglib_LTLIBRARIES = libsciinterpolation.la
 
 libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciinterpolation_la_SOURCES = $(SLATEC_SOURCES) $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
     $(top_builddir)/modules/string/libscistring.la
-    
+
 
 #### Target ######
 modulename=interpolation
