@@ -565,6 +565,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dtensbs.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dxlegf.c"
 				>
 			</File>
@@ -586,6 +590,10 @@
 			</File>
 			<File
 				RelativePath=".\j4save.c"
+				>
+			</File>
+			<File
+				RelativePath=".\pchim.c"
 				>
 			</File>
 			<File
@@ -925,6 +933,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dtensbs.f"
+				>
+			</File>
+			<File
 				RelativePath=".\dxlegf.f"
 				>
 				<FileConfiguration
@@ -978,6 +990,10 @@
 			</File>
 			<File
 				RelativePath=".\j4save.f"
+				>
+			</File>
+			<File
+				RelativePath=".\pchim.f"
 				>
 			</File>
 			<File

@@ -417,10 +417,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\Ex-schur.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intddet.c"
 				>
 			</File>
@@ -637,10 +633,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SELECT.c"
-				>
-			</File>
-			<File
 				RelativePath=".\writebuf.c"
 				>
 			</File>
@@ -710,10 +702,6 @@
 			</File>
 			<File
 				RelativePath=".\doldqr.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\Ex-schur.f"
 				>
 			</File>
 			<File
@@ -930,10 +918,6 @@
 			</File>
 			<File
 				RelativePath=".\scischur.f"
-				>
-			</File>
-			<File
-				RelativePath=".\SELECT.f"
 				>
 			</File>
 			<File
