@@ -11,14 +11,17 @@
 function tklib=gettklib()
 tklib = [];
   tcltkver=TCL_GetVersion('numbers');
+  // don't use string() but msprintf because of format() - see bug 3602
+  major=msprintf("%1.0d",tcltkver(1));
+  minor=msprintf("%1.0d",tcltkver(2));
 	if MSDOS then 
-		tklib='tk'+string(tcltkver(1))+string(tcltkver(2))+getdynlibext();
+		tklib='tk'+major+minor+getdynlibext();
 	else
 		// In the binary version libtk8.X.so has been copied in
 		// the SCI/bin directory and scilab script add SCI/bin
 		// to the LD_LIBRARY_PATH (or SHLIB_PATH).
 		// So, If libtk8.X.so (or .sl) exists in SCI/bin ... it's ok
-		libname='libtk'+string(tcltkver(1))+'.'+string(tcltkver(2));
+		libname='libtk'+major+'.'+minor;
 		if fileinfo('SCI/bin/'+libname+getdynlibext()) <> [] then
 			tklib=libname+getdynlibext();
 			return;
@@ -46,4 +49,6 @@ tklib = [];
 		clear cmd;
 	end
 	clear tcltkver;
+	clear major;
+	clear minor;
 endfunction
