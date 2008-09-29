@@ -190,8 +190,13 @@ am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 	libscielementary_functions_la-zunk1.lo \
 	libscielementary_functions_la-zunk2.lo \
 	libscielementary_functions_la-zuoik.lo \
-	libscielementary_functions_la-dlngam.lo
-am__objects_2 = libscielementary_functions_la-sci_tools.lo \
+	libscielementary_functions_la-dlngam.lo \
+	libscielementary_functions_la-balanc.lo
+am__objects_2 = libscielementary_functions_la-dgesl.lo \
+	libscielementary_functions_la-wpade.lo \
+	libscielementary_functions_la-wcopy.lo \
+	libscielementary_functions_la-dgefa.lo
+am__objects_3 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-finite.lo \
 	libscielementary_functions_la-vfinite.lo \
 	libscielementary_functions_la-cmp.lo \
@@ -212,7 +217,7 @@ am__objects_2 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-qsort-short.lo \
 	libscielementary_functions_la-qsort-string.lo \
 	libscielementary_functions_la-IsEqualVar.lo
-am__objects_3 = libscielementary_functions_la-psi.lo \
+am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wasum.lo \
 	libscielementary_functions_la-dexpm1.lo \
 	libscielementary_functions_la-wwdiv.lo \
@@ -238,7 +243,6 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-watan.lo \
 	libscielementary_functions_la-wipowe.lo \
 	libscielementary_functions_la-wacos.lo \
-	libscielementary_functions_la-balanc.lo \
 	libscielementary_functions_la-wdpow1.lo \
 	libscielementary_functions_la-zbesjg.lo \
 	libscielementary_functions_la-dmsum.lo \
@@ -264,9 +268,7 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-cupro.lo \
 	libscielementary_functions_la-dadd.lo \
 	libscielementary_functions_la-calerf.lo \
-	libscielementary_functions_la-dgesl.lo \
 	libscielementary_functions_la-isort.lo \
-	libscielementary_functions_la-wcopy.lo \
 	libscielementary_functions_la-hilber.lo \
 	libscielementary_functions_la-wdpowe.lo \
 	libscielementary_functions_la-wmprod.lo \
@@ -308,7 +310,6 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wdpow.lo \
 	libscielementary_functions_la-orthes.lo \
 	libscielementary_functions_la-wnrm2.lo \
-	libscielementary_functions_la-dgefa.lo \
 	libscielementary_functions_la-waxpy.lo \
 	libscielementary_functions_la-coef.lo \
 	libscielementary_functions_la-dwdiv.lo \
@@ -334,7 +335,6 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-dbesjg.lo \
 	libscielementary_functions_la-dset.lo \
 	libscielementary_functions_la-dtild.lo \
-	libscielementary_functions_la-wpade.lo \
 	libscielementary_functions_la-i1mach.lo \
 	libscielementary_functions_la-zbesyg.lo \
 	libscielementary_functions_la-dclmat.lo \
@@ -349,7 +349,7 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-rjbesl.lo \
 	libscielementary_functions_la-rkbesl.lo \
 	libscielementary_functions_la-rybesl.lo
-am__objects_4 = libscielementary_functions_la-sci_isequal.lo \
+am__objects_5 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_prod.lo \
 	libscielementary_functions_la-sci_expm.lo \
@@ -399,7 +399,7 @@ am__objects_4 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_gsort.lo \
 	libscielementary_functions_la-sci_sort.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo
-am__objects_5 = libscielementary_functions_la-sci_f_isequal.lo \
+am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
 	libscielementary_functions_la-sci_f_testmatrix.lo \
 	libscielementary_functions_la-sci_f_prod.lo \
@@ -446,10 +446,10 @@ am__objects_5 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_imult.lo \
 	libscielementary_functions_la-sci_f_exp.lo \
 	libscielementary_functions_la-sci_f_sort.lo
-am__objects_6 = libscielementary_functions_la-sortTemplate.lo
+am__objects_7 = libscielementary_functions_la-sortTemplate.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
-	$(am__objects_5) $(am__objects_6)
+	$(am__objects_5) $(am__objects_6) $(am__objects_7)
 libscielementary_functions_la_OBJECTS =  \
 	$(am_libscielementary_functions_la_OBJECTS)
 libscielementary_functions_la_LINK = $(LIBTOOL) --tag=CXX \
@@ -800,7 +800,13 @@ src/fortran/slatec/zunik.f \
 src/fortran/slatec/zunk1.f \
 src/fortran/slatec/zunk2.f \
 src/fortran/slatec/zuoik.f \
-src/fortran/slatec/dlngam.f
+src/fortran/slatec/dlngam.f \
+src/fortran/slatec/balanc.f
+
+LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
+   src/fortran/linpack/wpade.f \
+   src/fortran/linpack/wcopy.f \
+   src/fortran/linpack/dgefa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -829,7 +835,6 @@ src/fortran/intp.f \
 src/fortran/watan.f \
 src/fortran/wipowe.f \
 src/fortran/wacos.f \
-src/fortran/balanc.f \
 src/fortran/wdpow1.f \
 src/fortran/zbesjg.f \
 src/fortran/dmsum.f \
@@ -855,9 +860,7 @@ src/fortran/ivimp.f \
 src/fortran/cupro.f \
 src/fortran/dadd.f \
 src/fortran/calerf.f \
-src/fortran/dgesl.f \
 src/fortran/isort.f \
-src/fortran/wcopy.f \
 src/fortran/hilber.f \
 src/fortran/wdpowe.f \
 src/fortran/wmprod.f \
@@ -899,7 +902,6 @@ src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
 src/fortran/wnrm2.f \
-src/fortran/dgefa.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
@@ -925,7 +927,6 @@ src/fortran/dad.f \
 src/fortran/dbesjg.f \
 src/fortran/dset.f \
 src/fortran/dtild.f \
-src/fortran/wpade.f \
 src/fortran/i1mach.f \
 src/fortran/zbesyg.f \
 src/fortran/dclmat.f \
@@ -1043,11 +1044,11 @@ sci_gateway/fortran/sci_f_sort.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
-libdummy_elementary_functions_la_SOURCES = src/fortran/hqror2.f \
+libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/fortran/comqr3.f \
-	src/fortran/pade.f \
+	src/fortran/linpack/pade.f \
 	src/c/unsfdcopy.c \
-	src/fortran/icopy.f
+	src/fortran/linpack/icopy.f
 
 libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
 libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) \
@@ -1074,7 +1075,7 @@ libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 
 #### Target ######
@@ -2120,6 +2121,21 @@ libscielementary_functions_la-zuoik.lo: src/fortran/slatec/zuoik.f
 libscielementary_functions_la-dlngam.lo: src/fortran/slatec/dlngam.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dlngam.lo `test -f 'src/fortran/slatec/dlngam.f' || echo '$(srcdir)/'`src/fortran/slatec/dlngam.f
 
+libscielementary_functions_la-balanc.lo: src/fortran/slatec/balanc.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balanc.lo `test -f 'src/fortran/slatec/balanc.f' || echo '$(srcdir)/'`src/fortran/slatec/balanc.f
+
+libscielementary_functions_la-dgesl.lo: src/fortran/linpack/dgesl.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgesl.lo `test -f 'src/fortran/linpack/dgesl.f' || echo '$(srcdir)/'`src/fortran/linpack/dgesl.f
+
+libscielementary_functions_la-wpade.lo: src/fortran/linpack/wpade.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wpade.lo `test -f 'src/fortran/linpack/wpade.f' || echo '$(srcdir)/'`src/fortran/linpack/wpade.f
+
+libscielementary_functions_la-wcopy.lo: src/fortran/linpack/wcopy.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wcopy.lo `test -f 'src/fortran/linpack/wcopy.f' || echo '$(srcdir)/'`src/fortran/linpack/wcopy.f
+
+libscielementary_functions_la-dgefa.lo: src/fortran/linpack/dgefa.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgefa.lo `test -f 'src/fortran/linpack/dgefa.f' || echo '$(srcdir)/'`src/fortran/linpack/dgefa.f
+
 libscielementary_functions_la-psi.lo: src/fortran/psi.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-psi.lo `test -f 'src/fortran/psi.f' || echo '$(srcdir)/'`src/fortran/psi.f
 
@@ -2198,9 +2214,6 @@ libscielementary_functions_la-wipowe.lo: src/fortran/wipowe.f
 libscielementary_functions_la-wacos.lo: src/fortran/wacos.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wacos.lo `test -f 'src/fortran/wacos.f' || echo '$(srcdir)/'`src/fortran/wacos.f
 
-libscielementary_functions_la-balanc.lo: src/fortran/balanc.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balanc.lo `test -f 'src/fortran/balanc.f' || echo '$(srcdir)/'`src/fortran/balanc.f
-
 libscielementary_functions_la-wdpow1.lo: src/fortran/wdpow1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wdpow1.lo `test -f 'src/fortran/wdpow1.f' || echo '$(srcdir)/'`src/fortran/wdpow1.f
 
@@ -2276,14 +2289,8 @@ libscielementary_functions_la-dadd.lo: src/fortran/dadd.f
 libscielementary_functions_la-calerf.lo: src/fortran/calerf.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-calerf.lo `test -f 'src/fortran/calerf.f' || echo '$(srcdir)/'`src/fortran/calerf.f
 
-libscielementary_functions_la-dgesl.lo: src/fortran/dgesl.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgesl.lo `test -f 'src/fortran/dgesl.f' || echo '$(srcdir)/'`src/fortran/dgesl.f
-
 libscielementary_functions_la-isort.lo: src/fortran/isort.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-isort.lo `test -f 'src/fortran/isort.f' || echo '$(srcdir)/'`src/fortran/isort.f
-
-libscielementary_functions_la-wcopy.lo: src/fortran/wcopy.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wcopy.lo `test -f 'src/fortran/wcopy.f' || echo '$(srcdir)/'`src/fortran/wcopy.f
 
 libscielementary_functions_la-hilber.lo: src/fortran/hilber.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-hilber.lo `test -f 'src/fortran/hilber.f' || echo '$(srcdir)/'`src/fortran/hilber.f
@@ -2408,9 +2415,6 @@ libscielementary_functions_la-orthes.lo: src/fortran/orthes.f
 libscielementary_functions_la-wnrm2.lo: src/fortran/wnrm2.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wnrm2.lo `test -f 'src/fortran/wnrm2.f' || echo '$(srcdir)/'`src/fortran/wnrm2.f
 
-libscielementary_functions_la-dgefa.lo: src/fortran/dgefa.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgefa.lo `test -f 'src/fortran/dgefa.f' || echo '$(srcdir)/'`src/fortran/dgefa.f
-
 libscielementary_functions_la-waxpy.lo: src/fortran/waxpy.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-waxpy.lo `test -f 'src/fortran/waxpy.f' || echo '$(srcdir)/'`src/fortran/waxpy.f
 
@@ -2485,9 +2489,6 @@ libscielementary_functions_la-dset.lo: src/fortran/dset.f
 
 libscielementary_functions_la-dtild.lo: src/fortran/dtild.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dtild.lo `test -f 'src/fortran/dtild.f' || echo '$(srcdir)/'`src/fortran/dtild.f
-
-libscielementary_functions_la-wpade.lo: src/fortran/wpade.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wpade.lo `test -f 'src/fortran/wpade.f' || echo '$(srcdir)/'`src/fortran/wpade.f
 
 libscielementary_functions_la-i1mach.lo: src/fortran/i1mach.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-i1mach.lo `test -f 'src/fortran/i1mach.f' || echo '$(srcdir)/'`src/fortran/i1mach.f
@@ -2950,20 +2951,20 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 # Commented because it is one of the first module to be compiled
 #libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
 
-libdummy_elementary_functions_la-hqror2.lo: src/fortran/hqror2.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
+libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
 
 libdummy_elementary_functions_la-comqr3.lo: src/fortran/comqr3.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
 
-libdummy_elementary_functions_la-pade.lo: src/fortran/pade.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
+libdummy_elementary_functions_la-pade.lo: src/fortran/linpack/pade.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/linpack/pade.f' || echo '$(srcdir)/'`src/fortran/linpack/pade.f
 
 libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
 	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFAULT_INCLUDES) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
 
-libdummy_elementary_functions_la-icopy.lo: src/fortran/icopy.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
+libdummy_elementary_functions_la-icopy.lo: src/fortran/linpack/icopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/linpack/icopy.f' || echo '$(srcdir)/'`src/fortran/linpack/icopy.f
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
