@@ -3,14 +3,15 @@
 ### INRIA - Scilab 2006
 ##########
 
-SPREADSHEET_C_SOURCES = src/c/xls.c \
-src/c/olestream-unwrap.c \
-src/c/pldstr.c \
-src/c/ole.c \
-src/c/bytedecoders.c \
-src/c/logger.c \
-src/c/ripole.c \
-src/c/bt-int.c
+SPREADSHEET_C_SOURCES = src/c/xls.c
+
+RIPOLE_SOURCES = src/c/ripole/olestream-unwrap.c \
+src/c/ripole/pldstr.c \
+src/c/ripole/ole.c \
+src/c/ripole/bytedecoders.c \
+src/c/ripole/logger.c \
+src/c/ripole/ripole.c \
+src/c/ripole/bt-int.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
@@ -19,6 +20,7 @@ sci_gateway/c/sci_xls_open.c
 
 libscispreadsheet_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/c/ripole \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
@@ -26,7 +28,7 @@ pkglib_LTLIBRARIES = libscispreadsheet.la
 
 libscispreadsheet_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscispreadsheet_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscispreadsheet_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
 
 libscispreadsheet_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######

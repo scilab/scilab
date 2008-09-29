@@ -373,11 +373,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\c\bt-int.c"
+				RelativePath=".\src\c\ripole\bt-int.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\bytedecoders.c"
+				RelativePath=".\src\c\ripole\bytedecoders.c"
 				>
 			</File>
 			<File
@@ -389,23 +389,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\logger.c"
+				RelativePath=".\src\c\ripole\logger.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\ole.c"
+				RelativePath=".\src\c\ripole\ole.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\olestream-unwrap.c"
+				RelativePath=".\src\c\ripole\olestream-unwrap.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\pldstr.c"
+				RelativePath=".\src\c\ripole\pldstr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\ripole.c"
+				RelativePath=".\src\c\ripole\ripole.c"
 				>
 			</File>
 			<File
