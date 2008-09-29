@@ -1,7 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006 - S. Mottelet
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 
 function _result=tk_choose(_items,_title,_button)
 
-// Author : S. Mottelet, Tue Jan 24 12:01:25 CET 2006
 // Use of a namespace makes things easier (no global variables to pass
 // arguments from the Scilab level).
 

@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste SILVY
- * Copyright (C) {date_debut_2}-{date_fin_2} - {organisme 2} - {auteur 2}
- * ...
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
