@@ -112,15 +112,10 @@ src/fortran/slatec/zunik.f \
 src/fortran/slatec/zunk1.f \
 src/fortran/slatec/zunk2.f \
 src/fortran/slatec/zuoik.f \
-src/fortran/slatec/dlngam.f \
-src/fortran/slatec/balanc.f
-
-SLATEC_SOURCES = src/fortran/linpack/dgefa.f \
-src/fortran/linpack/dgesl.f \
-src/fortran/linpack/wcopy.f \
-src/fortran/linpack/wpade.f
+src/fortran/slatec/dlngam.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
+src/fortran/psi.f \
 src/fortran/wasum.f \
 src/fortran/dexpm1.f \
 src/fortran/wwdiv.f \
@@ -146,9 +141,11 @@ src/fortran/intp.f \
 src/fortran/watan.f \
 src/fortran/wipowe.f \
 src/fortran/wacos.f \
+src/fortran/balanc.f \
 src/fortran/wdpow1.f \
 src/fortran/zbesjg.f \
 src/fortran/dmsum.f \
+src/fortran/dlgama.f \
 src/fortran/exch.f \
 src/fortran/wsign.f \
 src/fortran/kronr.f \
@@ -170,7 +167,9 @@ src/fortran/ivimp.f \
 src/fortran/cupro.f \
 src/fortran/dadd.f \
 src/fortran/calerf.f \
+src/fortran/dgesl.f \
 src/fortran/isort.f \
+src/fortran/wcopy.f \
 src/fortran/hilber.f \
 src/fortran/wdpowe.f \
 src/fortran/wmprod.f \
@@ -212,6 +211,7 @@ src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
 src/fortran/wnrm2.f \
+src/fortran/dgefa.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
@@ -237,16 +237,21 @@ src/fortran/dad.f \
 src/fortran/dbesjg.f \
 src/fortran/dset.f \
 src/fortran/dtild.f \
+src/fortran/wpade.f \
 src/fortran/i1mach.f \
 src/fortran/zbesyg.f \
 src/fortran/dclmat.f \
+src/fortran/ortran.f \
 src/fortran/bdiag.f \
 src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
-src/fortran/rat.f
-
+src/fortran/rat.f \
+src/fortran/ribesl.f \
+src/fortran/rjbesl.f \
+src/fortran/rkbesl.f \
+src/fortran/rybesl.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -350,11 +355,11 @@ sci_gateway/fortran/sci_f_sort.f
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
 
-libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
+libdummy_elementary_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/comqr3.f \
-	src/fortran/linpack/pade.f \
+	src/fortran/pade.f \
 	src/c/unsfdcopy.c \
-	src/fortran/linpack/icopy.f
+	src/fortran/icopy.f
 
 libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
@@ -390,23 +395,23 @@ libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 # Commented because it is one of the first module to be compiled
 #libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
 
-libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
+libdummy_elementary_functions_la-hqror2.lo: src/fortran/hqror2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
 
 
 libdummy_elementary_functions_la-comqr3.lo: src/fortran/comqr3.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
 
 
-libdummy_elementary_functions_la-pade.lo: src/fortran/linpack/pade.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/linpack/pade.f' || echo '$(srcdir)/'`src/fortran/linpack/pade.f
+libdummy_elementary_functions_la-pade.lo: src/fortran/pade.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
 
 libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
 	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFAULT_INCLUDES) $(libdummy_elementary_functions_la_CFLAGS) -c -o libdummy_elementary_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
 
 
-libdummy_elementary_functions_la-icopy.lo: src/fortran/linpack/icopy.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/linpack/icopy.f' || echo '$(srcdir)/'`src/fortran/linpack/icopy.f
+libdummy_elementary_functions_la-icopy.lo: src/fortran/icopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
 
 
 
