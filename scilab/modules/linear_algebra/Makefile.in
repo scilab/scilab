@@ -104,7 +104,7 @@ am__objects_1 = intdggbal.lo intzgeqpf4.lo intzheev.lo intzgehrd.lo \
 	intdgeev.lo intgschur.lo intdgesv3.lo intdggev.lo intdgesv4.lo \
 	DGELSY1.lo intozgschur.lo intdpotrf.lo intdoldsvd.lo \
 	intdgecon.lo zoldqr.lo intzgetrf.lo intoschur.lo complexify.lo \
-	SELECT.lo intzgebal.lo intzgetri.lo intzggbal.lo intdgees0.lo \
+	intzgebal.lo intzgetri.lo intzggbal.lo intdgees0.lo \
 	intdgees1.lo intogschur.lo intzgges.lo intddet.lo intzgeev.lo \
 	intzgesv3.lo intzgesv4.lo intzggev.lo intzpotrf.lo \
 	intzgecon.lo intzgschur.lo intzoldsvd.lo intdgelsy.lo \
@@ -115,7 +115,8 @@ am__objects_1 = intdggbal.lo intzgeqpf4.lo intzheev.lo intzgehrd.lo \
 	intzgeqpf3.lo writebuf.lo
 am__objects_2 = libscilinear_algebra_la-schurtable.lo \
 	libscilinear_algebra_la-issymmetric.lo
-am__objects_3 = libscilinear_algebra_la-sci_backslash.lo \
+am__objects_3 = SELECT.lo Ex-schur.lo
+am__objects_4 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_hess.lo \
 	libscilinear_algebra_la-sci_rcond.lo \
 	libscilinear_algebra_la-sci_bdiag.lo \
@@ -132,9 +133,9 @@ am__objects_3 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_inv.lo \
 	libscilinear_algebra_la-sci_svd.lo \
 	libscilinear_algebra_la-sci_lsq.lo
-am__objects_4 = Ex-schur.lo bschur.lo
+am__objects_5 = bschur.lo
 am_libscilinear_algebra_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+	$(am__objects_3) $(am__objects_4) $(am__objects_5)
 libscilinear_algebra_la_OBJECTS =  \
 	$(am_libscilinear_algebra_la_OBJECTS)
 libscilinear_algebra_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
@@ -389,7 +390,6 @@ src/fortran/zoldqr.f \
 src/fortran/intzgetrf.f \
 src/fortran/intoschur.f \
 src/fortran/complexify.f \
-src/fortran/SELECT.f \
 src/fortran/intzgebal.f \
 src/fortran/intzgetri.f \
 src/fortran/intzggbal.f \
@@ -428,6 +428,9 @@ src/fortran/intzgeqpf3.f \
 src/fortran/writebuf.f
 
 #src/fortran/issymmetric.f
+SLICOT_SOURCES = src/slicot/SELECT.f \
+src/slicot/Ex-schur.f
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
 sci_gateway/c/sci_rcond.c \
@@ -446,16 +449,14 @@ sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
 sci_gateway/c/sci_lsq.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
-sci_gateway/fortran/bschur.f
-
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 libscilinear_algebra_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 libscilinear_algebra_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(SLICOT_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscilinear_algebra_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -851,9 +852,6 @@ intoschur.lo: src/fortran/intoschur.f
 complexify.lo: src/fortran/complexify.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o complexify.lo `test -f 'src/fortran/complexify.f' || echo '$(srcdir)/'`src/fortran/complexify.f
 
-SELECT.lo: src/fortran/SELECT.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o SELECT.lo `test -f 'src/fortran/SELECT.f' || echo '$(srcdir)/'`src/fortran/SELECT.f
-
 intzgebal.lo: src/fortran/intzgebal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgebal.lo `test -f 'src/fortran/intzgebal.f' || echo '$(srcdir)/'`src/fortran/intzgebal.f
 
@@ -962,8 +960,11 @@ intzgeqpf3.lo: src/fortran/intzgeqpf3.f
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
 
-Ex-schur.lo: sci_gateway/fortran/Ex-schur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'sci_gateway/fortran/Ex-schur.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-schur.f
+SELECT.lo: src/slicot/SELECT.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o SELECT.lo `test -f 'src/slicot/SELECT.f' || echo '$(srcdir)/'`src/slicot/SELECT.f
+
+Ex-schur.lo: src/slicot/Ex-schur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'src/slicot/Ex-schur.f' || echo '$(srcdir)/'`src/slicot/Ex-schur.f
 
 bschur.lo: sci_gateway/fortran/bschur.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bschur.lo `test -f 'sci_gateway/fortran/bschur.f' || echo '$(srcdir)/'`sci_gateway/fortran/bschur.f

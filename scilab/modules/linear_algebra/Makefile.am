@@ -28,7 +28,6 @@ src/fortran/zoldqr.f \
 src/fortran/intzgetrf.f \
 src/fortran/intoschur.f \
 src/fortran/complexify.f \
-src/fortran/SELECT.f \
 src/fortran/intzgebal.f \
 src/fortran/intzgetri.f \
 src/fortran/intzggbal.f \
@@ -68,6 +67,9 @@ src/fortran/writebuf.f
 #src/fortran/issymmetric.f
 
 
+SLICOT_SOURCES = src/slicot/SELECT.f \
+src/slicot/Ex-schur.f
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
 sci_gateway/c/sci_rcond.c \
@@ -86,8 +88,7 @@ sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
 sci_gateway/c/sci_lsq.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
-sci_gateway/fortran/bschur.f
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 
 libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
@@ -97,7 +98,7 @@ pkglib_LTLIBRARIES = libscilinear_algebra.la
 
 libscilinear_algebra_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(SLICOT_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscilinear_algebra_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
