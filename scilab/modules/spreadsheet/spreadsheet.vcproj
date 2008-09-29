@@ -6,7 +6,7 @@
 	ProjectGUID="{CE521770-0466-4743-B9F6-38F8AEB93888}"
 	RootNamespace="spreadsheet"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c/ripole;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c/ripole;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -212,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c/ripole;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -302,7 +302,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c/ripole;src/c;../core/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -427,31 +427,27 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\src\c\bt-int.h"
+				RelativePath=".\src\c\ripole\bt-int.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\bytedecoders.h"
+				RelativePath=".\src\c\ripole\bytedecoders.h"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\gw_spreadsheet.h"
+				RelativePath=".\src\c\ripole\logger.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\logger.h"
+				RelativePath=".\src\c\ripole\ole.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\ole.h"
+				RelativePath=".\src\c\ripole\olestream-unwrap.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\olestream-unwrap.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\pldstr.h"
+				RelativePath=".\src\c\ripole\pldstr.h"
 				>
 			</File>
 			<File
@@ -459,7 +455,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\ripole.h"
+				RelativePath=".\src\c\ripole\ripole.h"
 				>
 			</File>
 			<File
