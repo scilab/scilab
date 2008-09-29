@@ -38,7 +38,7 @@ function []=sound(y,fs,bits,aplay)
   // Make sure that there's one column
   // per channel.
   if length(size(y)) > 2 then
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'sound',gettext('Requires 2-D values only.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'sound',gettext("Requires 2-D values only.")));
   end
   playsnd(y,fs,bits,aplay);
 endfunction

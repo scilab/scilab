@@ -26,7 +26,7 @@ function []=wavwrite(y,Fs,nbits,wavefile)
   end
   
   if (nbits<>16) then
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'wavwrite',gettext('only 16 bits for the encoding.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'wavwrite',gettext("only 16 bits for the encoding.")));
   end
   
   savewave(wavefile,y,Fs);

@@ -40,12 +40,12 @@ function [y,Fs,bits]=wavread(wavfile,ext)
   if type(ext)==10 then
     ext=convstr(ext)
     if ext<>'size' then
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be ""%s"", an integer or a vector of 2 integers.\n"),'wavread',2,'size'));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be ""%s"", an integer or a vector of %d integers.\n"),'wavread',2,'size',2));
     end
   elseif type(ext)==1 then
     exts = size(ext,'*');
     if exts>2 then
-      error(msprintf(gettext("%s: Wrong value for input argument: Index range must be specified as a scalar or 2-element vector.\n"),'wavread'));
+      error(msprintf(gettext("%s: Wrong value for input argument: Index range must be specified as a scalar or %d-element vector.\n"),'wavread',2));
     end
     if exts==1 then
       if ext==0 then
@@ -55,19 +55,19 @@ function [y,Fs,bits]=wavread(wavfile,ext)
       end
     end
   else
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be ""%s"", an integer or a vector of 2 integers.\n"),'wavread',2,'size'));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be ""%s"", an integer or a vector of %d integers.\n"),'wavread',2,'size',2));
   end
 
   Data=[];
   ID=stripblanks(ascii(mget(4,'c',fid)));
   Size=mget(1,'ui',fid);
   if (convstr(ID)~='riff') then
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext('.wav file does not contain the RIFF identifier.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext(".wav file does not contain the RIFF identifier.")));
   end
   rifftype=mget(4,'c',fid);
   dtype = convstr(ascii(rifftype)');
   if dtype~='wave' then
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext('.wav file does not contain the wave identifier.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext(".wav file does not contain the wave identifier.")));
   end
   
   // Find optional chunks
@@ -81,13 +81,13 @@ function [y,Fs,bits]=wavread(wavfile,ext)
       nbytes = 4;
       // # of required bytes in <fact-ck> header
       if total_bytes < nbytes then
-        error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext('Error reading .wav file.')));
+        error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext("Error reading .wav file.")));
       end
       factdata=mget(1,'ui',fid); // Samples per second
       rbytes = total_bytes-(mtell(fid)-orig_pos);
       if rbytes then
 	if mseek(rbytes,fid,'cur')==-1 then
-	  error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext('Error reading <fact-ck> chunk.')));
+	  error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext("Error reading <fact-ck> chunk.")));
 	end
       end
 
@@ -98,7 +98,7 @@ function [y,Fs,bits]=wavread(wavfile,ext)
      case 'data' then
       found_data = 1;
       if ~found_fmt then
-        error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext('Invalid .wav file: found data before format information.')));
+        error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext("Invalid .wav file: found data before format information.")));
       end
       if (ext=='size')|(~(ext==[]))&and(ext==0) then
 	// Caller just wants data size:
@@ -111,7 +111,7 @@ function [y,Fs,bits]=wavread(wavfile,ext)
       end
     else
        if mseek(Size,fid,'cur')==-1 then
-         error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext('Incorrect chunk size information in RIFF file.')))
+         error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext("Incorrect chunk size information in RIFF file.")))
        end
     end
   end
@@ -134,7 +134,7 @@ function [wFormatTag,nChannels,nSamplesPerSec,nAvgBytesPerSec,nBlockAlign,nBitsP
   nbytes = 14; // # of required bytes in  header
 
   if total_bytes<nbytes then
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'read_wavefmt',gettext('Error reading .wav file.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'read_wavefmt',gettext("Error reading .wav file.")));
   end
   
   // Read wav data:
@@ -145,7 +145,7 @@ function [wFormatTag,nChannels,nSamplesPerSec,nAvgBytesPerSec,nBlockAlign,nBitsP
   nBlockAlign=mget(1,'us',fid); // Block alignment
   
   if wFormatTag~=1 then
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'find_cktype',gettext('Invalid wav format.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'find_cktype',gettext("Invalid wav format.")));
   else
      [cbSize,nBitsPerSample]=read_fmt_pcm(fid,total_bytes)
   end
@@ -153,7 +153,7 @@ function [wFormatTag,nChannels,nSamplesPerSec,nAvgBytesPerSec,nBlockAlign,nBitsP
   rbytes = total_bytes-(mtell(fid)-orig_pos);
   if rbytes then
     if mseek(rbytes,fid,'cur')==-1 then
-      error(msprintf(gettext("%s: An error occurred: %s\n"),'read_wavefmt',gettext('Error reading .wav file.')));
+      error(msprintf(gettext("%s: An error occurred: %s\n"),'read_wavefmt',gettext("Error reading .wav file.")));
     end
   end
 endfunction
@@ -162,7 +162,7 @@ function [cbSize,nBitsPerSample]=read_fmt_pcm(fid,total_bytes)
   nbytes = 14; cbSize=[]; nBitsPerSample=[]; 
   // # of bytes already read 
   if total_bytes < nbytes+2 then
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'find_cktype',gettext('Error reading wav file.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'find_cktype',gettext("Error reading wav file.")));
   end
   nBitsPerSample = mget(1, 'us', fid);
   nbytes = nbytes+2;
@@ -173,7 +173,7 @@ function [cbSize,nBitsPerSample]=read_fmt_pcm(fid,total_bytes)
     end
     if total_bytes>nbytes then
       if mseek(total_bytes-nbytes,fid,'cur')==-1 then
-	      error(msprintf(gettext("%s: An error occurred: %s\n"),'find_cktype',gettext('Error reading wav file.')));
+	      error(msprintf(gettext("%s: An error occurred: %s\n"),'find_cktype',gettext("Error reading wav file.")));
       end
     end
   end
@@ -223,7 +223,7 @@ function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
   elseif BytesPerSample==2 then // signed 16-bit
      dtype = 's';
   else
-    error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext('Cannot read .wav file  with more than 16 bits per sample.')));
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext("Cannot read .wav file  with more than 16 bits per sample.")));
   end
   // # bytes in this chunk
   total_samples = total_bytes/BytesPerSample;
@@ -238,14 +238,14 @@ function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
     ext = [1,SamplesPerChannel];
   else
      if prod(size(ext))~=2 then
-       error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext('Sample limit vector must have 2 entries.')));
+       error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext("Sample limit vector must have 2 entries.")));
        return
      end
      if ext(1)<1|ext(2)>SamplesPerChannel then
-       error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext('Sample limits out of range.')));
+       error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext("Sample limits out of range.")));
      end
      if ext(1)>ext(2) then
-       error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext('Invalid sample limits (use ascending order).')));
+       error(msprintf(gettext("%s: An error occurred: %s\n"),'read_dat_pcm',gettext("Invalid sample limits (use ascending order).")));
      end
   end
 
