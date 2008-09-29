@@ -340,10 +340,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\balanc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\bdiag.c"
 				>
 			</File>
@@ -449,14 +445,6 @@
 			</File>
 			<File
 				RelativePath=".\dexpm1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dgefa.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dgesl.c"
 				>
 			</File>
 			<File
@@ -572,15 +560,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hqror2.c"
-				>
-			</File>
-			<File
 				RelativePath=".\i1mach.c"
-				>
-			</File>
-			<File
-				RelativePath=".\icopy.c"
 				>
 			</File>
 			<File
@@ -649,10 +629,6 @@
 			</File>
 			<File
 				RelativePath=".\ortran.c"
-				>
-			</File>
-			<File
-				RelativePath=".\pade.c"
 				>
 			</File>
 			<File
@@ -932,10 +908,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wcopy.c"
-				>
-			</File>
-			<File
 				RelativePath=".\wddiv.c"
 				>
 			</File>
@@ -1005,10 +977,6 @@
 			</File>
 			<File
 				RelativePath=".\wnrm2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wpade.c"
 				>
 			</File>
 			<File
@@ -1105,10 +1073,6 @@
 			>
 			<File
 				RelativePath=".\arcosh.f"
-				>
-			</File>
-			<File
-				RelativePath=".\balanc.f"
 				>
 			</File>
 			<File
@@ -1217,14 +1181,6 @@
 			</File>
 			<File
 				RelativePath=".\dexpm1.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dgefa.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dgesl.f"
 				>
 			</File>
 			<File
@@ -1340,15 +1296,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hqror2.f"
-				>
-			</File>
-			<File
 				RelativePath=".\i1mach.f"
-				>
-			</File>
-			<File
-				RelativePath=".\icopy.f"
 				>
 			</File>
 			<File
@@ -1417,10 +1365,6 @@
 			</File>
 			<File
 				RelativePath=".\ortran.f"
-				>
-			</File>
-			<File
-				RelativePath=".\pade.f"
 				>
 			</File>
 			<File
@@ -1700,10 +1644,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wcopy.f"
-				>
-			</File>
-			<File
 				RelativePath=".\wddiv.f"
 				>
 			</File>
@@ -1773,10 +1713,6 @@
 			</File>
 			<File
 				RelativePath=".\wnrm2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wpade.f"
 				>
 			</File>
 			<File

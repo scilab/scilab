@@ -401,6 +401,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\balanc.c"
+				>
+			</File>
+			<File
 				RelativePath=".\d9b0mp.c"
 				>
 			</File>
@@ -756,6 +760,10 @@
 		<Filter
 			Name="Fortran Files"
 			>
+			<File
+				RelativePath=".\balanc.f"
+				>
+			</File>
 			<File
 				RelativePath=".\d9b0mp.f"
 				>
