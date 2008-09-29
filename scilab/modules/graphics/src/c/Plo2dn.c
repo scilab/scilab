@@ -570,6 +570,9 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
 }
 
 
+#ifndef  _MSC_VER
+
+/* functions already defined in get_ticks_utils.c */
 
 /* MAKE SCILAB COMPILE ! 
 maybe useless*/ 
@@ -798,3 +801,4 @@ char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrad
   
   return u_xlabels;
 }
+#endif
