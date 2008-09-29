@@ -9,22 +9,18 @@ src/c/fsolvetable.c \
 src/c/lsqrsolvtable.c \
 src/c/optimtable.c
 
-OPTIMIZATION_FORTRAN_SOURCES = src/fortran/qrfac.f \
-src/fortran/gcbd.f \
+OPTIMIZATION_FORTRAN_SOURCES = src/fortran/gcbd.f \
 src/fortran/qpgen2.f \
 src/fortran/n1qn2a.f \
-src/fortran/dogleg.f \
 src/fortran/fuclid.f \
 src/fortran/fmc11b.f \
 src/fortran/ql0001.f \
 src/fortran/shanph.f \
 src/fortran/fajc1.f \
 src/fortran/majysa.f \
-src/fortran/fdjac2.f \
 src/fortran/icsei.f \
 src/fortran/majour.f \
 src/fortran/n1qn1.f \
-src/fortran/hybrj1.f \
 src/fortran/n1qn1a.f \
 src/fortran/n1qn3.f \
 src/fortran/fmc11z.f \
@@ -44,32 +40,24 @@ src/fortran/fcube.f \
 src/fortran/bfgsd.f \
 src/fortran/fcomp1.f \
 src/fortran/fmulb1.f \
-src/fortran/qrsolv.f \
 src/fortran/n1fc1o.f \
 src/fortran/relvar.f \
 src/fortran/satur.f \
 src/fortran/strang.f \
-src/fortran/hybrd.f \
 src/fortran/fmc11a.f \
 src/fortran/fmani1.f \
 src/fortran/fmc11e.f \
-src/fortran/hybrj.f \
 src/fortran/zqnbd.f \
-src/fortran/r1updt.f \
 src/fortran/ajour.f \
 src/fortran/dpmpar.f \
 src/fortran/fretc1.f \
 src/fortran/qnbd.f \
 src/fortran/nlis0.f \
 src/fortran/nlis2.f \
-src/fortran/fdjac1.f \
-src/fortran/hybrd1.f \
-src/fortran/lmdif.f \
 src/fortran/n1qn2.f \
 src/fortran/majz.f \
 src/fortran/n1qn3a.f \
 src/fortran/frdf1.f \
-src/fortran/lmder.f \
 src/fortran/icse1.f \
 src/fortran/ctonb.f \
 src/fortran/icscof.f \
@@ -77,24 +65,38 @@ src/fortran/fmlag1.f \
 src/fortran/fpq2.f \
 src/fortran/n1fc1.f \
 src/fortran/ffinf1.f \
-src/fortran/lmpar.f \
 src/fortran/ctcab.f \
 src/fortran/n1gc2b.f \
 src/fortran/fprf2.f \
 src/fortran/fremf1.f \
-src/fortran/enorm.f \
 src/fortran/icse.f \
 src/fortran/rlbd.f \
-src/fortran/qform.f \
 src/fortran/calmaj.f \
 src/fortran/calbx.f \
-src/fortran/r1mpyq.f \
 src/fortran/rednor.f \
 src/fortran/zgcbd.f \
 src/fortran/writebuf.f \
 src/fortran/dpofa.f \
 src/fortran/qpgen1sci.f \
 src/fortran/util.f
+
+MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
+src/fortran/minpack/qrfac.f \
+src/fortran/minpack/hybrj1.f \
+src/fortran/minpack/dogleg.f \
+src/fortran/minpack/lmder.f \
+src/fortran/minpack/hybrd.f \
+src/fortran/minpack/lmpar.f \
+src/fortran/minpack/hybrj.f \
+src/fortran/minpack/r1updt.f \
+src/fortran/minpack/enorm.f \
+src/fortran/minpack/qform.f \
+src/fortran/minpack/qrsolv.f \
+src/fortran/minpack/fdjac1.f \
+src/fortran/minpack/hybrd1.f \
+src/fortran/minpack/fdjac2.f \
+src/fortran/minpack/r1mpyq.f
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_semidef.c \
 sci_gateway/c/sci_qld.c \
@@ -125,7 +127,7 @@ pkglib_LTLIBRARIES = libscioptimization.la
 
 libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
 
 libscioptimization_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
