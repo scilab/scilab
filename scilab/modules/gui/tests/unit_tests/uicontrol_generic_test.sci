@@ -1,4 +1,3 @@
-function uicontrol_generic_test(uicontrol_style)
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT 
 // Generic unitary tests for Scilab Java uicontrols
@@ -9,6 +8,7 @@ function uicontrol_generic_test(uicontrol_style)
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function uicontrol_generic_test(uicontrol_style)
 // Default uicontrol of style 'uicontrol_style'
 h = uicontrol("style", uicontrol_style);
 set(h, "string", "Default "+uicontrol_style);

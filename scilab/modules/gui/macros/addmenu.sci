@@ -1,7 +1,3 @@
-function addmenu(varargin)
-// Add menus in Scilab Windows
-// See comments in the code for different implementations
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Allan CORNET
 // Copyright (C) 2007 - INRIA - Vincent COUVERT Java version
@@ -11,6 +7,10 @@ function addmenu(varargin)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function addmenu(varargin)
+// Add menus in Scilab Windows
+// See comments in the code for different implementations
 
 
 rhs=argn(2);

@@ -1,4 +1,3 @@
-function about(h)
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // 
@@ -8,6 +7,7 @@ function about(h)
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function about(h)
 // Displays a dialog about Scilab
 // Used from menus "About Scilab..."
 

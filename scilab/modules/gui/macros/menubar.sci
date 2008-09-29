@@ -1,4 +1,3 @@
-function menubar(win,menus)
 // Copyright (C) INRIA
 // 
 // This file must be used under the terms of the CeCILL.
@@ -6,6 +5,7 @@ function menubar(win,menus)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+function menubar(win,menus)
 
 names=menus(1)
 for k=size(names,'*'):-1:1

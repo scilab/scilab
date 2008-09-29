@@ -1,4 +1,3 @@
-function close(h)
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // 
@@ -7,6 +6,8 @@ function close(h)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function close(h)
 
 // Close a graphic figure or delete an uimenu or an uicontrol
 // This function has been written for compatibility with old TK uicontrols/uimenus

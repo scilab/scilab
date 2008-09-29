@@ -1,4 +1,3 @@
-function [rep] = x_choices(Title,listOfChoices)
 // Copyright (C) INRIA
 // 
 // This file must be used under the terms of the CeCILL.
@@ -7,6 +6,7 @@ function [rep] = x_choices(Title,listOfChoices)
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function [rep] = x_choices(Title,listOfChoices)
 [lhs,rhs] = argn(0)
 
 // Tests/Demo code
