@@ -309,8 +309,9 @@ src/c/axesScale.c \
 src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
-src/c/periEmpty.c\
-src/c/scitokenize.c
+src/c/periEmpty.c \
+src/c/scitokenize.c \
+src/c/get_ticks_utils.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \

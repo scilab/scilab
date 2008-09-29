@@ -397,30 +397,30 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/HandleManagement.c src/c/StringBox.c src/c/axesScale.c \
 	src/c/TerminateGraphics.c src/c/CurrentObjectsManagement.c \
 	src/c/ObjectSelection.c src/c/periEmpty.c src/c/scitokenize.c \
-	sci_gateway/c/sci_swap_handles.c sci_gateway/c/sci_grayplot.c \
-	sci_gateway/c/sci_matplot1.c sci_gateway/c/sci_xfpolys.c \
-	sci_gateway/c/sci_xget.c sci_gateway/c/sci_newaxes.c \
-	sci_gateway/c/sci_xlfont.c sci_gateway/c/sci_xgraduate.c \
-	sci_gateway/c/sci_xgrid.c sci_gateway/c/sci_xclick.c \
-	sci_gateway/c/sci_xclear.c sci_gateway/c/sci_geom3d.c \
-	sci_gateway/c/sci_xtape.c sci_gateway/c/sci_xset.c \
-	sci_gateway/c/sci_set_posfig_dim.c sci_gateway/c/sci_xgetech.c \
-	sci_gateway/c/sci_unzoom.c sci_gateway/c/sci_xsegs.c \
-	sci_gateway/c/sci_clear_pixmap.c sci_gateway/c/sci_glue.c \
-	sci_gateway/c/sci_xarc.c sci_gateway/c/sci_xpolys.c \
-	sci_gateway/c/sci_xstring.c sci_gateway/c/sci_xstringb.c \
-	sci_gateway/c/sci_xsetech.c sci_gateway/c/sci_show_window.c \
-	sci_gateway/c/sci_param3d1.c sci_gateway/c/sci_xname.c \
-	sci_gateway/c/sci_xpoly.c sci_gateway/c/sci_xchange.c \
-	sci_gateway/c/sci_matplot.c sci_gateway/c/sci_drawaxis.c \
-	sci_gateway/c/sci_demo.c sci_gateway/c/sci_plot2d1.c \
-	sci_gateway/c/sci_xrect.c sci_gateway/c/sci_draw.c \
-	sci_gateway/c/sci_xarrows.c sci_gateway/c/sci_plot3d.c \
-	sci_gateway/c/sci_move.c sci_gateway/c/sci_copy.c \
-	sci_gateway/c/sci_relocate_handle.c sci_gateway/c/sci_get.c \
-	sci_gateway/c/sci_xarcs.c sci_gateway/c/sci_xfpoly.c \
-	sci_gateway/c/sci_drawlater.c sci_gateway/c/sci_champ.c \
-	sci_gateway/c/sci_set.c \
+	src/c/get_ticks_utils.c sci_gateway/c/sci_swap_handles.c \
+	sci_gateway/c/sci_grayplot.c sci_gateway/c/sci_matplot1.c \
+	sci_gateway/c/sci_xfpolys.c sci_gateway/c/sci_xget.c \
+	sci_gateway/c/sci_newaxes.c sci_gateway/c/sci_xlfont.c \
+	sci_gateway/c/sci_xgraduate.c sci_gateway/c/sci_xgrid.c \
+	sci_gateway/c/sci_xclick.c sci_gateway/c/sci_xclear.c \
+	sci_gateway/c/sci_geom3d.c sci_gateway/c/sci_xtape.c \
+	sci_gateway/c/sci_xset.c sci_gateway/c/sci_set_posfig_dim.c \
+	sci_gateway/c/sci_xgetech.c sci_gateway/c/sci_unzoom.c \
+	sci_gateway/c/sci_xsegs.c sci_gateway/c/sci_clear_pixmap.c \
+	sci_gateway/c/sci_glue.c sci_gateway/c/sci_xarc.c \
+	sci_gateway/c/sci_xpolys.c sci_gateway/c/sci_xstring.c \
+	sci_gateway/c/sci_xstringb.c sci_gateway/c/sci_xsetech.c \
+	sci_gateway/c/sci_show_window.c sci_gateway/c/sci_param3d1.c \
+	sci_gateway/c/sci_xname.c sci_gateway/c/sci_xpoly.c \
+	sci_gateway/c/sci_xchange.c sci_gateway/c/sci_matplot.c \
+	sci_gateway/c/sci_drawaxis.c sci_gateway/c/sci_demo.c \
+	sci_gateway/c/sci_plot2d1.c sci_gateway/c/sci_xrect.c \
+	sci_gateway/c/sci_draw.c sci_gateway/c/sci_xarrows.c \
+	sci_gateway/c/sci_plot3d.c sci_gateway/c/sci_move.c \
+	sci_gateway/c/sci_copy.c sci_gateway/c/sci_relocate_handle.c \
+	sci_gateway/c/sci_get.c sci_gateway/c/sci_xarcs.c \
+	sci_gateway/c/sci_xfpoly.c sci_gateway/c/sci_drawlater.c \
+	sci_gateway/c/sci_champ.c sci_gateway/c/sci_set.c \
 	sci_gateway/c/sci_showalluimenushandles.c \
 	sci_gateway/c/sci_unglue.c sci_gateway/c/gw_graphics.c \
 	sci_gateway/c/sci_zoom_rect.c sci_gateway/c/sci_delete.c \
@@ -730,7 +730,8 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-CurrentObjectsManagement.lo \
 @GUI_TRUE@	libscigraphics_la-ObjectSelection.lo \
 @GUI_TRUE@	libscigraphics_la-periEmpty.lo \
-@GUI_TRUE@	libscigraphics_la-scitokenize.lo
+@GUI_TRUE@	libscigraphics_la-scitokenize.lo \
+@GUI_TRUE@	libscigraphics_la-get_ticks_utils.lo
 @GUI_TRUE@am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 @GUI_TRUE@	libscigraphics_la-sci_grayplot.lo \
 @GUI_TRUE@	libscigraphics_la-sci_matplot1.lo \
@@ -1387,8 +1388,9 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/TerminateGraphics.c \
 @GUI_TRUE@src/c/CurrentObjectsManagement.c \
 @GUI_TRUE@src/c/ObjectSelection.c \
-@GUI_TRUE@src/c/periEmpty.c\
-@GUI_TRUE@src/c/scitokenize.c
+@GUI_TRUE@src/c/periEmpty.c \
+@GUI_TRUE@src/c/scitokenize.c \
+@GUI_TRUE@src/c/get_ticks_utils.c
 
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 @GUI_TRUE@sci_gateway/c/sci_grayplot.c \
@@ -2041,6 +2043,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_text_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_text_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_thickness_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_ticks_utils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_tics_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_tics_direction_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_tics_label_property.Plo@am__quote@
@@ -4375,6 +4378,13 @@ libscigraphics_la-scitokenize.lo: src/c/scitokenize.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scitokenize.c' object='libscigraphics_la-scitokenize.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-scitokenize.lo `test -f 'src/c/scitokenize.c' || echo '$(srcdir)/'`src/c/scitokenize.c
+
+libscigraphics_la-get_ticks_utils.lo: src/c/get_ticks_utils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_ticks_utils.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_ticks_utils.Tpo -c -o libscigraphics_la-get_ticks_utils.lo `test -f 'src/c/get_ticks_utils.c' || echo '$(srcdir)/'`src/c/get_ticks_utils.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_ticks_utils.Tpo $(DEPDIR)/libscigraphics_la-get_ticks_utils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/get_ticks_utils.c' object='libscigraphics_la-get_ticks_utils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_ticks_utils.lo `test -f 'src/c/get_ticks_utils.c' || echo '$(srcdir)/'`src/c/get_ticks_utils.c
 
 libscigraphics_la-sci_swap_handles.lo: sci_gateway/c/sci_swap_handles.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_swap_handles.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_swap_handles.Tpo -c -o libscigraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/c/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/c/sci_swap_handles.c
