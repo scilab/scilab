@@ -1,5 +1,4 @@
 C/MEMBR ADD NAME=WRSCAL,SSI=0
-c     Copyright INRIA
       subroutine wrscal(n,s,xr,xi,incx)
 c!but
 c
@@ -23,7 +22,7 @@ c     incx: increment entre deux composantes consecutives de x.
 c
 c!auteur
 c
-c     cleve moler.- mathlab.
+c     cleve moler.- matlab.
 c
 c!
       double precision s,xr(*),xi(*)

@@ -1,5 +1,4 @@
 C/MEMBR ADD NAME=WSWAP,SSI=0
-c     Copyright INRIA
       subroutine wswap(n,xr,xi,incx,yr,yi,incy)
 c!but
 c
@@ -28,7 +27,7 @@ c     de x.
 c
 c!auteur
 c
-c     cleve moler.- mathlab.
+c     cleve moler.- matlab.
 c
 c!
       double precision xr(*),xi(*),yr(*),yi(*),t

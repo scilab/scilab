@@ -1,5 +1,4 @@
 C/MEMBR ADD NAME=WNRM2,SSI=0
-c     Copyright INRIA
       double precision function wnrm2(n,xr,xi,incx)
 c!purpose
 c
@@ -27,7 +26,7 @@ c     pythag
 c
 c!author
 c
-c     cleve moler.- mathlab.
+c     cleve moler.- matlab.
 c
 c!
       double precision xr(*),xi(*),pythag,s

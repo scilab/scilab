@@ -1,5 +1,4 @@
 C/MEMBR ADD NAME=WAXPY,SSI=0
-c     Copyright INRIA
       subroutine waxpy(n,sr,si,xr,xi,incx,yr,yi,incy)
 c!but
 c
@@ -33,7 +32,7 @@ c     successives des vecteurs x et y.
 c
 c!auteur
 c
-c     cleve moler.- mathlab.
+c     cleve moler.- matlab.
 c
 c!
       double precision sr,si,xr(*),xi(*),yr(*),yi(*)
