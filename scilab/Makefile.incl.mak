@@ -37,7 +37,11 @@ INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" \
 -I"$(SCIDIR)\modules\core\includes" \
 -I"$(SCIDIR)\modules\output_stream\includes" \
 -I"$(SCIDIR)/libs/f2c" \
--I"$(SCIDIR)/modules/mexlib/includes" 
+-I"$(SCIDIR)/modules/mexlib/includes" \
+-I"$(SCIDIR)/modules/localization/includes" \
+-I"$(SCIDIR)/modules/jvm/includes" \
+-I"$(SCIDIR)/libs/intl"
+
 
 CC_LDFLAGS = 
 #==================================================
@@ -74,7 +78,8 @@ XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
 "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" \
 "$(SCIDIR1)\bin\scicos.lib" "$(SCIDIR1)\bin\intersci.lib" \
 "$(SCIDIR1)\bin\scioutput_stream.lib" "$(SCIDIR1)\bin\dynamic_link.lib" \
-"$(SCIDIR1)\bin\integer.lib" "$(SCIDIR1)\bin\optimization_f.lib"
+"$(SCIDIR1)\bin\integer.lib" "$(SCIDIR1)\bin\optimization_f.lib" \
+"$(SCIDIR1)\bin\libjvm.lib" "$(SCIDIR1)\bin\libintl.lib"
 #==================================================
 .c.obj	:
 	@echo ------------- Compile file $< --------------
