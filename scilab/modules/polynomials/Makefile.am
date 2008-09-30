@@ -45,7 +45,6 @@ src/fortran/wmptld.f \
 src/fortran/wpodiv.f \
 src/fortran/wdmpmu.f \
 src/fortran/wmptra.f \
-src/fortran/balbak.f \
 src/fortran/wmpins.f \
 src/fortran/mpdegr.f \
 src/fortran/ddmpev.f \
@@ -65,6 +64,8 @@ src/fortran/wmpcle.f \
 src/fortran/quadit.f \
 src/fortran/dmrdsp.f \
 src/fortran/quad.f
+
+EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
 sci_gateway/c/sci_sfact.c \
@@ -114,7 +115,7 @@ pkglib_LTLIBRARIES = libscipolynomials.la
 
 libscipolynomials_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(EISPACK_SOURCES)
 
 libscipolynomials_la_LIBADD =  $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 

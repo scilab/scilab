@@ -109,10 +109,10 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	dprxc.lo quadsd.lo wmpadj.lo dmpmu.lo wpmul1.lo wmpcnc.lo \
 	dmpdsp.lo mptri.lo horner.lo idegre.lo fxshfr.lo mpdiag.lo \
 	matra.lo dmpcle.lo rpoly.lo wmptld.lo wpodiv.lo wdmpmu.lo \
-	wmptra.lo balbak.lo wmpins.lo mpdegr.lo ddmpev.lo realit.lo \
-	dpmul.lo sfact2.lo dmpad.lo nextk.lo blktit.lo dimin.lo \
-	newest.lo dwmpmu.lo impcnc.lo wdmpad.lo fmt.lo wmpcle.lo \
-	quadit.lo dmrdsp.lo quad.lo
+	wmptra.lo wmpins.lo mpdegr.lo ddmpev.lo realit.lo dpmul.lo \
+	sfact2.lo dmpad.lo nextk.lo blktit.lo dimin.lo newest.lo \
+	dwmpmu.lo impcnc.lo wdmpad.lo fmt.lo wmpcle.lo quadit.lo \
+	dmrdsp.lo quad.lo
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
 	sci_f_bezout.lo sci_f_triu_tril.lo sci_f_roots.lo \
@@ -135,8 +135,9 @@ am__objects_3 = libscipolynomials_la-gw_polynomials.lo \
 	libscipolynomials_la-sci_poly.lo \
 	libscipolynomials_la-sci_triu.lo \
 	libscipolynomials_la-sci_degree.lo
+am__objects_4 = balbak.lo
 am_libscipolynomials_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+	$(am__objects_3) $(am__objects_4)
 libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
 libscipolynomials_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -409,7 +410,6 @@ src/fortran/wmptld.f \
 src/fortran/wpodiv.f \
 src/fortran/wdmpmu.f \
 src/fortran/wmptra.f \
-src/fortran/balbak.f \
 src/fortran/wmpins.f \
 src/fortran/mpdegr.f \
 src/fortran/ddmpev.f \
@@ -430,6 +430,7 @@ src/fortran/quadit.f \
 src/fortran/dmrdsp.f \
 src/fortran/quad.f
 
+EISPACK_SOURCES = src/fortran/eispack/balbak.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
 sci_gateway/c/sci_sfact.c \
 sci_gateway/c/sci_cleanp.c \
@@ -472,7 +473,7 @@ libscipolynomials_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 libscipolynomials_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(EISPACK_SOURCES)
 libscipolynomials_la_LIBADD =  \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -919,9 +920,6 @@ wdmpmu.lo: src/fortran/wdmpmu.f
 wmptra.lo: src/fortran/wmptra.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmptra.lo `test -f 'src/fortran/wmptra.f' || echo '$(srcdir)/'`src/fortran/wmptra.f
 
-balbak.lo: src/fortran/balbak.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o balbak.lo `test -f 'src/fortran/balbak.f' || echo '$(srcdir)/'`src/fortran/balbak.f
-
 wmpins.lo: src/fortran/wmpins.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpins.lo `test -f 'src/fortran/wmpins.f' || echo '$(srcdir)/'`src/fortran/wmpins.f
 
@@ -1032,6 +1030,9 @@ sci_f_sfact.lo: sci_gateway/fortran/sci_f_sfact.f
 
 sci_f_simpmd.lo: sci_gateway/fortran/sci_f_simpmd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simpmd.lo `test -f 'sci_gateway/fortran/sci_f_simpmd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simpmd.f
+
+balbak.lo: src/fortran/eispack/balbak.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o balbak.lo `test -f 'src/fortran/eispack/balbak.f' || echo '$(srcdir)/'`src/fortran/eispack/balbak.f
 
 mostlyclean-libtool:
 	-rm -f *.lo
