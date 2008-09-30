@@ -87,11 +87,11 @@ XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
 
 .cxx.obj	:
 	@echo ------------- Compile file $< --------------
-	@$(CC) $(CFLAGS) $*.cxx 
+	@$(CC) $(CFLAGS) /EHsc $*.cxx 
 
 .cpp.obj	:
 	@echo ------------- Compile file $< --------------
-	@$(CC) $(CFLAGS) $*.cpp
+	@$(CC) $(CFLAGS) /EHsc $*.cpp
 
 # default rule for Fortran 77 & 90 Compilation 
 
