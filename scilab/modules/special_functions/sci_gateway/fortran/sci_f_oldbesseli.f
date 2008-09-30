@@ -1,4 +1,3 @@
-
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) ????-2008 - INRIA
 c
