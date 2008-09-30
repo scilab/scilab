@@ -17,6 +17,7 @@
 #DEFINE JVM "jvm"
 ;
 Source: bin\libjvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libjvm.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: etc\classpath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
