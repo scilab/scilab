@@ -401,6 +401,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\..\..\polynomials\src\fortran\eispack\balbak.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hqror2.c"
 				>
 			</File>
@@ -420,6 +424,10 @@
 		<Filter
 			Name="Fortran Files"
 			>
+			<File
+				RelativePath="..\..\..\..\polynomials\src\fortran\eispack\balbak.f"
+				>
+			</File>
 			<File
 				RelativePath=".\hqror2.f"
 				>

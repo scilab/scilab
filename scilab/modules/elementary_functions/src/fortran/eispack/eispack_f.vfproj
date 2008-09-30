@@ -68,6 +68,7 @@ copy eispack_f_header.def+eispack_f.vcdef eispack_f.def &gt;nul" Description="Bu
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\..\..\..\polynomials\src\fortran\eispack\balbak.f"/>
 		<File RelativePath=".\hqror2.f"/></Filter>
 		<File RelativePath="..\..\..\..\..\bin\lapack.lib"/></Files>
 	<Globals/></VisualStudioProject>

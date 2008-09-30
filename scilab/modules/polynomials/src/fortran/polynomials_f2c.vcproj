@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="polynomials_f2c"
 	ProjectGUID="{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
 	RootNamespace="polynomials_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -335,10 +335,6 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath=".\balbak.c"
-				>
-			</File>
 			<File
 				RelativePath=".\bezout.c"
 				>
@@ -671,10 +667,6 @@
 		<Filter
 			Name="Fortran Files"
 			>
-			<File
-				RelativePath=".\balbak.f"
-				>
-			</File>
 			<File
 				RelativePath=".\bezout.f"
 				>
