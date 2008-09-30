@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Launchpad-Export-Date: 2008-09-30 15:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Error(s) : see help powershell'';''verify your script without scilab."
@@ -663,7 +663,7 @@ msgid "%s: Wrong type for argument %d : Polygon expected.\n"
 msgstr "%s：参数%d的类型错误：应该为多边形。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为Working整数矩阵。\n"
 
 #, c-format
@@ -1012,3 +1012,27 @@ msgstr "GetDataFromName：变量%s不存在。\n"
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr "%s：变量%s不存在。\n"
+
+msgid "Startup execution:"
+msgstr "开始执行："
+
+msgid "  loading initial environment"
+msgstr "  载入初始环境中"
+
+msgid "&File"
+msgstr ""
+
+msgid "&Edit"
+msgstr ""
+
+msgid "&Preferences"
+msgstr ""
+
+msgid "&Control"
+msgstr ""
+
+msgid "&Applications"
+msgstr ""
+
+msgid "&?"
+msgstr ""
