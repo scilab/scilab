@@ -7,7 +7,7 @@ c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
-     subroutine strang(prosca,n,m,depl,jmin,jmax,precon,alpha,ybar,
+      subroutine strang(prosca,n,m,depl,jmin,jmax,precon,alpha,ybar,
      /                 sbar,izs,rzs,dzs)
 c----
 c
