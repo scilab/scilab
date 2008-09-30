@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)
 //<xs,ps,xf,pf>=wiener(y,x0,p0,f,g,h,q,r)
 //macro which gives the Wiener estimate using
@@ -22,14 +31,6 @@ function [xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)
 //form of xs and xf:  [x0,x1,...,xf], and xk is a column n-vector
 //form of ps and pf:  [p0,p1,...,pf], and pk is a nxn matrix
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1988 - C. Bunks
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //obtain the dimensions of xk and yk.
 //Get the time interval [t0,tf].

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1989 - G. Le Vey
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [s]=sincd(n,flag)
 //<s>=sincd(n,flag)
 //macro which calculates the function Sin(N*x)/Sin(x)
@@ -7,14 +16,6 @@ function [s]=sincd(n,flag)
 //  s    : vector of values of the function on a dense
 //       : grid of frequencies
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1989 - G. Le Vey
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
    npt=4*n;
    pas=%pi/npt;

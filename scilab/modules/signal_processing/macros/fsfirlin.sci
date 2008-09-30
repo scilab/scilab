@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1989 - G. Le Vey
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function [hst]=fsfirlin(hd,flag)
 //<hst>=fsfirlin(hd,flag)
 //macro for the design of FIR, linear phase filters
@@ -8,14 +16,7 @@ function [hst]=fsfirlin(hd,flag)
 //  hst  : vector giving the approximated continuous response
 //         on a dense grid of frequencies
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1989 - G. Le Vey
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 
    n1=prod(size(hd));//filter length
    if int(n1/2)==n1/2,n=2*n1;else,n=2*n1+1;end;//even or odd length

@@ -1,10 +1,3 @@
-function xf=dft(x,flag);
-//xf=dft(x,flag);
-//macro which computes dft of vector x
-// x    :input vector
-// flag :indicates dft or idft
-// xf   :output vector
-//!
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
 // 
@@ -13,6 +6,14 @@ function xf=dft(x,flag);
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function xf=dft(x,flag);
+//xf=dft(x,flag);
+//macro which computes dft of vector x
+// x    :input vector
+// flag :indicates dft or idft
+// xf   :output vector
+//!
 
 n=maxi(size(x));
 arg=(0:n-1);

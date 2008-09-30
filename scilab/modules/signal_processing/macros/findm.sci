@@ -1,6 +1,3 @@
-function m=findm(chi)
-//Search for m such that chi = %k(1-m)/%k(m)
-//!
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // 
@@ -9,6 +6,10 @@ function m=findm(chi)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function m=findm(chi)
+//Search for m such that chi = %k(1-m)/%k(m)
+//!
 
 if chi < 1 then
   t=1;

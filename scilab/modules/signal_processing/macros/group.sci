@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
 //Calculate the group delay of a digital filter
 //with transfer function h(z).
@@ -21,14 +30,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
 //       h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)
 //
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1988 - C. Bunks
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 
 //get frequency grid values in [0,.5)
  

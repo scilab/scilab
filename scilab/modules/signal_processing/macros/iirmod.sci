@@ -1,10 +1,3 @@
-function [la,grad,ind]=iirmod(x,ind)
-//    p===> critere Lp
-//    r=module des poles et zeros des filtres
-//theta=argument des  "    "   "    "    "
-//omega=frequences ou sont donnees les specifications des filtres
-//wa=fonction de ponderation pour l'amplitude
-//!
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // 
@@ -13,6 +6,14 @@ function [la,grad,ind]=iirmod(x,ind)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function [la,grad,ind]=iirmod(x,ind)
+//    p===> critere Lp
+//    r=module des poles et zeros des filtres
+//theta=argument des  "    "   "    "    "
+//omega=frequences ou sont donnees les specifications des filtres
+//wa=fonction de ponderation pour l'amplitude
+//!
 r=x(:,1);theta=x(:,2);
 [m,n]=size(ad);if m>n,ad=ad';end;
 [m,n]=size(omega);if m>n,omega=omega';end;

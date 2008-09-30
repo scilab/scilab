@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Nz,Dz]=yulewalk(Norder, frq, mag)
 //YULEWALK  filter design using a least-squares method.
 //	Hz = YULEWALK(N,frq,mag) finds the N-th order iir filter
@@ -22,14 +31,6 @@ function [Nz,Dz]=yulewalk(Norder, frq, mag)
 //xbasc(1);xset('window',1);plot2d(fs*frq',abs(repf'));
 //xtitle('Obtained Frequency Response')
 //
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
   [LHS,RHS]=argn(0);
   if RHS <>3
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),'yulewalk',3));

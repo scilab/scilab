@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
 //[hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
 //Creates analog low-pass filter with cut-off frequency at omega
@@ -22,14 +31,7 @@ function [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
 //	hs=gain*poly(zers,'s')/poly(pols,'s')
 //
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1988 - C. Bunks
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 
    select fdesign
    case 'butt' then

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function xh=hilb(n,wtype,par)
 //xh=hilb(n [,wtype [,par]])
 //returns the first n points of the
@@ -13,11 +22,6 @@ function xh=hilb(n,wtype,par)
 // xh    :Hilbert transform
 //
 //!
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // References:
 // http://ieeexplore.ieee.org/iel4/78/7823/00330385.pdf?tp=&arnumber=330385&isnumber=7823
 //  A. Reilly, G. Frazer, and B. Boashash, "Analytic signal generation

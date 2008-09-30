@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F.D
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function [h2]=cheb1mag(n,omegac,epsilon,sample)
 //<h2>=cheb1mag(n,omegac,epsilon,sample)
 //Square magnitude response of a type 1 Chebyshev filter
@@ -12,14 +20,7 @@ function [h2]=cheb1mag(n,omegac,epsilon,sample)
 //  h2      :Chebyshev I filter values at sample points
 //
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - F.D
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 
    [n1,n2]=size(sample);
    un=ones(n1,n2);

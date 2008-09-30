@@ -1,10 +1,3 @@
-function Tn=chepol(n,var)
-//Chebychev polynomial
-//  n   :Polynomial order
-//  var :Polynomial variable (character string)
-//  Tn  :Polynomial in var
-//
-//!
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F.D
 // 
@@ -13,6 +6,14 @@ function Tn=chepol(n,var)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function Tn=chepol(n,var)
+//Chebychev polynomial
+//  n   :Polynomial order
+//  var :Polynomial variable (character string)
+//  Tn  :Polynomial in var
+//
+//!
 if n==0 then
   Tn=poly(1,var,'coeff'),
 elseif n==1 then

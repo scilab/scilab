@@ -1,10 +1,3 @@
-function [lt,grad]=iirgroup(p,r,theta,omega,wt,td)
-//    p===> Lp
-//    r=magnitude of poles and zeros of filters
-//theta=phase   "    "   "    "    "
-//omega=frequencies corresponding to filters specs.
-//wt=weighting function for group delay
-//!
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // 
@@ -13,6 +6,14 @@ function [lt,grad]=iirgroup(p,r,theta,omega,wt,td)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function [lt,grad]=iirgroup(p,r,theta,omega,wt,td)
+//    p===> Lp
+//    r=magnitude of poles and zeros of filters
+//theta=phase   "    "   "    "    "
+//omega=frequencies corresponding to filters specs.
+//wt=weighting function for group delay
+//!
 [m,n]=size(td);if m>n,td=td';end;
 [m,n]=size(omega);if m>n,omega=omega';end;
 [m,n]=size(r);if n>m,r=r';m=n;end;

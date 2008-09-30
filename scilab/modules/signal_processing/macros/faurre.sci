@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1989 - G. Le Vey
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [P,R,T]=faurre(n,H,F,G,R0)
 //[P,R,T]=faurre(n,H,F,G,R0)
 //macro which computes iteratively the minimal solution of the algebraic
@@ -8,14 +17,6 @@ function [P,R,T]=faurre(n,H,F,G,R0)
 //   P    : solution of the Riccati equation after n iterations.
 //   R,T  : gain matrix of the filter.
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1989 - G. Le Vey
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //initialization
 Pn=G*inv(R0)*G'

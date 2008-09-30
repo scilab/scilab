@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1989 - F.Delebecque
+// Copyright (C) INRIA - 1996 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [ze,po,gain]=zpell(epsilon,A,omegac,omegar)
 //[ze,po,gain]=zpell(epsilon,A,omegac,omegar)
 //Poles and zeros of prototype lowpass elliptic filter
@@ -11,15 +21,7 @@ function [ze,po,gain]=zpell(epsilon,A,omegac,omegar)
 //  gain    :Resulting gain of filter
 //
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1989 - F.Delebecque
-// Copyright (C) INRIA - 1996 - C. Bunks
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 m1=(epsilon*epsilon)/(A*A-1);
    K1=%asn(1,m1);
    K1t=imag(%asn(1/sqrt(m1),m1));

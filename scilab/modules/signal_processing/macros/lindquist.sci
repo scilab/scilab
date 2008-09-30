@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1989 - G. Le Vey
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [P,R,T]=lindquist(n,H,F,G,R0)
 //[Pn,Rn,Tn]=lindquist(n,H,F,G,R0)
 //macro which computes iteratively the minimal solution of the algebraic
@@ -9,14 +18,6 @@ function [P,R,T]=lindquist(n,H,F,G,R0)
 //   Pn    : solution of the Riccati equation after n iterations.
 //   Rn,Tn : gain matrices of the filter.
 //!
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 1989 - G. Le Vey
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 [d,m]=size(H);
 //initialization
 Gn=G;
