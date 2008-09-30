@@ -947,6 +947,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helptools-Ant", "modules\helptools\src\java\helptools-JAVA.vcproj", "{899DECF1-D4DC-4C84-BB3C-3A343401A5B4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linpack_f2c", "modules\elementary_functions\src\fortran\linpack\linpack_f2c.vcproj", "{F0F55692-0355-4BC3-BE9D-552C8AAC5238}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69296D00-0DE1-4F4B-B0CE-FE4F3CB43923} = {69296D00-0DE1-4F4B-B0CE-FE4F3CB43923}
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9} = {78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eispack_f2c", "modules\elementary_functions\src\fortran\eispack\eispack_f2c.vcproj", "{96248E56-C84A-4803-9F50-25E2089AB6B8}"
 	ProjectSection(ProjectDependencies) = postProject
