@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2008-08-17 13:37+0000\n"
+"PO-Revision-Date: 2008-09-29 09:51+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Launchpad-Export-Date: 2008-09-30 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 11:26+0100\n"
 
@@ -19,7 +19,7 @@ msgid "Error(s) : see help powershell'';''verify your script without scilab."
 msgstr "錯誤 : 請參考 powershell'';''不使用 Scilab 方式檢查你的程序檔."
 
 msgid "Only for Microsoft Windows."
-msgstr ""
+msgstr "只適用於 Microsoft Windows."
 
 #
 # File: macros/powershell.sci, line: 20
@@ -28,43 +28,43 @@ msgstr "找不到 Powershell."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
 msgid "Checking: %s\n"
-msgstr ""
+msgstr "檢查: %s\n"
 
 #, c-format
 msgid "%s: Please check: %s.\n"
-msgstr ""
+msgstr "%s: 請檢查: %s.\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
-msgstr ""
+msgstr "%s: 檔案不存在 : %s"
 
 #, c-format
 msgid "%s: Requires Scipad.\n"
-msgstr ""
+msgstr "%s: 需要 Scipad.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
 
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr ""
+msgstr "%s: %s 為無法編輯之函數.\n"
 
 #, c-format
 msgid "%s called at line %s of %s"
-msgstr ""
+msgstr "%s 在第 %s 行被呼叫 ( %s 內)"
 
 #, c-format
 msgid "%s called at line %s of %s instruction."
-msgstr ""
+msgstr "%s 在第 %s 行被呼叫 ( %s 指令內)"
 
 #, c-format
 msgid "%s called under %s"
-msgstr ""
+msgstr "%s 在 %s 之內被呼叫"
 
 #
 # File: macros/whereami.sci, line: 21
@@ -74,7 +74,7 @@ msgstr "%s 第  %s 行(在巨集指令 %s 內)被呼叫"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為已定義之變數.\n"
 
 # File: macros/perl.sci, line: 12
 #, c-format
@@ -130,7 +130,7 @@ msgstr "%s: 檔案 %s 不存在.\n"
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 輸入參數錯誤: 應為 Scilab 程序檔案之路徑.\n"
 
 #
 # File: macros/who_user.sci, line: 36
@@ -149,7 +149,7 @@ msgid " is already compiled.\n"
 msgstr " 已經編譯完成.\n"
 
 msgid "&Toolboxes"
-msgstr ""
+msgstr "工具箱(&)"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -157,15 +157,15 @@ msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為''%s'' 或 ''%s''.\n"
 
 #, c-format
 msgid "Warning: Problems with %s.\n"
-msgstr ""
+msgstr "警告: %s 的問題.\n"
 
 #, c-format
 msgid "%s: Invalid '%s' value.\n"
-msgstr ""
+msgstr "%s: 不正確之 '%s' 值.\n"
 
 #
 # File: sci_gateway/c/sci_newfun.c, line: 51
@@ -175,38 +175,40 @@ msgstr "%s: 函數名稱不正確.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 必須為 %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d or #%d.\n"
-msgstr ""
+msgstr "%s: 第 %d 或 第 %d 輸入參數錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應大於 0.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
-msgstr ""
+msgstr "%s: 輸入參數型態錯誤.\n"
 
 #, c-format
 msgid ""
 "%s: Cannot allocate more memory.\n"
 "Try stacksize('max').\n"
 msgstr ""
+"%s: 無法配置多記憶區.\n"
+"試試指令 stacksize('max').\n"
 
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 105
@@ -219,34 +221,34 @@ msgstr "%s: 超出數值限制. 未在 [%lu,%lu] 之內.\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為純量, '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量, '%s' 或 '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s'. 第 %d 輸入參數應為 '%s'.\n"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 226
@@ -284,13 +286,13 @@ msgstr "%s: 無效之程式庫 %s.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
 
 msgid "Internal Functions:\n"
-msgstr ""
+msgstr "內部函數:\n"
 
 msgid "Commands:\n"
-msgstr ""
+msgstr "指令:\n"
 
 #
 # File: sci_gateway/c/sci_where.c, line: 17
@@ -304,15 +306,15 @@ msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "警告: %s"
 
 #, c-format
 msgid "WARNING: %s\n"
-msgstr ""
+msgstr "警告: %s\n"
 
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 90
@@ -328,23 +330,23 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量 '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: 參數 %d 型態錯誤: 應為純量, '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr ""
+msgstr "%s: 參數 %d 或 %d 型態錯誤 :應為字串.\n"
 
 #, c-format
 msgid "%s: Impossible to read %s gateway.\n"
-msgstr ""
+msgstr "%s: 無法讀取 %s gateway.\n"
 
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
-msgstr ""
+msgstr "%s: 模組名稱不正確 : %s.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 218
@@ -367,7 +369,7 @@ msgstr "%s: %s 中之檔案版本錯誤 .\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 及  %d 輸入參數型態錯誤: 應為字串.\n"
 
 #
 # File: includes/stack-c.h, line: 318
@@ -377,58 +379,58 @@ msgstr " 結果可能不正確. rcond = %s1\n"
 
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
-msgstr ""
+msgstr "錯誤: 無法定義環境變數 %s.\n"
 
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "版本: %s"
 
 #, c-format
 msgid "Compilation date: %s"
-msgstr ""
+msgstr "編譯日期: %s"
 
 #, c-format
 msgid "Compilation time: %s"
-msgstr ""
+msgstr "編譯時間: %s"
 
 #, c-format
 msgid "Compiler Architecture: %s"
-msgstr ""
+msgstr "編譯器架構: %s"
 
 #, c-format
 msgid "Compiled with %s"
-msgstr ""
+msgstr "以 %s 編譯"
 
 #, c-format
 msgid "XML version: %s"
-msgstr ""
+msgstr "XML 版本: %s"
 
 #, c-format
 msgid "Tcl/Tk: %s"
-msgstr ""
+msgstr "Tcl/Tk: %s"
 
 msgid "Enable"
-msgstr ""
+msgstr "啟用"
 
 #, c-format
 msgid "TCL version: %s"
-msgstr ""
+msgstr "TCL 版本: %s"
 
 #, c-format
 msgid "TK version: %s"
-msgstr ""
+msgstr "TCL 版本: %s"
 
 #, c-format
 msgid "Path separator: %s"
-msgstr ""
+msgstr "檔案路徑分隔符號: %s"
 
 #, c-format
 msgid "Directory separator: %s"
-msgstr ""
+msgstr "目錄分隔符號: %s"
 
 #, c-format
 msgid "PCRE Version: %d.%d"
-msgstr ""
+msgstr "PCRE 版本: %d.%d"
 
 #
 # File: src/c/LoadFunctionsTab.c, line: 97
@@ -440,19 +442,21 @@ msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
 
 #, c-format
 msgid "Error: Memory allocation.\n"
-msgstr ""
+msgstr "錯誤:  記憶區配置.\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
 "<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
+"錯誤: gateway 檔 %s 不正確(應以 <GATEWAY> 起頭並包含 <PRIMITIVE gatewayId='' "
+"primitiveId='' primitiveName=''>)\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
-msgstr ""
+msgstr "錯誤:  gateway 檔 %s 不正確(不是以 'utf-8' 編碼), 所用之編碼為 '%s'\n"
 
 #
 # File: src/c/inisci-c.c, line: 110
@@ -488,7 +492,7 @@ msgid "No space to allocate Scilab stack.\n"
 msgstr "無法再配置空間給  Scilab 堆疊 (stack).\n"
 
 msgid "Cannot find Windows temporary directory."
-msgstr ""
+msgstr "無法找到 Windows 的暫存目錄."
 
 #
 # File: src/c/tmpdir.c, line: 53
@@ -505,46 +509,50 @@ msgstr "無法產生 : %s"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
-msgstr ""
+msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
+"錯誤:版本檔 %s 不正確(應以 <MODULE_VERSION> 起頭並包含 <VERSION major='' minor='' "
+"maintenance='' revision='' string=''>)\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
-msgstr ""
+msgstr "錯誤:  版本檔 %s 不正確(不是以 'utf-8' 編碼), 所用之編碼為 '%s'\n"
 
 #, c-format
 msgid "Impossible to load %s library: %s\n"
-msgstr ""
+msgstr "無法載入 %s 程式庫: %s\n"
 
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
-msgstr ""
+msgstr "無法載入函數 %s (程式庫 %s ): %s\n"
 
 #, c-format
 msgid "Impossible to call %s in %s library: %s\n"
-msgstr ""
+msgstr "無法呼叫 %s  (在程式庫 %s 內):  %s\n"
 
 #, c-format
 msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
+"鍵入 '%s' 或 '%s' 以返回標準提示 (prompt) 狀態.\n"
+"\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr ""
+msgstr "                 Scilab 協會 (DIGITEO)\n"
 
 msgid "               Copyright (c) 1989-2008 (INRIA)\n"
-msgstr ""
+msgstr "               版權 (c) 1989-2008 (INRIA)\n"
 
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr ""
+msgstr "               版權 (c) 1989-2007 (ENPC)\n"
 
 #
 # File: src/c/banier.c, line: 45
@@ -557,11 +565,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為已命名之變數.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為編譯後之巨集.\n"
 
 #
 # File: src/c/stack2.c, line: 1868
@@ -613,7 +621,7 @@ msgstr "%s: 記憶體不夠.\n"
 
 #, c-format
 msgid "%s: Out of code.\n"
-msgstr ""
+msgstr "%s: 超過編碼範圍.\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 179
@@ -640,11 +648,11 @@ msgstr "%s: 堆疊大小超過限制 (使用 stacksize 函數增加堆疊大小)
 
 #, c-format
 msgid "%s: Wrong %s value %d instead of %d.\n"
-msgstr ""
+msgstr "%s: 錯誤之 %s 值, %d 而非 %d.\n"
 
 #, c-format
 msgid "%s: code %d not yet implemented.\n"
-msgstr ""
+msgstr "%s:  %d 碼 (code) 尚未實作.\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 585
@@ -654,7 +662,7 @@ msgstr "%s: 不認識之碼 (code) %d , 位於index2 %d.\n"
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
-msgstr ""
+msgstr "%s: 舊版之 if 及 while 未實作.\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 1082
@@ -664,11 +672,11 @@ msgstr "%s: 型態值錯誤.\n"
 
 #, c-format
 msgid "%s: Unknown operator %d.\n"
-msgstr ""
+msgstr "%s: 未知運算子 %d.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
-msgstr ""
+msgstr "%s: 錯誤之 fromwhat 值 %s.\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 1981
@@ -693,7 +701,7 @@ msgstr "你確定要結束計算 (y 或 n ?) \n"
 
 #, c-format
 msgid "Can't go to directory %s.\n"
-msgstr ""
+msgstr "無法進入到目錄 %s.\n"
 
 #
 # File: src/c/scicurdir.c, line: 49
@@ -711,10 +719,10 @@ msgid "tlist not completely filled.\n"
 msgstr "tlist 未完全填滿.\n"
 
 msgid "List full.\n"
-msgstr ""
+msgstr "List 已滿.\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
-msgstr ""
+msgstr "嚴重錯誤: 無法產生 Scilab 函數表.\n"
 
 #
 # File: src/c/stack1.c, line: 81
@@ -852,7 +860,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr ""
+msgstr "%s: 參數 %d 型態錯誤: 應為字串矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
@@ -867,7 +875,7 @@ msgid "%s: Wrong type for argument %d : Polygon expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為多邊形.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為整數矩陣.\n"
 
 #, c-format
@@ -971,11 +979,11 @@ msgstr "SCI 環境參數未設.\n"
 
 #, c-format
 msgid "Cannot load the module declaration file: %s.\n"
-msgstr ""
+msgstr "無法載入模組宣告檔:%s.\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
-msgstr ""
+msgstr "錯誤: 無法剖析(parse) 檔案 %s.\n"
 
 #
 # File: src/c/getmodules.c, line: 202
@@ -986,7 +994,7 @@ msgstr "%s 模組找不到.\n"
 #, c-format
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
+msgstr "錯誤: 模組檔案 %s 不正確(不以 '%s'　編碼) , 編碼為 '%s'.\n"
 
 #
 # File: src/c/stack3.c, line: 73
@@ -1011,17 +1019,17 @@ msgid "%s: argument must be a string.\n"
 msgstr "%s: 參數須為一字串.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
-msgstr ""
+msgstr "非預期之 opcode 碼, 請回報 Scilab bug 追蹤系統."
 
 msgid "Functions compiled with very old versions are no more handled."
-msgstr ""
+msgstr "無法處理以過舊版本編譯之函數."
 
 #, c-format
 msgid "Memory in use: %*ld %%"
-msgstr ""
+msgstr "使用中之記憶區: %*ld %%"
 
 msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr ""
+msgstr "Total Physical Memory (Kbytes): %*I64d"
 
 msgid "Free Physical Memory (Kbytes): %*I64d"
 msgstr ""
@@ -1042,35 +1050,35 @@ msgid "Free Extended Memory (Kbytes): %*I64d"
 msgstr ""
 
 msgid "Operating System: "
-msgstr ""
+msgstr "作業系統: "
 
 #, c-format
 msgid "Number of processors: %d"
-msgstr ""
+msgstr "處理器數目: %d"
 
 #, c-format
 msgid "Video card: %s"
-msgstr ""
+msgstr "顯示卡: %s"
 
 #, c-format
 msgid "%s: %d x %d %d bits"
-msgstr ""
+msgstr "%s: %d x %d %d 位元( bits)"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數數目錯誤: 應為 %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數數目錯誤: 應在 %d ,%d 之間.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 輸出參數數目錯誤: 應在 %d ,%d 之間.\n"
 
 #
 # File: src/c/stack2.c, line: 317
@@ -1393,3 +1401,31 @@ msgstr "GetDataFromName: 變數  %s 找不到.\n"
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr "%s: 變數 %s 找不到.\n"
+
+#
+# File: etc/scilab.start, line: 35
+msgid "Startup execution:"
+msgstr "執行啟動"
+
+#
+# File: etc/scilab.start, line: 42
+msgid "  loading initial environment"
+msgstr "  載入初始環境"
+
+msgid "&File"
+msgstr "檔案(&F)"
+
+msgid "&Edit"
+msgstr "編輯(&E)"
+
+msgid "&Preferences"
+msgstr "喜好設定(&P)"
+
+msgid "&Control"
+msgstr "控制(&C)"
+
+msgid "&Applications"
+msgstr "應用程式(&A)"
+
+msgid "&?"
+msgstr "&?"
