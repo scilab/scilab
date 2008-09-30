@@ -5,13 +5,10 @@ EXPORTS
 ; --------------------------------------- 
 ; interpolation_f
 ; --------------------------------------- 
-db3ink_
-db3val_
 cshep2_
 bicubicsubspline_
 bicubicspline_
 derivd_
-dpchim_
 splinecub_
 spfit_
 driverdb3val_
