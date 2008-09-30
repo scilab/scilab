@@ -1,4 +1,4 @@
-# Russian translation for scilab
+# Russian (Russian Federation) translation for scilab
 # Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the scilab package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
@@ -8,25 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2008-07-02 10:10+0000\n"
-"Last-Translator: voronaam <voronaam@yandex.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"PO-Revision-Date: 2008-09-30 14:55+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian (Russian Federation) <ru_RU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Launchpad-Export-Date: 2008-09-30 14:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Error(s) : see help powershell'';''verify your script without scilab."
 msgstr ""
-"Есть ошибки : прочитайте документацию по powershell'';''проверьте свой "
-"скрипт без scilab."
 
 msgid "Only for Microsoft Windows."
 msgstr ""
 
 msgid "Powershell not found."
-msgstr "Powershell не найден."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -70,7 +68,7 @@ msgstr ""
 
 #, c-format
 msgid "%s called at line %s of macro %s"
-msgstr "%s вызван в строке %s макроса %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -78,38 +76,38 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Файл Perl не найден: %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No perl command specified."
-msgstr "%s: Команда perl не была задана."
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s: Perl не найден в '%s''"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Perl не найден.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: System error: Command executed: %s"
-msgstr "%s: Системная ошибка: Запущена комманда: %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+msgstr ""
 
 msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
-msgstr "Устарело: Установите SCIHOME и HOME для запуска Scilab."
+msgstr ""
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s: Файл %s не существует.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -117,21 +115,21 @@ msgid ""
 msgstr ""
 
 msgid "User variables are:"
-msgstr "Пользовательские пременные:"
+msgstr ""
 
 #, c-format
 msgid "Using %s elements ouf of %s"
-msgstr "Используется %s элементов из %s"
+msgstr ""
 
 msgid " is already compiled.\n"
-msgstr " уже откомилирован.\n"
+msgstr ""
 
 msgid "&Toolboxes"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -147,7 +145,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
-msgstr "%s: некорректное имя функции.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -186,7 +184,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
-msgstr "%s: Значение за пределами допустимого диапазона [%lu,%lu].\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -222,25 +220,25 @@ msgstr ""
 
 #, c-format
 msgid " using %10d elements out of  %10d.\n"
-msgstr " используется %10d элементов из %10d.\n"
+msgstr ""
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
-msgstr " и %10d переменных из %10d.\n"
+msgstr ""
 
 msgid "Your variables are:"
-msgstr "Ваши переменные:"
+msgstr ""
 
 msgid "Your global variables are:"
-msgstr "Ваши глобальные переменные:"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred.\n"
-msgstr "%s: Произошла ошибка.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Invalid library %s.\n"
-msgstr "%s: Некорректная библиотека %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -254,11 +252,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Неверное количество аргументов.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: Ожидалось %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -277,8 +275,6 @@ msgid ""
 "%s: Cannot alloc more memory.\n"
 "Try gstacksize('max').\n"
 msgstr ""
-"%s: Не удалось выделить (alloc) больше памяти.\n"
-"Попробуйте gstacksize('max').\n"
 
 #, c-format
 msgid ""
@@ -303,15 +299,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: У файла неверная VERSION %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong module name %s.\n"
-msgstr "%s: Неверное имя модуля %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: У файла неверная VERSION в %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
@@ -319,7 +315,7 @@ msgstr ""
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
-msgstr " результаты могут быть неточны. rcond = %s1\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
@@ -378,7 +374,7 @@ msgstr ""
 
 #, c-format
 msgid "Error: could not parse file %s\n"
-msgstr "Ошибка: не удалось разобрать файл %s\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Memory allocation.\n"
@@ -398,31 +394,31 @@ msgstr ""
 
 #, c-format
 msgid "SCI environment variable not defined.\n"
-msgstr "Переменная окружения SCI не задана.\n"
+msgstr ""
 
 #, c-format
 msgid "SCIHOME not defined.\n"
-msgstr "Переменная окружения SCIHOME не задана.\n"
+msgstr ""
 
 msgid "Warning"
-msgstr "Внимание!"
+msgstr ""
 
 #, c-format
 msgid "TMPDIR not defined.\n"
-msgstr "Переменная окружения TMPDIR не задана.\n"
+msgstr ""
 
 msgid "No space to allocate Scilab stack.\n"
-msgstr "Недостаточно места для размещения стека Scilab.\n"
+msgstr ""
 
 msgid "Cannot find Windows temporary directory."
 msgstr ""
 
 msgid "Error"
-msgstr "Ошибка"
+msgstr ""
 
 #, c-format
 msgid "Impossible to create : %s"
-msgstr "Невозможно создать %s"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -471,8 +467,6 @@ msgid ""
 "Warning: the operational team of the Scilab Consortium\n"
 "doesn't provide and doesn't support this version of Scilab built with\n"
 msgstr ""
-"Внимание: основная команда Scilab Consortium не распространяет и\n"
-"не поддерживает эту версию Scilab, собранную при помощи\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
@@ -484,7 +478,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Out of code.\n"
@@ -493,8 +487,6 @@ msgstr ""
 #, c-format
 msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
 msgstr ""
-"%s: достигнут пределе размера стека заполнен (Используйте функцию stacksize "
-"для его увеличения).\n"
 
 #, c-format
 msgid "%s: Wrong %s value %d instead of %d.\n"
@@ -506,7 +498,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unknown code %d at index2 %d.\n"
-msgstr "%s: Неизвестный код %d в index2 %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
@@ -514,7 +506,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type value.\n"
-msgstr "%s: Неверный тип значения.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unknown operator %d.\n"
@@ -526,29 +518,29 @@ msgstr ""
 
 #, c-format
 msgid "%s: wrong code %d.\n"
-msgstr "%s: неверный код %d.\n"
+msgstr ""
 
 msgid "SIGSTP: aborting current computation\n"
-msgstr "SIGSTP: отменяется текущее вычисление\n"
+msgstr ""
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr "Попытка остановить scilab в середине интерфейса.\n"
+msgstr ""
 
 msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "Вы уверены, что вы хотите отменить вычисление ( y или n ?) \n"
+msgstr ""
 
 #, c-format
 msgid "Can't go to directory %s.\n"
 msgstr ""
 
 msgid "Can't get current directory.\n"
-msgstr "Не удалось получить текущий каталог.\n"
+msgstr ""
 
 msgid "Error returning tlist, memory full.\n"
-msgstr "Ошибка возврата tlist, память заполнена.\n"
+msgstr ""
 
 msgid "tlist not completely filled.\n"
-msgstr "tlist заполнен не до конца.\n"
+msgstr ""
 
 msgid "List full.\n"
 msgstr ""
@@ -558,113 +550,94 @@ msgstr ""
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
-msgstr "%s: аргумент %d должен быть списком с размером как минимум %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr "%s: Неверный размер аргумента %d: Ожидался размер (%d,%d).\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидалась матрица "
-"вещественных или комплексных чисел.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась матрица вещественных или "
-"комплексных чисел.\n"
 
 #, c-format
 msgid "%s: Too many names.\n"
-msgstr "%s: Слишком много имён.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидался список размером как минимум %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидалась целочисленная "
-"матрица.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
-msgstr "%s: Неверный размер аргумента %d: Ожидалось как минимум %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидалась матрица "
-"логических значений.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась матрица логических значений.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидалась разреженная "
-"матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидалась разреженная матрица.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидался вектор.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидался вектор.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидался вещественный вектор.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr "%s: Неверный размер аргумента %d: Ожидался размер %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидалась скалярная "
-"величина.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожадалась скалярная величина, '%s' или '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Matrix of strings "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидалась матрица или "
-"строки.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидалась матрица строк.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -677,113 +650,97 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидался список (List).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидалась полиномиальная матрица.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr "%s: Неверный тип аргумента %d : Ожидался многоугольник.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась корректная целочисленная матрица "
-"(Working integer matrix).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидался вектор-строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Row vector expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидался вектор-строка.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: argument %d >(%d) should be a column vector.\n"
-msgstr "%s: аргумент %d >(%d) должен быть вектором-столбцом.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Column vector expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидался вектор-столбец.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидался ограниченный "
-"указатель (Boxed pointer).\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидался ограниченный указатель (Boxed "
-"pointer).\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидалась матрица.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: entry point %s not found in predefined tables or link table.\n"
 msgstr ""
-"%s: Точка входа %s не найдена в предопределённых таблицах и таблице ссылок.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d: Function or string (external function) "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась функция или строка (внешняя "
-"функция).\n"
 
 #, c-format
 msgid "%s: Incompatible sizes.\n"
-msgstr "%s: Несовместимые размеры.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Optional argument %d not given and default value %s not found.\n"
 msgstr ""
-"%s: Необязательный аргумент %d не задан и значение по умолчанию %s не "
-"найдено.\n"
 
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
-msgstr "%f: Закончилось место для хранения строковых аргументов.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Matrix of handle "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидалась матрица или "
-"дескриптор.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидалась матрица или дескриптор.\n"
+msgstr ""
 
 #, c-format
 msgid "Scilab version \"%d.%d.%d.%d\"\n"
-msgstr "Scilab версии \"%d.%d.%d.%d\"\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "Scilab version \"%d.%d.%d.%d\"\n"
 "%s\n"
 msgstr ""
-"Scilab версии \"%d.%d.%d.%d\"\n"
-"%s\n"
 
 msgid "Scilab Version Info."
-msgstr "О версии Scilab."
+msgstr ""
 
 msgid "The SCI environment variable is not set.\n"
-msgstr "Переменная окружения SCI не установлена.\n"
+msgstr ""
 
 #, c-format
 msgid "Cannot load the module declaration file: %s.\n"
@@ -795,7 +752,7 @@ msgstr ""
 
 #, c-format
 msgid "%s module not found.\n"
-msgstr "Модуль %s не найден.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -804,11 +761,11 @@ msgstr ""
 
 #, c-format
 msgid "Undefined variable %s.\n"
-msgstr "Неопределённая переменная %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: argument must be a string.\n"
-msgstr "%s: аргумент должен быть строкой.\n"
+msgstr ""
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
@@ -874,185 +831,204 @@ msgstr ""
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr "%s: Необязательные аргументы name=val должны быть в конце.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unrecognized optional arguments %s.\n"
-msgstr "%s: Не распознанные необязательные аргументы %s.\n"
+msgstr ""
 
 msgid "Optional argument list is empty.\n"
-msgstr "Список необязательных аргументов пуст.\n"
+msgstr ""
 
 msgid "Optional arguments list: \n"
-msgstr "Необязательные аргументы: \n"
+msgstr ""
 
 #, c-format
 msgid "and %s.\n"
-msgstr "и %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
-msgstr "%s: неправильный вызов %s! (1-й аргумент).\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
 msgstr ""
-"%s: (%s) слишком много аргументов в стеке. Отредактируйте stack.h и "
-"увеличьте intersiz.\n"
 
 #, c-format
 msgid "%s: (%s) bad third argument!\n"
-msgstr "%s: (%s) плохой третий аргумент!\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument: Complex expected.\n"
-msgstr "%s: Неверный тип аргумента: Ожидалось комплексное число (Complex).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: bad call to %s!\n"
-msgstr "%s: неправильный вызов %s!\n"
+msgstr ""
 
 #, c-format
 msgid "%s: argument %d > (%d) should be a complex matrix.\n"
-msgstr "%s: аргумент %d > (%d) должен быть матрицей комплексных чисел.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: bad call to %s (third argument %c).\n"
-msgstr "%s: неправильный вызов %s (третий аргумент %c).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: (%s) bad second argument!\n"
-msgstr "%s: (%s) неправильный второй аргумент!\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
 msgstr ""
-"%s: createcvarfromptr: слишком много аргументов в стеке, увеличьте "
-"intersiz.\n"
 
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
-msgstr "%s: Проблемы рекурсии. Простите ...\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
-msgstr "%s: %s не является функцией Scilab.\n"
+msgstr ""
 
 msgid "built in"
-msgstr "встроенная"
+msgstr ""
 
 msgid "Invalid time domain.\n"
-msgstr "Неправильный временной промежуток.\n"
+msgstr ""
 
 msgid "Invalid system.\n"
-msgstr "Неправильная система.\n"
+msgstr ""
 
 msgid "A non square matrix!\n"
-msgstr "Матрица не является квадратной!\n"
+msgstr ""
 
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
-msgstr "Неправильные %c,%c матрицы.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: internal error, info=%d.\n"
-msgstr "%s: внутренняя ошибка, info=%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: intersiz is too small.\n"
-msgstr "%s: intersiz слишком мал.\n"
+msgstr ""
 
 #, c-format
 msgid "%s argument"
-msgstr "аргумент %s"
+msgstr ""
 
 #, c-format
 msgid "argument number %d"
-msgstr "аргумент номер %d"
+msgstr ""
 
 #, c-format
 msgid "%s and %s arguments"
-msgstr "аргументы %s и %s"
+msgstr ""
 
 #, c-format
 msgid "%s argument and argument %d"
-msgstr "аргумент %s и аргумент номер %d"
+msgstr ""
 
 #, c-format
 msgid "arguments %d and %d"
-msgstr "аргументы с номерами %d и %d"
+msgstr ""
 
 msgid "should be square"
-msgstr "должен быть квадратной матрицей"
+msgstr ""
 
 msgid "should be a vector"
-msgstr "должен быть вектором"
+msgstr ""
 
 msgid "should be a row vector"
-msgstr "должен быть вектором-строкой"
+msgstr ""
 
 msgid "should be a column vector"
-msgstr "должен быть вектором-столбцом"
+msgstr ""
 
 msgid "should be a scalar"
-msgstr "должен быть числом"
+msgstr ""
 
 #, c-format
 msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
-msgstr "%s: %s имеет неправильный размер (%d,%d), ожидался (%d,%d).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
-msgstr "%s: %s имеет неправильное %s измерение (%d), ожидалось (%d).\n"
+msgstr ""
 
 msgid "first"
-msgstr "первое"
+msgstr ""
 
 msgid "second"
-msgstr "второе"
+msgstr ""
 
 #, c-format
 msgid "%s: %s has wrong length %d, expecting (%d).\n"
-msgstr "%s: %s имеет неправильную длину %d, ожидалась (%d).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s: размерность %s несовместима (%dx%d) # (%dx%d)\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s: размерность %s несовместима.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s should be a list with %d-element being %s.\n"
-msgstr "%s: %s должен быть списком с %d-м элементом %s.\n"
+msgstr ""
 
 msgid "square"
-msgstr "квадратная матрица"
+msgstr ""
 
 msgid "a vector"
-msgstr "вектор"
+msgstr ""
 
 msgid "a row vector"
-msgstr "вектор-строка"
+msgstr ""
 
 msgid "a column vector"
-msgstr "вектор-столбец"
+msgstr ""
 
 msgid "a scalar"
-msgstr "число"
+msgstr ""
 
 #, c-format
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
 msgstr ""
-"%s: аргумент %d(%d) имеет неправильное %s измерение (%d), ожидалось (%d).\n"
 
 #, c-format
 msgid "GetDataFromName: variable %s not found.\n"
-msgstr "GetDataFromName: переменная %s не найдена.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Variable %s not found.\n"
-msgstr "%s: Переменная %s не найдена.\n"
+msgstr ""
+
+msgid "Startup execution:"
+msgstr ""
+
+msgid "  loading initial environment"
+msgstr ""
+
+msgid "&File"
+msgstr ""
+
+msgid "&Edit"
+msgstr ""
+
+msgid "&Preferences"
+msgstr ""
+
+msgid "&Control"
+msgstr ""
+
+msgid "&Applications"
+msgstr ""
+
+msgid "&?"
+msgstr ""
