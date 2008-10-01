@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - DIGITEO - Sylvestre LEDRU
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -17,3 +17,7 @@
 res = mgetl(SCI+'/modules/jvm/etc/jvm_options.xml');
 line = grep(res,'<option value=""-Xmx');
 if res(line) <> '<option value=""-Xmx256m""/>' then pause,end
+
+stacksize('max');
+memstack = stacksize();
+if memstack < 1e8 then pause,end
