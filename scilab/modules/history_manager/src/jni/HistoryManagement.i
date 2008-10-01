@@ -6,7 +6,6 @@
 
 %module HistoryManagement
 %{
-#include "machine.h"
 #include "MALLOC.h"
 #include "../../includes/HistoryManager.h"
 %}
