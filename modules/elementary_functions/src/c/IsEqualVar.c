@@ -462,7 +462,7 @@ int IsEqualDoubleMat(double *d1, double *d2)
   return 1;
 }
 /**IsEqualIntegerMat
- * Used to test a couple of Scilab variable of type 8 (integer) for equality
+ * Used to test a couple of Scilab variable of type 8 (int)  for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
  * @return 0 is the variables differ and 1 if they are identical
@@ -551,7 +551,7 @@ int IsEqualStringMat(double *d1, double *d2)
   n = id1[1]*id1[2];
   if ( !IsEqualIntegerArray(n+1, id1+4, id2+4) ) return 0;
 
-  /* Check the array of character codes (integer) */
+  /* Check the array of character codes (int)  */
   if (!IsEqualIntegerArray(id1[4+n]-1, id1+5+n, id2+5+n)) return 0;
   return 1;
 }
@@ -758,7 +758,7 @@ int IsEqualFunction(double *d1, double *d2)
   if ( !IsEqualIntegerArray(n*nsiz, id1+l, id2+l) ) return 0;
   l += n*nsiz;
 
-  /* Check the number of integer in instructions */
+  /* Check the number of int in instructions */
   if (id1[l] != id2[l]) return 0;
   n = id1[l];   l++;
   if ( !IsEqualIntegerArray(n, id1+l, id2+l) ) return 0;
@@ -905,7 +905,7 @@ Type *B;\
 
 /**IsEqualShortIntegerArray
  * compare if two short int (1,2 or 4 bytes) arrays of size n, are identical
- * @param int type: integer type 1, 2, 4 or 11, 12, 14 for unsigned int
+ * @param int type: int type 1, 2, 4 or 11, 12, 14 for unsigned int
  * @param int n: array size
  * @param int *d1: pointer on the beginning of the first array
  * @param int *d2: pointer on the beginning of the second array
@@ -929,7 +929,7 @@ int IsEqualShortIntegerArray(int typ, int n, int *d1, int *d2)
     ISEQUAL(integer2);
     break;
   case 4:
-    ISEQUAL(integer);
+    ISEQUAL(int) ;
     break;
   case 11:
     ISEQUAL(unsigned char);
