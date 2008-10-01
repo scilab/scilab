@@ -10,11 +10,11 @@
  *
  */
 
-#include "machine.h"
 
 /* checks if all entries of a vector are finite */
+#include "machine.h"
 
-extern int finite __PARAMS( (double v));
+extern int finite(double v);
 
 int C2F(vfinite)(int *n, double *v);
 
