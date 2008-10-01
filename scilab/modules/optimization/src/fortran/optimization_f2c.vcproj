@@ -453,7 +453,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dogleg.c"
+				RelativePath=".\minpack\dogleg.c"
 				>
 			</File>
 			<File
@@ -465,7 +465,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\enorm.c"
+				RelativePath=".\minpack\enorm.c"
 				>
 			</File>
 			<File
@@ -493,11 +493,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac1.c"
+				RelativePath=".\minpack\fdjac1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac2.c"
+				RelativePath=".\minpack\fdjac2.c"
 				>
 			</File>
 			<File
@@ -573,19 +573,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd.c"
+				RelativePath=".\minpack\hybrd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd1.c"
+				RelativePath=".\minpack\hybrd1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj.c"
+				RelativePath=".\minpack\hybrj.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj1.c"
+				RelativePath=".\minpack\hybrj1.c"
 				>
 			</File>
 			<File
@@ -621,15 +621,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lmder.c"
+				RelativePath=".\minpack\lmder.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lmdif.c"
+				RelativePath=".\minpack\lmdif.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lmpar.c"
+				RelativePath=".\minpack\lmpar.c"
 				>
 			</File>
 			<File
@@ -705,7 +705,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qform.c"
+				RelativePath=".\minpack\qform.c"
 				>
 			</File>
 			<File
@@ -725,19 +725,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qrfac.c"
+				RelativePath=".\minpack\qrfac.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qrsolv.c"
+				RelativePath=".\minpack\qrsolv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\r1mpyq.c"
+				RelativePath=".\minpack\r1mpyq.c"
 				>
 			</File>
 			<File
-				RelativePath=".\r1updt.c"
+				RelativePath=".\minpack\r1updt.c"
 				>
 			</File>
 			<File
