@@ -21,7 +21,7 @@ static double spdblExpmC[41] = {0};
 static double sdblExpmN = 0;
 
 
-extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
+extern double C2F(dlamch)  _PARAMS((char *CMACH, unsigned long int));
 extern double C2F(logp1) _PARAMS((double *x));
 extern int C2F(dgemm)();
 extern int C2F(dswap)();

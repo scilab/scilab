@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste SILVY
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Cong WU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,7 +24,7 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
+int C2F(sci_gsort) (char *fname, unsigned long fname_len)
 {
 	char iord[2] ;
 	char typex[10];
@@ -38,10 +38,10 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	int *indices = NULL;
 	int iflag = 0;
 
-	iord[0] = DECREASE_COMMAND; 
+	iord[0] = DECREASE_COMMAND;
 	iord[1]='\0';
 
-	typex[0] = GLOBAL_SORT; 
+	typex[0] = GLOBAL_SORT;
 	typex[1] = '\0';
 
 	Rhs = Max(0, Rhs);
@@ -75,7 +75,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 					return 0;
 				}
 			}
-			
+
 			break;
 		case sci_ints:
 			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
@@ -116,16 +116,16 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		iord[0] = *cstk(l3);
 	}
 
-	if ( typex[0] == LIST_SORT) 
+	if ( typex[0] == LIST_SORT)
 	{
-		if (typex[1] == ROW_SORT) 
+		if (typex[1] == ROW_SORT)
 		{
 			ind_m1 = m1;
 			ind_n1 = 1;
 			ind_l1 = 0;
 			if (ind_m1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
 		}
-		else 
+		else
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
@@ -133,7 +133,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			if (ind_n1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
 		}
 	}
-	else 
+	else
 	{
 		ind_m1 = m1;
 		ind_n1 = n1;
@@ -141,7 +141,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		if ( ind_m1*ind_n1 != 0 )indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));  /* return a matrix*/
 	}
 
-	if (Lhs == 2) iflag = 1; 
+	if (Lhs == 2) iflag = 1;
 	else iflag = 0;
 
 	switch (Type)
@@ -150,7 +150,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		{
 			double *matrix = stk(l1);
 			double *tmp_matrix = NULL;
-			if ( m1*n1 != 0 ) 
+			if ( m1*n1 != 0 )
 			{
 				tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1));
 				if (tmp_matrix)
@@ -177,7 +177,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		break;
 
 	/* Can not find a example , so can not just remove it */
-	case sci_ints:               
+	case sci_ints:
 		{
 			switch(Im.it) /* Type defined in stack-c.h */
 			{
@@ -240,6 +240,6 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	}
 
 	return 0;
-} 
+}
 /*-----------------------------------------------------------------------------------*/
 
