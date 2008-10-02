@@ -126,14 +126,14 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 		    (str2[0]== '&') ? str2+1: str2,
 		    var->stack_position);
 	}
-      else
+      else /* not a cint* cbool* cdouble* cfloat* cchar* */
 	{
 	  Fprintf(f,indent,"CreateListVar(%d,\"%s\",%s,%s,&lrs);\n",icre,
 		  SGetExtForTypeAbrev(var),
 		  str1,str2);
 	}
     }
-  else
+  else /* not a list element */
     {
       /** CreateVarFromPtr peut etre utilise ds plusieurs cas **/
       if ( strncmp(var->fexternal,"cintf",4)==0 ||
@@ -186,7 +186,7 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 		    (str2[0]== '&') ? str2+1: str2,
 		    var->stack_position);
 	}
-      else
+      else /* not a cint* cbool* cdouble* cfloat* cchar* */
 	{
 	  Fprintf(f,indent,"CreateVar(%d,\"%s\",%s,%s,&lrs);\n",icre,
 		  SGetExtForTypeAbrev(var),
@@ -195,15 +195,16 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
       Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
       icre++;
     }
-  if ( strcmp(var->fexternal,"cintf")==0 ||
-       strcmp(var->fexternal,"cboolf")==0 ||
-       strcmp(var->fexternal,"cdoublef")==0 ||
-       strcmp(var->fexternal,"cfloatf")==0 ||
-       strcmp(var->fexternal,"ccharf")==0 )
+  if ( strncmp(var->fexternal,"cintf",4)==0 ||
+       strncmp(var->fexternal,"cboolf",5)==0 ||
+       strncmp(var->fexternal,"cdoublef",7)==0 ||
+       strncmp(var->fexternal,"cfloatf",6)==0 ||
+       strncmp(var->fexternal,"ccharf",5)==0) 
     {
     }
-  else
+  else /* not a cint* cbool* cdouble* cfloat* cchar* */
     {
+      Fprintf(f,indent,"----outext3 %s\n",var->fexternal);
       AddDeclare(DEC_INT,"lrs");
       AddDeclare(DEC_INT,"mn");
       Fprintf(f,indent,"mn=%s*%s;\n",str1+1,str2+1);
