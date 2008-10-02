@@ -23,6 +23,7 @@
 //
 // See the file scipad/license.txt
 //
+
 function [svar,tysi,editable] = FormatStringsForWatch(var)
 // Return three strings describing variable var in some way
 // svar:
@@ -58,7 +59,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
       warning(LocalizeForScipad(" what you try to watch is of type ")...
           +typeof(var)...
           +LocalizeForScipad(" - this type is not supported by the debugger"));
-      svar = noedit_l+typeof(var)+" (type "+string(tvar)+")"+noedit_r;
+      svar = noedit_l+typeof(var)+" (type "+msprintf("%d",tvar)+")"+noedit_r;
       tysi = tysi + " " + LocalizeForScipad("(unsupported)")
       editable = "false";
 
@@ -73,7 +74,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
       // some common cathegorizations, factored out
       if or(tvar==[1 2 4 5 6 7 8 9 10]) then
         [nr,nc] = size(var);
-        losi= LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
+        losi= LocalizeForScipad("size:") + " " + msprintf("%d",nr) + "x" + msprintf("%d",nc);
       end
 
       if or(tvar==[1 2 5]) then
@@ -150,7 +151,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
         it = inttype(var);
         if it > 10 then it = it - 10; pre = "u"; else pre = emptystr(); end
         nbits = it*8;
-        svar = pre + "int" +string(nbits)+ "(" + StringMatrixForWatch(MatrixToFullPrecisString(var))+ ")";
+        svar = pre + "int" + msprintf("%d",nbits) + "(" + StringMatrixForWatch(MatrixToFullPrecisString(var))+ ")";
          
       case 9 then  // graphic handle, we aren't yet able to display the content
         svar = noedit_l + LocalizeForScipad("graphic handle") + noedit_r
@@ -200,7 +201,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
           svar = listpref + "list(" + svar + ")";
         end
         tysi = tysi + ", " + ...
-               LocalizeForScipad("size:") + " " + string(length(var)) + " " + LocalizeForScipad("elements");
+               LocalizeForScipad("size:") + " " + msprintf("%d",length(var)) + " " + LocalizeForScipad("elements");
 
       case 128 then  // pointer, e.g. a=rand(5,5);b=rand(5,1);A=sparse(a);[h,rk]=lufact(A);typeof(h), type(h)
         svar = noedit_l + LocalizeForScipad("pointer") + noedit_r

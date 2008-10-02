@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 ####################################################################
 #          Basic state machine for the Scipad debugger             #
 ####################################################################
@@ -442,7 +443,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #    the debugger goes out of nestedfun and enters the libfun ancillary
     #    from the line that called nestedfun, i.e. the same depth level is
     #    kept, which is the exact purpose of step over
-    set stoppedonarealbpt "TCL_EvalStr(\"lsearch -sorted -increasing -integer -exact \[getfunlinesfrombptsprops \" + db_m(3) + \"\] \" + string(db_l(3)) + \"\",\"scipad\") <> string(-1)"
+    set stoppedonarealbpt "TCL_EvalStr(\"lsearch -sorted -increasing -integer -exact \[getfunlinesfrombptsprops \" + db_m(3) + \"\] \" + msprintf(\"%d\",db_l(3)) + \"\",\"scipad\") <> msprintf(\"%d\",-1)"
     set breakwashit "TCL_EvalStr(\"isbreakhit_bp\",\"scipad\") == \"true\""
     set stoppedinsamefun "TCL_EvalStr(\"hasstoppedinthesamefun\",\"scipad\") == \"true\""
     switch -- $stepmode {
@@ -501,7 +502,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
         "nostep"   {
                     # the syntax below would create a too long ScilabEval command
                     # (bug 2654, tagged as RESOLVED LATER, now REOPENED after complaining...)
-                    #set ID "\" + TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + string(db_l(3)) ,\"scipad\") + \""
+                    #set ID "\" + TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + msprintf(\"%d\",db_l(3)) ,\"scipad\") + \""
                     # thus we must to go through a Scilab variable instead (drawback: possible name collision in Scilab)
                     # Note that the hardcoded 3 is always the good index where to look for the function name and line
                     # number coresponding to the current stop. The structure of the where() output indeed is:
@@ -511,7 +512,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
                     #   !calllevelfun    !    // function calling the function where Scilab is at the current stop
                     #   !<uppper levels> !
                     #   !execstr         !
-                    set getbptIDcommand "db_BPTID=TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + string(db_l(3)) ,\"scipad\");"
+                    set getbptIDcommand "db_BPTID=TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + msprintf(\"%d\",db_l(3)) ,\"scipad\");"
                     set isbreakpointenabled       "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",enable)\",\"scipad\") == \"true\""
                     set isconditiontypeistrue     "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",conditiontype)\",\"scipad\") == \"istrue\""
                     set isconditiontypehaschanged "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",conditiontype)\",\"scipad\") == \"haschanged\""
@@ -650,8 +651,8 @@ proc checkexecutionerror_bp {} {
 # and blink the offending line
     ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror(%f);\
                    TCL_EvalStr(\"global errnum errline errmsg errfunc callstackcontent; \
-                                 set errnum  \"+string(db_n)+\"; \
-                                 set errline \"+string(db_l)+\"; \
+                                 set errnum  \"+msprintf(\"%d\",db_n)+\"; \
+                                 set errline \"+msprintf(\"%d\",db_l)+\"; \
                                  set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
                                  set errmsg  \"\"\"+stripblanks(strsubst(strcat(db_str,ascii(10)),\"\"\"\",\"\\\"\"\"))+\"\"\"; \
                                  if {\$errnum != 0} { \

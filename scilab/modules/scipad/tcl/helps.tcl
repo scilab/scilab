@@ -23,9 +23,10 @@
 #
 # See the file scipad/license.txt
 #
+
 proc setScipadVersionString {} {
 # set the version string for Scipad, using the information from the
-# VERSION file of the Scipad module
+# getversion instruction of the Scilab 5
     global ScipadVersion
     # empty placeholder for when launched outside of Scilab,
     # or for filling in manually when backporting Scipad from
@@ -37,9 +38,9 @@ proc setScipadVersionString {} {
     set comm1 "try;"
     set comm2   "ScipadVer=getversion(\"scipad\");"
     set comm3   "if ScipadVer(3)==0 then"
-    set comm4     "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm4     "TCL_EvalStr(\"set ScipadVersion \"\"\"+msprintf(\"%d\",ScipadVer(1))+\".\"+msprintf(\"%d\",ScipadVer(2))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
     set comm5   "else"
-    set comm6     "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\".\"+string(ScipadVer(3))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm6     "TCL_EvalStr(\"set ScipadVersion \"\"\"+msprintf(\"%d\",ScipadVer(1))+\".\"+msprintf(\"%d\",ScipadVer(2))+\".\"+msprintf(\"%d\",ScipadVer(3))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
     set comm7   "end;"
     set comm8 "end;"
     # update title bar

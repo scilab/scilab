@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc updateactivebreakpoint { {itemno 3} } {
     set comm1 "\[db_l,db_m\]=where();"
     set comm2 "if size(db_l,1)>=$itemno then"
@@ -30,7 +31,7 @@ proc updateactivebreakpoint { {itemno 3} } {
     # to avoid TCL_EvalStr to try to evaluate string(db_m($itemno))
     # this is useful for instance when the function name where the
     # breakpoint stop occurs starts with a dollar sign $
-    set comm3 "TCL_EvalStr(\"updateactbreakpointtag \"+string(db_l($itemno))+\" {\"+string(db_m($itemno))+\"} \",\"scipad\");"
+    set comm3 "TCL_EvalStr(\"updateactbreakpointtag \"+msprintf(\"%d\",db_l($itemno))+\" {\"+string(db_m($itemno))+\"} \",\"scipad\");"
     set comm4 "else"
     set comm5 "TCL_EvalStr(\"updateactbreakpointtag 0 \"\"\"\" \",\"scipad\");"
     set comm6 "end;"

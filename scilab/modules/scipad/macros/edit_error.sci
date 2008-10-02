@@ -23,6 +23,7 @@
 //
 // See the file scipad/license.txt
 //
+
 function answ=edit_error(clearerror)
   if argn(2)==0 then clearerror=%f; end
   [str,n,line,func]=lasterror(clearerror)
@@ -33,8 +34,8 @@ function answ=edit_error(clearerror)
       p=get_function_path(func);
       if p<>[] then
         scipad(p);
-        TCL_EvalStr("blinkline "+string(line)+" "+func,"scipad");
-        answ=gettext('opening file ')+p+gettext(' on line ')+string(line)+gettext('the source file of the function ')+func;
+        TCL_EvalStr("blinkline "+msprintf("%d",line)+" "+func,"scipad");
+        answ=gettext('opening file ')+p+gettext(' on line ')+msprintf("%d",line)+gettext(' of the source file of the function ')+func;
       else
         answ=gettext('the source file of the function ')+func+ ..
               gettext(' was not found in any library path');

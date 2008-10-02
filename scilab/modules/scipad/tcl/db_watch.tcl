@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc showwatch_bp {} {
 # Create the watch window
     global pad watch
@@ -1266,7 +1267,7 @@ proc evalgenericexpinshell {} {
         if {!$filtergenexperrors} {
             # don't filter errors from the shell display
             set comm6      "else"
-            set comm7          "lasterror(%t);mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+string(db_evstrierr)+\")\n\");"
+            set comm7          "lasterror(%t);mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+msprintf(\"%d\",db_evstrierr)+\")\n\");"
             set comm8      "end;"
             set comm9  "catch;"
             set comm10     "lasterror(%t);mprintf(\"\n$percentescagenexp $formattingstring3\n\");"

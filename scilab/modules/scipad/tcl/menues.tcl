@@ -654,7 +654,13 @@ proc setwindowsmenuentrylabel {entry lab {sortmenu "sortmenu"}} {
     global pad FirstBufferNameInWindowsMenu
     set underlinednumber [expr {$entry - $FirstBufferNameInWindowsMenu + 1}]
     if {$underlinednumber<10} {
-        set underlinedlabel [concat $underlinednumber $lab]
+        # here I first used
+        #   set underlinedlabel [concat $underlinednumber $lab]
+        # but concat trims spaces at the beginning of $lab, which will later
+        # fool the regexp matching
+        #   regexp {^[0-9] (.*)} $lab -> lab
+        # in proc extractindexfromlabel
+        set underlinedlabel "$underlinednumber $lab"
         $pad.filemenu.wind entryconfigure $entry \
            -label $underlinedlabel -underline 0
     } else {

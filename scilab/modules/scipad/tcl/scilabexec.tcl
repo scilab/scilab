@@ -412,14 +412,14 @@ proc scilaberror {funnameargs} {
             set lineError [string map {' ''} [mc "at line "]]
             set funcError [string map {' ''} [mc " of "]]
             set winTitle [string map {' ''} [mc "Scilab execution error"]]
-            ScilabEval_lt "messagebox(\[\"$shellError\"+string(db_n); \
+            ScilabEval_lt "messagebox(\[\"$shellError\"+msprintf(\" %d\",db_n); \
                                         db_str; \
-                                        \"$lineError\"+string(db_l)+\"$funcError\"+string(db_func)\], \"$winTitle\", \"error\")" \
+                                        \"$lineError\"+msprintf(\" %d\",db_l)+\"$funcError\"+db_func\], \"$winTitle\", \"error\")" \
                           "sync" "seq"
         } else {
             ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
-            ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
-            ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
+            ScilabEval_lt  "TCL_SetVar(\"errnum\", msprintf(\" %d\",db_n), \"scipad\");" "sync" "seq"
+            ScilabEval_lt  "TCL_SetVar(\"errline\", msprintf(\" %d\",db_l), \"scipad\");" "sync" "seq"
             ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
             ScilabEval_lt  "TCL_SetVar(\"errmsg\" , strsubst( \
                                              strsubst( \

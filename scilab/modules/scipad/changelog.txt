@@ -1,3 +1,11 @@
+Francois VOGEL, 02/10/08
+ * Fixed Tcl Error when dropping a file which name starts by a space
+   when another file is already opened in Scipad
+ * Fixed bug 3602 by replacing all occurrences of string(...) applied to
+   integers - which takes the current format() into account - by
+   msprintf("%d",...)
+ * version --> 7.5
+
 Francois VOGEL, 20/09/08
  * Geared in $sciprompt when not running in Scilab 5
  * Cleaned comments about request 319 (TCL_EvalStr returns a result)
@@ -30,7 +38,8 @@ Francois VOGEL, 11/09/08
 Francois VOGEL, 08/09/08
  * Fixed bug 3416 (black Scipad icon on Windows 2000) again since the
    candidate fix in 6.156 didn't work
- * version --> 6.157 - This version comes with Scilab 5.0 final release
+ * version --> 6.157 - This version comes with Scilab 5.0 final release,
+   Scilab 5.0.1 and Scilab 5.0.2
 
 Francois VOGEL, 05/09/08
  * Fixed bug 3416 (black Scipad icon on Windows 2000)

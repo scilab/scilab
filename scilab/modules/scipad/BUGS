@@ -327,8 +327,33 @@ Debugger wishes:
 
 Other wishes:
 
--Improve the look and feel of Scipad by using Ttk (Tk8.5) - This applies
- especially to Linux platforms
+- Localize macros such as edit_error.sci with LocalizeForScipad - these are
+  part of the Scipad module and should use the Scipad localization
+  mechanism - check all Scipad module macros (internal or external)
+
+-Improve the look and feel of Scipad by using Tile/Ttk (in Tk8.5) - This
+ applies especially to Linux platforms
+ I was there and had a painful try. See:
+http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/dde04b428b619a31
+http://wiki.tcl.tk/15443
+   Main result of my tries: replacing Tk widgets by Ttk widgets is hard
+   (see http://wiki.tcl.tk/15443) and letting it work with Tk 8.4 is even
+   harder (i.e. use Tk widgets with 8.4, and Ttk widgets with 8.5)
+   Possible paths:
+     - Do it anyway. Include the compiled tile library for all platforms
+       and package require tile even when running in Tk 8.4
+     - Use chameleon
+       https://svn.sourceforge.net/svnroot/amsn/trunk/amsn-extras/plugins/chameleon
+       I tried, it leads to a number of package require countless dependencies
+       (pixmapmenu, contentmanager, scalable-bg, skin...) - Couldn't manage to make
+       it work
+     - Mix Tk and Ttk widgets, replace them one by one, allow for Tk widgets
+       to be used aside of ttk widgets. Use Ttk widgets when needed (mainly
+       combobox, and perhaps notebook) - Do it toplevel by toplevel? Then,
+       what about Tk widgets that have no replacement in Ttk?
+     - Understand that Ttk is not a drop-in replacement for Tk widgets,
+       i.e. just forget about trying to replace the current Tk widgets
+       by Ttk widgets
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
@@ -388,7 +413,7 @@ Other wishes:
       o combobox 2.3 and BWidgets 1.7.0 are currently in the Scilab distro
         and both provide comboboxes. We could link Scipad to them, but
         apparently the Tile package, which also provides combos, is now
-        included in Tk and will be part of Tk 8.5.
+        included in Tk as part of Tk 8.5.
   . Multiline find/replace and find in files (to be tested with Tk8.5, which
     has the feature; no fallback seen in Tk8.4 since in
     8.4 .text search searches on a per line basis - or use regexp instead
@@ -436,6 +461,9 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  Might be feasible: addhistory, gethistoryfile, but in trunk (Scilab5) only
 
 -Request 262: tabbed buffers (see discussion in this request)
+ Could be done with the Ttk notebook widget (Tk 8.5 only) - perhaps allow it
+ only with 8.5, and have a switch between paned scheme and tabbed scheme
+ (not sure what would be the result in mixing both)
 
 -Requests 461 and 462: improvements wrt to xml editing. However, the position
  expressed by Enrico says it all: "Scipad was never really conceived to be a
