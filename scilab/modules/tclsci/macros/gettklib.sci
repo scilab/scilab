@@ -12,8 +12,8 @@ function tklib=gettklib()
 tklib = [];
   tcltkver=TCL_GetVersion('numbers');
   // don't use string() but msprintf because of format() - see bug 3602
-  major=msprintf("%1.0d",tcltkver(1));
-  minor=msprintf("%1.0d",tcltkver(2));
+  major=msprintf("%d",tcltkver(1));
+  minor=msprintf("%d",tcltkver(2));
 	if MSDOS then 
 		tklib='tk'+major+minor+getdynlibext();
 	else
