@@ -43,10 +43,29 @@ function xs2emf(figureNumber, fileName, orientation)
 		orientation = "portrait";
 	end
 	
+	//To export EMF file we need Ghostscript
+	//Test if Ghostscript is installed or not
+	
+	msgErr1 = "Please install Ghostscript 32 bits to export an EMF file.";
+	msgErr2 = "http://www.ghostscript.com/awki";
+	msg = char(msgErr1,msgErr2);
+	
+	try
+		winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
+	catch
+	    if win64() then
+			messagebox(msg, "Scilab error", "error")
+		else
+			messagebox(msg, "Scilab error", "error")
+		end		
+		return;
+	end
+	
+	
 	if ~MSDOS then
 	  // os is a unix one
 	  // check that pstoedit is available on the computer
-	  //checkPstoedit = unix_g("which pstoedit");
+	  checkPstoedit = unix_g("which pstoedit");
 	  error(msprintf(gettext("%s: EMF format only available under Microsoft Windows OS.\n"), "xs2emf"));
 	  return;
 	end

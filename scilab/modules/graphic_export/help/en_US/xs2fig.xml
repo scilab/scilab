@@ -52,12 +52,13 @@
           <para>string, file name.</para>
         </listitem>
       </varlistentry>
-	  
-	  <varlistentry>
+
+      <varlistentry>
         <term>orientation</term>
 
         <listitem>
-          <para>optional character, with possible values 'p' (portrait) or 'l' (landscape). The default value is 'p'.</para>
+          <para>optional character, with possible values 'p' (portrait) or 'l'
+          (landscape). The default value is 'p'.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -68,10 +69,15 @@
 
     <para><literal>xs2fig</literal> sends the recorded graphics of the window
     <literal>win_num</literal> in the file <literal>filen</literal> in FIG
-    format. </para>
+    format.</para>
 
     <para>For format FIG we create an EPS file which will be convert into FIG
     format by pstoedit.</para>
+
+    <para>To export FIG files GPL Ghostscript (32bits) need to be
+    installed.</para>
+
+    <para>Link to get GPL Ghostscript : http://www.ghostscript.com/awki</para>
   </refsection>
 
   <refsection>

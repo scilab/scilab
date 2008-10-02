@@ -74,6 +74,11 @@
 
     <para>For format EMF we create an EPS file which will be convert into EMF
     format by pstoedit.</para>
+
+    <para>To export EMF files GPL Ghostscript (32bits) need to be
+    installed.</para>
+
+    <para>Link to get GPL Ghostscript : http://www.ghostscript.com/awki</para>
   </refsection>
 
   <refsection>

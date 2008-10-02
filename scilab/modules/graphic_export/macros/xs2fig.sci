@@ -43,6 +43,26 @@ function xs2fig(figureNumber, fileName, orientation)
 		orientation = "portrait";
 	end
 	
+	//To export FIG file we need Ghostscript
+	//Test if Ghostscript is installed or not
+	
+	msgErr1 = "Please install Ghostscript 32 bits to export an FIG file.";
+	msgErr2 = "http://www.ghostscript.com/awki";
+	msg = char(msgErr1,msgErr2);
+	
+	try
+		winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
+	catch
+	    if win64() then
+			messagebox(msg, "Scilab error", "error")
+		else
+			messagebox(msg, "Scilab error", "error")
+		end		
+		return;
+	end
+	
+	
+	
 	if ~MSDOS then
 	  // os is a unix one
 	  // check that pstoedit is available on the computer
