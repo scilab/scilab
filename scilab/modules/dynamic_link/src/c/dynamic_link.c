@@ -214,8 +214,7 @@ void initializeLink(void)
 		for ( i = 0 ; i < ENTRYMAX ; i++) 
 		{
 			hd[i].ok= FALSE;
-			hd[i].shl =
-				EP[i].Nshared = -1;
+			hd[i].shl = EP[i].Nshared = -1;
 		}
 		first_entry++;
 	}
@@ -293,7 +292,10 @@ void ShowDynLinks(void)
 void unlinkallsharedlib(void)
 {
 	int i=0;
-	for ( i = 0 ; i < Nshared ; i++) if ( hd[i].ok == TRUE) Sci_Delsym(i);
+	for ( i = 0 ; i < Nshared ; i++) 
+	{
+		unlinksharedlib(&i);
+	}
 }
 /*---------------------------------------------------------------------------*/
 void unlinksharedlib(int *i) 

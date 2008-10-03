@@ -33,12 +33,25 @@ int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction, unsigned long n
     break;
 
     case SCI_HFUNCTIONS_ENTER :
-		if ( (namefunction_len) && (strcmp(namefunction,"NULL_NAME")) )
+		if ( (namefunction) && (namefunction_len) )
 		{
-			action_hashtable_scilab_functions(id,namefunction,fptr,SCI_HFUNCTIONS_ENTER);
+			if (strcmp(namefunction,"NULL_NAME") == 0)
+			{
+				/* we add function referenced only by id */
+				/* this function has no name */
+				action_hashtable_scilab_functions(id,NULL,fptr,SCI_HFUNCTIONS_ENTER);
+			}
+			else
+			{
+				/* we have a function named */
+				action_hashtable_scilab_functions(id,namefunction,fptr,SCI_HFUNCTIONS_ENTER);
+			}
 		}
 		else
 		{
+			/* namefunction == NULL or namefunction = 0 */
+			/* we add function referenced only by id */
+			/* this function has no name */
 			action_hashtable_scilab_functions(id,NULL,fptr,SCI_HFUNCTIONS_ENTER);
 		}
       break;
