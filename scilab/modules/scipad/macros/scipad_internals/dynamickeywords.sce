@@ -23,6 +23,7 @@
 //
 // See the file scipad/license.txt
 //
+
 function dynamickeywords()
 // wrapped as function to have all variables local
   function cset=lineform(keywordlist)
@@ -38,6 +39,10 @@ function dynamickeywords()
   function setscipadwords(wset,wtype)
     // checks that scipad interp exists
     if TCL_ExistInterp('scipad') then
+      if or(wset=="") then
+        warning(" suspect empty name found of type "+wtype+" (BUG #3631)")
+        wset=wset(wset<>"")
+      end
       lp=lineform(wset);
       TCL_EvalStr("set chset(scilab."+wtype+") {}","scipad")
       for i=1:size(lp,1)

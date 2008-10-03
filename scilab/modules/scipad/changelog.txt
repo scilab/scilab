@@ -1,3 +1,7 @@
+Francois VOGEL, 03/10/08
+ * Worked around bug 3631 (empty primitive name output by what())
+ * version --> 7.6
+
 Francois VOGEL, 02/10/08
  * Fixed Tcl Error when dropping a file which name starts by a space
    when another file is already opened in Scipad
