@@ -40,7 +40,7 @@ AC_ARG_WITH(docbook,
 	AC_SUBST(FOP)
 
 	# MathML rendering solution
-	AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.MathBase],[MathML rendering solution])
+	AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.DOMBuilder],[MathML rendering solution])
 	JEUCLID_CORE=$PACKAGE_JAR_FILE
 	AC_SUBST(JEUCLID_CORE)
 

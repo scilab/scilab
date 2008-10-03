@@ -26254,7 +26254,7 @@ echo $ECHO_N "checking jeuclid-core... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
 // #line 26256 "configure"
-import net.sourceforge.jeuclid.MathBase;
+import net.sourceforge.jeuclid.DOMBuilder;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -26294,8 +26294,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (looking for package net.sourceforge.jeuclid.MathBase)" >&5
-echo "$as_me: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (looking for package net.sourceforge.jeuclid.MathBase)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (looking for package net.sourceforge.jeuclid.DOMBuilder)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (looking for package net.sourceforge.jeuclid.DOMBuilder)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
