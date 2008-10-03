@@ -20390,16 +20390,16 @@
  
 -->try
 -->  Info = scicos_simulate(scs_m,Info,[],'nw')
-   Modelica code generated at C:DOCUME~1scilabLOCALS~1TempSCI_TMP_2304_imppart_modelica_RLC.mo
-   C code generated at C:DOCUME~1scilabLOCALS~1TempSCI_TMP_2304_imppart_modelica_RLC.c
-
- Modelica blocks are reduced to a block with:
- Number of continuous time states: 2
- Number of discrete time states  : 0
- Number of zero-crossing surfaces: 0
- Number of modes  : 0
- Number of inputs : 0
- Number of outputs: 4
+   Modelica code generated at C:DOCUME~1scilabLOCALS~1TempSCI_TMP_2304_imppart_modelica_RLC.mo
+   C code generated at C:DOCUME~1scilabLOCALS~1TempSCI_TMP_2304_imppart_modelica_RLC.c
+
+ Modelica blocks are reduced to a block with:
+ Number of continuous time states: 2
+ Number of discrete time states  : 0
+ Number of zero-crossing surfaces: 0
+ Number of modes  : 0
+ Number of inputs : 0
+ Number of outputs: 4
     building shared library (be patient)
  Info  =
  
@@ -21941,6 +21941,6 @@
 -->// Quit background Scilab session
  
 -->exit
-shared archive loaded
-Link done
-Link done
+shared archive loaded
+Link done
+Link done
