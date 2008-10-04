@@ -65,6 +65,19 @@ includes/javasci_SciDoubleArray.h \
 includes/javasci_SciBooleanArray.h \
 includes/javasci_SciAbstractArray.h
 
+### javasci :  images ###
+libsciscipad_la_imagesdir = $(mydatadir)/help/images/
+libsciscipad_la_images_DATA = help/images/ScilabClass.gif \
+help/images/SciAbstractDataTypeClass.gif \
+help/images/SciDoubleClass.gif \
+help/images/SciBooleanArrayClass.gif \
+help/images/SciComplexClass.gif \
+help/images/SciDoubleArrayClass.gif \
+help/images/SciComplexArrayClass.gif \
+help/images/SciStringArrayClass.gif \
+help/images/SciAbstractArrayClass.gif \
+help/images/SciStringClass.gif \
+help/images/SciBooleanClass.gif
 
 ### javasci : special tests ###
 libsciscipad_la_specialtestdir = $(mydatadir)/tests

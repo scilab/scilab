@@ -91,6 +91,7 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libjavasci_la_etcdir)" \
 	"$(DESTDIR)$(libjavasci_la_rootdir)" \
+	"$(DESTDIR)$(libsciscipad_la_imagesdir)" \
 	"$(DESTDIR)$(libsciscipad_la_specialtestdir)" \
 	"$(DESTDIR)$(libjavasci_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
@@ -134,8 +135,10 @@ SOURCES = $(libjavasci_la_SOURCES)
 DIST_SOURCES = $(am__libjavasci_la_SOURCES_DIST)
 libjavasci_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libjavasci_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libsciscipad_la_imagesDATA_INSTALL = $(INSTALL_DATA)
 libsciscipad_la_specialtestDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_root_DATA) \
+	$(libsciscipad_la_images_DATA) \
 	$(libsciscipad_la_specialtest_DATA)
 am__libjavasci_la_include_HEADERS_DIST = includes/javasci_Scilab.h \
 	includes/javasci_Scilab2.h includes/javasci_globals.h \
@@ -392,6 +395,21 @@ modulename = javasci
 @JAVASCI_TRUE@includes/javasci_SciDoubleArray.h \
 @JAVASCI_TRUE@includes/javasci_SciBooleanArray.h \
 @JAVASCI_TRUE@includes/javasci_SciAbstractArray.h
+
+
+### javasci :  images ###
+@JAVASCI_TRUE@libsciscipad_la_imagesdir = $(mydatadir)/help/images/
+@JAVASCI_TRUE@libsciscipad_la_images_DATA = help/images/ScilabClass.gif \
+@JAVASCI_TRUE@help/images/SciAbstractDataTypeClass.gif \
+@JAVASCI_TRUE@help/images/SciDoubleClass.gif \
+@JAVASCI_TRUE@help/images/SciBooleanArrayClass.gif \
+@JAVASCI_TRUE@help/images/SciComplexClass.gif \
+@JAVASCI_TRUE@help/images/SciDoubleArrayClass.gif \
+@JAVASCI_TRUE@help/images/SciComplexArrayClass.gif \
+@JAVASCI_TRUE@help/images/SciStringArrayClass.gif \
+@JAVASCI_TRUE@help/images/SciAbstractArrayClass.gif \
+@JAVASCI_TRUE@help/images/SciStringClass.gif \
+@JAVASCI_TRUE@help/images/SciBooleanClass.gif
 
 
 ### javasci : special tests ###
@@ -675,6 +693,23 @@ uninstall-libjavasci_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libjavasci_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libjavasci_la_rootdir)/$$f"; \
 	done
+install-libsciscipad_la_imagesDATA: $(libsciscipad_la_images_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscipad_la_imagesdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_imagesdir)"
+	@list='$(libsciscipad_la_images_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciscipad_la_imagesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscipad_la_imagesdir)/$$f'"; \
+	  $(libsciscipad_la_imagesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscipad_la_imagesdir)/$$f"; \
+	done
+
+uninstall-libsciscipad_la_imagesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscipad_la_images_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_imagesdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscipad_la_imagesdir)/$$f"; \
+	done
 install-libsciscipad_la_specialtestDATA: $(libsciscipad_la_specialtest_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscipad_la_specialtestdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_specialtestdir)"
@@ -790,7 +825,7 @@ check: check-am
 @JAVASCI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_specialtestdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_imagesdir)" "$(DESTDIR)$(libsciscipad_la_specialtestdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -844,6 +879,7 @@ info-am:
 install-data-am: install-data-local install-libjavasci_la_etcDATA \
 	install-libjavasci_la_includeHEADERS \
 	install-libjavasci_la_rootDATA \
+	install-libsciscipad_la_imagesDATA \
 	install-libsciscipad_la_specialtestDATA
 
 install-dvi: install-dvi-am
@@ -885,6 +921,7 @@ ps-am:
 uninstall-am: uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_includeHEADERS \
 	uninstall-libjavasci_la_rootDATA \
+	uninstall-libsciscipad_la_imagesDATA \
 	uninstall-libsciscipad_la_specialtestDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -901,6 +938,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	install-info-am install-libjavasci_la_etcDATA \
 	install-libjavasci_la_includeHEADERS \
 	install-libjavasci_la_rootDATA \
+	install-libsciscipad_la_imagesDATA \
 	install-libsciscipad_la_specialtestDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -910,6 +948,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	tags uninstall uninstall-am uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_includeHEADERS \
 	uninstall-libjavasci_la_rootDATA \
+	uninstall-libsciscipad_la_imagesDATA \
 	uninstall-libsciscipad_la_specialtestDATA \
 	uninstall-pkglibLTLIBRARIES
 
