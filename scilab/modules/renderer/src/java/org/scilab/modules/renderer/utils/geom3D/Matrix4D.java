@@ -344,10 +344,10 @@ public class Matrix4D {
 	 * @return text of the matrix
 	 */
 	public String toString() {
-		String res = new String();
+		StringBuffer res = new StringBuffer();
 		for (int i = 0; i < MATRIX_SIZE; i++) {
-			res += "[" + values[i][0] + COMMA + values[i][1] + COMMA + values[i][2] + COMMA + values[i][MATRIX_SIZE - 1] + "]" + "\n";
+			res.append("[" + values[i][0] + COMMA + values[i][1] + COMMA + values[i][2] + COMMA + values[i][MATRIX_SIZE - 1] + "]" + "\n");
 		}
-		return res;
+		return res.toString();
 	}
 }

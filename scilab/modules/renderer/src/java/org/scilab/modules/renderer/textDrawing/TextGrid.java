@@ -191,13 +191,13 @@ public class TextGrid {
 	 */
 	@Override
 	public String toString() {
-		String res = "";
+		StringBuffer res = new StringBuffer("");
 		for (int i = 0; i <= nbRow; i++) {
 			for (int j = 0; j <= nbCol; j++) {
-				res += "cellsEdge[" + i + "," + j + "] = " + cellsEdges[i][j] + "\n";
+				res.append("cellsEdge[" + i + "," + j + "] = " + cellsEdges[i][j] + "\n");
 			}
 		}
-		return res;
+		return res.toString();
 	}
 	
 }

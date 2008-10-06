@@ -27,10 +27,10 @@ public class NurbsArcLineTools extends ArcLineTools {
 
 	
 	/** vector of knot. Size 6 = NB_CONTROL_POINTS + NURBS_ORDER */
-	public static final float[] KNOTS = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
+	protected static final float[] KNOTS = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
 	
 	/** Order of the nurbs, i.e. the nurbs will be polynoms of degree 3. */
-	public static final int NURBS_ORDER = 3;
+	protected static final int NURBS_ORDER = 3;
 	
 	/**
 	 * NurbsArcLineTools

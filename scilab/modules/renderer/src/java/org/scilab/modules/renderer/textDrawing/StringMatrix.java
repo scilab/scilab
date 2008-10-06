@@ -120,14 +120,15 @@ public class StringMatrix {
 	 */
 	@Override
 	public String toString() {
-		String res = "";
+		StringBuffer res = new StringBuffer("");
+
 		for (int i = 0; i < nbRow; i++) {
 			for (int j = 0; j < nbCol; j++) {
-				res += data[i][j];
+				res.append(data[i][j]);
 			}
-			res += "\n";
+			res.append("\n");
 		}
-		return res;
+		return res.toString();
 	}
 	
 }

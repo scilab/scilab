@@ -116,11 +116,11 @@ public class ClipPlane3DManager {
 	 * @return string representation of the class.
 	 */
 	public String getStringRepresentation() {
-		String res = "";
+		StringBuffer res = new StringBuffer("");
 		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
 		while (curPlaneIt.hasNext()) {
-			res += curPlaneIt.next().toString() + "\n";
+			res.append(curPlaneIt.next().toString() + "\n");
 		}
-		return res;
+		return res.toString();
 	}
 }

@@ -138,13 +138,12 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 */
 	public void setMessage(String[] message) {
 		int line = 0;
-		String msg = new String();
-		msg = "<HTML>";
+		StringBuffer msg = new StringBuffer("<HTML>");
 		for (line = 0; line < message.length - 1; line++) {
-			msg += message[line] + "<br>";
+			msg.append(message[line] + "<br>");
 		}
-		msg += message[line] + "</HTML>";
-		messageLabel.setText(msg);
+		msg.append(message[line] + "</HTML>");
+		messageLabel.setText(msg.toString());
 	}
 	
 	/**

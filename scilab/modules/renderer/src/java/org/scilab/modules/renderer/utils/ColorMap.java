@@ -245,10 +245,10 @@ public class ColorMap {
 	 * @return string representation of the class
 	 */
 	public String toString() {
-		String res = "";
+		StringBuffer res = new StringBuffer("");
 		for (int i = 0; i < getSize() + 2; i++) {
-			res += "[" + redChannel[i] + COMMA + greenChannel[i] + COMMA + blueChannel[i] + "]\n";
+			res.append("[" + redChannel[i] + COMMA + greenChannel[i] + COMMA + blueChannel[i] + "]\n");
 		}
-		return res;
+		return res.toString();
 	}
 }
