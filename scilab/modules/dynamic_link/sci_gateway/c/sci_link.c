@@ -180,16 +180,7 @@ static int linkNoRhs(void)
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 
-		for (i=0;i < sizeFunctionsList;i++)
-		{
-			if (FunctionsList[i])
-			{
-				FREE(FunctionsList[i]);
-				FunctionsList[i]=NULL;
-			}
-		}
-		FREE(FunctionsList);
-		FunctionsList = NULL;
+		freeArrayOfString(FunctionsList,sizeFunctionsList);
 	}
 	else
 	{

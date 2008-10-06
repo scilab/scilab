@@ -168,21 +168,25 @@ char **getNamesOfFunctionsInSharedLibraries(int *sizearray)
 	char **NamesOfFunctions = NULL;
 	*sizearray = 0;
 
-	if (NEpoints)
+	if ( (NEpoints) && (NEpoints > 0) )
 	{
-		int i=0;
-		for ( i = NEpoints-1 ; i >=0 ; i--) 
+		int i = 0;
+		NamesOfFunctions = (char **) MALLOC((NEpoints)*sizeof(char *));
+		if (NamesOfFunctions)
 		{
-			if (EP[i].name)
+			for ( i = NEpoints-1 ; i >= 0 ; i--) 
 			{
-				char *EntryName=(char *)MALLOC(strlen(EP[i].name)*sizeof(char));
-
-				(*sizearray)++;
-				if (NamesOfFunctions) NamesOfFunctions = (char **) REALLOC(NamesOfFunctions,(*sizearray)*sizeof(char *));
-				else NamesOfFunctions = (char **) MALLOC((*sizearray)*sizeof(char *));
-
-				strcpy(EntryName,EP[i].name);
-				NamesOfFunctions[(*sizearray)-1]=EntryName;
+				if (EP[i].name)
+				{
+					char *EntryName = (char *)MALLOC(((int)strlen(EP[i].name)+1)*sizeof(char));
+					
+					if (EntryName)
+					{
+						(*sizearray)++;
+						strcpy(EntryName , EP[i].name);
+						NamesOfFunctions[(*sizearray)-1] = EntryName;
+					}
+				}
 			}
 		}
 	}
