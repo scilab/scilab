@@ -31,29 +31,29 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  */
 public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	
-	private final String bmpDesc = "Windows BMP image";
-	private final String gifDesc = "GIF image";
-	private final String jpgDesc = "JPEG image";
-	private final String pngDesc = "PNG image";
-	private final String ppmDesc = "PPM image";
-	private final String emfDesc = "Enhanced Metafile image";
-	private final String epsDesc = "Encapsulated PostScript image";
-	private final String figDesc = "FIG image";
-	private final String pdfDesc = "PDF image";
-	private final String svgDesc = "SVG image";
-	private final String byExtensionDesc = "By extension";
+	private static final String bmpDesc = "Windows BMP image";
+	private static final String gifDesc = "GIF image";
+	private static final String jpgDesc = "JPEG image";
+	private static final String pngDesc = "PNG image";
+	private static final String ppmDesc = "PPM image";
+	private static final String emfDesc = "Enhanced Metafile image";
+	private static final String epsDesc = "Encapsulated PostScript image";
+	private static final String figDesc = "FIG image";
+	private static final String pdfDesc = "PDF image";
+	private static final String svgDesc = "SVG image";
+	private static final String byExtensionDesc = "By extension";
 	
-	private final String bmp = "bmp";
-	private final String gif = "gif";
-	private final String jpg = "jpg";
-	private final String png = "png";
-	private final String ppm = "ppm";
-	private final String emf = "emf";
-	private final String eps = "eps";
-	private final String fig = "fig";
-	private final String pdf = "pdf";
-	private final String svg = "svg";
-	private final String byExtension = "*";
+	private static final String bmp = "bmp";
+	private static final String gif = "gif";
+	private static final String jpg = "jpg";
+	private static final String png = "png";
+	private static final String ppm = "ppm";
+	private static final String emf = "emf";
+	private static final String eps = "eps";
+	private static final String fig = "fig";
+	private static final String pdf = "pdf";
+	private static final String svg = "svg";
+	private static final String byExtension = "*";
 	
 	private String exportName;	
 	private String extensionSelected;
@@ -103,7 +103,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		this.figureId = figureId;
 		
 		for (int i = 0; i < data.length; i++) {
-			fm[i] = new FileMasque(data[i][1].toString(), data[i][0].toString());
+			fm[i] = new FileMasque(data[i][1], data[i][0]);
 		}
 		
 		for (int i = 0; i < fm.length; i++) {

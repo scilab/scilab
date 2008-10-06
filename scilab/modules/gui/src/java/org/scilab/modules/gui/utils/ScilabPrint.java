@@ -21,7 +21,7 @@ import javax.print.attribute.PrintRequestAttributeSet;
  */
 public class ScilabPrint implements Printable {
 
-	private final int PRINT_MARGIN = 3; 
+	private static final int PRINT_MARGIN = 3; 
 
 	private BufferedImage canvasDump;
 	private PrinterJob pj;
