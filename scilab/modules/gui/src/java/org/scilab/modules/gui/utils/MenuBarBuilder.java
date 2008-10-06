@@ -135,7 +135,6 @@ public final class MenuBarBuilder {
 		protected static final String FALSE = "false";
 
 		private Document dom;
-		private Object proxy;
 		private Collection<String> internalMethodNames;
 
 
@@ -176,8 +175,6 @@ public final class MenuBarBuilder {
 		 */
 		public Object invoke(Object proxy, Method method, Object[] args) 
 			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-			
-			this.proxy = proxy;
 			if (internalMethodNames.contains(method.getName())) {
 				return getClass().getMethod(method.getName(), method.getParameterTypes()).invoke(this, args);
 			} else {

@@ -26,8 +26,6 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 
 	private SimpleFileChooser component;
 	
-	private String[] selectedFiles;
-	
 	/**
 	 * Constructor
 	 * @param isExportFileChooser if is an graphic export file chooser
