@@ -514,6 +514,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 * @param ae the action event
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
+
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == btnOK) {
 			// For a x_dialog, get the user answer
@@ -543,7 +544,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			selectedButton = 2;
 		} else if (buttonsLabels != null) { // User defined buttons
 			for (int index = 0; index < buttonsLabels.length; index++) {
-				if (((JButton) ae.getSource()).getText() == buttonsLabels[index]) {
+				if (((JButton) ae.getSource()).getText().equals(buttonsLabels[index])) {
 					selectedButton = index + 1;
 					break;
 				}
