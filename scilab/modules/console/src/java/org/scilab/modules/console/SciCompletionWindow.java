@@ -215,7 +215,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	 * List model which allow filter on completion item
 	 * In Scilab, filter and sort are done by Scilab and have not to be done here
 	 */
-	public class CompletionItemListModel extends AbstractListModel {
+	private static class CompletionItemListModel extends AbstractListModel {
 		private static final long serialVersionUID = 1L;
 		private List<CompletionItem> data;
 		private String filter;
