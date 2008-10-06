@@ -68,7 +68,7 @@ public class FontManager {
     /**
      * A list of fonts.
      */
-    private class FontList extends ArrayList < Font > {
+    private static class FontList extends ArrayList < Font > {
 
         private static final long serialVersionUID = 1L;
 

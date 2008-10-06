@@ -31,7 +31,7 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	/**
 	 * Saved previous clipped planes to restore them after
 	 */
-	private class ClipPlanePile extends LinkedList<Plane3D> {
+	private static class ClipPlanePile extends LinkedList<Plane3D> {
 		
 		/**
 		 * Needed

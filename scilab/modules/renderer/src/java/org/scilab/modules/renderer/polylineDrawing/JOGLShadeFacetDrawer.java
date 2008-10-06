@@ -12,9 +12,6 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  */
 public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 	
-	private GL gl;
-	private TexturedColorMap colorMaps;
-	
 	/**
 	 * Default constructor
 	 */
@@ -32,9 +29,6 @@ public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 	public void paintPolygon(Vector3D[] coords, int[] colors, GL gl,
 							 TexturedColorMap colorMap) {
 		
-		this.gl = gl;
-		this.colorMaps = colorMap;
-
 		for (int i = 0; i < coords.length; i++) {
 			colorMap.applyTexCoord(gl, colors[i]);
 			gl.glVertex3d(coords[i].getX(), coords[i].getY(), coords[i].getZ());
@@ -53,9 +47,6 @@ public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 	public void paintPolygon(Vector3D[] triangleCoords,
 			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
 		
-		this.gl = gl;
-		this.colorMaps = colorMap;
-
 		for (int i = 0; i < triangleCoords.length; i++) {
 			colorMap.applyTexCoord(gl, triangleColors[i]);
 			gl.glVertex3d(triangleCoords[i].getX(), triangleCoords[i].getY(), triangleCoords[i].getZ());

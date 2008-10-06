@@ -39,7 +39,6 @@ public class ColoredTriangle {
 	
 	/** Smallest & biggest color */
 	private double min;
-	private double max;
 	
 	/** previous and next polygon point */
 	private Vector3D prevI1 = new Vector3D();
@@ -144,7 +143,6 @@ public class ColoredTriangle {
 		TriangleDecomposition res = new TriangleDecomposition();
 		
 		min = Math.min(Math.min(colorC, colorB), colorA);
-		max = Math.max(Math.max(colorC, colorB), colorA);
 		
 		//if all colors are the same
 		if (colorA == colorB && colorA == colorC) {

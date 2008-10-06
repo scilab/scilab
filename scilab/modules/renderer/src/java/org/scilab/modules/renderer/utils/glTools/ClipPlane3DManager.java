@@ -30,7 +30,7 @@ public class ClipPlane3DManager {
 	/**
 	 * List of clipplane. So every one can access the clipped planes
 	 */
-	private class ClipPlaneList extends LinkedList<MovableClipPlane3D> {
+	private static class ClipPlaneList extends LinkedList<MovableClipPlane3D> {
 		
 		/**
 		 * Needed
