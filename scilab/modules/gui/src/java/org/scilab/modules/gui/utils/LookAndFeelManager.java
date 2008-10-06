@@ -22,13 +22,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Sylvestre Ledru
  */
 public class LookAndFeelManager {
-	private static UIManager.LookAndFeelInfo[] availableLookAndFeels;
+	private static UIManager.LookAndFeelInfo[] availableLookAndFeels = UIManager.getInstalledLookAndFeels();
 
 	/**
 	 * Constructor
 	 */
 	public LookAndFeelManager() {
-		availableLookAndFeels = UIManager.getInstalledLookAndFeels();
 	}
 	
 	/**

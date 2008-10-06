@@ -390,7 +390,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		JTextPane output = (JTextPane) this.getConfiguration().getOutputView();
 		JTextPane input = (JTextPane) this.getConfiguration().getInputCommandView();
 		
-		String selection = new String();
+		String selection = "";
 		if (output.getSelectedText() != null) {
 			selection += output.getSelectedText();
 		}

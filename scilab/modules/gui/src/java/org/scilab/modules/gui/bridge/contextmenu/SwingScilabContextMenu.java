@@ -39,10 +39,6 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 
 	private static final long serialVersionUID = 1L;
 
-	private CallBack callback;
-	
-	private MouseListener customedMouseListener;
-	
 	/**
 	 * Constructor
 	 */
@@ -196,14 +192,6 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 */
 	public void setEnabled(boolean status) {
 		super.setEnabled(status);
-		/* (Des)Activate the callback */ 
-		if (callback != null) {
-			if (status) {
-				addMouseListener(customedMouseListener);
-			} else {
-				removeMouseListener(customedMouseListener);
-			}
-		}
 	}
 
 	/**
@@ -278,7 +266,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * @return the CallBack
 	 */
 	public CallBack getCallback() {
-		return callback;
+		throw new UnsupportedOperationException();
 	}
 
 }

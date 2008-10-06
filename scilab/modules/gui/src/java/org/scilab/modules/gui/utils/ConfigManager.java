@@ -126,9 +126,9 @@ public final class ConfigManager {
 		NodeList fontStyleElement = scilabProfile.getElementsByTagName("FontStyle");
 		Element fontStyle = (Element) fontStyleElement.item(0);
 		
-		if (!font.isBold() & !font.isItalic()) {
+		if (!font.isBold() && !font.isItalic()) {
 			fontStyle.setAttribute(VALUE, "0");
-		} else if (font.isBold() & font.isItalic()) {
+		} else if (font.isBold() && font.isItalic()) {
 			fontStyle.setAttribute(VALUE, "3");
 		} else if (font.isBold()) {
 			fontStyle.setAttribute(VALUE, "1");
