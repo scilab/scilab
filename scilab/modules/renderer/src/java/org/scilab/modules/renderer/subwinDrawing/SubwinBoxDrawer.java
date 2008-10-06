@@ -37,7 +37,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 												   	  {{7, 3}, {7, 5}, {7, 6}}};
 	
 	/** For each corners, corners of the facet to draw as back facet. */
-	private static final int[][][] BACK_FACETS = {{{0, 2, 3, 1}, {0, 4, 5, 1}, {0, 4, 6, 2}}, 
+	protected static final int[][][] BACK_FACETS = {{{0, 2, 3, 1}, {0, 4, 5, 1}, {0, 4, 6, 2}}, 
 												   {{1, 0, 4, 5}, {1, 3, 2, 0}, {1, 5, 7, 3}},
 												   {{2, 3, 1, 0}, {2, 6, 7, 3}, {2, 0, 4, 6}},
 												   {{3, 7, 6, 2}, {3, 1, 0, 2}, {3, 7, 5, 1}},
