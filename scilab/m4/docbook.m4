@@ -25,7 +25,7 @@ AC_ARG_WITH(docbook,
 		AC_MSG_ERROR([Could not find the Docbook root directory. If you have installed it on your system and we haven't been able to find it. Please report a bug])
 	fi
 	# xml.apache.org SVG Library
-	AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
+	AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library])
 	BATIK=$PACKAGE_JAR_FILE
 	AC_SUBST(BATIK)
 
@@ -40,7 +40,7 @@ AC_ARG_WITH(docbook,
 	AC_SUBST(FOP)
 
 	# MathML rendering solution
-	AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.DOMBuilder],[MathML rendering solution])
+	AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.ant.MathMLConverter],[MathML rendering solution (at least version 3.1.X)])
 	JEUCLID_CORE=$PACKAGE_JAR_FILE
 	AC_SUBST(JEUCLID_CORE)
 
