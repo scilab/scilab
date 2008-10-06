@@ -56,7 +56,7 @@ public class BitmapRenderer  extends ExportRenderer {
 	 * @param fileType type of the file to render
 	 */
 	public void setRenderedFile(String fileName, int fileType) {
-		this.fileName = new String(fileName);
+		this.fileName = fileName;
 		super.setFileType(fileType);
 	}
 
