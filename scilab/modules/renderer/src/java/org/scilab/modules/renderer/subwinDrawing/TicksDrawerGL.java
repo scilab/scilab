@@ -50,10 +50,8 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	
 	
 	
-	private double[] ticksPositions;
 	private String[] ticksLabels;
 	private String[] labelsExponents;
-	private double[] subticksPositions;
 	
 	private double[] curLabelBox = new double[GeomAlgos.RECTANGLE_NB_CORNERS]; // [xmin, xmax, ymin, ymax]
 	private double[] nextLabelBox = new double[GeomAlgos.RECTANGLE_NB_CORNERS]; // [xmin, xmax, ymin, ymax]
@@ -159,20 +157,6 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		return labelsExponents != null;
 	}
 	
-	/**
-	 * @return Nummber of ticks to draw
-	 */
-	protected int getNbTicks() {
-		return ticksPositions.length;
-	}
-	
-	/**
-	 * @param tickIndex index of the tick
-	 * @return positions of ticks on its axis.
-	 */
-	protected double getTickPosition(int tickIndex) {
-		return ticksPositions[tickIndex];
-	}
 	
 	/**
 	 * @param tickIndex index of the tick
@@ -193,36 +177,6 @@ public class TicksDrawerGL extends DrawableObjectGL {
 			return "";
 		}
 	}
-	
-	/**
-	 * @return number of subticks to draw
-	 */
-	protected int getNbSubticks() {
-		return subticksPositions.length;
-	}
-	
-	/**
-	 * @param subtickIndex index of the subtick
-	 * @return position of the subtick to draw on its axis.
-	 */
-	protected double getSubtickPosition(int subtickIndex) {
-		return subticksPositions[subtickIndex];
-	}
-	
-	/**
-	 * @return positions of the subticks on their axis.
-	 */
-	protected double[] getSubTicksPositions() {
-		return subticksPositions;
-	}
-	
-	/**
-	 * @return positions of ticks on their axis.
-	 */
-	protected double[] getTicksPositions() {
-		return ticksPositions;
-	}
-
 	
 	/**
 	 * Set a new line style for the line.
