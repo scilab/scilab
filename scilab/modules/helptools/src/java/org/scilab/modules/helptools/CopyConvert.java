@@ -45,9 +45,7 @@ import org.apache.batik.transcoder.XMLAbstractTranscoder;
 import org.apache.batik.transcoder.image.ImageTranscoder;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 
-import net.sourceforge.jeuclid.MathBase;
-import net.sourceforge.jeuclid.ParameterKey;
-import net.sourceforge.jeuclid.Converter;
+import net.sourceforge.jeuclid.ant.MathMLConverter;
 
 /**
  * @TODO add comment
@@ -605,18 +603,19 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     }
 
     private boolean convertMathML(File inFile, File outFile) {
-        Map<ParameterKey, String> convertParams =
-            MathBase.getDefaultParameters();
-        convertParams.put(ParameterKey.OutFileType, "image/png");
-        convertParams.put(ParameterKey.AntiAlias, "true");
-        // Workaround a XEP problem. FOP 1 is OK.
-        convertParams.put(ParameterKey.BackgroundColor, "#FFFFFF");
-        convertParams.put(ParameterKey.FontSize, "14");
-
+		/* Set the misc value ... used to be done in MathBase in jeuclid version 3.0.X */
+		MathMLConverter converter = new MathMLConverter();
+		converter.setType("image/png");
+		converter.setAntiAlias(true);
+		converter.setBackgroundColor("#FFFFFF");
+		converter.setFontSize(14);
+		converter.setIn(inFile);
+		converter.setOut(outFile);
+		converter.execute();
         try {
-            Converter.convert(inFile, outFile, convertParams);
+			
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             reportError("Cannot convert '" + inFile + "' to '"
                         + outFile + "': " + Helpers.reason(e));
             return false;
