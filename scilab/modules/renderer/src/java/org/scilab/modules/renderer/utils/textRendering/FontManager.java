@@ -63,7 +63,7 @@ public class FontManager {
     private static final Font DEFAULT_FONT = new Font("Default", Font.PLAIN, 1);
 
     /** Singleton instance. */
-    private static FontManager sciFontManager = new FontManager();
+    private static FontManager sciFontManager;
 
     /**
      * A list of fonts.
@@ -88,7 +88,9 @@ public class FontManager {
   * Should not be called.
   */
  protected FontManager() {
-
+  if (sciFontManager == null) {
+    initializeFontManager();
+  }
  }
  
  /**
@@ -96,6 +98,9 @@ public class FontManager {
   * @return the only instance of fontmanager.
   */
  public static FontManager getSciFontManager() {
+  if (sciFontManager == null) {
+   sciFontManager = new FontManager();
+  }
   
   return sciFontManager;
  }
