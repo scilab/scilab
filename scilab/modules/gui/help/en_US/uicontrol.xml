@@ -284,6 +284,7 @@
           uicontrol or a character string where each value is separated by a
           "|", ie "x|y|w|h". The units are determined by the "Units"
           property.</para>
+          <para>The width and height values determine the orientation of sliders. If width is greater than height, then the slider is oriented horizontally, otherwise the slider is oriented vertically.</para>
         </listitem>
       </varlistentry>
 
