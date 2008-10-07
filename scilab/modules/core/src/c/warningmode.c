@@ -11,7 +11,7 @@
  */
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/
-BOOL WARNINGMODEON=TRUE;
+static BOOL WARNINGMODEON=TRUE;
 /*--------------------------------------------------------------------------*/
 BOOL setWarningMode(BOOL ON)
 {
