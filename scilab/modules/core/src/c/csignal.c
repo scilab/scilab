@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include "banier.h"
 #include "csignal.h"
 #include "sigbas.h"
@@ -22,7 +23,8 @@ void controlC_handler (int sig)
 
 int C2F(csignal)(void)
 {
-  signal (SIGINT, controlC_handler);
-  return(0);
+	if (signal (SIGINT, controlC_handler) == SIG_ERR) {
+		fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+	}
+	return(0);
 }
-
