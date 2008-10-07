@@ -135,12 +135,16 @@ int C2F(callinterf) (int *k)
  if ( count == 0)
     {
       if (sig_ok) {
-		  signal(SIGINT,sci_sigint_addinter);
+		  if (signal(SIGINT,sci_sigint_addinter) == SIG_ERR) {
+			  fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+		  }
 	  }
       if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 		  {
 			  if (sig_ok) {
-				  signal(SIGINT, controlC_handler);
+				  if (signal(SIGINT, controlC_handler) == SIG_ERR) {
+					  fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+				  }
 			  }
 			  Scierror(999,_("SIGSTP: aborting current computation\n"));
 			  count = 0;
@@ -156,7 +160,9 @@ int C2F(callinterf) (int *k)
   count--;
   if (count == 0) {
     if (sig_ok) {
-		signal(SIGINT, controlC_handler);
+		if (signal(SIGINT, controlC_handler) == SIG_ERR) {
+			fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+		}
 	}
   }
   return 0;
