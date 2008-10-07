@@ -84,6 +84,10 @@ libsciio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libsciio_la_CFLAGS)
+
 libsciio_la_LIBADD = libdummy-io.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

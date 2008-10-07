@@ -81,6 +81,10 @@ libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
+INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
+
 # pb of order $(top_builddir)/modules/shell/libscishell.la
 libscifileio_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
 #### Target ######

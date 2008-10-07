@@ -31,6 +31,10 @@ libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(JAVASCI_C_SOURCES)
+INCLUDE_FLAGS = $(libjavasci_la_CFLAGS)
+
 libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 			$(JAVA_JNI_INCLUDE) \
 			$(TCL_INC_PATH) \

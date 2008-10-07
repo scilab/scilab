@@ -392,6 +392,10 @@ libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
+
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 # Commented because it is one of the first module to be compiled
 #libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la

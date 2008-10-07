@@ -403,6 +403,10 @@ libscigraphics_la_CXXFLAGS =  	-Iincludes/ \
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
+
 libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 
 

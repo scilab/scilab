@@ -805,6 +805,9 @@ modulename = scicos_blocks
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
+
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C)
@@ -1240,6 +1243,10 @@ HELP_CHAPTERFILE = addchapter.sce
 @SCICOS_TRUE@$(SCICOS_BLOCKS_FORTRAN_SOURCES) \
 @SCICOS_TRUE@$(NON_BLOCK_C_SOURCES)
 
+
+# For the code check (splint)
+@SCICOS_TRUE@CHECK_SRC = $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)
+@SCICOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
 
 #$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -4277,12 +4284,14 @@ uninstall-am: uninstall-libsciscicos_blocks_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

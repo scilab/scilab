@@ -277,8 +277,14 @@ libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/
 
+libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
+
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC= $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib

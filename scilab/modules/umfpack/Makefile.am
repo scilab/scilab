@@ -54,6 +54,10 @@ libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
 
 libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(libsciumfpack_la_SOURCES)
+INCLUDE_FLAGS = $(libsciumfpack_la_CFLAGS)
+
 libsciumfpack_la_LIBADD =  $(top_builddir)/modules/mexlib/libmx.la \
 $(top_builddir)/modules/mexlib/libmat.la \
 $(top_builddir)/modules/sparse/libscisparse.la \

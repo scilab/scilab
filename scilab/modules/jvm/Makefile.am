@@ -88,5 +88,9 @@ endif
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(libscijvm_la_SOURCES)
+INCLUDE_FLAGS = $(libscijvm_la_CFLAGS)
+
 
 include $(top_srcdir)/Makefile.incl.am

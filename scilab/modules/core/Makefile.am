@@ -85,7 +85,6 @@ src/c/readGateway.c \
 src/c/comparehandles.c \
 src/c/setPrecisionFPU.c
 
-
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
 endif
@@ -206,7 +205,6 @@ if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
 endif
 
-
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
@@ -271,7 +269,6 @@ sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c
 
-
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \
@@ -302,7 +299,7 @@ sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
             -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
@@ -318,6 +315,8 @@ libscicore_la_CFLAGS=  	-I$(srcdir)/includes/ \
             -I$(top_srcdir)/modules/fileio/includes \
 			$(XML_FLAGS)
 
+
+
 # Used by sci_getdebuginfo:
 if TCLTK
 libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
@@ -327,6 +326,10 @@ endif
 pkglib_LTLIBRARIES = libscicore.la
 
 libscicore_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+
+# For the code check (splint)
+CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscicore_la_CFLAGS)
 
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
@@ -442,4 +445,3 @@ demos/intro/Makefile \
 demos/intro/dem01_gateway.sce
 
 include $(top_srcdir)/Makefile.incl.am
-

@@ -145,19 +145,17 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/sound/libscisound.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
-
-# These libs are loaded dynamical by Scilab
-#	$(top_builddir)/modules/matio/libscimatio.la
-#	$(top_builddir)/modules/randlib/libscirandlib.la
-#	$(top_builddir)/modules/optimization/libscioptimization.la
-#	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
-#	$(top_builddir)/modules/symbolic/libscisymbolic.la
-#	$(top_builddir)/modules/metanet/libscimetanet.la
-#	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la
-#	$(top_builddir)/modules/statistics/libscistatistics.la
-#	$(top_builddir)/modules/signal_processing/libscisignal_processing.la
-#	$(top_builddir)/modules/interpolation/libsciinterpolation.la
+	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/matio/libscimatio.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
+	$(top_builddir)/modules/metanet/libscimetanet.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la
 
 # Dev in progress
 

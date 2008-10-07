@@ -23,7 +23,6 @@ src/exe/check.c
 
 libsciintersci_la_includedir=$(pkgincludedir)/intersci
 
-
 pkglib_LTLIBRARIES = libsciintersci.la
 
 libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -36,6 +35,10 @@ libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 libsciintersci_la_CFLAGS = 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
                 -I$(top_srcdir)/modules/string/includes	
+
+# For the code check (splint)
+CHECK_SRC= $(libsciintersci_la_SOURCES)
+INCLUDE_FLAGS = $(libsciintersci_la_CFLAGS)
 
 libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \

@@ -92,6 +92,10 @@ libscistatistics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
+
 libscistatistics_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 if USE_EMBEDDED_LAPACK

@@ -416,6 +416,10 @@ top_srcdir = @top_srcdir@
 
 # All the sources needed by libscigraphic_export.la
 @GUI_TRUE@libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
+
+# For the code check (splint)
+@GUI_TRUE@CHECK_SRC = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
+@GUI_TRUE@INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 @GUI_TRUE@libscigraphic_export_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 @GUI_TRUE@GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
 @GUI_TRUE@src/jni/GL2PSToJOGL.giws.xml \
@@ -464,6 +468,9 @@ includes/sci_xs2svg.h
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -1088,12 +1095,14 @@ uninstall-am: uninstall-libscigraphic_export_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

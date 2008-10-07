@@ -149,7 +149,9 @@ sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
-sci_gateway/c/sci_exportUI.c \
+sci_gateway/c/sci_exportUI.c
+
+GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/sci_printsetupbox.cpp \
 sci_gateway/cpp/sci_toprint.cpp \
 sci_gateway/cpp/sci_printfigure.cpp \
@@ -178,6 +180,7 @@ libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/string/includes/
 
 libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -195,7 +198,6 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
-			-Isrc/jni/ \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
 			-I$(top_srcdir)/modules/string/includes/
 
@@ -211,7 +213,11 @@ pkglib_LTLIBRARIES = libscigui.la
 
 libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
+libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC= $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 
 #  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
 libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la

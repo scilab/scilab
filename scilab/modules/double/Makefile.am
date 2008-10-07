@@ -35,6 +35,10 @@ libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscidouble_la_CFLAGS)
+
 libscidouble_la_LIBADD =  $(top_builddir)/modules/boolean/libsciboolean.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 

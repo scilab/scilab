@@ -61,6 +61,10 @@ libscihistory_manager_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAV
 # All the sources needed by libscihistory_manager.la
 libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
+
 ## Libraries necessary
 libscihistory_manager_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 modulename=history_manager

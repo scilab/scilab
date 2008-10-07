@@ -58,6 +58,10 @@ libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB) lgpvm3
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscipvm_la_CFLAGS)
+
 libscipvm_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 modulename=pvm

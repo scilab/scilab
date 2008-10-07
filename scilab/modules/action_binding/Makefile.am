@@ -49,6 +49,10 @@ libsciaction_binding_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 # All the sources needed by libsciaction_binding.la
 libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(CONSOLE_C_JNI_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(ACTION_BINDING_C_SOURCES)
+INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
+
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 libsciaction_binding_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la

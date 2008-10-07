@@ -30,6 +30,10 @@ pkglib_LTLIBRARIES = libscidynamic_link.la
 libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC=  $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscidynamic_link_la_CFLAGS)
+
 # cyclic $(top_builddir)/modules/core/libscicore.la 
 libscidynamic_link_la_LIBADD =  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######

@@ -100,6 +100,10 @@ libscilinear_algebra_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(SLICOT_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscilinear_algebra_la_CFLAGS)
+
 libscilinear_algebra_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 if USE_EMBEDDED_LAPACK

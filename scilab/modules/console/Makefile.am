@@ -66,6 +66,10 @@ libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 # All the sources needed by libsciconsole.la
 libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
+INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
+
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 libsciconsole_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la 

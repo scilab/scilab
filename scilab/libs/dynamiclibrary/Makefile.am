@@ -18,6 +18,10 @@ libscidynamiclibrary_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscidynamiclibrary_la_SOURCES = $(DYNAMICLIBRARY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(DYNAMICLIBRARY_C_SOURCES)
+INCLUDE_FLAGS = $(libscidynamiclibrary_la_CFLAGS)
+
 libscidynamiclibrary_la_LIBADD = 
 
 #### Target ######

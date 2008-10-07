@@ -424,6 +424,10 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@			-I$(top_srcdir)/modules/localization/includes
 
 @TCLTK_TRUE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
+
+# For the code check (splint)
+@TCLTK_TRUE@CHECK_SRC = $(libscitclsci_la_SOURCES)
+@TCLTK_TRUE@INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
 @TCLTK_TRUE@libscitclsci_la_LIBADD = $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 @TCLTK_TRUE@modulename = tclsci
@@ -648,6 +652,9 @@ top_srcdir = @top_srcdir@
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+@TCLTK_TRUE@SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -1343,12 +1350,14 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 # This target enables tests for Scilab
 @TCLTK_TRUE@check-local: $(top_builddir)/scilab-bin
+@TCLTK_TRUE@	@COMMAND="test_run('$(modulename)');quit";\
+@TCLTK_TRUE@	export LANG=C;\
+@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@TCLTK_TRUE@check-code:
 @TCLTK_TRUE@	@if test -f build.xml; then \
 @TCLTK_TRUE@		$(ANT) checkstyle; \
 @TCLTK_TRUE@	fi;\
-@TCLTK_TRUE@	COMMAND="test_run('$(modulename)');quit";\
-@TCLTK_TRUE@	export LANG=C;\
-@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@TCLTK_TRUE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@@TCLTK_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

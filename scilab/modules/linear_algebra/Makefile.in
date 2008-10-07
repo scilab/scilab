@@ -457,6 +457,10 @@ libscilinear_algebra_la_CFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 libscilinear_algebra_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(SLICOT_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscilinear_algebra_la_CFLAGS)
 libscilinear_algebra_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -487,6 +491,9 @@ includes/issymmetric.h
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -1246,12 +1253,14 @@ uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

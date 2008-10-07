@@ -49,6 +49,10 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
+
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 libscigraphic_export_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la

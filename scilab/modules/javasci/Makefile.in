@@ -364,6 +364,10 @@ modulename = javasci
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci.la
 @JAVASCI_TRUE@libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 @JAVASCI_TRUE@libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
+
+# For the code check (splint)
+@JAVASCI_TRUE@CHECK_SRC = $(JAVASCI_C_SOURCES)
+@JAVASCI_TRUE@INCLUDE_FLAGS = $(libjavasci_la_CFLAGS)
 @JAVASCI_TRUE@libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 @JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
 @JAVASCI_TRUE@			$(TCL_INC_PATH) \
@@ -444,6 +448,9 @@ modulename = javasci
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 @JAVASCI_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+@JAVASCI_TRUE@SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -955,12 +962,14 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 # This target enables tests for Scilab
 @JAVASCI_TRUE@check-local: $(top_builddir)/scilab-bin
+@JAVASCI_TRUE@	@COMMAND="test_run('$(modulename)');quit";\
+@JAVASCI_TRUE@	export LANG=C;\
+@JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@JAVASCI_TRUE@check-code:
 @JAVASCI_TRUE@	@if test -f build.xml; then \
 @JAVASCI_TRUE@		$(ANT) checkstyle; \
 @JAVASCI_TRUE@	fi;\
-@JAVASCI_TRUE@	COMMAND="test_run('$(modulename)');quit";\
-@JAVASCI_TRUE@	export LANG=C;\
-@JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@JAVASCI_TRUE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

@@ -127,6 +127,10 @@ libscimetanet_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(METANET_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscimetanet_la_CFLAGS)
+
 libscimetanet_la_LIBADD = $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 if USE_EMBEDDED_BLAS

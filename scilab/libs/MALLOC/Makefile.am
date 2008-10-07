@@ -24,6 +24,10 @@ libscimalloc_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(MALLOC_C_SOURCES)
+INCLUDE_FLAGS = $(libscimalloc_la_CFLAGS)
+
 libscimalloc_la_LIBADD = 
 
 #### Target ######

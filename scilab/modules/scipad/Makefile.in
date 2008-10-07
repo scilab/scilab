@@ -439,6 +439,12 @@ top_srcdir = @top_srcdir@
 # Where all the Scilab stuff is installed (macros, help, ...)
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
+# splint options
+@TCLTK_FALSE@SPLINT_OPTIONS = -weak -booltype BOOL
+
+# splint options
+@TCLTK_TRUE@SPLINT_OPTIONS = -weak -booltype BOOL
+
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C)
@@ -834,12 +840,14 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 
 # This target enables tests for Scilab
 @TCLTK_TRUE@check-local: $(top_builddir)/scilab-bin
+@TCLTK_TRUE@	@COMMAND="test_run('$(modulename)');quit";\
+@TCLTK_TRUE@	export LANG=C;\
+@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@TCLTK_TRUE@check-code:
 @TCLTK_TRUE@	@if test -f build.xml; then \
 @TCLTK_TRUE@		$(ANT) checkstyle; \
 @TCLTK_TRUE@	fi;\
-@TCLTK_TRUE@	COMMAND="test_run('$(modulename)');quit";\
-@TCLTK_TRUE@	export LANG=C;\
-@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@TCLTK_TRUE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@@TCLTK_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -983,12 +991,14 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 
 # This target enables tests for Scilab
 @TCLTK_FALSE@check-local: $(top_builddir)/scilab-bin
+@TCLTK_FALSE@	@COMMAND="test_run('$(modulename)');quit";\
+@TCLTK_FALSE@	export LANG=C;\
+@TCLTK_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@TCLTK_FALSE@check-code:
 @TCLTK_FALSE@	@if test -f build.xml; then \
 @TCLTK_FALSE@		$(ANT) checkstyle; \
 @TCLTK_FALSE@	fi;\
-@TCLTK_FALSE@	COMMAND="test_run('$(modulename)');quit";\
-@TCLTK_FALSE@	export LANG=C;\
-@TCLTK_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@TCLTK_FALSE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@@TCLTK_FALSE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@@TCLTK_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

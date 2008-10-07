@@ -28,6 +28,10 @@ libscitime_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(libscitime_la_SOURCES)
+INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
+
 libscitime_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

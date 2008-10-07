@@ -24,3 +24,4 @@ SUBDIRS += lapack
 endif 
 
 SUBDIRS += .
+

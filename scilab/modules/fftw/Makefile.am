@@ -48,6 +48,10 @@ libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
 libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscifftw_la_CFLAGS)
+
 libscifftw_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \

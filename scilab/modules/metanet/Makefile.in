@@ -482,6 +482,10 @@ libscimetanet_la_CFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libscimetanet.la
 libscimetanet_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(METANET_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscimetanet_la_CFLAGS)
 libscimetanet_la_LIBADD =  \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
@@ -536,6 +540,9 @@ MACROSDIRSEXT = macros/editor macros/graph_tools
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -1349,12 +1356,14 @@ uninstall-am: uninstall-libscimetanet_la_demosDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

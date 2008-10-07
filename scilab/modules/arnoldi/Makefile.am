@@ -76,6 +76,10 @@ libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
+
 libsciarnoldi_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la
 
 if USE_EMBEDDED_LAPACK

@@ -29,6 +29,10 @@ libsciboolean_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(BOOLEAN_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libsciboolean_la_CFLAGS)
+
 libsciboolean_la_LIBADD = \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la

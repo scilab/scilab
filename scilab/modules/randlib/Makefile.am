@@ -53,6 +53,10 @@ libscirandlib_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscirandlib_la_CFLAGS)
+
 libscirandlib_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 

@@ -45,6 +45,9 @@ libmx_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 #### Target ######
 modulename=mexlib
 
+# For the code check (splint)
+CHECK_SRC= $(MEXLIB_C_SOURCES)
+INCLUDE_FLAGS = $(MEXLIB_FLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)

@@ -220,14 +220,14 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-sci_uigetfont.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetcolor.lo \
 @GUI_TRUE@	libscigui_la-sci_getcallbackobject.lo \
-@GUI_TRUE@	libscigui_la-sci_exportUI.lo \
-@GUI_TRUE@	libscigui_la-sci_printsetupbox.lo \
+@GUI_TRUE@	libscigui_la-sci_exportUI.lo
+@GUI_TRUE@am__objects_3 = libscigui_la-sci_printsetupbox.lo \
 @GUI_TRUE@	libscigui_la-sci_toprint.lo \
 @GUI_TRUE@	libscigui_la-sci_printfigure.lo \
 @GUI_TRUE@	libscigui_la-sci_setlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-sci_getinstalledlookandfeels.lo \
 @GUI_TRUE@	libscigui_la-sci_getlookandfeel.lo
-@GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
+@GUI_TRUE@am__objects_4 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
 @GUI_TRUE@	libscigui_la-DestroyUimenu.lo \
@@ -308,7 +308,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-sci_raise_window.lo \
 @GUI_TRUE@	libscigui_la-GiwsException.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+	$(am__objects_3) $(am__objects_4)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 libscigui_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -545,6 +545,9 @@ top_srcdir = @top_srcdir@
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
+
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C)
@@ -728,7 +731,9 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@sci_gateway/c/sci_uigetfont.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetcolor.c \
 @GUI_TRUE@sci_gateway/c/sci_getcallbackobject.c \
-@GUI_TRUE@sci_gateway/c/sci_exportUI.c \
+@GUI_TRUE@sci_gateway/c/sci_exportUI.c
+
+@GUI_TRUE@GATEWAY_CPP_SOURCES = \
 @GUI_TRUE@sci_gateway/cpp/sci_printsetupbox.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_toprint.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_printfigure.cpp \
@@ -757,6 +762,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@	-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 @GUI_TRUE@	$(JAVA_JNI_INCLUDE) \
 @GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/renderer/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/string/includes/
 @GUI_TRUE@libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 @GUI_TRUE@			-I$(srcdir)/includes/ \
@@ -773,13 +779,16 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
-@GUI_TRUE@			-Isrc/jni/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphic_export/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/string/includes/
 
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
-libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
+libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 
 #  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
 libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
@@ -2422,12 +2431,14 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

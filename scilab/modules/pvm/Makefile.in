@@ -460,6 +460,10 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB) lgpvm3
 @PVM_FALSE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+
+# For the code check (splint)
+@PVM_TRUE@CHECK_SRC = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+@PVM_TRUE@INCLUDE_FLAGS = $(libscipvm_la_CFLAGS)
 @PVM_FALSE@libscipvm_la_LIBADD = \
 @PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
 
@@ -501,6 +505,12 @@ top_srcdir = @top_srcdir@
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 @PVM_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+@PVM_FALSE@SPLINT_OPTIONS = -weak -booltype BOOL
+
+# splint options
+@PVM_TRUE@SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -1334,12 +1344,14 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 # This target enables tests for Scilab
 @PVM_TRUE@check-local: $(top_builddir)/scilab-bin
+@PVM_TRUE@	@COMMAND="test_run('$(modulename)');quit";\
+@PVM_TRUE@	export LANG=C;\
+@PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@PVM_TRUE@check-code:
 @PVM_TRUE@	@if test -f build.xml; then \
 @PVM_TRUE@		$(ANT) checkstyle; \
 @PVM_TRUE@	fi;\
-@PVM_TRUE@	COMMAND="test_run('$(modulename)');quit";\
-@PVM_TRUE@	export LANG=C;\
-@PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@PVM_TRUE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@@PVM_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1483,12 +1495,14 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 # This target enables tests for Scilab
 @PVM_FALSE@check-local: $(top_builddir)/scilab-bin
+@PVM_FALSE@	@COMMAND="test_run('$(modulename)');quit";\
+@PVM_FALSE@	export LANG=C;\
+@PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@PVM_FALSE@check-code:
 @PVM_FALSE@	@if test -f build.xml; then \
 @PVM_FALSE@		$(ANT) checkstyle; \
 @PVM_FALSE@	fi;\
-@PVM_FALSE@	COMMAND="test_run('$(modulename)');quit";\
-@PVM_FALSE@	export LANG=C;\
-@PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@PVM_FALSE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@@PVM_FALSE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

@@ -359,6 +359,10 @@ pkglib_LTLIBRARIES = libscioutput_stream.la
 libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC = $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
+
 # Many stuff depends on this one ... commented
 #libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
@@ -396,6 +400,9 @@ libscioutput_stream_la_demosintro_DATA =
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -952,12 +959,14 @@ uninstall-am: uninstall-libscioutput_stream_la_demosintroDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

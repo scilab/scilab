@@ -105,14 +105,15 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihelptools_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/jvm/libscijvm.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
-	sci_gateway/cpp/sci_buildDoc.cpp sci_gateway/c/gw_helptools.c \
-	src/jni/BuildDocObject.cpp src/jni/GiwsException.cpp
+	sci_gateway/c/gw_helptools.c src/jni/BuildDocObject.cpp \
+	src/jni/GiwsException.cpp sci_gateway/cpp/sci_buildDoc.cpp
 @GUI_FALSE@am__objects_1 = libscihelptools_la-nogui.lo
-@GUI_TRUE@am__objects_1 = libscihelptools_la-sci_buildDoc.lo \
-@GUI_TRUE@	libscihelptools_la-gw_helptools.lo
+@GUI_TRUE@am__objects_1 = libscihelptools_la-gw_helptools.lo
 @GUI_TRUE@am__objects_2 = libscihelptools_la-BuildDocObject.lo \
 @GUI_TRUE@	libscihelptools_la-GiwsException.lo
-am_libscihelptools_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+@GUI_TRUE@am__objects_3 = libscihelptools_la-sci_buildDoc.lo
+am_libscihelptools_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscihelptools_la_OBJECTS = $(am_libscihelptools_la_OBJECTS)
 libscihelptools_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -367,13 +368,15 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@	src/jni/GiwsException.cpp
 
 @GUI_FALSE@GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
-@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
-@GUI_TRUE@			sci_gateway/c/gw_helptools.c
-
+@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
+@GUI_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 @GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
 @GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 pkglib_LTLIBRARIES = libscihelptools.la
-libscihelptools_la_CFLAGS = -I$(srcdir)/includes/ 
+libscihelptools_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
+
 libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
@@ -381,7 +384,11 @@ libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
 libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
+libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY_CPP_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
 #### Target ######
@@ -508,6 +515,9 @@ examples/example_1/help/zh_TW/example_1_function_3.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -688,13 +698,6 @@ libscihelptools_la-gw_helptools.lo: sci_gateway/c/gw_helptools.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscihelptools_la-sci_buildDoc.lo: sci_gateway/cpp/sci_buildDoc.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-sci_buildDoc.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo $(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_buildDoc.cpp' object='libscihelptools_la-sci_buildDoc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
-
 libscihelptools_la-BuildDocObject.lo: src/jni/BuildDocObject.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-BuildDocObject.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-BuildDocObject.Tpo -c -o libscihelptools_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscihelptools_la-BuildDocObject.Tpo $(DEPDIR)/libscihelptools_la-BuildDocObject.Plo
@@ -708,6 +711,13 @@ libscihelptools_la-GiwsException.lo: src/jni/GiwsException.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscihelptools_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+
+libscihelptools_la-sci_buildDoc.lo: sci_gateway/cpp/sci_buildDoc.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-sci_buildDoc.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo $(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_buildDoc.cpp' object='libscihelptools_la-sci_buildDoc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1220,12 +1230,14 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

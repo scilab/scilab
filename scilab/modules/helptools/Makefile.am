@@ -7,8 +7,9 @@ if GUI
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
-			sci_gateway/c/gw_helptools.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
+
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
 
@@ -22,7 +23,10 @@ endif
 
 pkglib_LTLIBRARIES = libscihelptools.la
 
-libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ 
+libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
+
 
 libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
@@ -32,7 +36,11 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 
 libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
+libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY_CPP_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC= $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
 
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 

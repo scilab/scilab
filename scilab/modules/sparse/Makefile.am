@@ -170,6 +170,10 @@ libscisparse_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC = $(SPARSE_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscisparse_la_CFLAGS)
+
 libscisparse_la_LIBADD =  $(top_builddir)/modules/io/libsciio.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 if USE_EMBEDDED_LAPACK

@@ -17,6 +17,10 @@ libscidoublylinkedlist_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscidoublylinkedlist_la_SOURCES = $(DOUBLYLINKEDLIST_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(DOUBLYLINKEDLIST_C_SOURCES)
+INCLUDE_FLAGS = $(libscidoublylinkedlist_la_CFLAGS)
+
 libscidoublylinkedlist_la_LIBADD = 
 
 #### Target ######

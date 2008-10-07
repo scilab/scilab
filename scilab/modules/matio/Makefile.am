@@ -54,6 +54,10 @@ pkglib_LTLIBRARIES = libscimatio.la
 
 libscimatio_la_SOURCES = $(MATIO_C_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(libscimatio_la_SOURCES)
+INCLUDE_FLAGS = $(libscimatio_la_CFLAGS)
+
 #### Target ######
 modulename=matio
 

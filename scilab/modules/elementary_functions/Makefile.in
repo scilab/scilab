@@ -1076,6 +1076,10 @@ libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 
 #### Target ######
@@ -1110,6 +1114,9 @@ includes/unsfdcopy.h
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# splint options
+SPLINT_OPTIONS = -weak -booltype BOOL
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -2968,12 +2975,14 @@ libdummy_elementary_functions_la-icopy.lo: src/fortran/linpack/icopy.f
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
+	@COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+check-code:
 	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \

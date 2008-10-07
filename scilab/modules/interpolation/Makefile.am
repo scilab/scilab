@@ -43,6 +43,10 @@ libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libsciinterpolation_la_SOURCES = $(SLATEC_SOURCES) $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
+# For the code check (splint)
+CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
+
 libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
