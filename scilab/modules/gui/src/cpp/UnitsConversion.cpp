@@ -64,7 +64,7 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthA
       else /* Frame */
         {
           position = CallScilabBridge::getFramePosition(getScilabJavaVM(),
-                                                        pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                                                        pUICONTROL_FEATURE(parent)->hashMapIndex);
           
           if (widthAsRef == TRUE)
             {
@@ -140,7 +140,7 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsR
       else /* Frame */
         {
           position = CallScilabBridge::getFramePosition(getScilabJavaVM(),
-                                                        pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                                                        pUICONTROL_FEATURE(parent)->hashMapIndex);
           
           if (widthAsRef == TRUE)
             {
@@ -172,7 +172,15 @@ double ConvertFromPixel(int value, int newUnit, sciPointObj *sciObj, BOOL widthA
     {
       newUnit = PIXELS_UNITS;
     }
-  return ConvertFromPoint(ConvertToPoint(value, PIXELS_UNITS, sciObj, widthAsRef), newUnit, sciObj, widthAsRef);
+
+  if (newUnit == PIXELS_UNITS) 
+    {
+      return (double) value;
+    }
+  else
+    {
+      return ConvertFromPoint(ConvertToPoint(value, PIXELS_UNITS, sciObj, widthAsRef), newUnit, sciObj, widthAsRef);
+    }
 }
 
 int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsRef)

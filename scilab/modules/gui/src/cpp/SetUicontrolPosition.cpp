@@ -92,7 +92,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
            returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
                                                              pUICONTROL_FEATURE(parent)->hashMapIndex);
            xInt = returnValues[0] + xInt;
-           yInt = returnValues[1] + returnValues[3] + yInt;
+           yInt = returnValues[1] + yInt;
         }
 
       CallScilabBridge::setFramePosition(getScilabJavaVM(), 
@@ -116,7 +116,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
            returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
                                                              pUICONTROL_FEATURE(parent)->hashMapIndex);
            xInt = returnValues[0] + xInt;
-           yInt = returnValues[1] + returnValues[3] + yInt;
+           yInt = returnValues[1] + yInt;
 		   delete [] returnValues;
         }
 
