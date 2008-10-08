@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) Rainer von Seggern
+// Copyright (C) Bruno Pincon
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [J,H] = derivative(F, x, h, order, H_form, Q)
 //
 //  PURPOSE
@@ -21,8 +31,6 @@ function [J,H] = derivative(F, x, h, order, H_form, Q)
 //          %R_       => to deal with F as this arg may be a scilab
 //                       function or a list embedding a function with
 //                       its parameters
-//  AUTHORS
-//     Rainer von Seggern, Bruno Pincon
 //
    [lhs,rhs]=argn();
    if rhs<2 | rhs>6 then
