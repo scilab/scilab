@@ -94,47 +94,47 @@
         <term>param</term>
 
         <listitem>
-          <para>a list of parameters. </para>
+          <para>a list of parameters.</para>
 
           <itemizedlist>
             <listitem>
-              <para> 'codage_func': the function which will perform the coding
-              and decoding of individuals (default function: codage_identity).
-              </para>
+              <para>'codage_func': the function which will perform the coding
+              and decoding of individuals (default function:
+              codage_identity).</para>
             </listitem>
 
             <listitem>
-              <para> 'init_func': the function which will perform the
+              <para>'init_func': the function which will perform the
               initialization of the population (default function:
-              init_ga_default). </para>
+              init_ga_default).</para>
             </listitem>
 
             <listitem>
-              <para> 'crossover_func': the function which will perform the
+              <para>'crossover_func': the function which will perform the
               crossover between two individuals (default function:
-              crossover_ga_default). </para>
+              crossover_ga_default).</para>
             </listitem>
 
             <listitem>
-              <para> 'mutation_func': the function which will perform the
+              <para>'mutation_func': the function which will perform the
               mutation of one individual (default function:
-              mutation_ga_default). </para>
+              mutation_ga_default).</para>
             </listitem>
 
             <listitem>
-              <para> 'selection_func': the function whcih will perform the
+              <para>'selection_func': the function whcih will perform the
               selection of individuals at the end of a generation (default
-              function: selection_ga_elitist). </para>
+              function: selection_ga_elitist).</para>
             </listitem>
 
             <listitem>
-              <para> 'nb_couples': the number of couples which will be
-              selected so as to perform the crossover and mutation (default
-              value: 100). </para>
+              <para>'nb_couples': the number of couples which will be selected
+              so as to perform the crossover and mutation (default value:
+              100).</para>
             </listitem>
 
             <listitem>
-              <para> 'pressure': the value the efficiency of the worst
+              <para>'pressure': the value the efficiency of the worst
               individual (default value: 0.05).</para>
             </listitem>
           </itemizedlist>
@@ -238,6 +238,16 @@
 
       <member><link linkend="optim_nsga2"> optim_nsga2 </link></member>
     </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <bibliomixed>
+      <bibliomset relation="book"><surname>Michalewicz</surname>,
+      <firstname>Zbigniew</firstname><title /> Genetic Algorithms + Data
+      Structures = Evolution Programs</bibliomset>
+    </bibliomixed>
   </refsection>
 
   <refsection>
