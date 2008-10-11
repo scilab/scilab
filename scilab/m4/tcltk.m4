@@ -72,7 +72,7 @@ AC_RUN_IFELSE(
 #include "confdefs.h"
 #include <stdio.h>
 #include <$CHK_TCL_INC_NAME>
-int main() {
+int main(void) {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
         FILE *serial = fopen("tclserial","w");
@@ -229,7 +229,7 @@ cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
 #include <stdio.h>
 #include <$CHK_TK_INC_NAME>
-int main(int argc,char **argv) {
+int main(void) {
         FILE *maj = fopen("tkmajor","w");
         FILE *min = fopen("tkminor","w");
         FILE *serial = fopen("tkserial","w");
