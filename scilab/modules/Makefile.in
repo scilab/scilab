@@ -54,10 +54,12 @@ host_triplet = @host@
 @USE_EMBEDDED_BLAS_FALSE@am__append_4 = $(BLAS_LIBS)
 @ENABLE_STATIC_TRUE@am__append_5 = $(ALL_LIBS)
 @SCICOS_TRUE@am__append_6 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_7 = $(top_builddir)/libs/blas/libsciblas.la
-@USE_EMBEDDED_LAPACK_TRUE@am__append_8 = \
-@USE_EMBEDDED_LAPACK_TRUE@$(top_builddir)/libs/lapack/libscilapack.la
 
+# Use the blas provided into the Scilab tarball
+@USE_EMBEDDED_BLAS_TRUE@am__append_7 = $(top_builddir)/libs/blas/libsciblas.la
+
+# Use the lapack provided into the Scilab tarball
+@USE_EMBEDDED_LAPACK_TRUE@am__append_8 = $(top_builddir)/libs/lapack/libscilapack.la
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
