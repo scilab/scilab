@@ -19,7 +19,7 @@ function [t] = cotg(z)
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cotg",1));
   end
 
-  if type(a)<>1 then
+  if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"cotg",1));
   end
   t = 1 ./tan(z)
