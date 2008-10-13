@@ -45,7 +45,12 @@ import org.apache.batik.transcoder.XMLAbstractTranscoder;
 import org.apache.batik.transcoder.image.ImageTranscoder;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 
-import net.sourceforge.jeuclid.ant.MathMLConverter;
+import net.sourceforge.jeuclid.context.Parameter;
+import net.sourceforge.jeuclid.LayoutContext;
+import net.sourceforge.jeuclid.MutableLayoutContext;
+import net.sourceforge.jeuclid.context.LayoutContextImpl;
+import net.sourceforge.jeuclid.converter.Converter;
+
 
 /**
  * @TODO add comment
@@ -321,7 +326,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             mainOut = null;
 
             if (extractedFile != null) {
-                reportInfo("Extracted embedded graphics to '"
+                reportInfo("Extracted embedded graphics from '"+extractedFile+"' to '"
                            + extractedFile + "'.");
 
                 String converted = copyConvertGraphics(extractedFile);
@@ -390,7 +395,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             File convertedFile = new File(outDir, baseName);
 
             if (!convertedFile.exists()) {
-                reportInfo("Converting '" + graphicsFile + "' to '"
+                reportInfo("Converting TeX '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
                 if (!convertTeX(graphicsFile, convertedFile)) {
@@ -402,7 +407,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             File convertedFile = new File(outDir, baseName);
 
             if (!convertedFile.exists()) {
-                reportInfo("Converting '" + graphicsFile + "' to '"
+                reportInfo("Converting MathML '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
                 if (!convertMathML(graphicsFile, convertedFile)) {
@@ -414,7 +419,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             File convertedFile = new File(outDir, baseName);
 
             if (!convertedFile.exists()) {
-                reportInfo("Converting '" + graphicsFile + "' to '"
+                reportInfo("Converting SVG '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
                 if (!convertSVG("svgz".equalsIgnoreCase(ext), graphicsFile, convertedFile)) {
@@ -603,21 +608,19 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     }
 
     private boolean convertMathML(File inFile, File outFile) {
-		/* Set the misc value ... used to be done in MathBase in jeuclid version 3.0.X */
-		MathMLConverter converter = new MathMLConverter();
-		converter.setType("image/png");
-		converter.setAntiAlias(true);
-		converter.setBackgroundColor("#FFFFFF");
-		converter.setFontSize(14);
-		converter.setIn(inFile);
-		converter.setOut(outFile);
-		converter.execute();
+		MutableLayoutContext context = new LayoutContextImpl(LayoutContextImpl
+                .getDefaultLayoutContext());
+		context.setParameter(Parameter.ANTIALIAS,"true");
+		// Workaround a XEP problem. FOP 1 is OK.
+		context.setParameter(Parameter.MATHBACKGROUND,"#FFFFFF");
+		context.setParameter(Parameter.MATHSIZE,"14");
+
         try {
-			
+            Converter.getInstance().convert(inFile, outFile, "image/png", context);
+
             return true;
-        } catch (Exception e) {
-            reportError("Cannot convert '" + inFile + "' to '"
-                        + outFile + "': " + Helpers.reason(e));
+        } catch (IOException e) {
+            reportError("Cannot convert '" + inFile + "' to '" + outFile + "': " + Helpers.reason(e));
             return false;
         }
     }
