@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,8 +14,10 @@
 #include "getlongpathname.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-#ifndef MAX_PATH_LONG
-#define MAX_PATH_LONG 32767
+#ifdef _MSC_VER
+	#ifndef MAX_PATH_LONG
+		#define MAX_PATH_LONG 32767
+	#endif
 #endif
 /*--------------------------------------------------------------------------*/
 char *getlongpathname(char *shortpathname,BOOL *convertok)
@@ -25,26 +26,44 @@ char *getlongpathname(char *shortpathname,BOOL *convertok)
 
 	if (shortpathname)
 	{
-		LongName=(char*)MALLOC(MAX_PATH_LONG*sizeof(char));
-
 		#ifdef _MSC_VER
-		if (GetLongPathName(shortpathname,LongName,MAX_PATH_LONG))
+		/* first we try to call to know path length */
+		int length = GetLongPathName(shortpathname, NULL, 0);
+		if (length <= 0 ) length = MAX_PATH_LONG;
+
+		LongName = (char*)MALLOC(length * sizeof(char));
+
+		if (LongName)
 		{
-			*convertok = TRUE;
+			/* second converts path */
+			if (GetLongPathName(shortpathname, LongName, length))
+			{
+				*convertok = TRUE;
+			}
+			else
+			{
+				/* FAILED */
+				strcpy(LongName, shortpathname);
+				*convertok = FALSE;
+			}
 		}
 		else
 		{
 			/* FAILED */
-			strcpy(LongName,shortpathname);
 			*convertok = FALSE;
 		}
 		#else
 		/* Linux */
-		strcpy(LongName,shortpathname);
+		int length = (int)strlen(shortpathname) + 1;
+		LongName = (char*)MALLOC(length * sizeof(char));
+		if (LongName) strcpy(LongName, shortpathname);
 		*convertok = FALSE;
 		#endif
 	}
-
+	else
+	{
+		*convertok = FALSE;
+	}
 	return LongName;
 }
 /*--------------------------------------------------------------------------*/

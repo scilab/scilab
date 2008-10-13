@@ -37,8 +37,19 @@ int C2F(sci_getlongpathname)(char *fname,unsigned long l)
 
 		LongName = getlongpathname(ShortName,&bOK);
 
-		n1=1;
-		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(LongName), &m1),&n1,&LongName);
+		if (LongName) 
+		{
+			m1 = (int)strlen(LongName);
+			n1 = 1;
+			CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&m1,&n1,&LongName);
+		}
+		else 
+		{
+			m1 = 0;
+			n1 = 0;
+			l1 = 0;
+			CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
+		}
 		LhsVar(1)=Rhs+1;
 
 		if (LongName) {FREE(LongName);LongName=NULL;}
