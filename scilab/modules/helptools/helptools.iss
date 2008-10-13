@@ -19,7 +19,10 @@
 #define HELPTOOLS "helptools"
 
 Source: bin\helptools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\jar\org.scilab.modules.helptools.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\jar\org.scilab.modules.helptools.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\jar\*.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+;
+
 Source: modules\{#HELPTOOLS}\sci_gateway\helptools_gateway.xml; DestDir: {app}\modules\{#HELPTOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
 Source: thirdparty\docbook\*.*;DestDir: {app}\thirdparty\docbook; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 
@@ -65,13 +68,20 @@ Source: thirdparty\xmlgraphics-commons.jar;DestDir: {app}\thirdparty; Components
 Source: thirdparty\xmlgraphics-commons.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
+Source: thirdparty\batik-all-1.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\batik-ext-1.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\batik-libs-1.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\batik-transcoder-1.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+;
+;
 Source: modules\{#HELPTOOLS}\VERSION.xml; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\readme.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\license.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\changelog.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\jar\scilab_fr_FR_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\jar\scilab_en_US_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+; disabled
+;Source: modules\{#HELPTOOLS}\jar\scilab_fr_FR_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\jar\scilab_en_US_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HELPTOOLS}\*.xsl; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
@@ -97,9 +107,9 @@ Source: modules\{#HELPTOOLS}\macros\*.sci; DestDir: {app}\modules\{#HELPTOOLS}\m
 Source: modules\{#HELPTOOLS}\bin\man2sci.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\bin\manrev2sci.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\bin\sci2chm.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\bin\sci2html.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\bin\sci2jh.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\bin\sci2pdf.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\bin\sci2html.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\bin\sci2jh.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\bin\sci2pdf.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\bin\scivalid.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\bin\sciviewhelp.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
