@@ -64,7 +64,7 @@ Source: thirdparty\saxon.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_
 Source: thirdparty\saxon.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xercesImpl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xml-apis.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\xmlgraphics-commons.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xmlgraphics-commons-1.3.1.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
