@@ -10,6 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
+#include "machine.h"
 #include "TCL_Global.h"
 #include "ScilabEval.h"
 #include "sciprint.h"
@@ -27,7 +29,9 @@
 #define arbitrary_max_queued_callbacks 20
 #define AddCharacters 4
 /*--------------------------------------------------------------------------*/
-static int c_n1 = -1;
+/* Used by tksynchro
+ * static int c_n1 = -1;
+ */
 /*--------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
@@ -77,9 +81,11 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 
       if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{
-	  /* sync or sync seq */
-	  // TODO : Scilab is supposed to be busy there. Add mutex lock...
-	  // C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
+	  /* sync or sync seq 
+	   * TODO : Scilab is supposed to be busy there. Add mutex lock...
+	   * C2F(tksynchro)(&c_n1);  
+	   * set sciprompt to -1 (scilab busy) 
+	   */
 	  seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
 	  ns=(int)strlen(command);
 	  if (C2F(iop).ddt==-1)
@@ -118,7 +124,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	  for (nc = 0 ; nc <= ncomm ; nc++ )
 	    {
 	      // TODO : Scilab is supposed to be busy there. Add mutex lock...
-	      // C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
+	      // C2F(tksynchro)(&c_n1);  // set sciprompt to -1 (scilab busy) 
 	      if (C2F(iop).ddt==-1)
 		{
 		  if (seqf[nc]==0)
