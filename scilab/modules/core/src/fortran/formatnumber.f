@@ -8,6 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine formatnumber(a,ifmt,maxc,str,fl)
+c maxc: Maximun character authorized
       double precision a
       integer n1,n2,fl
       character str*(*)
