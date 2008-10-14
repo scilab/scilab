@@ -80,12 +80,13 @@ c       a partir de lf
 c       la taille respective des representation des chacun des coeff
 c       est contenue dans iw a partir de 1 .
 c
+c n is the number of columns of the matrix
       lbloc=n
       lf=lbloc+n+1
       nbloc=1
       iw(lbloc+nbloc)=n
 c iw(k) contient la longueur maxi necessaire pour representer un
-c       elemnt de colonne k
+c       element de colonne k
 c iw(lbloc+nbloc) contient le numero de la derniere colonne
 c        representable dans le bloc courant
 c
