@@ -30,6 +30,8 @@ Enhancement:
 
 * Update of the example in the dynamic_link modules and in the toolbox skeleton (use the actual filename instead of the .o)
 
+* Scilab uses Atlas 3.8.2 on Windows
+
 * License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module) 
 
 Bug fixes:
@@ -94,3 +96,5 @@ Bug fixes:
 * bug 3646 fixed - Scilab GUI doesn't start on some Windows
 
 * bug 3661 fixed - cotg and coth do not work.
+
+* bug 3624, 3640 fixed - Atlas 3.8.0 have a bug causing wrong answer for row-major gemm C=A*A' or A'A 
