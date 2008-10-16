@@ -13,19 +13,19 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mfscanf">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer 26 mar 2008) $</pubdate>
   </info>
   <refnamediv xml:id="mscanf">
     <refname>mscanf</refname>
-    <refpurpose> interface to the C scanf function</refpurpose>
+    <refpurpose> reads input from the standard input (interface to the C scanf function)</refpurpose>
   </refnamediv>
   <refnamediv>
     <refname>mfscanf</refname>
-    <refpurpose> interface to the C fscanf function</refpurpose>
+    <refpurpose> reads input from the stream pointer stream (interface to the C fscanf function)</refpurpose>
   </refnamediv>
   <refnamediv xml:id="msscanf">
     <refname>msscanf</refname>
-    <refpurpose> interface to the C sscanf function</refpurpose>
+    <refpurpose> reads its input from the character string (interface to the C sscanf function)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
