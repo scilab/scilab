@@ -28,6 +28,7 @@ lib
 #
 # scilab/ specific files
 #
+thirdparty
 Makefile.OBJ
 Makefile.incl
 Makemex
