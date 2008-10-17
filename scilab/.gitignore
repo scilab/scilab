@@ -19,6 +19,13 @@ build
 jar
 
 #
+# Documentation generation output files
+#
+.last_successful_build_javaHelp
+.list_en_US
+.list_fr_FR
+
+#
 # Scilab compiled macros
 #
 *.bin
