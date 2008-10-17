@@ -19,6 +19,12 @@ build
 jar
 
 #
+# Documentation generation output files
+#
+.last_*
+.list_*
+
+#
 # Scilab compiled macros
 #
 *.bin
