@@ -1,0 +1,6 @@
+#
+#generated .def files (windows)
+#
+src/libmat/libmat.def
+src/libmex/libmex.def
+src/libmx/libmx.def
