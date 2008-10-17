@@ -1,0 +1,13 @@
+#
+#generated .def files (windows)
+#
+tclsci.def
+#
+# external files (windows)
+#
+includes/tcltk/
+src/notclsci/notclsci.def
+tcl/tcl8.5/
+tcl/tcl8/
+tcl/tk8.5/
+tclsci.def

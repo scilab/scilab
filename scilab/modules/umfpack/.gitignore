@@ -1,0 +1,5 @@
+#
+#generated .def files (windows)
+#
+src/c/umfpack.def
+src/noumfpack/noumfpack.def

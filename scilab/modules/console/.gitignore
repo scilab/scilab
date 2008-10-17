@@ -1,0 +1,6 @@
+#
+#generated .def files (windows)
+#
+
+src/c/console.def
+src/noconsole/noconsole.def

@@ -1,0 +1,5 @@
+#
+#generated .def files (windows)
+#
+src/c/integer.def
+src/fortran/integer_f.def

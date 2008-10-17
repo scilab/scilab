@@ -1,0 +1,5 @@
+#
+#generated .def files (windows)
+#
+src/c/dynamic_link.def
+src/fortran/dynamic_link_f.def

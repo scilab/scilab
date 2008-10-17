@@ -1,0 +1,6 @@
+#
+#generated .def files (windows)
+#
+src/c/interpolation.def
+src/fortran/interpolation_f.def
+

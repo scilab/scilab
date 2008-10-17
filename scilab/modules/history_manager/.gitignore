@@ -1,0 +1,5 @@
+#
+#generated .def files (windows)
+#
+src/c/history_manager.def
+src/nohistory_manager/nohistory_manager.def

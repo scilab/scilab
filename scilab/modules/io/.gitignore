@@ -1,0 +1,5 @@
+#
+#generated .def files (windows)
+#
+src/c/io.def
+src/fortran/io_f.def
