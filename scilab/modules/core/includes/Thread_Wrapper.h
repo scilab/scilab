@@ -62,6 +62,7 @@ typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
 typedef pthread_mutex_t __threadSignalLock;
 typedef pthread_cond_t __threadSignal;
+
 #define __InitLock(lockName)			pthread_mutex_init(lockName, NULL)
 
 #define __Lock(lockName)			pthread_mutex_lock(lockName)
