@@ -1,0 +1,6 @@
+#
+#generated .def files (windows)
+#
+src/c/scilab_windows/scilab_windows.def
+src/c/windows_tools.def
+src/nowindows_tools/nowindows_tools.def

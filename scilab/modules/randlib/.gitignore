@@ -1,0 +1,6 @@
+#
+#generated .def files (windows)
+#
+src/c/randlib.def
+src/fortran/randlib_f.def
+src/norandlib/norandlib.def
