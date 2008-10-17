@@ -1,0 +1,3 @@
+includes/blocks.h
+*.moc
+models
