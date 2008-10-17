@@ -1,0 +1,13 @@
+#
+# windows directories (binaries)
+#
+LibScilab.def
+*.vcdef
+f2c
+intl
+libxml2
+matio
+pcre
+umfpack
+zlib
+*.lib

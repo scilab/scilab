@@ -101,3 +101,6 @@ types.iss
 uninstalldelete.iss
 scilab-lib-doc.properties
 scilab.pc
+*.lib
+*.exp
+*.vcdef
