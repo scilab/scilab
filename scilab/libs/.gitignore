@@ -1,6 +1,7 @@
 #
 # windows directories (binaries)
 #
+doublylinkedlist/doublylinkedlist.def
 LibScilab.def
 *.vcdef
 f2c
