@@ -70,6 +70,10 @@ public class Scilab {
 		// they must be set before creating GUI
 		setJOGLFlags();
 		
+		/* if not API mode 
+		bug 3673 by default in API mode we dont modify look n feel
+		*/
+		if (mode != 1) { 
 		/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
 		
 		try {
@@ -97,6 +101,7 @@ public class Scilab {
 			System.err.println("Could not initialize graphics Environment");
 			System.err.println("Scilab Graphical option may not be working correctly.");
 			System.err.println("An error occurred: " + exception.getLocalizedMessage());
+		}
 		}
 
 		if (mode == 2) { /* Mode GUI */
