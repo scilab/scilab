@@ -1,3 +1,9 @@
+c
+c @TODO : Remove that file.
+c
+c This routine has been rewrritten.
+c see src/c/matmult.c
+c
 
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
@@ -9,17 +15,17 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
   	  subroutine matmult
-c     
+c
 c     matrix/vector multiplications
 
       include 'stack.h'
-c     
+c
       double precision sr,si
       integer iadr,sadr
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
+c
       il2=iadr(lstk(top))
       if(istk(il2).lt.0) il2=iadr(istk(il2+1))
       m2=istk(il2+1)
@@ -28,7 +34,7 @@ c
       l2=sadr(il2+4)
       mn2=m2*n2
       top=top-1
-c     
+c
       il1=iadr(lstk(top))
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       m1=istk(il1+1)
@@ -147,7 +153,7 @@ c     .  m1*n2 may overflow
             if(it1.eq.1) call dgemm('n','n',m1,n2,n1,1.d0,stk(l1+mn1),
      $           m1,stk(l2),m2,0.d0,stk(lr+m1*n2),m1)
             if(it2.eq.1) call dgemm('n','n',m1,n2,n1,1.d0,stk(l1),m1,
-     $           stk(l2+mn2),m2,0.d0,stk(lr+m1*n2),m1)      
+     $           stk(l2+mn2),m2,0.d0,stk(lr+m1*n2),m1)
          else
 c     .     a et a2 sont complexes
             call wmmul(stk(l1),stk(l1+mn1),m1,stk(l2),stk(l2

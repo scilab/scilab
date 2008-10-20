@@ -216,7 +216,31 @@ am__objects_3 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-qsort-int.lo \
 	libscielementary_functions_la-qsort-short.lo \
 	libscielementary_functions_la-qsort-string.lo \
-	libscielementary_functions_la-IsEqualVar.lo
+	libscielementary_functions_la-IsEqualVar.lo \
+	libscielementary_functions_la-basic_functions.lo \
+	libscielementary_functions_la-abs.lo \
+	libscielementary_functions_la-acos.lo \
+	libscielementary_functions_la-asin.lo \
+	libscielementary_functions_la-atan.lo \
+	libscielementary_functions_la-cos.lo \
+	libscielementary_functions_la-cosh.lo \
+	libscielementary_functions_la-sin.lo \
+	libscielementary_functions_la-sinh.lo \
+	libscielementary_functions_la-tan.lo \
+	libscielementary_functions_la-exp.lo \
+	libscielementary_functions_la-expm.lo \
+	libscielementary_functions_la-log.lo \
+	libscielementary_functions_la-sqrt.lo \
+	libscielementary_functions_la-cupro.lo \
+	libscielementary_functions_la-sign.lo \
+	libscielementary_functions_la-ceil.lo \
+	libscielementary_functions_la-eye.lo \
+	libscielementary_functions_la-dmsum.lo \
+	libscielementary_functions_la-dsearch.lo \
+	libscielementary_functions_la-floor.lo \
+	libscielementary_functions_la-mprod.lo \
+	libscielementary_functions_la-pythag.lo \
+	libscielementary_functions_la-matrix_generation.lo
 am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wasum.lo \
 	libscielementary_functions_la-dexpm1.lo \
@@ -245,18 +269,15 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wacos.lo \
 	libscielementary_functions_la-wdpow1.lo \
 	libscielementary_functions_la-zbesjg.lo \
-	libscielementary_functions_la-dmsum.lo \
 	libscielementary_functions_la-dlgama.lo \
 	libscielementary_functions_la-exch.lo \
 	libscielementary_functions_la-wsign.lo \
 	libscielementary_functions_la-kronr.lo \
 	libscielementary_functions_la-wrscal.lo \
-	libscielementary_functions_la-pythag.lo \
 	libscielementary_functions_la-dbeskg.lo \
 	libscielementary_functions_la-dmmul1.lo \
 	libscielementary_functions_la-dwpow.lo \
 	libscielementary_functions_la-wmmul.lo \
-	libscielementary_functions_la-dsearch.lo \
 	libscielementary_functions_la-ddif.lo \
 	libscielementary_functions_la-wdiv.lo \
 	libscielementary_functions_la-wtan.lo \
@@ -265,7 +286,6 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-magic.lo \
 	libscielementary_functions_la-wcerr.lo \
 	libscielementary_functions_la-ivimp.lo \
-	libscielementary_functions_la-cupro.lo \
 	libscielementary_functions_la-dadd.lo \
 	libscielementary_functions_la-calerf.lo \
 	libscielementary_functions_la-isort.lo \
@@ -386,7 +406,6 @@ am__objects_5 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_cumsum.lo \
 	libscielementary_functions_la-sci_dsearch.lo \
 	libscielementary_functions_la-sci_nearfloat.lo \
-	libscielementary_functions_la-sci_chinesehat.lo \
 	libscielementary_functions_la-sci_isreal.lo \
 	libscielementary_functions_la-sci_floor.lo \
 	libscielementary_functions_la-sci_real.lo \
@@ -397,7 +416,6 @@ am__objects_5 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_exp.lo \
 	libscielementary_functions_la-sci_maxi.lo \
 	libscielementary_functions_la-sci_gsort.lo \
-	libscielementary_functions_la-sci_sort.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo
 am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
@@ -436,7 +454,6 @@ am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_dsearch.lo \
 	libscielementary_functions_la-sci_f_cumsum.lo \
 	libscielementary_functions_la-sci_f_nearfloat.lo \
-	libscielementary_functions_la-sci_f_chinesehat.lo \
 	libscielementary_functions_la-sci_f_isreal.lo \
 	libscielementary_functions_la-sci_f_floor.lo \
 	libscielementary_functions_la-sci_f_real.lo \
@@ -444,8 +461,7 @@ am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_conj.lo \
 	libscielementary_functions_la-sci_f_int.lo \
 	libscielementary_functions_la-sci_f_imult.lo \
-	libscielementary_functions_la-sci_f_exp.lo \
-	libscielementary_functions_la-sci_f_sort.lo
+	libscielementary_functions_la-sci_f_exp.lo
 am__objects_7 = libscielementary_functions_la-sortTemplate.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -711,7 +727,31 @@ src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
-src/c/IsEqualVar.c
+src/c/IsEqualVar.c \
+src/c/basic_functions.c \
+src/c/abs.c \
+src/c/acos.c \
+src/c/asin.c \
+src/c/atan.c \
+src/c/cos.c \
+src/c/cosh.c \
+src/c/sin.c \
+src/c/sinh.c \
+src/c/tan.c \
+src/c/exp.c \
+src/c/expm.c \
+src/c/log.c \
+src/c/sqrt.c \
+src/c/cupro.c \
+src/c/sign.c \
+src/c/ceil.c \
+src/c/eye.c \
+src/c/dmsum.c \
+src/c/dsearch.c \
+src/c/floor.c \
+src/c/mprod.c \
+src/c/pythag.c \
+src/c/matrix_generation.c
 
 
 # List of the cpp files
@@ -837,18 +877,15 @@ src/fortran/wipowe.f \
 src/fortran/wacos.f \
 src/fortran/wdpow1.f \
 src/fortran/zbesjg.f \
-src/fortran/dmsum.f \
 src/fortran/dlgama.f \
 src/fortran/exch.f \
 src/fortran/wsign.f \
 src/fortran/kronr.f \
 src/fortran/wrscal.f \
-src/fortran/pythag.f \
 src/fortran/dbeskg.f \
 src/fortran/dmmul1.f \
 src/fortran/dwpow.f \
 src/fortran/wmmul.f \
-src/fortran/dsearch.f \
 src/fortran/ddif.f \
 src/fortran/wdiv.f \
 src/fortran/wtan.f \
@@ -857,7 +894,6 @@ src/fortran/ddpow.f \
 src/fortran/magic.f \
 src/fortran/wcerr.f \
 src/fortran/ivimp.f \
-src/fortran/cupro.f \
 src/fortran/dadd.f \
 src/fortran/calerf.f \
 src/fortran/isort.f \
@@ -979,7 +1015,6 @@ sci_gateway/c/sci_cumprod.c \
 sci_gateway/c/sci_cumsum.c \
 sci_gateway/c/sci_dsearch.c \
 sci_gateway/c/sci_nearfloat.c \
-sci_gateway/c/sci_chinesehat.c \
 sci_gateway/c/sci_isreal.c \
 sci_gateway/c/sci_floor.c \
 sci_gateway/c/sci_real.c \
@@ -990,7 +1025,6 @@ sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
-sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_isequalbitwise.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
@@ -1030,7 +1064,6 @@ sci_gateway/fortran/sci_f_kron.f \
 sci_gateway/fortran/sci_f_dsearch.f \
 sci_gateway/fortran/sci_f_cumsum.f \
 sci_gateway/fortran/sci_f_nearfloat.f \
-sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_isreal.f \
 sci_gateway/fortran/sci_f_floor.f \
 sci_gateway/fortran/sci_f_real.f \
@@ -1038,17 +1071,16 @@ sci_gateway/fortran/sci_f_round.f \
 sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
-sci_gateway/fortran/sci_f_exp.f \
-sci_gateway/fortran/sci_f_sort.f 
+sci_gateway/fortran/sci_f_exp.f
 
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
-libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
+libdummy_elementary_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/comqr3.f \
-	src/fortran/linpack/pade.f \
+	src/fortran/pade.f \
 	src/c/unsfdcopy.c \
-	src/fortran/linpack/icopy.f
+	src/fortran/icopy.f
 
 libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
 libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) \
@@ -1071,7 +1103,8 @@ libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/output_stream/includes
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/double/includes/
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -1246,13 +1279,32 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libdummy_elementary_functions_la-unsfdcopy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-IsEqualVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-abs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-acos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-asin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-atan.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-basic_functions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-ceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-cmp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-cos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-cosh.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-cupro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-dmsum.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-dsearch.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-exp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-expm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-eye.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-finite.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-floor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-gw_elementary_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-idmax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-idmin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-int2db.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-log.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-matrix_generation.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-mprod.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-pythag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-qsort-char.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-qsort-double.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-qsort-int.Plo@am__quote@
@@ -1265,7 +1317,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_asin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_atan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_ceil.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_conj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos.Plo@am__quote@
@@ -1300,7 +1351,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_size.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_spones.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sum.Plo@am__quote@
@@ -1311,7 +1361,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_triu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_zeros.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-scidcopy.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sign.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sinh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sortTemplate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sqrt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-tan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-vceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-vfinite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-vfloor.Plo@am__quote@
@@ -1485,6 +1540,174 @@ libscielementary_functions_la-IsEqualVar.lo: src/c/IsEqualVar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/IsEqualVar.c' object='libscielementary_functions_la-IsEqualVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-IsEqualVar.lo `test -f 'src/c/IsEqualVar.c' || echo '$(srcdir)/'`src/c/IsEqualVar.c
+
+libscielementary_functions_la-basic_functions.lo: src/c/basic_functions.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-basic_functions.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-basic_functions.Tpo -c -o libscielementary_functions_la-basic_functions.lo `test -f 'src/c/basic_functions.c' || echo '$(srcdir)/'`src/c/basic_functions.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-basic_functions.Tpo $(DEPDIR)/libscielementary_functions_la-basic_functions.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/basic_functions.c' object='libscielementary_functions_la-basic_functions.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-basic_functions.lo `test -f 'src/c/basic_functions.c' || echo '$(srcdir)/'`src/c/basic_functions.c
+
+libscielementary_functions_la-abs.lo: src/c/abs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-abs.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-abs.Tpo -c -o libscielementary_functions_la-abs.lo `test -f 'src/c/abs.c' || echo '$(srcdir)/'`src/c/abs.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-abs.Tpo $(DEPDIR)/libscielementary_functions_la-abs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/abs.c' object='libscielementary_functions_la-abs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-abs.lo `test -f 'src/c/abs.c' || echo '$(srcdir)/'`src/c/abs.c
+
+libscielementary_functions_la-acos.lo: src/c/acos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-acos.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-acos.Tpo -c -o libscielementary_functions_la-acos.lo `test -f 'src/c/acos.c' || echo '$(srcdir)/'`src/c/acos.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-acos.Tpo $(DEPDIR)/libscielementary_functions_la-acos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/acos.c' object='libscielementary_functions_la-acos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-acos.lo `test -f 'src/c/acos.c' || echo '$(srcdir)/'`src/c/acos.c
+
+libscielementary_functions_la-asin.lo: src/c/asin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-asin.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-asin.Tpo -c -o libscielementary_functions_la-asin.lo `test -f 'src/c/asin.c' || echo '$(srcdir)/'`src/c/asin.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-asin.Tpo $(DEPDIR)/libscielementary_functions_la-asin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/asin.c' object='libscielementary_functions_la-asin.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-asin.lo `test -f 'src/c/asin.c' || echo '$(srcdir)/'`src/c/asin.c
+
+libscielementary_functions_la-atan.lo: src/c/atan.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-atan.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-atan.Tpo -c -o libscielementary_functions_la-atan.lo `test -f 'src/c/atan.c' || echo '$(srcdir)/'`src/c/atan.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-atan.Tpo $(DEPDIR)/libscielementary_functions_la-atan.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/atan.c' object='libscielementary_functions_la-atan.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-atan.lo `test -f 'src/c/atan.c' || echo '$(srcdir)/'`src/c/atan.c
+
+libscielementary_functions_la-cos.lo: src/c/cos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-cos.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-cos.Tpo -c -o libscielementary_functions_la-cos.lo `test -f 'src/c/cos.c' || echo '$(srcdir)/'`src/c/cos.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-cos.Tpo $(DEPDIR)/libscielementary_functions_la-cos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cos.c' object='libscielementary_functions_la-cos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-cos.lo `test -f 'src/c/cos.c' || echo '$(srcdir)/'`src/c/cos.c
+
+libscielementary_functions_la-cosh.lo: src/c/cosh.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-cosh.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-cosh.Tpo -c -o libscielementary_functions_la-cosh.lo `test -f 'src/c/cosh.c' || echo '$(srcdir)/'`src/c/cosh.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-cosh.Tpo $(DEPDIR)/libscielementary_functions_la-cosh.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cosh.c' object='libscielementary_functions_la-cosh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-cosh.lo `test -f 'src/c/cosh.c' || echo '$(srcdir)/'`src/c/cosh.c
+
+libscielementary_functions_la-sin.lo: src/c/sin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sin.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sin.Tpo -c -o libscielementary_functions_la-sin.lo `test -f 'src/c/sin.c' || echo '$(srcdir)/'`src/c/sin.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sin.Tpo $(DEPDIR)/libscielementary_functions_la-sin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sin.c' object='libscielementary_functions_la-sin.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sin.lo `test -f 'src/c/sin.c' || echo '$(srcdir)/'`src/c/sin.c
+
+libscielementary_functions_la-sinh.lo: src/c/sinh.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sinh.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sinh.Tpo -c -o libscielementary_functions_la-sinh.lo `test -f 'src/c/sinh.c' || echo '$(srcdir)/'`src/c/sinh.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sinh.Tpo $(DEPDIR)/libscielementary_functions_la-sinh.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sinh.c' object='libscielementary_functions_la-sinh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sinh.lo `test -f 'src/c/sinh.c' || echo '$(srcdir)/'`src/c/sinh.c
+
+libscielementary_functions_la-tan.lo: src/c/tan.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-tan.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-tan.Tpo -c -o libscielementary_functions_la-tan.lo `test -f 'src/c/tan.c' || echo '$(srcdir)/'`src/c/tan.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-tan.Tpo $(DEPDIR)/libscielementary_functions_la-tan.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/tan.c' object='libscielementary_functions_la-tan.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-tan.lo `test -f 'src/c/tan.c' || echo '$(srcdir)/'`src/c/tan.c
+
+libscielementary_functions_la-exp.lo: src/c/exp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-exp.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-exp.Tpo -c -o libscielementary_functions_la-exp.lo `test -f 'src/c/exp.c' || echo '$(srcdir)/'`src/c/exp.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-exp.Tpo $(DEPDIR)/libscielementary_functions_la-exp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/exp.c' object='libscielementary_functions_la-exp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-exp.lo `test -f 'src/c/exp.c' || echo '$(srcdir)/'`src/c/exp.c
+
+libscielementary_functions_la-expm.lo: src/c/expm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-expm.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-expm.Tpo -c -o libscielementary_functions_la-expm.lo `test -f 'src/c/expm.c' || echo '$(srcdir)/'`src/c/expm.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-expm.Tpo $(DEPDIR)/libscielementary_functions_la-expm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/expm.c' object='libscielementary_functions_la-expm.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-expm.lo `test -f 'src/c/expm.c' || echo '$(srcdir)/'`src/c/expm.c
+
+libscielementary_functions_la-log.lo: src/c/log.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-log.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-log.Tpo -c -o libscielementary_functions_la-log.lo `test -f 'src/c/log.c' || echo '$(srcdir)/'`src/c/log.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-log.Tpo $(DEPDIR)/libscielementary_functions_la-log.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/log.c' object='libscielementary_functions_la-log.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-log.lo `test -f 'src/c/log.c' || echo '$(srcdir)/'`src/c/log.c
+
+libscielementary_functions_la-sqrt.lo: src/c/sqrt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sqrt.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sqrt.Tpo -c -o libscielementary_functions_la-sqrt.lo `test -f 'src/c/sqrt.c' || echo '$(srcdir)/'`src/c/sqrt.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sqrt.Tpo $(DEPDIR)/libscielementary_functions_la-sqrt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sqrt.c' object='libscielementary_functions_la-sqrt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sqrt.lo `test -f 'src/c/sqrt.c' || echo '$(srcdir)/'`src/c/sqrt.c
+
+libscielementary_functions_la-cupro.lo: src/c/cupro.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-cupro.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-cupro.Tpo -c -o libscielementary_functions_la-cupro.lo `test -f 'src/c/cupro.c' || echo '$(srcdir)/'`src/c/cupro.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-cupro.Tpo $(DEPDIR)/libscielementary_functions_la-cupro.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cupro.c' object='libscielementary_functions_la-cupro.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-cupro.lo `test -f 'src/c/cupro.c' || echo '$(srcdir)/'`src/c/cupro.c
+
+libscielementary_functions_la-sign.lo: src/c/sign.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sign.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sign.Tpo -c -o libscielementary_functions_la-sign.lo `test -f 'src/c/sign.c' || echo '$(srcdir)/'`src/c/sign.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sign.Tpo $(DEPDIR)/libscielementary_functions_la-sign.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sign.c' object='libscielementary_functions_la-sign.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sign.lo `test -f 'src/c/sign.c' || echo '$(srcdir)/'`src/c/sign.c
+
+libscielementary_functions_la-ceil.lo: src/c/ceil.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-ceil.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-ceil.Tpo -c -o libscielementary_functions_la-ceil.lo `test -f 'src/c/ceil.c' || echo '$(srcdir)/'`src/c/ceil.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-ceil.Tpo $(DEPDIR)/libscielementary_functions_la-ceil.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ceil.c' object='libscielementary_functions_la-ceil.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-ceil.lo `test -f 'src/c/ceil.c' || echo '$(srcdir)/'`src/c/ceil.c
+
+libscielementary_functions_la-eye.lo: src/c/eye.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-eye.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-eye.Tpo -c -o libscielementary_functions_la-eye.lo `test -f 'src/c/eye.c' || echo '$(srcdir)/'`src/c/eye.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-eye.Tpo $(DEPDIR)/libscielementary_functions_la-eye.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/eye.c' object='libscielementary_functions_la-eye.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-eye.lo `test -f 'src/c/eye.c' || echo '$(srcdir)/'`src/c/eye.c
+
+libscielementary_functions_la-dmsum.lo: src/c/dmsum.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-dmsum.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-dmsum.Tpo -c -o libscielementary_functions_la-dmsum.lo `test -f 'src/c/dmsum.c' || echo '$(srcdir)/'`src/c/dmsum.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-dmsum.Tpo $(DEPDIR)/libscielementary_functions_la-dmsum.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dmsum.c' object='libscielementary_functions_la-dmsum.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-dmsum.lo `test -f 'src/c/dmsum.c' || echo '$(srcdir)/'`src/c/dmsum.c
+
+libscielementary_functions_la-dsearch.lo: src/c/dsearch.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-dsearch.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-dsearch.Tpo -c -o libscielementary_functions_la-dsearch.lo `test -f 'src/c/dsearch.c' || echo '$(srcdir)/'`src/c/dsearch.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-dsearch.Tpo $(DEPDIR)/libscielementary_functions_la-dsearch.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dsearch.c' object='libscielementary_functions_la-dsearch.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-dsearch.lo `test -f 'src/c/dsearch.c' || echo '$(srcdir)/'`src/c/dsearch.c
+
+libscielementary_functions_la-floor.lo: src/c/floor.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-floor.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-floor.Tpo -c -o libscielementary_functions_la-floor.lo `test -f 'src/c/floor.c' || echo '$(srcdir)/'`src/c/floor.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-floor.Tpo $(DEPDIR)/libscielementary_functions_la-floor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/floor.c' object='libscielementary_functions_la-floor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-floor.lo `test -f 'src/c/floor.c' || echo '$(srcdir)/'`src/c/floor.c
+
+libscielementary_functions_la-mprod.lo: src/c/mprod.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-mprod.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-mprod.Tpo -c -o libscielementary_functions_la-mprod.lo `test -f 'src/c/mprod.c' || echo '$(srcdir)/'`src/c/mprod.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-mprod.Tpo $(DEPDIR)/libscielementary_functions_la-mprod.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mprod.c' object='libscielementary_functions_la-mprod.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-mprod.lo `test -f 'src/c/mprod.c' || echo '$(srcdir)/'`src/c/mprod.c
+
+libscielementary_functions_la-pythag.lo: src/c/pythag.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-pythag.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-pythag.Tpo -c -o libscielementary_functions_la-pythag.lo `test -f 'src/c/pythag.c' || echo '$(srcdir)/'`src/c/pythag.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-pythag.Tpo $(DEPDIR)/libscielementary_functions_la-pythag.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/pythag.c' object='libscielementary_functions_la-pythag.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-pythag.lo `test -f 'src/c/pythag.c' || echo '$(srcdir)/'`src/c/pythag.c
+
+libscielementary_functions_la-matrix_generation.lo: src/c/matrix_generation.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-matrix_generation.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-matrix_generation.Tpo -c -o libscielementary_functions_la-matrix_generation.lo `test -f 'src/c/matrix_generation.c' || echo '$(srcdir)/'`src/c/matrix_generation.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-matrix_generation.Tpo $(DEPDIR)/libscielementary_functions_la-matrix_generation.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_generation.c' object='libscielementary_functions_la-matrix_generation.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-matrix_generation.lo `test -f 'src/c/matrix_generation.c' || echo '$(srcdir)/'`src/c/matrix_generation.c
 
 libscielementary_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
@@ -1745,13 +1968,6 @@ libscielementary_functions_la-sci_nearfloat.lo: sci_gateway/c/sci_nearfloat.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
 
-libscielementary_functions_la-sci_chinesehat.lo: sci_gateway/c/sci_chinesehat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_chinesehat.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Tpo -c -o libscielementary_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Tpo $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_chinesehat.c' object='libscielementary_functions_la-sci_chinesehat.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
-
 libscielementary_functions_la-sci_isreal.lo: sci_gateway/c/sci_isreal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isreal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isreal.Tpo -c -o libscielementary_functions_la-sci_isreal.lo `test -f 'sci_gateway/c/sci_isreal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isreal.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_isreal.Tpo $(DEPDIR)/libscielementary_functions_la-sci_isreal.Plo
@@ -1821,13 +2037,6 @@ libscielementary_functions_la-sci_gsort.lo: sci_gateway/c/sci_gsort.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gsort.c' object='libscielementary_functions_la-sci_gsort.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
-
-libscielementary_functions_la-sci_sort.lo: sci_gateway/c/sci_sort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_sort.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo $(DEPDIR)/libscielementary_functions_la-sci_sort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sort.c' object='libscielementary_functions_la-sci_sort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
 
 libscielementary_functions_la-sci_isequalbitwise.lo: sci_gateway/c/sci_isequalbitwise.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isequalbitwise.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequalbitwise.Tpo -c -o libscielementary_functions_la-sci_isequalbitwise.lo `test -f 'sci_gateway/c/sci_isequalbitwise.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequalbitwise.c
@@ -2227,9 +2436,6 @@ libscielementary_functions_la-wdpow1.lo: src/fortran/wdpow1.f
 libscielementary_functions_la-zbesjg.lo: src/fortran/zbesjg.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-zbesjg.lo `test -f 'src/fortran/zbesjg.f' || echo '$(srcdir)/'`src/fortran/zbesjg.f
 
-libscielementary_functions_la-dmsum.lo: src/fortran/dmsum.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dmsum.lo `test -f 'src/fortran/dmsum.f' || echo '$(srcdir)/'`src/fortran/dmsum.f
-
 libscielementary_functions_la-dlgama.lo: src/fortran/dlgama.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dlgama.lo `test -f 'src/fortran/dlgama.f' || echo '$(srcdir)/'`src/fortran/dlgama.f
 
@@ -2245,9 +2451,6 @@ libscielementary_functions_la-kronr.lo: src/fortran/kronr.f
 libscielementary_functions_la-wrscal.lo: src/fortran/wrscal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wrscal.lo `test -f 'src/fortran/wrscal.f' || echo '$(srcdir)/'`src/fortran/wrscal.f
 
-libscielementary_functions_la-pythag.lo: src/fortran/pythag.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-pythag.lo `test -f 'src/fortran/pythag.f' || echo '$(srcdir)/'`src/fortran/pythag.f
-
 libscielementary_functions_la-dbeskg.lo: src/fortran/dbeskg.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dbeskg.lo `test -f 'src/fortran/dbeskg.f' || echo '$(srcdir)/'`src/fortran/dbeskg.f
 
@@ -2259,9 +2462,6 @@ libscielementary_functions_la-dwpow.lo: src/fortran/dwpow.f
 
 libscielementary_functions_la-wmmul.lo: src/fortran/wmmul.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wmmul.lo `test -f 'src/fortran/wmmul.f' || echo '$(srcdir)/'`src/fortran/wmmul.f
-
-libscielementary_functions_la-dsearch.lo: src/fortran/dsearch.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dsearch.lo `test -f 'src/fortran/dsearch.f' || echo '$(srcdir)/'`src/fortran/dsearch.f
 
 libscielementary_functions_la-ddif.lo: src/fortran/ddif.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-ddif.lo `test -f 'src/fortran/ddif.f' || echo '$(srcdir)/'`src/fortran/ddif.f
@@ -2286,9 +2486,6 @@ libscielementary_functions_la-wcerr.lo: src/fortran/wcerr.f
 
 libscielementary_functions_la-ivimp.lo: src/fortran/ivimp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-ivimp.lo `test -f 'src/fortran/ivimp.f' || echo '$(srcdir)/'`src/fortran/ivimp.f
-
-libscielementary_functions_la-cupro.lo: src/fortran/cupro.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-cupro.lo `test -f 'src/fortran/cupro.f' || echo '$(srcdir)/'`src/fortran/cupro.f
 
 libscielementary_functions_la-dadd.lo: src/fortran/dadd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dadd.lo `test -f 'src/fortran/dadd.f' || echo '$(srcdir)/'`src/fortran/dadd.f
@@ -2650,9 +2847,6 @@ libscielementary_functions_la-sci_f_cumsum.lo: sci_gateway/fortran/sci_f_cumsum.
 libscielementary_functions_la-sci_f_nearfloat.lo: sci_gateway/fortran/sci_f_nearfloat.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_nearfloat.lo `test -f 'sci_gateway/fortran/sci_f_nearfloat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_nearfloat.f
 
-libscielementary_functions_la-sci_f_chinesehat.lo: sci_gateway/fortran/sci_f_chinesehat.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_chinesehat.lo `test -f 'sci_gateway/fortran/sci_f_chinesehat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_chinesehat.f
-
 libscielementary_functions_la-sci_f_isreal.lo: sci_gateway/fortran/sci_f_isreal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_isreal.lo `test -f 'sci_gateway/fortran/sci_f_isreal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isreal.f
 
@@ -2676,9 +2870,6 @@ libscielementary_functions_la-sci_f_imult.lo: sci_gateway/fortran/sci_f_imult.f
 
 libscielementary_functions_la-sci_f_exp.lo: sci_gateway/fortran/sci_f_exp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_exp.lo `test -f 'sci_gateway/fortran/sci_f_exp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_exp.f
-
-libscielementary_functions_la-sci_f_sort.lo: sci_gateway/fortran/sci_f_sort.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_sort.lo `test -f 'sci_gateway/fortran/sci_f_sort.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sort.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

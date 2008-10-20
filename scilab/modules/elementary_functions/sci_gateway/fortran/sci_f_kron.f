@@ -78,7 +78,7 @@ c
       lstk(top+1)=l1
       lw=l1
 c
-      if(fin.eq.19 .or. fin.eq.18) goto 115
+      if(fin.eq.19) goto 115
       if(fin.eq.20) then
          if(refb) then
             err=lw+mnb*(itb+1)-lstk(bot)

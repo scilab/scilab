@@ -5,7 +5,7 @@
 	Name="elementary_functions"
 	ProjectGUID="{5B110267-7C18-437C-B87D-DBA2B50729E9}"
 	RootNamespace="elementary_functions"
-	TargetFrameworkVersion="0"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -66,6 +66,84 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
+				Culture="1036"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="../../../../libs/elementary_functions.lib"
+				SuppressStartupBanner="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementary_functions.def &gt;nul&#x0D;&#x0A;copy elementary_functions.def ..\..\..\..\..\libs\elementary_functions.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes"
+				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
+				StringPooling="true"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="true"
+				EnableEnhancedInstructionSet="1"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				Detect64BitPortabilityProblems="false"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
 				Culture="1036"
 			/>
 			<Tool
@@ -170,7 +248,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
+			Name="Release|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
@@ -192,6 +270,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -247,85 +326,6 @@
 				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementary_functions.def &gt;nul&#x0D;&#x0A;copy elementary_functions.def ..\..\..\..\..\libs\elementary_functions.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
-		<Configuration
-			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TargetEnvironment="3"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;"
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
-				StringPooling="true"
-				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="0"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
-				CompileAs="0"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/elementary_functions.lib"
-				SuppressStartupBanner="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementary_functions.def &gt;nul&#x0D;&#x0A;copy elementary_functions.def ..\..\..\..\..\libs\elementary_functions.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
-			/>
-		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -335,11 +335,75 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\abs.c"
+				>
+			</File>
+			<File
+				RelativePath=".\acos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\add_vector.c"
+				>
+			</File>
+			<File
+				RelativePath=".\asin.c"
+				>
+			</File>
+			<File
+				RelativePath=".\atan.c"
+				>
+			</File>
+			<File
+				RelativePath=".\basic_functions.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ceil.c"
+				>
+			</File>
+			<File
 				RelativePath=".\cmp.c"
 				>
 			</File>
 			<File
+				RelativePath=".\cos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\cosh.c"
+				>
+			</File>
+			<File
+				RelativePath=".\cupro.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dmsum.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dsearch.c"
+				>
+			</File>
+			<File
+				RelativePath=".\exp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\expm.c"
+				>
+			</File>
+			<File
+				RelativePath=".\eye.c"
+				>
+			</File>
+			<File
 				RelativePath=".\finite.c"
+				>
+			</File>
+			<File
+				RelativePath=".\floor.c"
 				>
 			</File>
 			<File
@@ -364,6 +428,22 @@
 			</File>
 			<File
 				RelativePath=".\IsEqualVar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\log.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matrix_generation.c"
+				>
+			</File>
+			<File
+				RelativePath=".\mprod.c"
+				>
+			</File>
+			<File
+				RelativePath=".\pythag.c"
 				>
 			</File>
 			<File
@@ -412,10 +492,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_ceil.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_chinesehat.c"
 				>
 			</File>
 			<File
@@ -555,10 +631,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_sort.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_spones.c"
 				>
 			</File>
@@ -599,7 +671,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sign.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sin.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sinh.c"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\sortTemplate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sqrt.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sub_vector.c"
+				>
+			</File>
+			<File
+				RelativePath=".\tan.c"
 				>
 			</File>
 			<File
@@ -641,6 +737,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\vmul.c"
+				>
+			</File>
+			<File
 				RelativePath=".\xerhlt.c"
 				>
 			</File>
@@ -649,6 +749,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\basic_functions.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\elementary_functions.h"
 				>
@@ -725,10 +829,6 @@
 				RelativePath="..\..\locales\en_US\messages.pot"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="Libraries Dependencies"
-			>
 		</Filter>
 		<File
 			RelativePath="..\..\elementary_functions.iss"

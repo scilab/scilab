@@ -11,13 +11,77 @@
  */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
+#include "stack-c.h"
+#include "basic_functions.h"
+
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsin)(int *id);
+extern int C2F(intsin) _PARAMS((int *id));
+
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sin)(char *fname,unsigned long fname_len)
+int C2F(sci_sin) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-	C2F(intsin)(id);
+	int iRows = 0;
+	int iCols = 0;
+	int iRealData = 0;
+	int iImgData = 0;
+	int iIndex;
+	
+	CheckRhs(1,1);
+	CheckLhs(1,1);
+	if(GetType(1) != sci_matrix)
+	{
+		OverLoad(1);
+		return 0;
+	}
+
+	if(iIsComplex(1))
+	{
+		double *pdblRealData = 0;
+		double *pdblImgData = 0;
+		double *pReturnRealData = NULL;
+		double *pReturnImgData = NULL;
+		int iComplex = 1;
+
+		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
+		pdblRealData	= stk(iRealData);
+		pdblImgData		= stk(iImgData);
+
+		pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+		pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
+
+		for(iIndex = 0 ; iIndex < iCols * iRows ; iIndex++)
+		{
+			zsins(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
+//			pReturnRealData[iIndex] = dsins(pdblRealData[iIndex]) * dcoshs(pdblImgData[iIndex]);
+//			pReturnImgData[iIndex]	= dcoss(pdblRealData[iIndex]) * dsinhs(pdblImgData[iIndex]);
+		}
+
+		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
+		free(pReturnRealData);
+		free(pReturnImgData);
+	}
+	else
+	{
+		double *pdblRealData = 0;
+		double *pReturnRealData = NULL;
+
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
+		pdblRealData		= stk(iRealData);
+		pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
+
+		for(iIndex = 0 ; iIndex < iCols * iRows ; iIndex++)
+		{
+			pReturnRealData[iIndex] = dsins(pdblRealData[iIndex]);
+		}
+		
+		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
+		free(pReturnRealData);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -9,38 +9,89 @@
 /*--------------------------------------------------------------------------*/
 /* WARNING :*/
 /* ALWAYS BUILD unsfdcopy without optimization (Blended) */
-/* unsfdcopy same thing as scidcopy but built without optimization */
 /*--------------------------------------------------------------------------*/
-#include <string.h> /* memcpy */
-#include "machine.h"
 #include "unsfdcopy.h"
 /*--------------------------------------------------------------------------*/
- int C2F(unsfdcopy)(int *n, long long *dx, int *incx, long long *dy, int *incy)
+ int unsfdcopy(int *n, long long *dx, int *incx, long long *dy, int *incy)
 {
-	if (*n <= 0) return 0;
+    /* System generated locals */
+    int i1;
 
-	if ( (*incx == 1) && (*incy == 1) )
+    /* Local variables */
+    static int i, m, ix, iy, mp1;
+
+
+	/* copies a vector, x, to a vector, y. */
+	/* uses unrolled loops for increments equal to one. */
+
+    /* Parameter adjustments */
+    --dy;
+    --dx;
+
+
+    if (*n <= 0) return 0;
+    if (*incx == 1 && *incy == 1)
 	{
-		/*  code for both increments equal to 1 */
-		/*  clean-up loop */
-		memmove(dy , dx , (*n *sizeof(double)) );
+		/* code for both increments equal to 1 */
+		/* clean-up loop */
+
+		m = *n % 7;
+		if (m == 0)
+		{
+			mp1 = m + 1;
+			i1 = *n;
+			for (i = mp1; i <= i1; i += 7)
+			{
+				dy[i] = dx[i];
+				dy[i + 1] = dx[i + 1];
+				dy[i + 2] = dx[i + 2];
+				dy[i + 3] = dx[i + 3];
+				dy[i + 4] = dx[i + 4];
+				dy[i + 5] = dx[i + 5];
+				dy[i + 6] = dx[i + 6];
+			}
+			return 0;
+		}
+		else
+		{
+			i1 = m;
+			for (i = 1; i <= i1; ++i) dy[i] = dx[i];
+			if (*n < 7) return 0;
+
+			mp1 = m + 1;
+			i1 = *n;
+			for (i = mp1; i <= i1; i += 7)
+			{
+				dy[i] = dx[i];
+				dy[i + 1] = dx[i + 1];
+				dy[i + 2] = dx[i + 2];
+				dy[i + 3] = dx[i + 3];
+				dy[i + 4] = dx[i + 4];
+				dy[i + 5] = dx[i + 5];
+				dy[i + 6] = dx[i + 6];
+			}
+			return 0;
+		}
 	}
 	else
 	{
-		int i = 0;
-
 		/* code for unequal increments or equal increments */
 		/* not equal to 1 */
-		int ix = *incx >= 0 ? 0 : (1 - *n) * *incx;
-		int iy = *incy >= 0 ? 0 : (1 - *n) * *incy ;
 
-		for (i = 0; i < *n; i++)
+		ix = 1;
+		iy = 1;
+		if (*incx < 0) ix = (-(*n) + 1) * *incx + 1;
+		if (*incy < 0) iy = (-(*n) + 1) * *incy + 1;
+		i1 = *n;
+		for (i = 1; i <= i1; ++i)
 		{
 			dy[iy] = dx[ix];
 			ix += *incx;
 			iy += *incy;
 		}
+		return 0;
 	}
+
 	return 0;
-} 
+}
 /*--------------------------------------------------------------------------*/
