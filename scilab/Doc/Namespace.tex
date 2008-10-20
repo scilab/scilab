@@ -1,0 +1,51 @@
+\newcommand{\Global}{``GLOBAL''}
+\newcommand{\env}{``ENVIRONNEMENT''}
+
+
+Tout d'abord nous introduisons ici la notion de ``scope''.
+
+Un scope définit la portée d'un symbole (que ce soit le nom d'une variable ou d'une fonction).
+Si l'on représente les symboles sous forme d'un
+``liveness graph'' (graphe de durée de vie des noms), un scope représente
+un sous-graphe du graphe de plus haut niveau, i.e le programme.
+
+Les espaces de noms dans Scilab regroupent les variables et les functions.
+Il est donc impossible d'avoir deux fonctions qui portent le meme nom au sein d'un même
+scope.
+
+%%
+%%	-*- Old Scilab -*-
+%%
+\section{Scilab : versions ant\'erieures \`a 5.0}
+
+Il existe deux espaces de noms distincts en Scilab :
+\begin{itemize}
+\item Un espace \Global
+\item Un espace ``LOCAL'' que nous appelerons par la suite \env.
+\end{itemize}
+
+
+\subsection{L'espace \Global}
+
+On peut declarer des variables dans cet espace grace au mot clef ``global''.
+\begin{verbatim}
+global foo
+\end{verbatim}
+Cette commande permet de déclarer une variable ``foo'' dans l'espace \Global .
+
+Le comportement de l'espace \Global est assimilable à un tas :
+Il ne peut exister qu'un seul et unique symbole representant une variable.
+
+
+\subsection{L'espace \env}
+Le comportement de l'espace \env est assimilable à une pile :
+Les variables et les fonctions sont empillables et redéfinissables.
+
+
+
+
+
+%%
+%%	-*- New Scilab -*-
+%%
+\section{Scilab : l'avenir est en marche}

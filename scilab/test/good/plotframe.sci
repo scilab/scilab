@@ -1,0 +1,105 @@
+function plotframe(rect,axisdata,options,legs,subwindow) 
+// plotframe - fixes scales, tics and grid on a graphic,
+//%Syntax
+//  plotframe(rect,axisdata [,flags or leg or subwindow, ...)
+//%Parameters
+//  rect    : [xmin,ymin,xmax,ymax] data boudaries 
+//  axisdata: [nx,mx,ny,my]  mx and my x and y tics, nx,ny : x and y subtics
+//  flags   : [quad,bounds] ou quad is a boolean if %t a grid is added
+//	      bounds a booleen also : if bounds is %t then rect can be modified
+//	      in order to have better scales on both axes which contains the 
+//	      rect initial data.
+//  subwindow : see xsetech (wrect)
+//!
+// Copyright INRIA
+[lhs,rhs]=argn(0)
+
+f_subwin   = %f ;
+f_flags   = %f ;
+f_captions = %f ;
+f_tics     = %f ;
+//r_flags=[%f,%f];
+
+// check if we found optional args
+if exists('tics','local') == 1 then
+  f_tics = %t ;
+end
+
+if exists('flags','local') == 1 then
+  f_flags = %t ;
+else
+  flags = [%f,%f] ;
+end
+
+if exists('captions','local') == 1 then
+  f_captions = %t ;
+end
+
+if exists('subwin','local') == 1 then
+  f_subwin = %t ;
+end
+
+if ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
+// no optionnal argument specified we use the old syntax
+// with 2,3,4 or five parameters
+
+  f_tics = %t ;
+  if rhs == 5 then
+    select type(subwindow),
+    case 1 , subwin   = subwindow, f_subwin   = %t ;
+    case 4 , flags    = subwindow, f_flags    = %t ;
+    case 10, captions = subwindow, f_captions = %t ;
+    end
+  end
+  if rhs >= 4 then
+    select type(legs),
+    case 1 , subwin   = legs, f_subwin   = %t ;
+    case 4 , flags    = legs, f_flags    = %t ;
+    case 10, captions = legs, f_captions = %t ;
+    end
+  end
+  if rhs >= 3 then
+    select type(options),
+    case 1 , subwin   = options, f_subwin   = %t ;
+    case 4 , flags    = options, f_flags    = %t ;
+    case 10, captions = options, f_captions = %t ;
+    end
+  end
+  if rhs <= 1 then 
+    error('Wrong number of arguments ');
+    return ;
+  end
+
+end
+
+
+if f_subwin then 
+  xsetech(subwin,rect);
+end
+// -- trace du cadre et des echelles
+if flags(2) then
+  if f_tics then
+    plot2d( [],[],0,'051',' ',rect,tics ) ;
+  else
+    plot2d( [],[],0,'051',' ',rect ) ;
+  end
+else
+  if f_tics then
+    plot2d( [],[],0,'011',' ',rect, tics ) ;
+  else
+    plot2d( [],[],0,'011',' ',rect ) ;
+  end
+end
+
+// -- trace des legendes d'axes et du titre
+if f_captions then
+  select size(captions,'*'),
+  case 1, xtitle(captions(1)) ;
+  case 2, xtitle(captions(1),captions(2)) ;
+  case 3, xtitle(captions(1),captions(2),captions(3));
+  end 
+end
+
+if flags(1) then  xgrid(); end
+
+endfunction
