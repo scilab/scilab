@@ -62,7 +62,7 @@ void C2F(sciquit)(void)
   	
 #endif 
 #endif 
-	#ifndef _MSC_VER
+	#ifdef _MSC_VER
 		killScilabProcess(0);
 	#else
 		exit(0);
