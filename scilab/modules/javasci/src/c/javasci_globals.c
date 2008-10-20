@@ -9,9 +9,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include <stdlib.h>
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
+#include "tmpdir.h"
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
 #ifdef _MSC_VER
@@ -20,17 +21,17 @@
 
 static int init = 0;
 /*****************************************************************************/
-void EnableInterf()
+void EnableInterf(void)
 {
 	init = 1;
 }
 /*****************************************************************************/
-void DisableInterf()
+void DisableInterf(void)
 {
 	init = 0;
 }
 /*****************************************************************************/
-int GetInterfState()
+int GetInterfState(void)
 {
 	return init;
 }
@@ -101,11 +102,14 @@ void Initialize(void)
   #else
    if (sciPath==NULL)
    {
-   	fprintf(stderr,"Please define SCI environment variable\n");
-   	sprintf (env, "%s=%s", "SCI",SCI);
-	setSCIpath(SCI);
-	putenv (env);
+	   fprintf(stderr,"Please define SCI environment variable\n");
+	   exit(EXIT_FAILURE);
+   }else{
+	   sprintf (env, "%s=%s", "SCI",sciPath);
+	   setSCIpath(SCI);
+	   putenv (env);
    }
+
   #endif
   /* set TMPDIR */
   C2F(settmpdir)();
