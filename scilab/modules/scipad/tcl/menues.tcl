@@ -65,7 +65,9 @@ proc createmenues {} {
                    [ca {importmatlab}]"
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Create help s&keleton..."] \
-                   -command \"helpskeleton\" -state disabled "
+                   -command \"createhelpfile skeleton\" -state disabled "
+    eval "$pad.filemenu.files add command [me "Create help from hea&d comments..."] \
+                   -command \"createhelpfile fromsci\" -state disabled "
     eval "$pad.filemenu.files add command [me "Compile as &help page"] \
                    -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator

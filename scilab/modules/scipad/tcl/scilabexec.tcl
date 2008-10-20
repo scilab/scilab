@@ -24,8 +24,28 @@
 # See the file scipad/license.txt
 #
 
-proc execfile {{buf "current"}} {
-# return argument: 0=success, 1=scilab busy, 2=cancel overwrite, -1=fail
+proc execfile {{buf "current"} {getpath false}} {
+# exec a buffer into Scilab
+# if the buffer is modified (not saved), then an attempt is made to save it
+# in a temporary location. After exec-ing it, the temp file is deleted only
+# if getpath is false (otherwise the returned pathname would be immediately
+# obsolete)
+# the return value usually is:
+#     0 = success
+#     1 = scilab busy
+#     2 = user selected cancel overwrite (if silent save fails, the user is
+#         asked about overwriting the original file on disk)
+#    -1 = exec instruction failed in Scilab
+# however, if getpath is true, then the return value in case of success only
+# is a list:
+#     {0 0 $fullfilepath}  = success, the buffer has NOT been temporarily saved,
+#                            and $fullfilepath is $listoffile("$textarea",fullname)
+#     {0 1 $fullfilepath}  = success, the buffer has been temporarily saved,
+#                            $fullfilepath is the filepath where the buffer has
+#                            been temporarily saved
+# Warning: the temporary file is left over on disk in the latter case, it should
+# be deleted by the caller
+
     global listoffile pad
     global tmpdir
 
@@ -77,14 +97,22 @@ proc execfile {{buf "current"}} {
         }
     }
 
-    if {$savedintempdir} {
+    if {$savedintempdir && !$getpath} {
         catch {file delete -- $f}
     }
 
     # this is in case a script modifies a file opened in Scipad
     checkifanythingchangedondisk $pad
 
-    return $outval
+    if {$outval == 0 && $getpath} {
+        if {!$savedintempdir} {
+            return [list $outval 0 $f]
+        } else {
+            return [list $outval 1 $f]
+        }
+    } else {
+        return $outval
+    }
 }
 
 proc execselection {} {
@@ -217,25 +245,33 @@ proc failmatlabimp {} {
       -icon error
 }
 
-proc helpskeleton {} {
-    global listoffile
+proc createhelpfile {whatkind} {
     # first exec the file in scilab, so that the current function is
-    #  really defined; then call help_skeleton, and pipe the
-    # result to a new (unsaved) buffer.
+    # really defined; then call help_skeleton or help_from_sci (based
+    # on $whatkind, and pipe the result to a new (unsaved) buffer.
     # NB: execing the file can have far-reaching consequences
-    #  if the file does more than just defining functions.
+    # if the file does more than just defining functions.
     # Responsibility left to the user.
+
+    global listoffile
     global tileprocalreadyrunning
+
     if {$tileprocalreadyrunning} {return}
+
     if {[isscilabbusy 0]} {return}
+
     set indexin [[gettextareacur] index insert]
     scan $indexin "%d.%d" ypos xpos
     set infun [whichfun $indexin]
     set funname [lindex $infun 0]
-    if {[execfile]==0} {
+
+    set execresult [execfile "current" true]
+    if {[lindex $execresult 0] == 0} {
         set pathprompt [mc "Please select destination path for the xml source of the help file" ]
         set dir [tk_chooseDirectory -title $pathprompt]
         if {$dir != ""} {
+            set wastemporarysaved [lindex $execresult 1]
+            set savedfunname [lindex $execresult 2]
             set xmlfile [file join $dir $funname.xml]
             set warntitle [concat [mc "Older version of"] $xmlfile [mc "found!"] ]
             set warnquest [concat [mc "An old version of"] $xmlfile [mc "already exists: open the old file instead?"] ]
@@ -248,7 +284,17 @@ proc helpskeleton {} {
                 set answer 1
             }
             if $answer {
-                  ScilabEval_lt "help_skeleton(\"$funname\",\"$dir\")" "sync"
+                if {$whatkind == "skeleton"} {
+                    ScilabEval_lt "help_skeleton(\"$funname\",\"$dir\")" "sync"
+                } else {
+                    # $whatkind == "fromsci"
+                    ScilabEval_lt "help_from_sci(\"$savedfunname\",\"$dir\")" "sync"
+                    # delete the leftover temporary file created in proc execfile
+                    # with getpath being true
+                    if {$wastemporarysaved} {
+                        catch {file delete -- $savedfunname}
+                    }
+                }
             }
             openfile $xmlfile
         }
