@@ -36,19 +36,16 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject
 /*****************************************************************************/
 {
 	
-	jboolean bOK=JNI_FALSE;
+    if (sciHasFigures()) return JNI_TRUE;
 
-    
-    if (sciHasFigures()) { bOK=JNI_TRUE; }
-
-	return bOK;
+	return JNI_FALSE;
 }
 /*****************************************************************************/
 /* public static native boolean Exec(String job); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jstring job)
 /*****************************************************************************/
 {
-  jboolean bOK=0;
+  jboolean bOK=JNI_TRUE;
   const char *cjob;
 
   cjob = (*env)->GetStringUTFChars(env, job, NULL);
@@ -56,16 +53,16 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
   if (strlen(cjob) >= MAX_STR)
   {
 	  fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine (line too long).\n");
-	  bOK=0;
+	  bOK=JNI_FALSE;
   }
   else
   {
 	  if ( send_scilab_job((char *)cjob) != 0) 
 	  {
 		  fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
-		  bOK=0;
+		  bOK=JNI_FALSE;
 	  }
-	  else bOK=1;
+	  else bOK=JNI_TRUE;
 	  fflush(stdout);
   }
 
@@ -77,24 +74,22 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
 /* public static native boolean Finish(); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj_this)
 {
-	jboolean bOK=0;
 
 	if (GetInterfState() == 0)
 	{
-		bOK=0;
+		return JNI_FALSE;
 	}
 	else
 	{
 		ExitScilab();
-		bOK=1;
+		return JNI_TRUE;
 	}
-	return bOK;
 }
 /*****************************************************************************/
 /* public static native boolean ExistVar(String varName); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring varName)
 {
-  jboolean bOK=0;
+	jboolean bOK=JNI_FALSE;
   const char *cvarName;
 
   cvarName = (*env)->GetStringUTFChars(env, varName, NULL);
@@ -102,7 +97,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
   if (strlen(cvarName) >= MAX_STR)
   {
 	  fprintf(stderr,"Error in Java_javasci_Scilab_ExistVar routine (line too long).\n");
-	  bOK=0;
+	  bOK=JNI_FALSE;
   }
   else
   {
@@ -110,11 +105,11 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
 	  
 	  if (C2F(objptr)((char*)cvarName,&lw,&fin,(unsigned long)strlen(cvarName)))
 	  {
-		  bOK=1;
+		  bOK=JNI_TRUE;
 	  }
 	  else
 	  {
-		  bOK=0;
+		  bOK=JNI_FALSE;
 	  }
   }
 
@@ -161,10 +156,6 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstr
 /* public static native int GetLastErrorCode(); */
 JNIEXPORT jint JNICALL Java_javasci_Scilab_GetLastErrorCode (JNIEnv *env , jobject obj_this)
 {
-	jint ErrorCode=0;
-
-	ErrorCode=GetLastErrorCode();
-
-	return ErrorCode;
+	return GetLastErrorCode();
 }
 /*****************************************************************************/
