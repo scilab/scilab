@@ -23,6 +23,7 @@
 #include "../../../jvm/includes/TerminateJVM.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/TerminateWindows_tools.h"
+#include "../../../windows_tools/src/c/scilab_windows/killScilabProcess.h"
 #endif
 #include "../../../gui/includes/TerminateGui.h"
 #include "scilabmode.h"
@@ -60,6 +61,10 @@ void C2F(sciquit)(void)
   	
 #endif 
 #endif 
+	#ifndef _MSC_VER
+		killScilabProcess(0);
+	#else
 		exit(0);
+	#endif
 }
 /*--------------------------------------------------------------------------*/
