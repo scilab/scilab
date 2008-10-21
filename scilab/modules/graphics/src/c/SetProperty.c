@@ -2091,7 +2091,7 @@ int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
       if ( pobj == getFigureModel() )
       {
         pFIGURE_FEATURE(pobj)->pModelData->windowPosition[0] = pposx ;
-        pFIGURE_FEATURE(pobj)->pModelData->windowPosition[1] = pposx ;
+        pFIGURE_FEATURE(pobj)->pModelData->windowPosition[1] = pposy ;
       }
       else
       {

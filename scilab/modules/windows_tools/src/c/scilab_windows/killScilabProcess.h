@@ -16,8 +16,9 @@
 
 /**
 * Kill current scilab process
+* @param[in] exit code value
 */
-void killScilabProcess(void);
+void killScilabProcess(int exitCode);
 
 #endif /* __KILLSCILABPROCESS_H__ */ 
 /*--------------------------------------------------------------------------*/

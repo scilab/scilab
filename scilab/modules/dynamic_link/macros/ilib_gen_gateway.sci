@@ -25,7 +25,12 @@ function ilib_gen_gateway(name,tables)
      path='';
   end
   
-  name = strsubst(name,'.c','');
+  [path_name, file_name, ext_name] = fileparts(name);
+  if ext_name == '.c' then
+    name = path_name + file_name;
+  else
+    name = path_name + file_name + ext_name;
+  end
   
   if typeof(tables)<>'list' then 
     tables = list(tables);

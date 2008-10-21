@@ -14,7 +14,7 @@
 #include <windows.h>
 #include "killScilabProcess.h"
 /*--------------------------------------------------------------------------*/
-void killScilabProcess(void)
+void killScilabProcess(int exitCode)
 {
 	HANDLE hProcess;
 
@@ -23,7 +23,7 @@ void killScilabProcess(void)
 	if (hProcess)
 	{
 		/* Tue ce Process */
-		TerminateProcess(hProcess,0);
+		TerminateProcess(hProcess,exitCode);
 	}
 	else MessageBox(NULL,"Don't Find Scilab Process","Warning",MB_ICONWARNING);
 }

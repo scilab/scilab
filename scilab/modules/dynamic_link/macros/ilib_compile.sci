@@ -32,7 +32,17 @@ function libn = ilib_compile(lib_name,makename,files, ..
   
   oldpath = getcwd();
   files = files(:)';
-  files1 = strsubst(strsubst(files,'.obj','') ,'.o','');
+  
+  managed_ext = ['.obj','.o'];
+  for i=1:size(files,'*') // compatibility scilab 4.x
+    [path_f, file_f, ext_f] = fileparts(files(i));
+    if or(managed_ext == ext_f) then
+      files1(i) = path_f + file_f;
+    else
+      files1(i) = path_f + file_f + ext_f;
+    end
+  end
+  
   [make_command,lib_name_make,lib_name,path,makename,files]= ...
       ilib_compile_get_names(lib_name,makename,files);
 
@@ -121,7 +131,6 @@ function libn = ilib_compile(lib_name,makename,files, ..
 
 	  // Copy the produce lib to the working path
 	  copyfile(".libs/" + lib_name, oldPath);
-   
   end
 	
   libn = path + lib_name_make ; 
@@ -130,13 +139,20 @@ function libn = ilib_compile(lib_name,makename,files, ..
 endfunction
 //==========================================
 
-
 //==========================================
 // function only defined in ilib_compile
 //==========================================
 function [make_command,lib_name_make,lib_name,path,makename,files] = ilib_compile_get_names(lib_name,makename,files) 
-
-  files = strsubst(strsubst(files,'.obj','') ,'.o',''); //compatibility
+  
+  managed_ext = ['.obj','.o'];
+  for i=1:size(files,'*') // compatibility scilab 4.x
+    [path_f, file_f, ext_f] = fileparts(files(i));
+    if or(managed_ext == ext_f) then
+      files(i) = path_f + file_f;
+    else
+      files(i) = path_f + file_f + ext_f;
+    end
+  end
     
   k = strindex(makename,['/','\']);
   
