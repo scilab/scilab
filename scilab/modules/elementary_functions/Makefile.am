@@ -45,6 +45,7 @@ src/c/eye.c \
 src/c/dmsum.c \
 src/c/dsearch.c \
 src/c/floor.c \
+src/c/vmul.c \
 src/c/mprod.c \
 src/c/pythag.c \
 src/c/matrix_generation.c
@@ -272,7 +273,8 @@ src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
-src/fortran/rybesl.f
+src/fortran/rybesl.f \
+src/fortran/dsearch.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \

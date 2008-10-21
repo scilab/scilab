@@ -238,6 +238,7 @@ am__objects_3 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-dmsum.lo \
 	libscielementary_functions_la-dsearch.lo \
 	libscielementary_functions_la-floor.lo \
+	libscielementary_functions_la-vmul.lo \
 	libscielementary_functions_la-mprod.lo \
 	libscielementary_functions_la-pythag.lo \
 	libscielementary_functions_la-matrix_generation.lo
@@ -755,6 +756,7 @@ src/c/eye.c \
 src/c/dmsum.c \
 src/c/dsearch.c \
 src/c/floor.c \
+src/c/vmul.c \
 src/c/mprod.c \
 src/c/pythag.c \
 src/c/matrix_generation.c
@@ -1377,6 +1379,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-vfinite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-vfloor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-vfrexp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-vmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-xerhlt.Plo@am__quote@
 
 .c.o:
@@ -1693,6 +1696,13 @@ libscielementary_functions_la-floor.lo: src/c/floor.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/floor.c' object='libscielementary_functions_la-floor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-floor.lo `test -f 'src/c/floor.c' || echo '$(srcdir)/'`src/c/floor.c
+
+libscielementary_functions_la-vmul.lo: src/c/vmul.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-vmul.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-vmul.Tpo -c -o libscielementary_functions_la-vmul.lo `test -f 'src/c/vmul.c' || echo '$(srcdir)/'`src/c/vmul.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-vmul.Tpo $(DEPDIR)/libscielementary_functions_la-vmul.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vmul.c' object='libscielementary_functions_la-vmul.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-vmul.lo `test -f 'src/c/vmul.c' || echo '$(srcdir)/'`src/c/vmul.c
 
 libscielementary_functions_la-mprod.lo: src/c/mprod.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-mprod.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-mprod.Tpo -c -o libscielementary_functions_la-mprod.lo `test -f 'src/c/mprod.c' || echo '$(srcdir)/'`src/c/mprod.c
