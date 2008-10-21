@@ -11,22 +11,22 @@
 ##
 ##
 
-pkglib_LTLIBRARIES 	= libsciAst.la
+pkglib_LTLIBRARIES 	= libsciabstractSyntaxTree.la
 
-libsciAst_la_SOURCES 	=	src/cpp/libAst.cpp \
+libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
 				src/cpp/printvisitor.cpp \
 				src/cpp/debugvisitor.cpp \
 				src/cpp/execvisitor.cpp \
 				src/cpp/exec/exec_OpExp.cpp
 
-libsciAst_la_CXXFLAGS 	= -I$(top_srcdir)/modules/symbol/includes \
+libsciabstractSyntaxTree_la_CXXFLAGS 	= -I$(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \
 			-I includes \
 			-I src/cpp
 
 
-libsciAst_la_includedir=$(pkgincludedir)/abstractSyntaxTree
-libsciAst_la_include_HEADERS =
+libsciabstractSyntaxTree_la_includedir=$(pkgincludedir)/abstractSyntaxTree
+libsciabstractSyntaxTree_la_include_HEADERS =
 
 ####################
 ## Automated test ##
@@ -36,7 +36,7 @@ check_INCLUDES 		= -I$(top_srcdir)/modules/symbol/includes \
 			-Isrc/cpp
 
 check_LDADD		= $(top_builddir)/modules/symbol/libsciSymbol.la \
-			$(top_builddir)/modules/abstractSyntaxTree/libsciAst.la \
+			$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
 			$(top_builddir)/modules/types/libsciTypes.la
 
 check_PROGRAMS 		= 	testConstExp \
