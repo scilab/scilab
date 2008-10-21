@@ -19,12 +19,20 @@
 #include "tmpdir.h" /* tmpdirc */
 #include "hashtable_core.h" /* destroy_hashtable_scilab_functions */
 #include "filesmanagement.h"
+#include "scilabmode.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateCorePart1(void)
 {
 	if ( Get_no_startup_flag() == 0) 
 	{
-		char *quit_script =  get_sci_data_strings(QUIT_ID);
+		char *quit_script = NULL;
+
+		/* bug 3672 */
+		if (getScilabMode() == SCILAB_STD) quit_script = get_sci_data_strings(QUIT_ERRCATCH_ID);
+		else quit_script = get_sci_data_strings(QUIT_ID);
+
+		/* launch scilab.quit script */
 		C2F(scirun)(quit_script,(long int)strlen(quit_script));
 	}
 	return TRUE;
