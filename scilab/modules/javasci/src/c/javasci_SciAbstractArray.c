@@ -12,7 +12,7 @@
 
 #include "javasci_SciAbstractArray.h"
 #include "javasci_globals.h"
-
+#include "CallScilab.h"
 
 char* detectSignatureTypeFromObjectName(JNIEnv *env, jobject obj_this);
 
@@ -134,7 +134,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciAbstractArray_Job(JNIEnv *env, jobjec
 	}
 	else
 	{
-		if (send_scilab_job((char*)cjob))
+		if (sendScilabJob((char*)cjob))
 		{
 			fprintf(stderr,"Error in Java_javasci_SciAsbtractArray_Job routine.\n");
 			bOK=0;
