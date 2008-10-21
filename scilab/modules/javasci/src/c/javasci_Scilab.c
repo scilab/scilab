@@ -58,7 +58,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
   }
   else
   {
-	  if ( sendScilabJob((char *)cjob) != 0) 
+	  if ( SendScilabJob((char *)cjob) != 0) 
 	  {
 		  fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
 		  bOK=JNI_FALSE;

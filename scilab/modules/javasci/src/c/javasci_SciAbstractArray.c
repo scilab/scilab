@@ -134,7 +134,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciAbstractArray_Job(JNIEnv *env, jobjec
 	}
 	else
 	{
-		if (sendScilabJob((char*)cjob))
+		if (SendScilabJob((char*)cjob))
 		{
 			fprintf(stderr,"Error in Java_javasci_SciAsbtractArray_Job routine.\n");
 			bOK=0;
