@@ -12,18 +12,17 @@
 
 FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp
 
-pkglib_LTLIBRARIES 	= libscifunctionsmanager.la
+pkglib_LTLIBRARIES 	= libsciFunctionsManager.la
 
-libscifunctionsmanager_la_SOURCES 	= $(FUNCTION_MANAGER_CPP_SOURCES)
+libsciFunctionsManager_la_SOURCES 	= $(FUNCTION_MANAGER_CPP_SOURCES)
 
-libscifunctionsmanager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ \
+libsciFunctionsManager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ \
 						-Iincludes/ \
-						-Isrc/cpp \
-						$(XML_FLAGS)
+						-Isrc/cpp
 
-libscifunctionsmanager_la_includedir=$(pkgincludedir)/Types
+libsciFunctionsManager_la_includedir=$(pkgincludedir)/Types
 
-libscifunctionsmanager_la_include_HEADERS =
+libsciFunctionsManager_la_include_HEADERS =
 
 ####################
 ## Automated test ##
@@ -41,4 +40,4 @@ testFunctionManager_SOURCES 	=	src/cpp/test-function.cpp \
 					src/cpp/cosinus.cpp
 testFunctionManager_CXXFLAGS 	= $(check_INCLUDES)
 testFunctionManager_LDADD	=	$(top_builddir)/modules/types/libsciTypes.la \
-					$(top_builddir)/modules/functions_manager/libscifunctionsmanager.la
+					$(top_builddir)/modules/functions_manager/libsciFunctionsManager.la
