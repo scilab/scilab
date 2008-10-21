@@ -271,7 +271,8 @@ src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
-src/fortran/rybesl.f
+src/fortran/rybesl.f \
+src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \

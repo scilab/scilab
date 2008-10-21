@@ -636,7 +636,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\pythag.c"
+				RelativePath=".\old_pythag.c"
 				>
 			</File>
 			<File
@@ -1372,7 +1372,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\pythag.f"
+				RelativePath=".\old_pythag.f"
 				>
 			</File>
 			<File

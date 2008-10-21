@@ -367,7 +367,8 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-ribesl.lo \
 	libscielementary_functions_la-rjbesl.lo \
 	libscielementary_functions_la-rkbesl.lo \
-	libscielementary_functions_la-rybesl.lo
+	libscielementary_functions_la-rybesl.lo \
+	libscielementary_functions_la-old_pythag.lo
 am__objects_5 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_prod.lo \
@@ -980,7 +981,8 @@ src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
-src/fortran/rybesl.f
+src/fortran/rybesl.f \
+src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -2736,6 +2738,9 @@ libscielementary_functions_la-rkbesl.lo: src/fortran/rkbesl.f
 
 libscielementary_functions_la-rybesl.lo: src/fortran/rybesl.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rybesl.lo `test -f 'src/fortran/rybesl.f' || echo '$(srcdir)/'`src/fortran/rybesl.f
+
+libscielementary_functions_la-old_pythag.lo: src/fortran/old_pythag.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-old_pythag.lo `test -f 'src/fortran/old_pythag.f' || echo '$(srcdir)/'`src/fortran/old_pythag.f
 
 libscielementary_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
