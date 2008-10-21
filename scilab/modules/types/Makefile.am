@@ -19,16 +19,16 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/uint.cpp \
 			src/cpp/implicitlist.cpp
 
-pkglib_LTLIBRARIES 	= libsciTypes.la
+pkglib_LTLIBRARIES 	= libscitypes.la
 
-libsciTypes_la_SOURCES 	= $(TYPES_CPP_SOURCES)
+libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES)
 
-libsciTypes_la_CXXFLAGS	=	-Iincludes/ \
+libscitypes_la_CXXFLAGS	=	-Iincludes/ \
 				-Isrc/cpp
 
-libsciTypes_la_includedir=$(pkgincludedir)/Types
+libscitypes_la_includedir=$(pkgincludedir)/Types
 
-libsciTypes_la_include_HEADERS =
+libscitypes_la_include_HEADERS =
 
 ####################
 ## Automated test ##
@@ -42,4 +42,4 @@ TESTS			= testTypes
 
 testTypes_SOURCES 	= src/cpp/test-types.cpp
 testTypes_CXXFLAGS 	= $(check_INCLUDES)
-testTypes_LDADD	= $(top_builddir)/modules/types/libsciTypes.la
+testTypes_LDADD	= $(top_builddir)/modules/types/libscitypes.la
