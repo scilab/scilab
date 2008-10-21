@@ -113,6 +113,9 @@ AC_ARG_ENABLE(build-swig,
 AC_ARG_ENABLE(build-giws,
     AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
 
+AC_ARG_ENABLE(build-parser,
+    AC_HELP_STRING([--enable-build-parser],[Regenerate code for the parser (Lex & YACC)]))
+
 
 ################################################
 ########## compilator & misc programs detection
@@ -521,6 +524,35 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test "$IS_64_BITS_CPU" = true)
 ## test for underscores (name mangling issues between C and fortran)
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
+
+###############################
+### Regenerate the parser files
+### Flex & Yacc 
+###############################
+
+if test "$enable_build_parser" != no; then
+
+   AC_PROG_LEX
+   if test -z "$LEX" -o "$LEX" = ":"; then
+	  AC_MSG_ERROR([No implementation of Lex (flex, lex) detected. Please install it (package flex)])
+   fi
+
+   AC_PROG_YACC
+   if test -z "$YACC"; then
+	  AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)])
+  fi
+# Actually, AC_PROG_YACC is lying. It sometimes put yacc into $YACC even it 
+# hasn't been able to find it.
+#  AC_CHECK_PROG(YACC_PRESENT, $YACC, AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)]) )
+
+   AC_CHECK_PROG(yacc_present, $YACC, "yes","no")
+   if test "x$yacc_present" != "xyes"; then
+      AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)])
+   fi
+
+fi
+AM_CONDITIONAL(BUILD_PARSER, test "$enable_build_parser" != no)
+
 
 ###########################
 ## test for JAVA compiler
@@ -1153,8 +1185,13 @@ libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
+modules/abstractSyntaxTree/Makefile
+modules/core/Makefile
+modules/parse/Makefile
+modules/symbol/Makefile
+modules/types/Makefile
+modules/functions_manager/Makefile
 modules/helptools/Makefile
-modules/helptools/macros/xmlfiletohtml.sci
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
@@ -1195,7 +1232,6 @@ modules/pvm/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
-modules/core/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
 modules/scicos/Makefile
@@ -1225,6 +1261,7 @@ scilab.pc
 etc/modules.xml
 etc/classpath.xml
 modules/jvm/etc/jvm_options.xml
+modules/helptools/macros/xmlfiletohtml.sci
 scilab-lib.properties
 scilab-lib-doc.properties
 ])
