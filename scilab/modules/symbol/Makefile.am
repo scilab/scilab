@@ -14,17 +14,17 @@ SYMBOL_CPP_SOURCES 		= src/cpp/symbol.cpp \
 				src/cpp/context.cpp \
 				src/cpp/table.cpp
 
-pkglib_LTLIBRARIES 		= libsciSymbol.la
+pkglib_LTLIBRARIES 		= libscisymbol.la
 
-libsciSymbol_la_SOURCES 	= $(SYMBOL_CPP_SOURCES)
+libscisymbol_la_SOURCES 	= $(SYMBOL_CPP_SOURCES)
 
-libsciSymbol_la_CXXFLAGS	= -I includes/ \
+libscisymbol_la_CXXFLAGS	= -I includes/ \
 				-I $(top_builddir)/modules/types/includes \
 				-I src/cpp
 
-libsciSymbol_la_includedir=$(pkgincludedir)/Symbol
+libscisymbol_la_includedir=$(pkgincludedir)/Symbol
 
-libsciSymbol_la_include_HEADERS = includes/symbol.hxx
+libscisymbol_la_include_HEADERS = includes/symbol.hxx
 
 ####################
 ## Automated test ##
@@ -33,7 +33,7 @@ check_INCLUDES 		= -Iincludes/ \
 			-I $(top_builddir)/modules/types/includes \
 			-Isrc/cpp
 
-check_LDADD		= $(top_builddir)/modules/symbol/libsciSymbol.la \
+check_LDADD		= $(top_builddir)/modules/symbol/libscisymbol.la \
 			$(top_builddir)/modules/types/libsciTypes.la
 
 check_PROGRAMS 		= 	testSymbol \

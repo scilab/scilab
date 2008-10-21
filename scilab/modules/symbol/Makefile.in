@@ -38,7 +38,7 @@ check_PROGRAMS = testSymbol$(EXEEXT) testScope$(EXEEXT) \
 TESTS = testSymbol$(EXEEXT) testScope$(EXEEXT) testStack$(EXEEXT) \
 	testHeap$(EXEEXT)
 subdir = modules/symbol
-DIST_COMMON = $(libsciSymbol_la_include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(libscisymbol_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -65,17 +65,17 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libsciSymbol_la_includedir)"
+	"$(DESTDIR)$(libscisymbol_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciSymbol_la_LIBADD =
-am__objects_1 = libsciSymbol_la-symbol.lo libsciSymbol_la-context.lo \
-	libsciSymbol_la-table.lo
-am_libsciSymbol_la_OBJECTS = $(am__objects_1)
-libsciSymbol_la_OBJECTS = $(am_libsciSymbol_la_OBJECTS)
-libsciSymbol_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+libscisymbol_la_LIBADD =
+am__objects_1 = libscisymbol_la-symbol.lo libscisymbol_la-context.lo \
+	libscisymbol_la-table.lo
+am_libscisymbol_la_OBJECTS = $(am__objects_1)
+libscisymbol_la_OBJECTS = $(am_libscisymbol_la_OBJECTS)
+libscisymbol_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(libsciSymbol_la_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
+	$(libscisymbol_la_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 am_testHeap_OBJECTS = testHeap-test-heap.$(OBJEXT)
 testHeap_OBJECTS = $(am_testHeap_OBJECTS)
@@ -113,14 +113,14 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciSymbol_la_SOURCES) $(testHeap_SOURCES) \
+SOURCES = $(libscisymbol_la_SOURCES) $(testHeap_SOURCES) \
 	$(testScope_SOURCES) $(testStack_SOURCES) \
 	$(testSymbol_SOURCES)
-DIST_SOURCES = $(libsciSymbol_la_SOURCES) $(testHeap_SOURCES) \
+DIST_SOURCES = $(libscisymbol_la_SOURCES) $(testHeap_SOURCES) \
 	$(testScope_SOURCES) $(testStack_SOURCES) \
 	$(testSymbol_SOURCES)
-libsciSymbol_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libsciSymbol_la_include_HEADERS)
+libscisymbol_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscisymbol_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -326,14 +326,14 @@ SYMBOL_CPP_SOURCES = src/cpp/symbol.cpp \
 				src/cpp/context.cpp \
 				src/cpp/table.cpp
 
-pkglib_LTLIBRARIES = libsciSymbol.la
-libsciSymbol_la_SOURCES = $(SYMBOL_CPP_SOURCES)
-libsciSymbol_la_CXXFLAGS = -I includes/ \
+pkglib_LTLIBRARIES = libscisymbol.la
+libscisymbol_la_SOURCES = $(SYMBOL_CPP_SOURCES)
+libscisymbol_la_CXXFLAGS = -I includes/ \
 				-I $(top_builddir)/modules/types/includes \
 				-I src/cpp
 
-libsciSymbol_la_includedir = $(pkgincludedir)/Symbol
-libsciSymbol_la_include_HEADERS = includes/symbol.hxx
+libscisymbol_la_includedir = $(pkgincludedir)/Symbol
+libscisymbol_la_include_HEADERS = includes/symbol.hxx
 
 ####################
 ####################
@@ -341,7 +341,7 @@ check_INCLUDES = -Iincludes/ \
 			-I $(top_builddir)/modules/types/includes \
 			-Isrc/cpp
 
-check_LDADD = $(top_builddir)/modules/symbol/libsciSymbol.la \
+check_LDADD = $(top_builddir)/modules/symbol/libscisymbol.la \
 			$(top_builddir)/modules/types/libsciTypes.la
 
 testSymbol_SOURCES = src/cpp/test-symbol.cpp
@@ -416,8 +416,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsciSymbol.la: $(libsciSymbol_la_OBJECTS) $(libsciSymbol_la_DEPENDENCIES) 
-	$(libsciSymbol_la_LINK) -rpath $(pkglibdir) $(libsciSymbol_la_OBJECTS) $(libsciSymbol_la_LIBADD) $(LIBS)
+libscisymbol.la: $(libscisymbol_la_OBJECTS) $(libscisymbol_la_DEPENDENCIES) 
+	$(libscisymbol_la_LINK) -rpath $(pkglibdir) $(libscisymbol_la_OBJECTS) $(libscisymbol_la_LIBADD) $(LIBS)
 
 clean-checkPROGRAMS:
 	@list='$(check_PROGRAMS)'; for p in $$list; do \
@@ -444,9 +444,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciSymbol_la-context.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciSymbol_la-symbol.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciSymbol_la-table.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbol_la-context.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbol_la-symbol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbol_la-table.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testHeap-test-heap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testScope-test-scope.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testStack-test-stack.Po@am__quote@
@@ -473,26 +473,26 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciSymbol_la-symbol.lo: src/cpp/symbol.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciSymbol_la_CXXFLAGS) $(CXXFLAGS) -MT libsciSymbol_la-symbol.lo -MD -MP -MF $(DEPDIR)/libsciSymbol_la-symbol.Tpo -c -o libsciSymbol_la-symbol.lo `test -f 'src/cpp/symbol.cpp' || echo '$(srcdir)/'`src/cpp/symbol.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciSymbol_la-symbol.Tpo $(DEPDIR)/libsciSymbol_la-symbol.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/symbol.cpp' object='libsciSymbol_la-symbol.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbol_la-symbol.lo: src/cpp/symbol.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbol_la_CXXFLAGS) $(CXXFLAGS) -MT libscisymbol_la-symbol.lo -MD -MP -MF $(DEPDIR)/libscisymbol_la-symbol.Tpo -c -o libscisymbol_la-symbol.lo `test -f 'src/cpp/symbol.cpp' || echo '$(srcdir)/'`src/cpp/symbol.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscisymbol_la-symbol.Tpo $(DEPDIR)/libscisymbol_la-symbol.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/symbol.cpp' object='libscisymbol_la-symbol.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciSymbol_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciSymbol_la-symbol.lo `test -f 'src/cpp/symbol.cpp' || echo '$(srcdir)/'`src/cpp/symbol.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbol_la_CXXFLAGS) $(CXXFLAGS) -c -o libscisymbol_la-symbol.lo `test -f 'src/cpp/symbol.cpp' || echo '$(srcdir)/'`src/cpp/symbol.cpp
 
-libsciSymbol_la-context.lo: src/cpp/context.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciSymbol_la_CXXFLAGS) $(CXXFLAGS) -MT libsciSymbol_la-context.lo -MD -MP -MF $(DEPDIR)/libsciSymbol_la-context.Tpo -c -o libsciSymbol_la-context.lo `test -f 'src/cpp/context.cpp' || echo '$(srcdir)/'`src/cpp/context.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciSymbol_la-context.Tpo $(DEPDIR)/libsciSymbol_la-context.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/context.cpp' object='libsciSymbol_la-context.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbol_la-context.lo: src/cpp/context.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbol_la_CXXFLAGS) $(CXXFLAGS) -MT libscisymbol_la-context.lo -MD -MP -MF $(DEPDIR)/libscisymbol_la-context.Tpo -c -o libscisymbol_la-context.lo `test -f 'src/cpp/context.cpp' || echo '$(srcdir)/'`src/cpp/context.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscisymbol_la-context.Tpo $(DEPDIR)/libscisymbol_la-context.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/context.cpp' object='libscisymbol_la-context.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciSymbol_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciSymbol_la-context.lo `test -f 'src/cpp/context.cpp' || echo '$(srcdir)/'`src/cpp/context.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbol_la_CXXFLAGS) $(CXXFLAGS) -c -o libscisymbol_la-context.lo `test -f 'src/cpp/context.cpp' || echo '$(srcdir)/'`src/cpp/context.cpp
 
-libsciSymbol_la-table.lo: src/cpp/table.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciSymbol_la_CXXFLAGS) $(CXXFLAGS) -MT libsciSymbol_la-table.lo -MD -MP -MF $(DEPDIR)/libsciSymbol_la-table.Tpo -c -o libsciSymbol_la-table.lo `test -f 'src/cpp/table.cpp' || echo '$(srcdir)/'`src/cpp/table.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciSymbol_la-table.Tpo $(DEPDIR)/libsciSymbol_la-table.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/table.cpp' object='libsciSymbol_la-table.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbol_la-table.lo: src/cpp/table.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbol_la_CXXFLAGS) $(CXXFLAGS) -MT libscisymbol_la-table.lo -MD -MP -MF $(DEPDIR)/libscisymbol_la-table.Tpo -c -o libscisymbol_la-table.lo `test -f 'src/cpp/table.cpp' || echo '$(srcdir)/'`src/cpp/table.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscisymbol_la-table.Tpo $(DEPDIR)/libscisymbol_la-table.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/table.cpp' object='libscisymbol_la-table.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciSymbol_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciSymbol_la-table.lo `test -f 'src/cpp/table.cpp' || echo '$(srcdir)/'`src/cpp/table.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbol_la_CXXFLAGS) $(CXXFLAGS) -c -o libscisymbol_la-table.lo `test -f 'src/cpp/table.cpp' || echo '$(srcdir)/'`src/cpp/table.cpp
 
 testHeap-test-heap.o: src/cpp/test-heap.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testHeap_CXXFLAGS) $(CXXFLAGS) -MT testHeap-test-heap.o -MD -MP -MF $(DEPDIR)/testHeap-test-heap.Tpo -c -o testHeap-test-heap.o `test -f 'src/cpp/test-heap.cpp' || echo '$(srcdir)/'`src/cpp/test-heap.cpp
@@ -555,22 +555,22 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsciSymbol_la_includeHEADERS: $(libsciSymbol_la_include_HEADERS)
+install-libscisymbol_la_includeHEADERS: $(libscisymbol_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsciSymbol_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciSymbol_la_includedir)"
-	@list='$(libsciSymbol_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscisymbol_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisymbol_la_includedir)"
+	@list='$(libscisymbol_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsciSymbol_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciSymbol_la_includedir)/$$f'"; \
-	  $(libsciSymbol_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciSymbol_la_includedir)/$$f"; \
+	  echo " $(libscisymbol_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisymbol_la_includedir)/$$f'"; \
+	  $(libscisymbol_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisymbol_la_includedir)/$$f"; \
 	done
 
-uninstall-libsciSymbol_la_includeHEADERS:
+uninstall-libscisymbol_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsciSymbol_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscisymbol_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsciSymbol_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsciSymbol_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisymbol_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisymbol_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -725,7 +725,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciSymbol_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisymbol_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -773,7 +773,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libsciSymbol_la_includeHEADERS
+install-data-am: install-libscisymbol_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -809,7 +809,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciSymbol_la_includeHEADERS \
+uninstall-am: uninstall-libscisymbol_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -822,13 +822,13 @@ uninstall-am: uninstall-libsciSymbol_la_includeHEADERS \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am \
-	install-libsciSymbol_la_includeHEADERS install-man install-pdf \
+	install-libscisymbol_la_includeHEADERS install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libsciSymbol_la_includeHEADERS \
+	uninstall-am uninstall-libscisymbol_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
