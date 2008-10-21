@@ -78,10 +78,10 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
-CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
-	scilab.pc etc/modules.xml etc/classpath.xml \
-	modules/jvm/etc/jvm_options.xml scilab-lib.properties \
-	scilab-lib-doc.properties
+CONFIG_CLEAN_FILES = scilab.pc etc/modules.xml etc/classpath.xml \
+	modules/jvm/etc/jvm_options.xml \
+	modules/helptools/macros/xmlfiletohtml.sci \
+	scilab-lib.properties scilab-lib-doc.properties
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
@@ -225,6 +225,9 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -300,6 +303,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -352,6 +357,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 AUTOMAKE_OPTIONS = 1.9 dist-zip dist-bzip2
 SUBDIRS = libs \
 	modules \
@@ -470,8 +476,6 @@ $(top_srcdir)/modules/core/includes/machine.h.in: @MAINTAINER_MODE_TRUE@ $(am__c
 
 distclean-hdr:
 	-rm -f modules/core/includes/machine.h modules/core/includes/stamp-h1
-modules/helptools/macros/xmlfiletohtml.sci: $(top_builddir)/config.status $(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab.pc: $(top_builddir)/config.status $(srcdir)/scilab.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
@@ -479,6 +483,8 @@ etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
 etc/classpath.xml: $(top_builddir)/config.status $(top_srcdir)/etc/classpath.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 modules/jvm/etc/jvm_options.xml: $(top_builddir)/config.status $(top_srcdir)/modules/jvm/etc/jvm_options.xml.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+modules/helptools/macros/xmlfiletohtml.sci: $(top_builddir)/config.status $(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab-lib.properties: $(top_builddir)/config.status $(srcdir)/scilab-lib.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
