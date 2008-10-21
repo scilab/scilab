@@ -15,7 +15,7 @@ ACLOCAL_AMFLAGS = -I m4/
 
 changelogs = CHANGES
 
-bin_PROGRAMS		= scilab-bin
+bin_PROGRAMS		= scilab-bin scilab6-bin
 
 bin_SCRIPTS			= bin/scilab
 
@@ -24,7 +24,6 @@ scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 scilab_bin_LDFLAGS 		=
 scilab_bin_CFLAGS 		=
 # --no-undefined --relax
-
 
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -52,6 +51,12 @@ scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 
 scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
+
+
+scilab6_bin_SOURCES		= $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+scilab6_bin_CPPFLAGS	= -I$(top_srcdir)/modules/parse/includes/ -I$(top_srcdir)/modules/abstractSyntaxTree/includes/  -I$(top_srcdir)/modules/symbol/includes/  -I$(top_srcdir)/modules/types/includes/ 
+
+scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la
 
 
 LANG_DOMAIN=scilab
