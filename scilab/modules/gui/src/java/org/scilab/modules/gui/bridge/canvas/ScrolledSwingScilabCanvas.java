@@ -247,8 +247,21 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			}
 			realPosY = Math.max(0, realPosY);
 
-			getViewport().setViewPosition(new Point(realPosX, realPosY));
-			revalidate();
+			// must be called on the Swing thread otherwise some JOGL corruption may appear
+			final Point realPos = new Point(realPosX, realPosY);
+			try {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						getViewport().setViewPosition(realPos);
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.getCause().printStackTrace();
+			}
+			
+			
 		}
 	}
 
