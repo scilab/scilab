@@ -18,11 +18,11 @@ PARSE_CPP_SOURCES 	= $(BISON_PARSESCILAB_CPP) \
 			src/cpp/parser.cpp \
 			src/cpp/printerror.cpp
 
-pkglib_LTLIBRARIES = libsciParse.la
+pkglib_LTLIBRARIES = libsciparse.la
 
-libsciParse_la_SOURCES 	= $(PARSE_CPP_SOURCES)
+libsciparse_la_SOURCES 	= $(PARSE_CPP_SOURCES)
 
-libsciParse_la_CXXFLAGS = -I$(top_builddir)/modules/core/includes \
+libsciparse_la_CXXFLAGS = -I$(top_builddir)/modules/core/includes \
 			-I$(top_builddir)/modules/abstractSyntaxTree/includes \
 			-I$(top_builddir)/modules/symbol/includes \
 			-Iincludes \
