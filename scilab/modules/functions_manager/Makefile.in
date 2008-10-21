@@ -36,7 +36,7 @@ host_triplet = @host@
 check_PROGRAMS = testFunctionManager$(EXEEXT)
 TESTS = testFunctionManager$(EXEEXT)
 subdir = modules/functions_manager
-DIST_COMMON = $(libsciFunctionsManager_la_include_HEADERS) \
+DIST_COMMON = $(libscifunctions_manager_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -63,17 +63,17 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libsciFunctionsManager_la_includedir)"
+	"$(DESTDIR)$(libscifunctions_manager_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciFunctionsManager_la_LIBADD =
-am__objects_1 = libsciFunctionsManager_la-funcmanager.lo
-am_libsciFunctionsManager_la_OBJECTS = $(am__objects_1)
-libsciFunctionsManager_la_OBJECTS =  \
-	$(am_libsciFunctionsManager_la_OBJECTS)
-libsciFunctionsManager_la_LINK = $(LIBTOOL) --tag=CXX \
+libscifunctions_manager_la_LIBADD =
+am__objects_1 = libscifunctions_manager_la-funcmanager.lo
+am_libscifunctions_manager_la_OBJECTS = $(am__objects_1)
+libscifunctions_manager_la_OBJECTS =  \
+	$(am_libscifunctions_manager_la_OBJECTS)
+libscifunctions_manager_la_LINK = $(LIBTOOL) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(libsciFunctionsManager_la_CXXFLAGS) $(CXXFLAGS) \
+	$(libscifunctions_manager_la_CXXFLAGS) $(CXXFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 am_testFunctionManager_OBJECTS =  \
 	testFunctionManager-test-function.$(OBJEXT) \
@@ -82,7 +82,7 @@ am_testFunctionManager_OBJECTS =  \
 testFunctionManager_OBJECTS = $(am_testFunctionManager_OBJECTS)
 testFunctionManager_DEPENDENCIES =  \
 	$(top_builddir)/modules/types/libsciTypes.la \
-	$(top_builddir)/modules/functions_manager/libsciFunctionsManager.la
+	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
 testFunctionManager_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(testFunctionManager_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
@@ -99,12 +99,12 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciFunctionsManager_la_SOURCES) \
+SOURCES = $(libscifunctions_manager_la_SOURCES) \
 	$(testFunctionManager_SOURCES)
-DIST_SOURCES = $(libsciFunctionsManager_la_SOURCES) \
+DIST_SOURCES = $(libscifunctions_manager_la_SOURCES) \
 	$(testFunctionManager_SOURCES)
-libsciFunctionsManager_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libsciFunctionsManager_la_include_HEADERS)
+libscifunctions_manager_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscifunctions_manager_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -307,14 +307,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 FUNCTION_MANAGER_CPP_SOURCES = src/cpp/funcmanager.cpp
-pkglib_LTLIBRARIES = libsciFunctionsManager.la
-libsciFunctionsManager_la_SOURCES = $(FUNCTION_MANAGER_CPP_SOURCES)
-libsciFunctionsManager_la_CXXFLAGS = -I$(top_builddir)/modules/types/includes/ \
+pkglib_LTLIBRARIES = libscifunctions_manager.la
+libscifunctions_manager_la_SOURCES = $(FUNCTION_MANAGER_CPP_SOURCES)
+libscifunctions_manager_la_CXXFLAGS = -I$(top_builddir)/modules/types/includes/ \
 						-Iincludes/ \
-						-Isrc/cpp
+						-Isrc/cpp \
+						$(XML_FLAGS)
 
-libsciFunctionsManager_la_includedir = $(pkgincludedir)/Types
-libsciFunctionsManager_la_include_HEADERS = 
+libscifunctions_manager_la_includedir = $(pkgincludedir)/Types
+libscifunctions_manager_la_include_HEADERS = 
 
 ####################
 ####################
@@ -328,7 +329,7 @@ testFunctionManager_SOURCES = src/cpp/test-function.cpp \
 
 testFunctionManager_CXXFLAGS = $(check_INCLUDES)
 testFunctionManager_LDADD = $(top_builddir)/modules/types/libsciTypes.la \
-					$(top_builddir)/modules/functions_manager/libsciFunctionsManager.la
+					$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
 
 all: all-am
 
@@ -390,8 +391,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsciFunctionsManager.la: $(libsciFunctionsManager_la_OBJECTS) $(libsciFunctionsManager_la_DEPENDENCIES) 
-	$(libsciFunctionsManager_la_LINK) -rpath $(pkglibdir) $(libsciFunctionsManager_la_OBJECTS) $(libsciFunctionsManager_la_LIBADD) $(LIBS)
+libscifunctions_manager.la: $(libscifunctions_manager_la_OBJECTS) $(libscifunctions_manager_la_DEPENDENCIES) 
+	$(libscifunctions_manager_la_LINK) -rpath $(pkglibdir) $(libscifunctions_manager_la_OBJECTS) $(libscifunctions_manager_la_LIBADD) $(LIBS)
 
 clean-checkPROGRAMS:
 	@list='$(check_PROGRAMS)'; for p in $$list; do \
@@ -409,7 +410,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciFunctionsManager_la-funcmanager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-cosinus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-foo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-test-function.Po@am__quote@
@@ -435,12 +436,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciFunctionsManager_la-funcmanager.lo: src/cpp/funcmanager.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciFunctionsManager_la_CXXFLAGS) $(CXXFLAGS) -MT libsciFunctionsManager_la-funcmanager.lo -MD -MP -MF $(DEPDIR)/libsciFunctionsManager_la-funcmanager.Tpo -c -o libsciFunctionsManager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciFunctionsManager_la-funcmanager.Tpo $(DEPDIR)/libsciFunctionsManager_la-funcmanager.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/funcmanager.cpp' object='libsciFunctionsManager_la-funcmanager.lo' libtool=yes @AMDEPBACKSLASH@
+libscifunctions_manager_la-funcmanager.lo: src/cpp/funcmanager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_manager_la_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_manager_la-funcmanager.lo -MD -MP -MF $(DEPDIR)/libscifunctions_manager_la-funcmanager.Tpo -c -o libscifunctions_manager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscifunctions_manager_la-funcmanager.Tpo $(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/funcmanager.cpp' object='libscifunctions_manager_la-funcmanager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciFunctionsManager_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciFunctionsManager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_manager_la_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
 
 testFunctionManager-test-function.o: src/cpp/test-function.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-test-function.o -MD -MP -MF $(DEPDIR)/testFunctionManager-test-function.Tpo -c -o testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp
@@ -489,22 +490,22 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsciFunctionsManager_la_includeHEADERS: $(libsciFunctionsManager_la_include_HEADERS)
+install-libscifunctions_manager_la_includeHEADERS: $(libscifunctions_manager_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsciFunctionsManager_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciFunctionsManager_la_includedir)"
-	@list='$(libsciFunctionsManager_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscifunctions_manager_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscifunctions_manager_la_includedir)"
+	@list='$(libscifunctions_manager_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsciFunctionsManager_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciFunctionsManager_la_includedir)/$$f'"; \
-	  $(libsciFunctionsManager_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciFunctionsManager_la_includedir)/$$f"; \
+	  echo " $(libscifunctions_manager_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscifunctions_manager_la_includedir)/$$f'"; \
+	  $(libscifunctions_manager_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscifunctions_manager_la_includedir)/$$f"; \
 	done
 
-uninstall-libsciFunctionsManager_la_includeHEADERS:
+uninstall-libscifunctions_manager_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsciFunctionsManager_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscifunctions_manager_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsciFunctionsManager_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsciFunctionsManager_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscifunctions_manager_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscifunctions_manager_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -659,7 +660,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciFunctionsManager_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifunctions_manager_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -707,7 +708,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libsciFunctionsManager_la_includeHEADERS
+install-data-am: install-libscifunctions_manager_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -743,7 +744,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciFunctionsManager_la_includeHEADERS \
+uninstall-am: uninstall-libscifunctions_manager_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -756,14 +757,14 @@ uninstall-am: uninstall-libsciFunctionsManager_la_includeHEADERS \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am \
-	install-libsciFunctionsManager_la_includeHEADERS install-man \
+	install-libscifunctions_manager_la_includeHEADERS install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-	uninstall-libsciFunctionsManager_la_includeHEADERS \
+	uninstall-libscifunctions_manager_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
