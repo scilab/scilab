@@ -329,7 +329,6 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-rcopy.lo \
 	libscielementary_functions_la-wdpow.lo \
 	libscielementary_functions_la-orthes.lo \
-	libscielementary_functions_la-wnrm2.lo \
 	libscielementary_functions_la-waxpy.lo \
 	libscielementary_functions_la-coef.lo \
 	libscielementary_functions_la-dwdiv.lo \
@@ -943,7 +942,6 @@ src/fortran/cerr.f \
 src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
-src/fortran/wnrm2.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
@@ -2621,9 +2619,6 @@ libscielementary_functions_la-wdpow.lo: src/fortran/wdpow.f
 
 libscielementary_functions_la-orthes.lo: src/fortran/orthes.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-orthes.lo `test -f 'src/fortran/orthes.f' || echo '$(srcdir)/'`src/fortran/orthes.f
-
-libscielementary_functions_la-wnrm2.lo: src/fortran/wnrm2.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wnrm2.lo `test -f 'src/fortran/wnrm2.f' || echo '$(srcdir)/'`src/fortran/wnrm2.f
 
 libscielementary_functions_la-waxpy.lo: src/fortran/waxpy.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-waxpy.lo `test -f 'src/fortran/waxpy.f' || echo '$(srcdir)/'`src/fortran/waxpy.f

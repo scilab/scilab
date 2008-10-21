@@ -233,7 +233,6 @@ src/fortran/cerr.f \
 src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
-src/fortran/wnrm2.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
