@@ -96,13 +96,13 @@ public class Scilab {
   */  
   public static native boolean Finish();
 
-/********************************************************************************************************/
+/*****************************************************************************/
 
 	static 
 	{
 		try {
 				System.loadLibrary("javasci");
-				Initialize();
+				Scilab.Initialize();
 			} catch (SecurityException e) {
 				System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 				e.printStackTrace(System.err);

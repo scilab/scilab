@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "CallScilab.h"
 #include "javasci_SciStringArray.h"
 /*****************************************************************************/
 #define DefaultMaxlenString 1024
@@ -96,14 +96,14 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobj
 	else
 	{
 		sprintf(Job,"%s(%d,%d)=TMP_SendString;",cname,indyarg+1,indxarg+1);
-		if (send_scilab_job(Job))
+		if (SendScilabJob(Job))
 		{
 			fprintf(stderr,"Error in Java_javasci_SciStringArray_SendString routine (2).\n");
 		}
 		else
 		{
 			sprintf(Job,"clear TMP_SendString;");
-			if (send_scilab_job(Job))
+			if (SendScilabJob(Job))
 			{
 				fprintf(stderr,"Error in Java_javasci_SciStringArray_SendString routine (3).\n");
 			}

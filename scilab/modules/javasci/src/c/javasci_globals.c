@@ -129,9 +129,4 @@ void Initialize(void)
   C2F(scirun)(initstr,(int)strlen(initstr));
  
 }
-/*****************************************************************************/
-int send_scilab_job(char *job) 
-{
-  return (int) SendScilabJob(job); 
-}
-/*****************************************************************************/
+

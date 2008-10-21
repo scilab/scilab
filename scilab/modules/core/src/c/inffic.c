@@ -14,16 +14,24 @@
 #include "core_math.h"
 #include "inffic.h"
 #include "scilabDefaults.h"
-#define MAXDATA 4 
+#define MAXDATA 5 
 
 
 
 static char *dataStrings[] = {
   "$MANCHAPTERS",
-  "exec('SCI/etc/scilab.start',-1);",         /* start_up instructions file   */
-  "scilab_demos();",	 /* demos instructions file      */
-  "home/scilab.save",			 /* on crash save file          */
-  "exec('SCI/etc/scilab.quit',-1);quit;"	 /* exit instructions file      */
+  /* start_up instructions file */
+  "exec('SCI/etc/scilab.start',-1);",
+  /* demos instructions file */
+  "scilab_demos();",	 
+  /* on crash save file */
+  "home/scilab.save",
+  /* exit instructions file */
+  "exec('SCI/etc/scilab.quit',-1);quit;"	 ,
+  /* on exit , we try to catch errors */
+  /* workaround to not have scilab "zombie" */
+  /* bug 3672 */
+  "exec('SCI/etc/scilab.quit','errcatch',-1);quit;"	 
 };
 
 /******************************************

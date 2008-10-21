@@ -19,7 +19,7 @@ bin_PROGRAMS		= scilab-bin
 
 bin_SCRIPTS			= bin/scilab
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
+scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
 scilab_bin_LDFLAGS 		=
 scilab_bin_CFLAGS 		=
@@ -31,8 +31,7 @@ scilab_bin_CFLAGS 		=
 # (causing issues on some platform)
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
-$(top_builddir)/modules/localization/libscilocalization.la \
-$(top_builddir)/modules/core/libscicore.la
+$(top_builddir)/modules/localization/libscilocalization.la
 
 if NEED_JAVA
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
