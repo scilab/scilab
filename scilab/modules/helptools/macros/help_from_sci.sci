@@ -73,7 +73,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 // Authors
 //  T. Pettersen ; torbjorn.pettersen@broadpark.no
 
-//  Copyright Torbjørn Pettersen  2008
+//  Copyright Torbjï¿½rn Pettersen  2008
 //
 //  This software is a toolbox for Scilab
 //
@@ -110,7 +110,7 @@ catch
 end;
 
 if argn(2)==0 then
-  template=[
+  template=[ ..
     'function [z]=function_template(x,y)'
     '// Short description on the first line following the function header.'
     '//'
