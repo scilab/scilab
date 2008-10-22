@@ -24,6 +24,7 @@
 #include "FindScilab.h"
 #include "wmcopydata.h"
 #include "strdup_windows.h"
+#include "MutexClosingScilab.h"
 /*--------------------------------------------------------------------------*/
 extern void PrintFile(char *filename);
 /*--------------------------------------------------------------------------*/
@@ -163,7 +164,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 			break;
 			case 0:default: /* Open -O*/
 			{
-				if (! HaveAnotherWindowScilab())
+				if ( (!HaveAnotherWindowScilab()) || (haveMutexClosingScilab()) )
 				{
 					wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
 				}

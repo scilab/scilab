@@ -24,6 +24,7 @@
 #include "../../../jvm/includes/TerminateJVM.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/TerminateWindows_tools.h"
+#include "../../../windows_tools/includes/MutexClosingScilab.h"
 #include "../../../windows_tools/src/c/scilab_windows/killScilabProcess.h"
 #endif
 #include "../../../gui/includes/TerminateGui.h"
@@ -53,16 +54,29 @@ int ExitScilab(void)
 /*--------------------------------------------------------------------------*/ 
 void C2F(sciquit)(void)
 {
-	ExitScilab();
-#ifdef sun 
-#ifndef SYSV
-  	
-	char **out;
-	ieee_flags("clearall","exeption","all", &out);
-  	
-#endif 
-#endif 
 	#ifdef _MSC_VER
+	    /* bug 3672 */
+		/* Create a Mutex (closing scilab)
+		  used by files association 
+	    */
+		createMutexClosingScilab();
+	#endif
+
+	ExitScilab();
+
+	#ifdef sun 
+		#ifndef SYSV
+  			char **out;
+			ieee_flags("clearall","exception","all", &out);
+		#endif 
+	#endif 
+
+	#ifdef _MSC_VER
+		/* close mutex (closing scilab)
+		   used by files association 
+        */
+		terminateMutexClosingScilab();
+		/* kill process and return 0 */
 		killScilabProcess(0);
 	#else
 		exit(0);
