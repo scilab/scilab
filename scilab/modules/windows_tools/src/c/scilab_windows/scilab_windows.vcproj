@@ -376,10 +376,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\charEncoding.c"
-				>
-			</File>
-			<File
 				RelativePath=".\console.c"
 				>
 			</File>
