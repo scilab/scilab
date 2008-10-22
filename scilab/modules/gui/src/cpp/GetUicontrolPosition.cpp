@@ -12,6 +12,7 @@
  */
 
 #include "GetUicontrolPosition.hxx"
+#include "UnitsConversion.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -35,16 +36,30 @@ int GetUicontrolPosition(sciPointObj* sciObj)
                                                              pUICONTROL_FEATURE(sciObj)->hashMapIndex);
         }
           
+      /* If the parent is a Frame we have to modify Java returned values to get the real position of the uicontrol */
+      if (sciGetEntityType(sciGetParent(sciObj)) == SCI_UICONTROL)
+        {
+          int * framePosition = NULL;
+
+          framePosition = CallScilabBridge::getFramePosition(getScilabJavaVM(),
+                                                             pUICONTROL_FEATURE(sciGetParent(sciObj))->hashMapIndex);
+          returnValues[0] -= framePosition[0];
+          returnValues[1] -= framePosition[1];
+
+	  delete [] framePosition;
+        }
+
       tmp = new double[4];
-      tmp[0] = returnValues[0];
-      tmp[1] = returnValues[1];
-      tmp[2] = returnValues[2];
-      tmp[3] = returnValues[3];
+      tmp[0] = ConvertFromPixel((int) returnValues[0], pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
+      tmp[1] = ConvertFromPixel((int) returnValues[1], pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
+      tmp[2] = ConvertFromPixel((int) returnValues[2], pUICONTROL_FEATURE(sciObj)->units, sciObj, TRUE);
+      tmp[3] = ConvertFromPixel((int) returnValues[3], pUICONTROL_FEATURE(sciObj)->units, sciObj, FALSE);
+      
      
       returnFlag =  sciReturnRowVector(tmp, 4);
       
       delete [] tmp;
-	  delete [] returnValues;
+      delete [] returnValues;
       
       return returnFlag;
     }

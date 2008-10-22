@@ -1,0 +1,88 @@
+               Changes between version 5.0.X and 5.1 of Scilab
+               ===============================================
+
+
+Version 5.0.1 begins at rev. 27555.
+Version 5.0.2 begins at rev. ?????.
+
+Tests:
+======
+
+* Tests added for functions: umf_luget, taucs_chget, pcg, removedir, rmdir, ones
+
+
+Compilation:
+============
+
+* libmatio is now detected thanks to pkg-config
+
+* More warnings in C/C++/Fortran during the compilation process.
+See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
+
+* interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
+
+Enhancement:
+============
+
+* Scilab 5.1 uses GIWS 1.0
+
+* Update of some output strings (standard, warning & error)
+
+* Update of the example in the dynamic_link modules and in the toolbox skeleton (use the actual filename instead of the .o)
+
+* License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module) 
+
+Bug fixes:
+==========
+
+* rmdir & removedir had problems with the recursive delete under GNU/Linux
+
+* In the binary, the path to the fortran include directory was wrong.
+
+* bug 3500 fixed - [pcre] match position but no character = no match
+
+* bug 3462 fixed - The match string returned by regexp is not the right one if the subject string contains backslashes.
+
+* bug 3131 fixed - version 'GLIBC_2.4' not found with the binary version under some GNU/Linux distro
+
+* bug 3314 fixed - linspace primitive - rev 27707 - removed use of "ones" and use colon (i.e. :) operator only
+
+* bug 3322 fixed - trimmean primitive - rev 27627 - Added verbose option, added unit tests, updated doc.
+
+* bug 3512 fixed - regexp could return incorrect results
+
+* bug 3530 fixed - Check that X11/Xlib.h is available since the Tk header needs it
+
+* bug 3529 fixed - rmdir was trying to change the permission on the file/directory. This behavior has been removed.
+
+* bug 3540 fixed - With the linux binary version, a symbolic link of <SCILAB INSTALL PATH>/bin/scilab in /usr/local/bin (for example) did not work.
+
+* bug 3546 fixed - frmag is broken when called with hn given by a vector of coefficients instead of a polynomial.
+
+* bug 3551 fixed - bvodeS and bvode hang and close Scilab 5.0.1
+
+* bug 3549 fixed - machine.h was including PATH_MAX.h, BOOL.h and PARAMS.h, includes have been cleaned up.
+
+* bug in the script in charge of the dispatch of localization files fixed (tools/localization/dispatchLocalizationFile.sh)
+
+* bug 3559 fixed - paths in examples.bat in SCI/modules/javasci/examples were wrong
+
+* bug 3556 fixed - derivative was not supporting non compiled functions
+
+* bug 3565 fixed - bad detection of the IBM JDK
+
+* bug 3566, 3567 fixed - sort and gsort didn't sort correctly complex matrix.
+
+* bug 3598 fixed - ls(1) or cd(1) or dir(1) or help(1), scilab crashes
+
+* bug 3624 fixed - Nan returned when multiplying large zero vector by its transpose.
+
+* bug 3602 fixed - format("e",dd) was causing a bug in gettklib (format of the number)
+
+* bug 3628 fixed - Problem with cdouble type arguments in intersci.
+
+* bug 3607 fixed - Wrong values in Java configuration was causing the memory issues
+
+* bug 3630 fixed - functions added by 'addinter' are not visible by 'what'
+
+* bug 3604 fixed - Problems with getting Frame uicontrol position (Scilab crash)
