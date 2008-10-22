@@ -18,7 +18,7 @@ void SetFromJavaToON(void)
 	bFromJava=(int)(TRUE);
 }
 /*--------------------------------------------------------------------------*/ 
-int IsFromJava(void)
+BOOL IsFromJava(void)
 {
 	return bFromJava;
 }
