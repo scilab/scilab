@@ -198,7 +198,7 @@ static int getversion_one_rhs(void)
 			VERSIONMATRIX[0]=(int)SCI_VERSION_MAJOR;
 			VERSIONMATRIX[1]=(int)SCI_VERSION_MINOR;
 			VERSIONMATRIX[2]=(int)SCI_VERSION_MAINTENANCE;
-			VERSIONMATRIX[3]=(int)SCI_VERSION_REVISION;
+			VERSIONMATRIX[3]=(int)SCI_VERSION_TIMESTAMP;
 		}
 		else if (with_module(Param))
 		{
