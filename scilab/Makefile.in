@@ -92,6 +92,7 @@ am_scilab_bin_OBJECTS = scilab_bin-mainscic.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/shell/libscishell.la \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/localization/libscilocalization.la
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
@@ -369,6 +370,7 @@ scilab_bin_CFLAGS =
 # (causing issues on some platform)
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
+$(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/localization/libscilocalization.la
 
 #	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
