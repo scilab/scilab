@@ -16,7 +16,9 @@
 #define SCI_VERSION_MINOR 0
 #define SCI_VERSION_MAINTENANCE 0
 #define SCI_VERSION_STRING "scilab-trunk-SVN"
+/* SCI_VERSION_REVISION --> hash key commit */
 #define SCI_VERSION_REVISION 0
+#define SCI_VERSION_TIMESTAMP 0
 
 void disp_scilab_version(void);
 
