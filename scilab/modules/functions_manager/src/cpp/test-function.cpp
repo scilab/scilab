@@ -28,6 +28,7 @@ int main(void)
 
 	cout << "Start" << endl;
 
+/*
 	for(int i = 0 ; i < __SIZE_MAP__ ; i++)
 	{
 
@@ -57,7 +58,7 @@ int main(void)
 				assert(in[0]->getAsString()->string_get(0,0) == out[j]->getAsString()->string_get(0,0));
 		}
 
-/*
+
 		//
 		// [] = foo()
 		//
@@ -130,9 +131,9 @@ int main(void)
 		out.erase(out.begin(), out.end());
 		in.push_back(value);
 		f->call(in, out);
-*/
 
 	}
+*/
 	cout << "End" << endl;
 	return 0;
 }

@@ -20,6 +20,7 @@
 
 #include "stack.hxx"
 #include "heap.hxx"
+#include "funcmanager.hxx"
 
 namespace symbol
 {
@@ -63,6 +64,8 @@ namespace symbol
 		Heap HeapVarTable;
 		Stack EnvFunTable;
 		Stack EnvVarTable;
+
+		FuncManager FuncList;
 
 		static Context* me;
 	};

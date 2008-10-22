@@ -14,11 +14,29 @@
 #define __FUNCMANAGER_HH__
 
 #include <map>
+#include <list>
 #include <iostream>
-#include "scilabFunction.hxx"
+#include <string>
 
-#define __SIZE_MAP__ 1000000
 using namespace std;
+
+
+//Gateway function pointer
+typedef int (*GW_FUNC)(void); 
+
+//class container
+class FuncInfo
+{
+public :
+	FuncInfo(string _szName, GW_FUNC* _pFunc, string _szModule)
+	{
+	}
+	~FuncInfo(){};
+
+	string		m_szName;
+	GW_FUNC*	m_pFunc;
+	string		m_szModule;
+};
 
 class FuncManager
 {
@@ -26,10 +44,15 @@ public:
 	FuncManager(void);
 	~FuncManager(void);
 
-	bool ReadModulefile();
+	bool GetModules();
+	bool AppendModules();
+	bool VerifyModule(char *ModuleName);
 
-	map <string, ScilabFunction*> m_mapFuncList;
 
+
+	map <string, FuncInfo*> m_mapFuncList;
+	list <string> m_ModuleList;
+	string m_szXmlFile;
 };
 
 #endif //__FUNCMANAGER_HH__

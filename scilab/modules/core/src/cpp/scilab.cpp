@@ -10,7 +10,6 @@
 *
 */
 
-//#define DEBUG
 
 #include <cstdio>
 #include <iostream>
@@ -25,9 +24,12 @@
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
 #include "debugvisitor.hxx"
+#include "configvariable.hxx"
+#include "setenvvar.hxx"
 
 const char*	prog_name;
 const char*	file_name;
+
 
 bool printAst = false;
 bool execAst = false;
@@ -38,7 +40,7 @@ bool timed = false;
 using symbol::Context;
 using std::string;
 
-void     usage ()
+void usage ()
 {
 	std::cerr << "Usage: "<< prog_name << " [--parse-trace] [--display-tree] [--exec] file | --help" << std::endl;
 	std::cerr << "--parse-trace : Display bison state machine evolution." << std::endl;
@@ -180,10 +182,12 @@ int	main (int argc, char *argv[])
 	{
 		if (timed) { _timer.start(); }
 		{
+			SetScilabEnvironment();
  			types::Double* Img = new types::Double(1,1,true);
 			Img->val_set(0,0,0,1);
 			Context::getInstance()->put(*new symbol::Symbol("%i"), *Img);
 
+	
 			ast::ExecVisitor *execMe = new ast::ExecVisitor();
 			try
 			{
@@ -221,3 +225,4 @@ int	main (int argc, char *argv[])
 	getchar();
 	return WELL_DONE;
 }
+
