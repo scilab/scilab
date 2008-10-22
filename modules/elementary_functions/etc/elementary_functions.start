@@ -1,0 +1,10 @@
+// ====================================================================
+// elementary_functions module initialisation file 
+// Copyright INRIA 2006
+// ====================================================================
+//Load  functions librarie
+load('SCI/modules/elementary_functions/macros/lib');
+// ====================================================================
+//add help chapter
+add_module_help_chapter('elementary_functions');
+// ====================================================================

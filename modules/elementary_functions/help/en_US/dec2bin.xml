@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>binary representation</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate$</DATE>
+
+  <SHORT_DESCRIPTION name="dec2bin">binary representation</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[str]=dec2bin(x[,n])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: scalar/vector/matrix/hypermatrix of positives integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a positive integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string or a vector of string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Given <VERB>x</VERB>, a positive (or a vector/matix of integers)
+    integer, this function returns a string (or a column vector of strings)
+    which is the binary representation of <VERB>x. </VERB>If dimension of
+    <VERB>x</VERB> is superior than 1 then each component of the colums vector
+    <VERB>str</VERB> is the binary representation of the <VERB>x</VERB>
+    components (i.e <VERB>str(i)</VERB> is the binary representation of
+    <VERB>x(i)</VERB>). If the components length of <VERB>str</VERB> is less
+    than <VERB>n</VERB> ( i.e length str(i) &lt; n ), then add to
+    <VERB>str</VERB> components the characters '0' on the left in order to
+    have componants length equal to <VERB>n</VERB></P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[// example 1 :
+x=86;
+str=dec2bin(x)
+
+// example 2 :
+// the binary representation of 86 is: '1010110'
+// its length is 7(less than n), so we add to str, 8 times the character '0'  (on the left)
+x=86;n=15;
+str=dec2bin(x,n)
+
+// example 3 :
+x=[12;45;135]
+z=dec2bin(x)
+  ]]></EXAMPLE>
+
+    <SEE_ALSO>
+        <SEE_ALSO_ITEM>
+            <LINK>base2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>bin2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>oct2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>hex2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2oct</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2hex</LINK>
+        </SEE_ALSO_ITEM>
+    </SEE_ALSO>
+</MAN>
