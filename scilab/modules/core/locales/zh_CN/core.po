@@ -14,11 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 "X-Launchpad-Export-Date: 2008-09-30 15:04+0000\n"
-=======
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Error(s) : see help powershell'';''verify your script without scilab."
@@ -459,25 +455,13 @@ msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
 msgstr ""
 
 msgid "               Copyright (c) 1989-2008 (INRIA)\n"
 msgstr "               版权所有 (c) 1989-2008 (INRIA)\n"
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
-=======
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr ""
-
-msgid "               Copyright (c) 1989-2008 (INRIA)\n"
-msgstr "               版权所有 (c) 1989-2008 (INRIA)\n"
-
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               版权所有 (c) 1989-2007 (ENPC)\n"
 
@@ -553,27 +537,13 @@ msgstr ""
 
 msgid "Can't get current directory.\n"
 msgstr "无法得到当前目录。\n"
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "返回tlist错误，内存已用尽。\n"
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
-msgid "tlist not completely filled.\n"
-msgstr "tlist没有完全填充。\n"
-=======
-msgid "Error returning tlist, memory full.\n"
-msgstr "返回tlist错误，内存已用尽。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
-
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
-=======
 msgid "tlist not completely filled.\n"
 msgstr "tlist没有完全填充。\n"
 
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 msgid "List full.\n"
 msgstr ""
 
@@ -822,26 +792,13 @@ msgstr ""
 
 msgid "Free Paging File (Kbytes): %*I64d"
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
-=======
 
 msgid "Total Virtual Memory (Kbytes): %*I64d"
 msgstr ""
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-=======
-msgid "Free Virtual Memory (Kbytes): %*I64d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
-msgstr ""
-
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "Free Virtual Memory (Kbytes): %*I64d"
 msgstr ""
 
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 msgid "Free Extended Memory (Kbytes): %*I64d"
 msgstr ""
 
@@ -951,65 +908,36 @@ msgstr "不正确的系统。\n"
 
 msgid "A non square matrix!\n"
 msgstr "矩阵非方阵！\n"
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "不正确的%c，%c矩阵。\n"
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: internal error, info=%d.\n"
 msgstr "%s：内部错误，info=%d。\n"
-=======
-msgid "Invalid %c,%c matrices.\n"
-msgstr "不正确的%c，%c矩阵。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: intersiz is too small.\n"
 msgstr "%s：intersiz太小。\n"
-=======
-msgid "%s: internal error, info=%d.\n"
-msgstr "%s：内部错误，info=%d。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s argument"
 msgstr "参数%s"
-=======
-msgid "%s: intersiz is too small.\n"
-msgstr "%s：intersiz太小。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "argument number %d"
 msgstr "参数编号%d"
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "参数%s和%s"
-=======
-msgid "%s argument"
-msgstr "参数%s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s argument and argument %d"
 msgstr "参数%s和参数%d"
-=======
-msgid "argument number %d"
-msgstr "参数编号%d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "arguments %d and %d"
 msgstr "参数%d和%d"
 
@@ -1027,89 +955,34 @@ msgstr "应该为一个列向量"
 
 msgid "should be a scalar"
 msgstr "应该为一个标量"
-=======
-msgid "%s and %s arguments"
-msgstr "参数%s和%s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
 msgstr "%s：%s的维数(%d,%d)错误，应该为(%d,%d）。\n"
-=======
-msgid "%s argument and argument %d"
-msgstr "参数%s和参数%d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
 msgstr "%s：%s的%s维数(%d)错误，应该为(%d）。\n"
-=======
-msgid "arguments %d and %d"
-msgstr "参数%d和%d"
 
-msgid "should be square"
-msgstr "应该为方阵"
-
-msgid "should be a vector"
-msgstr "应该为一个向量"
-
-msgid "should be a row vector"
-msgstr "应该为一个行向量"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
-
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "first"
 msgstr "第一"
-=======
-msgid "should be a column vector"
-msgstr "应该为一个列向量"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "second"
 msgstr "第二"
-=======
-msgid "should be a scalar"
-msgstr "应该为一个标量"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: %s has wrong length %d, expecting (%d).\n"
 msgstr "%s：%s的长度%d错误，应该为(%d)。\n"
-=======
-msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
-msgstr "%s：%s的维数(%d,%d)错误，应该为(%d,%d）。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
 msgstr "%s：%s维数不兼容(%dx%d) # (%dx%d)\n"
-=======
-msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
-msgstr "%s：%s的%s维数(%d)错误，应该为(%d）。\n"
-
-msgid "first"
-msgstr "第一"
-
-msgid "second"
-msgstr "第二"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s：%s的维数不兼容。\n"
-=======
-msgid "%s: %s has wrong length %d, expecting (%d).\n"
-msgstr "%s：%s的长度%d错误，应该为(%d)。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: %s should be a list with %d-element being %s.\n"
 msgstr "%s：%s应该是%d个元素的列表，为%s。\n"
 
@@ -1127,86 +1000,39 @@ msgstr "一个列向量"
 
 msgid "a scalar"
 msgstr "一个标量"
-=======
-msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s：%s维数不兼容(%dx%d) # (%dx%d)\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
 msgstr "%s：参数%d(%d)的%s维度错误(%d)，应该为(%d)。\n"
-=======
-msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s：%s的维数不兼容。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "GetDataFromName: variable %s not found.\n"
 msgstr "GetDataFromName：变量%s不存在。\n"
 
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr "%s：变量%s不存在。\n"
-=======
-msgid "%s: %s should be a list with %d-element being %s.\n"
-msgstr "%s：%s应该是%d个元素的列表，为%s。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-msgid "square"
-msgstr "方阵"
+msgid "Startup execution:"
+msgstr "开始执行："
 
-msgid "a vector"
-msgstr "一个向量"
+msgid "  loading initial environment"
+msgstr "  载入初始环境中"
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "&File"
 msgstr ""
-=======
-msgid "a row vector"
-msgstr "一个行向量"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "&Edit"
 msgstr ""
-=======
-msgid "a column vector"
-msgstr "一个列向量"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "&Preferences"
 msgstr ""
-=======
-msgid "a scalar"
-msgstr "一个标量"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "&Control"
 msgstr ""
-=======
-#, c-format
-msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
-msgstr "%s：参数%d(%d)的%s维度错误(%d)，应该为(%d)。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "&Applications"
 msgstr ""
-=======
-#, c-format
-msgid "GetDataFromName: variable %s not found.\n"
-msgstr "GetDataFromName：变量%s不存在。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgid "&?"
 msgstr ""
-=======
-#, c-format
-msgid "%s: Variable %s not found.\n"
-msgstr "%s：变量%s不存在。\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po

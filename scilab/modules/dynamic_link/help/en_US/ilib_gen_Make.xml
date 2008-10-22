@@ -109,14 +109,7 @@
     <para>
     Files are not required to exist, when makefile is generated, but of
     course are required for executing the makefile.</para>
-<<<<<<< HEAD:scilab/modules/dynamic_link/help/en_US/ilib_gen_Make.xml
 	 <emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis>
-=======
-    <para>
-      <emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis>
-    </para>
-
->>>>>>> refs/heads/5.0:scilab/modules/dynamic_link/help/en_US/ilib_gen_Make.xml
   </refsection>
   <refsection>
     <title>See Also</title>

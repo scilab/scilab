@@ -419,11 +419,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	if all_scilab_help then
 		
-<<<<<<< HEAD:scilab/modules/helptools/macros/xmltoformat.sci
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
-=======
-		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take up to 10 minutes)\n"));
->>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/xmltoformat.sci
 		
 		// Define and create the path of buildDoc working directory
 		buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + getlanguage() + "_help",%t,%f);
@@ -522,8 +518,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 					if ~isdir(final_output_dir) then
 						mkdir(final_output_dir);
 					end
-<<<<<<< HEAD:scilab/modules/helptools/macros/xmltoformat.sci
-=======
 				end
 				
 				// Define the final location of the generated file
@@ -537,36 +531,13 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help",%t,%f);
 				if ~isdir(buildDoc_dir) then
 					mkdir(buildDoc_dir);
->>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/xmltoformat.sci
 				end
 				
-<<<<<<< HEAD:scilab/modules/helptools/macros/xmltoformat.sci
-				// Define the final location of the generated file
-				if is_html then
-					final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
-				else
-					final_help_file = pathconvert(final_output_dir+"/scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
-				end
-				
-				// Define and create the path of buildDoc working directory
-				buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + directory_language_c(k) + "_help",%t,%f);
-				if ~isdir(buildDoc_dir) then
-					mkdir(buildDoc_dir);
-=======
-				// Define the path of the generated file created by buildDoc
-				if ~is_html then
-					buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
->>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/xmltoformat.sci
-				end
-				
-<<<<<<< HEAD:scilab/modules/helptools/macros/xmltoformat.sci
 				// Define the path of the generated file created by buildDoc
 				if ~is_html then
 					buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
 				end
 				
-=======
->>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/xmltoformat.sci
 				// Save the current directory
 				cur_dir = getcwd();
 				

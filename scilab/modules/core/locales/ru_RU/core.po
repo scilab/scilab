@@ -8,40 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 "PO-Revision-Date: 2008-09-30 14:55+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian (Russian Federation) <ru_RU@li.org>\n"
-=======
-"PO-Revision-Date: 2008-07-02 10:10+0000\n"
-"Last-Translator: voronaam <voronaam@yandex.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 "X-Launchpad-Export-Date: 2008-09-30 14:56+0000\n"
-=======
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Error(s) : see help powershell'';''verify your script without scilab."
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-"Есть ошибки : прочитайте документацию по powershell'';''проверьте свой "
-"скрипт без scilab."
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Only for Microsoft Windows."
 msgstr ""
 
 msgid "Powershell not found."
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-msgstr "Powershell не найден."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -85,76 +68,11 @@ msgstr ""
 
 #, c-format
 msgid "%s called at line %s of macro %s"
-msgstr "%s вызван в строке %s макроса %s"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Checking: %s\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Please check: %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Requires Scipad.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr ""
-
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-#, c-format
-msgid "%s called at line %s of %s"
-msgstr ""
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr ""
-=======
-msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
-msgstr "Устарело: Установите SCIHOME и HOME для запуска Scilab."
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-
-#, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "%s called under %s"
-msgstr ""
-=======
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: Файл %s не существует.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-
-#, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "%s called at line %s of macro %s"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-=======
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
@@ -171,8 +89,6 @@ msgstr ""
 #, c-format
 msgid "%s: Unable to find Perl in ''%s''"
 msgstr ""
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: Unable to find Perl.\n"
@@ -189,35 +105,19 @@ msgstr ""
 msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
-=======
-msgid " is already compiled.\n"
-msgstr " уже откомилирован.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-=======
-msgid "&Toolboxes"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "User variables are:"
 msgstr ""
-=======
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Using %s elements ouf of %s"
 msgstr ""
 
@@ -225,212 +125,104 @@ msgid " is already compiled.\n"
 msgstr ""
 
 msgid "&Toolboxes"
-=======
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-=======
-msgid "Warning: Problems with %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-=======
-msgid "%s: Invalid '%s' value.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Warning: Problems with %s.\n"
 msgstr ""
-=======
-msgid "%s: function-name is incorrect.\n"
-msgstr "%s: некорректное имя функции.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Invalid '%s' value.\n"
-=======
-msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: function-name is incorrect.\n"
-=======
-msgid "%s: Wrong type for input arguments #%d or #%d.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-=======
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for input arguments #%d or #%d.\n"
-=======
-msgid ""
-"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-=======
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-=======
-msgid "%s: Wrong type for input argument #%d.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-=======
-msgid "%s: Wrong type for input argument.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for input argument #%d.\n"
-=======
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for input argument.\n"
 msgstr ""
-=======
-msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
-msgstr "%s: Значение за пределами допустимого диапазона [%lu,%lu].\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 "%s: Cannot allocate more memory.\n"
 "Try stacksize('max').\n"
-=======
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
-=======
-msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
 msgid ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-=======
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
-=======
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-=======
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-=======
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-=======
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
-"argument #%d must be '%s'.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr ""
-=======
-msgid " using %10d elements out of  %10d.\n"
-msgstr " используется %10d элементов из %10d.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
 msgstr ""
-=======
-msgid " and   %10d variables out of %10d.\n"
-msgstr " и %10d переменных из %10d.\n"
-
-msgid "Your variables are:"
-msgstr "Ваши переменные:"
-
-msgid "Your global variables are:"
-msgstr "Ваши глобальные переменные:"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid " using %10d elements out of  %10d.\n"
 msgstr ""
-=======
-msgid "%s: An error occurred.\n"
-msgstr "%s: Произошла ошибка.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid " and   %10d variables out of %10d.\n"
 msgstr ""
 
@@ -439,36 +231,16 @@ msgstr ""
 
 msgid "Your global variables are:"
 msgstr ""
-=======
-msgid "%s: Invalid library %s.\n"
-msgstr "%s: Некорректная библиотека %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: An error occurred.\n"
-=======
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr ""
-
-msgid "Internal Functions:\n"
-msgstr ""
-
-msgid "Commands:\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Invalid library %s.\n"
 msgstr ""
-=======
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Неверное количество аргументов.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
 
@@ -477,245 +249,122 @@ msgstr ""
 
 msgid "Commands:\n"
 msgstr ""
-=======
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: Ожидалось %d.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong number of input arguments.\n"
-=======
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-=======
-msgid "WARNING: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-=======
-msgid "WARNING: %s\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "WARNING: %s"
-=======
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-"%s: Не удалось выделить (alloc) больше памяти.\n"
-"Попробуйте gstacksize('max').\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "WARNING: %s\n"
-=======
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid ""
 "%s: Cannot alloc more memory.\n"
 "Try gstacksize('max').\n"
-=======
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-=======
-msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-=======
-msgid "%s: Impossible to read %s gateway.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-=======
-msgid "%s: Invalid module name : %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Impossible to read %s gateway.\n"
 msgstr ""
-=======
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: У файла неверная VERSION %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Invalid module name : %s.\n"
 msgstr ""
-=======
-msgid "%s: Wrong module name %s.\n"
-msgstr "%s: Неверное имя модуля %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong file VERSION %s.\n"
 msgstr ""
-=======
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: У файла неверная VERSION в %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong module name %s.\n"
-=======
-msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong file VERSION in %s.\n"
 msgstr ""
-=======
-msgid " results may be inaccurate. rcond = %s1\n"
-msgstr " результаты могут быть неточны. rcond = %s1\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
-=======
-msgid "Error: Impossible to define %s environment variable.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid " results may be inaccurate. rcond = %s1\n"
-=======
-msgid "Version: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Error: Impossible to define %s environment variable.\n"
-=======
-msgid "Compilation date: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Version: %s"
-=======
-msgid "Compilation time: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Compilation date: %s"
-=======
-msgid "Compiler Architecture: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Compilation time: %s"
-=======
-msgid "Compiled with %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Compiler Architecture: %s"
-=======
-msgid "XML version: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Compiled with %s"
-=======
-msgid "Tcl/Tk: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 #, c-format
 msgid "XML version: %s"
-=======
-msgid "Enable"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Tcl/Tk: %s"
 msgstr ""
 
 msgid "Enable"
-=======
+msgstr ""
+
+#, c-format
 msgid "TCL version: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "TCL version: %s"
-=======
 msgid "TK version: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "TK version: %s"
-=======
-msgid "Path separator: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-msgstr ""
-
-#, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Path separator: %s"
 msgstr ""
 
 #, c-format
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgid "Directory separator: %s"
 msgstr ""
 
@@ -725,11 +374,7 @@ msgstr ""
 
 #, c-format
 msgid "Error: could not parse file %s\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Ошибка: не удалось разобрать файл %s\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "Error: Memory allocation.\n"
@@ -749,59 +394,31 @@ msgstr ""
 
 #, c-format
 msgid "SCI environment variable not defined.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Переменная окружения SCI не задана.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "SCIHOME not defined.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Переменная окружения SCIHOME не задана.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Warning"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Внимание!"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "TMPDIR not defined.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Переменная окружения TMPDIR не задана.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "No space to allocate Scilab stack.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Недостаточно места для размещения стека Scilab.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Cannot find Windows temporary directory."
 msgstr ""
 
 msgid "Error"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Ошибка"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "Impossible to create : %s"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Невозможно создать %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -836,19 +453,10 @@ msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
 msgstr ""
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr ""
-
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgid "               Copyright (c) 1989-2008 (INRIA)\n"
 msgstr ""
 
@@ -858,40 +466,18 @@ msgstr ""
 msgid ""
 "Warning: the operational team of the Scilab Consortium\n"
 "doesn't provide and doesn't support this version of Scilab built with\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
 msgstr ""
-"Внимание: основная команда Scilab Consortium не распространяет и\n"
-"не поддерживает эту версию Scilab, собранную при помощи\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-=======
-msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-msgstr ""
-
-#, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
-=======
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: No more memory.\n"
-=======
-msgid "%s: Out of code.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
@@ -899,15 +485,7 @@ msgid "%s: Out of code.\n"
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
-=======
-msgid "%s: Wrong %s value %d instead of %d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: code %d not yet implemented.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
@@ -915,11 +493,7 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: code %d not yet implemented.\n"
-=======
-msgid "%s: Old version of if and while not implemented.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
@@ -927,90 +501,50 @@ msgid "%s: Unknown code %d at index2 %d.\n"
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Old version of if and while not implemented.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type value.\n"
-=======
-msgid "%s: Unknown operator %d.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Unknown operator %d.\n"
-=======
-msgid "%s: Wrong fromwhat value %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 #, c-format
 msgid "%s: wrong code %d.\n"
 msgstr ""
 
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgid "SIGSTP: aborting current computation\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "SIGSTP: отменяется текущее вычисление\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Попытка остановить scilab в середине интерфейса.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Do you really want to abort computation (y or n ?) \n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Вы уверены, что вы хотите отменить вычисление ( y или n ?) \n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "Can't go to directory %s.\n"
 msgstr ""
 
 msgid "Can't get current directory.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Не удалось получить текущий каталог.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Error returning tlist, memory full.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Ошибка возврата tlist, память заполнена.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "tlist not completely filled.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-msgstr "tlist заполнен не до конца.\n"
-
-msgid "List full.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "List full.\n"
 msgstr ""
 
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
 
@@ -1039,10 +573,6 @@ msgstr ""
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Too many names.\n"
-msgstr "%s: Слишком много имён.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
@@ -1112,7 +642,6 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
@@ -1121,20 +650,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
-msgstr "%s: Неверный тип аргумента %d: Ожидался список (List).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
@@ -1152,12 +668,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
-msgstr ""
-"%s: Неверный тип аргумента %d (Элемент списка: %d): Ожидался вектор-строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Row vector expected.\n"
@@ -1218,29 +728,16 @@ msgstr ""
 
 #, c-format
 msgid "Scilab version \"%d.%d.%d.%d\"\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Scilab версии \"%d.%d.%d.%d\"\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid ""
 "Scilab version \"%d.%d.%d.%d\"\n"
 "%s\n"
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-"Scilab версии \"%d.%d.%d.%d\"\n"
-"%s\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Scilab Version Info."
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "О версии Scilab."
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "The SCI environment variable is not set.\n"
 msgstr ""
@@ -1264,74 +761,34 @@ msgstr ""
 
 #, c-format
 msgid "Undefined variable %s.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Неопределённая переменная %s.\n"
 
 #, c-format
 msgid "%s: argument must be a string.\n"
-msgstr "%s: аргумент должен быть строкой.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-#, c-format
-msgid "%s: argument must be a string.\n"
-=======
-msgid "Unexpected opcode, please report into the Scilab bug tracker."
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
-=======
-msgid "Functions compiled with very old versions are no more handled."
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Functions compiled with very old versions are no more handled."
-=======
+msgstr ""
+
 #, c-format
 msgid "Memory in use: %*ld %%"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-#, c-format
-msgid "Memory in use: %*ld %%"
-=======
 msgid "Total Physical Memory (Kbytes): %*I64d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "Total Physical Memory (Kbytes): %*I64d"
-=======
 msgid "Free Physical Memory (Kbytes): %*I64d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "Free Physical Memory (Kbytes): %*I64d"
-=======
 msgid "Total Paging File (Kbytes): %*I64d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-msgid "Total Paging File (Kbytes): %*I64d"
-=======
-msgid "Free Paging File (Kbytes): %*I64d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-msgstr ""
-
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Free Paging File (Kbytes): %*I64d"
 msgstr ""
 
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgid "Total Virtual Memory (Kbytes): %*I64d"
 msgstr ""
 
@@ -1340,185 +797,93 @@ msgstr ""
 
 msgid "Free Extended Memory (Kbytes): %*I64d"
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Operating System: "
 msgstr ""
-=======
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 #, c-format
 msgid "Number of processors: %d"
-=======
-msgid "Operating System: "
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Video card: %s"
-=======
-msgid "Number of processors: %d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: %d x %d %d bits"
-=======
-msgid "Video card: %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-=======
-msgid "%s: %d x %d %d bits"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-=======
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-=======
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-=======
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Optional arguments name=val must be at the end.\n"
-=======
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr "%s: Необязательные аргументы name=val должны быть в конце.\n"
-
-#, c-format
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: Unrecognized optional arguments %s.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: Не распознанные необязательные аргументы %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Optional argument list is empty.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Список необязательных аргументов пуст.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 msgid "Optional arguments list: \n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "Необязательные аргументы: \n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "and %s.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "и %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: неправильный вызов %s! (1-й аргумент).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-"%s: (%s) слишком много аргументов в стеке. Отредактируйте stack.h и "
-"увеличьте intersiz.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: (%s) bad third argument!\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: (%s) плохой третий аргумент!\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: Wrong type for argument: Complex expected.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: Неверный тип аргумента: Ожидалось комплексное число (Complex).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: bad call to %s!\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: неправильный вызов %s!\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: argument %d > (%d) should be a complex matrix.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: аргумент %d > (%d) должен быть матрицей комплексных чисел.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: bad call to %s (third argument %c).\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: неправильный вызов %s (третий аргумент %c).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: (%s) bad second argument!\n"
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-=======
-msgstr "%s: (%s) неправильный второй аргумент!\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid ""
 "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
@@ -1539,88 +904,36 @@ msgstr ""
 
 msgid "A non square matrix!\n"
 msgstr ""
-=======
-"%s: createcvarfromptr: слишком много аргументов в стеке, увеличьте "
-"intersiz.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Invalid %c,%c matrices.\n"
 msgstr ""
-=======
-msgid "%s: Recursion problems. Sorry ...\n"
-msgstr "%s: Проблемы рекурсии. Простите ...\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: internal error, info=%d.\n"
 msgstr ""
-=======
-msgid "%s: %s is not a Scilab function.\n"
-msgstr "%s: %s не является функцией Scilab.\n"
-
-msgid "built in"
-msgstr "встроенная"
-
-msgid "Invalid time domain.\n"
-msgstr "Неправильный временной промежуток.\n"
-
-msgid "Invalid system.\n"
-msgstr "Неправильная система.\n"
-
-msgid "A non square matrix!\n"
-msgstr "Матрица не является квадратной!\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: intersiz is too small.\n"
 msgstr ""
-=======
-msgid "Invalid %c,%c matrices.\n"
-msgstr "Неправильные %c,%c матрицы.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s argument"
 msgstr ""
-=======
-msgid "%s: internal error, info=%d.\n"
-msgstr "%s: внутренняя ошибка, info=%d.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "argument number %d"
 msgstr ""
-=======
-msgid "%s: intersiz is too small.\n"
-msgstr "%s: intersiz слишком мал.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s and %s arguments"
 msgstr ""
-=======
-msgid "%s argument"
-msgstr "аргумент %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s argument and argument %d"
 msgstr ""
-=======
-msgid "argument number %d"
-msgstr "аргумент номер %d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "arguments %d and %d"
 msgstr ""
 
@@ -1638,89 +951,34 @@ msgstr ""
 
 msgid "should be a scalar"
 msgstr ""
-=======
-msgid "%s and %s arguments"
-msgstr "аргументы %s и %s"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
 msgstr ""
-=======
-msgid "%s argument and argument %d"
-msgstr "аргумент %s и аргумент номер %d"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
 msgstr ""
-=======
-msgid "arguments %d and %d"
-msgstr "аргументы с номерами %d и %d"
 
-msgid "should be square"
-msgstr "должен быть квадратной матрицей"
-
-msgid "should be a vector"
-msgstr "должен быть вектором"
-
-msgid "should be a row vector"
-msgstr "должен быть вектором-строкой"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
-
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "first"
 msgstr ""
-=======
-msgid "should be a column vector"
-msgstr "должен быть вектором-столбцом"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "second"
 msgstr ""
-=======
-msgid "should be a scalar"
-msgstr "должен быть числом"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: %s has wrong length %d, expecting (%d).\n"
 msgstr ""
-=======
-msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
-msgstr "%s: %s имеет неправильный размер (%d,%d), ожидался (%d,%d).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
 msgstr ""
-=======
-msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
-msgstr "%s: %s имеет неправильное %s измерение (%d), ожидалось (%d).\n"
-
-msgid "first"
-msgstr "первое"
-
-msgid "second"
-msgstr "второе"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr ""
-=======
-msgid "%s: %s has wrong length %d, expecting (%d).\n"
-msgstr "%s: %s имеет неправильную длину %d, ожидалась (%d).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: %s should be a list with %d-element being %s.\n"
 msgstr ""
 
@@ -1738,99 +996,39 @@ msgstr ""
 
 msgid "a scalar"
 msgstr ""
-=======
-msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s: размерность %s несовместима (%dx%d) # (%dx%d)\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
 msgstr ""
-=======
-msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s: размерность %s несовместима.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
 #, c-format
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "GetDataFromName: variable %s not found.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr ""
-=======
-msgid "%s: %s should be a list with %d-element being %s.\n"
-msgstr "%s: %s должен быть списком с %d-м элементом %s.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "Startup execution:"
 msgstr ""
-=======
-msgid "square"
-msgstr "квадратная матрица"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "  loading initial environment"
 msgstr ""
-=======
-msgid "a vector"
-msgstr "вектор"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "&File"
 msgstr ""
-=======
-msgid "a row vector"
-msgstr "вектор-строка"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "&Edit"
 msgstr ""
-=======
-msgid "a column vector"
-msgstr "вектор-столбец"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "&Preferences"
 msgstr ""
-=======
-msgid "a scalar"
-msgstr "число"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "&Control"
-=======
-#, c-format
-msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 msgstr ""
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
-=======
-"%s: аргумент %d(%d) имеет неправильное %s измерение (%d), ожидалось (%d).\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "&Applications"
 msgstr ""
-=======
-#, c-format
-msgid "GetDataFromName: variable %s not found.\n"
-msgstr "GetDataFromName: переменная %s не найдена.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
 
-<<<<<<< HEAD:scilab/modules/core/locales/ru_RU/core.po
 msgid "&?"
 msgstr ""
-=======
-#, c-format
-msgid "%s: Variable %s not found.\n"
-msgstr "%s: Переменная %s не найдена.\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/ru_RU/core.po
