@@ -145,6 +145,7 @@ static void *DaemonOpenTCLsci(void* in)
 		{
 			Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init).\n"));
 			if (IsFromJava()){
+				/* Same comment as upper about TCL_LIBRARY */
 				sciprint(_("Please check if TK_LIBRARY has been set.\n"));
 
 			}else{

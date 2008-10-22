@@ -18,13 +18,9 @@
 #include "CallScilabBridge.hxx"
 using namespace  org_scilab_modules_gui_bridge;
 
-extern "C" {
-#include "localetoutf.h"
-}
 
 int ConsolePrintf(char *line)
 {
-  localeToUTF(&line);
   CallScilabBridge::display(getScilabJavaVM(), line);
   return 0;
 }
