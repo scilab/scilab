@@ -32,9 +32,15 @@ function clean_help(dirs)
 	// Patch because scicos is not written in xml
 	//------------------------------------------------------------------
 	%helps(grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep()),:) = [];
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
+=======
 	
 	all_scilab_help     = %F;
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
 	
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
+	all_scilab_help     = %F;
+=======
 	[lhs,rhs] = argn(0);
 	
 	// Trop de paramêtres
@@ -43,14 +49,51 @@ function clean_help(dirs)
 	if rhs > 1 | rhs < 0 then
 		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"clean_help",0,1));
 	end
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
 	
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
+	[lhs,rhs] = argn(0);
+	
+	// Trop de paramêtres
+=======
+	// Cas par défaut : Aide en ligne de Scilab
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
+	// ---------------------------------------------------------------------
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
+	
+	if rhs > 1 | rhs < 0 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"clean_help",0,1));
+	end
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
+	
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
 	// Cas par défaut : Aide en ligne de Scilab
 	// ---------------------------------------------------------------------
 	
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
 	if (rhs == 0) | (dirs == []) then
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
 		
 		all_scilab_help      = %T;
 		
+		dirs_to_build          = %HELPS;
+		dirs_to_build_m        = %helps_modules;
+		dirs_to_build_c        = %helps;
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
+		
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
+		dirs                   = get_xml_path(dirs_to_build(:,1));
+		dirs_m                 = get_xml_path(dirs_to_build_m(:,1));
+		dirs_c                 = get_xml_path(dirs_to_build_c(:,1));
+=======
+		all_scilab_help      = %T;
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
+		
+<<<<<<< HEAD:scilab/modules/helptools/macros/clean_help.sci
+=======
 		dirs_to_build          = %HELPS;
 		dirs_to_build_m        = %helps_modules;
 		dirs_to_build_c        = %helps;
@@ -59,6 +102,7 @@ function clean_help(dirs)
 		dirs_m                 = get_xml_path(dirs_to_build_m(:,1));
 		dirs_c                 = get_xml_path(dirs_to_build_c(:,1));
 		
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/macros/clean_help.sci
 		dirs(     find(dirs   == "")) = [];
 		dirs_m(   find(dirs_m == "")) = [];
 		dirs_c(   find(dirs_c == "")) = [];

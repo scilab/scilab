@@ -75,36 +75,67 @@
 //     |   `-- example_1_function_3.xml
 //     `-- fr_FR
 //         |-- example_1_function_1.xml
+<<<<<<< HEAD:scilab/modules/helptools/help/en_US/xmltops.xml
 //         |-- example_1_function_2.xml
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/help/en_US/xmltops.xml
 //         `-- example_1_function_3.xml
+<<<<<<< HEAD:scilab/modules/helptools/help/en_US/xmltops.xml
 //     `-- zh_TW
 //         |-- example_1_function_1.xml
 //         |-- example_1_function_2.xml
 //         `-- example_1_function_3.xml
 
 
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/help/en_US/xmltops.xml
 
 my_module_path = pathconvert(SCI+'/modules/helptools/examples/example_1',%f,%f)
 
 // Build the french help
 // =============================================================================
+<<<<<<< HEAD:scilab/modules/helptools/help/en_US/xmltops.xml
 my_french_help_dir    = my_module_path+'/help/fr_FR';
 my_french_help_title  = 'Example 1 [fr_FR]';
 my_french_ps          = xmltops(my_french_help_dir,my_french_help_title,'fr_FR')
+=======
+my_french_help_dir    =  my_module_path+'/help/fr_FR';
+my_french_help_title  =  'Example 1 [fr_FR]';
+xmltops(my_french_help_dir,my_french_help_title,'fr_FR');
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/help/en_US/xmltops.xml
 
 
 // Build the english help
 // =============================================================================
+<<<<<<< HEAD:scilab/modules/helptools/help/en_US/xmltops.xml
 my_english_help_dir   = my_module_path+'/help/en_US';
 my_english_help_title = 'Example 1 [EN_US]';
 my_english_ps         = xmltops(my_english_help_dir,my_english_help_title,'en_US')
+=======
+my_english_help_dir   =  my_module_path+'/help/en_US';
+my_english_help_title =  'Example 1 [EN_US]';
+xmltops(my_english_help_dir,my_english_help_title,'en_US');
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/help/en_US/xmltops.xml
 
 
 // Build the chinese help
 // =============================================================================
+<<<<<<< HEAD:scilab/modules/helptools/help/en_US/xmltops.xml
 my_chinese_help_dir   = my_module_path+'/help/zh_TW';
 my_chinese_help_title = 'Example 1 [zh_TW]';
 my_chinese_ps         = xmltops(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
+=======
+my_chinese_help_dir   =  my_module_path+'/help/zh_TW';
+my_chinese_help_title =  'Example 1 [zh_TW]';
+xmltops(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
+
+
+// Your postscript file is created in :
+// =============================================================================
+my_french_ps  = my_module_path +'/ps/scilab_fr_FR_help.ps'
+my_english_ps = my_module_path +'/ps/scilab_en_US_help.ps'
+my_chinese_ps = my_module_path +'/ps/scilab_zh_TW_help.ps'
+>>>>>>> refs/heads/5.0:scilab/modules/helptools/help/en_US/xmltops.xml
 
     </programlisting>
   </refsection>

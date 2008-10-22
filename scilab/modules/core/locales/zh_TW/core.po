@@ -3,13 +3,21 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 "PO-Revision-Date: 2008-09-29 09:51+0000\n"
+=======
+"PO-Revision-Date: 2008-08-17 13:37+0000\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 "X-Launchpad-Export-Date: 2008-09-30 14:52+0000\n"
+=======
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 11:26+0100\n"
 
@@ -19,7 +27,11 @@ msgid "Error(s) : see help powershell'';''verify your script without scilab."
 msgstr "錯誤 : 請參考 powershell'';''不使用 Scilab 方式檢查你的程序檔."
 
 msgid "Only for Microsoft Windows."
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "只適用於 Microsoft Windows."
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: macros/powershell.sci, line: 20
@@ -28,43 +40,83 @@ msgstr "找不到 Powershell."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "Checking: %s\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "檢查: %s\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: Please check: %s.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 請檢查: %s.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 檔案不存在 : %s"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: Requires Scipad.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 需要 Scipad.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: %s 為無法編輯之函數.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s called at line %s of %s"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s 在第 %s 行被呼叫 ( %s 內)"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s called at line %s of %s instruction."
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s 在第 %s 行被呼叫 ( %s 指令內)"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s called under %s"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s 在 %s 之內被呼叫"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: macros/whereami.sci, line: 21
@@ -74,7 +126,11 @@ msgstr "%s 第  %s 行(在巨集指令 %s 內)被呼叫"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為已定義之變數.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 # File: macros/perl.sci, line: 12
 #, c-format
@@ -130,6 +186,7 @@ msgstr "%s: 檔案 %s 不存在.\n"
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 第 %d 輸入參數錯誤: 應為 Scilab 程序檔案之路徑.\n"
 
 #
@@ -158,6 +215,9 @@ msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為''%s'' 或 ''%s''.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "Warning: Problems with %s.\n"
@@ -168,6 +228,7 @@ msgid "%s: Invalid '%s' value.\n"
 msgstr "%s: 不正確之 '%s' 值.\n"
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 # File: sci_gateway/c/sci_newfun.c, line: 51
 #, c-format
 msgid "%s: function-name is incorrect.\n"
@@ -184,55 +245,112 @@ msgstr "%s: 第 %d 或 第 %d 輸入參數錯誤.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+=======
+# File: macros/toolboxes.sci, line: 42
+msgid " is already compiled.\n"
+msgstr " 已經編譯完成.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應大於 0.\n"
+=======
+msgid "&Toolboxes"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+=======
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+=======
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: 輸入參數型態錯誤.\n"
+=======
+msgid "Warning: Problems with %s.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid ""
 "%s: Cannot allocate more memory.\n"
 "Try stacksize('max').\n"
+=======
+msgid "%s: Invalid '%s' value.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 msgstr ""
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 "%s: 無法配置多記憶區.\n"
 "試試指令 stacksize('max').\n"
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 # File: sci_gateway/c/sci_stacksize.c, line: 105
 # File: sci_gateway/c/sci_stacksize.c, line: 111
 # File: sci_gateway/c/sci_gstacksize.c, line: 108
+=======
+# File: sci_gateway/c/sci_newfun.c, line: 51
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr "%s: 超出數值限制. 未在 [%lu,%lu] 之內.\n"
+=======
+msgid "%s: function-name is incorrect.\n"
+msgstr "%s: 函數名稱不正確.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為純量, '%s' 或 '%s'.\n"
+=======
+msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+=======
+msgid "%s: Wrong type for input arguments #%d or #%d.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s' 或 '%s'.\n"
+=======
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s' 或 '%s'.\n"
 
@@ -243,48 +361,109 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s'.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+=======
+msgid ""
+"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s'. 第 %d 輸入參數應為 '%s'.\n"
+=======
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #
 # File: sci_gateway/c/sci_who.c, line: 226
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid " using %10d elements out of  %10d.\n"
 msgstr " 使用 %10d 元素 (由  %10d 中選出).\n"
+=======
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #
 # File: sci_gateway/c/sci_who.c, line: 227
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid " and   %10d variables out of %10d.\n"
 msgstr " 及   %10d 變數 (從 %10d 中選出).\n"
+=======
+msgid "%s: Wrong type for input argument.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #
 # File: sci_gateway/c/sci_who.c, line: 303
 msgid "Your variables are:"
 msgstr "你的變數為:"
+=======
+#, c-format
+msgid ""
+"%s: Cannot allocate more memory.\n"
+"Try stacksize('max').\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 # File: sci_gateway/c/sci_who.c, line: 310
 msgid "Your global variables are:"
 msgstr "你的全域變數為:"
+=======
+# File: sci_gateway/c/sci_stacksize.c, line: 105
+# File: sci_gateway/c/sci_stacksize.c, line: 111
+# File: sci_gateway/c/sci_gstacksize.c, line: 108
+#, c-format
+msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
+msgstr "%s: 超出數值限制. 未在 [%lu,%lu] 之內.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #
 # File: sci_gateway/c/sci_getcwd.c, line: 28
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: An error occurred.\n"
 msgstr "%s: 產生錯誤.\n"
+=======
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 81
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: 無效之程式庫 %s.\n"
+=======
+msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
 
@@ -293,28 +472,192 @@ msgstr "內部函數:\n"
 
 msgid "Commands:\n"
 msgstr "指令:\n"
+=======
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #
 # File: sci_gateway/c/sci_where.c, line: 17
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 輸入參數數目錯誤.\n"
+=======
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+=======
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
+=======
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "WARNING: %s"
+msgstr "警告: %s"
+=======
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
+"argument #%d must be '%s'.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+# File: sci_gateway/c/sci_who.c, line: 226
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "WARNING: %s\n"
+msgstr "警告: %s\n"
+=======
+msgid " using %10d elements out of  %10d.\n"
+msgstr " 使用 %10d 元素 (由  %10d 中選出).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: sci_gateway/c/sci_stacksize.c, line: 90
+# File: sci_gateway/c/sci_gstacksize.c, line: 93
+=======
+# File: sci_gateway/c/sci_who.c, line: 227
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid ""
+"%s: Cannot alloc more memory.\n"
+"Try gstacksize('max').\n"
+msgstr ""
+"%s: 無法配置記憶體.\n"
+"試試 gstacksize('max') 指令.\n"
+=======
+msgid " and   %10d variables out of %10d.\n"
+msgstr " 及   %10d 變數 (從 %10d 中選出).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量 '%s' 或 '%s'.\n"
+=======
+#
+# File: sci_gateway/c/sci_who.c, line: 303
+msgid "Your variables are:"
+msgstr "你的變數為:"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+=======
+#
+# File: sci_gateway/c/sci_who.c, line: 310
+msgid "Your global variables are:"
+msgstr "你的全域變數為:"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
+#
+# File: sci_gateway/c/sci_getcwd.c, line: 28
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
+msgstr "%s: 參數 %d 或 %d 型態錯誤 :應為字串.\n"
+=======
+msgid "%s: An error occurred.\n"
+msgstr "%s: 產生錯誤.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 81
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Impossible to read %s gateway.\n"
+msgstr "%s: 無法讀取 %s gateway.\n"
+=======
+msgid "%s: Invalid library %s.\n"
+msgstr "%s: 無效之程式庫 %s.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Invalid module name : %s.\n"
+msgstr "%s: 模組名稱不正確 : %s.\n"
+=======
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr ""
+
+msgid "Internal Functions:\n"
+msgstr ""
+
+msgid "Commands:\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: sci_gateway/c/sci_getversion.c, line: 218
+=======
+# File: sci_gateway/c/sci_where.c, line: 17
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong file VERSION %s.\n"
+msgstr "%s: 檔案版本錯誤 %s.\n"
+=======
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: 輸入參數數目錯誤.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: sci_gateway/c/sci_getversion.c, line: 224
+# File: sci_gateway/c/sci_getversion.c, line: 312
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong module name %s.\n"
+msgstr "%s: 模組名稱 %s 錯誤.\n"
+=======
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "WARNING: %s"
-msgstr "警告: %s"
+msgstr ""
 
 #, c-format
 msgid "WARNING: %s\n"
-msgstr "警告: %s\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 90
@@ -326,50 +669,112 @@ msgid ""
 msgstr ""
 "%s: 無法配置記憶體.\n"
 "試試 gstacksize('max') 指令.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: sci_gateway/c/sci_getversion.c, line: 306
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong file VERSION in %s.\n"
+msgstr "%s: %s 中之檔案版本錯誤 .\n"
+=======
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量 '%s' 或 '%s'.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
+msgstr "%s: 第 %d 及  %d 輸入參數型態錯誤: 應為字串.\n"
+=======
 msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: includes/stack-c.h, line: 318
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid " results may be inaccurate. rcond = %s1\n"
+msgstr " 結果可能不正確. rcond = %s1\n"
+=======
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr "%s: 參數 %d 或 %d 型態錯誤 :應為字串.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "Error: Impossible to define %s environment variable.\n"
+msgstr "錯誤: 無法定義環境變數 %s.\n"
+=======
 msgid "%s: Impossible to read %s gateway.\n"
-msgstr "%s: 無法讀取 %s gateway.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "Version: %s"
+msgstr "版本: %s"
+=======
 msgid "%s: Invalid module name : %s.\n"
-msgstr "%s: 模組名稱不正確 : %s.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
 #
 # File: sci_gateway/c/sci_getversion.c, line: 218
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "Compilation date: %s"
+msgstr "編譯日期: %s"
+=======
 msgid "%s: Wrong file VERSION %s.\n"
 msgstr "%s: 檔案版本錯誤 %s.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
 #
 # File: sci_gateway/c/sci_getversion.c, line: 224
 # File: sci_gateway/c/sci_getversion.c, line: 312
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "Compilation time: %s"
+msgstr "編譯時間: %s"
+=======
 msgid "%s: Wrong module name %s.\n"
 msgstr "%s: 模組名稱 %s 錯誤.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
 #
 # File: sci_gateway/c/sci_getversion.c, line: 306
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "Compiler Architecture: %s"
+msgstr "編譯器架構: %s"
+=======
 msgid "%s: Wrong file VERSION in %s.\n"
 msgstr "%s: %s 中之檔案版本錯誤 .\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
-msgstr "%s: 第 %d 及  %d 輸入參數型態錯誤: 應為字串.\n"
+msgstr ""
 
 #
 # File: includes/stack-c.h, line: 318
@@ -379,58 +784,106 @@ msgstr " 結果可能不正確. rcond = %s1\n"
 
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
-msgstr "錯誤: 無法定義環境變數 %s.\n"
+msgstr ""
 
 #, c-format
 msgid "Version: %s"
-msgstr "版本: %s"
+msgstr ""
 
 #, c-format
 msgid "Compilation date: %s"
-msgstr "編譯日期: %s"
+msgstr ""
 
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
-msgid "Compilation time: %s"
-msgstr "編譯時間: %s"
-
-#, c-format
-msgid "Compiler Architecture: %s"
-msgstr "編譯器架構: %s"
-
-#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "Compiled with %s"
 msgstr "以 %s 編譯"
+=======
+msgid "Compilation time: %s"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "XML version: %s"
 msgstr "XML 版本: %s"
+=======
+msgid "Compiler Architecture: %s"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "Tcl/Tk: %s"
 msgstr "Tcl/Tk: %s"
+=======
+msgid "Compiled with %s"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "Enable"
 msgstr "啟用"
+=======
+#, c-format
+msgid "XML version: %s"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "TCL version: %s"
 msgstr "TCL 版本: %s"
+=======
+msgid "Tcl/Tk: %s"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "TK version: %s"
 msgstr "TCL 版本: %s"
+=======
+msgid "TCL version: %s"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "Path separator: %s"
 msgstr "檔案路徑分隔符號: %s"
+=======
+msgid "TK version: %s"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "Directory separator: %s"
 msgstr "目錄分隔符號: %s"
+=======
+msgid "Path separator: %s"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
+msgid "Directory separator: %s"
+msgstr ""
+
+#, c-format
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 msgid "PCRE Version: %d.%d"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "PCRE 版本: %d.%d"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/LoadFunctionsTab.c, line: 97
@@ -442,21 +895,32 @@ msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
 
 #, c-format
 msgid "Error: Memory allocation.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "錯誤:  記憶區配置.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid ""
 "Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
 "<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 "錯誤: gateway 檔 %s 不正確(應以 <GATEWAY> 起頭並包含 <PRIMITIVE gatewayId='' "
 "primitiveId='' primitiveName=''>)\n"
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid ""
 "Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "錯誤:  gateway 檔 %s 不正確(不是以 'utf-8' 編碼), 所用之編碼為 '%s'\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/inisci-c.c, line: 110
@@ -492,7 +956,11 @@ msgid "No space to allocate Scilab stack.\n"
 msgstr "無法再配置空間給  Scilab 堆疊 (stack).\n"
 
 msgid "Cannot find Windows temporary directory."
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "無法找到 Windows 的暫存目錄."
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/tmpdir.c, line: 53
@@ -509,50 +977,88 @@ msgstr "無法產生 : %s"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 "錯誤:版本檔 %s 不正確(應以 <MODULE_VERSION> 起頭並包含 <VERSION major='' minor='' "
 "maintenance='' revision='' string=''>)\n"
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "錯誤:  版本檔 %s 不正確(不是以 'utf-8' 編碼), 所用之編碼為 '%s'\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "Impossible to load %s library: %s\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "無法載入 %s 程式庫: %s\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "無法載入函數 %s (程式庫 %s ): %s\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "Impossible to call %s in %s library: %s\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "無法呼叫 %s  (在程式庫 %s 內):  %s\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 "鍵入 '%s' 或 '%s' 以返回標準提示 (prompt) 狀態.\n"
 "\n"
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "                 Scilab 協會 (DIGITEO)\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 msgid "               Copyright (c) 1989-2008 (INRIA)\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "               版權 (c) 1989-2008 (INRIA)\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "               版權 (c) 1989-2007 (ENPC)\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/banier.c, line: 45
@@ -565,11 +1071,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為已命名之變數.\n"
+=======
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為編譯後之巨集.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/stack2.c, line: 1868
@@ -616,12 +1126,75 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為編譯後之巨集.\n"
 # File: src/c/stack1.c, line: 2318
 # File: src/c/stack1.c, line: 2349
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為編譯後之巨集.\n"
+=======
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體不夠.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 1868
+# File: src/c/stack2.c, line: 2104
+# File: src/c/intmacr2tree.c, line: 98
+# File: src/c/intmacr2tree.c, line: 153
+# File: src/c/intmacr2tree.c, line: 321
+# File: src/c/intmacr2tree.c, line: 326
+# File: src/c/intmacr2tree.c, line: 408
+# File: src/c/intmacr2tree.c, line: 413
+# File: src/c/intmacr2tree.c, line: 544
+# File: src/c/intmacr2tree.c, line: 551
+# File: src/c/intmacr2tree.c, line: 554
+# File: src/c/intmacr2tree.c, line: 674
+# File: src/c/intmacr2tree.c, line: 679
+# File: src/c/intmacr2tree.c, line: 983
+# File: src/c/intmacr2tree.c, line: 988
+# File: src/c/intmacr2tree.c, line: 993
+# File: src/c/intmacr2tree.c, line: 1021
+# File: src/c/intmacr2tree.c, line: 1026
+# File: src/c/intmacr2tree.c, line: 1049
+# File: src/c/intmacr2tree.c, line: 1127
+# File: src/c/intmacr2tree.c, line: 1132
+# File: src/c/intmacr2tree.c, line: 1259
+# File: src/c/intmacr2tree.c, line: 1264
+# File: src/c/intmacr2tree.c, line: 1425
+# File: src/c/intmacr2tree.c, line: 1430
+# File: src/c/intmacr2tree.c, line: 1437
+# File: src/c/intmacr2tree.c, line: 1442
+# File: src/c/intmacr2tree.c, line: 1471
+# File: src/c/intmacr2tree.c, line: 1476
+# File: src/c/intmacr2tree.c, line: 1486
+# File: src/c/intmacr2tree.c, line: 1491
+# File: src/c/intmacr2tree.c, line: 1501
+# File: src/c/intmacr2tree.c, line: 1506
+# File: src/c/intmacr2tree.c, line: 1600
+# File: src/c/intmacr2tree.c, line: 1605
+# File: src/c/intmacr2tree.c, line: 1643
+# File: src/c/intmacr2tree.c, line: 1648
+# File: src/c/intmacr2tree.c, line: 1676
+# File: src/c/intmacr2tree.c, line: 1681
+# File: src/c/intmacr2tree.c, line: 1743
+# File: src/c/stack1.c, line: 2236
+# File: src/c/stack1.c, line: 2318
+# File: src/c/stack1.c, line: 2349
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體不夠.\n"
 
 #, c-format
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 msgid "%s: Out of code.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 超過編碼範圍.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/intmacr2tree.c, line: 179
@@ -648,11 +1221,19 @@ msgstr "%s: 堆疊大小超過限制 (使用 stacksize 函數增加堆疊大小)
 
 #, c-format
 msgid "%s: Wrong %s value %d instead of %d.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 錯誤之 %s 值, %d 而非 %d.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: code %d not yet implemented.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s:  %d 碼 (code) 尚未實作.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/intmacr2tree.c, line: 585
@@ -662,7 +1243,11 @@ msgstr "%s: 不認識之碼 (code) %d , 位於index2 %d.\n"
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 舊版之 if 及 while 未實作.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/intmacr2tree.c, line: 1082
@@ -672,11 +1257,19 @@ msgstr "%s: 型態值錯誤.\n"
 
 #, c-format
 msgid "%s: Unknown operator %d.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 未知運算子 %d.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 錯誤之 fromwhat 值 %s.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/intmacr2tree.c, line: 1981
@@ -688,41 +1281,91 @@ msgstr "%s: 錯誤碼 code %d.\n"
 # File: src/c/callinterf.c, line: 133
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: 中斷目前計算\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/callinterf.c, line: 155
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "企圖在介面連結過程中結束 scilab.\n"
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/callinterf.c, line: 156
+msgid "Do you really want to abort computation (y or n ?) \n"
+msgstr "你確定要結束計算 (y 或 n ?) \n"
+=======
+# File: src/c/callinterf.c, line: 155
+msgid "Trying to stop scilab in the middle of an interface.\n"
+msgstr "企圖在介面連結過程中結束 scilab.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+msgid "Can't go to directory %s.\n"
+msgstr "無法進入到目錄 %s.\n"
+=======
 #
 # File: src/c/callinterf.c, line: 156
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "你確定要結束計算 (y 或 n ?) \n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
-#, c-format
-msgid "Can't go to directory %s.\n"
-msgstr "無法進入到目錄 %s.\n"
-
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #
 # File: src/c/scicurdir.c, line: 49
 msgid "Can't get current directory.\n"
 msgstr "無法進入目前目錄內.\n"
+=======
+#, c-format
+msgid "Can't go to directory %s.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 # File: src/c/returnPropertyList.c, line: 22
 msgid "Error returning tlist, memory full.\n"
 msgstr "傳回 tlist 時錯誤, 記憶體耗盡.\n"
+=======
+# File: src/c/scicurdir.c, line: 49
+msgid "Can't get current directory.\n"
+msgstr "無法進入目前目錄內.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/returnPropertyList.c, line: 44
+msgid "tlist not completely filled.\n"
+msgstr "tlist 未完全填滿.\n"
+=======
+# File: src/c/returnPropertyList.c, line: 22
+msgid "Error returning tlist, memory full.\n"
+msgstr "傳回 tlist 時錯誤, 記憶體耗盡.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
 #
 # File: src/c/returnPropertyList.c, line: 44
 msgid "tlist not completely filled.\n"
 msgstr "tlist 未完全填滿.\n"
 
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 msgid "List full.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "List 已滿.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "嚴重錯誤: 無法產生 Scilab 函數表.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/stack1.c, line: 81
@@ -860,7 +1503,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "%s: 參數 %d 型態錯誤: 應為字串矩陣.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
@@ -979,11 +1626,19 @@ msgstr "SCI 環境參數未設.\n"
 
 #, c-format
 msgid "Cannot load the module declaration file: %s.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "無法載入模組宣告檔:%s.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 msgstr "錯誤: 無法剖析(parse) 檔案 %s.\n"
+=======
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/getmodules.c, line: 202
@@ -991,6 +1646,7 @@ msgstr "錯誤: 無法剖析(parse) 檔案 %s.\n"
 msgid "%s module not found.\n"
 msgstr "%s 模組找不到.\n"
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
@@ -1156,6 +1812,314 @@ msgstr "%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 
 # File: src/c/stack2.c, line: 1025
 # File: src/c/stack2.c, line: 1091
 # File: src/c/stack2.c, line: 1663
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: (%s) bad third argument!\n"
+msgstr "%s: (%s) 第三參數有誤!\n"
+=======
+msgid ""
+"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+=======
+#
+# File: src/c/stack3.c, line: 73
+# File: src/c/stack3.c, line: 122
+# File: src/c/stack3.c, line: 261
+# File: src/c/stack3.c, line: 318
+# File: src/c/stack3.c, line: 417
+# File: src/c/stack3.c, line: 469
+# File: src/c/stack3.c, line: 515
+# File: src/c/stack3.c, line: 545
+# File: src/c/stack3.c, line: 582
+# File: src/c/stack3.c, line: 652
+# File: src/c/stack3.c, line: 698
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Wrong type for argument: Complex expected.\n"
+msgstr "%s: 參數型態錯誤: 應為複數.\n"
+=======
+msgid "Undefined variable %s.\n"
+msgstr "未定義參數之 %s.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 1462
+=======
+# File: src/c/stack3.c, line: 271
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: bad call to %s!\n"
+msgstr "%s: 錯誤的呼叫 %s!.\n"
+=======
+msgid "%s: argument must be a string.\n"
+msgstr "%s: 參數須為一字串.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 1558
+#, c-format
+msgid "%s: argument %d > (%d) should be a complex matrix.\n"
+msgstr "%s: 參數 %d > (%d) 應該為一複數矩陣.\n"
+=======
+msgid "Unexpected opcode, please report into the Scilab bug tracker."
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 1614
+#, c-format
+msgid "%s: bad call to %s (third argument %c).\n"
+msgstr "%s: 錯誤的呼叫 %s! (第三參數  %c).\n"
+=======
+msgid "Functions compiled with very old versions are no more handled."
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 1731
+# File: src/c/stack2.c, line: 1779
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: (%s) bad second argument!\n"
+msgstr "%s: (%s)第二參數錯誤!\n"
+=======
+msgid "Memory in use: %*ld %%"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 1753
+#, c-format
+msgid ""
+"%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
+=======
+msgid "Total Physical Memory (Kbytes): %*I64d"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+msgstr ""
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+"%s: createcvarfromptr: 堆疊 (stack) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 1925
+# File: src/c/stack2.c, line: 1944
+# File: src/c/stack2.c, line: 2151
+# File: src/c/stack2.c, line: 2170
+#, c-format
+msgid "%s: Recursion problems. Sorry ...\n"
+msgstr "%s: 程式產生遞迴問題 (Recursion problems). 對不起 ...\n"
+=======
+msgid "Free Physical Memory (Kbytes): %*I64d"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 2041
+#, c-format
+msgid "%s: %s is not a Scilab function.\n"
+msgstr "%s: %s 不是 Scilab 函數.\n"
+=======
+msgid "Total Paging File (Kbytes): %*I64d"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 2151
+# File: src/c/stack2.c, line: 2170
+msgid "built in"
+msgstr "內建"
+=======
+msgid "Free Paging File (Kbytes): %*I64d"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+#
+# File: src/c/stack2.c, line: 2321
+# File: src/c/stack2.c, line: 2331
+msgid "Invalid time domain.\n"
+msgstr "不正確的時間域.\n"
+=======
+msgid "Total Virtual Memory (Kbytes): %*I64d"
+msgstr ""
+
+msgid "Free Virtual Memory (Kbytes): %*I64d"
+msgstr ""
+
+msgid "Free Extended Memory (Kbytes): %*I64d"
+msgstr ""
+
+msgid "Operating System: "
+msgstr ""
+
+#, c-format
+msgid "Number of processors: %d"
+msgstr ""
+
+#, c-format
+msgid "Video card: %s"
+msgstr ""
+
+#, c-format
+msgid "%s: %d x %d %d bits"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2337
+msgid "Invalid system.\n"
+msgstr "不正確之系統.\n"
+=======
+# File: src/c/stack2.c, line: 317
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr "%s: 選擇性參數 name=val 必須列在最後.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2347
+msgid "A non square matrix!\n"
+msgstr "非方陣之矩陣!\n"
+=======
+# File: src/c/stack2.c, line: 332
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s: 無法辨識的選擇性參數 %s.\n"
+
+#
+# File: src/c/stack2.c, line: 374
+msgid "Optional argument list is empty.\n"
+msgstr "選擇性參數清單為空\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2351
+# File: src/c/stack2.c, line: 2355
+# File: src/c/stack2.c, line: 2359
+# File: src/c/stack2.c, line: 2363
+=======
+# File: src/c/stack2.c, line: 377
+msgid "Optional arguments list: \n"
+msgstr "選擇性參數清單. \n"
+
+#
+# File: src/c/stack2.c, line: 383
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "Invalid %c,%c matrices.\n"
+msgstr "%c 不正確 ,%c 為矩陣 (matrices).\n"
+=======
+msgid "and %s.\n"
+msgstr "及 %s.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2379
+=======
+# File: src/c/stack2.c, line: 402
+# File: src/c/stack2.c, line: 439
+# File: src/c/stack2.c, line: 555
+# File: src/c/stack2.c, line: 601
+# File: src/c/stack2.c, line: 634
+# File: src/c/stack2.c, line: 718
+# File: src/c/stack2.c, line: 1116
+# File: src/c/stack2.c, line: 1145
+# File: src/c/stack2.c, line: 1170
+# File: src/c/stack2.c, line: 1215
+# File: src/c/stack2.c, line: 1417
+# File: src/c/stack2.c, line: 1514
+# File: src/c/stack2.c, line: 1635
+# File: src/c/stack2.c, line: 2735
+# File: src/c/stack2.c, line: 3037
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: internal error, info=%d.\n"
+msgstr "%s: 內部錯誤 , info=%d.\n"
+=======
+msgid "%s: bad call to %s! (1rst argument).\n"
+msgstr "%s: 錯誤的呼叫 %s! (第一參數).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2535
+=======
+# File: src/c/stack2.c, line: 433
+# File: src/c/stack2.c, line: 549
+# File: src/c/stack2.c, line: 595
+# File: src/c/stack2.c, line: 628
+# File: src/c/stack2.c, line: 711
+# File: src/c/stack2.c, line: 777
+# File: src/c/stack2.c, line: 881
+# File: src/c/stack2.c, line: 951
+# File: src/c/stack2.c, line: 1056
+# File: src/c/stack2.c, line: 1110
+# File: src/c/stack2.c, line: 1139
+# File: src/c/stack2.c, line: 1223
+# File: src/c/stack2.c, line: 1421
+# File: src/c/stack2.c, line: 1518
+# File: src/c/stack2.c, line: 1639
+# File: src/c/stack2.c, line: 3031
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: intersiz is too small.\n"
+msgstr "%s: intersiz 數值太小.\n"
+=======
+msgid ""
+"%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
+msgstr "%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
+
+#
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2821
+=======
+# File: src/c/stack2.c, line: 860
+# File: src/c/stack2.c, line: 920
+# File: src/c/stack2.c, line: 1025
+# File: src/c/stack2.c, line: 1091
+# File: src/c/stack2.c, line: 1663
 #, c-format
 msgid "%s: (%s) bad third argument!\n"
 msgstr "%s: (%s) 第三參數有誤!\n"
@@ -1172,11 +2136,20 @@ msgstr "%s: 錯誤的呼叫 %s!.\n"
 
 #
 # File: src/c/stack2.c, line: 1558
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s argument"
+msgstr "%s 參數"
+=======
 msgid "%s: argument %d > (%d) should be a complex matrix.\n"
 msgstr "%s: 參數 %d > (%d) 應該為一複數矩陣.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2823
+=======
 # File: src/c/stack2.c, line: 1614
 #, c-format
 msgid "%s: bad call to %s (third argument %c).\n"
@@ -1185,56 +2158,119 @@ msgstr "%s: 錯誤的呼叫 %s! (第三參數  %c).\n"
 #
 # File: src/c/stack2.c, line: 1731
 # File: src/c/stack2.c, line: 1779
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "argument number %d"
+msgstr "%d 號參數"
+=======
 msgid "%s: (%s) bad second argument!\n"
 msgstr "%s: (%s)第二參數錯誤!\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2833
+=======
 # File: src/c/stack2.c, line: 1753
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s and %s arguments"
+msgstr "%s 及 %s 參數"
+=======
 msgid ""
 "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
 msgstr ""
 "%s: createcvarfromptr: 堆疊 (stack) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2835
+# File: src/c/stack2.c, line: 2840
+=======
 # File: src/c/stack2.c, line: 1925
 # File: src/c/stack2.c, line: 1944
 # File: src/c/stack2.c, line: 2151
 # File: src/c/stack2.c, line: 2170
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s argument and argument %d"
+msgstr "參數 %s 及參數 %d"
+=======
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: 程式產生遞迴問題 (Recursion problems). 對不起 ...\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2842
+=======
 # File: src/c/stack2.c, line: 2041
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "arguments %d and %d"
+msgstr "參數 %d 及參數 %d"
+=======
 msgid "%s: %s is not a Scilab function.\n"
 msgstr "%s: %s 不是 Scilab 函數.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2904
+msgid "should be square"
+msgstr "須為方陣"
+=======
 # File: src/c/stack2.c, line: 2151
 # File: src/c/stack2.c, line: 2170
 msgid "built in"
 msgstr "內建"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2909
+msgid "should be a vector"
+msgstr "須為向量"
+=======
 # File: src/c/stack2.c, line: 2321
 # File: src/c/stack2.c, line: 2331
 msgid "Invalid time domain.\n"
 msgstr "不正確的時間域.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2914
+msgid "should be a row vector"
+msgstr "須為行向量"
+=======
 # File: src/c/stack2.c, line: 2337
 msgid "Invalid system.\n"
 msgstr "不正確之系統.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2919
+msgid "should be a column vector"
+msgstr "須為列向量"
+=======
 # File: src/c/stack2.c, line: 2347
 msgid "A non square matrix!\n"
 msgstr "非方陣之矩陣!\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2924
+msgid "should be a scalar"
+msgstr "須為純量"
+=======
 # File: src/c/stack2.c, line: 2351
 # File: src/c/stack2.c, line: 2355
 # File: src/c/stack2.c, line: 2359
@@ -1242,51 +2278,117 @@ msgstr "非方陣之矩陣!\n"
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "%c 不正確 ,%c 為矩陣 (matrices).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2931
+=======
 # File: src/c/stack2.c, line: 2379
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
+msgstr "%s: %s 之維度 (%d,%d) 錯誤, 應為 (%d,%d).\n"
+=======
 msgid "%s: internal error, info=%d.\n"
 msgstr "%s: 內部錯誤 , info=%d.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2941
+=======
 # File: src/c/stack2.c, line: 2535
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
+msgstr "%s: %s 錯誤之 %s 維度 (%d), 應為 (%d).\n"
+=======
 msgid "%s: intersiz is too small.\n"
 msgstr "%s: intersiz 數值太小.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2941
+# File: src/c/stack2.c, line: 3014
+msgid "first"
+msgstr "第一"
+=======
 # File: src/c/stack2.c, line: 2821
 #, c-format
 msgid "%s argument"
 msgstr "%s 參數"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2941
+# File: src/c/stack2.c, line: 3014
+msgid "second"
+msgstr "第二"
+=======
 # File: src/c/stack2.c, line: 2823
 #, c-format
 msgid "argument number %d"
 msgstr "%d 號參數"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2951
+=======
 # File: src/c/stack2.c, line: 2833
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: %s has wrong length %d, expecting (%d).\n"
+msgstr "%s: %s 長度 (length) %d 錯誤, 應為 (%d).\n"
+=======
 msgid "%s and %s arguments"
 msgstr "%s 及 %s 參數"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2960
+=======
 # File: src/c/stack2.c, line: 2835
 # File: src/c/stack2.c, line: 2840
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
+msgstr "%s: %s 維度不匹配 (%dx%d) # (%dx%d)\n"
+=======
 msgid "%s argument and argument %d"
 msgstr "參數 %s 及參數 %d"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2968
+=======
 # File: src/c/stack2.c, line: 2842
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: %s have incompatible dimensions.\n"
+msgstr "%s: %s 維度不匹配.\n"
+=======
 msgid "arguments %d and %d"
 msgstr "參數 %d 及參數 %d"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2979
+#, c-format
+msgid "%s: %s should be a list with %d-element being %s.\n"
+msgstr "%s: %s 應為一串列 (list) 其中第 %d-元素為 %s.\n"
+=======
 # File: src/c/stack2.c, line: 2904
 msgid "should be square"
 msgstr "須為方陣"
@@ -1300,30 +2402,60 @@ msgstr "須為向量"
 # File: src/c/stack2.c, line: 2914
 msgid "should be a row vector"
 msgstr "須為行向量"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2987
+msgid "square"
+msgstr "方陣"
+=======
 # File: src/c/stack2.c, line: 2919
 msgid "should be a column vector"
 msgstr "須為列向量"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2992
+msgid "a vector"
+msgstr "一向量"
+=======
 # File: src/c/stack2.c, line: 2924
 msgid "should be a scalar"
 msgstr "須為純量"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 2997
+msgid "a row vector"
+msgstr "一行向量"
+=======
 # File: src/c/stack2.c, line: 2931
 #, c-format
 msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
 msgstr "%s: %s 之維度 (%d,%d) 錯誤, 應為 (%d,%d).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 3002
+msgid "a column vector"
+msgstr "一列向量"
+=======
 # File: src/c/stack2.c, line: 2941
 #, c-format
 msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
 msgstr "%s: %s 錯誤之 %s 維度 (%d), 應為 (%d).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 3007
+msgid "a scalar"
+msgstr "一純量"
+=======
 # File: src/c/stack2.c, line: 2941
 # File: src/c/stack2.c, line: 3014
 msgid "first"
@@ -1340,24 +2472,52 @@ msgstr "第二"
 #, c-format
 msgid "%s: %s has wrong length %d, expecting (%d).\n"
 msgstr "%s: %s 長度 (length) %d 錯誤, 應為 (%d).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 3014
+=======
 # File: src/c/stack2.c, line: 2960
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
+msgstr "%s: 參數 %d(%d) 之 %s 維度 (%d) 錯誤, 應為 (%d).\n"
+=======
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
 msgstr "%s: %s 維度不匹配 (%dx%d) # (%dx%d)\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 3117
+=======
 # File: src/c/stack2.c, line: 2968
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "GetDataFromName: variable %s not found.\n"
+msgstr "GetDataFromName: 變數  %s 找不到.\n"
+=======
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s: %s 維度不匹配.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+# File: src/c/stack2.c, line: 3169
+=======
 # File: src/c/stack2.c, line: 2979
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "%s: Variable %s not found.\n"
+msgstr "%s: 變數 %s 找不到.\n"
+=======
 msgid "%s: %s should be a list with %d-element being %s.\n"
 msgstr "%s: %s 應為一串列 (list) 其中第 %d-元素為 %s.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
 #
 # File: src/c/stack2.c, line: 2987
@@ -1369,63 +2529,65 @@ msgstr "方陣"
 msgid "a vector"
 msgstr "一向量"
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "&File"
+msgstr "檔案(&F)"
+=======
 #
 # File: src/c/stack2.c, line: 2997
 msgid "a row vector"
 msgstr "一行向量"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "&Edit"
+msgstr "編輯(&E)"
+=======
 #
 # File: src/c/stack2.c, line: 3002
 msgid "a column vector"
 msgstr "一列向量"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "&Preferences"
+msgstr "喜好設定(&P)"
+=======
 #
 # File: src/c/stack2.c, line: 3007
 msgid "a scalar"
 msgstr "一純量"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "&Control"
+msgstr "控制(&C)"
+=======
 #
 # File: src/c/stack2.c, line: 3014
 #, c-format
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
 msgstr "%s: 參數 %d(%d) 之 %s 維度 (%d) 錯誤, 應為 (%d).\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "&Applications"
+msgstr "應用程式(&A)"
+=======
 #
 # File: src/c/stack2.c, line: 3117
 #, c-format
 msgid "GetDataFromName: variable %s not found.\n"
 msgstr "GetDataFromName: 變數  %s 找不到.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po
 
+<<<<<<< HEAD:scilab/modules/core/locales/zh_TW/core.po
+msgid "&?"
+msgstr "&?"
+=======
 #
 # File: src/c/stack2.c, line: 3169
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr "%s: 變數 %s 找不到.\n"
-
-#
-# File: etc/scilab.start, line: 35
-msgid "Startup execution:"
-msgstr "執行啟動"
-
-#
-# File: etc/scilab.start, line: 42
-msgid "  loading initial environment"
-msgstr "  載入初始環境"
-
-msgid "&File"
-msgstr "檔案(&F)"
-
-msgid "&Edit"
-msgstr "編輯(&E)"
-
-msgid "&Preferences"
-msgstr "喜好設定(&P)"
-
-msgid "&Control"
-msgstr "控制(&C)"
-
-msgid "&Applications"
-msgstr "應用程式(&A)"
-
-msgid "&?"
-msgstr "&?"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_TW/core.po

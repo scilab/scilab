@@ -51,13 +51,13 @@
           <para>character string. The path of the really generated shared library file.</para>
         </listitem>
       </varlistentry>
-    </variablelist>
       <varlistentry>
         <term>ldflags,cflags,fflags,cc</term>
         <listitem>
           <para>character strings to provide options/flags for the loader, the C compiler, the Fortran compiler. cc provides the name of the compiler.</para>
         </listitem>
       </varlistentry>
+    </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>

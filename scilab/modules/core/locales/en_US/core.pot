@@ -14,7 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
 "Revision-Date: 2008-09-24 16:37+0100\n"
+=======
+"Revision-Date: 2008-09-22 14:06+0100\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 
 # File: macros/powershell.sci, line: 14
 msgid "Error(s) : see help powershell'';''verify your script without scilab."
@@ -44,6 +48,8 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
 # File: macros/check_versions.sci, line: 18
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+=======
 #, c-format
 msgid "Checking: %s\n"
 msgstr ""
@@ -59,7 +65,26 @@ msgid "%s: File doesn''t exist: %s"
 msgstr ""
 #
 # File: macros/edit.sci, line: 18
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+msgid "Checking: %s\n"
+msgstr ""
+#
+# File: macros/check_versions.sci, line: 28
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr ""
+#
+# File: macros/check_versions.sci, line: 31
+#, c-format
+msgid "%s: File doesn''t exist: %s"
+msgstr ""
+#
+# File: macros/edit.sci, line: 18
+#, c-format
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 msgid "%s: Requires Scipad.\n"
 msgstr ""
 #
@@ -164,7 +189,10 @@ msgstr ""
 # File: macros/toolboxes.sci, line: 127
 # File: macros/toolboxes.sci, line: 128
 # File: macros/toolboxes.sci, line: 132
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
 # File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 196
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 msgid "&Toolboxes"
 msgstr ""
 #
@@ -368,17 +396,36 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 128
 # File: sci_gateway/c/sci_gstacksize.c, line: 223
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 230
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+=======
+msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
+msgstr ""
+#
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+# File: sci_gateway/c/sci_getmd5.c, line: 143
+=======
+# File: sci_gateway/c/sci_gstacksize.c, line: 230
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+=======
 msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 143
 #, c-format
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
 msgstr ""
 #
@@ -419,31 +466,71 @@ msgid " results may be inaccurate. rcond = %s1\n"
 msgstr ""
 #
 # File: src/c/SetScilabEnvironment.c, line: 37
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+=======
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
 msgstr ""
 #
 # File: src/c/getstaticDebugInfo_Windows.c, line: 39
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+msgid "Error: Impossible to define %s environment variable.\n"
+=======
 msgid "Version: %s"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 msgstr ""
 #
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+# File: src/c/getstaticDebugInfo_Windows.c, line: 39
+=======
 # File: src/c/getstaticDebugInfo_Windows.c, line: 46
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+msgid "Version: %s"
+=======
 msgid "Compilation date: %s"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 msgstr ""
 #
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+# File: src/c/getstaticDebugInfo_Windows.c, line: 46
+=======
 # File: src/c/getstaticDebugInfo_Windows.c, line: 53
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+msgid "Compilation date: %s"
+=======
 msgid "Compilation time: %s"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 msgstr ""
 #
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+# File: src/c/getstaticDebugInfo_Windows.c, line: 53
+=======
+# File: src/c/getstaticDebugInfo_Windows.c, line: 61
+# File: src/c/getstaticDebugInfo_Windows.c, line: 63
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
+#, c-format
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
+msgid "Compilation time: %s"
+=======
+msgid "Compiler Architecture: %s"
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
+msgstr ""
+#
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
 # File: src/c/getstaticDebugInfo_Windows.c, line: 61
 # File: src/c/getstaticDebugInfo_Windows.c, line: 63
 #, c-format
 msgid "Compiler Architecture: %s"
 msgstr ""
 #
+=======
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 # File: src/c/getstaticDebugInfo_Windows.c, line: 73
 # File: src/c/getstaticDebugInfo_Windows.c, line: 75
 # File: src/c/getstaticDebugInfo_Windows.c, line: 77
@@ -578,17 +665,29 @@ msgid ""
 "found\n"
 msgstr ""
 #
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
 # File: src/c/callDynamicGateway.c, line: 128
+=======
+# File: src/c/callDynamicGateway.c, line: 127
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
 msgid "Impossible to load %s library: %s\n"
 msgstr ""
 #
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
 # File: src/c/callDynamicGateway.c, line: 131
+=======
+# File: src/c/callDynamicGateway.c, line: 130
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr ""
 #
+<<<<<<< HEAD:scilab/modules/core/locales/en_US/core.pot
 # File: src/c/callDynamicGateway.c, line: 134
+=======
+# File: src/c/callDynamicGateway.c, line: 133
+>>>>>>> refs/heads/5.0:scilab/modules/core/locales/en_US/core.pot
 #, c-format
 msgid "Impossible to call %s in %s library: %s\n"
 msgstr ""
@@ -962,6 +1061,12 @@ msgstr ""
 # File: src/c/stack1.c, line: 2210
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgstr ""
+#
+# File: src/c/stack1.c, line: 2380
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 2380
