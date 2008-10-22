@@ -22,6 +22,7 @@ EXPORTS
  getmodules
  GetXmlFileEncoding
  callFunctionFromGateway
+ getScilabMode
  
  
  
