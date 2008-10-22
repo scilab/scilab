@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="coeff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>coeff</refname>
+    <refpurpose> coefficients d'une matrice de polynômes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[C]=coeff(Mp [,v])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>Mp  </term>
+        <listitem>
+          <para>matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v  </term>
+        <listitem>
+          <para>vecteur (ligne ou colonne) d'entiers des degrés choisis
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C  </term>
+        <listitem>
+          <para>grosse matrice de coefficients
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>C=coeff(Mp)</literal>
+    renvoie dans une grosse matrice <literal>C</literal> les coefficients de la
+    matrice de polynômes <literal>Mp</literal>. <literal>C</literal> est
+    partitionnée comme <literal>C=[C0,C1,...,Ck]</literal> 
+    où les <literal>Ci</literal> sont arrangés dans l'ordre décroissant .
+    <literal>k = maxi(degree(Mp))</literal>
+  </para>
+    <para><literal>C=coeff(Mp,v)</literal> renvoie la matrice des coefficients avec les 
+    degrés dans <literal>v</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="degree">degree</link>
+      </member>
+      <member>
+        <link linkend="inv_coeff">inv_coeff</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

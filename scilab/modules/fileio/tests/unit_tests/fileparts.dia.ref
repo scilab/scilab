@@ -1,0 +1,18 @@
+//===============================
+// Tests fileparts
+// INRIA 2008
+//===============================
+[path,fname,extension] = fileparts(SCI+'/etc/scilab.start');
+if (path <> pathconvert(SCI+'/etc/',%f,%f)) then bugmes();quit;end
+if (fname <> 'scilab') then bugmes();quit;end
+if (extension <> '.start') then bugmes();quit;end
+//===============================
+r = fileparts(SCI+'/etc/scilab.start','path');
+if (r <> pathconvert(SCI+'/etc/',%f,%f)) then bugmes();quit;end
+//===============================
+r = fileparts(SCI+'/etc/scilab.start','fname');
+if (r <> 'scilab') then bugmes();quit;end
+//===============================
+r = fileparts(SCI+'/etc/scilab.start','extension');
+if (r <> '.start') then bugmes();quit;end
+//===============================

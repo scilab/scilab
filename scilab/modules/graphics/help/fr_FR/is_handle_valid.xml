@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="is_handle_valid">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>is_handle_valid</refname>
+    <refpurpose>Vérifie si un ensemble de handles graphiques est valide.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>isValid = is_handle_valid(h)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>Matrice de handles graphiques</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>isValid</term>
+        <listitem>
+	  <para>Matrice de booléens de même taille que <literal>h</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para> La function <literal>is_handle_valid</literal> vérifie si un ensemble de handles graphiques est valide.
+      Un handle considéré comme valide s'il n'a pas été détruit.
+      Le résultat est la matrice de booléens <literal>isValid</literal>.
+      <literal>isValid(i,j)</literal> est vrai si <literal>h(i,j)</literal> est valide
+      et faux sinon.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    // Vérification de la validité des objets courants
+    is_handle_valid([gcf(), gca(), gce()])
+
+    // création de 11 polylines
+    plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
+    
+    // Vérification de la validité des polylines
+    axes = gca();
+    polylines = axes.children(1).children
+    is_handle_valid(polylines)
+    
+    // destruction de quelques polylines
+    delete(polylines(3:7));
+    // Affichage de la validité
+    is_handle_valid(polylines)
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Jean-Baptiste Silvy INRIA</para>
+  </refsection>
+</refentry>
+
+
+

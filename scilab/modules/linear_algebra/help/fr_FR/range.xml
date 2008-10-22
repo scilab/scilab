@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="range">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>range</refname>
+    <refpurpose> Image de A^k  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[X,dim]=range(A,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>matrice réelle carrée</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k  </term>
+        <listitem>
+          <para>entier non négatif, La valeur par défaut est 1</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>matrice réelle orthonormale.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>entier (dimension du sous-espace image)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para> Calcul de l'image de <literal>A^k</literal>; les <literal>dim</literal>
+      premières colonnes de <literal>X</literal> forment une base de
+      <literal>A^k</literal>. Les dernières lignes de  <literal>X</literal> forment une
+      base de l'orthogonal de l'image. </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    
+    A=rand(4,2)*rand(2,4);   // Matrice de rang 2.
+    [X,dim]=range(A,1);dim   // Calcul de l'image
+
+    y1=A*rand(4,1);          // un vecteur dans l'image de A
+    y2=rand(4,1);            // un vecteur qui n'est pas dans l'image
+    norm(X(dim+1:$,:)*y1)    // les derniéres composante sont nulles, y1 est
+    dans l'image
+    norm(X(dim+1:$,:)*y2)    // Les dernieres composantes ne sont pas nulles
+
+    I=X(1:dim,:)'            // I une base de l'image
+    coeffs=X(1:dim,:)*y1     // les composante de y1 dans la base I
+
+    norm(I*coeffs-y1)        // test
+
+    
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fullrfk">fullrfk</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>F. D.; INRIA ;   </para>
+  </refsection>
+  <refsection>
+    <title>Fonctions Utilisées</title>
+    <para>La fonction <literal>range</literal> est basée sue la fonction <link linkend="rowcomp">rowcomp</link>
+      qui utilise la décomposition <link linkend="svd">svd</link>.</para>
+  </refsection>
+</refentry>

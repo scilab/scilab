@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_size">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_size</refname>
+    <refpurpose>Matlab size emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab <literal>size</literal> behave differently in some particular cases:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With two inputs: Matlab <literal>size</literal> can be used with second parameter giving
+	a not-existing dimension of first parameter (returns 1 in this case) but not Scilab one.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        With more than one output: if number of output is lesser than number of dimensions,
+	last output is the product of all remaining dimensions in Matlab but not in Scilab.
+	If number of output is greater than number of dimensions, outputs corresponding to a
+	not-existing dimension are set to 1 in Matlab but Scilab gives an error in this case.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The function <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>[d1,[d2,...]] = size(X[,dim])</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_size</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With two inputs: if <literal>dim</literal> gives an existing dimension of <literal>X</literal>
+        <literal>mtlb_size(X,dim)</literal> may be replaced by <literal>size(X,dim)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        With more than one outputs: if the number of outputs is equal to the number of dimensions of <literal>X</literal>
+        <literal>[d1,[d2,...]] = mtlb_size(X)</literal> may be replaced by <literal>[d1,[d2,...]] = size(X)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_size</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

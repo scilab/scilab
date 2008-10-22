@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intersect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intersect</refname>
+    <refpurpose> returns the vector of common values of two vectors</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      [v [,ka,kb]]=intersect(a,b)
+      [v [,ka,kb]]=intersect(a,b,orient)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>vector of  numbers or strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>vector of  numbers or strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orient</term>
+        <listitem>
+          <para>flag with possible values : 1 or "r", 2 or "c"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>row vector  of  numbers or strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ka</term>
+        <listitem>
+          <para>row vector  of integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kb</term>
+        <listitem>
+          <para>row vector  of integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>intersect(a,b)</literal> returns a sorted row vector of common values of
+    two vectors of <literal>a</literal> and <literal>b</literal>.</para>
+    <para><literal>[v,ka,kb]=intersect(a,b)</literal> also returns index vectors <literal>ka</literal> and
+    <literal>kb</literal> such that <literal>v=a(ka)</literal> and <literal>v=b(kb)</literal>.</para>
+
+    <para><literal>intersect(a,b,"r")</literal> or
+    <literal>intersect(a,b,1)</literal>returns the matrix formed by the
+    intersection of the unique rows of <literal>a</literal> and
+    <literal>b</literal> sorted in lexicographic ascending
+    order. In this case  matrices  <literal>a</literal> and
+    <literal>b</literal> must have the same number of columns. </para>
+    <para><literal>[v,ka,kb]=intersect(a,b,"r")</literal> also returns index vectors <literal>ka</literal> and
+    <literal>kb</literal> such that <literal>v=a(ka,:)</literal> and <literal>v=b(kb,:)</literal>.</para>
+
+    <para><literal>intersect(a,b,"c")</literal> or
+    <literal>intersect(a,b,2)</literal>returns the matrix formed by the
+    intersection of the unique columns of <literal>a</literal> and
+    <literal>b</literal> sorted in lexicographic ascending
+    order. In this case  matrices  <literal>a</literal> and
+    <literal>b</literal> must have the same number of rows.</para>
+   <para><literal>[v,ka,kb]=intersect(a,b,"c")</literal> also returns index vectors <literal>ka</literal> and
+    <literal>kb</literal> such that <literal>v=a(:,ka)</literal> and <literal>v=b(:,kb)</literal>.</para>
+
+
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>NaN are considered as different from themselves so they are excluded out of intersection in case of vector intersection.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=round(5*rand(10,1));
+B=round(5*rand(7,1));
+
+intersect(A,B)
+[N,ka,kb]=intersect(A,B)
+
+intersect('a'+string(A),'a'+string(B))
+
+intersect(int16(A),int16(B))
+
+//with matrices
+ A = [0,0,1,1 1;
+      0,1,1,1,1;
+      2,0,1,1,1;
+      0,2,2,2,2;
+      2,0,1,1,1;
+      0,0,1,1,%nan];
+B = [1,0,1;
+     1,0,2;
+     1,2,3;
+     2,0,4;
+     1,2,5;
+     %nan,0,6];
+
+[v,ka,kb] = intersect(A,B,'c')
+A(:,ka)
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unique">unique</link>
+      </member>
+      <member>
+        <link linkend="gsort">gsort</link>
+      </member>
+      <member>
+        <link linkend="union">union</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

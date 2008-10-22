@@ -1,0 +1,29 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 3353 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3353
+//
+// <-- Short Description -->
+// some colors are not present on pie chart
+
+// should draw a white rectangle (draw a yellow one in Scilab 4).
+plot2d(0,0,[0],'032','leg',[-1.5,-1.5 ,1.5,1.5]);
+a=gca(); t=a.title;
+t.text="pie chart"; t.font_size=3;
+a.clip_state = 'clipgrf';
+alls=[-1,1,2,2,0,64*90;
+    -1,1,2,2,64*90,64*(30);
+    -1,1,2,2,64*(120),64*(70);
+    -1,1,2,2,64*(190),64*(360-190)];
+xfarcs(alls',[1,3,5,7]);a.clip_state = 'off';
+
+

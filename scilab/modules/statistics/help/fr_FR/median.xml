@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="median">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>median</refname>
+    <refpurpose>médiane des termes d'une
+  matrice</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=median(x)
+y=median(x,'r')
+y=median(x,'c')
+y=median(x,'m')
+y=median(x,dim)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vecteur ou matrice réelle</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>scalaire ou vecteur</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>entier positif </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Pour un vecteur ou une matrice <literal>x</literal>, <literal>y=median(x)</literal>
+    renvoie un scalaire <literal>y</literal> égal à  la médiane des termes de
+    <literal>x</literal>.</para>
+    <para><literal>y=median(x,'r')</literal> (ou <literal>y=median(x,1)</literal>) est la
+    médiane selon l'indice de lignes. Chaque composante du vecteur ligne
+    <literal>y</literal> contient la médiane de chaque colonne de
+    <literal>x</literal>.</para>
+    <para><literal>y=median(x,'c')</literal> (ou <literal>y=median(x,2)</literal>) est la
+    médiane selon l'indice de colonne. Chaque composante du vecteur colonne
+    <literal>y</literal> contient la médiane de chaque ligne de <literal>x</literal>.</para>
+    <para><literal>y=median(x,'m')</literal> est la médiane suivant la première
+    dimension non_singleton de <literal>x</literal>. (compatibilité avec matlab)</para>
+    <para><literal>y=median(x,dim)</literal> est la médiane suivant la dimension
+    <literal>dim</literal> de <literal>x</literal>. (compatibilité avec matlab)</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[1,2,10;7,7.1,7.01];
+median(A)
+median(A,'r')
+median(A,'c')
+A=matrix([-9 3 -8 6 74 39 12 -6 -89 23 65 34],[2,3,2]);
+median(A,3)
+median(A,'m')
+   
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sum">sum</link>
+      </member>
+      <member>
+        <link linkend="mean">mean</link>
+      </member>
+      <member>
+        <link linkend="st_deviation">st_deviation</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

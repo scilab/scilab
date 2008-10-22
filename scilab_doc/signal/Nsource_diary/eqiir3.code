@@ -1,0 +1,12 @@
+//exec('eqiir3.code')
+sf=3000;
+f1=37.5;
+f2=75;
+as=30;
+ap=2;
+om=[f1*(2*%pi)/sf,f2*(2*%pi)/sf];
+deltas=10.00**(-0.05*as);
+deltap=(1.0-10.0**(-0.05*ap));
+[cells,fact,zers,pols]=...
+eqiir('lp','ch1',om,deltap,deltas);
+cells

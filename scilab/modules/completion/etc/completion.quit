@@ -1,0 +1,8 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for completion module
+// Copyright INRIA 2007
+// ====================================================================
+// delete help chapter
+del_help_chapter('completion',%T);
+// ====================================================================

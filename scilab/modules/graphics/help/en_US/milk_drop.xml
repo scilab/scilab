@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="milk_drop">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>milk_drop</refname>
+    <refpurpose> milk drop 3D function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>z=milk_drop(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>two row vectors of size n1 and n2.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>matrix of size (n1,n2).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>milk_drop</literal> is a function representing the surface of a milk drop
+    falling down into milk. It
+    can be used to test functions <literal>eval3d</literal> and <literal>plot3d</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=-2:0.1:2; y=x;
+z=eval3d(milk_drop,x,y);
+plot3d(x,y,z)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eval3d">eval3d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Steer S.  </para>
+  </refsection>
+</refentry>

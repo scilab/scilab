@@ -1,0 +1,16 @@
+// <-- Non-regression test for bug 2636 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2636
+//
+// <-- Short Description -->
+//    Scilab is not able to copy a file in an empty Directory.
+//
+// Copyright INRIA
+// Scilab Project - Pierre MARECHAL
+// Copyright INRIA 2007
+// Date : 28 Jan 2007
+mkdir(TMPDIR+"/bug_2636");
+mputl("test",TMPDIR+"/bug_2636.txt");
+copyfile(TMPDIR+"/bug_2636.txt",TMPDIR+"/bug_2636/bug_2636.txt");
+if mgetl(TMPDIR+"/bug_2636/bug_2636.txt") <> 'test' then bugmes();quit;end

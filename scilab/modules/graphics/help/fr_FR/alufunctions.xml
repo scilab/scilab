@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="alufunctions">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>alufunctions</refname>
+    <refpurpose> description des modes de dessin des pixels.  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    src est la source c'est à dire la "valeur du pixel" que l'on veut dessiner.
+    dst est la destination c'est à dire la "valeur du pixel" déjà présent à cet emplacement. 
+  </para>
+    <para>
+  </para>
+    <para>
+     0: effacer i.e. "0"
+  </para>
+    <para>
+     1: ET i.e. "src ET dst"
+  </para>
+    <para>
+     2: ET inverse i.e. "src ET NON dst"
+  </para>
+    <para>
+     3: copie i.e. "src"
+  </para>
+    <para>
+     4: ET inverse i.e. "(NON src) ET dst"
+  </para>
+    <para>
+     5: rien i.e. "dst"
+  </para>
+    <para>
+     6: XOU (ou exclusif) i.e. "src XOU dst"
+  </para>
+    <para>
+     7: OU i.e. "src OU dst"
+  </para>
+    <para>
+     8: NOR "(NON src) ET (NON dst)"
+  </para>
+    <para>
+     9: équivalence i.e. "(NON src) OUX dst"
+  </para>
+    <para>
+    10: inversion i.e. "NON dst"
+  </para>
+    <para>
+    11: OU inverse i.e. "src OU (NON dst)"
+  </para>
+    <para>
+    12: copie inversée i.e. "NON src"
+  </para>
+    <para>
+    13: OU inverse i.e. "(NON src) OU dst"
+  </para>
+    <para>
+    14: NAND i.e. "(NON src) OU (NON dst)"
+  </para>
+    <para>
+    15:  valeur affectée "1"
+  </para>
+  </refsection>
+</refentry>

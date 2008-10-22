@@ -1,0 +1,8 @@
+	LIBRARY    fileio.dll
+
+
+EXPORTS
+	diary
+  diary_nnl	
+  getdiary  
+	

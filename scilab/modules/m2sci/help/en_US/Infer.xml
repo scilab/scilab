@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Infer">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Infer</refname>
+    <refpurpose>Create a tree containing inference data</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>infer=Infer(varargin)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>varargin</term>
+        <listitem>
+          <para>data for inference</para>
+          <variablelist>
+            <varlistentry>
+              <term>varargin(1)</term>
+              <listitem>
+                <para>list of dimensions default value is list(Unknown,Unknown)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>varargin(2)</term>
+              <listitem>
+                <para>type ("type" tlist, see Type help page) default value is Type(Unknown,Unknown)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>varargin(3)</term>
+              <listitem>
+                <para>contents ("contents" tlist, see Contents help page) default value is Contents(list(),list()). This field is
+              only used if represented data is a Cell or a Struct.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infer</term>
+        <listitem>
+          <para>an "infer" tlist</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function create a <literal>tlist</literal> representing inference data when using M2SCI.
+    All input parameters values are verified to be compatible with "M2SCI tlists". (Unknown=-1 in M2SCI)
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Funcall">Funcall</link>
+      </member>
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Variable">Variable</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Contents">Contents</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

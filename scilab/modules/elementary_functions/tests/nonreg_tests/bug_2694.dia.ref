@@ -1,0 +1,12 @@
+// <-- Non-regression test for bug 2694 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2694
+//
+// <-- Short Description -->
+//   bitget() only support unsigned integers. This function has to be extended
+//   to all positive integers.
+// Scilab Project - Pierre MARECHAL
+// Copyright INRIA 2008
+// Date : Feb 2008
+if execstr("bitget(12,2);","errcatch") <> 0 then bugmes();quit;end

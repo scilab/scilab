@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="exec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>exec</refname>
+    <refpurpose> script file execution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>exec(path [,mode])
+exec(fun [,mode])
+ierr=exec(path,'errcatch' [,mode])
+ierr=exec(fun,'errcatch' [,mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a string, the path of the script file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode</term>
+        <listitem>
+          <para>an integer scalar, the execution mode (see below)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>a scilab function</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ierr</term>
+        <listitem>
+          <para>integer, 0 or error number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>exec(path [,mode])</literal> executes sequentialy the scilab instructions
+    contained in the file given by <literal>path</literal>  with an optional 
+    execution mode <literal>mode</literal> .</para>
+    <para>
+    The different cases for <literal>mode</literal> are :</para>
+    <para>
+     0 
+    : the default value</para>
+    <para>
+     -1 
+    : nothing is printed</para>
+    <para>
+     1 
+    : echo of each command line</para>
+    <para>
+     2 
+    : prompt <literal>--&gt;</literal> is printed</para>
+    <para>
+     3 
+    : echoes + prompts</para>
+    <para>
+     4 
+    : stops before each prompt. Execution resumes after a carriage return.</para>
+    <para>
+     7 
+    : stops + prompts + echoes : useful mode for demos.</para>
+    <para><literal>exec(fun [,mode])</literal> executes function  <literal>fun</literal> as a script: no
+    input nor output argument nor specific variable environment. This form
+    is more efficient, because script code may be pre-compiled (see getf,
+    comp). This method for script evaluation allows to store scripts as
+    function in libraries.</para>
+    <para>
+    If an error is encountered while executing, if 'errcatch' flag is
+    present <literal>exec</literal> issues no error message, aborts execution of the
+    instructions and resumes with <literal>ierr</literal> equal to the error
+    number. If 'errcatch' flag is not present, standard error handling
+    works.</para>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para><literal>exec</literal> files may now be used to define functions using the inline function definition syntax (see function).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// create a script file
+mputl('a=1;b=2',TMPDIR+'/myscript')
+// execute it
+exec(TMPDIR+'/myscript')
+whos -name "a "
+
+// create a function
+deff('y=foo(x)','a=x+1;y=a^2')
+clear a b
+// call the function
+foo(1)
+// a is a variable created in the environment of the function foo
+//    it is destroyed when foo returns
+whos -name "a "
+
+
+x=1 //create x to make it known by the script foo
+exec(foo)
+// a and y are created in the current environment
+whos -name "a "
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="mode">mode</link>
+      </member>
+      <member>
+        <link linkend="chdir">chdir</link>
+      </member>
+      <member>
+        <link linkend="getcwd">getcwd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

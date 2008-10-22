@@ -1,0 +1,665 @@
+<package name="org.scilab.modules.gui.bridge">
+  <object name="CallScilabBridge">
+<!-- Object creation/destruction -->
+	<method name="newWindow" returnType="int" modifier="static"/>
+	<method name="newMenuBar" returnType="int" modifier="static"/>
+	<method name="newMenu" returnType="int" modifier="static"/>        
+	<method name="newPushButton" returnType="int" modifier="static"/>        
+	<method name="newEditBox" returnType="int" modifier="static"/>        
+	<method name="newLabel" returnType="int" modifier="static"/>        
+	<method name="newCheckBox" returnType="int" modifier="static"/>        
+	<method name="newRadioButton" returnType="int" modifier="static"/>
+      	<method name="newSlider" returnType="int" modifier="static"/>        
+	<method name="newPopupMenu" returnType="int" modifier="static"/>
+        <method name="newListBox" returnType="int" modifier="static"/>        
+        <method name="newFrame" returnType="int" modifier="static"/>        
+	<method name="newContextMenu" returnType="String" modifier="static">
+          <parameter type="String[]" name="menuLabels"/>
+        </method>
+	<method name="newContextMenu" returnType="int" modifier="static"/>
+        <method name="destroyWidget" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>
+        <method name="destroyFrame" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>
+<!-- Parent setting -->
+	<method name="setFigureAsParent" returnType="void" modifier="static">
+	  <parameter type="int" name="figureID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setMenuAsParent" returnType="void" modifier="static">
+	  <parameter type="int" name="menuID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setRootAsParent" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPushButtonParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removePushButtonFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setEditBoxParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeEditBoxFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setLabelParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeLabelFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setCheckBoxParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeCheckBoxFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setRadioButtonParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeRadioButtonFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setSliderParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeSliderFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPopupMenuParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removePopupMenuFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setListBoxParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeListBoxFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setFrameParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeFrameFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Widget Text setting -->
+	<method name="setWidgetText" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	</method>
+	<method name="getWidgetText" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Frame Text setting -->
+	<method name="setFrameText" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	</method>
+	<method name="getFrameText" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Widget Color setting -->
+	<method name="setWidgetBackgroundColor" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="red"/>
+	  <parameter type="int" name="green"/>
+	  <parameter type="int" name="blue"/>
+	</method>
+	<method name="getWidgetBackgroundColor" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setWidgetForegroundColor" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="red"/>
+	  <parameter type="int" name="green"/>
+	  <parameter type="int" name="blue"/>
+	</method>
+	<method name="getWidgetForegroundColor" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Frame Color setting -->
+	<method name="setFrameBackgroundColor" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="red"/>
+	  <parameter type="int" name="green"/>
+	  <parameter type="int" name="blue"/>
+	</method>
+	<method name="getFrameBackgroundColor" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setFrameForegroundColor" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="red"/>
+	  <parameter type="int" name="green"/>
+	  <parameter type="int" name="blue"/>
+	</method>
+	<method name="getFrameForegroundColor" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Widget Font setting -->
+	<method name="setWidgetFontName" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="name"/>
+	</method>
+	<method name="getWidgetFontName" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setWidgetFontWeight" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="weight"/>
+	</method>
+	<method name="setWidgetFontSize" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="size"/>
+	</method>
+	<method name="getWidgetFontSize" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setWidgetFontAngle" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="angle"/>
+	</method>
+<!-- Frame Font setting -->
+	<method name="setFrameFontName" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="name"/>
+	</method>
+	<method name="getFrameFontName" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setFrameFontWeight" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="weight"/>
+	</method>
+	<method name="setFrameFontSize" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="size"/>
+	</method>
+	<method name="getFrameFontSize" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setFrameFontAngle" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="angle"/>
+	</method>
+<!-- Widget Position setting -->
+	<method name="setWidgetPosition" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="x"/>
+	  <parameter type="int" name="y"/>
+	  <parameter type="int" name="width"/>
+	  <parameter type="int" name="height"/>
+	</method>
+	<method name="getWidgetPosition" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Frame Position setting -->
+	<method name="setFramePosition" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="x"/>
+	  <parameter type="int" name="y"/>
+	  <parameter type="int" name="width"/>
+	  <parameter type="int" name="height"/>
+	</method>getScrollPane
+	<method name="getFramePosition" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Widget Callback setting -->
+	<method name="setWidgetCallback" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	  <parameter type="int" name="type"/>
+	</method>
+<!-- Frame Callback setting -->
+	<method name="setFrameCallback" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	  <parameter type="int" name="type"/>
+	</method>
+<!-- Widget Alignment setting -->
+	<method name="setWidgetHorizontalAlignment" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="alignment"/>
+	</method>
+	<method name="setWidgetVerticalAlignment" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="alignment"/>
+	</method>
+<!-- SliderStep setting -->
+	<method name="setSliderMinorTickSpacing" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="space"/>
+	</method>
+	<method name="setSliderMajorTickSpacing" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="space"/>
+	</method>
+<!-- Value setting -->
+	<method name="setListBoxSelectedIndices" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int[]" name="indices"/>
+	</method>
+	<method name="getListBoxSelectedIndices" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="getListBoxSelectionSize" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPopupMenuSelectedIndex" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="index"/>
+	</method>
+	<method name="getPopupMenuSelectedIndex" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setSliderValue" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="index"/>
+	</method>
+	<method name="getSliderValue" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setRadioButtonChecked" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="isRadioButtonChecked" returnType="boolean" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setCheckBoxChecked" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="isCheckBoxChecked" returnType="boolean" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Slider setting -->
+	<method name="setSliderMinValue" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="value"/>
+	</method>
+	<method name="setSliderMaxValue" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="value"/>
+	</method>
+	<method name="setSliderVertical" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setSliderHorizontal" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Listbox setting -->
+	<method name="setListBoxMultipleSelectionEnabled" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="getListBoxAllItemsText" returnType="String[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="getListBoxNumberOfItems" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setListBoxText" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String[]" name="text"/>
+	</method>
+<!-- PopupMenu setting -->
+	<method name="getPopupMenuAllItemsText" returnType="String[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="getPopupMenuNumberOfItems" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPopupMenuText" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String[]" name="text"/>
+	</method>
+<!-- Relief setting -->
+	<method name="setWidgetRelief" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="reliefType"/>
+	</method>
+	<method name="setFrameRelief" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="reliefType"/>
+	</method>
+<!-- Enable setting -->
+	<method name="setRootMenuEnabled" returnType="void" modifier="static">
+	  <parameter type="String" name="menuName"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="setRootSubMenuEnabled" returnType="void" modifier="static">
+	  <parameter type="String" name="menuName"/>
+	  <parameter type="int" name="position"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="setFigureMenuEnabled" returnType="void" modifier="static">
+	  <parameter type="int" name="figureID"/>
+	  <parameter type="String" name="menuName"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="setFigureSubMenuEnabled" returnType="void" modifier="static">
+	  <parameter type="int" name="figureID"/>
+	  <parameter type="String" name="menuName"/>
+	  <parameter type="int" name="position"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="setWidgetEnable" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>      
+	<method name="setFrameEnable" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>      
+	<method name="isWidgetEnable" returnType="boolean" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="isFrameEnable" returnType="boolean" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+<!-- Delete Menus -->
+	<method name="removeRootMenu" returnType="void" modifier="static">
+	  <parameter type="String" name="menuName"/>
+	</method>
+	<method name="removeFigureMenu" returnType="void" modifier="static">
+	  <parameter type="int" name="figureID"/>
+	  <parameter type="String" name="menuName"/>
+	</method>
+<!-- ContextMenu -->
+	<method name="displayAndWaitContextMenu" returnType="String" modifier="static">
+	  <parameter type="int" name="ID"/>
+	</method>
+<!-- File chooser -->
+	<method name="newFileChooser" returnType="int" modifier="static"/>      
+	<method name="setFileChooserTitle" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="title" type="String"/>
+        </method>      
+	<method name="setFileChooserInitialDirectory" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="path" type="String"/>
+        </method>      
+	<method name="setFileChooserMask" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="mask" type="String"/>
+        </method>      
+	<method name="fileChooserDisplayAndWait" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getFileChooserSelectionSize" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getFileChooserSelection" returnType="String[]" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="setFileChooserDirectorySelectionOnly" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="setFileChooserFileSelectionOnly" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+<!-- Message Box -->
+	<method name="newMessageBox" returnType="int" modifier="static"/>      
+	<method name="setMessageBoxTitle" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="title" type="String"/>
+        </method>      
+	<method name="setMessageBoxMessage" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="message" type="String"/>
+        </method>      
+	<method name="setMessageBoxMessage" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="message" type="String[]"/>
+        </method>      
+	<method name="messageBoxDisplayAndWait" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getMessageBoxSelectedButton" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="setMessageBoxDefaultSelectedButtons" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="index" type="int[]"/>
+       </method>      
+	<method name="getMessageBoxUserSelectedButtons" returnType="int[]" modifier="static">
+            <parameter name="id" type="int"/>
+       </method>      
+	<method name="setMessageBoxButtonsLabels" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="labels" type="String[]"/>
+        </method>      
+	<method name="setMessageBoxInitialValue" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="value" type="String[]"/>
+        </method>      
+	<method name="getMessageBoxValue" returnType="String[]" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getMessageBoxValueSize" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="setMessageBoxListBoxItems" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="items" type="String[]"/>
+        </method>      
+	<method name="getMessageBoxSelectedItem" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="setMessageBoxLineLabels" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="labels" type="String[]"/>
+        </method>      
+	<method name="setMessageBoxColumnLabels" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="labels" type="String[]"/>
+        </method>      
+	<method name="setMessageBoxDefaultInput" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="values" type="String[]"/>
+        </method>      
+	<method name="setMessageBoxModal" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="status" type="boolean"/>
+        </method>      
+	<method name="setMessageBoxIcon" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="name" type="String"/>
+        </method>      
+<!-- Toolbar -->
+	<method name="isToolbarVisible" returnType="boolean" modifier="static">      
+            <parameter name="figNum" type="int"/>
+        </method>      
+	<method name="setToolbarVisible" returnType="void" modifier="static">
+            <parameter name="figNum" type="int"/>
+            <parameter name="status" type="boolean"/>
+        </method>      
+<!-- EventHandler -->
+	<method name="setEventHandler" returnType="void" modifier="static">
+            <parameter name="figNum" type="int"/>
+            <parameter name="command" type="String"/>
+        </method>      
+	<method name="setEventHandlerEnabled" returnType="void" modifier="static">
+            <parameter name="figNum" type="int"/>
+            <parameter name="status" type="boolean"/>
+        </method>      
+<!-- Wait Bar -->
+	<method name="newWaitBar" returnType="int" modifier="static"/>      
+	<method name="setWaitBarMessage" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="message" type="String[]"/>
+        </method>      
+	<method name="setWaitBarValue" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="value" type="int"/>
+        </method>      
+        <method name="destroyWaitBar" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>
+        <method name="setWaitBarIndeterminateMode" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>
+<!-- Help Browser -->
+	<method name="launchHelpBrowser" returnType="void" modifier="static">
+          <parameter type="String[]" name="helps"/>
+          <parameter type="String" name="language"/>
+        </method>      
+        <method name="searchKeyword" returnType="void" modifier="static">
+          <parameter type="String[]" name="helps"/>
+          <parameter type="String" name="keyword"/>
+          <parameter type="String" name="language"/>
+          <parameter type="boolean" name="fullText"/>
+        </method>
+<!-- Main settings -->
+	<method name="saveMainWindowSettings" returnType="void" modifier="static">
+        </method> 
+<!-- Export GUI-->
+	<method name="newExportFileChooser" returnType="int" modifier="static">
+        <parameter type="int" name="figureId"/>
+      </method>    
+<!-- Font Chooser -->
+	<method name="newFontChooser" returnType="int" modifier="static">
+        </method>      
+	<method name="fontChooserDisplayAndWait" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="setFontChooserFontName" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="String" name="fontName"/>
+        </method>      
+	<method name="setFontChooserFontSize" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="int" name="fontSize"/>
+        </method>      
+	<method name="setFontChooserBold" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="bold"/>
+        </method>      
+	<method name="setFontChooserItalic" returnType="void" modifier="static">
+           <parameter type="int" name="objID"/>
+         <parameter type="boolean" name="italic"/>
+        </method>      
+	<method name="getFontChooserFontName" returnType="String" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="getFontChooserFontSize" returnType="int" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="getFontChooserBold" returnType="boolean" modifier="static">
+           <parameter type="int" name="objID"/>
+       </method>      
+	<method name="getFontChooserItalic" returnType="boolean" modifier="static">
+           <parameter type="int" name="objID"/>
+       </method>      
+<!-- Color Chooser -->
+	<method name="newColorChooser" returnType="int" modifier="static">
+        </method>      
+	<method name="colorChooserDisplayAndWait" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="setColorChooserDefaultColor" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="int[]" name="rgb"/>
+        </method>      
+	<method name="getColorChooserSelectedColor" returnType="int[]" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="setColorChooserTitle" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="String" name="title"/>
+        </method>      
+<!-- Widget visible -->
+	<method name="setWidgetVisible" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>      
+	<method name="setFrameVisible" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>      
+	<method name="isWidgetVisible" returnType="boolean" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="isFrameVisible" returnType="boolean" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+<!-- Clipboard management -->
+	<method name="getClipboardContents" returnType="String" modifier="static">
+        </method>      
+	<method name="pasteClipboardIntoConsole" returnType="void" modifier="static">
+        </method>      
+	<method name="copyConsoleSelection" returnType="void" modifier="static">
+        </method>      
+	<method name="emptyClipboard" returnType="void" modifier="static">
+        </method>      
+	<method name="setClipboardContents" returnType="void" modifier="static">
+          <parameter type="String" name="text"/>
+        </method>      
+	<method name="copyFigureToClipBoard" returnType="void" modifier="static">
+          <parameter type="int" name="figID"/>
+        </method>      
+<!-- Misc -->
+	<method name="getScreenResolution" returnType="int" modifier="static">
+        </method>      
+	<method name="getScreenWidth" returnType="double" modifier="static">
+        </method>      
+	<method name="getScreenHeight" returnType="double" modifier="static">
+        </method>      
+	<method name="getScreenDepth" returnType="int" modifier="static">
+        </method>      
+	<method name="printFigure" returnType="boolean" modifier="static">
+          <parameter type="int" name="figID"/>
+          <parameter type="boolean" name="postScript"/>
+          <parameter type="boolean" name="displayDialog"/>
+        </method>      
+	<method name="printFile" returnType="boolean" modifier="static">
+          <parameter type="String" name="fileName"/>
+        </method>      
+	<method name="printString" returnType="boolean" modifier="static">
+          <parameter type="String" name="theString"/>
+          <parameter type="String" name="pageHeader"/>
+        </method>      
+	<method name="pageSetup" returnType="boolean" modifier="static">
+        </method>      
+	<method name="requestWidgetFocus" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="requestFrameFocus" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="raiseWindow" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+  </object>
+</package>

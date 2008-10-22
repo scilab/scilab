@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="matrices">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matrices</refname>
+    <refpurpose> Objet Scilab, matrices  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Les matrices sont les objets de base dans Scilab. Elles peuvent être définies de la façon suivante :
+  </para>
+    <programlisting><![CDATA[
+E=[e11,e12,...,e1n;
+   e21,e22,...,e2n;
+        ....
+   em1,em2,...,emn];
+   ]]></programlisting>
+    <para>
+    Les termes <literal>eij</literal> peuvent être des nombres complexes ou réels, des polynômes,
+    des fraction rationnelles, des chaînes de caractères ou des booléens.
+  </para>
+    <para>
+    Les vecteurs sont vus comme des matrices à une ligne ou une colonne.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+E=[1,2;3,4]
+E=[%T,%F;1==1,1~=1]
+s=poly(0,'s');E=[s,s^2;1,1+s]
+E=[1/s,0;s,1/(s+1)]
+E=['A11','A12';'A21','A22']
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="boolean">boolean</link>
+      </member>
+      <member>
+        <link linkend="rational">rational</link>
+      </member>
+      <member>
+        <link linkend="empty">empty</link>
+      </member>
+      <member>
+        <link linkend="hypermatrices">hypermatrices</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

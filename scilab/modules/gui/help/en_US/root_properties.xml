@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="root_properties">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>root_properties</refname>
+    <refpurpose>description of the root object properties.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The root object is a virtual object used to get the computer screen properties. Use <literal>get</literal> function with <emphasis>0</emphasis> as first argument to access its properties.</para>
+    <variablelist>
+      <varlistentry>
+        <term>Root properties</term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>screensize_px: </term>
+              <listitem>
+                <para>The screen size in pixels.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_pt: </term>
+              <listitem>
+                <para>The screen size in points.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_mm: </term>
+              <listitem>
+                <para>The screen size in millimeters.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_cm: </term>
+              <listitem>
+                <para>The screen size in centimeters.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_in: </term>
+              <listitem>
+                <para>The screen size in inches.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_norm: </term>
+              <listitem>
+                <para>The normalized screen size.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screendepth: </term>
+              <listitem>
+                <para>The number of bits used to encode colors.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    get(0, "screensize_px")
+    get(0, "screendepth")
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Author</title>
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>

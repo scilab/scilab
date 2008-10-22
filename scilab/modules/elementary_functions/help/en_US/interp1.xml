@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="interp1">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>interp1</refname>
+    <refpurpose>one_dimension interpolation
+  function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[yp]=interp1(x, y,xp [, method,[extrapolation]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xp</term>
+        <listitem>
+          <para>reals scalar, vector or matrix (or hypermatrix)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>reals vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>method</term>
+        <listitem>
+          <para>(optional) string defining the interpolation method</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>extrapolation</term>
+        <listitem>
+          <para>(optional) string, or real value defining the yp(j) components
+          for xp(j) values outside [x1,xn] interval.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>yp</term>
+        <listitem>
+          <para>vector, or matrix (or hypermatrix)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Given <literal>(x,y,xp)</literal>, this function performs the yp components
+    corresponding to xp by the interpolation(linear by default) defined by x
+    and y.</para>
+    <para>If <literal>yp</literal> is a vector then the length of xp is equal to the
+    length of <literal>yp,</literal> if <literal>yp</literal> is a matrix then
+    <literal>xp</literal> have the same length than the length of each columns of
+    yp, if <literal>yp</literal> is a hypermatrix then the length of <literal>xp</literal>
+    have the same length than the first dimension of <literal>yp. </literal></para>
+    <para>If size(y)=[C,M1,M2,M3,...,Mj] and size(xp)=[N1,N2,N3,...,Nk] then
+    size(yp)=[N1,N2,..,Nk,M1,M2,...Mj] and length of x must be equal to
+    size(y,1)</para>
+    <para>The <literal>method</literal> parameter sets the evaluation rule for
+    interpolation</para>
+    <variablelist>
+      <varlistentry>
+        <term>"linear"</term>
+        <listitem>
+          <para>the interpolation is defined by linear method (see
+        <link linkend="interpln">interpln</link>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"spline"</term>
+        <listitem>
+          <para>the interpolation is defined by cubic spline interpolation ( see
+        <link linkend="splin">splin</link> , <link linkend="interp">interp</link>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"nearest"</term>
+        <listitem>
+          <para>for each value xp(j), yp(j) takes the value or y(i)
+        corresponding to x(i) the nearest neighbor of xp(j)</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>The <literal>extrapolation</literal> parameter sets the evaluation rule for
+    extrapolation, i.e for <literal>xp(i) </literal>not in [x1,xn] interval</para>
+    <variablelist>
+      <varlistentry>
+        <term>"extrap"</term>
+        <listitem>
+          <para>the extrapolation is performed by the defined method.
+        yp=interp1(x,y,xp,method,"extrap")</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>real value</term>
+        <listitem>
+          <para>you can choose a real value for extrapolation, in this way yp(i)
+        takes this value for xp(i) not in [x1,xn] interval, for example 0 (but
+        also nan or inf). yi=interp1(x,y,xp,method, 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>by default</term>
+        <listitem>
+          <para>the extrapolation is performed by the defined method (for spline
+        method), and by nan for linear and nearest methods.
+        yp=interp1(x,y,xp,method)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[x=linspace(0,3,20);
+y=x^2;
+xx=linspace(0,3,100);
+yy1=interp1(x,y,xx,'linear');
+yy2=interp1(x,y,xx,'spline');
+yy3=interp1(x,y,xx,'nearest');
+plot(xx,[yy1;yy2;yy3],x,y,'*')
+xtitle('interpolation of square function')
+legend(['linear','spline','nearest'],a=2)
+
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="interp">interp</link>
+      </member>
+      <member>
+        <link linkend="interpln">interpln</link>
+      </member>
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.B</para>
+  </refsection>
+</refentry>

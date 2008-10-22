@@ -1,0 +1,6 @@
+exec('d1p5.code',-1);
+F=[1/s    ,(s+1)/(1-s) 
+      s/p    ,   s^2  ]
+F.num
+F.den
+F.num(1,2)

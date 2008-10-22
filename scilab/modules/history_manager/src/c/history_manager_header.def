@@ -1,0 +1,7 @@
+LIBRARY    scihistory_manager.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; history_manager
+; --------------------------------------- 

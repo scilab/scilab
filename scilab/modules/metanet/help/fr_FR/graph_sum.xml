@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="graph_sum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graph_sum</refname>
+    <refpurpose> somme de deux graphes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>g2 = graph_sum(g,g1)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>g  </term>
+        <listitem>
+          <para>graphe (liste)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1  </term>
+        <listitem>
+          <para>graphe (liste)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g2  </term>
+        <listitem>
+          <para>nouveau graphe (liste)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>graph_sum</literal> crée un graphe <literal>g2</literal> avec une matrice  d'adjacence égale 
+    à la somme des matrices d'adjacence des deux graphes <literal>g</literal> et 
+    <literal>g1</literal>.
+    <literal>g</literal> et <literal>g1</literal> sont supposés simples (utiliser <literal>graph_simp</literal> 
+    avant d'appeler <literal>graph_complement</literal> si nécessaire) et avoir le même
+    nombre de sommets.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 15 12 13 9 10 14 11 16 1 17 14 15];
+g=make_graph('foo',1,17,ta,he);
+g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+g('edge_color')=modulo([1:(edge_number(g))],15)+1;
+g('edge_width')=ones(1,(edge_number(g)));
+g('node_diam')=[1:(g('node_number'))]+20;
+g('node_name')=['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q'];
+show_graph(g);
+ta=[2 3 4 5 11 12 1];
+he=[10 5 6 7 15 17 7];
+g1=make_graph('foo',1,17,ta,he);
+g1('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+g1('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+g1('edge_color')=modulo([1:(edge_number(g1))],15)+1;
+g1('edge_width')=10*ones(1,(edge_number(g1)));
+g1('node_diam')=[1:(g1('node_number'))]+20;
+g1('node_name')=['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q'];
+show_graph(g1,'new');
+g2=graph_sum(g,g1);
+show_graph(g2,'new');
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="graph_complement">graph_complement</link>
+      </member>
+      <member>
+        <link linkend="graph_union">graph_union</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

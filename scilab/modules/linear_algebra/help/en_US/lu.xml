@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lu</refname>
+    <refpurpose> LU factors of Gaussian elimination</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[L,U]= lu(A)
+[L,U,E]= lu(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex  matrix (m x n).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>L</term>
+        <listitem>
+          <para> real or complex matrices  (m x min(m,n)).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>real or complex matrices  (min(m,n) x n ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E</term>
+        <listitem>
+          <para>a (n x n) permutation matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[L,U]= lu(A)</literal> produces two matrices <literal>L</literal> and
+    <literal>U</literal> such that <literal>A = L*U</literal> with <literal>U</literal>
+    upper triangular and <literal>E*L</literal> lower triangular for a
+    permutation matrix <literal>E</literal>.</para>
+    <para> 
+    If <literal>A</literal> has rank <literal>k</literal>, rows <literal>k+1</literal> to
+    <literal>n</literal> of <literal>U</literal> are zero.</para>
+    <para><literal>[L,U,E]= lu(A)</literal> produces three matrices <literal>L</literal>, <literal>U</literal> and
+    <literal>E</literal> such that <literal>E*A = L*U</literal> with
+    <literal>U</literal> upper triangular and <literal>E*L</literal> lower
+    triangular for a permutation matrix <literal>E</literal>.</para>
+    <para> 
+    If <literal>A</literal> is a real matrix, using the function
+    <literal>lufact</literal> and  <literal>luget</literal> it is possible to obtain
+    the permutation matrices and also when <literal>A</literal> is not full
+    rank the column compression of the matrix <literal>L</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a=rand(4,4);
+[l,u]=lu(a)
+norm(l*u-a)
+
+[h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
+[P,L,U,Q]=luget(h);
+ludel(h)
+P=full(P);L=full(L);U=full(U);Q=full(Q); 
+norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+      <member>
+        <link linkend="lusolve">lusolve</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para>
+   lu decompositions are based on the Lapack routines DGETRF for real
+   matrices and ZGETRF for the complex case.</para>
+  </refsection>
+</refentry>

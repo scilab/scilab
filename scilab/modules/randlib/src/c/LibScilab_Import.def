@@ -1,0 +1,27 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+com_
+putlhsvar_
+overload_
+vstk_
+createvarfromptr_
+createvar_
+stack_
+getrhsvar_
+vartype_
+checklhs_
+checkrhs_
+intersci_
+gettype_
+callFunctionFromGateway
+;
+;core_f
+;
+;elementary_functions_f
+;
+logp1_

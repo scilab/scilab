@@ -1,0 +1,9 @@
+LIBRARY    optimization_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; optimization_f
+; --------------------------------------- 
+; export nird common
+nird_

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lcmdiag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lcmdiag</refname>
+    <refpurpose> factorisation diagonale par le plus petit commun multiple  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[N,D]=lcmdiag(H)
+[N,D]=lcmdiag(H,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>H  </term>
+        <listitem>
+          <para>matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N  </term>
+        <listitem>
+          <para>matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>D  </term>
+        <listitem>
+          <para>matrice diagonale de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag  </term>
+        <listitem>
+          <para>chaîne de caractères : <literal>'row'</literal> ou <literal>'col'</literal> (par défaut)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[kN,D]=lcmdiag(H,'row')</literal> calcule une factorisation <literal>D*H=N</literal>,
+    i.e.  H=D^(-1)*N  où D est une matrice diagonale avec D(k,k)=ppcm de la 
+    k-ième ligne de H.den .
+  </para>
+    <para><literal>[N,D]=lcmdiag(H)</literal> ou <literal>[N,D]=lcmdiag(H,'col)</literal> renvoie
+    H=N*D^(-1) avec D diagonale et D(k,k)=ppcm de ma k-ième colonne de H.den .
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+H=[1/s,(s+2)/s/(s+1)^2;1/(s^2*(s+2)),2/(s+2)];
+[N,D]=lcmdiag(H);
+N/D-H
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lcm">lcm</link>
+      </member>
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+      <member>
+        <link linkend="bezout">bezout</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="color">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>color</refname>
+    <refpurpose> returns the color id of a color</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>id=color(name)
+id=color(r,g,b)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>name of a color.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r,g,b</term>
+        <listitem>
+          <para>RGB integer values of a color.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>id</term>
+        <listitem>
+          <para>id of the color.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>color</literal> returns the color id corresponding to its argument:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>name</literal> must be the name of a known color (see <link linkend="color_list">color_list</link>). </para>
+      </listitem>
+      <listitem>
+        <para><literal>r</literal>, <literal>g</literal> and <literal>b</literal> must be integers between 0 and 255
+        corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+        255 means all the intensity of the color. </para>
+      </listitem>
+    </itemizedlist>
+    <para> If the requested color does not exist in the current colormap it is added to the
+    colormap.</para>
+    <para> This function can be used to specify the foreground or background colors when plotting. 
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=linspace(-2*%pi,2*%pi,100)';
+// using existing colors
+plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);
+// new colors: there are added to the colormap
+e=gce(); p1=e.children(1); p2=e.children(2);
+p1.foreground=color("purple"); p2.foreground=color("navy blue");
+// using RGV values
+p1.foreground=color(255,128,128);
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+      <member>
+        <link linkend="color_list">color_list</link>
+      </member>
+      <member>
+        <link linkend="getcolor">getcolor</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

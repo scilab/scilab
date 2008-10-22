@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lu</refname>
+    <refpurpose> factorisation LU  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[L,U]= lu(A)
+[L,U,E]= lu(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe (m x n).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>L,U  </term>
+        <listitem>
+          <para>matrices carrées réelles ou complexes (n x n).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E  </term>
+        <listitem>
+          <para>une matrice de permutation.
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[L,U]= lu(A)</literal> calcule deux matrices <literal>L</literal> et
+      <literal>U</literal> telles que <literal>A = L*U</literal> avec <literal>U</literal>
+      triangulaire supérieure et <literal>L</literal> triangulaire inférieure
+      à une permutation des lignes près.
+    </para>
+    <para>
+      Si <literal>A</literal> est de rang <literal>k</literal>, les lignes
+      <literal>k+1</literal> à <literal>n</literal> de <literal>U</literal> sont nulles.
+    </para>
+    <para>
+    </para>
+    <para><literal>[L,U,E]= lu(A)</literal> calcule trois matrices <literal>L</literal>,
+      <literal>U</literal> et <literal>E</literal> telles que <literal>E*A = L*U</literal>
+      avec <literal>U</literal> triangulaire supérieure, <literal>L</literal>
+      triangulaire inférieure et <literal>E</literal> une matrice de
+      permutation.
+    </para>
+    <para>
+      Si <literal>A</literal> est une matrice réelle, il est possible en
+      utilisant <literal>lufact</literal> et <literal>luget</literal>
+      d'obtenir les matrices de permutations et quand
+      <literal>A</literal> n'est pas inversible la compression des
+      colonnes de la matrice <literal>L</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    a=rand(4,4);
+    [l,u]=lu(a)
+    norm(l*u-a)
+
+
+    [h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
+    [P,L,U,Q]=luget(h);
+    ludel(h)
+    P=full(P);L=full(L);U=full(U);Q=full(Q); 
+    norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+      <member>
+        <link linkend="lusolve">lusolve</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Fonctions Utilisées</title>
+    <para>La décomposition LU est basée sur les routines Lapack  DGETRF pour
+    les matrices réelles et ZGETRF pour le cas complexe. </para>
+  </refsection>
+</refentry>

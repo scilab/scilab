@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="9.10" ProjectIdGuid="{28E4E9CA-3EEC-43EE-9F15-56259C6677B8}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def differential_equations_f.def &gt;nul
+copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/differential_equations_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def differential_equations_f.def &gt;nul
+copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="static /threads" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/differential_equations_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary" MustRebuild="true">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def differential_equations_f.def &gt;nul
+copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/differential_equations_f.lib" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary" MustRebuild="true">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="static /threads" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def differential_equations_f.def &gt;nul
+copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/differential_equations_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="ainvg.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\badd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bbvode.f"/>
+		<File RelativePath=".\bcomp.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bfeval.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bint2d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bint3d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bintg.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bj2.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bjac.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bjacd.f"/>
+		<File RelativePath="bnorm.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bresd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bresid.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bsurf.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bsurfd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bydot.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bydot2.f"/>
+		<File RelativePath="cfode.f"/>
+		<File RelativePath="colnew.f"/>
+		<File RelativePath="daux.f"/>
+		<File RelativePath="dcutet.f"/>
+		<File RelativePath="ddasrt.f"/>
+		<File RelativePath="ddassl.f"/>
+		<File RelativePath="dgbfa.f"/>
+		<File RelativePath="dgbsl.f"/>
+		<File RelativePath="dqag0.f"/>
+		<File RelativePath="dqags.f"/>
+		<File RelativePath="epsalg.f"/>
+		<File RelativePath="ewset.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-bvode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-dasrt.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-dassl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-impl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-int2d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-int3d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-intg.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-ode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-odedc.f"/>
+		<File RelativePath="fnorm.f"/>
+		<File RelativePath="greatr.f"/>
+		<File RelativePath="hpdel.f"/>
+		<File RelativePath="hpins.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\int2d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\int3d.f"/>
+		<File RelativePath="intdy.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intg.f"/>
+		<File RelativePath=".\lcomp.f"/>
+		<File RelativePath=".\loren.f"/>
+		<File RelativePath="lsdisc.f"/>
+		<File RelativePath="lsoda.f"/>
+		<File RelativePath="lsodar.f"/>
+		<File RelativePath="lsode.f"/>
+		<File RelativePath="lsodi.f"/>
+		<File RelativePath=".\lsrgk.f"/>
+		<File RelativePath=".\odeint.f"/>
+		<File RelativePath="order.f"/>
+		<File RelativePath="prepj.f"/>
+		<File RelativePath="prepji.f"/>
+		<File RelativePath="prja.f"/>
+		<File RelativePath="quarul.f"/>
+		<File RelativePath="rchek.f"/>
+		<File RelativePath="rchek2.f"/>
+		<File RelativePath="rkf45.f"/>
+		<File RelativePath=".\rkqc.f"/>
+		<File RelativePath="rksimp.f"/>
+		<File RelativePath="roots.f"/>
+		<File RelativePath="roots2.f"/>
+		<File RelativePath="rscar1.f"/>
+		<File RelativePath="rscma1.f"/>
+		<File RelativePath="rscom1.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_bvode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_dasrt.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_dassl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_feval.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_impl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_ode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_odedc.f"/>
+		<File RelativePath="solsy.f"/>
+		<File RelativePath="stoda.f"/>
+		<File RelativePath="stode.f"/>
+		<File RelativePath="stodi.f"/>
+		<File RelativePath="svcar1.f"/>
+		<File RelativePath="svcma1.f"/>
+		<File RelativePath="svcom1.f"/>
+		<File RelativePath="twodq.f"/>
+		<File RelativePath="vmnorm.f"/>
+		<File RelativePath="vnorm.f"/>
+		<File RelativePath=".\writbufode.f"/>
+		<File RelativePath="xerrwv.f"/>
+		<File RelativePath="xsetf.f"/>
+		<File RelativePath="xsetun.f"/></Filter>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<File RelativePath="..\..\Makefile.am"/>
+		<File RelativePath="..\..\sci_gateway\differential_equations_gateway.xml"/></Files>
+	<Globals/></VisualStudioProject>

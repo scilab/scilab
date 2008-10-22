@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lstcat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lstcat</refname>
+    <refpurpose> concaténation de listes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>lc=lstcat(l1,..ln)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>li  </term>
+        <listitem>
+          <para>une liste ou une variable de type indifférent
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lc  </term>
+        <listitem>
+          <para>une liste
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>lc=lstcat(l1,..ln)</literal> concatène les composantes des listes <literal>li</literal> sous forme d'une liste unique. Si les <literal>li</literal> sont des variables d'un autre type elles sont tout simplement ajoutées comme termes supplémentaires dans la liste.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+lstcat(list(1,2,3),33,list('foo',%s))
+lstcat(1,2,3)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="list">list</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

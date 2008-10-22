@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="householder">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>householder</refname>
+    <refpurpose> Matrice de Householder  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>u=householder(v [,w])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>v  </term>
+        <listitem>
+          <para>vecteur colonne réel ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w  </term>
+        <listitem>
+          <para>vecteur colonne réel ou complexe de même taille que <literal>v</literal> (la valeur par défaut est <literal>eye(v)</literal>)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>u  </term>
+        <listitem>
+          <para>vecteur colonne réel ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Etant donnés deux vecteurs colonnes <literal>v</literal> et <literal>w</literal> de même taille, <literal>householder(v,w)</literal> renvoie un vecteur normé <literal>u</literal>, tel que 
+    <literal>(eye()-2*u*u')*v</literal> est colinéaire à <literal>w</literal>.
+    <literal>(eye()-2*u*u')</literal> est la matrice de la transformation de Householder correspondante.
+  </para>
+    <para>
+    La valeur par défaut de <literal>w</literal> est <literal> eye(v)</literal>. Dans ce cas le vecteur <literal> (eye()-2*u*u')*v</literal> est égal à <literal> eye(v)*norm(v)</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="givens">givens</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gcf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gcf</refname>
+    <refpurpose>Return handle of current graphic window.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>h = gcf()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>handle.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This routine returns the handle of the current graphic window.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    
+    f=gcf(); // Create a figure
+    f.figure_size= [610,469]/2;
+    f.figure_name= "Foo";
+
+    f=figure(); // Create a figure
+    h=uicontrol(f,"style","listbox","position", [10 10 150 160]); // Create a listbox
+    set(h, "string", "item 1|item 2|item3");// fill the list
+    set(h, "value", [1 3]); // select item 1 and 3 in the list
+    gcf()
+
+    scf(0); // Make graphic window 0 the current figure
+    gcf()  // Return the graphic handle of the current figure
+
+    figure(f) // Make window f the current figure
+    gcf() // Return the graphic handle of the current figure
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="gca">gca</link>
+      </member>
+      <member>
+        <link linkend="gce">gce</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer, INRIA</para>
+  </refsection>
+</refentry>

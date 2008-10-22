@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="9.10" ProjectIdGuid="{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib" OutputFile="$(SolutionDir)bin\slicot_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="slicot_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\slicot_f.lib" LinkDLL="true" AdditionalDependencies="linear_algebra_f.lib libscilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul" Description="Build slicot.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Libscilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Libscilab.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib" OutputFile="$(SolutionDir)bin\slicot_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="slicot_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\slicot_f.lib" LinkDLL="true" AdditionalDependencies="linear_algebra_f.lib libscilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul" Description="Build slicot.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Libscilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Libscilab.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib" OutputFile="$(SolutionDir)bin\slicot_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="slicot_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\slicot_f.lib" LinkDLL="true" AdditionalDependencies="linear_algebra_f.lib libscilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul" Description="Build slicot.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Libscilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Libscilab.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib" OutputFile="$(SolutionDir)bin\slicot_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="slicot_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\slicot_f.lib" LinkDLL="true" AdditionalDependencies="linear_algebra_f.lib libscilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul" Description="Build slicot.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Libscilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Libscilab.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\ab01nd.f"/>
+		<File RelativePath="..\ab01od.f"/>
+		<File RelativePath="..\ab13md.f"/>
+		<File RelativePath="..\ereduc.f"/>
+		<File RelativePath="..\Ex-schur.f"/>
+		<File RelativePath="..\fstair.f"/>
+		<File RelativePath="..\ib01ad.f"/>
+		<File RelativePath="..\ib01bd.f"/>
+		<File RelativePath="..\ib01cd.f"/>
+		<File RelativePath="..\ib01md.f"/>
+		<File RelativePath="..\ib01my.f"/>
+		<File RelativePath="..\ib01nd.f"/>
+		<File RelativePath="..\ib01od.f"/>
+		<File RelativePath="..\ib01oy.f"/>
+		<File RelativePath="..\ib01pd.f"/>
+		<File RelativePath="..\ib01px.f"/>
+		<File RelativePath="..\ib01py.f"/>
+		<File RelativePath="..\ib01qd.f"/>
+		<File RelativePath="..\ib01rd.f"/>
+		<File RelativePath="..\inva.f"/>
+		<File RelativePath="..\ma02ad.f"/>
+		<File RelativePath="..\ma02ed.f"/>
+		<File RelativePath="..\ma02fd.f"/>
+		<File RelativePath="..\mb01pd.f"/>
+		<File RelativePath="..\mb01qd.f"/>
+		<File RelativePath="..\mb01rd.f"/>
+		<File RelativePath="..\mb01ru.f"/>
+		<File RelativePath="..\mb01rx.f"/>
+		<File RelativePath="..\mb01ry.f"/>
+		<File RelativePath="..\mb01sd.f"/>
+		<File RelativePath="..\mb01td.f"/>
+		<File RelativePath="..\mb01ud.f"/>
+		<File RelativePath="..\mb01vd.f"/>
+		<File RelativePath="..\mb02pd.f"/>
+		<File RelativePath="..\mb02qy.f"/>
+		<File RelativePath="..\mb02ud.f"/>
+		<File RelativePath="..\mb03od.f"/>
+		<File RelativePath="..\mb03oy.f"/>
+		<File RelativePath="..\mb03ud.f"/>
+		<File RelativePath="..\mb04id.f"/>
+		<File RelativePath="..\mb04iy.f"/>
+		<File RelativePath="..\mb04kd.f"/>
+		<File RelativePath="..\mb04nd.f"/>
+		<File RelativePath="..\mb04ny.f"/>
+		<File RelativePath="..\mb04od.f"/>
+		<File RelativePath="..\mb04oy.f"/>
+		<File RelativePath="..\polmc.f"/>
+		<File RelativePath="..\riccpack.f"/>
+		<File RelativePath="..\sb02mr.f"/>
+		<File RelativePath="..\sb02ms.f"/>
+		<File RelativePath="..\sb02mt.f"/>
+		<File RelativePath="..\sb02nd.f"/>
+		<File RelativePath="..\sb02od.f"/>
+		<File RelativePath="..\sb02ou.f"/>
+		<File RelativePath="..\sb02ov.f"/>
+		<File RelativePath="..\sb02oy.f"/>
+		<File RelativePath="..\sb02qd.f"/>
+		<File RelativePath="..\sb02rd.f"/>
+		<File RelativePath="..\sb02ru.f"/>
+		<File RelativePath="..\sb02sd.f"/>
+		<File RelativePath="..\sb03md.f"/>
+		<File RelativePath="..\sb03mv.f"/>
+		<File RelativePath="..\sb03mw.f"/>
+		<File RelativePath="..\sb03mx.f"/>
+		<File RelativePath="..\sb03my.f"/>
+		<File RelativePath="..\sb03od.f"/>
+		<File RelativePath="..\sb03or.f"/>
+		<File RelativePath="..\sb03ot.f"/>
+		<File RelativePath="..\sb03ou.f"/>
+		<File RelativePath="..\sb03ov.f"/>
+		<File RelativePath="..\sb03oy.f"/>
+		<File RelativePath="..\sb03qx.f"/>
+		<File RelativePath="..\sb03qy.f"/>
+		<File RelativePath="..\sb03sx.f"/>
+		<File RelativePath="..\sb03sy.f"/>
+		<File RelativePath="..\sb04md.f"/>
+		<File RelativePath="..\sb04mr.f"/>
+		<File RelativePath="..\sb04mu.f"/>
+		<File RelativePath="..\sb04mw.f"/>
+		<File RelativePath="..\sb04my.f"/>
+		<File RelativePath="..\sb04nd.f"/>
+		<File RelativePath="..\sb04nv.f"/>
+		<File RelativePath="..\sb04nw.f"/>
+		<File RelativePath="..\sb04nx.f"/>
+		<File RelativePath="..\sb04ny.f"/>
+		<File RelativePath="..\sb04pd.f"/>
+		<File RelativePath="..\sb04px.f"/>
+		<File RelativePath="..\sb04py.f"/>
+		<File RelativePath="..\sb04qd.f"/>
+		<File RelativePath="..\sb04qr.f"/>
+		<File RelativePath="..\sb04qu.f"/>
+		<File RelativePath="..\sb04qy.f"/>
+		<File RelativePath="..\sb04rd.f"/>
+		<File RelativePath="..\sb04rv.f"/>
+		<File RelativePath="..\sb04rw.f"/>
+		<File RelativePath="..\sb04rx.f"/>
+		<File RelativePath="..\sb04ry.f"/>
+		<File RelativePath="..\sb10dd.f"/>
+		<File RelativePath="..\sb10fd.f"/>
+		<File RelativePath="..\sb10pd.f"/>
+		<File RelativePath="..\sb10qd.f"/>
+		<File RelativePath="..\sb10rd.f"/>
+		<File RelativePath="..\select.f"/>
+		<File RelativePath="..\ssxmc.f"/>
+		<File RelativePath="..\tb01wd.f"/>
+		<File RelativePath="..\ZB03OD.f"/></Filter>
+		<File RelativePath="..\..\..\..\..\bin\blasplus.lib"/>
+		<File RelativePath="..\..\..\..\..\bin\lapack.lib"/></Files>
+	<Globals/></VisualStudioProject>

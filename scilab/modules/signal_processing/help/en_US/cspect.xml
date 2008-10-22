@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cspect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cspect</refname>
+    <refpurpose> spectral estimation (correlation method)  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>data if vector, amount of input data if scalar</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>data if vector, amount of input data if scalar</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nlags</term>
+        <listitem>
+          <para>number of correlation lags (positive integer)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ntp</term>
+        <listitem>
+          <para>number of transform points (positive integer)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wtype</term>
+        <listitem>
+          <para>string : <literal>'re','tr','hm','hn','kr','ch'</literal> (window type)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wpar</term>
+        <listitem>
+          <para>optional window parameters for <literal>wtype='kr', wpar&gt;0</literal> and for <literal>wtype='ch', 0 &lt; wpar(1) &lt; .5, wpar(2) &gt; 0</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sm</term>
+        <listitem>
+          <para>power spectral estimate in the interval [0,1]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cwp</term>
+        <listitem>
+          <para>calculated value of unspecified Chebyshev window parameter</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Spectral estimation using the  correlation method.
+    Cross-spectral estimate of <literal>x</literal> and <literal>y</literal> is calculated when both
+    <literal>x</literal> and <literal>y</literal> are given. Auto-spectral estimate of <literal>x</literal> is calculated
+    if <literal>y</literal> is not given.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+rand('normal');rand('seed',0);
+x=rand(1:1024-33+1);
+//make low-pass filter with eqfir
+nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
+h=eqfir(nf,bedge,des,wate);
+//filter white data to obtain colored data 
+h1=[h 0*ones(1:maxi(size(x))-1)];
+x1=[x 0*ones(1:maxi(size(h))-1)];
+hf=fft(h1,-1);   xf=fft(x1,-1);yf=hf.*xf;y=real(fft(yf,1));
+sm=cspect(100,200,'tr',y);
+smsize=maxi(size(sm));fr=(1:smsize)/smsize;
+plot(fr,log(sm))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pspect">pspect</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. Bunks ;  Digital Signal Processing by Oppenheim and Schafer</para>
+  </refsection>
+</refentry>

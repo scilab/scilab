@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectCreator="Intel Fortran" Keyword="Console Application" Version="9.10" ProjectIdGuid="{B6C96508-D326-4691-A49D-FD9D8A369A44}">
+	<Platforms>
+		<Platform Name="Win32"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.exe;$(TargetPath)">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebug" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLinkerTool" SwitchesHaveChanged="true" OutputFile="../../../../../bin/example.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" ProgramDatabaseFile="$(OUTDIR)/example.pdb" SubSystem="subSystemConsole" AdditionalDependencies="../../../../../bin/libscilab.lib"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.exe;$(TargetPath)" MustRebuild="true">
+				<Tool Name="VFMidlTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLinkerTool" SwitchesHaveChanged="true" MustRebuild="true" OutputFile="../../../../../bin/example.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" SubSystem="subSystemConsole" AdditionalDependencies="../../../../../bin/libscilab.lib"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" SwitchesHaveChanged="true" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="callsci.f"/></Filter>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
+	<Globals/></VisualStudioProject>

@@ -1,0 +1,15 @@
+// <-- Non-regression test for bug 2674 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2674
+//
+// <-- Short Description -->
+// regexp function return weird strings.
+//
+// =============================================================================
+// Author : Pierre MARECHAL
+// Scilab Project
+// 29 janvier 2008
+// =============================================================================
+[ start_ind end_ind str_match ] = regexp('XABYABBBZ','/ab*/i');
+if str_match <> ["AB";"ABBB"] then bugmes();quit;end

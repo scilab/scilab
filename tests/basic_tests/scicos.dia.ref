@@ -1,0 +1,51 @@
+ 
+load SCI/modules/scicos/macros/scicos/lib;
+ 
+ 
+ 
+getf SCI/tests/basic_tests/scicos_tests.sci;
+ 
+options=default_options();
+ 
+//build the block set
+ 
+blockslib='scs'+['Branching','Events','Misc','Sinks','Threshold','Linear',0...
+	  'NonLinear','Sources','Electrical','Hydraulics']+'lib';
+ 
+Blocs=[]
+ Blocs  =
+ 
+     []
+ 
+for blocklib=blockslib
+  B=string(blocklib);Blocs=[Blocs;B(2:$)];
+end
+ 
+Blocs(Blocs=="m_sin")=[];
+ 
+ 
+nb=size(Blocs,1);
+ 
+if checkdefine() then bugmes();quit;end
+ 
+if checkdraw() then bugmes();quit;end
+ 
+if checkinputs() then bugmes();quit;end
+ 
+if checkoutputs() then bugmes();quit;end
+ 
+if checkorigin() then bugmes();quit;end
+ 
+if checkset() then bugmes();quit;end
+ 
+if checkdeput() then bugmes();quit;end
+ 
+if checkfiring() then bugmes();quit;end
+ 
+if check_define_ports() then bugmes();quit;end
+ 
+if check_set_ports() then bugmes();quit;end
+ 
+ 
+ 
+ 

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="list">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>list</refname>
+    <refpurpose> Scilab object and list function definition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>list(a1,....an)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+		Creates a <literal>list</literal> with elements <literal>ai</literal>'s which are arbitrary Scilab
+		objects (<literal>matrix, list,...</literal>). Type of <literal>list</literal> objects is 15.
+		<literal>list()</literal> creates the empty <literal>list</literal> (0 element).
+		</para>
+  </refsection>
+  <refsection>
+    <title>Operations on lists</title>
+    <variablelist>
+      <varlistentry>
+        <term>extraction</term>
+        <listitem>
+          <para>: <literal>[x,y,z...]=L(v)</literal> where <literal>v</literal> is a vector of indices;
+				<literal>[x,y,z]=L(:)</literal> extracts all the elements.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>insertion at index i</term>
+        <listitem>
+          <para>:  <literal>L(i)=a</literal> (note that it is not an error to use <literal>L(i)=a</literal>
+				with <emphasis>i &gt; 1 + size(L)</emphasis> but some list entries are then undefined
+				and their extraction gives raise to an error).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>append an element in queue</term>
+        <listitem>
+          <para>:  <literal>L($+1)=e</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>append an element in head</term>
+        <listitem>
+          <para>:  <literal>L(0)=e</literal>. (note that after this operation <literal>e</literal> is
+				at index 1, the initial elements being shifted on the right).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>deletion</term>
+        <listitem>
+          <para>: <literal>L(i)=null()</literal> removes the i-th element of the list <literal>L</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>concatenation of two lists</term>
+        <listitem>
+          <para>: <literal>L3 = lstcat(L1,L2)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>number of elements of a list</term>
+        <listitem>
+          <para> you can use either <literal>nb_elm = size(L)</literal>
+				or <literal>nb_elm = length(L)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iterations with a list</term>
+        <listitem>
+          <para> it is possible to use a list <literal>L</literal> with a <link linkend="for">for</link> loop:
+				<literal>for e=L,...,end</literal> is a loop with <literal>length(L)</literal>
+				iterations, the loop variable <literal>e</literal> being equal to <literal>L(i)</literal>
+				at the i th iteration.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
+    <para>Scilab provides also other kinds of list, the <link linkend="tlist">tlist</link> type (typed list) and
+			the <link linkend="mlist">mlist</link> type which are useful to define a new data type with operator
+			<link linkend="overloading">overloading</link> facilities (<link linkend="hypermatrices">hypermatrices</link> which are
+			multi-dimensionnal arrays in scilab are in fact <emphasis>mlist</emphasis>).
+		</para>
+    <para>Matlab <emphasis>struct</emphasis> are also available.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+l = list(1,["a" "b"])
+l(0) = "foo"
+l($+1) = "hello"
+l(2) = "toto"
+l(3) = rand(1,2)
+l(3) = null()
+lbis = list("gewurtz", "caipirina" ,"debug")
+lter = lstcat(l,lbis)
+size(lter) - size(lbis) - size(l)  // must be zero
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="null">null</link>
+      </member>
+      <member>
+        <link linkend="lstcat">lstcat</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="size">size</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

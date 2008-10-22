@@ -1,0 +1,148 @@
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  Scicos tutorial: Constructing new blocks..
+  
+  There are various ways of defining new blocks on
+  line in Scicos. We see one of them in this
+  tutorial.
+  
+  Let us start by loading Scicos diagram diagram3.cos
+  obtained in the previous tutorial.
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(8))"// Diagram/Load
+//xgetfile: 
+diagram3.cos
+65362,230.1,223.5,1000,"void"// xclick
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We start by converting the Super Block into a block.
+  We do that by opening the Super Block and then using
+  the "Save As Interfacing Function" functionality.
+  o //OK
+0,240.5,258.5,1000,"void"// Block: 32 SUPER_f
+-2,0,0,-1,"execstr(Diagram_1001(11))"// Diagram/Save as Interf Func
+//xgetfile: 
+  toto.sci
+//x_mdialog: Enter the type of Interf. Func. to create
+  0
+  o //OK
+-2,0,0,-1,"execstr(Misc_1001(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We save the interfacing function in toto.sci.
+  o //OK
+-100,0,0,1001,"void"// xclick
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We can now use the new block we have created using
+  the "Add New Block" item in the Edit menu.
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(12))"// Edit/Add new block
+//x_mdialog: Get block GUI function name
+  toto
+  o //OK
+//xgetfile: File containing function: toto
+ toto.sci
+379.8,152.7,-1//xgemouse
+357.4,172,-1//xgemouse
+335.1,186.9,-1//xgemouse
+311.3,200.4,-1//xgemouse
+293.4,213.8,-1//xgemouse
+272.6,224.2,-1//xgemouse
+254.7,234.6,-1//xgemouse
+239.8,245.1,-1//xgemouse
+223.4,255.5,-1//xgemouse
+208.5,264.5,-1//xgemouse
+198.1,273.4,-1//xgemouse
+183.2,280.9,-1//xgemouse
+175.8,285.3,-1//xgemouse
+169.8,289.8,-1//xgemouse
+169.8,295,-1//xgemouse
+170.6,295.8,-1//xgemouse
+172,295.8,-1//xgemouse
+173.5,295.8,-1//xgemouse
+175,295.8,-1//xgemouse
+176.5,295.8,-1//xgemouse
+177.3,296.5,-1//xgemouse
+178,297.3,-1//xgemouse
+178,296.5,-1//xgemouse
+177.3,295,-1//xgemouse
+177.3,293.5,-1//xgemouse
+177.3,291.3,-1//xgemouse
+177.3,285.3,-1//xgemouse
+177.3,277.9,-1//xgemouse
+177.3,271.9,-1//xgemouse
+177.3,266,-1//xgemouse
+177.3,263.7,-1//xgemouse
+177.3,262.2,-1//xgemouse
+177.3,260.7,-1//xgemouse
+177.3,260,-1//xgemouse
+177.3,258.5,-1//xgemouse
+177.3,257,-1//xgemouse
+177.3,255.5,-1//xgemouse
+177.3,254,-1//xgemouse
+177.3,252.5,-1//xgemouse
+177.3,251,-1//xgemouse
+177.3,249.6,-1//xgemouse
+177.3,248.1,-1//xgemouse
+177.3,246.6,-1//xgemouse
+177.3,245.1,-1//xgemouse
+177.3,243.6,-1//xgemouse
+178,242.1,-1//xgemouse
+179.5,237.6,-1//xgemouse
+181,236.9,-1//xgemouse
+184,233.9,-1//xgemouse
+189.9,232.4,-1//xgemouse
+197.4,229.4,-1//xgemouse
+201.8,227.9,-1//xgemouse
+212.2,225,-1//xgemouse
+222.7,222,-1//xgemouse
+234.6,217.5,-1//xgemouse
+243.5,216,-1//xgemouse
+253.9,213,-1//xgemouse
+261.4,211.5,-1//xgemouse
+267.3,210.1,-1//xgemouse
+271.8,208.6,-1//xgemouse
+274,208.6,-1//xgemouse
+275.5,208.6,-1//xgemouse
+276.3,208.6,-1//xgemouse
+277,207.8,-1//xgemouse
+277,208.6,-1//xgemouse
+277.8,208.6,-1//xgemouse
+277.8,209.3,-1//xgemouse
+277.8,210.1,-1//xgemouse
+277.8,210.8,-1//xgemouse
+277.8,211.5,-1//xgemouse
+277.8,212.3,-1//xgemouse
+277.8,213.8,-1//xgemouse
+277.8,215.3,-1//xgemouse
+277.8,216.8,-1//xgemouse
+277.8,218.2,-1//xgemouse
+277.8,220.5,-1//xgemouse
+277.8,226.4,-1//xgemouse
+277.8,227.9,-1//xgemouse
+277.8,229.4,-1//xgemouse
+277.8,230.2,-1//xgemouse
+277.8,231.7,-1//xgemouse
+277.8,232.4,-1//xgemouse
+277.8,233.2,-1//xgemouse
+277.8,233.9,-1//xgemouse
+278.5,233.9,-1//xgemouse
+278.5,233.9,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We can replace the Super Block with the new block using
+  the Replace functionality. This avoids redoing the link
+  to the square wave generator.
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(7))"// Edit/Replace
+0,296.4,251,1000,"void"// Block: 34 toto
+0,241.3,266.7,1000,"void"// Block: 32 SUPER_f
+-2,0,0,-1,"execstr(Edit_1000(10))"// Edit/Delete
+0,300.1,258.5,1000,"void"// Block: 34 toto
+-2,0,0,-1,"execstr(Diagram_1000(5))"// Diagram/Rename
+//x_dialog:Enter the new diagram name
+  diagram4
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(6))"// Diagram/Save
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,0,-1,"execstr(Diagram_1000(16))"// Diagram/Quit

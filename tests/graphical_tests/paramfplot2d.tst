@@ -1,0 +1,11 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/paramfplot2d_data.ref','rb');
+%ans = deff('y=f(x,t)', 'y=t*sin(x)');
+if load_ref('%ans') then   pause,end,
+
+x = linspace(0, 2 * %pi, 50);theta = 0:0.05:1;
+paramfplot2d(f, x, theta);
+xdel_run(winsid());
+
+mclose(%U);

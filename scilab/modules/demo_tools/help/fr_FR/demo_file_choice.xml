@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_file_choice">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demo_file_choice</refname>
+    <refpurpose> choisit et exécute un item au sein d'une liste </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>demo_file_choice(path,ch)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+			La fonction demo_file_choice choisit et exécute un item choisi dans la variable
+			'demolist' qui doit figurer avant. La variable 'demolist' est une matrice de
+			texte dont la premiere colonne contient des noms d'items affichée dans une
+			fenêtre d'options et la deuxième, le nom d'un fichier correspondant qui sera
+			exécuté Le titre de la fenêtre d'options est 'Choose a demo'.
+			La variable 'path' est le chemin d'accès aux fichiers appelée dans la deuxième
+			colonne. La variable 'ch' permet d'éviter les cas particuliers 'root' et 'anim'
+			qui sont destinés à des démonstrations particulières. Il faut donc mettre autre
+			chose que 'root' ou 'anim', 'no' par exemple.
+			Quand on choisit d'abandonner la fenêtre d'options, la console est remise à sa largeur 
+			initiale.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+demolist=['n-pendulum','npend/npend_gateway.sce';
+	  'Wheel simulation','wheel2/wheel_gateway.sce';
+	  'Bike Simulation','bike/bike_gateway.sce';
+	  'ODE''S','ode/ode.dem';
+	  'DAE''S','dae/dae.dem']
+
+demo_file_choice('SCI/demos/simulation/','no');
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="demo_function_choice">demo_function_choice</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>G.H</member>
+    </simplelist>
+  </refsection>
+</refentry>

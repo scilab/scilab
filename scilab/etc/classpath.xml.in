@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE classpaths SYSTEM "../modules/jvm/xml/classpath.dtd">
+<!-- =================== -->
+<!--
+ default CLASSPATH for Scilab
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007/2008
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+<!-- 
+Scilab Java dependencies can be load in different ways. 
+It can be:
+* startup - Load immediatly the dep when Scilab starts (default behaviour)
+* background - After Scilab engine is loaded, load the dep in the background
+* onUse - Load the deps only when needed (once)
+
+Some deps can be also disabled only for a specific mode.
+The option is "disableUnderMode" and can be:
+* STD - Normal mode
+* NW - No Window mode (ie command line but with graphics 
+* API - Scilab as an API 
+-->
+
+<classpaths>
+<path value="$SCILAB/thirdparty/"/>
+
+<!-- Mandatory on startup -->
+<path value="@FLEXDOCK@"/>
+<path value="@JROSETTA_API@" disableUnderMode="NW"/>
+<path value="@JROSETTA_ENGINE@" disableUnderMode="NW"/>
+<path value="@SKINLF@"/>
+<path value="@LOOKS@"/>
+<path value="@COMMONS_LOGGING@"/>
+<path value="@JHALL@"/>
+
+<!-- Load when needed -->
+<path value="@JOGL@" load="onUse">
+	<load on="graphics"/>
+	<load on="graphic_export"/>
+</path>
+<path value="@GLUEGEN_RT@" load="onUse">
+	<load on="graphics"/>
+	<load on="graphic_export"/>
+</path>
+
+<!-- Documentation (not mandatory) -->
+<path value="@JEUCLID_CORE@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="@FOP@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="@SAXON@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="@BATIK@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+<!-- PDF doc generation -->
+<path value="@COMMONS_IO@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+<!-- PDF doc generation (dep of jeuclid) -->
+<path value="@XMLGRAPHICS_COMMONS@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="@AVALON_FRAMEWORK@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+
+<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+
+<!-- Console GUI dep -->
+<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" disableUnderMode="NW"/>
+
+<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
+
+<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
+<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
+
+<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
+<path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
+<path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
+
+<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
+
+<path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
+<path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar"/>
+
+<path value="$SCILAB/modules/javasci/jar/javasci.jar"/>
+
+</classpaths>

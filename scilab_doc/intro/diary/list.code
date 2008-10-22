@@ -1,0 +1,28 @@
+a=33;b=11;c=0;
+l=list();l(0)=a;  //Add at begining
+l=list();l(1)=a;  //Change first entry
+l=list(a);l(2)=b;  //Add at end
+l=list(a);l(0)=b;  //Add at begining
+l=list(a);l(1)=c;
+l=list();l(0)=null();   //Empty list
+l=list();l(1)=null();
+i='i';
+l=list(a,list(c,b),i);l(1)=null();
+l=list(a,list(c,list(a,c,b),b),'h');
+l(2)(2)(3)=null();
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2).a;   //Field a in second entry of dts
+dts(2).b(1,2);   // entry (1,2) of matrix dts(2).b
+[a,b]=dts(2)(['a','b']); //Assign two variables
+l=list(1,'qwerw',%s);  
+l(1)='Changed';  //modifying a list
+l(0)='Added';    //Add at begining
+l(6)=['one more';'added'];  //Undefined entries 
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2).a=33;   //Set field a of dts(2) to 33
+dts(2).b(1,2)=-100;  //...
+l=list(1,'qwerw',%s);
+[a,b]=l([3 2]);  //Defining both a and b
+l($);   //last entry
+L=list(33,list(l,33));  //entry 2 of L is a list
+

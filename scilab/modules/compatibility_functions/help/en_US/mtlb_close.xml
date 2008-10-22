@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_close">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_close</refname>
+    <refpurpose>Matlab close emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Scilab equivalent for Matlab <literal>close</literal> is different according to the current figure type (uicontrol or graphic one).</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When current figure is a uicontrol one: Scilab equivalent for Matlab <literal>close</literal> is <literal>close</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When current figure is a graphic one: Scilab equivalent for Matlab <literal>close</literal>
+	is <literal>xdel</literal> or <literal>delete</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	In Scilab we do not get an error status.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The function <literal>mtlb_close([h])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>close([h])</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_close</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>h</literal> is a uicontrol figure
+        <literal>mtlb_close(h)</literal> may be replaced by <literal>close(h)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>h</literal> is a graphic figure
+        <literal>mtlb_close(h)</literal> may be replaced by <literal>delete(h)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_close</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xdel">xdel</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="winsid">winsid</link>
+      </member>
+      <member>
+        <link linkend="close">close</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grayplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>grayplot</refname>
+    <refpurpose>2D plot of a surface using
+  colors</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>grayplot(x,y,z,[strf,rect,nax])
+grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>real row vectors of size n1 and n2.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
+          of the surface at the point (x(i),y(j)).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>This represents a sequence of statements <literal>key1=value1,
+          key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: rect, nax, strf
+          or axesflag and frameflag (see <literal>plot2d</literal> and
+          <literal>plot2d_old_version</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf,rect,nax</term>
+        <listitem>
+          <para>see <literal>plot2d</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>grayplot</literal> makes a 2D plot of the surface given by
+    <literal>z</literal> on a grid defined by <literal>x</literal> and <literal>y</literal>.
+    Each rectangle on the grid is filled with a gray or color level depending
+    on the average value of <literal>z</literal> on the corners of the
+    rectangle.</para>
+    <para>Enter the command <literal>grayplot()</literal> to see a demo.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=-10:10; y=-10:10;m =rand(21,21);
+grayplot(x,y,m,rect=[-20,-20,20,20])
+t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+clf()
+grayplot(t,t,m)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fgrayplot">fgrayplot</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

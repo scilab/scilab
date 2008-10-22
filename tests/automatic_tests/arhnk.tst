@@ -1,0 +1,15 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/arhnk_data.ref','rb');
+A = diag([-1,-2,-3,-4,-5]);B = rand(5, 1);C = rand(1, 5);
+sl = syslin('c', A, B, C);
+slapprox = arhnk(sl, 2);
+[nk,W] = hankelsv(sl);nk;
+if load_ref('nk') then   pause,end,
+
+[nkred,Wred] = hankelsv(slapprox);nkred;
+if load_ref('nkred') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

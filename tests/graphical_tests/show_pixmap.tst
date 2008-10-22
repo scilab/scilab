@@ -1,0 +1,25 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/show_pixmap_data.ref','rb');
+%ans = set('figure_style', 'new');
+if load_ref('%ans') then   pause,end,
+
+f = gcf();f('pixmap') = 'on';//set the pixmap mode
+a = gca();a('data_bounds') = [0,0;10,10];
+//construct two rectangles
+xrects([0;10;1;1], 5);r1 = gce();r1 = r1('children');
+xrects([0;1;1;1], 13);r2 = gce();r2 = r2('children');
+//animation loop
+for k = 1:1000,
+  //draw the rectangles in the pixmap buffer
+  move(r1, [0.01,-0.01]);%ans = move(r2, [0.01,0.01]);
+  if load_ref('%ans') then   pause,end,
+
+  //show the pixmap buffer
+  %ans = show_pixmap();
+  if load_ref('%ans') then   pause,end,
+
+end,
+xdel_run(winsid());
+
+mclose(%U);

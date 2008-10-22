@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="less">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>less</refname>
+    <refpurpose> (&lt;) lower than comparison</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="great">
+    <refname>great</refname>
+    <refpurpose> (&lt;) greater than comparison</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    logical comparison symbol
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>&lt;&gt;</term>
+        <listitem>
+          <para>means "different" (same as <literal>~=</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;</term>
+        <listitem>
+          <para>means "lower than"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&gt;</term>
+        <listitem>
+          <para>means "larger than"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;=</term>
+        <listitem>
+          <para>means lower than or equal to.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&gt;=</term>
+        <listitem>
+          <para>means larger than or equal to</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="if">if</link>
+      </member>
+      <member>
+        <link linkend="comparison">comparison</link>
+      </member>
+      <member>
+        <link linkend="equal">equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

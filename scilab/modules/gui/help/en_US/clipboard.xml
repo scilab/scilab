@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clipboard">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>clipboard</refname>
+    <refpurpose>Copy and paste strings to and from the system clipboard.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+clipboard("copy",data)
+str=clipboard("paste")
+clipboard("do","paste")
+clipboard("do","copy")
+clipboard("do","empty")
+clipboard(winnum,"EMF")
+clipboard(winnum,"DIB")
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>data</term>
+        <listitem>
+          <para>Scilab variable or data to set as the clipboard contents.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>The clipboard contents returned as a Scilab character string.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>winnum</term>
+        <listitem>
+          <para>Number of the graphic window to set as the clipboard contents.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>clipboard("copy",data)</literal> sets the clipboard contents to
+    data. If data is not a character array, the clipboard uses <literal>sci2exp</literal> to
+    convert it to a string.</para>
+    <para><literal>str = clipboard("paste")</literal> returns the current contents of
+    the clipboard as a string or as an empty string (""), if the current
+    clipboard contents cannot be converted to a string.</para>
+    <para><literal>clipboard("do","paste")</literal>,
+    <literal>clipboard("do","copy")</literal>, <literal>clipboard("do","empty")</literal>
+    performs a paste, copy or empty clipboard.</para>
+    <para><literal>clipboard(winnum,"EMF")</literal> copy a graphic window identified by his window's number in the clipboard to EMF format.</para>
+    <para><literal>clipboard(winnum,"DIB")</literal> copy a graphic window identified by his window's number in the clipboard to DIB format.</para>
+    <para>Note that <literal>clipboard</literal> function works only when Scilab used in window mode.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

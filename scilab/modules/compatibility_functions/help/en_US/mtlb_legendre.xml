@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2006 - INRIA - Farid BELAHCENE 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_legendre">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_legendre</refname>
+    <refpurpose>Matlab legendre emulation
+  function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>P = mtlb_legendre(n,X)
+P = mtlb_legendre(n,X[,normflag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>a scalar, vector, matrix or hypermatrix with elements in
+          [-1,1]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>a positive scalar integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>normflag</term>
+        <listitem>
+          <para>a string ('sch' or 'norm')</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab <literal>legendre</literal> behave differently in some
+    particular cases:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Scilab <literal>legendre(m,n,X)</literal> evaluates the
+            <literal>legendre</literal> function of degree n and order n for the
+            <literal>X</literal> elements. Matlab <literal>legendre(n,X)</literal>
+            evaluates the Legendre functions of degree <literal>n</literal> and
+            order <literal>m</literal>=0,1,...,n. (emulated by mtlb_legendre) for
+            the <literal>X</literal> elements.</para>
+      </listitem>
+      <listitem>
+        <para>The option normflag= <literal>'sch'</literal> doesn't exist for
+            Scilab legendre (emulated)</para>
+      </listitem>
+      <listitem>
+        <para>If <literal>X</literal> is a hypermatrix then Scilab
+            <literal>legendre(n,X)</literal> doesn't work (emulated)</para>
+      </listitem>
+    </itemizedlist>
+    <para>The function <literal>mtlb_legendre(n,X[,normflag])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>legendre(n,X[,normflag])</literal>
+    when it was not possible to know what were the inputs while porting Matlab
+    code to Scilab. This function will determine the correct semantic at run
+    time. If you want to have a more efficient code it is possible to replace
+    <literal>mtlb_legendre</literal> call:</para>
+    <itemizedlist>
+      <listitem>
+        <para>If <literal>X</literal> is a scalar, a vector or a matrix
+            <literal>mtlb_legendre(n,X[,'norm']) </literal>may be replaced by
+            <literal>legendre(n,0:n,X[,'norm'])</literal></para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_legendre</literal> has not to be used for hand coded
+    functions.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>F.B.</member>
+    </simplelist>
+  </refsection>
+</refentry>

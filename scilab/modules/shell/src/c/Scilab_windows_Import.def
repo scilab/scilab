@@ -1,0 +1,11 @@
+	LIBRARY    scilab_windows.dll
+
+
+EXPORTS 
+  getYConsoleScreenSize
+  getXConsoleScreenSize
+  strdup_windows
+  LaunchScilab
+  LaunchScilabLock
+  ANSIToUTF8
+  UTF8ToANSI

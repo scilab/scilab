@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mean">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mean</refname>
+    <refpurpose>mean (row mean, column mean) of vector/matrix
+  entries</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=mean(x)
+y=mean(x,'r')
+y=mean(x,'c')
+y=mean(x,'m')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>scalar or vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>For a vector or a matrix <literal>x</literal>, <literal>y=mean(x)</literal> returns
+    in the scalar <literal>y</literal> the mean of all the entries of
+    <literal>x</literal>.</para>
+    <para><literal>y=mean(x,'r')</literal> (or, equivalently, <literal>y=mean(x,1)</literal>)
+    is the rowwise mean. It returns a row vector: <literal>y(j)=
+    mean(x(:,j))</literal></para>
+    <para><literal>y=mean(x,'c')</literal> (or, equivalently, <literal>y=mean(x,2)</literal>)
+    is the columnwise mean. It returns a column vector: <literal>y(i)=
+    mean(x(i,:))</literal></para>
+    <para><literal>y=mean(x,'m')</literal> is the mean along the first non singleton
+    dimension of x (for compatibility with Matlab).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=[1,2,10;7,7.1,7.01];
+mean(A)
+mean(A,'r')
+mean(A,'c')
+A=matrix(1:12,[1,1,2,3,2]);
+// in this case mean(A,'m') is equivalent to mean(A,3), the first non singleton dimension of A
+y=mean(A,'m')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sum">sum</link>
+      </member>
+      <member>
+        <link linkend="median">median</link>
+      </member>
+      <member>
+        <link linkend="st_deviation">st_deviation</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

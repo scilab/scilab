@@ -1,0 +1,8 @@
+LIBRARY    signal_processing.dll
+
+
+EXPORTS
+dgety_
+dgetx_
+setdgetx_
+setdgety_

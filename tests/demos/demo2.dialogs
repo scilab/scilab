@@ -1,0 +1,211 @@
+//x_choose:  Click to choose a demo
+  2//Graphics
+//x_choose:  Choose a demo
+  1//2D and 3D plots
+//x_choose:  Choose a demo    
+  1//plot2d
+//x_choose:  Choose a demo    
+  2//plot2d1
+//x_choose:  Choose a demo    
+  3//plot2d3
+//x_choose:  Choose a demo    
+  4//plot2d1
+//x_choose:  Choose a demo    
+  5//histplot
+//x_choose:  Choose a demo    
+  6//fplot2d
+//x_choose:  Choose a demo    
+  7//param3d
+//x_choose:  Choose a demo    
+  8//param3d
+//x_choose:  Choose a demo    
+  9//plot3d
+//x_choose:  Choose a demo    
+  10//fplot3d
+//x_choose:  Choose a demo    
+  11//plot3d1
+//x_choose:  Choose a demo    
+  12//fplot3d1
+//x_choose:  Choose a demo    
+  13//contour
+//x_choose:  Choose a demo    
+  14//fcontour
+//x_choose:  Choose a demo    
+  15//champ
+//x_choose:  Choose a demo    
+  16//fchamp
+//x_choose:  Choose a demo    
+  17//grayplot
+//x_choose:  Choose a demo    
+  18//fgrayplot
+//x_choose:  Choose a demo    
+  19//errbar
+//x_choose:  Choose a demo    
+  20//abaque
+//x_choose:  Choose a demo    
+  20//abaque
+//x_choose:  Choose a demo    
+  21//zgrid
+//x_choose:  Choose a demo    
+  22//xgeom 1
+//x_choose:  Choose a demo    
+  23//xgeom 2
+//x_choose:  Choose a demo    
+  24//contour (3d) 2
+//x_choose:  Choose a demo    
+  25//contour (3d) 3
+//x_choose:  Choose a demo    
+  26//contour (3d) 4
+//x_choose:  Choose a demo    
+  27//plot2d+gr_menu
+//x_choose:  Choose a demo    
+  28//plot3d+gr_menu
+//x_choose:  Choose a demo    
+  29//plots+xsetech
+//x_choose:  Choose a demo    
+  30//fac3d
+//x_choose:  Choose a demo    
+  31//fac3d1
+//x_choose:  Choose a demo    
+  0// Cancel
+//x_choose:  Choose a demo
+  2//Basic functions
+//x_choose:  Choose a demo
+  1//Rectangles, Arcs, Polylines, Segments and Numbers
+//x_choose:  Choose a demo
+  2//Rectangles, Arcs, Polylines and Strings
+//x_choose:  Choose a demo
+  3//Setting properties
+//x_choose:  Choose a demo
+  4//Window properties
+//x_choose:  Choose a demo
+  5//Set of rectangles
+//x_choose:  Choose a demo
+  6//Colored matrix
+//x_choose:  Choose a demo
+  7//Colored histogram
+//x_choose:  Choose a demo
+  8//Pie Chart
+//x_choose:  Choose a demo
+  0// Cancel
+//x_choose:  Choose a demo
+  3//Animation
+//x_choose:  Choose a demo
+  1//Rotation of a 3D Surface (plot3d1)
+//x_choose:  Choose a demo
+  2//3D curve (param3d)
+//x_choose:  Choose a demo
+  3//Lorentz curve (param3d) 
+//x_choose:  Choose a demo
+  4//Rotation of a 3D contour
+//x_choose:  Choose a demo
+  5//Evolution of a 3D surface (plot3d)
+//x_choose:  Choose a demo
+  6//N link pendulum movement
+//x_choose:  Choose a demo
+  7//Riemann surface
+//x_choose:  Choose a demo
+  8//Shell
+//x_choose:  Choose a demo
+  0// Cancel
+//x_choose:  Choose a demo
+  4//Finite Elements
+//x_choose:  Choose a demo
+  1//Finite Element display
+//x_choose:  Choose a demo
+  2//Finite Element display
+//x_choose:  Choose a demo
+  3//Sfgrayplot 
+//x_choose:  Choose a demo
+  4//Finite Element display with colorbar
+//x_choose:  Choose a demo
+  0// Cancel
+//x_choose:  Choose a demo
+  5//Bezier curves and surfaces
+//x_choose:  Bezier demos (From Euler)
+  1//Gammatest
+//x_choose:  Bezier demos (From Euler)
+  2//2D curve Bezier test
+//x_choose:  Bezier demos (From Euler)
+  4//Bezier surface test
+//x_choose:  Bezier demos (From Euler)
+  4//Bezier surface test
+//x_choose:  Bezier demos (From Euler)
+  5//Bezier surface test 2
+//x_choose:  Bezier demos (From Euler)
+  3//3D curve Bezier test
+//x_choose:  Bezier demos (From Euler)
+  0// Cancel
+//x_choose:  Choose a demo
+  6//More surfaces
+//x_choose:  Surface demos (From Euler)
+  1//Surface with holes 1
+//x_choose:  Surface demos (From Euler)
+  2//Surface with holes 2
+//x_choose:  Surface demos (From Euler)
+  3//Sphere
+//x_choose:  Surface demos (From Euler)
+  4//Shell
+//x_choose:  Surface demos (From Euler)
+  5//Spiral
+//x_choose:  Surface demos (From Euler)
+  6//Rings
+//x_choose:  Surface demos (From Euler)
+  7//Torus
+//x_choose:  Surface demos (From Euler)
+  8//Torus 1
+//x_choose:  Surface demos (From Euler)
+  9//Moebius
+//x_choose:  Surface demos (From Euler)
+  10//Tube
+//x_choose:  Surface demos (From Euler)
+  11//Black Hole
+//x_choose:  Surface demos (From Euler)
+  12//Riemann surface (n=2)
+//x_choose:  Surface demos (From Euler)
+  0// Cancel
+//x_choose:  Choose a demo
+  7//Misc
+//x_choose:  Choose a demo
+  8//Complex elementary functions
+//x_choose:  visualisation of  complex
+  1//log
+//x_choose:  visualisation of  complex
+  2//exp
+//x_choose:  visualisation of  complex
+  3//tan
+//x_choose:  visualisation of  complex
+  4//atan
+//x_choose:  visualisation of  complex
+  5//sin
+//x_choose:  visualisation of  complex
+  6//asin
+//x_choose:  visualisation of  complex
+  7//cos
+//x_choose:  visualisation of  complex
+  8//acos
+//x_choose:  visualisation of  complex
+  9//sinh
+//x_choose:  visualisation of  complex
+  10//asinh
+//x_choose:  visualisation of  complex
+  11//cosh
+//x_choose:  visualisation of  complex
+  12//acosh
+//x_choose:  visualisation of  complex
+  13//tanh
+//x_choose:  visualisation of  complex
+  14//atanh
+//x_choose:  visualisation of  complex
+  15//custom
+//x_mdialog: ---BE CAREFUL NOTHING IS PROTECTED---
+  (1)./((z+2).*(2-z))
+  Disk
+  1.9
+  No
+  o //OK
+//x_choose:  visualisation of  complex
+  0// Cancel
+//x_choose:  Choose a demo
+  0// Cancel
+  0// Cancel

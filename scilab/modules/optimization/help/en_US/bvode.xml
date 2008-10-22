@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bvode">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bvode</refname>
+    <refpurpose> boundary value problems for ODE</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[z]=bvode(points,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>The solution of the ode evaluated on the mesh given by points</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>points</term>
+        <listitem>
+          <para>an array which gives the points for which we want the solution</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ncomp</term>
+        <listitem>
+          <para>number of differential equations   (ncomp &lt;= 20)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>a vector of size <literal>ncomp</literal>. <literal>m(j)</literal> gives the  order of the j-th differential equation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>aleft</term>
+        <listitem>
+          <para>left end of interval</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>aright</term>
+        <listitem>
+          <para>right end of interval</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zeta</term>
+        <listitem>
+          <para><literal>zeta(j)</literal> gives j-th side condition point (boundary point). must have</para>
+          <para>
+            <literal>zeta(j) &lt;= zeta(j+1)</literal>
+          </para>
+          <para>
+    all side condition points must be mesh points in all meshes used, see description of <literal>ipar(11)</literal> and <literal>fixpnt</literal> below.
+  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ipar</term>
+        <listitem>
+          <para>an integer array dimensioned at least 11. a list of the parameters in <literal>ipar</literal> and their meaning follows some parameters are renamed in bvode; these new names are given in parentheses.</para>
+          <variablelist>
+            <varlistentry>
+              <term>ipar(1)  </term>
+              <listitem>
+                <para>0  if the problem is linear, 1 if the problem is nonlinear</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(2)  </term>
+              <listitem>
+                <para>= number of collocation points per subinterval  (= k ) where</para>
+                <para>
+                  <literal>max m(i) &lt;=  k &lt;= 7 .</literal>
+                </para>
+                <para>
+    if <literal>ipar(2)=0</literal> then bvode sets  
+  </para>
+                <para>
+                  <literal>k = max ( max m(i)+1, 5-max m(i) )</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(3)  </term>
+              <listitem>
+                <para>= number of subintervals in the initial mesh  ( = n ). if <literal>ipar(3) = 0</literal> then bvode arbitrarily sets <literal>n = 5</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(4)</term>
+              <listitem>
+                <para>= number of solution and derivative tolerances.  ( = ntol ) we require</para>
+                <para>
+                  <literal>0 &lt; ntol &lt;= mstar.</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(5)</term>
+              <listitem>
+                <para>= dimension of <literal>fspace</literal> ( = ndimf ) a
+                real work array. its size provides a constraint on
+                nmax. choose ipar(5) according to the formula:</para>
+                <para>
+                  <literal>ipar(5)&gt;=nmax*nsizef</literal>
+                </para>
+                <para>where</para>
+                <para><literal>nsizef=4+3*mstar+(5+kd)*kdm+(2*mstar-nrec)*2*mstar</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(6)</term>
+              <listitem>
+                <para>= dimension of ispace ( = ndimi )an integer work
+                 array. its size provides a constraint on nmax, the
+                 maximum number of subintervals. choose
+                 <literal>ipar(6)</literal> according to the formula:</para>
+                <para>
+                  <literal>ipar(6)&gt;=nmax*nsizei</literal>
+                </para>
+                <para>where</para>
+                <para><literal>nsizei=3 + kdm</literal> with
+                 <literal>kdm=kd+mstar</literal> ; <literal>kd=k*ncomp </literal>;
+                 <literal>nrec</literal>=number of right end boundary
+                 conditions.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(7) </term>
+              <listitem>
+                <para>output control ( = iprint )</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>= -1</term>
+                    <listitem>
+                      <para>for full diagnostic printout</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 0</term>
+                    <listitem>
+                      <para>for selected printout</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 1</term>
+                    <listitem>
+                      <para>for no printout</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(8)  </term>
+              <listitem>
+                <para>( = iread )</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+                    <listitem>
+                      <para>causes bvode to generate a uniform initial mesh.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= xx</term>
+                    <listitem>
+                      <para>Other values are not implemented yet in Scilab</para>
+                      <variablelist>
+                        <varlistentry>
+                          <term>= 1</term>
+                          <listitem>
+                            <para>if the initial mesh is provided by the user.  it is defined in fspace as follows:  the mesh</para>
+                            <para>
+    will occupy  <literal>fspace(1), ..., fspace(n+1)</literal>. the user needs to supply only the interior mesh points  <literal>fspace(j) = x(j), j = 2, ..., n.</literal>
+  </para>
+                          </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                          <term>= 2 if the initial mesh is supplied by the user</term>
+                          <listitem>
+                            <para>as with <literal>ipar(8)=1</literal>, and in addition no adaptive mesh selection is to be done.</para>
+                          </listitem>
+                        </varlistentry>
+                      </variablelist>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(9)  </term>
+              <listitem>
+                <para>( = iguess )</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+                    <listitem>
+                      <para>if no initial guess for the solution is provided.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 1</term>
+                    <listitem>
+                      <para>if an initial guess is provided by the user in subroutine  <literal>guess</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 2</term>
+                    <listitem>
+                      <para>if an initial mesh and approximate solution coefficients are provided by the user in fspace. (the former and new mesh are the same).</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 3</term>
+                    <listitem>
+                      <para>if a former mesh and approximate solution coefficients are provided by the user in fspace, and the new mesh is to be taken twice as coarse; i.e.,every second point from the former mesh.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 4</term>
+                    <listitem>
+                      <para>if in addition to a former initial mesh and approximate solution coefficients, a new mesh is provided in fspace as well. (see description of output for further details on iguess = 2, 3, and 4.)</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(10)  </term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+                    <listitem>
+                      <para>if the problem is regular</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 1</term>
+                    <listitem>
+                      <para>if the first relax factor is =rstart, and the nonlinear iteration does not rely on past covergence (use for an extra sensitive nonlinear problem only).</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>= 2</term>
+                    <listitem>
+                      <para>if we are to return immediately upon  (a) two successive nonconvergences, or  (b) after obtaining error estimate for the first time.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ipar(11)  </term>
+              <listitem>
+                <para>= number of fixed points in the mesh other than <literal>aleft</literal>
+  and <literal>aright</literal>. ( = nfxpnt , the dimension of
+  <literal>fixpnt</literal>) the code requires that all side condition
+  points other than <literal>aleft</literal> and <literal>aright</literal> (see
+  description of zeta ) be included as fixed points in
+  <literal>fixpnt</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ltol</term>
+        <listitem>
+          <para>an array of dimension <literal>ipar(4)</literal>.
+          <literal>ltol(j) = l</literal> specifies that the j-th tolerance
+          in tol controls the error in the l-th component of
+          <literal>z(u)</literal>.  also require that:</para>
+          <para>
+            <literal>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol) &lt;= mstar</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>an array of dimension
+          <literal>ipar(4)</literal>. <literal>tol(j)</literal> is the error
+          tolerance on the <literal>ltol(j)</literal> -th component of
+          <literal>z(u)</literal>. thus, the code attempts to satisfy for
+          <literal>j=1:ntol</literal>  on each subinterval</para>
+          <programlisting><![CDATA[
+        abs(z(v)-z(u))       <=     tol(j)*abs(z(u))     +tol(j)
+                     ltol(j)                       ltol(j)
+]]></programlisting>
+          <para>
+    if <literal>v(x)</literal> is the approximate solution vector.
+  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fixpnt</term>
+        <listitem>
+          <para>an array of dimension <literal>ipar(11)</literal>. it contains the points, other than <literal>aleft</literal> and <literal>aright</literal>, which are to be included in every mesh.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>externals</term>
+        <listitem>
+          <para>The function <literal>fsub,dfsub,gsub,dgsub,guess</literal> are Scilab
+  externals i.e. functions (see syntax below) or the name of a Fortran
+  subroutine (character string) with specified calling sequence or a
+  list. An external as a  character string refers to the name of a
+  Fortran subroutine. The Fortran coded function interface to bvode
+  are specified in the file <literal>fcol.f</literal>.</para>
+          <variablelist>
+            <varlistentry>
+              <term>fsub</term>
+              <listitem>
+                <para>name of subroutine for evaluating</para>
+                <programlisting><![CDATA[
+                                                t
+                f(x,z(u(x))) =    (f ,...,f     )  
+                                    1      ncomp
+]]></programlisting>
+                <para>
+    at a point x in <literal>(aleft,aright)</literal>. it should have the heading  <literal>[f]=fsub(x,z)</literal>  where <literal>f</literal> is the vector containing the value of <literal>fi(x,z(u))</literal> in the i-th component and 
+  </para>
+                <programlisting><![CDATA[
+                                                    t
+                         z(u(x))=(z(1),...,z(mstar))
+]]></programlisting>
+                <para>
+    is defined as above under  purpose .
+  </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>dfsub</term>
+              <listitem>
+                <para>name of subroutine for evaluating the Jacobian of
+                <literal>f(x,z(u))</literal> at a point x.  it should have
+                the heading <literal>[df]=dfsub (x , z )</literal> where
+                <literal>z(u(x))</literal> is defined as for
+                <literal>fsub</literal> and the (<literal>ncomp</literal>) by
+                (<literal>mstar</literal>) array df should be filled by the
+                partial derivatives of  f, viz, for a particular call
+                one calculates</para>
+                <programlisting><![CDATA[
+                    df(i,j) = dfi / dzj, i=1,...,ncomp
+                                         j=1,...,mstar.
+]]></programlisting>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>gsub</term>
+              <listitem>
+                <para>name of subroutine for evaluating the i-th
+                component of
+                 <literal>g(x,z(u(x))) = g (zeta(i),z(u(zeta(i)))) </literal>
+                 at a point <literal>x = zeta(i)</literal> where
+                  <literal>1&lt;=i&lt;=mstar.</literal>
+                </para>
+                <para>
+                it should have the heading<literal>[g]=gsub (i , z)</literal> where <literal>z(u)</literal> is as for
+                 <literal>fsub</literal>, and <literal>i</literal> and
+                 <literal>g=gi</literal> are as above. Note that in contrast
+                 to <literal>f</literal> in <literal>fsub</literal> , here only one value per
+                 call is returned in <literal>g</literal>.
+  </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>dgsub</term>
+              <listitem>
+                <para>name of subroutine for evaluating the i-th row of the Jacobian of
+  <literal>g(x,u(x))</literal>.  it should have the heading <literal>[dg]=dgsub (i , z )</literal> 
+  where <literal>z(u)</literal> is as for fsub, i as for
+  gsub and the mstar-vector  <literal>dg</literal> should be filled with the
+  partial derivatives of g, viz, for a particular call one calculates</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>guess</term>
+              <listitem>
+                <para>name of subroutine to evaluate the initial approximation for
+  <literal>z(u(x))</literal> and for <literal>dmval(u(x))</literal>= vector of the
+  mj-th derivatives of <literal>u(x)</literal>. it should have the heading
+  <literal>[z,dmval]= guess (x )</literal> note that this subroutine is used
+  only if  <literal>ipar(9) = 1</literal>, and then all  <literal>mstar</literal>
+  components of z and  ncomp  components of  dmval  should be
+  specified for any x,</para>
+                <para>
+                  <literal>aleft &lt;= x &lt;= aright .</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    this package solves a multi-point boundary value
+    problem for a mixed order system of ode-s given by</para>
+    <programlisting><![CDATA[
+       (m(i))
+       u       =  f  ( x; z(u(x)) )      i = 1, ... ,ncomp
+        i          i                     aleft < x  < aright,
+                                        
+]]></programlisting>
+    <programlisting><![CDATA[
+       g  ( zeta(j); z(u(zeta(j))) ) = 0   j = 1, ... ,mstar
+        j
+      mstar = m(1)+m(2)+...+m(ncomp),
+]]></programlisting>
+    <para> where</para>
+    <programlisting><![CDATA[
+                                        t
+             u = (u , u , ... ,u     )   
+                   1   2        ncomp    
+]]></programlisting>
+    <para>is the exact solution vector</para>
+    <programlisting><![CDATA[
+              (mi)
+             u     is the mi=m(i) th  derivative of u
+              i                                      i
+]]></programlisting>
+    <programlisting><![CDATA[                                     
+
+                                (1)        (m1-1)       (mncomp-1)
+             z(u(x)) = ( u (x),u  (x),...,u    (x),...,u      (x) )
+                          1     1          1            ncomp
+]]></programlisting>
+    <programlisting><![CDATA[  
+              f (x,z(u))   
+               i
+]]></programlisting>
+    <para> is a (generally) nonlinear function of <literal>z(u)=z(u(x))</literal>.</para>
+    <programlisting><![CDATA[ 
+              g (zeta(j);z(u))  
+               j
+]]></programlisting>
+    <para>  is a (generally) nonlinear function   used to represent a boundary condition.</para>
+    <para> the boundary points satisfy</para>
+    <para><literal>aleft &lt;= zeta(1)  &lt;= ..  &lt;= zeta(mstar)  &lt;= aright</literal>. </para>
+    <para> the orders <literal>mi</literal> of the differential equations satisfy</para>
+    <para><literal>1&lt;=m(i)&lt;=4</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+deff('df=dfsub(x,z)','df=[0,0,-6/x**2,-6/x]')
+deff('f=fsub(x,z)','f=(1 -6*x**2*z(4)-6*x*z(3))/x**3')
+deff('g=gsub(i,z)','g=[z(1),z(3),z(1),z(3)];g=g(i)')
+deff('dg=dgsub(i,z)',['dg=[1,0,0,0;0,0,1,0;1,0,0,0;0,0,1,0]';
+                      'dg=dg(i,:)'])
+deff('[z,mpar]=guess(x)','z=0;mpar=0')// unused here
+
+ //define trusol for testing purposes
+deff('u=trusol(x)',[ 
+   'u=0*ones(4,1)';
+   'u(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)'
+   'u(2) = -0.25*(10*log(2)-3)       + 0.5 *(-1/x^2 + (3+x)/x      + log(x) - 1)'
+   'u(3) = 0.5*( 2/x^3 + 1/x   - 3/x^2)'
+   'u(4) = 0.5*(-6/x^4 - 1/x/x + 6/x^3)'])
+
+fixpnt=0;m=4;
+ncomp=1;aleft=1;aright=2;
+zeta=[1,1,2,2];
+ipar=zeros(1,11);
+ipar(3)=1;ipar(4)=2;ipar(5)=2000;ipar(6)=200;ipar(7)=1;
+ltol=[1,3];tol=[1.e-11,1.e-11];
+res=aleft:0.1:aright;
+z=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+ fsub,dfsub,gsub,dgsub,guess)
+z1=[];for x=res,z1=[z1,trusol(x)]; end;  
+z-z1
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fort">fort</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>u. ascher, department of computer science, university of british; columbia, vancouver, b. c., canada   v6t 1w5; g. bader, institut f. angewandte mathematik university of heidelberg; im neuenheimer feld 294d-6900 heidelberg 1 ; ; Fortran subroutine colnew.f</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="cell" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>cell</refname>
+
+    <refpurpose>Create a cell array of empty matrices.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+c=cell()
+c=cell(m1)
+c=cell(m1, m2)
+c=cell(m1, m2, ..., mn)
+c=cell(x)
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>Vector containing the dimensions of the cell to create.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m1, m2,..</term>
+
+        <listitem>
+          <para>Dimensions of the cell to create.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Returns the create cell of empty matrices.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>cell()</term>
+
+        <listitem>
+          <para>returns a <literal>(0,0)</literal> cell array of empty
+          matrices.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cell(m1)</term>
+
+        <listitem>
+          <para>returns a <literal>(m1,m1)</literal> cell array of empty
+          matrices.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cell(m1,m2)</term>
+
+        <listitem>
+          <para>returns a <literal>(m1,m2) </literal>cell array of empty
+          matrices.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cell(m1,m2,..,mn)</term>
+
+        <listitem>
+          <para>creates a <literal>(m1,m2,..,mn)</literal> cell array of empty
+          matrices.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cell(x)</term>
+
+        <listitem>
+          <para>returns a cell array of empty matrices with: the first
+          dimension of the cell array is <literal>x(1)</literal>, the second
+          dimension is <literal>x(2), ...</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Remarks</title>
+
+    <para><literal>cell(x) </literal>is not the same size that
+    <literal>x</literal>.</para>
+
+    <para><literal>cell()</literal> is equivalent to
+    <literal>cell(0)</literal>.</para>
+
+    <para>If A is a cell array, you can access the contents of an element of A
+    by using <literal>A(m1, m2, ..., mn).entries</literal>, the expression
+    <literal>A(1,1) = zeros(2,2)</literal> is not valid, the right syntax is
+    <literal>A(1,1).entries = zeros(2,2)</literal>.</para>
+
+    <para>If A is a cell array, you can get its dimensions by using
+    <literal>A.dims</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+a=cell(3)
+b=cell(3,1)
+c=cell([2,3,4])
+
+// Assigning cell entries
+b=cell(3,1);
+// Assigning the first element of b using the 'entries' field
+b(1).entries=1:3
+// Assigning the second element of b using the 'entries' field
+b(2).entries='Scilab'
+// Assigning the third element of b using the 'entries' field
+b(3).entries=poly(1:3,'s')
+
+// Assigning sub-cells
+X=cell(3,2);
+X(:,1)=b
+
+// Extracting a sub-cell: result is a cell
+b(1)
+b(1:2)
+
+// Extracting a sub-cell value: result is an array
+b(1).entries
+
+// Dimensions of b
+b.dims
+
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="eye">eye</link></member>
+
+      <member><link linkend="ones">ones</link></member>
+
+      <member><link linkend="zeros">zeros</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

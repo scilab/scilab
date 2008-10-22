@@ -1,0 +1,3 @@
+xinit('analog5.ps')
+exec('SCI/doc/signal/Nsource_diary/Sanalog5.code')
+xend()

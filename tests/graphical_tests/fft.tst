@@ -1,0 +1,37 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/fft_data.ref','rb');
+//Comparison with explicit formula
+//----------------------------------
+a = [1;2;3];n = size(a, '*');
+%ans = norm(1/n * exp(2 * %i * %pi * ((0:n - 1)') .*. (0:n - 1)/n) * a - fft(a, 1));
+if load_ref('%ans') then   pause,end,
+
+%ans = norm(exp(-2 * %i * %pi * ((0:n - 1)') .*. (0:n - 1)/n) * a - fft(a, -1));
+if load_ref('%ans') then   pause,end,
+
+
+//Frequency components of a signal
+//----------------------------------
+// build a noides signal sampled at 1000hz  containing to pure frequencies
+// at 50 and 70 Hz
+sample_rate = 1000;
+t = 0:1/sample_rate:0.6;
+N = size(t, '*');//number of samples
+s = sin(2 * %pi * 50 * t) + sin(2 * %pi * 70 * t + %pi/4) + grand(1, N, 'nor', 0, 1);
+
+y = fft(s);
+//the fft response is symetric we retain only the first N/2 points
+f = sample_rate * (0:N/2)/N;//associated frequency vector
+n = size(f, '*');
+if load_ref('n') then   pause,end,
+
+%ans = clf_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = plot2d(f, abs(y(1:n)));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

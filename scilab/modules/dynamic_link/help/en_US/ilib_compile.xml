@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_compile">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ilib_compile</refname>
+    <refpurpose> ilib_build utility: executes the
+    makefile produced by ilib_gen_Make</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>libn=ilib_compile(lib_name,makename [,files,ldflags,cflags,fflags,cc])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>lib_name</term>
+        <listitem>
+          <para>a character string, the generic name of the library without path and extension.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>makename</term>
+        <listitem>
+          <para>character string. The path of the Makefile file without extension.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>optionnal vector of character strings. If files is given the make is performed on each 
+	    target contained in files then a whole make is performed </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libn</term>
+        <listitem>
+          <para>character string. The path of the really generated shared library file.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+      <varlistentry>
+        <term>ldflags,cflags,fflags,cc</term>
+        <listitem>
+          <para>character strings to provide options/flags for the loader, the C compiler, the Fortran compiler. cc provides the name of the compiler.</para>
+        </listitem>
+      </varlistentry>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function used by <literal>ilib_build</literal></para>
+    <para>
+    This executes the  makefile produced by <literal>ilib_gen_Make</literal>, compiles
+    the C and fortran files and generates the shared library.</para>
+    <para>
+    Shared libraries can then be used with the <literal>link</literal> and
+    <literal>addinter</literal> scilab function for incrementaldynamic link.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="ilib_build">ilib_build</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_Make">ilib_gen_Make</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+      </member>
+      <member>
+        <link linkend="ilib_for_link">ilib_for_link</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

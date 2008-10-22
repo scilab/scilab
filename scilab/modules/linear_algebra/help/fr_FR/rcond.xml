@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rcond">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rcond</refname>
+    <refpurpose>  estimation de l'inverse du conditionnement  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>rcond(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>rcond(X)</literal> est une estimation de l'inverse du conditionnement de <literal>X</literal> pour la norme l_1.
+  </para>
+    <para>
+    Si <literal>X</literal> est bien conditionnée, <literal>rcond(X)</literal> est proche 1.
+    Sinon, <literal>rcond(X)</literal> est proche de 0.
+  </para>
+    <para><literal>[r,z]=rcond(X)</literal> renvoie <literal>rcond(X)</literal> dans
+    <literal>r</literal> et renvoie aussi <literal>z</literal> tel que <literal>norm(X*z,1) = r*norm(X,1)*norm(z,1)</literal> 
+  </para>
+    <para>
+    Ainsi,  si <literal>rcond</literal> est très petit <literal>z</literal> est un vecteur se trouvant dans le noyau de X.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=diag([1:10]);
+rcond(A)
+A(1,1)=0.000001;
+rcond(A)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="cond">cond</link>
+      </member>
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

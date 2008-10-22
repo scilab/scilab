@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="getcallbackobject" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 dÃ©c 2007)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getcallbackobject</refname>
+
+    <refpurpose>Return the handle of the object whose callback is executing.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+    h = getcallbackobject()
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>Handle: the handle of the object whose callback is executing.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>getcallbackobject</literal> is used to automatically create Scilab variable called <link linkend="gcbo">gcbo</link>
+    each time a callback in executed.</para>
+
+    <para><literal>getcallbackobject</literal> returns [] if no callback is currently executed.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="gcbo">gcbo</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>

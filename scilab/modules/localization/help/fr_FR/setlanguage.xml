@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="setlanguage" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>setlanguage</refname>
+
+    <refpurpose>Modifie la langue courante.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>setlanguage(language)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>language</term>
+
+        <listitem>
+          <para>avec language='fr' or 'en'</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>setlanguage(language)</literal> change la langue courante
+    dans scilab.</para>
+
+    <para>et sauvegarde celle-ci.</para>
+
+    <para>un redemarrage de scilab est necessaire pour que les menus soient
+    localisés.</para>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getlanguage">getlanguage</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Auteurs</title>
+
+    <simplelist type="vert">
+      <member>Allan CORNET</member>
+    </simplelist>
+  </refsection>
+</refentry>

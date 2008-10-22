@@ -1,0 +1,23 @@
+//===============================
+// unit tests strsplit
+// INRIA 2007
+//===============================
+STR_SPLITED = ['strsplit splits';'a string';'into';'a vector of strings'];
+STR = 'strsplit splits a string into a vector of strings';
+INDICES = [15 25 30];
+R = stripblanks(strsplit(STR,INDICES));
+if R <> STR_SPLITED then bugmes();quit;end
+//===============================
+if strsplit([],[1 1 1]) <> []  then bugmes();quit;end
+//===============================
+// Scilab 4.x
+//if execstr('strsplit([],[3 2 1])','errcatch') <> 99  then bugmes();quit;end
+// Scilab 5.x
+if strsplit([],[3 2 1]) <> []  then bugmes();quit;end
+//===============================
+if execstr('strsplit('',[0 1])','errcatch') <> 31  then bugmes();quit;end
+// Scilab 4.x
+//if execstr('strsplit([])','errcatch') <> 39  then bugmes();quit;end
+// Scilab 5.x
+if execstr('strsplit([])','errcatch') <> 77  then bugmes();quit;end
+//===============================

@@ -1,0 +1,52 @@
+\newcommand{\Old}[1]{\begin{description}\item{Old :}#1}
+\newcommand{\New}[1]{\item{New :}#1\end{description}}
+
+%%
+%% -*- NEW FEATURES -*-
+%%
+\section{Les nouveaut\'es}
+
+\subsection{Les chaines de caracteres - Strings}
+\Old{Quote et DoubleQuote sont equivalents.}
+\New{Strings homogenes " " ou ' '.}
+
+\subsection{Les Commentaires}
+\Old{``//'' Comment la ligne jusqu'au EOL.}
+\New{``//'' Comment la ligne jusqu'au EOL.
+``/* */'' Commente une region entiere.}
+
+\subsection{Les blocs functions}
+\Old{Comportement divergeant suivant les cas
+la declaration d'une nouvelle fonction pouvant
+soit clore la precedente, soit etre imbriquee
+dans celle en cours.}
+\New{On force l'utilisation de ENDFUNCTION ce qui evite
+ainsi toute ambiguite.}
+
+\subsection{Les points de suspension}
+\Old{Servent a continuer une expression sur plusieurs lignes
+Y compris les ID, les NOMBRES et meme les mots clefs.}
+\New{On ne coupe aucun token, seulement les instructions.
+Les coupures se font avec 2 ou 3 points de suspension.}
+
+\subsection{Les points et les nombres}
+\Old{1./2}
+\New{1 ./ 2 vs 1. / 2}
+
+\subsection{Les declarations de matrices}
+\Old{[,,,,,,a;;;;;;]}
+\New{[a] ou [a;] Pas de syntaxes inutiles !!!}
+
+
+
+%%
+%% -*- FEATURES TO BE DISCUSSED -*-
+%%
+\section{Les fonctionnalites \`a inclure / exclure}
+
+%%	!! TO BE AGREED !!
+\subsection{Les declarations de matrices}
+\Old{[a,,,b] $\simeq$ [a,b]}
+\New{[a,,,b] $\simeq$ [a, nil, nil, b] Comme pour les appels de fonctions}
+
+

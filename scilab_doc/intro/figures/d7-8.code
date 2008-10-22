@@ -1,0 +1,7 @@
+xinit('d7-8.ps');
+  t=(0:.05:1)';st=sin(2*%pi*t);
+  subplot(2,1,1)
+  plot2d2(t,st);
+  subplot(2,1,2)
+  plot2d3(t,st);
+  xsetech([0,0,1,1]);

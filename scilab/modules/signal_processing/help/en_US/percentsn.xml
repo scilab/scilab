@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>%sn</refname>
+    <refpurpose> Jacobi 's elliptic function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y]=%sn(x,m)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>a point inside the fundamental rectangle  defined by the elliptic integral; <literal>x</literal> is a vector of complex numbers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>parameter of the elliptic integral (<literal>0&lt;m&lt;1</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>result</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Jacobi 's sn elliptic function with parameter <literal>m</literal>: the inverse 
+    of the elliptic integral for the parameter <literal>m</literal>.</para>
+    <para>
+    The amplitude am is computed in fortran and 
+    the addition formulas for elliptic functions are applied</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+m=0.36;
+K=%k(m);
+P=4*K; //Real period
+real_val=0:(P/50):P;
+plot(real_val,real(%sn(real_val,m)))
+xbasc();
+KK=%k(1-m);
+Ip=2*KK;
+ima_val1=0:(Ip/50):KK-0.001;
+ima_val2=(KK+0.05):(Ip/25):(Ip+KK);
+z1=%sn(%i*ima_val1,m);z2=%sn(%i*ima_val2,m);
+plot2d([ima_val1',ima_val2'],[imag(z1)',imag(z2)']);
+xgrid(3)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="asn">%asn</link>
+      </member>
+      <member>
+        <link linkend="k">%k</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. D.  </para>
+  </refsection>
+</refentry>

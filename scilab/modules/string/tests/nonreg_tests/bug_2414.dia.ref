@@ -1,0 +1,17 @@
+// <-- Non-regression test for bug 2414 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2414
+//
+// <-- Short Description -->
+//    assignment of empty string an empty variable has disastrous results. Probably a
+//    parser bug, for statements of the form a=string(a), with a=[]
+// Author : Scilab Project - Pierre MARECHAL
+// Copyright INRIA
+// Date : 05 mai 2007
+a = [];
+a = string(a);
+if type(a) <> 1            then bugmes();quit;end
+if typeof(a) <> "constant" then bugmes();quit;end
+if or(size(a) <> [0 0])    then bugmes();quit;end
+if a($,1)<>[]              then bugmes();quit;end

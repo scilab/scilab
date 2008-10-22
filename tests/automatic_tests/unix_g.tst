@@ -1,0 +1,20 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/unix_g_data.ref','rb');
+function d=DIR(path)
+    path=pathconvert(path,%t,%t)
+    if MSDOS then
+      d=unix_g('dir '+path)
+    else
+      d=unix_g('ls '+path)
+    end
+endfunction
+if load_ref('%ans') then   pause,end,
+
+
+%ans = DIR('SCI/demos');
+if load_ref_nocheck('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

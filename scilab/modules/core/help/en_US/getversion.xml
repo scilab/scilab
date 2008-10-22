@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getversion">
+  <info>
+    <pubdate>$LastChangedDate: 2006-10-17 20:39:36 +0200 (mar., 17 oct. 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getversion</refname>
+    <refpurpose>get scilab and modules version
+  information</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>version=getversion()
+[version,opts]=getversion()
+ver=getversion('scilab')
+versioninfo=getversion('scilab','string_info')
+ver=getversion('&lt;module&gt;')
+versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>version</term>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>versioninfo</term>
+        <listitem>
+          <para>a string about version</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ver</term>
+        <listitem>
+          <para>a integer vector</para>
+          <para>ver(1) Major version</para>
+          <para>ver(2) Minor version</para>
+          <para>ver(3) Maintenance version</para>
+          <para>ver(4) SVN Revision version</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opts</term>
+        <listitem>
+          <para>a vector of string with four entries
+          :<literal>[compiler,pvm,tk,modelicac]</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>return in <literal>version</literal> the Scilab version name and in
+    <literal>opts</literal> build options which can be used to determine if scilab
+    has been build with pvm, tk or modelicac.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[getversion()
+[version,opts]=getversion()
+ver=getversion('scilab')
+verstr=getversion('scilab','string_info')
+ver=getversion('overloading')
+verstr=getversion('overloading','string_info')
+   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getmodules">getmodules</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

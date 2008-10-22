@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Common definitions of Java compilation for Scilab --> 
+<project name="common">
+	
+	<!-- Base of Scilab source tree -->
+	<property name="base.dir"  location="../../" />
+	
+	<!-- Where the module should be created (modules/xxx/jar) -->
+	<property name="build.jar.dir"  value="jar/" />
+	
+	<!-- Where the thirdparty libraries could be found -->
+	<property name="thirdparty.dir" location="${base.dir}/thirdparty/" />
+	
+	<!-- The building directory -->
+	<property name="build.dir" location="build/"/>
+	
+	<!-- Where builded classes will be generated -->
+	<property name="classes.dir" location="${build.dir}/classes" />
+	
+	<!-- Where we store cache files -->
+	<property name="cache.dir" location="${build.dir}/cachefile" />
+	
+	<!-- Where we can find the sources -->
+	<property name="src.dir"  location="src/java/" />
+	
+	<!-- Check style definitions -->
+	<property name = "checkstyle.config.file"      value = "${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />
+	<property name = "checkstyle.stylesheet"       value = "${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl" />
+	<property name = "checkstyle.report.dir"       value = "${build.dir}/checkstyle" />
+	<property name = "checkstyle.xml.report.file"  value = "${checkstyle.report.dir}/checkstyle_errors.xml" />
+	<property name = "checkstyle.html.report.file" value = "${checkstyle.report.dir}/checkstyle_errors.htm" />
+	
+	<property name="modules.dir"                 value="${base.dir}/modules" />
+	
+	<property file="${base.dir}/scilab-lib.properties"/>
+
+	<property file="${base.dir}/scilab-lib-doc.properties"/>
+	
+
+	<path id="checkstyle.classpath">
+		<pathelement location="${checkstyle.jar}"/>
+	</path>
+	
+	<path id="compile.classpath">
+	
+	  <pathelement location="${library.localization.dir}/${library.localization.name}"/>
+		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
+		<pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
+		<pathelement location="${library.completion.dir}/${library.completion.name}"/>
+		<pathelement location="${library.console.dir}/${library.console.name}"/>
+		<pathelement location="${library.action_binding.dir}/${library.action_binding.name}"/>
+		
+		<pathelement location="${library.gui.dir}/${library.gui.name}"/>
+		<pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
+		<pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
+		<pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
+		
+		<pathelement location="${commons-logging.jar}"/>
+		
+		<pathelement location="${flexdock.jar}"/>
+		
+		<pathelement location="${gluegen.jar}"/>
+		
+		<pathelement location="${jrosetta-API.jar}"/>
+		
+		<pathelement location="${jrosetta-engine.jar}"/>
+
+		<pathelement location="${jogl.jar}"/>
+		
+		<pathelement location="${jhall.jar}"/>
+
+	<!-- Only usefull for the documentation -->	
+		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
+		<pathelement location="${batik.jar}"/>
+
+		<pathelement location="${saxon.jar}"/>
+
+		<pathelement location="${fop.jar}"/>
+
+		<pathelement location="${jeuclid-core.jar}"/>
+	</path>
+
+	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
+	
+	<!-- Checkstyle process -->
+	
+	<target
+		name        = "checkstyle"
+		depends     = "checkstyle-init"
+		description = "Generates a report of code convention violations.">
+		<checkstyle
+			config          = "${checkstyle.config.file}"
+			failOnViolation = "false">
+			<fileset
+				dir      = "${src.dir}"
+				includes = "**/*.java"/>
+			<!-- Location of cache-file. -->
+			<property
+				key  = "checkstyle.cache.file"
+				file = "${cache.dir}"/>
+			<formatter type="plain"/>
+			<formatter
+				type   = "xml"
+				toFile = "${checkstyle.xml.report.file}"/>
+		</checkstyle>
+		<xslt
+			in     = "${checkstyle.xml.report.file}"
+			out    = "${checkstyle.html.report.file}"
+			style  = "${checkstyle.stylesheet}" />
+	</target>
+	
+	<!-- Create the build directory -->
+	
+	<target name="checkstyle-init">
+		<mkdir dir="${checkstyle.report.dir}"/>
+	</target>
+	
+	<!-- Delete the build directory -->
+	
+	<target name="checkstyle-clean">
+		<delete dir="${checkstyle.report.dir}"/>
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${build.jar.dir}"/>
+			<!-- Create the time stamp -->
+		<tstamp/>
+	</target>
+	
+	<!-- Clean sources -->
+	<target name="clean" description="clean sources">
+		<delete dir="${build.dir}"/>
+		<delete dir="${build.jar.dir}"/>
+		<delete file="${build.jar.dir}/${library.name}"/>
+	</target>
+	
+	<!-- Compile sources -->
+	<target name="compile" description="Build sources" depends="init">
+		<javac
+			srcdir="${src.dir}" 
+			destdir="${classes.dir}" 
+			classpathref="compile.classpath" 
+			deprecation="on"
+			debug="off"
+			verbose="off"
+			listfiles="on"
+			source="5"
+			/>
+	</target>
+
+	<!-- Create the jar -->
+	<target name="jar" description="Build the jar file" depends="compile">
+	
+		<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
+		<manifest>
+		</manifest>
+		</jar>
+	</target>
+
+</project>

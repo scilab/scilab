@@ -1,0 +1,114 @@
+Dans cette partie nous decrivons les spécificités syntaxiques
+du language Scilab.
+
+
+\section{Le token ``ID'' : Les identifiants}
+Dans le language Scilab, ne sont considérés
+comme des identifiants que les ``mots''
+correspondant à l'expression régulière suivante :
+\begin{verbatim}
+[a-zA-Z_%#][a-zA-Z_0-9#]
+\end{verbatim}
+
+\section{Le token ``QUOTE'' : '}
+L'utilisation des quotes dans Scilab est assez particulière
+puisqu'elle prend en charge à la fois les chaines de caracteres et
+des operations mathématiques : les transpositions de matrices.
+
+\subsection{Les transpositions matricielles}
+Le symbole ``QUOTE'' peut etre utilise pour représenter
+les transpositions matricielles.
+
+Si $A$ est une matrice, et que nous voulons calculer $^tA$,
+ceci s'écrit en language Scilab $A'$.
+
+Nous distinguons donc plusieurs cas ou le comportement
+du symbole ``QUOTE'' code une transposition.
+
+\begin{itemize}
+\item{Les déclarations explicites}
+$[1, 2, 3 ; 4, 5, 6 ; 7, 8, 9]'$
+Lorsque le symbole ``QUOTE'' est précédé par le token ``RBRACK'',
+il code pour une transposition.
+\item{Les variables nommées}
+$a'$
+Lorsque le symbole ``QUOTE'' est précédé par le token ``ID'',
+il code pour une transposition.
+\item{Les appels de fonctions}
+$foo()'$
+Lorsque le symbole ``QUOTE'' est précédé par le token ``RPAREN'',
+il code pour une transposition.
+\end{itemize}
+
+\subsection{Les chaines de caractères}
+Le symbole ``QUOTE'' peut etre utilise pour représenter
+des chaines de caractères.
+
+Nous proposons une implémentation des chaines de caractères de facon homogène.
+C'est à dire que le ``token'' servant à l'ouverture de la chaine de caractère
+sert aussi a sa fermeture.
+\begin{itemize}
+\item{Encadrées par des simples quotes : '}
+Les chaines du type :
+\begin{verbatim}
+'foo' 'bar51'
+\end{verbatim}
+\item{Encadrées par des doubles quotes : ``}
+Les chaines du type :
+\begin{verbatim}
+``foo'' ``bar51''
+\end{verbatim}
+\end{itemize}
+
+
+\section{Le token CONTINUE : ..}
+En fait il ne s'agit pas vraiment d'un token mais d'une règle au sein
+du lexer permettant l'ecriture de code Scilab sur plusieurs lignes.
+
+Il est reconnaissable via l'expression régulière suivante :
+\begin{verbatim}
+``..''[\.]*[ \t\v\f]*[\n]
+\end{verbatim}
+
+L'utilisation de cette syntaxe n'est pas autorisée a l'intérieur de mots clefs.
+Exemple :
+\begin{verbatim}
+whi..
+le
+\end{verbatim}
+Cette syntaxe sera rejetée au parsing.
+
+Par contre nous autorisons les découpes suivantes :
+\begin{verbatim}
+maVa..
+riable
+\end{verbatim}
+donnera
+\begin{verbatim}
+maVariable
+\end{verbatim}
+et
+\begin{verbatim}
+12345...
+6789
+\end{verbatim}
+donnera
+\begin{verbatim}
+123456789
+\end{verbatim}
+
+Il faudra néanmoins porter une attention toute particulière aux symboles comportants
+des points.
+\begin{verbatim}
+1./...
+23456789
+\end{verbatim}
+vaut
+\begin{verbatim}
+1./23456789
+\end{verbatim}
+et non
+\begin{verbatim}
+1./.23456789
+\end{verbatim}
+

@@ -1,0 +1,56 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/time_id_data.ref','rb');
+ 
+z = poly(0, 'z');
+ 
+h = (1 - 2 * z)/(z^2 - 0.5 * z + 5);
+ 
+if load_ref('h') then   bugmes();quit;end,
+ 
+ 
+rep = [0;ldiv(h('num'), h('den'), 20)];//impulse response
+ 
+H = time_id(2, 'impuls', rep);
+ 
+if load_ref('H') then   bugmes();quit;end,
+ 
+ 
+//  Same example with flts and u
+ 
+u = zeros(1, 20);u(1) = 1;
+ 
+rep = flts(u, tf2ss(h));//impulse response
+ 
+H = time_id(2, u, rep);
+ 
+if load_ref('H') then   bugmes();quit;end,
+ 
+ 
+//  step response
+ 
+u = ones(1, 20);
+ 
+rep = flts(u, tf2ss(h));//step response.
+ 
+H = time_id(2, 'step', rep);
+ 
+if load_ref('H') then   bugmes();quit;end,
+ 
+ 
+H = time_id(3, u, rep);
+rank defficient. rank =     5
+ 
+ 
+if load_ref('H') then   bugmes();quit;end,
+ 
+//with u as input and too high order required
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

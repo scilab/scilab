@@ -1,0 +1,26 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/perctl_data.ref','rb');
+
+x = [6,7,0,7,10,4,2,2,7,1;
+  6,0,5,5,5,2,0,6,8,10;
+  8,6,4,3,5,9,8,3,4,7;
+  1,3,2,7,6,1,1,4,8,2;
+  6,3,5,1,6,5,9,9,5,5;
+  1,6,4,4,5,4,0,8,1,8;
+  7,1,3,7,8,0,2,8,10,8;
+  3,6,1,9,8,5,5,3,2,1;
+  5,7,6,2,10,8,7,4,0,8;
+  10,3,3,4,8,6,9,4,8,3];
+if load_ref('x') then   pause,end,
+
+y = [10,20,30];
+if load_ref('y') then   pause,end,
+
+p = perctl(x, y);
+if load_ref('p') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

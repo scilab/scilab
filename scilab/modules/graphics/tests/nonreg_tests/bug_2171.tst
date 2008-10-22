@@ -1,0 +1,24 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 2171 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2171
+//
+// <-- Short Description -->
+// angled thickness 1 lines are transiently dash-dotted (X problem?)
+
+xset("colormap",graycolormap(256))
+load(SCI + "/modules/graphics/tests/nonreg_tests/bug_1981.dat");
+Matplot(Lenna,axesflag=0,frameflag=4);
+
+fig = gcf();
+// check exported file
+xs2eps(fig.figure_id, TMPDIR + "/bug_1981.eps");

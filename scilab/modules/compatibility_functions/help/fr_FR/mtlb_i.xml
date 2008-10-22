@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_i">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_i</refname>
+    <refpurpose>Fonction d'émulation de l'insertion de Matlab</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, l'insertion se comporte différemment dans Matlab et dans Scilab :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        En insérant une matrice dans une variable : Matlab ajuste automatiquement la taille
+	de la variable de retour pour qu'elle corresponde avec la matrice à insérer mais pas Scilab.
+	Par exemple, avec A=1, A([1,2,3,4])=[1,2;3,4]) retourne un message d'erreur dans Scilab
+	alors que dans Matlab on obtient A=[1,2,3,4]. Si des valeurs manquent par rapport aux
+	indices donnés pour insérer, Matlab remplit la valeur de retour avec des zéros.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Lors de l'insertion de données d'une matrice d'une chaîne de caractères : étant donné que
+	les matrices de chaînes de caractères peuvent être adressées comme tout autre type de
+	matrice dans Matlab (chaque caractère peut être adressé),
+	l'insertion à partir dans une telle matrice ne change pas des autres types. Mais dans Scilab
+	ceci ne peut être fait de la même manière... <literal>mtlb_is</literal> est une alternative.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>A=mtlb_i(A,k,B)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>A(k)=B</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_i</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> n'est pas un vecteur
+        <literal>A=mtlb_i(A,k,B)</literal> peut être remplacé par <literal>A(k)=B</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	Si <literal>A</literal> et <literal>B</literal> sont des vecteurs lignes ou colonnes
+	<literal>A=mtlb_i(A,k,B)</literal> peut être remplacé par <literal>A(k)=B</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_i</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link>
+      </member>
+      <member>
+        <link linkend="mtlb_is">mtlb_is</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

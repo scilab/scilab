@@ -1,0 +1,13 @@
+//Filter with zpell
+epsilon=0.1;A=10;  //ripple parameters
+m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
+m=find_freq(epsilon,A,n);
+omegar = omegac/sqrt(m)
+[z,p,g]=zpell(epsilon,A,omegac,omegar);
+//Now computes transfer function
+num=real(poly(z,'s'));den=real(poly(p,'s'));
+transfer=g*num/den
+//Plot of the response
+sample=0:0.01:20;
+rep=freq(g*num,den,%i*sample);
+plot(sample,abs(rep))

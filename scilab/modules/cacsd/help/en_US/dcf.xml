@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dcf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dcf</refname>
+    <refpurpose> double coprime factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[N,M,X,Y,NT,MT,XT,YT]=dcf(G,[polf,polc,[tol]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>G</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (continuous-time linear system)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>polf, polc</term>
+        <listitem>
+          <para>respectively the poles of <literal>XT</literal> and <literal>YT</literal> and the poles of <literal>N</literal>  and <literal>M</literal> (default values =<literal>-1</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>real threshold for detecting stable poles (default value <literal>100*%eps</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N,M,XT,YT,NT,MT,X,Y</term>
+        <listitem>
+          <para>linear systems represented by <literal>syslin</literal> lists</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    returns eight stable systems <literal>(N,M,X,Y,NT,MT,XT,YT) </literal>
+    for the doubly coprime factorization</para>
+    <para><literal>G</literal> must be stabilizable and detectable.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="copfac">copfac</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

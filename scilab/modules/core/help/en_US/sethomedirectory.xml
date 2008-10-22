@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sethomedirectory">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sethomedirectory</refname>
+    <refpurpose>Set Scilab home directory</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[home,scilabhome]=sethomedirectory()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set Scilab home path : "SCIHOME" variable.</para>
+    <para>On Windows 2k and XP , C:\Documents and
+    Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+    <para>On Windows Vista ,
+    C:\Users\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+    <para>On Unix, /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvmd3">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvmd3</refname>
+    <refpurpose> PVM  daemon</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    pvmd3 is a daemon process which coordinates hosts in a virtual
+    machine. One pvmd must run on each host in the group. They provide
+    the communication and process control functions needed by the user's
+    PVM processes. The daemon can be started manually with a host file
+    argument that will automatically start the remote pvmds. The local and
+    remote pvmds can also be started from the PVM console program pvm.
+  </para>
+    <para>
+    The name of the daemon executable is pvmd3. It is usually started by a
+    shell script, <literal>$PVM_ROOT/lib/pvmd</literal>.
+  </para>
+    <para>
+    Local daemon may also be started by the scilab instruction <literal>pvm_start()</literal>
+    and remote daemons may also be started by the scilab function 
+    pvm_addhosts
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Options</title>
+    <para>
+    The following options may be specified on the command line when starting the master pvmd or PVM console:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>dmask Set pvmd debug mask. Used to debug the pvmd or libpvm (not intended to be used to debug application programs). Mask is a hexadecimal number which is the sum of the following bits: Bit Information</para>
+      </listitem>
+      <listitem>
+        <para>Packet routing</para>
+      </listitem>
+      <listitem>
+        <para>Message routing and entry points</para>
+      </listitem>
+      <listitem>
+        <para>Task management</para>
+      </listitem>
+      <listitem>
+        <para>Slave pvmd startup</para>
+      </listitem>
+      <listitem>
+        <para>Host table updates</para>
+      </listitem>
+      <listitem>
+        <para>Select loop (below packet layer)</para>
+      </listitem>
+      <listitem>
+        <para>IP network</para>
+      </listitem>
+      <listitem>
+        <para>Multiprocessor port debugging</para>
+      </listitem>
+      <listitem>
+        <para>Resource manager interface</para>
+      </listitem>
+      <listitem>
+        <para>Application (messages with no destination, etc.)</para>
+      </listitem>
+      <listitem>
+        <para>Specify an alternate hostname for the master pvmd to use. Useful when gethostname() returns a name not assigned to any network interface.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The following options are used by the master pvmd when starting slaves and are only of interest to someone writing a hoster. Don't just go using them, now.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>-s</term>
+        <listitem>
+          <para>Start pvmd in slave mode. Hostfile cannot be used, five additional parameters must be supplied: master pvmd index, master IP, master MTU, slave pvmd index, and slave IP.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-S</term>
+        <listitem>
+          <para>Same as -s, but slave pvmd doesn't wait for its stdin to be closed after printing its parameters.  Used for manual startup.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-f</term>
+        <listitem>
+          <para>Slave doesn't fork after configuration (useful if the slave is to be controlled or monitored by some process).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    Lines beginning with a splat ( <literal>#</literal> ), optionally preceded by whitespace, are ignored.
+  </para>
+    <para>
+     A simple host file might look like:
+  </para>
+    <programlisting><![CDATA[
+
+# my first host file
+thud
+fred
+wilma
+barney
+betty
+   
+    ]]></programlisting>
+    <para>
+    This specifies the names of five hosts to be configured in the virtual machine.  The master pvmd for a group is started by hand on the localhost, and it starts slaves on each of the remaining hosts using the rsh or rexec command. The master host may appear on any line of the hostfile, but must have an entry.  The simple format above works fine if you have the same login name on all five machines and the name of the master host in your .rhosts files on the other four.  There are several host file options available:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>lo=NAME</term>
+        <listitem>
+          <para>Specifies an alternate login name (NAME) to use.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>so=pw</term>
+        <listitem>
+          <para>This is necessary when the remote host cannot trust the master. Causes the master pvmd to prompt for a password for the remote host in the tty of the pvmd (note you can't start the master using the console or background it when using this option) you will see: Password (honk.cs.utk.edu:manchek): you should type your password for the remote host. The startup will then continue as normal.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dx=FILE</term>
+        <listitem>
+          <para>Specifies the path of the pvmd executable. FILE may be a simple filename, an absolute pathname, or a path relative to the user's home directory on the remote host. This is mainly useful to aid in debugging new versions of PVM, but may have other uses.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ep=PATH</term>
+        <listitem>
+          <para>Specifies a path for the pvmd to search for executable program components when spawning a new process. The path may have multiple elements, separated by colons ( : ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wd=PATH Specifies a working directory in which all spawned tasks on</term>
+        <listitem>
+          <para>this host will execute.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sp=VALUE</term>
+        <listitem>
+          <para>Specifies the relative computational speed of this host compared to other hosts in the configuration. VALUE is an integer in the range [1 - 1000000]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bx=PATH</term>
+        <listitem>
+          <para>Specifies the debugger program path. Note: the environment variable PVM_DEBUGGER can also be set.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>so=ms</term>
+        <listitem>
+          <para>Rarely used. Causes the master pvmd to request user to manually perform the startup of a pvmd on a slave host when rsh and rexec network services are disabled but IP connectivity exists. See section "MANUAL STARTUP".</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+     A dollar sign ( <literal>$</literal> ) in an option introduces a variable name, for example <literal>$PVM_ARCH</literal>. Names are expanded from environment variables by each pvmd.  Each of the flags above has a default value. These are: 
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>lo</term>
+        <listitem>
+          <para>The loginname on the master host.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>so</term>
+        <listitem>
+          <para>Nothing</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dx</term>
+        <listitem>
+          <para><literal>$PVM_ROOT/lib/pvmd</literal> (or environment variable PVM_DPATH)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ep</term>
+        <listitem>
+          <para>
+            <literal>pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wd</term>
+        <listitem>
+          <para>
+            <literal>$HOME</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sp</term>
+        <listitem>
+          <para>1000</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bx</term>
+        <listitem>
+          <para>
+            <literal>$PVM_ROOT/lib/debugger</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    You can change these by adding a line with a star ( * ) in the first field followed by the options, for example:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>* lo=afriend so=pw</term>
+        <listitem>
+          <para>This sets new default values for `lo' and `so' for the remainder of the host file, or until the next `*' line. Options set on the last `*' line also apply to hosts added dynamically using pvm_addhosts().</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    Host options can be set without starting the hosts automatically. Information on host file lines beginning with `&amp;' is stored, but the hosts are not started until added using pvm_addhosts().
+  </para>
+    <para>
+    Example hostfile:
+  </para>
+    <programlisting><![CDATA[
+
+# hostfile for testing on various platforms fonebone refuge
+# installed in /usr/local/here
+sigi.cs
+     dx=/usr/local/pvm3/lib/pvmd # borrowed accts, "guest", don't trust fonebone 
+     label="* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by hand and share a homedir  
+     igor.firewall.com lo=guest2 so=ms  ep=bob/pvm3/bin/$PVM_ARCH
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Manual STARTUP</title>
+    <para>
+     When adding a host with this option set you will see on the tty of the pvmd:</para>
+    <programlisting><![CDATA[
+
+*** Manual startup ***
+   
+    ]]></programlisting>
+    <para>
+    Login to "honk" and type:</para>
+    <programlisting><![CDATA[
+
+$PVM_ROOT/lib/pvmd -S -d0 -nhonk 1 80a9ca95:0cb6 4096 2 80a95c43:0000 Type response:
+   
+    ]]></programlisting>
+    <para>
+    after typing the given command on host honk, you should see a line like:</para>
+    <programlisting><![CDATA[
+
+ddpro<2312> arch<ALPHA> ip<80a95c43:0a8e> mtu<4096>
+   
+    ]]></programlisting>
+    <para>
+    type this line on the tty of the master pvmd. You should then see:</para>
+    <programlisting><![CDATA[
+
+Thanks
+   
+    ]]></programlisting>
+    <para>
+    and the two pvmds should be able to communicate.  Note you can't start the master using the console or background it when using this option.</para>
+  </refsection>
+  <refsection>
+    <title>Stopping PVMD3</title>
+    <para>
+     The preferred method of stopping all the pvmds is to give the halt command in the PVM console.  This kills all pvm tasks, all the remote daemons, the local daemon, and finally the console itself. If the master pvmd is killed manually it should be sent a SIGTERM signal to allow it to kill the remote pvmds and clean up various files.  The pvmd can be killed in a manner that leaves the file /tmp/pvmd.uid behind on one or more hosts. Uid is the numeric user ID (from /etc/passwd) of the user. This will prevent PVM from restarting on that host. Deletion of this file will fix this problem:</para>
+    <programlisting><![CDATA[
+
+rm `( grep $user /etc/passwd || ypmatch $user passwd ) | \
+ awk -F: `{print "/tmp/pvmd."$3; exit}'`
+   
+    ]]></programlisting>
+  </refsection>
+</refentry>

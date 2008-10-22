@@ -1,0 +1,8 @@
+//exec('poly.4.ex')
+//demonstrate evaluation of discrete filter 
+//on the unit circle in the z-plane
+   h=[1:5,4:-1:1];
+   hz=poly(h,'z','c');
+   f=(0:.1:1);
+   hf=freq(hz,1,exp(%pi*%i*f));
+   hf'

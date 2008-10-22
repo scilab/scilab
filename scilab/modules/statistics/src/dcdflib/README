@@ -1,0 +1,318 @@
+
+
+
+
+
+
+
+
+
+
+
+                                    DCDFLIB
+
+            Library of Fortran Routines for Cumulative Distribution
+                 Functions, Inverses, and Other Parameters
+
+                                (February, 1994)
+
+
+
+
+
+
+                    Summary Documentation of Each Routine
+
+
+
+
+
+
+
+
+                            Compiled and Written by:
+
+                                 Barry W. Brown
+                                  James Lovato
+                                  Kathy Russell
+
+
+
+
+
+
+
+
+
+                     Department of Biomathematics, Box 237
+                     The University of Texas, M.D. Anderson Cancer Center
+                     1515 Holcombe Boulevard
+                     Houston, TX      77030
+
+
+ This work was supported by grant CA-16672 from the National Cancer Institute.
+
+
+                          SUMMARY OF DCDFLIB
+
+This  library  contains routines  to compute  cumulative  distribution
+functions, inverses, and    parameters  of the  distribution  for  the
+following set of statistical distributions:
+
+    (1) Beta
+    (2) Binomial
+    (3) Chi-square
+    (4) Noncentral Chi-square
+    (5) F
+    (6) Noncentral F
+    (7) Gamma
+    (8) Negative Binomial
+    (9) Normal
+    (10) Poisson
+    (11) Student's t
+
+Given values of all but one parameter of a distribution, the other is
+computed.  These calculations are done with  FORTRAN Double Precision 
+variables.
+
+          -------------------- WARNINGS --------------------
+
+The F and  Noncentral F distribution are  not necessarily monotone  in
+either degree  of  freedom argument.  Consequently,  there  may be two
+degree of freedom arguments that satisfy the specified condition.  An
+arbitrary one of these will be found by the cdf routines.
+
+The  amount of computation  required for  the noncentral chisquare and
+noncentral F  distribution    is proportional  to  the  value  of  the
+noncentrality   parameter.  Very large values  of   this parameter can
+require  immense   numbers of   computation.  Consequently,  when  the
+noncentrality parameter is to  be calculated, the upper limit searched
+is 10,000.
+
+        -------------------- END WARNINGS --------------------
+
+                            DOCUMENTATION
+
+This  file  contains an  overview  of the library   and is the primary
+documentation.
+
+Other documentation  is  in  directory 'doc'  on  the  distribution as
+character  (ASCII) files.  A summary  of all of the available routines
+is contained in dcdflib.chs (chs is an abbreviation of 'cheat sheet').
+The 'chs'  file  will probably be  the  primary reference.  The  file,
+dcdflib.fdoc, contains the  header comments for each  routine intended
+for direct use.
+
+                             INSTALLATION
+
+The Fortran source routines are contained in directory src.  
+
+A  few  routines use   machine  dependent  constants.  Lists  of  such
+constants for different machines are found in ipmpar.f.  Uncomment the
+ones  appropriate to your  machine.  The distributed  version uses the
+IEEE arithmetic that is used by  the IBM PC,  Macintosh, and most Unix
+workstations.
+
+Ignore compilation warnings that lines of code are  not reachable.  We
+write in a Fortran structured preprocessor (FLECS)  that is similar in
+spirit to  Ratfor.   Sometimes our coding  practices in  FLECS lead to
+unreachable lines.   Also, FLECS inserts   lines of code:  STOP  "CODE
+FLOWING  INTO   FLECS   PROCEEDURES".  All   such    lines should   be
+unreachable.
+
+                               SOURCES
+
+The following   routines, written  by   others, are  incorporated into
+DCDFLIB.
+
+                          Beta Distribution
+
+DiDinato, A.  R. and Morris, A.  H.   Algorithm 708: Significant Digit
+Computation of the Incomplete Beta  Function Ratios.  ACM Trans. Math.
+Softw. 18 (1993), 360-373.
+
+                 Gamma Distribution and It's Inverse
+
+DiDinato, A. R. and Morris, A.  H. Computation of the Incomplete Gamma
+Function  Ratios and  their  Inverse.   ACM  Trans.  Math.   Softw. 12
+(1986), 377-393.
+
+                         Normal Distribution
+
+Kennedy and  Gentle, Statistical Computing,  Marcel  Dekker, NY, 1980.
+The rational function approximations  from pages 90-95 are used during
+the calculation of the inverse normal.
+
+Cody, W.D.  (1993).  "ALGORITHM  715:  SPECFUN  -  A Portabel  FORTRAN 
+Package   of  Special  Function   Routines   and  Test  Drivers",  acm
+Transactions on Mathematical Software. 19, 22-32.  A slightly modified
+version of Cody's function  anorm  is used for the cumultive normal.
+
+                             Zero Finder
+
+J.   C. P.   Bus and  T.  J.  Dekker.   Two Efficient  Algorithms with
+Guaranteed Convergence  for Finding a  Zero of a Function.  ACM Trans.
+Math. Softw. 4 (1975), 330.
+
+We transliterated Algoritm R of this paper from Algol to Fortran.
+
+                          General Reference
+
+Abramowitz,  M. and Stegun,  I. A.  Handbook of Mathematical Functions
+With  Formulas, Graphs,  and   Mathematical Tables.   (1964)  National
+Bureau of Standards.
+
+This book has been reprinted by Dover and others.
+
+
+                              LEGALITIES
+
+Code that appeared  in an    ACM  publication  is subject  to    their
+algorithms policy:
+
+     Submittal of  an  algorithm    for publication  in   one of   the  ACM
+     Transactions implies that unrestricted use  of the algorithm within  a
+     computer is permissible.   General permission  to copy and  distribute
+     the algorithm without fee is granted provided that the copies  are not
+     made  or   distributed for  direct   commercial  advantage.    The ACM
+     copyright notice and the title of the publication and its date appear,
+     and  notice is given that copying  is by permission of the Association
+     for Computing Machinery.  To copy otherwise, or to republish, requires
+     a fee and/or specific permission.
+
+     Krogh, F.  Algorithms  Policy.  ACM  Tran.   Math.  Softw.   13(1987),
+     183-186.
+
+We place the DCDFLIB code that we have written in the public domain.  
+
+                                 NO WARRANTY
+     
+     WE PROVIDE ABSOLUTELY  NO WARRANTY  OF ANY  KIND  EITHER  EXPRESSED OR
+     IMPLIED,  INCLUDING BUT   NOT LIMITED TO,  THE  IMPLIED  WARRANTIES OF
+     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK
+     AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS  WITH YOU.  SHOULD
+     THIS PROGRAM PROVE  DEFECTIVE, YOU ASSUME  THE COST  OF  ALL NECESSARY
+     SERVICING, REPAIR OR CORRECTION.
+     
+     IN NO  EVENT  SHALL THE UNIVERSITY  OF TEXAS OR  ANY  OF ITS COMPONENT
+     INSTITUTIONS INCLUDING M. D.   ANDERSON HOSPITAL BE LIABLE  TO YOU FOR
+     DAMAGES, INCLUDING ANY  LOST PROFITS, LOST MONIES,   OR OTHER SPECIAL,
+     INCIDENTAL   OR  CONSEQUENTIAL DAMAGES   ARISING   OUT  OF  THE USE OR
+     INABILITY TO USE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA OR
+     ITS ANALYSIS BEING  RENDERED INACCURATE OR  LOSSES SUSTAINED  BY THIRD
+     PARTIES) THE PROGRAM.
+     
+     (Above NO WARRANTY modified from the GNU NO WARRANTY statement.)
+
+                    HOW TO USE THE ROUTINES
+
+The calling sequence for each routine is of the form:
+
+  SUBROUTINE CDF<name>( WHICH, P, Q, X, <parameters>, STATUS, BOUND ).
+
+WHICH and STATUS are INTEGER, all other arguments are DOUBLE PRECISION.
+
+<name> is a one to  three character name identifying the distribution.
+WHICH  is an input integer value  that identifies what parameter value
+is to be calculated from the values of the other parameters.
+
+P is always the cdf evaluated at X, Q is always the compliment of the
+cdf evaluated at X, i.e.  1-P, and X is always the value at which the
+cdf  is evaluated.   The auxiliary parameters,  <parameters>,  of the
+distribution differ by distribution.
+
+If WHICH is 1, P and  Q are to be calculated, i.e., the cdf; if WHICH
+is 2, X is to be calculated, i.e., the inverse cdf.  The value of one
+auxiliary parameter in <parameters> can also be the value calculated.
+
+STATUS returns 0 if the calculation completes correctly.
+
+           --------------------WARNING--------------------
+
+If STATUS is not 0, no meaningful answer is returned.
+
+        -------------------- END WARNING --------------------
+
+STATUS returns  -I if the I'th  input parameter was  not  in the legal
+range (see below).  Parameters are counted  with WHICH being the first
+in these return values.
+
+A STATUS  value of 1 indicates that  the desired answer was apparently
+lower than the lower bound on the search interval.  A return code of 2
+indicates that  the answer was  apparently higher than the upper bound
+on the search interval.  A return code of 3 indicates that P and Q did
+not sum to 1. Other positive codes are routine specific.
+
+BOUND is not  set if STATUS is returned  as 0.  If  STATUS is -I  then
+BOUND is   the bound illegally  exceeded by  input  parameter I, where
+WHICH  is  counted as 1,  P as 2,  Q as 3,  X as 4, etc.  If STATUS is 
+returned as 1 or 2 then BOUND  is returned as the lower or upper bound
+on the search interval respectively.
+
+                                BOUNDS
+
+Below are  the rules that we used  in determining bounds on quantities
+to be  calculated.   Those who don't care   can find a summary  of the
+bounds in  dcdflib.chs.   Input bounds  are  checked for  legality  of
+input.  The search  range  is  the range   of values searched  for  an
+answer.
+
+                             Input Bounds
+
+Bounds on input parameters are  checked by the  CDF* routines.   These
+bounds were set according to the following rules.
+
+P: If the  domain of the cdf (X) extends to  -infinity  then P must be
+greater than 0 otherwise P must be greater than or equal to 0.  P must
+always be less than or equal to 1.
+
+Q: If the  domain of the cdf (X) extends to  +infinity  then Q must be
+greater than 0 otherwise Q must be greater than or equal to 0.  Q must
+always be less than or equal to 1.
+
+Further, P and Q must sum to 1. The smaller of the two P and Q will be
+used in calculations to increase accuracy
+
+X:  If  the  domain is infinite  in   either the positive  or negative
+direction, no check  is performed in  that direction.  If the left end
+of the domain is 0, then X is checked to assure non-negativity.
+
+DF, SD, etc.:  Some auxiliary parameters must  be positive. The lowest
+input values accepted for these parameters is 1E-300.
+
+
+                                Search Bounds
+
+These are the  ranges searched for an  answer.   If the domain  of the
+parameter in the cdf  is closed at  some  finite value, e.g., 0,  then
+this value is the same endpoint of the search range.  If the domain is
+open  at  some finite   endpoint (which only  occurs   for  0 --  some
+parameters must be strictly positive) then  the endpoint is 1E-300. If
+the  domain is infinite in either  direction then +/- 1E300 is used as
+the endpoint of the search range.
+
+                        HOW THE ROUTINES WORK
+
+The cumulative  distribution   functions are computed  directly.   The
+normal, gamma,  and  beta functions use the  code  from the references
+cited.  Other  cdfs are calculated  by relating them  to one  of these
+distributions.  For example, the  binomial and negative binomial  cdfs
+can be converted  to a beta cdf.   This is how fractional observations
+are handled.  The  formula from Abramowitz  and Stegun  for converting
+the cdfs is cited  in the fdoc file.    (We think the formula  for the
+negative binomial in A&S is wrong, but there is a correct one which we
+used.)
+
+The inverse normal and gamma are also taken  from the references.  For
+all other parameters, a search is made for the value that provides the
+desired P.  Initial  values are chosen crudely  for the search  (e.g.,
+5).  If the domain  of the cdf for the  parameter being calculated  is
+infinite, a step doubling strategy is  used to bound the desired value
+then the  zero  finder is  employed  to refine the answer.    The zero
+finder attempts to obtain the answer accurately to about eight decimal
+places.
+
+
+
+ 
+

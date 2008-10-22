@@ -1,0 +1,10 @@
+//Butterworth filter; 13 poles
+n=13;      
+angles=ones(1,n)*(%pi/2+%pi/(2*n))+(0:n-1)*%pi/n;
+s=exp(%i*angles);     //Location of the poles
+xset("mark",0,1);
+lim=1.2*sqrt(2.);
+plot2d(real(s)',imag(s)',[-3],"012"," ",[-lim,-1.2,lim,1.2]);
+xarc(-1,1,2,2,0,360*64);
+xsegs([-lim,0;lim,0],[0,-1.2;0,1.2])
+xtitle('Pole positions of Butterworth filter');

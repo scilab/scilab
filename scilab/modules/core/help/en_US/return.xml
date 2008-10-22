@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="return">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>return</refname>
+    <refpurpose> return or resume execution and copy some local variables</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>return
+[x1,..,xn]=return(a1,..,an)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    In a function <literal>return</literal> stops the execution of the function,
+    <literal>[..]=return(..)</literal> stops the execution of the function and put the
+    local variables <literal>ai</literal> in calling environnement under names
+    <literal>xi</literal>.</para>
+    <para>
+    In <literal>pause</literal> mode, it allows to return to upper level
+    <literal>[..]=return(..)</literal> returns to upper level and put the local variables
+    <literal>ai</literal> in calling environnement under names <literal>xi</literal>.</para>
+    <para>
+    In an <literal>execstr</literal> called by a function <literal>[..]=return(..)</literal> stops
+    the execution of the function and put the local variables 
+    <literal>ai</literal> in calling environnement under names <literal>xi</literal>.</para>
+    <para><literal>resume</literal> is equivalent to <literal>return</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

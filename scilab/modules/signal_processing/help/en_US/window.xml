@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="window">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>window</refname>
+    <refpurpose> compute symmetric window of various type</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>win_l=window('re',n)
+win_l=window('tr',n)
+win_l=window('hn',n)
+win_l=window('hm',n)
+win_l=window('kr',n,alpha)
+[win_l,cwp]=window('ch',n,par)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>window length</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>par</term>
+        <listitem>
+          <para>parameter 2-vector <literal>par=[dp,df])</literal>, where
+	    <literal>dp</literal>  (<literal>0&lt;dp&lt;.5</literal>) rules the  main lobe
+	    width and  <literal>df</literal> rules the side lobe height
+	    (<literal>df&gt;0</literal>).</para>
+          <para>Only one of these two value should be specified the other one
+	    should set equal to <literal>-1</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>alpha</term>
+        <listitem>
+          <para>kaiser window parameter <literal>alpha &gt;0</literal>). </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>win</term>
+        <listitem>
+          <para>window</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cwp</term>
+        <listitem>
+          <para>unspecified Chebyshev window parameter</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      function which calculates various symmetric window for Disgital signal processing</para>
+    <para>
+      The Kaiser window is a nearly optimal window function. <literal>alpha</literal>
+      is an arbitrary positive real number that determines the shape of the
+      window,  and the integer  <literal>n</literal> is the length of the window.
+</para>
+    <para>
+    By construction, this function peaks at unity for <literal> k = n/2</literal> ,
+    i.e. at the center of the window, and decays exponentially towards the 
+    window edges.   The larger the value of <literal>alpha</literal>, the narrower 
+    the window becomes; <literal>alpha = 0</literal> corresponds to a rectangular window.
+    Conversely, for larger <literal>alpha</literal> the width of the main lobe
+    increases in the Fourier transform, while the side lobes decrease in
+    amplitude. 
+    Thus, this parameter controls the tradeoff between main-lobe width and
+    side-lobe area.
+</para>
+    <informaltable border="1">
+      <tr>
+        <td>alpha</td>
+        <td>window shape</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>Rectangular shape</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Similar to the Hamming window</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Similar to the Hanning window</td>
+      </tr>
+      <tr>
+        <td>8.6</td>
+        <td>Similar to the Blackman window</td>
+      </tr>
+    </informaltable>
+    <para>
+      The Chebyshev window minimizes the mainlobe width, given a particular sidelobe
+      height. It is characterized by an equiripple behavior, that is, its
+      sidelobes all have the same height.
+</para>
+    <para>
+      The Hanning and Hamming windows are quite similar, they only differ in
+      the choice of one parameter <literal>alpha</literal>: 
+      <literal> w=alpha+(1 - alpha)*cos(2*%pi*x/(n-1))</literal> 
+      <literal>alpha</literal> is equal to 1/2 in Hanning window and to 0.54 in
+      Hamming window.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Hamming window
+clf()
+N=64;
+w=window('hm',N);
+subplot(121);plot2d(1:N,w,style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+subplot(122)
+n=256;[W,fr]=frmag(w,n);
+plot2d(fr,20*log10(W),style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+
+//Kaiser window
+clf()
+N=64;
+w=window('kr',N,6);
+subplot(121);plot2d(1:N,w,style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+subplot(122)
+n=256;[W,fr]=frmag(w,n);
+plot2d(fr,20*log10(W),style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+
+//Chebyshev window
+clf()
+N=64;
+[w,df]=window('ch',N,[0.005,-1]);
+subplot(121);plot2d(1:N,w,style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+subplot(122)
+n=256;[W,fr]=frmag(w,n);
+plot2d(fr,20*log10(W),style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+   
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="wfir">wfir</link>
+      </member>
+      <member>
+        <link linkend="frmag">frmag</link>
+      </member>
+      <member>
+        <link linkend="ffilt">ffilt</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Carey  Bunks  </para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>IEEE. Programs for Digital Signal Processing. IEEE Press. New York: John
+    Wiley and Sons, 1979. Program 5.2.</para>
+  </refsection>
+</refentry>

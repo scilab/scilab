@@ -1,0 +1,2 @@
+ x=-1
+ select x,case 1,y=x+5,case -1,y=sqrt(x),end

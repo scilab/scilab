@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE classpaths SYSTEM "../modules/jvm/xml/classpath.dtd">
+<!-- =================== -->
+<!--
+ default CLASSPATH for Scilab
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007/2008
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+<!-- 
+Scilab Java dependencies can be load in different ways. 
+It can be:
+* startup - Load immediatly the dep when Scilab starts (default behaviour)
+* background - After Scilab engine is loaded, load the dep in the background
+* onUse - Load the deps only when needed (once)
+
+Some deps can be also disabled only for a specific mode.
+The option is "disableUnderMode" and can be:
+* STD - Normal mode
+* NW - No Window mode (ie command line but with graphics 
+* API - Scilab as an API 
+-->
+
+<classpaths>
+
+<!-- Mandatory on startup -->
+<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
+
+
+<!-- Load when needed -->
+<path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
+	<load on="graphics"/>
+	<load on="graphic_export"/>
+</path>
+<path value="$SCILAB/thirdparty/gluegen-rt.jar" load="onUse">
+	<load on="graphics"/>
+	<load on="graphic_export"/>
+</path>
+
+
+<!-- Documentation (not mandatory) -->
+<path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="$SCILAB/thirdparty/js.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="$SCILAB/thirdparty/saxon.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="$SCILAB/thirdparty/docbook-xsl-saxon.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="$SCILAB/thirdparty/xmlgraphics-commons-1.3.1.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+
+<!-- PDF doc generation -->
+<path value="$SCILAB/thirdparty/commons-io.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+<path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+<path value="$SCILAB/thirdparty/fop.jar" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+
+
+<!-- Mandatory on startup -->
+<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar" load="startup"/>
+<!-- Console GUI dep -->
+
+<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar" load="startup"/>
+<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="startup" disableUnderMode="NW"/>
+
+<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar" load="startup"/>
+<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar" load="startup"/>
+<path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
+<path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
+<path value="$SCILAB/modules/javasci/jar/javasci.jar" load="startup"/>
+<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar" load="startup"/>
+<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar" load="startup"/>
+<path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar" load="startup"/>
+<path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="startup"/>
+
+</classpaths>

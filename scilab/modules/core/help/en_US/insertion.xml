@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="insertion">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>insertion</refname>
+    <refpurpose>  partial variable assignation
+  or   modification</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="assignation">
+    <refname>assignation</refname>
+    <refpurpose> partial variable assignation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x(i,j)=a
+x(i)=a
+l(i)=a
+l(k1)...(kn)(i)=a or l(list(k1,...,kn,i))=a
+l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>matrix  of any  kind (constant, sparse, polynomial,...)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>l</term>
+        <listitem>
+          <para>list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i,j</term>
+        <listitem>
+          <para>indices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k1,...kn</term>
+        <listitem>
+          <para>indices  with integer value</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>new entry value</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>MATRIX CASE</term>
+        <listitem>
+          <para>if <literal>x</literal> is a matrix the indices <literal>i</literal> and <literal>j</literal>, may be:</para>
+          <variablelist>
+            <varlistentry>
+              <term>Real scalars or vectors or matrices</term>
+              <listitem>
+                <para>In this case the values given as indices should be positive and
+       it is only their integer part which taken into account.</para>
+                <itemizedlist>
+                  <listitem>
+                    <para>if <literal>a</literal> is a matrix with
+            dimensions
+            <literal>(size(i,'*'),size(j,'*'))</literal>,
+            <literal>x(i,j)=a</literal> returns a new <literal>x</literal> matrix
+            such as <literal>x(int(i(l)),int(j(k)))=a(l,k) </literal> for
+            <literal>l</literal> from 1 to
+            <literal>size(i,'*')</literal> and <literal>k</literal> from
+            1 to <literal>size(j,'*')</literal>, other initial
+            entries of <literal>x</literal> are unchanged. </para>
+                  </listitem>
+                  <listitem>
+                    <para> if <literal>a</literal> is a scalar
+           <literal>x(i,j)=a</literal> returns a new <literal>x</literal> matrix
+           such as <literal>x(int(i(l)),int(j(k)))=a</literal> for
+           <literal>l</literal> from 1 to <literal>size(i,'*')</literal>
+           and <literal>k</literal> from 1 to
+           <literal>size(j,'*')</literal>, other initial entries
+           of <literal>x</literal> are unchanged. </para>
+                  </listitem>
+                  <listitem>
+                    <para> If <literal>i</literal> or <literal>j</literal>
+           maximum value exceed corresponding <literal>x</literal> matrix
+           dimension, array <literal>x</literal> is previously extended to the
+           required dimensions with zeros entries for standard
+           matrices, 0 length character string for string matrices and
+           false values for boolean matrices.
+         </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(i,j)=[]</literal> kills rows
+           specified by <literal>i</literal> if <literal>j</literal> matches all
+           columns of <literal>x</literal> or kills columns specified by
+           <literal>j</literal> if <literal>i</literal> matches all rows of
+           <literal>x</literal>. In other cases <literal>x(i,j)=[]</literal>
+           produce an error. </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(i)=a</literal> with <literal>a</literal> a
+           vector returns a new <literal>x</literal> matrix such as
+           <literal>x(int(i(l)))=a(l)</literal> for <literal>l</literal> from 1 to
+           <literal>size(i,'*')</literal> , other initial entries
+           of <literal>x</literal> are unchanged. </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(i)=a</literal> with <literal>a</literal> a
+           scalar returns a new <literal>x</literal> matrix such as
+           <literal>x(int(i(l)))=a</literal> for <literal>l</literal> from 1 to
+           <literal>size(i,'*')</literal> , other initial entries
+           of <literal>x</literal> are unchanged. </para>
+                    <para>
+          If <literal>i</literal> maximum value exceed
+          <literal>size(x,1)</literal>, <literal>x</literal> is previously
+          extended to the required dimension with zeros entries for
+          standard matrices, 0 length character string for string
+          matrices and false values for boolean matrices.
+          </para>
+                    <variablelist>
+                      <varlistentry>
+                        <term>if</term>
+                        <listitem>
+                          <para><literal>x</literal> is a 1x1</para>
+                          <para>
+              matrix <literal>a</literal> may be a row (respectively a
+              column) vector with dimension
+              <literal>size(i,'*')</literal>. Resulting
+              <literal>x</literal> matrix is a row (respectively a column)
+              vector
+            </para>
+                        </listitem>
+                      </varlistentry>
+                      <varlistentry>
+                        <term>if</term>
+                        <listitem>
+                          <para><literal>x</literal> is a row</para>
+                          <para>
+               vector <literal>a</literal> must be a row vector with
+               dimension <literal>size(i,'*')</literal>
+            </para>
+                        </listitem>
+                      </varlistentry>
+                      <varlistentry>
+                        <term>if</term>
+                        <listitem>
+                          <para><literal>x</literal> is a column</para>
+                          <para>
+               vector <literal>a</literal> must be a column vector with
+               dimension <literal>size(i,'*')</literal>
+            </para>
+                        </listitem>
+                      </varlistentry>
+                      <varlistentry>
+                        <term>if</term>
+                        <listitem>
+                          <para><literal>x</literal> is a general</para>
+                          <para>
+               matrix <literal>a</literal> must be a row or column vector
+               with dimension <literal>size(i,'*')</literal> and
+               <literal>i</literal> maximum value cannot exceed
+               <literal>size(x,'*')</literal>,
+            </para>
+                        </listitem>
+                      </varlistentry>
+                    </variablelist>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(i)=[]</literal> kills entries
+            specified by <literal>i</literal>.
+         </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>The : symbol</term>
+              <listitem>
+                <para>the <literal>:</literal> symbol stands for "all elements".</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>x(i,:)=a</literal> is interpreted as
+             <literal>x(i,1:size(x,2))=a</literal></para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(:,j)=a</literal> is interpreted as
+            <literal>x(1:size(x,1),j)=a</literal></para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(:)=a</literal> returns in
+            <literal>x</literal> the <literal>a</literal> matrix reshaped
+            according to x
+            dimensions. <literal>size(x,'*')</literal> must be
+            equal to <literal>size(a,'*')</literal></para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Vectors of boolean</term>
+              <listitem>
+                <para>If an index (<literal>i</literal> or <literal>j</literal> )is a vector
+          of booleans it is interpreted as <literal>find(i)</literal> or
+          respectively <literal>find(j)</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Polynomials</term>
+              <listitem>
+                <para>If an index (<literal>i</literal> or <literal>j</literal> )is a vector of
+         polynomials or implicit polynomial vector it is interpreted
+         as <literal>horner(i,m)</literal> or respectively
+         <literal>horner(j,n)</literal> where <literal>m</literal> and
+         <literal>n</literal> are associated <literal>x</literal> dimensions.
+         Even if this feature works for all polynomials, it is
+         recommended to use polynomials in <literal>$</literal> for
+         readability.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>LIST OR TLIST CASE</term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para>If they are present
+        the <literal>ki</literal> give the path to a sub-list entry of
+        <literal>l</literal> data structure. They allow a recursive insertion
+        without intermediate copies.  The <literal>l(k1)...(kn)(i)=a</literal>
+        and <literal>l(list(k1,...,kn,i)=a)</literal> instructions are
+        interpreted as:</para>
+              <para>
+                <literal>lk1 = l(k1)</literal>
+                <literal> ..  = ..  </literal>
+              </para>
+              <para>
+                <literal>lkn = lkn-1(kn)</literal>
+                <literal> lkn(i) = a</literal>
+              </para>
+              <para>
+                <literal>lkn-1(kn) = lkn</literal>
+                <literal> ..  = ..  </literal>
+                <literal>l(k1) = lk1</literal>
+              </para>
+              <para>
+        And the <literal>l(k1)...(kn)(i,j)=a</literal> and  <literal>l(list(k1,...,kn,list(i,j))=a</literal> 
+        instructions are interpreted as:</para>
+              <para>
+                <literal>lk1 = l(k1)</literal>
+                <literal> ..  = ..  </literal>
+              </para>
+              <para>
+                <literal>lkn = lkn-1(kn)</literal>
+                <literal>lkn(i,j) = a</literal>
+              </para>
+              <para>
+                <literal>lkn-1(kn) = lkn</literal>
+                <literal> ..  = ..  </literal>
+                <literal>l(k1)= lk1</literal>
+              </para>
+            </listitem>
+            <listitem>
+              <para><literal>i</literal> may be :</para>
+              <itemizedlist>
+                <listitem>
+                  <para> a real non negative scalar.
+           <literal>l(0)=a</literal> adds an entry on the "left"
+           of the list <literal>l(i)=a</literal> sets the <literal>i</literal>
+           entry of the list <literal>l</literal> to <literal>a</literal>. if
+           <literal>i&gt;size(l)</literal>, <literal>l</literal> is previously
+           extended with zero length entries (undefined).
+           <literal>l(i)=null()</literal> suppress the <literal>i</literal>th list
+           entry.</para>
+                </listitem>
+                <listitem>
+                  <para> a polynomial.  If <literal>i</literal> is a
+            polynomial it is interpreted as <literal>horner(i,m)</literal>
+            where <literal>m=size(l)</literal>.  Even if this feature works
+            for all polynomials, it is recommended to use polynomials
+            in <literal>$</literal> for readability.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para><literal>k1,..kn</literal> may be :</para>
+              <itemizedlist>
+                <listitem>
+                  <para> 
+            real positive scalar.</para>
+                </listitem>
+                <listitem>
+                  <para> a polynomial,interpreted as
+            <literal>horner(ki,m)</literal> where <literal>m</literal> is the
+            corresponding sub-list size.</para>
+                </listitem>
+                <listitem>
+                  <para> a character string associated with a
+            sub-list entry name.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
+    <para>
+    For soft coded matrix types such as rational functions and state space linear systems, <literal>x(i)</literal> syntax may not be used for vector entry insertion due to confusion with list entry insertion. <literal>x(1,j)</literal> or <literal>x(i,1)</literal> syntax must be used.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// MATRIX CASE
+a=[1 2 3;4 5 6]
+a(1,2)=10
+a([1 1],2)=[-1;-2]
+a(:,1)=[8;5]
+a(1,3:-1:1)=[77 44 99]
+a(1)=%s
+a(6)=%s+1
+a(:)=1:6
+a([%t %f],1)=33
+a(1:2,$-1)=[2;4]
+a($:-1:1,1)=[8;7]
+a($)=123
+//
+x='test'
+x([4 5])=['4','5']
+//
+b=[1/%s,(%s+1)/(%s-1)]
+b(1,1)=0
+b(1,$)=b(1,$)+1
+b(2)=[1 2] // the numerator
+// LIST OR TLIST CASE
+l=list(1,'qwerw',%s)
+l(1)='Changed'
+l(0)='Added'
+l(6)=['one more';'added']
+//
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2).a=33
+dts(2)('b')(1,2)=-100
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+      <member>
+        <link linkend="parents">parents</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

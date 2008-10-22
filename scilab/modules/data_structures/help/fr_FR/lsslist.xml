@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lsslist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lsslist</refname>
+    <refpurpose> Définition d'un système dynamique linéaire  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>lsslist()
+lsslist(a1,....an)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>lsslist(a1,....an)</literal> est équivalent à la commande
+    <literal>tlist(['lss','A';'B';'C';'X0','dt'], a1,....an)</literal> 
+  </para>
+    <para>
+    Crée une <literal>tlist</literal> avec <literal>['lss','A';'B';'C';'X0','dt']</literal> pour le premier champ et les <literal>ai</literal> pour les termes suivants, s'ils sont spécifiés. Aucune vérification de taille ou de type n'est faite sur les <literal>ai</literal>.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

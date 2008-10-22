@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="simp_mode">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>simp_mode</refname>
+    <refpurpose> mode de simplification des fractions rationnelles  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>mod=simp_mode()
+simp_mode(mod)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>mod  </term>
+        <listitem>
+          <para>un booléen
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Une simplification rationnelle est effectuée après chaque opération sur les fractions rationnelles. Il est possible de changer cela avec la fonction <literal>simp_mode</literal>.
+  </para>
+    <para><literal>simp_mod(%t)</literal> passe en mode de simplification systématique.
+  </para>
+    <para><literal>simp_mod(%f)</literal> empêche les simplifications.
+  </para>
+    <para><literal>mod=simp_mod()</literal> renvoie dans mod le mode de simplification courant.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+mod=simp_mode()
+simp_mode(%f);hns=s/s
+simp_mode(%t);hns=s/s
+simp_mode(mod);
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

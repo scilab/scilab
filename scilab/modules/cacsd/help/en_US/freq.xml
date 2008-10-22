@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="freq">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>freq</refname>
+    <refpurpose> frequency response</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x]=freq(A,B,C [,D],f)
+[x]=freq(NUM,DEN,f)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A, B, C, D</term>
+        <listitem>
+          <para> real matrices of respective dimensions <literal>nxn, nxp, mxn, mxp</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>NUM,DEN</term>
+        <listitem>
+          <para>polynomial matrices of dimension <literal>mxp</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>x=freq(A,B,C [,D],f)</literal> returns a real or complex <literal>mxp*t</literal> matrix
+    such that:</para>
+    <para><literal>x(:,k*p:(k+1)*p)= C*inv(f(k)*eye()-A)*B + D</literal>.</para>
+    <para>
+    Thus, for <literal>f</literal> taking values along the imaginary axis or
+    on the unit circle <literal>x</literal> is the continuous or discrete time 
+    frequency response of <literal>(A,B,C,D)</literal>.</para>
+    <para><literal>x=freq(NUM,DEN,f)</literal> returns a real or complex matrix <literal>x</literal> such
+    that columns <literal>k*(p-1)+1</literal> to <literal>k*p</literal> of <literal>x</literal> contain the matrix  
+    <literal>NUM(f(k))./DEN(f(k))</literal></para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+s=poly(0,'s');
+sys=(s+1)/(s^3-5*s+4)
+rep=freq(sys("num"),sys("den"),[0,0.9,1.1,2,3,10,20])
+[horner(sys,0),horner(sys,20)]
+//
+Sys=tf2ss(sys);
+[A,B,C,D]=abcd(Sys);
+freq(A,B,C,[0,0.9,1.1,2,3,10,20])
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="repfreq">repfreq</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

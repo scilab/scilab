@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE librarypaths SYSTEM "../modules/jvm/xml/librarypath.dtd">
+<!-- =================== -->
+<!--
+ default java.library.path for Scilab
+ add path only if path exists
+ @author Allan CORNET
+ @author Sylvestre Ledru
+ @date INRIA 2007/2008
+ ===================
+ Don't touch if you do not know what you are doing
+
+* @TODO See if it would be interesting to add a tag for the misc archs 
+-->
+<!-- =================== -->
+
+<librarypaths>
+<!-- Scilab binary -->
+<path value="$SCILAB/bin"/>
+
+<!-- Developpement environment -->
+<path value="$SCILAB/modules/action_binding/.libs"/>
+<path value="$SCILAB/modules/console/.libs"/>
+<path value="$SCILAB/modules/history_manager/.libs"/>
+<path value="$SCILAB/modules/completion/.libs"/>
+<path value="$SCILAB/modules/localization/.libs"/>
+<path value="$SCILAB/modules/renderer/.libs"/>
+<path value="$SCILAB/modules/graphic_export/.libs"/>
+<path value="$SCILAB/.libs"/>
+
+<!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->
+<path value="/usr/lib/jni/"/>
+
+<!-- Make install with prefix -->
+<path value="$SCILAB/../../lib/scilab/"/>
+
+<!-- Standard path -->
+<path value="/usr/lib/scilab/"/>
+
+<!-- Standard path for 64 bits -->
+<path value="/usr/lib64/scilab/"/>
+
+</librarypaths>

@@ -1,0 +1,32 @@
+// <-- Non-regression test for bug 1684 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1684
+//
+// <-- Short Description -->
+//    I can't compute the following expression:
+//    A = 1 + -2;
+//    I need to enter A = 1 + (-2);
+//    I've got a program which generates automaticaly matlab scripts with this kind of
+//    expressions and I don't want to change it to test is the value is negative and
+//    then add parenthesis.
+// Copyright INRIA
+// Scilab Project - Serge Steer
+// Copyright INRIA 2005
+// Date : 6 mars 2006
+a=1+-1;
+if a<>0 then bugmes();quit;end
+a=1-+1;
+if a<>0 then bugmes();quit;end
+a=1++1;
+if a<>2 then bugmes();quit;end
+a=1--1;
+if a<>2 then bugmes();quit;end
+a=1*-1;
+if a<>-1 then bugmes();quit;end
+a=1*+1;
+if a<>1 then bugmes();quit;end
+a=2*+++--2;
+if a<>4 then bugmes();quit;end
+a=3+-1*+++--2;
+if a<>1 then bugmes();quit;end

@@ -1,0 +1,69 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/ell1mag_data.ref','rb');
+ 
+%ans = deff('[alpha,beta]=alpha_beta(n,m,m1)', 'if 2*int(n/2)=n then, beta=K1; else, beta=0;end;alpha=%k(1-m1)/%k(1-m);');
+ Warning: obsolete use of = instead of ==
+if 2*int(n/2)=n then, beta=K1; else, beta=0;end;alpha=%k(1-m1)/%k(1-m);
+               !       
+at line       2 of function alpha_beta               called by :  
+beta=0;end;alpha=%k(1-m1)/%k(1-m);')
+ 
+ 
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+epsilon = 0.1;A = 10;//ripple parameters
+ 
+m1 = epsilon * epsilon/(A * A - 1);n = 5;omegac = 6;
+ 
+m = find_freq(epsilon, A, n);omegar = omegac/sqrt(m);
+ 
+if load_ref('omegar') then   bugmes();quit;end,
+ 
+ 
+%ans = %k(1 - m1) * %k(m)/(%k(m1) * %k(1 - m)) - n;
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//Check...
+ 
+[alpha,beta] = alpha_beta(n, m, m1);
+Warning :redefining function: beta                    
+ 
+Warning :redefining function: beta                    
+ 
+ 
+if load_ref('beta') then   bugmes();quit;end,
+ 
+if load_ref('alpha') then   bugmes();quit;end,
+ 
+ 
+%ans = alpha * %asn(1, m) - n * %k(m1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//Check
+ 
+sample = 0:0.01:20;
+Warning :redefining function: sample                  
+ 
+ 
+//Now we map the positive real axis into the contour...
+ 
+z = alpha * %asn(sample/omegac, m) + beta * ones(sample);
+ 
+%ans = plot(sample, ell1mag(epsilon, m1, z));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

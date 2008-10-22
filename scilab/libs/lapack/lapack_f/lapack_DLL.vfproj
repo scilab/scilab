@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="9.10" ProjectIdGuid="{69296D00-0DE1-4F4B-B0CE-FE4F3CB43923}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/lapack.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrtd.lib" ModuleDefinitionFile="../../../bin/lapack.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="../../../bin/lapack.lib" LinkDLL="true" AdditionalDependencies="libcmtd.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul
+copy *.def lapack1.def &gt;nul
+copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul" Description="Build Lapack.def file"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/lapack.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrt.lib" ModuleDefinitionFile="../../../bin/lapack.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="../../../bin/lapack.lib" LinkDLL="true" AdditionalDependencies="libcmt.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul
+copy *.def lapack1.def &gt;nul
+copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul" Description="Build Lapack.def file"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/lapack.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrtd.lib" ModuleDefinitionFile="../../../bin/lapack.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="../../../bin/lapack.lib" LinkDLL="true" AdditionalDependencies="libcmtd.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul
+copy *.def lapack1.def &gt;nul
+copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul" Description="Build Lapack.def file"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/lapack.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrt.lib" ModuleDefinitionFile="../../../bin/lapack.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="../../../bin/lapack.lib" LinkDLL="true" AdditionalDependencies="libcmt.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul
+copy *.def lapack1.def &gt;nul
+copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul" Description="Build Lapack.def file"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\dbdsqr.f"/>
+		<File RelativePath="..\dgebak.f"/>
+		<File RelativePath="..\dgebal.f"/>
+		<File RelativePath="..\dgebd2.f"/>
+		<File RelativePath="..\dgebrd.f"/>
+		<File RelativePath="..\dgecon.f"/>
+		<File RelativePath="..\dgeequ.f"/>
+		<File RelativePath="..\dgees.f"/>
+		<File RelativePath="..\dgeesx.f"/>
+		<File RelativePath="..\dgeev.f"/>
+		<File RelativePath="..\dgegs.f"/>
+		<File RelativePath="..\dgehd2.f"/>
+		<File RelativePath="..\dgehrd.f"/>
+		<File RelativePath="..\dgelq2.f"/>
+		<File RelativePath="..\dgelqf.f"/>
+		<File RelativePath="..\dgels.f"/>
+		<File RelativePath="..\dgelss.f"/>
+		<File RelativePath="..\dgelsx.f"/>
+		<File RelativePath="..\dgelsy.f"/>
+		<File RelativePath="..\dgeql2.f"/>
+		<File RelativePath="..\dgeqlf.f"/>
+		<File RelativePath="..\dgeqp3.f"/>
+		<File RelativePath="..\dgeqpf.f"/>
+		<File RelativePath="..\dgeqr2.f"/>
+		<File RelativePath="..\dgeqrf.f"/>
+		<File RelativePath="..\dgerfs.f"/>
+		<File RelativePath="..\dgerq2.f"/>
+		<File RelativePath="..\dgerqf.f"/>
+		<File RelativePath="..\dgesc2.f"/>
+		<File RelativePath="..\dgesv.f"/>
+		<File RelativePath="..\dgesvd.f"/>
+		<File RelativePath="..\dgesvx.f"/>
+		<File RelativePath="..\dgetc2.f"/>
+		<File RelativePath="..\dgetf2.f"/>
+		<File RelativePath="..\dgetrf.f"/>
+		<File RelativePath="..\dgetri.f"/>
+		<File RelativePath="..\dgetrs.f"/>
+		<File RelativePath="..\dggbak.f"/>
+		<File RelativePath="..\dggbal.f"/>
+		<File RelativePath="..\dgges.f"/>
+		<File RelativePath="..\dggev.f"/>
+		<File RelativePath="..\dgghrd.f"/>
+		<File RelativePath="..\dhgeqz.f"/>
+		<File RelativePath="..\dhseqr.f"/>
+		<File RelativePath="..\disnan.f"/>
+		<File RelativePath="..\dlabad.f"/>
+		<File RelativePath="..\dlabrd.f"/>
+		<File RelativePath="..\dlacn2.f"/>
+		<File RelativePath="..\dlacon.f"/>
+		<File RelativePath="..\dlacpy.f"/>
+		<File RelativePath="..\dladiv.f"/>
+		<File RelativePath="..\dlae2.f"/>
+		<File RelativePath="..\dlaev2.f"/>
+		<File RelativePath="..\dlaexc.f"/>
+		<File RelativePath="..\dlag2.f"/>
+		<File RelativePath="..\dlagv2.f"/>
+		<File RelativePath="..\dlahqr.f"/>
+		<File RelativePath="..\dlahr2.f"/>
+		<File RelativePath="..\dlahrd.f"/>
+		<File RelativePath="..\dlaic1.f"/>
+		<File RelativePath="..\dlaisnan.f"/>
+		<File RelativePath="..\dlaln2.f"/>
+		<File RelativePath="..\dlamch.f">
+			<FileConfiguration Name="Release|x64">
+				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
+			<FileConfiguration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended"/></FileConfiguration></File>
+		<File RelativePath="..\dlange.f"/>
+		<File RelativePath="..\dlanhs.f"/>
+		<File RelativePath="..\dlansp.f"/>
+		<File RelativePath="..\dlanst.f"/>
+		<File RelativePath="..\dlansy.f"/>
+		<File RelativePath="..\dlantr.f"/>
+		<File RelativePath="..\dlanv2.f"/>
+		<File RelativePath="..\dlapmt.f"/>
+		<File RelativePath="..\dlapy2.f"/>
+		<File RelativePath="..\dlapy3.f"/>
+		<File RelativePath="..\dlaqge.f"/>
+		<File RelativePath="..\dlaqp2.f"/>
+		<File RelativePath="..\dlaqps.f"/>
+		<File RelativePath="..\dlaqr0.f"/>
+		<File RelativePath="..\dlaqr1.f"/>
+		<File RelativePath="..\dlaqr2.f"/>
+		<File RelativePath="..\dlaqr3.f"/>
+		<File RelativePath="..\dlaqr4.f"/>
+		<File RelativePath="..\dlaqr5.f"/>
+		<File RelativePath="..\dlarf.f"/>
+		<File RelativePath="..\dlarfb.f"/>
+		<File RelativePath="..\dlarfg.f"/>
+		<File RelativePath="..\dlarft.f"/>
+		<File RelativePath="..\dlarfx.f"/>
+		<File RelativePath="..\dlartg.f"/>
+		<File RelativePath="..\dlarz.f"/>
+		<File RelativePath="..\dlarzb.f"/>
+		<File RelativePath="..\dlarzt.f"/>
+		<File RelativePath="..\dlas2.f"/>
+		<File RelativePath="..\dlascl.f"/>
+		<File RelativePath="..\dlaset.f"/>
+		<File RelativePath="..\dlasq1.f"/>
+		<File RelativePath="..\dlasq2.f"/>
+		<File RelativePath="..\dlasq3.f"/>
+		<File RelativePath="..\dlasq4.f"/>
+		<File RelativePath="..\dlasq5.f"/>
+		<File RelativePath="..\dlasq6.f"/>
+		<File RelativePath="..\dlasr.f"/>
+		<File RelativePath="..\dlasrt.f"/>
+		<File RelativePath="..\dlassq.f"/>
+		<File RelativePath="..\dlasv2.f"/>
+		<File RelativePath="..\dlaswp.f"/>
+		<File RelativePath="..\dlasy2.f"/>
+		<File RelativePath="..\dlasyf.f"/>
+		<File RelativePath="..\dlatdf.f"/>
+		<File RelativePath="..\dlatrd.f"/>
+		<File RelativePath="..\dlatrs.f"/>
+		<File RelativePath="..\dlatrz.f"/>
+		<File RelativePath="..\dlatzm.f"/>
+		<File RelativePath="..\dlazq3.f"/>
+		<File RelativePath="..\dlazq4.f"/>
+		<File RelativePath="..\dopgtr.f"/>
+		<File RelativePath="..\dorg2l.f"/>
+		<File RelativePath="..\dorg2r.f"/>
+		<File RelativePath="..\dorgbr.f"/>
+		<File RelativePath="..\dorghr.f"/>
+		<File RelativePath="..\dorgl2.f"/>
+		<File RelativePath="..\dorglq.f"/>
+		<File RelativePath="..\dorgql.f"/>
+		<File RelativePath="..\dorgqr.f"/>
+		<File RelativePath="..\dorgr2.f"/>
+		<File RelativePath="..\dorgrq.f"/>
+		<File RelativePath="..\dorgtr.f"/>
+		<File RelativePath="..\dorm2l.f"/>
+		<File RelativePath="..\dorm2r.f"/>
+		<File RelativePath="..\dormbr.f"/>
+		<File RelativePath="..\dormhr.f"/>
+		<File RelativePath="..\dorml2.f"/>
+		<File RelativePath="..\dormlq.f"/>
+		<File RelativePath="..\dormql.f"/>
+		<File RelativePath="..\dormqr.f"/>
+		<File RelativePath="..\dormr2.f"/>
+		<File RelativePath="..\dormr3.f"/>
+		<File RelativePath="..\dormrq.f"/>
+		<File RelativePath="..\dormrz.f"/>
+		<File RelativePath="..\dpocon.f"/>
+		<File RelativePath="..\dpotf2.f"/>
+		<File RelativePath="..\dpotrf.f"/>
+		<File RelativePath="..\dpotrs.f"/>
+		<File RelativePath="..\dpptrf.f"/>
+		<File RelativePath="..\drscl.f"/>
+		<File RelativePath="..\dspev.f"/>
+		<File RelativePath="..\dspgst.f"/>
+		<File RelativePath="..\dspgv.f"/>
+		<File RelativePath="..\dsptrd.f"/>
+		<File RelativePath="..\dsptrf.f"/>
+		<File RelativePath="..\dsteqr.f"/>
+		<File RelativePath="..\dsterf.f"/>
+		<File RelativePath="..\dsycon.f"/>
+		<File RelativePath="..\dsyev.f"/>
+		<File RelativePath="..\dsysv.f"/>
+		<File RelativePath="..\dsytd2.f"/>
+		<File RelativePath="..\dsytf2.f"/>
+		<File RelativePath="..\dsytrd.f"/>
+		<File RelativePath="..\dsytrf.f"/>
+		<File RelativePath="..\dsytri.f"/>
+		<File RelativePath="..\dsytrs.f"/>
+		<File RelativePath="..\dtgevc.f"/>
+		<File RelativePath="..\dtgex2.f"/>
+		<File RelativePath="..\dtgexc.f"/>
+		<File RelativePath="..\dtgsen.f"/>
+		<File RelativePath="..\dtgsy2.f"/>
+		<File RelativePath="..\dtgsyl.f"/>
+		<File RelativePath="..\dtrcon.f"/>
+		<File RelativePath="..\dtrevc.f"/>
+		<File RelativePath="..\dtrexc.f"/>
+		<File RelativePath="..\dtrsen.f"/>
+		<File RelativePath="..\dtrsyl.f"/>
+		<File RelativePath="..\dtrti2.f"/>
+		<File RelativePath="..\dtrtri.f"/>
+		<File RelativePath="..\dtrtrs.f"/>
+		<File RelativePath="..\dtzrqf.f"/>
+		<File RelativePath="..\dtzrzf.f"/>
+		<File RelativePath="..\dzsum1.f"/>
+		<File RelativePath="..\ieeeck.f"/>
+		<File RelativePath="..\ilaenv.f"/>
+		<File RelativePath="..\iparmq.f"/>
+		<File RelativePath="..\izmax1.f"/>
+		<File RelativePath="..\lsame.f"/>
+		<File RelativePath="..\slamch.f">
+			<FileConfiguration Name="Release|x64">
+				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
+			<FileConfiguration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
+		<File RelativePath="..\zbdsqr.f"/>
+		<File RelativePath="..\zdrot.f"/>
+		<File RelativePath="..\zdrscl.f"/>
+		<File RelativePath="..\zgebak.f"/>
+		<File RelativePath="..\zgebal.f"/>
+		<File RelativePath="..\zgebd2.f"/>
+		<File RelativePath="..\zgebrd.f"/>
+		<File RelativePath="..\zgecon.f"/>
+		<File RelativePath="..\zgees.f"/>
+		<File RelativePath="..\zgeev.f"/>
+		<File RelativePath="..\zgehd2.f"/>
+		<File RelativePath="..\zgehrd.f"/>
+		<File RelativePath="..\zgelq2.f"/>
+		<File RelativePath="..\zgelqf.f"/>
+		<File RelativePath="..\zgelsy.f"/>
+		<File RelativePath="..\zgeqp3.f"/>
+		<File RelativePath="..\zgeqpf.f"/>
+		<File RelativePath="..\zgeqr2.f"/>
+		<File RelativePath="..\zgeqrf.f"/>
+		<File RelativePath="..\zgesc2.f"/>
+		<File RelativePath="..\zgesvd.f"/>
+		<File RelativePath="..\zgetc2.f"/>
+		<File RelativePath="..\zgetf2.f"/>
+		<File RelativePath="..\zgetrf.f"/>
+		<File RelativePath="..\zgetri.f"/>
+		<File RelativePath="..\zgetrs.f"/>
+		<File RelativePath="..\zggbak.f"/>
+		<File RelativePath="..\zggbal.f"/>
+		<File RelativePath="..\zgges.f"/>
+		<File RelativePath="..\zggev.f"/>
+		<File RelativePath="..\zgghrd.f"/>
+		<File RelativePath="..\zheev.f"/>
+		<File RelativePath="..\zhetd2.f"/>
+		<File RelativePath="..\zhetrd.f"/>
+		<File RelativePath="..\zhgeqz.f"/>
+		<File RelativePath="..\zhseqr.f"/>
+		<File RelativePath="..\zlabrd.f"/>
+		<File RelativePath="..\zlacgv.f"/>
+		<File RelativePath="..\zlacn2.f"/>
+		<File RelativePath="..\zlacon.f"/>
+		<File RelativePath="..\zlacpy.f"/>
+		<File RelativePath="..\zladiv.f"/>
+		<File RelativePath="..\zlahqr.f"/>
+		<File RelativePath="..\zlahr2.f"/>
+		<File RelativePath="..\zlahrd.f"/>
+		<File RelativePath="..\zlaic1.f"/>
+		<File RelativePath="..\zlange.f"/>
+		<File RelativePath="..\zlanhe.f"/>
+		<File RelativePath="..\zlanhs.f"/>
+		<File RelativePath="..\zlaqp2.f"/>
+		<File RelativePath="..\zlaqps.f"/>
+		<File RelativePath="..\zlaqr0.f"/>
+		<File RelativePath="..\zlaqr1.f"/>
+		<File RelativePath="..\zlaqr2.f"/>
+		<File RelativePath="..\zlaqr3.f"/>
+		<File RelativePath="..\zlaqr4.f"/>
+		<File RelativePath="..\zlaqr5.f"/>
+		<File RelativePath="..\zlarf.f"/>
+		<File RelativePath="..\zlarfb.f"/>
+		<File RelativePath="..\zlarfg.f"/>
+		<File RelativePath="..\zlarft.f"/>
+		<File RelativePath="..\zlarfx.f"/>
+		<File RelativePath="..\zlartg.f"/>
+		<File RelativePath="..\zlarz.f"/>
+		<File RelativePath="..\zlarzb.f"/>
+		<File RelativePath="..\zlarzt.f"/>
+		<File RelativePath="..\zlascl.f"/>
+		<File RelativePath="..\zlaset.f"/>
+		<File RelativePath="..\zlasr.f"/>
+		<File RelativePath="..\zlassq.f"/>
+		<File RelativePath="..\zlaswp.f"/>
+		<File RelativePath="..\zlatdf.f"/>
+		<File RelativePath="..\zlatrd.f"/>
+		<File RelativePath="..\zlatrs.f"/>
+		<File RelativePath="..\zlatrz.f"/>
+		<File RelativePath="..\zpotf2.f"/>
+		<File RelativePath="..\zpotrf.f"/>
+		<File RelativePath="..\zrot.f"/>
+		<File RelativePath="..\zsteqr.f"/>
+		<File RelativePath="..\ztgevc.f"/>
+		<File RelativePath="..\ztgex2.f"/>
+		<File RelativePath="..\ztgexc.f"/>
+		<File RelativePath="..\ztgsen.f"/>
+		<File RelativePath="..\ztgsy2.f"/>
+		<File RelativePath="..\ztgsyl.f"/>
+		<File RelativePath="..\ztrevc.f"/>
+		<File RelativePath="..\ztrexc.f"/>
+		<File RelativePath="..\ztrsen.f"/>
+		<File RelativePath="..\ztrsyl.f"/>
+		<File RelativePath="..\ztrti2.f"/>
+		<File RelativePath="..\ztrtri.f"/>
+		<File RelativePath="..\ztzrzf.f"/>
+		<File RelativePath="..\zung2l.f"/>
+		<File RelativePath="..\zung2r.f"/>
+		<File RelativePath="..\zungbr.f"/>
+		<File RelativePath="..\zunghr.f"/>
+		<File RelativePath="..\zungl2.f"/>
+		<File RelativePath="..\zunglq.f"/>
+		<File RelativePath="..\zungql.f"/>
+		<File RelativePath="..\zungqr.f"/>
+		<File RelativePath="..\zungtr.f"/>
+		<File RelativePath="..\zunm2r.f"/>
+		<File RelativePath="..\zunmbr.f"/>
+		<File RelativePath="..\zunml2.f"/>
+		<File RelativePath="..\zunmlq.f"/>
+		<File RelativePath="..\zunmqr.f"/>
+		<File RelativePath="..\zunmr3.f"/>
+		<File RelativePath="..\zunmrz.f"/></Filter>
+		<File RelativePath="..\..\..\bin\blasplus.lib"/>
+		<File RelativePath="..\Makefile.am"/></Files>
+	<Globals/></VisualStudioProject>

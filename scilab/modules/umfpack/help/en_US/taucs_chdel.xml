@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_chdel">
+  <info>
+    <pubdate>  </pubdate>
+  </info>
+  <refnamediv>
+    <refname>taucs_chdel</refname>
+    <refpurpose> utility function used with taucs_chfact  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>taucs_chdel(C_ptr) or taucs_chdel()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>C_ptr  </term>
+        <listitem>
+          <para>a pointer to a Cholesky factorization</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function is used in conjunction with <link linkend="taucs_chfact">taucs_chfact</link> and
+    <link linkend="taucs_chsolve">taucs_chsolve</link>. It clears the internal memory space used to store 
+    the Cholesky factorization (got with taucs_chfact). Use without argument 
+    it frees the memory for all the current scilab (taucs) Cholesky factorizations. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <para>
+    see the example section of <link linkend="taucs_chfact">taucs_chfact</link>
+  </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="taucs_chfact">taucs_chfact</link>
+      </member>
+      <member>
+        <link linkend="taucs_chsolve">taucs_chsolve</link>
+      </member>
+      <member>
+        <link linkend="taucs_chinfo">taucs_chinfo</link>
+      </member>
+      <member>
+        <link linkend="taucs_chget">taucs_chget</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>taucs by Sivan Toledo (see taucs_license)</member>
+      <member>scilab interface by Bruno Pincon</member>
+    </simplelist>
+  </refsection>
+</refentry>

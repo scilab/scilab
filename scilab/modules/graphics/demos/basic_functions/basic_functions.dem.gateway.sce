@@ -1,0 +1,20 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
+demopath = get_absolute_file_path("basic_functions.dem.gateway.sce");
+
+subdemolist=[                                                                            ..
+    "Rectangles, Arcs, Polylines, Segments and Numbers","basic_functions_1.dem.sce" ; ..
+    "Rectangles, Arcs, Polylines and Strings"          ,"basic_functions_2.dem.sce" ; ..
+    "Setting properties"                               ,"basic_functions_3.dem.sce" ; ..
+    "Window properties"                                ,"basic_functions_4.dem.sce" ; ..
+    "Set of rectangles"                                ,"basic_functions_5.dem.sce" ; ..
+    "Colored matrix"                                   ,"basic_functions_6.dem.sce" ; ..
+    "Colored histogram"                                ,"basic_functions_7.dem.sce" ; ..
+    "Pie Chart"                                        ,"basic_functions_8.dem.sce" ]
+
+subdemolist(:,2) = demopath + subdemolist(:,2);

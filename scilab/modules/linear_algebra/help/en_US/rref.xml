@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rref">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rref</refname>
+    <refpurpose> computes  matrix row echelon form by lu transformations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>R=rref(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para> m x n matrix with scalar entries</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R</term>
+        <listitem>
+          <para> m x n matrix,row echelon form of a</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>rref</literal> computes the row echelon form of the given matrix by left lu
+    decomposition. If ones need the transformation used just call
+    <literal>X=rref([A,eye(m,m)])</literal> the row echelon form <literal>R</literal> is <literal>X(:,1:n)</literal> and
+    the left transformation <literal>L</literal> is given by <literal>X(:,n+1:n+m)</literal> such as <literal>L*A=R</literal></para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=[1 2;3 4;5 6];
+X=rref([A,eye(3,3)]);
+R=X(:,1:2)
+L=X(:,3:5);L*A
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lu">lu</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

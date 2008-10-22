@@ -1,0 +1,14 @@
+del *.dia
+del *.def
+del *.obj
+del *.bin
+del *.exp
+del *.dll
+del *.bin
+del loader.sce
+del libext1f.ilib
+del test.wav
+del Makelib.mak
+del libintertest.ilib
+del test_macro_exec
+del libintertest.c

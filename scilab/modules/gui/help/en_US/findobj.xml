@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findobj">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>findobj</refname>
+    <refpurpose> find an object with specified property</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>prop</term>
+        <listitem>
+          <para>string character Name of the property to test (case unsensitive).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>value</term>
+        <listitem>
+          <para>string character specify the value the tested propoerty should be equal to (case sensitive).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>handle of the found object.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This routine is currently used to find objects knowing their 'tag'
+    property.  It returns handle of the first found object which property
+    'prop' is equal to 'value'. If such an object does not exist, the
+    function returns an empty matrix.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+h=figure();
+// creates  figure number 1.
+uicontrol( h, 'style','text', ...
+ 'string','This is a figure', ...
+ 'position',[50 70 100 100], ...
+ 'fontsize',15, ...
+ 'tag','Alabel');
+// put a  text in figure 1
+lab=findobj('tag','Alabel');
+// find the object which 'tag' value is 'Alabel'
+disp('the handle of the label is '+string(lab));
+close();
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+      <member>
+        <link linkend="uimenu">uimenu</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Bertrand Guiheneuf</para>
+  </refsection>
+</refentry>

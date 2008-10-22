@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quit</refname>
+    <refpurpose>Terminates Scilab or  decreases the pause level </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>quit</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The <literal>quit</literal> command has two different meanings depending on the calling context:</para>
+    <variablelist>
+      <varlistentry>
+        <term>If there is no <literal>pause</literal> active,</term>
+        <listitem>
+          <para>then the
+          <literal>quit</literal> command makes Scilab terminate, even
+          if the command is called inside a function.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>If there is a <literal>pause</literal> active,</term>
+        <listitem>
+          <para>then the
+          <literal>quit</literal> command makes aborts the instructions
+          started at this pause level ando terminates the current pause level.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsection>
+ <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+      // quit Scilab
+      function foo(x),if x then quit,end,endfunction
+      foo(%t) //quits scilab
+
+      //terminate instruction started in a pause context
+      function foo(x),if x then quit,end,endfunction
+      pause
+      foo(%t) //returns at the main prompt level
+
+      function foo1(x),
+        mprintf('P1\n')
+        if x then pause, mprintf('P2\n'),end,
+        mprintf('P3\n')
+      endfunction
+     
+      foo1(%t) //enter quit at the following prompt
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="exit">exit</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

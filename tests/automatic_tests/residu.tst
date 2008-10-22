@@ -1,0 +1,30 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/residu_data.ref','rb');
+s = poly(0, 's');
+H = [s/((s + 1)^2),1/(s + 2)];N = numer(H);D = denom(H);
+w = residu(N .* horner(N, -s), D, horner(D, -s));//N(s) N(-s) / D(s) D(-s)
+%ans = sqrt(sum(w));
+if load_ref('%ans') then   pause,end,
+//This is H2 norm
+%ans = h2norm(tf2ss(H));
+if load_ref('%ans') then   pause,end,
+
+//
+p = (s - 1) * (s + 1) * (s + 2) * (s + 10);a = (s - 5) * (s - 1) * (s * s) * ((s + 1/2)^2);
+b = (s - 3) * (s + 2/5) * (s + 3);
+%ans = residu(p, a, b) + 531863/4410;
+if load_ref('%ans') then   pause,end,
+//Exact
+z = poly(0, 'z');a = z^3 + 0.7 * (z^2) + 0.5 * z - 0.3;b = z^3 + 0.3 * (z^2) + 0.2 * z + 0.1;
+atild = gtild(a, 'd');btild = gtild(b, 'd');
+%ans = residu(b * btild, z * a, atild) - 2.9488038;
+if load_ref('%ans') then   pause,end,
+//Exact
+a = a + 0 * %i;b = b + 0 * %i;
+%ans = real(residu(b * btild, z * a, atild) - 2.9488038);
+if load_ref('%ans') then   pause,end,
+//Complex case
+xdel_run(winsid());
+
+mclose(%U);

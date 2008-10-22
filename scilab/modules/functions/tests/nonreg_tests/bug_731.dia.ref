@@ -1,0 +1,57 @@
+// <-- Non-regression test for bug 731 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=731
+//
+// <-- Short Description -->
+//    fun2string and macr2tree cannot cope with nested function
+//    definitions
+// Copyright INRIA
+// Scilab Project - Pierre MARECHAL
+// Date : 3 mai 2005
+// last modified : 10 Jan 2006
+// =============== Test 1 ===============
+function y=foo(x)
+	a=sin(x)
+	function y=sq(x), y=x^2,endfunction
+	y=sq(a)+1
+endfunction
+CONTENTS = fun2string(foo);
+REFCONTENTS=["function y=ans(x)";
+		"  a = sin(x)";
+		"  function y=sq(x), y=x^2,endfunction";
+		"  y = sq(a) + 1";
+		"endfunction"];
+if or(REFCONTENTS<>CONTENTS) then bugmes();quit;end
+// =============== Test 2 ===============
+function one()
+  function two()
+    // A comment
+  endfunction
+  function three()
+    // A comment
+  endfunction
+    //a comment here
+endfunction
+CONTENTS_II = fun2string(one);
+REFCONTENTS_II=["function []=ans()";
+		"  function two()";
+		"      // A comment";
+		"  endfunction";
+		"  function three()";
+		"      // A comment";
+		"  endfunction";
+		"  //a comment here";
+		"endfunction"];
+if or(REFCONTENTS_II<>CONTENTS_II) then bugmes();quit;end
+// =============== Test 3 ===============
+function a=foo1()
+	a = 1 ; function foo2() ; disp("hello") ; endfunction ; disp("zut");
+	a = 2
+endfunction
+CONTENTS_III=fun2string(foo1);
+REFCONTENTS_III=["function a=ans()";
+		 "  a = 1;function foo2() , disp(""hello"") ;endfunction;disp(''zut'');";
+		 "  a = 2";
+		 "endfunction"];
+if or(REFCONTENTS_III<>CONTENTS_III) then bugmes();quit;end

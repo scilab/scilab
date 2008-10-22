@@ -1,0 +1,27 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/oldplot_data.ref','rb');
+
+x = 0:0.1:2 * %pi;
+// simple plot
+%ans = oldplot(sin(x));
+if load_ref('%ans') then   pause,end,
+
+// using captions
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = oldplot(x, sin(x), 'sin', 'time', 'plot of sinus');
+if load_ref('%ans') then   pause,end,
+
+// plot 2 functions
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = oldplot([sin(x);cos(x)]);
+if load_ref('%ans') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

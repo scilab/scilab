@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="macglov">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>macglov</refname>
+    <refpurpose> Mac Farlane Glover problem</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P,r]=macglov(Sl)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list), ``augmented'' plant</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1x2 vector, dimension of <literal>P22</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[P,r]=macglov(Sl)</literal> returns the standard plant
+    <literal>P</literal> for the Glover-McFarlane problem.</para>
+    <para>
+    For this problem ro_optimal = 1-hankel_norm(<literal>[N,M]</literal>)
+    with <literal>[N,M]=lcf(sl)</literal> (Normalized coprime factorization) i.e.</para>
+    <para>
+    gama_optimal = <literal>1/sqrt(ro_optimal)</literal></para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. Delebecque INRIA</para>
+  </refsection>
+</refentry>

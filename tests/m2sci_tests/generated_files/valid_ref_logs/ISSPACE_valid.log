@@ -1,0 +1,117 @@
+****** Beginning of validation of ISSPACE.dia.ref ******
+TEST 1: Scilab returns Double and Matlab returns Boolean for res1
+*** TEST 1 PASSED ***
+
+TEST 2: Scilab returns Double and Matlab returns Boolean for res2
+*** TEST 2 PASSED ***
+
+TEST 3: Scilab returns Double and Matlab returns Boolean for res3
+*** TEST 3 PASSED ***
+
+TEST 4: Scilab returns Double and Matlab returns Boolean for res4
+*** TEST 4 PASSED ***
+
+TEST 5: Scilab returns Double and Matlab returns Boolean for res5
+*** TEST 5 PASSED ***
+
+TEST 6: Scilab returns Double and Matlab returns Boolean for res6
+*** TEST 6 PASSED ***
+
+TEST 7: Scilab returns Double and Matlab returns Boolean for res7
+*** TEST 7 PASSED ***
+
+TEST 8: Scilab returns Double and Matlab returns Boolean for res8
+*** TEST 8 PASSED ***
+
+TEST 9: Scilab returns Double and Matlab returns Boolean for res9
+*** TEST 9 PASSED ***
+
+TEST 10: Scilab returns Double and Matlab returns Boolean for res10
+*** TEST 10 PASSED ***
+
+TEST 11: Scilab returns Double and Matlab returns Boolean for res11
+*** TEST 11 PASSED ***
+
+TEST 12: Scilab returns Double and Matlab returns Boolean for res12
+*** TEST 12 PASSED ***
+
+TEST 13: Scilab returns Double and Matlab returns Boolean for res13
+*** TEST 13 PASSED ***
+
+TEST 14: Scilab returns Double and Matlab returns Boolean for res14
+*** TEST 14 PASSED ***
+
+TEST 15: Scilab returns Double and Matlab returns Boolean for res15
+*** TEST 15 PASSED ***
+
+TEST 16: Scilab returns Double and Matlab returns Boolean for res16
+*** TEST 16 PASSED ***
+
+TEST 17: Scilab returns Double and Matlab returns Boolean for res17
+*** TEST 17 PASSED ***
+
+TEST 18: Scilab returns Double and Matlab returns Boolean for res18
+*** TEST 18 PASSED ***
+
+TEST 19: Scilab returns Double and Matlab returns Boolean for res19
+*** TEST 19 PASSED ***
+
+TEST 20: Scilab returns Double and Matlab returns Boolean for res20
+*** TEST 20 PASSED ***
+
+TEST 21: Scilab returns Double and Matlab returns Boolean for res21
+*** TEST 21 PASSED ***
+
+TEST 22: Scilab returns Double and Matlab returns Boolean for res22
+*** TEST 22 PASSED ***
+
+TEST 23: Scilab returns Double and Matlab returns Boolean for res23
+*** TEST 23 PASSED ***
+
+TEST 24: Scilab returns Double and Matlab returns Boolean for res24
+*** TEST 24 PASSED ***
+
+TEST 25: Scilab returns Double and Matlab returns Boolean for res25
+*** TEST 25 PASSED ***
+
+TEST 26: Scilab returns Double and Matlab returns Boolean for res26
+*** TEST 26 PASSED ***
+
+TEST 27: Scilab returns Double and Matlab returns Boolean for res27
+*** TEST 27 PASSED ***
+
+*** TEST 28 PASSED ***
+
+*** TEST 29 PASSED ***
+
+*** TEST 30 PASSED ***
+
+*** TEST 31 PASSED ***
+
+*** TEST 32 PASSED ***
+
+*** TEST 33 PASSED ***
+
+*** TEST 34 PASSED ***
+
+*** TEST 35 PASSED ***
+
+*** TEST 36 PASSED ***
+
+*** TEST 37 PASSED ***
+
+*** TEST 38 PASSED ***
+
+*** TEST 39 PASSED ***
+
+*** TEST 40 PASSED ***
+
+*** TEST 41 PASSED ***
+
+*** TEST 42 PASSED ***
+
+*** TEST 43 PASSED ***
+
+*** TEST 44 PASSED ***
+
+****** End of validation of ISSPACE.dia.ref ******

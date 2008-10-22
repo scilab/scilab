@@ -1,0 +1,19 @@
+// <-- Non-regression test for bug 2663 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2663
+//
+// <-- Short Description -->
+// length() change the value of the input argument. the input argument is replaced
+// by the nearest rounded down integer.
+//
+// =============================================================================
+// Author : Pierre MARECHAL
+// Scilab Project
+// Copyright INRIA 2007
+// =============================================================================
+//
+y         = [0.3616361 2.2922267  1.5015342];
+y_orig    = y;
+yl_length = length(y);
+if or(y <> y_orig) then bugmes();quit;end

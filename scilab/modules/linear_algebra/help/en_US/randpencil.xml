@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="randpencil">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>randpencil</refname>
+    <refpurpose> random pencil</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>F=randpencil(eps,infi,fin,eta)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>eps</term>
+        <listitem>
+          <para>vector of integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infi</term>
+        <listitem>
+          <para>vector of integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fin</term>
+        <listitem>
+          <para>real vector, or monic polynomial, or vector of monic polynomial</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eta</term>
+        <listitem>
+          <para>vector of integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>real matrix pencil <literal>F=s*E-A</literal>  (<literal>s=poly(0,'s')</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function.
+    <literal>F=randpencil(eps,infi,fin,eta)</literal> returns a random pencil <literal>F</literal>
+    with given Kronecker structure. The structure is given by:
+    <literal>eps=[eps1,...,epsk]</literal>: structure of epsilon blocks (size eps1x(eps1+1),....)
+    <literal>fin=[l1,...,ln]</literal>  set of finite eigenvalues (assumed real)  (possibly [])
+    <literal>infi=[k1,...,kp]</literal> size of J-blocks at infinity
+    <literal>ki&gt;=1</literal>  (infi=[] if no J blocks).
+    <literal>eta=[eta1,...,etap]</literal>: structure ofeta blocks (size eta1+1)xeta1,...)</para>
+    <para><literal>epsi</literal>'s should be &gt;=0, <literal>etai</literal>'s should be &gt;=0, <literal>infi</literal>'s should 
+    be &gt;=1.</para>
+    <para>
+    If <literal>fin</literal> is a (monic) polynomial, the finite block admits the roots of 
+    <literal>fin</literal> as eigenvalues.</para>
+    <para>
+    If <literal>fin</literal> is a vector of polynomial, they are the finite elementary
+    divisors of <literal>F</literal> i.e. the roots of <literal>p(i)</literal> are finite
+    eigenvalues of <literal>F</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+F=randpencil([0,1],[2],[-1,0,1],[3]);
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
+Qd, Zd
+s=poly(0,'s');
+F=randpencil([],[1,2],s^3-2,[]); //regular pencil
+det(F)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="kroneck">kroneck</link>
+      </member>
+      <member>
+        <link linkend="pencan">pencan</link>
+      </member>
+      <member>
+        <link linkend="penlaur">penlaur</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

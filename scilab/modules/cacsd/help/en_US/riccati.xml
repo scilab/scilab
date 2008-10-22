@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="riccati">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>riccati</refname>
+    <refpurpose> Riccati equation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>X=riccati(A,B,C,dom,[typ])
+[X1,X2]=riccati(A,B,C,dom,[typ])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B,C</term>
+        <listitem>
+          <para>real matrices nxn, <literal>B</literal> and  <literal>C</literal> symetric.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dom</term>
+        <listitem>
+          <para>: <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>string : <literal>'eigen'</literal> for block diagonalization or <literal>schur'</literal> for  Schur method.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X1,X2,X</term>
+        <listitem>
+          <para>square real matrices (X2 invertible), X symmetric</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>X=riccati(A,B,C,dom,[typ])</literal> solves the Riccati equation:</para>
+    <programlisting><![CDATA[
+
+A'*X+X*A-X*B*X+C=0 
+   
+    ]]></programlisting>
+    <para>
+    in continuous time case, or:</para>
+    <programlisting><![CDATA[
+
+ A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
+   
+    ]]></programlisting>
+    <para>
+     with <literal>B=B1/B2*B1'</literal> in the discrete time case.
+    If called with two output arguments, <literal>riccati</literal> returns <literal>X1,X2</literal>
+    such that <literal>X=X1/X2</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ricc">ricc</link>
+      </member>
+      <member>
+        <link linkend="ric_desc">ric_desc</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

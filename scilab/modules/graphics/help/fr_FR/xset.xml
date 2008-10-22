@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="xset" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xset</refname>
+
+    <refpurpose>change des valeurs du contexte graphique. <emphasis
+    role="bold">Fonction obsolete</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>xset(choice-name,x1,x2,x3,x4,x5)
+xset()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>choice-name</term>
+
+        <listitem>
+          <para>chaîne de caractères</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x1,...,x5</term>
+
+        <listitem>
+          <para>dépend de <literal>choice-name</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><emphasis role="bold"><literal>Remarque Importante : </literal>Cette
+    fonction est obsolète</emphasis>. Utilisez de préférence la représentation
+    objet des graphiques Scilab.voir les fonctions <link
+    linkend="set">set</link> et <link linkend="get">get</link> ainsi que la
+    page d'aide <link
+    linkend="graphics_entities">graphics_entities</link>.</para>
+
+    <para><literal>xset</literal> est utilisée pour changer des valeurs du
+    contexte graphique de la fenêtre graphique courante.</para>
+
+    <para>Quand elle est appelée sans argument, une boîte de dialogue est
+    affichée avec les valeurs courantes et des changements peuvent être
+    effectués à   l'aide de boutons.</para>
+
+    <para>Utiliser <literal>xset()</literal> pour afficher ou changer la
+    couleur courante, le marqueur ou la police.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>xset("alufunction",number)</term>
+
+        <listitem>
+          <para>utilisé pour changer l'opérateur logique de dessin L'opérateur
+          est choisi avec <literal>x1</literal>. Les valeurs habituelles sont
+          : 3 pour la copie (par défaut), 6 pour le ou exclusif (pour faire
+          des animations) et 0 pour effacer. Voir
+          <literal>alufunctions</literal> pour plus de détails.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("auto clear","on"|"off")</term>
+
+        <listitem>
+          <para>Met "on" ou "off" le mode d'effacement automatique des
+          graphiques. Quand le mode est "on", les dessins successifs ne sont
+          pas superposés, i.e. la commande <literal>xbasc()</literal>
+          (effacement de la fenêtre graphique et effacement des graphiques
+          enregistrés) est exécutée avant chaque commande graphique de haut
+          niveau (plot2d par exemple). La valeur par défaut est "off".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("background",color)</term>
+
+        <listitem>
+          <para>Change la couleur d'arrière plan de la fenêtre graphique
+          courante. La fenêtre graphique courante désigne la zone des axes où
+          les dessins sont dessinés, pas la figure entière.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("clipping",x,y,w,h)</term>
+
+        <listitem>
+          <para>Définit la zone de clipping (la zone de la fenêtre graphique
+          où les dessins peuvent être dessinés) comme le rectangle (x,y,w,h)
+          (point en haut à   gauche, largeur, hauteur). Cette fonction utilise
+          l'échelle courante de la fenêtre graphique.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("color",value)</term>
+
+        <listitem>
+          <para>Définit la couleur par défaut de tracé de ligne, de
+          remplissage, de texte, pour toutes les fonctions de dessin.
+          <literal>value</literal> est un entier projeté sur l'intervalle
+          [0,whiteid]. 0 est utilisé pour le noir et whiteid pour le blanc. La
+          valeur de whiteid peut être obtenue avec
+          <literal>xget("white")</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("colormap",cmap)</term>
+
+        <listitem>
+          <para>Définit la table des couleurs à   partir d'une matrice m x 3.
+          m est le nombre de couleurs. La couleur numéro i est donnée comme le
+          triplet cmap(i,1), cmap(i,2), cmap(i,3) correspondant respectivement
+          aux intensités de rouge, vert et bleu, comprises entre 0 et
+          1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("dashes",i)</term>
+
+        <listitem>
+          <para>en mode noir et blanc (<literal>xset("use
+          color",0)</literal>), choisit le style de pointillé numéro i (0 pour
+          une ligne continue). En mode couleur (<literal>xset("use
+          color",1)</literal>) cette commande est utilisée pour choisir la
+          couleur du marqueur, des lignes et du texte. Ce mot-clé est
+          obsolète, utiliser <literal>xset('color',i)</literal> et
+          <literal>xset('line style',i)</literal> à   la place.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("default")</term>
+
+        <listitem>
+          <para>Réinitialise le contexte graphiques aux valeurs par
+          défaut.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("font",fontid,fontsize) : choisit la police courante et sa
+        taille.</term>
+
+        <listitem>
+          <para>Noter que <literal>fontsize</literal> s'applique aussi à  
+          toutes les polices autres que <literal>fontid</literal> .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("font size",fontsize)</term>
+
+        <listitem>
+          <para>Choisit la taille des polices.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("foreground",color)</term>
+
+        <listitem>
+          <para>Choisit la couleur de premier plan pour la fenêtre graphique
+          courante.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("fpf",string)</term>
+
+        <listitem>
+          <para>Change le format des nombres affichés sur les courbes de
+          niveau, où <literal>string</literal> précise le format comme en
+          langage C (par exemple <literal>string="%.3f"</literal>). Utiliser
+          <literal>string=""</literal> pour revenir au format par
+          défaut.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("hidden3d",colorid) : Choisit la couleur des parties
+        arrières dans la fonction plot3d.</term>
+
+        <listitem>
+          <para><literal>colorid=0</literal> supprime l'affichage des parties
+          arrières des objets 3D. Il s'agit d'une technique dénommée 'culling'
+          et permet d'accélérer le rendu des surfaces fermées.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("line mode",type)</term>
+
+        <listitem>
+          <para>Cette fonction est utilisée pour changer le mode de dessin des
+          lignes. Mode absolu pour type=1 et relatif avec type=0. (attention :
+          le mode type=0 est buggé)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("line style",value)</term>
+
+        <listitem>
+          <para>Choisit le style de ligne (1: continu, &gt;1 pour les
+          pointillés).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("mark",markid,marksize)</term>
+
+        <listitem>
+          <para>Choisit le marqueur ainsi que sa taille. Utiliser
+          <literal>xset()</literal> pour voir les marqueurs. Noter que
+          <literal>marksize</literal> s'applique aussi à   tous les marqueurs
+          autres que <literal>markid</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("mark size",marksize)</term>
+
+        <listitem>
+          <para>Choisit la taille de marqueur</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("pattern",value)</term>
+
+        <listitem>
+          <para>Choisit le motif pour les fonctions de remplissage.
+          <literal>value</literal> est un entier projeté sur l'intervalle
+          [0,whiteid]. 0 est utilisé pour le noir et whiteid pour le blanc. La
+          valeur de whiteid peut être obtenue avec
+          <literal>xget("white")</literal>. "pattern" est équivalent à  
+          "color".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("pixmap",flag)</term>
+
+        <listitem>
+          <para>Si flag=0 les graphiques sont dessinés directement sur
+          l'écran. Si flag=1 les graphiques sont dessinés sur un pixmap et
+          sont affichés à   l'écran avec la commande
+          <literal>xset("wshow")</literal>. Le pixmap est effacé avec la
+          commande <literal>xset("wwpc")</literal>. Noter que la commande
+          <literal>xbasc()</literal> efface aussi le pixmap.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("thickness",value)</term>
+
+        <listitem>
+          <para>Choisit l'épaisseur des lignes en pixels (0 et 1 = épaisseur
+          de 1 pixel).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("use color",flag)</term>
+
+        <listitem>
+          <para>Si flag=1 alors <literal>xset("pattern",.)</literal> ou
+          <literal>xset("dashes",.)</literal> changent la couleur de dessin ou
+          de remplissage. Si flag=0 on passe en mode pointillés et noir et
+          blanc.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("viewport",x,y)</term>
+
+        <listitem>
+          <para>Choisit la position de la fenêtre glissante.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("wdim",width,height)</term>
+
+        <listitem>
+          <para>Choisit la largeur et la hauteur de la fenêtre graphique
+          courante. Cette option n'est pas prise en compte par le pilote
+          PostScript.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("wpdim",width,height)</term>
+
+        <listitem>
+          <para>Choisit (en pixels) la largeur et la hauteur de la fenêtre
+          graphique courante physique (qui peut être différente de la taille
+          réelle en mode wresize=1). Cette option n'est pas prise en compte
+          par le pilote PostScript.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("window",window-number)</term>
+
+        <listitem>
+          <para>Choisit la fenêtre <literal>window-number</literal> comme
+          fenêtre graphique par défaut et crée cette fenêtre si elle n'existe
+          pas.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("wpos",x,y)</term>
+
+        <listitem>
+          <para>Choisit la position (en pixels) du point en haut à   gauche de
+          la fenêtre graphique.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("wresize",flag)</term>
+
+        <listitem>
+          <para>Si flag=1 alors les graphiques sont automatiquement
+          redimensionnés de manière à   remplir la fenêtre graphique.</para>
+
+          <programlisting>xdel();xset("wresize",1);plot2d();xset("wdim",1000,500)</programlisting>
+
+          <para>Si flag=0 l'échelle des graphiques est inchangée quand la
+          fenêtre est redimensionnée. Le "panner" en haut à   gauche de la
+          fenêtre ou les flèches du clavier peuvent être utilisées pour faire
+          glisser le contenu de la fenêtre.</para>
+
+          <programlisting>xdel();plot2d();xset("wresize",0);xset("wdim",1000,500)</programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("wshow")</term>
+
+        <listitem>
+          <para>Voir <literal>xset("pixmap",1)</literal> ci-dessus.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xset("wwpc")</term>
+
+        <listitem>
+          <para>Voir <literal>xset("pixmap",1)</literal> ci-dessus.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xget">xget</link></member>
+
+      <member><link linkend="getcolor">getcolor</link></member>
+
+      <member><link linkend="getsymbol">getsymbol</link></member>
+
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Auteurs</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umf_lusolve">
+  <info>
+    <pubdate/>
+  </info>
+  <refnamediv>
+    <refname>umf_lusolve</refname>
+    <refpurpose> solve a linear sparse system given the LU factors  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x] = umf_lusolve(LU_ptr, b [, st, A])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>LU_ptr  </term>
+        <listitem>
+          <para>a pointer to umf lu factors (L,U,p,q,R) </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b  </term>
+        <listitem>
+          <para>a real or complex column vector or a matrix (multiple rhs)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>st  </term>
+        <listitem>
+          <para>(optional) a string "Ax=b" (default) or "Ax'=b" 
+      (to be written "Ax''=b"  in scilab langage: a quote in a string
+	  must be doubled !)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>(optional) the sparse square matrix corresponding to the LU factors (LU_ptr must be got with LU_ptr = umf_lufact(A))</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>a column vector or a matrix in case of multiple rhs ( x(:,i) is solution of A x(:,i) = b(:,i) or A'x(:,i) = b(:,i) )</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function must be used in conjonction with <link linkend='umf_lufact'>umf_lufact</link> which
+    computes the LU factors of a sparse matrix. The optional
+    <literal>st</literal> argument lets us choose between the solving of Ax=b (general case)
+    or of A'x=b (sometimes useful). If you give the 4th argument then
+    iterative refinement will be also proceceed (as in umfpack) to
+    give a better numerical solution. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <para>
+    see the example section of <link linkend='umf_lufact'>umf_lufact</link>
+  </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="umfpack">umfpack</link>
+      </member>
+      <member>
+        <link linkend="umf_lufact">umf_lufact</link>
+      </member>
+      <member>
+        <link linkend="umf_luget">umf_luget</link>
+      </member>
+      <member>
+        <link linkend="umf_ludel">umf_ludel</link>
+      </member>
+      <member>
+        <link linkend="umf_luinfo">umf_luinfo</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>umfpack by Timothy A. Davis (see umf_license)</member>
+      <member>scilab interface by Bruno Pincon with contributions from Antonio Frasson</member>
+    </simplelist>
+  </refsection>
+</refentry>

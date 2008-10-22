@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="htrianr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>htrianr</refname>
+    <refpurpose> triangularization of polynomial matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ar</term>
+        <listitem>
+          <para>polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>unimodular polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>integer, normal rank of <literal>A</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    triangularization of polynomial matrix <literal>A</literal>.</para>
+    <para><literal>A</literal> is <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>.</para>
+    <para>
+      <literal>Ar=A*U</literal>
+    </para>
+    <para>
+    Warning: there is an elimination of "small" terms (see function code).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=poly(0,'x');
+M=[x;x^2;2+x^3]*[1,x-2,x^4];
+[Mu,U,rk]=htrianr(M)
+det(U)
+M*U(:,1:2)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hrmt">hrmt</link>
+      </member>
+      <member>
+        <link linkend="colcompr">colcompr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

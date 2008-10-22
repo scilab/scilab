@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unix">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unix</refname>
+    <refpurpose>shell (sh) command
+  execution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>stat=unix(command-name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
+        <listitem>
+          <para>A character string containing Unix sh instruction</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stat</term>
+        <listitem>
+          <para>An integer flag</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Sends a string <literal>command-name</literal> to Unix for execution by the
+    sh shell. Standard output and standard errors of the shell command are
+    written in the calling shell. <literal>stat</literal> gives -1 if unix can't be
+    called (Not enough system memory available) or the sh return code.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+if ~MSDOS then
+  unix("ls $SCI/demos");
+end
+
+deff('wd=directory()','if MSDOS then unix(''cd>''+TMPDIR+''\path'');..
+                else unix(''pwd>''+TMPDIR+''/path'');end..
+      wd=read(TMPDIR+''/path'',1,1,''(a)'')')
+wd=directory()
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="edit">edit</link>
+      </member>
+      <member>
+        <link linkend="manedit">manedit</link>
+      </member>
+      <member>
+        <link linkend="unix_g">unix_g</link>
+      </member>
+      <member>
+        <link linkend="unix_s">unix_s</link>
+      </member>
+      <member>
+        <link linkend="unix_w">unix_w</link>
+      </member>
+      <member>
+        <link linkend="unix_x">unix_x</link>
+      </member>
+      <member>
+        <link linkend="host">host</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

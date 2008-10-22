@@ -1,0 +1,17 @@
+// <-- Non-regression test for bug 2268 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2268
+//
+// <-- Short Description -->
+//    Memory leak in msscanf().  When calling msscanf() many times, as in reading in
+//    large CSV files, process size grows beyond memory capacity.
+// Serge Steer - Scilab Project
+// Copyright INRIA
+// 2 janv 2007
+free=getmemory();
+for k=1:10000
+  foo=msscanf('1.234 44 55 66 77 88 88 ', '%f %f %f %f %f %f %f ');
+end
+leak = free-getmemory();
+if leak>4  then bugmes();quit;end

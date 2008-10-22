@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="edit" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>edit</refname>
+
+    <refpurpose>function editing</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>edit(functionname)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>functionname</term>
+
+        <listitem>
+          <para>character string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>If functionname is the name of a defined scilab function
+    <literal>edit(functionname)</literal> try to open the associated file
+    <literal>functionname.sci</literal>.</para>
+
+    <para>If functionname is the name of a undefined scilab function
+    <literal>edit</literal> create a functionname.sci file in the TMPDIR
+    directory.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+edit('edit')  //opens editor with text of this function
+edit('myfunction')  //opens editor for a new function
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="manedit">manedit</link></member>
+
+      <member><link linkend="scipad">scipad</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

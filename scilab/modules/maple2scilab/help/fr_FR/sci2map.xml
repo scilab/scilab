@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sci2map">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sci2map</refname>
+    <refpurpose> conversion de variables Scilab vers Maple  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>txt=sci2map(a,Map-name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>objet Scilab (matrice, polynôme, liste, chaîne)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Map-name</term>
+        <listitem>
+          <para>chaîne de caractères (nom de la variable Maple)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>vecteur de chaînes de caractères contenant le code Maple</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+			Génère le code Maple nécessaire pour envoyer la variable Scilab 
+			<literal>a</literal> vers Maple : le nom de la variable dans Maple est <literal>Map-name</literal>.
+			Une procédure Maple <literal>maple2scilab</literal> se trouve dans le dossier <literal>SCIDIR/maple</literal>.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+
+txt=[sci2map([1 2;3 4],'a');sci2map(%s^2+3*%s+4,'p')]
+
+	]]></programlisting>
+  </refsection>
+</refentry>

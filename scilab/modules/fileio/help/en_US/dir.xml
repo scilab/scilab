@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dir</refname>
+    <refpurpose> get file list </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>dir path
+S=dir([path])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a string matrix giving a directory pathname (eventually  ended
+	    by a pattern built with <literal>*</literal>). Default value is <literal>.</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>a <literal>tlist</literal> of type <literal>dir</literal> with fields :
+	    <literal>name</literal>, <literal>date</literal> and <literal>isdir</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>dir</literal> can be used to get the files which match 
+      the patterns given by the path argument. 
+      Patterns are given to the unix <literal>ls</literal> or to the windows
+      <literal>dir</literal> commands in order to get information on files. 
+      Thus in order to write portable Scilab script valid wildcard patterns 
+      for both os are to be given. Note that Pathname conversion is
+      performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid 
+      pattern for both unix and windows.
+    </para>
+    <para>
+      The <literal>name</literal> field of the returned variable is the column vector
+      of the file names.
+    </para>
+    <para>
+      The <literal>date</literal> field of the returned variable is the column vector
+      of integers containing a last modification date coded in second from 1 Jan 1970).
+    </para>
+    <para>
+      The <literal>isdir</literal> field of the returned variable is the column vector
+      of boolean true if the corresponding name is a directory.
+    </para>
+    <para>
+      The  default display of the returned structure is a column formatted list
+      of files. It can be changed redefining the function <literal>%dir_p</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+dir
+dir SCI/modules/core/macros/*.bin
+x=dir('SCI/modules/core/macros/*.bin')
+dt=getdate(x.date);
+mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="listfiles">listfiles</link>
+      </member>
+      <member>
+        <link linkend="findfiles">findfiles</link>
+      </member>
+      <member>
+        <link linkend="ls">ls</link>
+      </member>
+      <member>
+        <link linkend="fileinfo">fileinfo</link>
+      </member>
+      <member>
+        <link linkend="date">date</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

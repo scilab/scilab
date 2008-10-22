@@ -1,0 +1,251 @@
+# Localization of the module helptools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:06+0100\n"
+
+# File: macros/xmltoformat.sci, line: 59
+# File: macros/clean_help.sci, line: 45
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 146
+msgid "Help chapter"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 219
+# File: macros/xmltoformat.sci, line: 234
+# File: macros/xmltoformat.sci, line: 247
+# File: macros/xmltoformat.sci, line: 467
+# File: macros/xmltoformat.sci, line: 494
+# File: macros/xmltoformat.sci, line: 546
+# File: macros/xmltoformat.sci, line: 573
+# File: macros/xmltoformat.sci, line: 641
+# File: macros/xmltoformat.sci, line: 668
+# File: macros/clean_help.sci, line: 73
+# File: macros/clean_help.sci, line: 88
+# File: macros/clean_help.sci, line: 101
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 293
+#, c-format
+msgid "%s: The %s files are up-to-date."
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 315
+msgid ""
+"\n"
+"Copying missing help files copied from the default language\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 318
+# File: macros/xmltoformat.sci, line: 333
+# File: macros/xmltoformat.sci, line: 354
+# File: macros/xmltoformat.sci, line: 398
+# File: macros/xmltoformat.sci, line: 597
+# File: macros/xmltoformat.sci, line: 696
+# File: macros/xmltoformat.sci, line: 711
+# File: macros/xmltoformat.sci, line: 730
+#, c-format
+msgid "\t%s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 330
+# File: macros/xmltoformat.sci, line: 351
+msgid ""
+"\n"
+"Copying missing files copied from\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 335
+# File: macros/xmltoformat.sci, line: 356
+#, c-format
+msgid ""
+"\n"
+"Copying missing from %s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 374
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 382
+#, c-format
+msgid ""
+"\n"
+"Building the master document: %s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 395
+#, c-format
+msgid ""
+"\n"
+"Building the master document for %s.\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 400
+#, c-format
+msgid ""
+"\n"
+"Building the master document in %s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 422
+msgid ""
+"\n"
+"Building the scilab manual file ["
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 475
+# File: macros/xmltoformat.sci, line: 554
+# File: macros/xmltoformat.sci, line: 649
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 483
+# File: macros/xmltoformat.sci, line: 562
+# File: macros/xmltoformat.sci, line: 657
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 507
+# File: macros/xmltoformat.sci, line: 599
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s. (Please wait building ... this can take "
+"up to 10 minutes)\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 594
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s]. (Please wait building ... this can take up to "
+"10 minutes)\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 693
+# File: macros/xmltoformat.sci, line: 708
+# File: macros/xmltoformat.sci, line: 727
+#, c-format
+msgid ""
+"\n"
+"Deleting files copied from\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 713
+# File: macros/xmltoformat.sci, line: 732
+#, c-format
+msgid ""
+"\n"
+"Deleting files copied from %s\n"
+msgstr ""
+#
+# File: macros/xmltoformat.sci, line: 1017
+msgid "Scilab manual"
+msgstr ""
+#
+# File: macros/xmltops.sci, line: 28
+# File: macros/xmltohtml.sci, line: 28
+# File: macros/xmltopdf.sci, line: 28
+# File: macros/xmltochm.sci, line: 33
+# File: macros/xmltojar.sci, line: 28
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+#
+# File: macros/formatman.sci, line: 85
+#, c-format
+msgid "Processing %s to %s"
+msgstr ""
+#
+# File: macros/clean_help.sci, line: 113
+msgid "-- Deleting help files --\n"
+msgstr ""
+#
+# File: macros/xmltochm.sci, line: 13
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr ""
+#
+# File: macros/apropos.sci, line: 14
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+#
+# File: macros/help.sci, line: 39
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr ""
+#
+# File: macros/help.sci, line: 44
+#, c-format
+msgid "%s: help module is not installed.\n"
+msgstr ""
+#
+# File: macros/manedit.sci, line: 17
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+#
+# File: macros/xmlfiletohtml.sci, line: 66
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr ""
+#
+# File: macros/xmlfiletohtml.sci, line: 99
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr ""
+#
+# File: sci_gateway/nogui/nogui.c, line: 20
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+#
+# File: sci_gateway/c/gw_helptools.c, line: 38
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 134
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 117
+#, c-format
+msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 171
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 177
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr ""

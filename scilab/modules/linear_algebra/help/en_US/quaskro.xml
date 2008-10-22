@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quaskro">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quaskro</refname>
+    <refpurpose> quasi-Kronecker form</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)
+[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A)
+[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F,tol)
+[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>real matrix pencil <literal>F=s*E-A</literal>  (<literal>s=poly(0,'s')</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E,A</term>
+        <listitem>
+          <para>two real matrices of same dimensions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>a real number (tolerance, default value=1.d-10)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,Z</term>
+        <listitem>
+          <para>two square orthogonal matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Qd,Zd</term>
+        <listitem>
+          <para>two vectors of integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>numbeps</term>
+        <listitem>
+          <para>vector of integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Quasi-Kronecker form of matrix pencil: <literal>quaskro</literal> computes two
+    orthogonal matrices <literal>Q, Z</literal> which put the pencil <literal>F=s*E -A</literal> into
+    upper-triangular form:</para>
+    <programlisting><![CDATA[
+
+
+           | sE(eps)-A(eps) |        X       |      X     |
+           |----------------|----------------|------------|
+           |        O       | sE(inf)-A(inf) |      X     |
+Q(sE-A)Z = |=================================|============|
+           |                                 |            |
+           |                O                | sE(r)-A(r) |
+
+   
+    ]]></programlisting>
+    <para>
+    The dimensions of the blocks are given by:</para>
+    <para><literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,
+    <literal>r = Qd(3) x Zd(3)</literal></para>
+    <para>
+    The <literal>inf</literal> block contains the infinite modes of
+    the pencil.</para>
+    <para>
+    The <literal>f</literal> block contains the finite modes of
+    the pencil</para>
+    <para>
+    The structure of epsilon blocks are given by:</para>
+    <para><literal>numbeps(1)</literal> = <literal>#</literal> of eps blocks of size 0 x 1</para>
+    <para><literal>numbeps(2)</literal> = <literal>#</literal> of eps blocks of size 1 x 2</para>
+    <para><literal>numbeps(3)</literal> = <literal>#</literal> of eps blocks of size 2 x 3     etc...</para>
+    <para>
+    The complete (four blocks) Kronecker form is given by
+    the function <literal>kroneck</literal> which calls <literal>quaskro</literal> on
+    the (pertransposed) pencil <literal>sE(r)-A(r)</literal>.</para>
+    <para>
+    The code is taken from T. Beelen</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="kroneck">kroneck</link>
+      </member>
+      <member>
+        <link linkend="gschur">gschur</link>
+      </member>
+      <member>
+        <link linkend="gspec">gspec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

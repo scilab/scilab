@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="dllinfo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-14 16:52:36 +0100 (Mon, 14 Jan 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dllinfo</refname>
+
+    <refpurpose>provides information about the format and symbols provided in
+    executable and DLL files (Windows).</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>infolist = dllinfo(filename,option)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>a string : a filename .dll or .exe file</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>option</term>
+
+        <listitem>
+          <para>a string : 'machine' , 'exports' , 'imports'</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>infolist</term>
+
+        <listitem>
+          <para>a list :</para>
+
+          <para>infolist(1) : a string : name of dll or executable.</para>
+
+          <para>infolist(2) : a string matrix : symbols (imported or exported)
+          or machine type (x86 or x64).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This tool provides information about the format and symbols
+    (imported or exported) provided in executable and DLL files.</para>
+
+    <para>This tool is based on dumpbin.exe. A tool provided with Visual
+    studio SDK.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+if MSDOS then
+  filename = SCI+'\bin\libscilab.dll';
+
+  dllinfolist = dllinfo(filename,'machine');
+  printf('Machine destination of %s: %s\n',dllinfolist(1),dllinfolist(2));
+
+  dllinfolist = dllinfo(filename,'imports');
+  printf('Dlls dependencies of %s:\n',filename);
+  for i=1:size(dllinfolist)
+    printf('%s\n',dllinfolist(i)(1));
+  end
+
+  dllinfolist = dllinfo(filename,'exports');
+  printf('Dll exports of %s:\n',filename);
+  disp(dllinfolist);
+end
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="addinter">addinter</link></member>
+
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="ilib_compile">ilib_compile</link></member>
+
+      <member><link linkend="ilib_gen_Make">ilib_gen_Make</link></member>
+
+      <member><link
+      linkend="ilib_gen_gateway">ilib_gen_gateway</link></member>
+
+      <member><link linkend="ilib_gen_loader">ilib_gen_loader</link></member>
+
+      <member><link linkend="ilib_for_link">ilib_for_link</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lex_sort">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lex_sort</refname>
+    <refpurpose> tri des lignes d'une matrice suivant l'ordre lexicographique.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[N, [k]]=lex_sort(M [,sel] [,'unique'])
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>M,N  </term>
+        <listitem>
+          <para>matrices réelles
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k  </term>
+        <listitem>
+          <para>vecteur colonne d'entiers
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para> la fonction  <literal>lex_sort</literal>  est désormais obsolete elle peut être
+    remplacée par les fonctions <link linkend="gsort">gsort</link> et
+    <link linkend="unique">unique</link>. </para>
+    <para><literal>N=lex_sort(M)</literal> trie les lignes de la
+    matrice <literal>M</literal> dans l'ordre croissant. Si
+    nécessaire l'argument de sortie <literal>k</literal> permet de
+    retrouver l'ordre du tri : <literal>[N,k]=lex_sort(M)</literal>
+    renvoie <literal>k</literal> tel que <literal>N</literal> est
+    égal à <literal>M(k,:)</literal> .</para>
+    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produit le
+    même résultat que la suite d'instructions suivante :</para>
+    <programlisting><![CDATA[
+[N,k]=lex_sort(M(:,sel) [,'unique']);
+N=M(k,:)
+   ]]></programlisting>
+    <para>
+    La chaîne de caractères <literal>'unique'</literal> doit
+    être utilisée si on ne veut retenir que les lignes uniques
+    dans le résultat. Noter que
+    <literal>lex_sort(M,sel,'unique')</literal> ne retient que les
+    lignes de M telles que M(:,sel) est unique.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+M=round(2*rand(20,3));
+
+lex_sort(M)
+lex_sort(M,'unique')
+[N,k]=lex_sort(M,[1 3],'unique')
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gsort">gsort</link>
+      </member>
+      <member>
+        <link linkend="unique">unique</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

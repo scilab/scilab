@@ -1,0 +1,31 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/whereami_data.ref','rb');
+ 
+%ans = deff('y=test(a)', ['y=sin(a)+1';
+  'y=t1(y)';
+  'y=y+1']);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = deff('y=t1(y)', ['y=y^2';'whereami()']);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = test(1);
+whereami called at line 3 of macro t1
+t1       called at line 3 of macro test
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

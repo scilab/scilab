@@ -1,0 +1,15 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function isinteger()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+
+type(A)==8
+tf = type(A)==8

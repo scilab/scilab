@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="oldload">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>oldload</refname>
+    <refpurpose> load saved variable in 2.4.1 and previous formats</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>oldload('file-name' [,x1,...,xn])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+        <listitem>
+          <para>character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xi</term>
+        <listitem>
+          <para>arbitrary Scilab variable name(s) given as strings.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The <literal>oldload</literal> function is obsolete and is retained only for
+    compatibility purpose.</para>
+    <para>
+    The <literal>oldload</literal> command can be used to reload in the Scilab session
+    variables previously saved in a file with the <literal>save</literal> command.</para>
+    <para><literal>oldload('file-name')</literal> loads the variables saved in file <literal>'file-name'</literal>.</para>
+    <para><literal>oldload('file-name','x','y',...,'z')</literal> loads only variables <literal>x,y,...,z</literal>
+    stored in file <literal>'file-name'</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a=eye(2,2);b=ones(a);
+oldsave(TMPDIR+'/vals.dat',a,b);
+clear a
+clear b
+oldload(TMPDIR+'/vals.dat','a','b');
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

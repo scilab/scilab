@@ -1,0 +1,200 @@
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) ???? - INRIA - Scilab
+# 
+# This file is distributed under the same license as the Scilab package.
+
+# This Makefile is used to build sci_funname.sci files from PROTOx.g
+
+PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_erfc.sci\
+	 sci_erfcx.sci sci_gamma.sci sci_gammaln.sci sci_imag.sci sci_real.sci
+PROTO1 = sci_max.sci sci_min.sci
+PROTO2 = sci_cumprod.sci sci_cumsum.sci 
+PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci 
+PROTO4 = sci_acosh.sci sci_asinh.sci sci_atan.sci sci_conj.sci sci_cot.sci sci_coth.sci sci_double.sci sci_exp.sci sci_expm.sci sci_inv.sci sci_log.sci sci_log10.sci sci_sign.sci sci_sin.sci sci_sinh.sci sci_sqrt.sci sci_tan.sci sci_tanh.sci
+PROTO5 = sci_asin.sci sci_atanh.sci
+PROTO6 = sci_ceil.sci sci_fix.sci sci_floor.sci sci_round.sci
+PROTO7 = sci_tril.sci sci_triu.sci 
+PROTO8 = sci_prod.sci sci_sum.sci
+PROTO9 = sci_int8.sci sci_int16.sci sci_int32.sci sci_uint8.sci sci_uint16.sci sci_uint32.sci
+PROTO10 = sci_lower.sci sci_upper.sci
+PROTO11 = sci_dos.sci sci_unix.sci
+PROTO12 = sci_who.sci sci_whos.sci
+PROTO13 = sci_all.sci sci_any.sci
+PROTO14 = sci_acos.sci 
+PROTO15 = sci_nargin.sci sci_nargout.sci
+
+# Files generated from file : sci_PROTO0.g
+sci_abs.sci: sci_PROTO0.g
+	@./GEN $? abs abs > $@
+sci_cos.sci: sci_PROTO0.g
+	@./GEN $? cos cos > $@
+sci_cosh.sci: sci_PROTO0.g
+	@./GEN $? cosh cosh > $@
+sci_erf.sci: sci_PROTO0.g
+	@./GEN $? erf erf > $@
+sci_erfc.sci: sci_PROTO0.g
+	@./GEN $? erfc erfc > $@
+sci_erfcx.sci: sci_PROTO0.g
+	@./GEN $? erfcx erfcx > $@
+sci_gamma.sci: sci_PROTO0.g
+	@./GEN $? gamma gamma > $@
+sci_gammaln.sci: sci_PROTO0.g
+	@./GEN $? gammaln gammaln > $@
+sci_imag.sci: sci_PROTO0.g
+	@./GEN $? imag imag > $@
+sci_real.sci: sci_PROTO0.g
+	@./GEN $? real real > $@
+
+# Files generated from file : sci_PROTO1.g
+sci_max.sci: sci_PROTO1.g
+	@./GEN $? max max > $@
+sci_min.sci: sci_PROTO1.g
+	@./GEN $? min min > $@
+
+# Files generated from file : sci_PROTO2.g
+sci_cumprod.sci: sci_PROTO2.g
+	@./GEN $? cumprod cumprod > $@
+sci_cumsum.sci: sci_PROTO2.g
+	@./GEN $? cumsum cumsum > $@
+
+# Files generated from file : sci_PROTO3.g
+sci_eye.sci: sci_PROTO3.g
+	@./GEN $? eye eye > $@
+sci_false.sci: sci_PROTO3.g
+	@./GEN $? false zeros > $@
+sci_ones.sci: sci_PROTO3.g
+	@./GEN $? ones ones > $@
+sci_rand.sci: sci_PROTO3.g
+	@./GEN $? rand rand > $@
+sci_randn.sci: sci_PROTO3.g
+	@./GEN $? randn rand > $@
+sci_true.sci: sci_PROTO3.g
+	@./GEN $? true ones > $@
+sci_zeros.sci: sci_PROTO3.g
+	@./GEN $? zeros zeros > $@
+
+# Files generated from file : sci_PROTO4.g (Output property same as input)
+sci_acosh.sci: sci_PROTO4.g
+	@./GEN $? acosh acosh > $@
+sci_asinh.sci: sci_PROTO4.g
+	@./GEN $? asinh asinh > $@
+sci_atan.sci: sci_PROTO4.g
+	@./GEN $? atan atan > $@
+sci_conj.sci: sci_PROTO4.g
+	@./GEN $? conj conj > $@
+sci_cot.sci: sci_PROTO4.g
+	@./GEN $? cot cotg > $@
+sci_coth.sci: sci_PROTO4.g
+	@./GEN $? coth coth > $@
+sci_double.sci: sci_PROTO4.g
+	@./GEN $? double double > $@
+sci_exp.sci: sci_PROTO4.g
+	@./GEN $? exp exp > $@
+sci_expm.sci: sci_PROTO4.g
+	@./GEN $? expm expm > $@
+sci_inv.sci: sci_PROTO4.g
+	@./GEN $? inv inv > $@
+sci_log.sci: sci_PROTO4.g
+	@./GEN $? log log > $@
+sci_log10.sci: sci_PROTO4.g
+	@./GEN $? log10 log10 > $@
+sci_sign.sci: sci_PROTO4.g
+	@./GEN $? sign sign > $@
+sci_sin.sci: sci_PROTO4.g
+	@./GEN $? sin sin > $@
+sci_sinh.sci: sci_PROTO4.g
+	@./GEN $? sinh sinh > $@
+sci_sqrt.sci: sci_PROTO4.g
+	@./GEN $? sqrt sqrt > $@
+sci_tan.sci: sci_PROTO4.g
+	@./GEN $? tan tan > $@
+sci_tanh.sci: sci_PROTO4.g
+	@./GEN $? tanh tanh > $@
+
+# Files generated from file : sci_PROTO5.g
+sci_asin.sci: sci_PROTO5.g
+	@./GEN $? asin asin > $@
+sci_atanh.sci: sci_PROTO5.g
+	@./GEN $? atanh atanh > $@
+
+# Files generated from file : sci_PROTO6.g
+sci_ceil.sci: sci_PROTO6.g
+	@./GEN $? ceil ceil > $@
+sci_fix.sci: sci_PROTO6.g
+	@./GEN $? fix fix > $@
+sci_floor.sci: sci_PROTO6.g
+	@./GEN $? floor floor > $@
+sci_round.sci: sci_PROTO6.g
+	@./GEN $? round round > $@
+
+# Files generated from file : sci_PROTO7.g
+sci_tril.sci: sci_PROTO7.g
+	@./GEN $? tril tril > $@
+sci_triu.sci: sci_PROTO7.g
+	@./GEN $? triu triu > $@
+
+# Files generated from file : sci_PROTO8.g
+sci_prod.sci: sci_PROTO8.g
+	@./GEN $? prod prod > $@
+sci_sum.sci: sci_PROTO8.g
+	@./GEN $? sum sum > $@
+
+# Files generated from file : sci_PROTO9.g
+sci_int8.sci: sci_PROTO9.g
+	@./GEN $? int8 int8 > $@
+sci_int16.sci: sci_PROTO9.g
+	@./GEN $? int16 int16 > $@
+sci_int32.sci: sci_PROTO9.g
+	@./GEN $? int32 int32 > $@
+sci_uint8.sci: sci_PROTO9.g
+	@./GEN $? uint8 uint8 > $@
+sci_uint16.sci: sci_PROTO9.g
+	@./GEN $? uint16 uint16 > $@
+sci_uint32.sci: sci_PROTO9.g
+	@./GEN $? uint32 uint32 > $@
+
+# Files generated from file : sci_PROTO10.g
+sci_lower.sci: sci_PROTO10.g
+	@./GEN $? lower convstr > $@
+sci_upper.sci: sci_PROTO10.g
+	@./GEN $? upper convstr > $@
+
+# Files generated from file : sci_PROTO11.g
+sci_dos.sci: sci_PROTO11.g
+	@./GEN $? dos unix_g > $@
+sci_unix.sci: sci_PROTO11.g
+	@./GEN $? unix unix_g > $@
+
+# Files generated from file : sci_PROTO12.g
+sci_who.sci: sci_PROTO12.g
+	@./GEN $? who who > $@
+sci_whos.sci: sci_PROTO12.g
+	@./GEN $? whos whos > $@
+
+# Files generated from file : sci_PROTO13.g
+sci_any.sci: sci_PROTO13.g
+	@./GEN $? any or > $@
+sci_all.sci: sci_PROTO13.g
+	@./GEN $? all and > $@
+
+# Files generated from file : sci_PROTO14.g
+sci_acos.sci: sci_PROTO14.g
+	@./GEN $? acos acos > $@
+
+# Files generated from file : sci_PROTO15.g
+sci_nargin.sci: sci_PROTO15.g
+	@./GEN $? nargin nargin > $@
+sci_nargout.sci: sci_PROTO15.g
+	@./GEN $? nargout nargout > $@
+
+all: $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) \
+	$(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) \
+	$(PROTO10) $(PROTO11) $(PROTO12) $(PROTO13) $(PROTO14) \
+	$(PROTO15)
+
+distclean ::
+	-rm -f $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) $(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) $(PROTO10) $(PROTO11) $(PROTO12) $(PROTO13) $(PROTO14) $(PROTO15)
+
+
+
+

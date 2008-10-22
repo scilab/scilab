@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+  Copyright (C) 2008 - INRIA
+  
+  This file must be used under the terms of the CeCILL.
+  This source file is licensed as described in the file COPYING, which
+  you should have received as part of this distribution.  The terms
+  are also available at
+  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<grammar ns="http://docbook.org/ns/docbook" xmlns:db="http://docbook.org/ns/docbook" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <choice>
+      <ref name="book"/>
+      <ref name="part"/>
+      <ref name="reference"/>
+      <ref name="chapter"/>
+      <ref name="appendix"/>
+      <ref name="refentry"/>
+    </choice>
+  </start>
+  <define name="book">
+    <a:documentation>--------------------------------------------------------------------------
+Book, part, reference
+--------------------------------------------------------------------------</a:documentation>
+    <element name="book">
+      <ref name="common.attributes"/>
+      <choice>
+        <group>
+          <ref name="title"/>
+          <optional>
+            <ref name="info.no.title"/>
+          </optional>
+        </group>
+        <ref name="info.with.title"/>
+      </choice>
+      <oneOrMore>
+        <choice>
+          <ref name="part"/>
+          <ref name="reference"/>
+          <ref name="chapter"/>
+          <ref name="appendix"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="part">
+    <element name="part">
+      <ref name="common.attributes"/>
+      <choice>
+        <group>
+          <ref name="title"/>
+          <optional>
+            <ref name="info.no.title"/>
+          </optional>
+        </group>
+        <ref name="info.with.title"/>
+      </choice>
+      <optional>
+        <ref name="partintro"/>
+      </optional>
+      <oneOrMore>
+        <choice>
+          <ref name="chapter"/>
+          <ref name="appendix"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="reference">
+    <element name="reference">
+      <ref name="common.attributes"/>
+      <choice>
+        <group>
+          <ref name="title"/>
+          <optional>
+            <ref name="info.no.title"/>
+          </optional>
+        </group>
+        <ref name="info.with.title"/>
+      </choice>
+      <optional>
+        <ref name="partintro"/>
+      </optional>
+      <oneOrMore>
+        <ref name="refentry"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="partintro">
+    <element name="partintro">
+      <oneOrMore>
+        <ref name="any.block"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="info.with.title">
+    <a:documentation>-------------------------------------
+Meta-info
+-------------------------------------</a:documentation>
+    <element name="info">
+      <ref name="common.attributes"/>
+      <ref name="title"/>
+      <zeroOrMore>
+        <ref name="any.info"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="info.no.title">
+    <element name="info">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.info"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="any.info">
+    <choice>
+      <ref name="author"/>
+      <ref name="pubdate"/>
+      <ref name="keywordset"/>
+    </choice>
+  </define>
+  <define name="author">
+    <element name="author">
+      <ref name="common.attributes"/>
+      <ref name="personname"/>
+      <optional>
+        <ref name="affiliation"/>
+      </optional>
+    </element>
+  </define>
+  <define name="personname">
+    <element name="personname">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="affiliation">
+    <element name="affiliation">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="jobtitle"/>
+      </optional>
+      <ref name="orgname"/>
+    </element>
+  </define>
+  <define name="jobtitle">
+    <element name="jobtitle">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="orgname">
+    <element name="orgname">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="pubdate">
+    <element name="pubdate">
+      <ref name="common.attributes"/>
+      <text/>
+    </element>
+  </define>
+  <define name="keywordset">
+    <element name="keywordset">
+      <ref name="common.attributes"/>
+      <oneOrMore>
+        <ref name="keyword"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="keyword">
+    <element name="keyword">
+      <ref name="common.attributes"/>
+      <text/>
+    </element>
+  </define>
+  <define name="common.attributes">
+    <a:documentation>-------------------------------------
+Common attributes
+-------------------------------------</a:documentation>
+    <interleave>
+      <optional>
+        <ref name="xml.id.attribute"/>
+      </optional>
+      <optional>
+        <ref name="xml.lang.attribute"/>
+      </optional>
+      <optional>
+        <ref name="version.attribute"/>
+      </optional>
+      <optional>
+        <ref name="role.attribute"/>
+      </optional>
+    </interleave>
+  </define>
+  <define name="xml.id.attribute">
+    <attribute name="xml:id">
+      <data type="ID"/>
+    </attribute>
+  </define>
+  <define name="xml.lang.attribute">
+    <attribute name="xml:lang"/>
+  </define>
+  <define name="version.attribute">
+    <attribute name="version"/>
+  </define>
+  <define name="role.attribute">
+    <attribute name="role"/>
+  </define>
+  <define name="refentry">
+    <a:documentation>--------------------------------------------------------------------------
+Refentry
+--------------------------------------------------------------------------</a:documentation>
+    <element name="refentry">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="info.no.title"/>
+      </optional>
+      <oneOrMore>
+        <ref name="refnamediv"/>
+      </oneOrMore>
+      <optional>
+        <ref name="refsynopsisdiv"/>
+      </optional>
+      <oneOrMore>
+        <ref name="refsection"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="refnamediv">
+    <element name="refnamediv">
+      <ref name="common.attributes"/>
+      <ref name="refname"/>
+      <ref name="refpurpose"/>
+    </element>
+  </define>
+  <define name="refname">
+    <element name="refname">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="refpurpose">
+    <element name="refpurpose">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="refsynopsisdiv">
+    <element name="refsynopsisdiv">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="title"/>
+      </optional>
+      <ref name="synopsis"/>
+    </element>
+  </define>
+  <define name="synopsis">
+    <element name="synopsis">
+      <ref name="common.attributes"/>
+      <ref name="preserve.space"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="preserve.space">
+    <optional>
+      <attribute name="xml:space" a:defaultValue="preserve">
+        <value>preserve</value>
+      </attribute>
+    </optional>
+  </define>
+  <define name="refsection">
+    <element name="refsection">
+      <ref name="common.attributes"/>
+      <ref name="title"/>
+      <choice>
+        <group>
+          <oneOrMore>
+            <ref name="any.block"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="refsection"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="refsection"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="chapter">
+    <a:documentation>--------------------------------------------------------------------------
+Chapter, appendix, section
+--------------------------------------------------------------------------</a:documentation>
+    <element name="chapter">
+      <ref name="common.attributes"/>
+      <ref name="title"/>
+      <choice>
+        <group>
+          <oneOrMore>
+            <ref name="any.block"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="section"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="section"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="title">
+    <element name="title">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="appendix">
+    <element name="appendix">
+      <ref name="common.attributes"/>
+      <ref name="title"/>
+      <choice>
+        <group>
+          <oneOrMore>
+            <ref name="any.block"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="section"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="section"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="section">
+    <element name="section">
+      <ref name="common.attributes"/>
+      <ref name="title"/>
+      <choice>
+        <group>
+          <oneOrMore>
+            <ref name="any.block"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="section"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="section"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="any.block">
+    <a:documentation>--------------------------------------------------------------------------
+Block-level elements
+--------------------------------------------------------------------------</a:documentation>
+    <choice>
+      <ref name="simple.block"/>
+      <ref name="figure"/>
+      <ref name="table"/>
+      <ref name="equation"/>
+      <ref name="example"/>
+      <ref name="note"/>
+    </choice>
+  </define>
+  <define name="simple.block">
+    <choice>
+      <ref name="para"/>
+      <ref name="programlisting"/>
+      <ref name="itemizedlist"/>
+      <ref name="orderedlist"/>
+      <ref name="variablelist"/>
+      <ref name="simplelist"/>
+      <ref name="informaltable"/>
+      <ref name="informalequation"/>
+      <ref name="mediaobject"/>
+    </choice>
+  </define>
+  <define name="figure">
+    <a:documentation>-------------------------------------
+Block-level elements having a title
+-------------------------------------</a:documentation>
+    <element name="figure">
+      <ref name="common.attributes"/>
+      <ref name="title"/>
+      <oneOrMore>
+        <ref name="simple.block"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="example">
+    <element name="example">
+      <ref name="common.attributes"/>
+      <ref name="title"/>
+      <oneOrMore>
+        <ref name="simple.block"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="note">
+    <element name="note">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="title">
+          <a:documentation>Note is useful with or without a title.</a:documentation>
+        </ref>
+      </optional>
+      <oneOrMore>
+        <ref name="simple.block"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="equation">
+    <element name="equation">
+      <ref name="common.attributes"/>
+      <ref name="title">
+        <a:documentation>Made title required in the Scilab subset.
+(If you don't want a title, use informalequation.)</a:documentation>
+      </ref>
+      <ref name="mediaobject"/>
+    </element>
+  </define>
+  <define name="table">
+    <element name="table">
+      <ref name="common.attributes"/>
+      <ref name="html.table.attributes"/>
+      <ref name="caption"/>
+      <ref name="html.table.model"/>
+    </element>
+  </define>
+  <define name="caption">
+    <element name="caption">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="informaltable">
+    <a:documentation>-------------------------------------
+Table
+-------------------------------------</a:documentation>
+    <element name="informaltable">
+      <ref name="common.attributes"/>
+      <ref name="html.table.attributes"/>
+      <ref name="html.table.model"/>
+    </element>
+  </define>
+  <define name="html.table.model">
+    <choice>
+      <zeroOrMore>
+        <ref name="html.col"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="html.colgroup"/>
+      </zeroOrMore>
+    </choice>
+    <optional>
+      <ref name="html.thead"/>
+    </optional>
+    <optional>
+      <ref name="html.tfoot"/>
+    </optional>
+    <choice>
+      <oneOrMore>
+        <ref name="html.tbody"/>
+      </oneOrMore>
+      <oneOrMore>
+        <ref name="html.tr"/>
+      </oneOrMore>
+    </choice>
+  </define>
+  <define name="html.colgroup">
+    <element name="colgroup">
+      <ref name="common.attributes"/>
+      <ref name="html.column.attributes"/>
+      <zeroOrMore>
+        <ref name="html.col"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="html.col">
+    <element name="col">
+      <ref name="common.attributes"/>
+      <ref name="html.column.attributes"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="html.thead">
+    <element name="thead">
+      <ref name="common.attributes"/>
+      <ref name="html.row.attributes"/>
+      <oneOrMore>
+        <ref name="html.tr"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="html.tfoot">
+    <element name="tfoot">
+      <ref name="common.attributes"/>
+      <ref name="html.row.attributes"/>
+      <oneOrMore>
+        <ref name="html.tr"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="html.tbody">
+    <element name="tbody">
+      <ref name="common.attributes"/>
+      <ref name="html.row.attributes"/>
+      <oneOrMore>
+        <ref name="html.tr"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="html.tr">
+    <element name="tr">
+      <ref name="common.attributes"/>
+      <ref name="html.row.attributes"/>
+      <oneOrMore>
+        <choice>
+          <ref name="html.th"/>
+          <ref name="html.td"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="html.td">
+    <element name="td">
+      <ref name="common.attributes"/>
+      <ref name="html.cell.attributes"/>
+      <choice>
+        <zeroOrMore>
+          <ref name="any.inline"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="any.block"/>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="html.th">
+    <element name="th">
+      <ref name="common.attributes"/>
+      <ref name="html.cell.attributes"/>
+      <choice>
+        <zeroOrMore>
+          <ref name="any.inline"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="any.block"/>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="html.table.attributes">
+    <interleave>
+      <optional>
+        <attribute name="summary"/>
+      </optional>
+      <optional>
+        <attribute name="width">
+          <choice>
+            <data type="integer"/>
+            <data type="string">
+              <param name="pattern">[0-9]+%</param>
+            </data>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="border">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="frame">
+          <choice>
+            <value>void</value>
+            <value>above</value>
+            <value>below</value>
+            <value>hsides</value>
+            <value>lhs</value>
+            <value>rhs</value>
+            <value>vsides</value>
+            <value>box</value>
+            <value>border</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rules">
+          <choice>
+            <value>none</value>
+            <value>groups</value>
+            <value>rows</value>
+            <value>cols</value>
+            <value>all</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cellspacing">
+          <choice>
+            <data type="integer"/>
+            <data type="string">
+              <param name="pattern">[0-9]+%</param>
+            </data>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cellpadding">
+          <choice>
+            <data type="integer"/>
+            <data type="string">
+              <param name="pattern">[0-9]+%</param>
+            </data>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="html.column.attributes">
+    <interleave>
+      <optional>
+        <attribute name="span">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="width"/>
+      </optional>
+      <ref name="html.halign.attributes"/>
+      <ref name="html.valign.attributes"/>
+    </interleave>
+  </define>
+  <define name="html.row.attributes">
+    <interleave>
+      <ref name="html.halign.attributes"/>
+      <ref name="html.valign.attributes"/>
+    </interleave>
+  </define>
+  <define name="html.cell.attributes">
+    <interleave>
+      <optional>
+        <attribute name="abbr"/>
+      </optional>
+      <optional>
+        <attribute name="axis"/>
+      </optional>
+      <optional>
+        <attribute name="headers"/>
+      </optional>
+      <optional>
+        <attribute name="scope">
+          <choice>
+            <value>row</value>
+            <value>col</value>
+            <value>rowgroup</value>
+            <value>colgroup</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rowspan">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="colspan">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <ref name="html.halign.attributes"/>
+      <ref name="html.valign.attributes"/>
+    </interleave>
+  </define>
+  <define name="html.halign.attributes">
+    <interleave>
+      <optional>
+        <attribute name="align">
+          <choice>
+            <value>left</value>
+            <value>center</value>
+            <value>right</value>
+            <value>justify</value>
+            <value>char</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="char"/>
+      </optional>
+      <optional>
+        <attribute name="charoff">
+          <choice>
+            <data type="integer"/>
+            <data type="string">
+              <param name="pattern">[0-9]+%</param>
+            </data>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="html.valign.attributes">
+    <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
+          <value>baseline</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="itemizedlist">
+    <a:documentation>-------------------------------------
+Lists
+-------------------------------------</a:documentation>
+    <element name="itemizedlist">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="spacing.attribute"/>
+      </optional>
+      <oneOrMore>
+        <ref name="listitem"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="spacing.attribute">
+    <attribute name="spacing">
+      <choice>
+        <value>compact</value>
+        <value>normal</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="listitem">
+    <element name="listitem">
+      <ref name="common.attributes"/>
+      <oneOrMore>
+        <ref name="any.block"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="orderedlist">
+    <element name="orderedlist">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="spacing.attribute"/>
+      </optional>
+      <optional>
+        <ref name="numeration.attribute"/>
+      </optional>
+      <oneOrMore>
+        <ref name="listitem"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="numeration.attribute">
+    <attribute name="numeration">
+      <choice>
+        <value>arabic</value>
+        <value>upperalpha</value>
+        <value>loweralpha</value>
+        <value>upperroman</value>
+        <value>lowerroman</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="variablelist">
+    <element name="variablelist">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="spacing.attribute"/>
+      </optional>
+      <oneOrMore>
+        <ref name="varlistentry"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="varlistentry">
+    <element name="varlistentry">
+      <ref name="common.attributes"/>
+      <oneOrMore>
+        <ref name="term"/>
+      </oneOrMore>
+      <ref name="listitem"/>
+    </element>
+  </define>
+  <define name="term">
+    <element name="term">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="simplelist">
+    <element name="simplelist">
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="columns.attribute"/>
+      </optional>
+      <optional>
+        <ref name="type.attribute"/>
+      </optional>
+      <oneOrMore>
+        <ref name="member"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="columns.attribute">
+    <attribute name="columns">
+      <data type="positiveInteger"/>
+    </attribute>
+  </define>
+  <define name="type.attribute">
+    <attribute name="type">
+      <choice>
+        <value>horiz</value>
+        <value>vert</value>
+        <value>inline</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="member">
+    <element name="member">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="para">
+    <a:documentation>-------------------------------------
+Paragraphs
+-------------------------------------</a:documentation>
+    <element name="para">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="programlisting">
+    <element name="programlisting">
+      <ref name="common.attributes"/>
+      <ref name="preserve.space"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="informalequation">
+    <a:documentation>-------------------------------------
+Illustrations
+-------------------------------------</a:documentation>
+    <element name="informalequation">
+      <ref name="common.attributes"/>
+      <ref name="mediaobject"/>
+    </element>
+  </define>
+  <define name="mediaobject">
+    <element name="mediaobject">
+      <ref name="common.attributes"/>
+      <ref name="imageobject"/>
+    </element>
+  </define>
+  <define name="imageobject">
+    <element name="imageobject">
+      <ref name="common.attributes"/>
+      <choice>
+        <ref name="imagedata"/>
+        <ref name="imagedata.mathml"/>
+        <ref name="imagedata.svg"/>
+      </choice>
+    </element>
+  </define>
+  <define name="imagedata">
+    <element name="imagedata">
+      <ref name="imagedata.common.attributes"/>
+      <ref name="fileref.attribute"/>
+    </element>
+  </define>
+  <define name="fileref.attribute">
+    <attribute name="fileref">
+      <data type="anyURI"/>
+    </attribute>
+  </define>
+  <define name="imagedata.common.attributes">
+    <interleave>
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="imagedata.width.attribute"/>
+      </optional>
+      <optional>
+        <ref name="imagedata.depth.attribute"/>
+      </optional>
+      <optional>
+        <ref name="imagedata.align.attribute"/>
+      </optional>
+      <optional>
+        <ref name="imagedata.valign.attribute"/>
+      </optional>
+      <optional>
+        <ref name="imagedata.contentwidth.attribute"/>
+      </optional>
+      <optional>
+        <ref name="imagedata.contentdepth.attribute"/>
+      </optional>
+      <optional>
+        <ref name="imagedata.scalefit.attribute"/>
+      </optional>
+      <optional>
+        <ref name="imagedata.scale.attribute"/>
+      </optional>
+    </interleave>
+  </define>
+  <define name="imagedata.width.attribute">
+    <attribute name="width"/>
+  </define>
+  <define name="imagedata.depth.attribute">
+    <attribute name="depth"/>
+  </define>
+  <define name="imagedata.align.attribute">
+    <attribute name="align">
+      <choice>
+        <value>left</value>
+        <value>center</value>
+        <value>right</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="imagedata.valign.attribute">
+    <attribute name="valign">
+      <choice>
+        <value>bottom</value>
+        <value>middle</value>
+        <value>top</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="imagedata.contentwidth.attribute">
+    <attribute name="contentwidth"/>
+  </define>
+  <define name="imagedata.contentdepth.attribute">
+    <attribute name="contentdepth"/>
+  </define>
+  <define name="imagedata.scalefit.attribute">
+    <attribute name="scalefit">
+      <choice>
+        <value>0</value>
+        <value>1</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="imagedata.scale.attribute">
+    <attribute name="scale">
+      <data type="positiveInteger"/>
+    </attribute>
+  </define>
+  <define name="imagedata.mathml">
+    <element name="imagedata">
+      <ref name="imagedata.common.attributes"/>
+      <element>
+        <nsName ns="http://www.w3.org/1998/Math/MathML"/>
+        <zeroOrMore>
+          <choice>
+            <ref name="any.attribute"/>
+            <text/>
+            <ref name="any.element"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+    </element>
+  </define>
+  <define name="imagedata.svg">
+    <element name="imagedata">
+      <ref name="imagedata.common.attributes"/>
+      <element>
+        <nsName ns="http://www.w3.org/2000/svg"/>
+        <zeroOrMore>
+          <choice>
+            <ref name="any.attribute"/>
+            <text/>
+            <ref name="any.element"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+    </element>
+  </define>
+  <define name="any.attribute">
+    <attribute>
+      <anyName/>
+    </attribute>
+  </define>
+  <define name="any.element">
+    <element>
+      <anyName>
+        <except>
+          <nsName/>
+          <nsName ns="http://www.w3.org/1999/xhtml"/>
+        </except>
+      </anyName>
+      <zeroOrMore>
+        <choice>
+          <ref name="any.attribute"/>
+          <text/>
+          <ref name="any.element"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="any.inline">
+    <a:documentation>--------------------------------------------------------------------------
+Inline-level elements
+--------------------------------------------------------------------------</a:documentation>
+    <choice>
+      <ref name="simple.inline"/>
+      <ref name="emphasis"/>
+      <ref name="literal"/>
+      <ref name="inlineequation"/>
+    </choice>
+  </define>
+  <define name="simple.inline">
+    <choice>
+      <text/>
+      <ref name="phrase"/>
+      <ref name="replaceable"/>
+      <ref name="subscript"/>
+      <ref name="superscript"/>
+      <ref name="indexterm"/>
+      <ref name="inlinemediaobject"/>
+      <ref name="link"/>
+    </choice>
+  </define>
+  <define name="link">
+    <a:documentation>-------------------------------------
+``Rich'' inline-level elements
+-------------------------------------</a:documentation>
+    <element name="link">
+      <ref name="common.attributes"/>
+      <choice>
+        <ref name="linkend.attribute"/>
+        <ref name="xlink.href.attribute"/>
+      </choice>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="linkend.attribute">
+    <attribute name="linkend">
+      <data type="IDREF"/>
+    </attribute>
+  </define>
+  <define name="xlink.href.attribute">
+    <attribute name="xlink:href">
+      <data type="anyURI"/>
+    </attribute>
+  </define>
+  <define name="emphasis">
+    <element name="emphasis">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="any.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="literal">
+    <a:documentation>-------------------------------------
+Simple inline-level elements
+-------------------------------------</a:documentation>
+    <element name="literal">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="phrase">
+    <element name="phrase">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="replaceable">
+    <element name="replaceable">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="subscript">
+    <element name="subscript">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="superscript">
+    <element name="superscript">
+      <ref name="common.attributes"/>
+      <zeroOrMore>
+        <ref name="simple.inline"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="inlineequation">
+    <a:documentation>-------------------------------------
+Illustrations
+-------------------------------------</a:documentation>
+    <element name="inlineequation">
+      <ref name="common.attributes"/>
+      <ref name="inlinemediaobject"/>
+    </element>
+  </define>
+  <define name="inlinemediaobject">
+    <element name="inlinemediaobject">
+      <ref name="common.attributes"/>
+      <ref name="imageobject"/>
+    </element>
+  </define>
+  <define name="indexterm">
+    <a:documentation>-------------------------------------
+Index entry
+-------------------------------------</a:documentation>
+    <element name="indexterm">
+      <ref name="common.attributes"/>
+      <ref name="primary"/>
+    </element>
+  </define>
+  <define name="primary">
+    <element name="primary">
+      <ref name="common.attributes"/>
+      <text/>
+    </element>
+  </define>
+</grammar>

@@ -1,0 +1,18 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+
+; core
+getSCIpath
+checkrhs_
+checklhs_ 
+vstk_
+gettype_
+getrhsvar_ 
+stack_
+intersci_
+putlhsvar_
+com_
+getScilabMode
+callFunctionFromGateway

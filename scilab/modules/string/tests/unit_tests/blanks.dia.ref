@@ -1,0 +1,32 @@
+//==============================================================================
+// A.C 2007
+// blank unit tests
+//==============================================================================
+disp(['xxx' blanks(20) 'yyy']);
+ 
+!xxx                        yyy  !
+// Test 1
+//LEN_MAX = 20000000; too slow
+LEN_MAX = 2000;
+r = blanks(LEN_MAX);
+l = length(r);
+if ( l <> LEN_MAX) then bugmes();quit;end
+// Test 2
+// check first and last characters
+FIRST_CHAR = part(r,1);
+LAST_CHAR = part(r,LEN_MAX);
+if (FIRST_CHAR <> " ") then bugmes();quit;end
+if (LAST_CHAR <> " ") then bugmes();quit;end
+// Test 3
+A = floor(abs(2^8  * rand()));
+B = floor(abs(2^16 * rand()));
+C = floor(abs(2^16 * rand()));
+D = floor(abs(2^7  * rand()));
+E = floor(abs(2^15 * rand()));
+F = floor(abs(2^15 * rand()));
+if blanks(A) <> blanks(uint8(A))  then bugmes();quit;end
+if blanks(B) <> blanks(uint16(B)) then bugmes();quit;end
+if blanks(C) <> blanks(uint32(C)) then bugmes();quit;end
+if blanks(D) <> blanks(int8(D))  then bugmes();quit;end
+if blanks(E) <> blanks(int16(E)) then bugmes();quit;end
+if blanks(F) <> blanks(int32(F)) then bugmes();quit;end

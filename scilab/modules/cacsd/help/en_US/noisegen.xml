@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="noisegen">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>noisegen</refname>
+    <refpurpose> noise generation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>b=noisegen(pas,Tmax,sig)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    generates a Scilab function <literal>[b]=Noise(t)</literal>
+    where <literal>Noise(t)</literal> is a piecewise constant function 
+    ( constant on  <literal>[k*pas,(k+1)*pas]</literal> ). The value on each constant 
+    interval are random values from  i.i.d  Gaussian variables of 
+    standard deviation sig. The function is constant for <literal>t&lt;=0</literal> and 
+    <literal>t&gt;=Tmax</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+noisegen(0.5,30,1.0);
+x=-5:0.01:35;
+y=feval(x,Noise);
+plot(x,y);
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

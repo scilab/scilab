@@ -1,0 +1,45 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+; core
+cosdebug_
+putlhsvar_
+callFunctionFromGateway
+com_
+checkrhs_
+createvar_
+stack_
+checklhs_
+getrhsvar_
+vstk_
+createvarfromptr_
+errgst_
+cha1_
+iop_
+vartype_
+xscion_
+intersci_
+funs_
+namstr_
+check_dims
+check_scalar
+GetData 
+listentry
+createdata_
+mktlist_
+mklist_
+createlistcvarfromptr_
+createlistvarfromptr_
+dtosci_
+ierode_
+str2sci
+syncexec
+
+;
+; elementary_functions
+unsfdcopy_
+itosci_
+isort_
+dset_

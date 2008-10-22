@@ -1,0 +1,53 @@
+                                   Scilab 5.0
+                                   **********
+ 
+ ******************************************************************************
+ INSTALLATION GUIDE
+ ******************************************************************************
+ 
+ 0 - COPYRIGHT NOTICE
+ ********************
+ 
+ Scilab is a free software released under the terms of the CeCILL license.
+ This license is compatibility with the GNU General Public License (GPL).
+ See the included license: "COPYING" in English
+                           "COPYING-FR" in French
+ 
+ ******************************************************************************
+ 
+ I - TO INSTALL SCILAB
+ *********************
+
+ 
+  IF YOU HAVE A BINARY VERSION
+  ----------------------------
+  Unpack Scilab and call the execution script:
+  # ./bin/scilab
+
+  For futher information: http://wiki.scilab.org/howto/install/linux
+
+ 
+  IF YOU HAVE A SOURCE VERSION
+  ----------------------------
+  Please see on our wiki:
+  http://wiki.scilab.org/Compiling_Scilab_5.x_under_GNU-Linux_Unix
+
+	 
+ 
+ ******************************************************************************
+ II - REMARKS
+ *******************************
+
+    1 - If you have any problem or suggestion to improve Scilab
+          http://bugzilla.scilab.org/index.cgi
+
+		Don't hesitate to browse other the bug reports to see workarounds.
+	
+	2 - User and development mailing lists are available:
+
+		http://www.scilab.org/contactus/index_contactus.php?page=mailing_lists
+
+		Archives of these mailing lists are available.
+
+	3 - The newsgroup is still available here:
+          comp.soft-sys.math.scilab

@@ -1,0 +1,14 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/evstr_data.ref','rb');
+a = 1;b = 2;Z = ['a','b'];%ans = evstr(Z);
+if load_ref('%ans') then   pause,end,
+
+
+a = 1;b = 2;Z = list(['%(1)','%(1)-%(2)'], ['a+1','b+1']);
+%ans = evstr(Z);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

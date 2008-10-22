@@ -1,0 +1,28 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/legend_properties_data.ref','rb');
+
+%ans = set('figure_style', 'new');
+if load_ref('%ans') then   pause,end,
+//create a figure
+// x initialisation
+x = (0:0.1:2 * %pi)';
+%ans = plot2d(x, [sin(x),sin(2 * x),sin(3 * x)], [1,2,3], leg='L1@L2@L3');
+if load_ref('%ans') then   pause,end,
+
+a = get('current_axes');
+l = a.children.children(1);
+if load_ref('l') then   pause,end,
+
+l('text') = 'sin(x)@sin(2*x)@sin(3*x)';
+l('visible') = 'off';// invisible
+l('font_size') = 2;
+l('font_style') = 5;
+l('visible') = 'on';
+
+
+
+
+xdel_run(winsid());
+
+mclose(%U);

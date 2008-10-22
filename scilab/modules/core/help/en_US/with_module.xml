@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="with_module">
+  <info>
+    <pubdate>$LastChangedDate: 2006-12-12 09:26:08 +0200$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>with_module</refname>
+    <refpurpose>Checks if a Scilab module is
+  installed</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>r=with_module(module_name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>a boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>module_name</term>
+        <listitem>
+          <para>a string. example : 'core'</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Returns <literal>%t</literal> Checks if a Scilab module is installed.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getmodules">getmodules</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>A.C</para>
+  </refsection>
+</refentry>

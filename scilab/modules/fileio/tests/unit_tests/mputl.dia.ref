@@ -1,0 +1,28 @@
+// =============================================================================
+// Auhtor : Bruno JOFRET
+//          Scilab Team
+// Copyright INRIA 2007
+//
+// Date   : 13/12/2007
+//
+// Unitary tests for mputl function
+// =============================================================================
+// TEST 1 : dummy file
+cd TMPDIR;
+// Deleting an existing file... Just in case...
+mdelete("dummyFile.dummy")
+TXT = [ 'I am a dummy String'; ..
+        'Multi lines '; ..
+        'to check that'; ..
+        ' mputl is okay'; ..
+        ' on linux and windows ... '];
+mputl(TXT, 'dummyFile.dummy')
+TXT2 = mgetl('dummyFile.dummy');
+if TXT2 <> TXT then bugmes();quit;end
+// =============================================================================
+// Testing if the file created exists
+lsResult = ls("dummyFile.dummy");
+if lsResult == []      then bugmes();quit;end
+// Now delete it
+mdelete("dummyFile.dummy")
+// =============================================================================

@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getsystemmetrics" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getsystemmetrics</refname>
+
+    <refpurpose>Retrieves the specified system metric or system configuration
+    setting. (Windows only)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>res = getsystemmetrics(key)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>a value (integer)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>key</term>
+
+        <listitem>
+          <para>a string (see below)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Retrieves the specified system metric or system configuration
+    setting.</para>
+
+    <informaltable border="1">
+      <tr>
+        <td>SM_ARRANGE</td>
+
+        <td>The flags that specify how the system arranged minimized windows.
+        For more information, see the Remarks section in this topic.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CLEANBOOT</td>
+
+        <td>The value that specifies how the system is started: 0 Normal boot
+        1 Fail-safe boot 2 Fail-safe with network boot A fail-safe boot (also
+        called SafeBoot, Safe Mode, or Clean Boot) bypasses the user startup
+        files.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CMONITORS</td>
+
+        <td>The number of display monitors on a desktop. For more information,
+        see the Remarks section in this topic.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CMOUSEBUTTONS</td>
+
+        <td>The number of buttons on a mouse, or zero if no mouse is
+        installed.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXBORDER</td>
+
+        <td>The width of a window border, in pixels. This is equivalent to the
+        SM_CXEDGE value for windows with the 3-D look.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXCURSOR</td>
+
+        <td>The width of a cursor, in pixels. The system cannot create cursors
+        of other sizes.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXDLGFRAME</td>
+
+        <td>This value is the same as SM_CXFIXEDFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXDOUBLECLK</td>
+
+        <td>The width of the rectangle around the location of a first click in
+        a double-click sequence, in pixels. The second click must occur within
+        the rectangle that is defined by SM_CXDOUBLECLK and SM_CYDOUBLECLK for
+        the system to consider the two clicks a double-click. The two clicks
+        must also occur within a specified time. To set the width of the
+        double-click rectangle, call SystemParametersInfo with
+        SPI_SETDOUBLECLKWIDTH.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXDRAG</td>
+
+        <td>The number of pixels on either side of a mouse-down point that the
+        mouse pointer can move before a drag operation begins. This allows the
+        user to click and release the mouse button easily without
+        unintentionally starting a drag operation. If this value is negative,
+        it is subtracted from the left of the mouse-down point and added to
+        the right of it.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXEDGE</td>
+
+        <td>The width of a 3-D border, in pixels. This metric is the 3-D
+        counterpart of SM_CXBORDER.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXFIXEDFRAME</td>
+
+        <td>The thickness of the frame around the perimeter of a window that
+        has a caption but is not sizable, in pixels. SM_CXFIXEDFRAME is the
+        height of the horizontal border, and SM_CYFIXEDFRAME is the width of
+        the vertical border. This value is the same as SM_CXDLGFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXFOCUSBORDER</td>
+
+        <td>The width of the left and right edges of the focus rectangle that
+        the DrawFocusRect draws. This value is in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXFRAME</td>
+
+        <td>This value is the same as SM_CXSIZEFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXFULLSCREEN</td>
+
+        <td>The width of the client area for a full-screen window on the
+        primary display monitor, in pixels. To get the coordinates of the
+        portion of the screen that is not obscured by the system taskbar or by
+        application desktop toolbars, call the SystemParametersInfo function
+        with the SPI_GETWORKAREA value.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXHSCROLL</td>
+
+        <td>The width of the arrow bitmap on a horizontal scroll bar, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXHTHUMB</td>
+
+        <td>The width of the thumb box in a horizontal scroll bar, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXICON</td>
+
+        <td>The default width of an icon, in pixels. The LoadIcon function can
+        load only icons with the dimensions that SM_CXICON and SM_CYICON
+        specifies.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXICONSPACING</td>
+
+        <td>The width of a grid cell for items in large icon view, in pixels.
+        Each item fits into a rectangle of size SM_CXICONSPACING by
+        SM_CYICONSPACING when arranged. This value is always greater than or
+        equal to SM_CXICON.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMAXIMIZED</td>
+
+        <td>The default width, in pixels, of a maximized top-level window on
+        the primary display monitor.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMAXTRACK</td>
+
+        <td>The default maximum width of a window that has a caption and
+        sizing borders, in pixels. This metric refers to the entire desktop.
+        The user cannot drag the window frame to a size larger than these
+        dimensions. A window can override this value by processing the
+        WM_GETMINMAXINFO message.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMENUCHECK</td>
+
+        <td>The width of the default menu check-mark bitmap, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMENUSIZE</td>
+
+        <td>The width of menu bar buttons, such as the child window close
+        button that is used in the multiple document interface, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMIN</td>
+
+        <td>The minimum width of a window, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMINIMIZED</td>
+
+        <td>The width of a minimized window, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMINSPACING</td>
+
+        <td>The width of a grid cell for a minimized window, in pixels. Each
+        minimized window fits into a rectangle this size when arranged. This
+        value is always greater than or equal to SM_CXMINIMIZED.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXMINTRACK</td>
+
+        <td>The minimum tracking width of a window, in pixels. The user cannot
+        drag the window frame to a size smaller than these dimensions. A
+        window can override this value by processing the WM_GETMINMAXINFO
+        message.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXPADDEDBORDER</td>
+
+        <td>The amount of border padding for captioned windows, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXSCREEN</td>
+
+        <td>The width of the screen of the primary display monitor, in pixels.
+        This is the same value obtained by calling GetDeviceCaps as follows:
+        GetDeviceCaps( hdcPrimaryMonitor, HORZRES).</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXSIZE</td>
+
+        <td>The width of a button in a window caption or title bar, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXSIZEFRAME</td>
+
+        <td>The thickness of the sizing border around the perimeter of a
+        window that can be resized, in pixels. SM_CXSIZEFRAME is the width of
+        the horizontal border, and SM_CYSIZEFRAME is the height of the
+        vertical border. This value is the same as SM_CXFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXSMICON</td>
+
+        <td>The recommended width of a small icon, in pixels. Small icons
+        typically appear in window captions and in small icon view.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXSMSIZE</td>
+
+        <td>The width of small caption buttons, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXVIRTUALSCREEN</td>
+
+        <td>The width of the virtual screen, in pixels. The virtual screen is
+        the bounding rectangle of all display monitors. The SM_XVIRTUALSCREEN
+        metric is the coordinates for the left side of the virtual
+        screen.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CXVSCROLL</td>
+
+        <td>The width of a vertical scroll bar, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYBORDER</td>
+
+        <td>The height of a window border, in pixels. This is equivalent to
+        the SM_CYEDGE value for windows with the 3-D look.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYCAPTION</td>
+
+        <td>The height of a caption area, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYCURSOR</td>
+
+        <td>The height of a cursor, in pixels. The system cannot create
+        cursors of other sizes.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYDLGFRAME</td>
+
+        <td>This value is the same as SM_CYFIXEDFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYDOUBLECLK</td>
+
+        <td>The height of the rectangle around the location of a first click
+        in a double-click sequence, in pixels. The second click must occur
+        within the rectangle defined by SM_CXDOUBLECLK and SM_CYDOUBLECLK for
+        the system to consider the two clicks a double-click. The two clicks
+        must also occur within a specified time. To set the height of the
+        double-click rectangle, call SystemParametersInfo with
+        SPI_SETDOUBLECLKHEIGHT.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYDRAG</td>
+
+        <td>The number of pixels above and below a mouse-down point that the
+        mouse pointer can move before a drag operation begins. This allows the
+        user to click and release the mouse button easily without
+        unintentionally starting a drag operation. If this value is negative,
+        it is subtracted from above the mouse-down point and added below
+        it.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYEDGE</td>
+
+        <td>The height of a 3-D border, in pixels. This is the 3-D counterpart
+        of SM_CYBORDER.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYFIXEDFRAME</td>
+
+        <td>The thickness of the frame around the perimeter of a window that
+        has a caption but is not sizable, in pixels. SM_CXFIXEDFRAME is the
+        height of the horizontal border, and SM_CYFIXEDFRAME is the width of
+        the vertical border. This value is the same as SM_CYDLGFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYFOCUSBORDER</td>
+
+        <td>The height of the top and bottom edges of the focus rectangle
+        drawn by DrawFocusRect. This value is in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYFRAME</td>
+
+        <td>This value is the same as SM_CYSIZEFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYFULLSCREEN</td>
+
+        <td>The height of the client area for a full-screen window on the
+        primary display monitor, in pixels. To get the coordinates of the
+        portion of the screen not obscured by the system taskbar or by
+        application desktop toolbars, call the SystemParametersInfo function
+        with the SPI_GETWORKAREA value.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYHSCROLL</td>
+
+        <td>The height of a horizontal scroll bar, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYICON</td>
+
+        <td>The default height of an icon, in pixels. The LoadIcon function
+        can load only icons with the dimensions SM_CXICON and SM_CYICON.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYICONSPACING</td>
+
+        <td>The height of a grid cell for items in large icon view, in pixels.
+        Each item fits into a rectangle of size SM_CXICONSPACING by
+        SM_CYICONSPACING when arranged. This value is always greater than or
+        equal to SM_CYICON.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYKANJIWINDOW</td>
+
+        <td>For double byte character set versions of the system, this is the
+        height of the Kanji window at the bottom of the screen, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMAXIMIZED</td>
+
+        <td>The default height, in pixels, of a maximized top-level window on
+        the primary display monitor.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMAXTRACK</td>
+
+        <td>The default maximum height of a window that has a caption and
+        sizing borders, in pixels. This metric refers to the entire desktop.
+        The user cannot drag the window frame to a size larger than these
+        dimensions. A window can override this value by processing the
+        WM_GETMINMAXINFO message.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMENU</td>
+
+        <td>The height of a single-line menu bar, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMENUCHECK</td>
+
+        <td>The height of the default menu check-mark bitmap, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMENUSIZE</td>
+
+        <td>The height of menu bar buttons, such as the child window close
+        button that is used in the multiple document interface, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMIN</td>
+
+        <td>The minimum height of a window, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMINIMIZED</td>
+
+        <td>The height of a minimized window, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMINSPACING</td>
+
+        <td>The height of a grid cell for a minimized window, in pixels. Each
+        minimized window fits into a rectangle this size when arranged. This
+        value is always greater than or equal to SM_CYMINIMIZED.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYMINTRACK</td>
+
+        <td>The minimum tracking height of a window, in pixels. The user
+        cannot drag the window frame to a size smaller than these dimensions.
+        A window can override this value by processing the WM_GETMINMAXINFO
+        message.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYSCREEN</td>
+
+        <td>The height of the screen of the primary display monitor, in
+        pixels. This is the same value obtained by calling GetDeviceCaps as
+        follows: GetDeviceCaps( hdcPrimaryMonitor, VERTRES).</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYSIZE</td>
+
+        <td>The height of a button in a window caption or title bar, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYSIZEFRAME</td>
+
+        <td>The thickness of the sizing border around the perimeter of a
+        window that can be resized, in pixels. SM_CXSIZEFRAME is the width of
+        the horizontal border, and SM_CYSIZEFRAME is the height of the
+        vertical border. This value is the same as SM_CYFRAME.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYSMCAPTION</td>
+
+        <td>The height of a small caption, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYSMICON</td>
+
+        <td>The recommended height of a small icon, in pixels. Small icons
+        typically appear in window captions and in small icon view.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYSMSIZE</td>
+
+        <td>The height of small caption buttons, in pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYVIRTUALSCREEN</td>
+
+        <td>The height of the virtual screen, in pixels. The virtual screen is
+        the bounding rectangle of all display monitors. The SM_YVIRTUALSCREEN
+        metric is the coordinates for the top of the virtual screen.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYVSCROLL</td>
+
+        <td>The height of the arrow bitmap on a vertical scroll bar, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_CYVTHUMB</td>
+
+        <td>The height of the thumb box in a vertical scroll bar, in
+        pixels.</td>
+      </tr>
+
+      <tr>
+        <td>SM_DBCSENABLED</td>
+
+        <td>Nonzero if User32.dll supports DBCS; otherwise, 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_DEBUG</td>
+
+        <td>Nonzero if the debug version of User.exe is installed; otherwise,
+        0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_IMMENABLED</td>
+
+        <td>Nonzero if Input Method Manager/Input Method Editor features are
+        enabled; otherwise, 0. SM_IMMENABLED indicates whether the system is
+        ready to use a Unicode-based IME on a Unicode application. To ensure
+        that a language-dependent IME works, check SM_DBCSENABLED and the
+        system ANSI code page. Otherwise the ANSI-to-Unicode conversion may
+        not be performed correctly, or some components like fonts or registry
+        settings may not be present.</td>
+      </tr>
+
+      <tr>
+        <td>SM_MEDIACENTER</td>
+
+        <td>Nonzero if the current operating system is the Windows XP, Media
+        Center Edition, 0 if not.</td>
+      </tr>
+
+      <tr>
+        <td>SM_MENUDROPALIGNMENT</td>
+
+        <td>Nonzero if drop-down menus are right-aligned with the
+        corresponding menu-bar item; 0 if the menus are left-aligned.</td>
+      </tr>
+
+      <tr>
+        <td>SM_MIDEASTENABLED</td>
+
+        <td>Nonzero if the system is enabled for Hebrew and Arabic languages,
+        0 if not.</td>
+      </tr>
+
+      <tr>
+        <td>SM_MOUSEPRESENT</td>
+
+        <td>Nonzero if a mouse is installed; otherwise, 0. This value is
+        rarely zero, because of support for virtual mice and because some
+        systems detect the presence of the port instead of the presence of a
+        mouse.</td>
+      </tr>
+
+      <tr>
+        <td>SM_MOUSEHORIZONTALWHEELPRESENT</td>
+
+        <td>Nonzero if a mouse with a horizontal scroll wheel is installed;
+        otherwise 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_MOUSEWHEELPRESENT</td>
+
+        <td>Nonzero if a mouse with a vertical scroll wheel is installed;
+        otherwise 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_NETWORK</td>
+
+        <td>The least significant bit is set if a network is present;
+        otherwise, it is cleared. The other bits are reserved for future
+        use.</td>
+      </tr>
+
+      <tr>
+        <td>SM_PENWINDOWS</td>
+
+        <td>Nonzero if the Microsoft Windows for Pen computing extensions are
+        installed; zero otherwise.</td>
+      </tr>
+
+      <tr>
+        <td>SM_REMOTECONTROL</td>
+
+        <td>This system metric is used in a Terminal Services environment. Its
+        value is nonzero if the current session is remotely controlled;
+        otherwise, 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_REMOTESESSION</td>
+
+        <td>This system metric is used in a Terminal Services environment. If
+        the calling process is associated with a Terminal Services client
+        session, the return value is nonzero. If the calling process is
+        associated with the Terminal Server console session, the return value
+        is 0. The console session is not necessarily the physical console. For
+        more information, see WTSGetActiveConsoleSessionId.</td>
+      </tr>
+
+      <tr>
+        <td>SM_SAMEDISPLAYFORMAT</td>
+
+        <td>Nonzero if all the display monitors have the same color format,
+        otherwise, 0. Two displays can have the same bit depth, but different
+        color formats. For example, the red, green, and blue pixels can be
+        encoded with different numbers of bits, or those bits can be located
+        in different places in a pixel color value.</td>
+      </tr>
+
+      <tr>
+        <td>SM_SECURE</td>
+
+        <td>This system metric should be ignored; it always returns 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_SERVERR2</td>
+
+        <td>The build number if the system is Windows Server 2003 R2;
+        otherwise, 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_SHOWSOUNDS</td>
+
+        <td>Nonzero if the user requires an application to present information
+        visually in situations where it would otherwise present the
+        information only in audible form; otherwise, 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_SHUTTINGDOWN</td>
+
+        <td>Nonzero if the current session is shutting down; otherwise,
+        0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_SLOWMACHINE</td>
+
+        <td>Nonzero if the computer has a low-end (slow) processor; otherwise,
+        0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_STARTER</td>
+
+        <td>Nonzero if the current operating system is Windows XP Starter
+        Edition; otherwise, 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_SWAPBUTTON</td>
+
+        <td>Nonzero if the meanings of the left and right mouse buttons are
+        swapped; otherwise, 0.</td>
+      </tr>
+
+      <tr>
+        <td>SM_TABLETPC</td>
+
+        <td>Nonzero if the current operating system is the Windows XP Tablet
+        PC edition, 0 if not.</td>
+      </tr>
+
+      <tr>
+        <td>SM_XVIRTUALSCREEN</td>
+
+        <td>The coordinates for the left side of the virtual screen. The
+        virtual screen is the bounding rectangle of all display monitors. The
+        SM_CXVIRTUALSCREEN metric is the width of the virtual screen.</td>
+      </tr>
+
+      <tr>
+        <td>SM_YVIRTUALSCREEN</td>
+
+        <td>The coordinates for the top of the virtual screen. The virtual
+        screen is the bounding rectangle of all display monitors. The
+        SM_CYVIRTUALSCREEN metric is the height of the virtual screen.</td>
+      </tr>
+    </informaltable>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">getsystemmetrics('SM_MOUSEPRESENT')
+getsystemmetrics('SM_SLOWMACHINE')
+getsystemmetrics('SM_REMOTESESSION');
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>A.C</para>
+  </refsection>
+</refentry>

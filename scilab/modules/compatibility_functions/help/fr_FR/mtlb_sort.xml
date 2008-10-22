@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_sort">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_sort</refname>
+    <refpurpose>Fonction d'émulation de la fonction
+  Matlab sort</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>P = mtlb_sort(X)
+P = mtlb_sort(X,dim[,mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>un scalaire, un vecteur, une matrice ou hypermatrice
+          d'elements compris dans [-1 1]un scalaire, un vecteur ou une matrice
+          de réels, de booléens ou une string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ndim</term>
+        <listitem>
+          <para>un entier positif</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode</term>
+        <listitem>
+          <para>:une chaine de caracteres (<literal>"ascend"</literal> or
+          <literal>"descend"</literal>) </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>sort</literal> de
+    Matlab et la fonction <literal>gsort</literal> de Scilab se comportent
+    différemment :</para>
+    <itemizedlist>
+      <listitem>
+        <para>Si <literal>X</literal> est un vecteur alors l'appel de la fonction
+            <literal>sort(X) </literal>de Matlab est équivalent ï¿½ï¿½ l'appel de la
+            fonction <literal>sort(X,'g','i')</literal> de Scilab. </para>
+      </listitem>
+      <listitem>
+        <para><literal>dim=1</literal> (resp. <literal>2</literal>) de Matlab est
+            equivalent au flag <literal>'r'</literal> (resp.<literal> 'c'</literal>) de
+            Scilab.</para>
+      </listitem>
+      <listitem>
+        <para><literal>mode="ascend"</literal> (resp. <literal>"descend"</literal>) est
+            équivalent au flag <literal>'i'</literal> (resp <literal>'d'</literal>) de
+            Scilab.</para>
+      </listitem>
+    </itemizedlist>
+    <para>La fonction <literal>mtlb_sort(X,dim[,mode])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>sort(X,dim[,mode])</literal>
+    quand il n'était pas possible de savoir ce qu'étaient les paramètres
+    d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette
+    fonction va déterminer la sémantique correcte pendant l'exécution. Pour
+    obtenir un code plus performant on peut remplacer les appels à
+    <literal>mtlb_sort</literal> par des appels <link linkend="gsort">gsort</link>.</para>
+    <para>Attention : <literal>mtlb_sort</literal> ne doit pas être utilisée pour une
+    programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>F.B.</member>
+    </simplelist>
+  </refsection>
+</refentry>

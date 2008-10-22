@@ -1,0 +1,109 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Vincent Couvert <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 3056 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3056
+//
+// <-- Short Description -->
+// scilab crash with the following test and the nd algorithm.
+global xn_1;
+global fn_1;
+global gn_1;
+global iter;
+global to_record;
+// Rastrigin test function
+function [f,df,ind] = myf(x,ind)
+  global xn_1;
+  global iter;
+  global to_record;
+  global fn_1;
+  global gn_1;
+  if to_record then
+    xn_1($+1) = x;
+    printf("myf: ||xn(1) - xn_1(1)|| = %f - ||xn(2) - xn_1(2)|| = %f - iter = %d",norm(xn_1($)(1)-xn_1($-1)(1)),norm(xn_1($)(2)-xn_1($-1)(2)),iter);
+  end
+  iter = iter + 1;
+  f = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
+  df(1,1) = 2*x(1) - 12*sin(12*x(1));
+  df(2,1) = 2*x(2) - 18*sin(18*x(1));
+  if to_record then
+    fn_1($+1) = f;
+    gn_1($+1) = df;
+    printf(" - ||fn - fn_1|| = %f - ||gn - gn_1|| = %f\n",norm(fn_1($)-fn_1($-1)),norm(gn_1($)-gn_1($-1)));
+  end
+endfunction
+Min = [-1;-1];
+Max = [1;1];
+x0 = [0.25;-0.25];
+iter = 0;
+to_record = %F;
+xn_1 = list();
+xn_1($+1) = x0;
+fn_1 = list();
+gn_1 = list();
+[f_tmp, df_tmp, ind] = myf(x0,1);
+fn_1($+1) = f_tmp;
+gn_1($+1) = df_tmp
+ gn_1  =
+ 
+ 
+       gn_1(1)
+ 
+  - 1.1934401  
+    17.095542  
+to_record = %T;
+//[fopt,xopt,gopt]=optim(myf,x0,algo='gc','ar',nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],imp=2);
+[fopt,xopt,gopt]=optim(myf,x0,algo="nd","ar",nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],imp=2);
+myf: ||xn(1) - xn_1(1)|| = 0.000000 - ||xn(2) - xn_1(2)|| = 0.000000 - iter = 1 - ||fn - fn_1|| = 0.000000 - ||gn - gn_1|| = 0.000000
+entry in n1fc1 . n=   2 memax= 10  
+minimal array sizes: iz(    22)  rz(    70)  dz(   198)
+myf: ||xn(1) - xn_1(1)|| = 0.008127 - ||xn(2) - xn_1(2)|| = 0.116422 - iter = 2 - ||fn - fn_1|| = 1.077458 - ||gn - gn_1|| = 1.188493
+myf: ||xn(1) - xn_1(1)|| = 0.073147 - ||xn(2) - xn_1(2)|| = 1.047800 - iter = 3 - ||fn - fn_1|| = 1.585370 - ||gn - gn_1|| = 17.276036
+myf: ||xn(1) - xn_1(1)|| = 0.036573 - ||xn(2) - xn_1(2)|| = 0.523900 - iter = 4 - ||fn - fn_1|| = 0.918803 - ||gn - gn_1|| = 11.192719
+myf: ||xn(1) - xn_1(1)|| = 0.018287 - ||xn(2) - xn_1(2)|| = 0.261950 - iter = 5 - ||fn - fn_1|| = 1.606520 - ||gn - gn_1|| = 3.920098
+myf: ||xn(1) - xn_1(1)|| = 0.009143 - ||xn(2) - xn_1(2)|| = 0.130975 - iter = 6 - ||fn - fn_1|| = 1.061529 - ||gn - gn_1|| = 1.544440
+myf: ||xn(1) - xn_1(1)|| = 0.000914 - ||xn(2) - xn_1(2)|| = 0.013097 - iter = 7 - ||fn - fn_1|| = 0.143451 - ||gn - gn_1|| = 0.143369
+myf: ||xn(1) - xn_1(1)|| = 0.004115 - ||xn(2) - xn_1(2)|| = 0.058939 - iter = 8 - ||fn - fn_1|| = 1.010577 - ||gn - gn_1|| = 0.626174
+myf: ||xn(1) - xn_1(1)|| = 0.002057 - ||xn(2) - xn_1(2)|| = 0.029469 - iter = 9 - ||fn - fn_1|| = 0.494575 - ||gn - gn_1|| = 0.304797
+myf: ||xn(1) - xn_1(1)|| = 0.000206 - ||xn(2) - xn_1(2)|| = 0.002947 - iter = 10 - ||fn - fn_1|| = 0.043012 - ||gn - gn_1|| = 0.030307
+myf: ||xn(1) - xn_1(1)|| = 0.000185 - ||xn(2) - xn_1(2)|| = 0.002652 - iter = 11 - ||fn - fn_1|| = 0.040227 - ||gn - gn_1|| = 0.027307
+myf: ||xn(1) - xn_1(1)|| = 0.000167 - ||xn(2) - xn_1(2)|| = 0.002392 - iter = 12 - ||fn - fn_1|| = 0.037436 - ||gn - gn_1|| = 0.024652
+myf: ||xn(1) - xn_1(1)|| = 0.000151 - ||xn(2) - xn_1(2)|| = 0.002161 - iter = 13 - ||fn - fn_1|| = 0.034710 - ||gn - gn_1|| = 0.022295
+myf: ||xn(1) - xn_1(1)|| = 0.000137 - ||xn(2) - xn_1(2)|| = 0.001955 - iter = 14 - ||fn - fn_1|| = 0.032090 - ||gn - gn_1|| = 0.020192
+myf: ||xn(1) - xn_1(1)|| = 0.000124 - ||xn(2) - xn_1(2)|| = 0.001772 - iter = 15 - ||fn - fn_1|| = 0.029600 - ||gn - gn_1|| = 0.018309
+myf: ||xn(1) - xn_1(1)|| = 0.000112 - ||xn(2) - xn_1(2)|| = 0.001607 - iter = 16 - ||fn - fn_1|| = 0.027253 - ||gn - gn_1|| = 0.016617
+myf: ||xn(1) - xn_1(1)|| = 0.000102 - ||xn(2) - xn_1(2)|| = 0.001458 - iter = 17 - ||fn - fn_1|| = 0.025055 - ||gn - gn_1|| = 0.015094
+myf: ||xn(1) - xn_1(1)|| = 0.000092 - ||xn(2) - xn_1(2)|| = 0.001325 - iter = 18 - ||fn - fn_1|| = 0.023007 - ||gn - gn_1|| = 0.013720
+myf: ||xn(1) - xn_1(1)|| = 0.000084 - ||xn(2) - xn_1(2)|| = 0.001204 - iter = 19 - ||fn - fn_1|| = 0.021105 - ||gn - gn_1|| = 0.012478
+     nlis2   contrainte implicite   6 active
+n1fc1  end (dxmin reached)
+Optimization stops because too small variations for x.
+
+list_to_plot = xn_1;
+xn_1 = list();
+to_record = %F;
+x = Min(1):(Max(1)-Min(1))/20:Max(1);
+y = Min(2):(Max(2)-Min(2))/20:Max(2);
+[X,Y]=meshgrid(x,y);
+for i=1:size(X,1)
+  for j=1:size(X,2)
+    [Z(i,j),tmp1,tmp2] = myf([X(i,j);Y(i,j)],1);
+  end
+end
+scf();
+drawlater;
+xset("fpf"," ");
+contour(x,y,Z', 10);
+_axes = get("current_axes");
+_axes.data_bounds = [Min(1) Max(1) Min(2) Max(2)];
+xtitle("myf","x1","x2");
+for i=1:length(list_to_plot)
+  plot(list_to_plot(i)(1),list_to_plot(i)(2),"ko");
+end
+drawnow;

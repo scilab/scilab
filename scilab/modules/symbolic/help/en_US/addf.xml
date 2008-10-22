@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="addf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>addf</refname>
+    <refpurpose> symbolic addition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>addf("a","b")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>"a","b"  </term>
+        <listitem>
+          <para>character strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>addf("a","b")</literal> returns the character string <literal>"a+b"</literal>.
+    Trivial simplifications such as <literal>addf("0","a")</literal> or
+    <literal>addf("1","2")</literal> are performed.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+addf('0','1')
+addf('1','a')
+addf('1','2')
+'a'+'b'
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mulf">mulf</link>
+      </member>
+      <member>
+        <link linkend="subf">subf</link>
+      </member>
+      <member>
+        <link linkend="ldivf">ldivf</link>
+      </member>
+      <member>
+        <link linkend="rdivf">rdivf</link>
+      </member>
+      <member>
+        <link linkend="eval">eval</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

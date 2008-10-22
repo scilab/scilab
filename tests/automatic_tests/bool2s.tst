@@ -1,0 +1,12 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/bool2s_data.ref','rb');
+%ans = bool2s([%t,%t,%f,%t]);
+if load_ref('%ans') then   pause,end,
+
+%ans = bool2s([2.3,0,10,-1]);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,4 @@
+xinit('eqiir4.ps')
+exec('SCI/doc/signal/Nsource_diary/Seqiir4.code')
+xend(),
+          

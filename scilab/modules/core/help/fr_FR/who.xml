@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="who">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>who</refname>
+    <refpurpose> liste des variables  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>who
+who()
+names=who('local')
+[names,mem]=who('local')
+names=who('global')
+[names,mem]=who('global')
+who('sorted')
+names=who('local','sorted')
+[names,mem]=who('local','sorted')
+names=who('global','sorted')
+[names,mem]=who('global','sorted')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>who</literal> affiche les noms des variables courantes.
+		</para>
+    <para><literal>who('local')</literal> ou <literal>who('get')</literal>
+			renvoie les noms des variables courantes et l'occupation mémoire en
+			nombre de flottants double précision.
+		</para>
+    <para><literal>who('global')</literal> renvoie les noms des variables
+			<literal>globales</literal> courantes et l'occupation mémoire en nombre
+			de flottants double précision.
+		</para>
+    <para><literal>who('sorted')</literal> affiche les noms des variables courantes triees par ordre alphabetique.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="whos">whos</link>
+      </member>
+      <member>
+        <link linkend="who_user">who_user</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

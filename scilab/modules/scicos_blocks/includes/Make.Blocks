@@ -1,0 +1,14 @@
+
+
+blocks.h: Makefile
+	@echo "generation of blocks.h"
+	@$(RM) Fblocknames Cblockname
+	@for i in $(BLOCKSF:.o=); do  (echo $$i );done > Fblocknames 
+	@for i in $(BLOCKSC:.o=); do  (echo $$i );done > Cblocknames 
+	@./GenBlocks
+
+all:: blocks-vc.h 
+
+blocks-vc.h : blocks.h 
+	@$(RM) blocks-vc.h 
+	cp blocks.h blocks-vc.h 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2006 - INRIA - Serge STEER 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="smooth">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>smooth</refname>
+    <refpurpose> interpolation par une spline  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[pt]=smooth(ptd [,pas])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>ptd  </term>
+        <listitem>
+          <para>vecteur réel à deux colonnes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pas  </term>
+        <listitem>
+          <para>réel (pas de discrétisation des abscisses)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pt  </term>
+        <listitem>
+          <para>vecteur réel à deux colonnes
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Cette fonction calcule les valeurs d'une spline d'interpolation
+    dont les points de référence sont donnés par <literal>(ptd(1,i),ptd(2,i))</literal>. Les abscisses <literal>ptd(1,:)</literal> doivent être classées par ordre croissant.
+    La valeur par défaut du pas est égale à 
+    <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
+yi=smooth([x;y],0.1);
+plot2d(yi(1,:)',yi(2,:)',[1],"000");
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+      <member>
+        <link linkend="interp">interp</link>
+      </member>
+      <member>
+        <link linkend="interpln">interpln</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,12 @@
+ext11c	a 
+a 	imatrix	m n it
+b	imatrix m n it
+
+ext11c   a b m n 
+m	integer 
+n	integer 
+a	double
+b	double
+
+out	sequence	b
+***********************

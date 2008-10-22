@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colon">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>colon</refname>
+    <refpurpose> (:) colon operator</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+  Colon symbol <literal>:</literal> can be used to form implicit
+  vectors. (see also <link linkend="linspace">linspace</link>,  <link linkend="logspace">logspace</link>) </para>
+    <variablelist>
+      <varlistentry>
+        <term>j:k</term>
+        <listitem>
+          <para>is the vector <literal>[j, j+1,...,k]</literal> (empty if
+   <literal>j&gt;k</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>j:d:k</term>
+        <listitem>
+          <para>is the vector <literal>[j, j+d, ..., j+m*d]  </literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    The colon notation can also be used to pick out selected rows,
+    columns and elements of vectors and matrices (see also <link linkend="extraction">extraction</link>,<link linkend="insertion">insertion</link>)</para>
+    <variablelist>
+      <varlistentry>
+        <term>A(:)</term>
+        <listitem>
+          <para>is the vector of all the elements of <literal>A</literal>  regarded as a single column.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A(:,j)</term>
+        <listitem>
+          <para>ys the <literal>j</literal>-th column of <literal>A</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A(j:k)</term>
+        <listitem>
+          <para>is <literal>[A(j),A(j+1),...,A(k)]</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A(:,j:k)</term>
+        <listitem>
+          <para>is
+  <literal>[A(:,j),A(:,j+1),...,A(:,k)] </literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A(:)=w</term>
+        <listitem>
+          <para>fills the matrix <literal>A</literal> with entries of <literal>w</literal> (taken column by column if <literal>w</literal> is a matrix).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matrix">matrix</link>
+      </member>
+      <member>
+        <link linkend="for">for</link>
+      </member>
+      <member>
+        <link linkend="linspace">linspace</link>
+      </member>
+      <member>
+        <link linkend="logspace">logspace</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

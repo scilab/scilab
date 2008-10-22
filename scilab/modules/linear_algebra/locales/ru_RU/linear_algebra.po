@@ -1,0 +1,109 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-06-25 10:02+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип аргумента #%d.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Несовместимые аргументы #%d и #%d: Они должны иметь одинаковые размеры.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался скаляр.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Неверные значения аргумента #%d: Ожидались неотрицательные целые числа.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgstr ""
+"%s: Неверные значения аргумента #%d: Ожидался неотрицательный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Должно быть из множества {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось неотрицательное целое.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался вектор-столбец.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Requested rank is greater than "
+"matrix dimension."
+msgstr ""
+"%s: Неверное значение аргумента #%d: Запрошенный ранг больше размерности "
+"матрицы."
+
+#, c-format
+msgid "%s: SVD and QR not implemented in sparse.\n"
+msgstr ""
+"%s: SVD и QR не реализованы в 'sparse' (модуле работы с разреженными "
+"матрицами).\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Эта функциональная возможность ещё не реализована.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Symmetric expected"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался симметричный"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Не полуопределённое положительное"
+
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: Нет сходимости в шагах QR.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалась действительная или комплексная "
+"матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалась матрица вещественных чисел.\n"

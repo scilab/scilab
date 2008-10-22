@@ -1,0 +1,28 @@
+// <-- Non-regression test for bug 623 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=623
+//
+// <-- Short Description -->
+//    Even after applying the patch corresponding to bug report
+//    608, integer cast to boolean is still not perfect.
+// Copyright INRIA
+// Scilab Project - Pierre MARECHAL
+// Copyright INRIA 2006
+// Date : 6 juin 2006
+uno =  int8(1);
+1   == [uno uno];
+if or(1<>[uno uno])     then bugmes();quit;end
+if or([1 1]<>[uno uno]) then bugmes();quit;end
+if or([uno uno]<>1)     then bugmes();quit;end
+if or([uno uno]<>[1 1]) then bugmes();quit;end
+if execstr("uint8(1) & %t" ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("%t&uint8(1)"   ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("int32(1) & %t" ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("%t&int32(1)"   ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("uint32(1) & %t","errcatch")  <> 144 then bugmes();quit;end
+if execstr("%t&uint32(1)"  ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("int16(1) & %t" ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("%t&int16(1)"   ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("int8(1) & %f " ,"errcatch")  <> 144 then bugmes();quit;end
+if execstr("%t&int8(1)"    ,"errcatch")  <> 144 then bugmes();quit;end

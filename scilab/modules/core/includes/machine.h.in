@@ -1,0 +1,479 @@
+/* modules/core/includes/machine.h.in.  Generated from configure.ac by autoheader.  */
+
+#ifndef MACHINE_H
+#define MACHINE_H
+/* This file defines global element configuration of the build host */
+
+
+/* Define C2F without Trailing Underscore */
+#undef C2F
+
+/* Define to 1 if the `closedir' function returns void instead of `int'. */
+#undef CLOSEDIR_VOID
+
+/* Cname */
+#undef CNAME
+
+/* Define to 1 if the package shall run at any location in the filesystem. */
+#undef ENABLE_RELOCATABLE
+
+/* Define C2F without Trailing Underscore */
+#undef F2C
+
+/* Define to dummy `main' function (if any) required to link to the Fortran
+   libraries. */
+#undef F77_DUMMY_MAIN
+
+/* Define to 1 if your Fortran compiler doesn't accept -c and -o together. */
+#undef F77_NO_MINUS_C_MINUS_O
+
+/* Define if F77 and FC dummy `main' functions are identical. */
+#undef FC_DUMMY_MAIN_EQ_F77
+
+/* uses G95 fortran */
+#undef G95_FORTRAN
+
+/* Define to 1 if you have the `atexit' function. */
+#undef HAVE_ATEXIT
+
+/* Define to 1 if you have the `bzero' function. */
+#undef HAVE_BZERO
+
+/* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_DIRENT_H
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if you have the `dup2' function. */
+#undef HAVE_DUP2
+
+/* Define to 1 if you have the `endpwent' function. */
+#undef HAVE_ENDPWENT
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Define to 1 if you have the `finite' function. */
+#undef HAVE_FINITE
+
+/* Define to 1 if you have the <float.h> header file. */
+#undef HAVE_FLOAT_H
+
+/* Define to 1 if you have the `floor' function. */
+#undef HAVE_FLOOR
+
+/* Define to 1 if you have the `getcwd' function. */
+#undef HAVE_GETCWD
+
+/* Define to 1 if you have the `gethostbyaddr' function. */
+#undef HAVE_GETHOSTBYADDR
+
+/* Define to 1 if you have the `gethostbyname' function. */
+#undef HAVE_GETHOSTBYNAME
+
+/* Define to 1 if you have the `gethostname' function. */
+#undef HAVE_GETHOSTNAME
+
+/* Define to 1 if you have the `getpagesize' function. */
+#undef HAVE_GETPAGESIZE
+
+/* Define to 1 if you have the `getpass' function. */
+#undef HAVE_GETPASS
+
+/* Define to 1 if you have the `gettimeofday' function. */
+#undef HAVE_GETTIMEOFDAY
+
+/* Define to 1 if you have the `getwd' function. */
+#undef HAVE_GETWD
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `isascii' function. */
+#undef HAVE_ISASCII
+
+/* Define to 1 if you have the `iswprint' function. */
+#undef HAVE_ISWPRINT
+
+/* Define to 1 if you have the <libintl.h> header file. */
+#undef HAVE_LIBINTL_H
+
+/* Define to 1 if you have the `matio' library (-lmatio). */
+#undef HAVE_LIBMATIO
+
+/* Define to 1 if you have the `pcre' library (-lpcre). */
+#undef HAVE_LIBPCRE
+
+/* Define to 1 if you have the `pcreposix' library (-lpcreposix). */
+#undef HAVE_LIBPCREPOSIX
+
+/* Define to 1 if you have the `xml2' library (-lxml2). */
+#undef HAVE_LIBXML2
+
+/* Define to 1 if you have the <limits.h> header file. */
+#undef HAVE_LIMITS_H
+
+/* Define to 1 if you have the <locale.h> header file. */
+#undef HAVE_LOCALE_H
+
+/* Define to 1 if you have the <mach-o/dyld.h> header file. */
+#undef HAVE_MACH_O_DYLD_H
+
+/* Define to 1 if you have the <malloc.h> header file. */
+#undef HAVE_MALLOC_H
+
+/* Define to 1 if you have the <matioConfig.h> header file. */
+#undef HAVE_MATIOCONFIG_H
+
+/* Define to 1 if you have the <matio.h> header file. */
+#undef HAVE_MATIO_H
+
+/* Define to 1 if you have the `memmove' function. */
+#undef HAVE_MEMMOVE
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `memset' function. */
+#undef HAVE_MEMSET
+
+/* Define to 1 if you have the `mkdir' function. */
+#undef HAVE_MKDIR
+
+/* Define to 1 if you have the `munmap' function. */
+#undef HAVE_MUNMAP
+
+/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
+#undef HAVE_NDIR_H
+
+/* Define to 1 if you have the <netdb.h> header file. */
+#undef HAVE_NETDB_H
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#undef HAVE_NETINET_IN_H
+
+/* Define to 1 if you have the <nlist.h> header file. */
+#undef HAVE_NLIST_H
+
+/* Define to 1 if you have the <pcre.h> header file. */
+#undef HAVE_PCRE_H
+
+/* Define to 1 if you have the `pow' function. */
+#undef HAVE_POW
+
+/* Define to 1 if you have the `putenv' function. */
+#undef HAVE_PUTENV
+
+/* Define to 1 if you have the `regcomp' function. */
+#undef HAVE_REGCOMP
+
+/* Define to 1 if you have the `re_comp' function. */
+#undef HAVE_RE_COMP
+
+/* Define to 1 if you have the `rmdir' function. */
+#undef HAVE_RMDIR
+
+/* Define to 1 if you have the `select' function. */
+#undef HAVE_SELECT
+
+/* Define to 1 if you have the `setenv' function. */
+#undef HAVE_SETENV
+
+/* Define to 1 if you have the `setlocale' function. */
+#undef HAVE_SETLOCALE
+
+/* Define to 1 if you have the <sgtty.h> header file. */
+#undef HAVE_SGTTY_H
+
+/* Define to 1 if you have the `sleep' function. */
+#undef HAVE_SLEEP
+
+/* Define to 1 if you have the `socket' function. */
+#undef HAVE_SOCKET
+
+/* Define to 1 if you have the `sqrt' function. */
+#undef HAVE_SQRT
+
+/* Define to 1 if `stat' has the bug that it succeeds when given the
+   zero-length file name argument. */
+#undef HAVE_STAT_EMPTY_STRING_BUG
+
+/* Define to 1 if you have the <stddef.h> header file. */
+#undef HAVE_STDDEF_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `strcasecmp' function. */
+#undef HAVE_STRCASECMP
+
+/* Define to 1 if you have the `strchr' function. */
+#undef HAVE_STRCHR
+
+/* Define to 1 if you have the `strdup' function. */
+#undef HAVE_STRDUP
+
+/* Define to 1 if you have the `strerror' function. */
+#undef HAVE_STRERROR
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the `strpbrk' function. */
+#undef HAVE_STRPBRK
+
+/* Define to 1 if you have the `strrchr' function. */
+#undef HAVE_STRRCHR
+
+/* Define to 1 if you have the `strstr' function. */
+#undef HAVE_STRSTR
+
+/* Define to 1 if you have the `strtol' function. */
+#undef HAVE_STRTOL
+
+/* Define to 1 if `st_blksize' is member of `struct stat'. */
+#undef HAVE_STRUCT_STAT_ST_BLKSIZE
+
+/* Define to 1 if `st_blocks' is member of `struct stat'. */
+#undef HAVE_STRUCT_STAT_ST_BLOCKS
+
+/* Define to 1 if `st_rdev' is member of `struct stat'. */
+#undef HAVE_STRUCT_STAT_ST_RDEV
+
+/* Define to 1 if your `struct stat' has `st_blocks'. Deprecated, use
+   `HAVE_STRUCT_STAT_ST_BLOCKS' instead. */
+#undef HAVE_ST_BLOCKS
+
+/* Define to 1 if you have the <syslog.h> header file. */
+#undef HAVE_SYSLOG_H
+
+/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_DIR_H
+
+/* Define to 1 if you have the <sys/file.h> header file. */
+#undef HAVE_SYS_FILE_H
+
+/* Define to 1 if you have the <sys/ioctl.h> header file. */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_NDIR_H
+
+/* Define to 1 if you have the <sys/param.h> header file. */
+#undef HAVE_SYS_PARAM_H
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#undef HAVE_SYS_SOCKET_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/timeb.h> header file. */
+#undef HAVE_SYS_TIMEB_H
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#undef HAVE_SYS_TIME_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <sys/utsname.h> header file. */
+#undef HAVE_SYS_UTSNAME_H
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#undef HAVE_SYS_WAIT_H
+
+/* Have Term Cap */
+#undef HAVE_TERMCAP
+
+/* Define to 1 if you have the <termios.h> header file. */
+#undef HAVE_TERMIOS_H
+
+/* Define to 1 if you have the <termio.h> header file. */
+#undef HAVE_TERMIO_H
+
+/* Define to 1 if you have the `uname' function. */
+#undef HAVE_UNAME
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the `usleep' function. */
+#undef HAVE_USLEEP
+
+/* Define to 1 if you have the <values.h> header file. */
+#undef HAVE_VALUES_H
+
+/* Define to 1 if you have the <wchar.h> header file. */
+#undef HAVE_WCHAR_H
+
+/* Define to 1 if you have the <wctype.h> header file. */
+#undef HAVE_WCTYPE_H
+
+/* Define to 1 if you have the <X11/Xlib.h> header file. */
+#undef HAVE_X11_XLIB_H
+
+/* Define to 1 if you have the `_NSGetExecutablePath' function. */
+#undef HAVE__NSGETEXECUTABLEPATH
+
+/* Define to the value of ${prefix}, as a string. */
+#undef INSTALLPREFIX
+
+/* If we are building a 64 bits version */
+#undef IS_64_BITS_CPU
+
+/* libXML2 flags */
+#undef LIBXML_FLAGS
+
+/* libXML2 library */
+#undef LIBXML_LIBS
+
+/* Define to 1 if `lstat' dereferences a symlink specified with a trailing
+   slash. */
+#undef LSTAT_FOLLOWS_SLASHED_SYMLINK
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* The default path separator character. */
+#undef PATH_SEPARATOR
+
+/* PCRE flags */
+#undef PCRE_CFLAGS
+
+/* PCRE library */
+#undef PCRE_LIBS
+
+/* PCRE version */
+#undef PCRE_VERSION
+
+/* Define as the return type of signal handlers (`int' or `void'). */
+#undef RETSIGTYPE
+
+/* Extension of a shared library */
+#undef SHARED_LIB_EXT
+
+/* The size of `int', as computed by sizeof. */
+#undef SIZEOF_INT
+
+/* The size of `long', as computed by sizeof. */
+#undef SIZEOF_LONG
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
+#undef TIME_WITH_SYS_TIME
+
+/* Define to 1 if your <sys/time.h> declares `struct tm'. */
+#undef TM_IN_SYS_TIME
+
+/* If it is UMFPACK/Suitesparse or UMFPACK standalone */
+#undef UMFPACK_SUITESPARSE
+
+/* Version number of package */
+#undef VERSION
+
+/* With the FFTW library */
+#undef WITH_FFTW
+
+/* With the JAVA stuff (GUI, Console, JOGL...) */
+#undef WITH_GUI
+
+/* With the MATIO library */
+#undef WITH_MATIO
+
+/* With OCAML */
+#undef WITH_OCAML
+
+/* With PVM */
+#undef WITH_PVM
+
+/* With SCICOS */
+#undef WITH_SCICOS
+
+/* With TK */
+#undef WITH_TK
+
+/* With the UMFPACK library */
+#undef WITH_UMFPACK
+
+/* If leading underscores */
+#undef WLU
+
+/* If trailing underscores */
+#undef WTU
+
+/* Define to 1 if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING
+
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
+/* Number of bits in a file offset, on hosts where this is settable. */
+#undef _FILE_OFFSET_BITS
+
+/* Define for large files, on AIX-style hosts. */
+#undef _LARGE_FILES
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const
+
+/* Provide a macro to do exp10 */
+#undef exp10
+
+/* Don't use getwd but getcwd */
+#undef getwd
+
+/* Define to `__inline__' or `__inline' if that's what the C compiler
+   calls it, or to nothing if 'inline' is not supported under any name.  */
+#ifndef __cplusplus
+#undef inline
+#endif
+
+/* Provide a macro to do exp10 */
+#undef log_10_
+
+
+
+#ifdef DIR_SEPARATOR
+	   #undef DIR_SEPARATOR
+#endif
+#define DIR_SEPARATOR "/"
+
+/* Force usage of dynamically located stack on 64 bits */
+#ifdef IS_64_BITS_CPU
+#define USE_DYNAMIC_STACK
+#endif
+
+#endif /* MACHINE_H  */
+

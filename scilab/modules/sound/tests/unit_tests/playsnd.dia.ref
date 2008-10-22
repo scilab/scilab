@@ -1,0 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+y=wavread('SCI/modules/sound/demos/chimes.wav');
+playsnd(y);
+Writing Wave file: Microsoft PCM format, 2 channels, 22050 samp/sec
+        88200 byte/sec, 4 block align, 16 bits/samp
+Finished writing Wave file, 55684 data bytes

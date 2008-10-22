@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="driver">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>driver</refname>
+    <refpurpose> select a graphics driver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>driver(driver_name)
+current_driver=driver()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>driver_name</term>
+        <listitem>
+          <para>string, driver to be selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function is used to select a graphics driver, or with no arguments 
+    to get the current graphics driver name.
+    Most of the time, a user can ignore this function and change the driver
+    by calling high level functions such as <literal>xbasc</literal> or <literal>xbasimp</literal>.
+    The selected driver can be one of the followings:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>"X11"</term>
+        <listitem>
+          <para>output to the screen of the computer.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"Pos"</term>
+        <listitem>
+          <para>output into Postscript format.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"Rec"</term>
+        <listitem>
+          <para>output to the screen of the computer. Same as <literal>X11</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"Fig"</term>
+        <listitem>
+          <para>output into XFig format.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"GIF"</term>
+        <listitem>
+          <para>output into Gif format.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"PPM"</term>
+        <listitem>
+          <para>output into PPM format.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>
+    To convert "GIF" or "PPM" files to other image format or for building animation one can use the "convert" program for ImageMagic (http://www.imagemagick.org/)</para>
+    <para>
+    For example if one has generated a sequence of Gif files named <literal>img*.gif</literal> it is possible to build an animated Gif file (named anim.gif) by</para>
+    <programlisting><![CDATA[
+
+convert -delay 10  img*.gif anim.gif  
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xtape">xtape</link>
+      </member>
+      <member>
+        <link linkend="xbasc">xbasc</link>
+      </member>
+      <member>
+        <link linkend="xbasimp">xbasimp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

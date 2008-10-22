@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="poly">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>poly</refname>
+    <refpurpose> définition d'un polynôme  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[p]=poly(a,vname, ["flag"])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>a  </term>
+        <listitem>
+          <para>matrice ou nombre réel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>vname </term>
+        <listitem>
+          <para>chaîne de caractères, nom de l'indéterminée du
+polynôme.Si la chaîne comprend plus de 4 caractères, seuls les 4
+premiers sont pris en compte.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"flag"  </term>
+        <listitem>
+          <para>chaîne de caractères ("roots", "coeff"), la
+	    valeur par défaut est "roots".</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>Si a est une matrice,</term>
+        <listitem>
+          <para><literal>p</literal> est le polynôme
+	  caractéristique de a, c'est à dire
+	  <literal>déterminant(x*eye()-a)</literal>, <literal>x</literal> étant
+	  l'indéterminée. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Si v est un vecteur,</term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para><literal>poly(v,"x",["roots"])</literal> est le polynôme
+	      dont les racines sont égales aux termes de <literal>v</literal> et
+	      <literal>"x"</literal> l'indéterminée. Dans ce cas
+	      <literal>roots</literal> et <literal>poly</literal> sont des fonctions inverses
+	      l'une de l'autre. Notez qye les racines infinies produisent des
+	      coefficients de haut degré egaux a zéro.</para>
+            </listitem>
+            <listitem>
+              <para><literal>poly(v,"x","coeff")</literal> crée le polynôme
+	      d'indéterminée <literal>"x"</literal> dont les coefficients sont
+	      les termes de <literal>v</literal> (v(1) est le terme constant). Dans ce
+	      dernier cas, <literal>poly</literal> et <literal>coeff</literal> sont des fonctions
+	      inverses l'une de l'autre.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para><literal>s=poly(0,"s")</literal> permet de définir des polynômes en
+      utilisant les opérations usuelles (+,-,*,^).<literal>"s"</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    s=poly(0,"s");p=1+s+2*s^2;
+    A=rand(2,2);poly(A,"x")
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="coeff">coeff</link>
+      </member>
+      <member>
+        <link linkend="matrices">matrices</link>
+      </member>
+      <member>
+        <link linkend="rational">rational</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

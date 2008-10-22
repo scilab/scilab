@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strcspn">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>strcspn</refname>
+    <refpurpose>Get span until character in
+  string</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>res = strcspn(string_one,string_two)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>string_one</term>
+        <listitem>
+          <para>A character string or matrix of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>string_two</term>
+        <listitem>
+          <para>A character string or matrix of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>res = strcspn(string_one,string_two)</literal> Scans string_one for
+    the first occurrence of any of the characters that are part of string_two,
+    returning the number of characters of string_one read before this first
+    occurrence.</para>
+    <para>string_two must have same dimensions than string_two or string_two must
+    be a string.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+strcspn("fcba73","1234567890")
+strcspn(["fcba73","f7cba73"],"1234567890")
+strcspn(["fcba73","f7cba73"],["312","34567890"])
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="strspn">strspn</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

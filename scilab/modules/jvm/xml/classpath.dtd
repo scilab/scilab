@@ -1,0 +1,14 @@
+<!ELEMENT classpaths (META?,CLASS*)>
+<!ATTLIST classpaths name CDATA #IMPLIED>
+
+<!ELEMENT META (#PCDATA)>
+
+<!ATTLIST META 
+CATEGORY 	CDATA 	"Scilab classpath" 	 
+VERSION_SCI 	CDATA 	"5.0" 	 
+VERSION_DOC 	CDATA 	"1.1" 	 
+AUTHOR 	CDATA 	"Allan CORNET INRIA 2007" 	 
+ >
+
+<!ELEMENT path (#PCDATA)>
+<!ATTLIST path value CDATA #IMPLIED>

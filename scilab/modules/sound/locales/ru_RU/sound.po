@@ -1,0 +1,284 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-08-04 13:13+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Не удалось открыть файл %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s, an integer or a vector "
+"of 2 integers.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Должно быть %s, целым числом или "
+"вектором из двух целых.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or 2-element vector.\n"
+msgstr ""
+"%s: Неверное значение аргумента: Указатель в интервале должен задаваться как "
+"скаляр или двухэлементный вектор.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr "%s: Произошла ошибка: Формат сжатия данных %s не поддерживается.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s: Неверное значение аргумента: Имя файла должно быть строкой.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Неверный аргумент #%d: Ожидался '%s' или '%s'.\n"
+
+msgid "Cannot play file."
+msgstr "Не удалось проиграть файл."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Модуль Scilab 'sound' не установлен.\n"
+
+#, c-format
+msgid "%s: .wav input file must be a file, not a pipe.\n"
+msgstr "%s: входной .wav файл должен быть файлом, а не каналом (pipe).\n"
+
+#, c-format
+msgid "%s : not a RIFF file.\n"
+msgstr "%s : не RIFF-файл.\n"
+
+#, c-format
+msgid "%s: not a WAVE file.\n"
+msgstr "%s: не WAVE-файл.\n"
+
+#, c-format
+msgid "%s: missing fmt spec.\n"
+msgstr "%s: отстутствует определение fmt.\n"
+
+#, c-format
+msgid "%s : fmt chunk is too short\n"
+msgstr "%s : порция данных fmt слишком мала\n"
+
+#, c-format
+msgid "%s: this WAV file is in Microsoft Official Unknown format.\n"
+msgstr "%s: этот WAV-файл в формате Microsoft Official Unknown.\n"
+
+#, c-format
+msgid "%s: user options overiding style read in .wav header\n"
+msgstr ""
+"%s: пользовательские опции перекрывает чтение стиля в заголовке .wav\n"
+
+#, c-format
+msgid "%s : this WAV file is in Microsoft ADPCM format.\n"
+msgstr "%s : этот WAV-файл в формате Microsoft ADPCM.\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header.\n"
+msgstr ""
+"%s: пользовательские опции перекрывает чтение стиля в заголовке .wav\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header\n"
+msgstr ""
+"%s: пользовательские опции перекрывает чтение стиля в заголовке .wav\n"
+
+#, c-format
+msgid "%s: this WAV file is in OKI ADPCM format.\n"
+msgstr "%s: этот WAV-файл в формате OKI ADPCM.\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digistd format.\n"
+msgstr "%s: этот WAV-файл в формате Digistd.\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digifix format.\n"
+msgstr "%s: этот WAV-файл в формате Digifix.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM U-law format.\n"
+msgstr "%s: этот WAV-файл в формате IBM U-law.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM A-law format.\n"
+msgstr "%s: этот WAV-файл в формате IBM A-law.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM ADPCM format.\n"
+msgstr "%s: этот WAV-файл в формате IBM ADPCM.\n"
+
+#, c-format
+msgid "%s: don't understand format.\n"
+msgstr "%s: формат не распознан.\n"
+
+msgid "User options overiding channels read in .wav header\n"
+msgstr ""
+"Пользовательские опции перекрывают количество каналов прочитанное из .wav-"
+"заголовка\n"
+
+msgid "User options overiding rate read in .wav header\n"
+msgstr ""
+"Пользовательские опции перекрывают частоту дискретизации прочитанную из .wav-"
+"заголовка\n"
+
+#, c-format
+msgid "%s: User options overiding size read in .wav header.\n"
+msgstr ""
+"%s: Пользовательские опции перекрывают размер прочитанный из .wav-"
+"заголовка.\n"
+
+#, c-format
+msgid "%s: Incorrect .wav size.\n"
+msgstr "%s: Некорректный размер .wav.\n"
+
+#, c-format
+msgid "%s: missing data chunk.\n"
+msgstr "%s: отсутствует чанк данных.\n"
+
+#, c-format
+msgid "Reading Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr "Чтеник Wave-файла: формат %s, каналов %d %s, %d отсчётов в секунду\n"
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n"
+msgstr ""
+"        %d байт/сек, %d выравнивание блока, %d бит/отсчёт, %u байт данных\n"
+
+msgid "Premature EOF on .wav input file.\n"
+msgstr "Преждевременный конец файла (EOF) во входном .wav-файле.\n"
+
+msgid "Length in output .wav header will wrong since can't seek to fix it.\n"
+msgstr ""
+
+msgid "User options overiding style written to .wav header.\n"
+msgstr ""
+
+#, c-format
+msgid "Sciprinting - writing bad .wav file using %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using unsigned data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using signed data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using A-law data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using U-law data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid "Writing Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr ""
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp\n"
+msgstr ""
+
+#, c-format
+msgid "Finished writing Wave file, %u data bytes\n"
+msgstr ""
+
+msgid "Sorry, can't rewind output file to rewrite .wav header.\n"
+msgstr ""
+
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr "Не удалось открыть входной файл '%s': %s\n"
+
+msgid "Error while reading\n"
+msgstr "Ошибка в процессе чтения\n"
+
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr "Входной файл: используется частота сэмплов %lu\n"
+
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr "\tразмер %s, стиль %s, %d %s\n"
+
+msgid "Sorry wav file too big\n"
+msgstr "Простите, wav-файл слишком велик\n"
+
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr "Не удалось открыть выходной файл '%s': %s\n"
+
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr "Не задана частота сэмплов для файла %s\n"
+
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr "Частота сэмплов %lu для файла %s ошибочна\n"
+
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr "Размер данных не был задан для файла %s\n"
+
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr "Стиль данных не был задан для файла %s\n"
+
+msgid "No U-Law support for shorts\n"
+msgstr ""
+
+msgid "No A-Law support for shorts\n"
+msgstr ""
+
+msgid "Drop through in rawread!\n"
+msgstr ""
+
+#, c-format
+msgid "Sorry, don't have code to read %s, %s\n"
+msgstr "Простите, нет кода для чтения %s, %s\n"
+
+msgid "No U-Law support for shorts (try -b option ?)\n"
+msgstr ""
+
+msgid "No A-Law support for shorts (try -b option ?)\n"
+msgstr ""
+
+msgid "Drop through in rawwrite!\n"
+msgstr ""
+
+#, c-format
+msgid "Sorry, don't have code to write %s, %s\n"
+msgstr "Простите, нет кода для записи %s, %s\n"

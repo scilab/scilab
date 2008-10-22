@@ -1,0 +1,50 @@
+LIBRARY    scirenderer.dll
+
+
+EXPORTS
+
+; --------------------------------------- 
+; scirenderer
+; --------------------------------------- 
+; add here exports from cpp
+createDrawingObserver
+deleteObservers
+notifyObservers
+destroyHandleDrawer
+sciDrawObj
+displayChildren
+displayFigure
+redrawFigure
+forceHierarchyRedraw
+forceRedraw
+sciSetJavaColormap
+sciGetJavaColormap
+createDrawer
+sciGetJavaFigureSize
+sciGetJavaWindowSize
+sciGetJavaWindowPosition
+createGraphicSynchronizer
+destroyGraphicSynchronizer
+endGraphicDataWriting
+startGraphicDataWriting
+endFigureDataReading
+startFigureDataReading
+sciSetJavaFigureSize
+sciSetJavaWindowSize
+sciSetJavaWindowPosition
+sciSetJavaInfoMessage
+sciSetJavaTitle
+endFigureDataWriting
+startFigureDataWriting
+disableFigureSynchronization
+enableFigureSynchronization
+sciGetJava2dViewPixelCoordinates
+sciGetJava2dViewCoordinates
+javaRubberBox
+sciGetJavaIsAbleToCreateWindow
+sciGetJavaBoundingBox
+destroyRendererString
+sciJavaAddTextToDraw
+sciJavaRemoveTextToDraw
+; --------------------------------------- 
+

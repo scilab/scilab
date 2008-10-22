@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="soundsec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>soundsec</refname>
+    <refpurpose>generates n sampled seconds of time
+  parameter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>t=soundsec(n [,rate])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>an integer, the number of seconds to generate.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rate</term>
+        <listitem>
+          <para>an integer, the number of samples per second.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>generates a vector coding time from 0 to <literal>n</literal>seconds at
+    sampled rate <literal>rate</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// At first we create 0.5 seconds of sound parameters.
+t=soundsec(0.5);
+// Then we generate the sound.
+s=sin(2*%pi*440*t);
+analyze(s,200,600,22050);
+   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="playsnd">playsnd</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,5 @@
+windows_tools (0.1-1) stable; urgency=medium
+
+  * First version of the module
+
+ -- Allan CORNET  08/08/07

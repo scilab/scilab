@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fspecg">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fspecg</refname>
+    <refpurpose> stable factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[gm]=fspecg(g).</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g,gm</term>
+        <listitem>
+          <para>: <literal>syslin</literal> lists (linear systems in state-space representation)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    returns <literal>gm</literal> with <literal>gm</literal> and <literal>gm^-1</literal> stable such that:</para>
+    <programlisting><![CDATA[
+
+gtild(g)*g = gtild(gm)*gm
+   
+    ]]></programlisting>
+    <para><literal>g</literal> and <literal>gm</literal> are continuous-time linear systems in state-space form.</para>
+    <para>
+    Imaginary-axis poles are forbidden.</para>
+  </refsection>
+</refentry>

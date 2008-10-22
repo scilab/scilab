@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="addcolor">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>addcolor</refname>
+    <refpurpose> add new colors to the current colormap</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>new=addcolor(c)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>new</term>
+        <listitem>
+          <para>ids of the colors defined in c in the new color table.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>matrix with 3 columns, RGB color definition.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>addcolor</literal> adds new colors given in the <literal>c</literal> argument to the
+    current colormap. <literal>c</literal> must be a matrix with 3 columns 
+    <literal>[R G B]</literal><literal>R</literal> is red component, <literal>G</literal> is green component,
+    <literal>B</literal> is blue component). Each entry in <literal>c</literal> must be a non
+    negative number less or equal to 1.</para>
+    <para>
+    The ids of the new colors are returned into <literal>new</literal>.</para>
+    <para>
+    If a color defined in <literal>c</literal> is already present in the current colormap
+    it is not added.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

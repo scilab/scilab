@@ -1,0 +1,22 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function clf
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+// !! L.6: All children will be deleted, no HandleVisibility property in Scilab graphics.
+clf
+// !! L.7: All properties will be reset.
+clf("reset")
+// !! L.8: All children will be deleted, no HandleVisibility property in Scilab graphics.
+clf
+figure_handle = gcf();
+// !! L.9: All properties will be reset.
+clf("reset")
+figure_handle1 = gcf();

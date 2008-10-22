@@ -1,0 +1,33 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/cat_data.ref','rb');
+ 
+// first example : concatenation according to the rows
+ 
+dims = 1;A1 = [1,2,3];A2 = [4,5,6;7,8,9];A3 = [10,11,12];y = cat(dims, A1, A2, A3);
+ 
+if load_ref('y') then   bugmes();quit;end,
+ 
+ 
+// second example :  concatenation according to the columns
+ 
+dims = 2;A1 = [1,2,3]';A2 = [4,5;7,8;9,10];y = cat(dims, A1, A2);
+ 
+if load_ref('y') then   bugmes();quit;end,
+ 
+ 
+// third example : concatenation according to the 3th dimension
+ 
+dims = 3;A1 = matrix(1:12, [2,2,3]);A2 = [13,14;15,16];A3 = matrix(21:36, [2,2,4]);y = cat(dims, A1, A2, A3);
+ 
+if load_ref('y') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

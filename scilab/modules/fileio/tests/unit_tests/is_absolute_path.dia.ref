@@ -1,0 +1,39 @@
+// =============================================================================
+// Auhtor : Pierre MARECHAL
+//          Scilab Team
+// Copyright INRIA 2007
+//
+// Date   : 28/11/2007
+//
+// Determines if the path is an absolute name.
+// =============================================================================
+if is_absolute_path("test_1")                then bugmes();quit;end
+if is_absolute_path("test_2       ")         then bugmes();quit;end
+if is_absolute_path("	test_3		")       then bugmes();quit;end
+if MSDOS then
+	
+	if is_absolute_path("/")                 then bugmes();quit;end
+	if is_absolute_path("3:")                then bugmes();quit;end
+	if is_absolute_path("c :")               then bugmes();quit;end
+	
+	if ~is_absolute_path("a:")               then bugmes();quit;end
+	if ~is_absolute_path("A:")               then bugmes();quit;end
+	if ~is_absolute_path("z:")               then bugmes();quit;end
+	if ~is_absolute_path("Z:")               then bugmes();quit;end
+	if ~is_absolute_path("  a:")             then bugmes();quit;end
+	if ~is_absolute_path("	a:")             then bugmes();quit;end
+	
+else
+	
+	if is_absolute_path("c:\")               then bugmes();quit;end
+	if is_absolute_path("C:\")               then bugmes();quit;end
+	if is_absolute_path("file:\")            then bugmes();quit;end
+	if is_absolute_path("\test1")            then bugmes();quit;end
+	
+	if ~is_absolute_path("/test_11")         then bugmes();quit;end
+	if ~is_absolute_path(" /test_12")        then bugmes();quit;end
+	if ~is_absolute_path("	/test_13")       then bugmes();quit;end
+	if ~is_absolute_path("~/test_14")        then bugmes();quit;end
+	if ~is_absolute_path("       ~/test_15") then bugmes();quit;end
+	if ~is_absolute_path("	~/test_16")      then bugmes();quit;end
+end

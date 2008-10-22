@@ -1,0 +1,23 @@
+LIBRARY    scicos_f.dll
+
+
+EXPORTS
+;
+intree2_
+intree3_
+intree4_
+scifunc_
+skipvars_
+scitovv_
+scitod_
+list2vars_
+ltopadj_
+scierr_
+intcurblk_
+intgetlabel_
+scicosdebug_
+scicosdebugcount_
+intctree_
+intvar2vec_
+intvec2var_
+vvtosci_

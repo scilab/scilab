@@ -1,0 +1,7 @@
+SEP #2 : Rewriting of the Scilab function dassl to match ODE profile
+SEP #3 : Add of a build documentation function
+SEP #4 : Making scilab function genlib returns information
+SEP #5 : Add a function to convert old documentation XML to the current format
+SEP #6 : An interface to CLP
+SEP #7 : Object Oriented Programming under Scilab
+SEP #8 : Writing Scilab function uigetfile

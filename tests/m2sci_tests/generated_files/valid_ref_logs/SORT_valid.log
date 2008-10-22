@@ -1,0 +1,578 @@
+****** Beginning of validation of SORT.dia.ref ******
+*** TEST 1 PASSED ***
+
+*** TEST 2 PASSED ***
+
+*** TEST 3 PASSED ***
+
+*** TEST 4 PASSED ***
+
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+*** TEST 9 PASSED ***
+
+*** TEST 10 PASSED ***
+
+*** TEST 11 PASSED ***
+
+*** TEST 12 PASSED ***
+
+*** TEST 13 PASSED ***
+
+*** TEST 14 PASSED ***
+
+*** TEST 15 PASSED ***
+
+*** TEST 16 PASSED ***
+
+*** TEST 17 PASSED ***
+
+*** TEST 18 PASSED ***
+
+*** TEST 19 PASSED ***
+
+*** TEST 20 PASSED ***
+
+*** TEST 21 PASSED ***
+
+*** TEST 22 PASSED ***
+
+*** TEST 23 PASSED ***
+
+*** TEST 24 PASSED ***
+
+*** TEST 25 PASSED ***
+
+*** TEST 26 PASSED ***
+
+*** TEST 27 PASSED ***
+
+*** TEST 28 PASSED ***
+
+TEST 29: Scilab and Matlab size do not match but result is OK because is a String for res29
+*** TEST 29 PASSED ***
+
+TEST 30: Scilab and Matlab size do not match but result is OK because is a String for res30
+*** TEST 30 PASSED ***
+
+TEST 31: Scilab and Matlab size do not match but result is OK because is a String for res31
+*** TEST 31 PASSED ***
+
+TEST 32: Scilab and Matlab size do not match but result is OK because is a String for res32
+*** TEST 32 PASSED ***
+
+*** TEST 33 PASSED ***
+
+TEST 34: Scilab and Matlab size do not match but result is OK because is a String for res34
+*** TEST 34 PASSED ***
+
+TEST 35: Scilab and Matlab size do not match but result is OK because is a String for res35
+*** TEST 35 PASSED ***
+
+TEST 36: Scilab and Matlab size do not match but result is OK because is a String for res36
+*** TEST 36 PASSED ***
+
+TEST 37: Scilab and Matlab size do not match but result is OK because is a String for res37
+*** TEST 37 PASSED ***
+
+*** TEST 38 PASSED ***
+
+TEST 39: Scilab and Matlab size do not match but result is OK because is a String for res39
+*** TEST 39 PASSED ***
+
+TEST 40: Scilab and Matlab size do not match but result is OK because is a String for res40
+*** TEST 40 PASSED ***
+
+TEST 41: Scilab and Matlab size do not match but result is OK because is a String for res41
+*** TEST 41 PASSED ***
+
+TEST 42: Scilab and Matlab size do not match but result is OK because is a String for res42
+*** TEST 42 PASSED ***
+
+*** TEST 43 PASSED ***
+
+*** TEST 44 PASSED ***
+
+*** TEST 45 PASSED ***
+
+*** TEST 46 PASSED ***
+
+*** TEST 47 PASSED ***
+
+*** TEST 48 PASSED ***
+
+*** TEST 49 PASSED ***
+
+*** TEST 50 PASSED ***
+
+*** TEST 51 PASSED ***
+
+*** TEST 52 PASSED ***
+
+*** TEST 53 PASSED ***
+
+*** TEST 54 PASSED ***
+
+*** TEST 55 PASSED ***
+
+*** TEST 56 PASSED ***
+
+*** TEST 57 PASSED ***
+
+*** TEST 58 PASSED ***
+
+*** TEST 59 PASSED ***
+
+*** TEST 60 PASSED ***
+
+*** TEST 61 PASSED ***
+
+*** TEST 62 PASSED ***
+
+*** TEST 63 PASSED ***
+
+*** TEST 64 PASSED ***
+
+*** TEST 65 PASSED ***
+
+*** TEST 66 PASSED ***
+
+*** TEST 67 PASSED ***
+
+*** TEST 68 PASSED ***
+
+*** TEST 69 PASSED ***
+
+*** TEST 70 PASSED ***
+
+TEST 71: Scilab and Matlab size do not match but result is OK because is a String for res71
+*** TEST 71 PASSED ***
+
+TEST 72: Scilab and Matlab size do not match but result is OK because is a String for res72
+*** TEST 72 PASSED ***
+
+TEST 73: Scilab and Matlab size do not match but result is OK because is a String for res73
+*** TEST 73 PASSED ***
+
+TEST 74: Scilab and Matlab size do not match but result is OK because is a String for res74
+*** TEST 74 PASSED ***
+
+*** TEST 75 PASSED ***
+
+TEST 76: Scilab and Matlab size do not match but result is OK because is a String for res76
+*** TEST 76 PASSED ***
+
+TEST 77: Scilab and Matlab size do not match but result is OK because is a String for res77
+*** TEST 77 PASSED ***
+
+TEST 78: Scilab and Matlab size do not match but result is OK because is a String for res78
+*** TEST 78 PASSED ***
+
+TEST 79: Scilab and Matlab size do not match but result is OK because is a String for res79
+*** TEST 79 PASSED ***
+
+*** TEST 80 PASSED ***
+
+TEST 81: Scilab and Matlab size do not match but result is OK because is a String for res81
+*** TEST 81 PASSED ***
+
+TEST 82: Scilab and Matlab size do not match but result is OK because is a String for res82
+*** TEST 82 PASSED ***
+
+TEST 83: Scilab and Matlab size do not match but result is OK because is a String for res83
+*** TEST 83 PASSED ***
+
+TEST 84: Scilab and Matlab size do not match but result is OK because is a String for res84
+*** TEST 84 PASSED ***
+
+*** TEST 85 PASSED ***
+
+*** TEST 86 PASSED ***
+
+*** TEST 87 PASSED ***
+
+*** TEST 88 PASSED ***
+
+*** TEST 89 PASSED ***
+
+*** TEST 90 PASSED ***
+
+*** TEST 91 PASSED ***
+
+*** TEST 92 PASSED ***
+
+*** TEST 93 PASSED ***
+
+*** TEST 94 PASSED ***
+
+*** TEST 95 PASSED ***
+
+*** TEST 96 PASSED ***
+
+*** TEST 97 PASSED ***
+
+*** TEST 98 PASSED ***
+
+*** TEST 99 PASSED ***
+
+*** TEST 100 PASSED ***
+
+*** TEST 101 PASSED ***
+
+*** TEST 102 PASSED ***
+
+*** TEST 103 PASSED ***
+
+*** TEST 104 PASSED ***
+
+*** TEST 105 PASSED ***
+
+*** TEST 106 PASSED ***
+
+*** TEST 107 PASSED ***
+
+*** TEST 108 PASSED ***
+
+*** TEST 109 PASSED ***
+
+*** TEST 110 PASSED ***
+
+*** TEST 111 PASSED ***
+
+*** TEST 112 PASSED ***
+
+TEST 113: Scilab and Matlab size do not match but result is OK because is a String for res113
+*** TEST 113 PASSED ***
+
+TEST 114: Scilab and Matlab size do not match but result is OK because is a String for res114
+*** TEST 114 PASSED ***
+
+TEST 115: Scilab and Matlab size do not match but result is OK because is a String for res115
+*** TEST 115 PASSED ***
+
+TEST 116: Scilab and Matlab size do not match but result is OK because is a String for res116
+*** TEST 116 PASSED ***
+
+*** TEST 117 PASSED ***
+
+TEST 118: Scilab and Matlab size do not match but result is OK because is a String for res118
+*** TEST 118 PASSED ***
+
+TEST 119: Scilab and Matlab size do not match but result is OK because is a String for res119
+*** TEST 119 PASSED ***
+
+TEST 120: Scilab and Matlab size do not match but result is OK because is a String for res120
+*** TEST 120 PASSED ***
+
+TEST 121: Scilab and Matlab size do not match but result is OK because is a String for res121
+*** TEST 121 PASSED ***
+
+*** TEST 122 PASSED ***
+
+TEST 123: Scilab and Matlab size do not match but result is OK because is a String for res123
+*** TEST 123 PASSED ***
+
+TEST 124: Scilab and Matlab size do not match but result is OK because is a String for res124
+*** TEST 124 PASSED ***
+
+TEST 125: Scilab and Matlab size do not match but result is OK because is a String for res125
+*** TEST 125 PASSED ***
+
+TEST 126: Scilab and Matlab size do not match but result is OK because is a String for res126
+*** TEST 126 PASSED ***
+
+*** TEST 127 PASSED ***
+
+*** TEST 128 PASSED ***
+
+*** TEST 129 PASSED ***
+
+*** TEST 130 PASSED ***
+
+*** TEST 131 PASSED ***
+
+*** TEST 132 PASSED ***
+
+*** TEST 133 PASSED ***
+
+*** TEST 134 PASSED ***
+
+*** TEST 135 PASSED ***
+
+*** TEST 136 PASSED ***
+
+*** TEST 137 PASSED ***
+
+*** TEST 138 PASSED ***
+
+*** TEST 139 PASSED ***
+
+*** TEST 140 PASSED ***
+
+*** TEST 141 PASSED ***
+
+*** TEST 142 PASSED ***
+
+*** TEST 143 PASSED ***
+
+*** TEST 144 PASSED ***
+
+*** TEST 145 PASSED ***
+
+*** TEST 146 PASSED ***
+
+*** TEST 147 PASSED ***
+
+*** TEST 148 PASSED ***
+
+*** TEST 149 PASSED ***
+
+*** TEST 150 PASSED ***
+
+*** TEST 151 PASSED ***
+
+*** TEST 152 PASSED ***
+
+*** TEST 153 PASSED ***
+
+*** TEST 154 PASSED ***
+
+TEST 155: Scilab and Matlab size do not match but result is OK because is a String for res183
+*** TEST 155 PASSED ***
+
+TEST 156: Scilab and Matlab size do not match but result is OK because is a String for res185
+*** TEST 156 PASSED ***
+
+TEST 157: Scilab and Matlab size do not match but result is OK because is a String for res187
+*** TEST 157 PASSED ***
+
+TEST 158: Scilab and Matlab size do not match but result is OK because is a String for res189
+*** TEST 158 PASSED ***
+
+*** TEST 159 PASSED ***
+
+TEST 160: Scilab and Matlab size do not match but result is OK because is a String for res193
+*** TEST 160 PASSED ***
+
+TEST 161: Scilab and Matlab size do not match but result is OK because is a String for res195
+*** TEST 161 PASSED ***
+
+TEST 162: Scilab and Matlab size do not match but result is OK because is a String for res197
+*** TEST 162 PASSED ***
+
+TEST 163: Scilab and Matlab size do not match but result is OK because is a String for res199
+*** TEST 163 PASSED ***
+
+*** TEST 164 PASSED ***
+
+TEST 165: Scilab and Matlab size do not match but result is OK because is a String for res203
+*** TEST 165 PASSED ***
+
+TEST 166: Scilab and Matlab size do not match but result is OK because is a String for res205
+*** TEST 166 PASSED ***
+
+TEST 167: Scilab and Matlab size do not match but result is OK because is a String for res207
+*** TEST 167 PASSED ***
+
+TEST 168: Scilab and Matlab size do not match but result is OK because is a String for res209
+*** TEST 168 PASSED ***
+
+*** TEST 169 PASSED ***
+
+*** TEST 170 PASSED ***
+
+*** TEST 171 PASSED ***
+
+*** TEST 172 PASSED ***
+
+*** TEST 173 PASSED ***
+
+*** TEST 174 PASSED ***
+
+*** TEST 175 PASSED ***
+
+*** TEST 176 PASSED ***
+
+*** TEST 177 PASSED ***
+
+*** TEST 178 PASSED ***
+
+*** TEST 179 PASSED ***
+
+*** TEST 180 PASSED ***
+
+*** TEST 181 PASSED ***
+
+*** TEST 182 PASSED ***
+
+*** TEST 183 PASSED ***
+
+*** TEST 184 PASSED ***
+
+*** TEST 185 PASSED ***
+
+*** TEST 186 PASSED ***
+
+*** TEST 187 PASSED ***
+
+*** TEST 188 PASSED ***
+
+*** TEST 189 PASSED ***
+
+*** TEST 190 PASSED ***
+
+*** TEST 191 PASSED ***
+
+*** TEST 192 PASSED ***
+
+*** TEST 193 PASSED ***
+
+*** TEST 194 PASSED ***
+
+*** TEST 195 PASSED ***
+
+*** TEST 196 PASSED ***
+
+TEST 197: Scilab and Matlab size do not match but result is OK because is a String for res267
+*** TEST 197 PASSED ***
+
+TEST 198: Scilab and Matlab size do not match but result is OK because is a String for res269
+*** TEST 198 PASSED ***
+
+TEST 199: Scilab and Matlab size do not match but result is OK because is a String for res271
+*** TEST 199 PASSED ***
+
+TEST 200: Scilab and Matlab size do not match but result is OK because is a String for res273
+*** TEST 200 PASSED ***
+
+*** TEST 201 PASSED ***
+
+TEST 202: Scilab and Matlab size do not match but result is OK because is a String for res277
+*** TEST 202 PASSED ***
+
+TEST 203: Scilab and Matlab size do not match but result is OK because is a String for res279
+*** TEST 203 PASSED ***
+
+TEST 204: Scilab and Matlab size do not match but result is OK because is a String for res281
+*** TEST 204 PASSED ***
+
+TEST 205: Scilab and Matlab size do not match but result is OK because is a String for res283
+*** TEST 205 PASSED ***
+
+*** TEST 206 PASSED ***
+
+TEST 207: Scilab and Matlab size do not match but result is OK because is a String for res287
+*** TEST 207 PASSED ***
+
+TEST 208: Scilab and Matlab size do not match but result is OK because is a String for res289
+*** TEST 208 PASSED ***
+
+TEST 209: Scilab and Matlab size do not match but result is OK because is a String for res291
+*** TEST 209 PASSED ***
+
+TEST 210: Scilab and Matlab size do not match but result is OK because is a String for res293
+*** TEST 210 PASSED ***
+
+*** TEST 211 PASSED ***
+
+*** TEST 212 PASSED ***
+
+*** TEST 213 PASSED ***
+
+*** TEST 214 PASSED ***
+
+*** TEST 215 PASSED ***
+
+*** TEST 216 PASSED ***
+
+*** TEST 217 PASSED ***
+
+*** TEST 218 PASSED ***
+
+*** TEST 219 PASSED ***
+
+*** TEST 220 PASSED ***
+
+*** TEST 221 PASSED ***
+
+*** TEST 222 PASSED ***
+
+*** TEST 223 PASSED ***
+
+*** TEST 224 PASSED ***
+
+*** TEST 225 PASSED ***
+
+*** TEST 226 PASSED ***
+
+*** TEST 227 PASSED ***
+
+*** TEST 228 PASSED ***
+
+*** TEST 229 PASSED ***
+
+*** TEST 230 PASSED ***
+
+*** TEST 231 PASSED ***
+
+*** TEST 232 PASSED ***
+
+*** TEST 233 PASSED ***
+
+*** TEST 234 PASSED ***
+
+*** TEST 235 PASSED ***
+
+*** TEST 236 PASSED ***
+
+*** TEST 237 PASSED ***
+
+*** TEST 238 PASSED ***
+
+TEST 239: Scilab and Matlab size do not match but result is OK because is a String for res351
+*** TEST 239 PASSED ***
+
+TEST 240: Scilab and Matlab size do not match but result is OK because is a String for res353
+*** TEST 240 PASSED ***
+
+TEST 241: Scilab and Matlab size do not match but result is OK because is a String for res355
+*** TEST 241 PASSED ***
+
+TEST 242: Scilab and Matlab size do not match but result is OK because is a String for res357
+*** TEST 242 PASSED ***
+
+*** TEST 243 PASSED ***
+
+TEST 244: Scilab and Matlab size do not match but result is OK because is a String for res361
+*** TEST 244 PASSED ***
+
+TEST 245: Scilab and Matlab size do not match but result is OK because is a String for res363
+*** TEST 245 PASSED ***
+
+TEST 246: Scilab and Matlab size do not match but result is OK because is a String for res365
+*** TEST 246 PASSED ***
+
+TEST 247: Scilab and Matlab size do not match but result is OK because is a String for res367
+*** TEST 247 PASSED ***
+
+*** TEST 248 PASSED ***
+
+TEST 249: Scilab and Matlab size do not match but result is OK because is a String for res371
+*** TEST 249 PASSED ***
+
+TEST 250: Scilab and Matlab size do not match but result is OK because is a String for res373
+*** TEST 250 PASSED ***
+
+TEST 251: Scilab and Matlab size do not match but result is OK because is a String for res375
+*** TEST 251 PASSED ***
+
+TEST 252: Scilab and Matlab size do not match but result is OK because is a String for res377
+*** TEST 252 PASSED ***
+
+****** End of validation of SORT.dia.ref ******

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plot</refname>
+    <refpurpose>2D plot</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
+plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
+plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)
+plot(&lt;axes_handle&gt;,...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>a real matrice or vector. If omitted, it is assumed to be the
+          vector <literal>1:n</literal> where <literal>n</literal> is the number of curve
+          points given by the <literal>y</literal> parameter.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>a real matrice or vector. <literal>y</literal> can also be a
+          function defined as a macro or a primitive.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;LineSpec&gt;</term>
+        <listitem>
+          <para>This optional argument must be a string that will be used as a
+          shortcut to specify a way of drawing a line. We can have one
+          <literal>LineSpec</literal> per<literal> y</literal> or <literal>{x,y}</literal>
+          previously entered. <literal>LineSpec</literal> options deals with
+          LineStyle, Marker and Color specifiers (see <link linkend="LineSpec">LineSpec</link>).
+          Those specifiers determine the line style, mark style and color of
+          the plotted lines.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;GlobalProperty&gt;</term>
+        <listitem>
+          <para>This optional argument represents a sequence of couple
+          statements <literal>{PropertyName,PropertyValue}</literal> that defines
+          global objects' properties applied to all the curves created by this
+          plot. For a complete view of the available properties (see
+          <link linkend="GlobalProperty">GlobalProperty</link>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
+        <listitem>
+          <para>This optional argument forces the plot to appear inside the
+          selected axes given by <literal>axes_handle</literal> rather than the
+          current axes (see <link linkend="gca">gca</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>plot</literal> plots a set of 2D curves. <literal>plot</literal> has been
+    rebuild to better handle Matlab syntax. To improve graphical
+    compatibility, Matlab users should use <literal>plot</literal> (rather than
+    <link linkend="plot2d">plot2d</link>).</para>
+    <para>Data entry specification :</para>
+    <para>In this paragraph and to be more clear, we won't mention
+    <literal>LineSpec</literal> nor <literal>GlobalProperty</literal> optional arguments
+    as they do not interfer with entry data (except for <literal>"Xdata"</literal>,
+    <literal>"Ydata"</literal> and <literal>"Zdata"</literal> property, see
+    <link linkend="GlobalProperty">GlobalProperty</link>). It is assumed that all those optional
+    arguments could be present too.</para>
+    <para>If <literal>y</literal> is a vector, plot(y) plots vector <literal>y</literal>
+    versus vector <literal>1:size(y,'*')</literal>.</para>
+    <para>If <literal>y</literal> is a matrix, plot(y) plots each columns of
+    <literal>y</literal> versus vector <literal>1:size(y,1)</literal>.</para>
+    <para>If <literal>x</literal> and <literal>y</literal> are vectors, plot(x,y) plots
+    vector <literal>y</literal> versus vector <literal>x</literal>. <literal>x</literal> and
+    <literal>y</literal> vectors should have the same number of entries.</para>
+    <para>If <literal>x</literal> is a vector and <literal>y</literal> a matrix plot(x,y)
+    plots each columns of <literal>y</literal> versus vector <literal>x</literal>. In this
+    case the number of columns of <literal>y</literal> should be equal to the number
+    of <literal>x</literal> entries.</para>
+    <para>If <literal>x</literal> and <literal>y</literal> are matrices, plot(x,y) plots each
+    columns of <literal>y</literal> versus corresponding column of <literal>x</literal>.
+    In this case the <literal>x</literal> and <literal>y</literal> sizes should be the
+    same.</para>
+    <para>Finally, if only <literal>x</literal> or <literal>y</literal> is a matrix, the
+    vector is plotted versus the rows or columns of the matrix. The choice is
+    made depending on whether the vector's row or column dimension matches the
+    matrix row or column dimension. In case of a square matrix (on
+    <literal>x</literal> or <literal>y</literal> only), priority is given to columns
+    rather than lines (see examples below).</para>
+    <para><literal>y</literal> can also be a function defined as a macro or a
+    primitive. In this case, <literal>x</literal> data must be given (as a vector or
+    matrix) and the corresponding computation <literal>y(x)</literal> is done
+    implicitly.</para>
+    <para>The <literal>LineSpec</literal> and <literal>GlobalProperty</literal> arguments
+    sould be used to customize the plot. Here is a complete list of the
+    available options.</para>
+    <variablelist>
+      <varlistentry>
+        <term>LineSpec</term>
+        <listitem>
+          <para>This option may be used to specify, in a short and easy manner,
+        how the curves are drawn. It must always be a string containing
+        references to LineStyle, Marker and Color specifiers.</para>
+          <para>These references must be set inside the string (order is not
+        important) in an unambiguous way. For example, to specify a red
+        long-dashed line with the diamond mark enabled, you can write :
+        <literal>'r--d'</literal> or <literal>'--dire'</literal> or
+        <literal>'--reddiam'</literal> or another unambiguous statement... or to be
+        totally complete <literal>'diamondred--'</literal> (see
+        <link linkend="LineSpec">LineSpec</link>).</para>
+          <para>Note that the line style and color, marks color (and sizes) can
+        also be (re-)set throught the polyline entity properties (see
+        <link linkend="polyline_properties">polyline_properties</link>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>GlobalProperty</term>
+        <listitem>
+          <para>This option may be used to specify how all the curves are
+        plotted using more option than via <literal>LineSpec</literal>. It must
+        always be a couple statement constituted of a string defining the
+        <literal>PropertyName</literal>, and its associated value
+        <literal>PropertyValue</literal> (which can be a string or an integer or...
+        as well depending on the type of the <literal>PropertyName</literal>). Using
+        <literal>GlobalProperty</literal>, you can set multiple properties : every
+        properties available via LineSpec and more : the marker color
+        (foreground and background), the visibility, clipping and thickness of
+        the curves. (see <link linkend="GlobalProperty">GlobalProperty</link>)</para>
+          <para>Note that all these properties can be (re-)set throught the
+        polyline entity properties (see <link linkend="polyline_properties">polyline_properties</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
+    <para>By default, successive plots are superposed. To clear the previous
+    plot, use <literal>clf()</literal>. To enable <literal>auto_clear</literal> mode as
+    the default mode, edit your default axes doing:</para>
+    <para>da=gda();</para>
+    <para>da.auto_clear = 'on'</para>
+    <para>
+      For a better display <literal>plot</literal> function may modify the <literal>box</literal> property of
+      its parent Axes. This happens when the parent Axes were created by the call to <literal>plot</literal> or were empty
+      before the call. If one of the axis is centered at origin,
+      the box is disable.
+      Otherwise, the box is enable.
+    </para>
+    <para>
+      For more information about box property and axis positionning see <link linkend="axes_properties">axes_properties</link>
+    </para>
+    <para>A default color table is used to color plotted curves if you do not
+    specify a color. When drawing multiple lines, the plot command
+    automatically cycles through this table. Here are the used colors:</para>
+    <informaltable border="1">
+      <tr>
+        <td>
+          <literal>R</literal>
+        </td>
+        <td>
+          <literal>G</literal>
+        </td>
+        <td>
+          <literal>B</literal>
+        </td>
+      </tr>
+      <tr>
+        <td>0.</td>
+        <td>0.</td>
+        <td>1.</td>
+      </tr>
+      <tr>
+        <td>0.</td>
+        <td>0.5</td>
+        <td>0.</td>
+      </tr>
+      <tr>
+        <td>1.</td>
+        <td>0.</td>
+        <td>0.</td>
+      </tr>
+      <tr>
+        <td>0.</td>
+        <td>0.75</td>
+        <td>0.75</td>
+      </tr>
+      <tr>
+        <td>0.75</td>
+        <td>0.</td>
+        <td>0.75</td>
+      </tr>
+      <tr>
+        <td>0.75</td>
+        <td>0.75</td>
+        <td>0.</td>
+      </tr>
+      <tr>
+        <td>0.25</td>
+        <td>0.25</td>
+        <td>0.25</td>
+      </tr>
+    </informaltable>
+    <para/>
+    <para>Enter the command <literal>plot</literal> to see a demo.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// x initialisation 
+x=[0:0.1:2*%pi]';
+//simple plot
+plot(sin(x))
+clf()
+plot(x,sin(x))
+//multiple plot
+clf()
+plot(x,[sin(x) sin(2*x) sin(3*x)])
+clf()
+
+// axis on the right 
+plot(x,sin(x)) 
+a=gca(); // Handle on current axes entity 
+a.y_location ="right"; 
+clf()
+
+// axis centered at (0,0)
+plot(x-4,sin(x),x+2,cos(x))
+a=gca(); // Handle on axes entity
+a.x_location = "middle"; 
+a.y_location = "middle"; 
+
+// Some operations on entities created by plot ...
+a=gca();
+a.isoview='on'; 
+a.children // list the children of the axes : here it is an Compound child composed of 2 entities 
+poly1= a.children.children(2); //store polyline handle into poly1 
+poly1.foreground = 4; // another way to change the style...
+poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.clip_state='off' // clipping control
+a.isoview='off'; 
+
+//LineSpec and GlobalProperty examples:
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+scf(2)
+plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+scf(3)
+axfig3 = gca();
+scf(4) // should remain blank
+plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
+xdel(winsid())
+
+//Data specification
+t=-%pi:0.1:%pi;
+size(t)
+plot(t) // simply plots y versus t vector size
+clf(); // clear figure
+
+plot(t,sin(t)); // plots sin(t) versus t
+clf();
+
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
+
+plot(t) // plots each t column versus row size
+clf();
+
+subplot(221)
+plot(t,sin(t)); // plots sin(t) versus t column by column this time
+xtitle("sin(t) versus t")
+subplot(222)
+plot(t,sin(t)')
+xtitle("sin(t)'' versus t")
+subplot(223)
+plot(t',sin(t))
+a=gca();
+a.data_bounds=[0 -1;7 1]; // to see the vertical line hiddden by the y axis
+xtitle("sin(t) versus t''")
+subplot(224)
+plot(t',sin(t)')
+xtitle("sin(t)'' versus t''")
+
+clf();
+
+//Special case 1
+//x : vector ([5 6 7 8]) and y : matrix (t)
+x=[5 6 7 8]
+plot(x,t);
+plot(x',t); // idem, x is automatically transposed to match t (here the columns)
+clf()
+
+// Only one matching possibility case : how to make 4 identical plots in 4 manners...
+// x is 1x4 (vector) and y is 4x5 (non square matrix)
+subplot(221);
+plot(x,[t [8;9;10;12]]');
+subplot(222);
+plot(x',[t [8;9;10;12]]');
+subplot(223);
+plot(x,[t [8;9;10;12]]');
+subplot(224);
+plot(x',[t [8;9;10;12]]');
+clf()
+
+
+//Special case 2
+// Case where only x or y is a square matrix
+//x : matrix (t) and y  : vector ([1 2 3 4])
+plot(t,[1 2 3 4]) // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
+plot(t,[1;2;3;4]) // the same plot
+clf();
+
+// t is transposed : notice the priority given to the columns treatment
+plot(t',[1 2 3 4]) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]) 
+plot(t',[1 2 3 4]') // the same plot 
+clf();
+
+// y is a function defined by..
+// ..a primitive
+plot(1:0.1:10,sin) // equivalent to plot(1:0.1:10,sin(1:0.1:10))
+clf();
+
+// ..a macro:
+deff('[y]=toto(x)','y=x.*x')
+plot(1:10,toto)
+ 
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="surf">surf</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="xdel">xdel</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="LineSpec">LineSpec</link>
+      </member>
+      <member>
+        <link linkend="GlobalProperty">GlobalProperty</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_delhosts">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_delhosts</refname>
+    <refpurpose> deletes hosts from the virtual machine.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>infos = pvm_delhosts(hosts)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>hosts</term>
+        <listitem>
+          <para>row of strings, containing the names of the machines to be deleted.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infos</term>
+        <listitem>
+          <para>row of integers, contains the status code returned by the routine for the individual hosts.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_delhosts</literal> deletes the computers named in
+    <literal>hosts</literal>
+    from the existing configuration of computers making up the virtual
+    machine.
+    All PVM processes and the pvmd running on these computers are
+    killed as the computer is deleted.
+    The array <literal>info</literal>
+    can be checked to determine the status of each host.
+    Values less than zero indicate an error,
+    while zero values indicate a success.</para>
+    <para>
+    If a host fails, the PVM system will continue to work and will
+    automatically delete the failing host from the virtual machine.
+    It is the responsibility of the application developer to make his
+    application tolerant of host failure.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_addhosts">pvm_addhosts</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

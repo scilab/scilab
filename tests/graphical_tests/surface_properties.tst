@@ -1,0 +1,61 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/surface_properties_data.ref','rb');
+%ans = set('figure_style', 'new');
+if load_ref('%ans') then   pause,end,
+
+//create a figure
+t = (0:0.3:2 * %pi)';z = sin(t) * cos(t');
+[xx,yy,zz] = genfac3d(t, t, z);
+%ans = plot3d([xx,xx], [yy,yy], list([zz,zz + 4], [4 * ones(1, 400),5 * ones(1, 400)]));
+if load_ref('%ans') then   pause,end,
+
+h = get('hdl');
+if load_ref('h') then   pause,end,
+//get handle on current entity (here the surface)
+a = gca();//get current axes
+a('rotation_angles') = [40,70];
+a('grid') = [1,1,1];
+//make grids
+a('data_bounds') = [-6,0,-1;6,6,5];
+a('axes_visible') = 'off';
+//axes are hidden a.axes_bounds=[.2 0 1 1];
+f = get('current_figure');
+//get the handle of the parent figure
+f('color_map') = hotcolormap(64);
+//change the figure colormap
+h('color_flag') = 1;
+//color according to z
+h('color_mode') = -2;
+//remove the facets boundary
+h('color_flag') = 2;
+//color according to given colors
+h.data.color = [1 + modulo(1:400, 64),1 + modulo(1:400, 64)];
+//shaded
+h('color_flag') = 3;
+
+scf(2);// creates second window and use surf command
+%ans = subplot(211);
+if load_ref('%ans') then   pause,end,
+
+%ans = surf(z, 'cdata_mapping', 'direct', 'facecol', 'interp');
+if load_ref('%ans') then   pause,end,
+
+
+%ans = subplot(212);
+if load_ref('%ans') then   pause,end,
+
+%ans = surf(t, t, z, 'edgeco', 'b', 'marker', 'd', 'markersiz', 9, 'markeredg', 'red', 'markerfac', 'k');
+if load_ref('%ans') then   pause,end,
+
+e = gce();
+e('color_flag') = 1;
+if load_ref('e') then   pause,end,
+// color index proportional to altitude (z coord.)
+e('color_flag') = 2;// back to default mode
+e('color_flag') = 3;// interpolated shading mode (based on blue default color because field data.color is not filled)
+
+
+xdel_run(winsid());
+
+mclose(%U);

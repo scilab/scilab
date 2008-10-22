@@ -1,0 +1,74 @@
+// <-- Non-regression test for bug 681 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=681
+//
+// <-- Short Description -->
+//    m2sci doesn't translate "error" function.
+// Copyright INRIA
+// Scilab Project - V. Couvert
+MFILECONTENTS="error(''This is an error message'')"
+ MFILECONTENTS  =
+ 
+ error('This is an error message')   
+MFILE=TMPDIR+"/bug681.m"
+ MFILE  =
+ 
+ TMPDIR/bug681.m   
+SCIFILE=TMPDIR+"/bug681.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug681.sci   
+fd=mopen(MFILE,"w");
+mputl(MFILECONTENTS,fd);
+mclose(fd);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug681.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+fd=mopen(SCIFILE,"r");
+SCIFILECONTENTS=mgetl(fd,-1);
+mclose(fd);
+SCIFILECONTENTSREF=["";
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"error(""This is an error message"")"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!error("This is an error message")                !
+correct=%T
+ correct  =
+ 
+  T  
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

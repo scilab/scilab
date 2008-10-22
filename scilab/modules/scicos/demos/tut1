@@ -1,0 +1,910 @@
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  Tutorial: constructing a simple diagram.
+  Scicos editor is launched by the Scilab command:
+
+  scicos
+
+  This opens up the editor window with an empty diagram
+  named Untitled
+  o //OK
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  To construct a diagram, we start by opening the
+  Sources palette .
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(1))"// Edit/Palettes
+//x_choose:  Choose a Palette
+  1//Sources
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  To copy a block from the palette, we click on the
+  block (in the palette) and then click in the diagram
+  where the block is to be placed.
+  o //OK
+0,101.4,20.8,1001,"void"// Palette: Sources, Block: 2 GENSQR_f
+79.2,153.1,-1//xgemouse
+80.7,153.1,-1//xgemouse
+82.9,153.1,-1//xgemouse
+88.9,153.1,-1//xgemouse
+94.8,154.6,-1//xgemouse
+100.8,154.6,-1//xgemouse
+106.7,154.6,-1//xgemouse
+109.7,157.6,-1//xgemouse
+111.2,157.6,-1//xgemouse
+115.6,160.6,-1//xgemouse
+120.1,163.5,-1//xgemouse
+124.6,166.5,-1//xgemouse
+129,169.5,-1//xgemouse
+132,172.5,-1//xgemouse
+132.8,173.9,-1//xgemouse
+133.5,174.7,-1//xgemouse
+135,175.4,-1//xgemouse
+135.7,176.9,-1//xgemouse
+136.5,178.4,-1//xgemouse
+139.4,181.4,-1//xgemouse
+140.9,181.4,-1//xgemouse
+145.4,184.4,-1//xgemouse
+146.9,185.1,-1//xgemouse
+148.4,185.1,-1//xgemouse
+149.1,185.9,-1//xgemouse
+150.6,185.9,-1//xgemouse
+151.4,187.3,-1//xgemouse
+152.8,188.1,-1//xgemouse
+154.3,188.1,-1//xgemouse
+155.1,188.8,-1//xgemouse
+155.1,188.1,-1//xgemouse
+155.1,178.4,-1//xgemouse
+155.1,177.7,-1//xgemouse
+155.1,176.9,-1//xgemouse
+155.1,175.4,-1//xgemouse
+155.8,174.7,-1//xgemouse
+155.8,173.9,-1//xgemouse
+156.6,173.9,-1//xgemouse
+156.6,173.9,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  The square wave generator is copied into
+  the diagram. This block generates -1 and +1
+  alternatively. The output changes everytime
+  the block is activated. To activate the block,
+  we need a source of activation. We use an event
+  clock.
+  o //OK
+0,13.9,150.4,1001,"void"// Palette: Sources, Block: 12 CLOCK_f
+85.1,263.2,-1//xgemouse
+91.1,263.2,-1//xgemouse
+92.6,262.5,-1//xgemouse
+94.1,262.5,-1//xgemouse
+95.6,262.5,-1//xgemouse
+97,262.5,-1//xgemouse
+98.5,262.5,-1//xgemouse
+100,262.5,-1//xgemouse
+106,262.5,-1//xgemouse
+111.9,262.5,-1//xgemouse
+114.2,262.5,-1//xgemouse
+116.4,262.5,-1//xgemouse
+118.6,262.5,-1//xgemouse
+126.1,262.5,-1//xgemouse
+133.5,262.5,-1//xgemouse
+139.4,262.5,-1//xgemouse
+146.9,262.5,-1//xgemouse
+151.4,262.5,-1//xgemouse
+152.8,262.5,-1//xgemouse
+153.6,262.5,-1//xgemouse
+154.3,262.5,-1//xgemouse
+155.8,262.5,-1//xgemouse
+157.3,262.5,-1//xgemouse
+158.8,262.5,-1//xgemouse
+160.3,262.5,-1//xgemouse
+161.8,262.5,-1//xgemouse
+162.5,262.5,-1//xgemouse
+163.3,262.5,-1//xgemouse
+164.7,262.5,-1//xgemouse
+165.5,263.2,-1//xgemouse
+166.2,263.2,-1//xgemouse
+166.2,263.2,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  To connect the two blocks, we click close to the
+  output port and then close to the destination port.
+  
+  o //OK
+0,186.3,267,1000,"void"// Block: 2 CLOCK_f
+185.6,264.7,-1//xgemouse
+184.8,264,-1//xgemouse
+184.8,261.8,-1//xgemouse
+184.8,260.3,-1//xgemouse
+184.8,258.8,-1//xgemouse
+184.8,257.3,-1//xgemouse
+184.8,255.8,-1//xgemouse
+185.6,254.3,-1//xgemouse
+185.6,252.8,-1//xgemouse
+185.6,251.3,-1//xgemouse
+186.3,249.8,-1//xgemouse
+186.3,248.4,-1//xgemouse
+186.3,246.9,-1//xgemouse
+186.3,245.4,-1//xgemouse
+186.3,243.9,-1//xgemouse
+186.3,242.4,-1//xgemouse
+186.3,240.9,-1//xgemouse
+186.3,240.2,-1//xgemouse
+186.3,239.4,-1//xgemouse
+187.1,239.4,-1//xgemouse
+187.1,238.7,-1//xgemouse
+187.8,238.7,-1//xgemouse
+187.1,238.7,-1//xgemouse
+186.3,238.7,-1//xgemouse
+185.6,238.7,-1//xgemouse
+185.6,237.9,-1//xgemouse
+184.8,237.9,-1//xgemouse
+184.1,237.9,-1//xgemouse
+182.6,237.9,-1//xgemouse
+182.6,236.5,-1//xgemouse
+181.9,236.5,-1//xgemouse
+181.9,235.7,-1//xgemouse
+181.9,235,-1//xgemouse
+181.9,233.5,-1//xgemouse
+181.9,232,-1//xgemouse
+181.9,231.2,-1//xgemouse
+181.9,229.8,-1//xgemouse
+181.9,229,-1//xgemouse
+182.6,228.3,-1//xgemouse
+182.6,226.8,-1//xgemouse
+183.3,226,-1//xgemouse
+183.3,225.3,-1//xgemouse
+183.3,224.5,-1//xgemouse
+183.3,223.8,-1//xgemouse
+183.3,223.1,-1//xgemouse
+183.3,222.3,-1//xgemouse
+183.3,221.6,-1//xgemouse
+183.3,220.1,-1//xgemouse
+183.3,218.6,-1//xgemouse
+183.3,217.1,-1//xgemouse
+184.1,216.4,-1//xgemouse
+184.1,214.9,-1//xgemouse
+184.1,214.1,-1//xgemouse
+184.1,213.4,-1//xgemouse
+184.1,212.6,-1//xgemouse
+184.8,212.6,-1//xgemouse
+185.6,212.6,-1//xgemouse
+185.6,211.9,-1//xgemouse
+186.3,211.9,-1//xgemouse
+186.3,211.2,-1//xgemouse
+187.1,211.2,-1//xgemouse
+187.1,211.2,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  To change block parameters, simply click on the block.
+  Let us now adjust the parameters of the clock.
+  o //OK
+0,187.1,286.3,1000,"void"// Block: 2 CLOCK_f
+//x_mdialog: Set Clock  block parameters
+  4
+  2
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(1))"// Edit/Palettes
+//x_choose:  Choose a Palette
+  3//Linear
+0,195.7,178.3,1002,"void"// Palette: Linear, Block: 14 INTEGRAL
+334.4,363,-1//xgemouse
+331.4,349.6,-1//xgemouse
+326.9,337.7,-1//xgemouse
+324,325.7,-1//xgemouse
+321,315.3,-1//xgemouse
+318,306.4,-1//xgemouse
+316.5,294.5,-1//xgemouse
+313.6,284.1,-1//xgemouse
+312.1,275.1,-1//xgemouse
+310.6,266.2,-1//xgemouse
+307.6,257.3,-1//xgemouse
+303.1,239.4,-1//xgemouse
+303.1,227.5,-1//xgemouse
+301.7,220.1,-1//xgemouse
+300.2,211.2,-1//xgemouse
+298.7,205.2,-1//xgemouse
+297.2,200.7,-1//xgemouse
+297.2,193.3,-1//xgemouse
+297.2,187.3,-1//xgemouse
+297.2,179.9,-1//xgemouse
+297.2,173.9,-1//xgemouse
+297.2,168,-1//xgemouse
+297.2,162,-1//xgemouse
+297.2,160.6,-1//xgemouse
+297.2,159.1,-1//xgemouse
+297.2,157.6,-1//xgemouse
+297.2,156.1,-1//xgemouse
+297.9,154.6,-1//xgemouse
+297.9,153.1,-1//xgemouse
+297.9,151.6,-1//xgemouse
+297.9,149.4,-1//xgemouse
+299.4,144.9,-1//xgemouse
+299.4,137.5,-1//xgemouse
+299.4,130,-1//xgemouse
+299.4,124.1,-1//xgemouse
+299.4,121.9,-1//xgemouse
+299.4,119.6,-1//xgemouse
+299.4,118.1,-1//xgemouse
+299.4,118.9,-1//xgemouse
+300.2,119.6,-1//xgemouse
+300.2,121.1,-1//xgemouse
+300.2,122.6,-1//xgemouse
+300.2,124.1,-1//xgemouse
+300.2,125.6,-1//xgemouse
+300.2,127.1,-1//xgemouse
+300.2,128.6,-1//xgemouse
+299.4,128.6,-1//xgemouse
+299.4,130,-1//xgemouse
+298.7,130,-1//xgemouse
+297.2,130,-1//xgemouse
+295.7,130,-1//xgemouse
+294.2,130,-1//xgemouse
+292.7,130,-1//xgemouse
+291.2,130,-1//xgemouse
+286.8,131.5,-1//xgemouse
+285.3,131.5,-1//xgemouse
+283.8,132.3,-1//xgemouse
+282.3,132.3,-1//xgemouse
+280.8,132.3,-1//xgemouse
+280.1,132.3,-1//xgemouse
+279.3,132.3,-1//xgemouse
+277.8,132.3,-1//xgemouse
+276.4,132.3,-1//xgemouse
+274.9,132.3,-1//xgemouse
+273.4,132.3,-1//xgemouse
+272.6,132.3,-1//xgemouse
+271.1,133,-1//xgemouse
+270.4,133,-1//xgemouse
+269.7,133,-1//xgemouse
+268.9,133,-1//xgemouse
+268.9,133,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  The integrator block is copied from the Linear palette.
+  We now connect the output of the square wave generator to
+  to the input of the integrator.
+  This is done by clicking near the output port of the generator,
+  then on intermediary points to direct the link, and finally
+  near the input port of the integrator.
+  o //OK
+0,214.6,193.3,1000,"void"// Block: 1 GENSQR_f
+219.1,194,-1//xgemouse
+220.6,194,-1//xgemouse
+223.5,194,-1//xgemouse
+225,194,-1//xgemouse
+225.8,194,-1//xgemouse
+227.2,194,-1//xgemouse
+228.7,194,-1//xgemouse
+230.2,194,-1//xgemouse
+231.7,194,-1//xgemouse
+233.2,194,-1//xgemouse
+233.9,194,-1//xgemouse
+235.4,194,-1//xgemouse
+236.2,194,-1//xgemouse
+236.9,194,-1//xgemouse
+237.7,194,-1//xgemouse
+238.4,194,-1//xgemouse
+238.4,193.3,-1//xgemouse
+239.2,193.3,-1//xgemouse
+239.2,192.5,-1//xgemouse
+239.2,192.5,0//xgemouse
+238.4,191.8,-1//xgemouse
+238.4,190.3,-1//xgemouse
+238.4,188.8,-1//xgemouse
+238.4,186.6,-1//xgemouse
+238.4,185.1,-1//xgemouse
+238.4,183.6,-1//xgemouse
+238.4,182.1,-1//xgemouse
+238.4,180.6,-1//xgemouse
+238.4,179.2,-1//xgemouse
+238.4,177.7,-1//xgemouse
+238.4,176.2,-1//xgemouse
+238.4,174.7,-1//xgemouse
+238.4,173.2,-1//xgemouse
+238.4,171.7,-1//xgemouse
+238.4,171,-1//xgemouse
+237.7,169.5,-1//xgemouse
+237.7,168,-1//xgemouse
+237.7,166.5,-1//xgemouse
+237.7,165,-1//xgemouse
+237.7,163.5,-1//xgemouse
+237.7,162,-1//xgemouse
+238.4,161.3,-1//xgemouse
+238.4,160.6,-1//xgemouse
+238.4,159.1,-1//xgemouse
+238.4,157.6,-1//xgemouse
+238.4,156.1,-1//xgemouse
+238.4,154.6,-1//xgemouse
+238.4,153.1,-1//xgemouse
+239.2,152.4,-1//xgemouse
+239.2,151.6,-1//xgemouse
+239.2,151.6,0//xgemouse
+239.9,152.4,-1//xgemouse
+241.4,152.4,-1//xgemouse
+242.9,152.4,-1//xgemouse
+248.8,152.4,-1//xgemouse
+251.1,152.4,-1//xgemouse
+268.9,153.1,-1//xgemouse
+269.7,153.1,-1//xgemouse
+268.9,153.1,-1//xgemouse
+268.9,153.1,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  This diagram can be simulated now. To visulaize simulation results,
+  we need a scope. Scopes can be found in the Sink palette.
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(1))"// Edit/Palettes
+//x_choose:  Choose a Palette
+  2//Sinks
+0,112.4,17.7,1003,"void"// Palette: Sinks, Block: 2 CMSCOPE
+110.4,310.1,-1//xgemouse
+126.8,301.2,-1//xgemouse
+141.7,298.2,-1//xgemouse
+159.5,292.3,-1//xgemouse
+172.9,287.8,-1//xgemouse
+183.3,284.8,-1//xgemouse
+195.3,280.4,-1//xgemouse
+201.2,278.9,-1//xgemouse
+210.1,277.4,-1//xgemouse
+217.6,275.9,-1//xgemouse
+225,274.4,-1//xgemouse
+236.9,271.4,-1//xgemouse
+245.8,268.5,-1//xgemouse
+256.3,264,-1//xgemouse
+269.7,259.5,-1//xgemouse
+278.6,256.5,-1//xgemouse
+289,252.1,-1//xgemouse
+299.4,247.6,-1//xgemouse
+303.9,244.6,-1//xgemouse
+308.3,243.2,-1//xgemouse
+311.3,240.2,-1//xgemouse
+312.8,239.4,-1//xgemouse
+318.8,236.5,-1//xgemouse
+324.7,232,-1//xgemouse
+330.7,229,-1//xgemouse
+336.6,227.5,-1//xgemouse
+342.6,224.5,-1//xgemouse
+347,223.1,-1//xgemouse
+348.5,222.3,-1//xgemouse
+351.5,219.3,-1//xgemouse
+356,216.4,-1//xgemouse
+361.9,214.9,-1//xgemouse
+370.8,207.4,-1//xgemouse
+373.8,203,-1//xgemouse
+376.8,198.5,-1//xgemouse
+381.3,194,-1//xgemouse
+382.8,193.3,-1//xgemouse
+384.2,192.5,-1//xgemouse
+385,191.8,-1//xgemouse
+385,190.3,-1//xgemouse
+385.7,189.6,-1//xgemouse
+386.5,188.1,-1//xgemouse
+386.5,187.3,-1//xgemouse
+385.7,187.3,-1//xgemouse
+385,186.6,-1//xgemouse
+384.2,185.1,-1//xgemouse
+382.8,184.4,-1//xgemouse
+381.3,183.6,-1//xgemouse
+379.8,182.9,-1//xgemouse
+378.3,182.1,-1//xgemouse
+376.8,181.4,-1//xgemouse
+375.3,180.6,-1//xgemouse
+373.8,179.9,-1//xgemouse
+373.1,179.2,-1//xgemouse
+371.6,178.4,-1//xgemouse
+370.1,178.4,-1//xgemouse
+369.4,176.9,-1//xgemouse
+367.1,176.9,-1//xgemouse
+364.2,173.9,-1//xgemouse
+362.7,173.2,-1//xgemouse
+361.9,171.7,-1//xgemouse
+360.4,171,-1//xgemouse
+360.4,169.5,-1//xgemouse
+359.7,168.7,-1//xgemouse
+358.9,168,-1//xgemouse
+358.2,168,-1//xgemouse
+357.5,167.2,-1//xgemouse
+357.5,166.5,-1//xgemouse
+358.2,166.5,-1//xgemouse
+358.2,165.8,-1//xgemouse
+358.2,165.8,0//xgemouse
+-2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
+0,304.6,150.9,1000,"void"// Block: 4 INTEGRAL
+0,363.4,178.4,1000// Block: 6 CMSCOPE
+0,306.1,151.6,1000,"void"// Block: 4 INTEGRAL
+309.8,152.4,-1//xgemouse
+311.3,152.4,-1//xgemouse
+312.8,152.4,-1//xgemouse
+314.3,152.4,-1//xgemouse
+315.8,153.1,-1//xgemouse
+317.3,153.1,-1//xgemouse
+323.2,153.1,-1//xgemouse
+329.2,153.1,-1//xgemouse
+335.1,153.1,-1//xgemouse
+336.6,153.1,-1//xgemouse
+337.4,153.1,-1//xgemouse
+338.1,153.1,-1//xgemouse
+338.9,153.1,-1//xgemouse
+340.3,153.1,-1//xgemouse
+341.1,153.1,-1//xgemouse
+341.8,153.9,-1//xgemouse
+343.3,153.9,-1//xgemouse
+344.8,153.9,-1//xgemouse
+346.3,153.9,-1//xgemouse
+347.8,153.1,-1//xgemouse
+349.3,153.1,-1//xgemouse
+350.8,153.1,-1//xgemouse
+352.2,153.1,-1//xgemouse
+353,153.1,-1//xgemouse
+353.7,153.1,-1//xgemouse
+354.5,153.1,-1//xgemouse
+355.2,153.1,-1//xgemouse
+355.2,152.4,-1//xgemouse
+355.2,152.4,0//xgemouse
+0,242.1,195.5,1000,"void"// Link: 5
+242.9,195.5,-1//xgemouse
+243.6,195.5,-1//xgemouse
+244.4,196.3,-1//xgemouse
+245.1,196.3,-1//xgemouse
+245.8,197,-1//xgemouse
+246.6,197.8,-1//xgemouse
+247.3,197.8,-1//xgemouse
+248.1,197.8,-1//xgemouse
+249.6,198.5,-1//xgemouse
+251.1,198.5,-1//xgemouse
+252.5,198.5,-1//xgemouse
+254.8,198.5,-1//xgemouse
+256.3,198.5,-1//xgemouse
+257,198.5,-1//xgemouse
+257.8,198.5,-1//xgemouse
+259.2,198.5,-1//xgemouse
+260.7,198.5,-1//xgemouse
+263,198.5,-1//xgemouse
+264.4,198.5,-1//xgemouse
+265.9,198.5,-1//xgemouse
+267.4,198.5,-1//xgemouse
+268.9,198.5,-1//xgemouse
+270.4,199.2,-1//xgemouse
+271.9,199.2,-1//xgemouse
+273.4,199.2,-1//xgemouse
+274.9,199.2,-1//xgemouse
+276.4,199.2,-1//xgemouse
+277.8,199.2,-1//xgemouse
+279.3,199.2,-1//xgemouse
+280.8,199.2,-1//xgemouse
+282.3,199.2,-1//xgemouse
+283.8,199.2,-1//xgemouse
+285.3,199.2,-1//xgemouse
+286,199.2,-1//xgemouse
+286.8,199.2,-1//xgemouse
+288.3,199.2,-1//xgemouse
+289.7,199.2,-1//xgemouse
+295.7,199.2,-1//xgemouse
+297.9,199.2,-1//xgemouse
+303.9,199.2,-1//xgemouse
+305.4,199.2,-1//xgemouse
+306.9,199.2,-1//xgemouse
+307.6,199.2,-1//xgemouse
+309.1,199.2,-1//xgemouse
+310.6,198.5,-1//xgemouse
+312.1,198.5,-1//xgemouse
+313.6,198.5,-1//xgemouse
+315,197.8,-1//xgemouse
+316.5,197.8,-1//xgemouse
+318,197,-1//xgemouse
+319.5,197,-1//xgemouse
+321,197,-1//xgemouse
+322.5,196.3,-1//xgemouse
+324,195.5,-1//xgemouse
+325.5,195.5,-1//xgemouse
+326.2,194.8,-1//xgemouse
+326.9,194,-1//xgemouse
+327.7,194,-1//xgemouse
+328.4,194,-1//xgemouse
+328.4,192.5,-1//xgemouse
+329.2,192.5,-1//xgemouse
+329.2,192.5,0//xgemouse
+329.2,191.1,-1//xgemouse
+329.2,189.6,-1//xgemouse
+329.2,188.1,-1//xgemouse
+329.2,186.6,-1//xgemouse
+329.2,185.1,-1//xgemouse
+329.2,183.6,-1//xgemouse
+329.2,182.1,-1//xgemouse
+329.2,180.6,-1//xgemouse
+329.9,179.2,-1//xgemouse
+329.9,177.7,-1//xgemouse
+330.7,176.9,-1//xgemouse
+330.7,176.2,-1//xgemouse
+330.7,175.4,-1//xgemouse
+330.7,174.7,-1//xgemouse
+330.7,173.2,-1//xgemouse
+330.7,171.7,-1//xgemouse
+330.7,170.2,-1//xgemouse
+330.7,168.7,-1//xgemouse
+330.7,168,-1//xgemouse
+330.7,167.2,-1//xgemouse
+330.7,166.5,-1//xgemouse
+330.7,165.8,-1//xgemouse
+330.7,165.8,0//xgemouse
+331.4,165.8,-1//xgemouse
+332.9,165.8,-1//xgemouse
+334.4,165.8,-1//xgemouse
+335.9,165.8,-1//xgemouse
+338.1,165.8,-1//xgemouse
+340.3,165.8,-1//xgemouse
+341.8,165.8,-1//xgemouse
+343.3,165.8,-1//xgemouse
+344.8,165.8,-1//xgemouse
+346.3,165.8,-1//xgemouse
+347.8,165.8,-1//xgemouse
+349.3,165.8,-1//xgemouse
+350.8,165.8,-1//xgemouse
+351.5,165.8,-1//xgemouse
+352.2,165.8,-1//xgemouse
+353,165.8,-1//xgemouse
+354.5,165.8,-1//xgemouse
+356,165.8,-1//xgemouse
+357.5,165.8,-1//xgemouse
+358.2,165.8,-1//xgemouse
+358.2,165.8,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  The scope needs to be activated. At each activation,
+  the value at the inputs of the scope are read and
+  used in the plot. If we use the clock generator in
+  the diagram, we don't see what happens between two
+  events. That is why we use a faster clock.
+  o //OK
+0,23.7,162.7,1001,"void"// Palette: Sources, Block: 12 CLOCK_f
+123.1,370.4,-1//xgemouse
+154.3,370.4,-1//xgemouse
+187.1,373.4,-1//xgemouse
+218.3,374.9,-1//xgemouse
+246.6,376.3,-1//xgemouse
+273.4,377.8,-1//xgemouse
+295.7,376.3,-1//xgemouse
+316.5,374.9,-1//xgemouse
+331.4,374.9,-1//xgemouse
+343.3,374.9,-1//xgemouse
+345.6,374.9,-1//xgemouse
+345.6,377.1,-1//xgemouse
+347,363,-1//xgemouse
+351.5,361.5,-1//xgemouse
+353.7,361.5,-1//xgemouse
+355.2,361.5,-1//xgemouse
+356,360.7,-1//xgemouse
+356.7,359.2,-1//xgemouse
+356.7,357.7,-1//xgemouse
+356.7,351.8,-1//xgemouse
+356.7,345.8,-1//xgemouse
+356.7,338.4,-1//xgemouse
+356.7,328,-1//xgemouse
+355.2,317.6,-1//xgemouse
+355.2,307.1,-1//xgemouse
+355.2,299.7,-1//xgemouse
+353.7,292.3,-1//xgemouse
+353.7,283.3,-1//xgemouse
+350.8,277.4,-1//xgemouse
+349.3,268.5,-1//xgemouse
+344.8,258,-1//xgemouse
+340.3,247.6,-1//xgemouse
+337.4,240.2,-1//xgemouse
+335.9,235.7,-1//xgemouse
+334.4,235,-1//xgemouse
+335.1,235,-1//xgemouse
+335.9,235,-1//xgemouse
+337.4,235,-1//xgemouse
+338.9,235,-1//xgemouse
+340.3,235,-1//xgemouse
+341.8,235,-1//xgemouse
+343.3,235,-1//xgemouse
+345.6,235,-1//xgemouse
+347,235,-1//xgemouse
+348.5,235,-1//xgemouse
+349.3,236.5,-1//xgemouse
+349.3,237.9,-1//xgemouse
+350,238.7,-1//xgemouse
+350.8,239.4,-1//xgemouse
+350.8,240.9,-1//xgemouse
+350.8,241.7,-1//xgemouse
+350.8,243.2,-1//xgemouse
+353.7,246.1,-1//xgemouse
+353.7,247.6,-1//xgemouse
+356.7,252.1,-1//xgemouse
+357.5,253.6,-1//xgemouse
+358.9,254.3,-1//xgemouse
+359.7,255.1,-1//xgemouse
+360.4,256.5,-1//xgemouse
+361.2,256.5,-1//xgemouse
+361.9,258,-1//xgemouse
+362.7,258,-1//xgemouse
+361.9,258,-1//xgemouse
+361.2,257.3,-1//xgemouse
+361.2,256.5,-1//xgemouse
+360.4,255.8,-1//xgemouse
+359.7,255.1,-1//xgemouse
+359.7,254.3,-1//xgemouse
+358.9,254.3,-1//xgemouse
+358.2,253.6,-1//xgemouse
+357.5,253.6,-1//xgemouse
+356.7,253.6,-1//xgemouse
+356.7,252.8,-1//xgemouse
+356.7,252.8,0//xgemouse
+0,377.5,259.5,1000,"void"// Block: 11 CLOCK_f
+386.5,226.8,-1//xgemouse
+388,217.8,-1//xgemouse
+388,211.9,-1//xgemouse
+389.4,207.4,-1//xgemouse
+389.4,205.2,-1//xgemouse
+389.4,203.7,-1//xgemouse
+389.4,202.2,-1//xgemouse
+389.4,200.7,-1//xgemouse
+389.4,199.2,-1//xgemouse
+389.4,197.8,-1//xgemouse
+389.4,196.3,-1//xgemouse
+389.4,194.8,-1//xgemouse
+389.4,193.3,-1//xgemouse
+389.4,191.8,-1//xgemouse
+389.4,190.3,-1//xgemouse
+389.4,188.8,-1//xgemouse
+389.4,187.3,-1//xgemouse
+389.4,185.9,-1//xgemouse
+388.7,185.1,-1//xgemouse
+388.7,184.4,-1//xgemouse
+388,183.6,-1//xgemouse
+387.2,182.9,-1//xgemouse
+385.7,182.9,-1//xgemouse
+385.7,182.1,-1//xgemouse
+385,181.4,-1//xgemouse
+384.2,180.6,-1//xgemouse
+383.5,180.6,-1//xgemouse
+382.8,179.9,-1//xgemouse
+381.3,179.9,-1//xgemouse
+379.8,179.9,-1//xgemouse
+379,179.9,-1//xgemouse
+378.3,179.9,-1//xgemouse
+378.3,179.2,-1//xgemouse
+379,179.2,-1//xgemouse
+379,178.4,-1//xgemouse
+379,178.4,0//xgemouse
+0,377.5,275.9,1000,"void"// Block: 11 CLOCK_f
+//x_mdialog: Set Clock  block parameters
+  0.05
+  0
+  o //OK
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  Simulation settings can be set by using the
+  Setup item in the Simulation menu. The final
+  simulation time is set to 30.
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(1))"// Simulate/Setup
+//x_mdialog: Set parameters
+  30
+  0
+  0.0001
+  0.000001
+  1.000E-10
+  100001
+  0
+  0
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We notice that the simulation is very slow. The reason
+  is that we have chosen a very small clock period for
+  activating the scope. We can increase the period (reduce
+  the number of points in the plot) but we can also bufferize
+  the output of the scope. We also change the y-axes parameters
+  of the scope to get a better picture of the simulation result.
+  o //OK
+0,376.8,156.1,1000,"void"// Block: 6 CMSCOPE
+//x_mdialog: Set Scope parameters
+  1 1
+  1 3 5 7 9 11 13 15
+  1
+  []
+  []
+  -2 0
+  2 8
+  30
+  20
+  0
+  
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We see that the simulation is much faster now.
+  
+  Let us now replace the integrator with a more
+  complex linear system.
+  o //OK
+0,207.2,115.7,1002,"void"// Palette: Linear, Block: 8 CLR_f
+358.9,284.1,-1//xgemouse
+350,275.1,-1//xgemouse
+339.6,270.7,-1//xgemouse
+336.6,263.2,-1//xgemouse
+330.7,258.8,-1//xgemouse
+324.7,255.8,-1//xgemouse
+318.8,254.3,-1//xgemouse
+317.3,249.8,-1//xgemouse
+315.8,249.1,-1//xgemouse
+312.8,246.1,-1//xgemouse
+308.3,243.2,-1//xgemouse
+302.4,241.7,-1//xgemouse
+296.4,240.2,-1//xgemouse
+293.5,237.2,-1//xgemouse
+287.5,235.7,-1//xgemouse
+283.1,234.2,-1//xgemouse
+278.6,231.2,-1//xgemouse
+277.1,230.5,-1//xgemouse
+275.6,229.8,-1//xgemouse
+274.1,229,-1//xgemouse
+272.6,228.3,-1//xgemouse
+273.4,227.5,-1//xgemouse
+273.4,227.5,0//xgemouse
+100,287.5,153.1,1000,"void"// Block: 4 INTEGRAL
+109,290.5,248.4,1000,"void"// Block: 13 CLR_f
+290.5,247.6,-1//xgemouse
+289.7,246.9,-1//xgemouse
+288.3,246.9,-1//xgemouse
+286.8,242.4,-1//xgemouse
+285.3,237.9,-1//xgemouse
+282.3,233.5,-1//xgemouse
+279.3,229,-1//xgemouse
+276.4,221.6,-1//xgemouse
+273.4,214.1,-1//xgemouse
+268.9,208.2,-1//xgemouse
+267.4,200.7,-1//xgemouse
+263,193.3,-1//xgemouse
+261.5,187.3,-1//xgemouse
+258.5,181.4,-1//xgemouse
+255.5,175.4,-1//xgemouse
+252.5,171,-1//xgemouse
+251.1,163.5,-1//xgemouse
+249.6,157.6,-1//xgemouse
+248.1,151.6,-1//xgemouse
+246.6,145.7,-1//xgemouse
+245.8,144.2,-1//xgemouse
+245.8,141.9,-1//xgemouse
+245.8,140.5,-1//xgemouse
+245.8,139,-1//xgemouse
+245.8,137.5,-1//xgemouse
+245.1,136,-1//xgemouse
+245.1,133.8,-1//xgemouse
+245.1,131.5,-1//xgemouse
+245.1,130,-1//xgemouse
+244.4,130,-1//xgemouse
+244.4,129.3,-1//xgemouse
+245.1,129.3,-1//xgemouse
+245.1,129.3,0//xgemouse
+-2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
+0,360.4,153.1,1000,"void"// Block: 6 CMSCOPE
+0,289,152.4,1000// Block: 13 CLR_f
+0,289.7,152.4,1000,"void"// Block: 13 CLR_f
+295,152.4,-1//xgemouse
+297.2,152.4,-1//xgemouse
+299.4,152.4,-1//xgemouse
+300.9,152.4,-1//xgemouse
+303.1,152.4,-1//xgemouse
+305.4,152.4,-1//xgemouse
+307.6,152.4,-1//xgemouse
+309.8,152.4,-1//xgemouse
+311.3,152.4,-1//xgemouse
+313.6,152.4,-1//xgemouse
+315,152.4,-1//xgemouse
+316.5,152.4,-1//xgemouse
+318,152.4,-1//xgemouse
+320.3,152.4,-1//xgemouse
+321.7,152.4,-1//xgemouse
+324,152.4,-1//xgemouse
+325.5,152.4,-1//xgemouse
+326.2,152.4,-1//xgemouse
+326.9,152.4,-1//xgemouse
+328.4,152.4,-1//xgemouse
+329.9,152.4,-1//xgemouse
+331.4,152.4,-1//xgemouse
+332.9,152.4,-1//xgemouse
+334.4,152.4,-1//xgemouse
+335.9,152.4,-1//xgemouse
+338.1,152.4,-1//xgemouse
+339.6,152.4,-1//xgemouse
+341.1,152.4,-1//xgemouse
+341.8,152.4,-1//xgemouse
+343.3,152.4,-1//xgemouse
+344.8,152.4,-1//xgemouse
+346.3,152.4,-1//xgemouse
+347.8,152.4,-1//xgemouse
+349.3,152.4,-1//xgemouse
+350.8,152.4,-1//xgemouse
+352.2,152.4,-1//xgemouse
+353,152.4,-1//xgemouse
+353.7,152.4,-1//xgemouse
+354.5,152.4,-1//xgemouse
+354.5,152.4,0//xgemouse
+0,229.5,192.5,1000,"void"// Link: 10
+229.5,153.1,-1//xgemouse
+229.5,152.4,-1//xgemouse
+229.5,152.4,0//xgemouse
+230.2,153.1,-1//xgemouse
+231,153.1,-1//xgemouse
+231.7,153.1,-1//xgemouse
+232.5,153.1,-1//xgemouse
+233.9,153.1,-1//xgemouse
+235.4,153.1,-1//xgemouse
+236.9,153.1,-1//xgemouse
+237.7,153.1,-1//xgemouse
+238.4,153.1,-1//xgemouse
+239.9,152.4,-1//xgemouse
+240.6,152.4,-1//xgemouse
+241.4,152.4,-1//xgemouse
+242.1,152.4,-1//xgemouse
+242.1,152.4,0//xgemouse
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+0,374.6,162,1000,"void"// Block: 6 CMSCOPE
+//x_mdialog: Set Scope parameters
+  1 1
+  1 3 5 7 9 11 13 15
+  1
+  []
+  []
+  -2 -2
+  2 2
+  30
+  20
+  0
+  
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+114,296.4,270.7,1000,"void"// xclick
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  The linear system is defined in terms
+  of the transfer function. The default
+  value is 1/(s+1).
+  We now change the transfer function.
+  o //OK
+0,269.2,153.1,1000,"void"// Block: 13 CLR_f
+//x_mdialog: Set continuous SISO transfer parameters
+  1-s
+  1+s^2
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+0,377.1,164.3,1000,"void"// Block: 6 CMSCOPE
+//x_mdialog: Set Scope parameters
+  1 1
+  1 3 5 7 9 11 13 15
+  1
+  []
+  []
+  -2 -10
+  2 10
+  30
+  20
+  0
+  
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  To save the diagram for future use, we can simply save it
+  using the Save item in the Diagram menu. But that saves the
+  diagram in the file Untitled.cos; we don't get a chance to
+  choose the name. For that we can use the "Save As" button,
+  or rename the diagram before saving it.
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(5))"// Diagram/Rename
+//x_dialog:Enter the new diagram name
+  diagram1
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(6))"// Diagram/Save
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We can leave Scicos using the Quit button or
+  simply closing the window (click on the upper
+  right hand X).
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(16))"// Diagram/Quit

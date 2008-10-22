@@ -1,0 +1,14 @@
+// ====================================================================
+// texmacs module initialisation file 
+// Copyright INRIA 2006
+// ====================================================================
+//Load functions library
+// theses macros are loaded only in texmacs mode
+if with_texmacs() then
+  load('SCI/modules/texmacs/macros/overloading/lib');
+end
+load('SCI/modules/texmacs/macros/lib');
+// ====================================================================
+//add help chapter
+add_module_help_chapter('texmacs');
+// ====================================================================

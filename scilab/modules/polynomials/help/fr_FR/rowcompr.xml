@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rowcompr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rowcompr</refname>
+    <refpurpose> compression de lignes d'une matrice de polynômes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[X,rk,Ac]=rowcompr(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y  </term>
+        <listitem>
+          <para>matrice carrée de polynômes (base unimodulaire à gauche)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk  </term>
+        <listitem>
+          <para>rang normal de <literal>A</literal>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ac  </term>
+        <listitem>
+          <para>
+    : <literal>Ac=X*A</literal>, matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Compression de lignes de la matrice de polynômes <literal>A </literal>.
+  </para>
+    <para><literal>X</literal> est une base de polynômes unimodulaire à gauche qui compresse les lignes
+    de <literal>A</literal>. <literal>rk</literal> est le rang normal de A.
+  </para>
+    <para>
+    Attention : élimination des termes "petits" (à utiliser avec précaution).
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colcompr">colcompr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_realmax">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_realmax</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab realmax</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>L'équivalent Scilab de la fonction Matlab <literal>realmax</literal>
+    est <literal>number_properties</literal> mais tous les cas ne sont pas
+    implémentés :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        L'équivalent Scilab de l'expression Matlab
+        <literal>realmax</literal> ou <literal>realmax('double')</literal> est <literal>number_properties("huge")</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Il n'y a pas d'équivalent Scilab pour l'expression Matlab <literal>realmax('single')</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_realmax(prec)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>realmax(prec)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_realmax</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>prec</literal> est égale à <literal>"double"</literal>
+        <literal>mtlb_realmax(prec)</literal> peut être remplacé par <literal>number_properties("huge")</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_realmax</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="number_properties">number_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

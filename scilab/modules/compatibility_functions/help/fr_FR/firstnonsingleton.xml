@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="firstnonsingleton">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>firstnonsingleton</refname>
+    <refpurpose>Trouve la première dimension qui n'est pas 1</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[dim]=firstnonsingleton(A[,opt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>première dimension de A qui n'est pas 1</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>une variable de n'importe quel type de donnée Scilab</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>une chaîne de caractères qui précise le type de la variable de sortie que l'on veut</para>
+          <variablelist>
+            <varlistentry>
+              <term>"num"</term>
+              <listitem>
+                <para>la valeur retournée est une valeur numérique</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"str"</term>
+              <listitem>
+                <para>la valeur retournée est une chaîne de caractères si possible ("r" au lieu de 1 et "c" au lieu de 2)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Cette fonction est utilisée par <literal>mfile2sci</literal> pour émuler le comportement de Matlab sous Scilab,
+    en particulier pour les fonctions qui traitent les valeurs suivant la première dimension de A qui n'est pas 1
+    en Matlab alors que dans Scilab elles traitent toutes les valeurs de A.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+
+A = [1 2 3;4 5 6];
+// max Scilab
+M = max(A)
+// Emulation du max Matlab
+M = max(A,firstnonsingleton(A))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

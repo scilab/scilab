@@ -1,0 +1,90 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/clf_data.ref','rb');
+ 
+f4 = scf(4);//creates figure with id==4 and make it the current one
+ 
+f4('color_map') = jetcolormap(64);
+ 
+f4('figure_size') = [400,200];
+ 
+%ans = plot2d();
+
+Demo of plot2d()
+========================================
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = clf_run(f4, 'reset');
+ !--error 4 
+undefined variable : ids_ref                 
+at line      37 of function clf_run called by :  
+%ans = clf_run(f4, 'reset');
+ 
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+f0 = scf(0);//creates figure with id==0 and make it the current one
+ 
+f0('color_map') = hotcolormap(128);
+ 
+plot3d1();
+
+Demo of plot3d1()
+========================================
+t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
+ 
+%ans = clf_run();
+ !--error 4 
+undefined variable : ids_ref                 
+at line      37 of function clf_run called by :  
+%ans = clf_run();
+ 
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// equivalent to clf(gcf(),'clear')
+ 
+plot3d1();// color_map unchanged
+
+Demo of plot3d1()
+========================================
+t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
+ 
+%ans = clf_run(gcf(), 'reset');
+ !--error 4 
+undefined variable : ids_ref                 
+at line      37 of function clf_run called by :  
+%ans = clf_run(gcf(), 'reset');
+ 
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+plot3d1();// color_map changed (back to the default one with 32 colors)
+
+Demo of plot3d1()
+========================================
+t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
+ 
+ 
+xdel_run(winsid());
+ !--error 4 
+undefined variable : ids_ref                 
+at line      19 of function xdel_run called by :  
+xdel_run(winsid());
+ 
+ 
+ 
+mclose(%U);
+ 

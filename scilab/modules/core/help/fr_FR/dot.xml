@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="dot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dot (.)</refname>
+    <refpurpose>  point  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>123.33
+a.*b
+[123,..
+456]</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>.</term>
+        <listitem>
+          <para>
+    Le point est utilisé dans la notation décimale : 3.25 et 0.001
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>.&lt;op&gt;</term>
+        <listitem>
+          <para>
+    Il est aussi utilisé en conjonction avec d'autres opérateurs (* / \ ^ ') pour  en former de nouveaux. Les opérations multiplicatives "élément par élément" sont obtenues avec .* , .^ , ./ , .\ ou .'. Par exemple, C = A ./ B est la matrice dont les éléments sont c(i,j) = a(i,j)/b(i,j). Le produit de Kronecker est noté .*. .  Notez que lorsqu'un point suit un nombre entier il est considéré comme en faisant partie. Ainsi 2.*x est évalué comme 2.0*x et 2 .*x est évalué comme (2).*x
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>..</term>
+        <listitem>
+          <para>
+    A suivre. Deux points ou plus à la fin d'une ligne font en sorte que la ligne suivante est considérée comme en étant la suite (le passage à la ligne n'est pas pris en compte).
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+1.345
+x=[1 2 3];x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
+[123,..
+ 456]
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="star">star</link>
+      </member>
+      <member>
+        <link linkend="hat">hat</link>
+      </member>
+      <member>
+        <link linkend="slash">slash</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

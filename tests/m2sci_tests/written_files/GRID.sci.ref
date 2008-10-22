@@ -1,0 +1,24 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function grid
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+set(gca(),"grid",[1,1])
+set(gca(),"grid",[-1,-1])
+// !! L.8: No minor grid in Scilab
+mtlb_grid("minor")
+mtlb_grid
+
+
+ax.grid = [1,1];
+ax.grid = [-1,-1];
+// !! L.14: No minor grid in Scilab
+mtlb_grid(ax,"minor")
+mtlb_grid(ax)

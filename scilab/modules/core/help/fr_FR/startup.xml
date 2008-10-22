@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="startup">
+  <info>
+    <pubdate>January 2008</pubdate>
+  </info>
+  <refnamediv>
+    <refname>startup</refname>
+    <refpurpose> startup file</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Les fichiers de démarrage <literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
+		sont automatiquement executés (s'ils existent) au démarrage de Scilab, ainsi que le fichier 
+		SCI/etc/scilab.start présent dans le répertoire de Scilab.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>
+			les fichiers de démarrage doivent obligatoirement comporter une nouvelle ligne en fin 
+			de fichier pour être pris en compte.
+		</para>
+    <para>
+			Définition de SCIHOME : 
+			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+		</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scilab">scilab</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

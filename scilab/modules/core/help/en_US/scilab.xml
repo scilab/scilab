@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="scilab">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>scilab</refname>
+    <refpurpose> Major unix script to execute Scilab and miscellaneous tools  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>scilab &lt;Options&gt;</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>-args Arguments</term>
+        <listitem>
+          <para>if this option is present arguments are passed to
+	  Scilab. They can then be got by <link linkend="sciargs">sciargs</link> function. For
+	  multi arguments passing use a quoted, blank separated
+	  sequence of words like: 
+	  <literal>scilab -args 'foo1 foo2'</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-display Display</term>
+        <listitem>
+          <para>for use under Xwindow systems only to set a specific X server
+	  display. Default display is unix:0.0</para>
+          <para><literal>-display</literal> can be abbreviated by <literal>-d</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-debug</term>
+        <listitem>
+          <para>Start Scilab under the debugguer gdb (Unix/linux only).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-e Instruction</term>
+        <listitem>
+          <para>if this option is present then Scilab instruction
+	  <literal>Instruction</literal> is executed first (just after startup file
+	  execution) into Scilab. <literal>-e</literal> and <literal>-f</literal>
+	  options are mutually exclusive.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-f file</term>
+        <listitem>
+          <para>if this option is present then Scilab script
+	  <literal>file</literal> is executed first (just after startup file
+	  execution) into Scilab. <literal>-e</literal> and <literal>-f</literal>
+	  options are mutually exclusive.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-l lang</term>
+        <listitem>
+          <para>:if this option is present it fixes the user
+	  language. The possible <literal>lang</literal> values are
+	  <literal>'fr'</literal> for french and <literal>'en'</literal> for
+	  english. The default language is english. This default
+	  value is fixed the <literal>scilab.start</literal> file.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>scilab -link &lt;objects&gt;</term>
+        <listitem>
+          <para>Is used to produce a local <literal>scilex</literal>
+	  (executable code of Scilab) linked with the additional files
+	  given by the user in <literal>&lt;objects&gt;</literal>. This command also produces a
+	  <literal>scilab</literal> script, which when called will ran the
+	  new generated scilex file.</para>
+          <para>
+	  For example:</para>
+          <programlisting><![CDATA[
+	  
+	  scilab -link  C/interf.o C/evol.o C/bib.a
+	  
+	]]></programlisting>
+          <para>will create a new <literal>scilex</literal> file in which the default <literal>interf.o</literal> 
+	  file will be replaced by <literal>C/interf.o</literal>.</para>
+          <para><literal>-link</literal> option cannot be used with any of the other options.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-mem N</term>
+        <listitem>
+          <para>:set the initial stacksize, for use with -ns option. Without
+	  -ns option the initial stacksize is set by scilab.start script.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nb</term>
+        <listitem>
+          <para>:if this option is present then  the scilab welcome banner
+	  is not displayed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-ns</term>
+        <listitem>
+          <para>
+				:if this option is  present the startup file
+				<literal>SCI/etc/scilab.start</literal> and the user startup files
+				<literal>SCIHOME/.scilab</literal>, <literal>SCIHOME/scilab.ini</literal> are not executed.
+			</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nouserstartup</term>
+        <listitem>
+          <para>
+				:if this option is  present the user startup files
+				<literal>SCIHOME/.scilab</literal>, <literal>SCIHOME/scilab.ini</literal> are not executed.
+			</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nw</term>
+        <listitem>
+          <para>:if this option is present then  scilab is not run in an specific window.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nwni</term>
+        <listitem>
+          <para>:if this option is present then  scilab is not run in an
+	  specific window and does not accept user interaction. This option
+	  may be used with -f or -e options.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>--texmacs</term>
+        <listitem>
+          <para>:This option is reserved for TeXMacs.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-version</term>
+        <listitem>
+          <para>:This option print product version and exit.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

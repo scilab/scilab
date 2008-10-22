@@ -1,0 +1,21 @@
+LIBRARY    randlib_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; randlib_f
+; --------------------------------------- 
+genexp_
+genchi_
+gennf_
+gennch_
+genmn_
+setgmn_
+ignnbn_
+genprm_
+gennor_
+gengam_
+genmul_
+genf_
+phrtsd_
+snorm_

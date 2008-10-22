@@ -1,0 +1,10 @@
+LIBRARY    string_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; string_f
+; --------------------------------------- 
+intstring_
+strdsp_
+strops_

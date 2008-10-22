@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getvalue">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getvalue</refname>
+    <refpurpose> boîte de dialogue de saisie de paramètres   </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>desc  </term>
+        <listitem>
+          <para>vecteur colonne de chaînes de caractères, 
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>labels  </term>
+        <listitem>
+          <para>vecteur colonne de n chaînes de caractères, <literal>labels(i)</literal> est l'entête du i-ème paramètre
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>typ  </term>
+        <listitem>
+          <para>
+	    : <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal>
+	  </para>
+          <variablelist>
+            <varlistentry>
+              <term>typ_i  </term>
+              <listitem>
+                <para>définit le type de la ième valeur. typ_i peut prendre l'une des valeurs :
+		</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>"mat"  </term>
+                    <listitem>
+                      <para>matrice
+		      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"col"  </term>
+                    <listitem>
+                      <para>vecteur colonne
+		      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"row"  </term>
+                    <listitem>
+                      <para>vecteur ligne
+		      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"vec"  </term>
+                    <listitem>
+                      <para>vecteur
+		      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"str"  </term>
+                    <listitem>
+                      <para>chaîne de caractères
+		      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"lis"  </term>
+                    <listitem>
+                      <para>liste
+		      </para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>dim_i  </term>
+              <listitem>
+                <para>définit les dimensions de la i-ème valeur. Ce doit être un entier
+		  ou un vecteur de deux entiers. -1 signifie que les dimensions ne sont
+		  pas définies.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ini  </term>
+              <listitem>
+                <para>vecteur colonne de n chaînes de caractères, <literal>ini(i)</literal>
+		  donne la valeur par défaut du i-ème paramètre
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ok  </term>
+              <listitem>
+                <para>booléen, %t (vrai) si le bouton "Ok" a été pressé, %f
+		  (faux) pour le bouton "Cancel"
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>xi  </term>
+              <listitem>
+                <para>contient le i-ème paramètre si ok=%t. Si la liste des arguments de
+		  sortie contient un <literal>xi</literal> de plus que nécessaire, la valeur
+		  du dernier <literal>xi</literal> contient le vecteur des chaînes de
+		  caractères correspondant aux paramètres choisis.
+		</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Cette fonction est une interface vers la fonction <literal>x_mdialog</literal>
+      avec contrôle d'erreur, vérification de taille et de type des
+      paramètres, évaluation des expressions Scilab, etc.
+    </para>
+  </refsection>
+  <refsection>
+    <title>REMARQUES</title>
+    <para>
+      Toute expression Scilab valide peut être utilisée pour entrer un
+      paramètre; pour les matrices  et les vecteurs <literal>getvalues</literal>
+      ajoute [ ] autour des valeurs rentrées avant leur évaluation.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    labels=["module";"frequence";"phase    "];
+    [ok,mag,freq,ph]=getvalue("signal sinusoidal",labels,...
+    list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="x_matrix">x_matrix</link>
+      </member>
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>S. Steer ; ;   </para>
+  </refsection>
+</refentry>

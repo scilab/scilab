@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="karmarkar">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>karmarkar</refname>
+    <refpurpose> karmarkar algorithm</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x1]=karmarkar(a,b,c,x0)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>matrix (n,p)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para> n - vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para> p - vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para> initial vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eps</term>
+        <listitem>
+          <para>threshold (default value : 1.d-5)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gamma</term>
+        <listitem>
+          <para>descent step  <literal>0&lt;gamma&lt;1</literal> , default value : 1/4</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x1</term>
+        <listitem>
+          <para>solution</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>crit</term>
+        <listitem>
+          <para>value of  c'*x1</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Computes <literal>x</literal> which minimizes</para>
+    <programlisting><![CDATA[
+
+                        c'*x
+   
+    ]]></programlisting>
+    <para>
+    under constraints:</para>
+    <programlisting><![CDATA[
+
+                        a*x = b
+                        x>=0
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// n=10;p=20;
+// a=rand(n,p);c=rand(p,1);x0=abs(rand(p,1));b=a*x0;x1=karmarkar(a,b,c,x0);
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

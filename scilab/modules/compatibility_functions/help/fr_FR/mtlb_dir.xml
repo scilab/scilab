@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_dir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_dir</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab dir</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>La fonction <literal>dir</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Quand le résultat est stocké dans une variable: La fonction Matlab <literal>dir</literal> renvoie une structure
+	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les données ne peuvent être
+	extraites de la même manière.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_dir([path])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>dir([path])</literal> quand la sortie est stockée dans une variable.
+    Il n'est pas possible de remplacer cette fonction, sinon (si on la remplace par <literal>dir</literal>) 
+    les données ne pourront pas être extraites comme dans Matlab. Par exemple, l'équivalent Scilab pour l'instruction Matlab 
+    <literal>L=dir;file_name=L(1).name;</literal> est <literal>L=dir();file_name=L.name(1);</literal>.
+    </para>
+    <para>Attention : <literal>mtlb_dir</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

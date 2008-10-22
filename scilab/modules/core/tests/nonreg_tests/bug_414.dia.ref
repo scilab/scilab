@@ -1,0 +1,141 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 414 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=414
+//
+// <-- Short Description -->
+// a tiny bug regarding the display of (boolean only?) arrays.
+t=(1:35)>0;
+for ll=69:73,lines(0,ll),t,end
+ t  =
+ 
+ 
+         column  1 to 33
+ 
+  T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T  
+ 
+         column 34 to 35
+ 
+  T T  
+ t  =
+ 
+ 
+         column  1 to 33
+ 
+  T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T  
+ 
+         column 34 to 35
+ 
+  T T  
+ t  =
+ 
+ 
+         column  1 to 34
+ 
+  T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T  
+ 
+         column 35
+ 
+  T  
+ t  =
+ 
+ 
+         column  1 to 34
+ 
+  T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T  
+ 
+         column 35
+ 
+  T  
+ t  =
+ 
+  T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T  
+t=(1:13);
+for ll=69:6:90,lines(0,ll),t,end
+ t  =
+ 
+ 
+         column  1 to 10
+ 
+    1.    2.    3.    4.    5.    6.    7.    8.    9.    10.  
+ 
+         column 11 to 13
+ 
+    11.    12.    13.  
+ t  =
+ 
+ 
+         column  1 to 11
+ 
+    1.    2.    3.    4.    5.    6.    7.    8.    9.    10.    11.  
+ 
+         column 12 to 13
+ 
+    12.    13.  
+ t  =
+ 
+ 
+         column  1 to 12
+ 
+    1.    2.    3.    4.    5.    6.    7.    8.    9.    10.    11.    12.  
+ 
+         column 13
+ 
+    13.  
+ t  =
+ 
+    1.    2.    3.    4.    5.    6.    7.    8.    9.    10.    11.    12.    13.  
+t=int32(1:23);
+for ll=55:2:65,lines(0,ll),t,end
+ t  =
+ 
+ 
+         column  1 to 20
+ 
+  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  
+ 
+         column 21 to 23
+ 
+  21  22  23  
+ t  =
+ 
+ 
+         column  1 to 21
+ 
+  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  
+ 
+         column 22 to 23
+ 
+  22  23  
+ t  =
+ 
+ 
+         column  1 to 22
+ 
+  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  
+ 
+         column 23
+ 
+  23  
+ t  =
+ 
+ 
+         column  1 to 22
+ 
+  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  
+ 
+         column 23
+ 
+  23  
+ t  =
+ 
+  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  
+ t  =
+ 
+  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  

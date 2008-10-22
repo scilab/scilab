@@ -1,0 +1,6 @@
+LIBRARY    libjvm.dll
+
+
+EXPORTS
+ getScilabJNIEnv
+ getScilabObject

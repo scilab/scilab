@@ -1,0 +1,45 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/arl2_data.ref','rb');
+v = ones(1, 20);
+xbasc_run();
+%ans = plot2d1('enn', 0, [v';zeros(80, 1)], 2, '051', ' ', [1,-0.5,100,1.5]);
+if load_ref('%ans') then   pause,end,
+
+
+[d,n,e] = arl2(v, poly(1, 'z', 'c'), 1);
+if load_ref('e') then   pause,end,
+if load_ref('n') then   pause,end,
+if load_ref('d') then   pause,end,
+
+%ans = plot2d1('enn', 0, ldiv(n, d, 100), 2, '000');
+if load_ref('%ans') then   pause,end,
+
+[d,n,e] = arl2(v, d, 3);
+if load_ref('e') then   pause,end,
+if load_ref('n') then   pause,end,
+if load_ref('d') then   pause,end,
+
+%ans = plot2d1('enn', 0, ldiv(n, d, 100), 3, '000');
+if load_ref('%ans') then   pause,end,
+
+[d,n,e] = arl2(v, d, 8);
+if load_ref('e') then   pause,end,
+if load_ref('n') then   pause,end,
+if load_ref('d') then   pause,end,
+
+%ans = plot2d1('enn', 0, ldiv(n, d, 100), 5, '000');
+if load_ref('%ans') then   pause,end,
+
+
+[d,n,e] = arl2(v, poly(1, 'z', 'c'), 4, 'all');
+if load_ref('e') then   pause,end,
+if load_ref('n') then   pause,end,
+if load_ref('d') then   pause,end,
+
+%ans = plot2d1('enn', 0, ldiv(n(1), d(1), 100), 10, '000');
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

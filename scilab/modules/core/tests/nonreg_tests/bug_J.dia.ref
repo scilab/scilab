@@ -1,0 +1,11 @@
+// <-- Non-regression test for bug J -->
+//
+// <-- OLD BUG -->
+//
+// crash Scilab
+	
+function toto()
+	N
+endfunction
+result = execstr('toto()','errcatch');
+if result <> 4 then bugmes();quit;end

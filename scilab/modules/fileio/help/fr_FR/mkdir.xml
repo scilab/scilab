@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mkdir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mkdir</refname>
+    <refpurpose>Crée un nouveau   répertoire</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>mkdir('dirname')
+mkdir('parentdir','newdir')
+status=mkdir( ... )
+[status,msg]=mkdir( ... )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+			mkdir('dirname') crée le repertoire <literal>dirname</literal>. Si dirname
+			représente représente un chemin relatif, le répertoire dirname est créé
+			dans le répertoire courant.
+		</para>
+    <para>
+			mkdir('parentdir','dirname') crée le répertoire <literal>dirname</literal> dans le
+			répertoire existant <literal>parentdir</literal>, ou <literal>parentdir</literal> est un chemin relatif ou
+			absolu.
+		</para>
+    <para>
+			[status,message] = mkdir(...,'dirname') crée le répertoire <literal>dirname</literal> dans
+			le répertoire existant <literal>parentdir</literal>, retourne le status, et un message. Ici,
+			<literal>status</literal> vaut 1 si tout c'est bien passé, 2 si le repertoire existe déjà, 0
+			dans un autre cas.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+		// Chemin absolu
+		mkdir(TMPDIR+"/mkdir_example_1")
+		status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+		[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+		
+		// Chemin absolu (parentdir + dirname)
+		[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+		
+		// Chemin relatif
+		cd TMPDIR;
+		[status_5,msg_5] = mkdir("mkdir_example_5")
+		[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cd">cd</link>
+      </member>
+      <member>
+        <link linkend="dir">dir</link>
+      </member>
+      <member>
+        <link linkend="rmdir">rmdir</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>A.C, P.M</member>
+    </simplelist>
+  </refsection>
+</refentry>

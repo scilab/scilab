@@ -1,0 +1,80 @@
+// <-- Non-regression test for bug 1082 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1082
+//
+// <-- Short Description -->
+//    Error during conversion of a very simple file. Though the
+//    syntax is the same in both languages, the converter fails to
+//    convert the rounding of the field of a structure: "round(a.b)"
+// Copyright INRIA
+// Scilab Project - F.Belahcene
+MFILECONTENTS=["structure.field = 2;"
+""
+"data = round(structure.field);"]
+ MFILECONTENTS  =
+ 
+!structure.field = 2;            !
+!                                !
+!                                !
+!                                !
+!data = round(structure.field);  !
+MFILE=TMPDIR+"/bug1082.m"
+ MFILE  =
+ 
+ TMPDIR/bug1082.m   
+SCIFILE=TMPDIR+"/bug1082.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug1082.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug1082.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"structure.field = 2;";
+"";
+"data = round(mtlb_double(structure.field));"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!structure.field = 2;                             !
+!                                                 !
+!                                                 !
+!                                                 !
+!data = round(mtlb_double(structure.field));      !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

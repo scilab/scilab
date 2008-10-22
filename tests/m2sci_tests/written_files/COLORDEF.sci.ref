@@ -1,0 +1,46 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function colordef
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+%v0 = gcf();
+%v0.background = -2;
+%v0 = gcf();
+%v0.background = -1;
+%v0 = gcf();
+%v0.background = -1;
+f = gcf();
+f.background = -2;
+f = gcf();
+f.background = -1;
+f = gcf();
+f.background = -1;
+
+fig.background = -2;
+fig.background = -1;
+fig.background = -1;
+fig.background = -2;
+f = fig;
+fig.background = -1;
+f = fig;
+fig.background = -1;
+f = fig;
+%v0 = scf(max(winsid())+1);
+%v0.background = -2;
+%v0 = scf(max(winsid())+1);
+%v0.background = -1;
+%v0 = scf(max(winsid())+1);
+%v0.background = -1;
+h = scf(max(winsid())+1);
+h.background = -2;
+h = scf(max(winsid())+1);
+h.background = -1;
+h = scf(max(winsid())+1);
+h.background = -1;

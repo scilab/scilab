@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_sum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_sum</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab sum</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>sum</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        En cas d'appel avec un paramètre d'entrée : La fonction Matlab <literal>sum</literal> traite
+	les valeurs en suivant la première dimension qui n'est pas 1 alors que la fonction Scilab
+	<literal>sum</literal> traite toutes les valeurs de l'entrée.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec deux paramètres d'entrée : La fonction Matlab <literal>sum</literal> peut être
+	utilisée avec le second paramètre donnant une dimension du premier paramètre qui n'existe pas
+	alors que la fonction Scilab <literal>sum</literal> retourne un message d'erreur.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_sum(A[,dim])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>sum(A[,dim])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_sum</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est une matrice vide, un scalaire ou un vecteur,
+        <literal>mtlb_sum(A)</literal> peut être remplacé par <literal>sum(A)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est une matrice non-vide,
+        <literal>mtlb_sum(A)</literal> peut être remplacé par <literal>sum(A,1)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est hypermatrice,
+        <literal>mtlb_sum(A)</literal> peut être remplacé par <literal>sum(A,firstnonsingleton(A))</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec deux paramètres d'entrée, si <literal>dim</literal> est inférieure au nombre
+	de dimensions de <literal>A</literal> 
+        <literal>mtlb_sum(A,dim)</literal> peut être remplacé par <literal>sum(A,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_sum</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="firstnonsingleton">firstnonsingleton</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

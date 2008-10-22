@@ -1,0 +1,38 @@
+<package name="org.scilab.modules.renderer.utils.textRendering">
+  <object name="XlFontManager">
+    <method name="getInstalledFontsName" returnType="String[]">
+    </method>
+    <method name="getSizeInstalledFontsName" returnType="int">
+    </method>
+    <method name="getSizeAvailableFontsName" returnType="int">
+    </method>
+    <method name="getAvailableFontsName" returnType="String[]">
+    </method>
+    <method name="isAvailableFontName" returnType="boolean">
+    <param type="String" name="fontname" />
+    </method>
+    <method name="addFont" returnType="int">
+    <param type="String" name="fontName" />
+    </method>
+    <method name="changeFont" returnType="int">
+    <param type="int" name="index" />
+    <param type="String" name="fontName" />
+    </method>
+    <method name="changeFontWithProperty" returnType="int">
+    <param type="int" name="index" />
+    <param type="String" name="fontName" />
+    <param type="boolean" name="isBold" />
+    <param type="boolean" name="isItalic" />
+    </method>
+    <method name="resetXlFontManager" returnType="void">
+    </method>
+    <method name="addFontFromFilename" returnType="int">
+    <param type="String" name="FontFilename" />
+    </method>
+    <method name="changeFontFromFilename" returnType="int">
+    <param type="int" name="index" />
+    <param type="String" name="FontFilename" />
+    </method>
+    
+  </object>
+</package>

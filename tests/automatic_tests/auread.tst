@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/auread_data.ref','rb');
+y = wavread('SCI/demos/signal/sound/chimes.wav');
+// default is 8-bits mu-law
+auwrite(y, TMPDIR + '/tmp.au');
+y1 = auread(TMPDIR + '/tmp.au');
+%ans = maxi(abs(y - y1));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

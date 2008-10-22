@@ -1,0 +1,68 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/gamma_data.ref','rb');
+ 
+// simple examples
+ 
+%ans = gamma(0.5);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = gamma(6) - prod(1:5);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+// the graph of the Gamma function on [a,b]
+ 
+a = -3;b = 5;
+ 
+x = linspace(a, b, 40000)';
+ 
+y = gamma(x);
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+c = xget('color');
+ 
+if load_ref('c') then   bugmes();quit;end,
+ 
+ 
+%ans = xset('color', 2);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot2d(x, y, style=0, axesflag=5, rect=[a,-10,b,10]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xset('color', c);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('The gamma function on [' + string(a) + ',' + string(b) + ']');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xselect();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

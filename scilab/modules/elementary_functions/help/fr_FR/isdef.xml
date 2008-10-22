@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="isdef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>isdef</refname>
+    <refpurpose>vérifie si une variable
+  existe</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>isdef(name [,where])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>chaîne de caractères.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>where</term>
+        <listitem>
+          <para>une chaîne de caractères optionnelle valant par défaut
+          <literal>'all'</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>isdef(name)</literal> renvoie <literal>%T</literal> (vrai) si la variable
+    nommée <literal>name</literal> existe et <literal>%F</literal> (faux) sinon.</para>
+    <para>Mise en garde : une fonction utilisant <literal>isdef</literal> peut renvoyer
+    un résultat dépendant de l'environnement courant !</para>
+    <para><literal>isdef(name,'local')</literal> renvoie <literal>%T</literal> si la variable
+    nommée <literal>name</literal> existe dans l'environnement local de la fonction
+    courante et <literal>%F</literal> sinon.</para>
+    <para><literal>isdef(name,'nolocal')</literal> renvoie <literal>%T</literal> si la
+    variable nommée <literal>name</literal> existe dans l'environnement appelant (y
+    compris le niveau global) de la fonction courante et <literal>%F</literal>
+    sinon.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=1;
+isdef('A')
+clear A
+isdef('A')
+
+function level1()
+  function level2()
+    disp(isdef("a","all"));
+    disp(isdef("a","local"));
+    disp(isdef("a","nolocal"));
+  endfunction
+  level2()
+endfunction
+function go()
+  a=1;
+  level1()
+endfunction
+go()
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="exists">exists</link>
+        <link linkend="isglobal">isglobal</link>
+      </member>
+      <member>
+        <link linkend="whereis">whereis</link>
+      </member>
+      <member>
+        <link linkend="type">type</link>
+      </member>
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+      <member>
+        <link linkend="clear">clear</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

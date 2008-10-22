@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="testmatrix">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>testmatrix</refname>
+    <refpurpose> generate some particular matrices</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y]=testmatrix(name,n)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integers, matrix size</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>: <literal>n</literal> x <literal>m</literal> matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Create some particular matrices
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>testmatrix('magi',n)</term>
+        <listitem>
+          <para>returns a magic square of size <literal>n</literal> .</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>testmatrix('frk',n)</term>
+        <listitem>
+          <para>returns the Franck matrix :</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>testmatrix('hilb',n)</term>
+        <listitem>
+          <para>is the inverse of the nxn Hilbert matrix  <literal> (Hij= 1/(i+j-1))</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

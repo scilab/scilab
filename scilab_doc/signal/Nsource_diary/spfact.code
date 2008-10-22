@@ -1,0 +1,14 @@
+//Spectral factorization
+z=poly(0,'z');
+a=[ -0.09-0.35z+z^2 ,-0.02-0.13z
+   -0.03-0.15z     ,  -0.08-0.36z+z^2  ]
+//     We calculate a(z)*a(1/z)*z^2
+sp=a*horner(a,1/z)';
+sp=sp*z;
+sp=sp(2)
+//     We get a left spectral factor
+d=sfact(sp)
+//     We check the result
+d1=horner(d,1/z);
+d1=d1(2)'
+sp-d*d1

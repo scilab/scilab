@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uigetfont">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 déc 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>uigetfont</refname>
+    <refpurpose>Opens a dialog for selecting a font.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+uigetfont()
+
+[fontname [,fontsize [,bold [,italic]]]] = uigetfont([defaultfontname [,defaultfontsize [,defaultbold [,defaultitalic]]]]);
+
+[fontname ,fontsize ,bold ,italic] = uigetfont(defaultfontname ,defaultfontsize ,defaultbold ,defaultitalic);
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>defaultfontname</term>
+        <listitem>
+          <para>String: the default font name to select in the dialog.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>defaultfontsize</term>
+        <listitem>
+          <para>Scalar: the default font size to select in the dialog.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>defaultbold</term>
+        <listitem>
+          <para>Boolean: the default bold attribute in the dialog (%T for bold font, %F otherwise).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>defaultitalic</term>
+        <listitem>
+          <para>Boolean: the default italic attribute in the dialog (%T for bold font, %F otherwise).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fontname</term>
+        <listitem>
+          <para>The selected font name ("" if the user cancels).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fontsize</term>
+        <listitem>
+          <para>The selected font size ([] if the user cancels).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bold</term>
+        <listitem>
+          <para>%T if bold attribute has been selected, %F otherwise ([] if the user cancels).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>italic</term>
+        <listitem>
+          <para>%T if italic attribute has been selected, %F otherwise ([] if the user cancels).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Creates a dialog window for selecting a font.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+uigetfont()
+uigetfont("arial")
+uigetfont("arial", 24)
+uigetfont("arial", 24, %T)
+uigetfont("arial", 24, %T, %F)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getfont">getfont</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>

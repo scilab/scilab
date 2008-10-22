@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="argn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>argn</refname>
+    <refpurpose> nombre d'arguments d'appel d'une fonction  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[lhs [,rhs] ]=argn()
+lhs=argn(1)
+rhs=argn(2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Cette fonction est utilisée à l'intérieur d'une définition de fonction.
+    Elle donne le nombre effectif (au moment de l'appel) d'arguments d'entrée <literal>rhs</literal>
+    et de sortie <literal>lhs</literal>. Elle permet d'utiliser des arguments optionnels.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="varargin">varargin</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

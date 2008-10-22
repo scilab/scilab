@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cdfpoi">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdfpoi</refname>
+    <refpurpose> fonction de répartition de la distribution de Poisson  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[P,Q]=cdfpoi("PQ",S,Xlam)
+[S]=cdfpoi("S",Xlam,P,Q)
+[Xlam]=cdfpoi("Xlam",P,Q,S);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>P,Q,S,Xlam  </term>
+        <listitem>
+          <para>4 vecteurs réels de même taille.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P,Q (Q=1-P)  </term>
+        <listitem>
+          <para>La somme de  0 à S de la densité de Poisson. En entrée : [0,1].
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S  </term>
+        <listitem>
+          <para>Borne supérieure de la somme. En entrée : [0, +infini). En recherche : [0,1E300]
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Xlam  </term>
+        <listitem>
+          <para>Moyenne de la distribution. En entrée : [0, +infini). En recherche : [0,1E300]
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Étant donnés les autres, calcule un paramètre de la distribution de Poisson.
+  </para>
+    <para>
+    La formule  26.4.21 de   Abramowitz  et  Stegun,   Handbook   of
+    Mathematical Functions  (1966) est utilisée pour réduire le calcul de la fonction de répartition de la distribution à celle d'une loi gamma incomplète.
+  </para>
+    <para>
+  </para>
+    <para>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </para>
+  </refsection>
+</refentry>

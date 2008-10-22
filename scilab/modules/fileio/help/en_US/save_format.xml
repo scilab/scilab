@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="save_format" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-05-22 22:27:23 +0200 (jeu, 22 mai 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>save_format</refname>
+
+    <refpurpose>format of files produced by "save"</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Variables are saved by Scilab with the <link
+    linkend="save">save</link> function in the following format:</para>
+
+    <para>each variable record is appended consecutively to the file. The
+    variable record begins with 6 long integer holding the variable name in
+    encoded format (see the Remarks section below),</para>
+
+    <para>After that comes the variable type (long integer), then, depending
+    on it, for:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Floating matrices (type 1)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer),</para>
+
+          <para>real/complex flag it (a long integer in {0,1}),</para>
+
+          <para>data (n*m*(it+1) doubles)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Polynomials (type 2) and Size implicit indices (type 129)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer),</para>
+
+          <para>real/complex flag it (long integer in {0,1}),</para>
+
+          <para>formal variable name (16 bytes),</para>
+
+          <para>index_table (m*n+1 long integers);</para>
+
+          <para>data ((N-1)*(it+1) doubles) , where N is the value of the last
+          entry of the index_table</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Booleans (type 4)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer);</para>
+
+          <para>data (n*m long integers)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Floating sparse matrices (type 5)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer),</para>
+
+          <para>real/complex_flag it (a long integer in {0,1}),</para>
+
+          <para>total_number_of_non_zero_elements nel (a long integer),</para>
+
+          <para>number_of_non_zero_elements_per_row (m long integers),</para>
+
+          <para>column_index_non_zero_elements (nel long integers),</para>
+
+          <para>non_zero_values (nel*(it+1) doubles)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Boolean sparse matrices (type 6)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer),</para>
+
+          <para>unused it (a long integer),</para>
+
+          <para>total_number_of_non_zero_elements nel (a long integer),</para>
+
+          <para>number_of_non_zero_elements_per_row (m long integers),</para>
+
+          <para>column_index_non_zero_elements (nel long integers)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Matlab sparse matrix (type 7)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer),</para>
+
+          <para>real/complex_flag it (a long integer in {0,1}),</para>
+
+          <para>total_number_of_non_zero_elements nel (a long integer),</para>
+
+          <para>number_of_non_zero_elements_per_column (n long
+          integers),</para>
+
+          <para>row_index_non_zero_elements (nel long integers),</para>
+
+          <para>non_zero_values (nel*(it+1) doubles)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Integer matrices (type 8)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer),</para>
+
+          <para>integer_type (a long integer): 1,2,4, or 11,12,14 for signed
+          and unsigned 1,2,4 bytes integers;</para>
+
+          <para>data (n*m bytes for integer_type 1 or 11, n*m short integers
+          for integer_type 2 or 12, n*m long integers for integer_type 4 or
+          14)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>handles (type 9)</term>
+
+        <listitem>
+          <para>version (4 bytes)</para>
+
+          <para>row_size m (a byte),</para>
+
+          <para>column_size n (a byte),</para>
+
+          <para>data (m*n serialization_records)</para>
+
+          <para>A serialization_record is a flat representation of the C data
+          structure associated with the corresponding graphic object. Each
+          graphic object is defined by a (recursive) set of properties (see
+          the <link linkend="get">get</link>) function).</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>The saved serialization_record of a graphic object is
+              structured as follow</term>
+
+              <listitem>
+                <para>type_length n (a byte)</para>
+
+                <para>type (n bytes, the ascii codes of the type name)</para>
+
+                <para>property_values record (variable length)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Strings (type 10)</term>
+
+        <listitem>
+          <para>row_size m (a long integer),</para>
+
+          <para>column_size n (a long integer),</para>
+
+          <para>index_table (n*m+1 long integers);</para>
+
+          <para>data (N long integers, the Scilab encoding of the characters
+          (see <link linkend="code2str">code2str</link>), where N is the value
+          of the last entry of the index_table</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Uncompiled functions (type 11)</term>
+
+        <listitem>
+          <para>nout (long integer),</para>
+
+          <para>lhs_names (6*nout long integers, see the Remarks section
+          below),</para>
+
+          <para>nin (long integer),</para>
+
+          <para>rhs_names (6*nin long integers, see the Remarks section
+          below);</para>
+
+          <para>code_length N (a long integer),</para>
+
+          <para>code (N long integers)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Compiled functions (type 13)</term>
+
+        <listitem>
+          <para>nout (long integer),</para>
+
+          <para>lhs_names (6*nout long integers, see the Remarks section
+          below),</para>
+
+          <para>nin (long integer),</para>
+
+          <para>rhs_names (6*nin long integers, see the Remarks section
+          below),</para>
+
+          <para>pseudo_code_length N (a long integer),</para>
+
+          <para>pseudo_code (N long integers)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Libraries (type 14)</term>
+
+        <listitem>
+          <para>path_length np (a long integer),</para>
+
+          <para>path_name (np long integers: the path character codes
+          sequence, (see <link linkend="code2str">code2str</link>)),</para>
+
+          <para>number of names nn (long integer),</para>
+
+          <para>names (6*nn long integers, see the Remarks section
+          below);</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Lists (type 15), tlists (type 16), mlists (type 17)</term>
+
+        <listitem>
+          <para>number of fields n (a long integer),</para>
+
+          <para>index (n+1 long integers);</para>
+
+          <para>variables_sequence (n variables, each one written according to
+          its format)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Pointers (type 128)</term>
+
+        <listitem>
+          <para>Not handled</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Function pointers (type 130)</term>
+
+        <listitem>
+          <para>function_ptr (a long integer,(see <link
+          linkend="funptr">funptr</link>))</para>
+
+          <para>function_name_code (6 long integers,see the Remarks section
+          below);</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Remarks</title>
+
+    <para>Numbers (long interger, short integers, double) are stored using the
+    little endian convention.</para>
+
+    <para>The variable names are stored as a sequence of 6 long integers, with
+    a specific encoding. see the cvname.f file for details.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="listvarinfile">listvarinfile</link></member>
+
+      <member><link linkend="type">type</link></member>
+
+      <member><link linkend="typeof">typeof</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>compiled by Enrico Segre</member>
+    </simplelist>
+  </refsection>
+</refentry>

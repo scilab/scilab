@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xstringb">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xstringb</refname>
+    <refpurpose> draw strings into a box</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xstringb(x,y,str,w,h,[option])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y,w,h</term>
+        <listitem>
+          <para>vector of 4 real scalars defining the box.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>matrix of strings.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>option</term>
+        <listitem>
+          <para>string.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xstringb</literal> draws the matrix of strings <literal>str</literal> centered inside 
+    the rectangle <literal>rect=[x,y,w,h]</literal>
+    (lower-left point, width, height) in user coordinates.
+    </para>
+    <para>
+    If <literal>option</literal> is given with the value <literal>"fill"</literal>, the character size is 
+    computed so as to fill as much as possible in the rectangle.</para>
+    <para>
+    Enter the command <literal>xstringb()</literal> to see a demo.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+str=["Scilab" "is";"not" "elisaB"];
+plot2d(0,0,[-1,1],"010"," ",[0,0,1,1]);
+r=[0,0,1,0.5];
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+xrect(r(1),r(2)+r(4),r(3),r(4))
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="titlepage">titlepage</link>
+      </member>
+      <member>
+        <link linkend="xstring">xstring</link>
+      </member>
+      <member>
+        <link linkend="xstringl">xstringl</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

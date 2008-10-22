@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="setbpt">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>setbpt</refname>
+    <refpurpose>set breakpoints</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>setbpt(macroname [,linenumb])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>macroname</term>
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>linenumb</term>
+        <listitem>
+          <para>scalar integer or vector of integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>setbpt</literal> interactively inserts a breakpoint in the line
+    number <literal>linenumb</literal> (default value is 1) of the function
+    <literal>macroname</literal></para>
+    <para><literal>linenumb</literal> can be a line or column vector of line numbers,
+    or a single scalar line number.</para>
+    <para>When reaching the breakpoint, Scilab evaluates the specified line,
+    prints the number of the line and the name of the function. If the
+    function is not compiled (see <literal>comp</literal>) the line is printed on
+    the screen. Then Scilab goes into a <literal>pause</literal> mode in which the
+    user can check current values. The <literal>pause</literal> is exited with
+    <literal>resume</literal> or <literal>abort</literal>. Redefining the function does
+    not clear the breakpoints, the user must explicitly delete breakpoints
+    using <literal>delbpt</literal>. The maximum number of functions with
+    breakpoints enabled must be less than 100 and the maximum number of
+    breakpoints is set to 1000.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[setbpt('foo'),setbpt('foo',10),dispbpt()
+delbpt()
+
+setbpt('foo',[1,2,5,6]),dispbpt()]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="delbpt">delbpt</link>
+      </member>
+      <member>
+        <link linkend="dispbpt">dispbpt</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="resume">resume</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

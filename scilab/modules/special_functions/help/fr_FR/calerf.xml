@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="calerf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>calerf</refname>
+    <refpurpose>  calcule différentes fonctions d'erreur.  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag  </term>
+        <listitem>
+          <para>un entier 
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para>vecteur réel (de même taille que x)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>calerf(x,0)</literal> calcule la fonction erreur :<literal>erf(x)</literal>
+  </para>
+    <para><literal>calerf(x,1)</literal> calcule la fonction erreur complémentaire :<literal>erfc(x)</literal>
+  </para>
+    <para><literal>calerf(x,2)</literal> calcule la fonction erreur complémentaire normalisée :<literal>erfcx(x)</literal>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+deff('y=f(t)','y=exp(-t^2)');
+calerf(1,0)
+2/sqrt(%pi)*intg(0,1,f)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="erf">erf</link>
+      </member>
+      <member>
+        <link linkend="erfc">erfc</link>
+      </member>
+      <member>
+        <link linkend="calerf">calerf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>W. J. Cody (code from Netlib (specfun))</para>
+  </refsection>
+</refentry>

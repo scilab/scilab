@@ -1,0 +1,24 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+vstk_
+com_
+stack_
+returnanan_
+isanan_
+callFunctionFromGateway
+putlhsvar_
+createvar_
+getlistrhsvar_
+getrhsvar_
+checklhs_
+checkrhs_
+createlistvarfrom_
+check_vector
+intersci_
+createlistvarfromptr_
+;
+;elementary_functions
+dset_

@@ -1,0 +1,41 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/axis_properties_data.ref','rb');
+
+
+%ans = set('figure_style', 'new');
+if load_ref('%ans') then   pause,end,
+//create a figure
+a = get('current_axes');//get the handle of the newly created axes
+a('data_bounds') = [-1,-1;10,10];
+
+drawaxis(x=2:7, y=4, dir='u');
+a1 = a.children(1);
+if load_ref('a1') then   pause,end,
+
+a1('xtics_coord') = [1,4,5,8,10];
+a1('tics_color') = 2;
+a1('labels_font_size') = 3;
+a1('tics_direction') = 'bottom';
+a1('tics_labels') = [' February','May','june','August','October'];
+
+drawaxis(x=1.2:1:10, y=5, dir='u', textcolor=13);
+a2 = get('hdl');
+if load_ref('a2') then   pause,end,
+
+a2('sub_tics') = 0;
+a2('tics_segment') = 'off';
+a2('ytics_coord') = 4;
+
+%ans = drawaxis(x=-1, y=0:1:7, dir='r', fontsize=10, textcolor=5, ticscolor=6, sub_int=10);
+if load_ref('%ans') then   pause,end,
+
+a3 = get('hdl');
+a3('tics_labels') = 'B' + string(0:7);
+a3('tics_direction') = 'left';
+
+
+
+xdel_run(winsid());
+
+mclose(%U);

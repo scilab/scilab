@@ -1,0 +1,26 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function clear()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+clear
+clear("name")
+clear("name1","name2","name3")
+clearglobal("name")
+clear
+// !! L.11: No Scilab equivalent for: clear("classes")
+clear("classes")
+// !! L.12: No Scilab equivalent for: clear("functions")
+clear("functions")
+clearglobal
+// !! L.14: No Scilab equivalent for: clear("import")
+clear("import")
+clear
+clear("name1","name2","name3")

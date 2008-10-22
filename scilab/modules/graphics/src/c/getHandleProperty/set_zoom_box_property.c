@@ -1,0 +1,66 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2006 - INRIA - Allan Cornet
+ * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+/*------------------------------------------------------------------------*/
+/* file: set_zoom_box_property.c                                          */
+/* desc : function to modify in Scilab the zoom_box field of              */
+/*        a handle                                                        */
+/*------------------------------------------------------------------------*/
+
+#include "setHandleProperty.h"
+#include "SetProperty.h"
+#include "GetProperty.h"
+#include "getPropertyAssignedValue.h"
+#include "sciprint.h"
+#include "localization.h"
+#include "SetPropertyStatus.h"
+#include "axesScale.h"
+
+/*------------------------------------------------------------------------*/
+int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+{
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint(_("Incompatible type for property %s.\n"),"zoom_box") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+  {
+    sciprint(_("%s property does not exist for this handle.\n"),"zoom_box") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  /* We must have a 4x1 matrix */
+  if ( nbRow * nbCol == 6 )
+  {
+    return sciZoom3D(pobj, getDoubleMatrixFromStack(stackPointer));
+  }
+  else if( nbRow * nbCol == 4)
+  {
+    return sciZoom2D(pobj, getDoubleMatrixFromStack(stackPointer));
+  }
+  else if ( nbCol * nbRow == 0 )
+  {
+    sciUnzoomSubwin(pobj);
+  }
+  else
+  {
+    sciprint(_("Argument must be a vector of size %d (or %d in 2d).\n"),6,4);
+    return SET_PROPERTY_ERROR ;
+  }
+  return SET_PROPERTY_SUCCEED ;
+}
+/*------------------------------------------------------------------------*/

@@ -1,0 +1,49 @@
+# Localization of the module demo_tools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-12-04 16:29+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:09+0100\n"
+
+# File: macros/demo_viewCode.sci, line: 21
+msgid " -- View Code -- "
+msgstr ""
+#
+# File: macros/demo_gui.sci, line: 53
+msgid "&File"
+msgstr ""
+#
+# File: macros/demo_gui.sci, line: 54
+msgid "&Tools"
+msgstr ""
+#
+# File: macros/demo_gui.sci, line: 55
+msgid "&Edit"
+msgstr ""
+#
+# File: macros/demo_gui.sci, line: 56
+msgid "&?"
+msgstr ""
+#
+# File: macros/demo_gui.sci, line: 62
+msgid "File"
+msgstr ""
+#
+# File: macros/demo_gui.sci, line: 65
+msgid "Close"
+msgstr ""
+#
+# File: macros/demo_gui.sci, line: 73
+msgid "Demos"
+msgstr ""

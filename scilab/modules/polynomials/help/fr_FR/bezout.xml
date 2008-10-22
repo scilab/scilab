@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bezout">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bezout</refname>
+    <refpurpose> équation de Bezout pour les polynômes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[pgcd,U]=bezout(p1,p2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>p1, p2  </term>
+        <listitem>
+          <para>deux polynômes réels ou deux entiers (type égal à 8)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[thegcd,U]=bezout(p1,p2)</literal> calcule le PGCD <literal>pgcd</literal> de <literal>p1</literal> et <literal>p2</literal> et de plus une matrice
+    unimodulaire (2x2) <literal>U</literal> telle que :
+  </para>
+    <para>
+      <literal>[p1,p2]*U = [pgcd,0]</literal>
+    </para>
+    <para>
+    Le PPCM de <literal>p1</literal> et <literal>p2</literal> est donné par
+  </para>
+    <para><literal>p1*U(1,2)</literal> (ou <literal>-p2*U(2,2)</literal>)
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+// cas des polynômes
+x=poly(0,'x');
+p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
+[pgcd,U]=bezout(p1,p2) 
+det(U)
+clean([p1,p2]*U)
+ppcm=p1*U(1,2)
+lcm([p1,p2])
+// cas des entiers
+i1=int32(2*3^5); i2=int32(2^3*3^2);
+[thegcd,U]=bezout(i1,i2) 
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U]=gcd(V)
+V*U
+lcm(V)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="lcm">lcm</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fullrfk">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fullrfk</refname>
+    <refpurpose> factorisation de rang plein de A^k  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[Q,M]=fullrfk(A,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>matrice réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k  </term>
+        <listitem>
+          <para>entier
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,M  </term>
+        <listitem>
+          <para>matrices réelles ou complexes
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Cette fonction calcule la factorisation de rang plein de <literal>A^k</literal> : <literal>fullrfk</literal> renvoie <literal>Q</literal> et <literal>M</literal> telles que <literal>A^k = Q*M</literal>
+    avec Im(<literal>Q</literal>)=Im(<literal>A^k</literal>) et ker(<literal>M</literal>)=ker(<literal>A^k</literal>),
+    <literal>Q</literal> de rang maximal, et les lignes de <literal>M</literal> sont linéairement indépendantes, 
+  </para>
+    <para>
+    Pour <literal>k=1</literal>, <literal>fullrfk</literal> est équivalent à <literal>fullrf</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
+norm(Bk*Ck-A^3,1)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+      <member>
+        <link linkend="range">range</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>F.D (1990);   </para>
+  </refsection>
+</refentry>

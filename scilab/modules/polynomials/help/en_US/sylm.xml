@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sylm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sylm</refname>
+    <refpurpose> Sylvester matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[S]=sylm(a,b)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a,b</term>
+        <listitem>
+          <para>two polynomials</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>sylm(a,b)</literal> gives the Sylvester matrix associated to polynomials
+    <literal>a</literal> and <literal>b</literal>, i.e. the matrix <literal>S</literal> such that:</para>
+    <para><literal>coeff( a*x + b*y )' = S * [coeff(x)';coeff(y)']</literal>.</para>
+    <para>
+    Dimension of <literal>S</literal> is equal to <literal>degree(a)+degree(b)</literal>.</para>
+    <para>
+    If <literal>a</literal> and <literal>b</literal> are coprime polynomials then</para>
+    <para><literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> and the instructions</para>
+    <programlisting><![CDATA[
+
+  u = sylm(a,b) \ eye(na+nb,1)
+  x = poly(u(1:nb),'z','coeff')
+  y = poly(u(nb+1:na+nb),'z','coeff')
+   
+    ]]></programlisting>
+    <para>
+    compute Bezout factors <literal>x</literal> and <literal>y</literal> of minimal degree
+    such that <literal>a*x+b*y = 1</literal></para>
+  </refsection>
+</refentry>

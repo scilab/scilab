@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="plus">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plus (+)</refname>
+    <refpurpose>  opérateur d'addition  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>X+Y
+str1+str2</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X,Y  </term>
+        <listitem>
+          <para>matrice réelle, complexe, polynomiale, rationnelle ou liste de type <literal>syslin</literal>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>str1,str2  </term>
+        <listitem>
+          <para>chaîne de caractères ou matrice de chaînes de caractères
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Addition. 
+  </para>
+    <para>
+    Pour des opérandes numériques l'addition a la signification habituelle.
+    Si l'un des opérandes est une matrice et l'autre un scalaire, ce dernier est ajouté à tous les termes de la matrice. Si l'un des opérandes est une matrice vide, le résultat est égal à l'autre opérande (ce comportement par défaut peut être modifié avec <literal>mtlb_mode</literal>). 
+  </para>
+    <para>
+    Pour les chaînes de caractères <literal>+</literal> désigne la concaténation.
+  </para>
+    <para>
+    L'addition peut être redéfinie pour de nouveaux types d'objets en utilisant la surcharge d'opérateurs (voir <literal>overloading</literal>).
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+[1,2]+1
+[]+2
+s=poly(0,"s");
+s+2
+1/s+2
+"conca"+"tener"
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="addf">addf</link>
+      </member>
+      <member>
+        <link linkend="mtlb_mode">mtlb_mode</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

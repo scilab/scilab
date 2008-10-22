@@ -1,0 +1,18 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/proj_data.ref','rb');
+X1 = rand(5, 2);X2 = rand(5, 3);
+P = proj(X1, X2);
+%ans = norm(P^2 - P, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = trace(P);
+if load_ref('%ans') then   pause,end,
+// This is dim(X2)
+[Q,M] = fullrf(P);
+%ans = svd([Q,X2]);
+if load_ref('%ans') then   pause,end,
+// span(Q) = span(X2)
+xdel_run(winsid());
+
+mclose(%U);

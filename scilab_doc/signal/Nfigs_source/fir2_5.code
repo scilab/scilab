@@ -1,0 +1,29 @@
+//exec('fir2_5.code')
+ xinit('fir2.ps') 
+ w=%pi*(-1:2/200:1);
+ lp=0*ones(w);
+ hp=lp;
+ bp=lp;
+ sb=lp;
+ for j=1:201,if abs(w(j))<=%pi/4 then lp(j)=1;end;end
+
+ for j=1:201,if abs(w(j))>=3*%pi/4 then hp(j)=1;end;end;
+
+ for j=1:201,if abs(w(j)-3*%pi/8)<=%pi/8 then bp(j)=1;end;end
+ for j=1:201,if abs(w(j)+3*%pi/8)<=%pi/8 then bp(j)=1;end;end;
+
+ for j=1:201,if abs(w(j))<=%pi/4 then sb(j)=1;end;end
+ for j=1:201,if abs(w(j))<=%pi/2 then sb(j)=1;end;end;
+ plot2d(w',lp',[1],"011"," ",[-%pi,-0.125,%pi,1.125])
+ xend()
+ xinit('fir3.ps')
+ plot2d(w',hp',[1],"011"," ",[-%pi,-0.125,%pi,1.125])
+ xend()
+ xinit('fir4.ps')
+ plot2d(w',bp',[1],"011"," ",[-%pi,-0.125,%pi,1.125])
+ xend()
+ xinit('fir5.ps')
+ plot2d(w',sb',[1],"011"," ",[-%pi,-0.125,%pi,1.125])
+ xend()
+
+

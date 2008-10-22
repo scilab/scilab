@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sinhm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sinhm</refname>
+    <refpurpose> sinus hyperbolique matriciel  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>t=sinhm(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,t  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    sinhm(x) est le sinus hyperbolique matriciel de la matrice x.
+    <literal>t=(expm(x)+expm(-x))/2</literal>. Le résultat peut être imprécis pour les matrices non symétriques.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[1,2;2,4]
+asinhm(sinhm(A))
+A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   // cas complexe
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sinh">sinh</link>
+      </member>
+      <member>
+        <link linkend="expm">expm</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

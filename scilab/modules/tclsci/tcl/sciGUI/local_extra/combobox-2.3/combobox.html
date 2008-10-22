@@ -1,0 +1,626 @@
+<html><head><title>combobox -  </title></head>
+<! -- Generated from combobox.man by tcllib/doctools/mpexpand with fmt.html -->
+<! -- Copyright (c) 2003 bryan -->
+<! -- All rights reserved -->
+<! -- CVS: $Id: combobox.html,v 1.1 2004/06/29 08:34:56 steer Exp $ combobox.n -->
+
+<h1> combobox(n) 2.3 combobox &quot;&quot;</h1>
+<a name="name"><h2>NAME</h2>
+<p> combobox - Combobox Megawidget
+
+
+
+
+
+<a name="synopsis"><h2>SYNOPSIS</h2>
+<table border=1 width=100% cellspacing=0 cellpadding=0><tr            bgcolor=lightyellow><td bgcolor=lightyellow><table 0 width=100% cellspacing=0 cellpadding=0><tr valign=top ><td >package require combobox 2.3 </td></tr>
+<tr valign=top ><td >combobox::combobox <i class='arg'>pathName</i> ?options? </td></tr>
+</table></td></tr></table>
+<a name="description"><h2>DESCRIPTION</h2>
+
+This package provides a new widget named &amp;quot;combobox&amp;quot; which combines an
+entry widget and a dropdown menu into a single widget.
+
+<a name="standardoptions"><h2>STANDARD OPTIONS</h2>
+
+-background
+-borderwidth
+-cursor
+-font
+-foreground
+-height
+-highlightthickness
+-highlightbackground
+-highlightcolor
+-maxheight
+-relief
+-selectbackground
+-selectborderwidth
+-selectforeground
+-state
+-textvariable
+-xscrollcommand
+
+<p>
+
+See the options manual entry for detailed descriptions of the above options.
+
+<a name="widgetspecificoptions"><h2>WIDGET-SPECIFIC OPTIONS</h2>
+
+<dl>
+
+<dt>Command-Line Switch:	<strong>-buttonbackground</strong><br>
+Database Name:	<strong>buttonBackground</strong><br>
+Database Class:	<strong>ButtonBackground</strong><br>
+<dd>
+
+Defines the background color of the button used to activate the
+dropdown list.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-command</strong><br>
+Database Name:	<strong>command</strong><br>
+Database Class:	<strong>Command</strong><br>
+<dd>
+
+Defines a command to be run whenver the user selects a value from the
+dropdown list box. If the combobox is editable, the command will also 
+be called whenever the user presses return or the widget loses the keyboard
+focus and the value has changed. The command will have two values 
+appended to it: the name of the window and the new value of the
+combobox. The value is considered to have changed if it differs from
+the value when the entry first gained focus, or since the last time
+the command was called.  
+<br><br>
+It is important to note that if the combobox has an associated
+<i class='arg'>-textvariable</i>, the command will not be called if the value of
+the variable is changed external to the combobox. 
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-commandstate</strong><br>
+Database Name:	<strong>commandState</strong><br>
+Database Class:	<strong>State</strong><br>
+<dd>
+
+One of &amp;quot;normal&amp;quot; or &amp;quot;disabled&amp;quot;. If set to &amp;quot;disabled&amp;quot;, the value of 
+the B&amp;lt;-command&amp;gt; option will not be evaluated when the value of the
+combobox changes. 
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-disabledbackground</strong><br>
+Database Name:	<strong>disabledBackground</strong><br>
+Database Class:	<strong>DisabledBackground</strong><br>
+<dd>
+
+Defines the background color for the combobox when it is disabled.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-disabledforeground</strong><br>
+Database Name:	<strong>disabledForeground</strong><br>
+Database Class:	<strong>DisabledForeground</strong><br>
+<dd>
+
+Defines the foreground color for the combobox when it is disabled.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-dropdownwidth</strong><br>
+Database Name:	<strong>dropdownWidth</strong><br>
+Database Class:	<strong>DropdownWidth</strong><br>
+<dd>
+
+Defines the width of the dropdown list. If null or 0, the dropdown
+listbox width will be the same as the always-visible portion of the 
+combobox (ie: the entry and menubutton). Otherwise the value specifies
+the number of average-sized characters to display in the dropdown listbox.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-editable</strong><br>
+Database Name:	<strong>editable</strong><br>
+Database Class:	<strong>Editable</strong><br>
+<dd>. 
+
+A boolean value which specifies whether the entry widget of the
+combobox can be typed in. If false, values may only be set by
+selecting them from the dropdown list.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-elementborderwidth</strong><br>
+Database Name:	<strong>elementBorderWidth</strong><br>
+Database Class:	<strong>BorderWidth</strong><br>
+<dd>
+
+Specifies the width of borders drawn around the internal elements of
+the widget (the button and the scrollbars for the dropdown list).
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-height</strong><br>
+Database Name:	<strong>height</strong><br>
+Database Class:	<strong>Height</strong><br>
+<dd>
+
+Specifies the hight of the dropdown list, in number of lines. A value
+of zero will make the dropdown list just tall enough to hold all of
+the elements in the list. The height defaults to 10.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-image</strong><br>
+Database Name:	<strong>image</strong><br>
+Database Class:	<strong>Image</strong><br>
+<dd>
+
+Defines an image to use on the button used to drop down the list. If
+it is not specified it defaults to a small black triangle.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-listvar</strong><br>
+Database Name:	<strong>listVariable</strong><br>
+Database Class:	<strong>ListVariable</strong><br>
+<dd> 
+
+Specifies the name of a variable associated with the dropdown listbox.
+If the variable changes the listbox will automatically update itself
+to reflect the new value. Attempts to unset a variable in use as a
+listvar will fail but will not generate an error.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-maxheight</strong><br>
+Database Name:	<strong>maxHeight</strong><br>
+Database Class:	<strong>Height</strong><br>
+<dd>
+
+Sets the maximum height of the dropdown list, in the event
+B&amp;lt;-height&amp;gt; is set to zero and there are a large number of items in the
+list. If this value is set to 0 (zero) the list will be as large as
+the total number of items in the list. The maxheight defaults to 10.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-opencommand</strong><br>
+Database Name:	<strong>openCommand</strong><br>
+Database Class:	<strong>Command</strong><br>
+<dd>
+
+If this option is specified then it provides a Tcl command to
+execute each time the combobox is opened (eg: when the dropdown
+listbox is displayed). The command is invoked by the B&amp;lt;open&amp;gt; widget
+command before opening the combobox. 
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-value</strong><br>
+Database Name:	<strong>value</strong><br>
+Database Class:	<strong>Value</strong><br>
+<dd>
+
+Specifies the value for the combobox.
+
+<br><br>
+<dt>Command-Line Switch:	<strong>-width</strong><br>
+Database Name:	<strong>width</strong><br>
+Database Class:	<strong>Width</strong><br>
+<dd>
+
+Specifies an integer value indicating the desired width of the
+combobox entry widget, in average size characters of the widget's
+font. If the value is less than or equal to zero, the widget picks a
+size large enough to hold its current text.
+
+</dl>
+
+<a name="overview"><h2>OVERVIEW</h2>
+
+The <b class='cmd'>combobox</b> command creates a new window (given by the 
+<i class='arg'>pathName</i> argument) and makes it into a dropdown combobox
+widget. Additional options, described above, may be specified on the
+command line. Currently no option database support is provided. The
+<b class='cmd'>combobox</b> command returns its <em>pathName</em> arguument. At
+the time this command is invoked, there must not exists a window named
+<em>pathName</em>, but <em>pathName's</em> parent must exist.
+
+<p>
+
+A combobox is a widget that displays a one-line text string, and
+allows that string to be edited or selected from a dropdown list. When
+first created a combobox's value is the null string unless a variable
+is associated with the widget using the <i class='arg'>-textvariable</i> option, in
+which case it will be the value stored in the associated variable.
+
+<p>
+
+The combobox entry wiget is capable of displaying strings that are too
+long to fit entirely within the widget's window. In this case only a
+portion of the string will be displayed; commands described below may
+be used to change the view in the window. Comboboxes use the standard
+-xscrollcommand mechanism for interacting with scrollbars (see
+the description of the -xscrollcommand option for
+details). They also support scanning, as described below.
+
+<a name="widgetcommand"><h2>WIDGET COMMAND</h2>
+
+The <b class='cmd'>combobox</b> command creates a new Tcl command whose name is
+<i class='arg'>pathName</i>. This command may be used to invoke various operations on
+the widget. It has the following general form:
+
+<p><table><tr><td bgcolor=black>&nbsp;</td><td><pre class='sample'>
+    <i class='arg'>pathName</i> option ?arg arg ...?
+</pre></td></tr></table></p>
+
+<em>option</em> and the <em>arg</em>s determine the exact behavior of the command.
+
+<p>
+
+Many of the widget commands take one or more indicies as
+arguments. For <strong>list</strong> commands the indicies may take one of the forms
+acceptable to the standard listbox command. For all other commands
+the indicies may take the form of an indicie for a standard entry
+widget. See the appropriate man pages for more information.
+
+<p>
+
+The following commands are possible for combobox widgets:
+
+<p>
+
+<dl>
+
+<dt><i class='arg'>pathName</i> <strong>bbox</strong> <em>index</em><dd>
+
+Returns a list of four numbers describing the bounding box of the
+characters given by <em>index</em>. The first two elements of the list give
+the x and y coordinates of the upper-left corner of the screen area
+covered by the character (in pixels relative to the widget) and the
+last two elements give the width and height of the character, in
+pixels. The bounding box may refer to a region outside the visible
+area of the window.  
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>cget</strong> <em>option</em><dd>
+
+Returns the current value for the configuration option give 
+by <em>option</em>. <em>Option</em> may have any of the values accepted by 
+the <b class='cmd'>combobox</b> command.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>close</strong><dd>
+
+Causes the dropdown listbox of the widget to be withdrawn if it is
+currently displayed.  
+ 
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>configure</strong> <em>option</em><dd>
+
+Query or modify the configuration options of the widget. If no option
+is specified, returns a list describing all of the available options
+for pathName, though not in the same format as describe in
+Tk_ConfigureInfo. The format will be a list, where each element will
+be a list of two values: an option name and the current value.
+
+<br><br>
+
+If <em>option</em> is specified with no value, then the command
+returns a list describing the one named <em>option</em>. This list will be
+identical to the corresponding sublist of the value returned if no
+<em>option</em> is specified.  If one or more option-value pairs are
+specified, then the command modifies the given widget <em>option</em>(s) to
+have the given value(s);  in this case the command returns an empty
+string. <em>Option</em> may have any of the values accepted by the entry
+command. 
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>curselection</strong><dd>
+
+Returns the index of the dropdown list item that matches the value
+of the combobox, or -1 if the combobox is editable and the string
+doesn't match a value in the list.  
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>delete</strong> <em>first</em> ?last?<dd>
+
+Delete one or more elements from the combobox entry widget. <em>First</em>
+is the index of the first character to delete, and <em>last</em> is the index
+of the character just after the last one to delete. If <em>last</em> isn't
+specified it defaults to <em>first</em>+1, i.e. a single character is
+deleted. This command returns an empty string.  
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>get</strong><dd>
+
+Returns the combobox's string.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>icursor</strong> <em>index</em><dd>
+
+Arrange for the insertion cursor to be displayed just before the
+character given by <em>index</em>. Returns an empty string.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>index</strong> <em>index</em><dd>
+
+Returns the numerical index corresponding to <em>index</em>
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>insert</strong> <em>index</em> <em>string</em><dd>
+
+Insert the characters of <em>string</em> just before the character indicated
+by <em>index</em>. Returns an empty string.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>list</strong> <em>option</em> <em>args</em><dd>
+
+This command is used to manipulate the items in the dropdown
+list. It has several forms, depending on <em>option</em>:
+
+<br><br>
+<dl>
+
+<dt><strong>list</strong> <strong>delete</strong> <em>first</em> ?last?<dd>
+
+Deletes one or more elements of the dropdown list.  First and last are
+indices specifying the first and last elements in the range to delete.
+If last isn't specified it defaults to first, i.e. a single element is
+deleted.  
+
+<br><br>
+<dt><strong>list</strong>  <strong>get</strong> <em>first</em> ?last?<dd>
+
+If last is omitted, returns the contents of the dropdown list element
+indicated by first, or an empty string if first refers to a
+non-existent element. If last is specified, the command returns a list
+whose elements are all of the dropdown list elements between first and last,
+inclusive. Both first and last may have any of the standard forms for
+indices. 
+
+<br><br>
+<dt><strong>list</strong> <strong>index</strong> <em>index</em><dd>
+
+Returns the integer index value that corresponds to index. If index is
+end the return value is a count of the number of elements in the
+dropdown list (not the index of the last element). 
+
+<br><br>
+<dt><strong>list</strong> <strong>insert</strong> <em>index</em>  ?element element ...?<dd>
+
+Inserts zero or more new elements in the list just before the element
+given by index.  If index is specified as end then the new elements
+are added to the end of the list.  Returns an empty string.  
+
+<br><br>
+<dt><strong>list</strong> <strong>size</strong><dd>
+
+Returns a decimal string indicating the total number of elements in
+the dropdown list.  <br><br>
+
+</dl>
+
+<dt><i class='arg'>pathName</i> <strong>open</strong><dd>
+
+Causes the dropdown listbox of the combobox to be displayed if it 
+is currently hidden.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>scan</strong> <em>option</em> <em>args</em><dd>
+
+This command is used to implement scanning on the combobox entry
+widget.  It has two forms, depending on option:  
+
+<br><br>
+<dl>
+
+<dt><i class='arg'>pathName</i> <strong>scan mark</strong> <em>x</em><dd>
+
+Records x and the current view in the entry window;  used in
+conjunction with later <strong>scan dragto</strong> commands.  Typically this
+command is associated with a mouse button press in the widget.  It
+returns an empty string.  
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>scan dragto</strong> <em>x</em><dd>
+
+This command computes the difference between its <em>x</em> argument 
+and the <em>x</em> argument to the last <strong>scan mark</strong>  command 
+for the widget.  It then adjusts the view left or right by 10 times 
+the difference in x-coordinates.  This command is typically associated
+with mouse motion events in the widget, to produce the effect of 
+dragging the entry at high speed through the window.  The return 
+value is an empty string.   <br><br>
+
+</dl>
+
+<dt><i class='arg'>pathName</i> <strong>select</strong> <em>index</em><dd>
+
+Selects the item in the dropdown list represented by <em>index</em> and
+makes that the current value of the combobox.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>selection</strong> <em>option</em> <em>arg</em><dd>
+
+This command is used to adjus the selection within the editable
+portion of the combobox. It has several forms, depending on 
+<em>option</em>:
+
+<br><br>
+<dl>
+
+<dt><i class='arg'>pathName</i> <strong>selection</strong> <strong>adjust</strong> <i class='arg'>index</i><dd>
+
+Locate the end of the selection nearest to the character given by
+<i class='arg'>idnex</i> (i.e. including but not going beyond <i class='arg'>index</i>). The
+other end of the selection is made the anchor point for future
+<strong>select to</strong> commands. If the selection isn't currently in
+the editable portion of the combobox, then a new selection is created
+to include the characters between <i class='arg'>index</i> and the most recent
+selection anchor point, inclusive. Returns an empty string.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>selection</strong> <strong>clear</strong><dd>
+
+Clear the selection if it is currently in this widget. If the
+selection isn't in this widget then the command has no
+effect. Returns an empty string.
+
+<br><br>
+<dt><i class='arg'>pathname</i> <strong>selection</strong> <strong>from</strong> <i class='arg'>index</i><dd>
+
+Set the selection anchor point to just before the character given by
+<i class='arg'>index</i>. Doesn't change the selection. Returns an empty string.
+
+<br><br>
+<dt><i class='arg'>pathname</i> <strong>selection</strong> <strong>parent</strong><dd>
+
+Returns 1 if there are characters selected in the editable portion of
+the combobox, otherwise it returns 0.
+
+<br><br>
+<dt><i class='arg'>pathname</i> <strong>selection</strong> <strong>range</strong> <i class='arg'>start</i> <i class='arg'>end</i><dd>
+
+Sets the selection to include the characters starting with the one
+indexed by <i class='arg'>start</i> and ending with the one just before <i class='arg'>end</i>. 
+If <i class='arg'>end</i> refers to the same character as <i class='arg'>start</i> or an
+earlier one, then the selection is cleared.
+
+<br><br>
+<dt><i class='arg'>pathname</i> <strong>selection</strong> <strong>to</strong> <i class='arg'>index</i><dd>
+
+If <i class='arg'>index</i> is before the anchor point, set the selection to the
+characters from <i class='arg'>index</i> up to but not including the anchor
+point. If <i class='arg'>index</i> is the same as the anchor point, do nothing. If 
+<i class='arg'>index</i> is after the anchor point, set the selection to the
+characters from the anchor point up to but not including <i class='arg'>index</i>. 
+The anchor point is determined by the most recent <strong>select from</strong> 
+or <strong>select adjust</strong> command in this widget. If the selection
+isn't in this widget then a new selection is created using the most
+recent anchor point specified for the widget. Returns an empty string.
+<br><br>
+
+</dl>
+
+<dt><i class='arg'>pathName</i> <strong>subwidget</strong> ?name?<dd>
+
+This command returns a list of internal widget names if given no
+arguments, or returns the internal widget path for the widget identified
+by <em>name</em>. 
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>xview</strong> <em>args</em><dd>
+
+This command is used to query and change the horizontal position of
+the text in the widget's window.  It can take any of the following
+forms:
+
+<br><br>
+<dl>
+
+<dt><i class='arg'>pathName</i> <strong>xview</strong><dd>
+
+Returns a list containing two elements. Each element is a real
+fraction between 0 and 1;  together they describe the horizontal span
+that is visible in the window. For example, if the first element is .2
+and the second element is .6, 20% of the entry's text is off-screen to
+the left, the middle 40% is visible in the window, and 40% of the text
+is off-screen to the right. These are the same values passed to
+scrollbars via the <i class='arg'>-xscrollcommand</i> option. 
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>xview</strong> <em>index</em><dd>
+
+Adjusts the view in the window so that the character given by <em>index</em> is
+displayed at the left edge of the window.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>xview</strong> <strong>moveto</strong> <em>fraction</em><dd>
+
+Adjusts the view in the window so that the character <em>fraction</em> of the
+way through the text appears at the left edge of the window. <em>Fraction</em>
+must be a fraction between 0 and 1.
+
+<br><br>
+<dt><i class='arg'>pathName</i> <strong>xview</strong> <strong>scroll</strong> <em>number</em><dd>
+<em>what</em>
+
+This command shifts the view in the window left or right according to
+<em>number</em> and <em>what</em>. <em>Number</em> must be an integer. 
+<em>What</em> must be
+either units or pages or an abbreviation of one of these. If <em>what</em>
+is units, the view adjusts left or right by number average-width
+characters on the display;  if it is pages then the view adjusts by
+number screenfuls. If <em>number</em> is negative then characters farther to
+the left become visible;  if it is positive then characters farther to
+the right become visible.   
+
+</dl>
+
+</dl>
+
+<a name="defaultbindings"><h2> DEFAULT BINDINGS</h2>
+
+Bindings in the entry widget of the combobox are the same as for
+normal entry widgets, with the following exceptions:
+
+<p>
+
+Double-clicking mouse button 1 over the entry widget will display the
+dropdown list if it is not displayed, and hide it if it is. The value
+of the combobox won't change.
+
+<p>
+
+If <i class='arg'>-editable</i> is set to false, single-clicking mouse button 1
+over the entry widget will display the dropdown list if it is not
+displayed, and hide it if it is. The value of the combobox won't change.
+
+<p>
+
+Pressing the Up, Down, Next and Prior buttons (up arrow, down arrow,
+page up and page down, respectively) will display the dropdown list if
+it is not displayed. If it is displayed, these buttons will change the
+current selection on the list.
+
+<p>
+
+If <i class='arg'>-editable</i> is true, pressing the Return or Tab key will set the
+value to the string in the entry widget. If the list is
+displayed and an item is selected, Return will set the value of the
+combobox to the selected item.
+
+<p>
+
+If <i class='arg'>-editable</i> is false, pressing the Return key when the list is 
+displayed will result in the value of the combobox changing to the
+currently highlighted item in the list. The list will be closed.
+
+<p>
+
+Pressing the escape key when the list is displayed will result in the
+list being closed with the value of the combobox remaining unchanged.
+
+<p>
+
+Clicking the mouse button over an element in the dropdown list will
+cause the clicked-on item to be the new value of the combobox, and the
+list will be closed.
+
+<p>
+
+If the combobox is disabled using the <i class='arg'>-state</i> option, then the entry
+widget's view can still be adjusted and text in the entry can be
+selected, but no insertion cursor will be displayed, no text
+modification will be possible, and the list cannot be displayed.
+
+<a name="bugs"><h2>BUGS</h2>
+
+With some window managers it may be possible to move the window that
+contains the combobox while the dropdown list is visible. In such a
+case the dropdown list will stay where it originally appeared. Well
+behaved window managers shouldn't let you move the window while the
+list is displayed.
+
+<p>
+
+It has been reported that with some virtual window managers, switching
+to a new virtual window while the dropdown list is visible will result
+in the dropdown list appearing by itself in the new virtual window. 
+
+<p>
+
+So the lesson here is: don't dork with your windows while the dropdown
+list is visible. That, or get a better window manager. 
+
+</body></html>

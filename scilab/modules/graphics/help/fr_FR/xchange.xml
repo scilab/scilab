@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xchange">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xchange</refname>
+    <refpurpose> transformation de coordonnées de l'échelle courante en pixels et inversement  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[x1,y1,rect]=xchange(x,y,dir)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y  </term>
+        <listitem>
+          <para>deux matrices de taille (n1,n2) (coordonnées d'un ensemble de points).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir</term>
+        <listitem>
+          <para>spécifie la conversion à réaliser (Voir la rubrique "Description" pour plus d'informations).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x1,y1  </term>
+        <listitem>
+          <para>deux matrices de taille (n1,n2) (coordonnées transformées).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect  </term>
+        <listitem>
+          <para>un vecteur de taille 4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Après l'appel à une fonction graphique de haut niveau, <literal>xchange</literal> calcule des coordonnées en pixels à partir des coordonnées "réelles" à l'échelle du dessin courant, et inversement, suivant la valeur du paramètre <literal>dir</literal> :
+    "f2i" (float to int) signifie réel vers pixel et "i2f" (int to float)
+    signifie pixel vers réel.
+    <literal>x1</literal> et <literal>y1</literal> sont les nouvelles coordonnées de l'ensemble de points 
+    définis par les anciennes coordonnées <literal>x</literal> et <literal>y</literal>.
+  </para>
+    <para><literal>rect</literal> sont les coordonnées en pixels
+    du rectangle du cadre courant : [point en haut à gauche, largeur, hauteur].
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+t=[0:0.1:2*%pi]';
+plot2d(t,sin(t))
+[x,y,rect]=xchange(1,1,"f2i")
+[x,y,rect]=xchange(0,0,"i2f")
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ppol">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ppol</refname>
+    <refpurpose> pole placement</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[K]=ppol(A,B,poles)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B</term>
+        <listitem>
+          <para>real matrices of dimensions <literal>nxn</literal> and <literal>nxm</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>poles</term>
+        <listitem>
+          <para>real or complex vector of dimension <literal>n</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>K</term>
+        <listitem>
+          <para>real matrix (negative feedback gain)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>K=ppol(A,B,poles)</literal> returns a mxn gain matrix <literal>K</literal> such that
+    the eigenvalues of <literal>A-B*K</literal> are <literal>poles</literal>.
+    The pair <literal>(A,B)</literal> must be controllable. Complex number in <literal>poles</literal> must appear in conjugate pairs.</para>
+    <para>
+    An output-injection gain <literal>F</literal> for <literal>(A,C)</literal> is obtained as follows:</para>
+    <para>
+      <literal>Ft=ppol(A',C',poles);  F=Ft'</literal>
+    </para>
+    <para>
+    The algorithm is by P.H. Petkov.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=rand(3,3);B=rand(3,2);
+F=ppol(A,B,[-1,-2,-3]);
+spec(A-B*F)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="canon">canon</link>
+      </member>
+      <member>
+        <link linkend="stabil">stabil</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

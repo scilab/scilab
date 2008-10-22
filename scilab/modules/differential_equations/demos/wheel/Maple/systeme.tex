@@ -1,0 +1,118 @@
+% Copyright ENPC
+Lagrangian
+ 
+\begin{eqnarray*} && \frac{m\left(\dot{x}^2+\dot{y}^2+\dot{z}^2\right)
+}{2} + \frac{J_{1}\left({\sin(\phi)}^2\,\dot{\theta}^2+\dot{\phi}^2
+\right)}{2} \\ &&\quad\mbox{} + \frac{J_{3}\left(\dot{\psi}+\cos(\phi)
+\,\dot{\theta}\right)^2}{2} - m\,g\,z \end{eqnarray*}
+variables :
+ 
+\[  q  = \left( \begin{array}{c} x \cr y \cr z \cr \theta \cr \phi
+ \cr \psi \end{array} \right)  \]
+Lhs of Euler Equations
+ 
+\[ \LL(x) = m\,\ddot{x} \]
+\[ \LL(y) = m\,\ddot{y} \]
+\[ \LL(z) = m\,\ddot{z} + m\,g \]
+\begin{eqnarray*} \LL(\theta) &=& 2\,J_{1}\,\sin(\phi)\,\dot{\theta}\,
+\cos(\phi)\,\dot{\phi} + J_{1}\,\ddot{\theta} - J_{1}\,\ddot{\theta}\,
+{\cos(\phi)}^2 \\ &&\quad\mbox{} + J_{3}\,\cos(\phi)\,\ddot{\psi} - 2
+\,J_{3}\,\cos(\phi)\,\sin(\phi)\,\dot{\phi}\,\dot{\theta} + J_{3}\,{
+\cos(\phi)}^2\,\ddot{\theta} \\ &&\quad\mbox{} - J_{3}\,\sin(\phi)\,
+\dot{\phi}\,\dot{\psi} \end{eqnarray*}
+\begin{eqnarray*} \LL(\phi) &=& J_{1}\,\ddot{\phi} - J_{1}\,\sin(\phi)
+\,\dot{\theta}^2\,\cos(\phi) + J_{3}\,\sin(\phi)\,\dot{\theta}\,
+\dot{\psi} \\ &&\quad\mbox{} + J_{3}\,\sin(\phi)\,\dot{\theta}^2\,\cos
+(\phi) \end{eqnarray*}
+\[ \LL(\psi) = J_{3}\,\ddot{\psi} - J_{3}\,\sin(\phi)\,\dot{\phi}\,
+\dot{\theta} + J_{3}\,\cos(\phi)\,\ddot{\theta} \]
+$M(q)\ddot{q}+C(q)\dot{q}^2 +R(q,\dot{q})$
+M~:
+ 
+$$ \left( \begin{array}{cccccc} m & 0 & 0 & 0 & 0 & 0 \cr 0 & m & 0 & 
+0 & 0 & 0 \cr 0 & 0 & m & 0 & 0 & 0 \cr 0 & 0 & 0 & J_{1}+J_{3}\,{\cos
+(\phi)}^2-J_{1}\,{\cos(\phi)}^2 & 0 & J_{3}\,\cos(\phi) \cr 0 & 0 & 0
+ & 0 & J_{1} & 0 \cr 0 & 0 & 0 & J_{3}\,\cos(\phi) & 0 & J_{3}
+ \end{array} \right) $$
+C~:
+ 
+$$ \left( \begin{array}{cccccc} 0 & 0 & 0 & 0 & 0 & 0 \cr 0 & 0 & 0 & 
+0 & 0 & 0 \cr 0 & 0 & 0 & 0 & 0 & 0 \cr 0 & 0 & 0 & 0 & 0 & 0 \cr 0 & 
+0 & 0 & -J_{1}\,\sin(\phi)\,\cos(\phi)+J_{3}\,\sin(\phi)\,\cos(\phi)
+ & 0 & 0 \cr 0 & 0 & 0 & 0 & 0 & 0 \end{array} \right) $$
+R~:
+ 
+$$ \left( \begin{array}{c} 0 \cr 0 \cr m\,g \cr 2\,J_{1}\,\sin(\phi)\,
+\dot{\theta}\,\cos(\phi)\,\dot{\phi}-J_{3}\,\sin(\phi)\,\dot{\phi}\,
+\dot{\psi}-2\,J_{3}\,\cos(\phi)\,\sin(\phi)\,\dot{\phi}\,\dot{\theta}
+ \cr J_{3}\,\sin(\phi)\,\dot{\theta}\,\dot{\psi} \cr -J_{3}\,\sin(\phi
+)\,\dot{\phi}\,\dot{\theta} \end{array} \right) $$
+Geometric Constraints hc=0,hc:
+ 
+\[ z - r\,\sin(\phi) \]
+Dynamic Constraints nhc=0,nhc
+ 
+\[ \dot{x} - r\,\sin(\phi)\,\dot{\phi}\,\cos(\theta) - r\,\dot{\psi}\,
+\sin(\theta) - r\,\cos(\phi)\,\sin(\theta)\,\dot{\theta} \]
+\[ \dot{y} + r\,\cos(\phi)\,\cos(\theta)\,\dot{\theta} - r\,\sin(\phi)
+\,\dot{\phi}\,\sin(\theta) + r\,\dot{\psi}\,\cos(\theta) \]
+\[ \dot{z} - r\,\cos(\phi)\,\dot{\phi} \]
+Constraints : $A'(q)\dot{q}$
+ 
+$$ \left( \begin{array}{cccccc} 1 & 0 & 0 & -r\,\cos(\phi)\,\sin(
+\theta) & -r\,\sin(\phi)\,\cos(\theta) & -r\,\sin(\theta) \cr 0 & 1 & 
+0 & r\,\cos(\phi)\,\cos(\theta) & -r\,\sin(\phi)\,\sin(\theta) & r\,
+\cos(\theta) \cr 0 & 0 & 1 & 0 & -r\,\cos(\phi) & 0
+ \end{array} \right) $$
+ S(q)
+ 
+$$ \left( \begin{array}{c} r\,\cos(\phi)\,\sin(\theta)\,\eta_1+r\,\sin
+(\phi)\,\cos(\theta)\,\eta_2+r\,\sin(\theta)\,\eta_3 \cr -r\,\cos(\phi
+)\,\cos(\theta)\,\eta_1+r\,\sin(\phi)\,\sin(\theta)\,\eta_2-r\,\cos(
+\theta)\,\eta_3 \cr r\,\cos(\phi)\,\eta_2 \cr \eta_1 \cr \eta_2 \cr 
+\eta_3 \end{array} \right) $$
+$\dot{q}=S(q)\eta$ Kernel of $A(q)'$~:
+ 
+$$ \left( \begin{array}{ccc} r\,\cos(\phi)\,\sin(\theta) & r\,\sin(
+\phi)\,\cos(\theta) & r\,\sin(\theta) \cr -r\,\cos(\phi)\,\cos(\theta)
+ & r\,\sin(\phi)\,\sin(\theta) & -r\,\cos(\theta) \cr 0 & r\,\cos(\phi
+) & 0 \cr 1 & 0 & 0 \cr 0 & 1 & 0 \cr 0 & 0 & 1 \end{array} \right) $$
+$S(q)^T E$ simplified with $\dot{q}=S(q)\eta $
+ 
+\begin{eqnarray*} && r^2\,\sin(\phi)\,m\,\cos(\phi)\,{{\eta_{1}}}^2 + 
+r^2\,m\,{\dot{\eta}_{2}} + r^2\,\sin(\phi)\,m\,{\eta_{1}}\,{\eta_{3}}
+ + r\,\cos(\phi)\,m\,g + J_{1}\,{\dot{\eta}_{2}} \\ &&\quad\mbox{} - J
+_{1}\,\sin(\phi)\,{{\eta_{1}}}^2\,\cos(\phi) + J_{3}\,\sin(\phi)\,{
+\eta_{1}}\,{\eta_{3}} + J_{3}\,\sin(\phi)\,{{\eta_{1}}}^2\,\cos(\phi)
+ \end{eqnarray*}
+\begin{eqnarray*} && -2\,r^2\,m\,\sin(\phi)\,{\eta_{1}}\,{\eta_{2}} + 
+r^2\,m\,\cos(\phi)\,{\dot{\eta}_{1}} + r^2\,m\,{\dot{\eta}_{3}} + J_{3
+}\,{\dot{\eta}_{3}} - J_{3}\,\sin(\phi)\,{\eta_{2}}\,{\eta_{1}}
+ \\ &&\quad\mbox{} + J_{3}\,\cos(\phi)\,{\dot{\eta}_{1}}
+ \end{eqnarray*}
+\begin{eqnarray*} && -2\,r^2\,\cos(\phi)\,m\,\sin(\phi)\,{\eta_{1}}\,{
+\eta_{2}} + r^2\,{\cos(\phi)}^2\,m\,{\dot{\eta}_{1}} + r^2\,\cos(\phi)
+\,m\,{\dot{\eta}_{3}} \\ &&\quad\mbox{} + 2\,J_{1}\,\sin(\phi)\,{\eta
+_{1}}\,\cos(\phi)\,{\eta_{2}} + J_{1}\,{\dot{\eta}_{1}} - J_{1}\,{
+\dot{\eta}_{1}}\,{\cos(\phi)}^2 + J_{3}\,\cos(\phi)\,{\dot{\eta}_{3}}
+ \\ &&\quad\mbox{} - 2\,J_{3}\,\cos(\phi)\,\sin(\phi)\,{\eta_{2}}\,{
+\eta_{1}} + J_{3}\,{\cos(\phi)}^2\,{\dot{\eta}_{1}} - J_{3}\,\sin(\phi
+)\,{\eta_{2}}\,{\eta_{3}} \end{eqnarray*}
+a cononical form $M(q)\dot{t}+R(q,t)$
+C:
+ 
+$$ \left( \begin{array}{ccc} \frac{J_{1}}{2}+\frac{r^2\,m\,\cos(2\,
+\phi)}{2}+\frac{r^2\,m}{2}+\frac{J_{3}\,\cos(2\,\phi)}{2}+\frac{J_{3}
+}{2}-\frac{J_{1}\,\cos(2\,\phi)}{2} & 0 & \cos(\phi)\left(r^2\,m+J_{3}
+\right) \cr 0 & J_{1}+r^2\,m & 0 \cr \cos(\phi)\left(r^2\,m+J_{3}
+\right) & 0 & r^2\,m+J_{3} \end{array} \right) $$
+R:
+ 
+$$ \left( \begin{array}{c} -{\eta_{2}}\left(r^2\,m\,{\eta_{1}}\,\sin(2
+\,\phi)+J_{3}\,\sin(\phi)\,{\eta_{3}}-J_{1}\,{\eta_{1}}\,\sin(2\,\phi)
++J_{3}\,{\eta_{1}}\,\sin(2\,\phi)\right) \cr \frac{r^2\,m\,{{\eta_{1}}
+}^2\,\sin(2\,\phi)}{2}-\frac{J_{1}\,{{\eta_{1}}}^2\,\sin(2\,\phi)}{2}+
+r^2\,\sin(\phi)\,m\,{\eta_{1}}\,{\eta_{3}}+r\,\cos(\phi)\,m\,g+J_{3}\,
+\sin(\phi)\,{\eta_{1}}\,{\eta_{3}}+\frac{J_{3}\,{{\eta_{1}}}^2\,\sin(2
+\,\phi)}{2} \cr -\sin(\phi)\,{\eta_{1}}\,{\eta_{2}}\left(2\,r^2\,m+J_{
+3}\right) \end{array} \right) $$

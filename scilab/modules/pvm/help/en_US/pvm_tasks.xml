@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_tasks">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_tasks</refname>
+    <refpurpose> information about the tasks running on the virtual machine.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>res = pvm_tasks([where])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>where</term>
+        <listitem>
+          <para>(optional) integer, specifying what tasks to return information about. The options are:</para>
+          <programlisting><![CDATA[
+
+ 0(default) for all the tasks on the virtual machine
+ pvmd tid for all tasks on a given host
+   tid  for a specific task
+   
+          ]]></programlisting>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para> list of 7 elements such that:</para>
+          <variablelist>
+            <varlistentry>
+              <term>res(1)  </term>
+              <listitem>
+                <para> integer returning task ID of one task</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(2)  </term>
+              <listitem>
+                <para> integer returning parent task ID</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(3)  </term>
+              <listitem>
+                <para> integer returning pvmd task ID of host task is on</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(4)  </term>
+              <listitem>
+                <para> integer returning status of task</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(5)  </term>
+              <listitem>
+                <para> string returning the name of spawned task. Manually started tasks return blank.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(6)  </term>
+              <listitem>
+                <para> integer returning the number of tasks being reported on.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(7)  </term>
+              <listitem>
+                <para> integer status code returned by the routine.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_tasks</literal> 
+    returns information about
+    tasks presently running on the virtual machine.
+    The information returned is the same as
+    that available from the console command</para>
+    <para>
+    The <literal>pvm_tasks</literal> function returns information about the entire
+    virtual machine in one call.</para>
+    <para>
+    If pvm_tasks is successful,</para>
+    <para>
+    will be 0.
+    If some error occurs then</para>
+    <para>
+    will be &lt; 0.</para>
+    <para>
+    for example:</para>
+    <programlisting><![CDATA[
+
+-->res = pvm_tasks()
+ res  =
+ 
+       res(1)
+ 
+!   262148.    262151.    262152. !
+ 
+       res(2)
+ 
+!   262147.    0.    262151. !
+ 
+       res(3)
+ 
+!   262144.    262144.    262144. !
+ 
+       res(4)
+ 
+!   6.    4.    6. !
+ 
+       res(5)
+ 
+!pvmgs    /home/ubeda/SCILAB/scilab-2.4/bin/scilex  !
+ 
+       res(6)
+ 
+    3.  
+ 
+       res(7)
+ 
+    0. 
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_config">pvm_config</link>
+      </member>
+      <member>
+        <link linkend="pvm_tidtohost">pvm_tidtohost</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

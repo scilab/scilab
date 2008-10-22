@@ -1,0 +1,26 @@
+//===============================
+str = "This is a simple string";
+r = strstr (str,"simple");
+if r <> 'simple string' then bugmes();quit;end;
+//===============================
+r = strstr (str,"sample");
+if r <> '' then bugmes();quit;end;
+//===============================
+if strstr('','')<>'' then bugmes();quit;end;
+//===============================
+str1 ='1A2s 2';
+str2 ='1B3sc2';
+str3 ='1C4sci2';
+STR = [str1;str2;str3];
+r = strstr (STR,"s");
+if r <> ['s 2';'sc2';'sci2'] then bugmes();quit;end;
+//===============================
+r = strstr (STR,'');
+if r <> STR then bugmes();quit;end;
+//===============================
+r = strstr (STR,['A';'3';'i']);
+if r <> ['A2s 2';'3sc2';'sci2'] then bugmes();quit;end;
+//===============================
+r = strstr (STR,['';'';'']);
+if r <> STR then bugmes();quit;end;
+//===============================

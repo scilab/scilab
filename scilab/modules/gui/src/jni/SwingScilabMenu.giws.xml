@@ -1,0 +1,19 @@
+<package name="org.scilab.modules.gui.bridge.menu">
+  <object name="SwingScilabMenu">
+	<method name="setText" returnType="void">
+	  <parameter type="String" name="newText" />
+	</method>
+	<method name="setParent" returnType="void">
+	  <parameter type="int" name="parentIndex"/>
+	</method>
+	<method name="setCallback" returnType="void">
+	  <parameter type="String" name="callback"/>
+	</method>
+	<method name="display"  returnType="void">
+	</method>
+	<method name="show"  returnType="void">
+	</method>
+	<method name="destroy"  returnType="void">
+	</method>
+  </object>
+</package>

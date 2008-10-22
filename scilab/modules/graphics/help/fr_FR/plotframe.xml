@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="plotframe" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>plotframe</refname>
+
+    <refpurpose>dessine un cadre avec graduations et définition de l'échelle.
+    <emphasis role="bold">Fonction obsolete</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>vecteur du type
+          <literal>[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tics</term>
+
+        <listitem>
+          <para>vecteur du type <literal>[nx,mx,ny,my]</literal> où
+          <literal>mx, nx</literal> (resp. <literal>my, ny</literal>) sont le
+          nombre d'intervalles et de sous-intervalle pour les graduations de
+          l'axe Ox (resp. Oy).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arg_optX</term>
+
+        <listitem>
+          <para>arguments optionnels choisi parmi :</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>flags</term>
+
+              <listitem>
+                <para>vecteur booléen
+                <literal>[wantgrids,findbounds]</literal>
+                (<literal>%t</literal> ou <literal>%f</literal>) indiquant si
+                l'on désire une grille. Si <literal>findbounds</literal> vaut
+                <literal>%t</literal>, les bornes données dans
+                <literal>rect</literal> sont éventuellement modifiées (en fait
+                légèrement augmentées) pour simplifier les graduations : dans
+                ce cas <literal>tics(2)</literal> et
+                <literal>tics(4)</literal> sont ignorés.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Captions</term>
+
+              <listitem>
+                <para>vecteur de 3 chaînes de caractères
+                <literal>[title,x-leg,y-leg]</literal> correspondant au titre
+                du dessin et aux légendes des axes x et y. Le "C" majuscule est important.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>subwin</term>
+
+              <listitem>
+                <para>vecteur de taille 4 définissant la sous-fenêtre. La
+                sous-fenêtre est spécifiée avec le paramètre
+                <literal>subwin=[x,y,w,h]</literal> (point en haut à  gauche,
+                largeur, hauteur). Les valeurs dans <literal>subwin</literal>
+                sont spécifiées sous la forme d'une proportion de la largeur
+                ou de la hauteur de la fenêtre graphique courante (voir
+                <literal>xsetech</literal>).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opts_args&gt;</term>
+
+        <listitem>
+          <para>Représente une séquence de la forme <emphasis
+          role="bold">clé1=valeur1</emphasis>, <emphasis
+          role="bold">clé2=valeur2</emphasis>,... where <emphasis
+          role="bold">clé1</emphasis>, <emphasis
+          role="bold">clé2</emphasis>,... peuvent être n'importe quel
+          paramètres parmis: <emphasis role="bold">tics</emphasis>, <emphasis
+          role="bold">flags</emphasis>, <emphasis
+          role="bold">captions</emphasis> ou <emphasis
+          role="bold">subwin</emphasis>. Ces arguments ont la même
+          signification que ceux utilisés dans la première forme de la
+          routine.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>plotframe</literal> est utilisée avec les fonctions de
+    dessin 2D <literal>plot2d</literal>,... pour dessiner le cadre. Elle doit
+    être utilisée avant <literal>plot2d</literal> qui doit être ensuite
+    appelée avec le mode de superposition "000". <emphasis role="bold">Cette
+    fonction utile avec l'ancien mode graphique est aujourd'hui dénuée
+    d'intéret.</emphasis></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example">
+    x=[-0.3:0.8:27.3]';
+    y=rand(x);
+    rect=[min(x),min(y),max(x),max(y)];
+    tics=[4,10,2,5];    // 4 x-intervalles et 2 y-intervalles
+    plotframe(rect,tics,[%f,%f],["Mon plot","x","y"],[0,0,0.5,0.5])
+    plot2d(x,y,2,"000")
+    plotframe(rect,tics,[%t,%f],["Mon plot avec grille","x","y"],[0.5,0,0.5,0.5])
+    plot2d(x,y,3,"000")
+    plotframe(rect,tics,[%t,%t],..
+    ["plot avec grille et bornes automatiques","x","y"],[0,0.5,0.5,0.5])
+    plot2d(x,y,4,"000")
+    plotframe(rect,flags=[%f,%t],tics=tics,..
+       Captions=["plot sans grille mais avec bornes automatiques ","x","y"],..
+       subwin=[0.5,0.5,0.5,0.5])
+    plot2d(x,y,5,"000")
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="graduate">graduate</link></member>
+
+      <member><link linkend="xsetech">xsetech</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

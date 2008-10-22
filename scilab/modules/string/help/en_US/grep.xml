@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grep">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>grep</refname>
+    <refpurpose>find matches of a string in a vector of
+  strings</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>row=grep(haystack,needle )
+[row,which]=grep(haystack,needle )
+row=grep(haystack,needle ,[flag])
+[row,which]=grep(haystack,needle ,[flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>haystack</term>
+        <listitem>
+          <para>A Row vector of character strings.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>needle </term>
+        <listitem>
+          <para>A character string or a row vector of character strings . The string(s)
+          to search in <literal>haystack.</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>row</term>
+        <listitem>
+          <para>vector of indices: row where a match has been found or an
+          empty matrix if no match found.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>which</term>
+        <listitem>
+          <para>vector of indices: index of needle string found or an empty
+          matrix if no match found.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>Character ("r" for regular expression)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Foreach entry of haystack , grep searches if at least a string in
+    needle matches a substring. haystack entries index where at least a match
+    has been found are returned in the row argument. while optionnal which
+    argument gives the index of first string of needle found. When using the
+    third parameters "r", the needle should be a string of regular expression.
+    And then grep is going to match it with haystack according to the regular
+    express rules.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+txt=['find matches of a string in a vector of strings'
+     'search position of a character string in an other string'
+     'Compare Strings'];
+
+grep(txt,'strings')
+grep(txt,['strings' 'Strings'])
+
+[r,w]=grep(txt,['strings' 'Strings'])
+
+str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
+
+grep(str,'/[hc]+at/','r')
+grep(str,'/[hc]?at/','r')
+grep(str,'/cat|dog/','r')
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="strindex">strindex</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="fftw" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>October 2006</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fftw</refname>
+
+    <refpurpose>transformée de Fourier rapide qui utilise la librairie
+    FFTW</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>[y]=fftw(x)
+[y]=fftw(x,sign)
+[y]=fftw(x,sign,dim,incr)
+[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>y,x</term>
+
+        <listitem>
+          <para>matrice/vecteur de donnée réelle ou complexe. Données
+          d'entrée/sortie.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sign</term>
+
+        <listitem>
+          <para>entier. 1 ou -1. Choix du type de transformée (inverse ou
+          directe).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim</term>
+
+        <listitem>
+          <para>entier. Donne la dimension (la longueur) de la
+          transformée.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>incr</term>
+
+        <listitem>
+          <para>entier. Donne l'entrelacement (l'écart entre les données
+          consécutives) de la transformée.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Cette fonction réalise une Transformée de Fourier Discrete (TFD)
+    inverse ou directe au moyen de la libraire FFTW.</para>
+
+    <para>Elle permet le calcul de transformée vectorielle, 2D et M-D.</para>
+
+    <para>Pour plus de détails concernant la syntaxe de l'appel à fftw,
+    consultez la fonction <link linkend="fft">fft</link> de scilab.</para>
+
+    <para>Pour plus de détails concernant la libraire FFW, consultez le site
+    web <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>.</para>
+
+    <para>Rmq : La fonction ffw enregistre automatiquement les dernières
+    paramètres utilisés lors d'un appel pour les ré-utiliser une seconde
+    fois.</para>
+
+    <para>Cela permet une amélioration significative du temps de calcul
+    lorsque la fonction fftw est appelée consécutivement avec les mêmes
+    paramètres.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example">
+  
+  //transformée 1D
+  a = rand(50,1)+%i*rand(50,1);
+  y = fftw(a);
+  y = fftw(a,-1);
+  //transformée inverse
+  b = fftw(y,1);
+
+  //transformée 2D
+  a = rand(512,512)+%i*rand(512,512);
+  y = fftw(a);
+
+  //transformée M-D -ancienne séquence d'appel-
+  a = rand(120,1);
+  y = a;
+  dim=[5 6 4];incr=[1 5 30];
+  for i=1:3
+    y = fftw(y,-1,dim(i),incr(i));
+  end
+
+  //transformée M-D transform -nouvelle séquence d'appel-
+  //plus performante que l'ancienne
+  y = fftw(a,-1,[5 6 4],[1 5 30]);
+  b = fftw(y,1,[5 6 4],[1 5 30]);
+  
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="fftw_flags">fftw_flags</link></member>
+
+      <member><link linkend="get_fftw_wisdom">get_fftw_wisdom</link></member>
+
+      <member><link linkend="set_fftw_wisdom">set_fftw_wisdom</link></member>
+
+      <member><link
+      linkend="fftw_forget_wisdom">fftw_forget_wisdom</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliographie</title>
+
+    <para>Matteo Frigo and Steven G. Johnson, "FFTW Manual fo version 3.1.2"
+    June 2006. Available : http://www.fftw.org</para>
+  </refsection>
+</refentry>

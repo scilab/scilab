@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="is_param">
+  <info>
+    <pubdate>23-Aug-2007</pubdate>
+  </info>
+  <refnamediv>
+    <refname>is_param</refname>
+    <refpurpose> Check if a parameter is present in a parameter list </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[res,err] = is_param(list_name,param_name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>list_name</term>
+        <listitem>
+          <para>the list of parameters. This list must have been initialize by a call to init_param.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param_name</term>
+        <listitem>
+          <para>a string. The name of the parameter to be add in the list of parameters.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>the result: %T is the parameter is present, %F otherwise.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>err</term>
+        <listitem>
+          <para>an error flag which is set to %T if list_name is not of type plist (this list hasn't been initialized by a call to init_param).
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+      This function checks if a parameter is present in a parameter list.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+   mylist = init_param();
+   mylist = add_param(mylist,'minbound',[0 0 0]);
+   disp(is_param(mylist,'minbound'));
+   disp(is_param(mylist,'maxbound'));
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="init_param"> init_param </link>
+      </member>
+      <member>
+        <link linkend="set_param"> set_param </link>
+      </member>
+      <member>
+        <link linkend="get_param"> get_param </link>
+      </member>
+      <member>
+        <link linkend="remove_param"> remove_param </link>
+      </member>
+      <member>
+        <link linkend="add_param"> add_param </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
+    ycollet@freesurf.fr
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

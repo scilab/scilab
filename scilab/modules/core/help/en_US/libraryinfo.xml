@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="libraryinfo">
+  <info>
+    <pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>libraryinfo</refname>
+    <refpurpose>get macros and path of a scilab library</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>macros = libraryinfo(libraryname)
+[macros,path] = libraryinfo(libraryname)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>macros</term>
+        <listitem>
+          <para>a string matrix (all main functions of the library)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a string (path of library)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>libraryname</term>
+        <listitem>
+          <para>a string (library name)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>get functions names  and path of a scilab library.The function names
+returned correspond to those which correspond to the associated .sci or .bin
+file names. The other ones are subsidiary functions.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[[m,p]=libraryinfo('corelib')
+   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="librarieslist">librarieslist</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

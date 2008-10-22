@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="tanhm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tanhm</refname>
+    <refpurpose> tangente hyperbolique matricielle  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[t]=tanhm(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,t  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>tanhm(x)</literal> est la tangente matricielle hyperbolique de la matrice carrée x. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[1,2;3,4];
+tanhm(A)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tan">tan</link>
+      </member>
+      <member>
+        <link linkend="tanm">tanm</link>
+      </member>
+      <member>
+        <link linkend="expm">expm</link>
+      </member>
+      <member>
+        <link linkend="sinm">sinm</link>
+      </member>
+      <member>
+        <link linkend="cosm">cosm</link>
+      </member>
+      <member>
+        <link linkend="atanhm">atanhm</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

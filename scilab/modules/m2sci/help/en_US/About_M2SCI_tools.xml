@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="About_M2SCI_tools">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>About_M2SCI_tools</refname>
+    <refpurpose>Generally speaking about tools to convert Matlab files to Scilab...</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Scilab 3.0 includes a new version of useful tools to convert Matlab M-files to Scilab.</para>
+    <para>
+  Taking a Matlab M-file, <literal>mfile2sci</literal> modifies this files so that it can be
+  compiled by Scilab. After that this compiled code is converted to a "tree" of instructions
+  by <literal>macr2tree</literal>. This "tree" is an imbrication of Scilab lists and tlists and
+  is the basis for conversion. Each instruction of this "tree" is converted to Scilab and
+  inference is done to known what are the variables. Once this "tree" is converted to Scilab,
+  code is generated using <literal>tree2code</literal>.
+  </para>
+    <para>
+   All tlists used for coding this tree (and we call "MSCI tlists") are listed below:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>funcall</term>
+            <listitem>
+              <para>tlist representing a function call created by <literal>Funcall</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>operation</term>
+            <listitem>
+              <para>tlist representing an operation created by <literal>Operation</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>variable</term>
+            <listitem>
+              <para>tlist representing a variable created by <literal>Variable</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>cste</term>
+            <listitem>
+              <para>tlist representing a constant created by <literal>Cste</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>equal</term>
+            <listitem>
+              <para>tlist representing an instruction created by <literal>Equal</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>ifthenelse</term>
+            <listitem>
+              <para>tlist representing an IF/THEN/ELSE control instruction created inside M2SCI kernel functions</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>while</term>
+            <listitem>
+              <para>tlist representing a WHILE control instruction created inside M2SCI kernel functions</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>selectcase</term>
+            <listitem>
+              <para>tlist representing a SELECT/CASE control instruction created inside M2SCI kernel functions</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>for</term>
+            <listitem>
+              <para>tlist representing a FOR control instruction created inside M2SCI kernel functions</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  The contents of these tlists is described in corresponding help pages.
+  </para>
+    <para>
+  Operations are converted using a fonction named <literal>%&lt;opcode&gt;2sci</literal> with opcode
+  the Scilab code for this operator. See help page for overloading to have these codes. All
+  these functions are already written and are in directory SCI/modules/m2sci/macros/percent/.
+  </para>
+    <para>
+  Function calls are converted using a function called <literal>sci_&lt;Matlab_function_name&gt;</literal>.
+  Some of these functions have been written and are in directory SCI/modules/m2sci/macros/sci_files/.
+  We are working on increasing the set of Matlab functions converted. However, everybody can
+  written such functions using help page sci_files.
+  </para>
+    <para>
+  Inference is done using tlists of type "infer" containing fields:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>dims</term>
+            <listitem>
+              <para>list of dimensions</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>type</term>
+            <listitem>
+              <para>"type" tlist</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>contents</term>
+            <listitem>
+              <para>"contents" tlist if a Cell or a Struct</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  Type is a tlist of type "type" containing fields:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>vtype</term>
+            <listitem>
+              <para>data type</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>property</term>
+            <listitem>
+              <para>property</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>To have more details about inference see help page for m2scideclare.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mfile2sci">mfile2sci</link>
+      </member>
+      <member>
+        <link linkend="translatepaths">translatepaths</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+      <member>
+        <link linkend="sci_files">sci_files</link>
+      </member>
+      <member>
+        <link linkend="Funcall">Funcall</link>
+      </member>
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Variable">Variable</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+      <member>
+        <link linkend="m2scideclare">m2scideclare</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

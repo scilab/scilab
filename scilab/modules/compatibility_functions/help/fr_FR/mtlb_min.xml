@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_min">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_min</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab min</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>min</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec des valeurs complexes : La fonction Matlab <literal>min</literal> peut être utilisée
+	avec des complexes mais pas la fonction Scilab.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec deux paramètres d'entrée : La fonction Matlab <literal>min</literal> traite les valeurs
+	suivant la première dimension qui n'est pas 1 alors que Scilab traite l'ensemble des valeurs de l'entrée.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec deux paramètres d'entrée : si l'une d'elles est une matrice vide, Scilab
+	retourne un message d'erreur alors que Matlab renvoie [].
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec trois paramètres d'entrée : si le paramètre <literal>dim</literal> est plus grand que
+	le nombre de dimensions de le première entrée, Scilab retourne un message d'erreur alors que Matlab
+	retourne le premier paramètre.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>[r[,k]] = mtlb_min(A[,B[,dim]])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>[r[,k]] = min(A[,B[,dim]])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_min</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est un scalaire ou un vecteur
+        <literal>[r[,k]] = mtlb_min(A)</literal> peut être remplacé par <literal>min(A)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est une matrice
+        <literal>[r[,k]] = mtlb_min(A)</literal> peut être remplacé par <literal>min(A,"r")</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec deux paramètres d'entrée, si <literal>A</literal> et <literal>B</literal> 
+	sont des matrices réelles et ne sont pas des matrices vides,
+        <literal>[r[,k]] = mtlb_min(A,B)</literal> peut être remplacé par <literal>min(A,B)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        En cas d'appel avec trois paramètres d'entrée, si <literal>dim</literal> est inférieur
+	au nombre de dimensions de <literal>A</literal>,
+        <literal>[r[,k]] = mtlb_min(A,[],dim)</literal> peut être remplacé par <literal>min(A,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_min</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="firstnonsingleton">firstnonsingleton</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

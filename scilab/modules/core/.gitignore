@@ -1,0 +1,8 @@
+includes/machine.h
+includes/stack.h
+includes/stamp-h1
+
+#
+# Need to keep this one
+#
+!demos/intro/Makefile

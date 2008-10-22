@@ -1,0 +1,10 @@
+//example i=of the use of plotframe
+xinit('frame.ps')
+x=[-0.3:0.8:27.3]';
+y=rand(x);
+rect=[min(x),min(y),max(x),max(y)];
+tics=[4,10,2,5];    //4 x-intervals and 2 y-intervals
+plotframe(rect,tics,[%t,%t],...
+['Plot with grid and automatic bounds','x','y']);
+plot2d(x,y,style=-1)
+xend()

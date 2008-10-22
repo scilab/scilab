@@ -1,0 +1,1 @@
+exec('maketests.sci',-1); maketests('clean'); quit  

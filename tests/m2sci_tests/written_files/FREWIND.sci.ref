@@ -1,0 +1,14 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function frewind()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+fid = 1;
+mseek(0,fid);

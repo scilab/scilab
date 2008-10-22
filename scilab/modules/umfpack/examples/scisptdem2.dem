@@ -1,0 +1,5 @@
+// display the file bench.txt
+
+txt = read(SCI+"/modules/umfpack/examples/bench.txt",-1,1,"(A)");
+x_message(txt)
+

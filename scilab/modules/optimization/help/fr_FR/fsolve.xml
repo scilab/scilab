@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fsolve</refname>
+    <refpurpose> résout un système d'équations non-linéaires  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x0  </term>
+        <listitem>
+          <para>vecteur réel (vecteur initial).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fct  </term>
+        <listitem>
+          <para>fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fjac  </term>
+        <listitem>
+          <para>fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol  </term>
+        <listitem>
+          <para>scalaire. Tolérance : l'algorithme s'arrête lorsque l'erreur relative estimée entre x et la solution est inférieure à tol (<literal>tol=1.d-10</literal> par défaut).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x :  </term>
+        <listitem>
+          <para>
+	    vecteur réel (solution estimée).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v :  </term>
+        <listitem>
+          <para>
+	    vecteur réel (valeur de la fonction en x).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info  </term>
+        <listitem>
+          <para>indicateur d'arrêt de l'algorithme
+	  </para>
+          <variablelist>
+            <varlistentry>
+              <term>0  </term>
+              <listitem>
+                <para>paramètres d'entrée incorrects
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>1  </term>
+              <listitem>
+                <para>l'erreur relative estimée entre x et la solution est inférieure à tol
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>2  </term>
+              <listitem>
+                <para>nombre d'appels à fct
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>3  </term>
+              <listitem>
+                <para>tol est trop petit. L'algorithme stationne.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>4  </term>
+              <listitem>
+                <para>les itérations n'améliorent pas assez la solution.
+		</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Résout un système de n équations non linéaires à n inconnues avec un algorithme du type
+      méthode hybride de Powell. La Jacobienne peut être fournie (c'est fortement conseillé).
+    </para>
+    <programlisting><![CDATA[
+      0 = fct(x) 
+      ]]></programlisting>
+    <para><literal>fct</literal> est une fonction "externe"
+      Cette fonction renvoie <literal>v=fct(x)</literal> pour <literal>x</literal> donné.
+    </para>
+    <para>
+      La séquence d'appel de <literal>fct</literal> est :
+    </para>
+    <programlisting><![CDATA[
+      [v]=fct(x).
+      ]]></programlisting>
+    <para>
+      Si <literal>fct</literal> est une chaîne de caractères, elle désigne le nom d'une subroutine Fortran ou C liée dynamiquement à Scilab, avec comme liste d'appel Fortran :
+    </para>
+    <programlisting><![CDATA[
+      fct(n,x,v,iflag)
+      integer n,iflag
+      double precision x(n),v(n)
+      ]]></programlisting>
+    <para>
+      ou alors pour une routine C : 
+    </para>
+    <programlisting><![CDATA[
+      fct(int *n, double x[],double v[],int *iflag)
+      ]]></programlisting>
+    <para>
+    </para>
+    <para>
+      (voir <literal>link</literal>).
+    </para>
+    <para><literal>jac</literal> est une fonction "externe" aussi.
+      Cette fonction renvoie <literal>v=d(fct)/dx (x)</literal> pour <literal>x</literal> donné.
+    </para>
+    <para>
+      La séquence d'appel de <literal>jac</literal> est :
+    </para>
+    <programlisting><![CDATA[
+      [v]=jac(x).
+      ]]></programlisting>
+    <para>
+      Si <literal>jac</literal> est une chaîne de caractères, elle désigne le nom d'une subroutine Fortran ou C liée dynamiquement à Scilab. Les séquences d'appel sont les mêmes que pour fct (attention v doit être un tableau n x n).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    // un exemple simple
+    a=[1,7;2,8];b=[10;11];
+    deff('[y]=fsol1(x)','y=a*x+b');
+    deff('[y]=fsolj1(x)','y=a');
+    [xres]=fsolve([100;100],fsol1);
+    a*xres+b
+    [xres]=fsolve([100;100],fsol1,fsolj1);
+    a*xres+b
+    // voir routines/default/Ex-fsolve.f
+    [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
+    a*xres+b
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="quapro">quapro</link>
+      </member>
+      <member>
+        <link linkend="linpro">linpro</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

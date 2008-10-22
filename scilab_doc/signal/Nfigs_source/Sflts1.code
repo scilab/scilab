@@ -1,0 +1,12 @@
+//filtering of signals
+//make signal and filter
+[h,hm,fr]=wfir('lp',33,[.2 0],'hm',[0 0]);
+t=1:200;
+x1=sin(2*%pi*t/20);
+x2=sin(2*%pi*t/3);
+x=x1+x2;
+plot(x);
+
+
+
+

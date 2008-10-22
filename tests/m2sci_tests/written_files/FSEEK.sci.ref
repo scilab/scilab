@@ -1,0 +1,22 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function fseek()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+fid = 1
+status = mseek(0,fid,"set");
+status = mseek(0,fid,"cur");
+status = mseek(0,fid,"end");
+status = mseek(0,fid,"set");
+status = mseek(0,fid,"cur");
+status = mseek(0,fid,"end");
+origin = 1;
+// ! L.14: Not enough information on origin to set the proper flag
+status = mseek(0,fid,fseek_origin(origin));

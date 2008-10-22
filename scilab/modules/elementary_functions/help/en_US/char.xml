@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="char">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>char</refname>
+    <refpurpose>char function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=char( x)
+y=char(st1,st2,st3,....)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>a cell of strings arrays, or an array of ascii codes</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>st1,st2,st3</term>
+        <listitem>
+          <para>strings arrays</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y:</term>
+        <listitem>
+          <para>a strings vector(column)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <literal>One input argument :</literal>
+    </para>
+    <para>Given <literal>a cell of strings arrays x</literal>, this function returns a
+    strings vector <literal>y </literal>in which the rows are the components of the
+    strings cell</para>
+    <para>Given <literal>an array of ascii codes x,</literal> this function returns a
+    strings array <literal>y</literal> corresponding into ascii codes. If dims
+    (<literal>x</literal>)=[n1,n2,n3,n4,....],then returned value have same size as
+    input value instead of second dims, dims(<literal>y</literal>)=[n1,n3,n4,..]</para>
+    <para>
+      <literal>More than one input argument :</literal>
+    </para>
+    <para>Given <literal>strings arrays</literal> <literal>st1,st2,st3,...</literal>, this
+    function returns a vector of strings in which the rows are the components
+    of <literal>st1,st2,st3,... </literal><literal>In the vector </literal><literal>y </literal>the
+    length of all strings sti is completed by blanks, to have the same length
+    than the lengthmax of sti.//</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[//Example with a hypermatrix of ascii codes :
+x=hypermat([4,2,3],61:84);
+y=char(x)
+size(x)
+size(y)
+
+//Example with more than one argument :
+st1="zeros";
+st2=["one","two"];
+st3=["three"];
+y=char(st1,st2,st3)
+size(y)
+//all strings rows are completed by 'blanks' to have the same length : 6
+length(y)
+
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="asciimat">asciimat</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.B</para>
+  </refsection>
+</refentry>

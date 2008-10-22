@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="projspec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>projspec</refname>
+    <refpurpose> spectral operators</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[S,P,D,i]=projspec(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>square matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S, P, D</term>
+        <listitem>
+          <para>square matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>integer (index of the zero eigenvalue of <literal>A</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Spectral characteristics of <literal>A</literal> at 0.</para>
+    <para><literal>S</literal> = reduced resolvent at 0 (<literal>S</literal> = -Drazin_inverse(<literal>A</literal>)).</para>
+    <para><literal>P</literal> = spectral projection at 0.</para>
+    <para><literal>D</literal> = nilpotent operator at 0.</para>
+    <para><literal>index</literal> = index of the 0 eigenvalue.</para>
+    <para>
+    One has <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s - S - s*S^2 -...</literal>
+    around the singularity s=0.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+deff('j=jdrn(n)','j=zeros(n,n);for k=1:n-1;j(k,k+1)=1;end')
+A=sysdiag(jdrn(3),jdrn(2),rand(2,2));X=rand(7,7);
+A=X*A*inv(X);
+[S,P,D,index]=projspec(A);
+index   //size of J-block
+trace(P)  //sum of dimensions of J-blocks
+A*S-(eye()-P)
+norm(D^index,1)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="coff">coff</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. D.; ;   </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colinout">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>colinout</refname>
+    <refpurpose> inner-outer factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Inn,X,Gbar]=colinout(G)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>G</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list) <literal>[A,B,C,D]</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Inn</term>
+        <listitem>
+          <para> inner factor (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Gbar</term>
+        <listitem>
+          <para> outer factor (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para> row-compressor of <literal>G</literal> (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Inner-outer factorization (and column compression) of (lxp) <literal>G =[A,B,C,D]</literal> with l&lt;=p.</para>
+    <para><literal>G</literal> is assumed to be fat (<literal>l&lt;=p</literal>) without zero on the imaginary axis
+    and with a <literal>D</literal> matrix which is full row rank.</para>
+    <para><literal>G</literal> must also be stable for having <literal>Gbar</literal> stable.</para>
+    <para>
+    Dual of <literal>rowinout</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="rowinout">rowinout</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

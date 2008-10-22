@@ -1,0 +1,21 @@
+//exec('sample4_5.code')
+
+   x=cos(2*%pi*(0:4999)/200);
+   y=0*ones(x);
+   y=x(1:105:5000);
+   yn=cos(2*%pi*(0:47)/40);
+
+   plot([0 0 5000],[1.5 -1.5 -1.5]),
+   n=prod(size(x))
+   plot2d((1:n)',x',[1],"000"),
+   xend(),
+   plot([0 0 48],[1.5 -1.5 -1.5]);
+   n=prod(size(y))
+   plot2d((1:n)',y',[1],"000"),
+   n=prod(size(yn))
+   plot2d((1:n)',yn',[2],"000"),
+   plot2d((1:n)',-yn',[2],"000"),
+   xend(), 
+
+  
+  

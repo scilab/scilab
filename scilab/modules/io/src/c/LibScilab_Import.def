@@ -1,0 +1,32 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+ IsAFile 
+ com_
+ recu_
+ putlhsvar_
+ intersci_
+ cluni0_
+ stack_
+ createvar_
+ getrhsvar_
+ checklhs_
+ checkrhs_
+ gettype_
+ vstk_
+ createvarfromptr_
+ iop_
+ GetFile
+ getTMPDIR
+ scigetcwd_
+ vartype_
+ callFunctionFromGateway
+ freeArrayOfString
+ getWarningMode
+ IsAScalar
+;
+

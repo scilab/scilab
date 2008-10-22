@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="9.10" ProjectIdGuid="{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib" OutputFile="$(SolutionDir)bin\integer_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="integer_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\integer_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib integer.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer_f.dll %%f &gt;nul
+copy *.def integer_f.def &gt;nul
+copy integer_f.def ..\integer_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul" Description="Build integer.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib" OutputFile="$(SolutionDir)bin\integer_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="integer_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\integer_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib integer.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer_f.dll %%f &gt;nul
+copy *.def integer_f.def &gt;nul
+copy integer_f.def ..\integer_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul" Description="Build integer.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib" OutputFile="$(SolutionDir)bin\integer_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="integer_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\integer_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib integer.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer_f.dll %%f &gt;nul
+copy *.def integer_f.def &gt;nul
+copy integer_f.def ..\integer_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul" Description="Build integer.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib" OutputFile="$(SolutionDir)bin\integer_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="integer_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\integer_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib integer.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer_f.dll %%f &gt;nul
+copy *.def integer_f.def &gt;nul
+copy integer_f.def ..\integer_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul" Description="Build integer.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Libscilab.lib (dependencies)"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Libraries Dependencies">
+		<File RelativePath=".\Integer_Import.def"/>
+		<File RelativePath=".\LibScilab_Import.def"/></Filter>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="bitops.f"/>
+		<File RelativePath="i_a_i.f"/>
+		<File RelativePath="i_abs.f"/>
+		<File RelativePath="i_b_i.f"/>
+		<File RelativePath="i_c_i.f"/>
+		<File RelativePath="i_convert.f"/>
+		<File RelativePath="i_cumprod.f"/>
+		<File RelativePath="i_cumsum.f"/>
+		<File RelativePath="i_d_i.f"/>
+		<File RelativePath="i_diag.f"/>
+		<File RelativePath="i_e.f"/>
+		<File RelativePath="i_f_i.f"/>
+		<File RelativePath="i_i_i.f"/>
+		<File RelativePath="i_kron.f"/>
+		<File RelativePath="i_l_i.f"/>
+		<File RelativePath="i_logic.f"/>
+		<File RelativePath="i_m_i.f"/>
+		<File RelativePath="i_matrix.f"/>
+		<File RelativePath="i_maxi.f"/>
+		<File RelativePath="i_mget.f"/>
+		<File RelativePath="i_mini.f"/>
+		<File RelativePath="i_mput.f"/>
+		<File RelativePath="i_p.f"/>
+		<File RelativePath="i_prod.f"/>
+		<File RelativePath="i_q_i.f"/>
+		<File RelativePath="i_r_i.f"/>
+		<File RelativePath="i_s_i.f"/>
+		<File RelativePath="i_sum.f"/>
+		<File RelativePath="i_t.f"/>
+		<File RelativePath="i_tril.f"/>
+		<File RelativePath="i_triu.f"/>
+		<File RelativePath="i_x_i.f"/>
+		<File RelativePath="intinttype.f"/>
+		<File RelativePath="intops.f"/>
+		<File RelativePath="memused.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_double.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_abs.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_cumprod.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_cumsum.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_diag.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_matrix.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_max.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_maxi.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_min.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_mini.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_mput.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_p.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_prod.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_sum.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_tril.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_i_triu.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_iconvert.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_int16.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_int32.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_int8.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_inttype.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_mgeti.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_uint16.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_uint32.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_uint8.f"/>
+		<File RelativePath=".\stack_convert.f"/>
+		<File RelativePath="unarybit.f"/>
+		<File RelativePath="uppertype.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\integer_gateway.xml"/>
+		<File RelativePath="..\..\Makefile.am"/></Files>
+	<Globals/></VisualStudioProject>

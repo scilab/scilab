@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "/home/scilab/scilab-3.0/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>foo1</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>25-Mar-2006</DATE>
+  <SHORT_DESCRIPTION name="foo1">  Returns the positive components of A diagonal</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>X = foo1(A)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>A</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a square matrix of reals
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>X</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a vector of positive reals
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function returns a vector containing the positive components of the A diagonal. A must be a square matrix. 
+      Other paragraph can be added 
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+  A=rand(5,5)-1/2;
+  X=foo1(A);
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> diag</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <BIBLIO>
+    Add here the function bibliography if any
+  </BIBLIO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='F.Belahcene'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+  <USED_FUNCTIONS>
+     Add here the used function name and  references
+  </USED_FUNCTIONS>
+</MAN>

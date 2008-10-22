@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="winopen">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>winopen</refname>
+    <refpurpose>Ouvre le fichier avec l'application
+  appropriée (Windows seulement)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>winopen('filename')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>winopen('filename')</literal> ouvre le fichier avec l'application
+    appropriée de Microsoft Windows. winopen effectue la même action que si
+    vous double-cliquez sur l'icone dans l'explorateur de Windows.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unix">unix</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>A.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

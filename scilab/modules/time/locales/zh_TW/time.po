@@ -1,0 +1,214 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2008-06-18 13:48+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+msgstr "%s: Wrong type  for input argument #%d: 應為實數常數矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 ''%s'' .\n"
+
+msgid "Sat"
+msgstr "星期六"
+
+msgid "Sun"
+msgstr "星期日"
+
+msgid "Mon"
+msgstr "星期一"
+
+msgid "Tue"
+msgstr "星期二"
+
+msgid "Wed"
+msgstr "星期三"
+
+msgid "Thu"
+msgstr "星期四"
+
+msgid "Fri"
+msgstr "星期五"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "星期日"
+
+msgid "Monday"
+msgstr "星期一"
+
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "星期五"
+
+msgid "Jan"
+msgstr "一月"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgstr "%s: 輸入參數型態錯誤 : 應為純量\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr "%s: 輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: 輸入參數數目錯誤.\n"
+
+msgid "Feb"
+msgstr "二月"
+
+msgid "Mar"
+msgstr "三月"
+
+msgid "Apr"
+msgstr "四月"
+
+msgid "May"
+msgstr "五月"
+
+msgid "Jun"
+msgstr "六月"
+
+msgid "Jul"
+msgstr "七月"
+
+msgid "Aug"
+msgstr "八月"
+
+msgid "Sep"
+msgstr "九月"
+
+msgid "Oct"
+msgstr "十月"
+
+msgid "Nov"
+msgstr "十一月"
+
+msgid "Dec"
+msgstr "十二月"
+
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   一 二 三 四 五 六 日"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 m*3 matrix 或 a m*6 matrix .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: %s 應介於 %d 及 %d 之間.\n"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Day"
+msgstr "天"
+
+msgid "Hour"
+msgstr "時"
+
+msgid "Minute"
+msgstr "分"
+
+msgid "Second"
+msgstr "秒"
+
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s: 輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 輸入參數長度錯誤: 長度應相同.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: 輸入參數數目錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr "%s: 輸入參數長度錯誤: 長度應相同.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgstr "%s: 輸入參數型態錯誤 : 應為整數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 產生錯誤: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為整數或 '%s' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應 > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應  < %d.\n"

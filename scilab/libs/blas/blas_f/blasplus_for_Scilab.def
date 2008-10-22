@@ -1,0 +1,144 @@
+LIBRARY    blasplus.dll
+
+EXPORTS
+ dasum_       	   @1
+ dasum = dasum_
+ daxpy_            @2
+ daxpy = daxpy_
+ dcopy_            @3
+ dcopy = dcopy_
+ ddot_             @4
+ ddot = ddot_
+ dgbmv_            @5
+ dgbmv = dgbmv_
+ dgemm_            @6
+ dgemm = dgemm_
+ dgemv_            @7
+ dgemv = dgemv_
+ dger_             @8
+ dger = dger_
+ dnrm2_            @9
+ dnrm2 = dnrm2_
+ drot_            @10
+ drot = drot_
+ drotg_           @11
+ drotg = drotg_
+ dsbmv_           @12
+ dsbmv = dsbmv_
+ dscal_           @13
+ dscal = dscal_
+ dspmv_           @14
+ dspmv = dspmv_
+ dspr_            @15
+ dspr = dspr_
+ dspr2_           @16
+ dspr2 = dspr2_
+ dswap_           @17
+ dswap = dswap_
+ dsymm_           @18
+ dsymm = dsymm_
+ dsymv_           @19
+ dsymv = dsymv_
+ dsyr_            @20
+ dsyr = dsyr_
+ dsyr2_           @21
+ dsyr2 = dsyr2_
+ dsyr2k_          @22
+ dsyr2k = dsyr2k_
+ dsyrk_           @23
+ dsyrk = dsyrk_
+ dtbmv_           @24
+ dtbmv = dtbmv_
+ dtbsv_           @25
+ dtbsv = dtbsv_
+ dtpmv_           @26
+ dtpmv = dtpmv_
+ dtpsv_           @27
+ dtpsv = dtpsv_
+ dtrmm_           @28
+ dtrmm = dtrmm_
+ dtrmv_           @29
+ dtrmv = dtrmv_
+ dtrsm_           @30
+ dtrsm = dtrsm_
+ dtrsv_           @31
+ dtrsv = dtrsv_
+ dzasum_          @32
+ dzasum = dzasum_
+ dznrm2_          @33
+ dznrm2 = dznrm2_
+ idamax_          @34
+ idamax = idamax_
+ izamax_          @35
+ izamax = izamax_
+ xerbla_          @36
+ xerbla = xerbla_
+ zaxpy_           @37
+ zaxpy = zaxpy_
+ zcopy_           @38
+ zcopy = zcopy_
+ zdotc_           @39
+ zdotc = zdotc_
+ zdotu_           @40
+ zdotu = zdotu_
+ zdscal_          @41
+ zdscal = zdscal_
+ zgbmv_           @42
+ zgbmv = zgbmv_
+ zgemm_           @43
+ zgemm = zgemm_
+ zgemv_           @44
+ zgemv = zgemv_
+ zgerc_           @45
+ zgerc = zgerc_
+ zgeru_           @46
+ zgeru = zgeru_
+ zhbmv_           @47
+ zhbmv = zhbmv_
+ zhemm_           @48
+ zhemm = zhemm_
+ zhemv_           @49
+ zhemv = zhemv_
+ zher_            @50
+ zher = zher_
+ zher2_           @51
+ zher2 = zher2_
+ zher2k_          @52
+ zher2k = zher2k_
+ zherk_           @53
+ zherk = zherk_
+ zhpmv_           @54
+ zhpmv = zhpmv_
+ zhpr_            @55
+ zhpr = zhpr_
+ zhpr2_           @56
+ zhpr2 = zhpr2_
+ zrotg_           @57
+ zrotg = zrotg_
+ zscal_           @58
+ zscal = zscal_
+ zswap_           @59
+ zswap = zswap_
+ zsymm_           @60
+ zsymm = zsymm_
+ zsyr2k_           @61
+ zsyr2k = zsyr2k_
+ zsyrk_            @62
+ zsyrk = zsyrk_
+ ztbmv_            @63
+ ztbmv = ztbmv_
+ ztbsv_            @64
+ ztbsv = ztbsv_
+ ztpmv_            @65
+ ztpmv = ztpmv_
+ ztpsv_            @66
+ ztpsv = ztpsv_
+ ztrmm_            @67
+ ztrmm =ztrmm_
+ ztrmv_            @68
+ ztrmv = ztrmv_
+ ztrsm_            @69
+ ztrsm = ztrsm_
+ ztrsv_            @70
+ ztrsv = ztrsv_
+ 

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ones">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ones</refname>
+    <refpurpose> matrix made of ones</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=ones(m1,m2,...)
+y=ones(x)
+y=ones()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m1, m2,..  </term>
+        <listitem>
+          <para>integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Returns a matrix made of ones.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>ones(m1,m2)</term>
+        <listitem>
+          <para>returns a <literal>(m1,m2)</literal> matrix full of ones.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ones(m1,m2,..,mn)</term>
+        <listitem>
+          <para>creates a <literal>(m1,m2,..,mn)</literal> matrix full of ones.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ones(x)</term>
+        <listitem>
+          <para>returns a matrix full of ones with the same size that <literal>x</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ones(x)</term>
+        <listitem>
+          <para>is also valid for <literal>x</literal> a <literal>syslin</literal> list.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    Note that <literal>ones(3)</literal> is <literal>ones(a)</literal> with <literal>a=3</literal> i.e it is NOT 
+    a 3x3 matrix!</para>
+    <para>
+    ones() is eqivalent to ones(1,1).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+ones(3)
+ones(3,3)
+ones(2,3,2)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eye">eye</link>
+      </member>
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

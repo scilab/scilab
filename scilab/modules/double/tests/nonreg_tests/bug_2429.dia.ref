@@ -1,0 +1,16 @@
+// <-- Non-regression test for bug 2429 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2429
+//
+// <-- Short Description -->
+//    Implicit vector in for loop are allocated
+// Copyright INRIA
+// Scilab Project - Serge Steer
+// Copyright INRIA 2007
+// Date : June 2007
+S=stacksize();
+function test(),for k=1:3d5,end,endfunction
+stacksize(2d5)
+if execstr('test()','errcatch') <> 0  then bugmes();quit;end
+stacksize(S(1))

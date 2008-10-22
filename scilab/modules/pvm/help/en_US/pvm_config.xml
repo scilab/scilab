@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_config">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_config</refname>
+    <refpurpose> sends a message</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>res = pvm_config()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>list of 7 elements such that:</para>
+          <variablelist>
+            <varlistentry>
+              <term>(1)</term>
+              <listitem>
+                <para/>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(2)</term>
+              <listitem>
+                <para> integer returning the number of different data formats being used.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(3)</term>
+              <listitem>
+                <para> integer returning pvmd task ID for host.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(4)</term>
+              <listitem>
+                <para> character string returning name of host.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(5)</term>
+              <listitem>
+                <para> character string returning architecture name of host</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(6)</term>
+              <listitem>
+                <para> integer returning relative speed of host. Default value is 1000.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(7)</term>
+              <listitem>
+                <para> integer status code returned by the routine.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_config</literal> returns information about
+    the present virtual machine. The information returned is
+    similar to that available from the console command.</para>
+    <para>
+    The <literal>pvm_config</literal> function returns information about the entire
+    virtual machine in one call.</para>
+    <para>
+    The returned value <literal>res(7)</literal>will be zero if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+if pvm_start()==0 then
+    res = pvm_config()
+    pvm_halt()
+end
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_start">pvm_start</link>
+      </member>
+      <member>
+        <link linkend="pvm_tasks">pvm_tasks</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

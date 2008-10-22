@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_DeleteInterp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>TCL_DeleteInterp</refname>
+    <refpurpose>delete TCL interpreter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>TCL_DeleteInterp(interp)
+TCL_DeleteInterp()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>interp</term>
+        <listitem>
+          <para>character string parameter. Name of the slave tcl
+					interpreter to delete. If not provided, it defaults to the main tcl interpreter created by Scilab.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This routine allows to delete a TCL slave interpreter or the main scilab TCL interpreter.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+TCL_SetVar("Scilab","OK")
+TCL_ExistVar("Scilab")
+TCL_DeleteInterp()
+TCL_ExistVar("Scilab")
+TCL_CreateSlave('BisInterp')
+TCL_ExistInterp('BisInterp')
+TCL_SetVar("Scilab","OK",'BisInterp')
+TCL_ExistVar("Scilab",'BisInterp')
+TCL_DeleteInterp('BisInterp')
+TCL_ExistInterp('BisInterp')
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="TCL_SetVar">TCL_SetVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+      </member>
+      <member>
+        <link linkend="TCL_ExistInterp">TCL_ExistInterp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

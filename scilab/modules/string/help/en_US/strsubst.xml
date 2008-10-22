@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strsubst" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan
+    2008)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strsubst</refname>
+
+    <refpurpose>substitute a character string by another in a character
+    string.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>string_out=strsubst(string_in,searchStr,replaceStr)
+string_out=strsubst(string_in,searchStr,replaceStr,[flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>string_in</term>
+
+        <listitem>
+          <para>a matrix of character string. The strings where to search
+          occurrences of <literal>searchStr</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>searchStr</term>
+
+        <listitem>
+          <para>A character string. The string to search in
+          <literal>string</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>replaceStr</term>
+
+        <listitem>
+          <para>A character string. The replacement string.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str_out</term>
+
+        <listitem>
+          <para>A matrix of character strings. The result of the substitution
+          on <literal>searchStr</literal> by <literal>replaceStr</literal> in
+          <literal>string</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>string("r" for regular expression)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>strsubst</literal> replaces all occurrences of
+    <literal>searchStr</literal> in <literal>string</literal> by
+    <literal>replaceStr</literal>.</para>
+
+    <para>When using the forth parameters "r", the searchStr should be a
+    string of regular expression. And then strsubst is going to match it with
+    string and replace according to the regular express rules.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+strsubst('SCI/demos/scicos','SCI','.')
+strsubst('SCI/demos/scicos','/',' ')
+strsubst('2' ,'/2(]*)?$\1/' ,'0','r')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="strings">strings</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

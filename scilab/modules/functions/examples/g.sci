@@ -1,0 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+//
+// This file is released into the public domain
+
+//============================
+// Example How to do a function
+//============================
+
+function [z]=g(x,y)
+  z=x+y;
+endfunction

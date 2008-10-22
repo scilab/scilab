@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cdfchn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdfchn</refname>
+    <refpurpose> fonction de répartition de la distribution du chi-deux non centrée   </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[P,Q]=cdfchn("PQ",X,Df,Pnonc)
+[X]=cdfchn("X",Df,Pnonc,P,Q);
+[Df]=cdfchn("Df",Pnonc,P,Q,X)
+[Pnonc]=cdfchn("Pnonc",P,Q,X,Df)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>P,Q,X,Df,Pnonc  </term>
+        <listitem>
+          <para>5 vecteurs réels de même taille.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P,Q (Q=1-P)  </term>
+        <listitem>
+          <para> L'intégrale de 0 à X de la distribution.  En entrée : [0, 1-1E-16).
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>Borne supérieure d'intégration En entrée : [0, +infini). En recherche : [0,1E300]
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Df  </term>
+        <listitem>
+          <para>Degrés de liberté de la densité En entrée : (0, +infini). En recherche : [ 1E-300, 1E300]
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Pnonc  </term>
+        <listitem>
+          <para>paramètre de décentrage En entrée : [0, +infini). En recherche : [0,1E4]
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Étant donnés les autres, calcule un paramètre de la distribution du chi-deux non-centré.
+  </para>
+    <para>
+    La formule  26.4.25  de  "Abramowitz   and   Stegun,  Handbook  of
+    Mathematical  Functions (1966)" est utilisée pour le calcul de la fonction de répartition.
+  </para>
+    <para>
+    Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+  </para>
+    <para>
+    Le temps de calcul est proportionnel au paramètre de décentrage.
+    La plage de recherche est bornée par 10,000 pour limiter le temps de calcul (pouvant devenir énorme pour des grandes valeurs de Pnonc).
+  </para>
+    <para>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </para>
+  </refsection>
+</refentry>

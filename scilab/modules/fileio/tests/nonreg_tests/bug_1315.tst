@@ -1,0 +1,55 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 1315 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1315
+//
+
+format('v',20)
+values = [38042.851388888900,    5586 ;
+38042.854861111100,     5586 ;
+38042.858333333300,     5586 ;
+38042.861805555600,     5586 ;
+38042.865277777800,     5586 ;
+38042.868750000000,     5586 ;
+38042.872222222200,     5586 ;
+38042.875694444400,     5586 ;
+38042.879166666700,     5586 ];
+
+
+u=mopen(TMPDIR+'/values.dat','w');
+mfprintf(u,"%5.10f %5.10f\n",values)
+mclose(u);
+
+u2=mopen(TMPDIR+'/values.dat','rt');
+[n value1 value2]=mfscanf(-1,u2,'%20f %20f');
+mclose(u2);
+
+ref_value1 = [  38042.8515625;
+    38042.85546875;
+    38042.859375;
+    38042.86328125;
+    38042.8671875;
+    38042.8671875;
+    38042.87109375;
+    38042.875;
+    38042.87890625   ];
+
+ref_value2 = [5586. ;
+5586. ;
+5586. ;
+5586. ;
+5586. ;
+5586. ;
+5586. ;
+5586. ;
+5586. ];
+
+if ~and(ref_value2 == value2) then pause,end
+if ~and(ref_value1 == value1) then pause,end

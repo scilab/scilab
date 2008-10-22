@@ -1,0 +1,8 @@
+LIBRARY    sciaction_binding.dll
+
+
+EXPORTS
+;
+;shell
+ismenu
+GetCommand

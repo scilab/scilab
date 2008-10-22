@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="meanf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>meanf</refname>
+    <refpurpose> weighted mean of a vector or a matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>m=meanf(val,fre)
+m=meanf(val,fre,'r') or m=meanf(val,fre,1)
+m=meanf(val,fre,'c') or m=meanf(val,fre,2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>? </term>
+        <listitem>
+          <para/>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function computes the mean  of a vector or matrix <literal> x</literal>.
+    For a vector or matrix <literal>  x</literal>, <literal> m=mn(x) </literal> returns
+    in scalar <literal> m</literal>  the mean of  all the entries of <literal> x </literal>.
+    <literal> m=mn(x,'r') </literal> (or,  equivalently, <literal> m=mn(x,1) </literal>)
+    returns in each entry of the row vector <literal> m</literal> the mean
+    of each column of <literal> x</literal>.
+    <literal> m=mn(x,'c') </literal> (or,  equivalently, <literal> m=mn(x,2) </literal>)
+    returns in  each entry of the column  vector <literal> m</literal> the
+    mean of each row of <literal> x</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
+m=meanf(x,rand(x))
+m=meanf(x,[10 10 10;1 1 1],'r')
+m=meanf(x,[10 10 10;1 1 1],'c')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

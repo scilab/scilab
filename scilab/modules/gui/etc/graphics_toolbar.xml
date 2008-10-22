@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<toolbar>
+<!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure --> 
+    <!-- Rotate -->
+    <button icon="rotate.png" tooltiptext="Rotate">
+        <callback instruction="rotate_axes(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
+    </button>
+
+    <separator/>
+
+    <!-- Zoom Area -->
+    <button icon="zoom-area.png" tooltiptext="Zoom Area">
+        <callback instruction='zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
+    </button>
+    <!-- Original View -->
+    <button icon="original-view.png" tooltiptext="Original View">
+        <callback instruction='unzoom(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
+    </button>
+
+    <separator/>
+
+    <!-- Help -->
+    <button icon="help-browser.png" tooltiptext="Help Browser">
+        <callback instruction='help();' type="0"/>
+    </button>
+</toolbar>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="exists" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>exists</refname>
+
+    <refpurpose>checks variable existence</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>exists(name [,where])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>where</term>
+
+        <listitem>
+          <para>an optional character with possible values:
+          <literal>'l'</literal> (local), <literal>'n'</literal>
+          (nolocal) and <literal>'a'</literal> (all). The default
+          value is <literal>'all'.</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>exists(name)</literal> returns <literal>1</literal> if the
+    variable named <literal>name</literal> exists and <literal>0</literal>
+    otherwise.</para>
+
+    <para>Caveats: a function which uses <literal>exists</literal> may return
+    a result which depends on the environment!</para>
+
+    <para><literal>exists(name,'local')</literal> returns <literal>1</literal>
+    if the variable named <literal>name</literal> exists in the environment of
+    the current function and <literal>0</literal> otherwise.</para>
+
+    <para><literal>exists(name,'nolocal')</literal> returns
+    <literal>1</literal> if the variable named <literal>name</literal> exists
+    in any level of the calling environment (including the Scilab shell main level) of the current function and
+    <literal>0</literal> otherwise.</para>
+
+    <para>Warning: the exists function does not check if a variable exists in
+    the <link linkend="global">global</link> namespace.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+deff('foo(x)',..
+['disp([exists(''a12''),exists(''a12'',''local'')])'
+ 'disp([exists(''x''),exists(''x'',''local'')])'])
+foo(1)
+a12=[];foo(1)
+
+function level1()
+  function level2()
+    disp(exists("a","all"));
+    disp(exists("a","local"));
+    disp(exists("a","nolocal"));
+  endfunction
+  level2()
+endfunction
+function go()
+  a=1;
+  level1()
+endfunction
+go()
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="isdef">isdef</link></member>
+
+      <member><link linkend="isglobal">isglobal</link></member>
+
+      <member><link linkend="whereis">whereis</link></member>
+
+      <member><link linkend="type">type</link></member>
+
+      <member><link linkend="typeof">typeof</link></member>
+
+      <member><link linkend="macrovar">macrovar</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

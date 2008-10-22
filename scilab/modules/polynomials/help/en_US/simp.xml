@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="simp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>simp</refname>
+    <refpurpose> rational simplification</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[N1,D1]=simp(N,D)
+H1=simp(H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>N,D</term>
+        <listitem>
+          <para>real polynomials or real matrix polynomials</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>rational matrix (i.e matrix with entries <literal>n/d</literal> ,<literal>n</literal> and <literal>d</literal> real polynomials)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[n1,d1]=simp(n,d)</literal> calculates two polynomials <literal>n1</literal> and <literal>d1</literal>
+    such that <literal>n1/d1 = n/d</literal>.</para>
+    <para>
+    If <literal>N</literal> and <literal>D</literal> are polynomial matrices the calculation
+    is performed element-wise.</para>
+    <para><literal>H1=simp(H)</literal> is also valid (each entry of <literal>H</literal> is
+    simplified in <literal>H1</literal>).</para>
+    <para>
+    Caution:</para>
+    <para>
+    -no threshold is given i.e. <literal>simp</literal> cannot forces a
+    simplification.</para>
+    <para>
+    -For linear dynamic systems which include integrator(s) simplification
+    changes the static gain. (<literal>H(0)</literal> for continuous systems or <literal>H(1)</literal> for
+    discrete systems)</para>
+    <para>
+    -for complex data, <literal>simp</literal> returns its input(s).</para>
+    <para>
+    -rational simplification is called after nearly each operations on
+    rationals. It is possible to toggle simplification on or off using
+    <literal>simp_mode</literal> function.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+s=poly(0,'s');
+[n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
+
+simp_mode(%F);hns=s/s
+simp_mode(%T);hns=s/s
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="trfmod">trfmod</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="simp_mode">simp_mode</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

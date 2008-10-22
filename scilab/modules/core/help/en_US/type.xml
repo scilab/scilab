@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="type">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>type</refname>
+    <refpurpose>Returns the type of a variable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[i]=type(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>Scilab object</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>type(x)</literal>  returns an integer which is the type of <literal>x</literal> as following :</para>
+    <para>
+     1 
+    :  real or complex constant matrix.</para>
+    <para>
+     2 
+    :  polynomial matrix.</para>
+    <para>
+     4 
+    :  boolean matrix.</para>
+    <para>
+     5
+    :  sparse matrix.</para>
+    <para>
+     6
+    :  sparse boolean matrix.</para>
+    <para>
+     7
+    :  Matlab sparse matrix.</para>
+    <para>
+     8
+    :  matrix of integers stored on 1 2 or 4 bytes.</para>
+    <para>
+     9
+    :  matrix of graphic handles.</para>
+    <para>
+     10 
+    :  matrix of character strings.</para>
+    <para>
+     11 
+    :  un-compiled function (Scilab code).</para>
+    <para>
+     13 
+    :  compiled function (Scilab code).</para>
+    <para>
+     14 
+    :  function library.</para>
+    <para>
+     15 
+    :  list.</para>
+    <para>
+     16 
+    :  typed list (tlist).</para>
+    <para>
+     17
+    :  matrix oriented typed list (mlist).</para>
+    <para>
+     128
+    : pointer (See <link linkend="lufact">lufact</link>).</para>
+    <para>
+     129
+    : size implicit polynomial used for indexing.</para>
+    <para>
+     130
+    : Scilab intrinsic (C or Fortran code).</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_help_chapter">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>add_help_chapter</refname>
+    <refpurpose> Add an entry in the helps list</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>add_help_chapter(title,path[,mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+        <listitem>
+          <para>a character string, the help chapter title</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a character string, the path of the directory containing the
+       help files.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode</term>
+        <listitem>
+          <para>a boolean, %T if the help directory belongs to scilab modules list, %F else (toolboxes). The default value is %F.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+  This function adds a new entry in the helps list. The help chapter
+  files are to be located in a single directory. If the given
+  <literal>title</literal> already exists in the helps list associated with
+  the same path nothing is done.  The function checks if the directory
+  exist.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="add_demo">add_demo</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
+    Serge Steer , INRIA
+  </para>
+  </refsection>
+</refentry>

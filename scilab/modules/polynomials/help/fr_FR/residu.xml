@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="residu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>residu</refname>
+    <refpurpose> résidu   </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>P, Q1, Q2  </term>
+        <listitem>
+          <para>polynômes ou matrice de polynômes à coefficients réels ou complexes.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>V=residu(P,Q1,Q2)</literal> renvoie la matrice <literal>V</literal> telle que <literal>V(i,j)</literal>
+    est la somme des résidus de la fraction rationnelle 
+    <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal> calculés aux zéros de <literal>Q1(i,j)</literal>.
+  </para>
+    <para><literal>Q1(i,j)</literal> et <literal>Q2(i,j)</literal> ne doivent pas avoir de racines communes.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+H=[s/(s+1)^2,1/(s+2)];N=numer(H);D=denom(H);
+w=residu(N.*horner(N,-s),D,horner(D,-s));  //N(s) N(-s) / D(s) D(-s)
+sqrt(sum(w))  // La norme H2
+h2norm(tf2ss(H))
+//
+p=(s-1)*(s+1)*(s+2)*(s+10);a=(s-5)*(s-1)*(s*s)*((s+1/2)**2);
+b=(s-3)*(s+2/5)*(s+3);
+residu(p,a,b)+531863/4410    // Exact
+z=poly(0,'z');a=z^3+0.7*z^2+0.5*z-0.3;b=z^3+0.3*z^2+0.2*z+0.1;
+atild=gtild(a,'d');btild=gtild(b,'d');
+residu(b*btild,z*a,atild)-2.9488038   // Exact
+a=a+0*%i;b=b+0*%i;
+real(residu(b*btild,z*a,atild)-2.9488038) // Cas complexe
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pfss">pfss</link>
+      </member>
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="gtild">gtild</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>F Delebecque INRIA  </para>
+  </refsection>
+</refentry>

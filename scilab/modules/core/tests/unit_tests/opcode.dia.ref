@@ -1,0 +1,93 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//a primitive as an argument of a primitive
+//-----------------------------------------
+function y=foo(),y=sin(cos),endfunction
+//is it properly compiled
+L=macr2lst(foo);
+if or(L(4)<>["2","cos","-4","0"]) then bugmes();quit;end // get variable named cos
+if or(L(5)<>["2","sin","-2","1"]) then bugmes();quit;end // get variable named sin (extraction)
+if or(L(6)<>["5","25","2","1"]) then bugmes();quit;end //realize sin(cos)
+if or(L(7)<>["29","52","y","0"]) then bugmes();quit;end //affectation
+//check if it executes properly
+function z=%fptr_sin(f), z=sin(f(%pi/6)),endfunction
+if foo()<>sin(cos(%pi/6)) then bugmes();quit;end
+//check modified pseudocode
+L1=macr2lst(foo);
+if or(L1(4)<>["27","6","23","cos"]) then bugmes();quit;end // create varfunptr
+if or(L1(5)<>["20","sin","1","1"]) then bugmes();quit;end // primitive all
+if or(L1(6)<>["29","52","y","0"]) then bugmes();quit;end //affectation
+if foo()<>sin(cos(%pi/6)) then bugmes();quit;end
+//a primitive as an argument of a macro
+//-----------------------------------------
+function y=foo(),y=toto(cos),endfunction
+Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+
+L=macr2lst(foo);
+if or(L(4)<>["2","cos","-4","0"]) then bugmes();quit;end //get variable named cos
+if or(L(5)<>["2","toto","-2","1"]) then bugmes();quit;end // get variable named toto (extraction)
+if or(L(6)<>["5","25","2","1"]) then bugmes();quit;end //realize toto(cos)
+//check if it executes properly
+function y=toto(x),y=x(1),endfunction
+if foo()<>cos(1) then bugmes();quit;end
+//check modified pseudocode
+L1=macr2lst(foo);
+if or(L1(4)<>["27","6","23","cos"]) then bugmes();quit;end // create varfunptr
+if or(L1(5)<>["2","toto","-2","1"]) then bugmes();quit;end // primitive all
+if or(L1(6)<>["5","25","2","1"]) then bugmes();quit;end //affectation
+if foo()<>cos(1) then bugmes();quit;end
+// unknown variable as an argument of a macro
+//-----------------------------------------
+clear toto
+function y=foo(),y=toto(xxx),endfunction
+Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+
+L=macr2lst(foo);
+if or(L(4)<>["2","xxx","-4","0"]) then bugmes();quit;end //get variable named xxx
+if or(L(5)<>["2","toto","-2","1"]) then bugmes();quit;end // get variable named toto (extraction)
+if or(L(6)<>["5","25","2","1"]) then bugmes();quit;end //realize toto(xxx)
+function y=toto(x),y=x(1),endfunction
+xxx=cos;
+if foo()<>cos(1) then bugmes();quit;end
+L1=macr2lst(foo);
+if or(L1(4)<>["2","xxx","-4","0"]) then bugmes();quit;end  //get variable named xxx
+if or(L1(5)<>["2","toto","-2","1"]) then bugmes();quit;end // get variable named toto (extraction)
+if or(L1(6)<>["5","25","2","1"]) then bugmes();quit;end //realize toto(xxx)
+if foo()<>cos(1) then bugmes();quit;end
+//xxxx
+//-----------------------------------------
+function y=foo(),y=sin(cos(%pi/6)),endfunction
+Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+
+L=macr2lst(foo);
+if foo()<>sin(cos(%pi/6)) then bugmes();quit;end
+if foo()<>sin(cos(%pi/6)) then bugmes();quit;end
+//affectation of a primitive
+//-----------------------------------------
+function y=foo(),y=sin,endfunction
+Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+
+L=macr2lst(foo);
+if or(L(4)<>["2","sin","0","0"]) then bugmes();quit;end // create varfunptr
+if type(foo())<>130 then bugmes();quit;end
+L=macr2lst(foo);
+if or(L(4)<>["27","6","22","sin"]) then bugmes();quit;end // create varfunptr
+if type(foo())<>130 then bugmes();quit;end
+sin=1
+Warning : redefining function: sin                     . Use funcprot(0) to avoid this message
+
+ sin  =
+ 
+    1.  
+sin //devrait repondre 1 or il essaye d'executer sin
+ ans  =
+ 
+    1.  
+a=sin //est ok
+ a  =
+ 
+    1.  

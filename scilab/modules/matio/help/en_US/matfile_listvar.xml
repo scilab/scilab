@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matfile_listvar">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-10 14:32:05 +0200 (jeu, 10 avr 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matfile_listvar</refname>
+    <refpurpose>Lists variables of a Matlab V5 binary MAT-file.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[names[, classes[, types]]] = matfile_listvar(fd)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>Real: file descriptor (returned by <link linkend="matfile_open">matfile_open</link>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>String vector: names of the variables.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>classes</term>
+        <listitem>
+          <para>Real vector: classes of the variables.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>types</term>
+        <listitem>
+          <para>Real vector: data types of the variables.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Lists variables of a Matlab binary MAT-file opened by <link linkend="matfile_open">matfile_open</link>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matfile_open">matfile_open</link>
+      </member>
+      <member>
+        <link linkend="matfile_close">matfile_close</link>
+      </member>
+      <member>
+        <link linkend="matfile_varwrite">matfile_varwrite</link>
+      </member>
+      <member>
+        <link linkend="matfile_varreadnext">matfile_varreadnext</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>This function uses MATIO library (<literal><ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink></literal>).</para>
+  </refsection>
+</refentry>

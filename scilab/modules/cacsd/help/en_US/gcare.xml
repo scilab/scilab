@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gcare">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gcare</refname>
+    <refpurpose> control Riccati equation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X,F]=gcare(Sl)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>symmetric matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>real matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Generalized Control Algebraic Riccati Equation (GCARE).
+    <literal>X</literal> = solution , <literal>F</literal> = gain.</para>
+    <para>
+    The GCARE for <literal>Sl=[A,B,C,D]</literal> is:</para>
+    <programlisting><![CDATA[
+
+(A-B*Si*D'*C)'*X+X*(A-B*Si*D'*C)-X*B*Si*B'*X+C'*Ri*C=0
+   
+    ]]></programlisting>
+    <para>
+    where <literal>S=(eye()+D'*D)</literal>, <literal>Si=inv(S)</literal>, <literal>R=(eye()+D*D')</literal>, <literal>Ri=inv(R)</literal> 
+    and <literal>F=-Si*(D'*C+B'*X)</literal> is such that <literal>A+B*F</literal> is stable.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gfare">gfare</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

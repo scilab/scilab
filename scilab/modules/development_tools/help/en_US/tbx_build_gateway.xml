@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_build_gateway" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 2008-09-19 14:01:22 +0200 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tbx_build_gateway</refname>
+    <refpurpose>Build a gateway (toolbox compilation process)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      tbx_build_gateway(libname, names, files, [gateway_path [, libs [, ldflags [, cflags [, fflags [, cc [, makename [, ismex]]]]]]]])
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>libname</term>
+        <listitem>
+          <para>a character string, the generic name of the library without path and extension.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>2 column string matrix giving the table of pairs 'scilab-name', 'interface name'</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>string matrix giving objects files needed for shared library creation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gateway_path</term>
+        <listitem>
+          <para>Path to the sources of the gateway ; in a normal toolbox it should be the directory containing the builder_gateway_(lang).sce script (which should be the script calling this function). Default is current directory.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libs</term>
+        <listitem>
+          <para>string matrix giving extra libraries needed for shared library creation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ldflags,cflags,fflags</term>
+        <listitem>
+          <para>character strings to provide options for the loader, the C compiler and the Fortran compiler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cc</term>
+        <listitem>
+          <para>character string. The name of or path to the compiler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>makename</term>
+        <listitem>
+          <para>character string. The path of the Makefile file without extension.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+// Recommended usage
+tbx_build_gateway('mytoolbox', ['c_sum','sci_csum';'c_sub','sci_csub'], ['sci_csum.o','sci_csub.o'], ..
+                  get_absolute_file_path('builder_gateway_c.sce'), ..
+                  ['../../src/c/libcsum']);
+   </programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ilib_build">ilib_build</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>SL</member>
+    </simplelist>
+  </refsection>
+</refentry>

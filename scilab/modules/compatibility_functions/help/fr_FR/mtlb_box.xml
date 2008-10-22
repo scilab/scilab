@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_box">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_box</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab box</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <literal>box</literal> mais elle peut facilement être remplacée.</para>
+    <para>
+    La fonction <literal>mtlb_box([axes_handle[,val]])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>box([axes_handle[,val]])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_box</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Pour un appel sans paramètre d'entrée,
+        <literal>mtlb_box()</literal> peut être remplacé par <literal>a=gca();if a.box=="on" then a.box="off";else a.box="on";end;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>axes_handle</literal> est une chaîne de caractères,
+	<literal>mtlb_box(axes_handle)</literal> peut être remplacé par <literal>a=gca();a.box=convstr(axes_handle,"l");</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>axes_handle</literal> est un handle graphique,
+	<literal>mtlb_box(axes_handle)</literal> peut être remplacé par 
+	<literal>if axes_handle.box=="on" then axes_handle.box="off";else axes_handle.box="on";end;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>axes_handle</literal> est un handle graphique et <literal>val</literal> est une chaîne de caractères,
+	<literal>mtlb_box(axes_handle,val)</literal> peut être remplacé par <literal>axes_handle.box=convstr(val,"l");</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_box</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

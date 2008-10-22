@@ -1,0 +1,14 @@
+LIBRARY    scilab_windows.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; scilab_windows
+; --------------------------------------- 
+ buildMainWindowTitle_Windows
+ getScilexConsoleName
+ strdup_windows
+ RestoreConsoleColors
+ CloseScilabConsole
+ closeInnosetupMutex
+ RestoreExitButton

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="simp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>simp</refname>
+    <refpurpose> simplification rationnelle  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[N1,D1]=simp(N,D)
+H1=simp(H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>N,D  </term>
+        <listitem>
+          <para>polynômes réels ou matrices de polynômes réels
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H  </term>
+        <listitem>
+          <para>matrice de fractions rationnelles (i.e matrice avec des termes <literal>n/d</literal>, <literal>n</literal> et <literal>d</literal> polynômes réels) 
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[n1,d1]=simp(n,d)</literal> calcule deux polynômes <literal>n1</literal> et <literal>d1</literal>
+    tels que<literal>n1/d1 = n/d</literal>.
+  </para>
+    <para>
+    Si <literal>N</literal> et <literal>D</literal> sont des matrices de polynômes le calcul
+    est fait élément par élément.
+  </para>
+    <para><literal>H1=simp(H)</literal> est aussi valide (chaque terme de <literal>H</literal> est simplifié dans <literal>H1</literal>).
+  </para>
+    <para>
+    Attention : 
+  </para>
+    <para>
+    - pas de seuil i.e. <literal>simp</literal> ne peut pas forcer une
+    simplification.
+  </para>
+    <para>
+    - Pour les systèmes dynamiques linéaires avec un intégrateur la simplification
+    change le gain statique. (<literal>H(0)</literal> pour les systèmes continus ou <literal>H(1)</literal> pour les systèmes discrets)
+  </para>
+    <para>
+    - Pour les données complexes, <literal>simp</literal> renvoie ses entrées.
+  </para>
+    <para>
+    - Une simplification est effectuée après la plupart des opérations rationnelles. Il est possible de la supprimer en utilisant la fonction <literal>simp_mode</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+[n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
+
+simp_mode(%F);hns=s/s
+simp_mode(%T);hns=s/s
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="trfmod">trfmod</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="simp_mode">simp_mode</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

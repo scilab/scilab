@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_plot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_plot</refname>
+    <refpurpose>Matlab plot emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab <literal>plot</literal> and Scilab <literal>plot2d</literal> behave differently.</para>
+    <para>
+    The function <literal>mtlb_plot(varargin)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>plot(varargin)</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_plot</literal> calls when there is no output value,
+    however in this case, you have to set colors manualy:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With one input, if <literal>Y</literal> is real,
+        <literal>mtlb_plot(Y)</literal> may be replaced by <literal>plot2d(Y)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        With one input, if <literal>Y</literal> is complex,
+        <literal>mtlb_plot(Y)</literal> may be replaced by <literal>plot2d(real(Y),imag(Y))</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        With two inputs <literal>X</literal> and <literal>Y</literal>, if <literal>Y</literal> is not a character string,
+        <literal>mtlb_plot(X,Y)</literal> may be replaced by <literal>plot2d(X,Y)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_plot</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

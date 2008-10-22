@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Bertrand Guiheneuf
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ScilabEval">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ScilabEval</refname>
+    <refpurpose>tcl instruction : Evaluate a string
+  with scilab interpreter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>ScilabEval instruction
+ScilabEval instruction "seq"
+ScilabEval instruction "sync"
+ScilabEval instruction "sync" "seq"
+ScilabEval "flush"</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>instruction</term>
+        <listitem>
+          <para>tcl string character contains a Scilab instruction to evaluate
+          with the current Scilab interpreter.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This function must be called in a tcl/tk script executed from Scilab.
+    It allows to associate Scilab actions to tcl/tk widgets (graphic objects)
+    or to use Scilab to perform some computations within a tcl script.</para>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>ScilabEval instruction</term>
+        <listitem>
+          <para>If the <literal>ScilabEval instruction </literal> syntax is used, the
+        <literal>instruction</literal> is first stored in a FIFO queue,
+        <literal>ScilabEval</literal> returns immediately. Scilab executes the
+        queued <literal>instructions</literal> when possible (it should be at the
+        prompt but also at the end of each instructions of the currently
+        running function) in the order they were submitted. This syntax can be
+        used to associate Scilab actions to tcl/tk widgets but not into a tcl
+        script executed by <link linkend="TCL_EvalFile">TCL_EvalFile</link> or <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+        because in this situation the Scilab interpreter is blocked up to the
+        end of the script. Note that with the 
+       <literal>ScilabEval instruction</literal> syntax, if there are many 
+       <literal>ScilabEval</literal>
+        commands stored in the queue the execution of the second one can be
+        started in the middle of the execution of the first one (in particular
+        if the first one contains more than a simple expression).</para>
+          <para>If the <literal>"seq"</literal> option is added, the associated
+        instruction evaluation should be finished (or paused) before the next
+        queued instruction evaluation can be started. The next callback stored
+        in the command queue will only be taken into account when the current
+        one will be finished or paused.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ScilabEval instruction "sync"</term>
+        <listitem>
+          <para>If the <literal>ScilabEval instruction "sync"</literal> syntax is used,
+        the instruction is executed immediately (not queued) and the
+        <literal>ScilabEval</literal>returns when the <literal>instruction</literal> 
+        evaluation is finished. The scilab <literal>instruction</literal>
+        evaluation may be interrupted by new or queued commands.</para>
+          <para>If the <literal>"seq"</literal> option is added, the associated
+        instruction evaluation should be finished (or paused) before any
+        queued instruction evaluation can be started. The scilab
+        <literal>instruction</literal> evaluation may not be interrupted by new or
+        queued commands (except if it is paused).</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ScilabEval "flush"</term>
+        <listitem>
+          <para>If the <literal>ScilabEval "flush"</literal> syntax is used, all the
+        previously queued <literal>instructions</literal> are executed immediately
+        and the ScilabEval returns when the execution is finished. Each
+        <literal>instruction</literal> is executed with the option used at the time
+        of queuing up (i.e. <literal>seq</literal> or no option).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>The evaluation context of all these cases is the current Scilab context
+    when the<literal>instruction</literal> evaluation starts.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//Callbacks and "seq" option usage
+
+//create tcl instructions
+tcl_script=['toplevel .w1'
+'button .w1.b -text ""Click here to execute without seq option""  -command WithoutSeq'
+'button .w1.b1 -text ""Click here to execute with seq option""  -command  WithSeq'
+'pack .w1.b .w1.b1'
+'proc  WithoutSeq {} { ';
+'  ScilabEval ""cont=%f;;cont=%t;"" '
+'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
+'}'
+'proc WithSeq {} { ';
+'  ScilabEval ""cont=%f;;cont=%t;""  ""seq""'
+'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
+'}'];
+mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+// Execute the tcl script
+cont=%f;
+TCL_EvalFile(TMPDIR+'/test.tcl');;
+
+//scripts and "sync" option usage
+
+//----------------without "sync"----------------
+tcl_script=['  set t ""0""'
+    '  while {$t != ""10""} {'
+    '     ScilabEval ""a=$t;mprintf(''%d '',a);""'
+    '     incr t'
+    '  }'];
+
+mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+// Execute the tcl script
+TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
+// The ScilabEval are executed  after the and of TCL_EvalFile
+
+//----------------with "sync"----------------
+tcl_script=['  set t ""0""'
+    '  while {$t != ""10""} {'
+    '     ScilabEval ""a=$t;mprintf(''%d '',a);"" ""sync""'
+    '     incr t'
+    '  }'];
+
+mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+// Execute the tcl script
+TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
+// The ScilabEval are executed  synchronously with TCL_EvalFile
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="TCL_EvalFile">TCL_EvalFile</link>
+      </member>
+      <member>
+        <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+      </member>
+      <member>
+        <link linkend="TCL_GetVar">TCL_GetVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_SetVar">TCL_SetVar</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Bertrand Guiheneuf</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="smooth">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>smooth</refname>
+    <refpurpose> smoothing by spline functions</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[pt]=smooth(ptd [,step])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>ptd</term>
+        <listitem>
+          <para>(2xn) real vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>step</term>
+        <listitem>
+          <para>real (discretization step of abscissae)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pt</term>
+        <listitem>
+          <para>(2xn) real vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    this function computes interpolation by spline 
+    functions for a given set of points in the plane.
+    The  coordinates  are   <literal>(ptd(1,i),ptd(2,i))</literal>.  The
+    components <literal>ptd(1,:)</literal> must be in ascending order.
+    The default value for the step is
+    <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal></para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
+yi=smooth([x;y],0.1);
+plot2d(yi(1,:)',yi(2,:)',[1],"000");
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+      <member>
+        <link linkend="interp">interp</link>
+      </member>
+      <member>
+        <link linkend="interpln">interpln</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

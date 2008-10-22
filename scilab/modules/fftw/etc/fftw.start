@@ -1,0 +1,61 @@
+// ====================================================================
+// fftw module initialisation file
+// Copyright INRIA 2006
+// ====================================================================
+
+if %fftw then
+
+	if MSDOS then
+		librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
+	else
+		librarynamefftw = "libfftw3"+getdynlibext();
+	end
+	
+	//add help chapter
+	add_module_help_chapter('fftw');
+
+	if ( loadfftwlibrary(librarynamefftw) ) then
+	
+		//Load  functions librarie
+		//load('SCI/modules/fftw/macros/lib');
+		// ====================================================================
+		// replace scilab fft function by fftw
+		clearfun fft;
+		fft=fftw;
+		
+		//add demos
+		
+		// path = get_absolute_file_path('fftw.start');
+		// path = getshortpathname(path);
+		// pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/fftw.dem',%f,%f);
+		// add_demo('FFTW',pathdemos);
+		// clear path
+		// clear pathdemos;
+	
+	else  // if ( loadfftwlibrary(librarynamefftw) )
+		// TO DO : replace this by a Message box
+		settings_file = pathconvert(SCIHOME+'/.scilab_settings',%f,%t)
+		w=fileinfo(settings_file);
+		show=%t;
+		if w <> [] then
+			show=grep(mgetl(SCIHOME+'/.scilab_settings'),'displayWarningFFTW=no')==[]
+		end
+		if show then
+			MSG_FTTW = 'You choose to install scilab with fftw module.'+ascii(10)+ ..
+				'This module requires : '+librarynamefftw+' (GPL licence).'+ascii(10)+ ..
+				'Scilab will use standard fft by default until you install this library.'+ascii(10)+ ..
+				'See help fftw for more informations.'+ascii(10);
+			printf('\n');
+			warning(MSG_FTTW);
+			clear MSG_FTTW;
+			mputl('displayWarningFFTW=no',SCIHOME+'/.scilab_settings')
+			clear mputl;
+			clear printf;
+		end
+		clear show;
+		clear settings_file;
+		clear w;
+	end // if ( loadfftwlibrary(librarynamefftw) ) then
+	
+	clear librarynamefftw
+end

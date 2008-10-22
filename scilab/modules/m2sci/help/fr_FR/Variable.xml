@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="Variable">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Variable</refname>
+    <refpurpose>Créé un arbre représentant une variable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>var=Variable(name,infer)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>var</term>
+        <listitem>
+          <para>nom de la variable (chaîne de caractères)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infer</term>
+        <listitem>
+          <para>données d'inférence (une tlist de type "infer", voir la page d'aide de Infer)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>var</term>
+        <listitem>
+          <para>une tlist de type "variable"</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Cette fonction créé une <literal>tlist</literal> représentant les données d'inférence quand
+    on utilise M2SCI. Tous les paramètres d'entrée sont vérifiés pour être compatible avec
+    les "tlists M2SCI".
+    </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Funcall">Funcall</link>
+      </member>
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Contents">Contents</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

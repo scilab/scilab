@@ -1,0 +1,11 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for graphic_export module
+// Copyright INRIA 2008
+// ====================================================================
+// delete help chapter
+//del_help_chapter('graphic_export',%T);
+// ====================================================================
+clearglobal %driverName;
+clearglobal %exportFileName;
+// =============================================================================

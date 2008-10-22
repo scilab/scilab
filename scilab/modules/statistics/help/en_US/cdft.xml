@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdft">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdft</refname>
+    <refpurpose> cumulative distribution function Student's T distribution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P,Q]=cdft("PQ",T,Df)
+[T]=cdft("T",Df,P,Q)
+[Df]=cdft("Df",P,Q,T)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P,Q,T,Df</term>
+        <listitem>
+          <para>six real vectors of the same size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P,Q (Q=1-P)  </term>
+        <listitem>
+          <para>The integral from -infinity to t of the t-density. Input range: (0,1].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>T</term>
+        <listitem>
+          <para>Upper limit of integration of the t-density. Input range: ( -infinity, +infinity). Search range: [ -1E150, 1E150 ]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>DF:  </term>
+        <listitem>
+          <para>Degrees of freedom of the t-distribution. Input range: (0 , +infinity). Search range: [1e-300, 1E10]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Calculates any one parameter of the T distribution given
+    values for the others.</para>
+    <para>
+    Formula  26.5.27  of   Abramowitz   and  Stegun,   Handbook   of
+    Mathematical Functions  (1966) is used to reduce the computation
+    of the cumulative distribution function to that of an incomplete
+    beta.</para>
+    <para>
+    Computation of other parameters involve a seach for a value that
+    produces  the desired  value  of P.   The search relies  on  the
+    monotinicity of P with the other parameter.</para>
+  </refsection>
+</refentry>

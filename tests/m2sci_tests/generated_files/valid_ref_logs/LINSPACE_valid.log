@@ -1,0 +1,22 @@
+****** Beginning of validation of LINSPACE.dia.ref ******
+*** TEST 1 PASSED ***
+
+*** TEST 2 PASSED ***
+
+*** TEST 3 PASSED ***
+
+TEST 4: Scilab and Matlab size do not match but result is OK because is a String for res4
+*** TEST 4 PASSED ***
+
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+TEST 7: Scilab and Matlab size do not match but result is OK because is a String for res7
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+*** TEST 9 PASSED ***
+
+****** End of validation of LINSPACE.dia.ref ******

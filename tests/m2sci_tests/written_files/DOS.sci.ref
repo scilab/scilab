@@ -1,0 +1,20 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function dos()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+[%v0$2,%v1$1] = dos("ls");
+[%v0$2,status] = dos("ls");
+[%v0$2,status] = dos("ls");
+disp(status);
+
+[result,status] = dos("ls")
+[result,status] = dos("ls")
+disp(result,status);

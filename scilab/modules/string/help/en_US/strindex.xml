@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strindex" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-06 16:57:13 +0200 (Mon, 06 Febrary
+    2008)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strindex</refname>
+
+    <refpurpose>search position of a character string in an other
+    string.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>ind=strindex(haystack,needle,[flag])
+[ind,which]=strindex(haystack,needle,[flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>haystack</term>
+
+        <listitem>
+          <para>A character string. The string where to search occurrences of
+          <literal>needle </literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>needle</term>
+
+        <listitem>
+          <para>A character string or character string vector . The string(s)
+          to search in <literal>haystack</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>vector of indexes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>which</term>
+
+        <listitem>
+          <para>vector of indexes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>string("r" for regular expression)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>strindex</literal> searches indexes where <literal>needle
+    (i)</literal> is found in <literal>haystack</literal></para>
+
+    <para>for each <literal>k</literal> it exist a <literal>i</literal> shuch
+    that <literal>part(haystack,ind(k)+(0:length(needle(i))-1))</literal> is
+    the same string than <literal>needle(i)</literal>. If
+    <literal>which</literal> argument is required it contains these
+    <literal>i</literal>. When using the third parameters "r", the needle
+    should be a string of regular expression. And then strindex is going to
+    match it with haystack according to the regular express rules.</para>
+
+    <para><literal>strindex</literal> without regular expression argument is
+    based on Knuth-Morris-Pratt algoritm.</para>
+
+    <para>This algorithm is more powerful than that used in scilab 4.x. In
+    some special case, result can be different.</para>
+
+    <para>example:</para>
+
+    <para>// scilab 5.x</para>
+
+    <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
+
+    <para>w = 1. 1. 2. k = 1. 2. 2.</para>
+
+    <para>// scilab 4.x</para>
+
+    <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
+
+    <para>w = 1. 1. k = 1. 2.</para>
+
+    <para>The rules of regular expression are similar to perl language. For a
+    quick start , see <ulink
+    url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
+    For a more in-depth tutorial on , see <ulink
+    url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+    and for the reference page, see <ulink
+    url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink></para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+k=strindex('SCI/demos/scicos','/')
+k=strindex('SCI/demos/scicos','SCI/')
+k=strindex('SCI/demos/scicos','!')
+k=strindex('aaaaa','aa') 
+k=strindex('SCI/demos/scicos',['SCI','sci'])
+[k,w]=strindex('1+3*abc/2.33',['+','-','*','/'])
+k=strindex('2' ,'/2(]*)?$\1/' ,'r') 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="strings">strings</link></member>
+
+      <member><link linkend="regexp">regexp</link></member>
+
+      <member><link linkend="strsubst">strsubst</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

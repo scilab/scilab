@@ -1,0 +1,77 @@
+# Localization of the module development_tools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 15:01+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:09+0100\n"
+
+# File: macros/testexamples.sci, line: 18
+# File: macros/testexamples.sci, line: 33
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr ""
+#
+# File: macros/test_clean.sci, line: 98
+# File: macros/test_run.sci, line: 187
+# File: macros/bench_run.sci, line: 74
+#, c-format
+msgid "%s is not an installed module"
+msgstr ""
+#
+# File: macros/test_clean.sci, line: 117
+# File: macros/test_run.sci, line: 206
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr ""
+#
+# File: macros/test_clean.sci, line: 136
+# File: macros/test_run.sci, line: 225
+# File: macros/bench_run.sci, line: 106
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr ""
+#
+# File: macros/test_run.sci, line: 782
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr ""
+#
+# File: macros/bench_run.sci, line: 93
+msgid "error : Input argument sizes are not valid"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 33
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr ""
+#
+# File: macros/scitest.sci, line: 125
+# File: macros/scitest.sci, line: 131
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 146
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 148
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 151
+msgid "Test passed"
+msgstr ""

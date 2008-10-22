@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/knapsack_data.ref','rb');
+weight = ones(1, 15) .*. (1:4);
+profit = ones(1, 60);
+capa = [15,45,30,60];
+[earn,ind] = knapsack(profit, weight, capa);
+if load_ref('ind') then   pause,end,
+if load_ref('earn') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,27 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/frfit_data.ref','rb');
+ 
+w = 0.01:0.01:2;s = poly(0, 's');
+ 
+G = syslin('c', 2 * (s^2 + 0.1 * s + 2), (s^2 + s + 1) * (s^2 + 0.3 * s + 1));
+ 
+fresp = repfreq(G, w);
+ 
+Gid = frfit(w, fresp, 4);
+ 
+frespfit = repfreq(Gid, w);
+ 
+%ans = bode(w, [fresp;frespfit]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

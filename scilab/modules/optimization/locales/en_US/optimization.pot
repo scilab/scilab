@@ -1,0 +1,216 @@
+# Localization of the module optimization
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:09+0100\n"
+
+# File: macros/derivative.sci, line: 29
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 32
+#, c-format
+msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 36
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 41
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr ""
+#
+# File: macros/derivative.sci, line: 127
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr ""
+#
+# File: macros/fit_dat.sci, line: 78
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+#
+# File: macros/fit_dat.sci, line: 81
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr ""
+#
+# File: macros/fit_dat.sci, line: 100
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr ""
+#
+# File: macros/bvodeS.sci, line: 69
+# File: macros/bvodeS.sci, line: 114
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 135
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 28
+# File: macros/karmarkar.sci, line: 32
+# File: macros/karmarkar.sci, line: 36
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 39
+#, c-format
+msgid "%s: x0 is not feasible."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 56
+#, c-format
+msgid "%s: Unbounded problem!"
+msgstr ""
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 80
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 109
+# File: sci_gateway/c/sci_qp_solve.c, line: 133
+# File: sci_gateway/c/sci_qp_solve.c, line: 141
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 168
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 172
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr ""
+#
+# File: etc/optimization.start, line: 13
+msgid "Optimization and Simulation"
+msgstr ""
+#
+# File: src/c/sp.c, line: 266
+msgid "m must be at least one.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 271
+msgid "L must be at least one.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 276
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 281
+msgid "nu must be at least 1.0.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 302
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 316
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 351
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 406
+# File: src/c/sp.c, line: 591
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 408
+msgid "x0 is not strictly primal feasible.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 421
+msgid "Z0 is not positive definite.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 424
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 446
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 504
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 516
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 520
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 564
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 572
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 41
+#, c-format
+msgid "Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 135
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 137
+#, c-format
+msgid "%s: Accuracy insufficient to statify convergence criterion.\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 139
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 141
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr ""

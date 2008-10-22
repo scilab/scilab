@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_any">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_any</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab any</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, les fonctions <literal>any</literal> de Matlab et
+    <literal>or</literal> de Scilab se comportent différemment :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+	Avec un argument d'entrée (<literal>any(A)</literal>), la fonction <literal>any</literal> de Matlab traite
+	les valeurs selon la première dimension de A qui n'est pas 1 comme un vecteur
+	alors que Scilab traite toutes les valeurs de A.
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Avec deux arguments d'entrée (<literal>any(A,dim)</literal>), Matlab
+	tolère une valeur de <literal>dim</literal> supérieure au
+	nombre de dimensions de A alors que Scilab renvoie un message d'erreur dans ce cas.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_any(A[,dim])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>any(A[,dim])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_any</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>    
+	Si <literal>A</literal> est un scalaire ou un vecteur
+	<literal>R = mtlb_any(A)</literal> peut être remplacé par <literal>R = or(A)</literal>
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Si <literal>A</literal> est une matrice
+	<literal>R = mtlb_any(A)</literal> peut être remplacé par <literal>R = o(A,1)</literal>
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Si <literal>A</literal> est une hypermatrice
+	<literal>R = mtlb_any(A)</literal> peut être remplacé par <literal>R = or(A,firstnonsingleton(A))</literal>
+	ou par <literal>R = or(A,user_defined_value)</literal> si la première dimension non-égale à 1 de A est connue.
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Si <literal>dim</literal> est inférieur ou égal au nombre de dimensions de A
+	<literal>R = mtlb_any(A,dim)</literal> peut être remplacé par <literal>R = or(A,dim)</literal>
+	</para>
+      </listitem>
+      <listitem>
+        <para>
+	Si <literal>dim</literal> est supérieur au nombre de dimensions de A
+	<literal>R = mtlb_any(A,dim)</literal> peut être remplacé par <literal>R = A&lt;&gt;0</literal> si A n'est pas
+	une matrice vide ou par <literal>R = A</literal> si A est une matrice vide.
+	</para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention: <literal>mtlb_any</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="firstnonsingleton">firstnonsingleton</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

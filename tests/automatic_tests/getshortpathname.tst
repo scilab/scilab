@@ -1,0 +1,10 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/getshortpathname_data.ref','rb');
+[shortpath,bOK] = getshortpathname(SCI);
+if load_ref('bOK') then   pause,end,
+if load_ref_nocheck('shortpath') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

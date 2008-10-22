@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="errclear">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>errclear</refname>
+    <refpurpose> "effacement" d'une erreur  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>errclear([n])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Supprime l'action (voir errcatch) associée à l'interception de l'erreur de type <literal>n</literal>.
+  </para>
+    <para>
+    Si <literal>n</literal> est positif, il s'agit du numéro de l'erreur à "effacer"; sinon toutes les erreurs sont "effacées".
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+      <member>
+        <link linkend="iserror">iserror</link>
+      </member>
+      <member>
+        <link linkend="lasterror">lasterror</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

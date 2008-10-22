@@ -1,0 +1,26 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/barh_data.ref','rb');
+
+// First example: draw a bar (i.e a polyline with polyline_style type =6),default style='grouped', width=0.5, color='yellow', default x=1:length(y)
+scf(0);
+y = [1,-3,5];
+barh(y, 0.5, 'yellow');
+
+// Second example: draw 3 bars (i.e 3 polylines with polyline_style type =6),default style='grouped'
+scf(1);
+x = [1,2,5];y = [1,-5,6;3,-2,7;4,-3,8];
+barh(x, y);
+
+// Third example : style='stacked'.
+scf(2);
+x = [1,2,5];y = [1,4,7;2,5,8;3,6,9];
+barh(x, y, 'stacked');
+
+// Fourth example: width=0.2;color='green'; default style='grouped'
+scf(3);
+x = [1,2,5];y = [1,4,7;2,5,8;3,6,9];
+barh(x, y, 0.2, 'green');
+xdel_run(winsid());
+
+mclose(%U);

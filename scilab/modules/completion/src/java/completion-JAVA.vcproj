@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="completion-Ant"
+	ProjectGUID="{B5E4D0C2-8C6A-4437-81BF-DBFA95900C9D}"
+	RootNamespace="completion-Ant"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
+				Output=""
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
+				Output=""
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
+				Output=""
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;call ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
+				Output=""
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{32CECC8B-3355-4312-87A2-5B25796C3F41}"
+			>
+			<File
+				RelativePath=".\org\scilab\modules\completion\Completion.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\completion\CompletionJNI.java"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\..\..\build.xml"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

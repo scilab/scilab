@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="minus">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>minus</refname>
+    <refpurpose> (-)  substraction operator, sign changes</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>X-Y
+-Y</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y</term>
+        <listitem>
+          <para>scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Substraction</para>
+    <para>
+    For numeric operands substraction as its usual meaning.
+    If one of the operands is a matrix and the other one a scalar the
+    the operation is performed element-wise. if <literal>Y==[] X</literal>  is returned;
+    if <literal>X==[] -Y</literal>  is returned.</para>
+    <para>
+    Substraction may also be defined for other data types through
+    "soft-coded" operations.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+[1,2]-1
+[]-2
+
+%s-2
+1/%s-2
+"cat"+"enate"
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="addf">addf</link>
+      </member>
+      <member>
+        <link linkend="mtlb_mode">mtlb_mode</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

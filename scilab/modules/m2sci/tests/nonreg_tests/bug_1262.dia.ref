@@ -1,0 +1,186 @@
+// <-- Non-regression test for bug 1262 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1262
+//
+// <-- Short Description -->
+//    Four errors of mfile2sci are reported
+//    (scilab-3.0-u-20050309) Linux+Windows+Solaris.
+//
+//    Briefly:
+//    1) end; end -> endend
+//    2) Initialization to empty matrix at wrong place
+//    3) Problem with useless [ or ]
+//    4) -(A-B) -> -A-B
+//
+//    Apply mfile2sci to the Matlab script given below.
+// Copyright INRIA
+// Scilab Project - F.Belahcene
+// Modified by Pierre MARECHAL
+// Scilab Project
+// 20 mai 2005
+MFILECONTENTS=["A = rand(3,3);"
+	""
+	"for ii=1:3; for jj=1:3; disp(A(ii,jj)); end; end"
+	""
+	"k=0;"
+	"for ii=1:3;"
+	"   for jj=1:3;"
+	"      if k>2 then"
+	"         B(ii,jj) = A(ii,jj);"
+	"         k = 0;"
+	"      else"
+	"         k = k+1;"
+	"      end;"
+	"  end;"
+	"end;"
+	""
+	"C = [A [A [1;2;3]]];"
+	""
+	"B = -(A-A)"]
+ MFILECONTENTS  =
+ 
+!A = rand(3,3);                                    !
+!                                                  !
+!                                                  !
+!                                                  !
+!for ii=1:3; for jj=1:3; disp(A(ii,jj)); end; end  !
+!                                                  !
+!                                                  !
+!                                                  !
+!k=0;                                              !
+!                                                  !
+!for ii=1:3;                                       !
+!                                                  !
+!   for jj=1:3;                                    !
+!                                                  !
+!      if k>2 then                                 !
+!                                                  !
+!         B(ii,jj) = A(ii,jj);                     !
+!                                                  !
+!         k = 0;                                   !
+!                                                  !
+!      else                                        !
+!                                                  !
+!         k = k+1;                                 !
+!                                                  !
+!      end;                                        !
+!                                                  !
+!  end;                                            !
+!                                                  !
+!end;                                              !
+!                                                  !
+!                                                  !
+!                                                  !
+!C = [A [A [1;2;3]]];                              !
+!                                                  !
+!                                                  !
+!                                                  !
+!B = -(A-A)                                        !
+MFILE=TMPDIR+"/bug1262.m"
+ MFILE  =
+ 
+ TMPDIR/bug1262.m   
+SCIFILE=TMPDIR+"/bug1262.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug1262.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug1262.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+	"// Display mode";
+	"mode(0);";
+	"";
+	"// Display warning for floating point exception";
+	"ieee(1);";
+	"";
+	"A = rand(3,3);"
+	""
+	"for ii = 1:3 for jj = 1:3 disp(A(ii,jj));end;end;"
+	""
+	"k = 0;"
+	"for ii = 1:3"
+	"  for jj = 1:3"
+	"    if k>2 then"
+	"      B(ii,jj) = A(ii,jj);"
+	"      k = 0;"
+	"    else"
+	"      k = k+1;"
+	"    end;"
+	"  end;"
+	"end;"
+	""
+	"C = [A,A,[1;2;3]];"
+	""
+	"B = -(A-A)"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                   !
+!                                                   !
+!// Display mode                                    !
+!                                                   !
+!mode(0);                                           !
+!                                                   !
+!                                                   !
+!                                                   !
+!// Display warning for floating point exception    !
+!                                                   !
+!ieee(1);                                           !
+!                                                   !
+!                                                   !
+!                                                   !
+!A = rand(3,3);                                     !
+!                                                   !
+!                                                   !
+!                                                   !
+!for ii = 1:3 for jj = 1:3 disp(A(ii,jj));end;end;  !
+!                                                   !
+!                                                   !
+!                                                   !
+!k = 0;                                             !
+!                                                   !
+!for ii = 1:3                                       !
+!                                                   !
+!  for jj = 1:3                                     !
+!                                                   !
+!    if k>2 then                                    !
+!                                                   !
+!      B(ii,jj) = A(ii,jj);                         !
+!                                                   !
+!      k = 0;                                       !
+!                                                   !
+!    else                                           !
+!                                                   !
+!      k = k+1;                                     !
+!                                                   !
+!    end;                                           !
+!                                                   !
+!  end;                                             !
+!                                                   !
+!end;                                               !
+!                                                   !
+!                                                   !
+!                                                   !
+!C = [A,A,[1;2;3]];                                 !
+!                                                   !
+!                                                   !
+!                                                   !
+!B = -(A-A)                                         !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

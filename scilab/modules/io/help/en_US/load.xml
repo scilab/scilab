@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="load">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>load</refname>
+    <refpurpose> load saved variable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>load(filename [,x1,...,xn])
+load(fd [,x1,...,xn])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>character string containing the path of the file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>a file descriptor given by a call to mopen</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xi</term>
+        <listitem>
+          <para>arbitrary Scilab variable name(s) given as strings.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>The <literal>load</literal> command can be used to reload in the Scilab session
+    variables previously saved in a file with the <literal>save</literal> command. If
+    the file contains graphic handle variables, the corresponding
+      <link linkend="graphics_entities">graphics_entities</link> are drawn. </para>
+      <para>Since
+    Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also drawn.</para>
+    <para><literal>load(filename)</literal> loads the variables saved in file given by its
+    path <literal>filename</literal>.</para>
+    <para><literal>load(fd)</literal> loads the variables saved in file given by its
+    descriptor <literal>fd</literal>.</para>
+    <para><literal>load(filename,'x','y')</literal> or <literal>load(fd,'x','y')</literal> loads only
+    variables <literal>x,y</literal>.</para>
+    <para>Even if the binary file format has changed with 2.5 version,
+      <literal>load(filename,...)</literal> is able to read old format
+      files. Previous file format can be accessed for a while using function
+      oldsave ans oldload.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a=eye(2,2);b=ones(a);
+save('vals.dat',a,b);
+clear a
+clear b
+load('vals.dat','a','b');
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="listvarinfile">listvarinfile</link>
+      </member>
+      <member>
+        <link linkend="save_format">save_format</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

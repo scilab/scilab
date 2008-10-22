@@ -1,0 +1,8 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+ iop_
+ com_
+ ;core_f
+ sigbas_

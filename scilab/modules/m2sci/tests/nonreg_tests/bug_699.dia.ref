@@ -1,0 +1,83 @@
+// <-- Non-regression test for bug 699 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=699
+//
+// <-- Short Description -->
+//    m2sci crashes for a very simple input file
+//
+//    The content of the offending file a_test.m is a single
+//    line :
+//
+//    M(1,1) = -sin(0.1);
+//
+//    When I try to convert this Matlab file to Scilab using the
+//    m2sci application (menu option in the main Scilab window),
+//    the reported error message displays.
+// Copyright INRIA
+// Scilab Project - V. Couvert
+// Modified by Pierre MARECHAL
+// Copyright INRIA
+// Date : 22 Mar 2005
+MFILECONTENTS=["M(1,1) = -sin(0.1);";"M(1,1) = sin(0.1);"]
+ MFILECONTENTS  =
+ 
+!M(1,1) = -sin(0.1);  !
+!                     !
+!M(1,1) = sin(0.1);   !
+MFILE=TMPDIR+"/bug699.m"
+ MFILE  =
+ 
+ TMPDIR/bug699.m   
+SCIFILE=TMPDIR+"/bug699.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug699.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug699.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+		"// Display mode";
+		"mode(0);";
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"M(1,1) = -sin(0.1);";
+		"M(1,1) = sin(0.1);"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!M(1,1) = -sin(0.1);                              !
+!                                                 !
+!M(1,1) = sin(0.1);                               !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

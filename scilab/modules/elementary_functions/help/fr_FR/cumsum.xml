@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cumsum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cumsum</refname>
+    <refpurpose> somme cumulative.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=cumsum(x)
+y=cumsum(x,'r') ou y=cumsum(x,1)
+y=cumsum(x,'c') ou y=cumsum(x,2)
+y=cumsum(x,'m')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur ou matrice (entière, réelle ou complexe)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para>vecteur ou matrice (entière,réelle ou complexe)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para> Pour un vecteur <literal>x</literal>, <literal>y=cumsum(x)</literal> renvoie dans
+      <literal>y</literal> la somme cumulative de tous les éléments de
+      <literal>x</literal>. Si <literal>x</literal> est une matrice, elle est considérée
+      comme un vecteur (les colonnes sont mises bout à bout).</para>
+    <para><literal>y=cumsum(x,'c')</literal> (ou <literal>y=cumsum(x,2)</literal>)
+      renvoie dans <literal>y</literal> la somme cumulative des éléments des lignes
+      de <literal>x</literal>: <literal> y(i,:)=cumsum(x(i,:))</literal>. </para>
+    <para><literal>y=cumsum(x,'r')</literal> (ou <literal>y=cumsum(x,2)</literal>)
+      renvoie dans <literal>y</literal> la somme cumulative des colonnes de
+      <literal>x</literal>: <literal> y(:,i)=cumsum(x(:,i))</literal>.  </para>
+    <para><literal>y=cumsum(x,'m')</literal>
+      effectue la somme cumulative selon la première dimension plus grande que
+      1 (compatibilité avec Matlab). </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[1,2;3,4];
+cumsum(A)
+cumsum(A,'r')
+cumsum(A,'c')
+a=rand(3,4)+%i;
+[m,n]=size(a);
+w=zeros(a);
+w(1,:)=a(1,:);
+for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cumprod">cumprod</link>
+      </member>
+      <member>
+        <link linkend="sum">sum</link>
+      </member>
+      <member>
+        <link linkend="prod">prod</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

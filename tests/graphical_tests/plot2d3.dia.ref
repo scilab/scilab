@@ -1,0 +1,47 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/plot2d3_data.ref','rb');
+ 
+ 
+// compare the following with plot2d1
+ 
+x = (0:0.1:2 * %pi)';
+ 
+%ans = plot2d3(x, [sin(x),sin(2 * x),sin(3 * x)]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// In New graphics only
+ 
+%ans = clf_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = set('figure_style', 'new');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot2d(x, [sin(x),sin(2 * x),sin(3 * x)]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+e = gce();
+ 
+e.children(1).polyline_style = 3;
+ 
+e.children(2).polyline_style = 3;
+ 
+e.children(3).polyline_style = 3;
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

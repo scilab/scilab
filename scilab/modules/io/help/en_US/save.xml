@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="save" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>save</refname>
+
+    <refpurpose>saving variables in binary files</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>save(filename [,x1,x2,...,xn])
+save(fd [,x1,x2,...,xn])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>character string containing the path of the file</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>a file descriptor given by a call to mopen</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xi</term>
+
+        <listitem>
+          <para>arbitrary Scilab variable(s)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The <literal>save</literal> command can be used to save Scilab
+    current variables in a binary file. If a variable is a graphic handle, the
+    <literal>save</literal> function saves all the corresponding <link
+    linkend="graphics_entities">graphics_entities</link> definition. </para>
+    <para>Since
+    Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved by this
+    function. </para>
+
+    <para>The file can be given either by its paths or by its descriptor
+    previously given by <literal>mopen</literal>.</para>
+
+    <para><literal>save(filename)</literal> saves all current variables in the
+    file defined by <literal>filename</literal>.</para>
+
+    <para><literal>save(fd)</literal> saves all current variables in the file
+    defined by the descriptor <literal>fd</literal>.</para>
+
+    <para><literal>save(filename,x,y)</literal> or
+    <literal>save(fd,x,y)</literal> saves only named variables
+    <literal>x</literal> and <literal>y</literal>.</para>
+
+    <para>Saved variables can be reloaded by the <literal>load</literal>
+    command.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+a=eye(2,2);b=ones(a);
+save('val.dat',a,b);
+clear a
+clear b
+load('val.dat','a','b');
+
+// sequential save into a file
+fd=mopen('TMPDIR/foo','wb')
+for k=1:4, x=k^2;save(fd,x,k),end
+mclose(fd)
+fd=mopen('TMPDIR/foo','rb')
+for i=1:4, load(fd,'x','k');x,k,end
+mclose(fd)
+
+// appending variables to an old save file
+fd=mopen('TMPDIR/foo','r+')
+mseek(0,fd,'end') 
+lst=list(1,2,3)
+save(fd,lst)
+mclose(fd)
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="save_format">save_format</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

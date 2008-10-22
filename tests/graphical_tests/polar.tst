@@ -1,0 +1,11 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/polar_data.ref','rb');
+A = rand(5, 5);
+[Ro,Theta] = polar(A);
+%ans = norm(A - Ro * expm(%i * Theta), 1);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

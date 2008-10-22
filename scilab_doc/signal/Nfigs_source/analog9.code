@@ -1,0 +1,12 @@
+xinit('analog9.ps')
+n=9;eps=0.2;A=3;m1=eps*eps/(A*A-1);
+K1=%k(m1);K1T=%k(1-m1);
+z1max=n*K1;z2max=K1T;
+z1=0:(z1max/100):z1max;
+z2=%i*(0:(z2max/50):z2max);z2=z2+z1max*ones(z2);
+z3=z1max:-(z1max/100):0;z3=z3+%i*z2max*ones(z3);
+plot(ell1mag(eps,m1,[z1,z2,z3]));
+omc=prod(size(z1));
+omr=prod(size([z1,z2]));
+plot2d([omc,omc]',[0,1]',[2],"000");
+plot2d([omr,omr]',[0,1]',[2],"000");

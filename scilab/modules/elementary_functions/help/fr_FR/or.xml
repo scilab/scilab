@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="or">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>or |</refname>
+    <refpurpose> disjonction logique  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>or(A), or(A,'*')
+or(A,'r'), or(A,1)
+
+or(A,'c'), or(A,2)
+A|B</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>or(A)</literal> donne la disjonction (ou) logique des éléments de la matrice booléenne <literal>A</literal>. <literal>or(A)</literal> est vrai (<literal>%t</literal>) si au moins un terme de <literal>A</literal> est <literal>%t</literal>. 
+  </para>
+    <para><literal>y=or(A,'r')</literal> (ou <literal>y=or(A,1)</literal>) est la disjonction suivant l'indice de ligne. Chaque élément du vecteur ligne <literal>y</literal> contient la disjonction de chaque colonne de <literal>x</literal> (<literal>y(j)= or(A(i,j),i=1,m)</literal>).
+  </para>
+    <para><literal>y=or(A,'c')</literal> (ou <literal>y=or(A,2)</literal>) est la disjonction suivant l'indice de colonne. Chaque élément du vecteur colonne <literal>y</literal> contient la disjonction de chaque ligne de <literal>x</literal> 
+    (<literal>y(i)= or(A(i,j),j=1,n)</literal>)).
+  </para>
+    <para><literal>A|B</literal> renvoie la disjonction logique élément par élément des matrices booléennes  <literal>A</literal> et <literal>B</literal>. <literal>A</literal> et <literal>B</literal> doivent être des matrices de mêmes dimensions ou l'une d'elles doit être un simple booléen.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+or([%t %t %f])
+[%t %t %f]|[%f %t %t]
+[%t %t %f]|%f
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="and">and</link>
+      </member>
+      <member>
+        <link linkend="not">not</link>
+      </member>
+      <member>
+        <link linkend="find">find</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

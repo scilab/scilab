@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pdiv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pdiv</refname>
+    <refpurpose> division de polynômes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[R,Q]=pdiv(P1,P2)
+[Q]=pdiv(P1,P2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>P1  </term>
+        <listitem>
+          <para>matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P2  </term>
+        <listitem>
+          <para>polynôme ou matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R,Q  </term>
+        <listitem>
+          <para>deux matrices de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Division euclidienne élément par élément de la matrice de polynômes <literal>P1</literal>
+    par le polynôme <literal>P2</literal> ou par la matrice de polynômes <literal>P2</literal>.
+    <literal>Rij</literal> est la matrice des restes, <literal>Qij</literal> est la matrice
+    des quotients et <literal>P1ij = Qij*P2 + Qij</literal> ou <literal>P1ij = Qij*P2ij + Qij</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+x=poly(0,'x');
+p1=(1+x^2)*(1-x);p2=1-x;
+[r,q]=pdiv(p1,p2)
+p2*q-p1
+p2=1+x;
+[r,q]=pdiv(p1,p2)
+p2*q+r-p1
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ldiv">ldiv</link>
+      </member>
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

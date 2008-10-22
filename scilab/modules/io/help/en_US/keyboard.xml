@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="keyboard">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>keyboard</refname>
+    <refpurpose> keyboard commands</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Let <literal>C-</literal> stands for the control key. The following keyboard commands are available:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>C-a</term>
+        <listitem>
+          <para>moves the cursor to the beginning of command line.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-b</term>
+        <listitem>
+          <para>moves the cursor one character to the left.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-c</term>
+        <listitem>
+          <para>interrupts Scilab if nothing selected in the console, else text selected is sent to clipboard.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-d</term>
+        <listitem>
+          <para>deletes the current character.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-e</term>
+        <listitem>
+          <para>moves the cursor to the end of command line.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-f</term>
+        <listitem>
+          <para>moves the cursor one character to the right.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-h</term>
+        <listitem>
+          <para>deletes the previous character.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-k</term>
+        <listitem>
+          <para>kills command line from cursor to the end.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-n</term>
+        <listitem>
+          <para>go to next command line in history.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-p</term>
+        <listitem>
+          <para>calls back the preceding command in history.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-u</term>
+        <listitem>
+          <para>delete the whole command line.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-x</term>
+        <listitem>
+          <para>interrupts Scilab if nothing selected in the console, else text selected is cut and sent to clipboard.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-w</term>
+        <listitem>
+          <para>delete the last word of the command line.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C-SPACE</term>
+        <listitem>
+          <para>opens the completion window.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>TAB</term>
+        <listitem>
+          <para>opens the completion window.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>UP</term>
+        <listitem>
+          <para>calls back the preceding command in history.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>DOWN</term>
+        <listitem>
+          <para>go to next command line in history.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>!beg</term>
+        <listitem>
+          <para>looks for last command line in history which begins by <literal>beg</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="input">input</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

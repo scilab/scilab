@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hsv2rgb">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hsv2rgb</refname>
+    <refpurpose> Converts HSV colors to RGB</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[r,g,b] = hsv2rgb(h,s,v)
+rgb = hsv2rgb(h,s,v)
+[r,g,b] = hsv2rgb(hsv)
+rgb = hsv2rgb(hsv)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para> a vector of size n. The "hue" values.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para> a vector of size n. The "saturation" values.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para> a vector of size n. The "value" values
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hsv</term>
+        <listitem>
+          <para> a n x 3 matrix. Each row contains a [hue saturation value] tripple.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para> a column vector of size n. The associated "red" values.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>a column vector of size n. The associated "green" values.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>a column vector of size n. The associated "blue" values.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rgb</term>
+        <listitem>
+          <para> a n x 3 matrix. Each row contains a [red green blue] tripple.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>The function hsv2rgb converts colormaps
+      between the RGB and HSV color spaces. As hue varies from 0 to 1.0,
+      the corresponding colors vary from red through yellow, green, cyan, blue,
+      magenta, and back to red, so that there are actually red values both at 0
+      and 1.0. As saturation varies from 0 to 1.0, the corresponding colors
+      (hues) vary from unsaturated (shades of gray) to fully saturated (no
+      white component). As value, or brightness, varies from 0 to 1.0, the
+      corresponding colors become increasingly brighter. </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
+    plot3d1(t,t,z) 
+    f=gcf();f.pixmap='on';
+    for h=0:0.1:1
+      hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+      f.color_map=hsv2rgb(hsv);
+      show_pixmap()
+      xpause(10000)
+    end
+    for v=0:0.1:1
+      hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+      f.color_map=hsv2rgb(hsv);
+      show_pixmap()
+      xpause(10000)
+    end
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

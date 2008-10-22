@@ -1,0 +1,300 @@
+# Localization of the module spreadsheet
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-27 16:04+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:09+0100\n"
+
+# File: macros/sci2excel.sci, line: 23
+#, c-format
+msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 81
+#, c-format
+msgid "The file %s does not exist.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 89
+#, c-format
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 93
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 102
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 124
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 129
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 134
+# File: sci_gateway/c/sci_xls_read.c, line: 62
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 139
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 144
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_read.c, line: 39
+# File: sci_gateway/c/sci_xls_read.c, line: 45
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_read.c, line: 66
+#, c-format
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xls_read.c, line: 70
+#, c-format
+msgid "%s: End of file.\n"
+msgstr ""
+#
+# File: src/nospreadsheet/nospreadsheet.c, line: 19
+msgid "Scilab spreadsheet module not installed.\n"
+msgstr ""
+#
+# File: src/c/pldstr.c, line: 500
+#, c-format
+msgid ""
+"%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
+"replacement operation"
+msgstr ""
+#
+# File: src/c/pldstr.c, line: 582
+#, c-format
+msgid ""
+"%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
+"with '%s'"
+msgstr ""
+#
+# File: src/c/ole.c, line: 101
+#, c-format
+msgid "ripOLE: %s\n"
+msgstr ""
+#
+# File: src/c/ole.c, line: 251
+#, c-format
+msgid "%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr ""
+#
+# File: src/c/ole.c, line: 333
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
+msgstr ""
+#
+# File: src/c/ole.c, line: 347
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
+msgstr ""
+#
+# File: src/c/ole.c, line: 362
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
+msgstr ""
+#
+# File: src/c/ole.c, line: 372
+#, c-format
+msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
+msgstr ""
+#
+# File: src/c/ole.c, line: 388
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
+msgstr ""
+#
+# File: src/c/ole.c, line: 978
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1032
+#, c-format
+msgid ""
+"%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
+"position = 0x%x"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1048
+# File: src/c/ole.c, line: 1055
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1060
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1314
+#, c-format
+msgid ""
+"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1392
+#, c-format
+msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1435
+#, c-format
+msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1450
+#, c-format
+msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1492
+#, c-format
+msgid "%s:%d:OLE_open_directory:ERROR: %s"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1549
+#, c-format
+msgid ""
+"%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
+"and '%s'"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1557
+#, c-format
+msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
+msgstr ""
+#
+# File: src/c/ole.c, line: 1566
+#, c-format
+msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
+msgstr ""
+#
+# File: src/c/logger.c, line: 117
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
+msgstr ""
+#
+# File: src/c/logger.c, line: 119
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
+msgstr ""
+#
+# File: src/c/logger.c, line: 342
+#, c-format
+msgid "LOGGER-Default: %s%s"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 130
+# File: src/c/ripole.c, line: 139
+#, c-format
+msgid ""
+"Cannot interpret option \"%s\"\n"
+"%s\n"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 206
+#, c-format
+msgid "Decoding filename=%s"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 285
+#, c-format
+msgid "ripOLE requires an input file to decode.\n"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 319
+msgid "ripOLE: Cannot allocate memory for OLE object."
+msgstr ""
+#
+# File: src/c/ripole.c, line: 346
+#, c-format
+msgid "Cannot locate input file '%s'"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 349
+#, c-format
+msgid "File '%s' is not OLE2 format"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 352
+#, c-format
+msgid "OLE input file '%s' is insane"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 355
+#, c-format
+msgid "ripOLE: decoding of %s resulted in error %d\n"
+msgstr ""
+#
+# File: src/c/ripole.c, line: 399
+#, c-format
+msgid "ripOLE: decoding of %s resulted in error %d.\n"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 156
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%"
+"s' and '%s'"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 168
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 175
+#, c-format
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 281
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 293
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 334
+#, c-format
+msgid "Unable to decode stream with element string '%s'\n"
+msgstr ""

@@ -1,0 +1,85 @@
+<package name="org.scilab.modules.renderer.subwinDrawing">
+  <object name="IsoViewCameraGL">
+    <method name="display" returnType="void">
+    </method>
+    <method name="initializeDrawing" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="endDrawing" returnType="void">
+    </method>
+    <method name="show" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="destroy" returnType="void">
+      <param type="int" name="parentFigureIndex" />
+    </method>
+    <method name="setFigureIndex" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="setViewingArea" returnType="void">
+      <param type="double" name="transX" />
+      <param type="double" name="transY" />
+      <param type="double" name="scaleX" />
+      <param type="double" name="scaleY" />
+    </method>
+    <method name="setNormalizationParameters" returnType="void">
+      <param type="double" name="normalizeScaleX" />
+      <param type="double" name="normalizeScaleY" />
+      <param type="double" name="normalizeScaleZ" />
+      <param type="double" name="transX" />
+      <param type="double" name="transY" />
+      <param type="double" name="transZ" />
+    </method>
+    <method name="setAxesRotationParameters" returnType="void">
+      <param type="double" name="centerX" />
+      <param type="double" name="centerY" />
+      <param type="double" name="centerZ" />
+      <param type="double" name="alpha" />
+      <param type="double" name="theta" />
+    </method>
+    <method name="setFittingScale" returnType="void">
+      <param type="double" name="scaleX" />
+      <param type="double" name="scaleY" />
+      <param type="double" name="scaleZ" />
+    </method>
+    <method name="placeCamera" returnType="void">
+    </method>
+    <method name="redrawCamera" returnType="void">
+    </method>
+    <method name="replaceCamera" returnType="void">
+    </method>
+    <method name="setAxesReverse" returnType="void">
+      <param type="boolean" name="xAxisRevert" />
+      <param type="boolean" name="yAxisRevert" />
+      <param type="boolean" name="zAxisRevert" />
+    </method>
+    <method name="getPixelCoordinates" returnType="int[]">
+      <param type="double" name="userCoordX" />
+      <param type="double" name="userCoordY" />
+      <param type="double" name="userCoordZ" />
+    </method>
+    <method name="get2dViewPixelCoordinates" returnType="int[]">
+      <param type="double" name="userCoordX" />
+      <param type="double" name="userCoordY" />
+      <param type="double" name="userCoordZ" />
+    </method>
+    <method name="getProjectionMatrix" returnType="double[]">
+    </method>
+    <method name="getUnprojectMatrix" returnType="double[]">
+    </method>
+    <method name="get2dViewProjectionMatrix" returnType="double[]">
+    </method>
+    <method name="get2dViewUnprojectMatrix" returnType="double[]">
+    </method>
+    <method name="getViewPort" returnType="double[]">
+    </method>
+    <method name="setAxesBounds" returnType="void">
+      <param type="double" name="xMin" />
+      <param type="double" name="xMax" />
+      <param type="double" name="yMin" />
+      <param type="double" name="yMax" />
+      <param type="double" name="zMin" />
+      <param type="double" name="zMax" />
+    </method>
+  </object>
+</package>

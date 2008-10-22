@@ -1,0 +1,32 @@
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
+Copyright (c) 1989-2007 - ENPC
+Copyright (c) Bruno Pincon
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+sp:
+===
+
+Files: src/c/{spFortran.c, spSolve.c, spFactor.c, spOutput.c, spUtils.c,
+spBuild.c, spAllocate.c}
+
+Copyright:
+1985,86,87,88 Kenneth S. Kundert and the University of California.
+
+License:
+BSD like
+Permission to use, copy, modify, and distribute this software and its
+documentation for any purpose and without fee is hereby granted, provided
+that the above copyright notice appear in all copies and supporting
+documentation and that the authors and the University of California
+are properly credited.  The authors and the University of California
+make no representations as to the suitability of this software for
+any purpose.  It is provided `as is', without express or implied warranty.
+

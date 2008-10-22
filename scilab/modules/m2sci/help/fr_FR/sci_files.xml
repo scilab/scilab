@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sci_files">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sci_files</refname>
+    <refpurpose>Comment écrire des fonctions de conversion</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>  
+  Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelée
+  <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont définies dans des <literal>sci_files</literal>
+  dans le répertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
+  ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
+  Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
+  ou pour ses propres fonctions) en utilisant les conseils suivants.
+  </para>
+    <para>
+  Dans M2SCI, un appel à une fonction est considéré comme un "arbre" (c'est aussi le cas des instructions
+  du fichier à convertir), représenté dans Scilab par une <literal>tlist</literal> avec les champs suivants :
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>name</term>
+            <listitem>
+              <para>nom de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>lhsnb</term>
+            <listitem>
+              <para>nombre de paramètres de sortie de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>lhs</term>
+            <listitem>
+              <para>liste des paramètres de sortie de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>rhs</term>
+            <listitem>
+              <para>liste des paramètres d'entrée de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  Une <literal>sci_function</literal> a un paramètre d'entrée <literal>tree</literal> qui est aussi la sortie de cette fonction.
+  Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
+  en changeant name, lhsnb, lhs et/ou rhs. L'autre rôle de cette fonction est de gérer
+  l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
+  ce que l'on peut inférer pour les lhs de cette fonction. 
+  </para>
+    <para>
+  Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>Funcall</term>
+            <listitem>
+              <para>créé un arbre qui représente l'appel à une fonction</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Operation</term>
+            <listitem>
+              <para>créé un arbre qui représente une opération</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Variable</term>
+            <listitem>
+              <para>créé un arbre qui représente une variable</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Cste</term>
+            <listitem>
+              <para>créé un arbre qui représente une constante</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Infer</term>
+            <listitem>
+              <para>créé un arbre qui représente les données d'inférence</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Type</term>
+            <listitem>
+              <para>créé un arbre qui représente le type pour l'inférence</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Equal</term>
+            <listitem>
+              <para>créé un arbre qui représente une instruction</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  Quelques fonctions ont été écrites pour récupèrer les propriétés des opérandes/entrées. En considérant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
+  </para>
+    <informaltable border="1">
+      <tr>
+        <td>La fonction</td>
+        <td>renvoie %T si...</td>
+      </tr>
+      <tr>
+        <td>is_empty(A)</td>
+        <td>toutes les dimensions de A sont égales à 0</td>
+      </tr>
+      <tr>
+        <td>not_empty(A)</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 0</td>
+      </tr>
+      <tr>
+        <td>is_a_scalar(A)</td>
+        <td>toutes les dimensions de A sont égales 1</td>
+      </tr>
+      <tr>
+        <td>not_a_scalar(A)</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 1</td>
+      </tr>
+      <tr>
+        <td>is_a_vector(A)</td>
+        <td>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont égales à 1</td>
+      </tr>
+      <tr>
+        <td>not_a_vector(A)</td>
+        <td>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont supérieures à 1</td>
+      </tr>
+      <tr>
+        <td>is_real(A)</td>
+        <td>A est réel</td>
+      </tr>
+      <tr>
+        <td>is_complex(A)</td>
+        <td>A est complexe</td>
+      </tr>
+      <tr>
+        <td>isdefinedvar(A)</td>
+        <td>A est une variable déjà définie dans le M-file en cours de conversion</td>
+      </tr>
+      <tr>
+        <td>allunknown(A)</td>
+        <td>Toutes les dimensions de A sont inconnues</td>
+      </tr>
+    </informaltable>
+    <para>
+  D'autres fonctions ont été écrites pour des besoins spécifiques lors de l'écriture de fonctions de conversion :
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>first_non_singleton</term>
+            <listitem>
+              <para>est équivalente à <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. Séquence d'appel : dim = first_non_singleton(A)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>gettempvar</term>
+            <listitem>
+              <para>génére une variable temporaire portant une nom qui n'existe pas. Séquence d'appel : v = gettempvar()</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>insert</term>
+            <listitem>
+              <para>permet d'insérer des instruction. Séquence d'appel : insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer après celle-ci.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>getoperands</term>
+            <listitem>
+              <para>peut être utilisée pour extraire chaque opérande comme une variable. Séquence d'appel : [A,B] = getoperands(operation_tlist)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>getrhs</term>
+            <listitem>
+              <para>peut être utilisée pour extraire chaque paramètre comme une variable. Séquence d'appel : [A,...] = getrhs(funcall_tlist)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>convert2double</term>
+            <listitem>
+              <para>change le type de l'entrée quand ce type n'est pas implémenté pour une fonction particulière de Scilab. Séquence d'appel : A = convert2double(A)</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  Pour plus d'informations sur la façon d'écrire ces fichiers, consulter le répertoire
+  SCI/modules/m2sci/macros/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
+  aux plus compliqués (e.g. sci_zeros.sci).
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="m2scideclare">m2scideclare</link>
+      </member>
+      <member>
+        <link linkend="Funcall">Funcall</link>
+      </member>
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Variable">Variable</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,38 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/names_data.ref','rb');
+ 
+//Valid names
+ 
+%eps;
+ 
+if load_ref('%eps') then   bugmes();quit;end,
+ 
+ 
+A1 = 123;
+ 
+if load_ref('A1') then   bugmes();quit;end,
+ 
+ 
+#Color = 8;
+ 
+if load_ref('#Color') then   bugmes();quit;end,
+ 
+ 
+My_Special_Color_Table = rand(10, 3);
+ 
+if load_ref('My_Special_Color_Table') then   bugmes();quit;end,
+ 
+ 
+//Non valid names
+ 
+//1A , b%,0.C
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

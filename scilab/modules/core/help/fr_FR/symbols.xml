@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="symbols">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>symbols</refname>
+    <refpurpose>  opérateurs de Scilab  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utilisez les noms suivants pour obtenir de l'aide sur un symbole particulier :
+  </para>
+    <informaltable border="1">
+      <tr>
+        <td> opérateur</td>
+        <td>nom dans l'aide de Scilab</td>
+      </tr>
+      <tr>
+        <td> ',", .'</td>
+        <td>quote</td>
+      </tr>
+      <tr>
+        <td> +</td>
+        <td>plus </td>
+      </tr>
+      <tr>
+        <td> -</td>
+        <td>minus</td>
+      </tr>
+      <tr>
+        <td> *,.*</td>
+        <td>star</td>
+      </tr>
+      <tr>
+        <td> /, ./, /.</td>
+        <td>slash</td>
+      </tr>
+      <tr>
+        <td> \, .\ ,\. </td>
+        <td>backslash</td>
+      </tr>
+      <tr>
+        <td> .</td>
+        <td>dot</td>
+      </tr>
+      <tr>
+        <td> =, ==</td>
+        <td>equal</td>
+      </tr>
+      <tr>
+        <td> &lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</td>
+        <td>less</td>
+      </tr>
+      <tr>
+        <td> ~</td>
+        <td>tilda</td>
+      </tr>
+      <tr>
+        <td> [</td>
+        <td>left</td>
+      </tr>
+      <tr>
+        <td> ]</td>
+        <td>right</td>
+      </tr>
+      <tr>
+        <td> ()</td>
+        <td>parents</td>
+      </tr>
+      <tr>
+        <td> %</td>
+        <td>percent</td>
+      </tr>
+      <tr>
+        <td> :</td>
+        <td>colon</td>
+      </tr>
+      <tr>
+        <td> ,</td>
+        <td>comma</td>
+      </tr>
+      <tr>
+        <td> ;</td>
+        <td>semicolon</td>
+      </tr>
+      <tr>
+        <td> ^</td>
+        <td>hat</td>
+      </tr>
+      <tr>
+        <td> .^</td>
+        <td>power</td>
+      </tr>
+      <tr>
+        <td> |</td>
+        <td>or</td>
+      </tr>
+      <tr>
+        <td> &amp;</td>
+        <td>and</td>
+      </tr>
+      <tr>
+        <td> .*., ./., .\. </td>
+        <td>kron</td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Remarque</title>
+    <para>Pour des raisons historiques,  des symboles différents peuvent représenter le même opérateur:</para>
+    <para> <literal>{</literal> a la même signification que <literal>[</literal></para>
+    <para> <literal>}</literal> a la même signification que  <literal>]</literal></para>
+    <para> <literal>@</literal> a la même signification que  <literal>~</literal></para>
+    <para> <literal>`</literal> a la même signification que  &lt;</para>
+    <para> Il est fortement déconseillé d'utiliser ces opérateurs alternatifs, car il seront supprimés dans le futur.</para>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

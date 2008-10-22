@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="erf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>erf</refname>
+    <refpurpose> fonction erreur  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y = erf(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para>vecteur réel (de même taille que x)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>erf</literal> calcule la fonction erreur:
+</para>
+    <programlisting><![CDATA[
+                     /x     2
+             2       |    -t
+      y = -------    |   e    dt
+          sqrt(pi)  /0
+
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+deff('y=f(t)','y=exp(-t^2)');
+erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="erfc">erfc</link>
+      </member>
+      <member>
+        <link linkend="erfcx">erfcx</link>
+      </member>
+      <member>
+        <link linkend="calerf">calerf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>W. J. Cody (code from Netlib (specfun))</para>
+  </refsection>
+</refentry>

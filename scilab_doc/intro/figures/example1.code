@@ -1,0 +1,6 @@
+xinit('example1.ps')
+x=-%pi:0.3:%pi;
+y1=sin(x);y2=cos(x);y3=x;
+X=[x;x;x]; Y=[y1;y2;y3];
+plot2d(X',Y');
+xend()

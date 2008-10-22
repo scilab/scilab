@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="reglin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>reglin</refname>
+    <refpurpose> Linear regression</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[a,b,sig]=reglin(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    solve the regression problem y=a*x+ b in the least square sense. 
+    <literal>sig</literal> is the standard deviation of the residual. <literal>x</literal> and <literal>y</literal>
+    are two matrices of size <literal>x(p,n)</literal> and <literal>y(q,n)</literal>, where  <literal>n</literal>
+    is the number of samples.</para>
+    <para>
+    The estimator <literal>a</literal> is a matrix of size <literal>(q,p)</literal> and <literal>b</literal> is a
+    vector of size <literal>(q,1)</literal></para>
+    <programlisting><![CDATA[
+
+// simulation of data for a(3,5) and b(3,1)
+x=rand(5,100);
+aa=testmatrix('magi',5);aa=aa(1:3,:);
+bb=[9;10;11]
+y=aa*x +bb*ones(1,100)+ 0.1*rand(3,100);
+// identification 
+[a,b,sig]=reglin(x,y);
+maxi(abs(aa-a))
+maxi(abs(bb-b))
+// an other example : fitting a polynom 
+f=1:100; x=[f.*f; f];
+y= [ 2,3]*x+ 10*ones(f) + 0.1*rand(f);
+[a,b]=reglin(x,y)
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="leastsq">leastsq</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

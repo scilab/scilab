@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="qp_solve" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>March 2008</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>qp_solve</refname>
+
+    <refpurpose>linear quadratic programming solver builtin</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[x [,iact [,iter [,f]]]]=qp_solve(Q,p1,C1,b,me)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Q</term>
+
+        <listitem>
+          <para>real positive definite symmetric matrix (dimension <literal>n
+          x n</literal>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>p</term>
+
+        <listitem>
+          <para>real (column) vector (dimension <literal> n</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>C</term>
+
+        <listitem>
+          <para>real matrix (dimension <literal> (me + md) x n</literal>).
+          This matrix may be dense or sparse.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>b</term>
+
+        <listitem>
+          <para>RHS column vector (dimension <literal> m=(me +
+          md)</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>me</term>
+
+        <listitem>
+          <para>number of equality constraints (i.e. <literal>x'*C(:,1:me) =
+          b(1:me)'</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>optimal solution found.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iact</term>
+
+        <listitem>
+          <para>vector, indicator of active constraints. The first non zero
+          entries give the index of the active constraints</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iter</term>
+
+        <listitem>
+          <para>2x1 vector, first component gives the number of "main"
+          iterations, the second one says how many constraints were deleted
+          after they became active.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Minimize <literal> 0.5*x'*Q*x - p'*x</literal></para>
+
+    <para>under the constraints</para>
+
+    <programlisting>
+
+ x' C(:,j) = b(j),  j=1,...,me
+ x' C(:,j) &gt;= b(j), j=me+1,...,me+md
+   
+    </programlisting>
+
+    <para>This function requires <literal>Q</literal> to be symmetric positive
+    definite. If this hypothesis is not satisfied, one may use the contributed
+    <emphasis role="bold">quapro toolbox</emphasis>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+//Find x in R^6 such that:
+//x'*C1 = b1 (3 equality constraints i.e me=3)
+C1= [ 1,-1, 2;
+     -1, 0, 5;
+      1,-3, 3;
+      0,-4, 0;
+      3, 5, 1;
+      1, 6, 0];
+b1=[1;2;3];
+
+//x'*C2 &gt;= b2 (2 inequality constraints)
+C2= [ 0 ,1;
+     -1, 0;
+      0,-2;
+     -1,-1;
+     -2,-1;
+      1, 0];
+b2=[ 1;-2.5];
+
+//and minimize 0.5*x'*Q*x - p'*x with
+p=[-1;-2;-3;-4;-5;-6]; Q=eye(6,6);
+
+me=3;
+[x,iact,iter,f]=qp_solve(Q,p,[C1 C2],[b1;b2],me)
+//Only linear constraints (1 to 4) are active 
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="optim">optim</link></member>
+
+      <member><link linkend="qld">qld</link></member>
+
+      <member><link linkend="qpsolve">qpsolve</link></member>
+    </simplelist>
+
+    <para>The contributed toolbox "quapro" may also be of interest, in
+    particular for singular <literal>Q</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Memory requirements</title>
+
+    <para>Let r be </para>
+
+    <programlisting>r=min(m,n)</programlisting>
+
+    <para>Then the memory required by qp_solve during the computations is
+    </para>
+
+    <programlisting>2*n+r*(r+5)/2 + 2*m +1</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>S. Steer</term>
+
+        <listitem>
+          <para>INRIA (Scilab interface)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Berwin A. Turlach</term>
+
+        <listitem>
+          <para>School of Mathematics and Statistics (M019), The University of
+          Western Australia, Crawley, AUSTRALIA (solver code)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1982). "Dual and Primal-Dual
+        Methods for Solving Strictly Convex Quadratic Programs", in J.P.
+        Hennart (ed.), Numerical Analysis, Proceedings, Cocoyoc, Mexico 1981,
+        Vol. 909 of Lecture Notes in Mathematics, Springer-Verlag, Berlin, pp.
+        226-239.</para>
+      </listitem>
+
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1983). "A numerically stable dual
+        method for solving strictly convex quadratic programs", Mathematical
+        Programming 27: 1-33.</para>
+      </listitem>
+
+      <listitem>
+        <para>QuadProg (Quadratic Programming Routines), Berwin A
+        Turlach,<ulink
+        url="http://www.maths.uwa.edu.au/~berwin/software/quadprog.html">http://www.maths.uwa.edu.au/~berwin/software/quadprog.html</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Used Functions</title>
+
+    <para>qpgen2.f and &gt;qpgen1.f (also named QP.solve.f) developped by
+    Berwin A. Turlach according to the Goldfarb/Idnani algorithm</para>
+  </refsection>
+</refentry>

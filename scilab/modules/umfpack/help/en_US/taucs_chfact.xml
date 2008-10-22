@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="taucs_chfact" xml:lang="en">
+  <info>
+    <pubdate/>
+  </info>
+  <refnamediv>
+    <refname>taucs_chfact</refname>
+    <refpurpose>cholesky factorisation of a sparse s.p.d. matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>C_ptr = taucs_chfact(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>a sparse real symetric positive definite (s.p.d.)
+          matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C_ptr</term>
+        <listitem>
+          <para>a pointer to the Cholesky factors (C,p : A(p,p)=CC')</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This function computes a Cholesky factorization of the sparse
+    symetric positive definite (s.p.d.) matrix A and retrieves at the scilab
+    level, a pointer (C_ptr) to an handle of the Cholesky factors (C,p) (the
+    memory used for them is "outside" scilab space).</para>
+    <para>If your matrix is s.p.d. this function must be used in place of
+    <link linkend="umf_lufact">umf_lufact</link> or in place of the scilab
+    function <link linkend="chfact">chfact</link> for a gain in speed (also as
+    chfact uses the scilab memory for the factors the user must set the
+    stacksize with a large value because of the fill-in occuring in computing
+    the factor C which then may take more memory than the initial matrix
+    A).</para>
+    <para>When such a factorisation have been computed, a linear system must
+    be solved with <link linkend="taucs_chsolve">taucs_chsolve</link>. <emphasis role="bold">To free the memory used by the Cholesky factors, use 
+	<link linkend="taucs_chdel">taucs_chdel</link>(C_ptr)</emphasis>; to 
+	retrieve the Cholesky factors at the scilab level (for example to display 
+	their sparse patterns), use <link linkend="taucs_chget">taucs_chget</link>;
+	 to get some information (number of non zeros in C), use 
+	<link linkend="taucs_chinfo">taucs_chinfo</link>. To compute an 
+	approximation of the condition number in norm 2 use 
+	<link linkend="cond2sp">cond2sp</link>.</para>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
+    <itemizedlist>
+      <listitem>
+        <para>taucs_chfact works only with the upper triangle of A, and the
+        matrix A must be provided either in its complete form (that is with
+        the lower triangle also) or only with its upper triangle;</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <listitem>
+        <para>currently taucs_chfact uses the genmmd (generalized minimum
+        degree) algorithm of Liu to find in a first step the permutation p (so
+        as to minimize the fill-in in the factorization); future versions will
+        let the user choose his/her own reordering by providing a
+        supplementary argument p.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+// Example #1 : a small linear test system 
+// whom solution must be [1;2;3;4;5]
+A = sparse( [ 2 -1  0  0  0;
+             -1  2 -1  0  0; 
+              0 -1  2 -1  0; 
+              0  0 -1  2 -1; 
+              0  0  0 -1  2] );
+b = [0 ; 0; 0; 0; 6];
+Cp = taucs_chfact(A);
+x = taucs_chsolve(Cp,b)
+// don't forget to clear memory with
+taucs_chdel(Cp)
+
+// Example #2 a real example
+// first load a sparse matrix
+[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+// compute the factorisation
+Cp = taucs_chfact(A); 
+b = rand(size(A,1),1); // a random rhs
+// use taucs_chsolve for solving Ax=b
+x = taucs_chsolve(Cp,b);
+norm(A*x - b)
+// the same with one iterative refinement step
+x = taucs_chsolve(Cp,b,A);
+norm(A*x - b)
+// don't forget to clear memory
+taucs_chdel(Cp)
+   </programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="taucs_chsolve">taucs_chsolve</link>
+      </member>
+      <member>
+        <link linkend="taucs_chdel">taucs_chdel</link>
+      </member>
+      <member>
+        <link linkend="taucs_chinfo">taucs_chinfo</link>
+      </member>
+      <member>
+        <link linkend="taucs_chget">taucs_chget</link>
+      </member>
+      <member>
+        <link linkend="cond2sp">cond2sp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>taucs by Sivan Toledo (see taucs_license)</member>
+      <member>scilab interface by Bruno Pincon</member>
+    </simplelist>
+  </refsection>
+</refentry>

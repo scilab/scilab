@@ -1,0 +1,55 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function close()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+
+close
+
+close(h)
+
+mtlb_close("name")
+xdel(winsid())
+// !! L.13: All windows will be deleted
+xdel(winsid())
+
+// !! L.15: No Scilab equivalent for: status will be ignored at run time
+status = close()
+// !! L.16: No Scilab equivalent for: status will be ignored at run time
+status = close(h)
+// !! L.17: No Scilab equivalent for: status will be ignored at run time
+status = mtlb_close(name)
+// !! L.18: No Scilab equivalent for: status will be ignored at run time
+status = xdel(winsid())
+// !! L.19: No Scilab equivalent for: status will be ignored at run time
+// !! L.19: All windows will be deleted
+status = xdel(winsid())
+
+
+delete(gcf())
+
+delete(h1)
+
+mtlb_close("name")
+xdel(winsid())
+// !! L.28: All windows will be deleted
+xdel(winsid())
+
+// !! L.30: No Scilab equivalent for: status will be ignored at run time
+status = delete(gcf())
+// !! L.31: No Scilab equivalent for: status will be ignored at run time
+status = delete(h1)
+// !! L.32: No Scilab equivalent for: status will be ignored at run time
+status = mtlb_close(name)
+// !! L.33: No Scilab equivalent for: status will be ignored at run time
+status = xdel(winsid())
+// !! L.34: No Scilab equivalent for: status will be ignored at run time
+// !! L.34: All windows will be deleted
+status = xdel(winsid())

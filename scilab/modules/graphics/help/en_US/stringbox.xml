@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stringbox">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>stringbox</refname>
+    <refpurpose>Compute the bounding rectangle of a text
+  or a label.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
+rect = stringbox( Handle )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>a 2x4 matrix containing the 4 vertex coordinates of the
+          bounding rectangle.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>string</term>
+        <listitem>
+          <para>string matrix to be enclosed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>real scalars, coordinates of the lower left point of
+          strings.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>angle</term>
+        <listitem>
+          <para>Rotation angle of the string clockwise and in degrees around
+          the <literal>(x,y)</literal> point.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fonStyle</term>
+        <listitem>
+          <para>integer specifying the type of the font.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fontSize</term>
+        <listitem>
+          <para>integer specifying the size of the font.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Handle</term>
+        <listitem>
+          <para>a graphic handle of Text or Label type.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>stringbox</literal> returns the bounding rectangle vertices of a
+    text or label object or a string which will be displayed with a certain
+    way. the coordinates are given with the current graphic scale. the first
+    vertex correspond to the text coordinates <literal>(x,y)</literal>, the lower
+    left point without rotation, the following vertex are given clockwise in
+    the resulting matrix.</para>
+    <para>The result migth not be very accurate with PostScript driver.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[// show axes
+axes = gca() ;
+axes.axes_visible = 'on' ;
+axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
+
+// display a labels for axes
+xtitle( 'stringbox', 'X', 'Y' )  ;
+
+// get the bounding box of X label
+stringbox( axes.x_label )
+
+// draw a string
+str = [ "Scilab", "is" , "not", "Skylab" ] ;
+xstring( 4, 9, str ) ;
+
+//modify the text
+e = gce() ;
+e.font_angle = 90 ;
+e.font_size    = 6  ;
+e.font_style   = 7 ;
+e.box = 'on' ;
+
+// get its bounding box
+stringbox( e )
+// or
+rect = stringbox( str, 4, 9, 90, 7, 6 )
+
+// click and find if the text was hit
+hit = xclick()  ;
+hit = hit( 2 : 3 ) ;
+
+if hit(1) >= rect(1,1)  & hit(1) <=  rect(1,2) & hit(2) <= rect(2,2) & hit(2) >= rect(2,3) then
+  disp('You hit the text.') ;
+else
+  disp('You missed it.')
+end;
+
+
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xstring">xstring</link>
+      </member>
+      <member>
+        <link linkend="xstringl">xstringl</link>
+      </member>
+      <member>
+        <link linkend="xstringb">xstringb</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

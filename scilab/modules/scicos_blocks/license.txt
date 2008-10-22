@@ -1,0 +1,10 @@
+SCICOS:
+=======
+
+Files: *
+
+Copyright:
+INRIA
+
+License:
+GPL

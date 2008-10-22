@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="legend_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>legend_properties</refname>
+
+    <refpurpose>description of the Legend entity properties.</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The Legend entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for legends drawn below
+    <literal>plot2dx</literal> graphs or created by the <link
+    linkend="captions">captions</link> function. For selected line plotted,
+    the legend shows a sample of the line type, marker symbol, and
+    color.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>This property contains the handle of the parent. The parent of
+          the legend entity should be of the type
+          <literal>"Compound"</literal>. This Compound entity contains also
+          the remainder of the graph's entities.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>This property contains a vector with the
+          <literal>children</literal> of the handle. However,
+          <literal>legend</literal> handles currently do not have any
+          <literal>children</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>This field contains the <literal>visible</literal> property
+          value for the entity . It should be <literal>"on" </literal> or
+          <literal>"off"</literal> . If <literal>"on"</literal> the legend is
+          drawn , If <literal>"off"</literal> the legend is not displayed on
+          the screen.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>text:</term>
+
+        <listitem>
+          <para>This field is the character string vector which contains the
+          legends catenated in a single string with "<literal>@</literal>" as
+          legend separator.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_size:</term>
+
+        <listitem>
+          <para>The <literal>font_size</literal> property is used to select
+          the type of size of the text. Its value should be an integer in
+          between 0 and 5 which stands for 8pt, 10pt, 12pt, 14pt, 18pt and
+          24pt.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_style:</term>
+
+        <listitem>
+          <para>Seven differents fonts are available : "Courrier", "Symbol",
+          "Times", "Times Italic", "Times Bold", "User defined". The
+          <literal>font_style</literal> property is an index in [0 6] which is
+          associated to the previous font names.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_color</term>
+
+        <listitem>
+          <para>A color index, this property determines the color of the
+          text.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fractional_font:</term>
+
+        <listitem>
+          <para>This property specify whether text might be displayed using
+          fractional font sizes. Its value must be either
+          <literal>"on"</literal> or <literal>"off"</literal>. If
+          <literal>"on"</literal> the floating point value of
+          <literal>font_size</literal> is used for display. If
+          <literal>"off"</literal> only the integer part is used.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>links:</term>
+
+        <listitem>
+          <para>A row array of handles. They refer to the associated
+          polylines.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>legend_location</term>
+
+        <listitem>
+          <para>A character string, specifies the location of the
+          Legend.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"in_upper_right" </literal>: captions are drawn
+              in the upper right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_upper_left"</literal>: captions are drawn in
+              the upper left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_right"</literal>: captions are drawn in
+              the lower right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_left"</literal>: captions are drawn in
+              the lower left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_right"</literal>: captions are drawn
+              at the right of the upper right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_left"</literal>: captions are drawn at
+              the left of the upper left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_right"</literal>: captions are drawn
+              at the right of the lower right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_left"</literal>: captions are drawn at
+              the left of the lower left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"upper_caption"</literal>: captions are drawn
+              above the upper left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"lower_caption"</literal>: captions are drawn
+              below the lower left corner of the axes box. This option
+              correspond to the <literal>leg</literal> argument of <link
+              linkend="plot2d">plot2d</link></para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"by_coordinates"</literal>: the upper left corner
+              of the captions box is given by the "position" field of the
+              associated data structure. The <literal>x</literal> and
+              <literal>y</literal> positions are given as fractions of the
+              <literal>axes_bounds</literal></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>position</term>
+
+        <listitem>
+          <para>The coordinates of the upper left corner of the legend. The
+          <literal>x</literal> and <literal>y</literal> positions are given as
+          fractions of the <literal>axes_bounds</literal> sizes. This field
+          may be set if <literal>legend_location=="by_coordinates" or get for
+          the other legend_location settings.</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode</term>
+
+        <listitem>
+          <para>This field specifies if a rectangle is drawn around the legeng
+          or not. It should be <literal>"on"</literal> or
+          <literal>"off"</literal>. If <literal>"on"</literal> the rectangle
+          is drawn using the following properties.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness</term>
+
+        <listitem>
+          <para>This field gives the thickness of the line used to draw the
+          rectangle shape.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground</term>
+
+        <listitem>
+          <para>This field gives the color index of the line used to draw the
+          rectangle shape.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fill_mode</term>
+
+        <listitem>
+          <para>This field specifies if the legeng background is painted or
+          not. It should be <literal>"on"</literal> or
+          <literal>"off"</literal>. If <literal>"on"</literal> the background
+          is painted using the color index set in the
+          <literal>background</literal> field.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>background</term>
+
+        <listitem>
+          <para>This field gives the color index of the line used to paint the
+          rectangle area.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>This field contains the default <literal>clip_state</literal>
+          property value for all objects. Its value should be :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> this means that all objects
+              created after that are not clipped (default value).</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> this means that all objects
+              created after that are clipped outside the Axes
+              boundaries.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> this means that all objects
+              created after that are clipped outside the rectangle given by
+              property clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>This field contains the default <literal>clip_box</literal>
+          property value for all objects. Its value should be an empty matrix
+          if clip_state is <literal>"off"</literal>. Other case the clipping
+          is given by the vector <literal>[x,y,w,h]</literal> (upper-left
+          point width height).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>This field can be use to store any scilab variable in the text
+          data structure, and to retreive it.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+   
+// x initialisation 
+x=[0:0.1:2*%pi]';
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],leg="L1@L2@L3")
+a=get("current_axes");
+l=a.children.children(1)
+l.links
+l.text="sin(x)@sin(2*x)@sin(3*x)";
+l.visible="off"; // invisible
+l.font_size = 2;
+l.font_style = 5;
+l.visible='off';
+
+    
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+
+    <para></para>
+  </refsection>
+</refentry>

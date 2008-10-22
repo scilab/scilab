@@ -1,0 +1,16 @@
+// <-- Non-regression test for bug 1955 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1955
+//
+// <-- Short Description -->
+//    Reshaping global hypermatrices is problematic, as demonstrated by the
+//    attached file 'bug.sci', which contains further comments.
+// Copyright INRIA
+// Scilab Project - Serge Steer
+// Copyright INRIA 2006
+// Date : 3 mai 2006
+global ghm
+ghm = matrix(1:8,2,4);
+ghm = matrix(ghm,2,2,2);
+if or(ghm<>matrix(1:8,2,2,2)) then bugmes();quit;end

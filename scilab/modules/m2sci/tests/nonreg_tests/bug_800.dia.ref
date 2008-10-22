@@ -1,0 +1,97 @@
+// <-- Non-regression test for bug 800 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=800
+//
+// <-- Short Description -->
+//    mfile2sci can not convert expressions such as
+//    x=1/ -2;
+//    (Blank space between / and - is important, it works if no
+//    blank space)
+// Copyright INRIA
+// Scilab Project - V. Couvert
+// Modified by Pierre MARECHAL
+// Copyright INRIA
+// Date : 18 Mar 2005
+MFILECONTENTS=["a=1/-2;";"b=1/-23;";"c=1/-25;";"d=1/ -c;";"e=1 /  -36;x=1/-2";"f=1 / (-36);"]
+ MFILECONTENTS  =
+ 
+!a=1/-2;            !
+!                   !
+!b=1/-23;           !
+!                   !
+!c=1/-25;           !
+!                   !
+!d=1/ -c;           !
+!                   !
+!e=1 /  -36;x=1/-2  !
+!                   !
+!f=1 / (-36);       !
+MFILE=TMPDIR+"/bug800.m"
+ MFILE  =
+ 
+ TMPDIR/bug800.m   
+SCIFILE=TMPDIR+"/bug800.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug800.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug800.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+		"// Display mode";
+		"mode(0);";
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"a = 1/(-2);";
+		"b = 1/(-23);";
+		"c = 1/(-25);";
+		"d = 1/(-c);";
+		"e = 1/(-36);x = 1/(-2)";
+		"f = 1/(-36);"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!a = 1/(-2);                                      !
+!                                                 !
+!b = 1/(-23);                                     !
+!                                                 !
+!c = 1/(-25);                                     !
+!                                                 !
+!d = 1/(-c);                                      !
+!                                                 !
+!e = 1/(-36);x = 1/(-2)                           !
+!                                                 !
+!f = 1/(-36);                                     !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

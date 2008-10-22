@@ -1,0 +1,1273 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-01-30 18:01+0100\n"
+"PO-Revision-Date: 2008-09-16 07:24+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
+
+msgid "Incorrect assignment.\n"
+msgstr "Некорректное присвоение.\n"
+
+msgid "Waiting for right parenthesis.\n"
+msgstr "Ожидание закрывающей скобки.\n"
+
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "Неизвестная переменная: %s\n"
+
+msgid "Inconsistent column/row dimensions.\n"
+msgstr "Несовместимые размеры столбца/строки.\n"
+
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "Несовместимые размеры строки/столбца.\n"
+
+msgid "Dot cannot be used as modifier for this operator.\n"
+msgstr ""
+"Точка не может быть использовака в качестве модификатора этого оператора.\n"
+
+msgid "Inconsistent addition.\n"
+msgstr "Некорректное суммирование.\n"
+
+msgid "Inconsistent subtraction.\n"
+msgstr "Некорректное вычитание.\n"
+
+msgid "Inconsistent multiplication.\n"
+msgstr "Некорректное умножение.\n"
+
+msgid "Inconsistent right division.\n"
+msgstr "Некорректное правое деление.\n"
+
+msgid "Inconsistent left division.\n"
+msgstr "Некорректное левое деление.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "Переопределение  перманентной переменной.\n"
+
+msgid "Eye variable undefined in this context.\n"
+msgstr ""
+
+msgid "Submatrix incorrectly defined.\n"
+msgstr "Подматрица задана некорректно.\n"
+
+msgid "Incorrect command!\n"
+msgstr "Некорректная комманда!\n"
+
+msgid "stack size exceeded!\n"
+msgstr "достигнут предел размера стека!\n"
+
+msgid "Use stacksize function to increase it.\n"
+msgstr "Используйте функцию stacksize для увеличения его.\n"
+
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr "Памяти занято под переменные: %d\n"
+
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr "Необходимо промежуточной памяти: %d\n"
+
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr "Всего памяти доступно: %d\n"
+
+msgid "Too many variables!\n"
+msgstr "Слишком много переменных!\n"
+
+msgid "Problem is singular.\n"
+msgstr "Уникальная проблема.\n"
+
+msgid "Wrong type for first argument: Square matrix expected.\n"
+msgstr "Неверный тип первого аргумента: Ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgstr "Неверный тип первого аргумента %d: Ожидалась квадратная матрица.\n"
+
+msgid "Invalid index.\n"
+msgstr "Неправильный индекс.\n"
+
+msgid "Recursion problems. Sorry...\n"
+msgstr "Проблемы рекурсии. Извините...\n"
+
+msgid "Matrix norms available are 1, 2, inf, and fro.\n"
+msgstr "Доступные матричные нормы: 1, 2, inf и fro.\n"
+
+msgid "Convergence problem...\n"
+msgstr "Проблема сходимости...\n"
+
+#, c-format
+msgid "Bad call to primitive: %s\n"
+msgstr "Плохой вызов примитива: %s\n"
+
+msgid "Too complex recursion! (recursion tables are full)\n"
+msgstr "Слишком сложная рекурсия! (заполнена таблица рекурсии)\n"
+
+msgid "Division by zero...\n"
+msgstr "Деление на ноль...\n"
+
+msgid "Empty function...\n"
+msgstr "Пустая функция...\n"
+
+msgid "Matrix is not positive definite.\n"
+msgstr "Матрия не является определенно-положительной.\n"
+
+msgid "Invalid exponent.\n"
+msgstr "Неправильный показатель степени.\n"
+
+msgid "Incorrect string.\n"
+msgstr "Неправильная строка.\n"
+
+msgid "Singularity of log or tan function.\n"
+msgstr "Особая точка функции log или tan.\n"
+
+msgid "Too many ':'\n"
+msgstr "Слишком много ':'\n"
+
+msgid "Incorrect control instruction syntax.\n"
+msgstr "Неправильный синтаксис управляющей инструкции.\n"
+
+#, c-format
+msgid "Syntax error in a '%s' instruction.\n"
+msgstr "Ошибка синтаксиса в инструкции '%s'.\n"
+
+msgid "Wrong first argument.\n"
+msgstr "Неверный первый аргумент.\n"
+
+#, c-format
+msgid "Wrong input argument %d.\n"
+msgstr "Неверный аргумент %d.\n"
+
+#, c-format
+msgid "Incorrect function at line %d.\n"
+msgstr "Некорректная функция в строке %d.\n"
+
+msgid "Incorrect function.\n"
+msgstr "Некорректная функция.\n"
+
+msgid "Wrong file name.\n"
+msgstr "Неправильное имя файла.\n"
+
+msgid "Incorrect number of input arguments.\n"
+msgstr "Неправильное количество аргументов.\n"
+
+msgid "Waiting for end of command.\n"
+msgstr "Ожидание конца команды.\n"
+
+msgid "Incompatible output argument.\n"
+msgstr "Несовместимы выходной аргумент.\n"
+
+msgid "Incompatible input argument.\n"
+msgstr "Несовместимый аргумент.\n"
+
+msgid "Not implemented in scilab...\n"
+msgstr "Не реализовано в scilab...\n"
+
+#, c-format
+msgid "Wrong argument %d.\n"
+msgstr "Неверный аргумент %d.\n"
+
+#, c-format
+msgid "null matrix (argument # %d).\n"
+msgstr "пустая матрица (аргумент # %d).\n"
+
+msgid "Incorrect syntax.\n"
+msgstr "Ошибка синтаксиса.\n"
+
+msgid " end or else is missing...\n"
+msgstr " пропущен end или else...\n"
+
+#, c-format
+msgid " input line longer than buffer size: %d\n"
+msgstr " входная строка длиннее размера буфера: %d\n"
+
+msgid "Incorrect file or format.\n"
+msgstr "Некорректный файл или формат.\n"
+
+#, c-format
+msgid "subroutine not found: %s\n"
+msgstr "подпрограмма не найдена: %s\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"Неверный тип аргумента %d: Ожидалась матрица вещественных или комплексных "
+"чисел.\n"
+
+#, c-format
+msgid "Wrong type for input argument %d: Polynomial expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидался полином.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: String expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалась строка.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: List expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидался список.\n"
+
+msgid "Problem with comparison symbol...\n"
+msgstr "Проблема с символом сравнения...\n"
+
+msgid "Function has no input argument...\n"
+msgstr "У функции нет аргументов...\n"
+
+msgid "Wrong number of arguments in function call...\n"
+msgstr "Неверное количество аргументов в вызове функции...\n"
+
+msgid "Arguments are :\n"
+msgstr "Аргументы :\n"
+
+msgid "Function has no output.\n"
+msgstr "Функция не имеет результата.\n"
+
+msgid "Incorrect # of outputs in the function\n"
+msgstr "Некорректное количество результатов функции\n"
+
+msgid "Wrong size for argument: Incompatible dimensions.\n"
+msgstr "Неверный размер аргумента: Размерности несовместимы.\n"
+
+msgid "Direct access : give format.\n"
+msgstr "Прямой доступ : задайте формат.\n"
+
+#, c-format
+msgid "End of file at line %d.\n"
+msgstr "Конец файла в строке %d.\n"
+
+#, c-format
+msgid "%d graphic terminal?\n"
+msgstr "%d графический терминал?\n"
+
+msgid "Integration fails.\n"
+msgstr "Интегрирование не удалось.\n"
+
+#, c-format
+msgid "%d: logical unit already used.\n"
+msgstr "%d: логический блок уже используется.\n"
+
+msgid "No more logical units available!\n"
+msgstr "Не осталось доступных логических блоков!\n"
+
+msgid "Unknown file format.\n"
+msgstr "Неизвестный формат файла.\n"
+
+#, c-format
+msgid ""
+"Fatal error!!! Your variables have been saved in the file : %s\n"
+"Bad call to a scilab function ?\n"
+"Otherwise, send a bug report to :\n"
+msgstr ""
+"Критическая ошибка!!! Ваши переменные были сохранены в файл : %s\n"
+"Плохой вызов функции scilab ?\n"
+"В противном случае отправьте информацию об ошибке :\n"
+
+msgid "Floating point exception.\n"
+msgstr "Исключение операции с плавающей точкой.\n"
+
+msgid "Too many arguments in fort (max 30).\n"
+msgstr "Слишком много аргументов в fort (максимум 30).\n"
+
+msgid "This variable is not valid in fort.\n"
+msgstr "Эта переменная некорректна в fort.\n"
+
+#, c-format
+msgid "%s is not valid in this context.\n"
+msgstr "%s некорректна в этом контексте.\n"
+
+msgid "Error while linking.\n"
+msgstr "Ошибка связывания (linking).\n"
+
+msgid "Leading coefficient is zero.\n"
+msgstr "Нулевой ведущий коэффициент.\n"
+
+msgid "Too high degree (max 100).\n"
+msgstr "Слишком большая степень (максимум 100).\n"
+
+#, c-format
+msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
+msgstr "цикл for x=val для type(val)=%d не реализован в Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: Неверное количество аргументов.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: Неверное количество выходных аргументов.\n"
+
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
+
+#, c-format
+msgid "Incorrect function (argument n: %d).\n"
+msgstr "Некорректная функция (аргумент n: %d).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента %d: Ожидалась матрица вещественных или "
+"комплексных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: Неверный тип аргумента %d: Ожидался вещественный вектор.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgstr "%s: Неверный тип аргумента %d: Ожидалось число.\n"
+
+msgid "Host does not answer...\n"
+msgstr "Удалённый хост не отвечает...\n"
+
+msgid "Uncontrollable system.\n"
+msgstr "Неконтролируемая система.\n"
+
+msgid "Unobservable system.\n"
+msgstr "Ненаблюдаемая система.\n"
+
+#, c-format
+msgid "%s: singular or assymetric problem.\n"
+msgstr "%s: проблема особой точки или асимметричности.\n"
+
+#, c-format
+msgid "Wrong size for argument %d.\n"
+msgstr "Неверный размера аргумента %d.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалась матрица преобразования.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In state space form expected.\n"
+msgstr ""
+"Неверный тип аргумента %d: Ожидалась форма в пространстве состояний.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалась рациональная матрица.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалось в непрерывном времени.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалось в дискретном времени.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалось SISO (один вход, один выход).\n"
+
+#, c-format
+msgid "time domain of argument %d is not defined.\n"
+msgstr "Временной интервал аргумента %d не задан.\n"
+
+#, c-format
+msgid ""
+"Wrong type for argument %d: A system in state space or transfer matrix form "
+"expected.\n"
+msgstr ""
+"Неверный тип аргумента %d: Ожидалась система в пространстве состояний или "
+"матрица преобразования.\n"
+
+msgid "Variable returned by scilab argument function is incorrect.\n"
+msgstr "Функция аргумента scilab вернула некорректную переменную.\n"
+
+#, c-format
+msgid "Elements of %dth argument must be in increasing order.\n"
+msgstr "Элементы %d-го аргумента должны быть отсортированы по возрастанию.\n"
+
+msgid "Elements of first argument are not (strictly) increasing.\n"
+msgstr "Элементы первого аргумента не являются непрерывно возрастающими.\n"
+
+#, c-format
+msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
+msgstr "Элементы %d-го аргумента не являются непрерывно убывающими.\n"
+
+msgid "Elements of first argument are not in (strictly) decreasing order.\n"
+msgstr "Элементы первого аргумента не являются непрерывно убывающими.\n"
+
+#, c-format
+msgid "Last element of %dth argument <> first.\n"
+msgstr "Последний элемент %d-го аргумента неравен первому.\n"
+
+msgid "Last element of first argument does not match the first one.\n"
+msgstr "Последний элемент первого аргумента неравен первому.\n"
+
+#, c-format
+msgid "Variable or function %s are not in file.\n"
+msgstr "Переменная или функция %s не в файле.\n"
+
+#, c-format
+msgid "Variable %s is not a valid rational function.\n"
+msgstr "Переменная %s не является корректной рациональной функцией.\n"
+
+#, c-format
+msgid "Variable %s is not a valid state space representation.\n"
+msgstr ""
+"Переменная %s не является корректным представлениям пространства состояний.\n"
+
+msgid "Undefined fonction.\n"
+msgstr "Неопределённая функция.\n"
+
+msgid "Function name already used.\n"
+msgstr "Имя функции уже используется.\n"
+
+#, c-format
+msgid "Too many functions are defined (maximum #:%d).\n"
+msgstr "Определено слишком много функций (максимум: %d).\n"
+
+msgid "Too complex for scilab, may be a too long control instruction.\n"
+msgstr ""
+"Слишком сложно для scilab, возможно слишком длинная управляющая инструкция.\n"
+
+msgid "Too large, can't be displayed.\n"
+msgstr "Слишком велико, невозможно отобразить.\n"
+
+#, c-format
+msgid "%s was a function when compiled but is now a primitive!\n"
+msgstr "%s была функцией во время компиляции, а теперь это примитив!\n"
+
+#, c-format
+msgid "Trying to re-define function %s.\n"
+msgstr "Попытка переопределить функцию %s.\n"
+
+msgid "No more memory.\n"
+msgstr "Не осталось доступной памяти.\n"
+
+msgid "Too large string.\n"
+msgstr "Слишком длинная строка.\n"
+
+msgid "Too many linked routines.\n"
+msgstr "Слишком много связанных программ.\n"
+
+msgid ""
+"Stack problem detected within a loop.\n"
+"A primitive function has been called with a wrong number of output "
+"arguments.\n"
+"No output argument test has been made for this function.\n"
+"Please report this bug :\n"
+msgstr ""
+"Внутри цикла обнаружена проблема со стеком.\n"
+"Функция-примитив была вызвана с неверный количеством выходных аргументов.\n"
+"При этом для функции не была произведёна проверка выходных аргументов.\n"
+"Пожалуйста, сообщите об этой проблеме :\n"
+
+#, c-format
+msgid "Wrong value for argument %d.\n"
+msgstr "Неверное значение аргумента %d.\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "Элемент списка с номером %d не определён (Undefined).\n"
+
+#, c-format
+msgid ""
+"Wrong type for argument %d: Named variable not an expression expected.\n"
+msgstr ""
+"Неверный тип аргумента %d: Ожидалась именованная переменная или выражение.\n"
+
+msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
+msgstr ""
+"Индексы ненулевых элементов должны быть заданы в виде матрицы из двух "
+"столбцов.\n"
+
+msgid "Incompatible indices for non-zero elements.\n"
+msgstr "Несовместимые индексы ненулевых элементов.\n"
+
+#, c-format
+msgid "Logical unit number should be larger than %d.\n"
+msgstr "Номер логического блока должен быть больше %d.\n"
+
+msgid "Function not bounded from below.\n"
+msgstr "Функция не ограниченна снизу.\n"
+
+msgid ""
+"Problem may be unbounded: too high distance between two consecutive "
+"iterations.\n"
+msgstr ""
+"Возможно проблема ограничения: слишком большое расстояние между двумя "
+"последовательными итерациями.\n"
+
+msgid "Inconsistent constraints.\n"
+msgstr "Нелогичные ограничения.\n"
+
+msgid "No feasible solution.\n"
+msgstr "Нет допустимых решений.\n"
+
+msgid "Degenerate starting point.\n"
+msgstr "Вырожденная начальная точка.\n"
+
+msgid "No feasible point has been found.\n"
+msgstr "Допустимых точек не найдено.\n"
+
+msgid "Optimization fails: back to initial point.\n"
+msgstr "Оптимизация не удалась: возврат к исходному положению.\n"
+
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0)\n"
+msgstr "%s: Симулятор запросил остановку (ind=0)\n"
+
+#, c-format
+msgid "%s: Wrong input parameters.\n"
+msgstr "%s: Неверные входные параметры.\n"
+
+msgid "Too small memory.\n"
+msgstr "Слишком мало памяти.\n"
+
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr "%s: Проблема с исходными константами симуляции (simul).\n"
+
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr "%s: Исходные значения не соответствуют граничным условиям.\n"
+
+msgid "%: This method is NOT implemented.\n"
+msgstr "%: Этот метод НЕ реализован.\n"
+
+msgid "NO hot restart available in this method.\n"
+msgstr "Перезапуск \"на ходу\" НЕ доступен в этом методе.\n"
+
+#, c-format
+msgid "%s: Incorrect stopping parameters.\n"
+msgstr "%s: Некорректные параметры остановки.\n"
+
+#, c-format
+msgid "%s: Incorrect bounds.\n"
+msgstr "%s: Некорректные граничные учловия.\n"
+
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr "Переменная : %s должна быть списком\n"
+
+#, c-format
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
+msgstr ""
+"Перезапуск \"на ходу\": размерность рабочей таблицы (аргумент n:%d).\n"
+
+#, c-format
+msgid "%s: df0 must be positive !\n"
+msgstr "%s: df0 должен быть положительным!\n"
+
+msgid "Undefined operation for the given operands.\n"
+msgstr "Операция для заданных операндов не определена.\n"
+
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "отметьте или определите функцию %s как перегружаемую.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s: Неверный размер аргумента %d: Ожидался размер (%d,%d).\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s: Неверный размер аргумента %d: Ожидался размер %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип аргумента %d: Ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента %d: Ожидалась матрица логических значений.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s: Неверный тип аргумента %d: Ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr "%s: Неверный тип аргумента %d: Ожидался список (List).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента %d: Ожидалась функция или строка (внешняя "
+"функция).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s:Неверный тип аргумента %d: Ожидался полином.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента %d: Ожидалась корректная целочисленная матрица "
+"(Working integer matrix).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr "%s: Неверный тип аргумента %d: Ожидался вектор.\n"
+
+#, c-format
+msgid "%dth argument type must be boolean.\n"
+msgstr "%d-й аргумент должен быть логическим значением (boolean).\n"
+
+msgid "Argument type must be boolean.\n"
+msgstr "Тип аргумента должен быть логическим (boolean).\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgstr ""
+"Неверный тип аргумента %d: Ожидалось число или логическое (boolean) "
+"выражение.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgstr "Неверный тип аргумента %d: Ожидалась разреженная числовая матрица.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgstr ""
+"Неверный тип аргумента %d: Ожидался дескриптор разреженных факторов Лу "
+"(sparse lu factors).\n"
+
+#, c-format
+msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgstr ""
+"Неверный тип аргумента %d: Ожидалась полная или разреженная числовая "
+"матрица.\n"
+
+msgid "Null variable cannot be used here.\n"
+msgstr "Здесь не может использоваться пустая переменная.\n"
+
+msgid "A sparse matrix entry is defined with two differents values.\n"
+msgstr "Элемент разреженной матрицы был задан двумя разными значениями.\n"
+
+#, c-format
+msgid "%s not yet implemented for full input parameter.\n"
+msgstr "%s пока не реализована для полных входных параметров.\n"
+
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr ""
+"Невозможно переопределить примитив %s таким способом (см. clearfun).\n"
+
+msgid "Type data base is full.\n"
+msgstr "База данных типов заполнена.\n"
+
+msgid "This data type is already defined.\n"
+msgstr "Этот тип данных уже определён.\n"
+
+msgid "Inequality comparison with empty matrix.\n"
+msgstr "Сравнение неравенства с пустой матрицей.\n"
+
+msgid "Missing index.\n"
+msgstr "Пропущен индекс.\n"
+
+#, c-format
+msgid "reference to the cleared global variable %s.\n"
+msgstr "ссылка на очищенную глобальную переменную %s.\n"
+
+msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgstr "Операнды / и \\ не могут содержать NaN или Inf.\n"
+
+msgid "semi def fails.\n"
+msgstr ""
+
+msgid "Wrong type for first input argument: Single string expected.\n"
+msgstr "Неверный тип первого аргумента: Ожидалась одиночная строка.\n"
+
+msgid "Entry name not found.\n"
+msgstr "Имя входа не найдено.\n"
+
+msgid "Maximum number of dynamic interfaces reached.\n"
+msgstr "Превышен предел количества динамических интерфейсов.\n"
+
+#, c-format
+msgid "%s: expecting more than one argument.\n"
+msgstr "%s: ожидалось более одного аргумента.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: проблема с одной из точек входа.\n"
+
+#, c-format
+msgid "%s: the shared archive was not loaded.\n"
+msgstr "%s: разделяемый архив не было загружен.\n"
+
+#, c-format
+msgid "%s: Only one entry point allowed on this operating system.\n"
+msgstr ""
+"%s: В этой операционной системе допускается только одна точка входа.\n"
+
+#, c-format
+msgid "%s: First argument cannot be a number.\n"
+msgstr "%s: Первый аргумент не может быть числом.\n"
+
+msgid "You cannot link more functions, maxentry reached.\n"
+msgstr "Вы не можете связать больше функций, достигнуто значение maxentry.\n"
+
+#, c-format
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
+
+#, c-format
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr ""
+
+msgid "Binary direct acces files must be opened by 'file'.\n"
+msgstr ""
+"Файлы прямого двоичного доступы могут быть открыты только командой 'file'.\n"
+
+msgid "C file logical unit not allowed here.\n"
+msgstr "Здесь не допустим логический блок C-файла.\n"
+
+msgid "Fortran file logical unit not allowed here.\n"
+msgstr "Здесь не допустим логический блок Fortran-файла.\n"
+
+#, c-format
+msgid "No input file associated to logical unit %d.\n"
+msgstr "С логическим блоком %d не ассоциирован входной файл.\n"
+
+msgid "Function not defined for given argument type(s),\n"
+msgstr "Функция не определена для заданных типов аргументов,\n"
+
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr "  проверьте аргументы или определите функцию %s как перегружаемую.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgstr ""
+"Неверное значение аргумента %d: Ожидалось корректное имя переменной.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Empty string expected.\n"
+msgstr "Неверное значение аргумента %d: Ожидалась пустая строка.\n"
+
+msgid "Recursive extraction is not valid in this context.\n"
+msgstr "Рекурсивное извлечение недопустимо в этом контексте.\n"
+
+#, c-format
+msgid "%s: ipar dimensioned at least 11.\n"
+msgstr "%s: ipar должен иметь размер как минимум 11.\n"
+
+#, c-format
+msgid "%s: ltol must be of size ipar(4).\n"
+msgstr "%s: ltol должен соответствовать размеру ipar(4).\n"
+
+#, c-format
+msgid "%s: fixpnt must be of size ipar(11).\n"
+msgstr "%s: fixpnt должен соответствовать размеру ipar(11).\n"
+
+#, c-format
+msgid "%s: ncomp < 20 requested.\n"
+msgstr "%s: ожидалось ncomp < 20.\n"
+
+#, c-format
+msgid "%s: m must be of size ncomp.\n"
+msgstr "%s: m должно соответствовать размеру ncomp.\n"
+
+#, c-format
+msgid "%s: sum(m) must be less than 40.\n"
+msgstr "%s: sum(m) должно быть менее 40.\n"
+
+#, c-format
+msgid "%s: input data error.\n"
+msgstr "%s: ошибка во входных данных.\n"
+
+#, c-format
+msgid "%s: no. of subintervals exceeds storage.\n"
+msgstr "%s: количество шагов разбиения не умещается в доступную память.\n"
+
+#, c-format
+msgid "%s: Th colocation matrix is singular.\n"
+msgstr "%s: Матрица расположения вырождена.\n"
+
+msgid "Interface property table is full.\n"
+msgstr "Таблица свойств интерфейсов переполнена.\n"
+
+#, c-format
+msgid "Too many global variables! , max number is %d.\n"
+msgstr "Слишком много глобальных переменных! Максимальное количество: %d.\n"
+
+msgid "Error while writing in file,(disk full or deleted file.\n"
+msgstr "Ошибка записи в файл, диск заполнен либо файл удалён.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr ""
+"Неверное значение аргумента %d: Аргумент не должен содержать NaN и Inf.\n"
+
+#, c-format
+msgid "%s and %s must have equal number of rows.\n"
+msgstr "%s и %s должны иметь одинаковое количество строк.\n"
+
+#, c-format
+msgid "%s and %s must have equal number of columns.\n"
+msgstr "%s и %s должны иметь одинаковое количество столбцов.\n"
+
+#, c-format
+msgid "%s and %s must have equal dimensions.\n"
+msgstr "%s и %s должны иметь одинаковые размеры.\n"
+
+#, c-format
+msgid "Invalid return value for function passed in arg %d.\n"
+msgstr ""
+"Неправильное значение возвращено функцией выполненной в качестве аргумента "
+"%d.\n"
+
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+msgstr ""
+"Неверное значение аргумента %d: собственные значения должны иметь "
+"отрицательные действительные части.\n"
+
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+msgstr ""
+"Неверное значение аргумента %d: модуль собственного значения должен быть "
+"меньше единицы.\n"
+
+#, c-format
+msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+"Аргумент переменной длины a*eye(), (аргумент %d) здесь не допустим.\n"
+
+msgid "endfunction is missing.\n"
+msgstr "пропущен endfunction.\n"
+
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgstr "Левосторонняя инструкция: ожидается точка или открывающая скобка.\n"
+
+msgid "Instruction left hand side: waiting for a name.\n"
+msgstr "Левосторонняя инструкция: ожидается имя.\n"
+
+msgid "varargout keyword cannot be used here.\n"
+msgstr "ключевое слово varargout не может быть использовано здесь.\n"
+
+msgid "Missing operator, comma, or semicolon.\n"
+msgstr "Пропущен оператор, запятая или точка с запятой.\n"
+
+msgid "Too many commands defined.\n"
+msgstr "Задано слишком много команд.\n"
+
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr "%s: Аргументы должны содержать такое же формальное имя переменной.\n"
+
+msgid "\"unknown data\""
+msgstr "\"неизвестные данные\""
+
+msgid "Warning :\n"
+msgstr "Внимание :\n"
+
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr "Нет схождения по алгоритму QZ.\n"
+
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr "Верхние %d  x %d блоков могут быть не в обобщённой форме Шура.\n"
+
+msgid "Non convergence in QR steps.\n"
+msgstr "Нет схождения в шагах QR.\n"
+
+#, c-format
+msgid "The top %d x %d block may not be in Schur form.\n"
+msgstr "Верхние %d x %d блоков не могут быть в форме Шура.\n"
+
+#, c-format
+msgid "The first %d singular values may be incorrect.\n"
+msgstr "Первые %d сингулярных значений могут быть некорректны.\n"
+
+msgid "Warning:  Result may be inaccurate.\n"
+msgstr "Внимание:  Результат может быть неточным.\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr "матрица почти вырождена или плохо масштабирована. rcond = %s\n"
+
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "вычисляется по методу наименьших квадратов. (см. lsq).\n"
+
+msgid "eigenvectors are badly conditioned.\n"
+msgstr "собственные вектора имеют плохие граничные условия.\n"
+
+#, c-format
+msgid "results may be inaccurate. rcond = %s\n"
+msgstr "результаты могут быть неточны. rcond = %s\n"
+
+msgid "Warning: obsolete use of '=' instead of '=='.\n"
+msgstr "Внимание: устаревшее использование '=' вместо '=='.\n"
+
+msgid "Warning: obsolete use of eye rand or ones.\n"
+msgstr ""
+
+#, c-format
+msgid "Rank defficient. rank = %d\n"
+msgstr "Ранг недостаточен. Ранг = %d\n"
+
+msgid "Quapro encounters cycles on degenerate point.\n"
+msgstr ""
+
+#, c-format
+msgid "Norm of projected gradient lower than %s.\n"
+msgstr "Норма проекции градиента менее %s.\n"
+
+#, c-format
+msgid "at last iteration f decreases by less than %s.\n"
+msgstr "при последней итерации f уменьшилась менее чем на %s.\n"
+
+msgid "Optimization stops because too small variations for x.\n"
+msgstr "Оптимизация остановилась, потому что вариации x слишком малы.\n"
+
+msgid "Optim stops: maximum number of calls to f is reached.\n"
+msgstr "Оптимизация остановилась: достигнут максимум вызовов функции f.\n"
+
+msgid "Optim stops: maximum number of iterations is reached.\n"
+msgstr ""
+"Оптимизация остановилась: достигнуто максимально количество итераций.\n"
+
+msgid "Optim stops: too small variations in gradient direction.\n"
+msgstr ""
+"Оптимизация остановилась: слишком малы изменения в направлении градиента.\n"
+
+msgid "Stop during calculation of descent direction.\n"
+msgstr "Остановка в процессе расчёта в направлении убывания.\n"
+
+msgid "Stop during calculation of estimated hessian.\n"
+msgstr "Остановка в процессе расчёта ожидаемого Гессиана.\n"
+
+msgid "End of optimization.\n"
+msgstr "Конец оптимизации.\n"
+
+msgid "End of optimization (linear search fails).\n"
+msgstr "Конец оптимизации (неуспешный линейный поиск).\n"
+
+#, c-format
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr ""
+"sfact : достигнута относительная точность неполной сходимости : 10**(%s).\n"
+
+msgid "Help file inconsistent...\n"
+msgstr "Файл помощи повреждён...\n"
+
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "Расположение файло функций : %s.\n"
+
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr "Режим паузы: введите пустую строку для продолжения.\n"
+
+#, c-format
+msgid "Breakpoints of function : %s\n"
+msgstr "Точки останова функции : %s\n"
+
+msgid "Warning: recursion problem..., cleared.\n"
+msgstr "Внимание: проблема рекурсии..., исправлена.\n"
+
+msgid "Warning: stack problem..., cleared.\n"
+msgstr "Внимание: проблема стэка..., решена.\n"
+
+#, c-format
+msgid "Stop after row %s in function %s.\n"
+msgstr "Остановка после строки %s в функции %s.\n"
+
+#, c-format
+msgid "The identifier : %s\n"
+msgstr "Идентификатор : %s\n"
+
+#, c-format
+msgid " has been truncated to: %s.\n"
+msgstr " было усечено до %s.\n"
+
+msgid "Real part\n"
+msgstr "Действительная часть\n"
+
+msgid "Imaginary part\n"
+msgstr "Мнимая часть\n"
+
+#, c-format
+msgid "Maximum size of buffer : %d characters.\n"
+msgstr "Максимальный размер буфера : %d символов.\n"
+
+#, c-format
+msgid "Rank deficient : rank = %s  - tol = %s .\n"
+msgstr "Ранг недостаточен : ранг = %s  - tol = %s .\n"
+
+msgid "Your variables are:\n"
+msgstr "Ваши переменные:\n"
+
+#, c-format
+msgid "Using %s elements out of %s.\n"
+msgstr "Используется %s элементов из %s.\n"
+
+#, c-format
+msgid " and %s variables out of %s.\n"
+msgstr " и %s переменных из %s.\n"
+
+msgid "System functions:\n"
+msgstr "Системные функции:\n"
+
+msgid "Commands:\n"
+msgstr "Команды:\n"
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
+"Внимание : переопределение функции : %s. Выполните funcprot(0) для "
+"отключения этого сообщения"
+
+#, c-format
+msgid "       inside function: %s.\n"
+msgstr "       внутри функции: %s.\n"
+
+msgid "Not enough memory to perform simplification.\n"
+msgstr "Недостаточно памяти для выполнения упрощения.\n"
+
+msgid "Your global variables are...\n"
+msgstr "Ваши глобальные переменные...\n"
+
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr "%s: Обнаружен цикл между двумя порядками..\n"
+
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: Невозможно достичь требуемого порядка.\n"
+"   возвращено вычисленное решение предыдущего порядка.\n"
+
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: Не удалось найти пересечение с границами интервалов.\n"
+"   возвращено вычисленное решение предыдущего порядка.\n"
+
+#, c-format
+msgid ""
+"%s: Too many solutions found.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: Найдено слишком много решений.\n"
+"   возвращено вычисленное решение предыдущего порядка.\n"
+
+msgid ""
+"Warning: loaded file has been created with a previous version of Scilab\n"
+"or you are trying to load a file saved on a different architecture.\n"
+msgstr ""
+"Внимание: загруженный файл был создан в предыдущей версии Scilab\n"
+"или вы пытаетесь загрузить файл, сохранённой на другой архитектуре.\n"
+
+msgid "Warning:\n"
+msgstr "Внимание:\n"
+
+#, c-format
+msgid "Impossible to load variable %s.\n"
+msgstr "Невозможно загрузить переменную %s.\n"
+
+msgid ""
+"Warning: Use of standard list to define typed structures\n"
+"          is obsolete. Use tlist.\n"
+msgstr ""
+"Внимание: Использование стандартного списка (list) для определения "
+"типизированных структур\n"
+"          устарело. Используйте tlist.\n"
+
+msgid "Warning : division by zero...\n"
+msgstr "Внимание : делений на ноль...\n"
+
+msgid "Warning : singularity of 'log' or 'tan' function.\n"
+msgstr "Внимание : особая точка функции 'log' или 'tan'.\n"
+
+#, c-format
+msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgstr ""
+"В промежуток времени %s, слишком много итераций для достижения требуемой "
+"точности.\n"
+
+msgid "stepsize not significant in rkqc.\n"
+msgstr "размер шага (stepsize) не имеет знака в rkqc.\n"
+
+#, c-format
+msgid "Warning: variable %%ODEOPTIONS not found.\n"
+msgstr "Внимание: переменная %%ODEOPTIONS не найдена.\n"
+
+msgid "Warning: integration up to tcrit.\n"
+msgstr "Внимание: интегрирование вплоть до tcrit.\n"
+
+msgid ""
+"Warning: integration not completed! check tolerance parameters or step "
+"size.\n"
+msgstr ""
+"Внимание: интегрирование не выполнено! Проверьте параметр допуска "
+"(tolerance) или размер шага.\n"
+
+msgid ""
+"Warning: Jacobian external is given, but\n"
+" not used!,  see %ODEOPTIONS(6).\n"
+msgstr ""
+"Внимание: Задан Якобиан, но\n"
+" не использован! см. %ODEOPTIONS(6).\n"
+
+msgid ""
+"Warning: No Jacobian external given but\n"
+" one is required by %ODEOPTIONS(6) value !\n"
+msgstr ""
+"Внимание: Не задан Якобиан, однако\n"
+" он запрошен значением %ODEOPTIONS(6) !\n"
+
+msgid ""
+"itask=2,3 or 5: At most one value of t\n"
+" is allowed, the last element of t is used.\n"
+msgstr ""
+"itask=2,3 или 5: Недопустимо более одного значения t,\n"
+" использован последний элемент t.\n"
+
+msgid ""
+"Warning: odedc forces itask=4 and handles\n"
+" tcrit.\n"
+msgstr ""
+"Внимание: odedc установил itask=4 и управляет\n"
+" tcrit.\n"
+
+msgid "Warning: function is already compiled.\n"
+msgstr "внимание: функция уже скомпилирована.\n"
+
+#, c-format
+msgid "%s: termination for lack of space to divide triangle.\n"
+msgstr ""
+"%s: завершение из-за недостатка пространства для деления треугольника.\n"
+
+#, c-format
+msgid "%s: termination because of roundoff noise.\n"
+msgstr "%s: завершение из-за шума округления (roundoff noise).\n"
+
+#, c-format
+msgid "%s: termination for relative error < (5.0*%eps).\n"
+msgstr "%s: завершение, так как относительная ошибка < (5.0*%eps).\n"
+
+#, c-format
+msgid "%s: termination: function evaluations > MEVALS.\n"
+msgstr "%s: завершение: вычисления функции > MEVALS.\n"
+
+#, c-format
+msgid "%s: maxpts was too small to obtain the required accuracy.\n"
+msgstr "%s: maxpts слишком мало для достижения заданной точности.\n"
+
+msgid "Too many input/output ports for hilited block.\n"
+msgstr ""
+
+msgid "Too many input/output entries for hilited block.\n"
+msgstr ""
+
+msgid "Undefined display for this data type.\n"
+msgstr "Неопределено отображение для этого типа данных.\n"
+
+#, c-format
+msgid "Warning: primitive function %s has moved.\n"
+msgstr "Внимание: функция-примитив %s была перемещена.\n"
+
+msgid "Rebuild your function libraries.\n"
+msgstr "Пересоберите ваши библиотек функций.\n"
+
+#, c-format
+msgid "Warning: primitive function %s is now a Scilab function.\n"
+msgstr "Внимание: функция-примитив %s теперь функция Scilab.\n"
+
+msgid ""
+"Roundoff errors make leading eigenvalues\n"
+" in the Schur form no longer satisfy criterion.\n"
+msgstr ""
+"Ошибки округления привели к тому, что главные собственные значения\n"
+" в форме Шура более не удовлетворяют критерию.\n"
+
+msgid "Formal variable name has been truncated.\n"
+msgstr "Имя формальной переменной было усечено.\n"
+
+#, c-format
+msgid "Unknown key <%s> ignored.\n"
+msgstr "Неизвестная клавиша <%s> проигнорирована.\n"
+
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
+msgstr "%s: измерения окна были установлены меньшими 2^16.\n"
+
+msgid "Some data have not been computed they are replaced by NaN.\n"
+msgstr "Некоторые данные не были вычислены и были заменены на NaN.\n"
+
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: Количество вызовов %s достигло или превысило %s.\n"
+
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
+msgstr ""

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_dir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_dir</refname>
+    <refpurpose>Matlab dir emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab <literal>dir</literal> behave differently:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When result is stored in a variable: Matlab <literal>dir</literal> returns a structure but Scilab
+	<literal>dir</literal> returns a 'dir' tlist, so data can not be extracted in the same way.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The function <literal>mtlb_dir([path])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>dir([path])</literal> when output is stored in a variable.
+    There is no replacement possibility for it, else (when <literal>mtlb_dir</literal> is replaced by <literal>dir</literal>)
+    data can not be extracted like in Matlab. For example, Scilab equivalent for Matlab
+    <literal>L=dir;file_name=L(1).name;</literal> is <literal>L=dir();file_name=L.name(1);</literal>.
+    </para>
+    <para>Caution: <literal>mtlb_dir</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

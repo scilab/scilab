@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="overloading" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>overloading</refname>
+
+    <refpurpose>display, functions and operators overloading
+    capabilities</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>In scilab, variable display, functions and operators may be defined
+    for new objects using functions (scilab coded or primitives).</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Display</term>
+
+        <listitem>
+          <para>The display of new objects defined by <literal>tlist</literal>
+          structure may be overloaded (the default display is similar to
+          <literal>list</literal>'s one). The overloading function must have
+          no output argument a single input argument. It's name is formed as
+          follow <literal>%&lt;tlist_type&gt;_p</literal> where
+          <literal>%&lt;tlist_type&gt;</literal> stands for the first entry of
+          the <literal>tlist</literal> type component truncated to the first 9
+          characters.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Operators</term>
+
+        <listitem>
+          <para>Each operator which is not defined for given operands type may
+          be defined. The overloading function must have a single output
+          argument and one or two inputs according to the number of operands.
+          The function name is formed as follow:</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>for binary operators:
+    <literal>%&lt;first_operand_type&gt;_&lt;op_code&gt;_&lt;second_operand_type&gt;</literal></para>
+
+    <para>for unary operators:
+    <literal>%&lt;operand_type&gt;_&lt;op_code&gt;</literal></para>
+
+    <para>extraction and insertion operators which are n-nary operators are
+    described below.</para>
+
+    <para><literal>&lt;operand_type&gt;</literal>,
+    <literal>&lt;first_operand_type&gt;</literal>,
+    <literal>&lt;second_operand_type&gt;</literal> are sequence of characters
+    associated with each data type as described in the following table:</para>
+
+    <informaltable border="1">
+      <tr>
+        <td>data type</td>
+
+        <td>char code</td>
+
+        <td>data type</td>
+
+        <td>char code</td>
+      </tr>
+
+      <tr>
+        <td>constant</td>
+
+        <td><literal>s</literal></td>
+
+        <td>boolean</td>
+
+        <td><literal>b</literal></td>
+      </tr>
+
+      <tr>
+        <td>string</td>
+
+        <td><literal>c</literal></td>
+
+        <td>library</td>
+
+        <td><literal>f</literal></td>
+      </tr>
+
+      <tr>
+        <td>function pointer</td>
+
+        <td><literal>fptr</literal></td>
+
+        <td>handle</td>
+
+        <td><literal>h</literal></td>
+      </tr>
+
+      <tr>
+        <td>integer</td>
+
+        <td><literal>i</literal></td>
+
+        <td>list</td>
+
+        <td><literal>l</literal></td>
+      </tr>
+
+      <tr>
+        <td>function</td>
+
+        <td><literal>m</literal></td>
+
+        <td>compiled function</td>
+
+        <td><literal>mc</literal></td>
+      </tr>
+
+      <tr>
+        <td>polynomial</td>
+
+        <td><literal>p</literal></td>
+
+        <td>sparse</td>
+
+        <td><literal>sp</literal></td>
+      </tr>
+
+      <tr>
+        <td>boolean sparse</td>
+
+        <td><literal>spb</literal></td>
+
+        <td>tlist</td>
+
+        <td><literal>tlist_type</literal></td>
+      </tr>
+
+      <tr>
+        <td>size implicit polynomial</td>
+
+        <td><literal>ip</literal></td>
+
+        <td>Matlab sparse matrix</td>
+
+        <td><literal>msp</literal></td>
+      </tr>
+
+      <tr>
+        <td>mlist</td>
+
+        <td><literal>mlist_type</literal></td>
+
+        <td>pointer</td>
+
+        <td><literal>ptr</literal></td>
+      </tr>
+    </informaltable>
+
+    <para><literal>&lt;op_code&gt;</literal> is a single character associated
+    with each operator as described in the following table:</para>
+
+    <informaltable border="1">
+      <tr>
+        <td>op</td>
+
+        <td>char code</td>
+
+        <td>op</td>
+
+        <td>char code</td>
+      </tr>
+
+      <tr>
+        <td><literal>'</literal></td>
+
+        <td>t</td>
+
+        <td>+</td>
+
+        <td>a</td>
+      </tr>
+
+      <tr>
+        <td>-</td>
+
+        <td>s</td>
+
+        <td>*</td>
+
+        <td>m</td>
+      </tr>
+
+      <tr>
+        <td><literal>/</literal></td>
+
+        <td>r</td>
+
+        <td>\</td>
+
+        <td>l</td>
+      </tr>
+
+      <tr>
+        <td><literal>^</literal></td>
+
+        <td>p</td>
+
+        <td>.*</td>
+
+        <td>x</td>
+      </tr>
+
+      <tr>
+        <td>./</td>
+
+        <td>d</td>
+
+        <td>.\</td>
+
+        <td>q</td>
+      </tr>
+
+      <tr>
+        <td>.*.</td>
+
+        <td>k</td>
+
+        <td>./.</td>
+
+        <td>y</td>
+      </tr>
+
+      <tr>
+        <td><literal>.\.</literal></td>
+
+        <td>z</td>
+
+        <td>:</td>
+
+        <td>b</td>
+      </tr>
+
+      <tr>
+        <td>*.</td>
+
+        <td>u</td>
+
+        <td>/.</td>
+
+        <td>v</td>
+      </tr>
+
+      <tr>
+        <td><literal>\.</literal></td>
+
+        <td>w</td>
+
+        <td>[a,b]</td>
+
+        <td>c</td>
+      </tr>
+
+      <tr>
+        <td>[a;b]</td>
+
+        <td>f</td>
+
+        <td>() extraction</td>
+
+        <td>e</td>
+      </tr>
+
+      <tr>
+        <td>() insertion</td>
+
+        <td>i</td>
+
+        <td>==</td>
+
+        <td>o</td>
+      </tr>
+
+      <tr>
+        <td>&lt;&gt;</td>
+
+        <td>n</td>
+
+        <td>|</td>
+
+        <td>g</td>
+      </tr>
+
+      <tr>
+        <td>&amp;</td>
+
+        <td>h</td>
+
+        <td><literal>.^</literal></td>
+
+        <td>j</td>
+      </tr>
+
+      <tr>
+        <td>~</td>
+
+        <td>5</td>
+
+        <td>.'</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>&lt;</td>
+
+        <td>1</td>
+
+        <td>&gt;</td>
+
+        <td>2</td>
+      </tr>
+
+      <tr>
+        <td>&lt;=</td>
+
+        <td>3</td>
+
+        <td>&gt;=</td>
+
+        <td>4</td>
+      </tr>
+
+      <tr>
+        <td></td>
+
+        <td></td>
+
+        <td>iext</td>
+
+        <td>6</td>
+      </tr>
+    </informaltable>
+
+    <para>The overloading function for extraction syntax
+    <literal>b=a(i1,...,in)</literal> has the following calling sequence:
+    <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal></para>
+
+    <para>and the syntax <literal>[x1,..,xm]=a(i1,...,in)</literal> has the
+    following calling sequence:
+    <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal></para>
+
+    <para></para>
+
+    <para>The overloading function associated to the insertion syntax
+    <literal>a(i1,...,in)=b</literal> has the following calling sequence:
+    <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>.</para>
+
+    <para></para>
+
+    <para>The <literal>6</literal> char code may be used for some complex
+    insertion algorithm like <literal>x.b(2)=33</literal> where
+    <literal>b</literal> field is not defined in the structure
+    <literal>x</literal>. The insertion is automatically decomposed into
+    <literal>temp=x.b;</literal> <literal>temp(2)=33;</literal>
+    <literal>x.b=temp</literal>. The <literal>6</literal> char code is used
+    for the first step of this algorithm. The <literal>6</literal> overloading
+    function is very similar to the <literal>e</literal>'s one.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Functions :</term>
+
+        <listitem>
+          <para>Some basic primitive function</para>
+
+          <para>may also be overloaded for new data type. When such a function
+          is undefined for a particular data types the function
+          <literal>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</literal>
+          is called. User may add in this called function the definition
+          associated with the input data types.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+//DISPLAY
+deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
+tlist('tab',['a','b'],['x';'y'],rand(2,2))
+
+//OPERATOR
+deff('x=%c_a_s(a,b)','x=a+string(b)')
+'s'+1
+
+//FUNCTION
+deff('x=%c_sin(a)','x=''sin(''+a+'')''')
+sin('2*x')
+   
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="tlist">tlist</link></member>
+
+      <member><link linkend="disp">disp</link></member>
+
+      <member><link linkend="symbols">symbols</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

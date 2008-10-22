@@ -1,0 +1,4 @@
+Scilab is no longer released under the terms of the Scilab License.
+
+See COPYING for the English version
+See COPYING-FR for the French version

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="round">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>round</refname>
+    <refpurpose> arrondi  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=round(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>matrice réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para>matrice entière (ou complexe avec parties réelle et imaginaire entières)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>round(x)</literal> arrondit les éléments de <literal>x</literal> aux entiers les plus proches.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+round([1.9 -2.5])-[2,-3]
+round(1.6+2.1*%i)-(2+2*%i)
+round(-%inf)
+x=rand()*10^20;round(x)-x
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="int">int</link>
+      </member>
+      <member>
+        <link linkend="floor">floor</link>
+      </member>
+      <member>
+        <link linkend="ceil">ceil</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

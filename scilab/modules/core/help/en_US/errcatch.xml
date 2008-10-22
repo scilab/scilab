@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="errcatch">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>errcatch</refname>
+    <refpurpose> error trapping</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>errcatch(n [,'action'] [,'option'])
+errcatch()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>action, option</term>
+        <listitem>
+          <para>strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>errcatch</literal> gives an "action" (error-handler)  to be 
+    performed when an error of type <literal>n</literal> occurs.
+    <literal>n</literal> has the following meaning:
+  </para>
+    <para>
+    if <literal>n&gt;0</literal>, <literal>n</literal> is the error number to trap
+  </para>
+    <para>
+    if <literal>n&lt;0</literal>  all errors are to be trapped
+  </para>
+    <para><literal>action</literal> is one of the following character strings:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>"pause"</term>
+        <listitem>
+          <para>a pause is executed when trapping the error. This option is
+             useful for debugging purposes. Use <literal>whereami()</literal> to get informations
+             on the current context.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"continue"</term>
+        <listitem>
+          <para>next instruction in the function or exec files is executed,
+              current instruction is ignored. It is possible to check if an error has occured
+               using the <literal>iserror</literal> function. Do not forget to clear the error using
+              the <literal>errclear</literal> function as soon as possible  This option is useful
+              for error recovery. In many cases, usage of <literal>
+              errcatch(n,"continue",..)</literal> can be replaced by the use of
+              <link linkend="execstr">execstr</link> function or <link linkend="try">try</link> control structure.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"kill"</term>
+        <listitem>
+          <para>default mode, all intermediate functions are killed, scilab goes
+              back to the level 0 prompt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"stop"</term>
+        <listitem>
+          <para>interrupts the current Scilab session (useful when  Scilab is called from an external program).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para><literal>option</literal> is the character string <literal>'nomessage'</literal> for killing
+    error message.</para>
+    <para>
+    To set back default mode, enter <literal>errcatch(-1,"kill")</literal> or similarly
+    <literal>errcatch(-1)</literal>.<literal>errcatch()</literal> is an obsolete equivalent of <literal>errcatch(-1)</literal>. </para>
+    <para/>
+    <para>  The <literal>errcatch</literal> actions apply to the current evalution
+        context (function, exec, pause ) and all the sub-levels. A  second
+        <literal>errcatch</literal> call in a sub-level hides the initial one for
+         this sub-level. If a second <literal>errcatch</literal> call is made at the
+         same level, the effect of the first one is removed.</para>
+    <para>  When called in the context of  a Scilab function or exec the <literal>errcatch</literal> is automatically
+    reset  when the function returns.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="try">try</link>
+      </member>
+      <member>
+        <link linkend="errclear">errclear</link>
+      </member>
+      <member>
+        <link linkend="iserror">iserror</link>
+      </member>
+      <member>
+        <link linkend="whereami">whereami</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,102 @@
+ 
+// Linking a0.mexglx, say foo.mexglx, file with Scilab.
+ 
+// (Assuming foo.mexglx has been created by the Matlab's mex script).
+ 
+// 0/ Here I create the file foo.mexglx using Scilab, just to have a
+ 
+// proper foo.mexglx for testing
+ 
+ 
+ilib_for_link("foo",['foo.o'],[],"c");
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   compilation of foo
+   building shared library (be patient)
+ 
+host('cp libfoo.so foo.mexglx');
+ 
+ 
+// 1/ If necessary, create empty libmx.so libmex.so and libmat.so which
+ 
+//    could be required by the0.mexglx file.
+ 
+//    (If "ldd foo.mexglx" shows a dependency).
+ 
+// This is done by the following commands:
+ 
+ 
+ilib_for_link("mx",[],[],"c");
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   building shared library (be patient)
+ 
+ilib_for_link("mex",[],[],"c");
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   building shared library (be patient)
+ 
+ilib_for_link("mat",[],[],"c");
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   building shared library (be patient)
+ 
+ 
+// 2/link the (almost empty)0.so files with Scilab
+ 
+// Note that this is not really  usefull
+ 
+ 
+//link0./libmx.so;
+ 
+//link0./libmex.so;
+ 
+//link0./libmat.so;
+ 
+ 
+// 3/link foo.mexglx with Scilab
+ 
+link0./foo.mexglx;
+shared archive loaded
+Link done
+ 
+ 
+// 4/ Make a dynamic library with the provided C routine (libtst.c file).
+ 
+//    Note that you can use libtst.c file as is and that the entrypoint
+ 
+//    MUST BE mexFunction. If you have more than one mexglx files you
+ 
+//    will need to copy libtst.c and change only the function name
+ 
+//    (this is described below)
+ 
+ 
+ilib_for_link("tst",['libtst.o'],[],"c");
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   compilation of libtst
+   building shared library (be patient)
+ 
+ 
+//5/At Scilab prompt enter:
+ 
+ 
+addinter('./libtst.so','libtst','foo');
+shared archive loaded
+ 
+ 
+// 6/call the mexfunction:
+ 
+ 
+foo(5,'test string')
+ ans  =
+ 
+    5.  
+ 
+ 

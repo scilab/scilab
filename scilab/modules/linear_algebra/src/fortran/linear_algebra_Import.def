@@ -1,0 +1,33 @@
+LIBRARY    linear_algebra.dll
+
+
+EXPORTS
+	gw_linear_algebra_
+	gw_linear_algebra2_
+	schsel_
+	setschsel_
+	zchsel_
+	setzchsel_
+	gshsel_
+	setgshsel_
+	gzhsel_
+	setgzhsel_
+	fschur_
+	setfschur_
+	intbackslash_
+	intbalanc_
+	intbdiagr_
+	intchol_
+	intdet_
+	inteig_
+	inthess_
+	intinv_
+	intlsq_
+	intlu_
+	intqr_
+	intrcond_
+	intschur_
+	schtst
+	intslash_
+	intsvd_
+        issymmetric_

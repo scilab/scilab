@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unique">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unique</refname>
+    <refpurpose> extract unique components of a vector or matrices</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      [N [,k]]=unique(M)
+      [N [,k]]=unique(M ,orient)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>vector or matrix of  numbers or strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orient</term>
+        <listitem>
+          <para>flag with possible values : 1 or "r", 2 or "c"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N</term>
+        <listitem>
+          <para>vector or matrix  of  numbers or strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>vector  of integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>unique(M)</literal> returns a vector which retains the unique entries of  <literal>M</literal>
+    in ascending order.</para>
+    <para><literal>unique(M,"r")</literal> or <literal>unique(M,1)</literal>returns the unique rows of  <literal>M</literal>
+    in lexicographic ascending order.</para>
+    <para><literal>unique(M,"c")</literal> or <literal>unique(M,2)</literal>returns the unique columns of <literal>M</literal>
+    in lexicographic ascending order.</para>
+
+    <para>
+    If required the output argument <literal>k</literal> contains the position of the
+    first encountered unique entries.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+M=round(2*rand(20,1));
+
+unique(M)
+[N,k]=unique(M)
+
+unique(string(M))
+[N,k]=unique(string(M))
+
+
+A = [0,0,1,1;
+     0,1,1,1;
+     2,0,1,1;
+     0,2,2,2;
+     2,0,1,1;
+     0,0,1,1];
+T='x'+string(A);
+
+//unique rows
+
+[m,k]=unique(A,'r')
+unique(T,'r')
+
+//unique columns
+[m,k]=unique(T,'c')
+unique(A,'c')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="union">union</link>
+      </member>
+      <member>
+        <link linkend="intersect">intersect</link>
+      </member>
+      <member>
+        <link linkend="gsort">gsort</link>
+      </member>
+      <member>
+        <link linkend="lex_sort">lex_sort</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

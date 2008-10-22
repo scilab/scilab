@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="zpch1">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>zpch1</refname>
+    <refpurpose> Chebyshev analog filter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[poles,gain]=zpch1(n,epsilon,omegac)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integer (filter order)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>epsilon</term>
+        <listitem>
+          <para>real : ripple in the pass band (<literal>0&lt;epsilon&lt;1</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>omegac</term>
+        <listitem>
+          <para>real : cut-off frequency in Hertz</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>poles</term>
+        <listitem>
+          <para>resulting filter poles</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gain</term>
+        <listitem>
+          <para>resulting filter gain</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Poles of a Type 1 Chebyshev analog filter. The transfer function is given by :</para>
+    <programlisting><![CDATA[
+
+ H(s)=gain/poly(poles,'s')
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.D.  </para>
+  </refsection>
+</refentry>

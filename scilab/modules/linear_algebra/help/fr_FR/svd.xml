@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="svd">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>svd </refname>
+    <refpurpose>  décomposition en valeurs singulières  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>s=svd(X)
+[U,S,V]=svd(X)
+[U,S,V]=svd(X,0) (obsolete)
+[U,S,V]=svd(X,"e")
+[U,S,V,rk]=svd(X [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>matrice réelle ou complexe
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s  </term>
+        <listitem>
+          <para>vecteur réel (valeurs singulières)
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S  </term>
+        <listitem>
+          <para>matrice réelle diagonale (valeurs singulières sur la diagonale)
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U,V  </term>
+        <listitem>
+          <para>matrices carrées unitaires (vecteurs singuliers).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol  </term>
+        <listitem>
+          <para>nombre réel positif
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[U,S,V]=svd(X)</literal> renvoie une matrice diagonale <literal>S</literal>, de même
+      dimension que <literal>X</literal> avec des éléments diagonaux positifs classés
+      par ordre décroissant, ainsi que deux matrices unitaires <literal>U</literal>
+      et <literal>V</literal> telles que 
+      <literal>X = U*S*V'</literal>.<literal>[U,S,V]=svd(X,"e")</literal>
+      renvoie la décomposition réduite : si <literal>X</literal> est une
+      matrice <literal>m x n </literal> et que <literal>m &gt; n </literal> alors
+      seulement les n premières colonnes de <literal>U</literal> sont
+      calculées et <literal>S</literal> est <literal>n x n </literal>.
+    </para>
+    <para><literal>s=svd(X)</literal> renvoie un vecteur <literal>s</literal> contenant
+      les valeurs singulières.
+    </para>
+    <para><literal>[U,S,V,rk]=svd(X [,tol])</literal> renvoie de plus
+      <literal>rk</literal>, le rang "numérique" de <literal>X</literal>
+      c'est à dire le nombre de valeurs singulières plus grandes
+      que <literal>tol</literal>.
+    </para>
+    <para>
+      La valeur par défaut de <literal>tol</literal> est la même que pour la fonction <literal>rank</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    X=rand(4,2)*rand(2,4)
+    svd(X)
+    sqrt(spec(X*X'))
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="sva">sva</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Fonctions Utilisées</title>
+    <para>
+    la décomposition svd est basée sur les routines  DGESVD pour les
+    matrices réelles et  ZGESVD pour le cas complexe.
+    </para>
+  </refsection>
+</refentry>

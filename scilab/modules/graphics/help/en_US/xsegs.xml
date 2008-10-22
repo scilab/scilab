@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xsegs">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xsegs</refname>
+    <refpurpose>draw unconnected
+  segments</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xsegs(xv,yv,[style])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xv,yv</term>
+        <listitem>
+          <para>matrices of the same size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style</term>
+        <listitem>
+          <para>vector or scalar. If <literal>style</literal> is a positive scalar,
+          it gives the color to use for all segments. If <literal>style</literal> is
+          a negative scalar, then current color is used. If <literal>style</literal>
+          is a vector, then <literal>style(i)</literal> gives the color to use for
+          segment <literal>i</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xsegs</literal> draws a set of unconnected segments given by
+    <literal>xv</literal> and <literal>yv</literal>. If <literal>xv</literal> and
+    <literal>yv</literal> are matrices they are considered as vectors by
+    concatenating their columns. The coordinates of the two points defining a
+    segment are given by two consecutive values of <literal>xv</literal> and
+    <literal>yv</literal>:</para>
+    <para><literal>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</literal>.</para>
+    <para>For instance, using matrices of size (2,n), the segments can be defined
+    by:</para>
+    <programlisting><![CDATA[xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] yv=[yi_1 yi_2 ...; yf_1 yf_2
+    ...]]]></programlisting>
+    <para>and the segments are <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=2*%pi*(0:9)/10;
+xv=[sin(x);9*sin(x)];
+yv=[cos(x);9*cos(x)];
+plot2d([-10,10],[-10,10],[-1,-1],"022")
+xsegs(xv,yv,1:10)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

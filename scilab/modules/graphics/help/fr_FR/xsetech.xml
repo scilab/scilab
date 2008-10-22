@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xsetech">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xsetech</refname>
+    <refpurpose> sélectionne la sous-fenêtre d'une fenêtre graphique pour les dessins  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xsetech(wrect,[frect,logflag])
+xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
+xsetech()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>wrect  </term>
+        <listitem>
+          <para>vecteur de taille 4, définition de la sous-fenêtre
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>frect  </term>
+        <listitem>
+          <para>vecteur de taille 4.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>logflag  </term>
+        <listitem>
+          <para>chaîne de caractères de taille 2 "xy", où x et y peuvent être "n" ou "l". "n" pour échelle normale  et "l" pour échelle logarithmique. x  pour axe des x et y pour axe des y.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arect  </term>
+        <listitem>
+          <para>vecteur de taille 4.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xsetech</literal> est principalement utilisée pour définir la sous-fenêtre 
+    d'une fenêtre graphique, à utiliser pour les dessins. La sous-fenêtre est 
+    définie par <literal>wrect=[x,y,w,h]</literal> (point en haut à gauche, largeur,
+    hauteur). Les valeurs dans <literal>wrect</literal> sont spécifiées sous forme de proportions
+    de la largeur et de la hauteur de la fenêtre graphique courante. Par exemple
+    <literal>wrect=[0,0,1,1]</literal> signifie que toute la fenêtre graphique sera utilisée, 
+    et <literal>wrect=[0.5,0,0.5,1]</literal> signifie que l'on sélectionne
+    la moitié droite de la fenêtre graphique.
+  </para>
+    <para><literal>xsetech</literal> permet aussi de définir l'échelle graphique pour les dessins 2D
+    et peut être utilisée préalablement à des commandes nécessitant que l'échelle soit déjà
+    définie (par exemple <literal>strf="x0z"</literal> ou <literal>frameflag=0</literal> dans <literal>plot2d</literal>).
+  </para>
+    <para><literal>frect=[xmin,ymin,xmax,ymax]</literal> est utilisé pour changer l'échelle graphique
+    et est similaire à l'argument <literal>rect</literal> de <literal>plot2d</literal>. Si
+    <literal>frect</literal> n'est pas donné la valeur courante de l'échelle graphique n'est pas
+    modifiée. La valeur par défaut de <literal>rect</literal> est <literal>[0,0,1,1]</literal>
+    (à la création de la fenêtre, ou par exemple après un <literal>xset('default')</literal> 
+    ou après effacement complet de la fenêtre avec <literal>xbasc()</literal>).
+  </para>
+    <para><literal>arect=[x_gauche, x_droite, y_haut, y_bas]</literal> est utilisé pour définir le cadre
+    dans la sous-fenêtre. Le cadre est spécifié (comme <literal>wrect</literal>) en utilisant des 
+    proportions de la largeur et de la hauteur de la sous-fenêtre courante. La valeur par défaut est <literal>1/8*[1,1,1,1]</literal>. Si <literal>arect</literal> n'est pas donné le cadre courant n'est pas modifié.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+// pour avoir une explication des paramètres de xsetech() taper :
+exec('SCI/modules/graphics/demos/xsetechfig.sce');
+
+
+// On coupe la fenêtre en deux 
+// D'abord on choisit la première sous-fenêtre 
+// et l'échelle
+xsetech([0,0,1.0,0.5],[-5,-3,5,3])
+// on appelle plot2d avec l'option "001" pour utiliser l'échelle  
+// choisie par xsetech
+plot2d([1:10]',[1:10]',1,"001"," ")
+// on choisit la deuxième sous-fenêtre 
+xsetech([0,0.5,1.0,0.5])
+// l'échelle est [0,0,1,1] par défaut 
+// on la change avec l'argument rect de plot2d 
+plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
+// 4 dessins sur une seule fenêtre
+xbasc()
+xset("font",2,0)
+xsetech([0,0,0.5,0.5]); plot3d()
+xsetech([0.5,0,0.5,0.5]); plot2d()
+xsetech([0.5,0.5,0.5,0.5]); grayplot()
+xsetech([0,0.5,0.5,0.5]); histplot()
+// retour aux valeurs par défaut 
+xsetech([0,0,1,1])
+// Un dessin avec arect change
+xbasc()
+xset("default")
+xsetech(arect=[0,0,0,0]) 
+x=1:0.1:10;plot2d(x',sin(x)')
+xbasc()
+xsetech(arect=[1/8,1/8,1/16,1/4])
+x=1:0.1:10;plot2d(x',sin(x)')
+xbasc()
+xset("default")
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xgetech">xgetech</link>
+      </member>
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="isoview">isoview</link>
+      </member>
+      <member>
+        <link linkend="square">square</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

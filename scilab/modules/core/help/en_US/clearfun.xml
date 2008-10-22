@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clearfun">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>clearfun</refname>
+    <refpurpose> remove primitive.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>ret=clearfun('name')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>clearfun('name')</literal> removes the primitive <literal>'name'</literal> from the set of
+    primitives (built-in functions). clearfun returns %t or %f.
+    This function allows to rename a primitive : a Scilab 
+    primitive can be replaced by a user-defined function. For experts...</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="newfun">newfun</link>
+      </member>
+      <member>
+        <link linkend="funptr">funptr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

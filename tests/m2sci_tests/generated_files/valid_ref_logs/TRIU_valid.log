@@ -1,0 +1,794 @@
+****** Beginning of validation of TRIU.dia.ref ******
+*** TEST 1 PASSED ***
+
+*** TEST 2 PASSED ***
+
+*** TEST 3 PASSED ***
+
+*** TEST 4 PASSED ***
+
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+*** TEST 9 PASSED ***
+
+*** TEST 10 PASSED ***
+
+*** TEST 11 PASSED ***
+
+*** TEST 12 PASSED ***
+
+*** TEST 13 PASSED ***
+
+*** TEST 14 PASSED ***
+
+*** TEST 15 PASSED ***
+
+*** TEST 16 PASSED ***
+
+*** TEST 17 PASSED ***
+
+*** TEST 18 PASSED ***
+
+*** TEST 19 PASSED ***
+
+*** TEST 20 PASSED ***
+
+*** TEST 21 PASSED ***
+
+*** TEST 22 PASSED ***
+
+*** TEST 23 PASSED ***
+
+*** TEST 24 PASSED ***
+
+*** TEST 25 PASSED ***
+
+*** TEST 26 PASSED ***
+
+*** TEST 27 PASSED ***
+
+*** TEST 28 PASSED ***
+
+TEST 29: Scilab and Matlab size do not match but result is OK because is a String for res29
+*** TEST 29 PASSED ***
+
+TEST 30: Scilab and Matlab size do not match but result is OK because is a String for res30
+*** TEST 30 PASSED ***
+
+TEST 31: Scilab and Matlab size do not match but result is OK because is a String for res31
+*** TEST 31 PASSED ***
+
+TEST 32: Scilab and Matlab size do not match but result is OK because is a String for res32
+*** TEST 32 PASSED ***
+
+*** TEST 33 PASSED ***
+
+TEST 34: Scilab and Matlab size do not match but result is OK because is a String for res34
+*** TEST 34 PASSED ***
+
+TEST 35: Scilab and Matlab size do not match but result is OK because is a String for res35
+*** TEST 35 PASSED ***
+
+TEST 36: Scilab and Matlab size do not match but result is OK because is a String for res36
+*** TEST 36 PASSED ***
+
+TEST 37: Scilab and Matlab size do not match but result is OK because is a String for res37
+*** TEST 37 PASSED ***
+
+*** TEST 38 PASSED ***
+
+TEST 39: Scilab and Matlab size do not match but result is OK because is a String for res39
+*** TEST 39 PASSED ***
+
+TEST 40: Scilab and Matlab size do not match but result is OK because is a String for res40
+*** TEST 40 PASSED ***
+
+TEST 41: Scilab and Matlab size do not match but result is OK because is a String for res41
+*** TEST 41 PASSED ***
+
+TEST 42: Scilab and Matlab size do not match but result is OK because is a String for res42
+*** TEST 42 PASSED ***
+
+TEST 43: Scilab returns Double and Matlab returns Boolean for res43
+*** TEST 43 PASSED ***
+
+TEST 44: Scilab returns Double and Matlab returns Boolean for res44
+*** TEST 44 PASSED ***
+
+TEST 45: Scilab returns Double and Matlab returns Boolean for res45
+*** TEST 45 PASSED ***
+
+TEST 46: Scilab returns Double and Matlab returns Boolean for res46
+*** TEST 46 PASSED ***
+
+TEST 47: Scilab returns Double and Matlab returns Boolean for res47
+*** TEST 47 PASSED ***
+
+TEST 48: Scilab returns Double and Matlab returns Boolean for res48
+*** TEST 48 PASSED ***
+
+TEST 49: Scilab returns Double and Matlab returns Boolean for res49
+*** TEST 49 PASSED ***
+
+TEST 50: Scilab returns Double and Matlab returns Boolean for res50
+*** TEST 50 PASSED ***
+
+TEST 51: Scilab returns Double and Matlab returns Boolean for res51
+*** TEST 51 PASSED ***
+
+TEST 52: Scilab returns Double and Matlab returns Boolean for res52
+*** TEST 52 PASSED ***
+
+TEST 53: Scilab returns Double and Matlab returns Boolean for res53
+*** TEST 53 PASSED ***
+
+TEST 54: Scilab returns Double and Matlab returns Boolean for res54
+*** TEST 54 PASSED ***
+
+*** TEST 55 PASSED ***
+
+*** TEST 56 PASSED ***
+
+*** TEST 57 PASSED ***
+
+*** TEST 58 PASSED ***
+
+*** TEST 59 PASSED ***
+
+*** TEST 60 PASSED ***
+
+*** TEST 61 PASSED ***
+
+*** TEST 62 PASSED ***
+
+*** TEST 63 PASSED ***
+
+*** TEST 64 PASSED ***
+
+*** TEST 65 PASSED ***
+
+*** TEST 66 PASSED ***
+
+*** TEST 67 PASSED ***
+
+*** TEST 68 PASSED ***
+
+*** TEST 69 PASSED ***
+
+*** TEST 70 PASSED ***
+
+*** TEST 71 PASSED ***
+
+*** TEST 72 PASSED ***
+
+*** TEST 73 PASSED ***
+
+*** TEST 74 PASSED ***
+
+*** TEST 75 PASSED ***
+
+*** TEST 76 PASSED ***
+
+*** TEST 77 PASSED ***
+
+*** TEST 78 PASSED ***
+
+*** TEST 79 PASSED ***
+
+*** TEST 80 PASSED ***
+
+*** TEST 81 PASSED ***
+
+*** TEST 82 PASSED ***
+
+TEST 83: Scilab and Matlab size do not match but result is OK because is a String for res83
+*** TEST 83 PASSED ***
+
+TEST 84: Scilab and Matlab size do not match but result is OK because is a String for res84
+*** TEST 84 PASSED ***
+
+TEST 85: Scilab and Matlab size do not match but result is OK because is a String for res85
+*** TEST 85 PASSED ***
+
+TEST 86: Scilab and Matlab size do not match but result is OK because is a String for res86
+*** TEST 86 PASSED ***
+
+*** TEST 87 PASSED ***
+
+TEST 88: Scilab and Matlab size do not match but result is OK because is a String for res88
+*** TEST 88 PASSED ***
+
+TEST 89: Scilab and Matlab size do not match but result is OK because is a String for res89
+*** TEST 89 PASSED ***
+
+TEST 90: Scilab and Matlab size do not match but result is OK because is a String for res90
+*** TEST 90 PASSED ***
+
+TEST 91: Scilab and Matlab size do not match but result is OK because is a String for res91
+*** TEST 91 PASSED ***
+
+*** TEST 92 PASSED ***
+
+TEST 93: Scilab and Matlab size do not match but result is OK because is a String for res93
+*** TEST 93 PASSED ***
+
+TEST 94: Scilab and Matlab size do not match but result is OK because is a String for res94
+*** TEST 94 PASSED ***
+
+TEST 95: Scilab and Matlab size do not match but result is OK because is a String for res95
+*** TEST 95 PASSED ***
+
+TEST 96: Scilab and Matlab size do not match but result is OK because is a String for res96
+*** TEST 96 PASSED ***
+
+TEST 97: Scilab returns Double and Matlab returns Boolean for res97
+*** TEST 97 PASSED ***
+
+TEST 98: Scilab returns Double and Matlab returns Boolean for res98
+*** TEST 98 PASSED ***
+
+TEST 99: Scilab returns Double and Matlab returns Boolean for res99
+*** TEST 99 PASSED ***
+
+TEST 100: Scilab returns Double and Matlab returns Boolean for res100
+*** TEST 100 PASSED ***
+
+TEST 101: Scilab returns Double and Matlab returns Boolean for res101
+*** TEST 101 PASSED ***
+
+TEST 102: Scilab returns Double and Matlab returns Boolean for res102
+*** TEST 102 PASSED ***
+
+TEST 103: Scilab returns Double and Matlab returns Boolean for res103
+*** TEST 103 PASSED ***
+
+TEST 104: Scilab returns Double and Matlab returns Boolean for res104
+*** TEST 104 PASSED ***
+
+TEST 105: Scilab returns Double and Matlab returns Boolean for res105
+*** TEST 105 PASSED ***
+
+TEST 106: Scilab returns Double and Matlab returns Boolean for res106
+*** TEST 106 PASSED ***
+
+TEST 107: Scilab returns Double and Matlab returns Boolean for res107
+*** TEST 107 PASSED ***
+
+TEST 108: Scilab returns Double and Matlab returns Boolean for res108
+*** TEST 108 PASSED ***
+
+*** TEST 109 PASSED ***
+
+*** TEST 110 PASSED ***
+
+*** TEST 111 PASSED ***
+
+*** TEST 112 PASSED ***
+
+*** TEST 113 PASSED ***
+
+*** TEST 114 PASSED ***
+
+*** TEST 115 PASSED ***
+
+*** TEST 116 PASSED ***
+
+*** TEST 117 PASSED ***
+
+*** TEST 118 PASSED ***
+
+*** TEST 119 PASSED ***
+
+*** TEST 120 PASSED ***
+
+*** TEST 121 PASSED ***
+
+*** TEST 122 PASSED ***
+
+*** TEST 123 PASSED ***
+
+*** TEST 124 PASSED ***
+
+*** TEST 125 PASSED ***
+
+*** TEST 126 PASSED ***
+
+*** TEST 127 PASSED ***
+
+*** TEST 128 PASSED ***
+
+*** TEST 129 PASSED ***
+
+*** TEST 130 PASSED ***
+
+*** TEST 131 PASSED ***
+
+*** TEST 132 PASSED ***
+
+*** TEST 133 PASSED ***
+
+*** TEST 134 PASSED ***
+
+*** TEST 135 PASSED ***
+
+*** TEST 136 PASSED ***
+
+TEST 137: Scilab and Matlab size do not match but result is OK because is a String for res137
+*** TEST 137 PASSED ***
+
+TEST 138: Scilab and Matlab size do not match but result is OK because is a String for res138
+*** TEST 138 PASSED ***
+
+TEST 139: Scilab and Matlab size do not match but result is OK because is a String for res139
+*** TEST 139 PASSED ***
+
+TEST 140: Scilab and Matlab size do not match but result is OK because is a String for res140
+*** TEST 140 PASSED ***
+
+*** TEST 141 PASSED ***
+
+TEST 142: Scilab and Matlab size do not match but result is OK because is a String for res142
+*** TEST 142 PASSED ***
+
+TEST 143: Scilab and Matlab size do not match but result is OK because is a String for res143
+*** TEST 143 PASSED ***
+
+TEST 144: Scilab and Matlab size do not match but result is OK because is a String for res144
+*** TEST 144 PASSED ***
+
+TEST 145: Scilab and Matlab size do not match but result is OK because is a String for res145
+*** TEST 145 PASSED ***
+
+*** TEST 146 PASSED ***
+
+TEST 147: Scilab and Matlab size do not match but result is OK because is a String for res147
+*** TEST 147 PASSED ***
+
+TEST 148: Scilab and Matlab size do not match but result is OK because is a String for res148
+*** TEST 148 PASSED ***
+
+TEST 149: Scilab and Matlab size do not match but result is OK because is a String for res149
+*** TEST 149 PASSED ***
+
+TEST 150: Scilab and Matlab size do not match but result is OK because is a String for res150
+*** TEST 150 PASSED ***
+
+TEST 151: Scilab returns Double and Matlab returns Boolean for res151
+*** TEST 151 PASSED ***
+
+TEST 152: Scilab returns Double and Matlab returns Boolean for res152
+*** TEST 152 PASSED ***
+
+TEST 153: Scilab returns Double and Matlab returns Boolean for res153
+*** TEST 153 PASSED ***
+
+TEST 154: Scilab returns Double and Matlab returns Boolean for res154
+*** TEST 154 PASSED ***
+
+TEST 155: Scilab returns Double and Matlab returns Boolean for res155
+*** TEST 155 PASSED ***
+
+TEST 156: Scilab returns Double and Matlab returns Boolean for res156
+*** TEST 156 PASSED ***
+
+TEST 157: Scilab returns Double and Matlab returns Boolean for res157
+*** TEST 157 PASSED ***
+
+TEST 158: Scilab returns Double and Matlab returns Boolean for res158
+*** TEST 158 PASSED ***
+
+TEST 159: Scilab returns Double and Matlab returns Boolean for res159
+*** TEST 159 PASSED ***
+
+TEST 160: Scilab returns Double and Matlab returns Boolean for res160
+*** TEST 160 PASSED ***
+
+TEST 161: Scilab returns Double and Matlab returns Boolean for res161
+*** TEST 161 PASSED ***
+
+TEST 162: Scilab returns Double and Matlab returns Boolean for res162
+*** TEST 162 PASSED ***
+
+*** TEST 163 PASSED ***
+
+*** TEST 164 PASSED ***
+
+*** TEST 165 PASSED ***
+
+*** TEST 166 PASSED ***
+
+*** TEST 167 PASSED ***
+
+*** TEST 168 PASSED ***
+
+*** TEST 169 PASSED ***
+
+*** TEST 170 PASSED ***
+
+*** TEST 171 PASSED ***
+
+*** TEST 172 PASSED ***
+
+*** TEST 173 PASSED ***
+
+*** TEST 174 PASSED ***
+
+*** TEST 175 PASSED ***
+
+*** TEST 176 PASSED ***
+
+*** TEST 177 PASSED ***
+
+*** TEST 178 PASSED ***
+
+*** TEST 179 PASSED ***
+
+*** TEST 180 PASSED ***
+
+*** TEST 181 PASSED ***
+
+*** TEST 182 PASSED ***
+
+*** TEST 183 PASSED ***
+
+*** TEST 184 PASSED ***
+
+*** TEST 185 PASSED ***
+
+*** TEST 186 PASSED ***
+
+*** TEST 187 PASSED ***
+
+*** TEST 188 PASSED ***
+
+*** TEST 189 PASSED ***
+
+*** TEST 190 PASSED ***
+
+TEST 191: Scilab and Matlab size do not match but result is OK because is a String for res191
+*** TEST 191 PASSED ***
+
+TEST 192: Scilab and Matlab size do not match but result is OK because is a String for res192
+*** TEST 192 PASSED ***
+
+TEST 193: Scilab and Matlab size do not match but result is OK because is a String for res193
+*** TEST 193 PASSED ***
+
+TEST 194: Scilab and Matlab size do not match but result is OK because is a String for res194
+*** TEST 194 PASSED ***
+
+*** TEST 195 PASSED ***
+
+TEST 196: Scilab and Matlab size do not match but result is OK because is a String for res196
+*** TEST 196 PASSED ***
+
+TEST 197: Scilab and Matlab size do not match but result is OK because is a String for res197
+*** TEST 197 PASSED ***
+
+TEST 198: Scilab and Matlab size do not match but result is OK because is a String for res198
+*** TEST 198 PASSED ***
+
+TEST 199: Scilab and Matlab size do not match but result is OK because is a String for res199
+*** TEST 199 PASSED ***
+
+*** TEST 200 PASSED ***
+
+TEST 201: Scilab and Matlab size do not match but result is OK because is a String for res201
+*** TEST 201 PASSED ***
+
+TEST 202: Scilab and Matlab size do not match but result is OK because is a String for res202
+*** TEST 202 PASSED ***
+
+TEST 203: Scilab and Matlab size do not match but result is OK because is a String for res203
+*** TEST 203 PASSED ***
+
+TEST 204: Scilab and Matlab size do not match but result is OK because is a String for res204
+*** TEST 204 PASSED ***
+
+TEST 205: Scilab returns Double and Matlab returns Boolean for res205
+*** TEST 205 PASSED ***
+
+TEST 206: Scilab returns Double and Matlab returns Boolean for res206
+*** TEST 206 PASSED ***
+
+TEST 207: Scilab returns Double and Matlab returns Boolean for res207
+*** TEST 207 PASSED ***
+
+TEST 208: Scilab returns Double and Matlab returns Boolean for res208
+*** TEST 208 PASSED ***
+
+TEST 209: Scilab returns Double and Matlab returns Boolean for res209
+*** TEST 209 PASSED ***
+
+TEST 210: Scilab returns Double and Matlab returns Boolean for res210
+*** TEST 210 PASSED ***
+
+TEST 211: Scilab returns Double and Matlab returns Boolean for res211
+*** TEST 211 PASSED ***
+
+TEST 212: Scilab returns Double and Matlab returns Boolean for res212
+*** TEST 212 PASSED ***
+
+TEST 213: Scilab returns Double and Matlab returns Boolean for res213
+*** TEST 213 PASSED ***
+
+TEST 214: Scilab returns Double and Matlab returns Boolean for res214
+*** TEST 214 PASSED ***
+
+TEST 215: Scilab returns Double and Matlab returns Boolean for res215
+*** TEST 215 PASSED ***
+
+TEST 216: Scilab returns Double and Matlab returns Boolean for res216
+*** TEST 216 PASSED ***
+
+*** TEST 217 PASSED ***
+
+*** TEST 218 PASSED ***
+
+*** TEST 219 PASSED ***
+
+*** TEST 220 PASSED ***
+
+*** TEST 221 PASSED ***
+
+*** TEST 222 PASSED ***
+
+*** TEST 223 PASSED ***
+
+*** TEST 224 PASSED ***
+
+*** TEST 225 PASSED ***
+
+*** TEST 226 PASSED ***
+
+*** TEST 227 PASSED ***
+
+*** TEST 228 PASSED ***
+
+*** TEST 229 PASSED ***
+
+*** TEST 230 PASSED ***
+
+*** TEST 231 PASSED ***
+
+*** TEST 232 PASSED ***
+
+*** TEST 233 PASSED ***
+
+*** TEST 234 PASSED ***
+
+*** TEST 235 PASSED ***
+
+*** TEST 236 PASSED ***
+
+*** TEST 237 PASSED ***
+
+*** TEST 238 PASSED ***
+
+*** TEST 239 PASSED ***
+
+*** TEST 240 PASSED ***
+
+*** TEST 241 PASSED ***
+
+*** TEST 242 PASSED ***
+
+*** TEST 243 PASSED ***
+
+*** TEST 244 PASSED ***
+
+TEST 245: Scilab and Matlab size do not match but result is OK because is a String for res245
+*** TEST 245 PASSED ***
+
+TEST 246: Scilab and Matlab size do not match but result is OK because is a String for res246
+*** TEST 246 PASSED ***
+
+TEST 247: Scilab and Matlab size do not match but result is OK because is a String for res247
+*** TEST 247 PASSED ***
+
+TEST 248: Scilab and Matlab size do not match but result is OK because is a String for res248
+*** TEST 248 PASSED ***
+
+*** TEST 249 PASSED ***
+
+TEST 250: Scilab and Matlab size do not match but result is OK because is a String for res250
+*** TEST 250 PASSED ***
+
+TEST 251: Scilab and Matlab size do not match but result is OK because is a String for res251
+*** TEST 251 PASSED ***
+
+TEST 252: Scilab and Matlab size do not match but result is OK because is a String for res252
+*** TEST 252 PASSED ***
+
+TEST 253: Scilab and Matlab size do not match but result is OK because is a String for res253
+*** TEST 253 PASSED ***
+
+*** TEST 254 PASSED ***
+
+TEST 255: Scilab and Matlab size do not match but result is OK because is a String for res255
+*** TEST 255 PASSED ***
+
+TEST 256: Scilab and Matlab size do not match but result is OK because is a String for res256
+*** TEST 256 PASSED ***
+
+TEST 257: Scilab and Matlab size do not match but result is OK because is a String for res257
+*** TEST 257 PASSED ***
+
+TEST 258: Scilab and Matlab size do not match but result is OK because is a String for res258
+*** TEST 258 PASSED ***
+
+TEST 259: Scilab returns Double and Matlab returns Boolean for res259
+*** TEST 259 PASSED ***
+
+TEST 260: Scilab returns Double and Matlab returns Boolean for res260
+*** TEST 260 PASSED ***
+
+TEST 261: Scilab returns Double and Matlab returns Boolean for res261
+*** TEST 261 PASSED ***
+
+TEST 262: Scilab returns Double and Matlab returns Boolean for res262
+*** TEST 262 PASSED ***
+
+TEST 263: Scilab returns Double and Matlab returns Boolean for res263
+*** TEST 263 PASSED ***
+
+TEST 264: Scilab returns Double and Matlab returns Boolean for res264
+*** TEST 264 PASSED ***
+
+TEST 265: Scilab returns Double and Matlab returns Boolean for res265
+*** TEST 265 PASSED ***
+
+TEST 266: Scilab returns Double and Matlab returns Boolean for res266
+*** TEST 266 PASSED ***
+
+TEST 267: Scilab returns Double and Matlab returns Boolean for res267
+*** TEST 267 PASSED ***
+
+TEST 268: Scilab returns Double and Matlab returns Boolean for res268
+*** TEST 268 PASSED ***
+
+TEST 269: Scilab returns Double and Matlab returns Boolean for res269
+*** TEST 269 PASSED ***
+
+TEST 270: Scilab returns Double and Matlab returns Boolean for res270
+*** TEST 270 PASSED ***
+
+*** TEST 271 PASSED ***
+
+*** TEST 272 PASSED ***
+
+*** TEST 273 PASSED ***
+
+*** TEST 274 PASSED ***
+
+*** TEST 275 PASSED ***
+
+*** TEST 276 PASSED ***
+
+*** TEST 277 PASSED ***
+
+*** TEST 278 PASSED ***
+
+*** TEST 279 PASSED ***
+
+*** TEST 280 PASSED ***
+
+*** TEST 281 PASSED ***
+
+*** TEST 282 PASSED ***
+
+*** TEST 283 PASSED ***
+
+*** TEST 284 PASSED ***
+
+*** TEST 285 PASSED ***
+
+*** TEST 286 PASSED ***
+
+*** TEST 287 PASSED ***
+
+*** TEST 288 PASSED ***
+
+*** TEST 289 PASSED ***
+
+*** TEST 290 PASSED ***
+
+*** TEST 291 PASSED ***
+
+*** TEST 292 PASSED ***
+
+*** TEST 293 PASSED ***
+
+*** TEST 294 PASSED ***
+
+*** TEST 295 PASSED ***
+
+*** TEST 296 PASSED ***
+
+*** TEST 297 PASSED ***
+
+*** TEST 298 PASSED ***
+
+TEST 299: Scilab and Matlab size do not match but result is OK because is a String for res299
+*** TEST 299 PASSED ***
+
+TEST 300: Scilab and Matlab size do not match but result is OK because is a String for res300
+*** TEST 300 PASSED ***
+
+TEST 301: Scilab and Matlab size do not match but result is OK because is a String for res301
+*** TEST 301 PASSED ***
+
+TEST 302: Scilab and Matlab size do not match but result is OK because is a String for res302
+*** TEST 302 PASSED ***
+
+*** TEST 303 PASSED ***
+
+TEST 304: Scilab and Matlab size do not match but result is OK because is a String for res304
+*** TEST 304 PASSED ***
+
+TEST 305: Scilab and Matlab size do not match but result is OK because is a String for res305
+*** TEST 305 PASSED ***
+
+TEST 306: Scilab and Matlab size do not match but result is OK because is a String for res306
+*** TEST 306 PASSED ***
+
+TEST 307: Scilab and Matlab size do not match but result is OK because is a String for res307
+*** TEST 307 PASSED ***
+
+*** TEST 308 PASSED ***
+
+TEST 309: Scilab and Matlab size do not match but result is OK because is a String for res309
+*** TEST 309 PASSED ***
+
+TEST 310: Scilab and Matlab size do not match but result is OK because is a String for res310
+*** TEST 310 PASSED ***
+
+TEST 311: Scilab and Matlab size do not match but result is OK because is a String for res311
+*** TEST 311 PASSED ***
+
+TEST 312: Scilab and Matlab size do not match but result is OK because is a String for res312
+*** TEST 312 PASSED ***
+
+TEST 313: Scilab returns Double and Matlab returns Boolean for res313
+*** TEST 313 PASSED ***
+
+TEST 314: Scilab returns Double and Matlab returns Boolean for res314
+*** TEST 314 PASSED ***
+
+TEST 315: Scilab returns Double and Matlab returns Boolean for res315
+*** TEST 315 PASSED ***
+
+TEST 316: Scilab returns Double and Matlab returns Boolean for res316
+*** TEST 316 PASSED ***
+
+TEST 317: Scilab returns Double and Matlab returns Boolean for res317
+*** TEST 317 PASSED ***
+
+TEST 318: Scilab returns Double and Matlab returns Boolean for res318
+*** TEST 318 PASSED ***
+
+TEST 319: Scilab returns Double and Matlab returns Boolean for res319
+*** TEST 319 PASSED ***
+
+TEST 320: Scilab returns Double and Matlab returns Boolean for res320
+*** TEST 320 PASSED ***
+
+TEST 321: Scilab returns Double and Matlab returns Boolean for res321
+*** TEST 321 PASSED ***
+
+TEST 322: Scilab returns Double and Matlab returns Boolean for res322
+*** TEST 322 PASSED ***
+
+TEST 323: Scilab returns Double and Matlab returns Boolean for res323
+*** TEST 323 PASSED ***
+
+TEST 324: Scilab returns Double and Matlab returns Boolean for res324
+*** TEST 324 PASSED ***
+
+****** End of validation of TRIU.dia.ref ******

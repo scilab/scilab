@@ -1,0 +1,13 @@
+// <-- Non-regression test for bug 2670 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2670
+//
+// <-- Short Description -->
+//    getlanguage() returns a empty string (occurs both under Linux and Windows).
+//
+// Copyright INRIA
+// Scilab Project - Pierre MARECHAL
+// Copyright INRIA 2007
+// Date : 28 Jan 2007
+if length(getlanguage()) <> 5 then bugmes();quit;end

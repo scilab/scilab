@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sci_files">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sci_files</refname>
+    <refpurpose>How to write conversion functions</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>  
+  To convert calls to Matlab functions, <literal>mfile2sci</literal> uses a function called
+  <literal>sci_&lt;Matlab_function_name&gt;</literal>. All these functions are defined in <literal>sci_files</literal>
+  in directory SCI/modules/m2sci/macros/sci_files/. The set of <literal>sci_files</literal> given in Scilab
+  distribution does not allow to convert calls to all Matlab functions yet.
+  However, a Scilab user can add <literal>sci_files</literal> (for Matlab functions or for user defined functions)
+  to Scilab using the following tips. 
+  </para>
+    <para>
+  In M2SCI, a function call is considered as a "tree" (it is also the case for the instructions
+  of the file to convert), represented in Scilab by a <literal>tlist</literal> with following fields:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>name</term>
+            <listitem>
+              <para>Matlab function name</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>lhsnb</term>
+            <listitem>
+              <para>number of Matlab function output parameters</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>lhs</term>
+            <listitem>
+              <para>list of Matlab function output parameters</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>rhs</term>
+            <listitem>
+              <para>list of Matlab function input parameters</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  A <literal>sci_function</literal> has one input called <literal>tree</literal> which is also the output of the function.
+  A <literal>sci_function</literal> has to convert this incoming "tree" so that it is compatible with Scilab
+  by changing name, lhsnb, lhs and/or rhs. The other task that has to be done by this function
+  is inference. Incoming tree contains inference data in its lhs that have to be updated with what
+  can be infered for the outputs of this function. 
+  </para>
+    <para>
+  Some useful functions have been written to help to create M2SCI tlists while writing this conversion function:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>Funcall</term>
+            <listitem>
+              <para>create a tree representing a function call</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Operation</term>
+            <listitem>
+              <para>create a tree representing an operation</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Variable</term>
+            <listitem>
+              <para>create a tree representing a variable</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Cste</term>
+            <listitem>
+              <para>create a tree representing a constante value</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Infer</term>
+            <listitem>
+              <para>create a tree representing inference data</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Type</term>
+            <listitem>
+              <para>create a tree representing type for inference</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Equal</term>
+            <listitem>
+              <para>create a tree representing an instruction</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  Some other functions have been designed to get properties of operands/inputs. Considering A is tlist used in macro tree, you can use the following functions:
+  </para>
+    <informaltable border="1">
+      <tr>
+        <td>Function</td>
+        <td>returns <literal>%T</literal> if...</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>is_empty(A)</literal>
+        </td>
+        <td>all dimensions of A are 0</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>not_empty(A)</literal>
+        </td>
+        <td>all dimensions of A are known and at least one dimension of A is not 0</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>is_a_scalar(A)</literal>
+        </td>
+        <td>all dimensions of A are 1</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>not_a_scalar(A)</literal>
+        </td>
+        <td>all dimensions of A are known and at least one dimension of A is not 1</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>is_a_vector(A)</literal>
+        </td>
+        <td>all dimensions of A are known and all dimensions of A but one are equal to 1</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>not_a_vector(A)</literal>
+        </td>
+        <td>all dimensions of A are known and at least two dimensions of A are greater than one</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>is_real(A)</literal>
+        </td>
+        <td>A is real</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>is_complex(A)</literal>
+        </td>
+        <td>A is complex</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>isdefinedvar(A)</literal>
+        </td>
+        <td>A is a variable already created in M-file currently converted</td>
+      </tr>
+      <tr>
+        <td>
+          <literal>allunknown(A)</literal>
+        </td>
+        <td>all dimensions of A are unknown</td>
+      </tr>
+    </informaltable>
+    <para>
+  Some other functions have been written for specific needs while writing conversion files:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>first_non_singleton</term>
+            <listitem>
+              <para>is an equivalent to <link linkend="firstnonsingleton">firstnonsingleton</link> for an M2SCI tlist. Calling sequence: <literal>dim = first_non_singleton(A)</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>gettempvar</term>
+            <listitem>
+              <para>generates a temporary variable having a name which does not already exist. Calling sequence:<literal> v = gettempvar()</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>insert</term>
+            <listitem>
+              <para>allows to insert instructions. Calling sequence:<literal> insert(Equal(...),opt)</literal> with <literal>opt~=1</literal>  to insert before current instruction and <literal> opt=1</literal>  to insert after it.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>getoperands</term>
+            <listitem>
+              <para>can be used to get each operand as a variable. Calling sequence: <literal>[A,B] = getoperands(operation_tlist)</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>getrhs</term>
+            <listitem>
+              <para>can be used to get each parameter as a variable. Calling sequence: <literal>[A,...] = getrhs(funcall_tlist)</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>convert2double</term>
+            <listitem>
+              <para>change type of input when this type is not implemented for a particular function is Scilab. Calling sequence:<literal> A = convert2double(A)</literal></para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  To have more informations about how to write such files, refer to directory
+  SCI/modules/m2sci/macros/sci_files/ which gives many examples from very simple ones
+  (e.g. sci_abs.sci) to very complex ones (e.g. sci_zeros.sci).
+  </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="m2scideclare">m2scideclare</link>
+      </member>
+      <member>
+        <link linkend="Funcall">Funcall</link>
+      </member>
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Variable">Variable</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

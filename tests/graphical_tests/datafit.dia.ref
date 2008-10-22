@@ -1,0 +1,112 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/datafit_data.ref','rb');
+ 
+//generate the data
+ 
+function y=FF(x,p)
+,y=p(1)*(x-p(2))+p(3)*x.*x,
+endfunction;
+ 
+X = [];Y = [];
+ 
+pg = [34;12;14];
+ 
+if load_ref('pg') then   bugmes();quit;end,
+ 
+//parameter used to generate data
+ 
+for x = 0:0.1:3,  Y = [Y,FF(x, pg) + 100 * (rand() - 0.5)];X = [X,x];end,
+ 
+Z = [Y;X];
+ 
+ 
+ 
+//The criterion function
+ 
+function e=G(p,z)
+,
+   y=z(1),x=z(2);
+   e=y-FF(x,p),
+endfunction;
+ 
+ 
+//Solve the problem
+ 
+p0 = [3;5;10];
+ 
+if load_ref('p0') then   bugmes();quit;end,
+ 
+ 
+[p,err] = datafit(G, Z, p0);
+ 
+ 
+scf(0);%ans = clf_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot2d(X, FF(X, pg), 5);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//the curve without noise
+ 
+%ans = plot2d(X, Y, -1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// the noisy data
+ 
+%ans = plot2d(X, FF(X, p), 12);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//the solution
+ 
+ 
+ 
+//the gradient of the criterion function
+ 
+function s=DG(p,z)
+,
+   a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),
+   s=-[x-b,-a,x*x]
+endfunction;
+ 
+ 
+[p,err] = datafit(G, DG, Z, p0);
+ 
+scf(1);%ans = clf_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot2d(X, FF(X, pg), 5);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//the curve without noise
+ 
+%ans = plot2d(X, Y, -1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// the noisy data
+ 
+%ans = plot2d(X, FF(X, p), 12);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//the solution
+ 
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

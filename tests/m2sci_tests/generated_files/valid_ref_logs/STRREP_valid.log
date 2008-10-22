@@ -1,0 +1,17 @@
+****** Beginning of validation of STRREP.dia.ref ******
+TEST 1: Scilab and Matlab size do not match but result is OK because is a String for res1
+*** TEST 1 PASSED ***
+
+TEST 2: Scilab and Matlab size do not match but result is OK because is a String for res2
+*** TEST 2 PASSED ***
+
+TEST 3: Scilab and Matlab size do not match but result is OK because is a String for res3
+*** TEST 3 PASSED ***
+
+TEST 4: Scilab and Matlab size do not match but result is OK because is a String for res4
+*** TEST 4 PASSED ***
+
+TEST 5: Scilab and Matlab size do not match but result is OK because is a String for res5
+*** TEST 5 PASSED ***
+
+****** End of validation of STRREP.dia.ref ******

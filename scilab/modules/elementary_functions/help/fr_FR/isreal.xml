@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="isreal">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>isreal</refname>
+    <refpurpose>  vérifie si une matrice a des éléments complexes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>t=isreal(x)
+t=isreal(x,eps)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur ou matrice réelle ou complexe.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eps  </term>
+        <listitem>
+          <para>nombre réel positif.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t  </term>
+        <listitem>
+          <para>un booléen.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>isreal(x)</literal> renvoie <literal>%T</literal> (vrai) si  <literal>x</literal> est stockée comme une matrice réelle ou  <literal>%F</literal> (faux) si  <literal>x</literal> est stockée avec une partie imaginaire (même nulle).
+  </para>
+    <para><literal>isreal(x,eps)</literal> renvoie <literal>%T</literal> (vrai) si  <literal>x</literal> est stockée comme une matrice réelle ou si les valeurs absolues des parties imaginaires des éléments de  <literal>x</literal> sont plus petites que  <literal>eps</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+isreal([1 2])
+isreal(1+0*%i)
+isreal(1+0*%i,0)
+isreal(1+%s)
+isreal(sprand(3,3,0.1))
+ ]]></programlisting>
+  </refsection>
+</refentry>

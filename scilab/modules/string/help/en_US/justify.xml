@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="justify">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>justify</refname>
+    <refpurpose> Justify character array.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>Tj=justify(T,opt)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>T</term>
+        <listitem>
+          <para>A matrix of character string.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Tj</term>
+        <listitem>
+          <para>A matrix of character string. the justified result</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>A character option with possible values</para>
+          <variablelist>
+            <varlistentry>
+              <term>'r'  </term>
+              <listitem>
+                <para>or 'right' for right justification</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'l'  </term>
+              <listitem>
+                <para>or 'left' for left justification</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'c'  </term>
+              <listitem>
+                <para>or 'center' for centering justification</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>justify</literal> justify the column of a matrix of string accdording to
+    the given option.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+t=['1234','x','adfdfgdfghfgj'
+   '1','354556','dgf'
+   'sdfgd','','sdfsf'];
+
+justify(t,'l')
+justify(t,'c')
+justify(t,'r')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="part">part</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

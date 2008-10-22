@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="and">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>and (&amp;)</refname>
+    <refpurpose> et logique  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>b=and(A), b=and(A,'*')
+b=and(A,'r'), b=and(A,1)
+b=and(A,'c'), b=and(A,2)
+A&amp;B</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>and(A)</literal> donne la conjonction (et) logique des éléments de la matrice booléenne <literal>A</literal>. <literal>and(A)</literal> est vrai (<literal>%t</literal>) si tous les termes de <literal>A</literal> sont <literal>%t</literal>. 
+  </para>
+    <para><literal>y=and(A,'r')</literal> (et <literal>y=and(A,1)</literal>) donne la conjonction suivant l'indice de ligne. Chaque élément du vecteur ligne <literal>y</literal> contient la conjonction de chaque colonne de <literal>x</literal> (<literal>y(j)= and(A(i,j),i=1,m)</literal>).
+  </para>
+    <para><literal>y=and(A,'c')</literal> (et <literal>y=and(A,2)</literal>) donne la conjonction suivant l'indice de colonne. Chaque élément du vecteur colonne <literal>y</literal> contient la conjonction de chaque ligne de <literal>x</literal> 
+    (<literal>y(i)= and(A(i,j),j=1,n)</literal>)).
+  </para>
+    <para>
+  </para>
+    <para><literal>A&amp;B</literal>  renvoie la conjonction logique élément par élément des matrices booléennes <literal>A</literal> et  <literal>B</literal> .<literal>A</literal> et  <literal>B</literal> doivent être des matrices de même dimensions ou l'une d'elle doit être un simple booléen.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="not">not</link>
+      </member>
+      <member>
+        <link linkend="or">or</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

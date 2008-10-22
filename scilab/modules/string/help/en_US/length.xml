@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="length" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>length</refname>
+
+    <refpurpose>length of object</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>n=length(M)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>matrix (usual or polynomial or character string) or
+          list</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>integer or integer matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>For usual or polynomial matrix <literal>n</literal> is the integer
+    equal to number of rows times number of columns of <literal>M</literal>.
+    (Also valid for <literal>M</literal> a boolean matrix)</para>
+
+    <para>For matrices made of character strings (and in particular for a
+    character string) <literal>length</literal> returns in
+    <literal>n</literal> the length of entries of the matrix of character
+    strings <literal>M</literal>.</para>
+
+    <para>The length of a list is the number of elements in the list (also
+    given by <literal>size</literal>).</para>
+
+    <para><literal>length('123')</literal> is <literal>3</literal>.
+    <literal>length([1,2;3,4])</literal> is <literal>4</literal>.</para>
+
+    <para>WARNING : length of a sparse matrix returns the max of dimensions
+    and not the product of the dimensions. (example :
+    length(sparse(eye(12,2))) returns max(12,2) and not 24)</para>
+
+    <para>please use size(...,'*') with sparse matrix.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+length([123 ; 456 ])
+length(['hello world',SCI)
+	</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="size">size</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

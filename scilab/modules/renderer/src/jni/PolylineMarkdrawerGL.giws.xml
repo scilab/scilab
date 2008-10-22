@@ -1,0 +1,34 @@
+<package name="org.scilab.modules.renderer.polylineDrawing">
+  <object name="PolylineMarkDrawerGL">
+    <method name="display" returnType="void">
+    </method>
+    <method name="initializeDrawing" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="endDrawing" returnType="void">
+    </method>
+    <method name="show" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="destroy" returnType="void">
+      <param type="int" name="parentFigureIndex" />
+    </method>
+    <method name="setFigureIndex" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="setMarkParameters" returnType="void">
+      <param type="int" name="background" />
+      <param type="int" name="foreground" />
+      <param type="int" name="markSizeUnit" />
+      <param type="int" name="markSize" />
+      <param type="int" name="markStyleIndex" />
+    </method>
+    <method name="drawPolyline" returnType="void">
+      <param type="double[]" name="xCoords" />
+      <param type="double[]" name="yCoords" />
+      <param type="double[]" name="zCoords" />
+    </method>
+    <method name="drawPolyline" returnType="void">
+    </method>
+  </object>
+</package>

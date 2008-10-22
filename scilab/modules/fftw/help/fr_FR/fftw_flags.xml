@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw_flags">
+  <info>
+    <pubdate>October 2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fftw_flags</refname>
+    <refpurpose>choix de la méthode de calcul pour la fonction fftw</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>[x1;x2;...]</term>
+        <listitem>
+          <para>Matrice de chaînes de caractères ou bien d'entiers. Sert à sélectionner la méthode de calcul de la fonction fftw.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>Entier. Donne sous forme d'entier la méthode courante utilisée par la fonction fftw.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>Matrice de chaînes de caractères. Donne sous forme de chaînes de caractères la méthode utilisée par fftw.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Cette fonction permet de sélectionner le paramètre <literal>unsigned flags</literal> de la fonction <literal>fftw_plan_guru_split_dft</literal>
+    qui est utilisée dans l'interface scilab de la fonction fftw. La valeur par défault est FFTW_ESTIMATE.
+    </para>
+    <para>
+    Les entrées possibles sont :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>FFTW_MEASURE or 0</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_DESTROY_INPUT or 1</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_UNALIGNED or 2</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_CONSERVE_MEMORY or 4</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_EXHAUSTIVE or 8</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_PRESERVE_INPUT or 16</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_PATIENT or 32</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ESTIMATE or 64</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ESTIMATE_PATIENT or 128</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_BELIEVE_PCOST or 256</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_DFT_R2HC or 512</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_NONTHREADED or 1024</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_BUFFERING or 2048</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_INDIRECT_OP or 4096</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ALLOW_LARGE_GENERIC or 8192</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_RANK_SPLITS or 16384</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_VRANK_SPLITS or 32768</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_VRECURSE or 65536</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_SIMD or 131072</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_SLOW or 262144</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ALLOW_PRUNING or 1048576</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+     Rmq : Lors de l'utilisation des méthodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit être appélée au moins deux fois.
+     (le premier appel est pour l'initalisation, le second et les autres pour le calcul)
+   </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+
+ //retourne sous forme entière la valeur du flag
+ fftw_flags()
+
+ //changement de méthode
+ fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
+
+ //changement de méthode de affichage des flags (sous forme d'entiers et de chaînes)
+ [a,S]=fftw_flags("FFTW_PATIENT")
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fftw">fftw</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

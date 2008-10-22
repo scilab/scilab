@@ -1,0 +1,53 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-06-17 09:17+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s)."
+msgstr "%s: Неверное количество аргументов."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d"
+
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr " Извлечение из гиперматрицы должно иметь как минимум 2 аргумента. "
+
+msgid " Argument is not an hypermatrix. "
+msgstr " Аргумент не является гиперматрицей. "
+
+msgid " Incompatible hypermatrix extraction. "
+msgstr " Несовместимое извлеченение из гиперматрицы. "
+
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "Плохой (%d-й) индекс в извлечении из гиперматрицы. "
+
+msgid " An hypermatrix insertion must have at least 3 arguments "
+msgstr " Вставка в гиперматрицу должна иметь как минимум 3 аргумента "
+
+msgid " Argument is not an hypermatrix "
+msgstr " Аргумент не является гиперматрицей "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " Плохая вставка в гиперматрицу. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"Слишком много аргументов в стеке, отредактируйте stack.h и увеличьте "
+"intersiz.\n"

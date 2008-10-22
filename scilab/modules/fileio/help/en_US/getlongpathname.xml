@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getlongpathname">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getlongpathname</refname>
+    <refpurpose>get long path name (Only for
+  Windows)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>longpath=getlongpathname(shortpath)
+[longpath,bOK]=getlongpathname(shortpath)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>shortpath</term>
+        <listitem>
+          <para>A character string the short path</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>longpath</term>
+        <listitem>
+          <para>A character string the long path</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bOK</term>
+        <listitem>
+          <para>A boolean %T if path has been converted else %F</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>The getlongpathname primitive converts the specified path to its long
+    form. It no long path is found, this primitive returns the specified
+    name.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[[longpath,bOK]=getlongpathname(SCI) 
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getshortpathname">getshortpathname</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

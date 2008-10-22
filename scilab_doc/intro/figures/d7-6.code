@@ -1,0 +1,5 @@
+xinit('d7-6.ps');
+  t=(0:.05:1)';
+  et=exp(10*t);
+  plot2d(t,et,logflag='nl')
+  xtitle('x','y log scale','y=exp(10x)')

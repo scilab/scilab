@@ -1,0 +1,302 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-08-31 08:03+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Ne peut pas ouvrir le fichier %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Une erreur s'est produite: %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s, an integer or a vector "
+"of 2 integers.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être %s, un entier "
+"ou un vecteur de 2 entiers.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or 2-element vector.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: La plage d'index doit être "
+"spécifiée sous la forme d'un scalaire ou d'un vecteur de 2 éléments.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr ""
+"%s: Une erreur est survenue: Le format de compression de donnée %s n'est pas "
+"supporté.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument(s) en entrée: Au moins %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entréet: Filename doit être une "
+"chaîne de caractères.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Mauvais argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
+
+msgid "Cannot play file."
+msgstr "Ne peux pas jouer le fichier."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Le module Scilab sound n'est pas installé.\n"
+
+#, c-format
+msgid "%s: .wav input file must be a file, not a pipe.\n"
+msgstr "%s: le fichier d'entrée .wav doit être un fichier et pas une pipe.\n"
+
+#, c-format
+msgid "%s : not a RIFF file.\n"
+msgstr "%s : pas un fichier RIFF.\n"
+
+#, c-format
+msgid "%s: not a WAVE file.\n"
+msgstr "%s : pas un fichier WAVE.\n"
+
+#, c-format
+msgid "%s: missing fmt spec.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : fmt chunk is too short\n"
+msgstr ""
+
+#, c-format
+msgid "%s: this WAV file is in Microsoft Official Unknown format.\n"
+msgstr "%s: ce fichier WAV est dans un format Microsoft Officiel Inconnu.\n"
+
+#, c-format
+msgid "%s: user options overiding style read in .wav header\n"
+msgstr ""
+"%s: les options utilisateur surpassent le style de lecture de l'entête .wav\n"
+
+#, c-format
+msgid "%s : this WAV file is in Microsoft ADPCM format.\n"
+msgstr "%s : ce fichier WAV est dans un format Microsoft ADPCM.\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header.\n"
+msgstr ""
+"%s: les options utilisateur surpassent le style de lecture de l'entête "
+".wav.\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header\n"
+msgstr ""
+"%s: les options utilisateur surpassent le style de lecture de l'entête .wav\n"
+
+#, c-format
+msgid "%s: this WAV file is in OKI ADPCM format.\n"
+msgstr "%s: ce fichier WAV est OKI Format ADPCM.\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digistd format.\n"
+msgstr "%s: ce fichier WAV est dans un format Digistd.\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digifix format.\n"
+msgstr "%s: ce fichier WAV est dans un format Digifix.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM U-law format.\n"
+msgstr "%s: ce fichier WAV est dans un format IBM Loi U.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM A-law format.\n"
+msgstr "%s: ce fichier WAV est dans un format IBM Loi A.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM ADPCM format.\n"
+msgstr "%s: ce fichier WAV est dans un format IBM ADPCM.\n"
+
+#, c-format
+msgid "%s: don't understand format.\n"
+msgstr "%s: ne comprends pas le format.\n"
+
+msgid "User options overiding channels read in .wav header\n"
+msgstr ""
+"Les options utilisateur surpassent les lectures de canaux dans l'entête "
+".wav\n"
+
+msgid "User options overiding rate read in .wav header\n"
+msgstr ""
+"Les options utilisateur surpassent la période d'échantillonnage de lecture "
+"dans l'entête .wav\n"
+
+#, c-format
+msgid "%s: User options overiding size read in .wav header.\n"
+msgstr ""
+"%s: Les options utilisateur surpassent la taille de lecture dans l'entête "
+".wav.\n"
+
+#, c-format
+msgid "%s: Incorrect .wav size.\n"
+msgstr "%s: Taille .wav incorrecte.\n"
+
+#, c-format
+msgid "%s: missing data chunk.\n"
+msgstr "%s: morceau de donnée manquant.\n"
+
+#, c-format
+msgid "Reading Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr "Lecture du fichier Wave: format %s, canal %d%s, %d ech./sec\n"
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n"
+msgstr ""
+
+msgid "Premature EOF on .wav input file.\n"
+msgstr "EOF prématuré dans le fichier d'entrée .wav.\n"
+
+msgid "Length in output .wav header will wrong since can't seek to fix it.\n"
+msgstr ""
+
+msgid "User options overiding style written to .wav header.\n"
+msgstr ""
+"Les options utilisateur surpassent le style écrit dans l'entête .wav.\n"
+
+#, c-format
+msgid "Sciprinting - writing bad .wav file using %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using unsigned data and %d bits/sample.\n"
+msgstr ""
+"Sciprinting - écrit un mauvais fichier .wav en utilisant des données non "
+"signées %d bits/echantillon.\n"
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using signed data and %d bits/sample.\n"
+msgstr ""
+"Sciprinting - écrit un mauvais fichier .wav en utilisant des données signées "
+"et %d bits/échantillon.\n"
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using A-law data and %d bits/sample.\n"
+msgstr ""
+"Sciprinting - écrit un mauvais fichier .wav en utilisant des données au "
+"format loi A et %d bits/échantillon.\n"
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using U-law data and %d bits/sample.\n"
+msgstr ""
+"Sciprinting - écrit un mauvais fichier .wav en utilisant des données au "
+"format loi U et %d bits/échantillon.\n"
+
+#, c-format
+msgid "Writing Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr "Ecriture d'un fichier Wave: format %s, %d canaux%s, %d éch./sec\n"
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp\n"
+msgstr "        %d byte/sec, %d align. bloc, %d bits/éch.\n"
+
+#, c-format
+msgid "Finished writing Wave file, %u data bytes\n"
+msgstr "Fin d'écriture du fichier Wave, %u bytes de données\n"
+
+msgid "Sorry, can't rewind output file to rewrite .wav header.\n"
+msgstr ""
+
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr "Ne peux pas ouvrir le fichier '%s': %s\n"
+
+msgid "Error while reading\n"
+msgstr "Erreur pendant la lecture\n"
+
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr "Fichier d'entrée: utiliser la période d'échantillonnage %lu\n"
+
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr "\tdimension %s, style %s, %d %s\n"
+
+msgid "Sorry wav file too big\n"
+msgstr "Désole fichier wav trop gros\n"
+
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr "Ne peux pas ouvrir le fichier de sorti '%s': %s\n"
+
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr ""
+"La période d'échantillonnage pour le fichier %s file n'a pas été donnée\n"
+
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr "La période d'échantillonnage %lu pour le fichier %s est mauvaise\n"
+
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr "La dimension des données n'a pas été donnée pour le fichier %s\n"
+
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr "Le style des données n'a pas été donné pour le fichier %s\n"
+
+msgid "No U-Law support for shorts\n"
+msgstr ""
+
+msgid "No A-Law support for shorts\n"
+msgstr ""
+
+msgid "Drop through in rawread!\n"
+msgstr ""
+
+#, c-format
+msgid "Sorry, don't have code to read %s, %s\n"
+msgstr "Désolé, il n'y a pas de code pour lire %s, %s\n"
+
+msgid "No U-Law support for shorts (try -b option ?)\n"
+msgstr ""
+"Pas de supports pour la loi U pour les shorts (avez vous essayé l'option -b "
+"?)\n"
+
+msgid "No A-Law support for shorts (try -b option ?)\n"
+msgstr ""
+"Pas de supports pour la loi A pour les shorts (avez vous essayé l'option -b "
+"?)\n"
+
+msgid "Drop through in rawwrite!\n"
+msgstr ""
+
+#, c-format
+msgid "Sorry, don't have code to write %s, %s\n"
+msgstr "Désolé, il n'y a pas de code pour écrire %s, %s\n"

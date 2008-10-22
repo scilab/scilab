@@ -1,0 +1,62 @@
+# Localization of the module data_structures
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:08+0100\n"
+
+# File: macros/struct.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input argument(s)."
+msgstr ""
+#
+# File: macros/iscellstr.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr ""
+#
+# File: src/c/hmops.c, line: 657
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr ""
+#
+# File: src/c/hmops.c, line: 663
+msgid " Argument is not an hypermatrix. "
+msgstr ""
+#
+# File: src/c/hmops.c, line: 676
+msgid " Incompatible hypermatrix extraction. "
+msgstr ""
+#
+# File: src/c/hmops.c, line: 702
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr ""
+#
+# File: src/c/hmops.c, line: 831
+msgid " An hypermatrix insertion must have at least 3 arguments "
+msgstr ""
+#
+# File: src/c/hmops.c, line: 838
+msgid " Argument is not an hypermatrix "
+msgstr ""
+#
+# File: src/c/hmops.c, line: 894
+# File: src/c/hmops.c, line: 909
+# File: src/c/hmops.c, line: 919
+msgid " Bad hypermatrix insertion. "
+msgstr ""
+#
+# File: src/c/stcreate.c, line: 43
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""

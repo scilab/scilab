@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graphics_entities">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graphics_entities</refname>
+    <refpurpose>description of the graphics
+  entities data structures</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="newgraphics">
+    <refname>new graphics </refname>
+    <refpurpose>description of the graphics entities
+  data structures</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para> In Scilab,
+    graphics window and the drawing it contains are represented by hierchical
+    entities. The hierachy top level is the Figure. Each Figure defines at
+    least one child of type Axes. Each Axes entity contains a set of leaf
+    entities which are the basic graphics objects like Polylines, Rectangles,
+    Arcs, Segs,... It can also contain an Compound type which are recursive
+    sets of entities. The main interest of the new graphic mode is to make
+    property change easier. This new graphics'mode provides a set of
+    high-level graphing routines (see <link linkend="set">set</link>, <link linkend="get">get</link>) used
+    to control objects' properties such as data, coordinates and scaling,
+    color and appearences without requiring to replay the initial graphics
+    commands.</para>
+    <para>Graphics entities are associated to Scilab variables of type
+    <literal>handle</literal>. The handle is a unique identifier which is associated
+    to each instance of a created graphical entity. Using this handle, it will
+    be possible to reach entities' properties through "set" and "get"
+    routines. The handles are also used to manipulate graphics objects, to
+    move them, to make copies or delete them.</para>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Figure: </term>
+        <listitem>
+          <para>The figure entity is the top level of the graphics entities
+        hierarchy. This entity defines the parameters for the figure itself as
+        well as the parameters' default values for the children creation. The
+        figure children are the Axes entities.</para>
+          <para>The handle on the current figure (the figure used where the drawing
+        are sent) may be got using <literal>get("current_figure")</literal> and it
+        may be set using <literal>set("current_figure",h)</literal>, where
+        <literal>h</literal> is either a handle on a figure or a
+        <literal>figure_id</literal> in this last case if the figure does not
+        already exists , it is created</para>
+          <para>See <link linkend="figure_properties">figure_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Axes: </term>
+        <listitem>
+          <para>The Axes entity is the second level of the graphics entities
+        hierarchy. This entity defines the parameters for the change of
+        coordinates and the axes drawing as well as the parameters' default
+        values for its children creation. See <link linkend="axes_properties">axes_properties</link> for
+        details. The handle on the current Axes may be got using
+        <literal>get("current_axes")</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Compound: </term>
+        <listitem>
+          <para>The Compound entity is just a vector of children and with a single
+        property (visibility property). It is used to glue a set of entities
+        together.</para>
+          <para>See <link linkend="glue">glue</link>, <link linkend="unglue">unglue</link> and
+        <link linkend="Compound_properties">Compound_properties</link> functions.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Axis: </term>
+        <listitem>
+          <para>The Axis entity is a leaf of the graphics entities hierarchy. This
+        entity defines the parameters for axis scaling and appearance.</para>
+          <para>See <link linkend="axis_properties">axis_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Polyline: </term>
+        <listitem>
+          <para>The polyline entity is a leaf of the graphics entities hierarchy.
+        It defines 2D and 3D polylines and polylines extensions drawing
+        properties.</para>
+          <para>See <link linkend="polyline_properties">polyline_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Arc: </term>
+        <listitem>
+          <para>The Arc entity is a leaf of the graphics entities hierarchy. This
+        entity defines the parameters for ellipses and part of ellipses.</para>
+          <para>See <link linkend="arc_properties">arc_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Rectangle: </term>
+        <listitem>
+          <para>The Rectangle entity is a leaf of the graphics entities hierarchy.
+        This entity defines the parameters for rectangles and filled
+        rectangles.</para>
+          <para>See <link linkend="rectangle_properties">rectangle_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Surface: </term>
+        <listitem>
+          <para>The Surface entity is a leaf of the graphics entities hierarchy.
+        It has sub types <literal>Fac3d</literal> or <literal>Plot3d</literal>. This
+        entity defines the parameters for 3d surface plots.</para>
+          <para>See <link linkend="surface_properties">surface_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Fec: </term>
+        <listitem>
+          <para>The Fec entity is a leaf of the graphics entities hierarchy. It
+        represents 2D finite elements plots .</para>
+          <para>See <link linkend="fec_properties">fec_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Grayplot: </term>
+        <listitem>
+          <para>The Grayplot entity is a leaf of the graphics entities hierarchy.
+        It represents 2D plots of surface using colors and images.</para>
+          <para>See <link linkend="grayplot_properties">grayplot_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Matplot: </term>
+        <listitem>
+          <para>The Matplot entity is a leaf of the graphics entities hierarchy.
+        It represents 2D plots using integer matrices.</para>
+          <para>See <link linkend="Matplot_properties">Matplot_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Segs: </term>
+        <listitem>
+          <para>The Segs entity is a leaf of the graphics entities hierarchy. This
+        entity defines the parameters for a set of colored segments or colored
+        arrows.</para>
+          <para>See <link linkend="segs_properties">segs_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Champ: </term>
+        <listitem>
+          <para>The Champ entity is a leaf of the graphics entities hierarchy.
+        This entity defines the parameters for a 2D vector field.</para>
+          <para>See <link linkend="champ_properties">champ_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Text: </term>
+        <listitem>
+          <para>The Text entity is a leaf of the graphics entities hierarchy. This
+        entity defines the parameters for string drawing.</para>
+          <para>See <link linkend="text_properties">text_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Label: </term>
+        <listitem>
+          <para>The Labels entity are children of the <literal>Axes</literal> graphics
+        entity. This entity defines the parameters for the 3 x,y and z labels
+        and title drawn on a graphics window.</para>
+          <para>See <link linkend="label_properties">label_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Legend: </term>
+        <listitem>
+          <para>The Legend entity is a leaf of the graphics entities hierarchy.
+        This entity defines the parameters for legends drawn below
+        <literal>plot2dx</literal> graphs. This entity requires further
+        developments.</para>
+          <para>See <link linkend="legend_properties">legend_properties</link> for details.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+
+  //Play this example line per line
+
+  scf() //create a figure in entity mode
+
+  //get the handle on the Figure entity and display its properties
+  f=get("current_figure") 
+  a=f.children // the handle on the Axes child
+  x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
+  e=a.children //Compound of 2 polylines
+
+  p1=e.children(1) //the last drawn polyline properties
+  p1.foreground=5;  // change the polyline color
+  e.children.thickness=5; // change the thickness of the two polylines
+
+  delete(e.children(2))
+
+  move(e.children,[0,30]) //translate the polyline
+
+  a.axes_bounds=[0 0 0.5 0.5]; 
+
+  subplot(222) //create a new Axes entity
+  plot(1:10);
+  a1=f.children(1); //get its handle
+  copy(e.children,a1); //copy the polyline of the first plot in the new Axes
+  a1.data_bounds=[1 0;10 100]; //change the Axes bounds  
+
+  set("current_figure",10) //create a new figure with figure_id=10
+  plot3d() //the drawing are sent to figure 10
+  set("current_figure",f) //make the previous figure the current one
+  plot2d(x,x^3)  //the drawing are sent to the initial figure
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="move">move</link>
+      </member>
+      <member>
+        <link linkend="draw">draw</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="object_editor">object_editor</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+      <member>
+        <link linkend="surf">surf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

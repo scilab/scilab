@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm</refname>
+    <refpurpose> communications with other applications using Parallel Virutal Machine</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    is a software system that enables a collection of heterogeneous
+    computers to be used as a coherent and flexible concurrent computational
+    resource.</para>
+    <para>
+    The individual computers may be shared- or local-memory multiprocessors,
+    vector supercomputers, specialized graphics engines, or scalar
+    workstations, that may be interconnected by a variety of networks,
+    such as ethernet, FDDI.</para>
+    <para>
+    Daemon programs (<literal>pvmd3</literal>) provide communication and process control
+    between computers (see PVM manpage and manual for more details).</para>
+    <para>
+    Most important functions of the PVM communication library are included in Scilab.</para>
+  </refsection>
+  <refsection>
+    <title>Warning</title>
+    <para>
+    PVM must be installed in your envriromnent before using it in Scilab. PVM scilab have been developped using the version 3.3.7 of the PVM library.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_barrier">pvm_barrier</link>
+      </member>
+      <member>
+        <link linkend="pvm_mytid">pvm_mytid</link>
+      </member>
+      <member>
+        <link linkend="pvm_bcast">pvm_bcast</link>
+      </member>
+      <member>
+        <link linkend="pvm_parent">pvm_parent</link>
+      </member>
+      <member>
+        <link linkend="pvm_config">pvm_config</link>
+      </member>
+      <member>
+        <link linkend="pvm_delhosts">pvm_delhosts</link>
+      </member>
+      <member>
+        <link linkend="pvm_recv">pvm_recv</link>
+      </member>
+      <member>
+        <link linkend="pvm_exit">pvm_exit</link>
+      </member>
+      <member>
+        <link linkend="pvm_send">pvm_send</link>
+      </member>
+      <member>
+        <link linkend="pvm_getinst">pvm_getinst</link>
+      </member>
+      <member>
+        <link linkend="pvm_spawn">pvm_spawn</link>
+      </member>
+      <member>
+        <link linkend="pvm_gettid">pvm_gettid</link>
+      </member>
+      <member>
+        <link linkend="pvm_spawn_independent">pvm_spawn_independent</link>
+      </member>
+      <member>
+        <link linkend="pvm_gsize">pvm_gsize</link>
+      </member>
+      <member>
+        <link linkend="pvm_tasks">pvm_tasks</link>
+      </member>
+      <member>
+        <link linkend="pvm_joingroup">pvm_joingroup</link>
+      </member>
+      <member>
+        <link linkend="pvm_tidtohost">pvm_tidtohost</link>
+      </member>
+      <member>
+        <link linkend="pvm_kill">pvm_kill</link>
+      </member>
+      <member>
+        <link linkend="pvm_lvgroup">pvm_lvgroup</link>
+      </member>
+      <member>
+        <link linkend="pvm_start">pvm_start</link>
+      </member>
+      <member>
+        <link linkend="pvm_halt">pvm_halt</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>PVM have been developped by A. L. Beguelin, J. J. Dongarra, G. A. Geist, W. C. Jiang, R. J. Manchek, B. K. Moore, V. S. Sunderam (see <ulink url="http://www.netlib.org/pvm3">http://www.netlib.org/pvm3</ulink>)  </para>
+  </refsection>
+</refentry>

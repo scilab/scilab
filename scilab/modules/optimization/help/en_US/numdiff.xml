@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="numdiff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>numdiff</refname>
+    <refpurpose>numerical gradient
+  estimation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>g=numdiff(fun,x [,dx])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>an external, Scilab function or list. See below for calling
+          sequence, see also <link linkend="external">external</link> for details about external
+          functions.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vector, the argument of the function <literal>fun</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dx</term>
+        <listitem>
+          <para>vector, the finite difference step. Default value is
+          <literal>dx=sqrt(%eps)*(1+1d-3*abs(x))</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>vector, the estimated gradient</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>given a function <literal>fun(x)</literal> from <literal>R^n</literal> to
+    <literal>R^p</literal> computes the matrix <literal>g</literal> such as</para>
+    <programlisting><![CDATA[[ d f ] [ i ] g = [ ---- ] ij [ d x ] [ j ]]]></programlisting>
+    <para>using finite difference methods.</para>
+    <para>Without parameters, the function fun calling sequence is
+    <literal>y=fun(x)</literal>, and numdiff can be called as
+    <literal>g=numdiff(fun,x)</literal>. Else the function fun calling sequence must
+    be <literal>y=fun(x,param_1,pararm_2,..,param_q)</literal>. If parameters
+    <literal>param_1,param_2,..param_q</literal> exist then <literal>numdiff</literal> can
+    be called as follow
+    <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// example 1 (without parameters)
+// myfun is a function from R^2 to R :   (x(1),x(2)) |--> myfun(x) 
+function f=myfun(x)
+f=x(1)*x(1)+x(1)*x(2)
+endfunction
+
+x=[5 8]
+g=numdiff(myfun,x)
+// The exact gradient (i.e derivate belong x(1) :first component and derivate belong x(2): second component) is  
+exact=[2*x(1)+x(2)  x(1)]
+
+
+//example 2 (with parameters)
+// myfun is a function from R to R:  x(1) |--> myfun(x) 
+// myfun contains 3 parameters, a, b, c
+function  f=myfun(x,a,b,c)
+f=(x+a)^c+b
+endfunction
+
+a=3; b=4; c=2;
+x=1
+g2=numdiff(list(myfun,a,b,c),x)
+// The exact gradient, i.e derivate belong x(1), is :
+exact2=c*(x+a)^(c-1)
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,6 @@
+#
+#generated .def files (windows)
+#
+
+src/c/linear_algebra.def
+src/fortran/linear_algebra_f.def

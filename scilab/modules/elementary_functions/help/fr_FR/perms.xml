@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="perms">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>perms</refname>
+    <refpurpose>retourne toutes les permutations des
+  composantes d'un vecteur</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=perms(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vecteur ou matrice </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>matrice</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Etant donné un vecteur <literal>x</literal> de longueur <literal>n</literal>, la
+    fonction <literal>perms</literal> retourne toutes les permutations des
+    <literal>n</literal> elements du vecteur <literal>x</literal>, soit <literal>n!</literal>
+    permutations. La matrice <literal>y</literal> est de taille <literal>n! x
+    n</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+x=[4, 7, 10]
+y=perms(x)
+x=[1, 5, 2, 5]
+y=perms(x)
+ ]]></programlisting>
+  </refsection>
+</refentry>

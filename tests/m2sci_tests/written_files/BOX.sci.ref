@@ -1,0 +1,28 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function box()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+%v0 = gca();
+%v0.box = "on";
+%v0 = gca();
+%v0.box = "off";
+%v0 = gca();
+%v0.box = "on";
+%v0 = gca();
+%v0.box = "off";
+mtlb_box
+
+
+h.box = "on";
+h.box = "off";
+h.box = "on";
+h.box = "off";
+mtlb_box(h)

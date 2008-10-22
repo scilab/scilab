@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unzoom">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unzoom</refname>
+    <refpurpose> unzoom graphics</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>unzoom()
+unzoom(H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>A vector of Figure or Axes handle.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>unzoom()</literal> is used to remove the zoom effect for all the axes of the
+      current graphic figure: </para>
+    <para><literal>unzoom(H)</literal> is used to remove the zoom effect for all the
+	    Figures and Axes given by the vector of handles <literal>H</literal>.
+	    Removing zoom effect for a Figure is the equivalent of removing zoom effect
+	    on all its Axes children.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    clf()
+    x=0:0.01:6*%pi;
+    plot2d(x,sin(x^2))
+    zoom_rect([16,-1,18,1])
+    unzoom()
+
+
+    //subplots accordingly
+    clf()
+    x=0:0.01:6*%pi;
+    subplot(211)
+    plot2d(x,cos(x))
+    a1=gca();
+    subplot(212)
+    plot2d(x,cos(2*x))
+    a2=gca();
+    rect=[3 -2 7 10]; // a rectangle specified in the current axes (last one) coordinates
+    zoom_rect(rect) 
+    unzoom(a1) // unzoom first plot only
+    unzoom(a2) // unzoom second plot only
+    zoom_rect(rect) // zoom again
+    unzoom(gcf()) // unzoom all the axes, equivalent to unzoom()
+
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="zoom_rect">zoom_rect</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer INRIA </para>
+    <para>Jean-Baptiste Silvy INRIA </para>
+  </refsection>
+</refentry>

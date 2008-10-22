@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_format">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_format</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab format</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>format</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Certains formats Matlab n'existent pas en Scilab.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        La séquence d'appel de <literal>format</literal> est différente en Scilab et Matlab.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_format(type,prec)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>format([type prec])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_format</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>type=""</literal> et <literal>prec=""</literal>
+        <literal>mtlb_format("","")</literal> peut être remplacé par <literal>format("v",6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>type="+"</literal> et <literal>prec=""</literal>
+        <literal>mtlb_format("+","")</literal> peut être remplacé par <literal>format(6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>type="long"</literal> et <literal>prec=""</literal>
+        <literal>mtlb_format("long","")</literal> peut être remplacé par <literal>format(16)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>type="long"</literal> et <literal>prec="e"</literal>
+        <literal>mtlb_format("long","e")</literal> peut être remplacé par <literal>format("e"16)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>type="long"</literal> et <literal>prec="g"</literal>
+        <literal>mtlb_format("long","g")</literal> peut être remplacé par <literal>format("e"16)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>type="short"</literal> et <literal>prec=""</literal>
+        <literal>mtlb_format("short","")</literal> peut être remplacé par <literal>format(6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>type="short"</literal> et <literal>prec="e"</literal>
+        <literal>mtlb_format("short","e")</literal> peut être remplacé par <literal>format("e"6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>type="short"</literal> et <literal>prec="g"</literal>
+        <literal>mtlb_format("short","g")</literal> peut être remplacé par <literal>format("e"6)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_format</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

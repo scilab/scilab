@@ -1,0 +1,64 @@
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+Slicot:
+=======
+
+Files:
+src/slicot/*
+
+sci_gateway/fortran/{sci_f_sident.f,sci_f_sorder.f,sci_f_findbd.f}
+
+Copyright:
+WGS (Working Group on Software) - Slicot project
+
+License:
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software Foundation, 
+Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+
+Lapack:
+=======
+
+Files:
+src/fortran/DGELSY1.f
+
+Copyright:
+Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+Courant Institute, Argonne National Lab, and Rice University
+June 30, 1999
+
+License:
+LAPACK is a freely-available software package. It is available from
+netlib via anonymous ftp and the World Wide Web. Thus, it can be
+included in commercial software packages (and has been). We only ask
+that proper credit be given to the authors.
+
+Like all software, it is copyrighted. It is not trademarked, but we do
+ask the following:
+
+If you modify the source for these routines we ask that you change the
+name of the routine and comment the changes made to the original.
+
+We will gladly answer any questions regarding the software. If a
+modification is done, however, it is the responsibility of the person
+who modified the routine to provide support.

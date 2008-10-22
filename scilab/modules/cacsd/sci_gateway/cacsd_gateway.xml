@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="cacsd">
+<!-- =================== -->
+<!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET , Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<!-- =================== -->
+
+<PRIMITIVE gatewayId="8" primitiveId="3" primitiveName="ereduc" />
+<PRIMITIVE gatewayId="8" primitiveId="4" primitiveName="fstair" />
+<PRIMITIVE gatewayId="9" primitiveId="3" primitiveName="ricc_old" />
+<PRIMITIVE gatewayId="10" primitiveId="2" primitiveName="ppol" />
+<PRIMITIVE gatewayId="10" primitiveId="3" primitiveName="tr_zer" />
+<PRIMITIVE gatewayId="10" primitiveId="4" primitiveName="freq" />
+<PRIMITIVE gatewayId="10" primitiveId="5" primitiveName="ltitr" />
+<PRIMITIVE gatewayId="10" primitiveId="6" primitiveName="rtitr" />
+<PRIMITIVE gatewayId="20" primitiveId="1" primitiveName="arl2_ius" />
+<PRIMITIVE gatewayId="20" primitiveId="2" primitiveName="residu" />
+<PRIMITIVE gatewayId="20" primitiveId="3" primitiveName="ldiv" />
+<PRIMITIVE gatewayId="28" primitiveId="1" primitiveName="sident" />
+<PRIMITIVE gatewayId="28" primitiveId="2" primitiveName="sorder" />
+<PRIMITIVE gatewayId="28" primitiveId="3" primitiveName="findBD" />
+<PRIMITIVE gatewayId="28" primitiveId="4" primitiveName="rankqr" />
+<PRIMITIVE gatewayId="28" primitiveId="5" primitiveName="contr" />
+<PRIMITIVE gatewayId="28" primitiveId="6" primitiveName="mucomp" />
+<PRIMITIVE gatewayId="28" primitiveId="7" primitiveName="ricc" />
+<PRIMITIVE gatewayId="28" primitiveId="8" primitiveName="hinf" />
+<PRIMITIVE gatewayId="28" primitiveId="9" primitiveName="dhinf" />
+<PRIMITIVE gatewayId="28" primitiveId="10" primitiveName="linmeq" />
+</GATEWAY>

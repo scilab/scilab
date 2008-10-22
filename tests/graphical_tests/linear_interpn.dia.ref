@@ -1,0 +1,322 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/linear_interpn_data.ref','rb');
+ 
+// example 1 : 1d linear interpolation
+ 
+x = linspace(0, 2 * %pi, 11);
+ 
+y = sin(x);
+ 
+xx = linspace(-2 * %pi, 4 * %pi, 400)';
+ 
+yy = linear_interpn(xx, x, y, 'periodic');
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot2d(xx, yy, style=2);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot2d(x, y, style=-9, strf='000');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('linear interpolation of sin(x) with 11 interpolation points');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+// example 2 : bilinear interpolation
+ 
+n = 8;
+ 
+x = linspace(0, 2 * %pi, n);y = x;
+ 
+z = 2 * sin(x') * sin(y);
+ 
+xx = linspace(0, 2 * %pi, 40);
+ 
+[xp,yp] = ndgrid(xx, xx);
+ 
+zp = linear_interpn(xp, yp, x, y, z);
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(xx, xx, zp, flag=[2,6,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+[xg,yg] = ndgrid(x, x);
+ 
+%ans = param3d1(xg, yg, list(z, -9 * ones(1, n)), flag=[0,0]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('Bilinear interpolation of 2sin(x)sin(y)');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = legends('interpolation points', -9, 1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xselect();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+// example 3 : bilinear interpolation and experimentation
+ 
+//             with all the outmode features
+ 
+nx = 20;ny = 30;
+ 
+x = linspace(0, 1, nx);
+ 
+y = linspace(0, 2, ny);
+ 
+[X,Y] = ndgrid(x, y);
+ 
+z = 0.4 * cos(2 * %pi * X)0.* cos(%pi * Y);
+ 
+nxp = 60;nyp = 120;
+ 
+xp = linspace(-0.5, 1.5, nxp);
+ 
+yp = linspace(-0.5, 2.5, nyp);
+ 
+[XP,YP] = ndgrid(xp, yp);
+ 
+zp1 = linear_interpn(XP, YP, x, y, z, 'natural');
+ 
+zp2 = linear_interpn(XP, YP, x, y, z, 'periodic');
+ 
+zp3 = linear_interpn(XP, YP, x, y, z, 'C0');
+ 
+zp4 = linear_interpn(XP, YP, x, y, z, 'by_zero');
+ 
+zp5 = linear_interpn(XP, YP, x, y, z, 'by_nan');
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = subplot(2, 3, 1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(x, y, z, leg='x@y@z', flag=[2,4,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('initial function 0.4 cos(2 pi x) cos(pi y)');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = subplot(2, 3, 2);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(xp, yp, zp1, leg='x@y@z', flag=[2,4,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('Natural');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = subplot(2, 3, 3);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(xp, yp, zp2, leg='x@y@z', flag=[2,4,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('Periodic');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = subplot(2, 3, 4);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(xp, yp, zp3, leg='x@y@z', flag=[2,4,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('C0');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = subplot(2, 3, 5);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(xp, yp, zp4, leg='x@y@z', flag=[2,4,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('by_zero');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = subplot(2, 3, 6);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(xp, yp, zp5, leg='x@y@z', flag=[2,4,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('by_nan');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xselect();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+ 
+// example 4 : trilinear interpolation (see splin3d help
+ 
+//             page which have the same example with
+ 
+//             tricubic spline interpolation)
+ 
+%ans = getf('SCI/demos/interp/interp_demo.sci');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+func = 'v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2';
+ 
+deff('v=f(x,y,z)', func);
+ 
+n = 5;
+ 
+x = linspace(0, 1, n);y = x;z = x;
+ 
+[X,Y,Z] = ndgrid(x, y, z);
+ 
+V = f(X, Y, Z);
+ 
+// compute (and display) the linear interpolant on some slices
+ 
+m = 41;
+ 
+dir = ['z=','z=','z=','x=','y='];
+Warning :redefining function: dir                     
+ 
+ 
+val = [0.1,0.5,0.9,0.5,0.5];
+ 
+ebox = [0,1,0,1,0,1];
+ 
+ 
+XF = [];YF = [];ZF = [];VF = [];
+ 
+for i = 1:length(val),
+  [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+  Vm = linear_interpn(Xm, Ym, Zm, x, y, z, V);
+  [xf,yf,zf,vf] = nf3dq(Xm, Ym, Zm, Vm, 1);
+  XF = [XF,xf];YF = [YF,yf];ZF = [ZF,zf];VF = [VF,vf];
+  Vp = linear_interpn(Xp, Yp, Zp, x, y, z, V);
+  [xf,yf,zf,vf] = nf3dq(Xp, Yp, Zp, Vp, 1);
+  XF = [XF,xf];YF = [YF,yf];ZF = [ZF,zf];VF = [VF,vf];
+end,
+Warning :redefining function: dir                     
+ 
+Warning :redefining function: dir                     
+ 
+Warning :redefining function: dir                     
+ 
+Warning :redefining function: dir                     
+ 
+Warning :redefining function: dir                     
+ 
+ 
+nb_col = 128;
+ 
+vmin = min(VF);vmax = max(VF);
+ 
+color = dsearch(VF, linspace(vmin, vmax, nb_col + 1));
+Warning :redefining function: color                   
+ 
+ 
+xset('colormap', jetcolormap(nb_col));
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xset('hidden3d', xget('background'));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = colorbar(vmin, vmax);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot3d(XF, YF, list(ZF, color), flag=[-1,6,4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('tri-linear interpolation of ' + func);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xselect();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

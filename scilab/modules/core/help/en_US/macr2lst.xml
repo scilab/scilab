@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="macr2lst">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>macr2lst</refname>
+    <refpurpose> function to list conversion</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[txt]=macr2lst(function-name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This primitive converts a compiled Scilab function <literal>function-name</literal>
+    into a list which codes the internal representation of
+    the function (reverse polish notation).</para>
+    <para>The first entry of the list is the function name, the second
+    and third are respectively the vectors of left hand side variables
+    and right hand side variables names. The following entries are either basic operation records 
+    
+    either lists with contains the hierachical control structures like
+    if , for, ... </para>
+    <para>Basic operation records are described by a character string
+    vector whose first element represents the opcode. </para>
+    <informaltable border="1">
+      <tr>
+        <td>op codes</td>
+        <td>meaning</td>
+        <td>parameters</td>
+      </tr>
+      <tr>
+        <td>"0"</td>
+        <td>ignored opcode</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"1"</td>
+        <td>No more used</td>
+        <td/>
+      </tr>
+      <tr>
+        <td>"2"</td>
+        <td>variable or function reference</td>
+        <td>variable name, #rhs, #lhs</td>
+      </tr>
+      <tr>
+        <td>"3"</td>
+        <td>put a string in the stack</td>
+        <td>the string</td>
+      </tr>
+      <tr>
+        <td>"4"</td>
+        <td>put am empty matrix in the stack</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"5"</td>
+        <td>apply an operation</td>
+        <td>operation code, #rhs,#lhs</td>
+      </tr>
+      <tr>
+        <td>"6"</td>
+        <td>put a number  in the stack</td>
+        <td>the number</td>
+      </tr>
+      <tr>
+        <td>"12"</td>
+        <td>pause command</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"13"</td>
+        <td>break command</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"14"</td>
+        <td>abort command</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"15"</td>
+        <td>end of line mark</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"17"</td>
+        <td>quit command</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"18"</td>
+        <td>named variable</td>
+        <td>variable name</td>
+      </tr>
+      <tr>
+        <td>"19"</td>
+        <td>create recursive index structure</td>
+        <td>path length, number of final indices</td>
+      </tr>
+      <tr>
+        <td>"20"</td>
+        <td>function call</td>
+        <td>function name, #rhs, #lhs </td>
+      </tr>
+      <tr>
+        <td>"23"</td>
+        <td>create variable from name</td>
+        <td>variable name</td>
+      </tr>
+      <tr>
+        <td>"24"</td>
+        <td>put a variable with type 0 in the stack</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"25"</td>
+        <td>profile record</td>
+        <td>number of call, time spend </td>
+      </tr>
+      <tr>
+        <td>"26"</td>
+        <td>put a vector of strings in the stack</td>
+        <td>#rows, #columns, element sequence</td>
+      </tr>
+      <tr>
+        <td>"27"</td>
+        <td>put a builtin reference in the stack</td>
+        <td>interface number, position in interface, function name</td>
+      </tr>
+      <tr>
+        <td>"28"</td>
+        <td>continue command</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td>"29"</td>
+        <td>assignment</td>
+        <td>#lhs, display mode, (variable name, #rhs)*</td>
+      </tr>
+      <tr>
+        <td>"30"</td>
+        <td>logical expression short circuit</td>
+        <td>type, jump size</td>
+      </tr>
+      <tr>
+        <td>"31"</td>
+        <td>comment</td>
+        <td>the comment</td>
+      </tr>
+      <tr>
+        <td>"99"</td>
+        <td>return command</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td> &gt; "100"</td>
+        <td>builtin call (obsolete)</td>
+        <td>100*fun, #rhs, #lhs, fin</td>
+      </tr>
+    </informaltable>
+    <para>The <link linkend="fun2string">fun2string</link> function can be used to generate the intial code.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//DISPLAY
+function y=foo(x,flag)
+  if flag then 
+    y=sin(x)
+  else
+    y=cos(x)
+  end
+endfunction
+L=macr2lst(foo)
+fun2string(L)
+
+   
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="macrovar">macrovar</link>
+      </member>
+      <member>
+        <link linkend="fun2string">fun2string</link>
+      </member>
+      <member>
+        <link linkend="macr2tree">macr2tree</link>
+      </member>
+      <member>
+        <link linkend="tree2code">tree2code</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

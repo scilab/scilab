@@ -1,0 +1,842 @@
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  Scicos tutorial: Defining new blocks using Scilab
+  programs.
+  
+  We start with an empty diagram and before launching scicos,
+  we load toto.sci (the block created in the previous tutorial):
+  
+  getf toto.sci
+  scicos
+  
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(12))"// Edit/Add new block
+//x_mdialog: Get block GUI function name
+  toto
+  o //OK
+414.3,385.1,-1//xgemouse
+399.4,374.7,-1//xgemouse
+380.1,368.7,-1//xgemouse
+363.7,361.3,-1//xgemouse
+347.4,355.3,-1//xgemouse
+331,350.9,-1//xgemouse
+316.1,346.4,-1//xgemouse
+302.7,341.9,-1//xgemouse
+287.8,337.5,-1//xgemouse
+261.1,331.5,-1//xgemouse
+249.2,328.5,-1//xgemouse
+238.7,325.6,-1//xgemouse
+231.3,324.1,-1//xgemouse
+220.9,322.6,-1//xgemouse
+210.5,319.6,-1//xgemouse
+203,318.1,-1//xgemouse
+195.6,315.1,-1//xgemouse
+191.1,313.7,-1//xgemouse
+186.7,310.7,-1//xgemouse
+185.2,310.7,-1//xgemouse
+182.9,310.7,-1//xgemouse
+181.4,310.7,-1//xgemouse
+178.5,313.7,-1//xgemouse
+172.5,319.6,-1//xgemouse
+165.1,330,-1//xgemouse
+163.6,330.8,-1//xgemouse
+166.6,327.8,-1//xgemouse
+180,318.9,-1//xgemouse
+185.9,309.9,-1//xgemouse
+188.9,305.5,-1//xgemouse
+188.9,304.7,-1//xgemouse
+188.1,304.7,-1//xgemouse
+188.9,304,-1//xgemouse
+190.4,303.2,-1//xgemouse
+193.3,300.3,-1//xgemouse
+194.8,299.5,-1//xgemouse
+195.6,299.5,-1//xgemouse
+197.1,299.5,-1//xgemouse
+197.8,298.8,-1//xgemouse
+199.3,298.8,-1//xgemouse
+200,298,-1//xgemouse
+200,297.3,-1//xgemouse
+199.3,295.8,-1//xgemouse
+199.3,295.1,-1//xgemouse
+198.6,294.3,-1//xgemouse
+198.6,292.8,-1//xgemouse
+197.8,292.1,-1//xgemouse
+197.8,291.3,-1//xgemouse
+197.8,290.6,-1//xgemouse
+197.1,289.1,-1//xgemouse
+196.3,287.6,-1//xgemouse
+196.3,286.1,-1//xgemouse
+195.6,284.6,-1//xgemouse
+195.6,283.9,-1//xgemouse
+195.6,283.2,-1//xgemouse
+195.6,282.4,-1//xgemouse
+195.6,282.4,0//xgemouse
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  This block uses Scilab variable lambda. So
+  we must define in the context.
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(2))"// Edit/Context
+//x_dialog:You may enter here scilab instructions to define 
+   lambda=1
+  o //OK
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We now create a new block in Scilab to compute the
+  surface under a discrete signal (the integral).
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(1))"// Edit/Palettes
+//x_choose:  Choose a Palette
+  7//Others
+0,226.6,20.8,1001,"void"// Palette: Others, Block: 4 scifunc_block
+63.1,157.3,-1//xgemouse
+67.5,157.3,-1//xgemouse
+68.3,157.3,-1//xgemouse
+69.8,157.3,-1//xgemouse
+71.3,157.3,-1//xgemouse
+72.7,157.3,-1//xgemouse
+74.2,158.1,-1//xgemouse
+75,158.8,-1//xgemouse
+75,160.3,-1//xgemouse
+74.2,161.8,-1//xgemouse
+73.5,163.3,-1//xgemouse
+72.7,163.3,-1//xgemouse
+71.3,162.5,-1//xgemouse
+69.8,162.5,-1//xgemouse
+70.5,161,-1//xgemouse
+113.7,161,-1//xgemouse
+115.2,165.5,-1//xgemouse
+121.1,168.5,-1//xgemouse
+125.6,171.4,-1//xgemouse
+128.5,174.4,-1//xgemouse
+129.3,175.9,-1//xgemouse
+130,177.4,-1//xgemouse
+130.8,178.9,-1//xgemouse
+132.3,178.9,-1//xgemouse
+134.5,178.9,-1//xgemouse
+141.9,181.9,-1//xgemouse
+146.4,184.8,-1//xgemouse
+150.9,189.3,-1//xgemouse
+150.9,190.8,-1//xgemouse
+151.6,192.3,-1//xgemouse
+152.4,193.8,-1//xgemouse
+155.3,196.7,-1//xgemouse
+156.8,201.2,-1//xgemouse
+161.3,207.2,-1//xgemouse
+164.3,213.1,-1//xgemouse
+170.2,219.1,-1//xgemouse
+174.7,222,-1//xgemouse
+179.1,225,-1//xgemouse
+182.1,228,-1//xgemouse
+182.9,229.5,-1//xgemouse
+183.6,231,-1//xgemouse
+185.1,231.7,-1//xgemouse
+188.1,234.7,-1//xgemouse
+189.6,235.4,-1//xgemouse
+191,235.4,-1//xgemouse
+195.5,236.9,-1//xgemouse
+197,237.7,-1//xgemouse
+197.7,236.2,-1//xgemouse
+198.5,234.7,-1//xgemouse
+198.5,233.2,-1//xgemouse
+198.5,231.7,-1//xgemouse
+198.5,230.2,-1//xgemouse
+198.5,228,-1//xgemouse
+198.5,225.8,-1//xgemouse
+199.2,224.3,-1//xgemouse
+199.2,222.8,-1//xgemouse
+199.2,221.3,-1//xgemouse
+200,219.8,-1//xgemouse
+200,218.3,-1//xgemouse
+200,216.8,-1//xgemouse
+200,215.3,-1//xgemouse
+200,213.9,-1//xgemouse
+200,212.4,-1//xgemouse
+200,210.1,-1//xgemouse
+200,208.7,-1//xgemouse
+200,206.4,-1//xgemouse
+200,204.9,-1//xgemouse
+200,203.4,-1//xgemouse
+199.2,202.7,-1//xgemouse
+199.2,202,-1//xgemouse
+199.2,202,0//xgemouse
+0,226,220.6,1000,"void"// Block: 2 scifunc_block
+//x_mdialog: Set scifunc_block parameters
+  1
+  1
+  1
+  []
+  []
+  [0;0;0]
+  []
+  []
+  0
+  o //OK
+//x_dialog:Define function which computes the output
+  y1=z(3)
+  o //OK
+//x_dialog:You may define:
+  z(3)=(t-z(1))*z(2)+z(3)
+  z(1)=t
+  z(2)=u1
+  
+  o //OK
+//x_dialog:You may do whatever needed for initialization :
+   
+  o //OK
+//x_dialog:You may do whatever needed to finish :
+   
+  o //OK
+//x_dialog:You may define here functions imposing contraints
+   
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
+0,214.9,288.3,1000,"void"// Block: 1 toto
+0,220.1,242.1,1000// Block: 2 scifunc_block
+0,217.1,286.8,1000,"void"// Block: 1 toto
+217.1,285.3,-1//xgemouse
+217.1,283.8,-1//xgemouse
+217.1,282.3,-1//xgemouse
+217.1,280.8,-1//xgemouse
+217.1,279.3,-1//xgemouse
+217.1,277.8,-1//xgemouse
+217.1,275.6,-1//xgemouse
+217.1,274.1,-1//xgemouse
+217.1,271.9,-1//xgemouse
+217.1,270.4,-1//xgemouse
+217.1,268.2,-1//xgemouse
+217.1,265.9,-1//xgemouse
+217.1,264.5,-1//xgemouse
+217.1,263,-1//xgemouse
+217.1,261.5,-1//xgemouse
+217.1,260,-1//xgemouse
+217.1,259.2,-1//xgemouse
+217.1,257.8,-1//xgemouse
+217.1,257,-1//xgemouse
+216.3,257,-1//xgemouse
+216.3,255.5,-1//xgemouse
+216.3,254,-1//xgemouse
+215.6,253.3,-1//xgemouse
+215.6,251.8,-1//xgemouse
+215.6,251.1,-1//xgemouse
+215.6,249.6,-1//xgemouse
+215.6,248.1,-1//xgemouse
+215.6,247.3,-1//xgemouse
+215.6,246.6,-1//xgemouse
+215.6,245.9,-1//xgemouse
+215.6,245.1,-1//xgemouse
+215.6,243.6,-1//xgemouse
+215.6,242.9,-1//xgemouse
+215.6,242.1,-1//xgemouse
+215.6,242.1,0//xgemouse
+114,211.1,383.5,1000,"void"// xclick
+-2,0,0,-1,"execstr(Edit_1000(1))"// Edit/Palettes
+//x_choose:  Choose a Palette
+  1//Sources
+0,259.4,23.3,1002,"void"// Palette: Sources, Block: 4 RAND_f
+-3.9,158,-1//xgemouse
+12.5,164,-1//xgemouse
+27.4,172.9,-1//xgemouse
+39.3,181.8,-1//xgemouse
+51.2,186.3,-1//xgemouse
+64.6,190.8,-1//xgemouse
+70.5,196.7,-1//xgemouse
+79.4,201.2,-1//xgemouse
+88.4,202.7,-1//xgemouse
+92.8,205.7,-1//xgemouse
+95.8,208.6,-1//xgemouse
+97.3,209.4,-1//xgemouse
+98,210.9,-1//xgemouse
+98.8,211.6,-1//xgemouse
+99.5,213.1,-1//xgemouse
+102.5,216.1,-1//xgemouse
+104,216.8,-1//xgemouse
+104.7,218.3,-1//xgemouse
+105.5,219,-1//xgemouse
+105.5,217.6,-1//xgemouse
+105.5,216.1,-1//xgemouse
+104.7,214.6,-1//xgemouse
+104.7,213.1,-1//xgemouse
+103.2,208.6,-1//xgemouse
+102.5,207.1,-1//xgemouse
+101,206.4,-1//xgemouse
+98,203.4,-1//xgemouse
+96.6,203.4,-1//xgemouse
+92.1,199,-1//xgemouse
+89.1,196,-1//xgemouse
+84.6,191.5,-1//xgemouse
+80.2,188.5,-1//xgemouse
+75.7,185.6,-1//xgemouse
+73.5,185.6,-1//xgemouse
+72,184.8,-1//xgemouse
+72,184.1,-1//xgemouse
+72.7,184.1,-1//xgemouse
+74.2,184.8,-1//xgemouse
+75.7,184.8,-1//xgemouse
+80.2,186.3,-1//xgemouse
+82.4,186.3,-1//xgemouse
+84.6,186.3,-1//xgemouse
+86.1,187.1,-1//xgemouse
+86.9,187.8,-1//xgemouse
+87.6,188.5,-1//xgemouse
+88.4,189.3,-1//xgemouse
+89.1,190.8,-1//xgemouse
+89.9,192.3,-1//xgemouse
+90.6,193,-1//xgemouse
+90.6,193.7,-1//xgemouse
+91.3,194.5,-1//xgemouse
+91.3,195.2,-1//xgemouse
+92.1,196,-1//xgemouse
+92.1,196.7,-1//xgemouse
+92.1,198.2,-1//xgemouse
+92.1,199,-1//xgemouse
+92.1,198.2,-1//xgemouse
+92.1,196.7,-1//xgemouse
+92.1,195.2,-1//xgemouse
+92.1,193.7,-1//xgemouse
+92.1,192.3,-1//xgemouse
+92.1,190.8,-1//xgemouse
+92.1,189.3,-1//xgemouse
+92.1,187.8,-1//xgemouse
+92.1,186.3,-1//xgemouse
+92.1,184.8,-1//xgemouse
+92.1,183.3,-1//xgemouse
+92.1,181.8,-1//xgemouse
+92.1,180.4,-1//xgemouse
+92.1,178.9,-1//xgemouse
+92.1,177.4,-1//xgemouse
+92.1,175.9,-1//xgemouse
+92.1,175.1,-1//xgemouse
+92.1,174.4,-1//xgemouse
+91.3,174.4,-1//xgemouse
+91.3,173.7,-1//xgemouse
+91.3,172.9,-1//xgemouse
+91.3,171.4,-1//xgemouse
+91.3,169.9,-1//xgemouse
+91.3,168.4,-1//xgemouse
+91.3,167,-1//xgemouse
+91.3,165.5,-1//xgemouse
+91.3,164,-1//xgemouse
+91.3,162.5,-1//xgemouse
+91.3,161,-1//xgemouse
+91.3,159.5,-1//xgemouse
+91.3,158,-1//xgemouse
+91.3,156.5,-1//xgemouse
+91.3,155.1,-1//xgemouse
+91.3,153.6,-1//xgemouse
+90.6,152.8,-1//xgemouse
+90.6,152.1,-1//xgemouse
+90.6,151.3,-1//xgemouse
+91.3,151.3,-1//xgemouse
+92.1,151.3,-1//xgemouse
+92.8,151.3,-1//xgemouse
+94.3,151.3,-1//xgemouse
+95.1,151.3,-1//xgemouse
+95.8,151.3,-1//xgemouse
+96.6,151.3,-1//xgemouse
+97.3,151.3,-1//xgemouse
+98,150.6,-1//xgemouse
+98.8,150.6,-1//xgemouse
+99.5,150.6,-1//xgemouse
+100.3,150.6,-1//xgemouse
+100.3,149.1,-1//xgemouse
+100.3,148.4,-1//xgemouse
+101,148.4,-1//xgemouse
+102.5,148.4,-1//xgemouse
+104,148.4,-1//xgemouse
+104.7,149.1,-1//xgemouse
+104.7,149.1,0//xgemouse
+-2,0,0,-1,"execstr(Edit_1000(1))"// Edit/Palettes
+//x_choose:  Choose a Palette
+  2//Sinks
+0,113.5,19.3,1003,"void"// Palette: Sinks, Block: 2 CMSCOPE
+53.4,150.6,-1//xgemouse
+75.7,149.1,-1//xgemouse
+96.6,147.6,-1//xgemouse
+114.4,144.6,-1//xgemouse
+132.3,144.6,-1//xgemouse
+145.7,143.2,-1//xgemouse
+163.5,143.2,-1//xgemouse
+178.4,143.2,-1//xgemouse
+190.3,144.6,-1//xgemouse
+199.2,146.1,-1//xgemouse
+211.1,147.6,-1//xgemouse
+217.1,150.6,-1//xgemouse
+227.5,152.1,-1//xgemouse
+234.9,152.1,-1//xgemouse
+240.9,153.6,-1//xgemouse
+249.8,153.6,-1//xgemouse
+251.3,153.6,-1//xgemouse
+252.8,154.3,-1//xgemouse
+253.5,154.3,-1//xgemouse
+255,153.6,-1//xgemouse
+256.5,153.6,-1//xgemouse
+261,152.1,-1//xgemouse
+265.5,150.6,-1//xgemouse
+267.7,150.6,-1//xgemouse
+269.9,150.6,-1//xgemouse
+270.7,149.8,-1//xgemouse
+272.1,149.8,-1//xgemouse
+272.9,149.8,-1//xgemouse
+273.6,150.6,-1//xgemouse
+274.4,151.3,-1//xgemouse
+275.1,152.1,-1//xgemouse
+275.1,152.8,-1//xgemouse
+275.9,153.6,-1//xgemouse
+275.9,154.3,-1//xgemouse
+276.6,154.3,-1//xgemouse
+276.6,155.1,-1//xgemouse
+276.6,155.8,-1//xgemouse
+277.4,156.5,-1//xgemouse
+278.1,157.3,-1//xgemouse
+279.6,158,-1//xgemouse
+281.1,158,-1//xgemouse
+282.6,158,-1//xgemouse
+284.1,158,-1//xgemouse
+285.5,158,-1//xgemouse
+287,158,-1//xgemouse
+288.5,158,-1//xgemouse
+289.3,158,-1//xgemouse
+290.7,157.3,-1//xgemouse
+291.5,156.5,-1//xgemouse
+291.5,155.8,-1//xgemouse
+291.5,155.1,-1//xgemouse
+292.2,155.1,-1//xgemouse
+293.7,155.8,-1//xgemouse
+294.5,156.5,-1//xgemouse
+294.5,158,-1//xgemouse
+295.2,159.5,-1//xgemouse
+298.2,162.5,-1//xgemouse
+298.9,164,-1//xgemouse
+300.4,168.4,-1//xgemouse
+301.2,169.9,-1//xgemouse
+302.7,174.4,-1//xgemouse
+303.4,175.9,-1//xgemouse
+304.1,177.4,-1//xgemouse
+304.1,178.9,-1//xgemouse
+304.9,178.9,-1//xgemouse
+304.9,179.6,-1//xgemouse
+305.6,179.6,-1//xgemouse
+305.6,180.4,-1//xgemouse
+305.6,181.1,-1//xgemouse
+305.6,181.8,-1//xgemouse
+305.6,183.3,-1//xgemouse
+305.6,184.1,-1//xgemouse
+305.6,184.8,-1//xgemouse
+305.6,185.6,-1//xgemouse
+305.6,186.3,-1//xgemouse
+305.6,187.1,-1//xgemouse
+305.6,187.8,-1//xgemouse
+305.6,189.3,-1//xgemouse
+304.9,190.8,-1//xgemouse
+304.9,192.3,-1//xgemouse
+304.1,192.3,-1//xgemouse
+303.4,193.7,-1//xgemouse
+302.7,193.7,-1//xgemouse
+303.4,193,-1//xgemouse
+303.4,192.3,-1//xgemouse
+303.4,190.8,-1//xgemouse
+304.1,190,-1//xgemouse
+303.4,190.8,-1//xgemouse
+303.4,190.8,0//xgemouse
+-2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
+0,231.2,222.8,1000,"void"// Block: 2 scifunc_block
+0,307.9,219,1000// Block: 5 CMSCOPE
+0,232,221.3,1000,"void"// Block: 2 scifunc_block
+232.7,222,-1//xgemouse
+234.2,222.8,-1//xgemouse
+235.7,222.8,-1//xgemouse
+237.2,222.8,-1//xgemouse
+243.1,222.8,-1//xgemouse
+249.1,222.8,-1//xgemouse
+255,222.8,-1//xgemouse
+257.3,222.8,-1//xgemouse
+259.5,222.8,-1//xgemouse
+265.5,222.8,-1//xgemouse
+271.4,222.8,-1//xgemouse
+273.6,222.8,-1//xgemouse
+275.9,222.8,-1//xgemouse
+278.1,222.8,-1//xgemouse
+279.6,222.8,-1//xgemouse
+281.1,222.8,-1//xgemouse
+281.8,222.8,-1//xgemouse
+283.3,222.8,-1//xgemouse
+284.1,223.5,-1//xgemouse
+284.8,223.5,-1//xgemouse
+285.5,223.5,-1//xgemouse
+286.3,224.3,-1//xgemouse
+287.8,224.3,-1//xgemouse
+289.3,224.3,-1//xgemouse
+290.7,224.3,-1//xgemouse
+292.2,224.3,-1//xgemouse
+293.7,224.3,-1//xgemouse
+295.2,224.3,-1//xgemouse
+296,224.3,-1//xgemouse
+296.7,224.3,-1//xgemouse
+297.4,224.3,-1//xgemouse
+298.2,223.5,-1//xgemouse
+298.2,223.5,0//xgemouse
+0,162,167.7,1000,"void"// Block: 4 RAND_f
+163.5,167.7,-1//xgemouse
+165,168.4,-1//xgemouse
+166.5,168.4,-1//xgemouse
+168,168.4,-1//xgemouse
+169.5,168.4,-1//xgemouse
+171,168.4,-1//xgemouse
+175.4,169.9,-1//xgemouse
+177.7,169.9,-1//xgemouse
+179.9,169.9,-1//xgemouse
+181.4,169.9,-1//xgemouse
+187.3,169.9,-1//xgemouse
+196.3,169.9,-1//xgemouse
+197.7,169.9,-1//xgemouse
+203.7,169.9,-1//xgemouse
+209.6,169.9,-1//xgemouse
+215.6,169.9,-1//xgemouse
+221.6,169.9,-1//xgemouse
+227.5,169.9,-1//xgemouse
+229.7,169.9,-1//xgemouse
+231.2,169.9,-1//xgemouse
+232.7,169.9,-1//xgemouse
+233.5,169.9,-1//xgemouse
+234.9,169.9,-1//xgemouse
+235.7,169.9,-1//xgemouse
+237.2,169.9,-1//xgemouse
+238.7,169.9,-1//xgemouse
+240.2,169.9,-1//xgemouse
+241.6,169.9,-1//xgemouse
+243.9,169.9,-1//xgemouse
+245.4,169.9,-1//xgemouse
+246.9,169.9,-1//xgemouse
+248.3,169.2,-1//xgemouse
+249.8,169.2,-1//xgemouse
+251.3,169.2,-1//xgemouse
+252.8,168.4,-1//xgemouse
+254.3,168.4,-1//xgemouse
+255.8,168.4,-1//xgemouse
+257.3,168.4,-1//xgemouse
+258.8,168.4,-1//xgemouse
+260.2,168.4,-1//xgemouse
+261.7,168.4,-1//xgemouse
+263.2,168.4,-1//xgemouse
+264.7,168.4,-1//xgemouse
+268.4,168.4,-1//xgemouse
+269.2,168.4,-1//xgemouse
+269.9,168.4,-1//xgemouse
+269.9,168.4,0//xgemouse
+269.9,169.9,-1//xgemouse
+269.9,171.4,-1//xgemouse
+269.9,175.1,-1//xgemouse
+269.9,177.4,-1//xgemouse
+269.9,179.6,-1//xgemouse
+269.9,181.8,-1//xgemouse
+271.4,186.3,-1//xgemouse
+271.4,187.8,-1//xgemouse
+271.4,190,-1//xgemouse
+271.4,190.8,-1//xgemouse
+271.4,191.5,-1//xgemouse
+271.4,192.3,-1//xgemouse
+271.4,193,-1//xgemouse
+271.4,194.5,-1//xgemouse
+271.4,196,-1//xgemouse
+271.4,197.5,-1//xgemouse
+271.4,199,-1//xgemouse
+271.4,200.4,-1//xgemouse
+271.4,201.2,-1//xgemouse
+271.4,201.9,-1//xgemouse
+271.4,201.9,0//xgemouse
+272.9,201.9,-1//xgemouse
+274.4,201.9,-1//xgemouse
+275.9,201.9,-1//xgemouse
+277.4,201.9,-1//xgemouse
+283.3,201.9,-1//xgemouse
+284.8,202.7,-1//xgemouse
+289.3,204.2,-1//xgemouse
+291.5,204.2,-1//xgemouse
+293,204.2,-1//xgemouse
+294.5,204.2,-1//xgemouse
+296,204.2,-1//xgemouse
+296.7,204.2,-1//xgemouse
+297.4,204.9,-1//xgemouse
+298.2,205.7,-1//xgemouse
+298.9,205.7,-1//xgemouse
+300.4,205.7,-1//xgemouse
+301.9,205.7,-1//xgemouse
+303.4,205.7,-1//xgemouse
+304.1,205.7,-1//xgemouse
+304.9,205.7,-1//xgemouse
+305.6,206.4,-1//xgemouse
+305.6,206.4,0//xgemouse
+0,177.7,169.2,1000,"void"// Link: 7
+178.4,218.3,-1//xgemouse
+178.4,219,-1//xgemouse
+179.1,219,-1//xgemouse
+179.1,219.8,-1//xgemouse
+179.1,219.8,0//xgemouse
+180.6,220.5,-1//xgemouse
+182.1,220.5,-1//xgemouse
+183.6,220.5,-1//xgemouse
+185.1,220.5,-1//xgemouse
+186.6,220.5,-1//xgemouse
+188.1,220.5,-1//xgemouse
+189.6,220.5,-1//xgemouse
+190.3,221.3,-1//xgemouse
+191,222,-1//xgemouse
+192.5,222,-1//xgemouse
+192.5,222,0//xgemouse
+0,214.9,265.2,1000,"void"// Link: 3
+214.1,264.4,-1//xgemouse
+209.6,262.9,-1//xgemouse
+208.2,262.9,-1//xgemouse
+202.2,260,-1//xgemouse
+197.7,257,-1//xgemouse
+193.3,255.5,-1//xgemouse
+187.3,254,-1//xgemouse
+182.9,251,-1//xgemouse
+180.6,251,-1//xgemouse
+176.2,249.6,-1//xgemouse
+171.7,248.1,-1//xgemouse
+170.2,248.1,-1//xgemouse
+168.7,247.3,-1//xgemouse
+167.2,246.6,-1//xgemouse
+165.7,246.6,-1//xgemouse
+164.3,246.6,-1//xgemouse
+162.8,246.6,-1//xgemouse
+161.3,246.6,-1//xgemouse
+159.8,246.6,-1//xgemouse
+158.3,246.6,-1//xgemouse
+156.8,246.6,-1//xgemouse
+155.3,246.6,-1//xgemouse
+153.8,246.6,-1//xgemouse
+152.4,246.6,-1//xgemouse
+150.9,246.6,-1//xgemouse
+149.4,246.6,-1//xgemouse
+147.9,246.6,-1//xgemouse
+147.1,246.6,-1//xgemouse
+146.4,246.6,-1//xgemouse
+146.4,248.1,-1//xgemouse
+146.4,249.6,-1//xgemouse
+146.4,251,-1//xgemouse
+147.1,251,-1//xgemouse
+147.1,251.8,-1//xgemouse
+147.1,252.5,-1//xgemouse
+147.1,254,-1//xgemouse
+147.1,255.5,-1//xgemouse
+147.1,257,-1//xgemouse
+146.4,257,-1//xgemouse
+144.9,257,-1//xgemouse
+143.4,257,-1//xgemouse
+141.9,256.2,-1//xgemouse
+140.5,256.2,-1//xgemouse
+134.5,256.2,-1//xgemouse
+132.3,256.2,-1//xgemouse
+126.3,256.2,-1//xgemouse
+124.1,256.2,-1//xgemouse
+118.1,256.2,-1//xgemouse
+116.6,256.2,-1//xgemouse
+115.9,256.2,-1//xgemouse
+116.6,257,-1//xgemouse
+117.4,258.5,-1//xgemouse
+118.1,259.2,-1//xgemouse
+118.9,260,-1//xgemouse
+119.6,260.7,-1//xgemouse
+120.4,261.5,-1//xgemouse
+121.9,262.2,-1//xgemouse
+123.3,262.9,-1//xgemouse
+124.1,263.7,-1//xgemouse
+125.6,264.4,-1//xgemouse
+127.1,265.2,-1//xgemouse
+127.8,265.9,-1//xgemouse
+128.5,266.7,-1//xgemouse
+130,267.4,-1//xgemouse
+131.5,267.4,-1//xgemouse
+132.3,268.2,-1//xgemouse
+133,268.9,-1//xgemouse
+134.5,268.9,-1//xgemouse
+134.5,269.6,-1//xgemouse
+135.2,269.6,-1//xgemouse
+135.2,269.6,0//xgemouse
+134.5,268.9,-1//xgemouse
+134.5,267.4,-1//xgemouse
+134.5,265.9,-1//xgemouse
+134.5,264.4,-1//xgemouse
+135.2,262.9,-1//xgemouse
+136.7,258.5,-1//xgemouse
+138.2,251,-1//xgemouse
+141.2,245.1,-1//xgemouse
+142.7,239.1,-1//xgemouse
+142.7,236.9,-1//xgemouse
+144.2,232.4,-1//xgemouse
+145.7,228,-1//xgemouse
+145.7,225.7,-1//xgemouse
+145.7,224.3,-1//xgemouse
+145.7,222.8,-1//xgemouse
+145.7,216.8,-1//xgemouse
+145.7,215.3,-1//xgemouse
+145.7,213.8,-1//xgemouse
+144.9,212.3,-1//xgemouse
+144.9,210.9,-1//xgemouse
+144.9,209.4,-1//xgemouse
+144.9,207.9,-1//xgemouse
+144.9,206.4,-1//xgemouse
+144.9,204.9,-1//xgemouse
+144.2,204.2,-1//xgemouse
+144.2,203.4,-1//xgemouse
+144.2,202.7,-1//xgemouse
+144.2,201.2,-1//xgemouse
+143.4,200.4,-1//xgemouse
+143.4,199.7,-1//xgemouse
+143.4,199,-1//xgemouse
+142.7,198.2,-1//xgemouse
+141.9,197.5,-1//xgemouse
+141.2,196.7,-1//xgemouse
+140.5,196,-1//xgemouse
+140.5,195.2,-1//xgemouse
+139.7,195.2,-1//xgemouse
+139.7,194.5,-1//xgemouse
+139,194.5,-1//xgemouse
+139,193.7,-1//xgemouse
+138.2,193,-1//xgemouse
+137.5,192.3,-1//xgemouse
+137.5,191.5,-1//xgemouse
+136.7,191.5,-1//xgemouse
+136.7,190.8,-1//xgemouse
+136.7,190,-1//xgemouse
+136.7,190,0//xgemouse
+0,216.3,260.7,1000,"void"// Link: 12
+215.6,260.7,-1//xgemouse
+218.6,263.7,-1//xgemouse
+220.1,264.4,-1//xgemouse
+221.6,265.2,-1//xgemouse
+223,265.9,-1//xgemouse
+224.5,266.7,-1//xgemouse
+229,268.2,-1//xgemouse
+233.5,269.6,-1//xgemouse
+239.4,269.6,-1//xgemouse
+240.9,269.6,-1//xgemouse
+242.4,270.4,-1//xgemouse
+243.9,270.4,-1//xgemouse
+245.4,271.1,-1//xgemouse
+246.9,271.1,-1//xgemouse
+248.3,271.9,-1//xgemouse
+249.8,271.9,-1//xgemouse
+250.6,271.9,-1//xgemouse
+251.3,272.6,-1//xgemouse
+252.8,272.6,-1//xgemouse
+254.3,272.6,-1//xgemouse
+255.8,272.6,-1//xgemouse
+257.3,272.6,-1//xgemouse
+263.2,272.6,-1//xgemouse
+264.7,271.9,-1//xgemouse
+266.2,271.9,-1//xgemouse
+267.7,271.9,-1//xgemouse
+268.4,271.9,-1//xgemouse
+269.2,271.9,-1//xgemouse
+270.7,271.9,-1//xgemouse
+273.6,268.9,-1//xgemouse
+278.1,267.4,-1//xgemouse
+279.6,267.4,-1//xgemouse
+280.3,266.7,-1//xgemouse
+280.3,265.9,-1//xgemouse
+281.1,265.9,-1//xgemouse
+281.8,265.9,-1//xgemouse
+283.3,265.9,-1//xgemouse
+284.8,265.9,-1//xgemouse
+286.3,265.9,-1//xgemouse
+287.8,265.9,-1//xgemouse
+288.5,265.9,-1//xgemouse
+287.8,265.9,-1//xgemouse
+283.3,268.9,-1//xgemouse
+275.9,273.4,-1//xgemouse
+266.9,280.8,-1//xgemouse
+266.9,281.5,-1//xgemouse
+266.9,280.1,-1//xgemouse
+271.4,269.6,-1//xgemouse
+274.4,266.7,-1//xgemouse
+275.1,265.2,-1//xgemouse
+281.1,259.2,-1//xgemouse
+287,254.8,-1//xgemouse
+290,254,-1//xgemouse
+291.5,254,-1//xgemouse
+293,254,-1//xgemouse
+294.5,254.8,-1//xgemouse
+296,255.5,-1//xgemouse
+300.4,257,-1//xgemouse
+304.9,258.5,-1//xgemouse
+312.3,262.9,-1//xgemouse
+318.3,264.4,-1//xgemouse
+319.8,264.4,-1//xgemouse
+324.2,265.9,-1//xgemouse
+325.7,265.9,-1//xgemouse
+327.2,265.9,-1//xgemouse
+328,266.7,-1//xgemouse
+329.4,266.7,-1//xgemouse
+330.2,266.7,-1//xgemouse
+331.7,266.7,-1//xgemouse
+330.9,265.9,-1//xgemouse
+330.2,265.9,-1//xgemouse
+329.4,265.9,-1//xgemouse
+328,265.9,-1//xgemouse
+327.2,265.2,-1//xgemouse
+326.5,265.2,-1//xgemouse
+325.7,265.2,-1//xgemouse
+325,265.2,-1//xgemouse
+324.2,265.2,-1//xgemouse
+324.2,264.4,-1//xgemouse
+323.5,262.9,-1//xgemouse
+323.5,262.2,-1//xgemouse
+323.5,262.2,0//xgemouse
+323.5,260.7,-1//xgemouse
+323.5,259.2,-1//xgemouse
+323.5,257.7,-1//xgemouse
+323.5,256.2,-1//xgemouse
+323.5,254.8,-1//xgemouse
+323.5,253.3,-1//xgemouse
+323.5,251.8,-1//xgemouse
+323.5,250.3,-1//xgemouse
+323.5,248.8,-1//xgemouse
+323.5,247.3,-1//xgemouse
+323.5,245.8,-1//xgemouse
+323.5,245.1,-1//xgemouse
+323.5,244.3,-1//xgemouse
+323.5,243.6,-1//xgemouse
+323.5,242.9,-1//xgemouse
+324.2,241.4,-1//xgemouse
+324.2,240.6,-1//xgemouse
+324.2,239.1,-1//xgemouse
+324.2,238.4,-1//xgemouse
+324.2,237.6,-1//xgemouse
+324.2,236.9,-1//xgemouse
+324.2,236.9,0//xgemouse
+0,325.7,211.6,1000,"void"// Block: 5 CMSCOPE
+//x_mdialog: Set Scope parameters
+  1 1
+  -1 -3 5 7 9 11 13 15
+  1
+  []
+  []
+  0 0
+  20 1
+  30
+  2
+  0
+  
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(1))"// Simulate/Setup
+//x_mdialog: Set parameters
+  30
+  0
+  0.0001
+  0.000001
+  1.000E-10
+  100001
+  0
+  0
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,0,-1,"execstr(Diagram_1000(5))"// Diagram/Rename
+//x_dialog:Enter the new diagram name
+  diagram5
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(6))"// Diagram/Save
+-2,0,0,-1,"execstr(Diagram_1000(16))"// Diagram/Quit

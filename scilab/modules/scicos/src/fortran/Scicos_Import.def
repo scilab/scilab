@@ -1,0 +1,25 @@
+LIBRARY    scicos.dll
+
+
+EXPORTS
+
+
+;scicos
+; default import
+cosdebugcounter_
+cmsolver_
+curblk_
+rtfactor_
+scsptr_
+dbcos_
+costol_
+coshlt_
+ierscode_
+cosdebug_
+scsptr_
+;
+getlabel_
+getouttb_
+scicosclip_
+getscilabel_
+oldgraphics_

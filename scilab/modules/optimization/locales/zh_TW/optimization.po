@@ -1,0 +1,251 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-06-18 13:09+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2008-06-13 13:32+0100\n"
+
+#
+# File: macros/derivative.sci, line: 29
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#
+# File: macros/derivative.sci, line: 32
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤:  應為 N-維 診陣列.\n"
+
+#
+# File: macros/derivative.sci, line: 36
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為列向量.\n"
+
+#
+# File: macros/derivative.sci, line: 41
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr "%s: Order 應  1, 2 or 4.\n"
+
+#
+# File: macros/derivative.sci, line: 127
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
+
+# File: macros/fit_dat.sci, line: 78
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 輸入參數之數目錯誤(s).\n"
+
+#
+# File: macros/fit_dat.sci, line: 81
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s: 權重矩陣 (Weighting matrix) 應為方陣.\n"
+
+#
+# File: macros/fit_dat.sci, line: 100
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: 初始猜值不可行.\n"
+
+#
+# File: macros/bvodeS.sci, line: 69
+# File: macros/bvodeS.sci, line: 114
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: 輸入參數型態錯誤.\n"
+
+#
+# File: macros/lmisolver.sci, line: 135
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr " 限制條件數目 (%s)'),'lmisolver',%m,%fm));"
+
+#
+# File: macros/karmarkar.sci, line: 28
+# File: macros/karmarkar.sci, line: 32
+# File: macros/karmarkar.sci, line: 36
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s: 第 %d 個輸入參數長度錯誤."
+
+#
+# File: macros/karmarkar.sci, line: 39
+#, c-format
+msgid "%s: x0 is not feasible."
+msgstr "%s: x0 不可行."
+
+#
+# File: macros/karmarkar.sci, line: 56
+#, c-format
+msgid "%s: Unbounded problem!"
+msgstr "%s: 無界問題!"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 81
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s: 參數 3: 列數錯誤，應為 %d\n"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 110
+# File: sci_gateway/c/sci_qp_solve.c, line: 134
+# File: sci_gateway/c/sci_qp_solve.c, line: 142
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: 無法再配置記憶體.\n"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 169
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s: 此最小化問題無解.\n"
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 173
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s: Q 不是對稱正定.\n"
+
+msgid "Optimization and Simulation"
+msgstr ""
+
+#
+# File: src/c/sp.c, line: 261
+msgid "m must be at least one.\n"
+msgstr "m 最少應為 1.\n"
+
+#
+# File: src/c/sp.c, line: 266
+msgid "L must be at least one.\n"
+msgstr "L 最少應為 1.\n"
+
+#
+# File: src/c/sp.c, line: 271
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d] 最少應為 1.\n"
+
+#
+# File: src/c/sp.c, line: 276
+msgid "nu must be at least 1.0.\n"
+msgstr "nu 最少應為 1.0.\n"
+
+#
+# File: src/c/sp.c, line: 297
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "矩陣 Fi, i=1,...,m 為線性相依.\n"
+
+#
+# File: src/c/sp.c, line: 311
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr ""
+
+#
+# File: src/c/sp.c, line: 346
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr "工作空間過小.  最少需  %d*sizeof(double).\n"
+
+#
+# File: src/c/sp.c, line: 401
+# File: src/c/sp.c, line: 585
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "dspgv 內之錯誤, info = %d.\n"
+
+#
+# File: src/c/sp.c, line: 403
+msgid "x0 is not strictly primal feasible.\n"
+msgstr "x0 並非最嚴格可行.\n"
+
+#
+# File: src/c/sp.c, line: 416
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0 並非正定.\n"
+
+#
+# File: src/c/sp.c, line: 419
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Z 有一特徵值為負值.\n"
+
+#
+# File: src/c/sp.c, line: 441
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+
+#
+# File: src/c/sp.c, line: 498
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "dgels 內之錯誤, info = %d.\n"
+
+#
+# File: src/c/sp.c, line: 510
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "dtrcon 內之錯誤, info = %d.\n"
+
+#
+# File: src/c/sp.c, line: 514
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr "矩陣 F0i, i=1,...,m 為線性相依 (或初始位置 之條件很糟,badly conditioned).\n"
+
+#
+# File: src/c/sp.c, line: 558
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "dspst 內之錯誤, info = %d.\n"
+
+#
+# File: src/c/sp.c, line: 566
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "dspev 內之錯誤, info = %d.\n"
+
+#
+# File: src/c/intqld.c, line: 41
+#, c-format
+msgid "Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr "第 %d 個輸入參數長度錯誤: 列數應為 %d.\n"
+
+#
+# File: src/c/intqld.c, line: 135
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s:迭代次數過多(超過 %d).\n"
+
+#
+# File: src/c/intqld.c, line: 137
+#, c-format
+msgid "%s: Accuracy insufficient to statify convergence criterion.\n"
+msgstr "%s: 精度不足以滿足收斂條件.\n"
+
+#
+# File: src/c/intqld.c, line: 139
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s: 工作陣列長度不夠.\n"
+
+#
+# File: src/c/intqld.c, line: 141
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s: 限制條件不相容.\n"

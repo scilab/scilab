@@ -1,0 +1,10 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/noisegen_data.ref','rb');
+noisegen(0.5, 30, 1);
+x = -5:0.01:35;
+y = feval(x, Noise);
+plot(x, y);
+xdel_run(winsid());
+
+mclose(%U);

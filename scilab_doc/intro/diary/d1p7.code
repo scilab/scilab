@@ -1,0 +1,4 @@
+exec('d1p6.code',-1);
+pause
+pt=return(s*p)
+pt

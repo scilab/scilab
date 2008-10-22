@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="messagebox">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 déc 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>messagebox</refname>
+    <refpurpose>Open a message box.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+    [btn] = messagebox(msg)
+    [btn] = messagebox(msg, msgboxtitle)
+    [btn] = messagebox(msg, msgboxtitle, msgboxicon)
+    [btn] = messagebox(msg, msgboxtitle, msgboxicon)
+    [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons)
+    [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>msg</term>
+        <listitem>
+          <para>Matrix of strings: the message box displays each entry of this matrix (one entry per line).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msgboxtitle</term>
+        <listitem>
+          <para>String: the title of the message box (default value is "Scilab Message").</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msgboxicon</term>
+        <listitem>
+          <para>String: the name of the icon to be displayed in the message box, its possible values are:</para>
+          <itemizedlist>
+            <listitem>
+              <para>"error"</para>
+            </listitem>
+            <listitem>
+              <para>"hourglass"</para>
+            </listitem>
+            <listitem>
+              <para>"info"</para>
+            </listitem>
+            <listitem>
+              <para>"passwd"</para>
+            </listitem>
+            <listitem>
+              <para>"question"</para>
+            </listitem>
+            <listitem>
+              <para>"warning"</para>
+            </listitem>
+            <listitem>
+              <para>"scilab": default icon</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>buttons</term>
+        <listitem>
+          <para>1xn vector of strings: the names of the buttons to be displayed in the message box. By default, only one button is displayed with label "OK".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>modal</term>
+        <listitem>
+          <para>String: "modal" to create a modal dialog, any other string to create a non-modal dialog. Please note that "modal" can replace any of the other input arguments except msg (See examples).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>btn</term>
+        <listitem>
+          <para>Scalar: number of the button that the user pressed (1 is the leftmost button) for a modal dialog, 0 else.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Creates a dialog window to display a message waiting or not for a user action. This function is used by <link linkend="x_message">x_message</link> and <link linkend="buttondialog">buttondialog</link>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Simple example
+messagebox("Single line message")
+
+// Multi line message with title
+messagebox(["Multi-line" "message"], "User defined title")
+
+// Icon specified by th euser
+messagebox("An error message", "Error", "error")
+
+// Buttons labels + "modal" replaces title
+messagebox("Have you seen this beautiful message", "modal", "info", ["Yes" "No"])
+
+// "modal" given as fifth input argument
+messagebox("An error message", "Error", "error", ["Continue" "Stop"], "modal")
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_message">x_message</link>
+      </member>
+      <member>
+        <link linkend="buttondialog">buttondialog</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>

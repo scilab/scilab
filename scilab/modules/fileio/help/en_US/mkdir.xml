@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mkdir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mkdir</refname>
+    <refpurpose>Make new directory</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mkdir('dirname')
+mkdir('parentdir','newdir')
+status=mkdir( ... )
+[status,msg]=mkdir( ... )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+		mkdir('dirname') creates the directory dirname in the current
+		directory, if dirname represents a relative path. Otherwise, dirname
+		represents an absolute path and mkdir attempts to create the absolute
+		directory dirname
+	</para>
+    <para>mkdir('parentdir','dirname') creates the directory dirname in the
+    existing directory parentdir, where parentdir is an absolute or relative
+    pathname.</para>
+    <para>[status,message] = mkdir(...,'dirname') creates the directory dirname
+    in the existing directory parentdir, returning the status, a message.
+    Here, status is 1 for success, 2 if it already exists, and 0
+    otherwise.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+		// Absolute pathname
+		mkdir(TMPDIR+"/mkdir_example_1")
+		status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+		[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+
+		// Absolute pathname (parentdir + dirname)
+		[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+
+		// Relative pathname
+		cd TMPDIR;
+		[status_5,msg_5] = mkdir("mkdir_example_5")
+		[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cd">cd</link>
+      </member>
+      <member>
+        <link linkend="dir">dir</link>
+      </member>
+      <member>
+        <link linkend="rmdir">rmdir</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="uicontrol" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-24 18:08:41 +0200 (jeu, 24 avr 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>uicontrol</refname>
+
+    <refpurpose>create a Graphic User Interface object</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+    h = uicontrol(PropertyName,PropertyValue,...)
+    h = uicontrol(parent,PropertyName,PropertyValue,...)
+    h = uicontrol(uich)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This routine creates an object in a figure.</para>
+
+    <para>If the handle of the figure is given (as the first parameter), the
+    uicontrol is created in this figure. If no handle is given, the uicontrol
+    is created in the current figure (which may be obtained with a call to
+    <literal>gcf()</literal>). If there is no current figure, then one is
+    created before the creation of the uicontrol.</para>
+
+    <para>Then when the control is created, the properties given as parameters
+    are set with the corresponding values. It is equivalent to create the
+    uicontrol, and then set its properties with the <literal>set()</literal>
+    command. Nevertheless, it generally more efficient to set the properties
+    in the call to <literal>uicontrol()</literal>. This is particularly true
+    concerning the "Style" property. Indeed, the default value for this
+    property is "Pushbutton". So if you do not set it at creation time, a
+    button will be created, and will be transformed to another uicontrol when
+    you call the <literal>set(h, "Style", ... )</literal> instruction. Scilab
+    and all the graphic objects communicate through the property mechanism.
+    Thus, to create adapted uicontrol, one has to know the use of the property
+    fields.</para>
+
+    <para><literal>h = uicontrol(PropertyName, PropertyValue,...)</literal>
+    creates an uicontrol and assigns the specified properties and values to
+    it. It assigns the default values to any properties you do not specify.
+    The default uicontrol style is a "Pushbutton". The default parent is the
+    current figure. See the Properties section for information about these and
+    other properties.</para>
+
+    <para><literal>h = uicontrol(parent, PropertyName,
+    PropertyValue,...)</literal> creates a uicontrol in the object specified
+    by the handle, parent. If you also specify a different value for the
+    Parent property, the value of the Parent property takes precedence. parent
+    is the handle of a figure.</para>
+
+    <para><literal>h = uicontrol(uich)</literal> gives focus to the uicontrol
+    specified by uich.</para>
+  </refsection>
+
+  <refsection>
+    <title>Properties</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>BackgroundColor</term>
+
+        <listitem>
+          <para>[1,3] real vector or string</para>
+
+          <para>Background color of the uicontrol. A color is specified as
+          Red, Green and Blue values. Those values are real in [0,1]. The
+          color can be given as a real vector, ie [R,G,B] or a string where
+          each value is separated by a "|", ie "R|G|B".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Callback</term>
+
+        <listitem>
+          <para>String</para>
+
+          <para>Instruction evaluated by the Scilab interpreter when an
+          uicontrol is activated. (for example when you click on a
+          button).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Enable</term>
+
+        <listitem>
+          <para>{on} | off</para>
+
+          <para>Enable or disable the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is operational, 
+          but if this property is set to <literal>"off"</literal>, the uicontrol will not respond to the mouse actions and will be grayed out.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FontAngle</term>
+
+        <listitem>
+          <para>{normal} | italic | oblique</para>
+
+          <para>For a control containing some text, this property sets the
+          slant of the font.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FontSize</term>
+
+        <listitem>
+          <para>Scalar</para>
+
+          <para>For a control containing some text, this property sets the
+          size of the font in FontUnits.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FontUnits</term>
+
+        <listitem>
+          <para>{points} | pixels | normalized</para>
+
+          <para>For a control containing some text, this property sets the
+          units with which the FontSize is specified.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FontWeight</term>
+
+        <listitem>
+          <para>light | {normal} | demi | bold</para>
+
+          <para>For a control containing some text, this property sets the
+          weight of the used font.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FontName</term>
+
+        <listitem>
+          <para>String</para>
+
+          <para>Used to choose the name of the font selected to display the
+          text of the control.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ForegroundColor</term>
+
+        <listitem>
+          <para>[1,3] real vector or string</para>
+
+          <para>Foreground color of the uicontrol. A color is specified as
+          Red, Green and Blue values. Those values are real in [0,1]. The
+          color can be given as a real vector, ie [R,G,B] or a string where
+          each value is separated by a "|", ie "R|G|B".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>HorizontAlalignment</term>
+
+        <listitem>
+          <para>left | {center} | right</para>
+
+          <para>Set text horizontal alignment in the uicontrol. This property
+          has only effect with Text, Edit and Check Boxes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ListboxTop</term>
+
+        <listitem>
+          <para>Scalar</para>
+
+          <para>For a ListBox, this property tells which item of the list
+          appears on the first line of the visible area of the list.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Max</term>
+
+        <listitem>
+          <para>Scalar</para>
+
+          <para>Specifies the largest value the "Value" property can be set
+          to. It has however different meaning on each uicontrol:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>CheckBoxes: Max is the value the "Value" property take
+              when control is checked.</para>
+            </listitem>
+
+            <listitem>
+              <para>Sliders: Maximum value of the slider.</para>
+            </listitem>
+
+            <listitem>
+              <para>ListBoxes: if (Max-Min)&gt;1 the list allows multiple
+              selection, Otherwise not.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Min</term>
+
+        <listitem>
+          <para>Scalar</para>
+
+          <para>Specifies the lowest value the "Value" property can be set to.
+          It has however different meaning on each uicontrol:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>CheckBoxes: Min is the value the "Value" property take
+              when control is unchecked.</para>
+            </listitem>
+
+            <listitem>
+              <para>Sliders: Minimum value of the slider.</para>
+            </listitem>
+
+            <listitem>
+              <para>ListBoxes: if (Max-Min)&gt;1 the list allows multiple
+              selection, Otherwise not.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Parent</term>
+
+        <listitem>
+          <para>Handle</para>
+
+          <para>Handle of the uicontrol parent. Changing this property allows
+          to move a control from a figure to another.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Path</term>
+
+        <listitem>
+          <para>This property is no more supported.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Position</term>
+
+        <listitem>
+          <para>[1,4] real vector or string.</para>
+
+          <para>This property is used to set or get the geometrical
+          configuration of a control. It is a vector [x y w h] where the
+          letters stand for the x location of the left bottom corner, the y
+          location of the left bottom corner, the width and the height of the
+          uicontrol or a character string where each value is separated by a
+          "|", ie "x|y|w|h". The units are determined by the "Units"
+          property.</para>
+          <para>The width and height values determine the orientation of sliders. If width is greater than height, then the slider is oriented horizontally, otherwise the slider is oriented vertically.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Relief</term>
+
+        <listitem>
+          <para>flat | groove | raised | ridge | solid | sunken</para>
+
+          <para>Appearance of the border of the uicontrol:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>PushButtons: the default value for "Relief" property is
+              "raised".</para>
+            </listitem>
+
+            <listitem>
+              <para>Edits: the default value for "Relief" property is
+              "sunken".</para>
+            </listitem>
+
+            <listitem>
+              <para>Other styles: the default value for "Relief" property is
+              "flat".</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>SliderStep</term>
+
+        <listitem>
+          <para>[1,2] real vector</para>
+
+          <para>[small big], the small step represents the movement achieved
+          when clicking on the slider trough or tapping on the keyboard arrows
+          (when the slider has focus); the big step is the amount moved when
+          using Ctrl-keyboard-arrows. If the big step is omitted, it is
+          defaulted to 1/10 of the scale.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>String</term>
+
+        <listitem>
+          <para>String.</para>
+
+          <para>This property represents the text appearing in a uicontrol
+          (Except for Frame and Slider styles). For ListBoxes and PopupMenus,
+          the value can be a vector of string or a string where the items are
+          separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Style</term>
+
+        <listitem>
+          <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |
+          frame | listbox | popupmenu</para>
+
+          <para>Style of the uicontrol. Here is a short description of each
+          one:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Pushbutton: a rectangular button generally used to run a
+              callback.</para>
+            </listitem>
+
+            <listitem>
+              <para>Radiobutton: a button with to states. RadioButtons are
+              intended to be mutually exclusive (Your code must implement
+              mutually exclusive behavior).</para>
+            </listitem>
+
+            <listitem>
+              <para>Checkbox: a button with to states (Used for multiple
+              independent choices). </para>
+            </listitem>
+
+            <listitem>
+              <para>Edit: an editable string zone.</para>
+            </listitem>
+
+            <listitem>
+              <para>Text: a text control (generally static).</para>
+            </listitem>
+
+            <listitem>
+              <para>Slider: a scale control, that is a scrollbar use to set
+              values between in range with the mouse.</para>
+            </listitem>
+
+            <listitem>
+              <para>Frame: a control representing a zone used to group related
+              controls.</para>
+            </listitem>
+
+            <listitem>
+              <para>Listbox: a control representing a list of items that can
+              be scrolled. The items can be selected with the mouse.</para>
+            </listitem>
+
+            <listitem>
+              <para>Popupmenu: a button which make a menu appear when
+              clicked.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Tag</term>
+
+        <listitem>
+          <para>String</para>
+
+          <para>This property is generally used to identify the control. It
+          allows to give it a "name". Mainly used in conjunction with
+          <literal>findobj()</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Units</term>
+
+        <listitem>
+          <para>{points} | pixels | normalized</para>
+
+          <para>Set the units used to specify the "Position" property.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Userdata</term>
+
+        <listitem>
+          <para>Scilab data</para>
+
+          <para>This can be used to associate some Scilab objects
+          (string,string matrix, matrix mxn) to an uicontrol.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Value</term>
+
+        <listitem>
+          <para>Scalar or vector</para>
+
+          <para>Value of the uicontrol. The exact meaning depends on the style
+          of the uicontrol:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>CheckBoxes, Radio buttons: value is set to Max (see above)
+              when on and Min when off.</para>
+            </listitem>
+
+            <listitem>
+              <para>ListBoxes, PopupMenus: value is a vector of indexes
+              corresponding to the indexes of the selected entries in the
+              list. 1 is the first item of the list.</para>
+            </listitem>
+
+            <listitem>
+              <para>Sliders: value indicated by the slider bar.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Verticalalignment</term>
+
+        <listitem>
+          <para>top | {middle} | bottom</para>
+
+          <para>Set text vertical alignment in the uicontrol. This property
+          has only effect with Text and CheckBoxes styles.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Visible</term>
+
+        <listitem>
+          <para>{on} | off</para>
+
+          <para>Set the visibility of the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is visible, 
+          but if this property is set to <literal>"off"</literal>, the uicontrol will not appear in its parent figure.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+f=figure();
+// create a figure
+h=uicontrol(f,'style','listbox', ...
+ 'position', [10 10 150 160]);
+// create a listbox
+set(h, 'string', "item 1|item 2|item3");
+// fill the list
+set(h, 'value', [1 3]);
+// select item 1 and 3 in the list
+close(f);
+// close the figure
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="figure">figure</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="uimenu">uimenu</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Bertrand Guiheneuf</para>
+
+    <para>Vincent Couvert</para>
+  </refsection>
+</refentry>

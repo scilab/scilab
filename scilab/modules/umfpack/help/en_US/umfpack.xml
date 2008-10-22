@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umfpack">
+  <info>
+    <pubdate/>
+  </info>
+  <refnamediv>
+    <refname>umfpack</refname>
+    <refpurpose> solve sparse linear system  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x = umfpack(A,"\",b)
+x = umfpack(b,"/",A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>a sparse (real or complex) square matrix n x n</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b  </term>
+        <listitem>
+          <para>in the first case, a column vector (n x 1) or a n x m matrix ;    
+		  in the second case, a row vector (1 x n) or a m x n matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>in the first case , a column vector (n x 1) or a n x m matrix ;    
+		  in the second case, a row vector (1 x n) or a m x n matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>2d arg  </term>
+        <listitem>
+          <para>string specifier "\" or "/"</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function is intended to work like the classic operators \ and / 
+    x = A\b  and x = b/A) i.e. it solves a linear system Ax = b or xA = b 
+    with a sparse square (says n x n) real or complex matrix and with a compatible
+    rhs b : n x m in the first case and m x n in the second. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Details</title>
+    <para>
+    First an LU factorisation of the matrix is computed (<literal> P R^(-1) A Q = LU </literal>
+    where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
+    a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix) 
+    then a first solution is computed with forward/backward subtitutions ; 
+    finaly the solution is improved  by iterative refinement.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// this is the small linear test system from UMFPACK
+// whom solution must be [1;2;3;4;5]
+A = sparse( [ 2  3  0  0  0;
+              3  0  4  0  6; 
+              0 -1 -3  2  0; 
+              0  0  1  0  0; 
+              0  4  2  0  1] );
+b = [8 ; 45; -3; 3; 19];
+x = umfpack(A,"\",b)
+
+// test the other form x A = b
+b = [8  20  13  6  17];
+x = umfpack(b,"/",A)   // solution must be [1 2 3 4 5]
+
+// test multiple rhs
+b = rand(5,3);
+x = umfpack(A,"\",b)
+norm(A*x - b)
+
+// test multiple rhs for x A = b
+b = rand(3,5);
+x = umfpack(b,"/",A)
+norm(x*A - b)
+
+// solve a complex system
+A = sparse( [ 2+%i  3+2*%i  0      0    0;
+              3-%i  0       4+%i   0    6-3*%i; 
+              0    -1+%i   -3+6*%i 2-%i 0; 
+              0     0       1-5*%i 0    0; 
+              0     4       2-%i   0    1] );
+b = [ 3+13*%i ; 58+32*%i ; -19+13*%i ; 18-12*%i ; 22+16*%i ];
+x = umfpack(A,"\",b)  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
+   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="umf_lufact">umf_lufact</link>
+      </member>
+      <member>
+        <link linkend="umf_lusolve">umf_lusolve</link>
+      </member>
+      <member>
+        <link linkend="umf_ludel">umf_ludel</link>
+      </member>
+      <member>
+        <link linkend="umf_luinfo">umf_luinfo</link>
+      </member>
+      <member>
+        <link linkend="umf_luget">umf_luget</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>umfpack by Timothy A. Davis (see umf_license)</member>
+      <member>scilab interface by Bruno Pincon with contributions from Antonio Frasson</member>
+    </simplelist>
+  </refsection>
+</refentry>

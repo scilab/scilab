@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colordef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>colordef</refname>
+    <refpurpose>Set default color values to display different color schemes</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>colordef(color_scheme)
+colordef(f,color_scheme)
+colordef('new',color_scheme)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>color_scheme</term>
+        <listitem>
+          <para>a character string with possible value: 'white', 'black','none'
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>a handle on a graphic figure
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para><literal>colordef('white')</literal> sets the default figure (see
+	  <link linkend="gdf">gdf</link>) colormap to <literal>jetcolormap(64)</literal>, the
+	    default figure background color to
+	  light gray and the default axes (see <link linkend="gda">gda</link>) background
+	  color to white, the axes lines foreground and font color to black.</para>
+      </listitem>
+      <listitem>
+        <para><literal>colordef('black')</literal> sets the default figure (see
+	  <link linkend="gdf">gdf</link>) colormap to <literal>jetcolormap(64)</literal>, the
+	    default figure  background color to dark gray and the default axes
+	  (see <link linkend="gda">gda</link>) background color to black, the axes lines
+	  foreground and font color to white.</para>
+      </listitem>
+      <listitem>
+        <para><literal>colordef('none')</literal> sets the default figure (see
+	  <link linkend="gdf">gdf</link>)  colormap to <literal>hsvcolormap(64)</literal>, the
+	    default figure  background color to dark gray and the default axes
+	  (see <link linkend="gda">gda</link>) background color to black, the axes lines
+	  foreground and font color to white.</para>
+      </listitem>
+      <listitem>
+        <para><literal>colordef(f,color_scheme)</literal> sets the color  properties of  figure given by the
+	handle <literal>f</literal> as well as the color properties of its current axes.</para>
+      </listitem>
+      <listitem>
+        <para><literal>colordef('new',color_scheme)</literal> creates a new graphic window
+	and its color properties as well as the properties of its  axes.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+   // Add here scilab instructions and comments
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gdf"> gdf</link>
+      </member>
+      <member>
+        <link linkend="gda"> gda</link>
+      </member>
+      <member>
+        <link linkend="figure_properties"> figure_properties</link>
+      </member>
+      <member>
+        <link linkend="axes_properties"> axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>S. Steer</term>
+        <listitem>
+          <para>
+       INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

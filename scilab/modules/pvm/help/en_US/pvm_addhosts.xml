@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_addhosts">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_addhosts</refname>
+    <refpurpose> add hosts to the virtual machine.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[infos] = pvm_addhosts(hosts)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>hosts</term>
+        <listitem>
+          <para>row of strings, naming the hosts to be added.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infos</term>
+        <listitem>
+          <para>row of integer, corresponding to the status for each host.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_addhosts</literal>
+    adds the computers named in the row matrix <literal>hosts</literal>
+    to the configuration of computers making up the virtual machine.
+    The names should have the same syntax as lines of a pvmd hostfile: 
+    i.e a hostname followed by options of the form xx=y 
+    (see man page for pvmd3).</para>
+    <para>
+    The row matrix <literal>info</literal> will contain for each added host 
+    its status. Values less than zero indicate an error,
+    while positive values are TIDs of the new hosts.</para>
+    <para>
+    The status of hosts can be requested by the application using
+     <literal>pvm_config</literal>.
+    If a host fails it will be automatically deleted from the configuration.
+    Using pvm_addhosts a replacement host can be added by the application,
+    however it is the responsibility of the
+    application developer to make his application tolerant of host failure.
+    Another use of this feature would be to add more hosts
+    as they become available, for example on a weekend, or if the
+    application dynamically determines it could use more computational power.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_delhosts">pvm_delhosts</link>
+      </member>
+      <member>
+        <link linkend="pvm_config">pvm_config</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

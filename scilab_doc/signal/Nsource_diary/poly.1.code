@@ -1,0 +1,11 @@
+//exec('poly.1.ex')
+//illustrate the roots format of poly
+   q1=poly([1 2],'x')
+   roots(q1)
+//illustrate the coefficients format of poly
+   q2=poly([1 2],'x','c')
+   roots(q2)
+//illustrate the characteristic polynomial feature
+   a=[1 2;3 4]
+   q3=poly(a,'x')
+   roots(q3)

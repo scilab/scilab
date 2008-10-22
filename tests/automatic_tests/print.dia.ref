@@ -1,0 +1,50 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/print_data.ref','rb');
+ 
+a = rand(3, 3);p = poly([1,2,3], 's');l = list(1, 'asdf', [1,2,3]);
+ 
+%ans = print(%io(2), a, p, l);
+ l  =
+ 
+ 
+       l(1)
+ 
+    1.  
+ 
+       l(2)
+ 
+ asdf   
+ 
+       l(3)
+ 
+    1.    2.    3.  
+ p  =
+ 
+                2   3  
+  - 6 + 11s - 6s + s   
+ a  =
+ 
+    0.2113249    0.3303271    0.8497452  
+    0.7560439    0.6653811    0.6857310  
+    0.0002211    0.6283918    0.8782165  
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = write(%io(2), a);
+  2.1132486546D-01  3.3032709174D-01  8.4974523587D-01
+  7.5604385417D-01  6.6538110422D-01  6.8573101982D-01
+  2.2113462910D-04  6.2839178834D-01  8.7821648130D-01
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

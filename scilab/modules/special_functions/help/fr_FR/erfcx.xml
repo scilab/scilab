@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="erfcx">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>erfcx</refname>
+    <refpurpose> fonction erreur complémentaire normalisée.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y = erfcx(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para>vecteur réel (de même taille que x)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>erfcx</literal> calcule la fonction erreur complémentaire
+     normalisée.</para>
+    <programlisting><![CDATA[
+               2
+      y = exp(x ) * erfc(x)
+
+                 1
+      y  -->  ---------    when x --> +oo
+              x sqrt(pi)
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="erf">erf</link>
+      </member>
+      <member>
+        <link linkend="erfc">erfc</link>
+      </member>
+      <member>
+        <link linkend="calerf">calerf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>W. J. Cody (code from Netlib (specfun))</para>
+  </refsection>
+</refentry>

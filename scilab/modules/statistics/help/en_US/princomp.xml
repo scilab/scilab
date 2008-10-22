@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="princomp">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>princomp</refname>
+    <refpurpose>  Principal components analysis</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[facpr,comprinc,lambda,tsquare] = princomp(x,eco)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para> is a <literal>n</literal>-by-<literal>p</literal>
+          (<literal>n</literal> individuals, <literal>p</literal>
+          variables) real matrix.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eco</term>
+        <listitem>
+          <para> a boolean, use to allow economy size singular value decomposition.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>facpr</term>
+        <listitem>
+          <para>A <literal>p</literal>-by-<literal>p</literal>
+          matrix. It contains the principal factors: eigenvectors of
+          the correlation matrix <literal>V</literal>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>comprinc</term>
+        <listitem>
+          <para>a <literal>n</literal>-by-<literal>p</literal>
+          matrix. It contains the principal components.  Each column
+          of this matrix is the M-orthogonal projection of individuals
+          onto principal axis.  Each one of this columns is a linear
+          combination of the variables x1, ...,xp with maximum
+          variance under condition <literal>u'_i M^(-1)
+          u_i=1</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lambda</term>
+        <listitem>
+          <para>is a <literal>p</literal> column vector.  It contains
+          the eigenvalues of <literal>V</literal>, where
+          <literal>V</literal> is the correlation matrix.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tsquare</term>
+        <listitem>
+          <para>a  <literal>n</literal>  column vector. It contains the Hotelling's
+          T^2 statistic for each data point.</para>
+        </listitem>
+      </varlistentry>
+     
+     
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+   This function performs "principal component analysis" on the
+   <literal>n</literal>-by-<literal>p</literal> data matrix
+   <literal>x</literal>.</para>
+    <para>
+      The idea behind this method is to represent in an approximative
+      manner a cluster of n individuals in a smaller dimensional
+      subspace.  In order to do that, it projects the cluster onto a
+      subspace.  The choice of the k-dimensional projection subspace
+      is made in such a way that the distances in the projection have
+      a minimal deformation: we are looking for a k-dimensional
+      subspace such that the squares of the distances in the
+      projection is as big as possible (in fact in a projection,
+      distances can only stretch).  In other words, inertia of the
+      projection onto the k dimensional subspace must be maximal.
+    </para>
+    <para> 
+      To compute principal component analysis with standardized variables may use
+      <literal>princomp(wcenter(x,1))</literal> or use the <link
+      linkend="pca">pca</link>  function.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+  a=rand(100,10,'n');
+  [facpr,comprinc,lambda,tsquare] = princomp(a);
+  ]]></programlisting>
+  </refsection>
+ <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="wcenter">wcenter</link>
+      </member>
+      <member>
+        <link linkend="pca">pca</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
+    Carlos Klimann
+  </para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>Saporta, Gilbert, Probabilites,  Analyse des
+Donnees et Statistique, Editions Technip, Paris, 1990.</para>
+  </refsection>
+</refentry>

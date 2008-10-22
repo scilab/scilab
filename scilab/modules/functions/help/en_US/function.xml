@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="function">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>function</refname>
+    <refpurpose> opens a function definition</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="endfunction">
+    <refname>endfunction</refname>
+    <refpurpose> closes a function definition</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <programlisting><![CDATA[
+
+function <lhs_arguments>=<function_name><rhs_arguments>
+<statements>
+endfunction
+   
+    ]]></programlisting>
+    <para>
+    Where
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>&lt;function_name&gt;</term>
+        <listitem>
+          <para>stands for the name of the function</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;rhs_arguments&gt;</term>
+        <listitem>
+          <para>stands for the input argument list. It may be</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>a comma separated sequence of variable names enclosed in parenthesis, like  <literal>(x1,...,xm)</literal>. Last variable name can be the key word <literal>varargin</literal> (see varargin)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>the sequence <literal>()</literal> or nothing,if the function has no input argument.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;lhs_arguments&gt;</term>
+        <listitem>
+          <para>stands for the output argument list. It may be</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>a comma separated sequence of variable names enclosed in brackets, like  <literal>[y1,...,yn]</literal>. Last variable name can be the key word <literal>varargout</literal> (see varargout)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>the sequence <literal>[]</literal> ,if the function has no input argument. In this case the syntax may also be:  <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;statements&gt;</term>
+        <listitem>
+          <para>stands for a set of scilab instructions (statements)  This syntax may be used to define function (see functions) inline or in a script file (see exec). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>getf</literal> function.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    The <literal>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+    sequence cannot be split over several lines. This sequence can be
+    followed by statements in the same line if a comma or a semicolon is
+    added at its end.</para>
+    <para>
+    function definitions can be nested</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//inline definition (see function)
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+//a one line function definition
+function y=sq(x),y=x^2,endfunction
+
+sq(3)
+
+//nested functions definition
+function y=foo(x)
+a=sin(x)
+function y=sq(x), y=x^2,endfunction
+y=sq(a)+1
+endfunction
+
+foo(%pi/3)
+
+
+// definition in an script file (see exec)
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="functions">functions</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

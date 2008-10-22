@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2007 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sound">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sound</refname>
+    <refpurpose>sound player facility</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sound(y [,fs,bits,command)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fs</term>
+        <listitem>
+          <para>real number, sampling frequency in sample per second (default value is 22050)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bits</term>
+        <listitem>
+          <para>real number, number of bits (unused)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>command</term>
+        <listitem>
+          <para>Only used on Unix systems it gives the name of the command to use for playing sound 
+          (wav) files. The defaut value is <literal>aplay</literal>. If set <literal>/dev/audio</literal> then 
+          a 8 bits mu-law raw sound file is created and send to <literal>/dev/audio</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>sound(y,fs)</literal>plays the sound signal given by matrix <literal>y</literal> (with sample frequency
+    fs). In fact this function is just a wrapper for <literal>playsnd</literal>. Values in y are assumed to be in the 
+    range -1.0 &lt;= y &lt;= 1.0. Values outside that range are truncated.  
+    The number of rows of <literal>y</literal> gives the number of channels.
+    <literal>sound(y)</literal> plays the sound at the default sample rate of 22050 sample per second.
+    <literal>sound(y,fs,nbits)</literal> plays the sound using <literal>nbits</literal> bits/sample if
+    possible (it is in fact unused).  Most platforms support bits=8 or 16.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+  // a two channel signal 
+  y=loadwave("SCI/modules/sound/demos/chimes.wav");
+  sound(y)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="playsnd">playsnd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

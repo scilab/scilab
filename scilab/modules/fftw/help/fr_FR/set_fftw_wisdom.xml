@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="set_fftw_wisdom">
+  <info>
+    <pubdate>February 2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>set_fftw_wisdom</refname>
+    <refpurpose>charge un wisdom fftw</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>set_fftw_wisdom(txt)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>Matrice de chaîne de caractères contenant le wisdom fftw.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+     Cette fonction charge un wisdom fftw contenue dans une chaîne de caractères.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+
+ //return fftw wisdom
+ txt=get_fftw_wisdom();
+ //set fftw wisdom
+ set_fftw_wisdom(txt);
+ //reset fftw wisdom
+ fftw_forget_wisdom();
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fftw">fftw</link>
+      </member>
+      <member>
+        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

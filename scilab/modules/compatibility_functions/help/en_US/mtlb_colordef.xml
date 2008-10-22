@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_colordef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_colordef</refname>
+    <refpurpose>Matlab colordef emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>There is no Scilab equivalent function for Matlab <literal>colordef</literal> but there are equivalent instructions.</para>
+    <para>
+    The function <literal>h = mtlb_colordef(color_option)</literal> or 
+    <literal>h = mtlb_colordef(fig,color_option)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>colordef(color_option)</literal> or 
+    <literal>colordef(fig,color_option)</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_colordef</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When called with one input parameter, if <literal>color_option</literal> is equal to "black" or "none"
+        <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = gcf();fig.background = -1;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with one input parameter, if <literal>color_option</literal> is equal to "white"
+        <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = gcf();fig.background = -2;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with two input parameters, if <literal>fig</literal> is a graphic handle and 
+	<literal>color_option</literal> is equal to "black" or "none"
+        <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig.background = -1;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with two input parameters, if <literal>fig</literal> is a graphic handle and 
+	<literal>color_option</literal> is equal to "white"
+        <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig.background = -2;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with two input parameters, if <literal>fig</literal> is equal to "new" and
+	<literal>color_option</literal> is equal to "black" or "none"
+        <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = scf(max(winsid())+1);fig.background = -1;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with two input parameters, if <literal>fig</literal> is equal to "new" and
+	<literal>color_option</literal> is equal to "white"
+        <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = scf(max(winsid())+1);fig.background = -2;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with one output parameter <literal>h</literal>, just add <literal>h = fig;</literal> after equivalent instructions.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_colordef</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="figure_properties">figure_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

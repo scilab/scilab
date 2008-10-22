@@ -1,0 +1,21 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function save()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+savefile = "save_env";
+savematfile("scilab.mat");
+savematfile(savefile+".mat");
+savematfile(savefile+".mat","y");
+// !! L.10: Option -regexp not yet handled: will be ignored
+savematfile(savefile+".asc","y","-ascii","-double","-tabs","-mat","-v4","-append");
+savematfile(savefile+".asc","y","-ascii","-double","-tabs","-mat","-v4");
+savematfile("filename");
+savematfile("filename")

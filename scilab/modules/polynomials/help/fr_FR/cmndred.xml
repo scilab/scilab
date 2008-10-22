@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cmndred">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cmndred</refname>
+    <refpurpose> dénominateur commun  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[n,d]=cmndred(num,den)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>num, den  </term>
+        <listitem>
+          <para>2 matrices de polynômes de mêmes dimensions
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[n,d]=cmndred(num,den)</literal> calcule une matrice de polynômes <literal>n</literal> et 
+    un dénominateur commun <literal>d</literal> tels que :
+  </para>
+    <para>
+      <literal>n/d=num./den</literal>
+    </para>
+    <para>
+    La matrice de polynômes définie par <literal>num./den</literal> est <literal>n/d</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

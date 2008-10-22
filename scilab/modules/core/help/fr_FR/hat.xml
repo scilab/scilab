@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hat (^)</refname>
+    <refpurpose> élévation à la puissance  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>A^b</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Élévation à la puissance de matrices ou vecteurs.
+  </para>
+    <para>
+    Si <literal>A</literal> est un vecteur ou une matrice non-carrée l'élévation à la puissance est faite élément par élément avec la signification usuelle.
+  </para>
+    <para>
+    Pour une matrice carrée <literal>A</literal> l'élévation est faite au sens matriciel.
+  </para>
+    <para>
+    Pour les matrices booléennes, rationnelles ou polynomiales, l'exposant doit être entier.
+  </para>
+    <refsection>
+      <title>Remarques</title>
+      <para>
+      Notez que <literal>123.^b</literal> est interprété comme <literal>(123).^b</literal>. Dans un tel cas le point fait partie de l'opérateur et non pas du nombre.
+    </para>
+      <para>
+      Étant donnés deux nombres réels ou complexes <literal>x1</literal> et  <literal>x2</literal> la valeur de 
+      <literal>x1^x2</literal> est la "valeur principale" déterminée par 
+      <literal>x1^x2 = exp(x2*log(x1))</literal>.
+    </para>
+    </refsection>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+2^4
+(-0.5)^(1/3)
+[1 2;2 4]^(1+%i)
+s=poly(0,"s");
+[1 2 s]^4
+[s 1;1  s]^(-1)
+</para>
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="exp">exp</link>
+      </member>
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

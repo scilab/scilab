@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_dec2hex">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_dec2hex</refname>
+    <refpurpose>Matlab dec2hex emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab <literal>dec2hex</literal> behave differently in some particular cases:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With empty matrix: Matlab <literal>dec2hex</literal> returns "" but in Scilab you get [].
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        With complex inputs: Matlab <literal>dec2hex</literal> automatically removes complex part of inputs but not Scilab one.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Matlab <literal>dec2hex</literal> always returns a row vector but in Scilab <literal>dec2hex</literal>
+	returns a value which have the same size as the input.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Matlab <literal>dec2hex</literal> can have two inputs but not Scilab one.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The function <literal>mtlb_dec2hex(D[,N])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>dec2hex(D[,N])</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_dec2hex</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>D</literal> is not an empty matrix,
+        <literal>mtlb_dec2hex(D)</literal> may be replaced by
+	<literal>matrix(dec2hex(real(D)),-1,1)</literal> if <literal>D</literal> is complex and by
+	<literal>matrix(dec2hex(D),-1,1)</literal> else.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_dec2hex</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdfbin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdfbin</refname>
+    <refpurpose> cumulative distribution function Binomial distribution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P,Q]=cdfbin("PQ",S,Xn,Pr,Ompr)
+[S]=cdfbin("S",Xn,Pr,Ompr,P,Q)
+[Xn]=cdfbin("Xn",Pr,Ompr,P,Q,S)
+[Pr,Ompr]=cdfbin("PrOmpr",P,Q,S,Xn)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P,Q,S,Xn,Pr,Ompr</term>
+        <listitem>
+          <para>six real vectors of the same size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P,Q (Q=1-P)  </term>
+        <listitem>
+          <para>The cumulation from 0 to S of the binomial distribution. (Probablility of S or fewer successes in XN trials each with probability of success PR.) Input range: [0,1].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>The number of successes observed. Input range: [0, XN] Search range: [0, XN]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Xn</term>
+        <listitem>
+          <para>The number of binomial trials. Input range: (0, +infinity). Search range: [1E-300, 1E300]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Pr,Ompr (Ompr=1-Pr)  </term>
+        <listitem>
+          <para>The probability of success in each binomial trial. Input range: [0,1]. Search range: [0,1]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Calculates any one parameter of the binomial
+    distribution given values for the others.</para>
+    <para>
+    Formula  26.5.24    of   Abramowitz  and    Stegun,  Handbook   of
+    Mathematical   Functions (1966) is   used  to reduce the  binomial
+    distribution  to  the  cumulative incomplete    beta distribution.</para>
+    <para>
+    Computation of other parameters involve a seach for a value that
+    produces  the desired  value  of P.   The search relies  on  the
+    monotinicity of P with the other parameter.</para>
+    <para>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</para>
+  </refsection>
+</refentry>

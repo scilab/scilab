@@ -1,0 +1,10 @@
+xinit('analog4.ps')
+n=13;epsilon=0.2;omegac=3;sample=0:0.05:10;
+[p,gain]=zpch1(n,epsilon,omegac);
+//Transfer function computation tr_fct(s)=gain/deno(s)
+tr_fct=poly(gain,'s','coef')/real(poly(p,'s'))
+//Magnitude of the frequency response computed along the
+//imaginary axis for the values %i*sample...
+rep=abs(freq(tr_fct(2),tr_fct(3),%i*sample));   
+plot(sample,rep,'frequencies','magnitude')
+xend()

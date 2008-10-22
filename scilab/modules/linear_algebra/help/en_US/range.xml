@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="range">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>range</refname>
+    <refpurpose> range (span) of A^k</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X,dim]=range(A,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real square matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>orthonormal real matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>integer (dimension of subspace)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Computation of Range <literal>A^k</literal> ; the first dim rows of <literal>X</literal> span the
+    range of <literal>A^k</literal>. The last rows of <literal>X</literal> span the
+      orthogonal complement of the range. <literal>X*X'</literal> is the Identity matrix</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    
+    A=rand(4,2)*rand(2,4);   // 4 column vectors, 2 independent.
+    [X,dim]=range(A,1);dim   // compute the range
+
+    y1=A*rand(4,1);          //a vector which is in the range of A
+    y2=rand(4,1);            //a vector which is not  in the range of A
+    norm(X(dim+1:$,:)*y1)    //the last entries are zeros, y1 is in the range of A
+    norm(X(dim+1:$,:)*y2)    //the last entries are not zeros
+
+    I=X(1:dim,:)'            //I is a basis of the range
+    coeffs=X(1:dim,:)*y1     // components of y1 relative to the I basis
+
+    norm(I*coeffs-y1)        //check
+
+    
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fullrfk">fullrfk</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. D. INRIA ;   </para>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para>The <literal>range</literal> function is based on the <link linkend="rowcomp">rowcomp</link> function
+    which uses the <link linkend="svd">svd</link> decomposition.</para>
+  </refsection>
+</refentry>

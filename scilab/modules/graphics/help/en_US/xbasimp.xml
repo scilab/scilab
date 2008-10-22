@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xbasimp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xbasimp</refname>
+    <refpurpose>send graphics to a Postscript printer or
+  in a file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xbasimp(win_num,[filen,printer])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
+        <listitem>
+          <para>integer scalar or vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>filen</term>
+        <listitem>
+          <para>string, Postscript file name (default value is "file"). The
+          window number is appended to <literal>filen</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>printer</term>
+        <listitem>
+          <para>string, printer name. If <literal>printer</literal> is present or if
+          there is only one argument in the calling sequence, the created file
+          is printed on printer <literal>printer</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xbasimp</literal> sends the recorded graphics of the window
+    <literal>win_num</literal> into the Postscript file <literal>filen</literal>. If a printer is specified,
+    the graphic windows content is also printed.</para>
+    <para>If <literal>win_num</literal> is a vector, several files are generated, one
+    for each selected window (with names <literal>filenxx</literal>).</para>
+    <para>The window number is appended to <literal>filen</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="printfigure">printfigure</link>
+      </member>
+      <member>
+        <link linkend="toprint">toprint</link>
+      </member>
+      <member>
+        <link linkend="xs2fig">xs2fig</link>
+      </member>
+      <member>
+        <link linkend="xs2gif">xs2gif</link>
+      </member>
+      <member>
+        <link linkend="xs2ppm">xs2ppm</link>
+      </member>
+      <member>
+        <link linkend="xs2ps">xs2ps</link>
+      </member>
+      <member>
+        <link linkend="xs2eps">xs2eps</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

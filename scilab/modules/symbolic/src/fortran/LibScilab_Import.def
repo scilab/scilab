@@ -1,0 +1,20 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+; core
+com_
+adre_
+iop_
+stack_
+vstk_  
+;
+;core_f
+intstr_
+isnum_
+iseye_
+factf_
+termf_
+atome_
+expsum_
+;

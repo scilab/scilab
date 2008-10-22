@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="graphics">
+<!-- =================== -->
+<!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+
+<PRIMITIVE gatewayId="7" primitiveId="1" primitiveName="champ" />
+<PRIMITIVE gatewayId="7" primitiveId="2" primitiveName="champ1" />
+<PRIMITIVE gatewayId="7" primitiveId="3" primitiveName="fec" />
+<PRIMITIVE gatewayId="7" primitiveId="4" primitiveName="geom3d" />
+<PRIMITIVE gatewayId="7" primitiveId="5" primitiveName="grayplot" />
+<PRIMITIVE gatewayId="7" primitiveId="6" primitiveName="Matplot" />
+<PRIMITIVE gatewayId="7" primitiveId="7" primitiveName="Matplot1" />
+<PRIMITIVE gatewayId="7" primitiveId="8" primitiveName="contour2di" />
+<PRIMITIVE gatewayId="7" primitiveId="9" primitiveName="param3d" />
+<PRIMITIVE gatewayId="7" primitiveId="10" primitiveName="param3d1" />
+<PRIMITIVE gatewayId="7" primitiveId="11" primitiveName="xstringb" />
+<PRIMITIVE gatewayId="7" primitiveId="12" primitiveName="plot2d" />
+<PRIMITIVE gatewayId="7" primitiveId="13" primitiveName="plot2d1" />
+<PRIMITIVE gatewayId="7" primitiveId="14" primitiveName="plot2d2" />
+<PRIMITIVE gatewayId="7" primitiveId="15" primitiveName="plot2d3" />
+<PRIMITIVE gatewayId="7" primitiveId="16" primitiveName="plot2d4" />
+<PRIMITIVE gatewayId="7" primitiveId="17" primitiveName="plot3d" />
+<PRIMITIVE gatewayId="7" primitiveId="18" primitiveName="plot3d1" />
+<PRIMITIVE gatewayId="7" primitiveId="19" primitiveName="winsid" />
+<PRIMITIVE gatewayId="7" primitiveId="20" primitiveName="xarc" />
+<PRIMITIVE gatewayId="7" primitiveId="21" primitiveName="xarcs" />
+<PRIMITIVE gatewayId="7" primitiveId="22" primitiveName="xarrows" />
+<PRIMITIVE gatewayId="7" primitiveId="23" primitiveName="drawaxis" />
+<PRIMITIVE gatewayId="7" primitiveId="24" primitiveName="xchange" />
+<PRIMITIVE gatewayId="7" primitiveId="25" primitiveName="show_pixmap" />
+<PRIMITIVE gatewayId="7" primitiveId="26" primitiveName="oldxclear" />
+<PRIMITIVE gatewayId="7" primitiveId="27" primitiveName="xclick" />
+<PRIMITIVE gatewayId="7" primitiveId="28" primitiveName="xdel" />
+<PRIMITIVE gatewayId="7" primitiveId="29" primitiveName="xfarc" />
+<PRIMITIVE gatewayId="7" primitiveId="30" primitiveName="xfarcs" />
+<PRIMITIVE gatewayId="7" primitiveId="31" primitiveName="xfpoly" />
+<PRIMITIVE gatewayId="7" primitiveId="32" primitiveName="xfpolys" />
+<PRIMITIVE gatewayId="7" primitiveId="33" primitiveName="xfrect" />
+<PRIMITIVE gatewayId="7" primitiveId="34" primitiveName="xget" />
+<PRIMITIVE gatewayId="7" primitiveId="35" primitiveName="xgetech" />
+<PRIMITIVE gatewayId="7" primitiveId="36" primitiveName="xgetmouse" />
+<PRIMITIVE gatewayId="7" primitiveId="37" primitiveName="xgrid" />
+<PRIMITIVE gatewayId="7" primitiveId="38" primitiveName="xlfont" />
+<PRIMITIVE gatewayId="7" primitiveId="39" primitiveName="xpoly" />
+<PRIMITIVE gatewayId="7" primitiveId="40" primitiveName="xpolys" />
+<PRIMITIVE gatewayId="7" primitiveId="41" primitiveName="xrect" />
+<PRIMITIVE gatewayId="7" primitiveId="42" primitiveName="xrects" />
+<PRIMITIVE gatewayId="7" primitiveId="43" primitiveName="xsegs" />
+<PRIMITIVE gatewayId="7" primitiveId="44" primitiveName="show_window" />
+<PRIMITIVE gatewayId="7" primitiveId="45" primitiveName="xset" />
+<PRIMITIVE gatewayId="7" primitiveId="46" primitiveName="xsetech" />
+<PRIMITIVE gatewayId="7" primitiveId="47" primitiveName="xstring" />
+<PRIMITIVE gatewayId="7" primitiveId="48" primitiveName="xtape" />
+<PRIMITIVE gatewayId="7" primitiveId="49" primitiveName="xtitle" />
+<PRIMITIVE gatewayId="7" primitiveId="50" primitiveName="xgraduate" />
+<PRIMITIVE gatewayId="7" primitiveId="51" primitiveName="xname" />
+<PRIMITIVE gatewayId="7" primitiveId="52" primitiveName="clear_pixmap" />
+<PRIMITIVE gatewayId="7" primitiveId="53" primitiveName="set_posfig_dim" />
+<PRIMITIVE gatewayId="7" primitiveId="54" primitiveName="zoom_rect" />
+<PRIMITIVE gatewayId="7" primitiveId="55" primitiveName="unzoom" />
+<PRIMITIVE gatewayId="7" primitiveId="56" primitiveName="stringbox" />
+<PRIMITIVE gatewayId="7" primitiveId="57" primitiveName="move" />
+<PRIMITIVE gatewayId="7" primitiveId="58" primitiveName="glue" />
+<PRIMITIVE gatewayId="7" primitiveId="59" primitiveName="unglue" />
+<PRIMITIVE gatewayId="7" primitiveId="60" primitiveName="drawnow" />
+<PRIMITIVE gatewayId="7" primitiveId="61" primitiveName="drawlater" />
+<PRIMITIVE gatewayId="7" primitiveId="62" primitiveName="draw" />
+<PRIMITIVE gatewayId="7" primitiveId="63" primitiveName="addcb" />
+<PRIMITIVE gatewayId="7" primitiveId="64" primitiveName="copy" />
+<PRIMITIVE gatewayId="7" primitiveId="65" primitiveName="delete" />
+<PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="get" />
+<PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="set" />
+<PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="newaxes" />
+<PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="relocate_handle" />
+<PRIMITIVE gatewayId="7" primitiveId="70" primitiveName="swap_handles" />
+<PRIMITIVE gatewayId="7" primitiveId="71" primitiveName="showalluimenushandles" />
+<PRIMITIVE gatewayId="7" primitiveId="72" primitiveName="rubberbox" />
+<PRIMITIVE gatewayId="7" primitiveId="73" primitiveName="rotate_axes" />
+<PRIMITIVE gatewayId="7" primitiveId="74" primitiveName="is_handle_valid" />
+<PRIMITIVE gatewayId="7" primitiveId="75" primitiveName="captions" />
+</GATEWAY>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="factors">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>factors</refname>
+    <refpurpose> factorisation réelle de polynômes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[lnum,g]=factors(pol [,'flag'])
+[lnum,lden,g]=factors(rat [,'flag'])
+rat=factors(rat,'flag')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>pol  </term>
+        <listitem>
+          <para>polynôme réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rat  </term>
+        <listitem>
+          <para>fraction rationnelle (<literal>rat=pol1/pol2</literal>)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lnum  </term>
+        <listitem>
+          <para>liste de polynômes (de degrés 1 ou 2)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lden  </term>
+        <listitem>
+          <para>liste de polynômes (de degrés 1 ou 2)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g  </term>
+        <listitem>
+          <para>nombre réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag  </term>
+        <listitem>
+          <para>chaîne de caractères, <literal>'c'</literal> ou <literal>'d'</literal>
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    renvoie les facteurs du polynôme <literal>pol</literal> dans la liste <literal>lnum</literal>
+    et le "gain" g.
+  </para>
+    <para>
+    On a pol = g multiplié par le produit des termes de la liste <literal>lnum</literal>
+    (si <literal>flag</literal> n'est pas donné). Si <literal>flag='c'</literal>, on a <literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>.
+    Si <literal>flag='d'</literal> alors
+    on a <literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>.
+    Si l'argument de <literal>factors</literal> est une fraction rationnelle 1x1 <literal>rat=pol1/pol2</literal>, 
+    les facteurs du numérateur <literal>pol1</literal> et le dénominateur <literal>pol2</literal> 
+    sont renvoyés dans les listes <literal>lnum</literal> et <literal>lden</literal>, respectivement.
+  </para>
+    <para>
+    Le "gain" est renvoyé dans <literal>g</literal>, c'est à dire
+    rat = g multiplié par (produit des termes dans lnum) / (produit des termes dans lden).
+  </para>
+    <para>
+    Si <literal>flag</literal> vaut <literal>'c'</literal> (resp. <literal>'d'</literal>), les racines de <literal>pol</literal> 
+    sont réfléchies par rapport à l'axe imaginaire (resp. le cercle unité), i.e. 
+    les facteurs dans <literal>lnum</literal> sont des polynômes stables.
+    Idem si <literal>factors</literal> est appelé avec des arguments rationnels :
+    les termes dans <literal>lnum</literal> et <literal>lden</literal> sont des polynômes stables si
+    <literal>flag</literal> est donné. <literal>R2=factors(R1,'c')</literal> ou <literal>R2=factors(R1,'d')</literal>
+    avec <literal>R1</literal> une fraction rationnelle ou une liste <literal>syslin</literal> SISO : la sortie <literal>R2</literal> est rationnelle avec un numérateur et un dénominateur stables et
+    de même module que <literal>R1</literal> sur l'axe imaginaire (<literal>'c'</literal>)
+    ou le cercle unité (<literal>'d'</literal>).
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+n=poly([0.2,2,5],'z');
+d=poly([0.1,0.3,7],'z');
+R=syslin('d',n,d);
+R1=factors(R,'d')
+roots(R1('num'))
+roots(R1('den'))
+w=exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w))-abs(horner(R,w)))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

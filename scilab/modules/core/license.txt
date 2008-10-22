@@ -1,0 +1,43 @@
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
+Copyright (c) 1989-2007 - ENPC
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+getdynamicdebuginfo:
+====================
+
+Files: src/c/getdynamicdebuginfo.c
+
+Copyright: Albert Cahalan
+
+License: 
+LGPL
+
+md5:
+====
+
+Files: src/c/md5.c
+
+Copyright: L. Peter Deutsch
+
+License:
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.

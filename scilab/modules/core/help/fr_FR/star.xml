@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="star">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>star (*)</refname>
+    <refpurpose> opÃrateur dde multiplication  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Multiplication. Signification habituelle. Valide pour les matrices
+    rÃ©elles, complexes, polynomiales, rationnelles et pour les
+    listes de type <literal>syslin</literal> (dans ce dernier cas "*"
+    dÃ©signe une connection en Ã©rie).
+  </para>
+    <para>
+    La multiplication ÃlÃ©ment parÃlÃ©ment est
+    noÃ©e <literal>x.*y</literal>. Si <literal>x</literal> ou
+    <literal>y</literal> est un scalaire (matrice 1x1) <literal> .*
+    </literal> est Ã©quivalentÃ  <literal>*</literal>.
+  </para>
+  <para><literal>A*.B</literal> est un opÃ©rateur dont la
+  signification n'est pas prÃ©Ã©f©©¿½iniepeut Ãtre utilisÃ ©½pourÃf¿½inir de
+  nouveaux opÃrateurs voir "overloading") avec la  mÃme prioritÃ©que <literal>*</literal></para>
+
+    <para>
+  </para>
+    <para>
+    Le produit de Kronecker se note <literal>x.*.y</literal>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="slash">slash</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

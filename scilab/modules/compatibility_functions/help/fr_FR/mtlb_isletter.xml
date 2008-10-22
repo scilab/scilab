@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_isletter">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_isletter</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab isletter</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <literal>isletter</literal> et les 
+    expressions équivalentes sont assez compliquées, donc
+    <literal>mfile2sci</literal> utilise <literal>mtlb_isletter(A)</literal>pour remplacer <literal>isletter(A)</literal>.
+     Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_isletter</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> n'est pas une chaîne de caractères
+        <literal>tf = mtlb_isletter(A)</literal> peut être remplacé par <literal>tf = zeros(A)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>A</literal> est une chaîne de caractères
+        <literal>tf = mtlb_isletter(A)</literal> peut être remplacé par 
+	<literal>tf = (asciimat(A)&gt;=65&amp;asciimat(A)&lt;=90)|(asciimat(A)&gt;=97&amp;asciimat(A)&lt;=122)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_isletter</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

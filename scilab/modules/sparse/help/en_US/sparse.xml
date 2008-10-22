@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sparse">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sparse</refname>
+    <refpurpose> sparse matrix definition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sp=sparse(X)
+sp=sparse(ij,v [,mn])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>real or complex full (or sparse) matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ij</term>
+        <listitem>
+          <para>two columns integer matrix (indices of non-zeros entries)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mn</term>
+        <listitem>
+          <para>integer vector with two entries (row-dimension, column-dimension)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sp</term>
+        <listitem>
+          <para>sparse matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>sparse</literal> is used to build a sparse matrix. Only non-zero entries
+    are stored.</para>
+    <para><literal>sp = sparse(X)</literal>  converts a full matrix to sparse form by
+     squeezing out any zero elements. (If <literal>X</literal> is already sparse
+    <literal>sp</literal> is <literal>X</literal>).</para>
+    <para><literal>sp=sparse(ij,v [,mn])</literal>  builds an <literal>mn(1)</literal>-by-<literal>mn(2)</literal>
+    sparse matrix with <literal>sp(ij(k,1),ij(k,2))=v(k)</literal>. 
+    <literal>ij</literal> and <literal>v</literal> must have the same column dimension.
+    If optional <literal>mn</literal> parameter is not given the <literal>sp</literal>
+    matrix dimensions are the max value of <literal>ij(:,1)</literal> and <literal>ij(:,2)</literal>
+    respectively.</para>
+    <para>
+    Operations (concatenation, addition, etc,) with sparse matrices are
+    made using the same syntax as for full matrices.</para>
+    <para>
+    Elementary functions are also available (<literal>abs,maxi,sum,diag,...</literal>)
+    for sparse matrices.</para>
+    <para>
+    Mixed operations (full-sparse) are allowed. Results are full or sparse
+    depending on the operations.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+sp=sparse([1,2;4,5;3,10],[1,2,3])
+size(sp)
+x=rand(2,2);abs(x)-full(abs(sparse(x)))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="full">full</link>
+      </member>
+      <member>
+        <link linkend="spget">spget</link>
+      </member>
+      <member>
+        <link linkend="sprand">sprand</link>
+      </member>
+      <member>
+        <link linkend="speye">speye</link>
+      </member>
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,16 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/int2d_data.ref','rb');
+X = [0,0;1,1;1,0];
+Y = [0,0;0,1;1,1];
+%ans = deff('z=f(x,y)', 'z=cos(x+y)');
+if load_ref('%ans') then   pause,end,
+
+[I,e] = int2d(X, Y, f);
+if load_ref('e') then   pause,end,
+if load_ref('I') then   pause,end,
+
+// computes the integrand over the square [0 1]x[0 1]
+xdel_run(winsid());
+
+mclose(%U);

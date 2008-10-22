@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_chget">
+  <info>
+    <pubdate>  </pubdate>
+  </info>
+  <refnamediv>
+    <refname>taucs_chget</refname>
+    <refpurpose> retrieve the Cholesky factorization at the scilab level  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ct,p] = taucs_chget(C_ptr)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>C_ptr  </term>
+        <listitem>
+          <para>a pointer to the Cholesky factorization (C,p : A(p,p)=CC')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ct  </term>
+        <listitem>
+          <para>a scilab sparse matrix (you get the upper triangle i.e. Ct is equal to C') </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p  </term>
+        <listitem>
+          <para>column vector storing the permutation</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function  may be used if you want  to plot  the sparse
+    pattern  of the Cholesky factorization (or if you  code something which
+    use the factors). Traditionnaly, the factorization is written :
+  </para>
+    <programlisting><![CDATA[
+    P A P' = C C'
+   ]]></programlisting>
+    <para>
+    with P' the permutation matrix associated to the permutation p.
+    As we get the upper triangle Ct (= C'), in scilab syntax we
+    can write :
+  </para>
+    <programlisting><![CDATA[
+    A(p,p) = Ct' * Ct
+   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// Example #1 : a small linear test system 
+A = sparse( [ 2 -1  0  0  0;
+             -1  2 -1  0  0; 
+              0 -1  2 -1  0; 
+              0  0 -1  2 -1; 
+              0  0  0 -1  2] );
+Cp = taucs_chfact(A);
+[Ct, p] = taucs_chget(Cp);
+full(A(p,p) - Ct'*Ct)  // this must be near the null matrix
+taucs_chdel(Cp)
+
+// Example #2 a real example
+stacksize(3000000)  // the last PlotSparse need memory
+// first load a sparse matrix
+[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+// compute the factorisation
+Cptr = taucs_chfact(A); 
+// retrieve the factor at scilab level
+[Ct, p] = taucs_chget(Cptr);
+// plot the initial matrix
+xset("window",0) ; xbasc()
+PlotSparse(A) ; xtitle("Initial matrix A (bcsstk24.rsa)")
+// plot the permuted matrix
+B = A(p,p);
+xset("window",1) ; xbasc()
+PlotSparse(B) ; xtitle("Permuted matrix B = A(p,p)")
+// plot the upper triangle Ct
+xset("window",2) ; xbasc()
+PlotSparse(Ct) ; xtitle("The pattern of Ct (A(p,p) = C*Ct)")
+// retrieve cnz
+[OK, n, cnz] = taucs_chinfo(Cptr)
+// cnz is superior to the realnumber of non zeros elements of C :
+cnz_exact = nnz(Ct)
+// don't forget to clear memory
+taucs_chdel(Cptr)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="taucs_chfact">taucs_chfact</link>
+      </member>
+      <member>
+        <link linkend="taucs_chsolve">taucs_chsolve</link>
+      </member>
+      <member>
+        <link linkend="taucs_chdel">taucs_chdel</link>
+      </member>
+      <member>
+        <link linkend="taucs_chinfo">taucs_chinfo</link>
+      </member>
+      <member>
+        <link linkend="taucs_chget">taucs_chget</link>
+      </member>
+      <member>
+        <link linkend="cond2sp">cond2sp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>taucs by Sivan Toledo (see taucs_license)</member>
+      <member>scilab interface by Bruno Pincon</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="intersect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intersect</refname>
+    <refpurpose> recherche de valeurs communes à deux vecteurs.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>
+      [v [,ka,kb]]=intersect(a,b)
+      [v [,ka,kb]]=intersect(a,b,orient)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>a  </term>
+        <listitem>
+          <para>vecteur de nombres ou de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b  </term>
+        <listitem>
+          <para>vecteur de nombres ou de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v  </term>
+        <listitem>
+          <para>vecteur ligne ou matrice de nombres ou de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ka  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kb  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>intersect(a,b)</literal> renvoie un vecteur trié
+    des valeurs communes à <literal>a</literal> et
+    <literal>b</literal>. A noter que 2 NaN sont toujours
+    considéré comme différents.  </para>
+    <para><literal>[v,ka,kb]=intersect(a,b)</literal> renvoie aussi
+    deux vecteurs d'indices <literal>ka</literal> et
+    <literal>kb</literal> tels que <literal>v=a(ka)</literal> et
+    <literal>v=b(kb)</literal>. </para>
+
+    <para><literal>intersect(a,b,"r")</literal> ou
+    <literal>intersect(a,b,1)</literal> retourne la matrice formée
+    de l'intersection des lignes distinctes des matrices
+    <literal>a</literal> et <literal>b</literal> triées dans
+    l'ordre lexicographique croissant.  Dans ce cas les
+    matrices <literal>a</literal> et <literal>b</literal> doivent
+    avoir le même nombre de colonnes. </para>
+
+    <para><literal>[v,ka,kb]=intersect(a,b,"r")</literal> retourne
+    aussi les vecteurs d'indices <literal>ka</literal> et
+    <literal>kb</literal> tels que <literal>v=a(ka,:)</literal> et
+    <literal>v=b(kb,:)</literal>.</para>
+
+     <para><literal>intersect(a,b,"c")</literal> ou
+    <literal>intersect(a,b,2)</literal> retourne la matrice formée
+    de l'intersection des colonnes distinctes des matrices
+    <literal>a</literal> et <literal>b</literal> triées dans
+    l'ordre lexicographique croissant.   Dans ce cas les
+    matrices <literal>a</literal> et <literal>b</literal> doivent
+    avoir le même nombre de lignes. </para>
+
+    <para><literal>[v,ka,kb]=intersect(a,b,"r")</literal> retourne
+    aussi les vecteurs d'indices <literal>ka</literal> et
+    <literal>kb</literal> tels que <literal>v=a(:,ka)</literal> et
+    <literal>v=b(:,kb)</literal>.</para>
+
+ 
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=round(5*rand(10,1));
+B=round(5*rand(7,1));
+
+intersect(A,B)
+[N,ka,kb]=intersect(A,B)
+
+intersect('a'+string(A),'a'+string(B))
+
+
+
+intersect(int16(A),int16(B))
+
+//with matrices
+ A = [0,0,1,1 1;
+      0,1,1,1,1;
+      2,0,1,1,1;
+      0,2,2,2,2;
+      2,0,1,1,1;
+      0,0,1,1,%nan];
+B = [1,0,1;
+     1,0,2;
+     1,2,3;
+     2,0,4;
+     1,2,5;
+     %nan,0,6];
+
+[v,ka,kb] = intersect(A,B,'c')
+A(:,ka)
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unique">unique</link>
+      </member>
+      <member>
+        <link linkend="gsort">gsort</link>
+      </member>
+      <member>
+        <link linkend="union">union</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

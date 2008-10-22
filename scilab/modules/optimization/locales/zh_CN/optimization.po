@@ -1,0 +1,172 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-06-24 15:44+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为N维数组。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个列向量。\n"
+
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr "%s：阶数（order）必须为1，2或4。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个函数。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s：加权矩阵必须为方阵。\n"
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s：初始猜测不可行。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s：输入参数的类型错误。\n"
+
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s：输入参数#%d的大小错误。"
+
+#, c-format
+msgid "%s: x0 is not feasible."
+msgstr "%s：x0不可用。"
+
+#, c-format
+msgid "%s: Unbounded problem!"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s：参数3：列数应该为%d。\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s：无法申请更多内存。\n"
+
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s：该最小化问题无解。\n"
+
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s：Q不是对称正定矩阵。\n"
+
+msgid "Optimization and Simulation"
+msgstr ""
+
+msgid "m must be at least one.\n"
+msgstr "m必须至少为1。\n"
+
+msgid "L must be at least one.\n"
+msgstr "L必须至少为1.\n"
+
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d]必须至少为1.\n"
+
+msgid "nu must be at least 1.0.\n"
+msgstr "nu必须至少为1.0。\n"
+
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "矩阵 Fi, i=1,...,m 是线性相关的。\n"
+
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr ""
+
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr "工作空间太小，需要至少 %d*sizeof(double)。\n"
+
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "dspgv中发生错误，info=%d。\n"
+
+msgid "x0 is not strictly primal feasible.\n"
+msgstr ""
+
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0不是正定的。\n"
+
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Z有一个负特征值。\n"
+
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "dgels中发生错误，info=%d。\n"
+
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "dtrcon中发生错误，info=%d。\n"
+
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr "矩阵 F_i, i=1,...,m 线性相关（或初始点为病态数据）\n"
+
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "dspst中发生错误，info=%d。\n"
+
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "dspev中发生错误，info=%d。\n"
+
+#, c-format
+msgid "Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr "输入参数#%d的大小错误：列数应该为%d。\n"
+
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s：迭代次数太多（超过了%d）。\n"
+
+#, c-format
+msgid "%s: Accuracy insufficient to statify convergence criterion.\n"
+msgstr "%s：精度无法满足收敛标准。\n"
+
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s：工作数组的长度太短。\n"
+
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s：约束不一致。\n"

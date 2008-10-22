@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_for_link">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-14 16:52:36 +0100 (Mon, 14 Jan 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ilib_for_link</refname>
+    <refpurpose> utility for shared library management with link</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>libn=ilib_for_link(names,files,libs,flag [,makename [,loadername [,libname [,ldflags [,cflags [,fflags [,cc]]]]]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>a string matrix giving the entry names which are to be linked.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>string matrix giving objects files needed for shared library creation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libs</term>
+        <listitem>
+          <para>string matrix giving extra libraries needed for shred library creation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>a string flag ("c" or "f") for C or Fortran entry points.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>makename</term>
+        <listitem>
+          <para>character string. The pathname of the Makefile file without extension (default value <literal>Makelib</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>loadername</term>
+        <listitem>
+          <para>character string. The pathname of the loader file (default
+	    value is   <literal>loader.sce</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libname</term>
+        <listitem>
+          <para>optional character string. The name of the generated shared
+	    library (default value  is '', and in this case the name is derived
+	    from <literal>names(1)</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ldflags</term>
+        <listitem>
+          <para>optional character string. It can be used to add specific linker options in the
+	    generated Makefile. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cflags</term>
+        <listitem>
+          <para>optional character string. It can be used to add specific C compiler options in the
+	    generated Makefile. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fflags</term>
+        <listitem>
+          <para>optional character string. It can be used to add specific Fortran compiler options in the
+	    generated Makefile. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cc</term>
+        <listitem>
+          <para>optional character string. It can be used to specify a C compiler. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libn</term>
+        <listitem>
+          <para>character string. The path of the really generated shared library file.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This tool is used to create shared libraries and to generate a 
+    loader file which can be used to dynamically load the shared library 
+    into Scilab with the <literal>link</literal> function. New entry points 
+    given by <literal>names</literal> are then accessible through the <literal>call</literal> 
+    function or with non linear tools <literal>ode</literal>, <literal>optim</literal>,...</para>
+    <para>
+    The file to compile are supposed to be located given by
+    <literal>makename</literal>. If <literal>makename</literal> sets a path different to the
+    current directory, <literal>loader</literal> script must be located in
+    the same directory using the <literal>loadername</literal> variable.</para>
+    <para>
+    Many examples are provided in <literal>examples/link-examples-so</literal>
+    directory.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+
+if haveacompiler() then
+
+chdir(TMPDIR)
+f1=['int ext1c(int *n, double *a, double *b, double *c)'
+    '{int k;'
+    '  for (k = 0; k < *n; ++k) '
+    '      c[k] = a[k] + b[k];'
+    '  return(0);}'];
+
+mputl(f1,'fun1.c')
+
+//creating the shared library (a gateway, a Makefile and a loader are 
+//generated. 
+
+ilib_for_link('ext1c','fun1.o',[],"c") 
+
+// load the shared library 
+
+exec loader.sce 
+
+//using the new primitive
+a=[1,2,3];b=[4,5,6];n=3;
+c=call('ext1c',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
+if norm(c-(a+b)) > %eps then pause,end
+
+end
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="ilib_compile">ilib_compile</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_Make">ilib_gen_Make</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+      </member>
+      <member>
+        <link linkend="ilib_for_link">ilib_for_link</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot2d2">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plot2d2</refname>
+    <refpurpose>2D plot (step
+  function)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>plot2d2([x],y)
+plot2d2([x],y,&lt;opt_args&gt;)
+plot2d2([logflag],x,y,[style,strf,leg,rect,nax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>args</term>
+        <listitem>
+          <para>see <literal>plot2d</literal> for a description of parameters.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>plot2d2</literal> is the same as <literal>plot2d</literal> but the
+    functions given by <literal>(x,y)</literal> are supposed to be piecewise
+    constant.</para>
+    <para>By default, successive plots are superposed. To clear the previous
+    plot, use <literal>clf()</literal>.</para>
+    <para>Enter the command <literal>plot2d2()</literal> to see a demo. Note that all
+    the modes proposed by <literal>plot2dxx</literal> (xx = 1 to 4) can be enabled
+    using <literal>plot2d</literal> and setting the <literal>polyline_style</literal>
+    option to the corresponding number.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// plots a step function of value i on the segment [i,i+1]
+// the last segment is not drawn
+plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
+// compare the following with plot2d
+x=[0:0.1:2*%pi]';
+clf()
+plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
+  // In New graphics only
+clf();
+plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+e=gce();
+e.children(1).polyline_style=2;
+e.children(2).polyline_style=2;
+e.children(3).polyline_style=2;
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="plot2d3">plot2d3</link>
+      </member>
+      <member>
+        <link linkend="plot2d4">plot2d4</link>
+      </member>
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="polyline_properties">polyline_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

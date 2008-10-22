@@ -1,0 +1,19 @@
+For changing icons (if you have XPM)
+************************************
+
+[1] Copy "scilab.xpm" into the directory where you store xpm files 
+
+[2] For ctwm : add in .ctwmrc in Icons 
+
+Icons {
+	....
+    "scilab"    "xpm:scilab.xpm"
+    "ScilabGraphic*"  "xpm:scilab.xpm"
+    "Metanet"   "xpm:metanet.xpm"
+}
+
+[3] For fvwm : add in .fvwmrc 
+
+Style "Scilab"     Icon scilab.xpm
+Style "ScilabGraphic*" Icon scilab.xpm
+Style "Metanet"    Icon metanet.xpm

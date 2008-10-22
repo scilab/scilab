@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Serge STEER 
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="savematfile">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>savematfile</refname>
+    <refpurpose>write a Matlab MAT-file (binary or ASCII)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>savematfile('filename')
+savematfile('filename', 'var1', 'var2', ...)
+savematfile('filename', '-struct', 's')
+savematfile('filename', '-struct', 's', 'f1', 'f2', ...)
+savematfile(..., 'format')
+savematfile filename var1 var2 ...</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>character string containing the path of the file (needed)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>data format to use</para>
+          <variablelist>
+            <varlistentry>
+              <term>"-mat"</term>
+              <listitem>
+                <para>binary MAT-file (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii"</term>
+              <listitem>
+                <para>8-bit ASCII format</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii" "-double"</term>
+              <listitem>
+                <para>16-bit ASCII format</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii" "-tabs"</term>
+              <listitem>
+                <para>delimits with tabs</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii" "-double" "-tabs"</term>
+              <listitem>
+                <para>16-digit ASCII format, tab delimited</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v4"</term>
+              <listitem>
+                <para>A format that MATLAB Version 4 can open</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v6"</term>
+              <listitem>
+                <para>A format that MATLAB Version 6 and earlier can open (default)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>var1, var2</term>
+        <listitem>
+          <para>character strings containing the name of the variables to load (only for binary files)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"-struct" "s"</term>
+        <listitem>
+          <para>saves all fields of the scalar structure s as individual variables within the file filename.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"-struct" "s" "f1" "f2"</term>
+        <listitem>
+          <para>saves as individual variables only those structure fields specified (s.f1, s.f2, ...).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    saves variables in a Matlab MAT-file from Scilab. The Scilab data types are
+    converted into the Matlab equivalents.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="loadmatfile">loadmatfile</link>
+      </member>
+      <member>
+        <link linkend="mfile2sci">mfile2sci</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer (INRIA)</member>
+      <member>V.C</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>This function has been developped following the "MAT-File Format"
+  description: 
+<literal><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></literal></para>
+  </refsection>
+</refentry>

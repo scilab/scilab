@@ -1,0 +1,15 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/balreal_data.ref','rb');
+A = diag([-1,-2,-3,-4,-5]);B = rand(5, 2);C = rand(1, 5);
+sl = syslin('c', A, B, C);
+[slb,U] = balreal(sl);
+Wc = clean(ctr_gram(slb));
+if load_ref('Wc') then   pause,end,
+
+W0 = clean(obs_gram(slb));
+if load_ref('W0') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

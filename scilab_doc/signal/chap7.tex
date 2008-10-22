@@ -1,0 +1,343 @@
+% Copyright INRIA
+
+%\documentstyle{book}
+%\begin{document}
+
+\def\verbatok#1{\expandafter \begin{verbatim}
+\input{#1}}
+
+\chapter{Optimization in filter design}
+
+In this chapter, some optimization techniques are investigated for the design 
+of IIR as well as FIR filters. Those techniques are particuliarly usefull 
+when non standard responses are desired.
+
+%\include{lpiir}
+
+\label{optimized IIR filters}
+\section{Optimized IIR filters}
+\index{optimized!IIR filters}
+
+In a previous chapter on the design of IIR filters, several 
+methods have been investigated which make use of closed-form 
+expressions for this purpose. In this section the desired 
+specifications are achieved with the help of optimization 
+techniques: \index{optimization} the set of convenient filter parameters 
+is computed by minimizing some error criterion \cite{rabiner}. This technique 
+has to be used when nonconventional filter
+specifications are to be achieved.
+\subsection{Minimum Lp design}
+\label{minlp}
+\index{minimum Lp design}
+The criterion that has been retained here is the minimum ${\Bbb L}_p$ 
+error\index{minimum!Lp error} and the set of parameters to be optimized, the set of poles 
+and zeros the cardinal of which being specified by the user. 
+The reason for such a choice of parameters is that specifications 
+on the group delay\index{group delay} are much more easily 
+written for this set than 
+for the usual filter coefficients - especially the computations 
+of gradients - One may note also that the minimum ${\Bbb L}_p$ 
+error criterion admits the well-known minimum mean-square 
+error\index{mean-square error} criterion as a particular case 
+by setting $p$ to two.
+
+Now, let $H(z)$ be the transfer function of the filter given as a 
+cascade of $K$ second-order sections:
+\begin{eqnarray}
+H(z)=A\prod_{k=1}^K\frac{z^2-2r_{0k}cos\theta_{0k}z+r_{0k}^2}
+{z^2-2r_{pk}cos\theta_{pk}z+r_{pk}^2}
+\label{e.minlp.1}
+\end{eqnarray}
+The set of parameters to be optimized is then given by the following 
+vector: 
+\begin{eqnarray}
+\phi=(r_{0k}, \theta_{0k}, r_{pk}, \theta_{pk}, A) & k=1,K
+\label{e.minlp.2}
+\end{eqnarray}
+where index $0$ stands for zeros and index $p$ for poles, no confusion 
+being to be expected with index $p$ in the ${\Bbb L}_p$ error criterion\index{error criterion}. 
+Usually the specifications for a filter are given separately for 
+the magnitude $|H(e^{j\omega})|$ and/or the group delay\index{group delay}  
+$\tau(\omega)$; 
+the corresponding expressions are:
+\begin{equation}
+\begin{array}{l}
+|H(e^{j\omega})|\triangleq a(\phi , \omega ) \nonumber 
+\end{array}
+\end{equation}
+\begin{eqnarray}
+ = 
+A\prod_{k=1}^K\frac{(1-2r_{0k}cos(\omega-\theta_{0k})+r_{0k}^2)^{1/2} 
+(1-2r_{0k}cos(\omega+\theta_{0k})+r_{0k}^2)^{1/2}}
+{(1-2r_{pk}cos(\omega-\theta_{pk})+r_{pk}^2)^{1/2} 
+(1-2r_{pk}cos(\omega+\theta_{pk})+r_{pk}^2)^{1/2}}
+\label{e.minlp.3}
+\end{eqnarray}
+%\end{equation}
+and
+\begin{eqnarray}
+& &\tau(\phi,\omega)=                \nonumber           \\& & \sum_{k=1}^K
+\{
+\frac{1-r_{pk}cos(\omega-\theta_{pk})}
+{(1-2r_{pk}cos(\omega-\theta_{pk})+r_{pk}^2)^{1/2}} + 
+\frac{1-r_{pk}cos(\omega+\theta_{pk})}
+{(1-2r_{pk}cos(\omega+\theta_{pk})+r_{pk}^2)^{1/2}} \nonumber \\ & &-  
+\frac{1-r_{0k}cos(\omega-\theta_{0k})}
+{(1-2r_{0k}cos(\omega-\theta_{0k})+r_{0k}^2)^{1/2}} - 
+\frac{1-r_{0k}cos(\omega+\theta_{0k})}
+{(1-2r_{0k}cos(\omega+\theta_{0k})+r_{0k}^2)^{1/2}}
+\}
+\end{eqnarray}
+Defining the desired magnitude response\index{magnitude response} 
+$a_d(\omega_j)$ and 
+group delay\index{group delay} $\tau_d(\omega)$, 
+the minimum ${\Bbb L}_p$-design problem 
+can be formulated by mean of the following error function: 
+\begin{eqnarray}
+E(\phi)&=&\lambda\sum_{j=1}^Jw_a(\omega_j)[a(\phi,\omega_j)-a_d(\omega_j)]^{2p} \nonumber
+\\ &+&(1-\lambda)\sum_{j=1}^Jw_{\tau}(\omega_j)[\tau(\phi,\omega_j)-
+\tau_d(\omega_j)]^{2p}
+\label{e.minlp.5}
+\end{eqnarray}
+where $w_a(\omega_j)$ and $w_{\tau}(\omega_j)$ are weighting functions 
+defined on a dense grid of frequencies $\{\omega_j /0\leq\omega_j 
+\leq \pi\}$
+and $\lambda$ is a real number belonging to $[0,1]$ that reflects the 
+importance of the specifications on the magnitude relative to that 
+on the group delay\index{group delay} in a straightforward fashion.
+One seek after a vector $\phi^{*}$ such that $E(\phi^{*})$ is 
+minimum: this problem is easily solved in Scilab with the help 
+of the function {\tt optim} the purpose of which is the resolution 
+of general nonlinear optimization problems . 
+We refer the reader to
+the relevant documentation \cite{delebecque} for a detailed explanation 
+of its use.
+The {\tt optim} function needs some 
+input parameters, the main of which being what is called a {\em simulator}: 
+it may be given as a Scilab function and its purpose is to give the cost function\index{cost function} 
+of the relevant problem as well as its gradient relative to the 
+specified parameters. For the minimum ${\Bbb L}_p$ design problem, the 
+simulator is named {\tt iirlp} and makes use of two other macros: 
+{\tt iirmag} and {\tt iirgroup}; it 
+gives $E(\phi)$ together with its gradient relative to $\phi$.
+
+The following example will give an idea of what can be achieved 
+with this optimization\index{optimization} technique: we are given a low-pass elliptic filter 
+with normalized cut-off frequency 0.25, transition\index{transition} 
+bandwidth equal to
+0.15, ripple in the passband of 0.1 
+and ripple in the stopband of 0.01 (i.e. 40dB of attenuation); 
+with the Scilab function 
+{\tt eqiir} we have obtained a filter of the fourth order together 
+with its zeros and poles. 
+
+\verbatok{\Diary optiir2.dia}
+\end{verbatim}
+Now we want to inverse this filter, that is 
+we seek after a filter the magnitude reponse of which times that of 
+the original elliptic filter equals one in the passband, while in the 
+stopband the total attenuation is less than 80dB. This situation 
+appears for example when a digital filter is needed, after analog-to-digital 
+conversion, to compensate the 
+deformations of a signal by an anti-aliasing analog filter.  
+ The corresponding 
+specifications are obtained the following way:
+\verbatok{\Diary optiir1.dia}
+\end{verbatim}
+Although the constraints on the parameters can be easily specified, 
+an unconstrained optimization procedure has been applied because the 
+initial values are unknown (hence may be far away from the 
+optimal solution, if any) and the order is unknown too. Instead, as 
+indicated in \cite{ieee}, the 
+Scilab function {\tt optim} will be applied several times and 
+when some pole or zero goes outside the unit circle, it will be 
+replaced by the symmetric (with respect to the unit circle) complex 
+number and a new optimization runned. To see the results obtained with 
+a constrained optimization, it may be interesting to run the 
+following command, recalling 
+that the constraints on the poles and zeros are:
+\begin{equation}
+\left\{
+\begin{array}{ll}
+0\leq r_{0k} \leq 1 & 0\leq r_{pk} \leq 1 \\
+0\leq \theta_{0k} \leq 2\pi & 0\leq \theta_{pk} \leq 2\pi
+\end{array}
+\right.
+\label{e.minlp.6}
+\end{equation}
+\verbatok{\Diary optiir3.dia}
+\end{verbatim}
+Another method to solve this problem would be to run an optimization  
+with penalties on the constraints, in order to keep the poles and zeros 
+inside the unit circle: we did not try it. 
+Now, back to the unconstrained optimization, after several runs of {\tt optim} without constraints, an optimal solution has 
+been achieved for the chosen filter order. Nevertheless it is 
+seen on Figure~\ref{f.minlp.1} that this solution is not satisfactory:
+%%%%%%%%%%%
+\input{\Figdir optiir1.tex}
+\dessin{{\tt exec('optiir.1.code')} Minimum mean-square design. Fourth order IIR filter}{f.minlp.1}
+%%%%%%%%%%
+Figure~\ref{f.minlp.2} shows that the product of the two magnitude 
+responses is far from being equal to one in the passband and that 
+the total prescribed attenuation is not achieved (the horizontal line
+is at -80 dB):
+%%%%%%%%%%%
+\input{\Figdir optiir2.tex}
+\dessin{{\tt exec('optiir.2.code')} Resulting magnitude response. Log scale}{f.minlp.2}
+%%%%%%%%%%
+So a second-order block has been added (four 
+more parameters) to the transfer function found at the preceding step, 
+leading to a filter of order six:
+\verbatok{\Diary optiir4.dia}
+\end{verbatim}
+The same optimization procedure has been applied with this initial value, 
+resulting in the following solution vector:
+\verbatok{\Diary optiir5.dia}
+\end{verbatim}
+the desired magnitude reponse and the one achieved
+with that solution appear in Figure~\ref{f.minlp.3}, while the product 
+of the log-magnitude responses is in Figure~\ref{f.minlp.4}.
+%%%%%%%%%%%
+\input{\Figdir optiir3.tex}
+\dessin{{\tt exec('optiir.3.code')} Minimum mean-square design. Sixth order IIR filter}{f.minlp.3}
+%%%%%%%%%%
+%%%%%%%%%%%
+\input{\Figdir optiir4.tex}
+\dessin{{\tt exec('optiir.4.code')} Resulting magnitude response. Log scale}{f.minlp.4}
+%%%%%%%%%%
+As we are interested in what happens in the passband, focusing on it 
+is needed: this is done in Figure~\ref{f.minlp.5} and we see that for  
+$\omega \in [0,.45]$ the ripple is equal to 0.07 dB. 
+The reader may convince himself that better approximation may be 
+obtained with an increase of the filter order; we mention too that 
+the specification of $a_d$ at the beginning of the transition is not 
+likely to be that of a real filter (it has not a monotone decreasing 
+behaviour in that region !) and that a more realistic desired response 
+could have been best approximated with the same number of parameters.
+%%%%%%%%%%%
+\input{\Figdir optiir5.tex}
+\dessin{{\tt exec('optiir.5.code')} Log-magnitude response. $\omega \in [0,0.45]$}{f.minlp.5}
+%%%%%%%%%%d
+
+%\include{optfir}
+
+\label{optimized FIR filters}
+\section{Optimized FIR filters}
+\index{optimized!FIR filters}
+
+As for IIR filters, optimization techniques may be used to achieve 
+particuliar specifications for FIR filters \cite{rabiner} . In this framework, 
+the design problem formulation leads to a simple linear programming
+\index{linear programming} 
+problem, which makes this approach attractive, as opposed to nonlinear 
+methods used in the case of optimization based, IIR filter design. 
+
+As the approach in this section is based on the frequency sampling 
+technique \ref{s1}, we first refer to 
+the frequency response of a linear phase FIR filter as given by formula \ref{e1}. In fact, because the linear phase term can 
+be ignored for the design purpose, we rather consider the real function: 
+%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+H^{*}(e^{j\omega}) &=& \sum_{k=0}^{N-1}H(k)S(\omega,k)
+\label{e.optfir.1}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%
+where 
+%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+S(\omega,k) &=& e^{-jk\pi/N}\frac{\sin(N\omega/2)}{\sin(\omega/2-k\pi/N)}\nonumber\\
+&=&\pm e^{-jk\pi/N}\frac{\sin(N(\omega/2)-k\pi/N)}{\sin(\omega/2-k\pi/N)}
+\label{e.optfir.2}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%
+are the interpolating functions.
+Usually in filter design, specifications are given in passbands and stopbands 
+while absent in transition bands for which the width rather is given. 
+For that reason, $H^{*}(e^{j\omega})$ can be written: 
+%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+H^{*}(e^{j\omega}) &=& B(\omega)+\sum_{i=1}^pT_iA_i(\omega)
+\label{e.optfir.3}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%
+where $B(\omega)$ gives the contribution to $H^{*}(e^{j\omega})$ of all the 
+fixed frequency samples (that is those in the passbands and the stopbands) 
+and the $A_i(\omega)$ the contribution of all the unconstrained samples 
+(that is the ones in the transitions) with respective magnitude $T_i$, these 
+being to be optimized. In the sequel, the union of passbands will be 
+called region 1,noted $R_1$ and that of passbands region 2, noted $R_2$. 
+We now want, for a fixed approximation error in $R_1$, to find the 
+linear phase FIR filter giving the maximum attenuation in $R_2$ - note 
+that the converse is another possible issue - This can be formulated 
+as follows: 
+
+For some fixed $\epsilon$ and desired frequency response $H_{d}(e^{j\omega})$, 
+find the set of ${T_i}$, solution of: 
+%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+%\stackrel{\textstyle min}{{T_i}}\; \stackrel{\textstyle max}{\omega \in R_2} 
+%\; \stackrel{\textstyle |H^{*}(e^{j\omega}) - H_{d}(e^{j\omega})|}{}
+\min_{T_i}\max_{\omega \in R_2}|H^{*}(e^{j\omega}) - H_{d}(e^{j\omega})|
+\label{e.optfir.4}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%
+and subject to the constraints: 
+%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+|H^{*}(e^{j\omega}) - H_{d}(e^{j\omega})| \leq \epsilon
+\label{e.optfir.5}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%
+Because of the linearity of $H_{d}(e^{j\omega})$ with respect to the $T_i$, 
+we are led to a linear programming problem, the cost function to minimize 
+being the maximum attenuation in $R_2$, which will be denoted by $T_{p+1}$ 
+for notational convenience and the constraints on the $T_i , i=1 \ldots p$, 
+being formulated with the help of (\ref{e.optfir.5}). The optimization 
+problem may be formulated as to find the set of $T_i's$ such that 
+$T_{p+1}$ is minimum subject to the constraints:
+%%%%%%%%%%%%%%%%%%%%
+\[
+\begin{array}{c}
+\left.
+\begin{array}{cc}
+\sum_{i=1}^pT_iA_i(\omega) & \leq  \epsilon-B(\omega)+H_{d}(e^{j\omega})\\ \\
+-\sum_{i=1}^pT_iA_i(\omega) & \leq  \epsilon+B(\omega)-H_{d}(e^{j\omega})
+\end{array}
+\right \} \omega \in R_1\\ \\
+\left .
+\begin{array}{cc} 
+\sum_{i=1}^pT_iA_i(\omega)-T_{p+1} & \leq  -B(\omega)+H_{d}(e^{j\omega})\\ \\
+-\sum_{i=1}^pT_iA_i(\omega)-T_{p+1} & \leq  B(\omega)-H_{d}(e^{j\omega})
+\end{array}
+\right \} \omega \in R_2\\
+\end{array}
+\]
+%%%%%%%%%%%%%%%%%%%%
+Now the problem is in a suitable form for solution via the classical 
+$Simplex$ $Method$. Let us mention too that, with minor changes, the 
+problem -and the associated macro- may be stated as to find the filter 
+with minimum ripple in 
+the passbands for a given attenuation in the stopbands.
+\index{simplex method}
+In the following, only an example of the standard lowpass filter type
+is treated although any other frequency 
+response can be approximated with this method. 
+
+\paragraph{Example 1}: figure \ref{optfir.fig1} 
+ shows the frequency response 
+of a lowpass type 1 filter with the following specifications: $n$=64;
+cut-off frequency, $f_c$=.15; $\epsilon=0.01$; three samples in the transition.
+%%%%%%%%%%%
+\input{\Figdir optfir1.tex}
+\dessin{{\tt exec('optfir1.code')} Linear programming design. 64-point lowpass FIR filter}{optfir.fig1}
+%%%%%%%%%%
+Figure \ref{optfir.fig2} shows the log magnitude squared of the initial filter 
+defined by the rectangular window and the optimized filter. 
+$0.28$ and $0.30$ $\epsilon=0.001$ and three samples in each transition.
+%%%%%%%%%%%
+\input{\Figdir optfir2.tex}
+\dessin{{\tt exec('optfir2.code')} Linear programming design. }{optfir.fig2}
+%%%%%%%%%%
+
+ 
+%\end{document}

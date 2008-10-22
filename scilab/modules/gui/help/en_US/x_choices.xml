@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="x_choices">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>x_choices</refname>
+    <refpurpose> interactive Xwindow choices through toggle buttons</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>rep=x_choices(title,items)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+        <listitem>
+          <para>vector of strings, title for the popup window.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>items</term>
+        <listitem>
+          <para>a list of items <literal>items=list(item1,...,itemn)</literal>, where each <literal>item</literal> is also a list  of the following type : <literal>item=list('label',default_choice,choices)</literal>. <literal>default_choice</literal> is an integer which gives the default toggle on entry and <literal>choices</literal> is a  row vector of strings which gives the possible choices.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep</term>
+        <listitem>
+          <para>an integer vector which gives for each item the number of the  selected toggle. If user exits dialog with "cancel" button <literal>rep</literal> is set to <literal>[]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Select items through toggle lists and return in <literal>rep</literal> the selected 
+    items</para>
+    <para>
+    Type <literal>x_choices()</literal> to see an example.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+l1=list('choice 1',1,['toggle c1','toggle c2','toggle c3']);
+l2=list('choice 2',2,['toggle d1','toggle d2','toggle d3']);
+l3=list('choice 3',3,['toggle e1','toggle e2']);
+rep=x_choices('Toggle Menu',list(l1,l2,l3));
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

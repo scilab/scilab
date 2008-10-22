@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stripblanks">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>stripblanks</refname>
+    <refpurpose> strips leading and trailing
+  blanks (and tabs) of strings</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>txt=stripblanks(txt[,tabs])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>A character string or matrix of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tabs</term>
+        <listitem>
+          <para>if TRUE then tabs are also stripped (default value is FALSE)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    stripblanks strips leading and trailing blanks (and tabs) of strings</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a='  123   ';
+'!'+a+'!'
+'!'+stripblanks(a)+'!'
+a=['  123   ',' xyz']
+strcat(stripblanks(a))
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

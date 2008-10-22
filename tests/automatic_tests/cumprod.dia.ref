@@ -1,0 +1,44 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/cumprod_data.ref','rb');
+ 
+A = [1,2;3,4];
+ 
+%ans = cumprod(A);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = cumprod(A, 'r');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = cumprod(A, 'c');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+rand('seed', 0);
+ 
+a = rand(3, 4);
+ 
+[m,n] = size(a);
+ 
+w = zeros(a);
+ 
+w(1, eye()) = a(1, :);
+ 
+for k = 2:m,  w(k, eye()) = w(k - 1, :)0.* a(k, :);end,%ans = w - cumprod(a, 'r');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

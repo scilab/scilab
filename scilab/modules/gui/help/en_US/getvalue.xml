@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getvalue">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getvalue</refname>
+    <refpurpose> xwindow dialog for data acquisition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>desc</term>
+        <listitem>
+          <para>column vector of strings, dialog general comment</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>labels</term>
+        <listitem>
+          <para>n column vector of strings, <literal>labels(i)</literal> is the label of  the ith required value</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>: <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal></para>
+          <variablelist>
+            <varlistentry>
+              <term>typ_i</term>
+              <listitem>
+                <para>defines the type of the ith value, may have the following values:</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>"mat"  </term>
+                    <listitem>
+                      <para>for constant matrix</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"col"  </term>
+                    <listitem>
+                      <para>for constant column vector</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"row"  </term>
+                    <listitem>
+                      <para>for constant row vector</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"vec"  </term>
+                    <listitem>
+                      <para>for  constant vector</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"str"  </term>
+                    <listitem>
+                      <para>for string</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>"lis"  </term>
+                    <listitem>
+                      <para>for list</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>dim_i</term>
+              <listitem>
+                <para>defines the size of the ith value it must be a integer or a 2-vector of integer, -1 stands for undefined dimension</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ini</term>
+        <listitem>
+          <para>n column vector of strings, <literal>ini(i)</literal> gives the suggested response for the ith required value</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ok</term>
+        <listitem>
+          <para>boolean ,%t if ok button pressed, %f if cancel button pressed</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xi</term>
+        <listitem>
+          <para>contains the ith value if ok=%t. If left hand side has one more <literal>xi</literal> than required values the last  <literal>xi</literal> contains the vector of answered strings.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function encapsulate <literal>x_mdialog</literal> function with error checking,
+    evaluation of numerical response, ...</para>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
+    <para>
+    All valid expressions can be used as answers; for matrices  and vectors <literal>getvalues</literal> automatically adds [ ] around the given answer before numeric evaluation.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+labels=["magnitude";"frequency";"phase    "];
+[ok,mag,freq,ph]=getvalue("define sine signal",labels,...
+     list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="x_matrix">x_matrix</link>
+      </member>
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer ; ;   </para>
+  </refsection>
+</refentry>

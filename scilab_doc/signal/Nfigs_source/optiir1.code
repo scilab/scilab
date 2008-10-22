@@ -1,0 +1,18 @@
+xinit('optiir1.ps')
+[ce0,f0,ze0,po0]=eqiir('lp','ellip',%pi*[.5;.65;0;0],.1,.01);
+hz0=f0*prod(ce0(2))./prod(ce0(3));
+ze0=ze0(1:2:4);po0=po0(1:2:4);
+x0=[abs([ze0 po0])';atan(imag([ze0 po0]),real([ze0 po0]))';10];
+x=x0;
+omega=%pi/100:%pi/100:%pi;
+p=1;
+wa(1:52)=ones(1,52);
+wa(53:100)=.5*ones([53:100]);
+rp0=abs(freq(hz0(2),hz0(3),exp(%i*omega)));
+cx='normalized frequency';
+cy='magnitude';
+plot(rp0)
+xstring(0.1,1.01,'magnitude');
+xstring(70,-.12,'normalized frequency');
+xend()
+

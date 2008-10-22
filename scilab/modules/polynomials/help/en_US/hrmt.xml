@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hrmt">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hrmt</refname>
+    <refpurpose> gcd of polynomials</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[pg,U]=hrmt(v)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>row of polynomials i.e. <literal>1</literal>x<literal>k</literal> polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pg</term>
+        <listitem>
+          <para>polynomial</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>unimodular matrix polynomial</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[pg,U]=hrmt(v)</literal> returns a unimodular matrix <literal>U</literal> and  <literal>pg</literal> = gcd of row of
+    polynomials <literal>v</literal> such that <literal>v*U = [pg,0]</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=poly(0,'x');
+v=[x*(x+1),x^2*(x+1),(x-2)*(x+1),(3*x^2+2)*(x+1)];
+[pg,U]=hrmt(v);U=clean(U)
+det(U)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+      <member>
+        <link linkend="htrianr">htrianr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> S. Steer INRIA</para>
+  </refsection>
+</refentry>

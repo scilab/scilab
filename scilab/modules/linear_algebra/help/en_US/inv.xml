@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inv</refname>
+    <refpurpose> matrix inverse</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>inv(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>real or complex square matrix, polynomial matrix, rational matrix in transfer or state-space representation.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>inv(X)</literal> is the inverse of the square matrix <literal>X</literal>. A warning
+    message is printed if <literal>X</literal> is badly scaled or nearly singular.</para>
+    <para>
+    For polynomial matrices or rational matrices in transfer representation,
+    <literal>inv(X)</literal> is equivalent to <literal>invr(X)</literal>.</para>
+    <para>
+    For linear systems in state-space representation (<literal>syslin</literal> list),
+    <literal>invr(X)</literal> is equivalent to <literal>invsyslin(X)</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>References</title>
+    <para><literal>inv</literal> function for matrices of numbers is  based on the Lapack routines
+ DGETRF, DGETRI for  real matrices and  ZGETRF, ZGETRI for the complex case.
+ For polynomial matrix and rational function matrix <literal>inv</literal> is based on the <literal>invr</literal>
+ Scilab function.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=rand(3,3);inv(A)*A
+//
+x=poly(0,'x');
+A=[x,1,x;x^2,2,1+x;1,2,3];inv(A)*A
+//
+A=[1/x,2;2+x,2/(1+x)]
+inv(A)*A
+//
+A=ssrand(2,2,3);
+W=inv(A)*A
+clean(ss2tf(W))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="slash">slash</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
+      </member>
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="lusolve">lusolve</link>
+      </member>
+      <member>
+        <link linkend="invr">invr</link>
+      </member>
+      <member>
+        <link linkend="coff">coff</link>
+      </member>
+      <member>
+        <link linkend="coffg">coffg</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexview-themes>
+
+    <!-- Map the PLAFs to specific themes -->
+    <plaf name="apple.laf.AquaLookAndFeel" ref="scilab" />
+    <plaf name="javax.swing.plaf.metal.MetalLookAndFeel" ref="scilab" />
+    <plaf name="com.sun.java.swing.plaf.gtk.GTKLookAndFeel" ref="scilab" />
+    <plaf name="com.sun.java.swing.plaf.windows.WindowsLookAndFeel" ref="scilab" />
+    <plaf name="com.sun.java.swing.plaf.motif.MotifLookAndFeel" ref="scilab" />
+	
+    <!-- Begin Scilab -->
+    <theme name="scilab" description="Scilab Theme" view-ui="scilab">
+        <view-ui name="scilab">
+            <property name="titlebar-ui" value="scilab"/>
+        </view-ui>
+	
+        <!-- List the various titlebars that are available -->
+        <titlebar-ui name="scilab" extends="default">
+            <property name="icon-map" value="scilab" />
+        </titlebar-ui>
+
+	<icon-resource name="scilab.undock">
+		<property name="default" value="undock_default.png" />
+		<property name="active" value="undock_active.png" />
+		<property name="tooltip" value="Undock" handler="string" />
+	</icon-resource>
+
+	<icon-resource name="scilab.close" extends="win32.close">
+		<property name="default" value="scilab_close_default.png" />
+		<property name="active" value="scilab_close_active.png" />
+	</icon-resource>
+
+        <!-- List the available icon maps -->	
+        <icon-map name="scilab">
+            <property name="close" value="scilab.close" />
+            <property name="pin" value="win32.pin" />
+            <property name="undock" value="scilab.undock" />
+        </icon-map>
+    </theme>
+    <!-- End Scilab -->
+
+</flexview-themes>

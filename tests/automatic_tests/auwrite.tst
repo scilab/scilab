@@ -1,0 +1,12 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/auwrite_data.ref','rb');
+A = matrix(1:6, 2, 3);
+auwrite(A/6, 22050, 64, 'linear', TMPDIR + '/foo.au');
+B = auread(TMPDIR + '/foo.au');
+%ans = maxi(abs(A - round(B * 6)));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

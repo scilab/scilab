@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mgetl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mgetl</refname>
+    <refpurpose> read lines from an ascii file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>txt=mgetl(file_desc [,m])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file_desc</term>
+        <listitem>
+          <para>:a character string giving the file name or a logical unit returned by mopen</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>an integer scalar. number of lines to read. Default value is -1.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>a column vector of string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>mgetl</literal> function allows to read a lines from an ascii file.</para>
+    <para>
+    If <literal>m</literal> is
+    omitted or is <literal>-1</literal> all lines till end of file occurs are read.</para>
+    <para>
+    If <literal>m</literal> is given <literal>mgetl</literal> tries to read exactly m lines. This
+    option is useful to sequentialy read part of a file. In this case if
+    an end of file (EOF) occurs before <literal>m</literal> lines are read the read lines are
+    returned (it is possible to check if EOF had occured using the meof
+    function) issued.</para>
+    <para><literal>mgetl</literal> allows to read files coming from Unix, Windows, or Mac
+    operating systems.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+mgetl('SCI/etc/scilab.start',5)
+
+mgetl SCI/modules/elementary_functions/macros/erf.sci
+
+fd=mopen('SCI/etc/scilab.start','r')
+mgetl(fd,10)
+mclose(fd)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mputl">mputl</link>
+      </member>
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer</para>
+  </refsection>
+</refentry>

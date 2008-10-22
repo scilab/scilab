@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bdiag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bdiag</refname>
+    <refpurpose> bloc-diagonalisation, vecteurs propres généralisés  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rmax  </term>
+        <listitem>
+          <para>nombre réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ab  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>matrice régulière, réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bs  </term>
+        <listitem>
+          <para>vecteur d'entiers
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <programlisting><![CDATA[
+[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+   ]]></programlisting>
+    <para><literal>[Ab [,X [,bs]]]=bdiag(A [,rmax])</literal> calcule la forme
+    bloc-diagonale de <literal>A</literal>.  bs précise la structure des
+    blocs (tailles respectives des blocs).  <literal>X</literal> est la
+    matrice de changement de base, c'est à dire que <literal>Ab =
+    inv(X)*A*X </literal> est bloc-diagonale.
+  </para>
+    <para><literal>rmax</literal> contrôle le conditionnement de <literal>X</literal>;
+    la valeur par défaut est la norme l1 de <literal>A</literal>.
+  </para>
+    <para>
+    Pour obtenir une forme diagonale (si celle-ci existe) choisissez
+    une valeur élevée de <literal>rmax</literal> (<literal>rmax=1/%eps</literal>
+    par exemple).  Pour une matrice réelle quelconque, les blocs sont
+    de taille (1x1) ou (2x2) et <literal>X</literal> est la matrice des
+    vecteurs propres.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+// Cas réel: blocs 1x1 et 2x2
+a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+// Cas complexe : blocs complexes 1x1
+[ab,x,bs]=bdiag(a+%i*0);ab
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+      <member>
+        <link linkend="sylv">sylv</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

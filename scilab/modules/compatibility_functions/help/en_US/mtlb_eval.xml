@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_eval">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_eval</refname>
+    <refpurpose>Matlab eval emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Scilab equivalent for Matlab <literal>eval</literal> is different according to its inputs and outputs</para>
+    <para>
+    The function <literal>mtlb_eval(str1,str2)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>eval</literal> because it was not possible to know
+    what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_eval</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When called with one input and no output,
+        <literal>mtlb_eval(str1)</literal> may be replaced by <literal>evstr(str1)</literal>
+	if <literal>str1</literal> is a valid Scilab expression
+	or by <literal>execstr(str1)</literal> 
+	if <literal>str1</literal> is a valid Scilab instruction.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with one input and one output,
+        <literal>val=mtlb_eval(str1)</literal> may be replaced by <literal>val=evstr(str1)</literal>
+	if <literal>str1</literal> is a valid Scilab instruction.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with two inputs and no output,
+        <literal>mtlb_eval(str1,str2)</literal> may be replaced by:
+	<literal>if execstr(str1,"errcatch")&lt;&gt;0 then execstr(str2);end</literal>
+	if <literal>str1</literal> and <literal>str2</literal> are valid Scilab instructions.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with more than one output and one input,
+        <literal>[val1,val2,...]=mtlb_eval(str1)</literal> may be replaced by
+	<literal>execstr("[val1,val2,...]"+str1)</literal>
+	if <literal>str1</literal> is a valid Scilab instruction.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with two inputs and more than one output,
+        <literal>[val1,val2,...]=mtlb_eval(str1,str2)</literal> may be replaced by:
+        </para>
+        <programlisting><![CDATA[
+	if execstr("[val1,val2,...]"+str1,"errcatch")<>0 then
+	  execstr("[val1,val2,...]"+str2);
+	end	  
+	]]></programlisting>
+        <para>
+	if <literal>str1</literal> and <literal>str2</literal> are valid Scilab instructions.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_eval</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

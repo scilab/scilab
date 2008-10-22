@@ -1,0 +1,270 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-07-25 14:57+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s：无法打开文件%s。\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s, an integer or a vector "
+"of 2 integers.\n"
+msgstr "%s：输入参数#%d的值错误：必须为%s，一个整数或包含两个整数的向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or 2-element vector.\n"
+msgstr "%s：输入参数的值错误：索引范围必须用一个标量或者包含两个元素的向量来指定。\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr "%s：一个错误发生：不支持格式%s的数据压缩。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s：输入参数的值错误：文件名必须为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+
+msgid "Cannot play file."
+msgstr "无法播放文件。"
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Scilab sound模块没有被安装。\n"
+
+#, c-format
+msgid "%s: .wav input file must be a file, not a pipe.\n"
+msgstr "%s：.wav输入文件必须是一个文件，而不能是管道（pipe）。\n"
+
+#, c-format
+msgid "%s : not a RIFF file.\n"
+msgstr "%s：不是一个RIFF文件。\n"
+
+#, c-format
+msgid "%s: not a WAVE file.\n"
+msgstr "%s：不是一个WAVE文件。\n"
+
+#, c-format
+msgid "%s: missing fmt spec.\n"
+msgstr "%s：缺少fmt规格。\n"
+
+#, c-format
+msgid "%s : fmt chunk is too short\n"
+msgstr "%s：fmt块太短。\n"
+
+#, c-format
+msgid "%s: this WAV file is in Microsoft Official Unknown format.\n"
+msgstr "%s：该WAV文件是Microsoft Official Unknown格式。\n"
+
+#, c-format
+msgid "%s: user options overiding style read in .wav header\n"
+msgstr "%s：用户选项取代了.wav头中的风格。\n"
+
+#, c-format
+msgid "%s : this WAV file is in Microsoft ADPCM format.\n"
+msgstr "%s：该WAV文件是Microsoft ADPCM格式。\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header.\n"
+msgstr "%s：用户选项取代了.wav头中的风格。\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header\n"
+msgstr "%s：用户选项取代了.wav头中的风格。\n"
+
+#, c-format
+msgid "%s: this WAV file is in OKI ADPCM format.\n"
+msgstr "%s：该WAV文件是OKI ADPCM格式。\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digistd format.\n"
+msgstr "%s：该WAV文件是Digistd格式。\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digifix format.\n"
+msgstr "%s：该WAV文件是Digifix格式。\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM U-law format.\n"
+msgstr "%s：该WAV文件是IBM U-law格式。\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM A-law format.\n"
+msgstr "%s：该WAV文件是IBM A-law格式。\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM ADPCM format.\n"
+msgstr "%s：该WAV文件是IBM ADPCM格式。\n"
+
+#, c-format
+msgid "%s: don't understand format.\n"
+msgstr "%s：无法分析格式。\n"
+
+msgid "User options overiding channels read in .wav header\n"
+msgstr "用户选项替代了.wav头中的通道。\n"
+
+msgid "User options overiding rate read in .wav header\n"
+msgstr "用户选项替代了.wav头中的速率。\n"
+
+#, c-format
+msgid "%s: User options overiding size read in .wav header.\n"
+msgstr "%s：用户选项替代了.wav头中的大小。\n"
+
+#, c-format
+msgid "%s: Incorrect .wav size.\n"
+msgstr "%s：不正确的.wav大小。\n"
+
+#, c-format
+msgid "%s: missing data chunk.\n"
+msgstr "%s：缺少数据块。\n"
+
+#, c-format
+msgid "Reading Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr "读Wave文件：%s格式，%d通道%s，%d采样/秒。\n"
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n"
+msgstr "        %d字节/秒，%d块对齐，%d位/采样，%u数据字节\n"
+
+msgid "Premature EOF on .wav input file.\n"
+msgstr "在.wav输入文件中提前出现了文件结束符EOF。\n"
+
+msgid "Length in output .wav header will wrong since can't seek to fix it.\n"
+msgstr "在输出的.wav头中的长度可能错误，因为不能修复。\n"
+
+msgid "User options overiding style written to .wav header.\n"
+msgstr "用户选项替代了.wav头中的风格。\n"
+
+#, c-format
+msgid "Sciprinting - writing bad .wav file using %s\n"
+msgstr "Sciprinting - 使用%s写出错误的.wav文件。\n"
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using unsigned data and %d bits/sample.\n"
+msgstr "Sciprinting - 使用无符号数据和%d位/采样写出错误的.wav文件。\n"
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using signed data and %d bits/sample.\n"
+msgstr "Sciprinting - 使用有符号数据和%d位/采样写出错误的.wav文件。\n"
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using A-law data and %d bits/sample.\n"
+msgstr "Sciprinting - 使用A-law数据和%d位/采样写出错误的.wav文件。\n"
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using U-law data and %d bits/sample.\n"
+msgstr "Sciprinting - 使用U-law数据和%d位/采样写出错误的.wav文件。\n"
+
+#, c-format
+msgid "Writing Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr "写Wave文件：%s格式，%d通道%s，%d采样/秒\n"
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp\n"
+msgstr "        %d字节/秒，%d快对齐，%d位/采样\n"
+
+#, c-format
+msgid "Finished writing Wave file, %u data bytes\n"
+msgstr "写Wave文件结束，%u字节。\n"
+
+msgid "Sorry, can't rewind output file to rewrite .wav header.\n"
+msgstr "抱歉，不能返回输出文件来重写.wav头。\n"
+
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr "无法打开输入文件'%s':%s\n"
+
+msgid "Error while reading\n"
+msgstr "读数据时发生错误\n"
+
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr "输入文件：使用采样率%lu\n"
+
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr "\t大小%s，风格%s，%d %s\n"
+
+msgid "Sorry wav file too big\n"
+msgstr "抱歉，wav文件太大。\n"
+
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr "无法打开输出文件'%s'：%s\n"
+
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr "没有指定%s文件的采样率，\n"
+
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr "采样率%lu用于%s文件是假（bogus）的。\n"
+
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr "没有指定%s文件的数据大小。\n"
+
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr "没有为%s文件制定数据风格。\n"
+
+msgid "No U-Law support for shorts\n"
+msgstr "U-Law 编码不支持 shorts\n"
+
+msgid "No A-Law support for shorts\n"
+msgstr "A-Law 编码不支持 shorts\n"
+
+msgid "Drop through in rawread!\n"
+msgstr "rawread调用失败！\n"
+
+#, c-format
+msgid "Sorry, don't have code to read %s, %s\n"
+msgstr "抱歉，没读%s，%s的代码\n"
+
+msgid "No U-Law support for shorts (try -b option ?)\n"
+msgstr "U-Law 编码不支持 shorts（尝试 -b 选项？）\n"
+
+msgid "No A-Law support for shorts (try -b option ?)\n"
+msgstr "A-Law 编码不支持 shorts（尝试 -b 选项？）\n"
+
+msgid "Drop through in rawwrite!\n"
+msgstr "rawwrite调用失败！\n"
+
+#, c-format
+msgid "Sorry, don't have code to write %s, %s\n"
+msgstr "抱歉，没写%s，%s的代码\n"

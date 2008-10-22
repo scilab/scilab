@@ -1,0 +1,11 @@
+//=================================
+//return fftw wisdom
+txt=get_fftw_wisdom();
+if size(txt)<> [3 1] then bugmes();quit;end
+//=================================
+//set fftw wisdom
+set_fftw_wisdom(txt);
+//=================================
+//reset fftw wisdom
+fftw_forget_wisdom()
+//=================================

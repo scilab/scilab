@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="genlib">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>genlib</refname>
+    <refpurpose> build library from functions in given directory</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>genlib(lib_name [[,dir_name, [ Force [,verb [,Names]]]])
+genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>lib_name:  </term>
+        <listitem>
+          <para>Scilab string.  The variable name of the library to (re)create.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir_name:  </term>
+        <listitem>
+          <para>Scilab string.  The name of the directory to look for
+	    <literal>.sci</literal>-files. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Force</term>
+        <listitem>
+          <para>boolean value (default value is <literal>%f</literal>). Set it to
+	    <literal>%t</literal> to force the sci-files recompilation.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>verb</term>
+        <listitem>
+          <para>boolean values (default value is <literal>%f</literal>). Set it to
+	    <literal>%t</literal> to get information.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Names</term>
+        <listitem>
+          <para>a vector of strings, the names of function to include in the
+	    library. By default all the sci-files are taken into account</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>For each <literal>.sci</literal> file in <literal>dir_name</literal> (or only those
+      specified by the <literal>Names</literal> argument), <literal>genlib</literal> executes a
+    <literal>getf</literal> and saves the functions to the corresponding <literal>.bin</literal>
+    file.  The <literal>.sci</literal> file must not contain anything but Scilab
+    functions.  If a <literal>.bin</literal> file is newer than the associated
+    <literal>.sci</literal> file, <literal>genlib</literal> does not translate and save the file.</para>
+    <para>This default behaviour can be changed if <literal>force</literal> is given and 
+    set to <literal>%t</literal>. In this latter case the recompilation is always 
+    performed for each <literal>.sci</literal> file.</para>
+    <para>When all <literal>.sci</literal> files have been processed, <literal>genlib</literal> creates a
+    library variable named <literal>lib_name</literal> and saves it in the file
+    <literal>lib</literal> in <literal>dir_name</literal>. If the Scilab variable
+      <literal>lib_name</literal> is not protected (see <link linkend="predef">predef</link>) this
+      variable is updated.</para>
+    <para>If <literal>verbose</literal> is et to <literal>%t</literal> information are displayed during 
+    the build process.</para>
+    <para>If <literal>dir_name</literal> argument is not given and if <literal>lib_name</literal>
+    Scilab variable  exists and it is a library dir_name is taken equal to the
+    <literal>lib_name</literal> library path (update mode).</para>
+  </refsection>
+  <refsection>
+    <title>Restrictions</title>
+    <para>
+    Scilab tacitly assumes that file <literal>foo.sci</literal> defines at least a
+      function named <literal>foo</literal>. If subsidiary functions are included,
+      they are made known to Scilab only after the function <literal>foo</literal>
+      had been referenced.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getd">getd</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

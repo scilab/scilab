@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="continue">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>continue</refname>
+    <refpurpose> keyword to pass control to the next
+  iteration of a loop</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Inside a <literal>for</literal> or <literal>while</literal> loop, the command
+    <literal>continue</literal> passes control to the next iteration of the loop
+    in which it appears, skipping any remaining statements between
+    this instruction and the loop's <literal>end</literal> instruction.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+  for k=1:10,K=k;if k>2&k<=8 then continue,disp('hello'),end,k,end
+
+  for j=1:2
+    x=[];
+    for k=1:10,if k>j+1&k<=8 then continue,end,x=[x,k];end
+    x
+  end
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="while">while</link>
+      </member>
+      <member>
+        <link linkend="for">for</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="return">return</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Serge Steer, INRIA</para>
+  </refsection>
+</refentry>

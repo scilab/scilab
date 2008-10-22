@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="setlookandfeel">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>setlookandfeel</refname>
+    <refpurpose>sets the current default look and feel.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>bok=setlookandfeel()
+bok=setlookandfeel(lnf)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>lnf</term>
+        <listitem>
+          <para>a string with a look and feel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bok</term>
+        <listitem>
+          <para>a boolean.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Sets the current default Look and Feel.</para>
+    <para>setlookandfeel() without parameter set system default look and feel.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+currentlnf = getlookandfeel();
+
+// Look and feel Windows Classic
+setlookandfeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel")
+
+// Look and feel Windows
+setlookandfeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel")
+
+sleep(3000);
+
+// Look and feel CDE/Motif
+setlookandfeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel")
+
+sleep(3000);
+
+// Look and feel GTK+
+setlookandfeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel")
+
+sleep(3000);
+
+// Look and feel métal
+setlookandfeel("javax.swing.plaf.metal.MetalLookAndFeel")
+
+sleep(3000);
+
+// Look and feel Macintosh
+setlookandfeel("it.unitn.ing.swing.plaf.macos.MacOSLookAndFeel")
+
+// System default look and feel
+
+setlookandfeel()
+
+sleep(3000);
+
+// restore previous look and feel
+setlookandfeel(currentlnf)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getinstalledlookandfeels">getinstalledlookandfeels</link>
+      </member>
+      <member>
+        <link linkend="getlookandfeel">getlookandfeel</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

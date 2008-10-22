@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="gcd">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gcd</refname>
+    <refpurpose> calcul de PGCD  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[pgcd,U]=gcd(p)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>p  </term>
+        <listitem>
+          <para>vecteur ligne de polynômes <literal>p=[p1,..,pn] ou d'entiers (type égal à 8)</literal>
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Calcule le PGCD des termes de <literal>p</literal> et une matrice unimodulaire (avec le polynôme inverse) <literal>U</literal>, de degré minimal tels que
+  </para>
+    <para>
+      <literal>p*U=[0 ... 0 pgcd]</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+//cas des polynômes
+s=poly(0,'s');
+p=[s,s*(s+1)^2,2*s^2+s^3];
+[pgcd,u]=gcd(p);
+p*u
+//cas des entiers
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U]=gcd(V)
+V*U
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bezout">bezout</link>
+      </member>
+      <member>
+        <link linkend="lcm">lcm</link>
+      </member>
+      <member>
+        <link linkend="hermit">hermit</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

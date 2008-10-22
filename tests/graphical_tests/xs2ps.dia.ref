@@ -1,0 +1,60 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/xs2ps_data.ref','rb');
+ 
+%ans = scf(0);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = plot2d();
+
+Demo of plot2d()
+========================================
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// Postcript export
+ 
+filename = 'foo';// ! no extension
+ 
+%ans = xs2ps(0, filename);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+//add the Postscript file header and create <filename>.eps file
+ 
+if MSDOS then
+  %ans = unix_s(pathconvert('""' + WSCI + '/bin/BEpsf' + '""', %f) + ' -p ' + filename);
+  if load_ref('%ans') then   bugmes();quit;end,
+else
+  %ans = unix_s(pathconvert('SCI/bin/BEpsf', %f) + ' -p ' + filename);
+  if load_ref('%ans') then   bugmes();quit;end,
+end,
+ 
+// Gif export
+ 
+%ans = xs2gif(0, 'foo.gif');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// ppm export
+ 
+%ans = xs2ppm(0, 'foo.ppm');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

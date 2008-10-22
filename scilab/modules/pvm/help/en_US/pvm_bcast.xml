@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_bcast">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_bcast</refname>
+    <refpurpose> broacasts a message to all members of a group</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[info] = pvm_bcast(group, buff, msgtag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>group</term>
+        <listitem>
+          <para>string, string group name of an existing group.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>buff</term>
+        <listitem>
+          <para> data to be send (any Scilab object).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msgtag</term>
+        <listitem>
+          <para>integer,  message tag supplied by the user.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>integer,</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_bcast</literal> broadcasts a message to all the members of
+    the group named <literal>group</literal>.</para>
+    <para>
+    In PVM 3.2 and later the broadcast message is not sent back to the sender.
+    Any PVM task can call <literal>pvm_bcast()</literal>, it need not be a member of the group.
+    The content of the message can be distinguished by its tag <literal>msgtag</literal></para>
+    <para>
+    The returned value <literal>info</literal>will be zero if 
+    <literal>pvm_bcast</literal> is successful and will be 
+    will be &lt; 0 if some error occurs.</para>
+    <para>
+    pvm_bcast is asynchronous.
+    Computation on the sending processor resumes as soon as the message is
+    safely on its way to the receiving processors.  This is in
+    contrast to synchronous communication, during which computation on
+    the sending processor halts until a matching receive is
+    executed by all the receiving processors.</para>
+    <para>
+    pvm_bcast first determines the tids of the
+    group members by checking a group data base.
+    A multicast is performed to these tids.
+    If the group is changed during a broadcast the change will not
+    be reflected in the broadcast.
+    Multicasting is not supported by most multiprocessor vendors.
+    Typically their native calls only support broadcasting to <literal>all</literal>
+    the user's processes on a multiprocessor. Because of this omission,
+    pvm_bcast may not be an efficient communication method on
+    some multiprocessors.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_joingroup">pvm_joingroup</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

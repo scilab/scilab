@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Serge STEER
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bezout">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bezout</refname>
+    <refpurpose> Bezout equation for polynomials or integers</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p1, p2</term>
+        <listitem>
+          <para>two real polynomials or two integer scalars (type equal to 8)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[thegcd,U]=bezout(p1,p2)</literal> computes GCD <literal>thegcd</literal> of <literal>p1</literal> and <literal>p2</literal> and in addition a (2x2)
+    unimodular matrix <literal>U</literal> such that:</para>
+    <para>
+      <literal>[p1,p2]*U = [thegcd,0]</literal>
+    </para>
+    <para>
+    The lcm of <literal>p1</literal> and <literal>p2</literal> is given by:</para>
+    <para><literal>p1*U(1,2)</literal> (or <literal>-p2*U(2,2)</literal>)</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// polynomial case
+x=poly(0,'x');
+p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
+[thegcd,U]=bezout(p1,p2)
+det(U)
+clean([p1,p2]*U)
+thelcm=p1*U(1,2)
+lcm([p1,p2])
+// integer case
+i1=int32(2*3^5); i2=int32(2^3*3^2);
+[thegcd,U]=bezout(i1,i2)
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U]=gcd(V)
+V*U
+lcm(V)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="lcm">lcm</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> S. Steer INRIA</para>
+  </refsection>
+</refentry>

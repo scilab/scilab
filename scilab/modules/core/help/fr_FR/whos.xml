@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="whos">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>whos</refname>
+    <refpurpose> liste des variables courantes dans un format détaillé</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>whos()
+whos -type typ
+whos -name nam</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>nom du type des variables sélectionnées (voir <literal>typeof</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nam</term>
+        <listitem>
+          <para>premiers caractères des noms des variables recherchées</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>whos()</literal> affiche tous les noms des variables courantes, leurs types et la place mémoire occupée.</para>
+    <para><literal>whos -type typ</literal> affiche tous les noms des variables courantes de type spécifié dans <literal>typ</literal>.</para>
+    <para><literal>whos -name nam</literal> affiche tous les noms des variables courantes dont le nom commence par <literal>'nam'</literal></para>
+    <para>Remarque : si une variable est globale, le caractère * apparait devant son type.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+lines(0) 	
+whos()
+whos -type boolean
+whos -name %
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

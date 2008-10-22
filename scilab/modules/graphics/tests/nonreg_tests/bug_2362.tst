@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 2362 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2362
+//
+// <-- Short Description -->
+//    plot3d3 crash
+//
+//    plot3d3([0,0;10,10],[5,3;5,5],[0,2;0,2]);
+//
+//    badaboom!
+//
+//    Francois
+
+// crashed before the bug fix
+
+plot3d3([0,0;10,10],[5,3;5,5],[0,2;0,2]);

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="9.10" ProjectIdGuid="{8091E9B6-4C08-4218-A63D-742867CCFE9F}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/data_structures_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def data_structures_f.def &gt;nul
+copy data_structures_f.def ..\..\..\..\..\libs\data_structures_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeMinSpace" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/data_structures_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def data_structures_f.def &gt;nul
+copy data_structures_f.def ..\..\..\..\..\libs\data_structures_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/data_structures_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def data_structures_f.def &gt;nul
+copy data_structures_f.def ..\..\..\..\..\libs\data_structures_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeMinSpace" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/data_structures_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def data_structures_f.def &gt;nul
+copy data_structures_f.def ..\..\..\..\..\libs\data_structures_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="extractfields.f"/>
+		<File RelativePath="followpath.f"/>
+		<File RelativePath="forcerhs.f"/>
+		<File RelativePath="gratyp.f"/>
+		<File RelativePath="insertfield.f"/>
+		<File RelativePath="intl_e.f"/>
+		<File RelativePath="intl_i.f"/>
+		<File RelativePath="lsstyp.f"/>
+		<File RelativePath="lstops.f"/>
+		<File RelativePath="mlist.f"/>
+		<File RelativePath="rattyp.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_definedfields.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_getfield.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_list.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_lstcat.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_lstsize.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_setfield.f"/>
+		<File RelativePath="udptr.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\data_structures_gateway.xml"/>
+		<File RelativePath="..\..\Makefile.am"/></Files>
+	<Globals/></VisualStudioProject>

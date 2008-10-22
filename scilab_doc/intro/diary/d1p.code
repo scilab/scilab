@@ -1,0 +1,137 @@
+diary('d1p1.dia')
+a=1;
+A=2;
+a+A
+//Two commands on the same line
+c=[1 2];b=1.5
+diary(0)
+diary('d1p2.dia')
+a=1;b=1.5;
+2*a+b^2
+//We have now created variables and can list them by :
+who
+diary(0)
+diary('d1p3.dia')
+sqrt([4  -4])
+diary(0)
+diary('d1p4.dia')
+p=poly([1 2 3],'z','coeff')
+//p is the polynomial in z with coefficients 1,2,3.
+//p can also be defined by :
+s=poly(0,'s');p=1+2*s+s^2
+diary(0)
+diary('d1p41.dia')
+Params.tol=[0.01,0.002]; Params.errmsg='error message';
+Params.tol(2)
+diary(0)
+diary('d1p5.dia')
+M=[p, p-1; p+1 ,2]
+det(M)
+diary(0)
+diary('d1p6.dia')
+z=poly(0,'z');
+f=[1/s        ,(s+1)/(1-s) 
+     s/p        ,   s^2   ]
+diary(0)
+diary('d1p7.dia')
+pause
+pt=return(s*p)
+pt
+diary(0)
+diary('d1p8.dia')
+f21=f(2,1);v=0:0.01:%pi;frequencies=exp(%i*v);
+response=freq(f21(2),f21(3),frequencies);
+plot2d(v',abs(response)',style=-1,rect=[0,0,3.5,0.7],nax=[5,4,5,7]);
+xtitle(' ','radians','magnitude');
+diary(0)
+diary('d1p9.dia')
+w=(1-s)/(1+s);f=1/p
+horner(f,w)
+diary(0)
+diary('d1p10.dia')
+A=[-1,0;1,2];B=[1,2;2,3];C=[1,0];
+Sl=syslin('c',A,B,C);
+ss2tf(Sl)
+diary(0)
+diary('d1p11.dia')
+s=poly(0,'s');
+R=[1/s,s/(1+s),s^2]
+Sl=syslin('c',R);
+tf2ss(Sl)
+diary(0)
+diary('d1p12.dia')
+sl1=[Sl;2*Sl+eye()]
+size(sl1)
+size(tf2ss(sl1))
+diary(0)
+diary('d1p13.dia')
+function Cl=compen(Sl,Kr,Ko)
+  [A,B,C,D]=abcd(Sl);
+  A1=[A-B*Kr ,B*Kr; 0*A ,A-Ko*C]; Id=eye(A);
+  B1=[Id     ,0*Ko; Id  ,-Ko   ];
+  C1=[C ,0*C];Cl=syslin('c',A1,B1,C1) 
+endfunction
+diary(0)
+diary('d1p14.dia')
+A=[1,1 ;0,1];B=[0;1];C=[1,0];Sl=syslin('c',A,B,C);
+Cl=compen(Sl,ppol(A,B,[-1,-1]),...
+                     ppol(A',C',[-1+%i,-1-%i])');
+f=Cl(2),spec(f)
+diary(0)
+diary('d1p15.dia')
+//Saving the environment in a file named : myfile
+save('myfile')
+//Request to the host system to perform a system command
+unix_s('rm myfile')
+//Request to the host system with output in this Scilab window
+unix_w('date')
+q
+diary(0)
+diary('d1p16.dia')
+foo=['      subroutine foo(a,b,c)';
+     '      c=a+b';
+     '      end'  ];
+write('foo.f',foo);
+unix_s('make foo.o') 
+link('foo.o','foo')  
+deff('[c]=myplus(a,b)',
+   'c=fort(''foo'',a,1,''r'',b,2,''r'',''out'',[1,1],3,''r'')')
+myplus(5,7)
+diary(0)
+diary('d1p17.dia')
+deff('[ydot]=f(t,y)','ydot=[a-y(2)*y(2) -1;1 0]*y')
+a=1;y0=[1;0];t0=0;instants=0:0.02:20;
+y=ode(y0,t0,instants,f);
+plot2d(y(1,:)',y(2,:)',[-1],'011',' ',[-3,-3,3,3],[10,2,10,2])
+xtitle('Van der Pol') 
+diary(0)
+diary('d1p18.dia')
+m=['a' 'cos(b)';'sin(a)' 'c']
+m*m'
+function x=%c_m_c(a,b)
+  [l,m]=size(a);[m,n]=size(b);x=[];
+  for j=1:n,
+    y=[];
+    for i=1:l,
+      t=' ';
+      for k=1:m;
+	if k>1 then 
+	  t=t+'+('+a(i,k)+')*'+'('+b(k,j)+')';
+	else 
+	  t='(' + a(i,k) + ')*' + '(' + b(k,j) + ')';
+	end
+      end
+      y=[y;t]
+    end
+    x=[x y]
+  end
+endfunction
+m*m'
+diary(0)
+diary('d1p19.dia')
+function y=calcul(x,method),z=method(x),y=poly(z,'x'),endfunction
+function z=meth1(x),z=x,endfunction
+function z=meth2(x),z=2*x,endfunction
+calcul([1,2,3],meth1)
+calcul([1,2,3],meth2)
+diary(0)

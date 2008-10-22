@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dsimul">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dsimul</refname>
+    <refpurpose>  state space discrete time simulation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=dsimul(sl,u)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list describing a discrete time linear system</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>u</term>
+        <listitem>
+          <para>real matrix of appropriate dimension</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>output of <literal>sl</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function. 
+    If <literal>[A,B,C,D]=abcd(sl)</literal> and <literal>x0=sl('X0')</literal>, <literal>dsimul</literal> returns <literal>y=C*ltitr(A,B,u,x0)+D*u</literal> i.e.
+    the time response of <literal>sl</literal> to the input <literal>u</literal>.
+    <literal>sl</literal> is assumed to be in state space form (<literal>syslin</literal> list).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+z=poly(0,'z');
+h=(1-2*z)/(z^2-0.2*z+1);
+sl=tf2ss(h);
+u=zeros(1,20);u(1)=1;
+x1=dsimul(sl,u)   //Impulse response
+u=ones(1,20);
+x2=dsimul(sl,u);  //Step response
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="flts">flts</link>
+      </member>
+      <member>
+        <link linkend="ltitr">ltitr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

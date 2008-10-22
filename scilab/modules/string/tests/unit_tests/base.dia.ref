@@ -1,0 +1,34 @@
+// Copyright INRIA
+// Operations on strings
+if 'a'=='b'  then bugmes();quit;end
+if 'a'==''   then bugmes();quit;end
+if ''=='b'   then bugmes();quit;end
+if 'a'=='ab' then bugmes();quit;end
+if 'a'<>'a'  then bugmes();quit;end
+if ''<>''    then bugmes();quit;end
+if execstr("''a''>''b''"  ,'errcatch') == 0 then bugmes();quit;end
+if execstr("''a''>=''b''" ,'errcatch') == 0 then bugmes();quit;end
+if execstr("''a''<=''b''" ,'errcatch') == 0 then bugmes();quit;end
+if execstr("''a''<''b''"  ,'errcatch') == 0 then bugmes();quit;end
+if 'abc'+'def' <> 'abcdef' then bugmes();quit;end
+if ['abc']     <> 'abc'    then bugmes();quit;end
+r=['abc','def'];
+if or(size(r)    <> [1 2] ) then bugmes();quit;end
+if r(1)          <> 'abc'   then bugmes();quit;end
+if r(1,[%t, %f]) <> 'abc'   then bugmes();quit;end
+if or(r(:)       <> r'    ) then bugmes();quit;end
+if r(1,[%t, %f]) <>'abc'    then bugmes();quit;end
+r=['abc','def'
+   ''   ,'1234'
+   'x'  ,''    ];
+if or(size(r)       <> [3 2]                  ) then bugmes();quit;end
+if or(r(1,:)        <> ['abc','def']          ) then bugmes();quit;end
+if or(r([1,1],1)    <> ['abc';'abc']          ) then bugmes();quit;end
+if or(r(:,[1  2 1]) <> [r(:,1) r(:,2) r(:,1)] ) then bugmes();quit;end
+if or(r(:,1)        <> ['abc';'';'x']         ) then bugmes();quit;end
+if or(r(:,:)        <> r                      ) then bugmes();quit;end
+if or(r(:)          <> matrix(r,-1,1)         ) then bugmes();quit;end
+r(2,:)=[];
+if or(r<>['abc','def';'x','']) then bugmes();quit;end
+r(:,1)=[];
+if or(r<>['def';'']) then bugmes();quit;end

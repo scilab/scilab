@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="colcompr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>colcompr</refname>
+    <refpurpose> compression des colonnes d'une matrice de polynômes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y  </term>
+        <listitem>
+          <para>matrice carrée de polynômes (base unimodulaire à droite)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk  </term>
+        <listitem>
+          <para>rang normal de <literal>A</literal>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ac  </term>
+        <listitem>
+          <para>
+    : <literal>Ac=A*Y</literal>, matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Compression de colonnes de la matrice de polynômes <literal>A</literal> (compression à gauche)
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+p=[s;s*(s+1)^2;2*s^2+s^3];
+[Y,rk,ac]=colcompr(p*p');
+p*p'*Y
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rowcompr">rowcompr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

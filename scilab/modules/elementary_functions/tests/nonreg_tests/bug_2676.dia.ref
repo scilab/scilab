@@ -1,0 +1,11 @@
+// <-- Non-regression test for bug 2676 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2676
+//
+// <-- Short Description -->
+// oct2dec gives wrong results when first argument is a matrix.
+// Pierre MARECHAL - Scilab Project
+// Copyright INRIA
+// 29 janvier 2008
+if oct2dec(["10";"20";"4000"]) <> [ 8 ; 16 ; 2048 ] then bugmes();quit;end

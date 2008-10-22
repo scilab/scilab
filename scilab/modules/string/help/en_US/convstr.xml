@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="convstr">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>convstr</refname>
+    <refpurpose> case conversion</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y]=convstr(str, [flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str, y</term>
+        <listitem>
+          <para>A matrix of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+		<listitem>
+			<para>A character option with possible values</para>
+			<variablelist>
+				<varlistentry>
+					<term>'u'</term>
+					<listitem>
+						<para>for upper</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>'l'</term>
+					<listitem>
+						<para>for lower</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    converts the matrix of strings <literal>str-matrix</literal>
+    into lower case (for <literal>"l"</literal> ;default value) or
+    upper case (for <literal>"u"</literal>).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=['this','is';'my','matrix'];
+convstr(A,'u')
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

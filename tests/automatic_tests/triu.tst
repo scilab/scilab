@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/triu_data.ref','rb');
+s = poly(0, 's');
+%ans = triu([s,s;s,1]);
+if load_ref('%ans') then   pause,end,
+
+%ans = triu([1/s,1/s;1/s,1]);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

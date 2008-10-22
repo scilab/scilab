@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="clearglobal">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>clearglobal</refname>
+    <refpurpose> supprime des variables globales  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>clearglobal()
+clearglobal nam1 .. namn
+clearglobal('nam1', ..,'namn')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>nam1,..., namn  </term>
+        <listitem>
+          <para>noms valides de variables
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>clearglobal() </literal> supprime toutes les variables globales.
+  </para>
+    <para><literal>clearglobal nam1 .. namn</literal> supprime les variables globales dont les noms sont spécifiés.
+  </para>
+    <para>
+    Notez que <literal>clearglobal()</literal> détruit seulement les variables globales, les copies locales de ces variables sont conservées.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+global a b c
+a=1;b=2;c=3;
+who('global')
+clearglobal b
+who('global')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="global">global</link>
+      </member>
+      <member>
+        <link linkend="who">who</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

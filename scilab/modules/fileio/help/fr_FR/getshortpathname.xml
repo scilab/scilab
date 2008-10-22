@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getshortpathname">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getshortpathname</refname>
+    <refpurpose>retourne le chemin au format
+  court (Seulement pour Windows)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>shortpath=getshortgpathname(longpath)
+[shortpath,bOK]=getshortpathname(longpath)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>longpath</term>
+        <listitem>
+          <para>Une chaine de caractere contenant le chemin au format
+          long.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>shortpath</term>
+        <listitem>
+          <para>Une chaine de caractere contenant le chemin au format
+          court</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bOK</term>
+        <listitem>
+          <para>contient %T si le chemin a ete converti ou %F si ce n'est pas
+          le cas.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>La primitive getshortpathname convertie un chemin au format long en un
+    chemin au format court.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[[shortpath,bOK]=getshortpathname(SCI) 
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getlongpathname">getlongpathname</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

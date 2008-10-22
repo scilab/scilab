@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="macro">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>macro</refname>
+    <refpurpose> Scilab procedure and Scilab object</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Macros are Scilab procedures ("macro", "function" and "procedure"
+    have the save meaning). Usually, they are defined 
+    in files with an editor and loaded into Scilab by <literal>getf</literal> or through
+    a library.</para>
+    <para>
+    They can also be defined on-line (see <literal>deff</literal>). 
+    A file which contains a macro must begin as follows:</para>
+    <programlisting><![CDATA[
+
+function [y1,...,yn]=foo(x1,...,xm)
+   
+    ]]></programlisting>
+    <para>
+    The <literal>yi</literal> are output variables calculated as functions of
+    input variables and variables existing in Scilab
+    when the macro is executed.
+    A macro can be compiled for faster execution. Collections
+    of macros can be collected in libraries.
+    Macros which begin with <literal>%</literal> sign (e.g. <literal>%foo</literal>) and whose
+    arguments are lists are used to perform specific 
+    operations: for example, <literal>z=%rmr(x,y)</literal> is equivalent
+    to <literal>z=x*y</literal> when <literal>x</literal> and <literal>z</literal> are rationals 
+    (i.e. <literal>x=list('r',n,d,[])</literal> with <literal>n</literal> and <literal>d</literal> polynomials).</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

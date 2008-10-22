@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="realtime">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv xml:id="realtimeinit">
+    <refname>realtimeinit</refname>
+    <refpurpose>set  time unit</refpurpose>
+  </refnamediv>
+  <refnamediv>
+    <refname>realtime</refname>
+    <refpurpose>set  dates origin or waits until date</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>realtimeinit(time_unit)
+realtime(t)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>time_unit</term>
+        <listitem>
+          <para>a real number. The number of seconds associated to the <literal>realtime</literal> argument</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>a real number.  A date</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>   These two functions can be used to handle real time into Scilab.</para>
+    <para><literal>realtimeinit(time_unit)</literal>  defines the time unit
+   associated to the <literal>realtime</literal> argument <literal>t</literal></para>
+    <para>
+   first call to <literal>realtime(t0)</literal> sets current date to
+   (<literal>t0</literal>).
+   subsequent calls to <literal>realtime(t)</literal> wait till date <literal>t</literal> is
+   reached.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+
+
+   realtimeinit(1/2);//sets time unit to half a second
+   realtime(0);//sets current date to 0
+   for k=1:10,realtime(k);mprintf('current time is '+string(k/2)+'sec .\r\n');end
+ 
+  //next instruction outputs a dot each 2 seconds
+   realtimeinit(2); realtime(0);for k=1:10,realtime(k);mprintf('.\r\n');end
+
+   realtimeinit(1);realtime(0);
+   dt=getdate('s'); realtime(10);   getdate('s')-dt
+
+
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getdate">getdate</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

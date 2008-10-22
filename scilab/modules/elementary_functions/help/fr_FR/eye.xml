@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="eye">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>eye</refname>
+    <refpurpose> matrice identité  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>X=eye(m,n)
+X=eye(A)
+X=eye()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,X  </term>
+        <listitem>
+          <para>matrices ou listes de type <literal>syslin</literal>.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m,n  </term>
+        <listitem>
+          <para>entiers
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Renvoie, suivant les arguments, une matrice <literal>m</literal>x<literal>n</literal> avec des 1 sur la diagonale principale ou une matrice identité de même taille que <literal>A</literal> .
+  </para>
+    <para>
+    Attention : <literal>eye(10)</literal> est équivalent à <literal>eye(A)</literal> avec <literal>A=10</literal> c'est à dire <literal>1</literal>.
+    (Ce n'est pas une matrice identité 10 x 10!).
+  </para>
+    <para>
+    Si <literal>A</literal> est un système linéaire représenté par une liste de type <literal>syslin</literal>, <literal>eye(A)</literal>
+    renvoie une <literal>eye</literal> matrice de dimension appropriées : (nombre de sorties x nombre d'entrées).
+  </para>
+    <para><literal>eye()</literal> renvoie une matrice identité de dimension non définie.
+    Ses dimensions sont définies quand cette matrice est ajoutée à une matrice de dimensions fixées.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+eye(2,3)
+A=rand(2,3);eye(A)
+s=poly(0,'s');A=[s,1;s,s+1];eye(A)
+A=[1/s,1;s,2];eye(A);
+A=ssrand(2,2,3);eye(A)
+[1 2;3 4]+2*eye()
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

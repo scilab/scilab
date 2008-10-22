@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="polfact">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>polfact</refname>
+    <refpurpose> facteurs minimaux  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[f]=polfact(p)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>p  </term>
+        <listitem>
+          <para>polynôme
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f  </term>
+        <listitem>
+          <para>vecteur <literal>[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal> 
+	  </para>
+          <variablelist>
+            <varlistentry>
+              <term>f0  </term>
+              <listitem>
+                <para>constante
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>fi  </term>
+              <listitem>
+                <para>polynôme
+		</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>f=polfact(p)</literal> renvoie les facteurs minimaux de p
+      i.e. <literal>f=[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lcm">lcm</link>
+      </member>
+      <member>
+        <link linkend="cmndred">cmndred</link>
+      </member>
+      <member>
+        <link linkend="factors">factors</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para> S. Steer INRIA </para>
+  </refsection>
+</refentry>

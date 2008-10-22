@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="gspec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gspec</refname>
+    <refpurpose> valeurs propres d'un faisceau de matrices (obsolete) </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[al,be]=gspec(A,E)
+[al,be,Z]=gspec(A,E)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A, E  </term>
+        <listitem>
+          <para>matrices carrées réelles de mêmes dimensions
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>al, be  </term>
+        <listitem>
+          <para>vecteurs réels
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Z  </term>
+        <listitem>
+          <para>matrice carrée régulière
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+Cette fonction est maintenant un cas particulier de la fonction
+<literal>spec</literal>. La syntaxe d'appel doit être remplacée par 
+  </para>
+    <programlisting><![CDATA[
+[al,be]=spec(A,E)
+[al,be,Z]=spec(A,E)
+   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

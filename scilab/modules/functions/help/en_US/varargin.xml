@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="varargin" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>varargin</refname>
+
+    <refpurpose>variable numbers of arguments in an input argument
+    list</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>A function whose last input argument is <literal>varargin</literal>
+    can be called with more input arguments than indicated in the input
+    argument list. The calling arguments passed form
+    <literal>varargin</literal> keyword onwards may then be retrieved within
+    the function in a list named <literal>varargin</literal>.</para>
+
+    <para>Suppose that <literal>varargin</literal> keyword is the
+    <literal>n</literal> th argument of the formal input argument list, then
+    if the function is called with less than <literal>n-1</literal> input
+    arguments the <literal>varargin</literal> list is not defined, if the
+    function is called with <literal>n-1</literal> arguments then
+    <literal>varargin</literal> list is an empty list.</para>
+
+    <para><literal>y = function ex(varargin)</literal> may be called with any
+    number of input arguments. Within function <literal>ex</literal> input
+    arguments may be retrieved in <literal>varargin(i)</literal>
+    ,<literal>i=1:length(varargin)</literal></para>
+
+    <para>If it is not the last input argument of a function,
+    <literal>varargin</literal> is a normal input argument name with no
+    special meaning.</para>
+
+    <para>The total number of actual input arguments is given by <link
+    linkend="argn">argn(2)</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Remark</title>
+
+    <para>Named argument syntax like <literal>foo(...,key=value) </literal> is
+    incompatible with the use of varargin. The reason is that the names (i.e.
+    keys) associated with values are not stored in the varargin list. Consider
+    for instance:</para>
+
+    <para>function
+    foo(varargin),disp([varargin(1),varargin(2)]),endfunction</para>
+
+    <para>foo(a=1,b=2)</para>
+
+    <para>Scilab answers: 1. 2.</para>
+
+    <para>foo(b=1,a=2)</para>
+
+    <para>Scilab answers: 1. 2.</para>
+
+    <para>Result is the same, but the arguments were inverted.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
+                          'if rhs&gt;=1 then disp(varargin),end'])
+exampl(1)
+exampl()
+exampl(1,2,3)
+l=list('a',%s,%t);
+exampl(1,l(2:3))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="varargout">varargout</link></member>
+
+      <member><link linkend="list">list</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_setstr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_setstr</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab setstr</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>setstr</literal> et la fonction Scilab
+    <literal>ascii</literal> se comportent différemment :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec les chaînes de caractère : la fonction Matlab <literal>setstr</literal> retourne une chaîne de caractères
+	alors que la fonction Scilab <literal>ascii</literal> retourne uen matrice de doubles.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Avec les matrices de doubles : la fonction Matlab <literal>setstr</literal> retourne une matrice
+	de caractères alors que la fonction Scilab <literal>ascii</literal> retourne une chaine de caractères.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_setstr(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>setstr(A)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_setstr</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> est une chaîne de caractères ou une matrice de chaînes
+        <literal>mtlb_setstr(A)</literal> peut être remplacé par <literal>A</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+         Si <literal>A</literal> est un vecteur ligne de doubles
+        <literal>mtlb_setstr(A)</literal> peut être remplacé par <literal>ascii(A)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_setstr</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

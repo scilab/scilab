@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mlist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mlist</refname>
+    <refpurpose>Objet Scilab, définition d'une liste
+  typée</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>mlist(typ,a1,....an )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>vecteur de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ai</term>
+        <listitem>
+          <para>objet Scilab (<literal>matrice, liste, chaîne...</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Les objets de type <literal>mlist</literal> sont très similaires aux objets
+    de type <literal>tlist</literal>. Si <literal>M</literal> est de type mlist, pour tout
+    indice <literal>i</literal> qui n'est pas le nom d'un champ de la liste,
+    <literal>M(i)</literal> n'est pas le <literal>i</literal>-ème champ de la liste mais
+    est interprété comme le <literal>i</literal>-ème terme de <literal>M</literal> vu
+    comme un vecteur. C'est la seule différence entre <literal>mlist</literal> et
+    <literal>tlist</literal>.</para>
+    <para/>
+    <para>Les champs des mlist doivent donc être manipulés par leur noms. Il
+    peuvent aussi être manipulés avec les fonctions <literal>getfield</literal> et
+    <literal>setfield</literal>.</para>
+    <para/>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+// définition de la fonction d'affichage
+deff('%V_p(M)','disp(M.name+'':''+string(M.value))')
+// définition de la fonction d'extraction
+deff('r=%V_e(i,M)',..
+'r=mlist([''V'',''name'',''value''],M.name(i),M.value(i))')
+M(2) // Le deuxième terme du vecteur M
+M.value 
+
+// définition de M comme une tlist
+M=tlist(['V','name','value'],['a','b','c'],[1 2 3]);
+M(2)
+
+M('name')
+
+// avec deux indices
+M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2;3 4]);
+deff('r=%V_e(varargin)',[
+    'M=varargin($)';
+    'H=[''V'',''name'',''value'']'
+    'r=mlist(H,M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))'])
+
+M(:,2)
+// tableau multidimensionnel
+str=['a','b','c','d','e','f','g','h'];
+n=hypermat([2,2,2],str);
+v=hypermat([2,2,2],1:8);
+M=mlist(['V','name','value'],n,v);
+M(1,1:2,2)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="list">list</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+      <member>
+        <link linkend="getfield">getfield</link>
+      </member>
+      <member>
+        <link linkend="setfield">setfield</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

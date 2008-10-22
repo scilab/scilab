@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="edit_curv" xml:lang="fr">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven, 14 mar 2008)
+    $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>edit_curv</refname>
+    <refpurpose>éditeur graphique interactif</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[x,y,ok,gc] = edit_curv(y)
+[x,y,ok,gc] = edit_curv(x,y)
+[x,y,ok,gc] = edit_curv(x,y,job)
+[x,y,ok,gc] = edit_curv(x,y,job,tit)
+[x,y,ok,gc] = edit_curv(x,y,job,tit,gc)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vecteur de coordonnées x</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>vecteur de coordonnées y</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>job</term>
+        <listitem>
+          <para>chaîne de caractères composée d'un à trois des caractères 'a','x','y'</para>
+          <itemizedlist>
+            <listitem>
+              <para>'a' : pour ajouter des points à la courbe éditée</para>
+            </listitem>
+          </itemizedlist>
+          <itemizedlist>
+            <listitem>
+              <para>'x' : pour modifier les coordonnées x des points de la courbe éditée</para>
+            </listitem>
+          </itemizedlist>
+          <itemizedlist>
+            <listitem>
+              <para>'y' : pour modifier les coordonnées y des points de la courbe éditée</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tit</term>
+        <listitem>
+          <para>un vecteur de 3 chaînes de caractères donnant les légendes de
+          la courbe</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gc</term>
+        <listitem>
+          <para>une liste de paramètres pour la fenêtre graphique :
+          <literal>gc=list(rect,nax)</literal></para>
+          <itemizedlist>
+            <listitem>
+              <para>rect : bornes du graphique (voir plot2d)</para>
+            </listitem>
+          </itemizedlist>
+          <itemizedlist>
+            <listitem>
+              <para>nax : paramètres de graduation (voir plot2d)</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ok</term>
+        <listitem>
+          <para>si ok==%t l'utilisateur a quitté avec le menu 'ok' sinon
+          l'utilisateur a quitté avec le menu 'abort'. : list (objets
+          graphiques créés avec <literal>edit_curv</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>edit_curv</literal> est un éditeur de courbes interactif.
+    Pour ajouter un nouveau point cliquer à la position désirée, le point
+    ajouté sera connecté au point final le plus proche. Pour bouger un point
+    cliquer dessus, bouger la souris et cliquer pour définir la nouvelle
+    position.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Serge Steer</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,17 @@
+//===============================
+// unit tests gettext
+// INRIA 2008
+// @author Sylvestre LEDRU
+//===============================
+// Void call
+if execstr('gettext()','errcatch')==0 then bugmes();quit;end
+// two inputs arguments
+str1="plop"; str2="plip"; if execstr('gettext(str1, str2)','errcatch')==0 then bugmes();quit;end
+// Try to translate from en_US to en_US to a string which doesn't exist
+lang="en_US"; setlanguage(lang); msg="Localization does not exist"; if gettext(msg) <> msg then bugmes();quit;end
+// Try to translate from en_US to fr_FR to a string which doesn't exist
+lang="fr_FR"; setlanguage(lang); msg="Localization does not exist"; if gettext(msg) <> msg then bugmes();quit;end
+lang="fr_FR"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> "Initialisation:" then bugmes();quit;end
+lang="fr"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> "Initialisation:" then bugmes();quit;end
+lang="en"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> msg then bugmes();quit;end
+lang="en_US"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> msg then bugmes();quit;end

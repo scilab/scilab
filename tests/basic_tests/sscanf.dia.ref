@@ -1,0 +1,117 @@
+ 
+// Copyright INRIA
+ 
+//test format %i %d
+ 
+if sscanf('123','%i')<>123 then bugmes();quit;end
+ 
+if sscanf('     123','%i')<>123 then bugmes();quit;end
+ 
+if sscanf('123','%2i')<>12 then bugmes();quit;end
+ 
+if sscanf('123','%0i')<>123 then bugmes();quit;end
+ 
+if sscanf('123','%5i')<>123 then bugmes();quit;end
+ 
+//test format %u
+ 
+if sscanf('+123','%u')<>123 then bugmes();quit;end
+ 
+if sscanf(' 123','%2u')<>12 then bugmes();quit;end
+ 
+if sscanf('123','%0u')<>123 then bugmes();quit;end
+ 
+if sscanf('+123','%5u')<>123 then bugmes();quit;end
+ 
+//test format %e %f %g
+ 
+ 
+if sscanf('123','%e')<>123 then bugmes();quit;end
+ 
+if sscanf('     123','%e')<>123 then bugmes();quit;end
+ 
+if sscanf('123','%2e')<>12 then bugmes();quit;end
+ 
+if sscanf('123','%0e')<>123 then bugmes();quit;end
+ 
+if sscanf('123','%5e')<>123 then bugmes();quit;end
+ 
+ 
+//test format %s
+ 
+if sscanf('123','%s')<>'123' then bugmes();quit;end
+ 
+if sscanf('     123','%s')<>'123' then bugmes();quit;end
+ 
+if sscanf('123','%2s')<>'12' then bugmes();quit;end
+ 
+if sscanf('123','%0s')<>'123' then bugmes();quit;end
+ 
+if sscanf('123','%5s')<>'123' then bugmes();quit;end
+ 
+ 
+//test format %o
+ 
+if sscanf('123','%o')<>83 then bugmes();quit;end
+ 
+if sscanf('     123','%o')<>83 then bugmes();quit;end
+ 
+if sscanf('123','%2o')<>10 then bugmes();quit;end
+ 
+if sscanf('123','%0o')<>83 then bugmes();quit;end
+ 
+if sscanf('123','%5o')<>83 then bugmes();quit;end
+ 
+ 
+//test format %x
+ 
+if sscanf('123','%x')<>291 then bugmes();quit;end
+ 
+if sscanf('     123','%x')<>291 then bugmes();quit;end
+ 
+if sscanf('123','%2x')<>18 then bugmes();quit;end
+ 
+if sscanf('123','%0x')<>291 then bugmes();quit;end
+ 
+if sscanf('123','%5x')<>291 then bugmes();quit;end
+ 
+ 
+//test format %c
+ 
+if sscanf('123','%c')<>'1' then bugmes();quit;end
+ 
+if sscanf('     123','%c')<>' ' then bugmes();quit;end
+ 
+if sscanf('123','%0c')<>'1' then bugmes();quit;end
+ 
+ 
+//test des format complexes
+ 
+if sscanf('123 4','%*s%s')<>'4' then bugmes();quit;end
+ 
+if sscanf('123 4','123%e')<>4 then bugmes();quit;end
+ 
+[a,b,c]=sscanf('xxxxx 4 test 23.45','xxxxx%i%s%e')
+ c  =
+ 
+    23.45  
+ b  =
+ 
+ test   
+ a  =
+ 
+    4.  
+ 
+if a<>4|b<>'test'|c<>23.45 then bugmes();quit;end
+ 
+ 
+[a,b]=sscanf('123\n456','%e%e')
+ b  =
+ 
+    456.  
+ a  =
+ 
+    123.  
+ 
+if a<>123|b<>456 then bugmes();quit;end
+ 

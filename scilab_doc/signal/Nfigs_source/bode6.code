@@ -1,0 +1,3 @@
+xinit('bode6.ps')
+exec('SCI/doc/signal/Nsource_diary/Sbode6.code')
+xend();

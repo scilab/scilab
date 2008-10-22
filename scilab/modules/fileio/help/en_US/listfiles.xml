@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="listfiles">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>listfiles</refname>
+    <refpurpose> list files</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>files= listfiles(paths [,flag,flagexpand])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>paths</term>
+        <listitem>
+          <para>a string matrix giving a set of pathnames (eventually  ended by a pattern built with <literal>*</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag,flagexpand</term>
+        <listitem>
+          <para>boolean optional parameters. (default value <literal>%t</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>a string matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>listfiles</literal> can be used to list the files which match 
+    the patterns given by one of the paths entries. 
+    Patterns are given to the unix <literal>ls</literal> or to the windows
+    <literal>dir</literal> commands in order to get information on files. 
+    Thus in order to write portable Scilab script valid wildcard patterns 
+    for both os are to be given. Note that Pathname conversion is
+    performed and for example <literal>SCI/core/macros/*.sci</literal> is a valid 
+    pattern for both unix and windows.</para>
+    <para>
+    if <literal>flag</literal> is true the pathnames given by <literal>paths</literal> are 
+    converted according to the MSDOS value (See <literal>pathconvert</literal>). 
+    Moreover, if <literal>flagexpand</literal> is true leading strings like
+    <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
+    variables.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+files=listfiles(['SCI/modules/core/macros/*.sci';'SCI/modules/core/macros/*.bin']);
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findfiles">findfiles</link>
+      </member>
+      <member>
+        <link linkend="basename">basename</link>
+      </member>
+      <member>
+        <link linkend="pathconvert">pathconvert</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

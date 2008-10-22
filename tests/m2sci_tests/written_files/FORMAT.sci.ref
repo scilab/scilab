@@ -1,0 +1,26 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function format()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+format("v",6)
+mtlb_format("+")
+mtlb_format("+")
+mtlb_format("bank")
+mtlb_format("compact")
+mtlb_format("hex")
+mtlb_format("long")
+mtlb_format("long","e")
+mtlb_format("long","g")
+mtlb_format("loose")
+mtlb_format("rat")
+mtlb_format("short")
+mtlb_format("short","e")
+mtlb_format("short","g")

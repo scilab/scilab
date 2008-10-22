@@ -1,0 +1,79 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/gdf_data.ref','rb');
+ 
+ 
+%ans = set('old_style', 'off');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+f = gdf();
+ 
+if load_ref('f') then   bugmes();quit;end,
+ 
+// get the handle of the model figure
+ 
+// setting its' properties
+ 
+f('background') = 7;
+ 
+f('figure_name') = 'Function gdf()';
+ 
+f('figure_position') = [-1,100];
+ 
+f('auto_resize') = 'off';
+ 
+f('figure_size') = [300,461];
+ 
+f('axes_size') = [600,400];
+ 
+%ans = plot2d();
+
+Demo of plot2d()
+========================================
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//create a figure
+ 
+scf(1);
+ 
+%ans = plot3d();
+
+Demo of plot3d()
+========================================
+t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//create a second figure
+ 
+set(f, 'default_values', 1);// return to the  default values of figure's model
+ 
+// see sdf() function
+ 
+scf(2);
+ 
+%ans = plot2d();
+
+Demo of plot2d()
+========================================
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

@@ -1,0 +1,10 @@
+LIBRARY    scicos_blocks.dll
+
+
+EXPORTS
+;
+affichin_
+affichup_
+affin2_
+settxtel_
+affup2_

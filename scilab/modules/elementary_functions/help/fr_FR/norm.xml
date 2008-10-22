@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="norm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>norm</refname>
+    <refpurpose> normes matricielles  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[y]=norm(x [,flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur ou matrice (réelle ou complexe, pleine ou creuse)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag  </term>
+        <listitem>
+          <para>chaîne de caractères (type de la norme, 2 par défaut)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Pour les matrices
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>norm(x)</term>
+        <listitem>
+          <para>où <literal>norm(x,2)</literal> est la plus grande valeur singulière de <literal>x</literal> (<literal>max(svd(x))</literal>). </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>norm(x,1) renvoie</term>
+        <listitem>
+          <para>la norme l_1 de <literal>x</literal> (la plus grande somme suivant les colonnes :  <literal>maxi(sum(abs(x),'r'))</literal>  ). </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>norm(x,'inf'),norm(x,%inf)</term>
+        <listitem>
+          <para>la norme infinie de <literal>x</literal> (la plus grande somme suivant les lignes :  <literal>maxi(sum(abs(x),'c'))</literal>  ). </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>norm(x,'fro')</term>
+        <listitem>
+          <para>la norme de Frobenius de <literal>x</literal> c'est à dire <literal>sqrt(sum(diag(x'*x)))</literal> </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    Pour les vecteurs
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>norm(v,p)</term>
+        <listitem>
+          <para>norme l_p (<literal>sum(v(i)^p))^(1/p)</literal> .</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>norm(v)</term>
+        <listitem>
+          <para>: <literal>=norm(v,2)</literal> : norme euclidienne</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>norm(v,'inf')</term>
+        <listitem>
+          <para>: <literal>max(abs(v(i)))</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[1,2,3];
+norm(A,1)
+norm(A,'inf')
+A=[1,2;3,4]
+max(svd(A))-norm(A)
+
+A=sparse([1 0 0 33 -1])
+norm(A)
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="h_norm">h_norm</link>
+      </member>
+      <member>
+        <link linkend="dhnorm">dhnorm</link>
+      </member>
+      <member>
+        <link linkend="h2norm">h2norm</link>
+      </member>
+      <member>
+        <link linkend="abs">abs</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

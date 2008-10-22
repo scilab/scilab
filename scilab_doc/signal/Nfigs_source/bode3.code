@@ -1,0 +1,30 @@
+//exec('bode3_4.code')
+xinit('bode3.ps');
+s=poly(0,'s');
+a=10; 
+b=25;
+h=real((s-(a-%i*b))*(s-(a+%i*b)));
+ax=0:.01:2;
+ax=exp(log(10)*ax);
+hm=20*log(abs(freq(1,h,%i*ax)))/log(10); 
+
+plot2d1("gln",ax',hm',[2],"011",' ',[1,-80,100,-50],[5,2,5,2]);
+
+x=-20*log(a**2+b**2)/log(10);
+y=sqrt(b**2-a**2);
+z=sqrt(b**2+a**2);
+
+//horizontal straight line approximation
+plot2d1("gln",[1 z]',[x x]',[1],"000");
+//-40 db/dec straight line approximation
+plot2d1("gln",[z 100]',[x -80]',[1],"000");
+//vertical line showing sqrt(b*b-a*a)
+plot2d1("gln",[y y]',[x -20*log(2*a*b)/log(10)]',[1],"000");
+
+a=25;
+b=10;
+h=real((s-(a-%i*b))*(s-(a+%i*b)));
+hm=20*log(abs(freq(1,h,%i*ax)))/log(10);
+
+plot2d1("gln",ax',hm',[2],"000");
+xend()

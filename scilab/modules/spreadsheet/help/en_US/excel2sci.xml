@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="excel2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>excel2sci</refname>
+    <refpurpose> reads ascii Excel files</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>M=excel2sci(fname [,sep])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fname</term>
+        <listitem>
+          <para>character string. The file path</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sep</term>
+        <listitem>
+          <para>character string. Excel separator used, default value is ","</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>matrix of strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Given an ascii  file created by Excel using "Text and comma" format
+    <literal>excel2sci(fname)</literal> returns the corresponding Scilab matrix of
+    strings. Use <literal>excel2sci(fname,sep )</literal> for an other choice of
+    separator.</para>
+    <para>
+    Note: You may eval all or part ot <literal>M</literal> using function <literal>evstr</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

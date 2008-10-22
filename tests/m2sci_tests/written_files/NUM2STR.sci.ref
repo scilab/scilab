@@ -1,0 +1,26 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function num2str
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+
+
+
+
+// !! L.10: string output can be different from Matlab num2str output
+str1 = string(a)
+// !! L.11: No Scilab equivalent for: num2str(a,3)
+// ! L.11: See msprintf for solutions
+str2 = num2str(a,3)
+// !! L.12: No Scilab equivalent for: num2str(a,myprecision)
+// ! L.12: See msprintf for solutions
+str3 = num2str(a,myprecision)
+str4 = msprintf(myformat,a)
+str5 = msprintf("%3d",a)

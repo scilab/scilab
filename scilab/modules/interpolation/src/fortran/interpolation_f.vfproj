@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="9.10" ProjectIdGuid="{D98B0986-14E4-44FD-B006-CACE4B291F38}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib /DLL interpolation.lib" OutputFile="$(SolutionDir)bin\interpolation_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="interpolation_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\interpolation_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n interpolation_f.dll %%f &gt;nul
+copy *.def interpolation_f.def &gt;nul
+copy interpolation_f.def ..\interpolation_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy interpolation_f_header.def+interpolation_f.vcdef interpolation_f.def &gt;nul" Description="Build interpolation.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)interpolation_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)interpolation.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib /DLL interpolation.lib" OutputFile="$(SolutionDir)bin\interpolation_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="interpolation_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\interpolation_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n interpolation_f.dll %%f &gt;nul
+copy *.def interpolation_f.def &gt;nul
+copy interpolation_f.def ..\interpolation_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy interpolation_f_header.def+interpolation_f.vcdef interpolation_f.def &gt;nul" Description="Build interpolation.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)interpolation_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)interpolation.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib /DLL interpolation.lib" OutputFile="$(SolutionDir)bin\interpolation_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="interpolation_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\interpolation_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n interpolation_f.dll %%f &gt;nul
+copy *.def interpolation_f.def &gt;nul
+copy interpolation_f.def ..\interpolation_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy interpolation_f_header.def+interpolation_f.vcdef interpolation_f.def &gt;nul" Description="Build interpolation.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)interpolation_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)interpolation.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib /DLL interpolation.lib" OutputFile="$(SolutionDir)bin\interpolation_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="interpolation_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\interpolation_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n interpolation_f.dll %%f &gt;nul
+copy *.def interpolation_f.def &gt;nul
+copy interpolation_f.def ..\interpolation_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy interpolation_f_header.def+interpolation_f.vcdef interpolation_f.def &gt;nul" Description="Build interpolation.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)interpolation_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)interpolation.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath=".\cshep2d.f"/>
+		<File RelativePath=".\dspfit.f"/>
+		<File RelativePath=".\somespline.f"/></Filter>
+		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
+		<File RelativePath="..\..\sci_gateway\interpolation_gateway.xml"/>
+		<File RelativePath="..\..\Makefile.am"/></Files>
+	<Globals/></VisualStudioProject>

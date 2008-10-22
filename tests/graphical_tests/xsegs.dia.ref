@@ -1,0 +1,30 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/xsegs_data.ref','rb');
+ 
+ 
+x = 2 * %pi * (0:9)/10;
+ 
+xv = [sin(x);9 * sin(x)];
+ 
+yv = [cos(x);9 * cos(x)];
+ 
+%ans = plot2d([-10,10], [-10,10], [-1,-1], '022');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xsegs(xv, yv, 1:10);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

@@ -1,0 +1,1386 @@
+****** Beginning of validation of MIN.dia.ref ******
+TEST 1: Infered size do not match for res1
+M2SCI: 1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 1 FAILED ***
+
+TEST 2: Infered size do not match for res2
+M2SCI: 1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 2 FAILED ***
+
+*** TEST 3 PASSED ***
+
+*** TEST 4 PASSED ***
+
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+*** TEST 9 PASSED ***
+
+*** TEST 10 PASSED ***
+
+*** TEST 11 PASSED ***
+
+*** TEST 12 PASSED ***
+
+*** TEST 13 PASSED ***
+
+*** TEST 14 PASSED ***
+
+*** TEST 15 PASSED ***
+
+*** TEST 16 PASSED ***
+
+*** TEST 17 PASSED ***
+
+*** TEST 18 PASSED ***
+
+*** TEST 19 PASSED ***
+
+*** TEST 20 PASSED ***
+
+*** TEST 21 PASSED ***
+
+*** TEST 22 PASSED ***
+
+*** TEST 23 PASSED ***
+
+*** TEST 24 PASSED ***
+
+*** TEST 25 PASSED ***
+
+*** TEST 26 PASSED ***
+
+*** TEST 27 PASSED ***
+
+*** TEST 28 PASSED ***
+
+*** TEST 29 PASSED ***
+
+*** TEST 30 PASSED ***
+
+*** TEST 31 PASSED ***
+
+*** TEST 32 PASSED ***
+
+*** TEST 33 PASSED ***
+
+*** TEST 34 PASSED ***
+
+*** TEST 35 PASSED ***
+
+*** TEST 36 PASSED ***
+
+*** TEST 37 PASSED ***
+
+*** TEST 38 PASSED ***
+
+*** TEST 39 PASSED ***
+
+*** TEST 40 PASSED ***
+
+*** TEST 41 PASSED ***
+
+*** TEST 42 PASSED ***
+
+TEST 43: Scilab returns Double and Matlab returns Boolean for res43
+*** TEST 43 PASSED ***
+
+TEST 44: Scilab returns Double and Matlab returns Boolean for res44
+*** TEST 44 PASSED ***
+
+TEST 45: Scilab returns Double and Matlab returns Boolean for res45
+*** TEST 45 PASSED ***
+
+TEST 46: Scilab returns Double and Matlab returns Boolean for res46
+*** TEST 46 PASSED ***
+
+TEST 47: Scilab returns Double and Matlab returns Boolean for res47
+*** TEST 47 PASSED ***
+
+TEST 48: Scilab returns Double and Matlab returns Boolean for res48
+*** TEST 48 PASSED ***
+
+TEST 49: Scilab returns Double and Matlab returns Boolean for res49
+*** TEST 49 PASSED ***
+
+TEST 50: Scilab returns Double and Matlab returns Boolean for res50
+*** TEST 50 PASSED ***
+
+TEST 51: Scilab returns Double and Matlab returns Boolean for res51
+*** TEST 51 PASSED ***
+
+TEST 52: Scilab returns Double and Matlab returns Boolean for res52
+*** TEST 52 PASSED ***
+
+TEST 53: Scilab returns Double and Matlab returns Boolean for res53
+*** TEST 53 PASSED ***
+
+TEST 54: Scilab returns Double and Matlab returns Boolean for res54
+*** TEST 54 PASSED ***
+
+TEST 55: Infered size do not match for res55
+M2SCI: 1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 55 PASSED ***
+
+TEST 56: Infered size do not match for res57
+M2SCI: 1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 56 PASSED ***
+
+*** TEST 57 PASSED ***
+
+*** TEST 58 PASSED ***
+
+*** TEST 59 PASSED ***
+
+*** TEST 60 PASSED ***
+
+*** TEST 61 PASSED ***
+
+*** TEST 62 PASSED ***
+
+*** TEST 63 PASSED ***
+
+*** TEST 64 PASSED ***
+
+*** TEST 65 PASSED ***
+
+*** TEST 66 PASSED ***
+
+*** TEST 67 PASSED ***
+
+*** TEST 68 PASSED ***
+
+*** TEST 69 PASSED ***
+
+*** TEST 70 PASSED ***
+
+*** TEST 71 PASSED ***
+
+*** TEST 72 PASSED ***
+
+*** TEST 73 PASSED ***
+
+*** TEST 74 PASSED ***
+
+*** TEST 75 PASSED ***
+
+*** TEST 76 PASSED ***
+
+*** TEST 77 PASSED ***
+
+*** TEST 78 PASSED ***
+
+*** TEST 79 PASSED ***
+
+*** TEST 80 PASSED ***
+
+*** TEST 81 PASSED ***
+
+*** TEST 82 PASSED ***
+
+*** TEST 83 PASSED ***
+
+*** TEST 84 PASSED ***
+
+*** TEST 85 PASSED ***
+
+*** TEST 86 PASSED ***
+
+*** TEST 87 PASSED ***
+
+*** TEST 88 PASSED ***
+
+*** TEST 89 PASSED ***
+
+*** TEST 90 PASSED ***
+
+*** TEST 91 PASSED ***
+
+*** TEST 92 PASSED ***
+
+*** TEST 93 PASSED ***
+
+*** TEST 94 PASSED ***
+
+*** TEST 95 PASSED ***
+
+*** TEST 96 PASSED ***
+
+TEST 97: Scilab returns Double and Matlab returns Boolean for res139
+*** TEST 97 PASSED ***
+
+TEST 98: Scilab returns Double and Matlab returns Boolean for res141
+*** TEST 98 PASSED ***
+
+TEST 99: Scilab returns Double and Matlab returns Boolean for res143
+*** TEST 99 PASSED ***
+
+TEST 100: Scilab returns Double and Matlab returns Boolean for res145
+*** TEST 100 PASSED ***
+
+TEST 101: Scilab returns Double and Matlab returns Boolean for res147
+*** TEST 101 PASSED ***
+
+TEST 102: Scilab returns Double and Matlab returns Boolean for res149
+*** TEST 102 PASSED ***
+
+TEST 103: Scilab returns Double and Matlab returns Boolean for res151
+*** TEST 103 PASSED ***
+
+TEST 104: Scilab returns Double and Matlab returns Boolean for res153
+*** TEST 104 PASSED ***
+
+TEST 105: Scilab returns Double and Matlab returns Boolean for res155
+*** TEST 105 PASSED ***
+
+TEST 106: Scilab returns Double and Matlab returns Boolean for res157
+*** TEST 106 PASSED ***
+
+TEST 107: Scilab returns Double and Matlab returns Boolean for res159
+*** TEST 107 PASSED ***
+
+TEST 108: Scilab returns Double and Matlab returns Boolean for res161
+*** TEST 108 PASSED ***
+
+*** TEST 109 PASSED ***
+
+*** TEST 110 PASSED ***
+
+*** TEST 111 PASSED ***
+
+*** TEST 112 PASSED ***
+
+*** TEST 113 PASSED ***
+
+*** TEST 114 PASSED ***
+
+*** TEST 115 PASSED ***
+
+*** TEST 116 PASSED ***
+
+*** TEST 117 PASSED ***
+
+*** TEST 118 PASSED ***
+
+*** TEST 119 PASSED ***
+
+*** TEST 120 PASSED ***
+
+*** TEST 121 PASSED ***
+
+*** TEST 122 PASSED ***
+
+*** TEST 123 PASSED ***
+
+*** TEST 124 PASSED ***
+
+*** TEST 125 PASSED ***
+
+*** TEST 126 PASSED ***
+
+*** TEST 127 PASSED ***
+
+*** TEST 128 PASSED ***
+
+*** TEST 129 PASSED ***
+
+*** TEST 130 PASSED ***
+
+*** TEST 131 PASSED ***
+
+*** TEST 132 PASSED ***
+
+*** TEST 133 PASSED ***
+
+*** TEST 134 PASSED ***
+
+*** TEST 135 PASSED ***
+
+*** TEST 136 PASSED ***
+
+*** TEST 137 PASSED ***
+
+*** TEST 138 PASSED ***
+
+*** TEST 139 PASSED ***
+
+*** TEST 140 PASSED ***
+
+*** TEST 141 PASSED ***
+
+*** TEST 142 PASSED ***
+
+*** TEST 143 PASSED ***
+
+*** TEST 144 PASSED ***
+
+*** TEST 145 PASSED ***
+
+*** TEST 146 PASSED ***
+
+*** TEST 147 PASSED ***
+
+*** TEST 148 PASSED ***
+
+*** TEST 149 PASSED ***
+
+*** TEST 150 PASSED ***
+
+TEST 151: Scilab returns Double and Matlab returns Boolean for res205
+*** TEST 151 PASSED ***
+
+TEST 152: Scilab returns Double and Matlab returns Boolean for res206
+*** TEST 152 PASSED ***
+
+TEST 153: Scilab returns Double and Matlab returns Boolean for res207
+*** TEST 153 PASSED ***
+
+TEST 154: Scilab returns Double and Matlab returns Boolean for res208
+*** TEST 154 PASSED ***
+
+TEST 155: Scilab returns Double and Matlab returns Boolean for res209
+*** TEST 155 PASSED ***
+
+TEST 156: Scilab returns Double and Matlab returns Boolean for res210
+*** TEST 156 PASSED ***
+
+TEST 157: Scilab returns Double and Matlab returns Boolean for res211
+*** TEST 157 PASSED ***
+
+TEST 158: Scilab returns Double and Matlab returns Boolean for res212
+*** TEST 158 PASSED ***
+
+TEST 159: Scilab returns Double and Matlab returns Boolean for res213
+*** TEST 159 PASSED ***
+
+TEST 160: Scilab returns Double and Matlab returns Boolean for res214
+*** TEST 160 PASSED ***
+
+TEST 161: Scilab returns Double and Matlab returns Boolean for res215
+*** TEST 161 PASSED ***
+
+TEST 162: Scilab returns Double and Matlab returns Boolean for res216
+*** TEST 162 PASSED ***
+
+*** TEST 163 PASSED ***
+
+*** TEST 164 PASSED ***
+
+*** TEST 165 PASSED ***
+
+*** TEST 166 PASSED ***
+
+*** TEST 167 PASSED ***
+
+*** TEST 168 PASSED ***
+
+*** TEST 169 PASSED ***
+
+*** TEST 170 PASSED ***
+
+*** TEST 171 PASSED ***
+
+*** TEST 172 PASSED ***
+
+*** TEST 173 PASSED ***
+
+*** TEST 174 PASSED ***
+
+*** TEST 175 PASSED ***
+
+*** TEST 176 PASSED ***
+
+*** TEST 177 PASSED ***
+
+*** TEST 178 PASSED ***
+
+*** TEST 179 PASSED ***
+
+*** TEST 180 PASSED ***
+
+*** TEST 181 PASSED ***
+
+*** TEST 182 PASSED ***
+
+*** TEST 183 PASSED ***
+
+*** TEST 184 PASSED ***
+
+*** TEST 185 PASSED ***
+
+*** TEST 186 PASSED ***
+
+*** TEST 187 PASSED ***
+
+*** TEST 188 PASSED ***
+
+*** TEST 189 PASSED ***
+
+*** TEST 190 PASSED ***
+
+*** TEST 191 PASSED ***
+
+*** TEST 192 PASSED ***
+
+*** TEST 193 PASSED ***
+
+*** TEST 194 PASSED ***
+
+*** TEST 195 PASSED ***
+
+*** TEST 196 PASSED ***
+
+*** TEST 197 PASSED ***
+
+*** TEST 198 PASSED ***
+
+*** TEST 199 PASSED ***
+
+*** TEST 200 PASSED ***
+
+*** TEST 201 PASSED ***
+
+*** TEST 202 PASSED ***
+
+*** TEST 203 PASSED ***
+
+*** TEST 204 PASSED ***
+
+TEST 205: Scilab returns Double and Matlab returns Boolean for res259
+TEST 205: Infered type do not match for res259
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 205 FAILED ***
+
+TEST 206: Scilab returns Double and Matlab returns Boolean for res260
+TEST 206: Infered type do not match for res260
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 206 FAILED ***
+
+TEST 207: Scilab returns Double and Matlab returns Boolean for res261
+TEST 207: Infered type do not match for res261
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 207 FAILED ***
+
+TEST 208: Scilab returns Double and Matlab returns Boolean for res262
+TEST 208: Infered type do not match for res262
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 208 FAILED ***
+
+TEST 209: Scilab returns Double and Matlab returns Boolean for res263
+TEST 209: Infered type do not match for res263
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 209 FAILED ***
+
+TEST 210: Scilab returns Double and Matlab returns Boolean for res264
+TEST 210: Infered type do not match for res264
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 210 FAILED ***
+
+TEST 211: Scilab returns Double and Matlab returns Boolean for res265
+TEST 211: Infered type do not match for res265
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 211 FAILED ***
+
+TEST 212: Scilab returns Double and Matlab returns Boolean for res266
+TEST 212: Infered type do not match for res266
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 212 FAILED ***
+
+TEST 213: Scilab returns Double and Matlab returns Boolean for res267
+TEST 213: Infered type do not match for res267
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 213 FAILED ***
+
+TEST 214: Scilab returns Double and Matlab returns Boolean for res268
+TEST 214: Infered type do not match for res268
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 214 FAILED ***
+
+TEST 215: Scilab returns Double and Matlab returns Boolean for res269
+TEST 215: Infered type do not match for res269
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 215 FAILED ***
+
+TEST 216: Scilab returns Double and Matlab returns Boolean for res270
+TEST 216: Infered type do not match for res270
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 216 FAILED ***
+
+*** TEST 217 PASSED ***
+
+*** TEST 218 PASSED ***
+
+*** TEST 219 PASSED ***
+
+*** TEST 220 PASSED ***
+
+*** TEST 221 PASSED ***
+
+*** TEST 222 PASSED ***
+
+*** TEST 223 PASSED ***
+
+*** TEST 224 PASSED ***
+
+*** TEST 225 PASSED ***
+
+*** TEST 226 PASSED ***
+
+*** TEST 227 PASSED ***
+
+*** TEST 228 PASSED ***
+
+*** TEST 229 PASSED ***
+
+*** TEST 230 PASSED ***
+
+*** TEST 231 PASSED ***
+
+*** TEST 232 PASSED ***
+
+*** TEST 233 PASSED ***
+
+*** TEST 234 PASSED ***
+
+*** TEST 235 PASSED ***
+
+*** TEST 236 PASSED ***
+
+*** TEST 237 PASSED ***
+
+*** TEST 238 PASSED ***
+
+*** TEST 239 PASSED ***
+
+*** TEST 240 PASSED ***
+
+*** TEST 241 PASSED ***
+
+*** TEST 242 PASSED ***
+
+*** TEST 243 PASSED ***
+
+*** TEST 244 PASSED ***
+
+*** TEST 245 PASSED ***
+
+*** TEST 246 PASSED ***
+
+*** TEST 247 PASSED ***
+
+*** TEST 248 PASSED ***
+
+*** TEST 249 PASSED ***
+
+*** TEST 250 PASSED ***
+
+*** TEST 251 PASSED ***
+
+*** TEST 252 PASSED ***
+
+*** TEST 253 PASSED ***
+
+*** TEST 254 PASSED ***
+
+*** TEST 255 PASSED ***
+
+*** TEST 256 PASSED ***
+
+*** TEST 257 PASSED ***
+
+*** TEST 258 PASSED ***
+
+TEST 259: Scilab returns Double and Matlab returns Boolean for res313
+TEST 259: Infered type do not match for res313
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 259 FAILED ***
+
+TEST 260: Scilab returns Double and Matlab returns Boolean for res314
+TEST 260: Infered type do not match for res314
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 260 FAILED ***
+
+TEST 261: Scilab returns Double and Matlab returns Boolean for res315
+TEST 261: Infered type do not match for res315
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 261 FAILED ***
+
+TEST 262: Scilab returns Double and Matlab returns Boolean for res316
+TEST 262: Infered type do not match for res316
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 262 FAILED ***
+
+TEST 263: Scilab returns Double and Matlab returns Boolean for res317
+TEST 263: Infered type do not match for res317
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 263 FAILED ***
+
+TEST 264: Scilab returns Double and Matlab returns Boolean for res318
+TEST 264: Infered type do not match for res318
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 264 FAILED ***
+
+TEST 265: Scilab returns Double and Matlab returns Boolean for res319
+TEST 265: Infered type do not match for res319
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 265 FAILED ***
+
+TEST 266: Scilab returns Double and Matlab returns Boolean for res320
+TEST 266: Infered type do not match for res320
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 266 FAILED ***
+
+TEST 267: Scilab returns Double and Matlab returns Boolean for res321
+TEST 267: Infered type do not match for res321
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 267 FAILED ***
+
+TEST 268: Scilab returns Double and Matlab returns Boolean for res322
+TEST 268: Infered type do not match for res322
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 268 FAILED ***
+
+TEST 269: Scilab returns Double and Matlab returns Boolean for res323
+TEST 269: Infered type do not match for res323
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 269 FAILED ***
+
+TEST 270: Scilab returns Double and Matlab returns Boolean for res324
+TEST 270: Infered type do not match for res324
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 270 FAILED ***
+
+*** TEST 271 PASSED ***
+
+*** TEST 272 PASSED ***
+
+*** TEST 273 PASSED ***
+
+*** TEST 274 PASSED ***
+
+*** TEST 275 PASSED ***
+
+*** TEST 276 PASSED ***
+
+*** TEST 277 PASSED ***
+
+*** TEST 278 PASSED ***
+
+*** TEST 279 PASSED ***
+
+*** TEST 280 PASSED ***
+
+*** TEST 281 PASSED ***
+
+*** TEST 282 PASSED ***
+
+*** TEST 283 PASSED ***
+
+*** TEST 284 PASSED ***
+
+*** TEST 285 PASSED ***
+
+*** TEST 286 PASSED ***
+
+*** TEST 287 PASSED ***
+
+*** TEST 288 PASSED ***
+
+*** TEST 289 PASSED ***
+
+*** TEST 290 PASSED ***
+
+*** TEST 291 PASSED ***
+
+*** TEST 292 PASSED ***
+
+*** TEST 293 PASSED ***
+
+*** TEST 294 PASSED ***
+
+*** TEST 295 PASSED ***
+
+*** TEST 296 PASSED ***
+
+*** TEST 297 PASSED ***
+
+*** TEST 298 PASSED ***
+
+*** TEST 299 PASSED ***
+
+*** TEST 300 PASSED ***
+
+*** TEST 301 PASSED ***
+
+*** TEST 302 PASSED ***
+
+*** TEST 303 PASSED ***
+
+*** TEST 304 PASSED ***
+
+*** TEST 305 PASSED ***
+
+*** TEST 306 PASSED ***
+
+*** TEST 307 PASSED ***
+
+*** TEST 308 PASSED ***
+
+*** TEST 309 PASSED ***
+
+*** TEST 310 PASSED ***
+
+*** TEST 311 PASSED ***
+
+*** TEST 312 PASSED ***
+
+TEST 313: Scilab returns Double and Matlab returns Boolean for res367
+TEST 313: Infered type do not match for res367
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 313 FAILED ***
+
+TEST 314: Scilab returns Double and Matlab returns Boolean for res368
+TEST 314: Infered type do not match for res368
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 314 FAILED ***
+
+TEST 315: Scilab returns Double and Matlab returns Boolean for res369
+TEST 315: Infered type do not match for res369
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 315 FAILED ***
+
+TEST 316: Scilab returns Double and Matlab returns Boolean for res370
+TEST 316: Infered type do not match for res370
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 316 FAILED ***
+
+TEST 317: Scilab returns Double and Matlab returns Boolean for res371
+TEST 317: Infered type do not match for res371
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 317 FAILED ***
+
+TEST 318: Scilab returns Double and Matlab returns Boolean for res372
+TEST 318: Infered type do not match for res372
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 318 FAILED ***
+
+TEST 319: Scilab returns Double and Matlab returns Boolean for res373
+TEST 319: Infered type do not match for res373
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 319 FAILED ***
+
+TEST 320: Scilab returns Double and Matlab returns Boolean for res374
+TEST 320: Infered type do not match for res374
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 320 FAILED ***
+
+TEST 321: Scilab returns Double and Matlab returns Boolean for res375
+TEST 321: Infered type do not match for res375
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 321 FAILED ***
+
+TEST 322: Scilab returns Double and Matlab returns Boolean for res376
+TEST 322: Infered type do not match for res376
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 322 FAILED ***
+
+TEST 323: Scilab returns Double and Matlab returns Boolean for res377
+TEST 323: Infered type do not match for res377
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 323 FAILED ***
+
+TEST 324: Scilab returns Double and Matlab returns Boolean for res378
+TEST 324: Infered type do not match for res378
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 324 FAILED ***
+
+*** TEST 325 PASSED ***
+
+*** TEST 326 PASSED ***
+
+*** TEST 327 PASSED ***
+
+*** TEST 328 PASSED ***
+
+*** TEST 329 PASSED ***
+
+*** TEST 330 PASSED ***
+
+*** TEST 331 PASSED ***
+
+*** TEST 332 PASSED ***
+
+*** TEST 333 PASSED ***
+
+*** TEST 334 PASSED ***
+
+*** TEST 335 PASSED ***
+
+*** TEST 336 PASSED ***
+
+*** TEST 337 PASSED ***
+
+*** TEST 338 PASSED ***
+
+*** TEST 339 PASSED ***
+
+*** TEST 340 PASSED ***
+
+*** TEST 341 PASSED ***
+
+*** TEST 342 PASSED ***
+
+*** TEST 343 PASSED ***
+
+*** TEST 344 PASSED ***
+
+*** TEST 345 PASSED ***
+
+*** TEST 346 PASSED ***
+
+*** TEST 347 PASSED ***
+
+*** TEST 348 PASSED ***
+
+*** TEST 349 PASSED ***
+
+*** TEST 350 PASSED ***
+
+*** TEST 351 PASSED ***
+
+*** TEST 352 PASSED ***
+
+*** TEST 353 PASSED ***
+
+*** TEST 354 PASSED ***
+
+*** TEST 355 PASSED ***
+
+*** TEST 356 PASSED ***
+
+*** TEST 357 PASSED ***
+
+*** TEST 358 PASSED ***
+
+*** TEST 359 PASSED ***
+
+*** TEST 360 PASSED ***
+
+*** TEST 361 PASSED ***
+
+*** TEST 362 PASSED ***
+
+*** TEST 363 PASSED ***
+
+*** TEST 364 PASSED ***
+
+*** TEST 365 PASSED ***
+
+*** TEST 366 PASSED ***
+
+TEST 367: Scilab returns Double and Matlab returns Boolean for res463
+TEST 367: Infered type do not match for res463
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 367 PASSED ***
+
+TEST 368: Scilab returns Double and Matlab returns Boolean for res465
+TEST 368: Infered type do not match for res465
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 368 PASSED ***
+
+TEST 369: Scilab returns Double and Matlab returns Boolean for res467
+TEST 369: Infered type do not match for res467
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 369 PASSED ***
+
+TEST 370: Scilab returns Double and Matlab returns Boolean for res469
+TEST 370: Infered type do not match for res469
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 370 PASSED ***
+
+TEST 371: Scilab returns Double and Matlab returns Boolean for res471
+TEST 371: Infered type do not match for res471
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 371 PASSED ***
+
+TEST 372: Scilab returns Double and Matlab returns Boolean for res473
+TEST 372: Infered type do not match for res473
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 372 PASSED ***
+
+TEST 373: Scilab returns Double and Matlab returns Boolean for res475
+TEST 373: Infered type do not match for res475
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 373 PASSED ***
+
+TEST 374: Scilab returns Double and Matlab returns Boolean for res477
+TEST 374: Infered type do not match for res477
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 374 PASSED ***
+
+TEST 375: Scilab returns Double and Matlab returns Boolean for res479
+TEST 375: Infered type do not match for res479
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 375 PASSED ***
+
+TEST 376: Scilab returns Double and Matlab returns Boolean for res481
+TEST 376: Infered type do not match for res481
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 376 PASSED ***
+
+TEST 377: Scilab returns Double and Matlab returns Boolean for res483
+TEST 377: Infered type do not match for res483
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 377 PASSED ***
+
+TEST 378: Scilab returns Double and Matlab returns Boolean for res485
+TEST 378: Infered type do not match for res485
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 378 PASSED ***
+
+*** TEST 379 PASSED ***
+
+*** TEST 380 PASSED ***
+
+*** TEST 381 PASSED ***
+
+*** TEST 382 PASSED ***
+
+*** TEST 383 PASSED ***
+
+*** TEST 384 PASSED ***
+
+*** TEST 385 PASSED ***
+
+*** TEST 386 PASSED ***
+
+*** TEST 387 PASSED ***
+
+*** TEST 388 PASSED ***
+
+*** TEST 389 PASSED ***
+
+*** TEST 390 PASSED ***
+
+*** TEST 391 PASSED ***
+
+*** TEST 392 PASSED ***
+
+*** TEST 393 PASSED ***
+
+*** TEST 394 PASSED ***
+
+*** TEST 395 PASSED ***
+
+*** TEST 396 PASSED ***
+
+*** TEST 397 PASSED ***
+
+*** TEST 398 PASSED ***
+
+*** TEST 399 PASSED ***
+
+*** TEST 400 PASSED ***
+
+*** TEST 401 PASSED ***
+
+*** TEST 402 PASSED ***
+
+*** TEST 403 PASSED ***
+
+*** TEST 404 PASSED ***
+
+*** TEST 405 PASSED ***
+
+*** TEST 406 PASSED ***
+
+*** TEST 407 PASSED ***
+
+*** TEST 408 PASSED ***
+
+*** TEST 409 PASSED ***
+
+*** TEST 410 PASSED ***
+
+*** TEST 411 PASSED ***
+
+*** TEST 412 PASSED ***
+
+*** TEST 413 PASSED ***
+
+*** TEST 414 PASSED ***
+
+*** TEST 415 PASSED ***
+
+*** TEST 416 PASSED ***
+
+*** TEST 417 PASSED ***
+
+*** TEST 418 PASSED ***
+
+*** TEST 419 PASSED ***
+
+*** TEST 420 PASSED ***
+
+TEST 421: Scilab returns Double and Matlab returns Boolean for res571
+TEST 421: Infered type do not match for res571
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 421 PASSED ***
+
+TEST 422: Scilab returns Double and Matlab returns Boolean for res573
+TEST 422: Infered type do not match for res573
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 422 PASSED ***
+
+TEST 423: Scilab returns Double and Matlab returns Boolean for res575
+TEST 423: Infered type do not match for res575
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 423 PASSED ***
+
+TEST 424: Scilab returns Double and Matlab returns Boolean for res577
+TEST 424: Infered type do not match for res577
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 424 PASSED ***
+
+TEST 425: Scilab returns Double and Matlab returns Boolean for res579
+TEST 425: Infered type do not match for res579
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 425 PASSED ***
+
+TEST 426: Scilab returns Double and Matlab returns Boolean for res581
+TEST 426: Infered type do not match for res581
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 426 PASSED ***
+
+TEST 427: Scilab returns Double and Matlab returns Boolean for res583
+TEST 427: Infered type do not match for res583
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 427 PASSED ***
+
+TEST 428: Scilab returns Double and Matlab returns Boolean for res585
+TEST 428: Infered type do not match for res585
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 428 PASSED ***
+
+TEST 429: Scilab returns Double and Matlab returns Boolean for res587
+TEST 429: Infered type do not match for res587
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 429 PASSED ***
+
+TEST 430: Scilab returns Double and Matlab returns Boolean for res589
+TEST 430: Infered type do not match for res589
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 430 PASSED ***
+
+TEST 431: Scilab returns Double and Matlab returns Boolean for res591
+TEST 431: Infered type do not match for res591
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 431 PASSED ***
+
+TEST 432: Scilab returns Double and Matlab returns Boolean for res593
+TEST 432: Infered type do not match for res593
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 432 PASSED ***
+
+*** TEST 433 PASSED ***
+
+*** TEST 434 PASSED ***
+
+*** TEST 435 PASSED ***
+
+*** TEST 436 PASSED ***
+
+*** TEST 437 PASSED ***
+
+*** TEST 438 PASSED ***
+
+*** TEST 439 PASSED ***
+
+*** TEST 440 PASSED ***
+
+*** TEST 441 PASSED ***
+
+*** TEST 442 PASSED ***
+
+*** TEST 443 PASSED ***
+
+*** TEST 444 PASSED ***
+
+*** TEST 445 PASSED ***
+
+*** TEST 446 PASSED ***
+
+*** TEST 447 PASSED ***
+
+*** TEST 448 PASSED ***
+
+*** TEST 449 PASSED ***
+
+*** TEST 450 PASSED ***
+
+*** TEST 451 PASSED ***
+
+*** TEST 452 PASSED ***
+
+*** TEST 453 PASSED ***
+
+*** TEST 454 PASSED ***
+
+*** TEST 455 PASSED ***
+
+*** TEST 456 PASSED ***
+
+*** TEST 457 PASSED ***
+
+*** TEST 458 PASSED ***
+
+*** TEST 459 PASSED ***
+
+*** TEST 460 PASSED ***
+
+*** TEST 461 PASSED ***
+
+*** TEST 462 PASSED ***
+
+*** TEST 463 PASSED ***
+
+*** TEST 464 PASSED ***
+
+*** TEST 465 PASSED ***
+
+*** TEST 466 PASSED ***
+
+*** TEST 467 PASSED ***
+
+*** TEST 468 PASSED ***
+
+*** TEST 469 PASSED ***
+
+*** TEST 470 PASSED ***
+
+*** TEST 471 PASSED ***
+
+*** TEST 472 PASSED ***
+
+*** TEST 473 PASSED ***
+
+*** TEST 474 PASSED ***
+
+TEST 475: Scilab returns Double and Matlab returns Boolean for res679
+TEST 475: Infered type do not match for res679
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 475 PASSED ***
+
+TEST 476: Scilab returns Double and Matlab returns Boolean for res681
+TEST 476: Infered type do not match for res681
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 476 PASSED ***
+
+TEST 477: Scilab returns Double and Matlab returns Boolean for res683
+TEST 477: Infered type do not match for res683
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 477 PASSED ***
+
+TEST 478: Scilab returns Double and Matlab returns Boolean for res685
+TEST 478: Infered type do not match for res685
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 478 PASSED ***
+
+TEST 479: Scilab returns Double and Matlab returns Boolean for res687
+TEST 479: Infered type do not match for res687
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 479 PASSED ***
+
+TEST 480: Scilab returns Double and Matlab returns Boolean for res689
+TEST 480: Infered type do not match for res689
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 480 PASSED ***
+
+TEST 481: Scilab returns Double and Matlab returns Boolean for res691
+TEST 481: Infered type do not match for res691
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 481 PASSED ***
+
+TEST 482: Scilab returns Double and Matlab returns Boolean for res693
+TEST 482: Infered type do not match for res693
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 482 PASSED ***
+
+TEST 483: Scilab returns Double and Matlab returns Boolean for res695
+TEST 483: Infered type do not match for res695
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 483 PASSED ***
+
+TEST 484: Scilab returns Double and Matlab returns Boolean for res697
+TEST 484: Infered type do not match for res697
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 484 PASSED ***
+
+TEST 485: Scilab returns Double and Matlab returns Boolean for res699
+TEST 485: Infered type do not match for res699
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 485 PASSED ***
+
+TEST 486: Scilab returns Double and Matlab returns Boolean for res701
+TEST 486: Infered type do not match for res701
+M2SCI: Double
+Matlab: Boolean
+Trying to compare results...
+*** TEST 486 PASSED ***
+
+****** End of validation of MIN.dia.ref ******

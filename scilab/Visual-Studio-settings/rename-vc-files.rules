@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Rename .vc Files"
+	Version="8,00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="rename .vc files"
+			DisplayName="Rename .vc files"
+			CommandLine="copy &quot;$(InputDir)$(InputFileName)&quot; &quot;$(InputDir)$(InputName)&quot; 1&gt;NUL"
+			Outputs="$(InputDir)$(InputName) "
+			FileExtensions="*.vc"
+			ExecutionDescription="Copy $(InputDir)$(InputFileName) --&gt; $(InputDir)$(InputName)"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

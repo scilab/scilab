@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="deff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>deff</refname>
+    <refpurpose> on-line definition of function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>e1,e2,...,  </term>
+        <listitem>
+          <para>input variables.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s1,s2,...,  </term>
+        <listitem>
+          <para>output variables.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text</term>
+        <listitem>
+          <para>matrix of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>optional character string</para>
+          <variablelist>
+            <varlistentry>
+              <term>'c'  </term>
+              <listitem>
+                <para>function is "compiled" to be more efficient (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'p'  </term>
+              <listitem>
+                <para>function is "compiled" and prepared for profiling (see profile)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'n'  </term>
+              <listitem>
+                <para>function is not "compiled"</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>deff</literal> can be used to define functions from sequences of instructions
+    written in text strings. The resulting function object has the same proprerties
+    of any other function defined in a text file and loaded with <literal>getf</literal> 
+    or <literal>exec</literal>.</para>
+    <para>
+    Quotes in the instructions (delimiting strings or meaning matrix transposition) 
+    have to be doubled to be interpreted correctly (see help quote). This can make
+    writing up a little awkward.
+    An option in such cases is to define functions in files as usual, to load them into
+    Scilab by <literal>getf</literal> (with the <literal>'n'</literal> option) and to use 
+    <literal>sci2exp</literal> to get a printout of corresponding <literal>deff</literal> 
+    instructions.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+deff('[x]=myplus(y,z)','x=y+z')
+//
+deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="profile">profile</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

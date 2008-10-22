@@ -1,0 +1,19 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function ferror()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+fid = 1
+message = merror(fid)
+message = mclearerr(fid)
+// !! L.9: No Scilab equivalent for: ferror(fid) with two outputs
+[message,errnum] = ferror(fid)
+// !! L.10: No Scilab equivalent for: ferror(fid) with two outputs
+[message,errnum] = ferror(fid)

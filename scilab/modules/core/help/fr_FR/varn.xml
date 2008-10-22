@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="varn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>varn</refname>
+    <refpurpose> indéterminée d'un polynôme  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[symb]=varn(p)
+[pm]=varn(x,var)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>p  </term>
+        <listitem>
+          <para>polynôme (ou matrice de polynômes)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>symb  </term>
+        <listitem>
+          <para>chaîne de caractères
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>polynôme (ou matrice de polynômes)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>var  </term>
+        <listitem>
+          <para>indéterminée du polynôme
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pm  </term>
+        <listitem>
+          <para>polynôme (ou matrice de polynômes)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>symb=varn(p)</literal> renvoie dans <literal>symb</literal> l'indéterminée du polynôme <literal>p</literal>
+    (par exemple <literal>varn(poly(0,'x'))</literal> est égal à <literal>'x'</literal>).
+  </para>
+    <para><literal>varn(x,'s')</literal> renvoie une matrice polynomiale de même taille que <literal>x</literal> mais avec <literal>'s'</literal> comme indéterminée.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');p=[s^2+1,s];
+varn(p)
+varn(p,'x')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<project name="javasci" default="jar">
+  <import file="../../build.incl.xml"/>
+  <property name="library.name" value="${library.javasci.name}" />
+
+  <description>
+	Build the Java/Scilab connecter (javasci) module
+  </description>
+
+  <target name="jar" description="Build the jar file" depends="compile">
+	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
+	  <manifest>
+		<attribute name="SciAbstractDataType" value="javasci.SciAbstractDataType"/>
+		<attribute name="SciBooleanArray" value="javasci.SciBooleanArray"/>
+		<attribute name="SciComplexArray" value="javasci.SciComplexArray"/>
+		<attribute name="SciDoubleArray" value="javasci.SciDoubleArray"/>
+		<attribute name="SciString" value="javasci.SciString"/>
+		<attribute name="BadDataArgumentException" value="javasci.BadDataArgumentException"/>
+		<attribute name="SciAbstractArray" value="javasci.SciAbstractArray"/>
+		<attribute name="SciBoolean" value="javasci.SciBoolean"/>
+		<attribute name="SciComplex" value="javasci.SciComplex"/>
+		<attribute name="SciDouble" value="javasci.SciDouble"/>
+		<attribute name="Scilab" value="javasci.Scilab"/>
+		<attribute name="SciStringArray" value="javasci.SciStringArray"/>
+		<attribute name="ClassPath" value="javasci.ClassPath"/>
+		<attribute name="LibraryPath" value="javasci.LibraryPath"/>
+	  </manifest>
+	</jar>
+  </target>
+
+</project>

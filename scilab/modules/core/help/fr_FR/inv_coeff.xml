@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="inv_coeff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inv_coeff</refname>
+    <refpurpose> construction d'une matrice polynomiale à partir des coefficients  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>C  </term>
+        <listitem>
+          <para>"grosse" matrice des coefficients
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>d  </term>
+        <listitem>
+          <para>degré de la matrice polynomiale (paramètre optionnel valant par défaut  <literal>d=-1+size(C,'c')/size(C,'r')</literal>)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>name  </term>
+        <listitem>
+          <para>chaîne de caractères (indéterminée du polynôme, <literal>'x'</literal> par défaut).
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>P=inv_coeff(Mp,k)</literal>, quand <literal>k</literal> est compatible avec la taille de <literal>Mp</literal> renvoie une matrice polynomiale de degré k. <literal>C=[C0,C1,...,Ck]</literal> et 
+    <literal>P= C0 + C1*x +... +Ck*x^k</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=int(10*rand(2,6))
+// construction d'une matrice polynomiale de degré 1
+P=inv_coeff(A,1)
+norm(coeff(P)-A)
+// utilisation de la valeur par défaut du degré
+P1=inv_coeff(A)
+norm(coeff(P1)-A)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="degree">degree</link>
+      </member>
+      <member>
+        <link linkend="coeff">coeff</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

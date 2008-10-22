@@ -1,0 +1,666 @@
+% Copyright INRIA
+
+\documentclass[11pt]{article}
+
+\usepackage{makeidx}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+
+\def\Figdir{figures/}
+
+\makeindex
+\usepackage{verbatim}
+\begin{document}
+\pagestyle{empty}
+
+
+\vspace{3.cm}
+
+{\Huge\bf  {INTERSCI}}
+\vfill
+
+{\Huge\bf  {A Scilab interfacing tool}}
+\vfill
+
+{\Huge\bf {Scilab Group}}
+\vfill
+
+{\Large\bf
+INRIA Meta2 Project/ENPC Cergrene}
+
+{\normalsize\bf
+\vfill
+
+\vspace{12.cm}
+
+INRIA - Unit\'e de recherche de Rocquencourt - Projet Meta2
+
+Domaine de Voluceau - Rocquencourt - B.P. 105 - 78153 Le Chesnay Cedex (France)
+
+E-mail : scilab@inria.fr}
+
+{\normalsize\bf Home page : http://www-rocq.inria.fr/scilab}
+
+\newpage
+\mbox{ }
+\newpage
+
+
+\pagenumbering{roman}
+\tableofcontents
+\pagestyle{headings}
+\pagenumbering{arabic}
+
+\newpage
+
+\newcommand{\ISCI}{Intersci}
+\newcommand{\SCI}{Scilab}
+\newcommand{\T}[1]{{\tt #1}}
+\newcommand{\M}[1]{$<${\em #1}$>$}
+\newcommand{\ie}{\mbox{i.e.}}
+
+\ISCI\ is a program for building an interface file between \SCI\ and Fortran
+subroutines or C functions. This interface describes both the routine
+called and the associated \SCI\ function.  The interface is automatically 
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Interface description files}
+%%%%%%%%%%%%%%%%%%%%%
+To use \ISCI\ one has first to write an interface description file.
+
+The file \M{interface name}\T{.desc} is a sequence of descriptions of
+pairs formed by the \SCI\ function and the corresponding C or Fortran
+procedure (see table \ref{t-pair}). In the following, we will
+essentially consider Fortran subroutine interfacing. The process is
+nearly the same for C functions (see \ref{C}).
+
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+\M{\SCI\ function name} \M{function arguments}\\
+\M{\SCI\ variable} \M{\SCI\ type} \M{possible arguments}\\
+\quad$\vdots$\qquad\qquad$\vdots$\qquad\qquad$\vdots$\qquad\qquad$\vdots$
+  \qquad\qquad$\vdots$\\
+\M{Fortran subroutine name} \M{subroutine arguments}\\
+\M{Fortran argument} \M{Fortran type}\\
+\quad$\vdots$\qquad\qquad$\vdots$\qquad\qquad$\vdots$\qquad\qquad$\vdots$\\
+out \M{type} \M{formal output names}\\
+\M{formal output name} \M{variable}\\
+\quad$\vdots$\qquad\qquad$\vdots$\qquad\qquad$\vdots$\qquad\qquad$\vdots$\\
+*******************************\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Description of a pair of \SCI\ function and Fortran subroutine}
+\label{t-pair}
+\end{table}
+
+Each description is made of three parts: 
+\begin{itemize}
+\item
+description of \SCI\ function and its arguments
+\item
+description of Fortran subroutine and its arguments
+\item
+description of the output of \SCI\ function.
+\end{itemize}
+
+\subsection{Description of \SCI\ function}
+%%%%%%%%%%%
+\label{scilab}
+
+The first line of the description is composed by the name of the \SCI\
+function followed by its input arguments.
+
+The next lines describe \SCI\ variables: the input arguments and the
+outputs of the \SCI\ function, together with the arguments of the Fortran
+subprogram with type \T{work} (for which memory must be allocated).
+It is an error not to describe such arguments.
+
+The description of a \SCI\ variable begins by its name, then its type followed
+by possible informations depending on the type.
+
+Types of \SCI\ variables are:
+\begin{description}
+  \item[any] any type: only used for an input argument of \SCI\ function.
+  \item[column] column vector: must be followed by its dimension.
+  \item[list] list: must be followed by the name of the list,
+\M{list name}. This name must correspond to a file \M{list name}\T{.list}
+which describes the structure of the list (see \ref{list}).
+  \item[matrix] matrix: must be followed by its two dimensions.
+  \item[imatrix] complex matrix: must be followed by its two
+  dimensions.
+  \item[bmatrix] boolean matrix: must be followed by its two dimensions.
+  \item[polynom] polynomial: must be followed by its dimension (size) and the
+name of the unknown.
+  \item[row] row vector: must be followed by its dimension.
+  \item[scalar] scalar.
+  \item[string] character string: must be followed by its dimension
+(length).
+  \item[vector] row or column vector: must be followed by its
+  dimension.
+  \item[sparse] sparse matrix: must be followed by its
+  dimensions, the number of non zero elements and its real/complex flag
+
+  \item[work] working array: must be followed by its dimension. It must not
+correspond to an input argument or to the output of the \SCI\ function.
+\end{description}
+
+\smallskip
+
+A blank line and only one ends this description.
+
+\subsection{Optional input arguments}
+
+Optional arguments are defined as follows:
+\begin{itemize}
+\item{
+\verb! [c val] !. This means that \verb!c! is an optional argument with
+default value \verb!val!.  \verb!val! can be a scalar: e.g. \verb![c 10]!, 
+an array: e.g. \verb! [c (4)/1,2,3,4/]! or a chain: e.g. \verb![c pipo]! 
+}
+\item{
+\verb!{b xx}!. This means that \verb!b! is an optional argument.
+If not found, one looks for \verb!xx! in current existing Scialb variables.
+}
+\end{itemize}
+
+\subsection{Description of Fortran subroutine}
+%%%%%%%%%%%
+\label{Fortran}
+\subsubsection{Fortran calling sequence description}
+The first line of the description is composed by the name of the 
+Fortran subroutine followed by its arguments.
+
+
+\subsubsection{Fortran variables description}
+
+The next lines describe Fortran variables: the arguments of the Fortran
+subroutine. 
+The description of a Fortran variable is made of its name and its type.
+Most Fortran variables correspond to \SCI\ variables (except for
+dimensions, see \ref{dimensions}) and must have the same name as the
+corresponding \SCI\ variable.
+
+\smallskip
+
+Types of Fortran variables are:
+\begin{description}
+  \item[char] character array.
+  \item[double] double precision variable.
+  \item[int] integer variable.
+  \item[real] real variable.
+\end{description}
+
+Other types types also exist, that are called ``external'' types see \ref{external}.
+
+\smallskip
+
+A blank line and only one ends this description.
+
+\subsection{Description of the output of \SCI\ function}
+%%%%%%%%%%%
+\label{output}
+
+The first line of this description must begin by the word \T{out} followed
+by the type of \SCI\ output.
+
+\smallskip
+
+Types of output are:
+\begin{description}
+  \item[empty] the \SCI\ function returns nothing.
+  \item[list] a \SCI\ list: must be followed by the names of \SCI\ variables
+which form the list.
+  \item[sequence] a \SCI\ sequence: must be followed by the names of \SCI\
+variables elements of the sequence. This is the usual case.
+\end{description}
+
+This first line must be followed by other lines corresponding to output type
+conversion. This is the case when an output variable is also an input variable
+with different \SCI\ type: for instance an input column vector becomes an
+output row vector. The line which describes this conversion begins by the name
+of \SCI\ output variable followed by the name of the corresponding \SCI\ input
+variable. See \ref{ex3} as an example.
+\medskip
+
+A line beginning with a star ``\T{*}'' ends the description of a pair of
+\SCI\ function and Fortran subroutine. This line is compulsory even if it is
+the end of the file. Do not forget to end the file by a carriage return.
+
+\subsection{Dimensions of non scalar variables}
+%%%%%%%%%%%
+\label{dimensions}
+
+When defining non scalar \SCI\ variables (vectors, matrices, polynomials and
+character strings) dimensions must be given. There are a few ways to do that:
+
+\begin{itemize}
+  \item It is possible to give the dimension as an integer (see \ref{ex1}).
+  \item The dimension can be the dimension of an input argument of \SCI\
+function. This dimension is then denoted by a formal name (see \ref{ex2}). 
+  \item The dimension can be defined as an output of the Fortran subroutine.
+This means that the memory for the corresponding variable is allocated by the
+Fortran subroutine. The corresponding Fortran variable must necessary have an
+external type (see \ref{external} and \ref{ex3}).
+\end{itemize}
+
+\ISCI\ is not able to treat the case where the dimension is an algebraic
+expression of other dimensions. A \SCI\ variable corresponding to this value
+must defined.
+
+\subsection{Fortran variables with external type}
+%%%%%%%%%%%
+\label{external}
+
+External types are used when the dimension of the Fortran variable is
+unknown when calling the Fortran subroutine and when its memory size is
+allocated in this subroutine. This dimension must be an output of the Fortran
+subroutine. In fact, this will typically happen when we want to interface a C
+function in which memory is dynamically allocated.
+
+\smallskip
+
+Existing external types:
+\begin{description}
+ \item[cchar] character string allocated by a C function to be copied into the
+corresponding \SCI\ variable.
+ \item[ccharf] the same as \T{cchar} but the C character string is freed after
+the copy.
+ \item[cdouble] C double array allocated by a C function to be copied into the
+corresponding \SCI\ variable.
+ \item[cdoublef] the same as \T{cdouble} but the C double array is freed after
+the copy.
+ \item[cint] C integer array allocated by a C function to be copied into the
+corresponding \SCI\ variable.
+ \item[cintf] the same as \T{cint} but the C integer array is freed after
+the copy.
+ \item[csparse] C sparse matrix allocated by a C function, to be
+copied into the corresponding \SCI\ variable.
+the copy.
+ \item[csparsef] the same as \T{csparse} but the C sparse array is freed after
+the copy.
+\end{description}
+
+\medskip
+
+In fact, the name of an external type corresponds to the name of a C function.
+This C function has three arguments: the dimension of the variable, an input
+pointer and an output pointer.
+
+For instance, below is the code for external type \T{cintf}:
+\begin{verbatim}
+#include "../machine.h"   
+
+/* ip is a pointer to a Fortran variable coming from SCILAB
+which is itself a pointer to an array of n integers typically
+coming from a C function
+   cintf converts this integer array into a double array in op 
+   moreover, pointer ip is freed */
+
+void C2F(cintf)(n,ip,op)
+int *n;
+int *ip[];
+double *op;
+{
+  int i;
+  for (i = 0; i < *n; i++)
+    op[i]=(double)(*ip)[i];
+  free((char *)(*ip));
+}
+\end{verbatim}
+
+For the meaning of \verb|#include "../machine.h"| and \T{C2F} see \ref{C}.
+
+\smallskip
+
+Then, the user can create its own external types by creating its own C
+functions with the same arguments. \ISCI\ will generate the call of the
+function. 
+
+\subsection{Using lists as input \SCI\ variables}
+%%%%%%%%%%%
+\label{list}
+
+An input argument of the \SCI\ function can be a \SCI\ list.
+If \M{list name} is the name of this variable, a file called 
+\M{list name}\T{.list}
+must describe the structure of the list. This file permits to associate
+a \SCI\ variable to each element of the list by defining
+its name and its \SCI\ type. The variables are described in order into the
+file as described by table \ref{t-list}.
+
+Then, such a variable element of the list, in the file \M{interface
+name}\T{.desc}  is referred to as its name followed by the name of 
+the corresponding list in parenthesis. For
+instance, \T{la1(g)} denotes the variable named \T{la1} element of the list
+named \T{g}.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+\M{comment on the variable element of the list}\\
+\M{name of the variable element of list} \M{type} \M{possible arguments}\\
+*******************************\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Description of a variable element of a list}
+\label{t-list}
+\end{table}
+
+An example is shown in \ref{ex4}.
+
+\subsection{C functions interfacing}
+%%%%%%%%%%%
+\label{C}
+
+The C function must be considered as a procedure \ie\
+its type must be \T{void} or the returned value must not be used.
+
+The arguments of the C function must be considered as Fortran arguments \ie\
+they must be only pointers.
+
+Moreover, the name of the C function must be recognized by
+Fortran. For that, the include file \T{machine.h} located in the
+directory \M{\SCI\ directory}\T{/routines} should be included in 
+C functions and the macro \T{C2F} should be used.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Writing compatible code}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{compat}
+
+\subsection{ Messages and Error Messages}
+
+To write messages in the  \SCI\ main window, user  must call the
+{\tt out} Fortran routine or {\tt cout} C procedure with the
+character string of the desired message as input argument.
+
+To return an error flag of  an interfaced routine user must call the
+{\tt erro} Fortran routine or {\tt cerro} C procedure with the
+character string of the desired message as input argument. This call
+will produce the edition of the message in the \SCI\ main window and
+the error exit of \SCI\ associated function.
+
+\subsection{ Input and output}
+%%%%%%%%%%%
+
+
+To open files in Fortran, it is highly recommended to  use the 
+\SCI routine {\tt   clunit}. If the interfaced routine uses the 
+Fortran {\tt open}
+instruction, logical units must in any case be greater than 40.
+\begin{verbatim}
+      call clunit( lunit, file, mode)
+\end{verbatim}
+with:
+\begin{itemize}
+\item {\tt file} the file name {\tt character string}
+\item {\tt mode} a two integer vector defining the opening mode
+ {\tt mode(2)} defines the record length for a direct access file if
+ positive. 
+{\tt mode(1)} is an integer formed with three digits {\tt f}, {\tt a }
+and {\tt s}
+\begin{itemize}
+\item {\tt f} defines if file is formatted ({\tt 0}) or not ({\tt 1})
+\item {\tt a} defines if file has sequential ({\tt 0}) or direct
+  access ({\tt 1})
+\item {\tt s} defines if file status must be new ({\tt 0}), old ({\tt
+    1}), scratch ({\tt 2}) or unknown ({\tt 3})
+\end{itemize}
+\end{itemize}
+
+Files opened by a call to {\tt   clunit} must be close by 
+\begin{verbatim}
+      call clunit( -lunit, file, mode)
+\end{verbatim}
+In this case the {\tt file} and  {\tt mode} arguments are not
+referenced.
+
+%%%%%%%%%%%%%%%%%%
+\section{Examples}
+%%%%%%%%%%%%%%%%%%
+
+\subsection{Example 1}
+%%%%%%%%%%%
+\label{ex1}
+
+The \SCI\ function is \T{a=calc(str)}. Its input is a string and its
+output is a scalar.
+
+\noindent The corresponding Fortran subroutine is 
+\verbatiminput{fcalc.f}
+
+\noindent Its arguments are a string {\tt str} (used as input) and an integer
+{\tt a} (used as output) and the string dimension. This last argument
+is useful if the subroutine has to be called by a C program. The
+description file is the following: 
+
+\verbatiminput{calc.desc}
+
+
+\subsection{Example 2}
+%%%%%%%%%%%
+\label{ex2}
+
+The name of the \SCI\ function is \T{c=som(a,b)}. Its two inputs are
+row vectors and its  output is a column vector.
+
+\noindent The corresponding C procedure is:
+\verbatiminput{csom.c}. 
+\noindent Its arguments
+are a real array with dimension n (used as input), another 
+real array with  dimension m (used as input) and a real array (used as output).
+These dimensions \T{m} and \T{n} are determined at the calling of the \SCI\
+function and do not need to appear as \SCI\ variables.
+
+\ISCI\ will do the job to make the necessary conversions to transform the
+double precision (default in \SCI) row vector \T{a} into a real array and to
+transform the real array \T{c} into a double precision row vector.
+
+The description file is the following:
+
+\verbatiminput{csom.desc}
+
+\subsection{Example 3}
+%%%%%%%%%%%
+\label{ex3}
+
+The \SCI\ function is \T{[o,b]=ext(a)}. Its input is a matrix and its
+outputs are a matrix and a column vector.
+
+The corresponding Fortran subroutine is \T{fext(a,m,n,b,p)} and its arguments
+are an integer array (used as input and output), its dimensions m,n (used as
+input) and another integer array and its dimension p (used as outputs).
+
+The dimension \T{p} of the output \T{b} is computed by the Fortran subroutine
+and the memory for this variable is also allocated by the Fortran subroutine
+(perhaps by to a call to another C function). So the type of the variable is
+external and we choose \T{cintf}.
+
+Moreover, the output \T{a} of the \SCI\ function is the same as the input
+but its type changes from a $m \times n$ matrix to a $n \times m$ matrix. This
+conversion is made my introducing the \SCI\ variable \T{o}
+
+The description file is the following:
+
+\verbatiminput{ext.desc}
+
+\subsection{Example 4}
+%%%%%%%%%%%
+\label{ex4}
+
+The name of the \SCI\ function is \T{contr}. Its input is a list representing
+a linear system given by its state representation and a tolerance. Its return
+is a scalar (for instance the dimension of the controllable subspace).
+
+The name of the corresponding Fortran subroutine is \T{contr} and its
+arguments are the dimension of the state of the system (used as input), the
+number of inputs of the system (used as input), 
+the state matrix of the system (used as input),
+the input matrix of the system (used as input),
+an integer giving the dimension of the controllable subspace (used as output),
+and the tolerance (used as input).
+
+The description file is the following:
+
+\verbatiminput{contr.desc}
+
+The type of the list is \T{lss} and a file describing the list \T{lss.list} is
+needed. It is shown below:
+
+\verbatiminput{lss.list}
+
+The number of the elements is not compulsory in the comment describing the
+elements of the list but is useful.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tableofcontents
+
+%\listoftables
+
+\section{Building and using the interface}
+
+\subsection{Calling intersci}
+To use \ISCI\ execute the command:\\
+ \T{intersci-n }\M{interface name}\T{\ }
+where \M{interface name}\T{.desc} is the file describing the interface
+(see above). 
+
+The \T{intersci-n } script file are located in the
+directory SCIDIR/bin.
+
+Using {\tt intersci-n} two files are created~: \M{interface name}.c and \M{interface name}\_builder.sce are
+created.  The file T\M{interface name}.c contains the interfacing
+procedures for each new Scilab function. The file
+\M{interface name}\_builder.sce is a Scilab script which realizes the
+incremental linking of the gateway file. It has to be customized to
+set the {\tt file} variable to the names of the object file associated
+to the gateway and the users objects and library files needed.
+\medskip
+
+\noindent Example:
+Suppose that the descriptions given in the example 1 and 2 above are
+written down in the file {\tt myex.desc}.
+
+\noindent Running {\tt intersci-n}  one obtains:
+
+\begin{verbatim}
+$% intersci-n myex
+ 
+INTERSCI Version 3.0 (SEP 2000)
+    Copyright (C) INRIA/ENPC All rights reserved
+ 
+**************************
+processing SCILAB function "calc"
+  generating C interface for function (fcalc) Scilab function "calc"
+**************************
+processing SCILAB function "som"
+  generating C interface for function (fsom) Scilab function "som" 
+**************************
+C file "myex.c" has been created
+Scilab file "loader.sce" has been created
+ 
+file "myex_builder.sce" has been created
+\end{verbatim} %$
+\medskip
+
+\noindent The Scilab script \verb!myex_builder.sce! contains:
+
+\verbatiminput{myex_builder_orig.sce}
+
+\noindent Suppose that the procedures {\tt fcalc} and {\tt csom} are defined in
+the Fortran file {\tt fcalc.f}
+and the C file {\tt csom.c}
+
+\noindent The file \verb!ex01fi_builder.sce! has to be customized as follow:
+
+\verbatiminput{myex_builder.sce}
+\subsection{Compiling and building library}
+This  builder file is to be executed 
+by Scilab:
+
+\begin{verbatim}
+-->exec myex_builder.sce;
+   generate a gateway file
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+\end{verbatim}
+
+The generated file lib\M{interface
+name}.c is the C gateway needed for interfacing all routines defined
+in \M{interface} name with Scilab. 
+
+A dynamic library is then created as well as a file \verb!loader.sce!. 
+
+\subsection{Loading in Scilab}
+Executing \verb!loader.sce! loads the library into Scilab and executes the
+\verb!addinter! command to link the library and associate the names
+of the functions  to it. We can then call the new functions~:
+\begin{verbatim}
+-->exec loader.sce;
+Loading shared executable ./libmyex.so
+shared archive loaded
+Linking libmyex (in fact libmyex_)
+Interface 0 libmyex
+\end{verbatim}
+Of course this instruction can be written in one of the Scilab startup
+files not to have to re-enter it each time Scilab is started.
+\medskip
+
+These new functions can then be used as the others:
+
+\begin{verbatim}
+-->a=[1,2,3];b=[4,5,6]; 
+-->c=som(a,b)
+ c  =
+ 
+!   5. !
+!   7. !
+!   9. !
+-->calc('one')
+ ans  =
+ 
+    1.  
+\end{verbatim}
+
+\subsection{Adding a new interface to the Scilab kernel}
+
+It is possible to add a set a new built-in functions to Scilab
+by a permanent link the interface program. 
+For that, it is necessary to update the files {\tt default/fundef}
+and {\tt   routines/callinter.h}.
+
+When {\tt intersci} is invoked as follows:\\
+
+\T{intersci }\M{interface name}\T{\ }\M{interface number}\\
+
+{\tt intersci} then builds a {\tt .fundef} file which is used to
+update the {\tt default/fundef} file.
+
+To add a new interface the user needs also
+to update the {\tt   routines/callinter.h} file with a particular 
+value of {\tt fun} Fortran variable corresponding to the new interface
+number.
+
+Two unused empty interface routines called by default ({\tt matusr.f} 
+and {\tt matus2.f}) are predefined and may be replaced by 
+the interface program. Their interface numbers {\tt 14} and {\tt 24}
+respectively. They can be used as default interface programs.
+The executable code of Scilab is then made by typing ``make all''
+or ``make bin/scilex'' in Scilab directory.
+
+%\listoffigures
+
+\printindex
+
+\end{document}

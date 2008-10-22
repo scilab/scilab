@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fprintfMat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fprintfMat</refname>
+    <refpurpose> print a matrix in a file.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>fprintfMat(fil,M [,format,text])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fil</term>
+        <listitem>
+          <para>a string, the pathname of the file to be scanned.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>A matrix of real numbers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>a character string, a C like format. This is an optional
+    parameter, the default value is <literal>"%f"</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text</term>
+        <listitem>
+          <para>a string matrix giving non numerical comments stored 
+   at the beginning of the file.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The <literal>fprintfMat</literal> function prints a matrix in a formated file. Each row
+    of the matrix give a line in the file. If <literal>text</literal> is
+    given then the elements of <literal>text</literal> are inserted
+    columnwise at the beginning of the file one element per line.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+n=50;
+a=rand(n,n,'u');
+fprintfMat(TMPDIR+'/Mat',a,'%5.2f');
+a1=fscanfMat(TMPDIR+'/Mat');
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="meof">meof</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mseek">mseek</link>
+      </member>
+      <member>
+        <link linkend="mtell">mtell</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

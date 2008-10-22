@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="dragrect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dragrect</refname>
+    <refpurpose> déplace un ou plusieurs rectangles avec la souris  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>final_rect=dragrect(initial_rect)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>initial_rect  </term>
+        <listitem>
+          <para>matrice 4xn contenant les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Si un seul rectangle est présent initial_rect peut être un rectangle. 
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>final_rect  </term>
+        <listitem>
+          <para>un rectangle défini par [x_gauche, y_haut, largeur, hauteur] 
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>btn  </term>
+        <listitem>
+          <para>
+    :un entier, le numero du bouton de la souris actionné.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>dragrect</literal> permet de déplacer un ou plusieurs rectangles à l'écran. La matrice 4xn
+    initial_rect définit les rectangles. Chaque colonne de <literal>initial_rect</literal>
+    contient  les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Quand un bouton de la souris est actionné <literal>dragrect</literal> renvoie les rectangles finaux dans <literal>final_Rect</literal>.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+xsetech(frect=[0,0,100,100])
+r=dragrect([10;10;30;10])
+xrect(r)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+      <member>
+        <link linkend="xrects">xrects</link>
+      </member>
+      <member>
+        <link linkend="xclick">xclick</link>
+      </member>
+      <member>
+        <link linkend="xgetmouse">xgetmouse</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

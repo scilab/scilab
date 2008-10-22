@@ -1,0 +1,76 @@
+// <-- Non-regression test for bug 973 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=973
+//
+// <-- Short Description -->
+//    matlab file conversion problem (apparently: Extraction of
+//    out from 'funcall' tlist is not yet implemented)
+// Copyright INRIA
+// Scilab Project - V. Couvert
+MFILECONTENTS=["%m2scideclare var|Unknown Unknown|Unknown";"var1 = strrep(var,'' '','','')"]
+ MFILECONTENTS  =
+ 
+!%m2scideclare var|Unknown Unknown|Unknown  !
+!                                           !
+!var1 = strrep(var,' ',',')                 !
+MFILE=TMPDIR+"/bug973.m"
+ MFILE  =
+ 
+ TMPDIR/bug973.m   
+SCIFILE=TMPDIR+"/bug973.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug973.sci   
+fd=mopen(MFILE,"w");
+mputl(MFILECONTENTS,fd);
+mclose(fd);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug973.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+fd=mopen(SCIFILE,"r");
+SCIFILECONTENTS=mgetl(fd,-1);
+mclose(fd);
+SCIFILECONTENTSREF=["";
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"";
+"var1 = mtlb_strrep(var,"" "","","")"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!                                                 !
+!                                                 !
+!var1 = mtlb_strrep(var," ",",")                  !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

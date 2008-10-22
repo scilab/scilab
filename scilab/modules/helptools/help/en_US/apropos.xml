@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="apropos">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>apropos</refname>
+    <refpurpose> searches keywords in Scilab help</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>apropos(key)
+apropos(regexp)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>key</term>
+        <listitem>
+          <para>character string. give the sequence of characters to be found</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>regexp</term>
+        <listitem>
+          <para> character string. give the regular expression to be found
+	    (only with "Scilab Browser")</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>apropos(key)</literal> looks for Scilab help files containing
+      keywords <literal>key</literal>in their short description section.</para>
+    <para><literal>apropos(regexp)</literal> looks for Scilab
+      help files containing regular expression  <literal>regexp</literal>in their short
+      description section.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+apropos('ode')
+apropos ode 
+apropos "list of"
+apropos "sin.*hyperbolic"
+apropos "^ab"  //search help beginning the two characters "ab"
+apropos "quadratic.*solver"
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="man">man</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,33 @@
+# Localization of the module action_binding
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-04-28 13:39+0100\n"
+
+# File: src/c/dynamic_menus.c, line: 78
+# File: src/c/dynamic_menus.c, line: 86
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: src/c/dynamic_menus.c, line: 130
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr ""
+#
+# File: src/c/dynamic_menus.c, line: 131
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr ""

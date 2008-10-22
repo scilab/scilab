@@ -1,0 +1,10 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for texmacs module
+// Copyright INRIA 2006
+// ====================================================================
+ if with_texmacs() then
+// delete help chapter
+del_help_chapter('texmacs',%T);
+end
+// ====================================================================

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sva">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sva</refname>
+    <refpurpose> singular value approximation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[U,s,V]=sva(A,k)
+[U,s,V]=sva(A,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>nonnegative real number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Singular value approximation.</para>
+    <para><literal>[U,S,V]=sva(A,k)</literal> with <literal>k</literal> an integer
+    &gt;=1, returns <literal>U,S</literal> and <literal>V</literal> such that
+    <literal>B=U*S*V'</literal> is the best L2 approximation of
+    <literal>A</literal> with rank(<literal>B</literal>)=<literal>k</literal>.</para>
+    <para><literal>[U,S,V]=sva(A,tol)</literal> with <literal>tol</literal> a real
+    number, returns <literal>U,S</literal> and <literal>V</literal> such that
+    <literal>B=U*S*V'</literal> such that L2-norm of <literal>A-B</literal>
+    is at most <literal>tol</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=rand(5,4)*rand(4,5);
+[U,s,V]=sva(A,2);
+B=U*s*V';
+svd(A)
+svd(B)
+clean(svd(A-B))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

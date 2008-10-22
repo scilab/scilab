@@ -1,0 +1,590 @@
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - INRIA
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+default namespace db = "http://docbook.org/ns/docbook"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace xlink = "http://www.w3.org/1999/xlink"
+namespace mml = "http://www.w3.org/1998/Math/MathML"
+namespace svg = "http://www.w3.org/2000/svg"
+namespace html = "http://www.w3.org/1999/xhtml"
+
+start = book |
+        part | reference |
+        chapter | appendix |
+        refentry
+
+### --------------------------------------------------------------------------
+### Book, part, reference
+### --------------------------------------------------------------------------
+
+book = element book {
+    common.attributes,
+    ((title, info.no.title?) | info.with.title),
+    (part | reference | chapter | appendix)+
+}
+
+part = element part {
+    common.attributes,
+    ((title, info.no.title?) | info.with.title),
+    partintro?,
+    (chapter | appendix)+
+}
+
+reference = element reference {
+    common.attributes,
+    ((title, info.no.title?) | info.with.title),
+    partintro?,
+    refentry+
+}
+
+partintro = element partintro {
+    any.block+
+}
+
+### -------------------------------------
+### Meta-info
+### -------------------------------------
+
+info.with.title = element info {
+    common.attributes,
+    title,
+    any.info*
+}
+
+info.no.title = element info {
+    common.attributes,
+    any.info*
+}
+
+any.info = author | pubdate | keywordset
+
+author = element author {
+    common.attributes,
+    personname,
+    affiliation?
+}
+
+personname = element personname {
+    common.attributes,
+    simple.inline*
+}
+
+affiliation = element affiliation {
+    common.attributes,
+    jobtitle?,
+    orgname
+}
+
+jobtitle = element jobtitle {
+    common.attributes,
+    simple.inline*
+}
+
+orgname = element orgname {
+    common.attributes,
+    simple.inline*
+}
+
+pubdate = element pubdate {
+    common.attributes,
+    text
+}
+
+keywordset = element keywordset {
+    common.attributes,
+    keyword+
+}
+
+keyword = element keyword {
+    common.attributes,
+    text
+}
+
+### -------------------------------------
+### Common attributes
+### -------------------------------------
+
+common.attributes = xml.id.attribute? &
+                    xml.lang.attribute? &
+                    version.attribute? &
+                    role.attribute?
+
+xml.id.attribute = attribute xml:id { xsd:ID }
+
+xml.lang.attribute = attribute xml:lang { text }
+
+version.attribute = attribute version { text }
+
+role.attribute = attribute role { text }
+
+### --------------------------------------------------------------------------
+### Refentry
+### --------------------------------------------------------------------------
+
+refentry = element refentry {
+    common.attributes,
+    info.no.title?,
+    refnamediv+,
+    refsynopsisdiv?,
+    refsection+
+}
+
+refnamediv = element refnamediv {
+    common.attributes,
+    refname,
+    refpurpose
+}
+
+refname = element refname {
+    common.attributes,
+    any.inline*
+}
+
+refpurpose = element refpurpose {
+    common.attributes,
+    any.inline*
+}
+
+refsynopsisdiv = element refsynopsisdiv {
+    common.attributes,
+    title?,
+    synopsis
+}
+
+synopsis = element synopsis {
+    common.attributes,
+    preserve.space,
+    any.inline*
+}
+
+preserve.space =
+  [ a:defaultValue = "preserve" ] attribute xml:space { "preserve" }?
+
+refsection = element refsection {
+    common.attributes,
+    title,
+    ((any.block+, refsection*) | refsection+)
+}
+
+### --------------------------------------------------------------------------
+### Chapter, appendix, section
+### --------------------------------------------------------------------------
+
+chapter = element chapter {
+    common.attributes,
+    title,
+    ((any.block+, section*) | section+)
+}
+
+title = element title {
+    common.attributes,
+    any.inline*
+}
+
+appendix = element appendix {
+    common.attributes,
+    title,
+    ((any.block+, section*) | section+)
+}
+
+section = element section {
+    common.attributes,
+    title,
+    ((any.block+, section*) | section+)
+}
+
+### --------------------------------------------------------------------------
+### Block-level elements
+### --------------------------------------------------------------------------
+
+any.block = simple.block | 
+            figure | table | equation | example | note 
+
+simple.block = para | programlisting |
+               itemizedlist | orderedlist | variablelist | simplelist |
+               informaltable |
+               informalequation | mediaobject
+
+### -------------------------------------
+### Block-level elements having a title
+### -------------------------------------
+
+figure = element figure {
+    common.attributes,
+    title,
+    simple.block+
+}
+
+example = element example {
+    common.attributes,
+    title,
+    simple.block+
+}
+
+note = element note {
+    common.attributes,
+    ## Note is useful with or without a title.
+    title?,
+    simple.block+
+}
+
+equation = element equation {
+    common.attributes,
+    ## Made title required in the Scilab subset.
+    ## (If you don't want a title, use informalequation.)
+    title,
+    mediaobject
+}
+
+table = element table {
+    common.attributes,
+    html.table.attributes,
+    caption,
+    html.table.model
+}
+
+caption = element caption {
+    common.attributes,
+    any.inline*
+}
+
+### -------------------------------------
+### Table
+### -------------------------------------
+
+informaltable = element informaltable {
+    common.attributes,
+    html.table.attributes,
+    html.table.model
+}
+
+html.table.model = 
+  (html.col* | html.colgroup*),
+  html.thead?,
+  html.tfoot?,
+  (html.tbody+ | html.tr+)
+
+html.colgroup = element colgroup { 
+    common.attributes,
+    html.column.attributes,
+    html.col* 
+}
+
+html.col = element col { 
+    common.attributes, 
+    html.column.attributes,
+    empty 
+}
+
+html.thead = element thead { 
+    common.attributes,
+    html.row.attributes,
+    html.tr+ 
+}
+
+html.tfoot = element tfoot { 
+    common.attributes, 
+    html.row.attributes,
+    html.tr+ 
+}
+
+html.tbody = element tbody { 
+    common.attributes, 
+    html.row.attributes,
+    html.tr+ 
+}
+
+html.tr = element tr { 
+    common.attributes, 
+    html.row.attributes,
+    (html.th | html.td)+ 
+}
+
+html.td = element td {
+    common.attributes, 
+    html.cell.attributes,
+    (any.inline* | any.block*)
+}
+
+html.th = element th {
+    common.attributes, 
+    html.cell.attributes,
+    (any.inline* | any.block*)
+}
+
+html.table.attributes =
+    attribute summary { text }? & 
+    attribute width { xsd:integer | xsd:string { pattern = "[0-9]+%" } }? & 
+    attribute border { xsd:nonNegativeInteger }? & 
+    attribute frame {
+        "void" | "above" | "below" | "hsides" | "lhs" | "rhs" | 
+        "vsides" | "box" | "border"
+    }? & 
+    attribute rules { "none" | "groups" | "rows" | "cols" | "all" }? & 
+    attribute cellspacing { 
+        xsd:integer | xsd:string { pattern = "[0-9]+%" }
+    }? &
+    attribute cellpadding { xsd:integer | xsd:string { pattern = "[0-9]+%" } }?
+
+html.column.attributes = 
+    attribute span { xsd:nonNegativeInteger }? & 
+    attribute width { text }? &
+    html.halign.attributes & 
+    html.valign.attributes
+
+html.row.attributes = 
+    html.halign.attributes & 
+    html.valign.attributes
+
+html.cell.attributes =
+    attribute abbr { text }? & 
+    attribute axis { text }? & 
+    attribute headers { text }? & 
+    attribute scope { "row"| "col" | "rowgroup" | "colgroup" }? & 
+    attribute rowspan { xsd:nonNegativeInteger }? & 
+    attribute colspan { xsd:nonNegativeInteger }? &
+    html.halign.attributes & 
+    html.valign.attributes
+
+html.halign.attributes = 
+    attribute align { "left" | "center" | "right" | "justify" | "char" }? & 
+    attribute char { text }? &
+    attribute charoff { xsd:integer | xsd:string { pattern = "[0-9]+%" } }?
+
+html.valign.attributes =
+    attribute valign { "top" | "middle" | "bottom" | "baseline" }?
+
+### -------------------------------------
+### Lists
+### -------------------------------------
+
+itemizedlist = element itemizedlist {
+    common.attributes,
+    spacing.attribute?,
+    listitem+
+}
+
+spacing.attribute = attribute spacing { "compact" | "normal" }
+
+listitem = element listitem {
+    common.attributes,
+    any.block+
+}
+
+orderedlist = element orderedlist {
+    common.attributes,
+    spacing.attribute?,
+    numeration.attribute?,
+    listitem+
+}
+
+numeration.attribute = attribute numeration { 
+    "arabic" | "upperalpha" | "loweralpha" | "upperroman" | "lowerroman"
+}
+
+variablelist = element variablelist {
+    common.attributes,
+    spacing.attribute?,
+    varlistentry+
+}
+
+varlistentry = element varlistentry {
+    common.attributes,
+    term+,
+    listitem
+}
+
+term = element term {
+    common.attributes,
+    any.inline*
+}
+
+simplelist = element simplelist {
+    common.attributes,
+    columns.attribute?,
+    type.attribute?,
+    member+
+}
+
+columns.attribute = attribute columns { xsd:positiveInteger }
+
+type.attribute = attribute type { "horiz" | "vert" | "inline" }
+
+member = element member {
+    common.attributes,
+    any.inline*
+}
+
+### -------------------------------------
+### Paragraphs
+### -------------------------------------
+
+para = element para {
+    common.attributes,
+    any.inline*
+}
+
+programlisting = element programlisting {
+    common.attributes,
+    preserve.space,
+    any.inline*
+}
+
+### -------------------------------------
+### Illustrations
+### -------------------------------------
+
+informalequation = element informalequation {
+    common.attributes,
+    mediaobject
+}
+
+mediaobject = element mediaobject {
+    common.attributes,
+    imageobject
+}
+
+imageobject = element imageobject {
+    common.attributes,
+    (imagedata | imagedata.mathml | imagedata.svg)
+}
+
+imagedata = element imagedata {
+    imagedata.common.attributes,
+    fileref.attribute
+}
+
+fileref.attribute = attribute fileref { xsd:anyURI }
+
+imagedata.common.attributes = common.attributes &
+    imagedata.width.attribute? &
+    imagedata.depth.attribute? &
+    imagedata.align.attribute? &
+    imagedata.valign.attribute? &
+    imagedata.contentwidth.attribute? &
+    imagedata.contentdepth.attribute? &
+    imagedata.scalefit.attribute? &
+    imagedata.scale.attribute?
+
+imagedata.width.attribute = attribute width { text }
+imagedata.depth.attribute = attribute depth { text }
+
+imagedata.align.attribute = attribute align { "left" | "center" | "right" }
+imagedata.valign.attribute = attribute valign { "bottom" | "middle" | "top" }
+
+imagedata.contentwidth.attribute = attribute contentwidth { text }
+imagedata.contentdepth.attribute = attribute contentdepth { text }
+
+imagedata.scalefit.attribute = attribute scalefit { "0" | "1" }
+imagedata.scale.attribute = attribute scale { xsd:positiveInteger }
+
+imagedata.mathml = element imagedata {
+    imagedata.common.attributes,
+    element mml:* { (any.attribute | text | any.element)* }
+}
+
+imagedata.svg = element imagedata {
+    imagedata.common.attributes,
+    element svg:* { (any.attribute | text | any.element)* }
+}
+
+any.attribute = attribute * { text }
+
+any.element = element * - (db:* | html:*) {
+    (any.attribute | text | any.element)*
+}
+
+### --------------------------------------------------------------------------
+### Inline-level elements
+### --------------------------------------------------------------------------
+
+any.inline = simple.inline | 
+             emphasis | literal | 
+             inlineequation
+
+simple.inline = text | phrase | replaceable | subscript | superscript |
+                indexterm | 
+                inlinemediaobject | 
+                link 
+
+### -------------------------------------
+### ``Rich'' inline-level elements
+### -------------------------------------
+
+link = element link {
+    common.attributes,
+    (linkend.attribute | xlink.href.attribute),
+    any.inline*
+}
+
+linkend.attribute = attribute linkend { xsd:IDREF }
+
+xlink.href.attribute = attribute xlink:href { xsd:anyURI }
+
+emphasis = element emphasis {
+    common.attributes,
+    any.inline*
+}
+
+### -------------------------------------
+### Simple inline-level elements
+### -------------------------------------
+
+literal = element literal {
+    common.attributes,
+    simple.inline*
+}
+
+phrase = element phrase {
+    common.attributes,
+    simple.inline*
+}
+
+replaceable = element replaceable {
+    common.attributes,
+    simple.inline*
+}
+
+subscript = element subscript {
+    common.attributes,
+    simple.inline*
+}
+
+superscript = element superscript {
+    common.attributes,
+    simple.inline*
+}
+
+### -------------------------------------
+### Illustrations
+### -------------------------------------
+
+inlineequation = element inlineequation {
+    common.attributes,
+    inlinemediaobject
+}
+
+inlinemediaobject = element inlinemediaobject {
+    common.attributes,
+    imageobject
+}
+
+### -------------------------------------
+### Index entry
+### -------------------------------------
+
+indexterm = element indexterm {
+    common.attributes,
+    primary        
+}
+
+primary = element primary {
+    common.attributes,
+    text     
+}

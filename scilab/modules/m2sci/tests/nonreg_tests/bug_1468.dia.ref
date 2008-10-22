@@ -1,0 +1,85 @@
+// <-- Non-regression test for bug 1468 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1468
+//
+// <-- Short Description -->
+//    1) 'macr2tree' function doesn't work correctly with the following script
+ // Non-regression test file for bug 1468
+// Copyright INRIA
+// Scilab Project - F. Belahcene
+MFILECONTENTS=["beep";
+		"beep on";
+		"beep off";
+		"s = beep()"]
+ MFILECONTENTS  =
+ 
+!beep        !
+!            !
+!beep on     !
+!            !
+!beep off    !
+!            !
+!s = beep()  !
+MFILE=TMPDIR+"/bug1468.m"
+ MFILE  =
+ 
+ TMPDIR/bug1468.m   
+SCIFILE=TMPDIR+"/bug1468.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug1468.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR,%f,%t);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug1468.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: YES
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+		"// Display mode";
+		"mode(0);"
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"beep";
+		"beep(""on"")";
+		"beep(""off"")";
+		"s = beep()"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!beep                                             !
+!                                                 !
+!beep("on")                                       !
+!                                                 !
+!beep("off")                                      !
+!                                                 !
+!s = beep()                                       !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

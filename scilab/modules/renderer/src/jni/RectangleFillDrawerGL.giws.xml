@@ -1,0 +1,37 @@
+<package name="org.scilab.modules.renderer.rectangleDrawing">
+  <object name="RectangleFillDrawerGL">
+    <method name="display" returnType="void">
+    </method>
+    <method name="initializeDrawing" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="endDrawing" returnType="void">
+    </method>
+    <method name="show" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="destroy" returnType="void">
+      <param type="int" name="parentFigureIndex" />
+    </method>
+    <method name="setFigureIndex" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="setBackColor" returnType="void">
+      <param type="int" name="color" />
+    </method>
+    <method name="drawRectangle" returnType="void">
+      <param type="double" name="corner1X" />
+      <param type="double" name="corner1Y" />
+      <param type="double" name="corner1Z" />
+      <param type="double" name="corner2X" />
+      <param type="double" name="corner2Y" />
+      <param type="double" name="corner2Z" />
+      <param type="double" name="corner3X" />
+      <param type="double" name="corner3Y" />
+      <param type="double" name="corner3Z" />
+      <param type="double" name="corner4X" />
+      <param type="double" name="corner4Y" />
+      <param type="double" name="corner4Z" />
+    </method>
+  </object>
+</package>

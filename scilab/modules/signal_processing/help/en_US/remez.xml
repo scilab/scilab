@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="remez">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>remez</refname>
+    <refpurpose> Remez's algorithm</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[an]=remez(nc,fg,ds,wt)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>nc</term>
+        <listitem>
+          <para>integer, number of cosine functions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fg,ds,wt</term>
+        <listitem>
+          <para>real vectors</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fg</term>
+        <listitem>
+          <para>grid of frequency points in [0,.5)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ds</term>
+        <listitem>
+          <para>desired magnitude on grid <literal>fg</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wt</term>
+        <listitem>
+          <para>weighting function on error on grid <literal>fg</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    minimax approximation of a frequency domain magnitude response.
+    The approximation takes the form</para>
+    <programlisting><![CDATA[
+
+ h = sum[a(n)*cos(wn)]
+   
+    ]]></programlisting>
+    <para>
+    An FIR, linear-phase filter
+    can be obtained from the the output of <literal>remez</literal> by using the
+    following commands:</para>
+    <programlisting><![CDATA[
+
+                 hn(1:nc-1)=an(nc:-1:2)/2;
+                 hn(nc)=an(1);
+                 hn(nc+1:2*nc-1)=an(2:nc)/2;
+   
+    ]]></programlisting>
+    <para>
+    where <literal>an</literal> = cosine filter coefficients</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="remezb">remezb</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

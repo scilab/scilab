@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isglobal">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>isglobal</refname>
+    <refpurpose>  check if a variable is global</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>t=isglobal(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>any variable</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>a boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>isglobal(x)</literal> returns true if x has been declared to be a global
+        variable and false otherwise.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+isglobal(1)
+global a
+isglobal(a)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="global">global</link>
+      </member>
+      <member>
+        <link linkend="clearglobal">clearglobal</link>
+      </member>
+      <member>
+        <link linkend="who">who</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

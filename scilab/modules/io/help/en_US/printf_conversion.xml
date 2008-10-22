@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="printf_conversion">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>printf_conversion</refname>
+    <refpurpose> printf, sprintf, fprintf conversion specifications</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Each conversion specification in the <literal>printf</literal> , <literal>sprintf</literal> ,
+    <literal>fprintf</literal> <literal>format</literal> parameter
+    has the following syntax:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>A % (percent) sign.</para>
+      </listitem>
+      <listitem>
+        <para>Zero or more <literal>options</literal>, which modify the meaning of the conversion specification. The following list contains the <literal>option</literal> characters and their meanings:</para>
+      </listitem>
+      <listitem>
+        <para>Left align, within the field, the result of the conversion.</para>
+      </listitem>
+      <listitem>
+        <para>Begin the result of a signed conversion with a sign (+ or -).</para>
+      </listitem>
+      <listitem>
+        <para>Prefix a space character to the result if the first character of a signed conversion is not a sign. If both the (space) and + options appear, the (space) option is ignored.</para>
+      </listitem>
+      <listitem>
+        <para>Convert the value to an alternate form. For <literal>c</literal>,
+    <literal>d</literal>, <literal>i</literal>, <literal>s</literal>, and <literal>u</literal>
+    conversions, the <literal>#</literal> option has no effect. For
+    <literal>o</literal> conversion, <literal>#</literal> increases the precision
+    to force the first digit of the result to be a 0 (zero). For
+    <literal>x</literal> and <literal>X</literal> conversions, a nonzero result
+    has 0x or 0X prefixed to it. For <literal>e, E, f, g,</literal> and
+    <literal>G</literal> conversions, the result always contains a decimal
+    point, even if no digits follow it. For <literal>g</literal> and
+    <literal>G</literal> conversions, trailing zeros are not removed from
+    the result.
+   </para>
+      </listitem>
+      <listitem>
+        <para>Pad to the field width, using leading zeros (following any
+    indication of sign or base) for <literal>d</literal>, <literal>i</literal>,
+    <literal>o</literal>, <literal>u</literal>, <literal>x</literal>, <literal>X</literal>,
+    <literal>e</literal>, <literal>E</literal>, <literal>f</literal>, <literal>g</literal>,
+    and <literal>G</literal> conversions; no space padding is performed. If
+    the <literal>0</literal> and <literal>\-</literal> (dash) flags both appear,
+    the <literal>0</literal> flag is ignored. For <literal>d</literal>,
+    <literal>i</literal>, <literal>o</literal> <literal>u</literal>, <literal>x</literal>, and
+    <literal>X</literal> conversions, if a precision is specified, the
+    <literal>0</literal> flag is also ignored. 
+  </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    An optional decimal digit string that specifies the minimum field
+    width.
+    If the converted value has fewer characters than the field width, the
+    field is padded on the left to the length specified by the field
+    width.
+    If the left-adjustment option is specified, the field is padded on the
+    right.
+  </para>
+    <para>
+    An optional precision.
+    The precision is a <literal>.</literal> (dot) followed by a decimal digit string.
+    If no precision is given, the parameter is treated as 0 (zero).
+    The precision specifies:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>The minimum number of digits to appear for <literal>d</literal>,
+    <literal>u</literal>, <literal>o</literal>, <literal>x</literal>, or <literal>X</literal>
+    conversions</para>
+      </listitem>
+      <listitem>
+        <para>The number of digits to appear after the decimal point for <literal>e</literal>, <literal>E</literal>, and <literal>f</literal> conversions</para>
+      </listitem>
+      <listitem>
+        <para>The maximum number of significant digits for <literal>g</literal> and <literal>G</literal> conversions</para>
+      </listitem>
+      <listitem>
+        <para>The maximum number of characters to be printed from a string in an <literal>s</literal> conversion</para>
+      </listitem>
+      <listitem>
+        <para>A character that indicates the type of conversion to be applied:</para>
+      </listitem>
+      <listitem>
+        <para>Performs no conversion.  Displays %.</para>
+      </listitem>
+      <listitem>
+        <para>:Accepts an integer <literal>value</literal> and converts it to signed decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as a leading character causes the field width value to be padded with leading zeros.</para>
+      </listitem>
+      <listitem>
+        <para>:Accepts an integer <literal>value</literal> and converts it to unsigned decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</para>
+      </listitem>
+      <listitem>
+        <para>:Accepts an integer <literal>value</literal> and converts it to unsigned octal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros. An octal value for field width is not implied.</para>
+      </listitem>
+      <listitem>
+        <para>:Accepts an integer <literal>value</literal> and converts it to unsigned hexadecimal notation. The letters ``abcdef'' are used for the <literal>x</literal> conversion; the letters ``ABCDEF'' are used for the <literal>X</literal> conversion. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</para>
+      </listitem>
+      <listitem>
+        <para>Accepts a float or double <literal>value</literal> and converts it to decimal notation in the format %[\-]<literal>ddd.ddd</literal>. The number of digits after the decimal point is equal to the precision specification.</para>
+      </listitem>
+      <listitem>
+        <para>If no precision is specified, six digits are output.</para>
+      </listitem>
+      <listitem>
+        <para>If the precision is zero, no decimal point appears and the system outputs a number rounded to the integer nearest to <literal>value</literal>.</para>
+      </listitem>
+      <listitem>
+        <para>If a decimal point is output, at least one digit is output before it.</para>
+      </listitem>
+      <listitem>
+        <para>:Accepts a real  and converts it to the exponential form %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>. There is one digit before the decimal point, and the number of digits after the decimal point is equal to the precision specification.</para>
+      </listitem>
+      <listitem>
+        <para>If no precision is specified, , six digits are output.</para>
+      </listitem>
+      <listitem>
+        <para>If the precision is zero, , no decimal point appears.</para>
+      </listitem>
+      <listitem>
+        <para>The <literal>E</literal> conversion character  produces a number with E instead of e before the exponent. The exponent always contains at least two digits. If the value is zero, the exponent is zero.</para>
+      </listitem>
+      <listitem>
+        <para>Accepts a real  and converts it in the style of the
+    <literal>e</literal>, <literal>E</literal>, or <literal>f</literal> conversion
+    characters, with the precision specifying the number of
+    significant digits. Trailing zeros are removed from the result. A
+    decimal point appears only if it is followed by a digit. The style
+    used depends on the value converted. Style <literal>e</literal>
+    (<literal>E</literal>, if <literal>G</literal> is the flag used) results only
+    if the exponent resulting from the conversion is less than -4, or
+    if it is greater or equal to the precision.</para>
+      </listitem>
+      <listitem>
+        <para>:Accepts and displays an integer value converted to a character.</para>
+      </listitem>
+      <listitem>
+        <para>:Accepts a string <literal>value</literal>  and displays characters from the string to the end or the number of characters indicated by the precision is reached. If no precision is specified, all characters up to the end are displayed.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    A field width or precision can be indicated by an <literal>*</literal> (asterisk)
+    instead of a digit string.
+    In this case, an integer <literal>value</literal> parameter supplies the field
+    width or precision.
+    The <literal>value</literal> parameter converted for output is not fetched until
+    the conversion letter is reached, so the parameters specifying field
+    width or precision must appear before the value to be converted (if any).</para>
+    <para>
+    If the result of a conversion is wider than the field width, the field
+    is expanded to contain the converted result.</para>
+    <para>
+    The representation of the plus sign depends on whether the
+    <literal>+</literal> or (space) formatting option is specified.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="printf">printf</link>
+      </member>
+      <member>
+        <link linkend="fprintf">fprintf</link>
+      </member>
+      <member>
+        <link linkend="sprintf">sprintf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

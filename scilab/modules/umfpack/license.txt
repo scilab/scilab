@@ -1,0 +1,39 @@
+UMFPACK:
+========
+
+Files: *
+
+
+Copyright:
+Bruno Pinçon, ESIAL-IECN, Inria CORIDA project 
+Some contributions from Antonio Manoel Ferreria Frasson, 
+Universidade Federal do Espírito Santo, Brazil. 
+<frasson@ele.ufes.br> (file intscispt.c)
+
+License:
+CeCILL
+
+    http://www.iecn.u-nancy.fr/~pincon/scilab/scilab.html
+
+
+TAUCS:
+======
+
+Files: src/c/{taucs_scilab.h, taucs_scilab.c}
+
+Copyright:
+2001, 2002, 2003 by Sivan Toledo, Tel-Aviv Univesity, stoledo@tau.ac.il. 
+
+License:
+Permission is hereby granted to use or copy this program, provided that 
+the Copyright, this License, and the Availability of the original version 
+is retained on all copies. User documentation of any code that uses this 
+code or any derivative code must cite the Copyright, this License, the 
+Availability note, and "Used by permission." If this code or any 
+derivative code is accessible from within MATLAB, then typing 
+"help taucs" must cite the Copyright, and "type taucs" must also cite 
+this License and the Availability note. Permission to modify the code 
+and to distribute modified code is granted, provided the Copyright, 
+this License, and the Availability note are retained, and a notice 
+that the code was modified is included. This software is provided to 
+you free of charge. 

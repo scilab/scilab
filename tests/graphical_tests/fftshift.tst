@@ -1,0 +1,37 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/fftshift_data.ref','rb');
+//make a signal
+t = 0:0.1:1000;
+x = 3 * sin(t) + 8 * sin(3 * t) + 0.5 * sin(5 * t) + 3 * rand(t);
+//compute the fft
+y = fft(x, -1);
+//display
+xbasc_run();
+subplot(2, 1, 1);%ans = plot2d(abs(y));
+if load_ref('%ans') then   pause,end,
+
+subplot(2, 1, 2);%ans = plot2d(fftshift(abs(y)));
+if load_ref('%ans') then   pause,end,
+
+
+//make a 2D image
+t = 0:0.1:30;
+x = 3 * sin(t') * cos(2 * t) + 8 * sin(3 * t') * sin(5 * t) + 0.5 * sin(5 * t') * sin(5 * t) + 3 * rand(t') * rand(t);
+//compute the fft
+y = fft(x, -1);
+//display
+xbasc_run();
+%ans = xset('colormap', hotcolormap(256));
+if load_ref('%ans') then   pause,end,
+
+subplot(2, 1, 1);%ans = Matplot(abs(y));
+if load_ref('%ans') then   pause,end,
+
+subplot(2, 1, 2);%ans = Matplot(fftshift(abs(y)));
+if load_ref('%ans') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

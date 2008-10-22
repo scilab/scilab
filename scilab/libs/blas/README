@@ -1,0 +1,6 @@
+This directory contains double precision version of the standard blas routines.
+ The makefile produces <SCIDIR>/libs/blas.a
+
+However this code is intended for use only if there is no other implementation
+of the BLAS already available on your machine; 
+

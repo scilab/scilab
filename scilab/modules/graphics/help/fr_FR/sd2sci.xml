@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sd2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sd2sci</refname>
+    <refpurpose> conversion des sorties de gr_menu vers des instructions Scilab  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>txt=sd2sci(sd [,sz [,orig]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>sd  </term>
+        <listitem>
+          <para>structure de données renvoyée par gr_menu.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sz  </term>
+        <listitem>
+          <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant les facteurs de zoom en x et y.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orig  </term>
+        <listitem>
+          <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant un vecteur de translation de l'origine 
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Etant donné une liste <literal>sd</literal> générée par <literal>gr_menu</literal>
+    <literal>sd2sci</literal> fabrique un vecteur d'instructions Scilab correspondant au graphique
+    contenu dans sd.
+  </para>
+    <para>
+    Les paramètres optionnels <literal>sz</literal> et <literal>orig</literal> permettent de changer l'échelle ou de décaler
+    le graphique initial.
+  </para>
+    <para>
+    Si <literal>sz</literal> ou <literal>orig</literal> sont donnés sous forme de chaînes de caractères, les instructions
+    générées les utilisent de façon formelle.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Serge Steer INRIA 1988   </para>
+  </refsection>
+</refentry>

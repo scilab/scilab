@@ -1,0 +1,166 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/fec_data.ref','rb');
+// define a mini triangulation (4 vertices, 2 triangles)
+x = [0,1,0,-1];
+y = [0,0,1,1];
+T = [1,1,2,3,1;
+  2,3,4,1,1];
+z = [0,1,0,-1];// values of the func at each vertices
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = xset('colormap', jetcolormap(64));
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(1, 2, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-1, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040', mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec example (with the mesh)');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(1, 2, 2);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-1, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040');
+if load_ref('%ans') then   pause,end,
+// rmq: mesh=%f by default
+%ans = xtitle('fec example (without the mesh)');
+if load_ref('%ans') then   pause,end,
+
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+
+
+// this example shows the effect of zminmax and uses the
+// previous example datas (you have to execute the it before)
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = xset('colormap', jetcolormap(64));
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-0.5, 0.5);
+if load_ref('%ans') then   pause,end,
+// be careful colorbar must be set by hands !
+%ans = fec(x, y, T, z, strf='040', zminmax=[-0.5,0.5], mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec example : using zminmax argument');
+if load_ref('%ans') then   pause,end,
+
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+
+
+// this example shows the effect of zminmax and colout. It uses
+// also the datas of the first example (you have to execute the it before)
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = xset('colormap', jetcolormap(64));
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-0.5, 0.5);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040', zminmax=[-0.5,0.5], colout=[0,0], mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec example : using zminmax and colout =[0 0]');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 2);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-0.5, 0.5);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040', zminmax=[-0.5,0.5], colout=[32,32], mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec example : using zminmax and colout =[32 32]');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 3);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-0.5, 0.5);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040', zminmax=[-0.5,0.5], colout=[-1,0], mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec example : using zminmax and colout =[-1 0]');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 4);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-0.5, 0.5);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040', zminmax=[-0.5,0.5], colout=[0,-1], mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec example : using zminmax and colout =[0 -1]');
+if load_ref('%ans') then   pause,end,
+
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+
+
+// this example shows a feature from colminmax:
+// playing with 2 colormaps for 2 subplots. It
+// uses also the data of the first example.
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = xset('colormap', [hotcolormap(64);jetcolormap(64)]);
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(1, 2, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-1, 1, [1,64]);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040', colminmax=[1,64], mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec using the hot colormap');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(1, 2, 2);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-1, 1, [65,128]);
+if load_ref('%ans') then   pause,end,
+
+%ans = fec(x, y, T, z, strf='040', colminmax=[65,128], mesh=%t);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('fec using the jet colormap');
+if load_ref('%ans') then   pause,end,
+
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

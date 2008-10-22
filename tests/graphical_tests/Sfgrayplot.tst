@@ -1,0 +1,157 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/Sfgrayplot_data.ref','rb');
+// example #1: plot 4 surfaces
+function z=surf1(x,y)
+, z=x*y, 
+endfunction;
+function z=surf2(x,y)
+, z=x^2-y^2, 
+endfunction;
+function z=surf3(x,y)
+, z=x^3+y^2, 
+endfunction;
+function z=surf4(x,y)
+, z=x^2+y^2, 
+endfunction;
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = xset('colormap', [jetcolormap(64);hotcolormap(64)]);
+if load_ref('%ans') then   pause,end,
+
+ng = get('figure_style') == 'new';
+x = linspace(-1, 1, 60);
+y = linspace(-1, 1, 60);
+if ng then   %ans = drawlater();
+  if load_ref('%ans') then   pause,end,
+end,
+%ans = subplot(2, 2, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-1, 1, [1,64]);
+if load_ref('%ans') then   pause,end,
+
+%ans = Sfgrayplot(x, y, surf1, strf='041', colminmax=[1,64]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('f(x,y) = x*y');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 2);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-1, 1, [65,128]);
+if load_ref('%ans') then   pause,end,
+
+%ans = Sfgrayplot(x, y, surf2, strf='041', colminmax=[65,128]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('f(x,y) = x^2-y^2');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 3);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(-1, 2, [65,128]);
+if load_ref('%ans') then   pause,end,
+
+%ans = Sfgrayplot(x, y, surf3, strf='041', colminmax=[65,128]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('f(x,y) = x^3+y^2');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 4);
+if load_ref('%ans') then   pause,end,
+
+%ans = colorbar(0, 2, [1,64]);
+if load_ref('%ans') then   pause,end,
+
+%ans = Sfgrayplot(x, y, surf4, strf='041', colminmax=[1,64]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('f(x,y) = x^2+y^2');
+if load_ref('%ans') then   pause,end,
+
+if ng then   %ans = drawnow();
+  if load_ref('%ans') then   pause,end,
+end,
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+
+// example #2: plot surf3 and add some contour lines
+function z=surf3(x,y)
+, z=x^3+y^2, 
+endfunction;
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+x = linspace(-1, 1, 60);
+y = linspace(-1, 1, 60);
+%ans = xset('colormap', hotcolormap(128));
+if load_ref('%ans') then   pause,end,
+
+ng = get('figure_style') == 'new';
+if ng then   %ans = drawlater();
+  if load_ref('%ans') then   pause,end,
+end,
+%ans = colorbar(-1, 2);
+if load_ref('%ans') then   pause,end,
+
+%ans = Sfgrayplot(x, y, surf3, strf='041');
+if load_ref('%ans') then   pause,end,
+
+%ans = fcontour2d(x, y, surf3, [-0.1,0.025,0.4], style=[1,1,1], strf='000');
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('f(x,y) = x^3+y^2');
+if load_ref('%ans') then   pause,end,
+
+if ng then   %ans = drawnow();
+  if load_ref('%ans') then   pause,end,
+end,
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+
+// example #3: plot surf3 and use zminmax and colout optional arguments
+//             to restrict the plot for -0.5<= z <= 1
+function z=surf3(x,y)
+, z=x^3+y^2, 
+endfunction;
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+x = linspace(-1, 1, 60);
+y = linspace(-1, 1, 60);
+%ans = xset('colormap', jetcolormap(128));
+if load_ref('%ans') then   pause,end,
+
+ng = get('figure_style') == 'new';
+if ng then   %ans = drawlater();
+  if load_ref('%ans') then   pause,end,
+end,
+zminmax = [-0.5,1];colors = [32,96];
+%ans = colorbar(zminmax(1), zminmax(2), colors);
+if load_ref('%ans') then   pause,end,
+
+%ans = Sfgrayplot(x, y, surf3, strf='041', zminmax=zminmax, colout=[0,0], colminmax=colors);
+if load_ref('%ans') then   pause,end,
+
+%ans = fcontour2d(x, y, surf3, [-0.5,1], style=[1,1,1], strf='000');
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed');
+if load_ref('%ans') then   pause,end,
+
+if ng then   %ans = drawnow();
+  if load_ref('%ans') then   pause,end,
+end,
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

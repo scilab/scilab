@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ode_optional_output">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ode_optional_output</refname>
+    <refpurpose> ode solvers optional outputs description</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      This page describes the the most important values returned in the
+      optional lhs <link linkend="ode">ode</link> function arguments <literal>w</literal> and
+      <literal>iw</literal>.
+      These are valid only for the <literal>lsode</literal> 
+      <literal>lsoda</literal> and  <literal>lsodar</literal> ode solver.
+	For more details, one can look at the solvers fortran code comments in <literal>routines/integ/lsod*.f</literal>.
+      </para>
+    <variablelist>
+      <varlistentry>
+        <term>w(11)</term>
+        <listitem>
+          <para> the step size in t last used (successfully).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(12)</term>
+        <listitem>
+          <para> the step size to be attempted on the next step.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(13)</term>
+        <listitem>
+          <para> the current value of the independent variable
+	    which the solver has actually reached, i.e. the
+	    current internal mesh point in t.  on output, tcur
+	    will always be at least as far as the argument
+	    t, but may be farther (if interpolation was done).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(14)</term>
+        <listitem>
+          <para> a tolerance scale factor, greater than 1.0,
+	    computed when a request for too much accuracy was
+	    detected (istate = -3 if detected at the start of
+	    the problem, istate = -2 otherwise).  if itol is
+	    left unaltered but rtol and atol are uniformly
+	    scaled up by a factor of <literal>tolsf=w(14)</literal> for the next call,
+	    then the solver is deemed likely to succeed.
+	    (the user may also ignore <literal>tolsf</literal> and alter the
+	    tolerance parameters in any other way appropriate.)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(15)</term>
+        <listitem>
+          <para> the value of t at the time of the last method
+	    switch, if any. This value is not significant with
+	    <literal>lsode</literal> solver. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(10)</term>
+        <listitem>
+          <para> the number of <literal>g</literal>  evaluations for the problem so
+	    far. This value is only significant for <literal>lsodar</literal> solver.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(11)</term>
+        <listitem>
+          <para> the number of steps taken for the problem so far.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(12)</term>
+        <listitem>
+          <para> the number of f evaluations for the problem so far.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(13)</term>
+        <listitem>
+          <para> the number of jacobian evaluations (and of matrix
+	    lu decompositions) for the problem so far.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(14)</term>
+        <listitem>
+          <para> the method order last used (successfully).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(15)</term>
+        <listitem>
+          <para> the order to be attempted on the next step.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(16)</term>
+        <listitem>
+          <para> the index of the component of largest magnitude in
+	    the weighted local error vector ( e(i)/ewt(i) ),
+	    on an error return with istate = -4 or -5.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(17)</term>
+        <listitem>
+          <para> the length of <literal>w</literal> actually required, assuming
+	    that the length of rwork is to be fixed for the
+	    rest of the problem, and that switching may occur.
+	    this is defined on normal returns and on an illegal
+	    input return for insufficient storage.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(18)</term>
+        <listitem>
+          <para> the length of <literal>iw</literal> actually required, assuming
+	    that the length of <literal>iw</literal> is to be fixed for the
+	    rest of the problem, and that switching may occur.
+	    this is defined on normal returns and on an illegal
+	    input return for insufficient storage.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(19)</term>
+        <listitem>
+          <para> the method indicator for the last successful step..
+	    1 means adams (nonstiff), 2 means bdf (stiff). This value is not significant with
+	    <literal>lsode</literal> solver.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(20)</term>
+        <listitem>
+          <para> the current method indicator..
+	    1 means adams (nonstiff), 2 means bdf (stiff).
+	    this is the method to be attempted
+	    on the next step.  thus it differs from <literal>iw(19)</literal>
+	    only if a method switch has just been made. This value is not significant with
+	    <literal>lsode</literal> solver.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

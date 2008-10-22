@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_cumsum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_cumsum</refname>
+    <refpurpose>Matlab cumsum emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab <literal>cumsum</literal> behave differently in some particular cases:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+	When used with one input (<literal>cumsum(A)</literal>), Matlab <literal>cumsum</literal>
+	treats the values along the first non-singleton dimension of A as vectors while
+	Scilab <literal>cumsum</literal> treats all A values.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	When used with two inputs (<literal>cumsum(A,dim)</literal>), Matlab tolerates <literal>dim</literal>
+	to be greater than the number of dimensions of A while Scilab returns an error message in this case.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>    
+    The function <literal>R = mtlb_cumsum(A[,dim])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>cumsum(A[,dim])</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_cumsum</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+	If <literal>dim</literal> is less equal to the number of dimensions of A
+	<literal>R = mtlb_cumsum(A,dim)</literal> may be replaced by <literal>R = cumsum(A,dim)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	If <literal>dim</literal> is greater than then number of dimensions of A
+	<literal>R = mtlb_cumsum(A,dim)</literal> may be replaced by <literal>R = A</literal>.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_cumsum</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="firstnonsingleton">firstnonsingleton</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_repmat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_repmat</refname>
+    <refpurpose>Matlab repmat emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>There is no Scilab equivalent function for Matlab <literal>repmat</literal> but there are equivalent instructions.</para>
+    <para>
+    The function <literal>mtlb_repmat(M,m[,n])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>repmat(M,m[,n])</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_repmat</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> is of Double type and <literal>m</literal> is a scalar,
+        <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m,m).*.M</literal> and 
+        <literal>mtlb_repmat(M,m,n)</literal> may be replaced by <literal>ones(m,n).*.M</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>A</literal> is of Boolean type and <literal>m</literal> is a scalar,
+        <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m,m).*.bool2s(M)</literal> and 
+        <literal>mtlb_repmat(M,m,n)</literal> may be replaced by <literal>ones(m,n).*.bool2s(M)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>A</literal> is of String type and <literal>m</literal> is a scalar,
+        <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>asciimat(ones(m,m).*.asciimat(M))</literal> and 
+        <literal>mtlb_repmat(M,m,n)</literal> may be replaced by <literal>asciimat(ones(m,n).*.asciimat(M))</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>A</literal> is of Double type and <literal>m</literal> is a vector,
+        <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m(1),m(2),...).*.M</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>A</literal> is of Boolean type and <literal>m</literal> is a vector,
+        <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m(1),m(2),...).*.bool2s(M)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>A</literal> is of String type and <literal>m</literal> is a vector,
+        <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>asciimat(ones(m(1),m(2),...).*.asciimat(M))</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_repmat</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="kron">kron</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

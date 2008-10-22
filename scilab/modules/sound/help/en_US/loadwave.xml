@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="loadwave">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>loadwave</refname>
+    <refpurpose>load a sound wav file
+  into scilab</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x=loadwave(filename);
+[x,y]=loadwave(filename);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>a string. The path of the wav file to be loaded</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>a matrix one line for each channel</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Reads a <literal>.wav</literal> sound file into Scilab as a matrix. If y is
+    given, it is filled with information about the samples (See the message
+    sent by <literal>loadwave</literal>).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// At first we create 0.5 seconds of sound parameters.
+t=soundsec(0.5);
+// Then we generate the sound: a two channels sound.
+s=[sin(2*%pi*440*t);sin(2*%pi*350*t)];
+savewave(TMPDIR+'/foo.wav',s);
+s1=loadwave(TMPDIR+'/foo.wav');
+max(abs(s1-s))
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="savewave">savewave</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+      <member>
+        <link linkend="mapsound">mapsound</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,44 @@
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
+Copyright (c) Bruno Pincon
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+Slatec:
+=======
+
+Files:
+src/fortran/slatec/{pchim.f, dtensbs.f}
+
+Copyright:
+
+License:
+This is public domain software.
+
+C   The SLATEC Common Mathematical Library is issued by the following
+C           Air Force Weapons Laboratory, Albuquerque
+C           Lawrence Livermore National Laboratory, Livermore
+C           Los Alamos National Laboratory, Los Alamos
+C           National Institute of Standards and Technology, Washington
+C           National Energy Research Supercomputer Center, Livermore
+C           Oak Ridge National Laboratory, Oak Ridge
+C           Sandia National Laboratories, Albuquerque
+C           Sandia National Laboratories, Livermore
+C   All questions concerning the distribution of the library should be
+C   directed to the NATIONAL ENERGY SOFTWARE CENTER, 9700 Cass Ave.,
+C   Argonne, Illinois  60439, and not to the authors of the subprograms.
+C   This material was prepared as an account of work sponsored by the
+C   United States Government.  Neither the United States, nor the
+C   Department of Energy, nor the Department of Defense, nor any of
+C   their employees, nor any of their contractors, subcontractors, or
+C   their employees, makes any warranty, expressed or implied, or
+C   assumes any legal liability or responsibility for the accuracy,
+C   completeness, or usefulness of any information, apparatus, product,
+C   or process disclosed, or represents that its use would not infringe
+C   upon privately owned rights.

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pdiv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pdiv</refname>
+    <refpurpose> polynomial division</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[R,Q]=pdiv(P1,P2)
+[Q]=pdiv(P1,P2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P1</term>
+        <listitem>
+          <para>polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P2</term>
+        <listitem>
+          <para>polynomial or polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R,Q</term>
+        <listitem>
+          <para>two polynomial matrices</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Element-wise euclidan division of the polynomial matrix <literal>P1</literal>
+    by the polynomial <literal>P2</literal> or by the polynomial matrix <literal>P2</literal>.
+    <literal>Rij</literal> is the matrix of remainders, <literal>Qij</literal> is the matrix
+    of quotients and <literal>P1ij = Qij*P2 + Qij</literal> or <literal>P1ij = Qij*P2ij + Qij</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=poly(0,'x');
+p1=(1+x^2)*(1-x);p2=1-x;
+[r,q]=pdiv(p1,p2)
+p2*q-p1
+p2=1+x;
+[r,q]=pdiv(p1,p2)
+p2*q+r-p1
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ldiv">ldiv</link>
+      </member>
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

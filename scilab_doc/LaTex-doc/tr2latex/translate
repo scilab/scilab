@@ -1,0 +1,10 @@
+#!/bin/sh
+# Copyright INRIA
+shift
+for man in $*
+do
+  echo "Processing " $man >> Warnings 
+  sed -e 's/\\f[IPB]//g' -e 's/\\f(CR//g' -e 's/^\.I //' $man >/tmp/foo.man
+  tr2latex/tr2tex  -m /tmp/foo.man 2>> Warnings 
+done
+exit 0

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="trimmean" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>trimmean</refname>
+
+    <refpurpose>trimmed mean of a vector or a matrix</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>m=trimmean(x[,discard [,flag [,verbose]]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>discard</term>
+
+        <listitem>
+          <para>Optional real value between 0 and 100 representing the part of
+          the data to discard. It discard is not in the [0,100] range, an
+          error is generated. Default value for discard=50.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>Optional string or real parameter which controls the behaviour
+          when x is a matrix. Available values for flag are : "all", 1, 2, r
+          or c (default is flag="all"). The two values flag=r and flag=1 are
+          equivalent. The two values flag=c and flag=2 are equivalent.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>verbose</term>
+
+        <listitem>
+          <para>Optional integer. If set to 1, then enables verbose logging.
+          Default is 0.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>A trimmed mean is calculated by discarding a certain percentage of
+    the lowest and the highest scores and then computing the mean of the
+    remaining scores. For example, a mean trimmed 50% is computed by
+    discarding the lower and higher 25% of the scores and taking the mean of
+    the remaining scores.</para>
+
+    <para>The median is the mean trimmed 100% and the arithmetic mean is the
+    mean trimmed 0%.</para>
+
+    <para>A trimmed mean is obviously less susceptible to the effects of
+    extreme scores than is the arithmetic mean. It is therefore less
+    susceptible to sampling fluctuation than the mean for extremely skewed
+    distributions. The efficiency of a statistic is the degree to which the
+    statistic is stable from sample to sample. That is, the less subject to
+    sampling fluctuation a statistic is, the more efficient it is. The
+    efficiency of statistics is measured relative to the efficiency of other
+    statistics and is therefore often called the relative efficiency. If
+    statistic A has a smaller standard error than statistic B, then statistic
+    A is more efficient than statistic B. The relative efficiency of two
+    statistics may depend on the distribution involved. For instance, the mean
+    is more efficient than the median for normal distributions but not for
+    some extremely skewed distributions. The efficiency of a statistic can
+    also be thought of as the precision of the estimate: The more efficient
+    the statistic, the more precise the statistic is as an estimator of the
+    parameter. The trimmed mean is less efficient than the mean for normal
+    distributions.</para>
+
+    <para>For a vector or matrix <literal>x</literal>,
+    <literal>t=trimmean(x,discard)</literal> returns in scalar
+    <literal>t</literal> the mean of all the entries of <literal>x</literal>,
+    after discarding <literal>discard/2</literal> highest values and
+    <literal>discard/2</literal> lowest values.</para>
+
+    <para><literal>t=trimmean(x,discard,'r')</literal> (or, equivalently,
+    <literal>t=trimmean(x,discard,1)</literal>) returns in each entry of the
+    row vector <literal>t</literal> the trimmed mean of each column of
+    <literal>x</literal>.</para>
+
+    <para><literal>t=trimmean(x,discard,'c')</literal> (or, equivalently,
+    <literal>t=trimmean(x,discard,2)</literal>) returns in each entry of the
+    column vector <literal>t</literal> the trimmed mean of each row of
+    <literal>x</literal>.</para>
+
+    <para>This function computes the trimmed mean of a vector or matrix
+    <literal> x</literal>.</para>
+
+    <para>For a vector or matrix <literal> x</literal>, <literal>
+    m=trimmean(x,discard) </literal> returns in scalar<literal> m</literal>
+    the trimmed mean of all the entries of <literal> x</literal>.</para>
+
+    <para><literal> m=trimmean(x,'r') </literal> (or, equivalently, <literal>
+    m=trimmean(x,1) </literal>) returns in each entry of the row vector
+    <literal> m</literal> the trimmed mean of each column of <literal>
+    x</literal>.</para>
+
+    <para><literal> m=trimmean(x,'c') </literal> (or, equivalently, <literal>
+    m=trimmean(x,2) </literal>) returns in each entry of the column vector
+    <literal> m</literal> the trimmed mean of each row of <literal>
+    x</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Example with x as vector</title>
+
+    <para>In the following example, one computes the trimmed mean of one data
+    vector, with the default discard value equals to 50 and verbose logging.
+    The data is made of 9 entries. The algorithms sorts the vector and keeps
+    only indices from 3 to 7, skipping indices 1, 2, 8 and 9. The value 4000,
+    which is much larger than the others is not taken into account. The
+    computed trimmed mean is therefore 50.</para>
+
+    <programlisting role="example">
+   data = [10, 20, 30, 40, 50, 60, 70, 80, 4000];
+   computed = trimmean(data,verbose=1);
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example with x as matrix</title>
+
+    <para>In the following example, one computes the trimmed mean of one data
+    matrix. The chosen discard value is 50. The orientation is "r", which
+    means that the data is sorted row by row. For each column of the matrix,
+    one computes a trimmed mean. The trimmed mean is the line vector [25 25 25
+    25].</para>
+
+    <programlisting role="example">
+  data = [
+    10 10 10 10
+    20 20 20 20
+    30 30 30 30
+    4000 4000 4000 4000
+  ];
+  computed = trimmean(data,50,orien="r");
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <para>Luis Angel Garcia-Escudero and Alfonso Gordaliza, Robustness
+    Properties of Means and Trimmed Means, JASA, Volume 94, Number 447, Sept
+    1999, pp956-969</para>
+
+    <para>Trimmed Mean, <ulink
+    url="http://davidmlane.com/hyperstat/A11971.html">http://davidmlane.com/hyperstat/A11971.html</ulink></para>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Carlos Klimann</para>
+  </refsection>
+</refentry>

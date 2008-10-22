@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_e">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_e</refname>
+    <refpurpose>Matlab extraction emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab extraction behave differently in some particular cases:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+	When extracting data from a matrix with a vector as index: Matlab returns
+	a row vector and Scilab returns a column vector.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	When extracting data from a character string matrix: due to the fact that character string matrices
+	in Matlab can be adressed as any other matrix (each character can be adressed), extraction in such a type of
+	matrix does not differ from other. But in Scilab it can't be done so and <literal>part</literal>
+	function has to be used. 
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The function <literal>mtlb_e(B,k)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>A=B(k)</literal> when it was not
+    possible to know what were the operands while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_e</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>    
+	If <literal>B</literal> is a vector
+	<literal>A=mtlb_e(B,k)</literal> may be replaced by <literal>A=B(k)</literal>
+	</para>
+      </listitem>
+      <listitem>
+        <para>    
+	If <literal>B</literal> is a matrix
+	<literal>A=mtlb_e(B,k)</literal> may be replaced by <literal>A=B(k).'</literal>
+ 	</para>
+      </listitem>
+      <listitem>
+        <para>    
+	If <literal>B</literal> is a character string matrix and
+	k is a scalar or a vector
+	<literal>A=mtlb_e(B,k)</literal> may be replaced by <literal>A=part(B,k)</literal>
+ 	</para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_e</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="MatlabScilab_character_strings">Matlab-Scilab_character_strings</link>
+      </member>
+      <member>
+        <link linkend="part">part</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

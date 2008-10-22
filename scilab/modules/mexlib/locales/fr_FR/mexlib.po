@@ -1,0 +1,138 @@
+# Localization of the module mexlib
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 18:03+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+
+#
+# File: src/c/mexlib.c, line: 414
+# File: src/c/mexlib.c, line: 921
+msgid "No more memory available: increase stacksize"
+msgstr ""
+"Plus assez de mémoire disponible : augmentez la taille de la mémoire Scilab "
+"(stacksize)"
+
+#
+# File: src/c/mexlib.c, line: 808
+msgid "Routine mxIsSingle not implemented\n"
+msgstr "Routine mxIsSingle non implementé\n"
+
+#
+# File: src/c/mexlib.c, line: 858
+msgid "Variable is not logical"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 1958
+msgid "Warning: "
+msgstr "Alerte: "
+
+#
+# File: src/c/mexlib.c, line: 1977
+msgid "mexCallSCILAB: invalid pointer passed to called function"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 1992
+msgid "mexCallSCILAB: evaluation failed "
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 2086
+msgid "GetElementSize error"
+msgstr "Erreur dans GetElementSize"
+
+#
+# File: src/c/mexlib.c, line: 2206
+msgid "Function mexPutArray is obsolete, use mexPutVariable!\n"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 2219
+msgid "Routine mxSetName not implemented !\n"
+msgstr "Routine mxSetName non implementé\n"
+
+#
+# File: src/c/mexlib.c, line: 2225
+msgid "Routine mxSetData not implemented\n"
+msgstr "Routine mxSetData non implementé\n"
+
+#
+# File: src/c/mexlib.c, line: 2246
+# File: src/c/mexlib.c, line: 2257
+# File: src/c/mexlib.c, line: 2281
+# File: src/c/mexlib.c, line: 2292
+msgid "Last warning"
+msgstr "Dernière alerte"
+
+#
+# File: src/c/mexlib.c, line: 2246
+# File: src/c/mexlib.c, line: 2257
+# File: src/c/mexlib.c, line: 2281
+# File: src/c/mexlib.c, line: 2292
+msgid "Warning"
+msgstr "Alerte"
+
+#
+# File: src/c/mexlib.c, line: 2258
+#, c-format
+msgid "%s: mxSetPr overwriting destination by %i bytes.\n"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 2293
+#, c-format
+msgid "%s: mxSetPi overwriting destination by %i bytes.\n"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 2301
+msgid "Routine mxGetName not implemented\n"
+msgstr "Routine mxGetName non implementé\n"
+
+#
+# File: src/c/mexlib.c, line: 2308
+msgid "Routine mxSetDimensions not implemented\n"
+msgstr "Routine mxSetDimensions non implementé\n"
+
+#
+# File: src/c/mexlib.c, line: 2426
+msgid "Invalid string matrix (at most one column!)"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 2433
+msgid "Column length of string matrix must agree!"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 2438
+msgid "Use mtlb_sparse(sparse( ))!"
+msgstr ""
+
+#
+# File: src/c/mexlib.c, line: 2449
+msgid "Invalid input"
+msgstr "Entrée incorrecte"
+
+#
+# File: src/c/mexlib.c, line: 2669
+msgid "Running out of memory"
+msgstr "Pas assez de mémoire"
+
+#
+# File: includes/mex.h, line: 70
+msgid "mexPutFull failed\n"
+msgstr "Echec de mexPutFull\n"

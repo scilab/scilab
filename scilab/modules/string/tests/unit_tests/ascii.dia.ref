@@ -1,0 +1,230 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// =============================================================================
+// unit tests ascii
+// =============================================================================
+// == TEST 1 ===================================================================
+if or(ascii('abcdefghijklmnopqrstuvwxyz')<>(97:122)) then bugmes();quit;end
+if or(ascii(97:122)<>'abcdefghijklmnopqrstuvwxyz') then bugmes();quit;end
+if ascii('')<>[] then bugmes();quit;end
+if ascii([])<>'' then bugmes();quit;end
+// == TEST 2 ===================================================================
+CODE_ASCII_SCILAB   = [115 99 105 108 97 98];
+str_scilab          = 'scilab';
+if ascii(str_scilab) <> CODE_ASCII_SCILAB   then bugmes();quit;end
+if (ascii(CODE_ASCII_SCILAB) <> str_scilab) then bugmes();quit;end
+// == TEST 3 ===================================================================
+if ascii([str_scilab 'a';'b' 'c']) <> [115 99 105 108 97 98 98 97 99] then bugmes();quit;end
+// == TEST 4 ===================================================================
+fd  = mopen(SCI+'/modules/string/tests/unit_tests/text.txt','r');
+txt = mgetl( fd );
+mclose( fd );
+ASCII_TXT           = ascii(txt);
+TXT_FROM_ASCII_CODE = ascii(ASCII_TXT);
+if (length(TXT_FROM_ASCII_CODE) <> 27455) then bugmes();quit;end
+// == TEST 5 ===================================================================
+ if ascii("!") <> 33 then bugmes();quit;end
+ if ascii("""")<> 34 then bugmes();quit;end
+ if ascii("#") <> 35 then bugmes();quit;end
+ if ascii("$") <> 36 then bugmes();quit;end
+ if ascii("%") <> 37 then bugmes();quit;end
+ if ascii("&") <> 38 then bugmes();quit;end
+ if ascii("''")<> 39 then bugmes();quit;end
+ if ascii("(") <> 40 then bugmes();quit;end
+ if ascii(")") <> 41 then bugmes();quit;end
+ if ascii("*") <> 42 then bugmes();quit;end
+ if ascii("+") <> 43 then bugmes();quit;end
+ if ascii(",") <> 44 then bugmes();quit;end
+ if ascii("-") <> 45 then bugmes();quit;end
+ if ascii(".") <> 46 then bugmes();quit;end
+ if ascii("/") <> 47 then bugmes();quit;end
+ if ascii("0") <> 48 then bugmes();quit;end
+ if ascii("1") <> 49 then bugmes();quit;end
+ if ascii("2") <> 50 then bugmes();quit;end
+ if ascii("3") <> 51 then bugmes();quit;end
+ if ascii("4") <> 52 then bugmes();quit;end
+ if ascii("5") <> 53 then bugmes();quit;end
+ if ascii("6") <> 54 then bugmes();quit;end
+ if ascii("7") <> 55 then bugmes();quit;end
+ if ascii("8") <> 56 then bugmes();quit;end
+ if ascii("9") <> 57 then bugmes();quit;end
+ if ascii(":") <> 58 then bugmes();quit;end
+ if ascii(";") <> 59 then bugmes();quit;end
+ if ascii("<") <> 60 then bugmes();quit;end
+ if ascii("=") <> 61 then bugmes();quit;end
+ if ascii(">") <> 62 then bugmes();quit;end
+ if ascii("?") <> 63 then bugmes();quit;end
+ if ascii("@") <> 64 then bugmes();quit;end
+ if ascii("A") <> 65 then bugmes();quit;end
+ if ascii("B") <> 66 then bugmes();quit;end
+ if ascii("C") <> 67 then bugmes();quit;end
+ if ascii("D") <> 68 then bugmes();quit;end
+ if ascii("E") <> 69 then bugmes();quit;end
+ if ascii("F") <> 70 then bugmes();quit;end
+ if ascii("G") <> 71 then bugmes();quit;end
+ if ascii("H") <> 72 then bugmes();quit;end
+ if ascii("I") <> 73 then bugmes();quit;end
+ if ascii("J") <> 74 then bugmes();quit;end
+ if ascii("K") <> 75 then bugmes();quit;end
+ if ascii("L") <> 76 then bugmes();quit;end
+ if ascii("M") <> 77 then bugmes();quit;end
+ if ascii("N") <> 78 then bugmes();quit;end
+ if ascii("O") <> 79 then bugmes();quit;end
+ if ascii("P") <> 80 then bugmes();quit;end
+ if ascii("Q") <> 81 then bugmes();quit;end
+ if ascii("R") <> 82 then bugmes();quit;end
+ if ascii("S") <> 83 then bugmes();quit;end
+ if ascii("T") <> 84 then bugmes();quit;end
+ if ascii("U") <> 85 then bugmes();quit;end
+ if ascii("V") <> 86 then bugmes();quit;end
+ if ascii("W") <> 87 then bugmes();quit;end
+ if ascii("X") <> 88 then bugmes();quit;end
+ if ascii("Y") <> 89 then bugmes();quit;end
+ if ascii("Z") <> 90 then bugmes();quit;end
+ if ascii("[") <> 91 then bugmes();quit;end
+ if ascii("\") <> 92 then bugmes();quit;end
+ if ascii("]") <> 93 then bugmes();quit;end
+ if ascii("^") <> 94 then bugmes();quit;end
+ if ascii("_") <> 95 then bugmes();quit;end
+ if ascii("`") <> 96 then bugmes();quit;end
+ if ascii("a") <> 97 then bugmes();quit;end
+ if ascii("b") <> 98 then bugmes();quit;end
+ if ascii("c") <> 99 then bugmes();quit;end
+ if ascii("d") <> 100 then bugmes();quit;end
+ if ascii("e") <> 101 then bugmes();quit;end
+ if ascii("f") <> 102 then bugmes();quit;end
+ if ascii("g") <> 103 then bugmes();quit;end
+ if ascii("h") <> 104 then bugmes();quit;end
+ if ascii("i") <> 105 then bugmes();quit;end
+ if ascii("j") <> 106 then bugmes();quit;end
+ if ascii("k") <> 107 then bugmes();quit;end
+ if ascii("l") <> 108 then bugmes();quit;end
+ if ascii("m") <> 109 then bugmes();quit;end
+ if ascii("n") <> 110 then bugmes();quit;end
+ if ascii("o") <> 111 then bugmes();quit;end
+ if ascii("p") <> 112 then bugmes();quit;end
+ if ascii("q") <> 113 then bugmes();quit;end
+ if ascii("r") <> 114 then bugmes();quit;end
+ if ascii("s") <> 115 then bugmes();quit;end
+ if ascii("t") <> 116 then bugmes();quit;end
+ if ascii("u") <> 117 then bugmes();quit;end
+ if ascii("v") <> 118 then bugmes();quit;end
+ if ascii("w") <> 119 then bugmes();quit;end
+ if ascii("x") <> 120 then bugmes();quit;end
+ if ascii("y") <> 121 then bugmes();quit;end
+ if ascii("z") <> 122 then bugmes();quit;end
+ if ascii("{") <> 123 then bugmes();quit;end
+ if ascii("|") <> 124 then bugmes();quit;end
+ if ascii("}") <> 125 then bugmes();quit;end
+ if ascii("~") <> 126 then bugmes();quit;end
+ if ascii(33) <> "!" then bugmes();quit;end
+ if ascii(34) <> """" then bugmes();quit;end
+ if ascii(35) <> "#" then bugmes();quit;end
+ if ascii(36) <> "$" then bugmes();quit;end
+ if ascii(37) <> "%" then bugmes();quit;end
+ if ascii(38) <> "&" then bugmes();quit;end
+ if ascii(39) <> "''" then bugmes();quit;end
+ if ascii(40) <> "(" then bugmes();quit;end
+ if ascii(41) <> ")" then bugmes();quit;end
+ if ascii(42) <> "*" then bugmes();quit;end
+ if ascii(43) <> "+" then bugmes();quit;end
+ if ascii(44) <> "," then bugmes();quit;end
+ if ascii(45) <> "-" then bugmes();quit;end
+ if ascii(46) <> "." then bugmes();quit;end
+ if ascii(47) <> "/" then bugmes();quit;end
+ if ascii(48) <> "0" then bugmes();quit;end
+ if ascii(49) <> "1" then bugmes();quit;end
+ if ascii(50) <> "2" then bugmes();quit;end
+ if ascii(51) <> "3" then bugmes();quit;end
+ if ascii(52) <> "4" then bugmes();quit;end
+ if ascii(53) <> "5" then bugmes();quit;end
+ if ascii(54) <> "6" then bugmes();quit;end
+ if ascii(55) <> "7" then bugmes();quit;end
+ if ascii(56) <> "8" then bugmes();quit;end
+ if ascii(57) <> "9" then bugmes();quit;end
+ if ascii(58) <> ":" then bugmes();quit;end
+ if ascii(59) <> ";" then bugmes();quit;end
+ if ascii(60) <> "<" then bugmes();quit;end
+ if ascii(61) <> "=" then bugmes();quit;end
+ if ascii(62) <> ">" then bugmes();quit;end
+ if ascii(63) <> "?" then bugmes();quit;end
+ if ascii(64) <> "@" then bugmes();quit;end
+ if ascii(65) <> "A" then bugmes();quit;end
+ if ascii(66) <> "B" then bugmes();quit;end
+ if ascii(67) <> "C" then bugmes();quit;end
+ if ascii(68) <> "D" then bugmes();quit;end
+ if ascii(69) <> "E" then bugmes();quit;end
+ if ascii(70) <> "F" then bugmes();quit;end
+ if ascii(71) <> "G" then bugmes();quit;end
+ if ascii(72) <> "H" then bugmes();quit;end
+ if ascii(73) <> "I" then bugmes();quit;end
+ if ascii(74) <> "J" then bugmes();quit;end
+ if ascii(75) <> "K" then bugmes();quit;end
+ if ascii(76) <> "L" then bugmes();quit;end
+ if ascii(77) <> "M" then bugmes();quit;end
+ if ascii(78) <> "N" then bugmes();quit;end
+ if ascii(79) <> "O" then bugmes();quit;end
+ if ascii(80) <> "P" then bugmes();quit;end
+ if ascii(81) <> "Q" then bugmes();quit;end
+ if ascii(82) <> "R" then bugmes();quit;end
+ if ascii(83) <> "S" then bugmes();quit;end
+ if ascii(84) <> "T" then bugmes();quit;end
+ if ascii(85) <> "U" then bugmes();quit;end
+ if ascii(86) <> "V" then bugmes();quit;end
+ if ascii(87) <> "W" then bugmes();quit;end
+ if ascii(88) <> "X" then bugmes();quit;end
+ if ascii(89) <> "Y" then bugmes();quit;end
+ if ascii(90) <> "Z" then bugmes();quit;end
+ if ascii(91) <> "[" then bugmes();quit;end
+ if ascii(92) <> "\" then bugmes();quit;end
+ if ascii(93) <> "]" then bugmes();quit;end
+ if ascii(94) <> "^" then bugmes();quit;end
+ if ascii(95) <> "_" then bugmes();quit;end
+ if ascii(96) <> "`" then bugmes();quit;end
+ if ascii(97) <> "a" then bugmes();quit;end
+ if ascii(98) <> "b" then bugmes();quit;end
+ if ascii(99) <> "c" then bugmes();quit;end
+ if ascii(100) <> "d" then bugmes();quit;end
+ if ascii(101) <> "e" then bugmes();quit;end
+ if ascii(102) <> "f" then bugmes();quit;end
+ if ascii(103) <> "g" then bugmes();quit;end
+ if ascii(104) <> "h" then bugmes();quit;end
+ if ascii(105) <> "i" then bugmes();quit;end
+ if ascii(106) <> "j" then bugmes();quit;end
+ if ascii(107) <> "k" then bugmes();quit;end
+ if ascii(108) <> "l" then bugmes();quit;end
+ if ascii(109) <> "m" then bugmes();quit;end
+ if ascii(110) <> "n" then bugmes();quit;end
+ if ascii(111) <> "o" then bugmes();quit;end
+ if ascii(112) <> "p" then bugmes();quit;end
+ if ascii(113) <> "q" then bugmes();quit;end
+ if ascii(114) <> "r" then bugmes();quit;end
+ if ascii(115) <> "s" then bugmes();quit;end
+ if ascii(116) <> "t" then bugmes();quit;end
+ if ascii(117) <> "u" then bugmes();quit;end
+ if ascii(118) <> "v" then bugmes();quit;end
+ if ascii(119) <> "w" then bugmes();quit;end
+ if ascii(120) <> "x" then bugmes();quit;end
+ if ascii(121) <> "y" then bugmes();quit;end
+ if ascii(122) <> "z" then bugmes();quit;end
+ if ascii(123) <> "{" then bugmes();quit;end
+ if ascii(124) <> "|" then bugmes();quit;end
+ if ascii(125) <> "}" then bugmes();quit;end
+ if ascii(126) <> "~" then bugmes();quit;end
+// == TEST 6 ===================================================================
+NB_CHARACTERS = 400000;
+letters_ascii_code = ones(1,NB_CHARACTERS)*78;
+letters=ascii(letters_ascii_code);
+if (length(letters) <> NB_CHARACTERS) then bugmes();quit;end
+// == TEST 7 ===================================================================
+A = floor( 126 * rand(100,100) );
+if or( ascii(A) <> ascii(int8(A)) )  then bugmes();quit;end
+if or( ascii(A) <> ascii(int16(A)) ) then bugmes();quit;end
+if or( ascii(A) <> ascii(int32(A)) ) then bugmes();quit;end
+if or( ascii(A) <> ascii(uint8(A)) )  then bugmes();quit;end
+if or( ascii(A) <> ascii(uint16(A)) ) then bugmes();quit;end
+if or( ascii(A) <> ascii(uint32(A)) ) then bugmes();quit;end

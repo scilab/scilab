@@ -1,0 +1,22 @@
+// <-- Non-regression test for bug 1991 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1991
+//
+// <-- Short Description -->
+//    [a,b]=(3,int32(5))
+//                      !--error 78
+//    convert: wrong number of lhs arguments
+// Copyright INRIA
+// Scilab Project - Serge Steer
+// Copyright INRIA 2006
+// Date : 15 mai 2006
+[a,b]  = (3,int32(5));
+if a<>3        then bugmes();quit;end
+if b<>int32(5) then bugmes();quit;end
+a=(3 + int32(5));
+if a<>int32(8) then bugmes();quit;end
+[a,b,c]=(3,(2),sin(5));
+if a<>3        then bugmes();quit;end
+if b<>2        then bugmes();quit;end
+if c<>sin(5)   then bugmes();quit;end

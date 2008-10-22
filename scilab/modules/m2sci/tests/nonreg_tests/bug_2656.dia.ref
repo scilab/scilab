@@ -1,0 +1,56 @@
+// <-- Non-regression test for bug 2656 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2656
+//
+// <-- Short Description -->
+//    M2sci doesn't convert "carriage return" inside a loop.
+// Copyright INRIA
+// Scilab Project - Pierre MARECHAL
+// Copyright INRIA
+// Date : 15 janvier 2008
+MFILECONTENTS=["a = 1;"
+                "while ( a == 1)";
+                "  a = 2;";
+                "end";
+                "a = 3"];
+MFILE=TMPDIR+"/bug2656.m"
+ MFILE  =
+ 
+ TMPDIR/bug2656.m   
+SCIFILE=TMPDIR+"/bug2656.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug2656.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug2656.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+		"// Display mode";
+		"mode(0);";
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"a = 1;";
+		"while a==1";
+		"  a = 2;";
+		"end;";
+		"a = 3"];
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

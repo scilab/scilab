@@ -1,0 +1,19 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/ss2tf_data.ref','rb');
+s = poly(0, 's');
+h = [1,1/s;1/(s^2 + 1),s/(s^2 - 2)];
+if load_ref('h') then   pause,end,
+
+sl = tf2ss(h);
+h = clean(ss2tf(sl));
+if load_ref('h') then   pause,end,
+
+[Ds,NUM,chi] = ss2tf(sl);
+if load_ref('chi') then   pause,end,
+if load_ref('NUM') then   pause,end,
+if load_ref('Ds') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

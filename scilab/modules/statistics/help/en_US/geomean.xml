@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="geomean">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>geomean</refname>
+    <refpurpose> geometric mean</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>gm=geomean(x)
+gm=geomean(x,'r')(or, equivalently, gm=geomean(x,1))
+gm=geomean(x,'c')(or, equivalently, gm=geomean(x,2))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>:real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This  function computes the  geometric mean of a vector or
+    matrix <literal> x</literal>.  For a  vector or matrix  <literal> x</literal>, 
+    <literal>gm=geomean(x) </literal>   returns  in  scalar  <literal>   gm</literal> the
+    geometric mean of all the entries of <literal> x</literal>.</para>
+    <para><literal>   gm=geomean(x,'r')    </literal>   (or,   equivalently, 
+    <literal>gm=gmean(x,1)  </literal>  )  returns in  each   entry of the row
+    vector <literal> gm</literal> the geometric mean of each column of <literal> x</literal>.</para>
+    <para><literal>   gm=geomean(x,'c')    </literal>  (or,    equivalently,  
+    <literal>gm=gmean(x,2) </literal>  ) returns in each  entry  of the column
+    vector <literal> gm</literal> the geometric mean of  each row of <literal> x </literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Serge STEER
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="polfact">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>polfact</refname>
+    <refpurpose> minimal factors</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[f]=polfact(p)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>polynomial</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>vector <literal>[f0 f1 ... fn]</literal> such that <literal>p=prod(f)</literal></para>
+          <variablelist>
+            <varlistentry>
+              <term>f0</term>
+              <listitem>
+                <para>constant</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>fi</term>
+              <listitem>
+                <para>polynomial</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>f=polfact(p)</literal> returns the minimal factors of p i.e. <literal>f=[f0 f1 ... fn]</literal> such
+    that <literal>p=prod(f)</literal></para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lcm">lcm</link>
+      </member>
+      <member>
+        <link linkend="cmndred">cmndred</link>
+      </member>
+      <member>
+        <link linkend="factors">factors</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> S. Steer INRIA</para>
+  </refsection>
+</refentry>

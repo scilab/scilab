@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="samwr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>samwr</refname>
+    <refpurpose> Sampling without replacement </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>s = samwr(sizam,numsamp,X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sizam</term>
+        <listitem>
+          <para>integer. Size of a sample. It must be less or equal than
+        size of X.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>numsamp</term>
+        <listitem>
+          <para>integer. Number of samples to be extracted.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>column vector. It contains the population.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>matrix of type sizsam  x numsamp. It contains
+         numsamp  random samples  (the  columns) each  of
+         sizam  (size(X,'*'))  extractions,  without
+         replacement, from the column vector X.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Gives samples without replacement from a column vector.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    a=[0.33 1.24 2.1 1.03]
+    s=samwr(4,12,a)
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sample">sample</link>
+      </member>
+      <member>
+        <link linkend="samplef">samplef</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
+    Carlos Klimann
+  </para>
+  </refsection>
+</refentry>

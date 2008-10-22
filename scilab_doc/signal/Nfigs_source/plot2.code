@@ -1,0 +1,4 @@
+//Evaluate magnitude response of continuous-time system
+xinit('plot2.ps')
+exec('SCI/doc/signal/Nsource_diary/Splot2.code')
+xend(),

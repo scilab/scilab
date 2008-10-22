@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xtitle">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xtitle</refname>
+    <refpurpose>add titles on a graphics
+  window</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xtitle(title,[x_label,[y_label,[z_label]]],&lt;opts_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>title,x_label,y_label, z_label</term>
+        <listitem>
+          <para>matrices of strings.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>a sequence of statements <literal>key1=value1,
+          key2=value2</literal>, ... where keys may be <literal>boxed</literal> (see
+          below). In this case, the order has no special meaning.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>boxed</term>
+        <listitem>
+          <para>an integer value. If it is 1, a box is drawn around each
+          title.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xtitle</literal> add titles on a 2D or 3D plot. <literal>title</literal>
+    is the general title and <emphasis role="bold">x_label</emphasis>, <emphasis role="bold">y_label</emphasis> and
+    <emphasis role="bold">z_label</emphasis> are the titles on the three axis. If the arguments are
+    matrices, each line of the matrices is displayed on a different line.</para>
+    <para>Enter the command <literal>xtitle()</literal> to see a demo.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[// draw a surface
+plot3d() ;
+// puts the titles
+xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
+// draw a box around the titles
+xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis', boxed = 1 ) ;]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="titlepage">titlepage</link>
+        <link linkend="label_properties">label_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

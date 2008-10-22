@@ -1,0 +1,20 @@
+see SCI/modules/<module name>/sci_gateway/<module name>_gateway.xml file in each module
+
+example :
+SCI/modules/core/sci_gateway/core_gateway.xml
+
+in core_gateway.xml file :
+
+<PRIMITIVE gatewayId="13" primitiveId="1" primitiveName="debug" />
+
+13 	1 debug
+^   ^   ^
+|   |   | 
+(1) (2) (3)
+
+(1) : Id of gateway. here 13 (see callinterf.h in core)
+(2) : Id of the function in the gateway. here 1
+(3) : function's name in scilab. here "debug" (24 characters max)
+
+Allan CORNET
+INRIA 2007

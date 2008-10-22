@@ -1,0 +1,130 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/splin2d_data.ref','rb');
+// example 1 : interpolation of cos(x)cos(y)
+n = 7;// a regular grid with n x n interpolation points
+// will be used
+x = linspace(0, 2 * %pi, n);y = x;
+z = cos(x') * cos(y);
+C = splin2d(x, y, z, 'periodic');
+m = 50;// discretisation parameter of the evaluation grid
+xx = linspace(0, 2 * %pi, m);yy = xx;
+[XX,YY] = ndgrid(xx, yy);
+zz = interp2d(XX, YY, x, y, C);
+emax = max(abs(zz - cos(xx') * cos(yy)));
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d(xx, yy, zz, flag=[2,4,4]);
+if load_ref('%ans') then   pause,end,
+
+[X,Y] = ndgrid(x, y);
+%ans = param3d1(X, Y, list(z, -9 * ones(1, n)), flag=[0,0]);
+if load_ref('%ans') then   pause,end,
+
+str = msprintf(' with %d x %d interpolation points. ermax = %g', n, n, emax);
+if load_ref('str') then   pause,end,
+
+%ans = xtitle('spline interpolation of cos(x)cos(y)' + str);
+if load_ref('%ans') then   pause,end,
+
+
+// example 2 : different interpolation functions on random datas
+n = 6;
+x = linspace(0, 1, n);y = x;
+z = rand(n, n);
+np = 50;
+xp = linspace(0, 1, np);yp = xp;
+[XP,YP] = ndgrid(xp, yp);
+ZP1 = interp2d(XP, YP, x, y, splin2d(x, y, z, 'not_a_knot'));
+ZP2 = linear_interpn(XP, YP, x, y, z);
+ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, 'natural'));
+ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, 'monotone'));
+%ans = xset('colormap', jetcolormap(64));
+if load_ref('%ans') then   pause,end,
+
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d1(xp, yp, ZP1, flag=[2,2,4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('not_a_knot');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 2);
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d1(xp, yp, ZP2, flag=[2,2,4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('bilinear interpolation');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 3);
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d1(xp, yp, ZP3, flag=[2,2,4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('natural');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(2, 2, 4);
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d1(xp, yp, ZP4, flag=[2,2,4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('monotone');
+if load_ref('%ans') then   pause,end,
+
+%ans = xselect();
+if load_ref('%ans') then   pause,end,
+
+
+// example 3 : not_a_knot spline and monotone sub-spline
+//             on a step function
+a = 0;b = 1;c = 0.25;d = 0.75;
+// create interpolation grid
+n = 11;
+x = linspace(a, b, n);
+ind = find((c <= x) & (x <= d));
+z = zeros(n, n);z(ind, ind) = 1;// a step inside a square
+// create evaluation grid
+np = 220;
+xp = linspace(a, b, np);
+[XP,YP] = ndgrid(xp, xp);
+zp1 = interp2d(XP, YP, x, x, splin2d(x, x, z));
+zp2 = interp2d(XP, YP, x, x, splin2d(x, x, z, 'monotone'));
+// plot
+%ans = xbasc_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = xset('colormap', jetcolormap(128));
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(1, 2, 1);
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d1(xp, xp, zp1, flag=[-2,6,4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('spline (not_a_knot)');
+if load_ref('%ans') then   pause,end,
+
+%ans = subplot(1, 2, 2);
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d1(xp, xp, zp2, flag=[-2,6,4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xtitle('subspline (monotone)');
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,69 @@
+// <-- INTERACTIVE TEST -->
+
+// Copyright INRIA
+ 
+a=1;
+ 
+deff('[x]=tata(y)','x=-y,write(%io(2),''enter quit''),pause,x=+20')
+ 
+xx=tata(10);
+enter quit
+ 
+Type 'resume' or 'abort' to return to standard level prompt.
+
+quit;
+ 
+if 10+xx<>0 then bugmes();quit;end
+ 
+b=2;
+ 
+deff('[x]=tata(y)',['x=-y'
+                 'write(6,''enter return'')'
+                 'pause'
+                 'x=+20'])
+Warning : redefining function : tata                    
+ 
+ 
+xx=tata(0);
+enter return
+ 
+return
+ 
+if 20-xx<>0 then bugmes();quit;end
+ 
+deff('[x]=tata(y)','x=-y,write(6,''type x=resume(0)''),pause')
+Warning : redefining function : tata                    
+ 
+ 
+xx=tata(40);
+type x=resume(0)
+ 
+x=resume(0)
+ 
+if xx<>0 then bugmes();quit;end
+ 
+clear x
+ 
+text=['after quit '
+      'undefined variable x']
+ text  =
+ 
+!after quit            !
+!                      !
+!undefined variable x  !
+ 
+deff('[x]=toto(n)',['v=100'
+                    'write(%io(2),text)'
+                    'pause'
+                     'x=n'])
+ 
+write(%io(2),'enter abort (after receiving this message:)')
+enter abort (after receiving this message:)
+ 
+toto(0);
+after quit 
+undefined variable x
+ 
+abort
+ 
+ 

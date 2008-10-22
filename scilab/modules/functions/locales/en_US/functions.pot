@@ -1,0 +1,270 @@
+# Localization of the module functions
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:07+0100\n"
+
+# File: macros/profile.sci, line: 18
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 45
+#, c-format
+msgid "%s: Wrong values for input argument: No profile data in the function\n"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 78
+msgid "Complexity"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 94
+# File: macros/plotprofile.sci, line: 233
+msgid "3D Rot."
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 95
+# File: macros/plotprofile.sci, line: 236
+msgid "Edit"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 96
+msgid "Editer"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 97
+# File: macros/plotprofile.sci, line: 238
+msgid "Insert"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 99
+msgid "3D &Rot."
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 100
+# File: macros/plotprofile.sci, line: 243
+msgid "&Edit"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 101
+# File: macros/plotprofile.sci, line: 245
+msgid "&Insert"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 103
+msgid "Exit"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 105
+msgid "Click to get corresponding line, move with a-z."
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 154
+#, c-format
+msgid "line %s [%s call, %s sec] :: "
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 156
+#, c-format
+msgid "line %s [%s calls, %s sec] :: "
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 234
+msgid "UnZoom"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 235
+msgid "Zoom"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 237
+msgid "File"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 242
+msgid "&File"
+msgstr ""
+#
+# File: macros/plotprofile.sci, line: 244
+msgid "&Tools"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 24
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 79
+# File: macros/genlib_old.sci, line: 53
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 101
+# File: macros/genlib_old.sci, line: 73
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 125
+# File: macros/genlib_old.sci, line: 94
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 138
+# File: macros/genlib_old.sci, line: 105
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 150
+# File: macros/genlib_old.sci, line: 115
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 160
+# File: macros/genlib_old.sci, line: 124
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 180
+# File: macros/genlib_old.sci, line: 140
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 199
+# File: macros/genlib_old.sci, line: 154
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr ""
+#
+# File: macros/genlib.sci, line: 207
+# File: macros/genlib_old.sci, line: 160
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr ""
+#
+# File: macros/macrovar.sci, line: 23
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 14
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 18
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 23
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+#
+# File: macros/head_comments.sci, line: 35
+msgid "No comment available.\n"
+msgstr ""
+#
+# File: macros/warnobsolete.sci, line: 29
+#, c-format
+msgid "Function %s is obsolete."
+msgstr ""
+#
+# File: macros/warnobsolete.sci, line: 31
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
+#
+# File: macros/warnobsolete.sci, line: 34
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr ""
+#
+# File: macros/bytecodewalk.sci, line: 58
+# File: macros/bytecodewalk.sci, line: 97
+#, c-format
+msgid "%s: obsolete op-code %d.\n"
+msgstr ""
+#
+# File: macros/getd.sci, line: 46
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr ""
+#
+# File: macros/getd.sci, line: 56
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr ""
+#
+# File: macros/check_gateways.sci, line: 22
+#, c-format
+msgid "Checking: %s.\n"
+msgstr ""
+#
+# File: macros/check_gateways.sci, line: 32
+#, c-format
+msgid "%s: Please check: %s\n"
+msgstr ""
+#
+# File: macros/check_gateways.sci, line: 35
+#, c-format
+msgid "%s: File %s doesn''t exist.\n"
+msgstr ""
+#
+# File: macros/get_function_path.sci, line: 23
+#, c-format
+msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+msgstr ""
+#
+# File: macros/recompilefunction.sci, line: 5
+#, c-format
+msgid "No variable named: %s"
+msgstr ""
+#
+# File: macros/recompilefunction.sci, line: 10
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr ""
+#
+# File: macros/recompilefunction.sci, line: 15
+#, c-format
+msgid "%s is already noncompiled, nothing to do!"
+msgstr ""
+#
+# File: macros/recompilefunction.sci, line: 31
+#, c-format
+msgid "%s is already compiled, nothing to do!"
+msgstr ""
+#
+# File: macros/recompilefunction.sci, line: 35
+#, c-format
+msgid "%s is already compiled for profiling, nothing to do!"
+msgstr ""
+#
+# File: macros/bytecode.sci, line: 29
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""

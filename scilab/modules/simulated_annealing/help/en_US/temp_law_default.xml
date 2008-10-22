@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="temp_law_default">
+  <info>
+    <pubdate>29-Nov-2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>temp_law_default</refname>
+    <refpurpose> A SA function which computed the temperature of the next temperature stage </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>T_next = temp_law_default(T,step_mean,step_var,temp_stage,n,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>T</term>
+        <listitem>
+          <para>the temperature applied during the last temperature stage
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>step_mean</term>
+        <listitem>
+          <para>the mean of the objective function values computed during the last temperature stage
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>step_var</term>
+        <listitem>
+          <para>the variance of the obejective function values computed during the last temperature stage
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>temp_stage</term>
+        <listitem>
+          <para>the index of the current temperature stage
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>the dimension of the decision variable (the x in f(x))
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a float between 0 and 1. Corresponds to the decrease in temperature of the geometric law (0.9 by default)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>T_next</term>
+        <listitem>
+          <para>the new temperature to be applied for the next temperature stage
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+     A SA function which computed the temperature of the next temperature stage
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    // This function implements the simple geometric temperature law
+    function T = temp_law_default(T, step_mean, step_var)
+      _alpha = 0.9;
+      T = _alpha*T;
+    endfunction
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="optim_sa"> optim_sa </link>
+      </member>
+      <member>
+        <link linkend="compute_initial_temp"> compute_initial_temp </link>
+      </member>
+      <member>
+        <link linkend="neigh_func_default"> neigh_func_default </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
+    Yann COLLETTE (yann.collette@renault.com)
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

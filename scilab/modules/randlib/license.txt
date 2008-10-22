@@ -1,0 +1,47 @@
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
+Copyright (c) 1989-2007 - ENPC
+Copyright (c) Bruno Pincon
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+mt:
+===
+
+File: src/c/mt.c
+
+Copyright:
+1997, 1999 Makoto Matsumoto and Takuji Nishimura.
+
+License:
+Artistic license
+
+Freemat:
+========
+
+File: src/c/{ignbin.c, genbet.c, ignpoi.c, sgamma.c, sexpo.c}
+
+Copyright:
+2002-2004 Samit Basu
+
+License:
+BSD
+
+kiss:
+=====
+
+File: src/c/kiss.c
+
+Copyright:
+G. Marsaglia
+
+License:
+Public domain
+

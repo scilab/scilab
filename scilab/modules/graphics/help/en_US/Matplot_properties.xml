@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Matplot_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Matplot_properties</refname>
+    <refpurpose>description of the Matplot
+  entities properties</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The Matplot entity is a leaf of the graphics entities hierarchy. It
+    represents 2D plots of surface using colors and images (see
+    <literal>Matplot</literal> and <literal>Matplot1</literal>).</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>This property contains the handle of the parent. The parent of the
+        Matplot entity should be of the type <literal>"Axes"</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>This property contains a vector with the <literal>children</literal> of
+        the handle. However, <literal>Matplot</literal> handles currently do not
+        have any <literal>children</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
+        By default, the plot is visible, the value's property is
+        <literal>"on"</literal>. If <literal>"off"</literal> the plot is not drawn on the
+        screen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>This field defines a [<literal>m</literal>x<literal>n</literal>]
+        <literal>color</literal> data matrix using the current colormap. The color
+        associated to <literal>color(i,j)</literal> is used do draw a small square
+        of length 1 with center at location <literal>(x=j,y=(m-i+1))</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>This field contains the <literal>clip_state</literal> property value for
+        the Matplot. It should be :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> this means that the Matplot is not
+            clipped.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> this means that the Matplot is clipped
+            outside the Axes box.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> this means that the Matplot is clipped
+            outside the rectangle given by property clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>This field is to determinate the <literal>clip_box</literal> property.
+        By Default its value should be an empty matrix if clip_state is "off".
+        Other cases the vector <literal>[x,y,w,h]</literal> (upper-left point width
+        height) defines the portions of the Matplot to display, however
+        <literal>clip_state</literal> property value will be changed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>This field can be use to store any scilab variable in the Matplot
+        data structure, and to retreive it.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    
+   Matplot((1:xget("lastpattern")))
+   e=gce(); // get current entity
+
+   e.data=e.data($:-1:1) // reverse order
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot">Matplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot1">Matplot1</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="grayplot_properties">grayplot_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

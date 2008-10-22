@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="interp3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>interp3d</refname>
+    <refpurpose>3d spline evaluation function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xp, yp, zp</term>
+        <listitem>
+          <para>real vectors or matrices of same size</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tl</term>
+        <listitem>
+          <para>tlist of type "splin3d", defining a 3d tensor spline (called <literal>s</literal> 
+                in the following)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>out_mode</term>
+        <listitem>
+          <para>(optional) string defining the evaluation of <literal>s</literal> outside the grid
+                ([xmin,xmax]x[ymin,ymax]x[zmin,zmax])</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fp</term>
+        <listitem>
+          <para>vector or matrix of same format than <literal>xp</literal>, <literal>yp</literal> and <literal>zp</literal>, 
+                elementwise evaluation of <literal>s</literal> on these points.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dfpdx, dfpdy, dfpdz</term>
+        <listitem>
+          <para>vectors (or matrices) of same format than <literal>xp</literal>, <literal>yp</literal> and <literal>zp</literal>,
+                elementwise evaluation of the first derivatives of <literal>s</literal> on these points.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Given a tlist <literal>tl</literal> defining a 3d spline function (see <link linkend="splin3d">splin3d</link>) this function
+    evaluates <emphasis>s</emphasis> (and <emphasis>ds/dx, ds/dy, ds/dz</emphasis> if needed) at <emphasis>(xp(i),yp(i),zp(i))</emphasis> :
+    </para>
+    <programlisting><![CDATA[
+      zp(i) = s(xp(i),yp(i))   
+      dzpdx(i) = ds/dx(xp(i),yp(i),zp(i))
+      dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))  
+      dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
+         ]]></programlisting>
+    <para>
+    The <literal>out_mode</literal> parameter defines the evaluation rule for extrapolation,
+    i.e. for <emphasis>(xp(i),yp(i),zp(i)) not in [xmin,xmax]x[ymin,ymax]x[zmin,zmax]</emphasis>: 
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>"by_zero"</term>
+        <listitem>
+          <para>an extrapolation by zero is done</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"by_nan"</term>
+        <listitem>
+          <para>extrapolation by Nan</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"C0"</term>
+        <listitem>
+          <para>the extrapolation is defined as follows :</para>
+          <programlisting><![CDATA[
+     s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
+                           of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
+         ]]></programlisting>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"periodic"</term>
+        <listitem>
+          <para>: <literal>s</literal> is extended by periodicity.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// see the examples of the splin3d help page
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="splin3d">splin3d</link>
+      </member>
+      <member>
+        <link linkend="bsplin3val">bsplin3val</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</member>
+      <member> B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
+</refentry>

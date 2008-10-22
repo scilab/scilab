@@ -1,0 +1,11 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+com_
+isanan_
+returnanan_
+;
+;elementary_functions
+dset_

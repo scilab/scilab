@@ -1,0 +1,4 @@
+xinit('fft2.ps')
+exec('SCI/doc/signal/Nsource_diary/Sfft2.code');
+plot(x,real(yf)');
+xend(),

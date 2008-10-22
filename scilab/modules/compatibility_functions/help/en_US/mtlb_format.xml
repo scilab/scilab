@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_format">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_format</refname>
+    <refpurpose>Matlab format emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab <literal>format</literal> behave differently in some particular cases:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Some Matlab formats do not exist in Scilab
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Calling sequence for <literal>format</literal> is different in Scilab and Matlab
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The function <literal>mtlb_format(type,prec)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>format([type prec])</literal> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_format</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>type=""</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("","")</literal> may be replaced by <literal>format("v",6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>type="+"</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("+","")</literal> may be replaced by <literal>format(6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>type="long"</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("long","")</literal> may be replaced by <literal>format(16)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>type="long"</literal> and <literal>prec="e"</literal>
+        <literal>mtlb_format("long","e")</literal> may be replaced by <literal>format("e"16)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>type="long"</literal> and <literal>prec="g"</literal>
+        <literal>mtlb_format("long","g")</literal> may be replaced by <literal>format("e"16)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>type="short"</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("short","")</literal> may be replaced by <literal>format(6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>type="short"</literal> and <literal>prec="e"</literal>
+        <literal>mtlb_format("short","e")</literal> may be replaced by <literal>format("e"6)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        If <literal>type="short"</literal> and <literal>prec="g"</literal>
+        <literal>mtlb_format("short","g")</literal> may be replaced by <literal>format("e"6)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_format</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

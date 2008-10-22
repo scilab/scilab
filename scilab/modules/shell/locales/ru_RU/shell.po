@@ -1,0 +1,196 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-06-26 08:11+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr ""
+
+msgid "PVM parallel Toolbox"
+msgstr ""
+
+msgid "Scilab PVM module not installed.\n"
+msgstr ""
+
+msgid "Unknown Error"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Bad parameter"
+msgstr ""
+
+msgid "Barrier count mismatch"
+msgstr ""
+
+msgid "Read past end of buffer"
+msgstr ""
+
+msgid "No such host"
+msgstr ""
+
+msgid "No such executable"
+msgstr ""
+
+msgid "Can not get memory"
+msgstr ""
+
+msgid "Can not decode received msg"
+msgstr ""
+
+msgid "Daemon pvmd is not responding"
+msgstr ""
+
+msgid "No current buffer"
+msgstr ""
+
+msgid "Bad message id"
+msgstr ""
+
+msgid "Null group name is illegal"
+msgstr ""
+
+msgid "Already in group"
+msgstr ""
+
+msgid "No group with that name"
+msgstr ""
+
+msgid "Not in group"
+msgstr ""
+
+msgid "No such instance in group"
+msgstr ""
+
+msgid "Host failed"
+msgstr ""
+
+msgid "No parent task"
+msgstr ""
+
+msgid "Function not implemented"
+msgstr ""
+
+msgid "Pvmd system error"
+msgstr ""
+
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr ""
+
+msgid "Out of ressources"
+msgstr ""
+
+msgid "Host already configured (Duplicate host)"
+msgstr ""
+
+msgid "Failed to exec new slave pvmd"
+msgstr ""
+
+msgid "Already oing operation"
+msgstr ""
+
+msgid "No such task"
+msgstr ""
+
+msgid "PVM not found"
+msgstr ""
+
+msgid "PVM exists"
+msgstr ""
+
+msgid "No such (group,instance)"
+msgstr ""
+
+msgid "(group,instance) already exists"
+msgstr ""
+
+#, c-format
+msgid "Error MALLOC in pvm_error\n"
+msgstr ""
+
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr ""
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr ""
+
+msgid "but there exists no configuration file:\n"
+msgstr ""
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr ""
+
+#, c-format
+msgid "Error pvm_halt - signal\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr ""
+
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr ""

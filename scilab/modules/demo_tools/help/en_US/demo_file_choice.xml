@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_file_choice">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demo_file_choice</refname>
+    <refpurpose> choose and executes an item within a list </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>demo_file_choice(path,ch)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+		The function demo_file_choice choose and executes an item chosen in the 
+		'demolist' variable, that shall be written above. The variable 'demolist' is a 
+		text matrix whose first column contains names of items displayed in an options 
+		window and whose second column contains the names of the files that will be 
+		executed. The title of the options window is 'Choose a demo'.
+		The 'path' variable is the access to the files called in the second column.
+		The 'ch' variable allows to avoid the special cases 'root' and 'anim' that are 
+		used in peculiar demonstrations of Scilab. Then you have to enter another word 
+		than 'root' or 'ch', 'no' for example.
+		If you choose to cancel the options window, the console is put back to its 
+		previous width.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+demolist=['n-pendulum','npend/npend_gateway.sce';
+	  'Wheel simulation','wheel2/wheel_gateway.sce';
+	  'Bike Simulation','bike/bike_gateway.sce';
+	  'ODE''S','ode/ode.dem';
+	  'DAE''S','dae/dae.dem']
+
+demo_file_choice('SCI/demos/simulation/','no');
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="demo_function_choice">demo_function_choice</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>G.H</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<toolbar>
+    <!-- Scipad -->
+    <button icon="accessories-text-editor.png" tooltiptext="Launch Scipad">
+        <callback instruction="scipad();" type="0"/>
+    </button>
+    <!-- Open File -->
+    <button icon="document-open.png" tooltiptext="Open a file">
+        <callback 
+        instruction='
+          %fileToOpen = xgetfile("*.sci", getcwd(), gettext("Select a file to open with Scipad"));
+          if ~isempty(%fileToOpen) then 
+            scipad(%fileToOpen);
+          end
+          clear %fileToOpen isempty'
+        type="0"/>
+    </button> 
+
+    <separator/>
+
+    <!-- Copy -->
+    <button icon="edit-cut.png" tooltiptext="Cut">
+        <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection' type="3"/>
+    </button>
+    <button icon="edit-copy.png" tooltiptext="Copy">
+        <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection' type="3"/>
+    </button>
+    <!-- Paste -->
+    <button icon="edit-paste.png" tooltiptext="Paste">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole' type="3"/>
+    </button>
+
+    <separator/>
+
+    <!-- Change current directory -->
+    <button icon="folder.png" tooltiptext="Change Current Directory">
+        <callback 
+        instruction='
+          %newDir = uigetdir(getcwd(), gettext("Select a directory"));
+          if ~isempty(%newDir) then 
+            cd(%newDir);
+          end
+          clear %newDir isempty'
+        type="0"/>
+    </button> 
+
+    <separator/>
+
+    <!-- Change font -->
+    <button icon="format-text-bold.png" tooltiptext="Choose Font...">
+        <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont' type="3"/>
+    </button>
+    <!-- Print -->
+    <button icon="printer.png" tooltiptext="Print...">
+        <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents' type="3"/>
+    </button>
+
+    <separator/>
+
+    <!-- Help -->
+    <button icon="help-browser.png" tooltiptext="Help Browser">
+        <callback instruction='help();' type="0"/>
+    </button>
+</toolbar>

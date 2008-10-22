@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hess">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hess</refname>
+    <refpurpose> Hessenberg form</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>H = hess(A)
+[U,H] = hess(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex square matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>real or complex square matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>orthogonal or unitary square matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[U,H] = hess(A)</literal> produces a unitary matrix
+    <literal>U</literal> and a Hessenberg matrix <literal>H</literal> so that
+    <literal>A = U*H*U'</literal> and <literal>U'*U</literal> =
+    Identity.  By itself, <literal>hess(A)</literal> returns <literal>H</literal>.</para>
+    <para>
+    The Hessenberg form of a matrix is zero below the first
+    subdiagonal. If the matrix is symmetric or Hermitian, the form is
+    tridiagonal.</para>
+  </refsection>
+  <refsection>
+    <title>References</title>
+    <para>
+  hess function is based on the Lapack routines
+ DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the complex case.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=rand(3,3);[U,H]=hess(A);
+and( abs(U*H*U'-A)<1.d-10 )
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="contr">contr</link>
+      </member>
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para><literal>hess</literal> function is based on the Lapack routines
+  DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the
+  complex  case.</para>
+  </refsection>
+</refentry>

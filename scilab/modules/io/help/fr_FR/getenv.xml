@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getenv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getenv</refname>
+    <refpurpose> renvoie la valeur d'une variable d'environnement  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>env=getenv(str [, rep] )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>str  </term>
+        <listitem>
+          <para>chaîne de caractères contenant le nom de la variable d'environnement rep : chaîne de caractères optionnelle. Quand elle est utilisée, <literal>getenv</literal> renvoie la valeur <literal>rep</literal> quand la variable d'environnement <literal>str</literal> n'existe pas. 
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>env  </term>
+        <listitem>
+          <para>chaîne de caractères contenant la valeur de la variable d'environnement
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Renvoie la la valeur d'une variable d'environnement, quand celle-ci existe.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+ getenv('SCI')
+ getenv('FOO','foo') 
+ ]]></programlisting>
+  </refsection>
+</refentry>

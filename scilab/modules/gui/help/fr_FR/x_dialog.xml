@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_dialog">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>x_dialog</refname>
+    <refpurpose> boîte de dialogue  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>result=x_dialog(labels,valueini)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>labels  </term>
+        <listitem>
+          <para>vecteur de chaînes de caractères. Commentaire de la boîte
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>valueini  </term>
+        <listitem>
+          <para>vecteur de n chaînes de caractères. Valeurs suggérées 
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>result  </term>
+        <listitem>
+          <para>vecteur de n chaînes de caractères si le bouton "Ok" est pressé ou [] si "Cancel" a été pressé.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Crée une boîte de dialogue à plusieurs lignes. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+gain=evstr(x_dialog('valeur du gain ?','0.235'))
+x_dialog(['Methode';'entrer la periode d''echantillonnage'],'1')
+m=evstr(x_dialog('entrer une matrice 3x3',['[0 0 0';'0 0 0';'0 0 0]']))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="x_matrix">x_matrix</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

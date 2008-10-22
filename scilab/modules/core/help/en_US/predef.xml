@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="predef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>predef</refname>
+    <refpurpose> variable protection</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>n=predef()
+oldnew=predef(n)
+oldnew=predef('all')
+oldnew=predef('clear')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function used for defining "oldest" variables as "protected".
+    Protected variables  cannot be killed. They are not saved 
+    by the <literal>'save'</literal> command. The "oldest" are those appearing last in
+    the <literal>who('get')</literal>.</para>
+    <para><literal>predef()</literal> gets the number of protected variables</para>
+    <para><literal>predef('a[ll]')</literal> sets all the  variables protected, it also return
+    the old and new value of protected variables number.</para>
+    <para><literal>predef('c[lear]')</literal> unprotect all but the last 7 variables, it also return
+    the old and new value of protected variables number.</para>
+    <para><literal>predef(n)</literal> sets the <literal>max(n,7)</literal> last defined variables as protected, it also return
+    the old and new value of protected variables number.</para>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>
+			A number of protected variables are set in the start-up file <literal>SCI/etc/scilab.start</literal>.
+			User may in particular set its own predefined variables in user's startup files 
+			<literal>SCIHOME/.scilab</literal> and <literal>SCIHOME/scilab.ini</literal>
+		</para>
+    <para>
+			SCIHOME definition :
+			On Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			On Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+		</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clear">clear</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

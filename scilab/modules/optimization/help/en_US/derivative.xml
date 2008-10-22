@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="derivative">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>derivative</refname>
+    <refpurpose> approximate derivatives of a function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>derivative(F,x)
+[J [,H]] = derivative(F,x [,h ,order ,H_form ,Q])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>a Scilab function F: <literal>R^n --&gt; R^m</literal> or a <literal>list(F,p1,...,pk)</literal>, where F is a scilab function 
+      in the form <literal>y=F(x,p1,...,pk)</literal>, p1, ..., pk being any scilab objects (matrices, lists,...).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real column vector of dimension n.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>(optional) real, the stepsize used in the finite difference approximations.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>order</term>
+        <listitem>
+          <para>(optional) integer, the order of the finite difference formula used to approximate 
+      the derivatives (order = 1,2 or 4, default is order=2 ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H_form</term>
+        <listitem>
+          <para>(optional) string, the form in which the Hessean will be returned. Possible forms are:</para>
+          <variablelist>
+            <varlistentry>
+              <term>H_form='default'  </term>
+              <listitem>
+                <para>H is a m x (<literal>n^2</literal>) matrix ; in this form, the k-th row of H  corresponds to the Hessean of 
+      the k-th component of F, given  as the following row vector :</para>
+                <programlisting><![CDATA[
+
+  [ d(grad(F_k))/dx_1 | ..... | d(grad(F_k))/dx_n ] 
+   
+                ]]></programlisting>
+                <para>  ((grad(F_k) being a row vector).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>H_form='blockmat' :  </term>
+              <listitem>
+                <para>H is a (mxn) x n block matrix : the classic Hessean matrices (of each component of F) are 
+    stacked by row (H = [H1 ; H2 ; ... ; Hm] in scilab syntax).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>H_form='hypermat' :  </term>
+              <listitem>
+                <para>H is a n x n matrix for m=1, and a n x n x m hypermatrix otherwise.  H(:,:,k) is the 
+    classic Hessean matrix of the k-th component of F.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q</term>
+        <listitem>
+          <para>(optional) real matrix, orthogonal (default is eye(n,n)).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Numerical approximation of the first and second derivatives of a function
+    F: <literal> R^n --&gt; R^m</literal> at the point x. The Jacobian is computed  by approximating
+    the directional derivatives of the components of F in the direction of 
+    the columns of Q. 
+    (For m=1, v=Q(:,k) : grad(F(x))*v = Dv(F(x)).)
+    The second derivatives are computed by composition of first order derivatives.
+    If H is given in its default form the Taylor series of F(x) up to terms of second 
+    order is given by :</para>
+    <programlisting><![CDATA[
+
+  F(x+dx) = F(x) + J(x)*dx + 1/2*H(x)*(dx .*. dx) + ...
+   
+    ]]></programlisting>
+    <para>
+    (([J,H]=derivative(F,x,H_form='default'), J=J(x), H=H(x).)</para>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
+    <para>
+    Numerical approximation of derivatives is generally an unstable process.  
+The step size h must be small to get a low error but if it is too small floating  
+point errors will dominate by cancellation. As a rule of thumb don't change 
+the  default step size.  To work around numerical difficulties one may also change 
+the order and/or choose different orthogonal matrices Q (the default is eye(n,n)), 
+especially if the  approximate derivatives are used in optimization routines. All 
+the optional arguments may also be passed as named arguments, so that one can use 
+calls in the form :</para>
+    <programlisting><![CDATA[
+
+derivative(F, x, H_form = "hypermat")
+derivative(F, x, order = 4) etc.
+
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+  function y=F(x)
+   y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
+ endfunction
+ function y=G(x,p) 
+   y=[sin(x(1)*x(2)*p)+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
+ endfunction
+
+ x=[1;2;3];[J,H]=derivative(F,x,H_form='blockmat')
+
+ n=3;
+ // form an orthogonal matrix :   
+ nu=0; while nu<n, [Q,nu]=colcomp(rand(n,n)); end  
+ for i=[1,2,4]
+    [J,H]=derivative(F,x,order=i,H_form='blockmat',Q=Q);
+    mprintf("order= %d \n",i);
+    H,
+ end
+
+ p=1;h=1e-3;
+ [J,H]=derivative(list(G,p),x,h,2,H_form='hypermat');H
+ [J,H]=derivative(list(G,p),x,h,4,Q=Q);H
+
+ // Taylor series example:
+ dx=1e-3*[1;1;-1];
+ [J,H]=derivative(F,x);
+ F(x+dx)
+ F(x+dx)-F(x)
+ F(x+dx)-F(x)-J*dx
+ F(x+dx)-F(x)-J*dx-1/2*H*(dx .*. dx)
+
+ // A trivial example
+ function y=f(x,A,p,w), y=x'*A*x+p'*x+w; endfunction
+ // with Jacobian and Hessean given by J(x)=x'*(A+A')+p', and H(x)=A+A'.
+ A = rand(3,3); p = rand(3,1); w = 1;
+ x = rand(3,1);
+ [J,H]=derivative(list(f,A,p,w),x,h=1,H_form='blockmat')
+ // Since f(x) is quadratic in x, approximate derivatives of order=2 or 4 by finite
+ // differences should be exact for all h~=0. The apparent errors are caused by
+ // cancellation in the floating point operations, so a "big" h is choosen.
+ // Comparison with the exact matrices:
+ Je = x'*(A+A')+p'
+ He = A+A'
+ clean(Je - J)
+ clean(He - H)
+   
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="numdiff">numdiff</link>
+      </member>
+      <member>
+        <link linkend="derivat">derivat</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Rainer von Seggern, Bruno Pincon</para>
+  </refsection>
+</refentry>

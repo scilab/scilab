@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xrects">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xrects</refname>
+    <refpurpose> draw or fill a set of rectangles</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xrects(rects,[fill])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>rects</term>
+        <listitem>
+          <para>matrix of size (4,n).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill</term>
+        <listitem>
+          <para>vector of size n.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xrects</literal> draws or fills a set of rectangles. 
+    Each column of <literal>rects</literal> describes 
+    a rectangle (upper-left point, width, height) in user coordinates:
+    <literal>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'</literal>.</para>
+    <para><literal>fill(i)</literal> gives the pattern to use for filling or drawing rectangle i:</para>
+    <para>
+    if <literal>fill(i)&lt;0</literal>, rectangle <literal>i</literal> is drawn using the line style (or
+    color) <literal>-fill(i)</literal></para>
+    <para>
+    if <literal>fill(i)&gt;0</literal>, rectangle <literal>i</literal> is filled using the pattern (or
+    color) <literal>fill(i)</literal></para>
+    <para>
+    if <literal>fill(i)=0</literal>, rectangle <literal>i</literal> is drawn using the current
+    line style (or color).</para>
+    <para>WARNING: please note that height is positive downwards.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+plot2d([-100,500],[-50,50],[-1,-1],"022")
+cols=[-34,-33,-32,-20:5:20,32,33,34];
+x=400*(0:14)/14; step=20;
+rects=[x;10*ones(x);step*ones(x);30*ones(x)];
+xrects(rects,cols)
+xnumb(x,15*ones(x),cols)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfrect">xfrect</link>
+      </member>
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

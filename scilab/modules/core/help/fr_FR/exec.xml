@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="exec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>exec</refname>
+    <refpurpose> exécution d'un script (fichier de commandes)  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>exec(path [,mode])
+exec(fun [,mode])
+ierr=exec(path,'errcatch' [,mode])
+ierr=exec(fun,'errcatch' [,mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>path  </term>
+        <listitem>
+          <para>chaîne de caractères, le chemin du script à exécuter
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode  </term>
+        <listitem>
+          <para>entier, précisant le mode d'exécution (voir plus bas)
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fun  </term>
+        <listitem>
+          <para>identificateur d'une fonction scilab
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ierr  </term>
+        <listitem>
+          <para>entier, 0 ou numéro d'erreur 
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>exec(path [,mode])</literal> exécute séquentiellement les instructions
+      Scilab contenues dans le fichier spécifié par <literal>path</literal> avec le
+      mode d'exécution optionnel <literal>mode</literal> .
+    </para>
+    <para>Les différentes valeurs de <literal>mode</literal> sont :</para>
+    <variablelist>
+      <varlistentry>
+        <term>0</term>
+        <listitem>
+          <para>valeur par défaut</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-1</term>
+        <listitem>
+          <para>rien n'est affiché</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>1</term>
+        <listitem>
+          <para>chaque ligne de commande est affichée</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>2</term>
+        <listitem>
+          <para>l'invite de commande <literal>--&gt;</literal> est affiché</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>3</term>
+        <listitem>
+          <para>lignes de commandes + invite de commande</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>4</term>
+        <listitem>
+          <para>pause dans l'exécution au début de chaque ligne. L'exécution
+	reprend après un appui sur la touche entrée/return. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>7</term>
+        <listitem>
+          <para>pause + invite + affichage : ce mode est utile pour les démonstrations.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para><literal>exec(fun [,mode])</literal> exécute la fonction <literal>fun</literal> comme
+      un script : aucun argument n'est utilisé en entrée ou en sortie, et
+      l'exécution se fait dans l'environnement courant (les variables
+      créées dans la fonction sont conservées après l'exécution). Cette
+      forme est plus efficace, car ainsi les instructions du script peuvent
+      être pré-compilées (voir getf, comp). Cette méthode d'exécution des
+      scripts permet aussi de stocker des scripts comme des fonctions dans des
+      librairies. 
+    </para>
+    <para>
+      Si une erreur se produit pendant l'exécution, si la chaîne de
+      caractères 'errcatch' est présente, <literal>exec</literal> ne
+      produit pas de message d'erreur, mais stoppe l'exécution du
+      script et renvoie une valeur de <literal>ierr</literal> égale au numéro de
+      l'erreur. Si la chaîne 'errcatch' n'est pas présente,
+      la gestion habituelle des erreurs est utilisée.
+    </para>
+  </refsection>
+  <refsection>
+    <title>REMARQUE</title>
+    <para>
+      Les scripts peuvent maintenant contenir des définitions de fonctions en
+      ligne (voir fonction). 
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    // création d'un script
+    mputl('a=1;b=2',TMPDIR+'/myscript')
+    // on l'exécute
+    exec(TMPDIR+'/myscript')
+    whos -name "a "
+
+    // création d'une function
+    function y=foo(x),a=x+1;y=a^2,endfunction
+    clear a b
+    // appel à la fonction
+    foo(1)
+    // a est une variable créée dans l'environnement de la fonction foo
+    // elle est détruite à la sortie de la fonction.
+    whos -name "a "
+
+    x=1 // on crée la variable x pour qu'elle soit connue à l'exécution de foo
+    exec(foo)
+    // a et y ont été créées dans l'environnement courant
+    whos -name "a "
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="mode">mode</link>
+      </member>
+      <member>
+        <link linkend="chdir">chdir</link>
+      </member>
+      <member>
+        <link linkend="getcwd">getcwd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,23 @@
+//===============================
+d=dir('SCI/modules/core/macros/*.sci');
+if d(2) == [] then bugmes();quit;end
+//===============================
+if MSDOS then
+  d = dir('c:\');
+else
+  d = dir('/');
+end
+if d(2) == [] then bugmes();quit;end
+//===============================
+if MSDOS then
+ TMP = getenv('TMP');
+else
+ if isdir('/tmp') then
+   TMP = '/tmp';
+ else
+   TMP = TMPDIR;
+ end
+ d = dir(TMP);
+end
+if d(2) == [] then bugmes();quit;end
+//===============================

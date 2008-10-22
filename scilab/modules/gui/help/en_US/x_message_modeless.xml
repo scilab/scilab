@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="x_message_modeless">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>x_message_modeless</refname>
+    <refpurpose> X window modeless message</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x_message_modeless(strings)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>strings</term>
+        <listitem>
+          <para>vector of characters strings to be displayed</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    for displaying a message (information, user-guide ...). The function
+    returns immediately. The message window is killed when "Ok" button is
+    clicked.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+ x_message_modeless(['This is a modeless message'
+                     'Scilab may continue computation'
+                     ' '
+                     'Click on ""Ok"" to close the message'])
+ x_message_modeless('Now two message windows are opened')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="x_message">x_message</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

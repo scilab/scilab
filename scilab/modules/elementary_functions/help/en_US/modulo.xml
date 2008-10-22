@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="modulo">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>modulo</refname>
+    <refpurpose> symetric arithmetic remainder modulo m</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="pmodulo">
+    <refname>pmodulo</refname>
+    <refpurpose> positive arithmetic remainder modulo m</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>i=modulo(n,m)
+i=pmodulo(n,m)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n,m</term>
+        <listitem>
+          <para>integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>modulo</literal> computes <literal>i= n (modulo m)</literal> i.e. remainder
+    of <literal>n</literal> divided by <literal>m</literal> (<literal>n</literal> and <literal>m</literal> integers).</para>
+    <para>
+     i = n - m .* int (n ./ m). Here the answer may be negative if <literal>n</literal>  or <literal>m</literal> 
+    are negative.</para>
+    <para><literal>pmodulo</literal> computes  <literal>i = n - m .* floor (n ./ m)</literal>, the answer
+    is positive or zero</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+n=[1,2,10,15];m=[2,2,3,5];
+modulo(n,m)
+
+modulo(-3,9)
+pmodulo(-3,9)
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

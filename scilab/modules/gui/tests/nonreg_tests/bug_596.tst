@@ -1,0 +1,41 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+//
+// <-- Non-regression test for bug 596 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=596
+//
+// <-- Short Description -->
+//    uicontrol has problem in parsing string arguments: 'string' and 'callback' arguments containing 
+//    spaces, apostrophes and doublequotes give strange (repeatable) results
+
+
+f = figure(1);
+
+uicontrol(f,"style","pushbutton","position",[10 10 150 20],..
+          "string","Close figure","callback","close(f)");
+          
+uicontrol(f,"style","pushbutton",..
+          "position",[10 40 150 20],"string","disp, space, """"",..
+          "callback","disp(""second button"")");
+
+uicontrol(f,"style","pushbutton",..
+          "position",[10 70 150 20],"string","disp,-,""""",..
+          "callback","disp(""third-button"")");
+
+uicontrol(f,"callback","disp(""fourth button"")",..
+           "string","disp, space, """"",..
+           "Position",[10 100 150 20],"Style", "pushbutton");
+
+uicontrol(f,"callback","disp(""fifth-button"")",..
+            "string","disp, -, """"",..
+            "Position",[10 130 150 20],"Style", "pushbutton");
+
+

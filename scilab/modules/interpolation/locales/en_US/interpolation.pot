@@ -1,0 +1,212 @@
+# Localization of the module interpolation
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:09+0100\n"
+
+# File: macros/interpln.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin2d.c, line: 52
+#, c-format
+msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin2d.c, line: 60
+#, c-format
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin2d.c, line: 71
+# File: sci_gateway/c/sci_linear_interpn.c, line: 127
+# File: sci_gateway/c/sci_interp3d.c, line: 109
+# File: sci_gateway/c/sci_interp2d.c, line: 61
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 37
+# File: sci_gateway/c/sci_splin.c, line: 90
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 55
+# File: sci_gateway/c/sci_interp.c, line: 41
+# File: sci_gateway/c/sci_lsq_splin.c, line: 35
+# File: sci_gateway/c/sci_eval_cshep2d.c, line: 40
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 74
+# File: sci_gateway/c/sci_lsq_splin.c, line: 44
+# File: sci_gateway/c/sci_lsq_splin.c, line: 52
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 82
+#, c-format
+msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 93
+#, c-format
+msgid "%s: %s must be a real %d-dim hypermatrix.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 99
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and grid values in dimension %"
+"d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 109
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 114
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d or %"
+"d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_interp.c, line: 53
+# File: sci_gateway/c/sci_splin.c, line: 66
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cshep2d.c, line: 34
+#, c-format
+msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cshep2d.c, line: 75
+#, c-format
+msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 51
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments: x, y and z grids must have at least %d "
+"points.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 58
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix "
+"expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 72
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 80
+# File: sci_gateway/c/sci_bsplin3val.c, line: 101
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 120
+#, c-format
+msgid "%s: Problem with 'flag' = %d\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_bsplin3val.c, line: 46
+# File: sci_gateway/c/sci_interp3d.c, line: 54
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_bsplin3val.c, line: 68
+# File: sci_gateway/c/sci_eval_cshep2d.c, line: 60
+# File: sci_gateway/c/sci_interp3d.c, line: 75
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 58
+# File: sci_gateway/c/sci_splin.c, line: 56
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
+"detected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 77
+#, c-format
+msgid "%s: Not enought points for the fit.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 81
+#, c-format
+msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin.c, line: 44
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
+"expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin.c, line: 50
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin.c, line: 77
+#, c-format
+msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin.c, line: 83
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_splin.c, line: 97
+#, c-format
+msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_interp2d.c, line: 50
+#, c-format
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+#
+# File: src/c/interpolation.c, line: 99
+#, c-format
+msgid "Wrong type for input argument #%d: Real hypermatrix expected.\n"
+msgstr ""
+#
+# File: src/c/interpolation.c, line: 115
+#, c-format
+msgid "Wrong type for input argument #%d: String expected.\n"
+msgstr ""

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="error">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>error</refname>
+    <refpurpose> error messages</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>error(message [,n])
+error(n)
+error(n,pos)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>message</term>
+        <listitem>
+          <para>a character string. The error message to be displayed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>an integer. The number associated with the error message</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pos</term>
+        <listitem>
+          <para>an integer. a parameter for the error message</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>error</literal> function allow to issue an error message and to
+      handle the error. By defaut <literal>error</literal> stops the current
+      execution and resume to the prompt level. This default can be changed
+      using the <literal>errcatch</literal> or <literal>execstr(...,'errcatch')</literal> functions.</para>
+    <para><literal>error(message)</literal> prints the character string contained in
+      <literal>message</literal>. The number associated with the error message is
+      10000 </para>
+    <para><literal>error(message,n)</literal> prints the character string contained in
+      <literal>message</literal>. The number associated with the error message is
+      given by <literal>n</literal>. This number should be greater than 10000. </para>
+    <para><literal>error(n)</literal> prints the predefined error message associated with
+      the error number <literal>n</literal>. </para>
+    <para>Some predefined error messages  require a parameter (see
+      <link linkend="error_table">error_table</link>). In this case the <literal>pos</literal> 
+      argument must be used <literal>error(n,pos)</literal> to give the parameter
+      value. In the other cases the <literal>pos</literal>  argument is ignored.</para>
+    <para> see <link linkend="error_table">error_table</link> for a list of error messages and the
+      associated error numbers.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+error('my error message')
+error(43)
+error(52,3)
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="warning">warning</link>
+      </member>
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="lasterror">lasterror</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

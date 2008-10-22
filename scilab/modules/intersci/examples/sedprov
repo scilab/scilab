@@ -1,0 +1,4 @@
+rm -f $1.tmp
+sed "s/SCIDIR/..\/../g" $1.f > $1.tmp
+rm -f $1.f
+mv $1.tmp $1.f

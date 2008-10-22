@@ -1,0 +1,1 @@
+lines(0);while(1),[a,b,c,d,e]=xclick(),if a==-100 then return;end;end;

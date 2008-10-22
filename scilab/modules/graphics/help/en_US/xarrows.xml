@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xarrows">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xarrows</refname>
+    <refpurpose> draw a set of arrows</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xarrows(nx,ny,[arsize,style])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>nx,ny</term>
+        <listitem>
+          <para>real vectors or matrices of same size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arsize</term>
+        <listitem>
+          <para>real scalar, size of the arrow head. The default value can be obtained  by setting arsize to -1.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style</term>
+        <listitem>
+          <para>matrix or scalar. If <literal>style</literal> is a positive scalar  it gives the color to use for all arrows. If it is a negative scalar  then the current color is used. If it is a vector <literal>style(i)</literal> gives the color to use for arrow <literal>i</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xarrows</literal> draws a set of arrows given by <literal>nx</literal> and <literal>ny</literal>.
+    If <literal>nx</literal> and <literal>ny</literal> are vectors,
+    the ith arrow is defined by
+    <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>.
+    If <literal>nx</literal> and <literal>ny</literal> are matrices:</para>
+    <programlisting><![CDATA[
+
+nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
+ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
+   
+    ]]></programlisting>
+    <para>
+    the <literal>k</literal> th arrow is defined by <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
+    <para><literal>xarrows</literal> uses the current graphics scale 
+    which can be set by calling a high level drawing function such as <literal>plot2d</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+x=2*%pi*(0:9)/8;
+x1=[sin(x);9*sin(x)];
+y1=[cos(x);9*cos(x)];
+plot2d([-10,10],[-10,10],[-1,-1],"022")
+xset("clipgrf")
+xarrows(x1,y1,1,1:10)
+xset("clipoff")
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

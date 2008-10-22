@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intppty">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intppty</refname>
+    <refpurpose> set interface argument passing properties</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>funs=intppty()
+intppty(fun)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>integer an interface number (see funptr)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>funs</term>
+        <listitem>
+          <para>integer vector, vector of interface number (see funptr)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The interface programs may be written in 2 different ways for the mode
+    of function argument passing.</para>
+    <para>
+    In the first and default way, the arguments are passed by value.
+    With the following syntax:</para>
+    <programlisting><![CDATA[
+
+foo(A,1+2)
+   
+    ]]></programlisting>
+    <para>
+    the argument associated with <literal>A</literal> will be passed by value (a copy
+    of <literal>A</literal> is made before <literal>foo</literal> is called, and
+    the argument associated with <literal>1+2</literal> will be passed by value.</para>
+    <para>
+    In
+    the second way arguments may be passed be reference if there are
+    "named arguments" (no copy of the variable value is
+    done). <literal>intppty(fun)</literal> with <literal>fun&gt;0</literal> tells Scilab that the
+    interface with number <literal>fun</literal> can handle arguments passed by
+    reference. With the following syntax:</para>
+    <programlisting><![CDATA[
+
+foo(A,1+2)
+   
+    ]]></programlisting>
+    <para>
+    the argument associated with <literal>A</literal> will be passed by reference, and
+    the argument associated with <literal>1+2</literal> will be passed by value.</para>
+    <para>
+    Warning, declaring that the interface with number
+    <literal>fun</literal> can handle arguments passed by reference if it is not the
+    case should produce unpredictable results.</para>
+    <para><literal>intppty(fun)</literal> with <literal>fun&lt;0</literal> suppress this property
+    for the interface <literal>-fun</literal>.</para>
+    <para><literal>intppty()</literal> returns the vector of interfaces which handle
+    arguments passed by reference.</para>
+    <para>
+    This function may be useful for dynamically loaded interface (see
+    addinter).</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="funptr">funptr</link>
+      </member>
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

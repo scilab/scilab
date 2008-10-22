@@ -1,0 +1,25 @@
+foo=['int myplus(n, a, b, c)'
+    'int *n;     double *a, *b, *c;'
+    '{int k;'
+    '  for (k = 0; k < *n; ++k) '
+    '      c[k] = a[k] + b[k];'
+    '  return(0);}'];
+
+mputl(foo,'myplus.c');   //create a myplus.c file
+
+ilib_for_link('myplus','myplus.o',[],"c");  //make a shared library
+
+exec loader.sce;  //exec file created by ilib_for_link
+// to link the library (.so file or .dll file);
+
+function c=myplus(a,b)
+[m,n]=size(a);  //assume size(b) == size(a)!
+//a at position 2, b at 3 and c at 4.
+c=call('myplus',m*n,1,'i',a,2,'d',b,3,'d',...
+       'out',[m,n],4,'d');
+endfunction
+
+myplus([1,2],[3,4])
+
+
+

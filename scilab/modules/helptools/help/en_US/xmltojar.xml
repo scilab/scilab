@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmltojar" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven, 14 mar 2008)
+    $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xmltojar</refname>
+    <refpurpose>converts xml Scilab help files to javaHelp format</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xmltojar(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>dirs</term>
+        <listitem>
+          <para>vector of strings: a set of directory paths for which html
+          manuals are to be generated or <literal>[] </literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>titles</term>
+        <listitem>
+          <para>vector of strings: titles associated to directory paths or
+          []</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir_language</term>
+        <listitem>
+          <para>vector of strings: languages associated to directory paths or
+          []</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>default_language</term>
+        <listitem>
+          <para>vector of strings: default languages associated to directory
+              paths or []. If an XML file is missing in the dir_language, it's
+              copied from the default_language.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>converts xml Scilab help files contained in a set of directories
+    into jar files.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+
+
+// example_1/
+// `-- help
+//     |-- en_US
+//     |   |-- example_1_function_1.xml
+//     |   |-- example_1_function_2.xml
+//     |   `-- example_1_function_3.xml
+//     `-- fr_FR
+//         |-- example_1_function_1.xml
+//         |-- example_1_function_2.xml
+//         `-- example_1_function_3.xml
+//     `-- zh_TW
+//         |-- example_1_function_1.xml
+//         |-- example_1_function_2.xml
+//         `-- example_1_function_3.xml
+
+my_module_path = pathconvert(SCI+'/modules/helptools/examples/example_1',%f,%f)
+
+// Build the french help
+// =============================================================================
+my_french_help_dir    =  my_module_path+'/help/fr_FR';
+my_french_help_title  =  'Example 1 [fr_FR]';
+xmltojar(my_french_help_dir,my_french_help_title,'fr_FR');
+
+
+// Build the english help
+// =============================================================================
+my_english_help_dir   =  my_module_path+'/help/en_US';
+my_english_help_title =  'Example 1 [en_US]';
+xmltojar(my_english_help_dir,my_english_help_title,'en_US');
+
+
+// Build the chinese help
+// =============================================================================
+my_chinese_help_dir   =  my_module_path+'/help/zh_TW';
+my_chinese_help_title =  'Example 1 [zh_TW]';
+xmltojar(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
+
+
+// Add french, english or chinese help chapters
+// =============================================================================
+
+if getlanguage() == 'fr_FR' then
+  add_help_chapter(my_french_help_title,my_module_path+"/jar");
+
+elseif getlanguage() == 'zh_TW' then
+  add_help_chapter(my_chinese_help_title,my_module_path+"/jar");
+
+else
+  add_help_chapter(my_english_help_title,my_module_path+"/jar");
+end
+
+// See the result in the help browser
+// =============================================================================
+help();
+
+// Del french and english help chapters
+// =============================================================================
+if getlanguage() == 'fr_FR' then
+  del_help_chapter(my_french_help_title);
+else
+  del_help_chapter(my_english_help_title);
+end
+
+
+    </programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="add_help_chapter">add_help_chapter</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

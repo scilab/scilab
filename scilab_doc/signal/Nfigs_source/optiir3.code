@@ -1,0 +1,55 @@
+//exec('optiir3.code')
+//design of a low-pass filter with normalized discrete frequency .25
+// ripple in the passband 0.1, ripple in the stopband 0.01, 
+// transition bandwidth .1
+[ce0,f0,ze0,po0]=eqiir('lp','ellip',%pi*[.5;.65;0;0],.1,.01);
+hz0=f0*prod(ce0(2))./prod(ce0(3));
+ze0=ze0(1:2:4);po0=po0(1:2:4);
+x0=[abs([ze0 po0])';atan(imag([ze0 po0]),real([ze0 po0]))';10];
+x=x0;
+omega=%pi*(0.01:0.01:1);
+p=1;
+wa(1:52)=ones(1,52);
+wa(53:100)=.5*ones([53:100]);
+rp0=abs(freq(hz0(2),hz0(3),exp(%i*omega)));
+//plot(rp0);
+//xbasc();
+ad(1:49)=ones(1,49)./rp0(1:49);
+ad(50:100)=rp0(50:100);
+x=[x0(1:4) x0(5:8)];
+[cout,xx1,grad,to]=optim(iirmod,x);
+if xx1(1,1) > 1. then xx1(1,1)=1/xx1(1.1); end;
+if xx1(2,1) > 1. then xx1(2,1)=1/xx1(2,1); end;
+if xx1(3,1) > 1. then xx1(3,1)=1/xx1(3,1); end;
+if xx1(4,1) > 1. then xx1(4,1)=1/xx1(4,1); end;
+[cout,xx1,grad,to]=optim(iirmod,xx1);
+if xx1(1,1) > 1. then xx1(1,1)=1/xx1(1.1); end;
+if xx1(2,1) > 1. then xx1(2,1)=1/xx1(2,1); end;
+if xx1(3,1) > 1. then xx1(3,1)=1/xx1(3,1); end;
+if xx1(4,1) > 1. then xx1(4,1)=1/xx1(4,1); end;
+binf=[0;-2*%pi].*.ones(4,1);
+bsup=[1;2*%pi].*.ones(4,1);
+binf=[binf(1:4) binf(5:8)]
+bsup=[bsup(1:4) bsup(5:8)]
+[cout,xx2,grad,to]=optim(iirmod,'b',binf,bsup,x);
+[cout,xx2,grad,to]=optim(iirmod,'b',binf,bsup,xx2);
+z=poly(0,'z');
+z1=xx2(1,1)*exp(%i*xx2(1,2));
+z2=xx2(2,1)*exp(%i*xx2(2,2));
+num=(z-z1)*(z-z1')*(z-z2)*(z-z2')
+num=real(num);
+p1=xx2(3,1)*exp(%i*xx2(3,2));
+p2=xx2(4,1)*exp(%i*xx2(4,2));
+den=(z-p1)*(z-p1')*(z-p2)*(z-p2');
+den=real(den);
+sl=syslin('c',num/den);
+ff=repfreq(sl,0.01,0.5,0.01);
+rp1=abs(freq(num,den,exp(%i*omega)));
+xinit('optiir3.ps')
+plot(rp1);
+xend();
+//plot(rp0);
+//xbasc();
+//xinit('optiir4.ps')
+//plot(20.*log(rp0.*rp1));
+//xend();

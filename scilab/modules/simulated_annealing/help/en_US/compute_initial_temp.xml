@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="compute_initial_temp">
+  <info>
+    <pubdate>29-Nov-2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>compute_initial_temp</refname>
+    <refpurpose> A SA function which allows to compute the initial temperature of the simulated annealing </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>T_init = compute_initial_temp(x0,f,proba_init,ItMX,neigh_func,param_neigh_func)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>the starting point
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>the objective function which will be send to the simulated annealing for optimization
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>proba_init</term>
+        <listitem>
+          <para>the initial probability of accepting a bad solution (usually around 0.7)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ItMX</term>
+        <listitem>
+          <para>the number of iterations of random walk (usually around 100)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>neigh_func</term>
+        <listitem>
+          <para>a function which returns a neighbor of a given point (see the help page of neigh_func to see the prototype of this function)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param_neigh_func</term>
+        <listitem>
+          <para>some parameters (can be a list) which will be sent as parameters to neigh_func
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>T_init</term>
+        <listitem>
+          <para>The initial temperature corresponding to the given probability of accepting a bad solution
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+     This function computes an initial temperature given an initial probability of accepting a bad solution.
+     This computation is based on some iterations of random walk.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    x0 = [2 2];
+    Proba_start = 0.7;
+    It_Pre = 100;
+    x_test = neigh_func_default(x0);
+
+    T0 = compute_initial_temp(x0, rosenbrock, Proba_start, It_Pre, neigh_func_default,[]);
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="optim_sa"> optim_sa </link>
+      </member>
+      <member>
+        <link linkend="neigh_func_default"> neigh_func_default </link>
+      </member>
+      <member>
+        <link linkend="temp_law_default"> temp_law_default </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
+    Yann COLLETTE (yann.collette@renault.com)
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

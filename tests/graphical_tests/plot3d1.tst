@@ -1,0 +1,52 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/plot3d1_data.ref','rb');
+// simple plot using z=f(x,y)
+t = (0:0.3:2 * %pi)';z = sin(t) * cos(t');
+%ans = plot3d1(t, t, z);
+if load_ref('%ans') then   pause,end,
+
+// same plot using facets computed by genfac3d
+[xx,yy,zz] = genfac3d(t, t, z);
+clf_run();
+%ans = plot3d1(xx, yy, zz);
+if load_ref('%ans') then   pause,end,
+
+// multiple plots
+clf_run();
+%ans = plot3d1([xx,xx], [yy,yy], [zz,4 + zz]);
+if load_ref('%ans') then   pause,end,
+
+// simple plot with viewpoint and captions
+clf_run();
+%ans = plot3d1(1:10, 1:20, 10 * rand(10, 20), 35, 45, 'X@Y@Z', [2,2,3]);
+if load_ref('%ans') then   pause,end,
+
+// same plot without grid
+%ans = clf_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = plot3d1(1:10, 1:20, 10 * rand(10, 20), 35, 45, 'X@Y@Z', [-2,2,3]);
+if load_ref('%ans') then   pause,end,
+
+// plot of a sphere using facets computed by eval3dp
+deff('[x,y,z]=sph(alp,tet)', ['x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)';'y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)';'z=r*sin(alp)+orig(3)*ones(tet)']);
+r = 1;orig = [0,0,0];
+[xx,yy,zz] = eval3dp(sph, linspace(-%pi/2, %pi/2, 40), linspace(0, %pi * 2, 20));
+%ans = clf_run();
+if load_ref('%ans') then   pause,end,
+
+
+%ans = plot3d(xx, yy, zz);
+if load_ref('%ans') then   pause,end,
+
+e = gce();
+e('color_flag') = 1;
+scf(2);
+%ans = plot3d1(xx, yy, zz);
+if load_ref('%ans') then   pause,end,
+// the 2 graphics are similar
+
+xdel_run(winsid());
+
+mclose(%U);

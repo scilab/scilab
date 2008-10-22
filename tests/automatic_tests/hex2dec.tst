@@ -1,0 +1,9 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/hex2dec_data.ref','rb');
+%ans = hex2dec(['ABC','0','A']);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unique">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unique</refname>
+    <refpurpose> extrait les composantes distinctes d'un vecteur ou d'une matrice </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>
+      [N [,k]]=unique(M)
+      [N [,k]]=unique(M,orient)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>vecteur ou matrice de nombres ou  de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orient</term>
+        <listitem>
+          <para>flag qui peut prendre les valeurs  : 1 ou "r", 2 ou "c"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N</term>
+        <listitem>
+          <para>vecteur ou matrice de nombres ou  de chaînes de caractères </para>
+        </listitem>
+      </varlistentry>
+    
+      <varlistentry>
+        <term>k  </term>
+        <listitem>
+          <para>vecteur d'entiers
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>unique(M)</literal> renvoie un vecteur contenant les valeurs distinctes contenues dans les termes de <literal>M</literal> classées par ordre croissant.
+  </para>
+  <para><literal>unique(M,"r")</literal> ou <literal>unique(M,1)</literal>retourne les lignes uniques de <literal>M</literal>
+    triées dans l'ordre lexicographique croissant.</para>
+    <para><literal>unique(M,"c")</literal> or <literal>unique(M,2)</literal>retourne les colonnes uniques <literal>M</literal>
+    triées dans l'ordre lexicographique croissant.</para>
+
+    <para>
+    S'il est présent l'argument de sortie <literal>k</literal> contient la position de la première occurrence de chaque valeur distincte dans <literal>M</literal>.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+M=round(2*rand(20,1));
+
+unique(M)
+[N,k]=unique(M)
+
+unique(string(M))
+[N,k]=unique(string(M))
+
+A = [0,0,1,1;
+     0,1,1,1;
+     2,0,1,1;
+     0,2,2,2;
+     2,0,1,1;
+     0,0,1,1];
+T='x'+string(A);
+
+//unique rows
+
+[m,k]=unique(A,'r')
+unique(T,'r')
+
+//unique columns
+[m,k]=unique(T,'c')
+unique(A,'c')
+ 
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="union">union</link>
+      </member>
+      <member>
+        <link linkend="intersect">intersect</link>
+      </member>
+      <member>
+        <link linkend="gsort">gsort</link>
+      </member>
+      <member>
+        <link linkend="lex_sort">lex_sort</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

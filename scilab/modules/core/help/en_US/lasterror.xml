@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lasterror">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lasterror</refname>
+    <refpurpose> get last recorded error message</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>str=lasterror( [opt] )
+[str,n]=lasterror([opt])
+[str,n,line,func]=lasterror([opt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para> vector of character strings or an empty matrix. The last recorded error message.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para> integer, 0 or the last recorded error number.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>line</term>
+        <listitem>
+          <para> integer, 0 or the last recorded function line number.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>func</term>
+        <listitem>
+          <para> string,the last recorded function name</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para> boolean, if %t recorded message is cleared. Default is %t.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Each time an error occur, the Scilab error handler records it in
+    internal tables (only the last one is retained). The <literal>lasterror</literal>
+    function allows to get the message,  the error number, the current
+    function (if any) and the current line of the current function out of these
+    tables.</para>
+    <para>
+    This function is useful while using <literal>errcatch</literal> or <literal>execstr</literal>.</para>
+    <para>
+    The recorded error message may be retained for a further call to
+    <literal>lasterror</literal> using <literal>lasterror(%f)</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+ierr=execstr('a=zzzzzzz','errcatch')
+if ierr>0 then disp(lasterror()),end
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="error">error</link>
+      </member>
+      <member>
+        <link linkend="errclear">errclear</link>
+      </member>
+      <member>
+        <link linkend="edit_error">edit_error</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,93 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+#ifndef AST_ASSIGNEXP_HXX
+# define AST_ASSIGNEXP_HXX
+
+# include "exp.hxx"
+
+namespace ast
+{
+  /** \brief Abstract an Assign Expression node.
+   **
+   ** \b Example: b = a */
+  class AssignExp : public Exp
+  {
+public:
+    AssignExp (const Location& location,
+	       Exp& left_exp, Exp& right_exp) :
+      Exp (location),
+      _left_exp (&left_exp),
+      _right_exp (&right_exp)
+    {
+    }
+    /** \brief Destroy an Assign Exp node.
+     **
+     ** Delete var et exp (see constructor). */
+    virtual ~AssignExp ()
+    {
+//      delete  _left_exp;
+//      delete  _right_exp;
+    }
+    /** \} */
+
+    /** \name Visitors entry point.
+     ** \{ */
+  public:
+    /** \brief Accept a const visitor \a v. */
+    virtual void accept (Visitor& v)
+    {
+      v.visit (*this);
+    }
+    /** \brief Accept a non-const visitor \a v. */
+    virtual void accept (ConstVisitor& v) const
+    {
+      v.visit (*this);
+    }
+    /** \} */
+
+
+    /** \name Accessors.
+     ** \{ */
+  public:
+    /** \brief Return the name of the size (read only). */
+    const Exp& left_exp_get() const
+    {
+      return *_left_exp;
+    }
+    /** \brief Return the name of the size */
+    Exp& left_exp_get()
+    {
+      return *_left_exp;
+    }
+
+    /** \brief Return the name of the init (read only). */
+    const Exp& right_exp_get() const
+    {
+      return *_right_exp;
+    }
+    /** \brief Return the name of the init */
+    Exp& right_exp_get()
+    {
+      return *_right_exp;
+    }
+    /** \} */
+
+  protected:
+    /** \brief Left variable which is affected. */
+    Exp* _left_exp;
+    /** \brief Right expression which affect var. */
+    Exp* _right_exp;
+  };
+} // namespace ast
+
+#endif // !AST_ASSIGNEXP_HXX

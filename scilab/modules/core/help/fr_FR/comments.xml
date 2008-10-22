@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="comments">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>comments</refname>
+    <refpurpose>commentaires</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Les lignes de commandes commençant par <literal> // </literal> ne sont pas
+    interprétées par Scilab.</para>
+  </refsection>
+</refentry>

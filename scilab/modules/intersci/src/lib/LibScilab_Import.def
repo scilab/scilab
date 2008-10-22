@@ -1,0 +1,7 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+; core
+  iop_
+

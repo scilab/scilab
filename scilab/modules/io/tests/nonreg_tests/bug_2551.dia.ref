@@ -1,0 +1,15 @@
+// <-- Non-regression test for bug 2551 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bugAdmin_II/show_bug.cgi?id=2551
+//
+// <-- Short Description -->
+//   error recovery problem
+// Serge Steer - Scilab Project
+// Copyright INRIA
+// 6 feb 2008
+function f();  x=1;y=x(3);endfunction
+ ierr  =
+ 
+    21.  
+if ierr<>21 then bugmes();quit;end

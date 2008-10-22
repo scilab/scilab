@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="startup" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>January 2008</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>startup</refname>
+
+    <refpurpose>startup file</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The startup file <literal>SCIHOME/.scilab</literal> and
+    <literal>SCIHOME/scilab.ini</literal> in are automatically executed (if
+    present) when Scilab is invoked, in addition with the file
+    <literal>scilab.star</literal> in the Scilab directory (SCI).</para>
+  </refsection>
+
+  <refsection>
+    <title>Remarks</title>
+
+    <para>Last line of startup file must be terminated by a newline to be
+    taken into account.</para>
+
+    <para>SCIHOME definition : On Windows : C:/Documents and
+    Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt; </para>
+
+    <para>or on Vista :
+    C:/&lt;User&gt;/AppData/Roaming/Scilab/&lt;Scilab-Version&gt; </para>
+
+    <para>On Linux/Unix :
+    /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="scilab">scilab</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

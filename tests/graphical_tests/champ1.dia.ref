@@ -1,0 +1,21 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/champ1_data.ref','rb');
+ 
+ 
+%ans = champ1(-5:5, -5:5, rand(11, 11), rand(11, 11), rect=[-10,-10,10,10], arfact=2);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+xdel_run(winsid());
+ 
+ handle of type Champ unhandled   
+ 
+ 
+mclose(%U);
+ 

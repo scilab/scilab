@@ -1,0 +1,67 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/lsq_data.ref','rb');
+ 
+//Build the data
+ 
+x = (1:10)';
+ 
+ 
+y1 = 3 * x + 4.5 + 3 * rand(x, 'normal');
+ 
+y2 = 1.8 * x + 0.5 + 2 * rand(x, 'normal');
+ 
+%ans = plot2d(x, [y1,y2], [-2,-3]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+//Find the linear regression
+ 
+A = [x,ones(x)];B = [y1,y2];
+ 
+X = lsq(A, B);
+ 
+ 
+y1e = X(1, 1) * x + X(2, 1);
+ 
+y2e = X(1, 2) * x + X(2, 2);
+ 
+%ans = plot2d(x, [y1e,y2e], [2,3]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+//Difference between lsq(A,b) and A\b
+ 
+A = rand(4, 2) * rand(2, 3);//a rank 2 matrix
+ 
+b = rand(4, 1);
+ 
+X1 = lsq(A, b);
+ 
+if load_ref('X1') then   bugmes();quit;end,
+ 
+ 
+X2 = A\b;
+rank defficient. rank =     2
+ 
+ 
+if load_ref('X2') then   bugmes();quit;end,
+ 
+ 
+%ans = [A * X1 - b,A * X2 - b];
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//the residuals are the same
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

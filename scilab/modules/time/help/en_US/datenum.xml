@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="datenum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datenum</refname>
+    <refpurpose>Convert to serial date number</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>N = datenum()
+N = datenum(DT)
+N = datenum(Y, M, D)
+N = datenum(Y, M, D, H, MI, S)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+			The datenum function converts date vectors (defined by datevec) into
+			serial date numbers. Date numbers are serial days elapsed from some
+			reference date. By default, the serial day 1 corresponds to 1-Jan-0000.
+		</para>
+    <para>
+			N = datenum() returns the serial date numbers corresponding to current date.
+		</para>
+    <para>
+			N = datenum(DT) converts one or more date vectors to serial date number N.
+			DT can be an m-by-6 or m-by-3 matrix containing m full or partial date vector
+			respectively. 
+		</para>
+    <para>
+			N = datenum(Y, M, D) returns the serial date numbers for corresponding elements 
+			of the Y, M, and D (year, month, day) arrays. Y, M and D must be arrays of the same
+			size (or any can be a scalar).
+		</para>
+    <para>
+			N = datenum(Y, M, D, H, MI, S) returns the serial date numbers for
+			corresponding elements of the Y, M, D, H, MI, and S (year, month, day,
+			hour, minute, and second) array values.Y, M, D, H, MI, and S must be arrays of 
+			the same size (or any can be a scalar).
+		</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+// N = datenum()	
+datenum()
+
+// N = datenum(DT)
+A = [ 0 1 1 0 0 0 ; 2005 2 8 21 37 30 ]
+datenum(A)
+
+// N = datenum(Y, M, D)
+
+Years = [0; 1973; 2006]
+Months = [1; 8; 2]
+Days = [1; 4; 8]
+datenum(Years,Months,Days)
+
+Years = [0 0 0 ; 0 0 0]
+Months = [1 1 1 ; 1 1 1]
+Days = [1 2 3 ; 4 5 6]
+datenum(Years,Months,Days)
+
+// N = datenum(Y, M, D, H, MI, S)
+
+Years = grand(5,10,'uin',0,2006)
+Months = grand(5,10,'uin',1,12)
+Days = grand(5,10,'uin',1,28)
+Hours = grand(5,10,'uin',0,23)
+Minutes = grand(5,10,'uin',0,59)
+Seconds = grand(5,10,'uin',0,59)
+datenum(Years,Months,Days,Hours,Minutes,Seconds)
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datevec">datevec</link>
+      </member>
+      <member>
+        <link linkend="calendar">calendar</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
+</refentry>

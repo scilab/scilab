@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="listvarinfile">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>listvarinfile</refname>
+    <refpurpose>list the contents of a saved data file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>listvarinfile(filename)
+[nams,typs,dims,vols]=listvarinfile(filename)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>character string, the pathname of the file to be inspected
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nams</term>
+        <listitem>
+          <para>character array, names of the variables saved in the file
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dims</term>
+        <listitem>
+          <para>list, dimensions of the variables saved in the file
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>typs</term>
+        <listitem>
+          <para>numeric array, types of the variables saved in the file
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>vols</term>
+        <listitem>
+          <para>numeric array, size in bytes of the variables saved in the file 
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+      This utility function lists "a la <link linkend="whos">whos</link>" the variables contained in
+      a Scilab data file produced by <link linkend="save">save</link>.
+     </para>
+        <para>
+     Remark: hypermatrices are reported as plain mlists;
+     rationals and state-spaces are reported as plain tlists;
+     graphic handles are not recognized.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+   a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
+   save("vals.dat",a,b,c)
+   listvarinfile("vals.dat")
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="whos">whos</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="save_format">save_format</link>
+      </member>
+      <member>
+        <link linkend="type">type</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+    31 Jan 2001; reediting by Enrico Segre
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

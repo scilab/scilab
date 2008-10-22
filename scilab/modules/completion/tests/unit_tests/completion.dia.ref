@@ -1,0 +1,72 @@
+//===============================
+// unit tests completion
+// INRIA 2007
+//===============================
+// parameters tests
+r = completion('%');
+s = size(r,'*');
+if s < 748 then bugmes();quit;end
+//===============================
+functions1 = completion('%','functions');
+s = size(functions1,'*');
+if s < 17 then bugmes();quit;end
+//===============================
+commands1 = completion('%','commands');
+s = size(commands1,'*');
+if s <> 0 then bugmes();quit;end
+//===============================
+variables1 = completion('%','variables');
+s = size(variables1,'*');
+if s < 23 then bugmes();quit;end
+//===============================
+macros1 = completion('%','macros');
+s = size(macros1,'*');
+if s < 705 then bugmes();quit;end
+//===============================
+graphic_properties1 = completion('%','graphic_properties');
+s = size(graphic_properties1,'*');
+if s <> 0 then bugmes();quit;end
+//===============================
+files1 = completion('%','files');
+s = size(files1,'*');
+if s <> 0 then bugmes();quit;end
+//===============================
+[functions2,commands2,variables2,macros2,graphic_properties2,files2] = completion('%');
+if functions2 <> functions1 then bugmes();quit;end
+if commands2 <> commands1 then bugmes();quit;end
+if variables2 <> variables1 then bugmes();quit;end
+if macros2 <> macros1 then bugmes();quit;end
+if graphic_properties2 <> graphic_properties1 then bugmes();quit;end
+if files2 <> files1 then bugmes();quit;end
+//===============================
+[functions3,commands3,variables3,macros3,graphic_properties3] = completion('%');
+if functions3 <> functions1 then bugmes();quit;end
+if commands3 <> commands1 then bugmes();quit;end
+if variables3 <> variables1 then bugmes();quit;end
+if macros3 <> macros1 then bugmes();quit;end
+if graphic_properties3 <> graphic_properties1 then bugmes();quit;end
+//===============================
+[functions4,commands4,variables4,macros4] = completion('%');
+if functions4 <> functions1 then bugmes();quit;end
+if commands4 <> commands1 then bugmes();quit;end
+if variables4 <> variables1 then bugmes();quit;end
+if macros4 <> macros1 then bugmes();quit;end
+//===============================
+[functions5,commands5,variables5] = completion('%');
+if functions5 <> functions1 then bugmes();quit;end
+if commands5 <> commands1 then bugmes();quit;end
+if variables5 <> variables1 then bugmes();quit;end
+//===============================
+[functions6,commands6] = completion('%');
+if functions6 <> functions1 then bugmes();quit;end
+if commands6 <> commands1 then bugmes();quit;end
+//===============================
+// check memory leak
+//for i=1:1000000,a=completion('w');end;
+//for i=1:1000000,a=completion('w',"functions");end;
+//for i=1:1000000,a=completion('w',"commands");end;
+//for i=1:1000000,a=completion('w',"variables");end;
+//for i=1:1000000,a=completion('w',"macros");end;
+//for i=1:1000000,a=completion('w',"graphic_properties");end;
+//for i=1:1000000,a=completion('w',"files");end;
+//===============================

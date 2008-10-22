@@ -1,0 +1,99 @@
+\documentstyle[11pt]{article}
+% Copyright ENPC
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+             \title{Simulation of an n-link pendulum} 
+             \author{J.Ph. Chancelier\thanks{Cergrene. Ecole Nationale des Ponts et Chauss\'ees, La Courtine  93167 Noisy le Grand C\'{e}dex }}
+ 
+\begin{document}\maketitle
+
+\def\tenrm{\size{10}{11pt}\shape{n}\family{cmr}\selectfont} 
+\def\elvrm{\size{11}{12pt}\shape{n}\family{cmr}\selectfont} 
+\def\sixrm{\size{6}{7pt}\shape{n}\family{cmr}\selectfont} 
+\def\sevrm{\size{7}{8pt}\shape{n}\family{cmr}\selectfont} 
+\def\dotx{\dot{x}}
+\def\doty{\dot{y}}
+\def\dotq{\dot{q}}
+\def\dotth{\dot{\theta}}
+
+\input npend.tex
+\dessin{3-link Pendulum}{tlp}
+
+\section{Equation of motion of an N-link pendulum}
+The n-link pendulum is described on picture~(\ref{tlp}).
+For the i-link~:
+\begin{equation}
+	E_i^c = 
+	 1/2 m_i \left( (\dotx_{i-1} - l_i/2 \sin(\theta_i)\dotth_i)^2 +
+	(\doty_{i-1}+ l_i/2 \cos(\theta_i)\dotth_i)^2 \right)
+	+1/2 J_i \dot{\theta}_i^2
+\end{equation}
+with~:
+\begin{equation}
+	J_i= m_i l_i^2/12 
+\end{equation}
+\begin{equation}
+	E_i^p= m_i g \left( y_{i-1} + l_i/2 \sin(\theta_i)\right)
+\end{equation}
+With the added point $(x_0,y_0)=(0,0)$.
+The n-link pendulum has the following Lagrangian~:
+\begin{eqnarray}
+	L(q,\dot{q})&=& 
+	\sum_{i=1}^n \left\{
+	 1/2 m_i \left( (\dotx_{i-1} - l_i/2 \sin(\theta_i)\dotth_i)^2 +
+	(\doty_{i-1}+ l_i/2 \cos(\theta_i)\dotth_i)^2 \right)
+	+1/2 J_i \dot{\theta}_i^2 \right.\\
+	&-& \left. \left( m_i g \left( y_{i-1} + l_i/2 \sin(\theta_i)\right)\right)
+	\right\}
+\end{eqnarray}
+And is subject to the following set of constraints~:
+\begin{equation}
+	i=1,\ldots,n \quad \left\{
+	\begin{array}{lcl}
+	 x_i -x_{i-1} &=& l_i \cos(\theta_i) \\
+	 y_i -y_{i-1} &=& l_i \sin(\theta_i) \\
+	\end{array} \right.
+\label{const}
+\end{equation}
+
+A time derivative of equation~(\ref{const}) leads to~:
+\begin{equation}
+	i=1,\ldots,n \quad \left\{
+	\begin{array}{lcl}
+	 \dotx_i -\dotx_{i-1} + l_i \sin(\theta_i)\dotth_i =0 \\
+	 \doty_i -\doty_{i-1} - l_i \cos(\theta_i) \dotth_i =0 
+	\end{array} \right.
+\label{const}
+\end{equation}
+Which is of the form $A'(q) \dot{q} =0$.
+If we solve the linear system $ A'(q)\tilde{q}=0 $ it's easy to see
+that the solution depend on n-parameters $(\pi_i)_{i=1,n}$
+\begin{eqnarray}
+	\tilde{x}_i &=& - \sum_{k\le i} l_k \sin(\theta_k) \pi_k\\
+	\tilde{y}_i &=&  \sum_{k\le i} l_k \cos(\theta_k) \pi_k\\
+	\tilde{\theta}_i &=& \pi_k
+\label{eqp}
+\end{eqnarray}
+In a  matrix form equation~(\ref{eqp}) gives $\tilde{q}=S(q)\pi$ and 
+$ A(q)'S(q)=0$ 
+
+Th Euler-Lagrange equations for the n-link pendulum can be derived
+from The lagrangian and the constraints~:
+\def\derivt{ {d \over dt}}
+\def\derp#1#2{ { \partial #1 \over \partial #2}}
+\begin{equation}
+		\begin{array}{l} 
+	\displaystyle \derivt ( \derp{L}{\dotq_i}(q(t),\dotq(t)) 
+	- \derp{L}{q_i}(q(t),\dotq(t)) = (A(q)\lambda)_i \\
+		\displaystyle \derivt q = \dotq
+		\end{array}
+\end{equation}
+
+\end{document}
+
+
+

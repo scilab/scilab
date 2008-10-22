@@ -1,0 +1,35 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 1720 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1720
+//
+// <-- Short Description -->
+//    Scilab 4.0-RC1
+//    Different default behavior of xfrect and xfarc
+//    xfrec does not draw the limit of the rectangle
+//    xfarc draws the limit of the circle
+//
+//    I don't know which is right and which is wrong, but there is an obvious
+//    inconsistency between the two behaviors
+//
+//    Jacques-Deric
+hf               = scf(1) ;
+hf.figure_name   = "4.13.22A1";
+ha               = hf.children;
+ha.axes_visible  = "on";
+ha.box           = "on";
+xfrect (0,0.5,0.5,0.5);
+hr               = gce();
+hr.background    = 5;
+xfarc (0.5,1,0.5,0.5,0,23040);
+hc               = gce();
+hc.background    = 6;
+// check that xfarc fill the arc and don't draw the limit
+if hc.line_mode <> 'off' then bugmes();quit;end

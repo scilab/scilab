@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="ones">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ones</refname>
+    <refpurpose> matrice remplie de 1  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=ones(m1,m2,...)
+y=ones(x)
+y=ones()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y  </term>
+        <listitem>
+          <para>matrices
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m1, m2,..  </term>
+        <listitem>
+          <para>entiers
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Renvoie une matrice dont tous les termes valent 1.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>ones(m1,m2)</term>
+        <listitem>
+          <para> Renvoie une matrice de taille  <literal>(m1,m2)</literal> remplie de 1. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ones(m1,m2,..,mn)</term>
+        <listitem>
+          <para>renvoie une matrice <literal>(m1,m2,..,mn)</literal> remplie de 1. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ones(x)</term>
+        <listitem>
+          <para>renvoie une matrice remplie de 1 de même taille que <literal>x</literal>. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ones(x)</term>
+        <listitem>
+          <para>est aussi valide si <literal>x</literal> est une liste de type <literal>syslin</literal> (système dynamique linéaire sous forme d'une fonction de transfert ou d'une représentation d'état). </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    Notez que <literal>ones(3)</literal> est équivalent à <literal>ones(a)</literal> avec <literal>a=3</literal> et donc n'est PAS une matrice 3x3 !
+  </para>
+    <para>
+    ones() est équivalent à ones(1,1).
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+ones(3)
+ones(3,3)
+ones(2,3,2)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eye">eye</link>
+      </member>
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

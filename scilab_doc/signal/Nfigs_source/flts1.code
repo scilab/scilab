@@ -1,0 +1,4 @@
+//filtering of signals
+xinit('flts1.ps')
+exec('Sflts1.code')
+xend();

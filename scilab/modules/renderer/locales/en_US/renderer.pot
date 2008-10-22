@@ -1,0 +1,56 @@
+# Localization of the module renderer
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:07+0100\n"
+
+# File: src/norenderer/norenderer.c, line: 19
+msgid "Scilab Renderer module not installed.\n"
+msgstr ""
+#
+# File: src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp, line: 57
+# File: src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp, line: 68
+# File: src/cpp/segsDrawing/ConcreteDrawableSegs.cpp, line: 123
+# File: src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp, line: 61
+# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 71
+# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 105
+# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 72
+# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 105
+# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 72
+# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 103
+# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 82
+# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 106
+# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 73
+# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 91
+# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 69
+# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 86
+# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 90
+# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 113
+# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 66
+# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 82
+# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 84
+# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 238
+# File: src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp, line: 59
+# File: src/cpp/fecDrawing/ConcreteDrawableFec.cpp, line: 79
+# File: src/cpp/fecDrawing/FecLineDrawerJoGL.cpp, line: 57
+# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 68
+# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 89
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp, line: 62
+msgid "Unable to render polyline, memory full.\n"
+msgstr ""

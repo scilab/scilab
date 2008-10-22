@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) ???? - INRIA - Scilab
+# 
+# This file is distributed under the same license as the Scilab package.
+#
+# GEN prototype Matlab_fun_name Scilab_fun_name
+sed -e "s/Prototype.*$/File generated from $1: PLEASE DO NOT EDIT !/" -e "s/MFUN/$2/g" -e "s/SFUN/$3/g" $1
+ 

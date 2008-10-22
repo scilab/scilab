@@ -1,0 +1,270 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-06-18 16:16+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: 無法開啟檔案 %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s, an integer or a vector "
+"of 2 integers.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %s, 整數或 2 個整數之向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or 2-element vector.\n"
+msgstr "%s: 輸入參數數值錯誤: 應為純量或 2 個元素之向量.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr "%s: 錯誤: 未支持資料壓縮格式 %s .\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s: 輸入參數數值錯誤: 檔案名稱必須為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 輸入參數錯誤: 應為 '%s' 或 '%s'.\n"
+
+msgid "Cannot play file."
+msgstr "無法使用檔案."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "未安裝　Scilab sound  模組\n"
+
+#, c-format
+msgid "%s: .wav input file must be a file, not a pipe.\n"
+msgstr "%s .wav 輸入必須為一檔案，不能是 pipe.\n"
+
+#, c-format
+msgid "%s : not a RIFF file.\n"
+msgstr "%s:  不是一 RIFF 檔.\n"
+
+#, c-format
+msgid "%s: not a WAVE file.\n"
+msgstr "%s:  不是 WAVE 檔.\n"
+
+#, c-format
+msgid "%s: missing fmt spec.\n"
+msgstr "%s: 缺少 fmt 規格.\n"
+
+#, c-format
+msgid "%s : fmt chunk is too short\n"
+msgstr "%s: fmt  區塊過短\n"
+
+#, c-format
+msgid "%s: this WAV file is in Microsoft Official Unknown format.\n"
+msgstr "%s: 此 WAV 檔是 Microsoft Official  之 Unknown  格式.\n"
+
+#, c-format
+msgid "%s: user options overiding style read in .wav header\n"
+msgstr "%s: 使用者選項取代 由.wav 標頭所讀取之樣式\n"
+
+#, c-format
+msgid "%s : this WAV file is in Microsoft ADPCM format.\n"
+msgstr "%s: 此 WAV 檔是 Microsoft 之 ADPCM 格式.\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header.\n"
+msgstr "%s: 使用者選項取代 由.wav 標頭所讀取之樣式\n"
+
+#, c-format
+msgid "%s: User options overiding style read in .wav header\n"
+msgstr "%s: 使用者選項取代 由.wav 標頭所讀取之樣式\n"
+
+#, c-format
+msgid "%s: this WAV file is in OKI ADPCM format.\n"
+msgstr "%s: 此 WAV 檔是 OKI  之 ADPCM 格式.\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digistd format.\n"
+msgstr "%s: 此 WAV 檔是 Digistd 格式.\n"
+
+#, c-format
+msgid "%s: this WAV file is in Digifix format.\n"
+msgstr "%s: 此 WAV 檔不是 Digifix  格式.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM U-law format.\n"
+msgstr "%s: 此 WAV 檔不是 IBM U-law 格式.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM A-law format.\n"
+msgstr "%s: 此 WAV 檔是 IBM A-law 格式.\n"
+
+#, c-format
+msgid "%s: this WAV file is in IBM ADPCM format.\n"
+msgstr "%s: 此 WAV 檔是 IBM ADPCM  格式.\n"
+
+#, c-format
+msgid "%s: don't understand format.\n"
+msgstr "%s: 無法解讀此格式.\n"
+
+msgid "User options overiding channels read in .wav header\n"
+msgstr "%s: 使用者選項取代 由.wav 標頭所讀取之通道\n"
+
+msgid "User options overiding rate read in .wav header\n"
+msgstr "%s: 使用者選項取代 由.wav 標頭所讀取之速率資訊\n"
+
+#, c-format
+msgid "%s: User options overiding size read in .wav header.\n"
+msgstr "%s: 使用者選項取代 由.wav 標頭所讀取之大小資訊\n"
+
+#, c-format
+msgid "%s: Incorrect .wav size.\n"
+msgstr "%s: 不正確之 .wav 大小.\n"
+
+#, c-format
+msgid "%s: missing data chunk.\n"
+msgstr "%s: 缺少資料塊.\n"
+
+#, c-format
+msgid "Reading Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr "讀取 Wave 檔: %s 格式, %d 通道 %s, %d 樣本/秒\n"
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n"
+msgstr "        %d 位元/秒, %d 塊對齊 , %d 字元/樣本, %u 位元資料\n"
+
+msgid "Premature EOF on .wav input file.\n"
+msgstr ""
+
+msgid "Length in output .wav header will wrong since can't seek to fix it.\n"
+msgstr ""
+
+msgid "User options overiding style written to .wav header.\n"
+msgstr ""
+
+#, c-format
+msgid "Sciprinting - writing bad .wav file using %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using unsigned data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using signed data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using A-law data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Sciprinting - writing bad .wav file using U-law data and %d bits/sample.\n"
+msgstr ""
+
+#, c-format
+msgid "Writing Wave file: %s format, %d channel%s, %d samp/sec\n"
+msgstr ""
+
+#, c-format
+msgid "        %d byte/sec, %d block align, %d bits/samp\n"
+msgstr ""
+
+#, c-format
+msgid "Finished writing Wave file, %u data bytes\n"
+msgstr ""
+
+msgid "Sorry, can't rewind output file to rewrite .wav header.\n"
+msgstr ""
+
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr "無法開啟輸入檔　'%s': %s\n"
+
+msgid "Error while reading\n"
+msgstr "讀檔時發生錯誤\n"
+
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr "輸入檔案: 取樣率 %lu\n"
+
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr "\ttab]大小 %s,  樣式 %s, %d %s\n"
+
+msgid "Sorry wav file too big\n"
+msgstr "對不起, wav 檔太大\n"
+
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr "無法開啟輸出檔 '%s': %s\n"
+
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr "檔案 %s 之取樣率未給定\n"
+
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr "取樣率 %lu  有誤 (檔案 %s )\n"
+
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr "檔案 %s 之資料大小未給定\n"
+
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr "檔案 %s 之資料樣式未給定\n"
+
+msgid "No U-Law support for shorts\n"
+msgstr "U-Law 編碼不支援 shorts\n"
+
+msgid "No A-Law support for shorts\n"
+msgstr "A-Law 編碼不支援 shorts\n"
+
+msgid "Drop through in rawread!\n"
+msgstr "rawread 函數呼叫失敗!\n"
+
+#, c-format
+msgid "Sorry, don't have code to read %s, %s\n"
+msgstr "對不起，沒有讀取 %s, %s 之編碼方式\n"
+
+msgid "No U-Law support for shorts (try -b option ?)\n"
+msgstr "U-Law 編碼不支援 shorts (試試 -b 選項)\n"
+
+msgid "No A-Law support for shorts (try -b option ?)\n"
+msgstr "A-Law 編碼不支援 shorts (試試 -b 選項)\n"
+
+msgid "Drop through in rawwrite!\n"
+msgstr "rawwrite 函數呼叫失敗!\n"
+
+#, c-format
+msgid "Sorry, don't have code to write %s, %s\n"
+msgstr "對不起，沒有寫出 %s, %s 之編碼方式\n"

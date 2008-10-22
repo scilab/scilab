@@ -1,0 +1,20 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/percentasn_data.ref','rb');
+m = 0.8;z = %asn(1/sqrt(m), m);K = real(z);Ktilde = imag(z);
+x2max = 1/sqrt(m);
+x1 = 0:0.05:1;x2 = 1:(x2max - 1)/20:x2max;x3 = x2max:0.05:10;
+x = [x1,x2,x3];
+y = %asn(x, m);
+rect = [0,-Ktilde,1.1 * K,2 * Ktilde];
+%ans = plot2d(real(y)', imag(y)', 1, '011', ' ', rect);
+if load_ref('%ans') then   pause,end,
+
+//
+deff('y=f(t)', 'y=1/sqrt((1-t^2)*(1-m*t^2))');
+%ans = intg(0, 0.9, f) - %asn(0.9, m);
+if load_ref('%ans') then   pause,end,
+//Works for real case only!
+xdel_run(winsid());
+
+mclose(%U);

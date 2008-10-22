@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getmark" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getmark</refname>
+
+    <refpurpose>dialog to select mark (symbol). <emphasis role="bold">Obsolete
+    function</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[mark,mrkSize]=getmark()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>mark</term>
+
+        <listitem>
+          <para>integer, the number of the selected mark</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mrkSize</term>
+
+        <listitem>
+          <para>integer, the size of the selected mark</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function designed to work with the <link
+    linkend="xset">xset</link> function <emphasis role="bold">is also
+    obsolete</emphasis>. Use the property editor <link
+    linkend="ged">ged</link> instead.</para>
+
+    <para><literal>getmark</literal> opens a graphic window to select a mark
+    (symbol).</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+x=0:0.1:10;
+[mark,mrkSize]=getmark();
+plot2d(x,sin(x),style=-mark);
+clf();
+plot2d(x,sin(x))
+e=gce(); // store the Compound containing the plot
+[mark,mrkSize]=getmark();
+e.children(1).mark_style = mark;
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="polyline_properties">segs_properties</link></member>
+
+      <member><link linkend="segs_properties">segs_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,17 @@
+// <-- Non-regression test for bug 2435 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2435
+//
+// <-- Short Description -->
+//    The following "optim based" function mades scilab hangs
+// Scilab Project - Serge Steer
+// Copyright INRIA 2007
+// Date : June 2007
+function [f,g,ind]=cost(x,ind)
+	xref=[1;2;3];
+	f=0.5*norm(x-xref)^2
+	g=x-xref;
+endfunction
+x0=[1;-1;1];
+if execstr('[f,xopt]=optim(cost,,''b'',-2*ones(x0),2*ones(x0),x0);','errcatch') <> 54  then bugmes();quit;end

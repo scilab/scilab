@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ls">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ls</refname>
+    <refpurpose> show files</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>ls path options
+files=ls( [path] )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a string matrix giving a directory pathname (eventually  ended
+	    by a pattern built with <literal>*</literal>). Default value is <literal>.</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>a string column vector. By default it contains a column
+	    formatted output. if one of the option is
+	    <literal>'-1'</literal>. <literal>files</literal> contains an entry for each
+	    files</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>ls</literal> can be used to list the files which match 
+      the patterns given by the path argument. 
+      Patterns are given to the unix <literal>ls</literal> or to the windows
+      <literal>dir</literal> commands in order to get information on files. 
+      Thus in order to write portable Scilab script valid wildcard patterns 
+      for both os are to be given. Note that Pathname conversion is
+      performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid 
+      pattern for both unix and windows.
+    </para>
+    <para>
+      If you want to get a vector of all files matching a pattern use preferabily
+      the  <link linkend="listfiles">listfiles</link>  or the <link linkend="dir">dir</link>function.
+    </para>
+    <para>
+	  Please note that starting from the version 5.0 of Scilab, the second 
+	  input argument has been removed (a sequence of strings which can 
+	  be added under Unix systems: the Unix ls command options).
+	  This option has been removed mainly for security and portability reasons.
+	</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+ls
+ls SCI/modules/core/macros/*.sci
+x=ls('SCI/modules/core/macros/*.sci')
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="listfiles">listfiles</link>
+      </member>
+      <member>
+        <link linkend="findfiles">findfiles</link>
+      </member>
+      <member>
+        <link linkend="dir">dir</link>
+      </member>
+      <member>
+        <link linkend="fileinfo">fileinfo</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

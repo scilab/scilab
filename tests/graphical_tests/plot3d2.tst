@@ -1,0 +1,20 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/plot3d2_data.ref','rb');
+
+u = linspace(-%pi/2, %pi/2, 40);
+v = linspace(0, 2 * %pi, 20);
+X = cos(u)' * cos(v);
+Y = cos(u)' * sin(v);
+Z = sin(u)' * ones(v);
+plot3d2(X, Y, Z);
+// New Graphic mode only
+e = gce();
+e('color_mode') = 4;// change color
+f = e('data');
+TL = tlist(['3d','x','y','z','color'], f('x'), f('y'), f('z'), 10 * f('z') + 1);
+//e.data=TL;
+e('color_flag') = 2;
+xdel_run(winsid());
+
+mclose(%U);

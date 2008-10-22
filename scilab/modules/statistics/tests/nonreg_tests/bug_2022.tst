@@ -1,0 +1,27 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA -Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 2022 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2022
+//
+// <-- Short Description -->
+//    percentile function (perctl) doesn't always calculate percentile value, instead
+//    choosing to error out:
+//
+//    Example that causes error:
+//
+//    perctl([23.4,364.34,1929.3,4234.3,293.3,928.3],[10])
+
+if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],90) <> [472 3]  ) then pause,end
+if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],75) <> [452 5]  ) then pause,end
+if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],10) <> [368 22] ) then pause,end
+if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],1)  <> [332 23] ) then pause,end
+if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],2)  <> [332 23] ) then pause,end
+if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],99) <> [500 1]  ) then pause,end
+if or( perctl([23.4,364.34,1929.3,4234.3,293.3,928.3],[10]) <> [23.4 1] ) then pause,end

@@ -1,0 +1,94 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/semidef_data.ref','rb');
+ 
+F0 = [2,1,0,0;
+  1,2,0,0;
+  0,0,3,1;
+  0,0,1,3];
+ 
+F1 = [1,2,0,0;
+  2,1,0,0;
+  0,0,1,3;
+  0,0,3,1];
+ 
+if load_ref('F1') then   bugmes();quit;end,
+ 
+ 
+F2 = [2,2,0,0;
+  2,2,0,0;
+  0,0,3,4;
+  0,0,4,4];
+ 
+blck_szs = [2,2];
+ 
+F01 = F0(1:2, 1:2);F02 = F0(3:4, 3:4);
+ 
+F11 = F1(1:2, 1:2);F12 = F1(3:4, 3:4);
+ 
+F21 = F2(1:2, 1:2);F22 = F2(3:4, 3:4);
+ 
+x0 = [0;0];
+ 
+if load_ref('x0') then   bugmes();quit;end,
+ 
+ 
+Z0 = 2 * F0;
+ 
+Z01 = Z0(1:2, 1:2);Z02 = Z0(3:4, 3:4);
+ 
+FF = [[F01(:);F02(:)],[F11(:);F12(:)],[F21(:);F22(:)]];
+ 
+if load_ref('FF') then   bugmes();quit;end,
+ 
+ 
+ZZ0 = [Z01(:);Z02(:)];
+ 
+c = [trace(F1 * Z0);trace(F2 * Z0)];
+ 
+options = [10,0.0000000001,0.0000000001,0,50];
+ 
+[x,Z,ul,info] = semidef(x0, pack(ZZ0), pack(FF), blck_szs, c, options);
+ 
+if load_ref('info') then   bugmes();quit;end,
+ 
+if load_ref('ul') then   bugmes();quit;end,
+ 
+if load_ref('Z') then   bugmes();quit;end,
+ 
+if load_ref('x') then   bugmes();quit;end,
+ 
+ 
+w = vec2list(unpack(Z, blck_szs), [blck_szs;blck_szs]);Z = sysdiag(w(1), w(2));
+ 
+if load_ref('Z') then   bugmes();quit;end,
+ 
+ 
+%ans = c' * x + trace(F0 * Z);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = spec(F0 + F1 * x(1) + F2 * x(2));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = trace(F1 * Z) - c(1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = trace(F2 * Z) - c(2);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

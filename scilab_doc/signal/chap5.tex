@@ -1,0 +1,600 @@
+% Copyright INRIA
+
+\chapter{Spectral Estimation}
+\section{Estimation of Power Spectra}
+\index{spectral estimation}
+
+	The power spectrum of a deterministic,
+finite length, discrete-time signal, $x(n)$, is defined to
+be the magnitude squared of the signal's Fourier transform
+%
+\begin{equation}
+S_x(\omega)=\frac{1}{N}|\sum_{n=0}^{N-1}x(n)e^{-j\omega n}|^2.
+\label{e.sp.1}
+\end{equation}
+%
+In an analogous fashion the cross-spectrum of two signals 
+$x(n)$ and $y(n)$ is defined to be
+%
+\begin{equation}
+S_{xy}(\omega)=\frac{1}{N}(\sum_{n=0}^{N-1}x(n)e^{-j\omega n})(\sum_{n=0}^{N-1}y(n)e^{-j\omega n})^*.
+\label{e.sp.2}
+\end{equation}
+%
+The power spectra of random, zero-mean, wide sense stationary signals
+are obtained from the Fourier transform of the correlation functions
+of these signals.  Thus, for $R_x$ representing the autocorrelation
+function of $x$ and $R_{xy}$ representing the cross-correlation function of
+$x$ with $y$ we have by definition that
+%
+\begin{eqnarray}
+R_x(m)&=&E\{x(n+m)x^*(n)\}\label{e.sp.3}\\
+R_{xy}(m)&=&E\{x(n+m)y^*(n)\}.
+\label{e.sp.4}
+\end{eqnarray}
+%
+Consequently, the power spectrum and cross-power spectrum 
+of $x(n)$ and of $x(n)$ with $y(n)$ are, respectively,
+%
+\begin{eqnarray}
+S_x(\omega)&=&\sum_{m=-\infty}^{\infty}R_x(m)e^{-j\omega m}
+\label{e.sp.5}\\
+S_{xy}(\omega)&=&\sum_{m=-\infty}^{\infty}R_{xy}(m)e^{-j\omega m}.
+\label{e.sp.6}
+\end{eqnarray}
+%
+
+The formulas (\ref{e.sp.5}) and (\ref{e.sp.6})  require estimates of 
+the correlation functions.
+Possible candidates for the estimates of the auto and cross
+correlation functions of finite length random signals
+(i.e., $x(n)\ne0$ and $y(n)\ne0$ for $n=0,1,\ldots,N-1$) are
+%
+\begin{eqnarray}
+\hat{R}_x(m)&=&\frac{1}{N}\sum_{n=0}^{N-1-m}x(n+m)x^*(n)
+\label{e.sp.7}\\
+\hat{R}_{xy}(m)&=&\frac{1}{N}\sum_{n=0}^{N-1-m}x(n+m)y^*(n).
+\label{e.sp.8}
+\end{eqnarray}
+%
+The estimates in (\ref{e.sp.7}) and (\ref{e.sp.8}) are unbiased, 
+consistent estimators in the limit as $N\rightarrow\infty$.  
+Furthermore, in the 
+case where the random signals are jointly Gaussian, these
+estimators are the maximum likelihood estimates of the correlation
+functions.  Another interesting property of 
+the estimators in (\ref{e.sp.7}) and (\ref{e.sp.8}) is that
+when substituted, respectively, into the expressions in 
+(\ref{e.sp.5}) and (\ref{e.sp.6}), after some algebraic
+manipulation, yield exactly the expressions in (\ref{e.sp.1})
+and (\ref{e.sp.2}).
+
+	Unfortunately, there is a serious problem with the 
+above power spectrum estimation scheme.  This problem is that the 
+resulting power spectral estimates, in the limit, are
+not consistent.  That is, the error variance
+of the estimate does not decrease with increasing data.
+Consequently, power spectral estimates obtained
+by taking the magnitude squared of the Fourier transform
+are high-variance, low-quality estimates.
+
+	In the sections which follow two
+techniques are discussed which yield improved
+spectral estimates.  These techniques are both based on averaging
+spectral estimates obtained
+from the classical approach just described.  This
+averaging, although introducing some biasing,
+yields greatly improved estimates in that, in the
+limit, these estimates become consistent.
+
+	The first averaging technique also sections
+the data into overlapping segments.  However, in this
+case the magnitude squared of the Fourier
+transform is calculated from each segment and then these
+are averaged together to yield the spectral estimate.
+This technique is called the modified periodogram
+method for spectral estimation.
+
+	The second averaging technique sections the data
+into overlapping segments.  For each segment an estimate of
+the correlation function is calculated.  These estimates are
+then averaged and the estimated power spectral density
+is the Fourier transform of the average.  This technique is known
+as the correlation method for spectral estimation.
+
+	Both techniques use windows\index{windowing!spectral estimation}
+to diminish the effects that finite data has on spectral estimation.
+These effects are identical to the problems encountered in
+FIR filter design, and, consequently, the reader is referred to
+the FIR filter design section for an explanation of the
+issues involved in the choice of windows.  In the discussion
+which follows cross-spectral estimation is not discussed considering
+that the cross-spectral estimate can be obtained as a simple
+modification of the auto-spectral estimation techniques.
+
+\section{The Modified Periodogram Method}
+\index{periodogram method}
+\index{spectral estimation!periodogram method}
+
+	The modified periodogram method of spectral estimation
+repeatedly calculates the periodogram of windowed sub-sections of the data.
+These periodograms are then averaged together and normalized by
+an appropriate constant to obtain the final spectral estimate.
+It is the averaging process which reduces the variance in the
+estimate.
+
+	The periodogram of a finite data sequence is defined by
+%
+\begin{equation}
+I(\omega)=\frac{1}{U}|\sum_{n=0}^{N-1}w(n)x(n)e^{-j\omega n}|^2.
+\label{e.sp.9}
+\end{equation}
+%
+where $w(n)$ is a window function which has energy $U$.  Consequently,
+if $K$ sub-segments of length $N$ are used to calculate the spectrum
+of the signal then the modified periodogram spectral estimate, $\hat{S}_x$,
+is just the average of the $K$ periodograms
+%
+\begin{equation}
+\hat{S}_x(\omega)=\frac{1}{K}\sum_{k=0}^{K-1}I_k
+\label{e.sp.10}
+\end{equation}
+%
+where each of the $I_k$ is the periodogram (calculated as in (\ref{e.sp.9}))
+of the $k^{th}$ segment of data.
+
+	Normally, the $K$ segments of data are taken so that there
+is a regular pattern of overlap in the successive segments.  That is,
+the $k^{th}$ and $(k+1)^{th}$ segments overlap by $D$ points.
+Figure~\ref{f.spect1} illustrates three consecutive
+overlapping segments of a data sequence.
+%
+\input{\Figdir spect1.tex}
+\dessin{{\tt exec('spect1.code')} Overlapping Data}{f.spect1}
+%
+It can be shown that an overlap of fifty percent in the data segments
+results in an approximately fifty percent reduction in the variance
+of the estimate of the power spectrum \cite{rabiner}.  Normally, one
+chooses the length of the data segments to reflect the {\em a priori}
+knowledge of the correlation length of the data.  That is to say
+that if the correlation between two data samples separated by more than $M$
+points is considered negligible then the data segment should be of
+a length on the order of $M$.  The number of data segments used determines
+the variance of the spectral estimate.  The variance decreases proportionally
+to the number of independent segments.  Of course, with a limited
+quantity of data the number of data segments must also be limited.
+
+	The function {\tt pspect} calculates an estimate of
+the power spectrum using the modified periodogram method.
+
+\subsection{Example Using the {\tt pspect} function}
+\index{periodogram method!example}
+
+	In this section, we demonstrate the use of the {\tt pspect}
+macro.  The data used is generated by passing zero-mean white noise
+of unit variance through a low-pass filter.  Consequently, the spectrum
+of the data should be the magnitude square of the filter frequency
+response.  The low-pass filter is an FIR filter of length 33 generated
+using the function {\tt eqfir} .  
+
+	The data was generated using the following Scilab commands,
+\verbatok{\Diary pspect1.dia}
+\end{verbatim}
+As can be seen, a total of 1024 data points are available for the
+estimation of the spectrum.  The logarithm of the magnitude squared
+of the filter frequency response is shown in Figure~\ref{f.spect2}.
+%
+\input{\Figdir spect2.tex}
+\dessin{{\tt exec('spect2\_4.code')} Log Magnitude Squared of Filter}{f.spect2}
+%
+
+
+	The data obtained above are used to estimate the power spectrum
+in the following way
+\begin{verbatim}
+-->[sm]=pspect(100,200,'tr',y);
+\end{verbatim}
+The log-magnitude of the power spectrum ({\tt sm}) is plotted in
+Figure~\ref{f.spect3}.  It should be pointed 
+out here that the value of the section lengths was chosen to be
+200 in this example to obtain additional resolution in the 
+plot of the Fourier transform of the estimated power spectrum in
+Figure~\ref{f.spect3}.  However, there is very acceptable
+behavior of the spectral estimate when the section length is
+on the order of twice the filter length.  This is due to the
+fact that one does not expect correlations in the data that are 
+much longer than 
+the filter length.  Normally, the section lengths are chosen to
+reflect the {\em a priori} knowledge of the correlation length in
+the data.
+%
+\input{\Figdir spect3.tex}
+\dessin{{\tt exec('spect2\_4.code')} Estimate of Spectrum}{f.spect3}
+%
+As can be seen the estimated spectrum matches the theoretical spectrum
+(Figure~\ref{f.spect2}) very well.  In particular, 
+the peaks of the spectrum in both the pass
+and stop bands matches well with those of the filter magnitude response.
+Furthermore, the normalization of the estimate is accurate with respect
+to the filter response.
+
+
+\section{The Correlation Method}
+\index{spectral estimation!correlation method}
+\index{correlation method}
+
+	The correlation method for power spectral estimation
+calculates the spectral estimate as the Fourier transform
+of a modified estimate of the autocorrelation function.
+This modified estimate of the autocorrelation function
+consists of repeatedly calculating estimates of the 
+autocorrelation function as in (\ref{e.sp.7}) from
+overlapping sub-segments of the data, and then averaging
+these estimates to obtain the modified estimate.
+
+	Consequently, referring again to Figure~\ref{f.spect1},
+for each length $N$ sub-segment of the data $x_k(n)$ the estimate
+of $2M$ points of the autocorrelation function is calculated by
+%
+\begin{equation}
+\hat{R}_k(m)=\sum_{n=0}^{N-1-m}x(n+m)x^*(n)
+\label{e.sp.11}
+\end{equation}
+%
+for $m=0,\pm1,\pm2,\ldots,\pm M$.  For $K$ estimates of the autocorrelation 
+function calculated as in (\ref{e.sp.11}) the power spectral estimate is
+obtained from
+%
+\begin{equation}
+\hat{S}_x(\omega)={\cal F}\{\tilde{R}_x(m)w(m)\}
+\label{e.sp.12}
+\end{equation}
+%
+where ${\cal F}\{\cdot\}$ represents the Fourier transform operation,
+$w(m)$ is a window function, and $\tilde{R}_x(m)$ is the
+average of the $K$ estimates
+%
+\begin{equation}
+\tilde{R}_x=\frac{1}{K}\sum_{k=1}^{K}\hat{R}_k.
+\label{e.sp.13}
+\end{equation}
+%
+
+	The correlation method of spectral estimation is based
+on the {\tt corr} primitive in Scilab.  The primitive {\tt corr}
+is useful for any application requiring correlations or cross-correlations.
+Documentation on this primitive can be found in the introductory
+manual for Scilab.
+
+The function {\tt cspect} calculates an estimate of
+the power spectrum using the correlation method for spectral estimation.
+
+\subsection{Example Using the function {\tt cspect}}
+\index{correlation method!example}
+
+	Here, for comparison purposes, the same example as used in
+the case of the {\tt pspect} macro is examined using the {\tt cspect}
+macro.  The data used is identical
+to that used in the previous example.  These data 
+are used to estimate the power spectrum
+in the following way
+\begin{verbatim}
+-->[sm]=cspect(100,200,'tr',y);
+\end{verbatim}
+The log-magnitude of the power spectrum ({\tt sm}) is plotted in
+Figure~\ref{f.spect4}.  
+
+It should be pointed 
+out here that the value of the 
+the number of lags (100) and the number of transform points (200)
+were chosen to match the previous example where the {\tt pspect}
+macro was used.
+A plot of the estimated power spectrum is illustrated in
+Figure~\ref{f.spect4}.
+%
+\input{\Figdir spect4.tex}
+\dessin{{\tt exec('spect2\_4.code')} Estimate of Spectrum}{f.spect4}
+%
+As can be seen the estimated spectrum also matches the theoretical spectrum
+(Figure~\ref{f.spect2} very well.  There are some differences,
+however, between the estimates obtained using the two different macros.
+The primary difference to keep in mind is the difference in how the windows
+are used for the two different techniques.  In the correlation
+method the magnitude of the window is convolved with the
+spectrum of the signal.  In the modified periodogram method the {\em square}
+of the magnitude of the window is convolved with the spectrum of the signal.
+Consequently, the effects of windows are different in each of the two cases
+(for example, the side-lobes of the window are lower in the case of the 
+modified periodogram method due to the squaring of its magnitude).
+The quantitative differences between the two techniques are difficult
+to address here due to the complexity of the question.  There are some
+relevant questions concerning which technique may be the best in any
+one application.  For more information on how to choose between the
+techniques the user is referred to \cite{rabiner} and the relevant references
+found within.
+
+
+\section{The Maximum Entropy Method}
+\index{spectral estimation!maximium entropy method}
+\index{maximum entropy method}
+\subsection{Introduction}
+
+	The power spectrum of a deterministic signal
+is defined to be the squared magnitude of the signal's Fourier
+transform.  That is, for $x(n)$ a discrete time signal, the power spectrum,
+$S_x(\omega)$, is 
+%
+\begin{equation}
+     S_x(\omega)=|X(\omega)|^2
+\label{e33.1}
+\end{equation}
+%
+where
+%
+\begin{equation}
+     X(\omega)=\sum_{n=-\infty}^{\infty}x_ne^{-j\omega n}.
+\label{e3.2}
+\end{equation}
+%
+In many applications it is very useful to know
+the power spectrum of a signal, however, it is
+rare that the obtained signal can be characterized as being
+deterministic.  Often the signal is present in a noisy
+environment and, in addition, is obtained with instrumentation
+which degrades the signal with measurement noise.  Consequently, for a 
+non-deterministic signal one seeks to estimate the power spectrum.
+It can be shown \cite{oppen} that taking
+the Fourier transform of a non-deterministic
+signal in order to estimate its power spectrum is a very poor
+approach.  The problem is that the resulting power spectrum
+is a highly variable estimate of the true power spectrum
+and that the variance does not decrease to zero as one
+increases the data length (i.e., the estimator is not consistent).
+
+	The problem of estimating the power spectrum
+can be modified as follows.  Let
+$x(n)$ be a zero-mean, stationary signal and let $r_x(n)$ be the autocorrelation
+function of the signal (that is, $r_x(n)=E\{x(k)x^*(n+k)\}$).
+Then the power spectrum $S_x(n)$ of $x(n)$ is taken to be the Fourier transform
+of $r_x(n)$
+%
+\begin{equation}
+     S_x(\omega)=\sum_{n=-\infty}^{\infty}r_x(n)e^{-j\omega n}.
+\label{e3.3}
+\end{equation}
+%
+Assuming that statistical averages of the signal $x(n)$ are equal to
+time averages we can take as an estimate for $r_x(n)$
+%
+\begin{equation}
+     \hat{r}_x(n)=\lim_{N\rightarrow\infty}\frac{1}{2N+1}\sum_{m=-N}^{N}x(m)x(m-n).
+\label{e3.4}
+\end{equation}
+%
+However, after plugging (\ref{e3.4}) into (\ref{e3.3}) and performing some
+algebraic manipulation it can be seen that (\ref{e3.3}) is just
+the magnitude squared of the Fourier transform of $x(n)$.
+Consequently, (\ref{e3.3}) is not any more useful than (\ref{e33.1}) for estimating the
+power spectrum of a non-deterministic signal.
+
+	One can improve the statistical properties of 
+the power spectrum estimate by smoothing the result obtained
+in (\ref{e3.3}) or by breaking the input, $x(n)$, into 
+pieces, performing the calculation in (\ref{e3.4}) and (\ref{e3.3}) for
+each piece, and then averaging these results together.
+These approaches are the classical methods of power spectral
+estimation.
+
+	These classical methods of power spectral estimation
+are undesirable for two reasons.  The estimate obtained from
+these methods is based on a finite (i.e., windowed) segment of the
+autocorrelation function.  This means that the resulting estimated power 
+spectrum is a convolution of the true power spectrum and of the Fourier transform
+of the window.  Consequently, the resolution of spectral features is
+diminished and the estimate of the power spectrum at any point
+is biased by leakage from other parts of the power spectrum through the 
+window sidelobes.
+
+	The maximum entropy spectral estimate (MESE)
+of the power spectrum yields an improved spectral
+density estimate.  That's to say that for MESE
+the resolution is improved and the bias
+is decreased in comparison with the classical spectral estimation
+methods.  This improvement is due to the fact that the MESE
+uses a model based estimation procedure.
+
+
+\subsection{The Maximum Entropy Spectral Estimate}
+
+	The maximum entropy spectral estimate (MESE) is designed
+to produce high-resolution, low-bias spectral estimates
+from finite length discrete signals.
+The formulation of the MESE problem is as follows.
+It is assumed that only a finite number, $N$, of autocorrelation
+lags (estimated from a finite length discrete signal) are
+available.  The MESE yields the function $\hat{S}_x(\omega)$
+which has maximum entropy and whose inverse Fourier transform exactly matches the $N$ lags,
+$\hat{r}_x(n)$.  This can be expressed by the equation
+%
+\begin{equation}
+     \hat{S}_x(\omega) = \max_{S(\omega)}\{-\int_{-\pi}^{\pi}S(\omega)\log[S(\omega)]d\omega\}
+\label{e3.5}
+\end{equation}
+%
+where
+%
+\begin{equation}
+\begin{array}{cc}
+{\displaystyle \frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{S}_x(\omega)e^{j\omega n}d\omega = \hat{r}_x(n)}, & \mbox{$n=0,1,\ldots,N-1$}.
+\label{e3.6}
+\end{array}
+\end{equation}
+%
+Equation (\ref{e3.5}) expresses the optimality condition of maximizing the
+entropy of $S(\omega)$ subject to the $N$ constraints posed in (\ref{e3.6}).
+
+	Since entropy is a measure of randomness, the
+MESE is the spectral estimate which is maximally random
+given the constraints in (\ref{e3.6}).  Intuitively, the MESE incorporates
+no information in the estimated spectrum other than the knowledge
+of the autocorrelation lags.  That is to say that the bias
+should be eliminated (or at least minimized in some sense)
+since no non-data related constraints are imposed on the spectrum.
+As was discussed in the introduction, windowed-autocorrelation
+spectral estimates suffered from bias due
+to the leakage from the window sidelobes.
+The window imposes a non-data related constraint on the
+power spectrum estimate in that the autocorrelation function
+is assumed to be identically zero outside of the support of 
+the window.
+
+	Furthermore, as is discussed in \cite{KM},
+it can be shown that the MESE is equivalent to the 
+Fourier transform of an infinite length autocorrelation
+sequence which is obtained by extrapolating the 
+sequence of length $N$ in (\ref{e3.6}).  The extrapolation is accomplished
+using an auto-regressive, all-pole model of order $N-1$ given
+by
+%
+\begin{equation}
+\begin{array}{cc}
+{\displaystyle \hat{r}_x(n) = -\sum_{k=1}^{N-1}a_k\hat{r}_{n-k}}, & n\ge N.
+\label{e3.7}
+\end{array}
+\end{equation}
+%
+Any autocorrelation sequence can be modeled by (\ref{e3.7}) given a large enough model order, $N$.
+Consequently, in principle, the resolution of the MESE should
+be much better than that of a windowed
+spectral estimate since the MESE uses an infinite length autocorrelation sequence.
+
+	The solution to (\ref{e3.5}) and (\ref{e3.6}) can be found
+by using the calculus of variations \cite{HB} and, as demonstrated in \cite{KM},
+the solution takes the form
+%
+\begin{equation}
+     \hat{S}_x(\omega)=
+\frac{\sigma^2}{|1+\sum_{n=1}^{N-1}a_n\exp\{-j\omega n\}|^2}
+\label{e3.8}
+\end{equation}
+%
+where the parameter set $\{\sigma^2, a_1, a_2, \ldots, a_{N-1}\}$
+is obtained by solving the system of linear equations
+%
+\begin{equation}
+\left[ \begin{array}{cccc}
+\hat{r}_x(0) & \hat{r}_x(1) & \cdots & \hat{r}_x(N-1) \\
+\hat{r}_x(1) & \hat{r}_x(0) & \cdots & \hat{r}_x(N-2) \\
+\vdots       & \vdots       &        & \vdots \\
+\hat{r}_x(N-1) & \hat{r}_x(N-2) & \cdots & \hat{r}_x(0) 
+\end{array}\right]
+\left[ \begin{array}{c}
+1\\
+a_1\\
+\vdots\\
+a_{N-1}
+\end{array}\right]
+=
+\left[ \begin{array}{c}
+\sigma^2\\
+0\\
+\vdots\\
+0
+\end{array}\right]
+\label{e3.9}
+\end{equation}
+%
+where the Toeplitz matrix in (\ref{e3.9}) is composed of the $N$ estimated
+correlation lags $\hat{r}_x(n)$.  The system of $N$ linear equations in (\ref{e3.9})
+are known as the Yule-Walker equations and an
+efficient algorithm for their solution is described in the next section.
+
+\subsection{The Levinson Algorithm}
+\label{levalgo}
+\index{Levinson's algorithm}
+
+	An efficient recursive solution to the Yule-Walker
+equations in (\ref{e3.9}) exists and is known as the Levinson
+algorithm.  The algorithm requires $O(N^2)$
+complex multiplications and additions.  The solution to the 
+$k^{th}$ order problem is obtained from the
+solution to the $(k-1)^{th}$ order problem using the following
+equations
+%
+\begin{eqnarray}
+a_{kk} &=& -[\hat{r}_x(k)+\sum_{j=1}^{k-1}a_{k-1,j}\hat{r}_x(k-j)]/\sigma^2_{k-1}\\
+a_{ki} &=& a_{k-1,i}+a_{kk}a^*_{k-1,k-i}\\
+\sigma^2_k &=& (1-|a_{kk}|^2)\sigma^2_{k-1}.
+\end{eqnarray}
+%
+The solution to the $1^{st}$ order problem is
+%
+\begin{eqnarray}
+a_{11} &=& -\hat{r}_x(1)/\hat{r}_x(0)\\
+\sigma^2_1 &=& (1-|a_{11}|^2)\hat{r}_x(0).
+\end{eqnarray}
+%
+\subsection{How to Use {\tt mese}}
+\index{macro syntax!mese@{\tt mese}}
+\index{maximum entropy method!macro syntax}
+
+	The syntax for the macro {\tt mese} is as follows,
+\begin{verbatim}
+-->[sm,fr]=mese(x)
+\end{verbatim}
+where one wants to obtain a power spectral estimate of
+{\tt x}, the input data sequence, and {\tt sm} is the resulting
+estimate obtained on the normalized frequency axis ($0\le${\tt fr}$\le .5$).
+
+\subsection{How to Use {\tt lev}}
+\index{macro syntax!lev@{\tt lev}}
+\index{Levinson's algorithm!macro syntax}
+
+	The syntax for the macro {\tt lev} is as follows,
+\begin{verbatim}
+-->[ar,sigma2,rc]=lev(r)
+\end{verbatim}
+where {\tt r} is a vector of auto-correlation coefficients ($r(0),r(1),
+\ldots,r(N-1)$), {\tt ar} is the vector which satisfies the Yule-Walker
+equations, {\tt sigma2} is the scalar which satisfies the Yule-Walker
+equations, and {\tt rc} is a vector of reflection coefficients.
+
+\subsection{Examples}
+\index{maximum entropy method!examples}
+
+	Here we give an example of estimating the power spectrum of 
+a very short data sequence using the MESE and also using the magnitude
+squared of the Fourier transform.  The data is eleven
+samples of the sum of two 
+sinusoids in additive, uniformly distributed, white noise.  The functional
+form of the data sequence is
+%
+\begin{equation}
+x(n)=\sin(2\pi n/20)+\sin(3.5\pi n/20)+.2w(n)
+\end{equation}
+%
+where $w(n)$ is the white noise sequence which takes on values in $[-1,1]$
+and $n=0,1,...,10$.  Figure~\ref{f33.1} shows the input data sequence, x(n).
+Figures~\ref{f3.2} and \ref{f3.3} show the maximum entropy and magnitude
+squared estimates of the power spectrum, respectively.
+%
+\input{\Figdir mem1.tex}
+\dessin{{\tt exec('mem1\_3.code')} Input Data Sequence, $x(n)$}{f33.1}
+%
+%
+\input{\Figdir mem2.tex}
+\dessin{{\tt exec('mem1\_3.code')} Maximum Entropy Spectral Estimate of $x(n)$}{f3.2}
+%
+\input{\Figdir mem3.tex}
+\dessin{{\tt exec('mem1\_3.code')} Squared Magnitude of the Fourier Transform of $x(n)$}{f3.3}
+%
+As can be seen, the MESE resolves two peaks according to the 
+two sinusoidal frequences in $x(n)$.  The squared magnitude of
+the Fourier transform of $x(n)$ does not have a long enough signal
+to resolve the two peaks of the spectrum.  Furthermore, the
+power spectrum estimate in Figure~\ref{f3.3} shows spurious sidelobes
+which have nothing to do with the data.
+
+
+
+%\end{document}

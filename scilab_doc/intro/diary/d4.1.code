@@ -1,0 +1,2 @@
+ x=1
+ for k=1:4,x=x*k,end

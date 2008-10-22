@@ -1,0 +1,31 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/rowregul_data.ref','rb');
+ 
+s = %s;
+ 
+w = [1/s,0;s/(s^3 + 2),2/s];
+ 
+Sl = tf2ss(w);
+ 
+[Stmp,Ws] = rowregul(Sl, -1, -2);
+ 
+%ans = Stmp('D');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// D matrix of Stmp
+ 
+%ans = clean(ss2tf(Stmp));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

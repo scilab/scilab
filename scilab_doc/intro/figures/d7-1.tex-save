@@ -1,0 +1,16 @@
+\begin{figure}[hbtp]
+\begin{center}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%If you prefer cm, uncomment the following two lines
+%\setlength{\unitlength}{1mm}
+%\fbox{\begin{picture}(850.50,601.02)
+%%%%%%%%%%%%%%%%%%%%%%%%
+\fbox{\begin{picture}(300.00,212.00)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If you want to use epsfig, uncomment the following line 
+% and comment the \special line 
+%\epsfig{file=\Figdir d7-1.eps,width=300.00pt,height=212.00pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\special{psfile=\Figdir d7-1.eps hscale=100.00 vscale=100.00}
+\end{picture}}
+\end{center}

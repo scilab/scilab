@@ -1,0 +1,147 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/insertion_data.ref','rb');
+ 
+// MATRIX CASE
+ 
+a = [1,2,3;4,5,6];
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a(1, 2) = 10;
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a([1,1], 2) = [-1;-2];
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a(eye(), 1) = [8;5];
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a(1, 3:-1:1) = [77,44,99];
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a(1) = %s;
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a(6) = %s + 1;
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a(eye()) = 1:6;
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a([%t,%f], 1) = 33;
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a(1:2, $ - 1) = [2;4];
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a($:-1:1, 1) = [8;7];
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a($) = 123;
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+//
+ 
+x = 'test';
+ 
+if load_ref('x') then   bugmes();quit;end,
+ 
+ 
+x([4,5]) = ['4','5'];
+ 
+if load_ref('x') then   bugmes();quit;end,
+ 
+ 
+//
+ 
+b = [1/%s,(%s + 1)/(%s - 1)];
+ 
+if load_ref('b') then   bugmes();quit;end,
+ 
+ 
+b(1, 1) = 0;
+ 
+if load_ref('b') then   bugmes();quit;end,
+ 
+ 
+b(1, $) = b(1, $) + 1;
+ 
+if load_ref('b') then   bugmes();quit;end,
+ 
+ 
+b(2) = [1,2];
+ 
+if load_ref('b') then   bugmes();quit;end,
+ 
+// the numerator
+ 
+// LIST OR TLIST CASE
+ 
+l = list(1, 'qwerw', %s);
+ 
+if load_ref('l') then   bugmes();quit;end,
+ 
+ 
+l(1) = 'Changed';
+ 
+if load_ref('l') then   bugmes();quit;end,
+ 
+ 
+l(0) = 'Added';
+ 
+if load_ref('l') then   bugmes();quit;end,
+ 
+ 
+l(6) = ['one more';'added'];
+ 
+if load_ref('l') then   bugmes();quit;end,
+ 
+ 
+//
+ 
+//
+ 
+dts = list(1, tlist(['x';'a';'b'], 10, [2,3]));
+ 
+dts(2).a = 33;
+ 
+if load_ref('dts') then   bugmes();quit;end,
+ 
+ 
+dts(2).b(1, 2) = -100;
+ 
+if load_ref('dts') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

@@ -1,0 +1,74 @@
+ 
+ 
+if  %inf<>  %inf <> %f then bugmes();quit;end
+ 
+if  %inf==  %inf <> %t then bugmes();quit;end
+ 
+if  %inf>  %inf <> %f then bugmes();quit;end
+ 
+if  %inf<  %inf <> %f then bugmes();quit;end
+ 
+if  %inf>=  %inf <> %t then bugmes();quit;end
+ 
+if  %inf<=  %inf <> %t then bugmes();quit;end
+ 
+if  %nan<>  %nan <> %t then bugmes();quit;end
+ 
+if  %nan==  %nan <> %f then bugmes();quit;end
+ 
+if  %nan>  %nan <> %f then bugmes();quit;end
+ 
+if  %nan<  %nan <> %f then bugmes();quit;end
+ 
+if  %nan>=  %nan <> %f then bugmes();quit;end
+ 
+if  %nan<=  %nan <> %f then bugmes();quit;end
+ 
+if  %nan<>  %inf <> %t then bugmes();quit;end
+ 
+if  %nan==  %inf <> %f then bugmes();quit;end
+ 
+if  %nan>  %inf <> %f then bugmes();quit;end
+ 
+if  %nan<  %inf <> %f then bugmes();quit;end
+ 
+if  %nan>=  %inf <> %f then bugmes();quit;end
+ 
+if  %nan<=  %inf <> %f then bugmes();quit;end
+ 
+if  %inf<>  %nan <> %t then bugmes();quit;end
+ 
+if  %inf==  %nan <> %f then bugmes();quit;end
+ 
+if  %inf>  %nan <> %f then bugmes();quit;end
+ 
+if  %inf<  %nan <> %f then bugmes();quit;end
+ 
+if  %inf>=  %nan <> %f then bugmes();quit;end
+ 
+if  %inf<=  %nan <> %f then bugmes();quit;end
+ 
+if  %inf<>  5.0 <> %t then bugmes();quit;end
+ 
+if  %inf==  5.0 <> %f then bugmes();quit;end
+ 
+if  %inf>  5.0 <> %t then bugmes();quit;end
+ 
+if  %inf<  5.0 <> %f then bugmes();quit;end
+ 
+if  %inf>=  5.0 <> %t then bugmes();quit;end
+ 
+if  %inf     <=  5.0 <> %f then bugmes();quit;end
+ 
+if  %nan<>  5.0 <> %t   then bugmes();quit;end
+ 
+if  %nan==  5.0 <> %f then bugmes();quit;end
+ 
+if  %nan>  5.0 <> %f then bugmes();quit;end
+ 
+if  %nan<  5.0 <> %f then bugmes();quit;end
+ 
+if  %nan>=  5.0 <> %f then bugmes();quit;end
+ 
+if  %nan <=  5.0 <> %f then bugmes();quit;end
+ 

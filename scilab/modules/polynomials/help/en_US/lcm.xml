@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lcm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lcm</refname>
+    <refpurpose> least common multiple</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[pp,fact]=lcm(p)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>:</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fact</term>
+        <listitem>
+          <para>polynomial vector or integer vector (type equal to 8)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pp</term>
+        <listitem>
+          <para>polynomial or integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pp=lcm(p)</literal> computes the lcm <literal>pp</literal> of polynomial vector <literal>p</literal>.</para>
+    <para><literal>[pp,fact]=lcm(p)</literal> computes in addition the vector <literal>fact</literal> such that:</para>
+    <para>
+      <literal>p.*fact=pp*ones(p)</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//polynomial case
+s=poly(0,'s');
+p=[s,s*(s+1)^2,s^2*(s+2)];
+[pp,fact]=lcm(p);
+p.*fact, pp
+//integer case
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+lcm(V)
+
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+      <member>
+        <link linkend="bezout">bezout</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

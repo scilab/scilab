@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="addinter" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-10 17:18:42 +0100 (Mon, 10 Dec 2007)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>addinter</refname>
+
+    <refpurpose>new functions interface incremental/dynamic link at run
+    time</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>addinter(files,spname,fcts)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>files</term>
+
+        <listitem>
+          <para>a character string or a vector of character string contain
+          object files used to define the new Scilab interface routine
+          (interface code, user routines or libraries, system
+          libraries).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>spname</term>
+
+        <listitem>
+          <para>a character string. Name of interface routine entry
+          point</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fcts</term>
+
+        <listitem>
+          <para>vector of character strings. The name of new Scilab function
+          implemented in the new interface (in <literal> fin</literal> the
+          order ).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>addinter</literal> performs incremental/dynamic link of a
+    compiled C or Fortran new Scilab interface routine (see
+    <literal>intersci</literal> documentation) and define corresponding scilab
+    functions.</para>
+
+    <para>You can use the command <literal>link('show')</literal> to get the
+    number of the shared libraries. And to reload a new version of an
+    interface a call to <literal>ulink</literal> is necessary to get rid of
+    the old version.</para>
+
+    <para>See <literal>link</literal> for more precision on use.</para>
+
+    <para>Number of 'addinter' in a scilab session can be limited by the
+    operating system. On Windows, you cannot load more than 80 dynamic
+    libraries at the same time.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="intersci">intersci</link></member>
+
+      <member><link linkend="newfun">newfun</link></member>
+
+      <member><link linkend="clearfun">clearfun</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

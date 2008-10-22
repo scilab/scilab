@@ -1,0 +1,14 @@
+#!/bin/sh 
+#-----------------------------------------------------------
+# Usage: Init prog_name SCIDIR
+#-----------------------------------------------------------
+config=`egrep "include[ ]*config" $2/Makefile | sed -e "s/include[ ]*//"`
+sed -e "s+bin/scilex+$1+" -e 's/scilex-lib/$(OBJS)/' -e 's/$(DEFAULTS)/$(OBJS) $(DEFAULTS)/'  -e 's/$(MAINSCI)//' $2/$config > config/Makefile
+
+cp $2/Makefile.OBJ  config/Makefile.Top
+# copy the original Makefile.incl 
+cp $2/Makefile.incl config/
+if [ -f config/callsci.sh ];then 
+    sed -e "s+@SCI@+$2+" -e "s+./callsci+./$1+" config/callsci.sh > $1.sh
+    chmod +x $1.sh 
+fi;

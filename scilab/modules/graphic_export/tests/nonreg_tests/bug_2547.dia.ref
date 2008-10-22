@@ -1,0 +1,53 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 2547 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2547
+//
+// <-- Short Description -->
+// export of very circle marks of very small size in postcript are not displayed
+plot(1:10,'.')
+e=gce();e=e.children;
+e.mark_size_unit = "point"
+ e  =
+ 
+Handle of type "Polyline" with properties:
+==========================================
+parent: Compound
+children: []
+visible = "on"
+data = matrix 10x2
+closed = "off"
+line_mode = "off"
+fill_mode = "off"
+line_style = 0
+thickness = 1
+arrow_size_factor = 1
+polyline_style = 1
+foreground = 1
+background = -2
+interp_color_vector = []
+interp_color_mode = "off"
+mark_mode = "on"
+mark_style = 0
+mark_size_unit = "point"
+mark_size = 6
+mark_foreground = 2
+mark_background = -2
+x_shift = []
+y_shift = []
+z_shift = []
+bar_width = 0
+clip_state = "clipgrf"
+clip_box = []
+user_data = []
+e.mark_style=0;e.mark_size=1;
+fig = gcf();
+xs2eps(fig.figure_id, TMPDIR+"/test.eps");
+// check that the dots are present in the exported file.

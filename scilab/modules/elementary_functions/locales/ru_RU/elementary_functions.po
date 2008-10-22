@@ -1,0 +1,427 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2008-05-29 18:42+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid "%s: Log of a singular matrix.\n"
+msgstr "%s: Логарифм вырожденной матрицы.\n"
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s: Невозможно привести к диагональному виду.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалась матрица вещественных или "
+"комплексных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась ячейка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Same type expected for all cell "
+"contents"
+msgstr ""
+"%s: Неверный тип аргумента #%d: типы должны совпадать для содержимого всех "
+"ячеек"
+
+#, c-format
+msgid "%s: Unexpected value of n: %d. Expected value is greater than %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Матрица не может быть приведена к "
+"диагональному виду.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+msgstr "%s: Неверный размер аргумента #%d: Должен быть <= %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: Неверны типы аргументов: Ожидались таки же типы.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: Неверны размеры аргументов: Ожидались такие же размеры.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
+"expected.\n"
+msgstr ""
+"%s: Неверный аргумент #%d: Ожидалось беззнаковое целое или "
+"матрица/гиперматрица таких чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип аргумента #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
+"positive integers expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось положительное целое число или "
+"вектор/матрица/гиперматрица таких чисел.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался вектор.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
+"ones expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалась матрица строк из нулей и "
+"единиц.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Не может быть больше %d символов.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалось целое число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось целое положительное число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: Неверное количество аргументов: Ожидалось %d."
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер аргумента #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Размер должен быть не меньше размера "
+"аргумента #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось %d,''%s'',%d или ''%s''\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось положительное вещественное число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid hexadecimal representations "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось корректное шестнадцатеричное "
+"представление.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr "%s: Неверное значение аргумента #%d: Должно быть между %d и %d."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid base %d representations "
+"expected.\n"
+msgstr ""
+"%s: Неверны значения аргументов: Ожидалось корректное представление числа в "
+"%d-ой системе счисления.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+msgstr "%s: Неверное значение аргумента #%d: ошибка синтаксиса в выражении\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+msgstr "%s: Неверный аргумент #%d: Ожидалось положительное целое число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось ''%s'' или ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалась матрица неотрицательных "
+"чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
+msgstr ""
+"%s: Неверны значения аргументов #%d и #%d: c(1) должен равняться r(1).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid octal representations "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось корректное восьмеричное "
+"представление.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: Неверное значение аргумента #%d: Должно быть между %d и %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось целое число >= %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
+msgstr "%s: Неверное значение аргумента #%d: Неэрмитова матрица.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось не более %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: Неверные размеры аргументов: Должны быть одинакового размера.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось беззнаковое целое число или "
+"матрица/гиперматрица таких чисел.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
+msgstr "%s: Неверное значение аргумента #%d: ожидалось 0 или 1\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr "%s: Неверны размеры аргументов: несовместимые размеры.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Ожидалось положительное целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось положительное целое число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
+"or %s expected"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Неизвестное расширение файла, ожидалось "
+"%s, %s, %s или %s"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
+"integers expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось целое положительное число или "
+"матрица/вектор таких чисел.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось положительное целое число"
+
+#, c-format
+msgid "%s: Matrix is not diagonalisable.\n"
+msgstr "%s: Матрица не может быть приведена к диагональному виду.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
+msgstr "%s: Неверный аргумент #%d: Ожидалось беззнаковое целое.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr "%s: Неверное количество аргументов: Должно быть между %d и %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась матрица или вектор.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался массив вещественных чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидались вещественные числа, но "
+"некоторые из них в значении NaN.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Неверны размеры аргументов #%d и #%d: эти аргументы должны иметь "
+"одинаковый размер.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось ''%s'', ''%s'' или ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось ''%s'' или вещественное "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось не больше %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось не больше %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of output arguments vs. input arguments: Same number "
+"expected.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов по сравнению со входными: должно "
+"быть столько же.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась непустая строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
+"''%s'' expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: ожидалось ''%s'', ''%s'', ''%s'', "
+"''%s'' или ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real, complex, integer matrix or "
+"matrix of strings expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалась матрица целых, вещественных или "
+"комплексных чисел или матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
+msgstr "%s: Неверный тип аргумента #%d: Неизвестный тип.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"

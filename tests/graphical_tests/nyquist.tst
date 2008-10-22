@@ -1,0 +1,23 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/nyquist_data.ref','rb');
+
+clf_run();
+s = poly(0, 's');
+h = syslin('c', (s^2 + 2 * 0.9 * 10 * s + 100)/(s^2 + 2 * 0.3 * 10.1 * s + 102.01));
+comm = '(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+nyquist(h, 0.01, 100, comm);
+h1 = h * syslin('c', (s^2 + 2 * 0.1 * 15.1 * s + 228.01)/(s^2 + 2 * 0.9 * 15 * s + 225));
+if load_ref('h1') then   pause,end,
+
+clf_run();
+%ans = nyquist([h1;h], 0.01, 100, ['h1';'h']);
+if load_ref('%ans') then   pause,end,
+
+clf_run();%ans = nyquist([h1;h]);
+if load_ref('%ans') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

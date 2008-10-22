@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="horner">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>horner</refname>
+    <refpurpose> évaluation d'un polynôme ou d'une fraction rationnelle  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>horner(P,x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>P  </term>
+        <listitem>
+          <para>polynôme ou matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur de nombres , de polynômes ou de fractions rationnelles
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    évalue le polynôme ou la fraction rationnelle (ou matrice de fractions rationnelles)
+    <literal>P = P(s)</literal> quand la variable <literal>s</literal> du polynôme 
+    est remplacée par <literal>x</literal> :
+  </para>
+    <para><literal>horner(P,x)</literal>=<literal>P(x)</literal></para>
+    <para>
+    Exemple (transformation bilinéaire) : supposons que <literal>P = P(s)</literal> est 
+    une matrice de polynômes, alors la matrice de polynômes 
+    <literal>P((1+s)/(1-s))</literal> est obtenue par <literal>horner(P,(1+s)/(1-s))</literal>.
+  </para>
+    <para>
+    Pour évaluer une matrice de polynômes à des fréquences données utiliser plutôt la primitive <literal>freq</literal>. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+//evaluation d'un polynŽôme pour un vecteur de nombres
+P=poly(1:3,'x')
+horner(P,[1 2 5])
+horner(P,[1 2 5]+%i)
+
+//evaluation d'un vecteur de fractions rationnelles
+s=poly(0,'s');M=[s,1/s];
+horner(M,1)
+horner(M,%i)
+horner(M,1/s)
+
+//evaluation d'un polynŽôme pour une matrice de nombres
+X= [1 2;3 4]
+p=poly(1:3,'x','c')
+m=horner(p, X)
+1*X.^0+2*X.^1+3*X.^2
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="freq">freq</link>
+      </member>
+      <member>
+        <link linkend="repfreq">repfreq</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="roots" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-07-11 10:34:31 +0200 (ven., 11 juil. 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>roots</refname>
+
+    <refpurpose>racines d'un polynôme</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>[x]=roots(p)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+
+        <listitem>
+          <para>polynôme à coefficients réels ou complexes ou vecteur des
+          coefficients du polynŽôme ordonnés par puissance décroissante
+          (compatibilité avec Matlab).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>x=roots(p)</literal> renvoie dans le vecteur complexe
+    <literal>x</literal> les racines du polynôme <literal>p</literal>. Pour
+    les polynômes à coefficients réels et de degré &lt;=100, l'algorithme
+    rapide RPOLY (fondé sur la méthode de Jenkins-Traub) est utilisé. Dans les
+    autres cas, les racines sont calculées comme valeurs propres de la matrice
+    compagnon du polynôme. Pour forcer ce dernier algorithme dans tous les
+    cas, utilisez <literal>x=roots(p,'e')</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example">
+p=poly([0,10,1+%i,1-%i],'x');
+roots(p)
+A=rand(3,3);roots(poly(A,'x'))    // comparaison via le polynôme caractéristique
+spec(A) 
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="spec">spec</link></member>
+
+      <member><link linkend="companion">companion</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Auteurs</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer (INRIA)</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliographie</title>
+
+    <para>La routine RPOLY est decrite dans "Algorithm 493: Zeros of a Real
+    Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189</para>
+  </refsection>
+
+  <refsection>
+    <title>Fonctions Utilisées</title>
+
+    <para>Le code source de rpoly.f peut être trouvé dans le repertoire
+    routines/control de la distribution source de Scilab. Dans le cas où la
+    matrix compagnon est utilisée, le calcul des valeurs propres est effectué
+    en utilisant les routines DGEEV et ZGEEV de LAPACK.</para>
+  </refsection>
+</refentry>

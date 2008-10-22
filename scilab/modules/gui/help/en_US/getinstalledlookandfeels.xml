@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getinstalledlookandfeels">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getinstalledlookandfeels</refname>
+    <refpurpose> returns a string matrix with all Look and Feels.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>lnf=getinstalledlookandfeels()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>lnf</term>
+        <listitem>
+          <para>a string matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>returns a string matrix with all Look and Feels that you can use.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+getinstalledlookandfeels()
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="setlookandfeel">setlookandfeel</link>
+      </member>
+      <member>
+        <link linkend="getlookandfeel">getlookandfeel</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

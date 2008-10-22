@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="polynomials">
+<!-- =================== -->
+<!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+
+  <!-- 
+  Some hardcoded call to interfaces in polynomials gateway :
+  SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_clean.f(34):         fun=16 fin=18
+  SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_diag.f(143):         fun=16 fin=10
+  SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_prod.f(173):         fun=16 fin=9
+  SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_sum.f(127):         fun=16 fin=8
+  SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_tril.f(96):         fun=16 fin=12
+  SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_triu.f(98):         fun=16 fin=11
+  -->
+
+<PRIMITIVE gatewayId="16" primitiveId="1" primitiveName="poly" />
+<PRIMITIVE gatewayId="16" primitiveId="2" primitiveName="roots" />
+<PRIMITIVE gatewayId="16" primitiveId="3" primitiveName="degree" />
+<PRIMITIVE gatewayId="16" primitiveId="4" primitiveName="coeff" />
+<PRIMITIVE gatewayId="16" primitiveId="6" primitiveName="pppdiv" />
+<PRIMITIVE gatewayId="16" primitiveId="7" primitiveName="simp" />
+<PRIMITIVE gatewayId="16" primitiveId="13" primitiveName="bezout" />
+<PRIMITIVE gatewayId="16" primitiveId="14" primitiveName="sfact" />
+<PRIMITIVE gatewayId="16" primitiveId="15" primitiveName="simp_mode" />
+<PRIMITIVE gatewayId="16" primitiveId="16" primitiveName="varn" />
+</GATEWAY>

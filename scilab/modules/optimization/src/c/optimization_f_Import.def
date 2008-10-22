@@ -1,0 +1,21 @@
+LIBRARY    optimization_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; optimization_f
+; --------------------------------------- 
+fsolj1_
+fsol1_
+ql0001_
+lsqrsolj1_
+lsqrsol1_
+topt2_
+icsemc_
+genros_
+scisolv_
+scioptim_
+qpgen1sci_
+qpgen2_
+scisemidef_
+intlsqrsolve_

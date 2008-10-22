@@ -1,0 +1,15 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/fplot3d_data.ref','rb');
+
+%ans = deff('z=f(x,y)', 'z=x^4-y^4');
+if load_ref('%ans') then   pause,end,
+
+x = -3:0.2:3;y = x;
+clf_run();%ans = fplot3d(x, y, f, alpha=5, theta=31);
+if load_ref('%ans') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

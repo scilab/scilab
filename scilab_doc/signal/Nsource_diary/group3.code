@@ -1,0 +1,10 @@
+//exec('group3.code')
+h=[1 1.5 -1 1;2 -2.5 -1.7 0;3 3.5 2 5]';
+cels=[];
+for col=h,
+    nf=[col(1:2);1];nd=[col(3:4);1];
+    num=poly(nf,'z','c');den=poly(nd,'z','c');
+    cels=[cels,tlist(['r','num','den'],num,den,[])];
+end;
+[tg,fr]=group(100,cels);
+//plot(fr,tg)

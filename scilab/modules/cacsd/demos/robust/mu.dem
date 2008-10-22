@@ -1,0 +1,47 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
+//test of musolve
+mode(-1)
+M1 = [ ..
+   5.2829       5.7683      -2.4004       1.2205      -6.4148    
+   9.7769e-01   2.9786      -3.0408       5.0257e-01  -2.6504    
+   7.0819       9.6324      -3.5750       3.3016      -6.7030    
+  -1.6261      -2.9763       1.6870      -1.0603       1.2211    
+   2.3056       4.3712      -2.4785       2.6152      -1.9832    ];
+
+M2 = [ ..
+  -1.1308      -1.7785       8.7974e-01  -7.5206e-01   1.2089    
+  -3.5255e-01  -5.7002e-01   2.9305e-01  -2.5442e-01   3.7691e-01
+  -1.3724      -2.1501       1.0741      -9.1188e-01   1.4669   
+   3.5839e-01   5.5101e-01  -2.7290e-01   2.3565e-01  -3.7663e-01
+  -4.9015e-01  -7.8706e-01   4.0215e-01  -3.3617e-01   5.3261e-01];
+//*******************************************************
+M=M1 +%i*M2;
+// Let the structure be all scalar blocks
+K = [1 1 1 1 1]'; 
+// Let the first, the third and the fifth blocks be real,
+// and let the rest of blocks be complex
+T = [1 2 1 2 1]';
+[D,g,mu] = musolve(M,K,T);
+spec(M'*D*M+%i*(G*M-M'*G')-mu^2*D)
+
+
+// Now, we compute it again with respect to all complex blocks
+T = [2 2 2 2 2]';
+[D,g,mu] = musolve(M,K,T);
+spec(M'*D*M+%i*(G*M-M'*G')-mu^2*D)
+
+
+T = 3*[1 1 1 1 1]';
+[D,g,mu] = musolve(M,K,T;
+//
+K = [2 3]';
+T = [2 2]';
+[D,g,mu] = musolve(M,K,T);
+
+

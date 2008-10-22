@@ -1,0 +1,106 @@
+//===========================================================
+// Copyright INRIA
+//===========================================================
+pref='ext';
+suf='f';
+routines=[pref(ones(1,12))+string(1:12)+suf(ones(1,12))];
+ilib_for_link(routines,'externals.o',[],"f");
+exec loader.sce ;
+//===========================================================
+//(very) simple example 1
+//===========================================================
+a=[1,2,3];b=[4,5,6];n=3;
+c=call('ext1f',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
+if norm(c-(a+b)) > %eps then pause,end
+
+//===========================================================
+//Simple example #2
+//===========================================================
+a=[1,2,3];b=[4,5,6];n=3;
+c=call('ext2f',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
+if norm(c-(sin(a)+cos(b))) > %eps then pause,end
+
+//===========================================================
+//Example #3
+//===========================================================
+a=[1,2,3];b=[4,5,6];n=3;
+c=call('ext3f','yes',1,'c',n,2,'i',a,3,'d',b,4,'d','out',[1,3],5,'d');
+if norm(c-(sin(a)+cos(b)))> %eps then pause,end
+c=call('ext3f','no',1,'c',n,2,'i',a,3,'d',b,4,'d','out',[1,3],5,'d');
+if norm(c-(a+b)) > %eps then pause,end
+
+//===========================================================
+//Example #4 
+//===========================================================
+a=[1,2,3];b=[4,5,6];n=3;yes='yes';
+c=call('ext4f',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
+if norm(c-(sin(a)+cos(b))) > %eps then pause,end
+yes='no';
+c=call('ext4f',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
+if norm(c-(a+b)) > %eps then pause,end
+//clear yes  --> undefined variable : yes
+
+//===========================================================
+//Example #5 
+//===========================================================
+// reading vector a in scilab internal stack
+a=[1,2,3];b=[2,3,4];
+c=call('ext5f',b,1,'d','out',[1,3],2,'d');
+if norm(c-(a+2*b)) > %eps then pause,end
+
+//===========================================================
+//Example #6
+//===========================================================
+//reading  vector with name='a' in scilab internal stack
+a=[1,2,3];b=[2,3,4];
+c=call('ext6f','a',1,'c',b,2,'d','out',[1,3],3,'d');
+if norm(c-(a+2*b)) > %eps then pause,end
+
+//===========================================================
+//Example #7
+//===========================================================
+//creating vector c in scilab internal stack
+clear c;
+a=[1,2,3]; b=[2,3,4];
+//c does not exist (c made by ext7f)
+c1=call('ext7f',a,1,'d',b,2,'d','out',2);
+if norm(c1-b) > %eps then pause,end
+//c now exists
+if norm(c-(a+2*b)) > %eps then pause,end
+//d exists 
+if d<>"test" then pause,end
+
+//===========================================================
+//Example #8
+//===========================================================
+//call ext8f argument function with dynamic link
+yref=ode([1;0;0],0,[0.4,4],'ext8f');
+
+//===========================================================
+//Example #9
+//===========================================================
+//passing a parameter to ext9f routine by a list:
+param=[0.04,10000,3d+7];    
+y=ode([1;0;0],0,[0.4,4],list('ext9f',param));
+if norm(y-yref) > 10000*%eps then pause,end
+
+//===========================================================
+//Example #10
+//===========================================================
+//Passing a parameter to argument funtion of ode
+param=[0.04,10000,3d+7];
+y=ode([1;0;0],0,[0.4,4],'ext10f');
+//param must be defined as a scilab variable upon calling ode
+if norm(y-yref) > 10000*%eps then pause,end
+
+//===========================================================
+//Example #11
+//===========================================================
+//sharing common data
+a=1:10;
+n=10;a=1:10;
+call('ext11f',n,1,'i',a,2,'r','out',2);  //loads b with a
+c=call('ext12f',n,1,'i','out',[1,10],2,'r');  //loads c with b
+if norm(c-a) > %eps then pause,end
+
+//===========================================================

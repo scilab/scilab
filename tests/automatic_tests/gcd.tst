@@ -1,0 +1,24 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/gcd_data.ref','rb');
+//polynomial case
+s = poly(0, 's');
+p = [s,s * ((s + 1)^2),2 * (s^2) + s^3];
+[pgcd,u] = gcd(p);
+%ans = p * u;
+if load_ref('%ans') then   pause,end,
+
+
+//integer case
+V = int32([(2^2) * (3^5),(2^3) * (3^2),(2^2) * (3^4) * 5]);
+[thegcd,U] = gcd(V);
+if load_ref('U') then   pause,end,
+if load_ref('thegcd') then   pause,end,
+
+%ans = V * U;
+if load_ref('%ans') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

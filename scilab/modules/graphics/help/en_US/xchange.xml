@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xchange">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xchange</refname>
+    <refpurpose> transform real to pixel coordinates</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x1,y1,rect]=xchange(x,y,dir)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>two matrices of size (n1,n2) (coordinates of a set of points).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir</term>
+        <listitem>
+          <para>parameter used to specify the conversion type (See "Description" for details)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x1,y1</term>
+        <listitem>
+          <para>two matrices of size (n1,n2) (coordinates of the set of points).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>a vector of size 4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    After having used a graphics function, <literal>xchange</literal> computes pixel
+    coordinates from real coordinates and conversely, 
+    according to the value of the parameter <literal>dir</literal>:
+    "f2i" (float to int) means real to pixel and "i2f" (int to float)
+    means pixel to real.
+    <literal>x1</literal> and <literal>y1</literal> are the new coordinates of the set of points 
+    defined by the old coordinates <literal>x</literal> and <literal>y</literal>.</para>
+    <para><literal>rect</literal> is the coordinates in pixel
+    of the rectangle in which the plot was done: [upper-left point,
+    width, height].</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+t=[0:0.1:2*%pi]';
+plot2d(t,sin(t))
+[x,y,rect]=xchange(1,1,"f2i")
+[x,y,rect]=xchange(0,0,"i2f")
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

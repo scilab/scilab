@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_f772sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_f772sci</refname>
+    <refpurpose> Convert a F77 complex into a complex scalar</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[res] = pvm_f772sci(var)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>var : local scilab variable.  On  return, the  variable will  be</term>
+        <listitem>
+          <para>overwritten with the result  of conversion operation.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>if the parameter var is not a variable, the result of the conversion  is returned in res.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_f772sci</literal> converts all the complex matrices
+    contained in the representation of a scilab  variable 
+    form a f77 coding to the Scilab complex matrix coding scheme. 
+    This can be  useful if Scilab is receiving  data  from  a   non  scilab
+    application (directly from a C or F77 program for example).</para>
+    <para>
+    Note  that  the parameter is passed  by  adress. It  means that if the
+    parameter is a  variable, this variable will  be overwritten with  the
+    result of conversion operation. On the other case, if the parameter is
+    not a variable, the result will be returned in res.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a = [1+%i, 2+2*%i,3+3*%i];
+pvm_f772sci(a)
+if norm(a - [1.+2* %i,3.+%i, 2. + 3. *%i ]) >10*%eps then pause;end
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_sci2f77">pvm_sci2f77</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

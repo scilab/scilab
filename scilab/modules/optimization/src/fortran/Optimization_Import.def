@@ -1,0 +1,22 @@
+LIBRARY    optimization.dll
+
+
+EXPORTS
+setlsqrsolvf_
+lsqrsolvf_
+setlsqrsolvj_
+lsqrsolvj_
+setfsolvj_
+setfsolvf_
+setfsolvf_
+spf_
+fsolvj_
+setfoptim_
+foptim_
+fsolvf_
+optim_
+nird_
+csolve_
+clsqrsolve_
+icsez_
+fprf2c_

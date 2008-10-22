@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpolys">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xfpolys</refname>
+    <refpurpose> fill a set of polygons</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xpols,ypols</term>
+        <listitem>
+          <para>matrices of the same size (p,n) (points of the polygons).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill</term>
+        <listitem>
+          <para>vector of size n or of size (p,n)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xfpolys</literal> fills a set of polygons of the same size defined by 
+      the two matrices <literal>xpols</literal> and <literal>ypols</literal>. 
+      The coordinates of each polygon
+      are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
+    </para>
+    <para>The polygons may be filled with a given color (flat) or painted with
+      interpolated (shaded) colors.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>flat color painting</term>
+        <listitem>
+          <para>In this case <literal>fill</literal> should be a vector of size
+	  <literal>n</literal>.
+	  The pattern for filling polygon number i is given by
+	  <literal>fill(i)</literal>:</para>
+          <itemizedlist>
+            <listitem>
+              <para>if <literal>fill(i)&lt;0</literal>, the polygon is filled with
+	      pattern id <literal>-fill(i)</literal>.</para>
+            </listitem>
+            <listitem>
+              <para>if <literal>fill(i)=0</literal>, the polygon is drawn with the
+	      current dash style (or current color) and not filled.</para>
+            </listitem>
+            <listitem>
+              <para>if <literal>fill(i)&gt;0</literal>, the polygon is filled with
+	      pattern id <literal>fill(i)</literal>.  Then its contour is drawn with
+	      the current dash (or color) and closed if necessary.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>interpolated color painting</term>
+        <listitem>
+          <para>
+	  In this case <literal>fill</literal> should be a matrix with same sizes
+	  as <literal>xpols</literal> and <literal>ypols</literal>. Note that
+	  <literal>p</literal> must be equal to 3 or 4.
+	</para>
+          <para><literal>fill(k,i)</literal> gives the color at the <literal>k</literal>th edge
+	  of polygon <literal>i</literal>.
+	</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    
+    
+    a=gca();a.data_bounds=[0,-10;210,40];a.foreground=color('red');
+    x1=[0,10,20,30,20,10,0]';
+    y1=[15,30,30,15,0,0,15]';
+    xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
+    ypols=[y1 y1 y1 y1];
+    xfpolys(xpols,ypols,[-1,0,1,2])
+
+    // interpolated colors
+    clf()
+    f=gcf();
+    a=gca();a.data_bounds=[0,-10;40,30];a.isoview='on';
+    x1=[0,10,20,10]';
+    y1=[10,0,10,20]';
+    c=linspace(2,100,4)';
+    xpols=[x1 x1+20 x1+10 x1+10];
+    ypols=[y1 y1    y1+10 y1-10];
+    cols= [c c($:-1:1) c([3 4 1 2]) c]
+    f.color_map=jetcolormap(max(cols));
+    xfpolys(xpols,ypols,cols)
+  
+    // interpolated colors
+    clf()
+    f=gcf();
+    x11=[0;20;20;0];y11=[10;10;30;30];c11=[10;10;30;30];
+    x12=x11;y12=y11+20;c12=[20;20;1;1];c12=[30;30;10;10];
+    x21=[0;30;30;0]+22;y21=[20;20;30;30];c21=[20;20;30;30];
+    x22=x21;y22=y21+10;c22=[30;30;20;20];
+    x31=[0;40;40;0]+55;y31=[0;0;30;30];c31=[0;0;30;30];
+    x32=x31;y32=y31+30;c32=[30;30;0;0];
+    X=[x11 x12 x21 x22 x31 x32];Y=[y11 y12 y21 y22 y31 y32];C=([c11 c12 c21 c22  c31 c32]+1)*5;
+    a=gca();a.isoview='on';
+    a.data_bounds=[min(X),min(Y);max(X),max(Y)];
+    f=gcf();f.color_map=graycolormap(max(C));
+    xfpolys(X,Y,C)
+
+    
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfpoly">xfpoly</link>
+      </member>
+      <member>
+        <link linkend="xpoly">xpoly</link>
+      </member>
+      <member>
+        <link linkend="xpolys">xpolys</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

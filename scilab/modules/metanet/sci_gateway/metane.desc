@@ -1,0 +1,1538 @@
+m6loadg	path
+path	string	lpath
+name	string	lname
+directed	scalar
+n	scalar
+tail	row	madim
+head	row	madim
+node_name	stringmat	1	ndim
+node_type	row	ndim
+node_x	row	ndim
+node_y	row	ndim
+node_color	row	ndim
+node_diam	row	ndim
+node_border row	ndim
+node_font_size	row	ndim	
+node_demand	row	ndim
+edge_name	stringmat	1	madim
+edge_color	row	madim
+edge_width	row	madim
+edge_hi_width	row	madim
+edge_font_size	row	madim
+edge_length	row	madim
+edge_cost	row	madim
+edge_min_cap	row	madim
+edge_max_cap	row	madim
+edge_q_weight	row	madim
+edge_q_orig	row	madim
+edge_weight	row	madim
+default_node_diam 	scalar
+default_node_border	scalar
+default_edge_width	scalar
+default_edge_hi_width 	scalar
+default_font_size 	scalar
+
+loadg	path	lpath	name	lname	directed	n	tail	head node_name	node_type node_x node_y node_color node_diam	node_border	node_font_size	node_demand edge_name	edge_color edge_width	edge_hi_width	edge_font_size	edge_length edge_cost edge_min_cap edge_max_cap edge_q_weight edge_q_orig edge_weight	default_node_diam	default_node_border	default_edge_width	default_edge_hi_width	default_font_size	ndim	madim
+path	char
+lpath	integer
+name	cchar
+lname	integer
+directed	integer
+n	integer
+tail	cintf
+head	cintf
+node_name	Cstringv
+node_type	cintf
+node_x	cintf
+node_y	cintf
+node_color	cintf
+node_diam	cintf
+node_border	cintf
+node_font_size	cintf
+node_demand	cdoublef
+edge_name	Cstringv
+edge_color	cintf
+edge_width	cintf
+edge_hi_width	cintf
+edge_font_size	cintf
+edge_length	cdoublef
+edge_cost	cdoublef
+edge_min_cap	cdoublef
+edge_max_cap	cdoublef
+edge_q_weight	cdoublef
+edge_q_orig	cdoublef
+edge_weight	cdoublef
+default_node_diam	integer
+default_node_border	integer
+default_edge_width	integer
+default_edge_hi_width	integer
+default_font_size	integer
+ndim	integer
+madim	integer
+
+out	list	name	directed	n	tail	head	node_name node_type node_x node_y node_color node_diam	node_border	node_font_size	node_demand	edge_name edge_color edge_width	edge_hi_width	edge_font_size	edge_length edge_cost edge_min_cap edge_max_cap edge_q_weight edge_q_orig edge_weight	default_node_diam	default_node_border	default_edge_width	default_edge_hi_width	default_font_size
+************************************************
+m6saveg	g	name	ma	datanet
+g	tlist	graph
+name	string 	lname
+ma	scalar
+datanet	string	l
+
+saveg	datanet	l	name	lname	directed(g)	node_number(g)	tail(g)	head(g)  node_name(g)	node_type(g) node_x(g) node_y(g) node_color(g) node_diam(g)	node_border(g)	node_font_size(g)	node_demand(g) edge_name(g)	edge_color(g) edge_width(g)	edge_hi_width(g)	edge_font_size(g)	edge_length(g) edge_cost(g) edge_min_cap(g) edge_max_cap(g) edge_q_weight(g) edge_q_orig(g) edge_weight(g)	default_node_diam(g)	default_node_border(g)	default_edge_width(g)	default_edge_hi_width(g)	default_font_size(g)	ma
+datanet	char
+l	integer
+name	char
+lname	integer
+directed(g)	integer
+node_number(g)	integer
+tail(g)	integer
+head(g)	integer
+node_name(g)	Cstringv
+node_type(g)	integer
+node_x(g)	integer
+node_y(g)	integer
+node_color(g)	integer
+node_diam(g)	integer
+node_border(g)	integer
+node_font_size(g)	integer
+node_demand(g)	double
+edge_name(g)	Cstringv
+edge_color(g)	integer
+edge_width(g)	integer
+edge_hi_width(g)	integer
+edge_font_size(g)	integer
+edge_length(g)	double
+edge_cost(g)	double
+edge_min_cap(g)	double
+edge_max_cap(g)	double
+edge_q_weight(g)	double
+edge_q_orig(g)	double
+edge_weight(g)	double
+default_node_diam(g)	integer
+default_node_border(g)	integer
+default_edge_width(g)	integer
+default_edge_hi_width(g)	integer
+default_font_size(g)	integer
+ma	integer
+
+out	empty
+************************************************
+m6prevn2p	i	j	pln	la	lp	ls	direct
+i	scalar
+j	scalar
+pln	row	n
+la	row	m
+lp	row	n1
+ls	row	m
+direct	scalar
+p	row	psize
+
+prevn2p	i	j	m	n	la	lp	ls	direct	pln	p	psize
+i	integer
+j	integer
+m	integer
+n	integer
+la	integer
+lp	integer
+ls	integer
+direct	integer
+pln	integer
+p	cintf
+psize	integer
+
+out	sequence	p
+**************************************************
+m6ns2p	ns	la	lp	ls	n
+ns	row	nsize
+la	row	m
+lp	row	n1
+ls	row	m
+n	scalar
+p	row	psize
+
+ns2p	ns	nsize	p	psize	la	lp	ls	n
+ns	integer
+nsize	integer
+p	cintf
+psize	integer	
+la	integer
+lp	integer
+ls	integer
+n	integer
+
+out	sequence	p
+**************************************************
+m6p2ns	p	la	lp	ls	direct	n
+p	row	psize
+la	row	m
+lp	row	n1
+ls	row	m
+direct	scalar
+n	scalar
+ns	row	nsize
+
+p2ns	p	psize	ns	nsize	la	lp	ls	direct	m	n
+p	integer
+psize	integer
+ns	cintf
+nsize	integer
+la	integer
+lp	integer
+ls	integer
+direct	integer
+m	integer
+n	integer
+
+out	sequence	ns
+**************************************************
+m6edge2st	alpha
+alpha	row	n
+tree	row	treesize
+
+edge2st	n	alpha	tree	treesize
+n	integer
+alpha	integer
+tree	cintf
+treesize	integer
+
+out	sequence	tree
+**************************************************
+m6prevn2st	nodes	la	lp	ls	
+nodes	row	n
+la	row	m
+lp	row	n1
+ls	row	m
+tree	row	treesize
+
+prevn2st	n	nodes	tree	treesize	la	lp	ls
+n	integer
+nodes	integer
+tree	cintf
+treesize	integer
+la	integer
+lp	integer
+ls	integer
+
+out	sequence	tree
+**************************************************
+m6compc	lp	ls	n
+lp	row	n1
+ls	row	mm
+n	scalar
+l	scalar
+ncomp	row	n
+nn	work	n
+pw	work	n
+
+compc	l	lp	ls	mm	n	ncomp	nn	pw
+l	integer
+lp	integer
+ls	integer
+mm	integer
+n	integer
+ncomp	integer
+nn	integer
+pw	integer
+
+out	sequence	l	ncomp
+**************************************************
+m6concom	icomp	ncomp
+icomp	scalar
+ncomp	row	n
+ns	row	nsize
+
+concom	icomp	n	ncomp	ns	nsize
+icomp	integer
+n	integer
+ncomp	integer
+ns	cintf
+nsize	integer
+
+out	sequence	ns
+**************************************************
+m6compfc	lp	ls	n
+lp	row	n1
+ls	row	m
+n	scalar
+inf	work	n
+nc	scalar
+nfcomp	row	n
+nn	work	n
+num	work	n
+pw	work	n
+pile	work	n
+
+compfc	inf	lp	ls	m	n	nc	nfcomp	nn	num	pw	pile
+inf	integer
+lp	integer
+ls	integer
+m	integer
+n	integer
+nc	integer
+nfcomp	integer
+nn	integer
+num	integer
+pw	integer
+pile	integer
+
+out	sequence	nc	nfcomp
+**************************************************
+m6sconcom	icomp	nfcomp
+icomp	scalar
+nfcomp	row	n
+ns	row	nsize
+
+sconcom	icomp	n	nfcomp	ns	nsize
+icomp	integer
+n	integer
+nfcomp	integer
+ns	cintf
+nsize	integer
+
+out	sequence	ns
+**************************************************
+m6pcchna	i0	lp	ls	n
+i0	scalar
+lp	row	n1
+ls	row	m
+n	scalar
+pan	row	n
+pani	row	n
+pile	work	n
+
+pcchna	i0	lp	ls	m	n	pan	pani	pile
+i0	integer
+lp	integer
+ls	integer
+m	integer
+n	integer
+pan	integer
+pani	integer
+pile	integer
+
+out	sequence	pani	pan
+**************************************************
+m6fordfulk	n	ma	source	sink	u	tail	head
+n	scalar
+ma	scalar
+source	scalar
+sink	scalar
+u	row	ma
+tail	row	ma
+head	row	ma
+f	row 	ma
+prdcsr	row	n
+fin	row	n
+fout	row	n
+nxtin	row	ma
+nxtou	row	ma
+label	row	n
+mark	row	n
+maxflow	scalar
+finalin	row	n
+finalou	row	n
+ierr	scalar
+
+fordfulk	n	ma	source	sink	u	f	tail	head	prdcsr	fin	fout	nxtin	nxtou	label	mark	maxflow	finalin	finalou	ierr
+n	integer
+ma	integer
+source	integer
+sink	integer
+u	integer
+tail	integer
+head	integer
+f	integer
+prdcsr	integer
+fin	integer
+fout	integer
+nxtin	integer
+nxtou	integer
+label	integer
+mark	logical
+maxflow	integer
+finalin	integer
+finalou	integer
+ierr	integer
+
+out	sequence maxflow f	ierr
+**************************************************
+m6johns	i0	la	length	lp	ls	n
+i0	scalar
+la	row	m
+length	row	ma
+lp	row	n1
+ls	row	m
+n	scalar
+hw	work	n
+ihw	work	n
+p	row	n
+pi	row	n
+
+johns	hw	i0	ihw	la	length	lp	ls	m	n	p	pi
+hw	integer
+i0	integer
+ihw	integer
+la	integer
+length	double
+lp	integer
+ls	integer
+m	integer
+n	integer
+p	integer
+pi	double
+
+out	sequence	pi	p
+**************************************************
+m6dijkst	i0	la	length	lp	ls	n
+i0	scalar
+la	row	m
+length	row	ma
+lp	row	n1
+ls	row	m
+n	scalar
+p	row	n
+pi	row	n
+
+dijkst	i0	la	length	lp	ls	m	n	p	pi
+i0	integer
+la	integer
+length	double
+lp	integer
+ls	integer
+m	integer
+n	integer
+p	integer
+pi	double
+
+out	sequence	pi	p
+**************************************************
+m6frang	lp	ls	n
+lp	row	n1
+ls	row	m
+n	scalar
+i0	scalar
+pile	work	n
+rang1	work	n
+rang	row	n
+
+frang	i0	lp	ls	m	n	pile	rang1	rang
+i0	integer
+lp	integer
+ls	integer
+m	integer
+n	integer
+pile	integer
+rang1	integer
+rang	integer
+
+out	sequence	i0	rang
+**************************************************
+m6chcm	i0	la	lp	ls	n	maxcap
+i0	scalar
+la	row	m
+lp	row	n1
+ls	row	m
+n	scalar
+maxcap	row	ma
+pcap	row	n
+pcapi	row	n
+
+chcm	maxcap	i0	la	lp	ls	m	n	pcap	pcapi
+maxcap	double
+i0	integer
+la	integer
+lp	integer
+ls	integer
+m	integer
+n	integer
+pcap	integer
+pcapi	double
+
+out	sequence	pcapi	pcap
+**************************************************
+m6transc	lp	ls	n
+lp	row	n1
+ls	row	m
+n	scalar
+lpft	row	lpftdim
+lsft	row	lsftdim
+
+transc	lp	lpft	ls	lsft	m	lsftdim	lpftdim	n
+lp	integer
+lpft	cintf
+ls	integer
+lsft	cintf
+m	integer
+lsftdim	integer
+lpftdim	integer
+n	integer
+
+out	sequence	lpft	lsft
+**************************************************
+m6dfs	i0	lp	ls	n
+i0	scalar
+lp	row	n1
+ls	row	m
+n	scalar
+nn	work	n
+num	row	n
+pw	row	n
+
+dfs	i0	lp	ls	m	n	nn	num	pw
+i0	integer
+lp	integer
+ls	integer
+m	integer
+n	integer
+nn	integer
+num	integer
+pw	integer
+
+out	sequence	num	pw	
+**************************************************
+m6umtree	la	lp	ls	n	weight
+la	row	mm
+lp	row	n1
+ls	row	mm
+n	scalar
+weight	row	ma
+alpha	row	n
+piw	work	n
+
+prim	alpha	la	lp	ls	ma	mm	n	piw	weight
+alpha	integer
+la	integer
+lp	integer
+ls	integer
+ma	integer
+mm	integer
+n	integer
+piw	double
+weight	double
+
+out	sequence	alpha
+**************************************************
+m6umtree1	la	lp	ls	n	weight
+la	row	mm
+lp	row	n1
+ls	row	mm
+n	scalar
+weight	row	ma
+alpha	row	n
+hw	work	n
+ihw	work	n
+piw	work	n
+
+prim1	alpha	hw	ihw	la	lp	ls	ma	mm	n	piw	weight
+alpha	integer
+hw	integer
+ihw	integer
+la	integer
+lp	integer
+ls	integer
+ma	integer
+mm	integer
+n	integer
+piw	double
+weight	double
+
+out	sequence	alpha
+**************************************************
+m6dmtree	i0	la	lp	ls	n	weight
+i0	scalar
+la	row	m
+lp	row	n1
+ls	row	m
+n	scalar
+weight	row	ma
+pred	row	n
+
+dmtree	i0	la	lp	ls	m	n	pred	weight
+i0	integer
+la	integer
+lp	integer
+ls	integer
+m	integer
+n	integer
+pred	integer
+weight	double
+
+out	sequence	pred
+**************************************************
+m6tconex	la	lp	ls	n
+la	row	mm
+lp	row	n1
+ls	row	mm
+n	scalar
+alpha	work	n
+iscon	scalar
+pile	work	n
+
+tconex	alpha	iscon	la	lp	ls	mm	n	pile
+alpha	integer
+iscon	integer
+la	integer
+lp	integer
+ls	integer
+mm	integer
+n	integer
+pile	integer
+
+out	sequence	iscon
+**************************************************
+m6flomax	is	it	la	lp	he	ta	mincap	maxcap	n	phi
+is	scalar
+it	scalar
+phi	row	ma
+la	row	mm
+lp	row	n1
+he	row	ma
+ta	row	ma
+mincap	row	ma
+maxcap	row	ma
+n	scalar
+mark	work	n
+pile	work	n
+vflow	scalar
+
+flomax	mincap	maxcap	he	is	it	la	lp	ma	mark	mm	n	ta	phi pile vflow
+mincap	integer
+maxcap	integer
+he	integer
+is	integer
+it	integer
+la	integer
+lp	integer
+ma	integer
+mark	integer
+mm	integer
+n	integer
+ta	integer
+phi	integer
+pile	integer
+vflow	integer
+
+out	sequence	vflow	phi
+**************************************************
+m6kilter	mincap	maxcap	he	ta	la	lp	n	cost
+mincap	row	ma
+maxcap	row	ma
+he	row	ma
+ta	row	ma
+la	row	mm
+lp	row	n1
+n	scalar
+cost	row	ma
+phi	row	ma
+pile	work	n
+piv	work	n
+predw	work	n
+sufval	work	n
+type	work	ma
+flag	scalar
+
+kilter	mincap	maxcap	he	cost	la	lp	ma	mm	n	ta	phi	pile	piv predw sufval type	flag
+mincap	integer
+maxcap	integer
+he	integer
+cost	double
+la	integer
+lp	integer
+ma	integer
+mm	integer
+n	integer
+ta	integer
+phi	integer
+pile	integer
+piv	double
+predw	integer
+sufval	double
+type	integer
+flag	integer
+
+out	sequence	phi	flag
+**************************************************
+m6busack	is	it	v	maxcap	he	ta	la	lp	n	cost
+is	scalar
+it	scalar
+v	scalar
+maxcap	row	ma
+he	row	ma
+ta	row	ma
+la	row	mm
+lp	row	n1
+n	scalar
+cost	row	ma
+mark	work	n
+p	work	n
+phi	row	ma
+piv	work	n
+valflo	scalar
+flag	scalar
+
+busack	maxcap	he	cost	is	it	la	lp	ma	mark	mm	n	ta	p	phi piv v valflo	flag
+maxcap	integer
+he	integer
+cost	double
+is	integer
+it	integer
+la	integer
+lp	integer
+ma	integer
+mark	double
+mm	integer
+n	integer
+ta	integer
+p	integer
+phi	integer
+piv	double
+v	integer
+valflo	integer
+flag	integer
+
+out	sequence	valflo	phi	flag
+**************************************************
+m6floqua	eps	mincap	maxcap	he	ta	la	lp	n	qorig	qweight
+eps	scalar
+mincap	row	ma
+maxcap	row	ma
+he	row	ma
+ta	row	ma
+la	row	mm
+lp	row	n1
+n	scalar
+qorig	row	ma
+qweight	row	ma
+bprim	work	ma
+cprim	work	ma
+phi	row	ma
+pile	work	n
+piv	work	n
+predw	work	n
+sufval	work	n
+type	work	ma
+flag	scalar
+
+floqua	mincap	bprim	maxcap	cprim	eps	he	la	lp	ma	mm	n	ta	qorig phi pile piv predw sufval type qweight	flag
+mincap	integer
+bprim	integer
+maxcap	integer
+cprim	integer
+eps	double
+he	integer
+la	integer
+lp	integer
+ma	integer
+mm	integer
+n	integer
+ta	integer
+qorig	double
+phi	double
+pile	integer
+piv	double
+predw	integer
+sufval	double
+type	integer
+qweight	double
+flag	integer
+
+out	sequence	phi	flag
+**************************************************
+m6relax	he	ta	cost	maxcap	demand	m	n
+he	row	ma
+ta	row	ma
+cost	row	ma
+maxcap	row	ma
+demand	row	n
+cost	row	ma
+m	scalar
+n	scalar
+rc	work	m
+label	work	n
+prdcsr	work	n
+fou	work	n
+nxtou	work	m
+fin	work	n
+nxtin	work	m
+save	work	m
+scan	work	n
+mark	work	n
+tfstou	work	n
+tnxtou	work	m
+tfstin	work	n
+tnxtin	work	m
+ddpos	work	m
+ddneg	work	m
+x	row	m
+tcost	scalar
+flag	scalar
+
+relax	m	n	he	ta	cost	maxcap	demand	rc	label	prdcsr	fou	nxtou	fin nxtin save scan mark tfstou tnxtou tfstin tnxtin ddpos ddneg x tcost	flag
+m	integer
+n	integer
+ta	integer
+he	integer
+cost	integer
+maxcap	integer
+demand	integer
+rc	integer
+label	integer
+prdcsr	integer
+fou	integer
+nxtou	integer
+fin	integer
+nxtin	integer
+save	integer
+scan	integer
+mark	integer
+tfstou	integer
+tnxtou	integer
+tfstin	integer
+tnxtin	integer
+ddpos	integer
+ddneg	integer
+x	integer
+tcost	double
+flag	integer
+
+out	sequence	tcost	x	flag
+**************************************************
+m6findiso 	tail	head	n
+tail	row	ma
+head	row	ma
+n	scalar
+v	row	n
+
+findiso tail	head	ma	n	v
+tail	integer
+head	integer
+ma	integer
+n	integer
+v	integer
+
+out	sequence	v
+**************************************************
+m6ta2lpd	tail	head	n1	n
+tail	row	ma
+head	row	ma
+n1	scalar
+n	scalar
+lp	row	n1
+la	row	ma
+ls	row	ma
+
+ta2lpd	tail	head	ma	n	lp	la	ls
+tail	integer
+head	integer
+ma	integer
+n	integer
+n1    	integer
+lp	integer
+la	integer
+ls	integer
+
+out	sequence	lp	la	ls
+**************************************************
+m6ta2lpu	tail	head	n1	n	m
+tail	row	ma
+head	row	ma
+n1	scalar
+n	scalar
+m	scalar
+lp	row	n1
+la	row	m
+ls	row	m
+
+ta2lpu	tail	head	ma	n	lp	la	ls
+tail	integer
+head	integer
+ma	integer
+n	integer
+m	integer
+n1	integer
+lp	integer
+la	integer
+ls	integer
+
+out	sequence	lp	la	ls
+**************************************************
+m6lp2tad	lp	la	ls	n
+lp	row	n1
+la	row	ma
+ls	row	ma
+n	scalar
+tail	row	ma
+head	row	ma
+
+lp2tad	lp	la	ls	n	tail	head
+lp	integer
+la	integer
+ls	integer
+n	integer
+tail	integer
+head	integer
+
+out	sequence	tail	head
+**************************************************
+m6lp2tau	lp	la	ls	n	ma
+lp	row	n1
+la	row	m
+ls	row	m
+n	scalar
+ma	scalar
+tail	row	ma
+head	row	ma
+
+lp2tau	lp	la	ls	n	tail	head
+lp	integer
+la	integer
+ls	integer
+n	integer
+ma	integer
+tail	integer
+head	integer
+
+out	sequence	tail	head
+**************************************************
+m6dfs2	i0	lp	ls	n
+i0	scalar
+lp	row	n1
+ls	row	m
+n	scalar
+nn	work	n
+num	work	n
+pw	work	n
+fin	work	n
+nart	row	n
+iart	scalar
+
+dfs2	i0	lp	ls	m	n	nn	num	pw	fin	nart	iart
+i0	integer
+lp	integer
+ls	integer
+m	integer
+n	integer
+nn	integer
+num	integer
+pw	integer
+nart	integer
+iart	integer
+fin	integer
+
+out	sequence	nart	iart	
+**************************************************
+m6diam	fe	che	head	lngt	n1
+n1	scalar
+fe	row	n
+che	row	m
+head	row	ma
+lngt	row	ma
+iropt	scalar
+ii	scalar
+idmax	scalar
+p	row	n
+q	work	n1
+d	work	n
+
+diam	fe	che	head	lngt	n	iropt	ii	idmax	p	q	d
+fe	integer
+che	integer
+head	integer
+lngt	integer
+n	integer
+n1	integer
+iropt	integer
+ii	integer
+idmax	integer
+p	integer
+q	integer
+d	integer
+
+out	sequence	iropt	ii	p	idmax
+**************************************************
+m6cent	fe	che	head	lngt	n1
+n1	scalar
+fe	row	n
+che	row	m
+head	row	ma
+lngt	row	ma
+iropt	scalar
+idmax	scalar
+r	scalar
+p	row	n
+q	work	n1
+d	work	n
+
+cent	fe	che	head	lngt	n	iropt	idmax	r	p	q	d
+fe	integer
+che	integer
+head	integer
+lngt	integer
+n	integer
+n1	integer
+iropt	integer
+idmax	integer
+r	integer
+p	integer
+q	integer
+d	integer
+
+out	sequence	r	idmax
+**************************************************
+m6hullcvex	n	nn	xx
+n	scalar
+nn	scalar
+xx	matrix	2	n
+nhull	scalar
+iwork	row	nn
+in	work	n
+ih	work	n
+il	work	nn
+
+hullcvex	n	nn	xx	nhull	iwork	in	ih	il
+n	integer
+nn	integer
+xx	double
+nhull	integer
+iwork	integer
+in	integer
+ih	integer
+il	integer
+
+out	sequence	nhull	iwork
+**************************************************
+m6clique	n	m	mn	madj
+n	scalar
+m	scalar
+mn	scalar
+madj	matrix	n	n	
+clmax	scalar
+clnod	row	n
+bestn	row	n
+edge	work	n
+start	work	n
+last	work	n
+adj	work	mn
+
+clique	n	m	madj	clmax	clnod	bestn	edge	start	last	adj
+n	integer
+m	integer
+madj 	integer
+clmax	integer
+clnod	integer
+bestn	integer
+edge	integer
+start	integer
+last	integer
+adj	integer
+mn	integer
+
+out	sequence	clmax	clnod	bestn
+**************************************************
+m6clique1	n	m	m2	np1	nwk	kat	hat
+n	scalar
+m	scalar
+m2	scalar
+np1	scalar
+nwk	scalar
+kat	row	np1
+hat	row	m2
+wcl	row	n
+wk	row	nwk
+x	work	n
+
+clique1	n	m	m2	np1	nwk	kat	hat	wcl	wk	x
+n	integer
+m	integer
+m2	integer
+np1	integer
+nwk	integer
+kat	integer
+hat	integer
+wcl	integer
+wk	integer
+x	integer
+
+out	sequence	wcl
+**************************************************
+m6hamil	n	m	np1	pr	ar	nc	nb
+n	scalar
+m	scalar
+np1	scalar
+pr	row	np1
+ar	row	m
+s	row	n
+nc	scalar
+nb	scalar
+pc	work	np1
+ac	work	m
+vr	work	n
+vc	work	n
+p	work	n
+subr	work	n
+rbus	work	n
+tor	work	n
+
+hamil	n	m	np1	pr	ar	s	nc	nb	pc	ac	vr	vc	p	subr	rbus	tor
+n	integer
+m	integer
+np1	integer
+pr	integer
+ar	integer
+s	integer
+nc	integer
+nb	integer
+pc	integer
+ac	integer
+vr	integer
+vc	integer
+p	integer
+subr	integer
+rbus	integer
+tor	integer
+
+out	sequence	s
+**************************************************
+m6visitor	n	a	nstac
+n	scalar
+a	matrix	n	n
+nstac	scalar
+iroad	row	n
+x	work	nstac
+fstar	work	n
+
+visitor	n	a	nstac	iroad	x	fstar
+n	integer
+a	integer
+nstac	integer
+iroad	integer
+x	integer
+fstar	integer
+
+out	sequence	iroad
+**************************************************
+m6bmatch	n	m	nd2	n8t8	nd8	np1	nt2	mt2	mt3	mt4	ni	mi	tail	head
+n	scalar
+m	scalar
+nd2	scalar
+n8t8	scalar
+nd8	scalar
+np1	scalar
+nt2	scalar
+mt2	scalar
+mt3	scalar
+mt4	scalar
+ni	scalar
+mi	scalar
+tail	row	mi
+head	row	mi
+card	scalar
+match	row	n
+degree	work	n
+nbrll	work	mt4
+ptr	work	n
+nindex	work	np1
+nghbr	work	mt2
+mark	work	n
+visitd	work	n
+evlev	work	n
+odlev	work	n
+bloss	work	n
+anom	work	nt2
+aindex	work	n
+base	work	nd2
+bstar	work	nd2
+peakl	work	nd2
+peakr	work	nd2
+f	work	n
+path	work	n
+bridge	work	mt3
+bindex	work	nd2
+pred	work	mt2
+pindex	work	n
+derp	work	mt2
+dindex	work	n
+prdctr	work	n
+edge	work	mt2
+lr	work	n
+leveli	work	n
+mem	work	n
+member	work	n
+estk	work	n
+stack	work	n8t8
+
+bmatch	n	m	np1	mt2	nd2	n8t8	nd8	ni	mi	tail	head	card	match	degree	nbrll	ptr	nindex	nghbr	mark	visitd	evlev	odlev	bloss	anom	aindex	base	bstar	peakl	peakr	f	path	bridge	bindex	pred	pindex	derp	dindex	prdctr	edge	lr	leveli	mem	member	estk	stack
+n	integer
+m	integer
+np1	integer
+mt2	integer
+mt3	integer
+mt4	integer
+nt2	integer
+nd2	integer
+n8t8	integer
+nd8	integer
+ni	integer
+mi	integer
+tail	integer
+head	integer
+card	integer
+match	integer
+degree	integer
+nbrll	integer
+ptr	integer
+nindex	integer
+nghbr	integer
+mark	char
+visitd	integer
+evlev	integer
+odlev	integer
+bloss	integer
+anom	integer
+aindex	integer
+base	integer
+bstar	integer
+peakl	integer
+peakr	integer
+f	integer
+path	integer
+bridge	integer
+bindex	integer
+pred	integer
+pindex	integer
+derp	integer
+dindex	integer
+prdctr	integer
+edge	integer
+lr	integer
+leveli	integer
+mem	integer
+member	integer
+estk	integer
+stack	integer
+
+out	sequence	card	match
+**************************************************
+m6knapsk	n	m	np1	mn	mnp1	p	w	k	bck
+n	scalar
+m	scalar
+np1	scalar
+mn	scalar
+mnp1	scalar
+p	row	n
+w	row	n
+k	row	m
+xstar	row	n
+vstar	scalar
+bck	scalar
+lx	work	n
+lxi	work	n
+bs	work	n
+ps	work	np1
+ws	work	np1
+xs	work	n
+bb	work	mn
+bl	work	mnp1
+x	work	mn
+xl	work	mn
+b	work	np1
+ubb	work	n
+f	work	m
+pbl	work	m
+q	work	m
+v	work	m
+d	work	n
+min	work	n
+pbar	work	n
+wbar	work	n
+zbar	work	n
+
+knapsk	n	m	np1	p	w	k	xstar	vstar	bck	lx	lxi	bs	ps	ws	xs	bb	bl	x	xl	b	ubb	f	pbl	q	v	d	min	pbar	wbar	zbar
+n	integer
+mnp1	integer
+m	integer
+mn	integer
+np1	integer
+p	integer
+w	integer
+k	integer
+xstar	integer
+vstar	integer
+bck	integer
+lx	integer
+lxi	integer
+bs	integer
+ps	integer
+ws	integer
+xs	integer
+bb	integer
+bl	integer
+x	integer
+xl	integer
+b	integer
+ubb	integer
+f	integer
+pbl	integer
+q	integer
+v	integer
+d	integer
+min	integer
+pbar	integer
+wbar	integer
+zbar	integer
+
+out	sequence	xstar	vstar
+**************************************************
+m6prfmatch	n	m	np1	m2	nbl	cc	index
+n	scalar
+m	scalar
+np1	scalar
+m2	scalar
+nbl	row	m2
+cc	row	m2
+index	row	np1
+cost	scalar
+nmatch	row	n
+basis	work	n
+mem	work	n
+ka	work	n
+kb	work	n
+sm	work	n
+tma	work	n
+tmb	work	n
+y1	work	n
+y2	work	n
+dminus	work	n
+dplus	work	n
+
+prfmatch	n	m	np1	m2	nbl	cc	index	cost	nmatch	basis	mem	ka	kb	sm	tma	tmb	y1	y2	dminus	dplus
+n	integer
+m	integer
+np1	integer
+m2	integer
+nbl	integer
+cc	integer
+index	integer
+cost	integer
+nmatch	integer
+basis	integer
+mem	integer
+ka	integer
+kb	integer
+sm	integer
+tma	integer
+tmb	integer
+y1	double
+y2	double
+dminus	double
+dplus	double
+
+out	sequence	cost	nmatch
+**************************************************
+m6permuto	n	n3	n4	c	f	d
+n	scalar
+n3	scalar
+n4	scalar
+c	matrix	n	n
+f	matrix	n	n
+d	matrix	n	n
+crit	scalar
+loc3n	row	n3
+work4n	work	n4
+
+permuto	n	n3	n4	c	f	d	crit	loc3n	work4n
+n	integer
+n3	integer
+n4	integer
+c	double
+f	double
+d	double
+crit	double
+loc3n	integer
+work4n	double
+
+out	sequence	crit	loc3n
+**************************************************
+m6mesh2b	nbs	n6	n4	lfront	cr	tri	front
+nbs	scalar
+n6	scalar
+n4	scalar
+lfront	scalar
+cr	matrix	2	nbs
+c	matrix	2	nbs
+nu	row	n6
+tri	row	n4
+front	row	lfront
+nbt	scalar
+err	scalar
+
+mesh2b	nbs	n6	n4	lfront	cr	c	nu	tri	front	nbt	err
+nbs	integer
+n6	integer
+n4	integer
+lfront	integer
+cr	double
+c	integer
+nu	integer
+tri	integer
+front	integer
+nbt	integer
+err	integer
+
+out	sequence	nbt	nu	c	err
+**************************************************
+m6deumesh	n	n4	n6	x 	y
+n	scalar
+n4	scalar
+n6	scalar
+x	row	n
+y	row	n
+iadj	row	n6
+iend	row	n
+nbt	scalar
+nu	matrix	3	n4
+iero	scalar
+
+deumesh	n	n4	n6	x 	y	iadj	iend	nbt	nu	iero
+n	integer
+n4	integer
+n6	integer
+x	double
+y	double
+iadj	integer
+iend	integer
+nbt	integer
+nu	integer
+iero	integer
+
+out	sequence	iadj	iend	nbt	nu	iero
+**************************************************
+m6bandred	n	nz	liwork	iwork	lrwork	rwork	optpro
+n	scalar
+nz	scalar
+liwork	scalar
+iwork	row	liwork
+lrwork	scalar
+rwork	row	lrwork
+optpro	scalar
+ierr	scalar
+iperm	row	n
+mrepi	row	n
+iband	row	n
+
+bandred	n	nz	liwork	iwork	lrwork	rwork	optpro	ierr	iperm	mrepi	iband
+n	integer
+nz	integer
+liwork	integer
+iwork	integer
+lrwork	integer
+rwork	double
+optpro	integer
+ierr	integer
+iperm	integer
+mrepi	integer
+iband	integer
+
+out	sequence	iperm	mrepi	iband	ierr
+**************************************************
+m6meshmesh	inseed	n	nsorc	nsink	mincst	maxcst	itsup	otsup	bhicst	bcap	mincap	maxcap ns	ns2	ns4	ns10	ns12	ns20	ns30
+inseed	scalar
+n	scalar
+nsorc	scalar
+nsink	scalar	
+mincst	scalar	
+maxcst	scalar	
+itsup	scalar	
+otsup	scalar	
+bhicst	scalar	
+bcap	scalar	
+mincap	scalar	
+maxcap	scalar
+m	scalar
+ns	scalar
+ns2	scalar
+ns4	scalar
+ns10	scalar
+ns12	scalar
+ns20	scalar
+ns30	scalar
+ntype	row	n
+tail	row	ns10
+head	row	ns10
+xnod	row	n
+ynod	row	n	
+cap	row	ns10
+cost	row 	ns10
+cr	work	ns2	
+front	work	ns
+ic	work	ns
+nu	work	ns12
+tri	work	ns4
+k	work	ns
+ma	work	ns30
+nsorcv	work	ns
+nsinkv	work	ns
+
+meshmesh	inseed	n	nsorc	nsink	mincst	maxcst	itsup	otsup	bhicst	bcap	mincap	maxcap	m	ntype	tail	head	xnod	ynod	cap	cost	ns	ns4	ns12	ns10	cr	front	ic	nu	tri	k	ma	nsorcv	nsinkv
+inseed	integer	
+n	integer		
+ns20	integer		
+ns30	integer
+nsorc	integer		
+nsink	integer		
+mincst	integer		
+maxcst	integer		
+ns2	integer
+itsup	integer		
+otsup	integer		
+bhicst	real	
+bcap	real		
+mincap	integer		
+maxcap	integer		
+m	integer		
+ntype	integer		
+tail	integer
+head	integer
+xnod	integer		
+ynod	integer		
+cap	integer
+cost	integer	
+ns	integer
+ns4	integer
+ns12	integer
+ns10	integer
+cr	double
+front	integer
+ic	integer
+nu	integer
+tri	integer
+k	integer
+ma	integer
+nsorcv	integer
+nsinkv	integer
+
+out	sequence	ntype	m	tail	head	xnod	ynod	cap	cost
+**************************************************
+m6ford	i0	la	length	lp	ls	n
+i0	scalar
+la	row	m
+length	row	ma
+lp	row	n1
+ls	row	m
+n	scalar
+p	row	n
+pi	row	n
+
+ford	i0	la	length	lp	ls	m	n	p	pi
+i0	integer
+la	integer
+length	double
+lp	integer
+ls	integer
+m	integer
+n	integer
+p	integer
+pi	double
+
+out	sequence	pi	p
+**************************************************

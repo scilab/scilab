@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="aff2ab">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>aff2ab</refname>
+    <refpurpose> linear (affine) function to A,b conversion</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[A,b]=aff2ab(afunction,dimX,D [,flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>afunction</term>
+        <listitem>
+          <para>a scilab function <literal> Y =fct(X,D) </literal> where <literal>X, D, Y</literal> are <literal>list</literal> of matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dimX</term>
+        <listitem>
+          <para>a p x 2 integer matrix (<literal>p</literal> is the number of matrices in <literal>X</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>D</term>
+        <listitem>
+          <para>a <literal>list</literal> of real matrices (or any other valid Scilab object).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>optional parameter (<literal>flag='f'</literal> or <literal>flag='sp'</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>a real matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>a real vector having same row dimension as <literal>A</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>aff2ab</literal>  returns the matrix representation of an affine
+    function (in the canonical basis).</para>
+    <para><literal>afunction</literal> is a function with imposed syntax:
+    <literal> Y=afunction(X,D) </literal> where <literal> X=list(X1,X2,...,Xp) </literal> is
+    a list of p real matrices, and <literal> Y=list(Y1,...,Yq) </literal> is
+    a list of q real real matrices which depend linearly of
+    the <literal> Xi</literal>'s. The (optional) input <literal> D</literal> contains 
+    parameters needed to compute Y as a function of X. 
+    (It is generally a list of matrices).</para>
+    <para><literal> dimX</literal> is a p x 2 matrix: <literal>dimX(i)=[nri,nci]</literal>
+    is the actual number of rows and columns of matrix <literal>Xi</literal>.
+    These dimensions determine <literal>na</literal>, the column dimension of 
+    the resulting matrix <literal>A</literal>: <literal>na=nr1*nc1 +...+ nrp*ncp</literal>.</para>
+    <para>
+    If the optional parameter <literal>flag='sp'</literal> the resulting <literal>A</literal>
+    matrix is returned as a sparse matrix.</para>
+    <para>
+    This function is useful to solve a system of linear equations
+    where the unknown variables are matrices.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Lyapunov equation solver (one unknown variable, one constraint)
+deff('Y=lyapunov(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)')
+A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
+[Aly,bly]=aff2ab(lyapunov,dimX,D);
+[Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); lyapunov(Xv,D)
+Xm=Xv(:); A'*Xm+Xm*A-Q
+
+// Lyapunov equation solver with redundant constraint X=X'
+// (one variable, two constraints) D is global variable
+deff('Y=ly2(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q,Xm''-Xm)')
+A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
+[Aly,bly]=aff2ab(ly2,dimX,D);
+[Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); ly2(Xv,D)
+
+// Francis equations
+// Find matrices X1 and X2 such that:
+// A1*X1 - X1*A2 + B*X2 -A3 = 0
+// D1*X1 -D2 = 0 
+deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:),...
+[X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)')
+A1=[-4,10;-1,2];A3=[1;2];B=[0;1];A2=1;D1=[0,1];D2=1;
+D=list(A1,A2,A3,B,D1,D2);
+[n1,m1]=size(A1);[n2,m2]=size(A2);[n3,m3]=size(B);
+dimX=[[m1,n2];[m3,m2]];
+[Af,bf]=aff2ab(bruce,dimX,D);
+[Xf,KerAf]=linsolve(Af,bf);Xsol=vec2list(Xf,dimX)
+bruce(Xsol,D)
+
+// Find all X which commute with A
+deff('y=f(X,D)','y=list(D(:)*X(:)-X(:)*D(:))')
+A=rand(3,3);dimX=[3,3];[Af,bf]=aff2ab(f,dimX,list(A));
+[Xf,KerAf]=linsolve(Af,bf);[p,q]=size(KerAf);
+Xsol=vec2list(Xf+KerAf*rand(q,1),dimX);
+C=Xsol(:); A*C-C*A
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="linsolve">linsolve</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

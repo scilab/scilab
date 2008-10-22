@@ -1,0 +1,337 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-06-18 13:40+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2008-06-13 13:33+0100\n"
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr ""
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 49
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr "   %s: 複製編譯工具檔 (Makefile*, libtool...) 到 TMPDIR 子目錄\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 72
+# File: macros/ilib_gen_Make_unix.sci, line: 119
+# File: src/c/dl_genErrorMessage.c, line: 43
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 90
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: 複製 %s 到 TMPDIR 子目錄\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr ""
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 127
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: 修改 TMPDIR 子目錄內之 Makefile.\n"
+
+#, c-format
+msgid "%s: Error while modifing the reference Makefile:\n"
+msgstr ""
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr ""
+
+#
+# File: macros/gencompilationflags_unix.sci, line: 14
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: 在  Microsoft Windows 環境上缺少此功能.\n"
+
+#
+# File: macros/ilib_for_link.sci, line: 34
+# File: macros/ilib_build.sci, line: 41
+msgid "   Generate a loader file"
+msgstr "   產生載入檔 (loader file)"
+
+#
+# File: macros/ilib_for_link.sci, line: 38
+# File: macros/ilib_build.sci, line: 54
+msgid "   Generate a Makefile"
+msgstr "   產生 Makefile"
+
+#
+# File: macros/ilib_for_link.sci, line: 52
+msgid "   Running the Makefile"
+msgstr "   執行 Makefile"
+
+#
+# File: macros/ilib_gen_Make.sci, line: 33
+# File: macros/ilib_gen_loader.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#
+# File: macros/ilib_compile.sci, line: 29
+# File: sci_gateway/c/sci_c_link.c, line: 103
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: A 應為字串.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr ""
+
+# File: macros/ilib_gen_gateway.sci, line: 54
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d.\n"
+
+#
+# File: macros/ilib_build.sci, line: 35
+msgid "   Generate a gateway file"
+msgstr "   產生 geteway 檔"
+
+#
+# File: macros/ilib_build.sci, line: 52
+#, c-format
+msgid "   Generate a Makefile: %s"
+msgstr "   產生 Makefile: %s"
+
+#
+# File: macros/ilib_build.sci, line: 61
+msgid "   Running the makefile"
+msgstr "   執行 Makefile"
+
+#
+# File: macros/ilib_compile.sci, line: 20
+msgid "A Fortran or C compiler is required."
+msgstr "須要 Fortran  或 C 編譯器."
+
+msgid "   Compilation of "
+msgstr ""
+
+msgid "   Building shared library (be patient)"
+msgstr ""
+
+#
+# File: macros/ilib_compile.sci, line: 83
+#, c-format
+msgid "%s: An error occured during the compilation:\n"
+msgstr "%s: 編譯時產生錯誤:\n"
+
+#
+# File: macros/ilib_compile.sci, line: 85
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: 指令為:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串向量.\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 92
+# File: sci_gateway/c/sci_addinter.c, line: 87
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
+
+#
+# File: sci_gateway/c/sci_ulink.c, line: 51
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
+
+#
+# File: sci_gateway/c/sci_c_link.c, line: 46
+# File: sci_gateway/c/sci_c_link.c, line: 52
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr "%s : 第二參數必須為共用程式庫之唯一 id.\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 64
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s : 第 %d 個輸入參數數值錯誤: %s\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 64
+msgid "Unique id of a shared library expected."
+msgstr "共用程式庫之 id 必須唯一."
+
+#
+# File: sci_gateway/c/sci_link.c, line: 81
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s : 第 %d 個輸入參數型態錯誤: %s\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 81
+msgid "Unique dynamic library name expected."
+msgstr "動態程式庫之名稱必須唯一."
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr "%s: 輸入參數型態錯誤. 應為字串向量.\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 115
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr "%s: 輸入參數型態錯誤. 應為字串.\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 131
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s' .\n"
+
+#
+# File: src/c/addinter.c, line: 211
+#, c-format
+msgid " results may be inaccurate. rcond = %s\n"
+msgstr " 計算結果可能不精確. rcond = %s\n"
+
+#
+# File: src/c/addinter.c, line: 237
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "介面 %s 未聯結.\n"
+
+#
+# File: src/c/dl_genErrorMessage.c, line: 25
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: 共用程式庫尚未載入: %s\n"
+
+#
+# File: src/c/dl_genErrorMessage.c, line: 29
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr "%s: 無法開啟共用程式庫. 已到達最大進入點(Entry point)數目 %d 限制.\n"
+
+#
+# File: src/c/dl_genErrorMessage.c, line: 33
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: 公用程式庫 %s 不存在.\n"
+
+#
+# File: src/c/dl_genErrorMessage.c, line: 37
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: 已經從程式庫 %s 中載入\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: 其中一個進入點 (entry point) 出問題.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 96
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "聯結動態程式庫 '%s' 時失敗.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 97
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "錯誤產生: %s\n"
+
+#
+# File: src/c/dynamic_link.c, line: 104
+msgid "Shared archive loaded.\n"
+msgstr "共用庫已載入.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 105
+msgid "Link done.\n"
+msgstr "聯結完成.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 265
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"進入點(Entry point)數目 %d.\n"
+"共用程式庫 :\n"
+
+#
+# File: src/c/dynamic_link.c, line: 271
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] :  %d 程式庫.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 275
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "進入點(Entry point) %s (位於公用程式庫 %d).\n"
+
+#
+# File: src/c/dynamic_link.c, line: 320
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr "無法開啟共用程式庫,已到達最大進入點(Entry point)數目 %d 限制.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 356
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "進入點(Entry point)名稱 %s.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 370
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s 不是一進入點(Entry point).\n"
+
+#
+# File: src/c/dynamic_link.c, line: 376
+#, c-format
+msgid "Linking %s.\n"
+msgstr "聯結 %s.\n"

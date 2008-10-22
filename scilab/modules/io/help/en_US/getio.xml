@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getio">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getio</refname>
+    <refpurpose> get Scilab input/output logical units</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>ios=getio()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>ios</term>
+        <listitem>
+          <para>a vector [rio rte wio wte]</para>
+          <variablelist>
+            <varlistentry>
+              <term>rio</term>
+              <listitem>
+                <para>current logical unit for reading instructions</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rte</term>
+              <listitem>
+                <para>logical unit assigned for input in main scilab window</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>wio</term>
+              <listitem>
+                <para>logical unit relative to the diary file if any. wio=0 stands for no diary file opened</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>wte</term>
+              <listitem>
+                <para>logical unit assigned for output in main scilab window</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>getio</literal> returns logical units assigned for main scilab input and output</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

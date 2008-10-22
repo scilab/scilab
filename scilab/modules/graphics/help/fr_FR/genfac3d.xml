@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="genfac3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>genfac3d</refname>
+    <refpurpose> calcule les facettes d'une surface 3D non-paramétrique  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[xx,yy,zz]=genfac3d(x,y,z,[mask])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>xx,yy,zz  </term>
+        <listitem>
+          <para>matrices de taille (4,n-1xm-1). <literal>xx(:,i)</literal> ,<literal>yy(:,i)</literal> et <literal>zz(:,i)</literal>  sont respectivement les coordonnées des 4 points de la facette numéro i.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur de taille m.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para>vecteur de taille n.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z  </term>
+        <listitem>
+          <para>matrice de taille (m,n). <literal>z(i,j)</literal> est la hauteur de la surface au point (x(i),y(j)).
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mask  </term>
+        <listitem>
+          <para>matrice booléenne optionnelle de même taille que <literal>z</literal> utilisée pour sélectionner les  termes de <literal>z</literal> à représenter par des facettes.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>genfac3d</literal>  calcule la représentation en facettes à 4 points d'une surface 3D non-paramétrique
+    <literal>z=f(x,y)</literal> définie par <literal>x</literal>, <literal>y</literal> et <literal>z</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z);
+plot3d(xx,yy,zz)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eval3dp">eval3dp</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

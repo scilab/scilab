@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_int8">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_int8</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab int8</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>int8</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec un paramètre d'entrée complexe : La fonction Matlab <literal>int8</literal> peut être utilisée
+	avec des complexes mais pas la fonction Scilab.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Avec la valeur <literal>%inf</literal> : Matlab retourne 127 alors que Scilab retourne 0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Avec la valeur <literal>-%inf</literal> : Matlab retourne -128 alors que Scilab retourne 0.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_int8(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>int8(A)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_int8</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> ne contient pas de valeur <literal>%inf</literal> ou <literal>-%inf</literal>
+        <literal>mtlb_int8(A)</literal> peut être remplacé par <literal>int8(A)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_int8</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

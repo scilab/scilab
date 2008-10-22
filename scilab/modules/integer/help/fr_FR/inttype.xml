@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="inttype">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inttype</refname>
+    <refpurpose>  type des entiers utilisés dans les types entiers de données.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[i]=inttype(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>matrice d'entiers (voir int8)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i  </term>
+        <listitem>
+          <para>un entier
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    renvoie un entier donnant le type de données stockées dans
+    <literal>x</literal> avec la convention suivante :
+  </para>
+    <para>
+     1 
+    :  codage entier à 1 octet
+  </para>
+    <para>
+     2 
+    :  codage entier à 2 octets
+  </para>
+    <para>
+     4 
+    :  codage entier à 4 octets
+  </para>
+    <para>
+     11 
+    :  codage entier non-signé à 1 octet
+  </para>
+    <para>
+     12 
+    :  codage entier non-signé à 2 octets
+  </para>
+    <para>
+     14 
+    :  codage entier non-signé à 4 octets
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+x=uint16(1:10);
+inttype(x)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="int8">int8</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

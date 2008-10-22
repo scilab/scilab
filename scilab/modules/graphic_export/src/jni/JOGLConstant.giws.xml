@@ -1,0 +1,83 @@
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ 
+<package name="org.scilab.modules.graphic_export">
+  <object name="JOGLConstant">
+  	<method name="get_GL_RGBA" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_RGB" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_CURRENT_RASTER_POSITION_VALID" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_CURRENT_RASTER_POSITION" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_CURRENT_RASTER_COLOR" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_SRC_ALPHA" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_ONE_MINUS_SRC_ALPHA" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_ONE" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_ZERO" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_COLOR_INDEX" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_POINT_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_LINE_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_LINE_RESET_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_POLYGON_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_BITMAP_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_DRAW_PIXEL_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_COPY_PIXEL_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_PASS_THROUGH_TOKEN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_FEEDBACK" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_COLOR_CLEAR_VALUE" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_INDEX_CLEAR_VALUE" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_RENDER" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_VIEWPORT" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_BLEND" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_BLEND_SRC" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_BLEND_DST" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_3D_COLOR" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_FLOAT" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_POINTS" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_POLYGON_OFFSET_FACTOR" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_POLYGON_OFFSET_UNITS" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_LINE_STIPPLE_PATTERN" returnType="int" modifier="static">
+    </method>
+	<method name="get_GL_LINE_STIPPLE_REPEAT" returnType="int" modifier="static">
+    </method>
+	
+  </object>
+</package>

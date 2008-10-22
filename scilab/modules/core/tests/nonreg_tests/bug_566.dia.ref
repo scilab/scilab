@@ -1,0 +1,21 @@
+// <-- Non-regression test for bug 566 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=566
+//
+// <-- Short Description -->
+//    a(2,3,2)='x' returns an empty matrix.
+a(2,3,2)='y'
+ a  =
+ 
+(:,:,1)
+ 
+!      !
+!      !
+!      !
+(:,:,2)
+ 
+!       !
+!       !
+!    y  !
+if a == [] then bugmes();quit;end

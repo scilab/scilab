@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdfnor">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdfnor</refname>
+    <refpurpose> cumulative distribution function normal distribution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P,Q]=cdfnor("PQ",X,Mean,Std)
+[X]=cdfnor("X",Mean,Std,P,Q)
+[Mean]=cdfnor("Mean",Std,P,Q,X)
+[Std]=cdfnor("Std",P,Q,X,Mean)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P,Q,X,Mean,Std</term>
+        <listitem>
+          <para>six real vectors of the same size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P,Q (Q=1-P)  </term>
+        <listitem>
+          <para>The integral from -infinity to X of the normal density. Input range: (0,1].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>:Upper limit of integration of the normal-density. Input range: ( -infinity, +infinity)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Mean</term>
+        <listitem>
+          <para> The mean of the normal density. Input range: (-infinity, +infinity)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sd</term>
+        <listitem>
+          <para> Standard Deviation of the normal density. Input range: (0, +infinity).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Calculates any one parameter of the normal
+    distribution given values for the others.</para>
+    <para>
+    A slightly modified version of ANORM from
+    Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portabel FORTRAN
+    Package of Special Function Routines and Test Drivers"
+    acm Transactions on Mathematical Software. 19, 22-32.
+    is used to calulate the  cumulative standard normal distribution.</para>
+    <para>
+    The rational functions from pages  90-95  of Kennedy and Gentle,
+    Statistical  Computing,  Marcel  Dekker, NY,  1980 are  used  as
+    starting values to Newton's Iterations which compute the inverse
+    standard normal.  Therefore no  searches  are necessary for  any
+    parameter.</para>
+    <para>
+    For X &lt; -15, the asymptotic expansion for the normal is used  as
+    the starting value in finding the inverse standard normal.
+    This is formula 26.2.12 of Abramowitz and Stegun.</para>
+    <para>
+    The normal density is proportional to
+    exp( - 0.5 * (( X - MEAN)/SD)**2)</para>
+    <para>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,52 @@
+// ====================================================================
+// Allan CORNET
+// Copyright INRIA 2008
+// This file is released into the public domain
+// ====================================================================
+warning_mode = warning('query');
+warning('off');
+
+disp('Start Toolbox skeleton');
+
+etc_tlbx = get_absolute_file_path('toolbox_skeleton.start');
+etc_tlbx = getshortpathname(etc_tlbx);
+
+root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length('\etc\') );
+
+pathmacros = pathconvert( root_tlbx ) + 'macros'+ filesep();
+
+disp('Load macros');
+//Load  functions library
+toolbox_skeletonlib = lib(pathmacros);
+
+// load gateways
+disp('Load gateways');
+
+warning_mode = warning('query');
+warning('off');
+// load gateways
+exec( root_tlbx + '/sci_gateway/loader_gateway.sce' );
+warning(warning_mode);
+
+disp('Load help');
+
+//add help chapter
+path_addchapter = root_tlbx + "/jar/";
+if ( fileinfo(path_addchapter) <> [] ) then
+  add_help_chapter('Toolbox Skeleton', path_addchapter, %F);
+  clear add_help_chapter;
+end
+// ====================================================================
+// add demos
+pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce",%f,%t);
+add_demo("Toolbox skeleton",pathdemos);
+clear pathdemos ;
+// ====================================================================
+clear warning_mode;
+clear path_addchapter;
+clear root_tlbx;
+clear etc_tlbx;
+clear pathmacros;
+clear pathconvert;
+// ====================================================================
+

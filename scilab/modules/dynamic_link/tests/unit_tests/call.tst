@@ -1,0 +1,36 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+//================================================
+// test call
+//================================================
+foo=['void foo(double *a,double *b,double *c)';
+     '{ *c = *a + *b; }'  ];
+
+// we use TMPDIR for compilation 
+	
+if ~c_link('foo') then
+  curPath = getcwd(); 
+  chdir(TMPDIR); 
+  mputl(foo,'foo.c');
+  
+  ilib_for_link(['foo'],'foo.o',[],"c");
+  
+  // disable message
+  warning_mode = warning('query');
+  warning('off');
+  // load the shared library 
+  exec loader.sce ;
+  // enable message
+  warning(warning_mode);
+  chdir(curPath) 
+end	
+
+//5+7 by C function
+v = call('foo',5,1,'d',7,2,'d','out',[1,1],3,'d')
+if v <> 12 then pause,end
+//================================================

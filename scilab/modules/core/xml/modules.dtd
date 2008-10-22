@@ -1,0 +1,15 @@
+<!ELEMENT modules (META?,module*)>
+
+<!ELEMENT META (#PCDATA)>
+
+<!ATTLIST META 
+CATEGORY 	CDATA 	"Scilab modules" 	 
+VERSION_SCI 	CDATA 	"5.0" 	 
+VERSION_DOC 	CDATA 	"1.0" 	 
+AUTHOR 	CDATA 	"Allan CORNET INRIA 2007" 	 
+ >
+
+<!ELEMENT module (#PCDATA)>
+<!ATTLIST module name CDATA #IMPLIED>
+<!ATTLIST module activate CDATA #IMPLIED>
+

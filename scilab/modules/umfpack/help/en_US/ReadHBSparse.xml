@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="ReadHBSparse" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate></pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ReadHBSparse</refname>
+
+    <refpurpose>read a Harwell-Boeing sparse format file</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[A, description, ref, mtype] = ReadHBSparse([filename])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>(optional) a string given the filename (eventually preceeding
+          by the path), if filename is not given then the function use <link
+          linkend="xgetfile">xgetfile</link> to get filename
+          interactively</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>the sparse matrix</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>description</term>
+
+        <listitem>
+          <para>a string given some information about the matrix</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ref</term>
+
+        <listitem>
+          <para>a string given the reference of the matrix</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mtype</term>
+
+        <listitem>
+          <para>a string given the type of the matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>An utility to read the Harwell-Boeing sparse matrix format.
+    Currently don't work for unassembled matrix. Also the eventual rhs vectors
+    of the file are not returned. Generally the file name is of the form
+    ref.mtype where mtype is a 3 letters word abc given some informations
+    (already inside the file) on the matrix :</para>
+
+    <programlisting>
+   a = R|C|P   for real|complex|pattern (no values given)
+   b = S|H|Z|U for symetric|hermitian|skew symetric|unsymetric
+   c = A|E     for assembled|unassembled matrix 
+               (case E is not treated by this func)
+   </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <para>Users' Guide for the Harwell-Boeing Sparse Matrix Collection Iain S.
+    Duff, Roger G. Grimes, John G. Lewis. You may found this guide and
+    numerous sparse matrices (in the Harwell-Boeing format) at the University
+    of Florida Sparse Matrix Collection </para>
+
+    <para>web site : <ulink
+    url="http://www.cise.ufl.edu/research/sparse/matrices/">http://www.cise.ufl.edu/research/sparse/matrices/</ulink></para>
+
+    <para>maintained by Tim Davis (<ulink
+    url="http://www.cise.ufl.edu/~davis/">http://www.cise.ufl.edu/~davis/</ulink>)</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="PlotSparse">PlotSparse</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Bruno Pincon &lt;Bruno.Pincon@iecn.u-nancy.fr&gt;</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,12 @@
+m=0.36;   //m=k^2
+KT=%k(1-m);
+Ip=2*KT;  //Imaginary period
+ima_val1=[0.:(Ip/50):(KT-0.01)];
+ima_val2=[(KT+0.01):(Ip/50):(Ip+KT)];
+z1=%sn(%i*ima_val1,m);z2=%sn(%i*ima_val2,m);
+rect=[0,-30,Ip+KT,30];
+plot2d([KT,KT]',[-30,30]',[1],"011",' ',rect);
+xtitle(' ','x imaginary','sn(x)')  //asymptote
+plot2d([-30,30]',[0,0]',[1],"000");
+plot2d(ima_val1',imag(z1)',[1],"000");
+plot2d(ima_val2',imag(z2)',[1],"000");

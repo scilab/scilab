@@ -1,0 +1,29 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/spones_data.ref','rb');
+ 
+A = sprand(10, 12, 0.1);
+ 
+sp = spones(A);
+ 
+if load_ref('sp') then   bugmes();quit;end,
+ 
+ 
+B = A ~= 0;
+ 
+if load_ref('B') then   bugmes();quit;end,
+ 
+ 
+%ans = bool2s(B);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

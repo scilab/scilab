@@ -1,0 +1,3 @@
+LIBRARY xtimesy.dll
+EXPORTS
+	mexFunction

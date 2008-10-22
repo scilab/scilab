@@ -1,0 +1,250 @@
+****** Beginning of validation of SVD.dia.ref ******
+TEST 1: Scilab and Matlab size do not match for res1
+Matlab: 0 1
+Scilab: 0 0
+Trying to compare results...
+*** TEST 1 FAILED ***
+
+TEST 2: Scilab and Matlab size do not match for res2
+Matlab: 0 1
+Scilab: 0 0
+Trying to compare results...
+*** TEST 2 FAILED ***
+
+TEST 3: Scilab and Matlab size do not match for res3
+Matlab: 0 1
+Scilab: 0 0
+Trying to compare results...
+*** TEST 3 FAILED ***
+
+*** TEST 4 PASSED ***
+
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+*** TEST 9 PASSED ***
+
+*** TEST 10 PASSED ***
+
+*** TEST 11 PASSED ***
+
+*** TEST 12 PASSED ***
+
+*** TEST 13 PASSED ***
+
+*** TEST 14 PASSED ***
+
+*** TEST 15 PASSED ***
+
+TEST 16: Infered size do not match for res16
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 16 PASSED ***
+
+TEST 17: Infered size do not match for res18
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 17 PASSED ***
+
+TEST 18: Infered size do not match for res20
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 18 PASSED ***
+
+*** TEST 19 PASSED ***
+
+TEST 20: Infered size do not match for res24
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
+*** TEST 20 PASSED ***
+
+*** TEST 21 PASSED ***
+
+TEST 22: Infered size do not match for res28
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
+*** TEST 22 PASSED ***
+
+*** TEST 23 PASSED ***
+
+TEST 24: Infered size do not match for res32
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
+*** TEST 24 PASSED ***
+
+TEST 25: Infered property do not match for res34
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 25: Infered property do not match for res35
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 25 FAILED ***
+
+TEST 26: Infered size do not match for res36
+M2SCI: -1 1
+Matlab: 3 3
+TEST 26: Infered property do not match for res36
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 26: Infered property do not match for res37
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 26 FAILED ***
+
+TEST 27: Infered property do not match for res38
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 27 PASSED ***
+
+TEST 28: Infered size do not match for res40
+M2SCI: -1 1
+Matlab: 3 3
+TEST 28: Infered property do not match for res40
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 28 PASSED ***
+
+TEST 29: Infered property do not match for res42
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 29: Infered property do not match for res43
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 29 FAILED ***
+
+TEST 30: Infered size do not match for res44
+M2SCI: -1 1
+Matlab: 3 3
+TEST 30: Infered property do not match for res44
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 30: Infered property do not match for res45
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 30 FAILED ***
+
+TEST 31: Infered size do not match for res46
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 31 PASSED ***
+
+TEST 32: Infered size do not match for res49
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 32 PASSED ***
+
+TEST 33: Infered size do not match for res52
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 33 PASSED ***
+
+*** TEST 34 PASSED ***
+
+TEST 35: Infered size do not match for res58
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
+*** TEST 35 PASSED ***
+
+*** TEST 36 PASSED ***
+
+TEST 37: Infered size do not match for res64
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
+*** TEST 37 PASSED ***
+
+*** TEST 38 PASSED ***
+
+TEST 39: Infered size do not match for res70
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
+*** TEST 39 PASSED ***
+
+TEST 40: Infered property do not match for res73
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 40: Infered property do not match for res74
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 40 PASSED ***
+
+TEST 41: Infered size do not match for res76
+M2SCI: -1 1
+Matlab: 3 3
+TEST 41: Infered property do not match for res76
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 41: Infered property do not match for res77
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 41 PASSED ***
+
+TEST 42: Infered property do not match for res79
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 42 PASSED ***
+
+TEST 43: Infered size do not match for res82
+M2SCI: -1 1
+Matlab: 3 3
+TEST 43: Infered property do not match for res82
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 43 PASSED ***
+
+TEST 44: Infered property do not match for res85
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 44: Infered property do not match for res86
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 44 PASSED ***
+
+TEST 45: Infered size do not match for res88
+M2SCI: -1 1
+Matlab: 3 3
+TEST 45: Infered property do not match for res88
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 45: Infered property do not match for res89
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 45 PASSED ***
+
+****** End of validation of SVD.dia.ref ******

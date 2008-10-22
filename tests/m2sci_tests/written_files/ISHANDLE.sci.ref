@@ -1,0 +1,17 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function ishandle()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+
+tf = type(h)==9
+
+
+tf1 = type(h1)==9

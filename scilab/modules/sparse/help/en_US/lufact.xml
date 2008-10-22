@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lufact">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lufact</refname>
+    <refpurpose> sparse lu factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[hand,rk]=lufact(A,prec)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>square sparse matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hand</term>
+        <listitem>
+          <para>handle to sparse lu factors</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>integer  (rank of A)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>prec</term>
+        <listitem>
+          <para>a vector of size two <literal>prec=[eps,reps]</literal> giving the absolute and relative  thresolds.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[hand,rk]=lufact(A)</literal> performs the lu factorization of sparse matrix <literal>A</literal>.
+    <literal>hand</literal> (no display) is used by <literal>lusolve</literal> (for solving linear
+    system) and <literal>luget</literal> (for retrieving the factors).
+    <literal>hand</literal> should be cleared by the command: <literal>ludel(hand)</literal>;
+  </para>
+    <para>
+    The A matrix needs not be full rank but must be square 
+    (since A is assumed sparse one may add zeros if necessary to squaring
+    down A).
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>eps :</term>
+        <listitem>
+          <para>The absolute magnitude an element must have to be considered as a pivot candidate, except as a last resort.  This number should be set significantly smaller than the smallest diagonal element that is is expected to be placed in the matrix. the default  value is <literal>%eps</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>reps :</term>
+        <listitem>
+          <para>This number determines what the pivot relative threshold will be.  It should be between zero and one.  If it is one then the pivoting method becomes complete pivoting, which is very slow and tends to fill up the matrix.  If it is set close to zero the pivoting method becomes strict Markowitz with no threshold.  The pivot threshold is used to eliminate pivot candidates that would cause excessive element growth if they were used.  Element growth is the cause of roundoff error. Element growth occurs even in well-conditioned matrices. Setting the reps large will reduce element growth and roundoff error, but setting it too large will cause execution time to be excessive and will result in a large number of fill-ins.  If this occurs, accuracy can actually be degraded because of the large number of operations required on the matrix due to the large number of fill-ins.  A good value seems to be 0.001 which is the default value.  The default is chosen by giving a value larger than one or less than or equal to zero.  This value should be increased and the matrix resolved if growth is found to be excessive.  Changing the pivot threshold does not improve performance on matrices where growth is low, as is often the case with ill-conditioned matrices. reps was choosen for use with nearly diagonally dominant matrices such as node- and modified-node admittance matrices.  For these matrices it is usually best to use diagonal pivoting.  For matrices without a strong diagonal, it is usually best to use a larger threshold, such as 0.01 or 0.1.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a=rand(5,5);b=rand(5,1);A=sparse(a);
+[h,rk]=lufact(A);
+x=lusolve(h,b);a*x-b
+ludel(h)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+      <member>
+        <link linkend="lusolve">lusolve</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

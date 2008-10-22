@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_getinst">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_getinst</refname>
+    <refpurpose> returns the instance number in a group of a PVM process.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[inum] = pvm_getinst(group, tid)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>group</term>
+        <listitem>
+          <para>string, string group name of an existing group.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tid</term>
+        <listitem>
+          <para>integer, task identifier of a PVM process.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>inum</term>
+        <listitem>
+          <para>integer, instance number returned by the routine.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_getinst</literal> takes a group name <literal>group</literal> and
+    a PVM task identifier <literal>tid</literal>
+    and returns the unique instance number that corresponds to the input.
+    It can be called by any task whether in the group or not.</para>
+    <para>
+    The returned value <literal>inum</literal>will be &gt;= 0 if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_joingroup">pvm_joingroup</link>
+      </member>
+      <member>
+        <link linkend="pvm_gettid">pvm_gettid</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

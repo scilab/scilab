@@ -1,0 +1,28 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+//===============================
+if strspn('fcba73','fcb') <> 3 then pause,end
+//===============================
+if strspn('fcba73','f') <> 1 then pause,end
+//===============================
+if strspn('fcba73','') <> 0 then pause,end
+//===============================
+if strspn('129th','1234567890') <> 3 then pause,end
+//===============================
+STR1 = 'Scilab';
+STR2 = 'The Numerical Tool for Engineers';
+STR = [STR1,STR2;STR2,STR1];
+if strspn(STR,'i') <> [ 0 , 0 ; 0 , 0] then pause,end
+if strspn(STR,'The') <> [ 0 , 3 ; 3 , 0 ] then pause,end
+if strspn(STR,['Sci','The';'u','a']) <> [ 3 , 3 ; 0 , 0 ] then pause,end
+//===============================
+STR1 = 'Scilab';
+STR2 = 'The Numerical Tool for Engineers';
+STR = [STR1,STR2];
+if strspn(STR,['Scilab','Tool']) <> [ 6 , 1 ] then pause,end
+//===============================

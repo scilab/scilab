@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="exit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>exit</refname>
+    <refpurpose>  Ends the current Scilab session</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Ends the current Scilab session.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="quit">quit</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="return">return</link>
+      </member>
+      <member>
+        <link linkend="resume">resume</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

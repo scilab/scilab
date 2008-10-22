@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="diff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>diff</refname>
+    <refpurpose> Difference and discrete derivative</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=diff(x)
+y=diff(x [,n [,dim]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vector or matrix (real, complex, sparse or polynomial)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integer the order of differentiation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>integer or character string with values "r","c" and "*"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>scalar or vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>y=diff(x)</literal>  compute the difference function y=x(2:$)-x(1:$-1)</para>
+    <para><literal>diff(x,n,dim)</literal> is the <literal>n</literal> th difference function along
+    dimension <literal>dim</literal>.</para>
+    <para><literal>diff(x,n,"*")</literal> is equivalent to diff(x(:),n).</para>
+    <para>
+    Default value for <literal>n</literal> is 1.  Default value for
+    <literal>dim</literal> is <literal>"*"</literal>.</para>
+    <para><literal>dim='r'</literal> is equivalent to <literal>dim=1</literal> and <literal>dim='c'</literal> is
+    equivalent to <literal>dim=2</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+v=(1:8)^3;
+diff(v)
+diff(v,3)
+
+A=[(1:8)^2
+   (1:8)^3
+   (1:8)^4];
+
+diff(A,3,2)
+
+//approximate differentiation
+step=0.001
+t=0:step:10;
+y=sin(t);
+dy=diff(sin(t))/step; //approximate differentiation of sine function
+norm(dy-cos(t(1:$-1)),%inf)
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

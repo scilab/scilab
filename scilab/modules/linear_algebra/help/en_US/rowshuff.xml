@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rowshuff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rowshuff</refname>
+    <refpurpose> shuffle algorithm</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Fs</term>
+        <listitem>
+          <para>square real pencil <literal>Fs = s*E-A</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ws</term>
+        <listitem>
+          <para>polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Fs1</term>
+        <listitem>
+          <para>square real pencil <literal>F1s = s*E1 -A1</literal> with <literal>E1</literal> non-singular</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>alfa</term>
+        <listitem>
+          <para>real number (<literal>alfa = 0</literal> is the default value)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Shuffle algorithm: Given the pencil <literal>Fs=s*E-A</literal>, returns Ws=W(s) 
+    (square polynomial matrix) such that:</para>
+    <para><literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> is a pencil with non singular <literal>E1</literal> matrix.</para>
+    <para>
+    This is possible iff the pencil <literal>Fs = s*E-A</literal> is regular (i.e. invertible).
+    The degree of <literal>Ws</literal> is equal to the index of the pencil.</para>
+    <para>
+    The poles at infinity of <literal>Fs</literal> are put to <literal>alfa</literal> and the zeros of <literal>Ws</literal> are at <literal>alfa</literal>.</para>
+    <para>
+    Note that <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal></para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+F=randpencil([],[2],[1,2,3],[]);
+F=rand(5,5)*F*rand(5,5);   // 5 x 5 regular pencil with 3 evals at 1,2,3
+[Ws,F1]=rowshuff(F,-1);
+[E1,A1]=pen2ea(F1);
+svd(E1)           //E1 non singular
+roots(det(Ws))
+clean(inv(F)-inv(F1)*Ws,1.d-7)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pencan">pencan</link>
+      </member>
+      <member>
+        <link linkend="glever">glever</link>
+      </member>
+      <member>
+        <link linkend="penlaur">penlaur</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. D.; ; ; ; ;   </para>
+  </refsection>
+</refentry>

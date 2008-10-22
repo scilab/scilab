@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_diff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_diff</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab diff</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>diff</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec deux paramètres d'entrée : la fonction <literal>diff</literal> de Scilab considère
+	toutes les valeurs du premier paramètre comm un vecteur ce que Matlab ne fait pas.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Avec trois paramètres d'entrée : si la dimension du premier paramètre suivant la dimension
+	donnée par le troisième paramètre atteint 1 avant que la fin des n itérations, Matlab passe
+	ï¿½ la dimension suivante n'étant pas un 1 ce que Scilab ne fait pas.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_diff(A[,n[,dim]])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>diff(A[,n[,dim]])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les entrées pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_diff</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec deux entrées, si <literal>A</literal> est un scalaire ou un vecteur
+        <literal>mtlb_diff(A,n)</literal> peut être remplacé par <literal>diff(A,n)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Avec deux entrées, si la taille de A suivant la dimension donnée par <literal>dim</literal> ne peut pas atteindre 1
+        <literal>mtlb_diff(A,n,dim)</literal> peut être remplacé par <literal>diff(A,n,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_diff</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

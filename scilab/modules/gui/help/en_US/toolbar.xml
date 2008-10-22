@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="toolbar">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>toolbar</refname>
+    <refpurpose>show or hide a toolbar</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>state1=toolbar(winnum,state2)
+state1=toolbar(winnum)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>state1</term>
+        <listitem>
+          <para>returns toolbar's state 'on' or 'off'</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>winum</term>
+        <listitem>
+          <para>window's number (-1: Scilab console window)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>state2</term>
+        <listitem>
+          <para>'on' or 'off' set toolbar's state</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>show or hide a toolbar.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[toolbar(-1,'off')
+state=toolbar(-1,'on')
+
+plot3d();
+h=gcf();
+toolbar(h.figure_id,'off')
+
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Allan CORNET</member>
+      <member>Vincent COUVERT</member>
+    </simplelist>
+  </refsection>
+</refentry>

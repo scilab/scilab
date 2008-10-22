@@ -1,0 +1,8 @@
+includes/blocks.h
+*.moc
+models
+#
+#generated .def files (windows)
+#
+src/c/scicos_blocks.def
+src/fortran/scicos_blocks_f.def

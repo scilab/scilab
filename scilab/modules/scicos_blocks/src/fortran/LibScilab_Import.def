@@ -1,0 +1,38 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+iop_
+cha1_
+stack_
+vstk_
+recu_
+com_
+scistring_
+clunit_
+itosci_
+dtosci_
+parse_
+allowptr_
+ref2val_
+callinterf_
+funs_
+isbyref_
+errgst_
+ierode_
+;
+; elementary_functions
+sciround_
+lnblnk_
+urand_
+dset_
+dmmul_
+dmmul1_
+intp_
+iset_
+unsfdcopy_
+;
+; polynomials_f
+wprxc_

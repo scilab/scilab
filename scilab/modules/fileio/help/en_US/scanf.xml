@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="scanf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>scanf</refname>
+    <refpurpose> Converts formatted input on standard input</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[v_1,...v_n]=scanf (format);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>:Specifies the format conversion.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The scanf functions get character data on standard input (%io(1)), interpret it according
+    to a format, and returns the converted results.
+  </para>
+    <para>
+    The format parameter contains conversion specifications
+    used to interpret the input.
+  </para>
+    <para>
+    The format parameter can contain
+    white-space characters (blanks, tabs, newline, or formfeed)
+    that, except in the following two cases, read the input up to the
+    next nonwhite-space character. Unless there is a match in the control
+    string, trailing white space (including a newline character) is not
+    read.
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>Any character except % (percent sign), which must match the next character of the input stream.</para>
+      </listitem>
+      <listitem>
+        <para>A conversion specification that directs the conversion of the next input field. see <link linkend="scanf_conversion">scanf_conversion</link> for details.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="printf">printf</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="fscanf">fscanf</link>
+      </member>
+      <member>
+        <link linkend="sscanf">sscanf</link>
+      </member>
+      <member>
+        <link linkend="scanf_conversion">scanf_conversion</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

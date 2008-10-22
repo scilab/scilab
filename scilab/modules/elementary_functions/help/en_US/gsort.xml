@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="gsort" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>gsort</refname>
+
+    <refpurpose>decreasing order sorting</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[s, [k]]=gsort(v )
+[s, [k]]=gsort(v,flag1)
+[s, [k]]=gsort(v,flag1,flag2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>v,s</term>
+
+        <listitem>
+          <para>real, integer or character string vector/matrix.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag1</term>
+
+        <listitem>
+          <para>a string <literal>'r'</literal>,
+          <literal>'c'</literal>,<literal>'g'</literal>,<literal>'lr'</literal>
+          and <literal>'lc'</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag2</term>
+
+        <listitem>
+          <para>a string <literal>'i'</literal> for increasing and
+          <literal>'d'</literal> for decreasing order. k : vector or matrix of
+          integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>gsort</literal> is similar to <literal>sort</literal> with
+    additional properties. The third argument can be used to chose between
+    increasing or decreasing order. The second argument can be used for
+    lexical orders.</para>
+
+    <para><literal>[s,k]=gsort(a,'g')</literal> and
+    <literal>[s,k]=gsort(a,'g','d')</literal> are the same as
+    <literal>[s,k]=gsort(a)</literal>. They perform a sort of the entries of
+    matrix <literal>a</literal>, <literal>a</literal> being seen as the
+    stacked vector <literal>a(:)</literal> (columnwise).
+    <literal>[s,k]=gsort(a,'g','i')</literal> performs the same operation but
+    in increasing order.</para>
+
+    <para><literal>[s,k]=gsort(a,'lr')</literal> sort the rows of the matrix
+    <literal>a</literal> in lexical decreasing order. <literal>s</literal> is
+    obtained by a permutation of the rows of matrix <literal>a</literal> given
+    by the column vector <literal>k</literal>) in such a way that the rows of
+    <literal>s</literal> verify <literal>s(i,:) &gt; s(j,:)</literal> if
+    <literal>i&lt;j</literal>. <literal>[s,k]=gsort(a,'lr','i')</literal>
+    performs the same operation for increasing lexical order</para>
+
+    <para><literal>[s,k]=gsort(a,'lc')</literal> sort the columns of the
+    matrix <literal>a</literal> in lexical decreasing order.
+    <literal>s</literal> is obtained by a permutation of the columns of matrix
+    <literal>int(a)</literal> (or <literal>a</literal>) given by the row
+    vector <literal>k</literal>) in such a way that the columns of
+    <literal>s</literal> verify <literal>s(:,i) &gt; s(:,j)</literal> if
+    <literal>i&lt;j</literal>. <literal>[s,k]=gsort(a,'lc','i')</literal>
+    performs the same operation for increasing lexical order</para>
+
+    <para>When <literal>v</literal> is complex, the elements are sorted by
+    magnitude, i.e., abs(<literal>v</literal>) . Only 'g' as second argument
+    is managed with complex.</para>
+
+    <para>if <literal>v</literal> have <literal>%nan</literal> or
+    <literal>%inf</literal> as elements. gsort places these at the beginning
+    with <literal>'i'</literal> or at the end with <literal>'d'</literal>
+    argument.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+alr=[1,2,2;
+     1,2,1;
+     1,1,2;
+     1,1,1];
+[alr1,k]=gsort(alr,'lr','i')
+[alr1,k]=gsort(alr,'lc','i')
+
+v=int32(alr)
+
+gsort(v)
+gsort(v,'lr','i')
+gsort(v,'lc','i')
+
+v=['Scilab' '2.6'
+   'Scilab' '2.7'
+   'Scicos' '2.7'
+   'Scilab' '3.1'
+   'Scicos' '3.1'
+   'Scicos' '4.0'
+   'Scilab' '4.0']
+
+gsort(v,'lr','i')
+gsort(v,'lc','i')
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="find">find</link></member>
+
+      <member><link linkend="sort">sort</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliography</title>
+
+    <para>Quick sort algorithm</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="io">
+<!-- =================== -->
+<!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+
+<PRIMITIVE gatewayId="5" primitiveId="1" primitiveName="oldload" />
+<PRIMITIVE gatewayId="5" primitiveId="2" primitiveName="read" />
+<PRIMITIVE gatewayId="5" primitiveId="3" primitiveName="getf" />
+<PRIMITIVE gatewayId="5" primitiveId="4" primitiveName="exec" />
+<PRIMITIVE gatewayId="5" primitiveId="5" primitiveName="lib" />
+<PRIMITIVE gatewayId="5" primitiveId="6" primitiveName="diary" />
+<PRIMITIVE gatewayId="5" primitiveId="7" primitiveName="oldsave" />
+<PRIMITIVE gatewayId="5" primitiveId="8" primitiveName="write" />
+<PRIMITIVE gatewayId="5" primitiveId="9" primitiveName="print" />
+<PRIMITIVE gatewayId="5" primitiveId="10" primitiveName="rat" />
+<PRIMITIVE gatewayId="5" primitiveId="11" primitiveName="deff" />
+<PRIMITIVE gatewayId="5" primitiveId="12" primitiveName="file" />
+<PRIMITIVE gatewayId="5" primitiveId="13" primitiveName="host" />
+<PRIMITIVE gatewayId="5" primitiveId="14" primitiveName="unix" />
+<PRIMITIVE gatewayId="5" primitiveId="15" primitiveName="readb" />
+<PRIMITIVE gatewayId="5" primitiveId="16" primitiveName="writb" />
+<PRIMITIVE gatewayId="5" primitiveId="17" primitiveName="execstr" />
+<PRIMITIVE gatewayId="5" primitiveId="18" primitiveName="disp" />
+<PRIMITIVE gatewayId="5" primitiveId="19" primitiveName="getpid" />
+<PRIMITIVE gatewayId="5" primitiveId="20" primitiveName="getenv" />
+<PRIMITIVE gatewayId="5" primitiveId="21" primitiveName="read4b" />
+<PRIMITIVE gatewayId="5" primitiveId="22" primitiveName="write4b" />
+<PRIMITIVE gatewayId="5" primitiveId="23" primitiveName="save" />
+<PRIMITIVE gatewayId="5" primitiveId="24" primitiveName="load" />
+<PRIMITIVE gatewayId="5" primitiveId="25" primitiveName="mgetl" />
+<PRIMITIVE gatewayId="5" primitiveId="26" primitiveName="fileinfo" />
+<PRIMITIVE gatewayId="5" primitiveId="27" primitiveName="getio" />
+<PRIMITIVE gatewayId="5" primitiveId="28" primitiveName="setenv" />
+<PRIMITIVE gatewayId="5" primitiveId="29" primitiveName="getrelativefilename" />
+<PRIMITIVE gatewayId="5" primitiveId="30" primitiveName="newest" />
+<PRIMITIVE gatewayId="5" primitiveId="31" primitiveName="get_absolute_file_path" />
+</GATEWAY>

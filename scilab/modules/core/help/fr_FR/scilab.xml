@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="scilab">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>scilab </refname>
+    <refpurpose> script principal d'exécution de Scilab et de divers outils  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>scilab &lt;Options&gt;</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>-args arguments</term>
+        <listitem>
+          <para>si cette option est présente des arguments sont passés à Scilab. Ils
+	  peuvent être récupérés par la fonction <literal>sciargs</literal>. Les
+	  arguments multiples doivent être passés dans chaîne de caractères les
+	  contenant, séparés par des espaces  <literal>scilab -args 'foo1 foo2';</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-display Display</term>
+        <listitem>
+          <para>Cette option n'est valide que pour les version basées sur
+	  Xwindow, elle peut alors être utilisée pour specifier un server X. La
+	  valeur par défaut est  unix:0.0</para>
+          <para><literal>-display</literal> peut être remplacé par <literal>-d</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-debug</term>
+        <listitem>
+          <para>Lance Scilab sous  gdb (Unix/linux seulement).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-e Instruction</term>
+        <listitem>
+          <para>si cette option est présente l'instruction
+	  <literal>Instruction</literal> est exécutée  dans Scilab immédiatement
+	  après les fichiers startup. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-f File</term>
+        <listitem>
+          <para>si cette option est présente le script <literal>File</literal> est
+	  exécuté  dans Scilab mmédiatement après les fichiers startup.  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-l lang</term>
+        <listitem>
+          <para>Cette option permet de sélectionner la langue de
+	l'utilisateur. Les valeurs possible pour sont <literal>-l fr</literal>
+	pour sélectionner le francais et <literal>-l en</literal>
+	pour sélectionner l'anglais. La langue par défaut est l'anglais,
+	ce défaut est fixé dans le fichier <literal>scilab.start</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>scilab -link &lt;objects&gt;</term>
+        <listitem>
+          <para>est utilisé pour générer un <literal>scilex</literal> local (exécutable de
+	  Scilab) lié avec les fichiers additionnels donnés dans
+	  <literal>&lt;objects&gt;</literal>.   Cette commande
+	  produit aussi un script <literal>scilab</literal>, qui lance
+	  l'exécution du nouveau <literal>scilex</literal>.</para>
+          <para>Par exemple :</para>
+          <programlisting><![CDATA[
+	  scilab -link  C/interf.o C/evol.o C/bib.a
+	  ]]></programlisting>
+          <para> crée un nouveau <literal>scilex</literal> dans le quel le fichier
+	  <literal>interf.o</literal>  par défaut sera remplacé par
+	  <literal>C/interf.o</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-mem N</term>
+        <listitem>
+          <para>Spécifie la valeur initiale de la stacksize, cette option est a
+	  utiliser avec l'option -ns. Lorsque Scilab est appelé sans l'option
+	  -ns  la valeur initiale de la stacksize est définie par le script
+	  scilab.start.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nb</term>
+        <listitem>
+          <para> si cette option est présente la bannière d'acceuil de Scilab
+	n'est pas affichée.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-ns</term>
+        <listitem>
+          <para>si cette option est présente le script de démarrage "principal"
+			<literal>SCI/etc/scilab.start</literal> ainsi que les fichiers de démarrage
+			"utilisateur" <literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
+			ne sont pas pas exécutés.
+		</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nouserstartup</term>
+        <listitem>
+          <para>Si cette option est fournie, les fichiers de démarrage "utilisateur"  
+			<literal>SCIHOME/.scilab</literal>, <literal>SCIHOME/scilab.ini</literal> ne sont
+			pas éxécutés.
+		</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nw</term>
+        <listitem>
+          <para>si cette option est présente Scilab n'est pas exécuté dans
+	  une fenêtre spécifique mais sur la ligne de commande.  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-nwni</term>
+        <listitem>
+          <para>si cette option est présente Scilab n'est pas exécuté dans
+	  une fenêtre spécifique et n'accepte pas d'interaction avec
+	  l'utilisateur. Cette option doit être utilisée avec l'option -e ou
+	  -f .  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>--texmacs</term>
+        <listitem>
+          <para>Cette option est réservée pour TeXMacs.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-version</term>
+        <listitem>
+          <para>Cette option affiche la version de Scilab.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

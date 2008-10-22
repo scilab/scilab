@@ -1,0 +1,20 @@
+\begin{picture}(0,0)%
+\epsfig{file=chain.pstex}%
+\end{picture}%
+\setlength{\unitlength}{3947sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(4627,2096)(1510,-1551)
+\put(1666,-1291){\makebox(0,0)[lb]{\smash{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}fn(i)}}}
+\put(3106,-1291){\makebox(0,0)[lb]{\smash{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}chn(e1)}}}
+\put(4569,-1291){\makebox(0,0)[lb]{\smash{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}chn(e2)}}}
+\put(3293,224){\makebox(0,0)[lb]{\smash{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}i}}}
+\put(2093,-368){\makebox(0,0)[lb]{\smash{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}e1=fe(i)}}}
+\put(2634,-622){\makebox(0,0)[lb]{\smash{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}e2=che(e1)}}}
+\put(3527,-622){\makebox(0,0)[lb]{\smash{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}e3=che(e2)}}}
+\end{picture}

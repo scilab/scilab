@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" 
+	  xml:lang="fr" xml:id="functions">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>functions</refname>
+    <refpurpose> procédures Scilab et objets Scilab  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Les fonctions Scilab sont des procédures ("macros", "fonction" et "procédures"
+    ont la même signification).</para>
+  </refsection>
+  <refsection>
+    <title>Définition de fonctions</title>
+    <para>Les fonctions sont tapées dans un éditeur de texte et
+    chargées dans Scilab avec la commande <link
+    linkend="exec">exec</link> ou via une librairie (voir <link
+    linkend="lib">lib</link> ou <link
+    linkend="genlib">genlib</link>). Mais elles peuvent être
+    définies en ligne (voir <link linkend="deff">deff</link> ou
+    <link linkend="function">function</link>).  Une fonction est
+    définie en deux parties :</para>
+    <itemizedlist>
+      <listitem>
+	<para>une ligne de déclaration formelle</para>
+	<programlisting><![CDATA[
+function [y1,...,yn]=foo(x1,...,xm)
+function [y1,...,yn,varargout]=foo(x1,...,xm,varargin) ]]></programlisting>
+      </listitem>
+      <listitem>
+	  <para>une suite d'instructions Scilab.</para>
+      </listitem>
+    </itemizedlist>
+    <para>La "ligne de définition" donne la syntaxe d'appel complète de la
+    fonction. Les <literal>yi</literal> sont les variables de sortie,
+    calculées à partir des variables d'entrée <literal>xi</literal>
+    et des variables existantes dans le contexte appelant lorsque la
+    fonction est exécutée. On peut utiliser éventuellement un
+    sous-ensemble de ces variables d'entrée et de sortie.</para>
+  </refsection>
+  <refsection>
+  <title>Appel à une fonction</title>
+  <itemizedlist>
+    <listitem>
+      <para>La syntaxe d'appel est habituellement
+      <literal>[y1,...,yn]=foo(x1,...,xm)</literal>. On peut
+      utiliser éventuellement un sous-ensemble de ces variables
+      d'entrée et de sortie. Dans ce cas, seules les premières
+      variables à partir de la gauche sont utilisées. La fonction
+      <link linkend="argn">argn</link>peut être utilisée pour connaître le
+      nombre effectif d'arguments d'appel.</para>
+    </listitem>
+    <listitem>
+      <para>Il est possible de définir des fonction ayant un nombre
+      indeterminé d'arguments d'entrée et/ou de sortie. Ceci peut
+      être fait avec les mots clé <link
+      linkend="varargin">varargin</link> et <link
+      linkend="varargout">varargout</link>. Voir les liens fournis
+      pour plus de détails.</para>
+    </listitem>
+    <listitem>
+      <para>Il est aussi possible d'utiliser des "arguments
+      nommés" pour spécifier les valeurs des arguments d'entrée :
+      supposons que la fonction <literal>fun1</literal> est
+      définie ainsi <literal>function y1=fun1(x1,x2,x3)</literal>
+      alors on peut utiliser la syntaxe
+      <literal>y=fun1(x1=33,x3=[1 2 3])</literal>, et dans
+      <literal>fun1</literal> x2 ne sera pas défini.</para>
+
+      <para>Il est aussi possible d'appeler la fonction
+      <literal>fun1</literal> avec une syntaxe comme
+      <literal>y=fun1(x1=33,y='foo')</literal>. Dans ce cas la
+      variable <literal>y</literal> sera définie dans le contexte
+      local de la fonction. Noter qu'alors il n'esp pas possible
+      de passer plus d'arguments d'entrée que le nombre
+      d'arguments formel declarés dans la définition de la syntaxe
+      d'appel de la fonction.</para>
+
+      <para>Il est possible de vérifier quelles sont les variables
+      définies avec la fonction <link
+      linkend="exists">exists</link>.</para>
+    </listitem>
+    <listitem>
+      <para>Quand une fonction n'a pas d'argument de sortie et est
+      appelée avec des arguments d'entrée de type chaîne de
+      caractère, la syntaxe d'appel peut être simplifiée :</para>
+      <programlisting><![CDATA[ fun('a','toto','une chaîne') ]]></programlisting>
+      <para>est alors équivalent à: </para>
+      <programlisting><![CDATA[ fun a toto 'une chaîne']]></programlisting>
+    </listitem>
+  </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Divers</title>
+    <para>Les fonctions sont des objets Scilab (numéro de type 13 ou
+    11). Elles peuvent être manipulées (passées en argument, sauvées,
+    chargées, ...) comme toute autre variable.</para>
+    <para>Un ensemble de fonctions peut être assemblé dans une
+    librairie. Les fonctions dont le nom commence par le caractère
+    <literal>%</literal> (exemple : <literal>%foo</literal>) sont
+    utilisées pour la surcharge des opérateurs (voir <link
+    linkend="overloading">overloading</link>) ou des fonctions pour
+    des nouveaux types de données.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+// définition en ligne
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+// autre type de définition en ligne
+deff('[x,y]=myfct(a,b)',['x=a+b';
+                         'y=a-b'])
+// définition dans un fichier texte (voir exec)
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member> <link linkend="function">function</link> </member>
+      <member> <link linkend="deff">deff</link> </member>
+      <member> <link linkend="getf">getf</link> </member>
+      <member> <link linkend="comp">comp</link> </member>
+      <member> <link linkend="lib">lib</link> </member>
+      <member> <link linkend="getd">getd</link> </member>
+      <member> <link linkend="genlib">genlib</link> </member>
+      <member> <link linkend="exists">exists</link> </member>
+      <member> <link linkend="varargin">varargin</link> </member>
+      <member> <link linkend="varargout">varargout</link> </member>
+    </simplelist>
+  </refsection>
+</refentry>

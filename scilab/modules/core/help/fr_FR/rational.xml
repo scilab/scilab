@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rational">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rational</refname>
+    <refpurpose> Objet Scilab, fraction rationnelle  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Une fraction rationnelle <literal>r</literal> est le quotient de deux polynômes <literal>r=num/den</literal>.
+    La représentation interne d'une fraction rationnelle est une liste :
+    <literal>r=tlist('['r','num','den','dt'],num,den,[])</literal> est identique à <literal>r=num/den</literal>.
+    Une matrice de fractions rationnelles peut être définie en utilisant la syntaxe habituelle :
+    <literal>[r11,r12;r21,r22]</literal> est une matrice 2x2 ou les <literal>rij</literal> sont des fractions rationnelles.
+    Une matrice de fractions rationnelles peut aussi être définie comme précédemment : <literal>tlist(['r','num','den','dt'],num,den,[])</literal> avec <literal>num</literal> et <literal>den</literal> deux matrices polynomiales.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+W=[1/s,1/(s+1)]
+W'*W
+Num=[s,s+2;1,s];Den=[s*s,s;s,s*s];
+tlist(['r','num','den','dt'],Num,Den,[])
+H=Num./Den
+syslin('c',Num,Den)
+syslin('c',H)
+[Num1,Den1]=simp(Num,Den)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

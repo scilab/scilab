@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tabul">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tabul</refname>
+    <refpurpose> frequency of values of a matrix or vector</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[m]=tabul(X [,order])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>vector or matrix (of real or complex numbers or strings)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>order</term>
+        <listitem>
+          <para>(optionnal) a character equal to "d" or "i" (default value "d")</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>a 2 columns matrix (if <literal>X</literal> is a numerical vector or matrix) or 
+      a list with 2 members (if <literal>X</literal> is a string vector or matrix).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+   This function computes the frequency of values of 
+   the components of a vector or matrix <literal>X</literal> of numbers or
+   string characters :
+   </para>
+    <variablelist>
+      <varlistentry>
+        <term>if X is a numerical vector or matrix</term>
+        <listitem>
+          <para>then <literal>m</literal>  is a  two column matrix who contains in 
+           the first column the distinct values of <literal>X</literal> 
+           and  in the other column the number of occurrences 
+           of those values (m(i,2) is the number of occurrences
+           of m(i,1)).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>if X is a string vector or matrix</term>
+        <listitem>
+          <para>then <literal>m</literal> is  a list whose  first member is a 
+           string (column) vector composed with the distinct 
+           values of <literal>X</literal> and the second member is a 
+           (column) vector whose components are the number of 
+           occurrences of those values ( m(i)(2) is the number 
+           of occurrences of the string m(i)(1) ).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+   The optional parameter <literal>order</literal> must be  "d" or "i" (by default 
+   order="d") and gives the order (decreasing or increasing) the distinct 
+   values of X will be sorted.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// first example
+X = [2 8 0 3 7 6 8 7 9 1 6 7 7 2 5 2 2 2 9 7]
+m1 = tabul(X)
+m2 = tabul(X, "i")
+
+// second example 
+X = ["ba" "baba" "a" "A" "AA" "a" "aa" "aa" "aa" "A" "ba"]
+m = tabul(X,"i")
+
+// third example
+n = 50000;
+X = grand(n,1,"bin",70,0.5);
+m = tabul(X,"i");
+xbasc()
+plot2d3(m(:,1), m(:,2)/n)
+xtitle("empiral probabilities of B(70,0.5)")
+
+// last example : computes the occurrences of words of the scilab license
+text = read(SCI+"/license.txt",-1,1,"(A)"); // read the scilab license
+bigstr = strcat(text," ");                  // put all the lines in a big string
+sep =  [" " "," "." ";" "*" ":" "-" """"];  // words separators 
+words = tokens(bigstr, sep);                // cut the big string into words
+m = tabul(words);                           // computes occurrences of each word
+[occ , p] = sort(m(2));                     // sort by decreasing frequencies
+results = [m(1)(p) string(occ)]             // display result
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="dsearch">dsearch</link>
+      </member>
+      <member>
+        <link linkend="histplot">histplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member> Carlos Klimann (original author)</member>
+      <member> J.S. Giet and B. Pincon (new version)</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>
+     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 
+     fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

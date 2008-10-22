@@ -1,0 +1,26 @@
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
+Copyright (c) 1989-2007 - ENPC
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+Misc:
+=====
+
+Files: src/c/wav.c src/c/sox.c src/c/raw.c
+
+Copyright:
+1992 Rick Richardson
+1991 Lance Norskog And Sundry Contributors
+
+License:
+This source code is freely redistributable and may be used for
+any purpose.  This copyright notice must be maintained. 
+Lance Norskog And Sundry Contributors are not responsible for 
+the consequences of using this software.

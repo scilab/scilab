@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/while_data.ref','rb');
+e = 1;a = 1;k = 1;
+while norm(a - (a + e), 1) > %eps then  e = e/2;k = k + 1;end,
+e;
+if load_ref('e') then   pause,end,
+k;
+if load_ref('k') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

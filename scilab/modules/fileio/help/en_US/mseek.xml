@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mseek">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mseek</refname>
+    <refpurpose> set current position in binary file.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mseek(n [,fd, flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>:a positive scalar: The offset from origin in number of bytes.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>a string. specifies the origin. Default value 'set'.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The function <literal>mseek()</literal> sets the position of the next input or output operation
+    on  the stream <literal>fd</literal>. The new position is at
+    the signed distance given by <literal>n</literal> bytes from  the  beginning,  from
+    the current position, or from the end of the file, according  to the 
+    <literal>flag</literal> value which can be <literal>'set'</literal>, <literal>'cur'</literal> or <literal>'end'</literal>.</para>
+    <para><literal>mseek()</literal> allows the file position indicator to be set  beyond
+    the  end of the existing data in the file.  If data is later
+    written at this point, subsequent reads of data in  the  gap
+    will  return  zero  until  data is actually written into the
+    gap.  <literal>mseek()</literal>, by itself, does not extend the  size  of  the
+    file.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+file3='test3.bin'
+fd1= mopen(file3,'wb');
+for i=1:10, mput(i,'d'); end 
+mseek(0);
+mput(678,'d');
+mseek(0,fd1,'end');
+mput(932,'d');
+mclose(fd1)
+fd1= mopen(file3,'rb');
+res=mget(11,'d')
+res1=[1:11]; res1(1)=678;res1($)=932;
+if res1<>res ;write(%io(2),'Bug');end;
+mseek(0,fd1,'set');
+// trying to read more than stored data 
+res1=mget(100,'d',fd1);
+if res1<>res ;write(%io(2),'Bug');end;
+meof(fd1)
+mclearerr(fd1)
+mclose(fd1);
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="meof">meof</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mseek">mseek</link>
+      </member>
+      <member>
+        <link linkend="mtell">mtell</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

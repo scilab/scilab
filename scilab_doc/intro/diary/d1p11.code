@@ -1,0 +1,4 @@
+s=poly(0,'s');
+R=[1/s,s/(1+s),s^2]
+Sl=syslin('c',R);
+tf2ss(Sl)

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_function_choice">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demo_function_choice</refname>
+    <refpurpose> choose and execute an item within a list </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>demo_function_choice()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+		The function demo_function_choice choose and execute an item chosen in the 
+		variable 'demolist' that shall appear above.
+		The variable 'demolist' is a text matrix whose first column contains item names 
+		displayed in an options window and whose second column contains the function that will 
+		be called. The title of the options window is 'Choose a demo'. 
+		If the options window is cancelled, the console is put back to its previous 
+		width.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+demolist=[
+	'Simulation of a binomial random variable','set figure_style new;xbasc();BinomialT();';
+	'Simulation of a discrete random variable','set figure_style new;xbasc();RndDiscT();';
+	'Simulation of a geometric random variable','set figure_style new;xbasc();GeomT(1000);';
+	'Simulation of a Poisson random variable','set figure_style new;xbasc();PoissonT() ;';
+	'Simulation of an exponential random variable','set figure_style new;xbasc();ExpT();';
+	'Simulation of a Weibull random variable','set figure_style new;xbasc();WeibullT();';
+	'Simulation of an hyper geometric random variable','set figure_style new;xbasc();HyperGeomT();';
+	'Simulation of an Erlang random variable','set figure_style new;xbasc();ErlangT();'];
+
+demo_function_choice();
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="demo_file_choice">demo_file_choice</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>G.H</member>
+    </simplelist>
+  </refsection>
+</refentry>

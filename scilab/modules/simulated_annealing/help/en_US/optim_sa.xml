@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="optim_sa">
+  <info>
+    <pubdate>29-Nov-2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>optim_sa</refname>
+    <refpurpose> A Simulated Annealing optimization method </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x_best,f_best,mean_list,var_list,f_history,temp_list,x_history] = optim_sa(x0,f,ItExt,ItInt,T0,Log,temp_law,param_temp_law,neigh_func,param_neigh_func)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>the initial solution
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>the objective function to be optimized (the prototype if f(x))
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ItExt</term>
+        <listitem>
+          <para>the number of temperature decrease
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ItInt</term>
+        <listitem>
+          <para>the number of iterations during one temperature stage
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>T0</term>
+        <listitem>
+          <para>the initial temperature (see compute_initial_temp to compute easily this temperature)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Log</term>
+        <listitem>
+          <para>if %T, some informations will be displayed during the run of the simulated annealing
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>temp_law</term>
+        <listitem>
+          <para>the temperature decrease law (see temp_law_default for an example of such a function)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param_temp_law</term>
+        <listitem>
+          <para>a structure (of any kind - it depends on the temperature law used) which is transmitted as a parameter to temp_law
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>neigh_func</term>
+        <listitem>
+          <para>a function which computes a neighbor of a given point (see neigh_func_default for an example of such a function)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param_neigh_func</term>
+        <listitem>
+          <para>a structure (of any kind like vector, list, it depends on the neighborhood function used) which is transmitted as a parameter to neigh_func
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x_best</term>
+        <listitem>
+          <para>the best solution found so far
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f_best</term>
+        <listitem>
+          <para>the objective function value corresponding to x_best
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mean_list</term>
+        <listitem>
+          <para>the mean of the objective function value for each temperature stage. A vector of float (optional)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>var_list</term>
+        <listitem>
+          <para>the variance of the objective function values for each temperature stage. A vector of float (optional)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f_history</term>
+        <listitem>
+          <para>the computed objective function values for each iteration. Each input of the list corresponds
+       to a temperature stage. Each input of the list is a vector of float which gathers all the objective function values
+       computed during the corresponding temperature stage - (optional)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>temp_list</term>
+        <listitem>
+          <para>the list of temperature computed for each temperature stage. A vector of float (optional)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x_history</term>
+        <listitem>
+          <para>the parameter values computed for each iteration. Each input of the list corresponds
+       to a temperature stage. Each input of the list is a vector of input variables which corresponds to all the variables
+       computed during the corresponding temperature stage -  (optional - can slow down a lot the execution of optim_sa)
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+     A Simulated Annealing optimization method.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    x0          = [2 2];
+    Proba_start = 0.7;
+    It_Pre      = 100;
+    It_extern   = 100;
+    It_intern   = 1000;
+    x_test = neigh_func_default(x0);
+
+    T0 = compute_initial_temp(x0, rosenbrock, Proba_start, It_Pre, neigh_func_default);
+
+    [x_opt, f_opt, sa_mean_list, sa_var_list] = optim_sa(x0, rosenbrock, It_extern, It_intern, T0, Log = %T);
+
+    printf('optimal solution:\n'); disp(x_opt);
+    printf('value of the objective function = %f\n', f_opt);
+
+    t = 1:length(sa_mean_list);
+    plot(t,sa_mean_list,'r',t,sa_var_list,'g');
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="compute_initial_temp"> compute_initial_temp </link>
+      </member>
+      <member>
+        <link linkend="neigh_func_default"> neigh_func_default </link>
+      </member>
+      <member>
+        <link linkend="temp_law_default"> temp_law_default </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
+    Yann COLLETTE (yann.collette@renault.com)
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

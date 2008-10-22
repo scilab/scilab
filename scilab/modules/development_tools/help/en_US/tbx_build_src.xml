@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_build_src" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 2008-09-19 14:41:06 +0200 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tbx_build_src</refname>
+    <refpurpose>Build sources (toolbox compilation process)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      tbx_build_src(names, files, flag, [src_path [, libs [, ldflags [, cflags [, fflags [, cc [, libname [, loadername [, makename]]]]]]]]])
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>a string matrix giving the entry names which are to be linked.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>string matrix giving objects files needed for shared library creation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>a string flag ("c" or "f") for C or Fortran entry points.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>src_path</term>
+        <listitem>
+          <para>Path to the source files ; in a normal toolbox it should be the directory containing the builder_src_(lang).sce script (which should be the script calling this function). Default is current directory.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libs</term>
+        <listitem>
+          <para>string matrix giving extra libraries needed for shared library creation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ldflags</term>
+        <listitem>
+          <para>optional character string. It can be used to add specific linker options in the
+	    generated Makefile. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cflags</term>
+        <listitem>
+          <para>optional character  string. It can be used to add specific C compiler options in the
+	    generated Makefile. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fflags</term>
+        <listitem>
+          <para>optional character  string. It can be used to add specific Fortran compiler options in the
+	    generated Makefile. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cc</term>
+        <listitem>
+          <para>optional character  string. It can be used to specify a C compiler. Default value is ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libname</term>
+        <listitem>
+          <para>optional character string. The name of the generated shared
+	    library (default value  is '', and in this case the name is derived
+	    from <literal>names(1)</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>loadername</term>
+        <listitem>
+          <para>character string. The pathname of the loader file (default
+	    value is   <literal>loader.sce</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>makename</term>
+        <listitem>
+          <para>character string. The pathname of the Makefile file without extension (default value <literal>Makelib</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+// Recommended usage
+tbx_build_src(['csum','csub'], ['csum.o','csub.o'], 'c', ..
+              get_absolute_file_path('builder_c.sce'));
+   </programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ilib_for_link">ilib_for_link</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>SL</member>
+    </simplelist>
+  </refsection>
+</refentry>

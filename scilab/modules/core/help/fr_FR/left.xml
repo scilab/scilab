@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="left">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>left ([)</refname>
+    <refpurpose> crochet gauche  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[a11,a12,...;a21,a22,...;...]
+[s1,s2,...]=func(...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>a11,a12,...  </term>
+        <listitem>
+          <para>toute matrice (réelle, complexe, polynomiale, rationnelle, liste de type <literal>syslin</literal> ...) de dimensions adéquate
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s1,s2,...  </term>
+        <listitem>
+          <para>noms de variables
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Les crochets droit et gauche sont utilisés pour effectuer une concaténation de matrices. Ces symboles sont aussi utilisés quand on effectue un appel à une fonction renvoyant plusieurs arguments.
+  </para>
+    <para>
+    A l'intérieur d'une paire de crochets spécifiant une concaténation, un espace ou une virgule signifient une concaténation de colonnes, alors qu'un point-virgule ou un passage à la ligne signifient une concaténation de lignes.
+  </para>
+    <para>
+    Note : pour éviter les confusions il est plus sûr d'utiliser des virgules pour concaténer des colonnes.
+  </para>
+    <para>
+    Pour des crochets entourant une liste d'arguments de sortie d'une fonction, 
+    les noms de variables doivent être séparés par des virgules.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+[6.9,9.64; sqrt(-1) 0]
+[1 +%i  2 -%i  3]
+[]
+['ceci est';'un vecteur';'de chaines de caracteres']
+s=poly(0,'s');[1/s,2/s]
+[tf2ss(1/s),tf2ss(2/s)]
+
+[u,s]=schur(rand(3,3))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="comma">comma</link>
+      </member>
+      <member>
+        <link linkend="semicolon">semicolon</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

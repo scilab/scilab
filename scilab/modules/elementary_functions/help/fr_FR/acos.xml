@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="acos">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>acos</refname>
+    <refpurpose> cosinus inverse  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>t=acos(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur ou matrice (réelle ou complexe)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t  </term>
+        <listitem>
+          <para>vecteur ou matrice (réelle ou complexe)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Les composantes de <literal>t</literal> sont les cosinus inverses 
+    des composantes correspondantes de <literal>x</literal>.
+    Le domaine de définition est [-1, 1].
+  </para>
+    <para>
+    Cette fonction est à valeurs dans
+  </para>
+    <para>
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+x=[1,%i,-1,-%i]
+cos(acos(x))
+ ]]></programlisting>
+  </refsection>
+</refentry>

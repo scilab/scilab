@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="figure">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>figure</refname>
+    <refpurpose> create a figure</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+    f = figure(num);
+    f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN); 
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This routine creates a figure. If an ID is given, the figure corresponding to this ID is created.
+    Otherwise, the window is created with the first free ID, that is the lowest integer not already used by a window.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>num</term>
+        <listitem>
+          <para>ID of the window to create. If not specified, the first free ID is used.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>PropertyName{1, ..., N}</term>
+        <listitem>
+          <para>character string name of a property to set. One of the property names listed below.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>PropertyValue{1, ..., N}</term>
+        <listitem>
+          <para>scilab object value to give to the corresponding property.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>handle of the newly created window.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Properties</title>
+    <variablelist>
+      <varlistentry>
+        <term>BackgroundColor</term>
+        <listitem>
+          <para>[1,3] real vector or string Background color of the figure. A
+        color is specified as Red, Green and Blue values. Those values are
+        real in [0,1]. The color can be given as a real vector, ie [R,G,B] or
+        a string where each value is separated by a "|", ie "R|G|B"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Figure_name</term>
+        <listitem>
+          <para>character string, allows to set the title of the figure.
+           </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ForegroundColor</term>
+        <listitem>
+          <para>[1,3] real vector or string Foreground color of the figure. A
+        color is specified as Red, Green and Blue values. Those values are
+        real in [0,1]. The color can be given as a real vector, ie [R,G,B] or
+        a string where each value is separated by a "|", ie "R|G|B"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Position</term>
+        <listitem>
+          <para>allows to control the geometrical aspect of the control.
+    It is a [1,4] real vector [x y width height] where the letters stand for the x
+    location of the left bottom corner, the y location of the left bottom
+    corner, the width and the height of the uicontrol.
+    One can also set this property by giving a string where the fields are separated by a "|", ie "x|y|width|height".
+           </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Tag</term>
+        <listitem>
+          <para>string this property is generally used to identify the figure. It
+        allows to give it a "name". Mainly used in conjontion with findobj().
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Userdata</term>
+        <listitem>
+          <para>this can be used to associate some Scilab objects to a fugure.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Create figure having figure_id==3
+h=figure(3);
+// Add a text uicontrol in figure 3
+uicontrol(h, "style", "text", ...
+             "string", "This is a figure", ...
+             "position", [50 70 100 100], ...
+             "fontsize",15);
+
+
+// Create figure having figure_id==1
+figure();
+// Add a text uicontrol in figure 1
+uicontrol("style", "text", ...
+          "string", "Another figure", ...
+          "position", [50 70 100 100], ...
+          "fontsize", 15);
+
+// Close current figure (ie figure 1)
+close();
+// close figure 3
+close(h);
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="close">close</link>
+      </member>
+      <member>
+        <link linkend="gcf">gcf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Bertrand Guiheneuf</para>
+    <para>V.C.</para>
+  </refsection>
+</refentry>

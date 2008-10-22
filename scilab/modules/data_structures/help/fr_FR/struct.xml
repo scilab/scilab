@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="struct">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>struct</refname>
+    <refpurpose>creer une struct</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>st=struct(field1,value1,field2,value2, ...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>field1, field2, ...</term>
+        <listitem>
+          <para>noms des champs (chaines de caracteres)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>value1, value2, ...</term>
+        <listitem>
+          <para>les valeurs des champs (acceptent tous types de données
+          (double, matrice de doubles,des cells, char, ...)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>La fonction <literal>struc</literal>t retourne une struct avec des noms de
+    champs <literal>field1</literal>, <literal>field2</literal>, .., et dont les valeurs
+    respectives sont <literal>value</literal><literal>1</literal>, <literal>value2</literal>,
+    ...</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006) 
+date=struct('jour',25,'mois','DEC','annee',2006)
+// changer la valeur des champs
+date.jour=19;
+date.mois='AOU';
+date.annee=1973;
+// ajouter un champ 'semaine'
+date.semaine=32]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cell">cell</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

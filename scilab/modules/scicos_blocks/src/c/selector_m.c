@@ -1,0 +1,61 @@
+/*  Scicos
+*
+*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*
+* See the file ./license.txt
+*/
+#include "scicos_block4.h"
+#include <memory.h>
+
+void selector_m(scicos_block *block,int flag)
+ {
+  void *u;
+  void *y;
+  double *z;
+  int nu,mu,ic,nev,nin,so;
+
+  z=GetDstate(block);
+  nin=GetNin(block);
+  ic=(int)z[0];
+  if (flag<3)
+     {ic=0;
+      nev=GetNevIn(block);
+      while (nev>=1) 
+           {
+     	    ic=ic+1;
+     	    nev=nev/2;
+    	   }
+     }
+  if (nin>1)
+     {
+      mu=GetInPortRows(block,ic);
+      nu=GetInPortCols(block,ic);
+      u=GetInPortPtrs(block,ic);
+      so=GetSizeOfOut(block,1);
+      y=GetOutPortPtrs(block,1);
+      memcpy(y,u,mu*nu*so);
+      }
+   else
+      {
+       mu=GetInPortRows(block,1);
+       nu=GetInPortCols(block,1);
+       u=GetRealInPortPtrs(block,1);
+       y=GetRealOutPortPtrs(block,ic);
+       so=GetSizeOfIn(block,1);
+       memcpy(y,u,mu*nu*so);
+       }
+}

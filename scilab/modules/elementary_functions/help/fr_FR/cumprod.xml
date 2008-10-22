@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cumprod">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cumprod</refname>
+    <refpurpose> produit cumulatif.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=cumprod(x)
+y=cumprod(x,'r') ou y=cumprod(x,1)
+y=cumprod(x,'c') ou y=cumprod(x,2)
+y=cumprod(x,'m')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur ou matrice (réelle ou complexe)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para>vecteur ou matrice (réelle ou complexe)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para> Pour un vecteur <literal>x</literal>, <literal>y=cumprod(x)</literal> renvoie dans
+      <literal>y</literal> le produit cumulatif de tous les éléments de
+      <literal>x</literal>. Si <literal>x</literal> est une matrice, elle est considérée
+      comme un vecteur (les colonnes sont mises bout à bout). </para>
+    <para><literal>y=cumprod(x,'c')</literal> (ou <literal>y=cumprod(x,2)</literal>)
+      renvoie dans <literal>y</literal> le produit cumulatif des éléments des lignes
+      de <literal>x</literal>: <literal> y(i,:)=cumprod(x(i,:))</literal>. </para>
+    <para><literal>y=cumprod(x,'r')</literal> (ou <literal>y=cumprod(x,2)</literal>)
+      renvoie dans <literal>y</literal> le produit cumulatif des colonnes de
+      <literal>x</literal>: <literal> y(:,i)=cumprod(x(:,i))</literal>. </para>
+    <para><literal>y=cumprod(x,'m')</literal>
+      effectue le produit cumulatif selon la première dimension plus grande que
+      1 (compatibilité avec Matlab). </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[1,2;3,4];
+cumprod(A)
+cumprod(A,'r')
+cumprod(A,'c')
+rand('seed',0);
+a=rand(3,4);
+[m,n]=size(a);
+w=zeros(a);
+w(1,:)=a(1,:);
+for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cumsum">cumsum</link>
+      </member>
+      <member>
+        <link linkend="sum">sum</link>
+      </member>
+      <member>
+        <link linkend="prod">prod</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

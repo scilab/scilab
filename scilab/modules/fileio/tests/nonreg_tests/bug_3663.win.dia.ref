@@ -1,0 +1,32 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 3663 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3663
+//
+// <-- Short Description -->
+// getshortpathname & getlongpathname return '' and not a path
+if MSDOS then
+  name_dir = 'L.P blabla';
+  cd(TMPDIR);
+  mkdir(name_dir);
+  [a,b] = getshortpathname(name_dir);
+  if b <> %t then bugmes();quit;end
+  if isempty(a) then bugmes();quit;end
+  if a<>'L3746~1.PBL' then bugmes();quit;end
+  [a,b] = getshortpathname(TMPDIR + '\' + name_dir);
+  if b <> %t then bugmes();quit;end
+  if isempty(a) then bugmes();quit;end
+  [a,b] = getlongpathname(name_dir);
+  if b <> %t then bugmes();quit;end
+  if isempty(a) then bugmes();quit;end
+  if a <> name_dir then bugmes();quit;end
+  [a,b] = getlongpathname(TMPDIR + '\' + name_dir);
+  if b <> %t then bugmes();quit;end
+  if isempty(a) then bugmes();quit;end
+end

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="x_choose">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>x_choose</refname>
+    <refpurpose> interactive window choice (modal dialog)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[num]=x_choose(items,title [,button])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>items</term>
+        <listitem>
+          <para>column vector of string,  items to choose</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>title</term>
+        <listitem>
+          <para>column vector of string, comment for the dialog</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>button</term>
+        <listitem>
+          <para> string, text to appear in the button. Default value is 'Cancel'</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>num</term>
+        <listitem>
+          <para>integer, choosen item number or 0 if dialog resumed with "Cancel" button</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Returns in <literal>num</literal> the number of the chosen item.</para>
+    <para>
+    WARNING: this dialog was not modal before Scilab 5.0, please use x_choose_modeless for ascendant compatibility.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+n=x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
+n=x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_choose_modeless">x_choose_modeless</link>
+      </member>
+      <member>
+        <link linkend="x_choices">x_choices</link>
+      </member>
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="getvalue">getvalue</link>
+      </member>
+      <member>
+        <link linkend="unix_g">unix_g</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

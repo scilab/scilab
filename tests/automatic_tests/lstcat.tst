@@ -1,0 +1,12 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/lstcat_data.ref','rb');
+%ans = lstcat(list(1, 2, 3), 33, list('foo', %s));
+if load_ref('%ans') then   pause,end,
+
+%ans = lstcat(1, 2, 3);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

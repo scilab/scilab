@@ -1,0 +1,54 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/sda_data.ref','rb');
+
+x = (0:0.1:2 * %pi)';
+%ans = set('old_style', 'off');
+if load_ref('%ans') then   pause,end,
+
+f = get('default_figure');// get the handle of the model figure
+a = get('default_axes');// get the handle of the model axes
+// setting its' properties
+f('figure_size') = [1200,900];
+f('figure_position') = [0,0];
+a('background') = 4;
+a('box') = 'off';
+a('tics_color') = 5;
+a('labels_font_color') = 25;
+a('labels_font_size') = 4;
+a('sub_tics') = [7,3];
+a('x_location') = 'middle';
+a('y_location') = 'middle';
+a('tight_limits') = 'on';
+a('thickness') = 2;
+a('grid') = [-1,24];
+subplot(221);
+%ans = plot2d(x - 2, sin(x));
+if load_ref('%ans') then   pause,end,
+
+subplot(222);
+%ans = plot2d(x - 6, [2 * cos(x) + 0.7,2 * cos(x) + 0.9,cos(2 * x),0.2 + sin(3 * x)], [-1,-2,-3,-4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = sda();
+if load_ref('%ans') then   pause,end,
+// return to the  default values of the axes' model
+subplot(223);
+%ans = plot2d(x - 2, sin(x));
+if load_ref('%ans') then   pause,end,
+
+subplot(224);
+%ans = plot2d(x - 6, [2 * cos(x) + 0.7,2 * cos(x) + 0.9,cos(2 * x),0.2 + sin(3 * x)], [-1,-2,-3,-4]);
+if load_ref('%ans') then   pause,end,
+
+%ans = xdel_run(0);
+if load_ref('%ans') then   pause,end,
+
+%ans = plot2d(x - 2, sin(x));
+if load_ref('%ans') then   pause,end,
+
+
+
+xdel_run(winsid());
+
+mclose(%U);

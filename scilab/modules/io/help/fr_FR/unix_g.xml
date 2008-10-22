@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="unix_g" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>unix_g</refname>
+
+    <refpurpose>exécution d'une commande Unix ou DOS, sortie redirigée vers
+    une variable</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>rep=unix_g(cmd)
+[rep,stat]=unix_g(cmd)
+[rep,stat,err]=unix_g(cmd)
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
+
+        <listitem>
+          <para>chaîne de caractères</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rep</term>
+
+        <listitem>
+          <para>vecteur colonne de chaînes de caractères (sortie
+          standard)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stat</term>
+
+        <listitem>
+          <para>un entier, le statut d'erreur, si stat==0 aucune
+          erreur.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>vecteur colonne de chaînes de caractères (sortie
+          d'erreurs)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Envoie la chaîne <literal>command-name</literal> à l'interpréteur de
+    commande (sh sous Unix, ou command.com sous DOS). La sortie standard est
+    reporté dans la variable <literal>rep</literal>. La sortie d'erreurs est
+    reporté dans la variable <literal>err</literal> ou affichée si seulement
+    deux arguments de sortie. Les erreurs se produisant dans l'interpréteur de
+    commande sont interceptées; notez que la *dernière erreur uniquement* est
+    signalée quand <literal>command-name</literal> est une suite de commandes
+    séparées par des ";".</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example">
+
+function d=DIR(path)
+ path=pathconvert(path,%t,%t)
+ if MSDOS then
+   d=unix_g('dir '+path)
+ else
+   d=unix_g('ls '+path)
+ end
+endfunction
+
+DIR('SCI/demos')</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="unix_s">unix_s</link></member>
+
+      <member><link linkend="unix_w">unix_w</link></member>
+
+      <member><link linkend="unix_x">unix_x</link></member>
+
+      <member><link linkend="unix">unix</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

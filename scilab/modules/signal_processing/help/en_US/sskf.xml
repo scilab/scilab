@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sskf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sskf</refname>
+    <refpurpose> steady-state Kalman filter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xe,pe]=sskf(y,f,h,q,r,x0)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>data in form <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal> a column vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>system matrix dim(NxN)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>observations matrix dim(MxN)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>q</term>
+        <listitem>
+          <para>dynamics noise matrix dim(NxN)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>observations noise matrix dim(MxM)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>initial state estimate</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xe</term>
+        <listitem>
+          <para>estimated state</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pe</term>
+        <listitem>
+          <para>steady-state error covariance</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    steady-state Kalman filter</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. B.  </para>
+  </refsection>
+</refentry>

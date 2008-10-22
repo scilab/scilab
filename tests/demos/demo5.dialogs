@@ -1,0 +1,32 @@
+//x_choose:  Click to choose a demo
+  5//Signal Processing
+//x_choose:  Choose a demo
+  1//Spectral Estimation
+//x_choose:  Choose a demo
+  2//IIR filter design 
+//x_mdialog: Choose filter type and parameters
+  bp
+  3
+  ellip
+  0.15 0.25
+  0.08 0.035
+  o //OK
+//x_choose:  Choose a demo
+  3//Minimax FIR filter design
+//x_choose:  Choose a demo
+  3//Minimax FIR filter design
+//x_choose:  Choose a demo
+  4//Wiegner filter
+//x_choose:  Choose a demo
+  5//Bode plots
+//x_choose:  Choose a demo
+  6//Arma simulation and identification
+//x_choose:  Choose a demo
+  7//Arma, bidimensional version
+//x_choose:  Choose a demo
+  8//Arma, Spectral power estimation
+//x_choose:  Choose a demo
+  9//Sound
+//x_choose:  Choose a demo
+  0// Cancel
+  0// Cancel

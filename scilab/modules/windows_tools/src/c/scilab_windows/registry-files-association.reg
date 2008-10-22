@@ -1,0 +1,46 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.sce]
+
+[HKEY_CLASSES_ROOT\.sce\DefaultIcon]
+@="D:\\TRUNK\\scilab\\bin\\wscilex.exe,7"
+
+[HKEY_CLASSES_ROOT\.sce\print]
+
+[HKEY_CLASSES_ROOT\.sce\print\command]
+@="\"D:\\TRUNK\\scilab\\bin\\scilex.exe\" -P \"%1\""
+
+[HKEY_CLASSES_ROOT\.sce\Run with Scilab 5.0-SVN]
+
+[HKEY_CLASSES_ROOT\.sce\Run with Scilab 5.0-SVN\command]
+@="\"d:\\TRUNK\\scilab\\bin\\wscilex.exe\" -X \"%1\""
+
+[HKEY_CLASSES_ROOT\.sce\shell]
+
+[HKEY_CLASSES_ROOT\.sce\shell\open]
+
+[HKEY_CLASSES_ROOT\.sce\shell\open\command]
+@="\"D:\\TRUNK\\scilab\\bin\\wscilex.exe\" -O \"%1\""
+
+[HKEY_CLASSES_ROOT\.sci]
+
+[HKEY_CLASSES_ROOT\.sci\DefaultIcon]
+@="D:\\TRUNK\\scilab\\bin\\wscilex.exe,8"
+
+[HKEY_CLASSES_ROOT\.sci\print]
+
+[HKEY_CLASSES_ROOT\.sci\print\command]
+@="\"D:\\TRUNK\\scilab\\bin\\scilex.exe\" -P \"%1\""
+
+[HKEY_CLASSES_ROOT\.sci\Run with Scilab 5.0-SVN]
+
+[HKEY_CLASSES_ROOT\.sci\Run with Scilab 5.0-SVN\command]
+@="\"d:\\TRUNK\\scilab\\bin\\wscilex.exe\" -X \"%1\""
+
+[HKEY_CLASSES_ROOT\.sci\shell]
+
+[HKEY_CLASSES_ROOT\.sci\shell\open]
+
+[HKEY_CLASSES_ROOT\.sci\shell\open\command]
+@="\"D:\\TRUNK\\scilab\\bin\\wscilex.exe\" -O \"%1\""
+

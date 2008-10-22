@@ -1,0 +1,14 @@
+// <-- Non-regression test for bug 2664 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2664
+//
+// <-- Short Description -->
+//  strsubst() cannot be called in regexp mode
+//
+// =============================================================================
+// Author : Cong WU
+// Scilab Project
+// 7 Feb 2008
+// =============================================================================
+if execstr("strsubst(""2"",""/2(]*)?$\1/"",""0"",""r"")","errcatch") <> 0 then bugmes();quit;end

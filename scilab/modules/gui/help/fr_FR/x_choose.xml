@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_choose">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>x_choose</refname>
+    <refpurpose> boîte de dialogue permettant de faire des choix  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[num]=x_choose(items,title [,button])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>items  </term>
+        <listitem>
+          <para>vecteur colonne de chaînes de caractères. Les articles à choisir
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>title  </term>
+        <listitem>
+          <para>vecteur colonne de chaînes de caractères. Titre de la boîte
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>button  </term>
+        <listitem>
+          <para>chaîne de caractères, texte du bouton d'annulation ('Cancel' par défaut)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>num  </term>
+        <listitem>
+          <para>entier, le numéro de l'article choisi ou 0 si "Cancel" a été pressé.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Renvoie dans <literal>num</literal> le numéro de l'article choisi.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire';'pour la boite de dialogue'])
+n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire'],'Terminer')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_choices">x_choices</link>
+      </member>
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="getvalue">getvalue</link>
+      </member>
+      <member>
+        <link linkend="unix_g">unix_g</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

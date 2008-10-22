@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="SciComplex">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>SciComplex</refname>
+    <refpurpose>Class to use complex object with
+  scilab</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/SciComplexClass.gif"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>Method Summary :</para>
+    <para>
+      <literal>public SciComplex(String name,SciComplex Obj)</literal>
+    </para>
+    <para><literal>public SciComplex(String name) </literal>Constructor (if name
+    exists in Scilab and has the same type, variable is imported from
+    Scilab)</para>
+    <para><literal>public SciComplex(String name,double realpart,double
+    imaginarypart )</literal>Constructor</para>
+    <para><literal>public String getName()</literal>Get Name of scilab object</para>
+    <para><literal>public double getRealPartData()</literal>Get Real Part Value of
+    scilab object</para>
+    <para><literal>public double getImaginaryPartData()</literal>Get Imaginary Part
+    Value of scilab object</para>
+    <para><literal>public void Get()</literal>Get in java object , value of scilab
+    object</para>
+    <para><literal>public boolean Job(String job)</literal>(deprecated see Scilab.Exec) Execute a job in
+    scilab</para>
+    <para><literal>public void Send()</literal>Send to scilab object , value of java
+    object</para>
+    <para><literal>public void disp()</literal>disp object</para>
+    <para><literal>public void toString()</literal>convert complex to a string</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ // See SCI/modules/javasci/examples directory]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Scilab">Scilab</link>
+      </member>
+      <member>
+        <link linkend="SciComplexArray">SciComplexArray</link>
+      </member>
+      <member>
+        <link linkend="SciString">SciString</link>
+      </member>
+      <member>
+        <link linkend="SciStringArray">SciStringArray</link>
+      </member>
+      <member>
+        <link linkend="SciDoubleArray">SciDoubleArray</link>
+      </member>
+      <member>
+        <link linkend="SciDouble">SciDouble</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>A.C</para>
+  </refsection>
+</refentry>

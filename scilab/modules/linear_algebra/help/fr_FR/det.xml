@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="det">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>det </refname>
+    <refpurpose> déterminant  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>det(X)
+[e,m]=det(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>matrice réelle, complexe, polynomiale, rationnelle
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m  </term>
+        <listitem>
+          <para>nombre réel ou complexe, mantisse du déterminant en base 10
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>e  </term>
+        <listitem>
+          <para>entier, exposant du déterminant en base 10 
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>det(X)</literal> ( <literal>m*10^e</literal> est le déterminant de la matrice carrée <literal>X</literal>.
+    </para>
+    <para>
+      Pour les matrices polynomiales <literal>det(X)</literal> est équivalent à <literal>determ(X)</literal>.
+    </para>
+    <para>
+      Pour les matrices rationnelles <literal>det(X)</literal> est équivalent à <literal>detr(X)</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    x=poly(0,'x');
+    det([x,1+x;2-x,x^2])
+    w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   // zéros du système linéaire
+    A=rand(3,3);
+    det(A), prod(spec(A))
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="detr">detr</link>
+      </member>
+      <member>
+        <link linkend="determ">determ</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Fonctions Utilisées</title>
+    <para>
+      Le calcul du determinant est basé sur les routines Lapack :
+      DGETRF pour les matrices réelles et  ZGETRF pour le cas complexe.
+    </para>
+  </refsection>
+</refentry>

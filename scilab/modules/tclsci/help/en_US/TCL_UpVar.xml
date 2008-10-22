@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_UpVar">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>TCL_UpVar</refname>
+    <refpurpose>Make a link from a tcl source variable
+  to a tcl destination variable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>OK=TCL_UpVar(varname1,varname2,[interp])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>varname1</term>
+        <listitem>
+          <para>character string. Contains the name of the tcl source
+          variable.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>varname2</term>
+        <listitem>
+          <para>character string. Contains the name of the tcl destination
+          variable.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>interp</term>
+        <listitem>
+          <para>optional character string parameter. Name of the slave tcl
+          interpreter in which the operation has to be performed. If not
+          provided, it defaults to the main tcl interpreter created by
+          Scilab.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ok</term>
+        <listitem>
+          <para>boolean. %T if it is ok.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Make a link from a tcl source variable to a tcl destination
+    variable.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+TCL_SetVar("Scilab","OK")
+TCL_UpVar("Scilab","ScilabBis")
+TCL_GetVar("ScilabBis")
+TCL_SetVar("Scilab","NOK")
+TCL_GetVar("ScilabBis")
+TCL_SetVar("ScilabBis","modified")
+TCL_GetVar("ScilabBis")
+TCL_GetVar("Scilab")
+
+TCL_CreateSlave('InterpBis')
+TCL_SetVar("Scilab","Good",'InterpBis')
+TCL_UpVar("Scilab","ScilabBis",'InterpBis')
+TCL_GetVar("ScilabBis",'InterpBis')
+TCL_SetVar("Scilab","Not good",'InterpBis')
+TCL_GetVar("ScilabBis",'InterpBis')
+TCL_SetVar("ScilabBis","modified again",'InterpBis')
+TCL_GetVar("ScilabBis",'InterpBis')
+TCL_GetVar("Scilab",'InterpBis')
+TCL_DeleteInterp('InterpBis')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ScilabEval">ScilabEval</link>
+      </member>
+      <member>
+        <link linkend="TCL_EvalFile">TCL_EvalFile</link>
+      </member>
+      <member>
+        <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+      </member>
+      <member>
+        <link linkend="TCL_GetVar">TCL_GetVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_SetVar">TCL_SetVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_UnsetVar">TCL_UnsetVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+      </member>
+      <member>
+        <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

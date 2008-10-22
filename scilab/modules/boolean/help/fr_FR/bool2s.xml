@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bool2s">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bool2s</refname>
+    <refpurpose> convertit une matrice booléenne en une matrice 0-1  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>bool2s(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>matrice réelle, complexe ou booléenne
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Si <literal>x</literal> est une matrice booléenne,
+    <literal>bool2s(x)</literal> renvoie une matrice où les valeurs %T (true=vrai) sont remplacées par des 1 et les %F (faux) par des 0.
+  </para>
+    <para>
+    Si <literal>x</literal> n'est pas une matrice booléenne,
+    <literal>bool2s(x)</literal> renvoie une matrice où les valeurs non-nulles sont remplacées par des 1.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+bool2s([%t %t %f %t])
+bool2s([2.3 0 10 -1])
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="boolean">boolean</link>
+      </member>
+      <member>
+        <link linkend="find">find</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

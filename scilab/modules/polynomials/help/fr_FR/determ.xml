@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="determ">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>determ</refname>
+    <refpurpose> déterminant d'une matrice de polynômes  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>res=determ(W [,k])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>W  </term>
+        <listitem>
+          <para>matrice réelle de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k  </term>
+        <listitem>
+          <para>entier (borne supérieure pour le degré du déterminant de W)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>res=determ(W [,k])</literal> renvoie le déterminant d'une
+    matrice réelle de polynômes (calculs fait par FFT si la taille de W
+    est supérieure à 2*2).
+  </para>
+    <para><literal>k</literal> est un entier plus grand que le degré effectif du
+    déterminant.  de <literal>W</literal>.
+  </para>
+    <para>
+    La valeur par défaut de <literal>k</literal> est la plus petite
+    puissance de 2 plus grande que <literal>n*maxi(degree(W))</literal>.
+  </para>
+    <para>
+    Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <literal>W</literal> aux
+    fréquences de Fourier et FFT inverse appliquée aux coefficients du
+    déterminant.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+w=s*rand(10,10);
+determ(w)
+det(coeff(w,1))*s^10
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="det">det</link>
+      </member>
+      <member>
+        <link linkend="detr">detr</link>
+      </member>
+      <member>
+        <link linkend="coffg">coffg</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>F. Delebecque  </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="graphic_export">
+<!-- =================== -->
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ *
+ * Scilab
+ * Interface description. In this file, we define the list of the function which
+ * will be available into Scilab and the link to the "native" function.
+ *
+ * gatewayId is the position in the hashtable 'Interfaces' defined in the
+ * file SCI/modules/core/src/c/callinterf.h
+ * 
+ * primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ * in the file modules/<module>/sci_gateway/c/gw_<module>.c
+ *
+ * primitiveName is the name of the Scilab function
+ *
+ *  Don't touch if you do not know what you are doing
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!-- =================== -->
+  <PRIMITIVE gatewayId="57" primitiveId="1" primitiveName="xs2bmp" />
+  <PRIMITIVE gatewayId="57" primitiveId="2" primitiveName="xs2gif" />
+  <PRIMITIVE gatewayId="57" primitiveId="3" primitiveName="xs2jpg" />
+  <PRIMITIVE gatewayId="57" primitiveId="4" primitiveName="xs2png" />
+  <PRIMITIVE gatewayId="57" primitiveId="5" primitiveName="xs2ppm" />
+  <PRIMITIVE gatewayId="57" primitiveId="6" primitiveName="xs2eps" />
+  <PRIMITIVE gatewayId="57" primitiveId="7" primitiveName="xs2pdf" />
+  <PRIMITIVE gatewayId="57" primitiveId="8" primitiveName="xs2svg" />
+  <PRIMITIVE gatewayId="57" primitiveId="9" primitiveName="xs2ps" />
+
+
+
+
+</GATEWAY>

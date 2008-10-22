@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+ * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<project name="action_binding" default="jar">
+  <import file="../../build.incl.xml"/>
+
+  <property name="library.name" value="${library.action_binding.name}" />
+
+  <description>
+	Build the action_binding Scilab module
+  </description>
+
+</project>
+

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fft">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fft</refname>
+    <refpurpose>fast Fourier transform.</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="ifft">
+    <refname>ifft</refname>
+    <refpurpose>fast Fourier transform.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x=fft(a ,-1) or x=fft(a)
+x=fft(a,1) or x=ifft(a)
+x=fft(a,-1,dim,incr)
+x=fft(a,1,dim,incr)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real or complex vector. Real or complex matrix (2-dim
+          fft)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>real or complex vector, matrix or multidimensionnal
+          array.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>incr</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>Short syntax </term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>direct</term>
+              <listitem>
+                <para><literal>x=fft(a,-1)</literal> or <literal>x=fft(a)</literal> gives a
+            direct transform.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>single variate</term>
+                    <listitem>
+                      <para>If <literal>a</literal> is a vector a single variate direct FFT
+                is computed that is:</para>
+                      <para>x(k)=sum over m from 1 to n of
+                a(m)*exp(-2i*pi*(m-1)*(k-1)/n)</para>
+                      <para>for k varying from 1 to n (n=size of vector
+                <literal>a</literal>).</para>
+                      <para>(the <literal>-1</literal> argument refers to the sign of the
+                exponent..., NOT to "inverse"),</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>multivariate</term>
+                    <listitem>
+                      <para>If <literal>a</literal> is a matrix or or a multidimensionnal
+                array a multivariate direct FFT is performed.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>inverse</term>
+              <listitem>
+                <para><literal>a=fft(x,1)</literal> or <literal>a=ifft(x)</literal>performs the
+            inverse transform normalized by <literal>1/n</literal>.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>single variate</term>
+                    <listitem>
+                      <para>If <literal>a</literal> is a vector a single variate inverse FFT
+                is computed</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>multivariate</term>
+                    <listitem>
+                      <para>If <literal>a</literal> is a matrix or or a multidimensionnal
+                array a multivariate inverse FFT is performed.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Long syntax for multidimensional FFT</term>
+        <listitem>
+          <para><literal>x=fft(a,-1,dim,incr)</literal> allows to perform an
+        multidimensional fft.</para>
+          <para>If a is a real or complex vector implicitly indexed by
+        <literal>j1,j2,..,jp</literal> i.e. <literal>a(j1,j2,..,jp)</literal> where
+        <literal>j1</literal> lies in <literal>1:dim(1),</literal> <literal>j2</literal> in
+        <literal>1:dim(2),...</literal> one gets a p-variate FFT by calling p times
+        <literal>fft</literal> as follows</para>
+          <programlisting><![CDATA[incrk=1; x=a; for k=1:p x=fft(x ,-1,dim(k),incrk)
+        incrk=incrk*dim(k) end]]></programlisting>
+          <para>where <literal>dimk</literal> is the dimension of the current variable
+        w.r.t which one is integrating and <literal>incrk</literal> is the increment
+        which separates two successive <literal>jk</literal> elements in
+        <literal>a</literal>.</para>
+          <para>In particular,if <literal>a</literal> is an mxn matrix,
+        <literal>x=fft(a,-1)</literal> is equivalent to the two instructions:</para>
+          <para><literal>a1=fft(a,-1,m,1)</literal> and
+        <literal>x=fft(a1,-1,n,m)</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+  //Comparison with explicit formula
+  //----------------------------------
+  a=[1;2;3];n=size(a,'*');
+  norm(1/n*exp(2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,1))
+  norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1)) 
+ 
+  //Frequency components of a signal
+  //----------------------------------
+  // build a noides signal sampled at 1000hz  containing to pure frequencies 
+  // at 50 and 70 Hz
+  sample_rate=1000;
+  t = 0:1/sample_rate:0.6;
+  N=size(t,'*'); //number of samples
+  s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+  
+  y=fft(s);
+  //the fft response is symetric we retain only the first N/2 points
+  f=sample_rate*(0:(N/2))/N; //associated frequency vector
+  n=size(f,'*')
+  clf()
+  plot2d(f,abs(y(1:n)))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="corr">corr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

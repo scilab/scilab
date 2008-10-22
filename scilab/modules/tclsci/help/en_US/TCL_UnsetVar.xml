@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_UnsetVar">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>TCL_UnsetVar</refname>
+    <refpurpose>Remove a tcl
+  variable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>OK=TCL_UnsetVar(varname [,interp])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>varname</term>
+        <listitem>
+          <para>character string. Contains the name of the tcl/tk variable to
+          unset.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>interp</term>
+        <listitem>
+          <para>optional character string parameter. Name of the slave tcl
+          interpreter in which the operation has to be performed. If not
+          provided, it defaults to the main tcl interpreter created by
+          Scilab.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ok</term>
+        <listitem>
+          <para>boolean. %T if varname was deleted.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This routine allows to unset a tcl variable.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+TCL_SetVar("Scilab","OK")
+TCL_GetVar("Scilab")
+TCL_UnsetVar("Scilab")
+TCL_ExistVar("Scilab")
+
+TCL_CreateSlave('InterpSlave');
+TCL_SetVar("Scilab","Good",'InterpSlave')
+TCL_GetVar("Scilab",'InterpSlave')
+TCL_UnsetVar("Scilab",'InterpSlave')
+TCL_ExistVar("Scilab",'InterpSlave')
+TCL_DeleteInterp('InterpSlave')
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ScilabEval">ScilabEval</link>
+      </member>
+      <member>
+        <link linkend="TCL_EvalFile">TCL_EvalFile</link>
+      </member>
+      <member>
+        <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+      </member>
+      <member>
+        <link linkend="TCL_GetVar">TCL_GetVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_SetVar">TCL_SetVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_UpVar">TCL_UpVar</link>
+      </member>
+      <member>
+        <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+      </member>
+      <member>
+        <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

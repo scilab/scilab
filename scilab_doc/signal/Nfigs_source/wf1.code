@@ -1,0 +1,3 @@
+xinit('wf1.ps')
+exec('SCI/doc/signal/Nsource_diary/Swf1.code')
+xend(),

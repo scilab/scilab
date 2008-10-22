@@ -1,0 +1,92 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/exec_data.ref','rb');
+ 
+// create a script file
+ 
+%ans = mputl('a=1;b=2', TMPDIR + '/myscript');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// execute it
+ 
+ b  =
+ 
+    2.  
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = whos('-name', 'a ');
+Name                     Type           Size           Bytes        
+ 
+a                        constant       1 by 1         24           
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+// create a function
+ 
+%ans = deff('y=foo(x)', 'a=x+1;y=a^2');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = clear('a', 'b');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// call the function
+ 
+%ans = foo(1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// a is a variable created in the environment of the function foo
+ 
+//    it is destroyed when foo returns
+ 
+%ans = whos('-name', 'a ');
+Name                     Type           Size           Bytes        
+ 
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+ 
+x = 1;
+ 
+if load_ref('x') then   bugmes();quit;end,
+ 
+//create x to make it known by the script foo
+ 
+ y  =
+ 
+    4.  
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// a and y are created in the current environment
+ 
+%ans = whos('-name', 'a ');
+Name                     Type           Size           Bytes        
+ 
+a                        constant       1 by 1         24           
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

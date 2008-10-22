@@ -1,0 +1,11 @@
+// ====================================================================
+// completion module initialisation file 
+// Copyright INRIA 2007
+// ====================================================================
+//Load  functions librarie
+//load('SCI/modules/completion/macros/lib');
+// ====================================================================
+//add help chapter
+add_module_help_chapter('completion');
+clear add_module_help_chapter;
+// ====================================================================

@@ -1,0 +1,60 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// Unitary tests for Scilab Java pushbuttons
+
+// Exec tests common to all uicontrols
+clear uicontrol_generic_test
+getf("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
+uicontrol_generic_test("pushbutton");
+
+// Default relief value
+h = uicontrol("parent", scf(), "style", "pushbutton");
+if get(h, "relief") <> "raised" then
+  pause
+end
+
+// --- Value tests ---
+// Default value
+if ~isempty(get(h, "value")) then
+  pause
+end
+set(h, "value", [1]);
+if get(h, "value") <> 1 then
+  pause
+end
+set(h, "value", [1 2 3]);
+if ~and(get(h, "value") == [1 2 3]) then
+  pause
+end
+set(h, "value", []);
+if ~isempty(get(h, "value")) then
+  pause
+end
+// TODO test with wrong values
+
+// Test uicontrol without style property to create PushButtons
+h = uicontrol();
+set(h, "string", "Black button");
+set(h, "backgroundcolor", [0 0 0]);
+set(h, "foregroundcolor", [1 0 0]);
+set(h, "position", [50 100 200 30]);
+set(h, "fontweight", "normal");
+
+h = uicontrol(gcf());
+set(h, "string", "White button");
+set(h, "backgroundcolor", [1 1 1]);
+set(h, "foregroundcolor", [0 1 0]);
+set(h, "position", [50 130 200 30]);
+set(h, "fontweight", "light");
+
+h = uicontrol("parent", gcf());
+set(h, "string", "Light grey button");
+set(h, "backgroundcolor", [0.7 0.7 0.7]);
+set(h, "foregroundcolor", [0 0 1]);
+set(h, "position", [50 160 200 30]);
+set(h, "fontweight", "demi");

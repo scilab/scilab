@@ -1,0 +1,42 @@
+# Localization of the module integer
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+
+# File: src/c/mputi.c, line: 53
+# File: src/c/mgeti.c, line: 57
+#, c-format
+msgid "%s: format is of 0 length\n"
+msgstr "%s: format de taille 0\n"
+
+#
+# File: src/c/mputi.c, line: 155
+# File: src/c/mputi.c, line: 161
+#, c-format
+msgid "%s: %s format not recognized\n"
+msgstr "%s: %s format non reconnu\n"
+
+#
+# File: src/c/mputi.c, line: 168
+# File: src/c/mgeti.c, line: 181
+msgid "No input file\n"
+msgstr "Pas de fichier d'entrée\n"
+
+#
+# File: src/c/mgeti.c, line: 199
+#, c-format
+msgid "%s: unknown format %s\n"
+msgstr "%s: format inconnu %s\n"

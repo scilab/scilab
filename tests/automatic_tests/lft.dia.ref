@@ -1,0 +1,59 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/lft_data.ref','rb');
+ 
+s = poly(0, 's');
+ 
+P = [1/s,1/(s + 1);1/(s + 2),2/s];K = 1/(s - 1);
+ 
+%ans = lft(P, K);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = lft(P, [1,1], K);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = P(1, 1) + P(1, 2) * K * inv(1 - P(2, 2) * K) * P(2, 1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//Numerically dangerous!
+ 
+%ans = ss2tf(lft(tf2ss(P), tf2ss(K)));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = lft(P, -1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+f = [0,0;0,1];w = P /. f;%ans = w(1, 1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+//Improper plant (PID control)
+ 
+W = [1,1;1,1/(s^2 + 0.1 * s)];K = 1 + 1/s + s;
+ 
+if load_ref('K') then   bugmes();quit;end,
+ 
+ 
+lft(W, [1,1], K);%ans = ss2tf(lft(tf2ss(W), [1,1], tf2ss(K)));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

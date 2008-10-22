@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fsolve</refname>
+    <refpurpose> find a zero of a system of n nonlinear functions</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>real vector (initial value of function argument).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fct</term>
+        <listitem>
+          <para>external (i.e function or list or string).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fjac</term>
+        <listitem>
+          <para>external (i.e function or list or string).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>real scalar. precision tolerance: termination occurs when the algorithm estimates that the relative error between x and the solution is at most tol. (<literal>tol=1.d-10</literal> is the default value).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x :  </term>
+        <listitem>
+          <para>real vector (final value of function argument, estimated zero).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v :  </term>
+        <listitem>
+          <para>real vector (value of function at x).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para> termination indicator</para>
+          <variablelist>
+            <varlistentry>
+              <term>0</term>
+              <listitem>
+                <para>improper input parameters.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>1</term>
+              <listitem>
+                <para>algorithm estimates that the relative error between x and the solution  is at most tol.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>2</term>
+              <listitem>
+                <para>number of calls to fcn reached</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>3</term>
+              <listitem>
+                <para>tol is too small. No further improvement in the approximate solution  x is possible.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>4</term>
+              <listitem>
+                <para>iteration is not making good progress.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    find a zero of a system of
+    n nonlinear functions in n variables by a modification
+    of the powell hybrid method. Jacobian may be provided.</para>
+    <programlisting><![CDATA[
+
+0 = fct(x) w.r.t x.
+   
+    ]]></programlisting>
+    <para><literal>fct</literal> is an "external".
+    This external returns <literal>v=fct(x)</literal> given <literal>x</literal>.</para>
+    <para>
+    The simplest calling sequence for <literal>fct</literal> is:</para>
+    <programlisting><![CDATA[
+
+[v]=fct(x).
+   
+    ]]></programlisting>
+    <para>
+    If <literal>fct</literal> is a character string, it refers to a C or Fortran routine
+    which must be linked to Scilab. Fortran calling sequence must be</para>
+    <programlisting><![CDATA[
+
+fct(n,x,v,iflag)
+integer n,iflag
+double precision x(n),v(n)
+   
+    ]]></programlisting>
+    <para>
+    and C Calling sequence must be</para>
+    <programlisting><![CDATA[
+
+fct(int *n, double x[],double v[],int *iflag)
+   
+    ]]></programlisting>
+    <para>
+    Incremental  link is possible (help <literal>link</literal>).</para>
+    <para><literal>jac</literal> is an "external".
+    This external returns <literal>v=d(fct)/dx (x)</literal> given <literal>x</literal>.</para>
+    <para>
+    The simplest calling sequence for <literal>jac</literal> is:</para>
+    <programlisting><![CDATA[
+
+[v]=jac(x).
+   
+    ]]></programlisting>
+    <para>
+    If <literal>jac</literal> is a character string, it refers to a to a C or Fortran routine
+    which must be linked to Scilab calling sequences are the same as those
+    for fct. Note however that v must be a nxn array.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// A simple example with fsolve 
+a=[1,7;2,8];b=[10;11];
+deff('[y]=fsol1(x)','y=a*x+b');
+deff('[y]=fsolj1(x)','y=a');
+[xres]=fsolve([100;100],fsol1);
+a*xres+b
+[xres]=fsolve([100;100],fsol1,fsolj1);
+a*xres+b
+// See routines/default/Ex-fsolve.f
+[xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
+a*xres+b
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="quapro">quapro</link>
+      </member>
+      <member>
+        <link linkend="linpro">linpro</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

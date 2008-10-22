@@ -1,0 +1,89 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function repmat()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+A = ones(2,2) .*. 2;
+B = ones(2,2) .*. [2,2];
+C = ones(2,2) .*. bool2s(1==1);
+D = ones(2,2) .*. bool2s([1==1,1==1]);
+E = asciimat(ones(2,2) .*. asciimat("str1"));
+F = asciimat(ones(2,2) .*. asciimat(["str1";"str2"]));
+
+%v0 = [2,2];
+G = ones(%v0(1),%v0(2)) .*. 2;
+%v0 = [2,2];
+H = ones(%v0(1),%v0(2)) .*. [2,2];
+%v0 = [2,2];
+I = ones(%v0(1),%v0(2)) .*. bool2s(1==1);
+%v0 = [2,2];
+J = ones(%v0(1),%v0(2)) .*. bool2s([1==1,1==1]);
+%v0 = [2,2];
+K = asciimat(ones(%v0(1),%v0(2)) .*. asciimat("str1"));
+%v0 = [2,2];
+L = asciimat(ones(%v0(1),%v0(2)) .*. asciimat(["str1";"str2"]));
+
+
+N = mtlb_repmat(2,m);
+O = mtlb_repmat(1==1,m);
+P = mtlb_repmat("str1",m);
+
+
+// ! L.26: real(n) may be replaced by:
+// !    --> n if n is Real
+Q = ones(real(n),real(n)) .*. 2;
+// ! L.27: real(n) may be replaced by:
+// !    --> n if n is Real
+R = ones(real(n),real(n)) .*. bool2s(1==1);
+// ! L.28: real(n) may be replaced by:
+// !    --> n if n is Real
+S = asciimat(ones(real(n),real(n)) .*. asciimat("str1"));
+
+A1 = ones(2,3) .*. 2;
+B1 = ones(2,3) .*. [2,2];
+C1 = ones(2,3) .*. bool2s(1==1);
+D1 = ones(2,3) .*. bool2s([1==1,1==1]);
+E1 = asciimat(ones(2,3) .*. asciimat("str1"));
+F1 = asciimat(ones(2,3) .*. asciimat(["str1";"str2"]));
+
+G1 = ones(2,3) .*. 2;
+H1 = ones(2,3) .*. [2,2];
+I1 = ones(2,3) .*. bool2s(1==1);
+J1 = ones(2,3) .*. bool2s([1==1,1==1]);
+K1 = asciimat(ones(2,3) .*. asciimat("str1"));
+L1 = asciimat(ones(2,3) .*. asciimat(["str1";"str2"]));
+
+
+
+N1 = ones(m2,n2) .*. 2;
+O1 = ones(m2,n2) .*. bool2s(1==1);
+P1 = asciimat(ones(m2,n2) .*. asciimat("str1"));
+
+
+
+// ! L.52: real(m1) may be replaced by:
+// !    --> m1 if m1 is Real
+// ! L.52: real(n1) may be replaced by:
+// !    --> n1 if n1 is Real
+Q1 = ones(real(m1),real(n1)) .*. 2;
+// ! L.53: real(m1) may be replaced by:
+// !    --> m1 if m1 is Real
+// ! L.53: real(n1) may be replaced by:
+// !    --> n1 if n1 is Real
+R1 = ones(real(m1),real(n1)) .*. bool2s(1==1);
+// ! L.54: real(m1) may be replaced by:
+// !    --> m1 if m1 is Real
+// ! L.54: real(n1) may be replaced by:
+// !    --> n1 if n1 is Real
+S1 = asciimat(ones(real(m1),real(n1)) .*. asciimat("str1"));
+
+T = ones(2,2) .*. ones(2,2,2)
+%v0 = [2,2];
+T = ones(%v0(1),%v0(2)) .*. ones(2,2,2)

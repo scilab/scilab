@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2008 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="wavread">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>wavread</refname>
+    <refpurpose> load .wav sound file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=wavread(wavfile)
+y=wavread(wavfile,ext)
+[y,Fs,bits]=wavread(wavfile)
+[y,Fs,bits]=wavread(wavfile,ext)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>wavfile</term>
+        <listitem>
+          <para>string (The .wav extension is appended if no extension is given)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Fs</term>
+        <listitem>
+          <para>integer, frequency sampling in Hz (number of samples per second).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ext</term>
+        <listitem>
+          <para>string (<literal>'size'</literal>) or integer (to read n samples) or 1 x 2 integer vector [n1,n2] (to read from n1 to n2).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function to read <literal>.wav</literal> sound file.
+    <literal>wavread(wavfile)</literal> loads a sound file specified by the string wavfile,
+    returning the sampled data in y. Amplitude values are in the range [-1,+1].
+    Supports multi-channel data in the following formats:
+    8-bit mu-law, 8-, 16-, and 32-bit linear, and floating point.</para>
+    <para><literal>[y,Fs,bits]=wavread(wavfile)</literal> returns the sample rate (Fs) in Hertz
+    and the number of bits per sample used to encode the data in the file.</para>
+    <para><literal>wavread(wavfile,n)</literal> returns the first n samples from each channel.</para>
+    <para><literal>wavread(wavfile,[n1,n2])</literal> returns samples n1 to n2.</para>
+    <para><literal>wavread(wavfile,'size')</literal> returns the size of the audio data contained
+    in the file in place of the actual audio data, returning the
+    vector as [channels samples].</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+wavread("SCI/modules/sound/demos/chimes.wav","size")
+[y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");Fs,bits
+subplot(2,1,1)
+plot2d(y(1,:)) // first channel 
+subplot(2,1,2)
+plot2d(y(2,:)) // second channel
+y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //the first five samples
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="auread">auread</link>
+      </member>
+      <member>
+        <link linkend="savewave">savewave</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+      <member>
+        <link linkend="mapsound">mapsound</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

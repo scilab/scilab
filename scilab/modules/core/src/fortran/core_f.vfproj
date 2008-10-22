@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="9.10" ProjectIdGuid="{C352587B-F5E4-457C-80EE-A1AEAB176C8E}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/core_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/core_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/core_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/core_f.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd .."/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd">
+		<File RelativePath="..\..\includes\callinter.h"/>
+		<File RelativePath="..\..\includes\stack.h"/></Filter>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="algebre.f"/>
+		<File RelativePath="allops.f"/>
+		<File RelativePath="allowptr.f"/>
+		<File RelativePath="atome.f"/>
+		<File RelativePath="basin.f"/>
+		<File RelativePath="basnms.f"/>
+		<File RelativePath="bexec.f"/>
+		<File RelativePath="btof.f"/>
+		<File RelativePath="btofm.f"/>
+		<File RelativePath="chkvar.f"/>
+		<File RelativePath="clause.f"/>
+		<File RelativePath="clunit.f"/>
+		<File RelativePath="cmdstr.f"/>
+		<File RelativePath="cmplxt.f"/>
+		<File RelativePath="command.f"/>
+		<File RelativePath="compcl.f"/>
+		<File RelativePath="compil.f"/>
+		<File RelativePath="copyvar.f"/>
+		<File RelativePath="createref.f"/>
+		<File RelativePath="cvdm.f"/>
+		<File RelativePath="cvname.f"/>
+		<File RelativePath="cvwm.f"/>
+		<File RelativePath="dbasin.f"/>
+		<File RelativePath="defmat.f"/>
+		<File RelativePath="dldsp.f"/>
+		<File RelativePath="dmdsp.f"/>
+		<File RelativePath="dmdspf.f"/>
+		<File RelativePath="dtosci.f"/>
+		<File RelativePath="eqid.f"/>
+		<File RelativePath="errmgr.f"/>
+		<File RelativePath="error.f"/>
+		<File RelativePath="expsum.f"/>
+		<File RelativePath="extlarg.f"/>
+		<File RelativePath="fact.f"/>
+		<File RelativePath="find.f"/>
+		<File RelativePath="findequal.f"/>
+		<File RelativePath="fmttyp.f"/>
+		<File RelativePath="folhp.f"/>
+		<File RelativePath="formatnumber.f"/>
+		<File RelativePath="ftob.f"/>
+		<File RelativePath="functionsforbasout.f"/>
+		<File RelativePath="funnam.f"/>
+		<File RelativePath="funs.f"/>
+		<File RelativePath="getch.f"/>
+		<File RelativePath="getfun.f"/>
+		<File RelativePath="getfunction.f"/>
+		<File RelativePath="getlin.f"/>
+		<File RelativePath="getnum.f"/>
+		<File RelativePath="getstr.f"/>
+		<File RelativePath="getsym.f"/>
+		<File RelativePath="hmcreate.f"/>
+		<File RelativePath="hndlops.f"/>
+		<File RelativePath="indxg.f"/>
+		<File RelativePath="inibrk.f"/>
+		<File RelativePath="inisci.f"/>
+		<File RelativePath="intstr.f"/>
+		<File RelativePath="isany.f"/>
+		<File RelativePath="isbrk.f"/>
+		<File RelativePath="iseye.f"/>
+		<File RelativePath=".\isinstring.f"/>
+		<File RelativePath="isnum.f"/>
+		<File RelativePath="israt.f"/>
+		<File RelativePath="istrue.f"/>
+		<File RelativePath="itosci.f"/>
+		<File RelativePath="logops.f"/>
+		<File RelativePath="lspdsp.f"/>
+		<File RelativePath="lst2vars.f"/>
+		<File RelativePath="macro.f"/>
+		<File RelativePath="majmin.f"/>
+		<File RelativePath="matc.f"/>
+		<File RelativePath="matz.f"/>
+		<File RelativePath="matzs.f"/>
+		<File RelativePath="misops.f"/>
+		<File RelativePath="mkindx.f"/>
+		<File RelativePath="mklist.f"/>
+		<File RelativePath="mname.f"/>
+		<File RelativePath="mrknmd.f"/>
+		<File RelativePath="namstr.f"/>
+		<File RelativePath="nextj.f"/>
+		<File RelativePath="print.f"/>
+		<File RelativePath="prntid.f"/>
+		<File RelativePath="prompt.f"/>
+		<File RelativePath=".\promptecho.f"/>
+		<File RelativePath="ptover.f"/>
+		<File RelativePath="ptrback.f"/>
+		<File RelativePath="putid.f"/>
+		<File RelativePath="ref2val.f"/>
+		<File RelativePath="savlod.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_argn.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_clear.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_clearglobal.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_comp.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_debug.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_delbpt.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_dispbpt.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_errcatch.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_errclear.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_exists.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_format.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_funcprot.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_global.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_ieee.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_intppty.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_iserror.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_isglobal.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_macrovar.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_mode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_mtlb_mode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_predef.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_resume.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_setbpt.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_type.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_typnam.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_useascommand.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_whereis.f"/>
+		<File RelativePath="seteol.f"/>
+		<File RelativePath="setgetmode.f"/>
+		<File RelativePath="setippty.f"/>
+		<File RelativePath="setlnb.f"/>
+		<File RelativePath="showstack.f"/>
+		<File RelativePath="sigbas.f"/>
+		<File RelativePath="skpins.f"/>
+		<File RelativePath="stack.f"/>
+		<File RelativePath=".\stackc2i.f"/>
+		<File RelativePath="stackg.f"/>
+		<File RelativePath="stackgl.f"/>
+		<File RelativePath=".\stacki2d.f"/>
+		<File RelativePath="stackp.f"/>
+		<File RelativePath=".\stackr2d.f"/>
+		<File RelativePath="storeglobal.f"/>
+		<File RelativePath="termf.f"/>
+		<File RelativePath="tradsl.f"/>
+		<File RelativePath="typ2cod.f"/>
+		<File RelativePath="varfunptr.f"/>
+		<File RelativePath="whatln.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\where.f"/>
+		<File RelativePath="wmdsp.f"/>
+		<File RelativePath="xerbla.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\core_gateway.xml"/>
+		<File RelativePath="..\..\sci_gateway\fundef"/>
+		<File RelativePath="..\..\Makefile.am"/></Files>
+	<Globals/></VisualStudioProject>

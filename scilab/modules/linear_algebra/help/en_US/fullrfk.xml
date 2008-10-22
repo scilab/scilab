@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullrfk">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fullrfk</refname>
+    <refpurpose> full rank factorization of A^k</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Bk,Ck]=fullrfk(A,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Bk,Ck</term>
+        <listitem>
+          <para>real or complex matrices</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function computes the full rank factorization of <literal>A^k</literal> i.e.
+    <literal>Bk*Ck=A^k</literal> where <literal>Bk</literal> is full column rank and <literal>Ck</literal> full row rank.
+    One has range(<literal>Bk</literal>)=range(<literal>A^k</literal>) and ker(<literal>Ck</literal>)=ker(<literal>A^k</literal>).</para>
+    <para>
+    For <literal>k=1</literal>, <literal>fullrfk</literal> is equivalent to <literal>fullrf</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
+norm(Bk*Ck-A^3,1)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+      <member>
+        <link linkend="range">range</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.D (1990);   </para>
+  </refsection>
+</refentry>

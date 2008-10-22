@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dispbpt">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dispbpt</refname>
+    <refpurpose>display breakpoints</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>dispbpt()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>dispbpt()</literal> displays all active breakpoints currently
+    inserted in functions.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="setbpt">setbpt</link>
+      </member>
+      <member>
+        <link linkend="delbpt">delbpt</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="resume">resume</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

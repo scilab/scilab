@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_mdialog">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demo_mdialog</refname>
+    <refpurpose> create a dialog box </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>resp = demo_mdialog(fil)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+			The function demo_mdialog create a dialog box. It takes as argument a binary 
+			file. This file is built by a .sce file written like below. It shall contain 
+			the variables 'titl', the title a the dialog box, 'namevar', the name of the 
+			fields to fill, and 'value', the values written by default. After this, these 
+			three variables shall be saved in the binary file.
+			The use of demo_mdialog shall be preceded by the execution of the .sce 
+			associated.
+			The function demo_mdialog returns 'resp', the values chosen by the user.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+exec('SCI/demos/control/pid/pid_dial_4.sce');
+[defv]=demo_mdialog('SCI/demos/control/pid/pid_dial_4.bin');  
+  
+  if defv==[] then warning('Demo stops!');return;end
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="demo_choose">demo_choose</link>
+      </member>
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>G.H</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ???? - INRIA - Serge STEER 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mfile2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mfile2sci</refname>
+    <refpurpose> Matlab M-file to Scilab conversion function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>M-file-path</term>
+        <listitem>
+          <para>a character string which gives the path of Matlab M-file to convert</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>result-path</term>
+        <listitem>
+          <para>a character string which gives the directory where the result has to be written. Default value is current directory.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Recmode</term>
+        <listitem>
+          <para>Boolean flag, used by translatepaths function for recursive conversion. Must be %F to convert a single mfile. Default value : %f</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>only-double</term>
+        <listitem>
+          <para>Boolean flag, if %T mfile2sci considers that numerical function have been used only with numerical data (no Scilab overloading function is needed). Default value: %F</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>verbose-mode</term>
+        <listitem>
+          <para> display information mode</para>
+          <variablelist>
+            <varlistentry>
+              <term>0</term>
+              <listitem>
+                <para>no information displayed</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>1</term>
+              <listitem>
+                <para>information written as comment is resulting SCI-file</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>2</term>
+              <listitem>
+                <para>information written as comment is resulting SCI-file and in logfile</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>3</term>
+              <listitem>
+                <para>information written as comment is resulting SCI-file, in logfile and displayed in Scilab window</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>prettyprint</term>
+        <listitem>
+          <para>Boolean flag, if %T generated code is beautified. Default value: %F</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    M2SCI (and particularly mfile2sci) is Matlab M-file to Scilab function conversion tools. It
+    tries whenever possible to replace call to Matlab functions by the
+    equivalent Scilab primitives and functions.
+  </para>
+    <para>
+    To convert a Matlab M-file just enter the Scilab instruction:
+    mfile2sci(file)
+  </para>
+    <para>
+    where file is a character string giving the path name of the M-file
+    mfile2sci will generate three files in the same directory
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>&lt;function-name&gt;.sci</term>
+        <listitem>
+          <para>the Scilab equivalent of the M-file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;function-name&gt;.cat</term>
+        <listitem>
+          <para>the Scilab help file associated to the function</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sci_&lt;function-name&gt;.sci</term>
+        <listitem>
+          <para>the Scilab function required to convert the calls to this Matlab M-file in other Matlab M-files. This function may be improved "by hand". This function is only useful for conversion not for use of translated functions.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    Some functions like eye, ones, size, sum,... behave differently
+    according to the dimension of their arguments. When mfile2sci cannot
+    infer dimensions it replaces these function call by a call to an
+    emulation function named mtlb_&lt;function_name&gt;. For efficiency these
+    functions may be replaced by the proper scilab equivalent instructions.
+    To get informations about replacement, enter:
+    help mtlb_&lt;function_name&gt; in Scilab command window
+  </para>
+    <para>
+    Some other functions like plot, has no straightforward �quivalent in
+    scilab. They are also replaced by an emulation function named
+    mtlb_&lt;function_name&gt;.
+  </para>
+    <para>
+    When translation may be incorrect or may be improved mfile2sci adds a
+    comment which begins by "//!" (according to verbose-mode)
+  </para>
+    <para>
+  When called without rhs, <literal>mfile2sci()</literal> launches a GUI to help to select a file/directory and options.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Create a simple M-file
+write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
+ '[m,n] = size(A);'
+ 'if nargin == 1'
+ '    k = 1;'
+ 'else'
+ '    k = rem(k,4);'
+ '    if k < 0'
+ '        k = k + 4;'
+ '    end'
+ 'end'
+ 'if k == 1'
+ '    A = A.'';'
+ '    B = A(n:-1:1,:);'
+ 'elseif k == 2'
+ '    B = A(m:-1:1,n:-1:1);'
+ 'elseif k == 3'
+ '    B = A(m:-1:1,:);'
+ '    B = B.'';'
+ 'else'
+ '    B = A;'
+ 'end']);
+// Convert it to scilab
+mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
+// Show the new code
+write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
+// get it into scilab
+getf(TMPDIR+'/rot90.sci')
+// Execute it
+m=rand(4,2);rot90(m,1)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="translatepaths">translatepaths</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V. Couvert</member>
+      <member>S. Steer</member>
+    </simplelist>
+  </refsection>
+</refentry>

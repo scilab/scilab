@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rotate">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rotate</refname>
+    <refpurpose> rotation d'un ensemble de points dans le plan    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xy1=rotate(xy,[theta,orig])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>xy  </term>
+        <listitem>
+          <para>matrice de taille (2,n).
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xy1  </term>
+        <listitem>
+          <para>matrice de taille (2,n).
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta  </term>
+        <listitem>
+          <para>réel, angle en radian (0 par défaut).
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orig  </term>
+        <listitem>
+          <para>centre de la rotation ([0;0] par défaut)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>rotate</literal> effectue une rotation d'angle theta <literal>theta</literal> :
+  </para>
+    <para>
+      <literal>xy1(:,i) = M(theta) *xy (:,i) + yesg</literal>
+    </para>
+    <para>
+    où <literal>M</literal> représente la matrice de rotation correspondante.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+xsetech([0,0,1,1],[-1,-1,1,1])
+xy=[(0:0.1:10);sin(0:0.1:10)]/10;
+for i=2*%pi*(0:10)/10,
+  [xy1]=rotate(xy,i);
+  xpoly(xy1(1,:),xy1(2,:),"lines")
+end
+ ]]></programlisting>
+  </refsection>
+</refentry>

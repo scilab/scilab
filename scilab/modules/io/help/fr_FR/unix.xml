@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unix</refname>
+    <refpurpose> exécution d'une commande Unix ou DOS  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>stat=unix(command-name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
+        <listitem>
+          <para>chaîne de caractères contenant les commandes à exécuter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stat</term>
+        <listitem>
+          <para>un entier</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+			Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
+			(sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans 
+			l'interpréteur de commande.
+		</para>
+    <para><literal>stat</literal> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
+			alors le code de sortie de l'interpréteur de commande.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+
+unix("ls $SCI/demos");
+deff('wd=getdir()','if MSDOS then unix(''cd>''+TMPDIR+''\path'');..
+	else unix(''pwd>''+TMPDIR+''/path'');end..
+wd=read(TMPDIR+''/path'',1,1,''(a)'')')
+wd=getdir()
+
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="edit">edit</link>
+      </member>
+      <member>
+        <link linkend="manedit">manedit</link>
+      </member>
+      <member>
+        <link linkend="unix_g">unix_g</link>
+      </member>
+      <member>
+        <link linkend="unix_s">unix_s</link>
+      </member>
+      <member>
+        <link linkend="unix_w">unix_w</link>
+      </member>
+      <member>
+        <link linkend="unix_x">unix_x</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

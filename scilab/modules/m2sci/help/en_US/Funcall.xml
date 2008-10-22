@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Funcall">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Funcall</refname>
+    <refpurpose>Create a tree representing a function call</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>fc=Funcall(name,lhsnb,rhslist,lhslist)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>function name (character string)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lhsnb</term>
+        <listitem>
+          <para>number of outputs (constant)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rhslist</term>
+        <listitem>
+          <para>list of inputs (list of "M2SCI tlists")</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lhslist</term>
+        <listitem>
+          <para>list of outputs (list of "M2SCI tlists")</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fc</term>
+        <listitem>
+          <para>a "funcall" tlist</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function create a <literal>tlist</literal> representing a function call when using M2SCI.
+    All input parameters values are verified to be compatible with "M2SCI tlists".
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Variable">Variable</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Contents">Contents</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

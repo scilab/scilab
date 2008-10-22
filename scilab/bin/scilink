@@ -1,0 +1,49 @@
+#!/bin/sh 
+# Copyright ENPC/INRIA 
+# This script is probably useless now ... However, we leave it in the source
+# tree ... we never know :/
+
+# This script is used to produce a local scilex 
+# usage scilink args 
+# where args is the list of object files or library files that you want to add 
+# to produce a new scilex
+# If in the list of object files  some names are known scilex names 
+# ( form routines/default ) then the scilex default files 
+#  are omited and replaced with the given ones 
+# Ex : scilink C/interf.o C/evol.o 
+# will create a new scilex with routines/default/interf.o replaced by 
+#      C/interf.o
+SCI=$1
+export SCI
+shift
+LOCALPOS=`pwd`
+cd $SCI
+# Generates a temp directory with a random name to avoid bug #3409
+TMPWRKDIR=`mktemp -d sci.XXXXXXXXXX`
+make show | grep -v make > $TMPWRKDIR/SciLink$$1
+sed -e "s+routines/default+\$SD+g"  -e "s+libs+\$SL+g" -e "s+./pvm3+\$SPVM+g" $TMPWRKDIR/SciLink$$1 > $TMPWRKDIR/SciLink$$2
+for i in $*
+do
+  x=`basename $i`
+  sed "s+\$SD/$x++g" $TMPWRKDIR/SciLink$$2 > $TMPWRKDIR/SciLink$$3
+  rm -f $TMPWRKDIR/SciLink$$2
+  mv $TMPWRKDIR/SciLink$$3 $TMPWRKDIR/SciLink$$2
+done
+echo "#!/bin/sh" > $TMPWRKDIR/SciLink$$3
+echo  SCI=$SCI >>  $TMPWRKDIR/SciLink$$3
+echo "SD=\$SCI/routines/default" >>  $TMPWRKDIR/SciLink$$3
+echo "SPVM=\$SCI/pvm3" >>  $TMPWRKDIR/SciLink$$3
+echo "SL=\$SCI/libs" >>  $TMPWRKDIR/SciLink$$3
+echo "LOCAL=\"$*\"" >>  $TMPWRKDIR/SciLink$$3
+sed -e "s+\$SL+ \$LOCAL \$SL+" -e "s+show+scilex+g" $TMPWRKDIR/SciLink$$2 >> $TMPWRKDIR/SciLink$$3
+cd $LOCALPOS
+mv $TMPWRKDIR/SciLink$$3 Script
+chmod +x Script 
+echo "Linking a new Scilab with " $*
+./Script 
+echo "I've created : scilex and scilab which uses that scilex"
+sed -e "s+\$SCI/bin/scilex+`pwd`/scilex+g" $SCI/bin/scilab > scilab 
+chmod +x scilab 
+#rm -f $TMPWRKDIR/SciLink*
+
+

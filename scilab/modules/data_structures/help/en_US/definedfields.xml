@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="definedfields">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>definedfields</refname>
+    <refpurpose> return index of list's defined fields</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>k=definedfields(l)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>l</term>
+        <listitem>
+          <para>a list , tlist or mlist variable.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>a vector of index.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>If <literal>l</literal> is a  <literal>list</literal>  <literal>tlist</literal>
+    <literal>mlist</literal>  <literal>k=definedfields(l)</literal> returns in
+    <literal>k</literal> the indices of the defined list fields. This
+    function is useful because indexing undefined fields produces an
+    error.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+l=list(1);l(3)=5
+k=definedfields(l)
+
+t=tlist('x');t(5)=4
+definedfields(t)
+
+m=mlist(['m','a','b']);m.b='sdfgfgd'
+definedfields(m)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="list">list</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="mlist">mlist</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dasrt">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dasrt</refname>
+    <refpurpose> DAE solver with zero crossing</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>is either <literal>y0</literal> (<literal>ydot0</literal> is estimated by
+  <literal>dassl</literal> with zero as first estimate) or the matrix
+  <literal>[y0 ydot0]</literal>.  <literal>g(t,y0,ydot0)</literal> must be equal
+  to zero. If you only know an estimate  of <literal>ydot0</literal> set
+  <literal>info(7)=1</literal></para>
+          <variablelist>
+            <varlistentry>
+              <term>y0</term>
+              <listitem>
+                <para>real column vector  of initial conditions.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ydot0</term>
+              <listitem>
+                <para>real column vector of the time derivative of <literal>y</literal> at <literal>t0</literal> (may be an estimate).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t0</term>
+        <listitem>
+          <para>real number is the initial instant.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>real scalar or vector. Gives instants for which you want the
+  solution. Note that you can get solution at each dassl's step
+  point by setting <literal>info(2)=1</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nn</term>
+        <listitem>
+          <para>a vector with two entries <literal>[times num]</literal>
+  <literal>times</literal> is the value of the time at which the surface is
+  crossed, <literal>num</literal> is the number of the crossed surface</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>atol,rtol</term>
+        <listitem>
+          <para>real scalars or column vectors of same size as
+  <literal>y</literal>. <literal>atol,rtol</literal> give respectively  absolute
+  and relative error tolerances of solution.  If vectors the
+  tolerances are specified for each component of <literal>y</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>external (function or list or string). Computes the  value of <literal>g(t,y,ydot)</literal>.</para>
+          <variablelist>
+            <varlistentry>
+              <term>function</term>
+              <listitem>
+                <para>Its calling sequence must be <literal>[r,ires]=res(t,y,ydot)</literal>
+  and <literal>res</literal> must return the residue
+  <literal>r=g(t,y,ydot)</literal>  and error flag
+  <literal>ires</literal>. <literal>ires = 0</literal> if <literal>res</literal>
+  succeeds to compute <literal>r</literal>, <literal>=-1</literal>  if residue is
+  locally not defined for <literal>(t,y,ydot)</literal>, <literal>=-2</literal> if
+  parameters are out of admissible range. </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>list</term>
+              <listitem>
+                <para>it must be as follows:</para>
+                <programlisting><![CDATA[
+
+list(res,x1,x2,...)
+   
+                ]]></programlisting>
+                <para>
+    where the calling sequence of the function <literal>res</literal> is now
+  </para>
+                <programlisting><![CDATA[
+
+r=res(t,y,ydot,x1,x2,...)
+   
+                ]]></programlisting>
+                <para><literal>res</literal> still returns <literal>r=g(t,y,ydot)</literal> as a function of <literal>(t,y,ydot,x1,x2,...)</literal>.
+  </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>string</term>
+              <listitem>
+                <para>it must refer to the name of a fortran subroutine (see source code of <literal>fresd.f</literal>).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>jac</term>
+        <listitem>
+          <para>external (function or list or string). Computes the  value  of <literal>dg/dy+cj*dg/dydot</literal> for a given value of parameter <literal>cj</literal></para>
+          <variablelist>
+            <varlistentry>
+              <term>function</term>
+              <listitem>
+                <para>Its calling sequence must be <literal>r=jac(t,y,ydot,cj)</literal> and the <literal>jac</literal> function must return <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> where <literal>cj</literal> is a real scalar</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>list</term>
+              <listitem>
+                <para>it must be as follows</para>
+                <programlisting><![CDATA[
+
+list(jac,x1,x2,...)
+   
+                ]]></programlisting>
+                <para>
+    where the calling sequence of the function <literal>jac</literal> is now
+  </para>
+                <programlisting><![CDATA[
+
+r=jac(t,y,ydot,x1,x2,...)
+   
+                ]]></programlisting>
+                <para><literal>jac</literal> still returns <literal>dg/dy+cj*dg/dydot</literal> as a function of <literal>(t,y,ydot,cj,x1,x2,...)</literal>.
+  </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>character string</term>
+              <listitem>
+                <para>it must refer to the name of a fortran subroutine  (see source code of <literal>jacdd.f</literal>).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>surf</term>
+        <listitem>
+          <para>external (function or list or string). Computes the  value  of the column vector <literal>surf(t,y)</literal> with ng components. Each component defines a surface.</para>
+          <variablelist>
+            <varlistentry>
+              <term>function</term>
+              <listitem>
+                <para>Its calling sequence must be <literal>surf(t,y)</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>list</term>
+              <listitem>
+                <para>it must be as follows</para>
+                <programlisting><![CDATA[
+
+list(surf,x1,x2,...)
+   
+                ]]></programlisting>
+                <para>
+    where the calling sequence of the function <literal>surf</literal> is now
+  </para>
+                <programlisting><![CDATA[
+
+r=surf(t,y,x1,x2,...)
+   
+                ]]></programlisting>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>character string</term>
+              <listitem>
+                <para>it must refer to the name of a fortran subroutine  (see source code of <literal>fsurfd.f</literal>) in directory <literal>SCDIR/default</literal></para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>list which contains <literal>7</literal> elements, default value is list([],0,[],[],[],0,0)</para>
+          <variablelist>
+            <varlistentry>
+              <term>info(1)  </term>
+              <listitem>
+                <para>real scalar which gives the maximum time for which <literal>g</literal> is allowed  to be evaluated or an empty matrix <literal>[]</literal> if no limits imposed for time.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info(2)  </term>
+              <listitem>
+                <para>flag which indicates if <literal>dassl</literal> returns its intermediate  computed values (<literal>flag=1</literal>) or only the user specified time point  values (<literal>flag=0</literal>).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info(3)  </term>
+              <listitem>
+                <para>: <literal>2</literal> components vector which give the definition <literal>[ml,mu]</literal> of band  matrix computed by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) = "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>.  If <literal>jac</literal> returns a full matrix set <literal>info(3)=[]</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info(4)  </term>
+              <listitem>
+                <para>real scalar which gives the maximum step size. Set <literal>info(4)=[]</literal> if no  limitation.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info(5)  </term>
+              <listitem>
+                <para>real scalar which gives the initial step size. Set <literal>info(4)=[]</literal> if  not specified.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info(6)  </term>
+              <listitem>
+                <para>set <literal>info(6)=1</literal> if the solution is known to be non negative,  else set <literal>info(6)=0</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info(7)  </term>
+              <listitem>
+                <para>set <literal>info(7)=1</literal> if <literal>ydot0</literal> is just an estimation, <literal>info(7)=0</literal> if <literal>g(t0,y0,ydot0)=0</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hd</term>
+        <listitem>
+          <para>real vector which allows to store the <literal>dassl</literal> context and to  resume integration</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>real matrix . Each column is the vector [t;x(t);xdot(t)] where t is time index for which the solution had been computed</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Solution of the implicit differential equation</para>
+    <programlisting><![CDATA[
+
+    g(t,y,ydot)=0
+    y(t0)=y0  and   ydot(t0)=ydot0
+   
+    ]]></programlisting>
+    <para>
+    Returns the surface crossing instants and the number of the
+    surface reached in <literal>nn</literal>.</para>
+    <para>
+    Detailed examples can be found in SCIDIR/tests/dassldasrt.tst</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
+//g1 = ((2*log(y)+8)/t - 5)*y 
+//g2 = log(y) - 2.2491 
+y0=1;t=2:6;t0=1;y0d=3;
+atol=1.d-6;rtol=0;ng=2;
+
+deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
+deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+
+[yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
+//(Should return nn=[2.4698972 2])
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+      <member>
+        <link linkend="impl">impl</link>
+      </member>
+      <member>
+        <link linkend="fort">fort</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

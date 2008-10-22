@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="string">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>string</refname>
+    <refpurpose> conversion to string</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>string(x)
+[out,in,text]=string(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real matrix or function</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    converts a matrix into a matrix of strings.</para>
+    <para>
+    If <literal>x</literal> is a function  <literal>[out,in,text]=string(x)</literal>  returns
+    three vectors strings : <literal>out</literal> is the vector of output variables,
+    <literal>in</literal> is the vector of input variables, and <literal>text</literal> is
+    the (column) vector of the source code of the function.</para>
+    <para>
+    If  <literal>x</literal> is a <literal>lib</literal> variable, text is a character string column
+    vector. The first element contains the path of library file and the 
+    other the name of functions it defines.</para>
+    <para>
+    Character strings are defined as <literal>'string'</literal> (between quotes) or
+    <literal>"string"</literal> (between doublequotes);
+    matrices of strings are defined as usual constant matrices.</para>
+    <para>
+    Concatenation of strings is made by the <literal>+</literal> operation.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+string(rand(2,2))
+deff('y=mymacro(x)','y=x+1')
+[out,in,text]=string(mymacro)
+x=123.356; 'Result is '+string(x)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="part">part</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="quote">quote</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="strsubst">strsubst</link>
+      </member>
+      <member>
+        <link linkend="strcat">strcat</link>
+      </member>
+      <member>
+        <link linkend="strindex">strindex</link>
+      </member>
+      <member>
+        <link linkend="sci2exp">sci2exp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

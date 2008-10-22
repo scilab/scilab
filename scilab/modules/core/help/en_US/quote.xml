@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quote">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quote</refname>
+    <refpurpose> (') transpose operator, string delimiter</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    quote (<literal>'</literal>)is used for (Conjugate) Transpose of matrix.</para>
+    <para>
+    quote (<literal>.'</literal>)is used for (non Conjugate) Transpose of matrix.</para>
+    <para>
+    Simple (') or double (") quotes are also used to define character strings.
+    (Character strings are defined between two quotes). A Quote within a
+    character string is denoted by two quotes.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+[1+%i, 2]'
+[1+%i, 2].'
+x='This is a character string'
+'He said:''Good'''
+ 
+  ]]></programlisting>
+  </refsection>
+</refentry>

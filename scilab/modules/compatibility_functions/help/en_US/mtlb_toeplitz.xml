@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_toeplitz">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_toeplitz</refname>
+    <refpurpose>Matlab toeplitz emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Matlab and Scilab <literal>toeplitz</literal> behave differently in some particular cases:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With one input parameter: if this parameter is complex or is a matrix, output value of
+	Matlab and Scilab <literal>toeplitz</literal> can be different.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        With two input parameters: if they are vectors and their first elements are not equal, 
+	Scilab returns an error but Matlab gives priority to the column element. If they are matrices, output value of
+	Matlab and Scilab <literal>toeplitz</literal> are different.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    The function <literal>mtlb_toeplitz(c[,r])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>toeplitz(c[,r])</literal> when it was not
+    possible to know what were the operands/inputs[CUSTOM] while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <literal>mtlb_toeplitz</literal> calls:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When called with one input, if <literal>c</literal> is a real scalar or vector 
+        <literal>mtlb_toeplitz(c)</literal> may be replaced by <literal>toeplitz(c)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        When called with two inputs, if <literal>c</literal> and <literal>r</literal> are scalars or vectors and their first elements are equal
+        <literal>mtlb_toeplitz(c,r)</literal> may be replaced by <literal>toeplitz(c,r)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Caution: <literal>mtlb_toeplitz</literal> has not to be used for hand coded functions.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

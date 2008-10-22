@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strtok">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>strtok</refname>
+    <refpurpose>Split string into tokens</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>res = strtok(str,delimiters)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>A character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>delimiters</term>
+        <listitem>
+          <para>A character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>A character string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>res = strtok(str,delimiters)</literal>  sequence of calls to this function split str into tokens, which are sequences of contiguous characters spearated by any of the characters that are part of delimiters.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+TOKENS = [];
+token = strtok("A string of ,,tokens and some  more tokens"," ,");
+TOKENS = [TOKENS,token];
+while( token <> '' )
+  token = strtok(" ,");
+  TOKENS = [TOKENS,token];
+end
+disp(TOKENS);
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="strrchr">strrchr</link>
+      </member>
+      <member>
+        <link linkend="strchr">strchr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

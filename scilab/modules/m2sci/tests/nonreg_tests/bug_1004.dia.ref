@@ -1,0 +1,51 @@
+// <-- Non-regression test for bug 1004 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1004
+//
+// <-- Short Description -->
+//    disp added during translation of Matlab for loop
+//
+//    Try to convert the following 3-line file ct2.m:
+//
+//    function ct2()
+//    for i=1:5
+//    end
+//
+//
+//    The sci file created is:
+//
+//    function [] = ct2()
+//
+//    // Display warning for floating point exception
+//    ieee(1)
+//
+//    for i = 1:5,
+//      disp(i,"i  =");
+//    end
+//    endfunction
+// ...
+// Non-regression test file for bug 1004
+// Copyright INRIA
+// Scilab Project - V. Couvert
+// Modified by Pierre MARECHAL
+// Copyright INRIA
+// Date : 18 Mar 2005
+mode(-1);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug1004.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+ 

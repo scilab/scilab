@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C)  2007 - INRIA Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="core">
+  <!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ Don't touch if you do not know what you are doing
+-->
+
+  <PRIMITIVE gatewayId="13" primitiveId="1" primitiveName="debug" />
+  <PRIMITIVE gatewayId="13" primitiveId="2" primitiveName="who" />
+  <PRIMITIVE gatewayId="13" primitiveId="3" primitiveName="warning" />
+  <PRIMITIVE gatewayId="13" primitiveId="4" primitiveName="argn" />
+  <PRIMITIVE gatewayId="13" primitiveId="5" primitiveName="getvariablesonstack" />
+  <PRIMITIVE gatewayId="13" primitiveId="6" primitiveName="comp" />
+  <PRIMITIVE gatewayId="13" primitiveId="7" primitiveName="getscilabmode" />
+  <PRIMITIVE gatewayId="13" primitiveId="8" primitiveName="mode" />
+  <PRIMITIVE gatewayId="13" primitiveId="9" primitiveName="type" />
+  <PRIMITIVE gatewayId="13" primitiveId="10" primitiveName="error" />
+  <PRIMITIVE gatewayId="13" primitiveId="11" primitiveName="resume" />
+  <PRIMITIVE gatewayId="13" primitiveId="12" primitiveName="return" />
+  <PRIMITIVE gatewayId="13" primitiveId="13" primitiveName="format" />
+  <PRIMITIVE gatewayId="13" primitiveId="14" primitiveName="isdef" />
+  <PRIMITIVE gatewayId="13" primitiveId="15" primitiveName="exists" />
+  <PRIMITIVE gatewayId="13" primitiveId="16" primitiveName="errcatch" />
+  <PRIMITIVE gatewayId="13" primitiveId="17" primitiveName="errclear" />
+  <PRIMITIVE gatewayId="13" primitiveId="18" primitiveName="iserror" />
+  <PRIMITIVE gatewayId="13" primitiveId="19" primitiveName="predef" />
+  <PRIMITIVE gatewayId="13" primitiveId="20" primitiveName="newfun" />
+  <PRIMITIVE gatewayId="13" primitiveId="21" primitiveName="clearfun" />
+  <PRIMITIVE gatewayId="13" primitiveId="22" primitiveName="funptr" />
+  <PRIMITIVE gatewayId="13" primitiveId="23" primitiveName="macr2lst" />
+  <PRIMITIVE gatewayId="13" primitiveId="24" primitiveName="setbpt" />
+  <PRIMITIVE gatewayId="13" primitiveId="25" primitiveName="delbpt" />
+  <PRIMITIVE gatewayId="13" primitiveId="26" primitiveName="dispbpt" />
+  <PRIMITIVE gatewayId="13" primitiveId="27" primitiveName="funcprot" />
+  <PRIMITIVE gatewayId="13" primitiveId="28" primitiveName="whereis" />
+  <PRIMITIVE gatewayId="13" primitiveId="29" primitiveName="where" />
+  <PRIMITIVE gatewayId="13" primitiveId="30" primitiveName="havewindow" />
+  <PRIMITIVE gatewayId="13" primitiveId="31" primitiveName="stacksize" />
+  <PRIMITIVE gatewayId="13" primitiveId="32" primitiveName="mtlb_mode" />
+  <PRIMITIVE gatewayId="13" primitiveId="33" primitiveName="clear" />
+  <PRIMITIVE gatewayId="13" primitiveId="34" primitiveName="what" />
+  <PRIMITIVE gatewayId="13" primitiveId="35" primitiveName="sciargs" />
+  <PRIMITIVE gatewayId="13" primitiveId="36" primitiveName="chdir" />
+  <PRIMITIVE gatewayId="13" primitiveId="37" primitiveName="ieee" />
+  <PRIMITIVE gatewayId="13" primitiveId="38" primitiveName="typename" />
+  <PRIMITIVE gatewayId="13" primitiveId="39" primitiveName="global" />
+  <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="pwd" />
+  <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="getcwd" />
+  <PRIMITIVE gatewayId="13" primitiveId="41" primitiveName="clearglobal" />
+  <PRIMITIVE gatewayId="13" primitiveId="42" primitiveName="isglobal" />
+  <PRIMITIVE gatewayId="13" primitiveId="43" primitiveName="gstacksize" />
+  <PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="intppty" />
+  <PRIMITIVE gatewayId="13" primitiveId="45" primitiveName="lasterror" />
+  <PRIMITIVE gatewayId="13" primitiveId="46" primitiveName="getversion" />
+  <PRIMITIVE gatewayId="13" primitiveId="47" primitiveName="macr2tree" />
+  <PRIMITIVE gatewayId="13" primitiveId="48" primitiveName="getos" />
+  <PRIMITIVE gatewayId="13" primitiveId="49" primitiveName="banner" />
+  <PRIMITIVE gatewayId="13" primitiveId="50" primitiveName="fromjava" />
+  <PRIMITIVE gatewayId="13" primitiveId="51" primitiveName="getmemory" />
+  <PRIMITIVE gatewayId="13" primitiveId="52" primitiveName="fromc" />
+  <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="getmd5" />
+  <PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="getmodules" />
+  <PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="with_module" />
+  <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="librarieslist" />
+  <PRIMITIVE gatewayId="13" primitiveId="57" primitiveName="libraryinfo" />
+  <PRIMITIVE gatewayId="13" primitiveId="58" primitiveName="getdebuginfo" />
+  <PRIMITIVE gatewayId="13" primitiveId="59" primitiveName="readgateway" />
+  <PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
+  
+</GATEWAY>

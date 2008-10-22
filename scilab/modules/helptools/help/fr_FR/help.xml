@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="help">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>help</refname>
+    <refpurpose> commande d'aide en ligne  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>help(key)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>key</term>
+        <listitem>
+          <para>Une chaîne de caractères. Donne le nom de la page d'aide à visualiser.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>help</literal> sans argument, visualise la page hypertexte contenat la
+      liste des chapitres d'aide.</para>
+    <para><literal>help(key)</literal> visualise la page d'aide associé avec le nom
+      donné par <literal>key</literal>. S'il n'y a pas de page d'aide, <literal>help(key)</literal>
+      appele automatiquement <literal>apropos(key)</literal>.</para>
+    <para> Voir  <link linkend="man">man</link> pour apprendre à écrire de nouvelles pages d'aide.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="apropos">apropos</link>
+      </member>
+      <member>
+        <link linkend="man">man</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tlist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tlist</refname>
+    <refpurpose> Scilab object and typed list definition.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>tlist(typ,a1,....an )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>Character string or vector of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ai</term>
+        <listitem>
+          <para>Any Scilab object (<literal>matrix, list,string...</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Creates a <literal>typed-list</literal> with elements <literal>ai</literal>'s. The <literal>typ</literal>
+    argument specifies the list type. Such <literal>typed-list</literal> allow the user
+    to define new operations working on these object through scilab
+    functions. The only difference between <literal>typed-list</literal> and <literal>list</literal>
+    is the value of the type (16 instead of 15).</para>
+    <para><literal>typ(1)</literal> specifies the list type (character string used to define
+    soft coded operations)</para>
+    <para>
+    if specified <literal>typ(i)</literal> may give the <literal>i+1</literal>th element formal name</para>
+    <para>
+    Standard Operations on <literal>list</literal> work similarly for <literal>typed-list</literal>:</para>
+    <para>
+     extraction
+    : <literal>[x,y,z...]=l(v)</literal> where <literal>v</literal> is a vector of indices;
+    <literal>[x,y,z]=l(:)</literal> extracts all the elements.</para>
+    <para>
+      insertion
+    : <literal>l(i)=a</literal></para>
+    <para>
+     deletion
+    : <literal>l(i)=null()</literal> removes the i-th element of the <literal>tlist l</literal>.</para>
+    <para>
+     display</para>
+    <para>
+    Moreover if <literal>typ(2:n+1)</literal> are specified, user may point elements by
+    their names</para>
+    <para>
+    We give below examples where tlist are used.</para>
+    <para>
+    Linear systems are represented by specific <literal>typed-list</literal> e.g. a
+    linear system <literal>[A,B,C,D]</literal> is represented by the tlist
+    <literal>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</literal>
+    and this specific list may be created by the function <literal>syslin</literal>.</para>
+    <para>
+    Sys(2), Sys('A') or Sys.A is the state-matrix and Sys('dt') or Sys.dt is the time domain</para>
+    <para>
+    A rational matrix <literal>H</literal> is represented by the <literal>typed-list</literal>
+    <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> where <literal>Num</literal> and <literal>Den</literal> are two
+    polynomial matrices and a  (e.g. continuous time) linear system with
+    transfer matrix <literal>H</literal> maybe created by <literal>syslin('c',H)</literal>.</para>
+    <para>
+    H(2), H('num') or H.num is the transfer matrix numerator</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="null">null</link>
+      </member>
+      <member>
+        <link linkend="percent">percent</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="list">list</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

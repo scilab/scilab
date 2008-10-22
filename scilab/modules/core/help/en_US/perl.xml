@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>perl</refname>
+    <refpurpose>Call Perl script using appropriate operating
+  system executable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>perl('perlfile')
+perl('perlfile',arg1,arg2,...)
+result = perl(...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>perl('perlfile') calls the Perl script perlfile, using the appropriate
+    operating system Perl executable.</para>
+    <para>perl('perlfile',arg1,arg2,...) calls the Perl script perlfile, using
+    the appropriate operating system Perl executable, and passes the arguments
+    arg1, arg2, and so on, to perlfile.</para>
+    <para>result = perl(...) returns the results of attempted Perl call to
+    result.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unix">unix</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
+</refentry>

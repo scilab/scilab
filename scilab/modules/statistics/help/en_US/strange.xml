@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strange">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>strange</refname>
+    <refpurpose> range</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[r]=strange(x)
+[r]=strange(x,'r') (or, equivalently, [r]=strange(x,1))
+[r]=strange(x,'c') (or, equivalently, [r]=strange(x,2))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The  range  is the  distance   between  the largest  and
+    smaller value,   [r]=strange(x) computes   the  range of
+    vector or matrix x.</para>
+    <para>
+    [r]=strange(x,'r')  (or   equivalently [r]=strange(x,1))
+    give a row vector with the range of each column.</para>
+    <para>
+    [r]=strange(x,'c') (or  equivalently   [r]=strange(x,2))
+    give a column vector with the range of each row.</para>
+  </refsection>
+  <refsection>
+    <title>References</title>
+    <para>
+     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Carlos klimann</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,23 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function fread()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+fid = 1
+// L.7: No simple equivalent, so mtlb_fread() is called
+s = mtlb_fread(fid,120,"uchar");
+// L.8: No simple equivalent, so mtlb_fread() is called
+[s,count] = mtlb_fread(fid,120,"uchar");
+// L.9: No simple equivalent, so mtlb_fread() is called
+// !! L.9: No Scilab equivalent for: fread() called with skip parameter
+s = mtlb_fread(fid,120,"40*uchar=>uchar",8);
+// L.10: No simple equivalent, so mtlb_fread() is called
+// !! L.10: No Scilab equivalent for: fread() called with skip parameter
+[s,count] = mtlb_fread(fid,120,"40*uchar=>uchar",8);

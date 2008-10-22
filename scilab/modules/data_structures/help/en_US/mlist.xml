@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mlist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mlist</refname>
+    <refpurpose>Scilab object, matrix oriented typed list
+  definition.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mlist(typ,a1,....an )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>vector of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ai</term>
+        <listitem>
+          <para>any Scilab object (<literal>matrix, list,string...</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>mlist</literal> object are very similar to <link linkend="tlist">tlist</link> objects.
+    The only difference concerns the <link linkend="extraction">extraction</link>  and <link linkend="insertion">insertion</link>   syntax:
+    if <literal>M</literal> is an mlist, for any index <literal>i</literal> which is
+    not a field name, <literal>M(i)</literal> is no more the <literal>i</literal>th
+    field of the list.</para>
+    <para> The semantic of the extraction and insertion syntax should be given by
+    an <link linkend="overloading">overloading</link> functions.</para>
+    <para>The overloading function for extraction syntax <literal>b=a(i1,...,in)</literal>
+    has the following calling sequence: <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal> </para>
+    <para>and the syntax
+    <literal>[x1,..,xm]=a(i1,...,in)</literal> has the following calling sequence:
+    <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal></para>
+    <para/>
+    <para> The overloading function associated to the insertion syntax
+    <literal>a(i1,...,in)=b</literal>  has the following calling sequence:
+    <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>. </para>
+    <para/>
+    <para>mlist fields must then be designed by their names. They can also be
+    handled using the <literal>getfield</literal> and <literal>setfield</literal>
+    functions.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+//define display
+function %V_p(M),disp(M.name+':'+string(M.value)),endfunction
+
+//define extraction operation
+function r=%V_e(varargin)
+   M=varargin($)
+   r=mlist(['V','name','value'],M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))
+endfunction
+M(2,:) // the second row of  M
+M.value
+
+//define insertion operations
+function M=%V_i_V(varargin)
+   M=varargin($)
+   N=varargin($-1)
+   M.value(varargin(1:$-2))=N.value
+   M.name(varargin(1:$-2))=N.name
+endfunction
+M(1,1)=M(2,2)
+
+function M=%s_i_V(varargin) //insertion of a regular matrix into a V matrix
+   M=varargin($)
+   N=varargin($-1)
+   M.value(varargin(1:$-2))=N
+   M.name(varargin(1:$-2))=emptystr(N)
+endfunction
+M(1,1)=44
+
+
+
+//tlist case
+M=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+M(2)
+M(2)='a'+string([1 2;3 4])
+
+
+M('name')
+
+
+
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="list">list</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+      <member>
+        <link linkend="getfield">getfield</link>
+      </member>
+      <member>
+        <link linkend="setfield">setfield</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

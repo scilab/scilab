@@ -1,0 +1,680 @@
+% Copyright INRIA
+
+\chapter{Programming}
+\label{ch4}
+\index{programming}
+
+        One of the most useful features of Scilab is its ability
+to create and use functions.  This allows the development of specialized
+programs which can be integrated into the Scilab package in a simple and
+modular way through, for example, the use of libraries.  In this chapter we 
+treat the following subjects:
+\begin{itemize}
+        \item Programming Tools
+        \item Defining and Using Functions
+        \item Definition of Operators for New Data Types
+        \item{Debbuging}
+\end{itemize}   
+Creation of libraries is discussed in a later chapter.
+
+\section{Programming Tools}
+
+        Scilab supports a full list of programming tools
+including loops, conditionals, case selection,
+and creation of new environments.  Most programming tasks
+should be accomplished in the environment of a function.
+Here we explain what programming tools are available.
+
+\subsection{Comparison Operators}\index{programming!comparison operators}
+There exist five methods for making comparisons between the
+values of data objects in Scilab. These comparisons are listed
+in the following table.
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt == }  & equal to \\ \hline
+{\tt < } & smaller than \\ \hline
+{\tt > } &  greater than \\ \hline
+{\tt <= } & smaller or equal to \\ \hline
+{\tt >= } & greater or equal to \\ \hline
+{\tt <> } or {\verb!~=!} & not equal to \\ \hline
+\end{tabular}
+\end{center}
+
+These comparison operators are used for evaluation of conditionals.
+
+\subsection{Loops}\index{programming!loops}
+Two types of loops exist in Scilab: the 
+{\tt for}\index{for@{\tt for}} loop
+and the 
+{\tt while}\index{while@{\tt while}} loop.  The {\tt for} loop
+steps through a vector of indices performing each time the
+commands delimited by {\tt end}.  
+\begin{verbatim}
+ 
+--> x=1;for k=1:4,x=x*k,end
+ x         =
+ 
+    1.  
+ x         =
+ 
+    2.  
+ x         =
+ 
+    6.  
+ x         =
+ 
+    24.  
+\end{verbatim}
+The {\tt for} loop can iterate on any vector or matrix taking for values
+the elements of the vector or the columns of the matrix.
+\begin{verbatim}
+ 
+--> x=1;for k=[-1 3 0],x=x+k,end
+ x         =
+ 
+    0.  
+ x         =
+ 
+    3.  
+ x         =
+ 
+    3.  
+\end{verbatim}
+The {\tt for} loop can also iterate on lists. The syntax is the same as for
+matrices. The index takes as values the entries of the list.
+
+\begin{verbatim}
+-->l=list(1,[1,2;3,4],'str')
+
+-->for k=l, disp(k),end
+ 
+    1.  
+ 
+!   1.    2. !
+!   3.    4. !
+ 
+ str
+\end{verbatim}
+
+        The {\tt while} loop repeatedly performs a sequence of commands 
+until a condition is satisfied.
+\begin{verbatim}
+--> x=1; while x<14,x=2*x,end
+ x         =
+ 
+    2.  
+ x         =
+ 
+    4.  
+ x         =
+ 
+    8.  
+ x         =
+ 
+    16.  
+
+\end{verbatim}
+
+ A {\tt for} or {\tt while} loop can be ended by the command {\tt break} :
+\begin{verbatim}
+
+-->a=0;for i=1:5:100,a=a+1;if i > 10  then  break,end; end
+ 
+-->a
+ a  =
+ 
+    3.  
+
+\end{verbatim}
+In nested loops, {\tt break} exits from the innermost loop.
+
+\begin{verbatim}
+-->for k=1:3; for j=1:4; if k+j>4 then break;else disp(k);end;end;end
+ 
+    1.  
+ 
+    1.  
+ 
+    1.  
+ 
+    2.  
+ 
+    2.  
+ 
+    3. 
+\end{verbatim}
+\subsection{Conditionals}\index{programming!conditionals}
+Two types of conditionals exist in Scilab: the 
+{\tt if}-{\tt then}-{\tt else}\index{if-then-else@{\tt if-then-else}}
+conditional and the 
+{\tt select}-{\tt case}\index{select-case@{\tt select}-{\tt case}} 
+conditional.  The 
+{\tt if}-{\tt then}-{\tt else} conditional
+evaluates an expression and if true executes the
+instructions between the {\tt then} statement and the {\tt else} statement
+(or {\tt end} statement).
+If false the statements between the {\tt else} and the {\tt end}
+statement are executed.  The {\tt else} is not required. The {\tt elseif}
+has the usual meaning and is a also a keyword recognized by the interpreter.
+\begin{verbatim}
+ 
+--> x=1
+ x         =
+ 
+    1.  
+ 
+--> if x>0 then,y=-x,else,y=x,end
+ y         =
+ 
+  - 1.  
+ 
+--> x=-1
+ x         =
+ 
+  - 1.  
+ 
+--> if x>0 then,y=-x,else,y=x,end
+ y         =
+ 
+  - 1.  
+\end{verbatim}
+
+
+        The {\tt select}-{\tt case} conditional
+compares an expression to several possible expressions and performs the
+instructions following the first case which equals the initial expression.
+\begin{verbatim}
+ 
+--> x=-1
+ x         =
+ 
+  - 1.  
+ 
+--> select x,case 1,y=x+5,case -1,y=sqrt(x),end
+ y         =
+ 
+    i    
+\end{verbatim}
+It is possible to include an {\tt else} statement for the condition
+where none of the cases are satisfied.
+
+\section{Defining and Using Functions}
+\label{s4.2}
+\index{programming!functions}
+\index{functions}
+\index{functions!definition}
+
+        It is possible to define a function directly in
+the Scilab environment, however, the most convenient way
+is to create a file containing the function
+with a text editor.  In this section we describe the
+structure of a function and several Scilab commands which are
+used almost exclusively in a function environment.
+
+\subsection{Function Structure}
+Function structure must obey the following format
+\begin{verbatim}
+function [y1,...,yn]=foo(x1,...,xm)
+   .
+   .
+   .
+\end{verbatim}
+where {\tt foo} is the function name, the {\tt xi} are the $m$ input arguments
+of the function,  the {\tt yj} are the $n$ output arguments from the function, and
+the three vertical dots represent the list of instructions performed by
+the function.  An example of a function
+which calculates $k!$ is as follows\index{functions!{\tt exec}}\index{exec@{\tt exec}}
+\begin{verbatim}
+function [x]=fact(k)
+  k=int(k)
+  if k<1 then k=1,end
+  x=1;
+  for j=1:k,x=x*j;end
+endfunction
+\end{verbatim}
+If this function is contained in a file called {\tt fact.sci} the function
+must be ``loaded'' into  Scilab by the {\tt exec} or {\tt getf} command and before
+it can be used:
+\begin{verbatim}
+--> exists('fact')
+ ans       =
+ 
+    0.  
+ 
+--> exec('../macros/fact.sci',-1);
+ 
+--> exists('fact')
+ ans       =
+ 
+    1.  
+ 
+--> x=fact(5)
+ x         =
+ 
+    120.  
+\end{verbatim}
+In the above Scilab session, the command 
+{\tt exists}\index{functions!{\tt exists}}\index{exists@{\tt exists}} 
+indicates that
+{\tt fact} is not in the environment (by the $0$ answer to {\tt exist}).  The
+function is loaded into the environment using {\tt exec} and now {\tt exists}
+indicates that the function is there (the $1$ answer).  The example 
+calculates $5!$. 
+
+\subsection{Loading Functions}
+Functions are usually defined in files. A file which contains a function
+must obey the following format
+\begin{verbatim}
+function [y1,...,yn]=foo(x1,...,xm)
+   .
+   .
+   .
+\end{verbatim}
+where {\tt foo} is the function name. The {\tt xi}'s  are the input 
+parameters and the the {\tt yj}'s  are the  output parameters, and
+the three vertical dots represent the set of instructions performed by
+the function to evaluate the {\tt yj}'s, given the {\tt xi}'s.
+Inputs and ouputs parameters can be {\it any} Scilab object
+(including functions themeselves).
+
+Functions are Scilab objects and should not be considered as files. To
+be used in Scilab, functions defined in files  {\em must} be loaded by 
+the command {\tt getf(filename)} or {\tt exec(filename,-1) ;}  . If the file {\tt filename} contains the
+function {\tt foo}, the function {\tt foo} can be executed only if
+it has been previously loaded by the command {\tt getf(filename)}.
+A file may contain {\em several} functions. Functions can also be defined ``on line''
+by the command using the {\tt function/endfunction} syntax or by using
+the function {\tt deff}. This is useful if one wants to define
+a function as the output parameter of a other function. 
+
+Collections of functions can be organized as libraries (see {\tt lib}
+command). Standard Scilab librairies (linear algebra, control,\ldots) 
+are defined in the subdirectories of {\tt SCIDIR/macros/}.
+
+\subsection{Global and Local Variables}
+If a variable in a function is not defined (and is not among the input
+parameters) then it takes the value of a variable having the same name in the
+calling environment. This variable however remains local in the sense that
+modifying it within the function does not alter the variable in the calling
+environment unless {\tt resume} is used (see below). Functions
+can be invoked with less input or output parameters. Here is an example:
+\begin{verbatim}
+function [y1,y2]=f(x1,x2)
+  y1=x1+x2
+  y2=x1-x2
+endfunction
+\end{verbatim}
+\begin{verbatim}
+-->[y1,y2]=f(1,1)
+ y2  =
+    0.  
+ y1  =
+    2.  
+
+-->f(1,1)
+ ans  =
+    2.
+
+-->f(1)
+y1=x1+x2;
+        !--error     4 
+undefined variable : x2                      
+at line       2 of function f
+
+-->x2=1;
+
+-->[y1,y2]=f(1)
+ y2  =
+    0.  
+ y1  =
+    2.  
+ 
+-->f(1)
+ ans  =
+ 
+    2. 
+
+\end{verbatim}
+
+Note that it is not possible to call a function if one of the
+parameter of the calling sequence is not defined:
+
+\begin{verbatim}
+function [y]=f(x1,x2)
+  if x1<0 then y=x1, else y=x2;end
+endfunction
+\end{verbatim}
+\begin{verbatim}
+
+-->f(-1)
+ ans  =
+ 
+  - 1.  
+ 
+-->f(-1,x2)
+       !--error     4 
+undefined variable : x2  
+
+-->f(1)
+ undefined variable : x2                      
+at line       2 of function    f     called by :  
+f(1)
+
+-->x2=3;f(1)
+
+-->f(1)
+ ans  =
+ 
+    3
+                    
+\end{verbatim}
+
+Global variable are defined by the \verb!global! command. They can
+be read and modified inside functions. Enter {\tt help global} for
+details. 
+
+\subsection{Special Function Commands}
+Scilab has several special commands which are used almost exclusively
+in functions.  These are the commands 
+
+\begin{itemize}
+        \item {\tt argn}\index{argn@{\tt argn}}: returns the number of input
+and output arguments for the function
+        \item {\tt error}\index{error@{\tt error}}: used to suspend the 
+operation of a function, to print an error message, and to return to the
+previous level of environment when an error is detected.  
+        \item {\tt warning}\index{warning@{\tt warning}}, 
+        \item {\tt pause}\index{pause@{\tt pause}}: temporarily suspends the 
+operation of a function.
+        \item {\tt break}\index{break@{\tt break}}: forces the end of a loop 
+        \item {\tt return}\index{return@{\tt return}} or {\tt resume} : used 
+to return to the calling environment and to pass local
+variables from the function environment to the calling environment.  
+\end{itemize}
+
+The following example runs the following {\tt foo} function which
+illustrates these commands.
+\begin{itemize}
+\item The function definition
+\begin{verbatim}
+function [z]=foo(x,y)
+[out,in]=argn(0);
+if x==0 then,
+     error('division by zero');
+end,
+slope=y/x;
+pause,
+z=sqrt(slope);
+s=resume(slope);
+endfunction
+\end{verbatim}
+\item The function use
+\begin{verbatim} 
+--> z=foo(0,1)
+error('division by zero');
+                          !--error 10000 
+division by zero                                                                
+at line       4 of function    foo      called by :  
+ z=foo(0,1)
+ 
+ 
+--> z=foo(2,1)
+ 
+-1-> resume
+ z         =
+ 
+    0.7071068  
+ 
+--> s
+ s         =
+ 
+    0.5  
+ 
+\end{verbatim}
+\end{itemize}
+
+In the example, the first call to {\tt foo} passes an argument which cannot
+be used in the calculation of the function.  The function discontinues
+operation and indicates the nature of the error to the user.  The second call
+to the function suspends operation after the calculation of {\tt slope}.
+Here the user can examine values calculated inside of the function,
+perform plots, and, in fact perform any operations 
+allowed in Scilab.  The {\tt -1->} prompt indicates that the current
+environment created by the {\tt pause} command is the environment 
+of the function and not that of the calling environment.  Control is 
+returned to the function by the command {\tt return}.  Operation of the
+function can be stopped by the command {\tt quit} or {\tt abort}.
+Finally the function terminates its calculation returning the
+value of {\tt z}.  Also available in the environment is the variable
+{\tt s} which is a local variable from the function which is passed to
+the global environment.
+
+\section{Definition of Operations on New Data Types}
+\label{s4.3}
+\index{operations!for new data types}
+
+        It is possible to transparently define fundamental operations 
+for new data types in Scilab (enter {\tt help overloading} for 
+a full description of this feature).
+That is, the user can give a sense to multiplication, division, addition, etc.
+on any two data types which exist in Scilab.  As an example, two linear
+systems (represented by lists)
+can be added together to represent their parallel inter-connection
+or can be multiplied together to represent their series inter-connection.
+Scilab performs these user defined operations by searching for functions
+(written by the user) which follow a special naming convention described
+below.
+
+        The naming convention Scilab uses to recognize operators 
+defined by the user is determined by the following conventions.  The name
+of the user defined function is composed of four (or possibly three)
+fields.  The first field is always the symbol {\tt \%}.  
+The third field is one of the characters in the following table
+which represents the type of operation to be performed between the
+two data types.
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{Third field}
+\\ \hline \hline
+SYMBOL & OPERATION 
+\\ \hline \hline
+\verb!a! & \verb!+!  \\ \hline
+
+\verb!b! & \verb!:!  (range generator)\\ \hline
+
+\verb!c! & \verb![a,b]! column concatenation  \\ \hline
+
+\verb!d! & \verb!./!  \\ \hline
+
+\verb!e! & \verb!()! extraction: \verb!m=a(k)!  \\ \hline
+
+\verb!f! & \verb![a;b]! row concatenation  \\ \hline
+
+\verb!g! & \verb!|! logical or  \\ \hline
+
+\verb!h! & \verb!&! logical and  \\ \hline
+
+\verb!i! & \verb!()! insertion:  \verb!a(k)=m!  \\ \hline
+
+\verb!j! & \verb!.^! element wise exponent  \\ \hline
+
+\verb!k! & \verb!.*.!  \\ \hline
+
+\verb!l! & \verb!\!  left division \\ \hline
+
+\verb!m! & \verb!*!  \\ \hline
+
+\verb!n! & \verb!<>! inequality comparison \\ \hline
+
+\verb!o! & \verb!==! equality comparison \\ \hline
+
+\verb!p! & \verb!^!  exponent \\ \hline
+
+\verb!q! & \verb!.\!  \\ \hline
+
+\verb!r! & \verb!/!  right division \\ \hline
+
+\verb!s! & \verb!-!  \\ \hline
+
+\verb!t! & \verb!'!  (transpose) \\ \hline
+
+\verb!u! & \verb!*.!  \\ \hline
+
+\verb!v! & \verb!/.!  \\ \hline
+
+\verb!w! & \verb!\.!  \\ \hline
+
+\verb!x! & \verb!.*!  \\ \hline
+
+\verb!y! & \verb!./.!  \\ \hline
+
+\verb!z! & \verb!.\.!  \\ \hline
+
+\verb!0! & \verb!.'!  \\ \hline
+
+\verb!1! & \verb!<!  \\ \hline
+
+\verb!2! & \verb!>!  \\ \hline
+
+\verb!3! & \verb!<=!  \\ \hline
+
+\verb!4! & \verb!>=!  \\ \hline
+
+\verb!5! & \verb!~!  (not)\\ \hline
+
+\end{tabular}
+\end{center}
+
+The second
+and fourth fields represent the type of the first and second data objects,
+respectively, 
+to be treated by the function and are represented by the symbols given
+in the following table.
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline  
+\multicolumn{2}{|c|}{Second and Fourth fields}
+\\ \hline \hline
+SYMBOL & VARIABLE TYPE
+\\ \hline \hline
+
+\verb!s! & scalar  \\ \hline
+
+\verb!p! & polynomial \\ \hline
+
+\verb!l! & list (untyped)  \\ \hline
+
+\verb!c! & character string   \\ \hline
+
+\verb!b! & boolean   \\ \hline
+
+\verb!sp! & sparse  \\ \hline
+
+\verb!spb! & boolean sparse   \\ \hline
+
+\verb!m! & function \\ \hline
+
+\verb!xxx! & list (typed)  \\ \hline 
+\end{tabular}
+\end{center}
+
+A typed list is one in which the first
+entry of the list is a character string where the first
+characters of the string are represented by the 
+{\tt xxx} in the above table.  For example a typed list
+representing a linear system has the form: \\
+
+{\tt tlist(['lss','A','B','C','D','X0','dt'],a,b,c,d,x0,'c')}.\\
+ and, thus, the {\tt xxx}
+above is {\tt lss}.
+
+        An example of the function name which multiplies two
+linear systems together (to represent their series inter-connection)
+is {\tt \%lss\_m\_lss}.  Here the first field is \%, the second field is 
+{\tt lss} (linear state-space), the third field is {\tt m} ``multiply''
+and the fourth one is {\tt lss}. A possible user function which performs
+this multiplication is as follows
+\begin{verbatim}
+function [s]=%lss_m_lss(s1,s2)
+[A1,B1,C1,D1,x1,dom1]=s1(2:7),
+[A2,B2,C2,D2,x2]=s2(2:6),
+B1C2=B1*C2,
+s=lsslist([A1,B1C2;0*B1C2' ,A2],...
+       [B1*D2;B2],[C1,D1*C2],D1*D2,[x1;x2],dom1),
+endfunction
+\end{verbatim}
+An example of the use of this function after having loaded it into
+Scilab (using for example {\tt getf} or inserting it in a library) 
+is illustrated in the following Scilab session
+\begin{verbatim}
+ 
+-->A1=[1 2;3 4];B1=[1;1];C1=[0 1;1 0];
+ 
+-->A2=[1 -1;0 1];B2=[1 0;2 1];C2=[1 1];D2=[1,1];
+ 
+-->s1=syslin('c',A1,B1,C1);
+ 
+-->s2=syslin('c',A2,B2,C2,D2);
+ 
+-->ssprint(s1)
+ 
+.   | 1  2 |    | 1 |    
+x = | 3  4 |x + | 1 |u   
+ 
+    | 0  1 |    
+y = | 1  0 |x   
+ 
+-->ssprint(s2)
+ 
+.   | 1 -1 |    | 1  0 |    
+x = | 0  1 |x + | 2  1 |u   
+ 
+y = | 1  1 |x + | 1  1 |u   
+ 
+-->s12=s1*s2;   //This is equivalent to s12=%lss_m_lss(s1,s2)
+ 
+-->ssprint(s12)
+ 
+    | 1  2  1  1 |    | 1  1 |    
+.   | 3  4  1  1 |    | 1  1 |    
+x = | 0  0  1 -1 |x + | 1  0 |u   
+    | 0  0  0  1 |    | 2  1 |    
+ 
+    | 0  1  0  0 |    
+y = | 1  0  0  0 |x   
+\end{verbatim}
+Notice that the use of {\tt \%lss\_m\_lss} is totally transparent in
+that the multiplication of the two lists {\tt s1} and {\tt s2}
+is performed using the usual multiplication operator {\tt *}.
+
+The directory {\tt SCIDIR/macros/percent} contains all the functions
+(a very large number...) which perform operations on linear systems
+and transfer matrices. Conversions are automatically performed.
+For example the code for the function {\tt \%lss\_m\_lss} is there (note
+that it is much more complicated that the code given here!).
+\section{Debbuging}
+The simplest way to debug a Scilab function is to introduce
+a {\tt pause} command in the function.
+When executed the function stops at this point and prompts {\tt -1->} which 
+indicates a different ``level''; another {\tt pause} gives {\tt -2->} ...
+At the level 1 the Scilab commands are analog to a different session but
+the user can display all the current variables present in Scilab,
+which are inside or outside the function i.e. local in the function
+or belonging to the calling environment. The execution of the function
+is resumed by the command {\tt return} or {\tt resume} (the variables used
+at the upper level are cleaned).
+The execution of the function can be interrupted by {\tt abort}.
+%and the current loop is terminated by {\tt break}.
+
+It is also possible to insert breakpoints in functions. See the commands
+{\tt setbpt}, {\tt delbpt}, {\tt disbpt}.
+Finally, note that it is also possible to trap errors during the 
+execution of a function: 
+see the commands {\tt errclear} and {\tt errcatch}.
+Finally the experts in  Scilab  can use the 
+function {\tt debug(i)} where i=0,..,4 denotes a debugging level.

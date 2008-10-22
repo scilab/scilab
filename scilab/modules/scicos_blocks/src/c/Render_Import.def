@@ -1,0 +1,10 @@
+LIBRARY    scirenderer.dll
+
+
+EXPORTS
+;
+; renderer
+sciDrawObj  
+sciDrawSingleObj
+forceRedraw
+sciDrawSetOfObj

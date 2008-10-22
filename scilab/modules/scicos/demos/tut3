@@ -1,0 +1,64 @@
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  Scicos tutorial: Symbolic parameters.
+  
+  Block parameters can be set using Scilab variables defined
+  in the context of the diagram. Using a variable instead of
+  a numerical value has many advatanges. In particular, if the
+  variable is used in more than one block.
+  
+  We start by loading diagram2.cos from the previous tutorial.
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(8))"// Diagram/Load
+//xgetfile: 
+diagram2.cos
+-2,0,0,-1,"execstr(Edit_1000(2))"// Edit/Context
+//x_dialog:You may enter here scilab instructions to define 
+  lambda=.8 
+  o //OK
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We have defined the Scilab variable lambda by setting it to 0.8 
+  in the context of the diagram. We can now use this variable in
+  the definition of block paramters.
+  o //OK
+0,275.5,154.1,1000,"void"// Block: 13 CLR_f
+//x_mdialog: Set continuous SISO transfer parameters
+  1-lambda*s
+  1+s^2
+  o //OK
+0,239.8,266.7,1000,"void"// Block: 32 SUPER_f
+0,207.2,275.6,1001,"void"// Block: 3 GAINBLK
+//x_mdialog: Set gain block parameters
+  -lambda
+  o //OK
+-2,0,0,-1,"execstr(Misc_1001(15))"// Misc/Comment
+//x_dialog:Enter comments
+  lambda is used here inside the Super Block.
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1001(16))"// Diagram/Quit
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  Changing the value of lamda in the context updates the
+  block parameters automatically.
+  o //OK
+-2,0,0,-1,"execstr(Edit_1000(2))"// Edit/Context
+//x_dialog:You may enter here scilab instructions to define 
+  lambda=.1
+  o //OK
+-2,0,0,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We see here the effect of changing the value of
+  lambda on the simulation. We see in particular the
+  effect on the Poisson process; lambda is simply the
+  Poisson rate.
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(5))"// Diagram/Rename
+//x_dialog:Enter the new diagram name
+  diagram3
+  o //OK
+-2,0,0,-1,"execstr(Diagram_1000(16))"// Diagram/Quit
+//x_choose:  Diagram has not been saved
+  1//Save

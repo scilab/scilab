@@ -1,0 +1,87 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/draw_data.ref','rb');
+ 
+%ans = subplot(212);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+a = gca();
+ 
+plot2d;
+
+Demo of plot2d()
+========================================
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
+ 
+if load_ref('plot2d') then   bugmes();quit;end,
+ 
+ 
+drawlater;
+ 
+if load_ref('drawlater') then   bugmes();quit;end,
+ 
+ 
+ 
+%ans = subplot(211);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+plot2d1;
+
+Demo of plot2d1()
+========================================
+x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
+
+ 
+if load_ref('plot2d1') then   bugmes();quit;end,
+ 
+/// default drawing mode
+ 
+ 
+e = gce();
+ 
+%ans = draw(e.children(2));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// draw a single polyline of the second axes
+ 
+ 
+e.children(1).visible = 'off';// We can choose to make a line invisible
+ 
+ 
+%ans = draw(e);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// draw Compound and its children <=> draw all the visible polylines
+ 
+ 
+ 
+ 
+ 
+drawnow;
+ 
+if load_ref('drawnow') then   bugmes();quit;end,
+ 
+///0...now!
+ 
+ 
+e.children(1).visible = 'on';
+ 
+ 
+ 
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

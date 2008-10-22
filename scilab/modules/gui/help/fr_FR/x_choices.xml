@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_choices">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>x_choices</refname>
+    <refpurpose> boîte de dialogue permettant de choisir des articles parmi plusieurs options  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>rep=x_choices(title,items)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>title  </term>
+        <listitem>
+          <para>vecteur de chaînes de caractères. Titre général
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>items  </term>
+        <listitem>
+          <para>une liste d'articles <literal>items=list(item1,...,itemn)</literal>, où chaque <literal>item</literal> est aussi une liste du type suivant : <literal>item=list('label',default_choice,choices)</literal>. <literal>default_choice</literal> est un entier donnant le numéro du choix par défaut et <literal>choices</literal> est un vecteur ligne de chaînes de caractères donnant les choix possibles.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep  </term>
+        <listitem>
+          <para>un entier donnant le numéro du choix pour chaque article. Si le bouton "Cancel" est pressé  <literal>rep</literal> vaut <literal>[]</literal> en sortie.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Sélectionne des articles multiples et renvoie dans <literal>rep</literal> les numéros des articles sélectionnés.
+  </para>
+    <para>
+    Taper <literal>x_choices()</literal> pour voir un exemple.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+l1=list('choix 1',1,['article c1','article c2','article c3']);
+l2=list('choix 2',2,['article d1','article d2','article d3']);
+l3=list('choix 3',3,['article e1','article e2']);
+rep=x_choices('Menu d''articles',list(l1,l2,l3));
+ ]]></programlisting>
+  </refsection>
+</refentry>

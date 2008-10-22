@@ -1,0 +1,431 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2008-06-15 16:48+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2008-04-26 11:56+0100\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一方陣.\n"
+
+#
+# File: macros/logm.sci, line: 22
+# File: macros/logm.sci, line: 46
+#, c-format
+msgid "%s: Log of a singular matrix.\n"
+msgstr "%s: 奇異矩陣之對數 (Log) .\n"
+
+#
+# File: macros/logm.sci, line: 39
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s: 無法進行對角線化 (diagonalize).\n"
+
+#
+# File: macros/bitxor.sci, line: 24
+# File: macros/bitor.sci, line: 27
+# File: macros/bitget.sci, line: 28
+# File: macros/bitcmp.sci, line: 38
+# File: macros/bitand.sci, line: 27
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤:應為  %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為 Cell.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Same type expected for all cell "
+"contents"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: cell 之所有內容皆應相同型態"
+
+#, c-format
+msgid "%s: Unexpected value of n: %d. Expected value is greater than %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 應為 %d 或 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 矩陣無法主對角線化 (diagonalisable).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應 <= %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串之矩陣.\n"
+
+#
+# File: macros/bitxor.sci, line: 28
+# File: macros/bitor.sci, line: 31
+# File: macros/cat.sci, line: 80
+# File: macros/cat.sci, line: 85
+# File: macros/bitand.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: 輸入參數型態錯誤 : 預期應為相同型態.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 輸入參數長度錯誤: 應為相同長度.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數錯誤: 應為非負整數之純量/矩陣/超矩陣(hypermatrix) .\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
+"positive integers expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤:  應為正整數之純量/向量/矩陣/超矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤:應為字串矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
+"ones expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為由 0 及 1 組成字串之矩陣 .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應少於  %d 字元.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一整數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為一正整數.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一方陣.\n"
+
+#
+# File: macros/permute.sci, line: 13
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: 輸入參數之數目錯誤:應為 %d."
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr "%s: Wrong size for argument #%d: 應為向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 最少與第  %d 參數同大小.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: %d,''%s'',%d or 應為 ''%s''\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為正實數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid hexadecimal representations "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為有效之  16 位元表示式.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間."
+
+#
+# File: macros/base2dec.sci, line: 39
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid base %d representations "
+"expected.\n"
+msgstr "%s: 輸入參數數值錯誤: 應為以 %d 為底數之數.\n"
+
+#
+# File: macros/bitcmp.sci, line: 40
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 最少須 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一實數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+msgstr ""
+
+#
+# File: macros/ndgrid.sci, line: 31
+# File: macros/num2cell.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤 : 最少應有 %d 個.\n"
+
+#
+# File: macros/ndgrid.sci, line: 36
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr "%s: 參數 #%d 型態錯誤: 應為實數.\n"
+
+#, c-format
+msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+msgstr "%s: Wrong argument #%d: 應為一正整數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer matrix "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
+msgstr "%s: 第 %d 及第 %d 個輸入參數數值錯誤: c(1) 應等於 r(1).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid octal representations "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為有效之 8 位元表示式.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為整數 >=  %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 非-hermitian 矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): At most 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s''.\n"
+
+#
+# File: macros/bitxor.sci, line: 32
+# File: macros/bitor.sci, line: 35
+# File: macros/pmodulo.sci, line: 21
+# File: macros/modulo.sci, line: 18
+# File: macros/intsplin.sci, line: 19
+# File: macros/cat.sci, line: 58
+# File: macros/bitget.sci, line: 35
+# File: macros/bitget.sci, line: 45
+# File: macros/inttrap.sci, line: 15
+# File: macros/bitand.sci, line: 35
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: 輸入參數長度錯誤 : 預期應為相同長度.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為非負整數之純量/矩陣/超矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 0 or 1 expected\n"
+
+#
+# File: macros/vectorfind.sci, line: 9
+# File: macros/vectorfind.sci, line: 18
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr "%s: 輸入參數之長度錯誤: 長度不匹配.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一正整數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一正整數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為實數矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
+"or %s expected"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 延伸檔名未知,應為 %s, %s, %s 或 %s"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
+"integers expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為正整數之純量/向量/矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為一正整數"
+
+#
+# File: macros/cothm.sci, line: 11
+# File: macros/tanhm.sci, line: 10
+# File: macros/atanm.sci, line: 17
+# File: macros/tanm.sci, line: 11
+#, c-format
+msgid "%s: Matrix is not diagonalisable.\n"
+msgstr "%s: 矩陣無法對角線化 (diagonalisable).\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
+#
+# File: macros/interp1.sci, line: 28
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr "%s:輸入參數數目錯誤: 應介於 %d 和 %d 之間.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為向量或矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數陣列.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為實數但部分數值為 NaN.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' , ''%s'' 或 ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 實數.\n"
+
+#
+# File: macros/meshgrid.sci, line: 18
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 最多只能 %d 個.\n"
+
+#
+# File: macros/meshgrid.sci, line: 20
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 最多只能 %d 個.\n"
+
+#
+# File: macros/meshgrid.sci, line: 44
+#, c-format
+msgid ""
+"%s: Wrong number of output arguments vs. input arguments: Same number "
+"expected.\n"
+msgstr "%s: 輸入及輸入參數數目錯誤: 兩者必須相同.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為非空字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
+"''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'', ''%s'', ''%s'', ''%s'' 或 ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real, complex, integer matrix or "
+"matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數,複數,整數矩陣或字串矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 未知型態.\n"
+
+#
+# File: src/c/sci_tools.c, line: 108
+# File: src/c/sci_tools.c, line: 133
+# File: src/c/sci_tools.c, line: 163
+# File: src/c/sci_tools.c, line: 185
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"

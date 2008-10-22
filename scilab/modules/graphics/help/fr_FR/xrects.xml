@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xrects">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xrects</refname>
+    <refpurpose> dessine ou remplit un ensemble de rectangles  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xrects(rects,[fill])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>rects  </term>
+        <listitem>
+          <para>matrice de taille (4,n).
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill  </term>
+        <listitem>
+          <para>vecteur de taille n.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xrects</literal> dessine ou remplit un ensemble de rectangles. 
+    Chaque colonne de <literal>rects</literal> décrit un 
+    rectangle (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur:
+    <literal>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'</literal>.
+  </para>
+    <para><literal>fill(i)</literal> définit le motif utilisé pour dessiner ou remplir le rectangle i:
+  </para>
+    <para>
+    si <literal>fill(i)&lt;0</literal>, le rectangle <literal>i</literal> est dessiné avec la couleur
+    <literal>-fill(i)</literal>.
+  </para>
+    <para>
+    si <literal>fill(i)&gt;0</literal>, le rectangle <literal>i</literal> est rempli avec la couleur
+    <literal>fill(i)</literal>.
+  </para>
+    <para>
+    si <literal>fill(i)=0</literal>, le rectangle <literal>i</literal> est dessiné avec le style de ligne courant.
+  </para>
+  <para>ATTENTION : notez que la valeur de la hauteur est positive en allant vers la bas.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+plot2d([-100,500],[-50,50],[-1,-1],"022")
+cols=[-34,-33,-32,-20:5:20,32,33,34];
+x=400*(0:14)/14; step=20;
+rects=[x;10*ones(x);step*ones(x);30*ones(x)];
+xrects(rects,cols)
+xnumb(x,15*ones(x),cols)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfrect">xfrect</link>
+      </member>
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

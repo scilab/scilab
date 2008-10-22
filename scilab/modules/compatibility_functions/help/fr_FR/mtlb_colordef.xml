@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_colordef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_colordef</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab colordef</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <literal>colordef</literal> mais il existe 
+    des instructions équivalentes.</para>
+    <para>
+    La fonction <literal>h = mtlb_colordef(color_option)</literal> ou
+    <literal>h = mtlb_colordef(fig,color_option)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>colordef(color_option)</literal> ou
+    <literal>colordef(fig,color_option)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_colordef</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Pour les appels avec un paramètre d'entrée, si <literal>color_option</literal> est égal à "black" ou "none"
+        <literal>mtlb_colordef(color_option)</literal> peut être remplacé par <literal>fig = gcf();fig.background = -1;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Pour les appels avec un paramètre d'entrée, si <literal>color_option</literal> est égal à "white"
+        <literal>mtlb_colordef(color_option)</literal> peut être remplacé par <literal>fig = gcf();fig.background = -2;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Pour les appels avec deux paramètres d'entrée, si <literal>fig</literal> est un handle graphique et
+	<literal>color_option</literal> est égal à "black" ou "none"
+        <literal>mtlb_colordef(color_option)</literal> peut être remplacé par <literal>fig.background = -1;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Pour les appels avec deux paramètres d'entrée, si <literal>fig</literal> est un handle graphique et
+	<literal>color_option</literal> est égal à "white"
+        <literal>mtlb_colordef(color_option)</literal> peut être remplacé par <literal>fig.background = -2;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Pour les appels avec deux paramètres d'entrée, si <literal>fig</literal> est égal à "new" et
+	<literal>color_option</literal> est égal à "black" ou "none"
+        <literal>mtlb_colordef(color_option)</literal> peut être remplacé par <literal>fig = scf(max(winsid())+1);fig.background = -1;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Pour les appels avec deux paramètres d'entrée, si <literal>fig</literal> est égal à "new" et
+	<literal>color_option</literal> est égal à "white"
+        <literal>mtlb_colordef(color_option)</literal> peut être remplacé par <literal>fig = scf(max(winsid())+1);fig.background = -2;</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Pour les appels avec un paramètre de sortie <literal>h</literal>, ajouter <literal>h = fig;</literal> à la suite des instructions équivalentes.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_colordef</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="figure_properties">figure_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

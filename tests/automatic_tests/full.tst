@@ -1,0 +1,10 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/full_data.ref','rb');
+sp = sparse([1,2;5,4;3,1], [1,2,3]);
+A = full(sp);
+if load_ref('A') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

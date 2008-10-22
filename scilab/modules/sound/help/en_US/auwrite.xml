@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="auwrite">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>auwrite</refname>
+    <refpurpose> writes .au sound file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>auwrite(y,aufile)
+auwrite(y,Fs,aufile)
+auwrite(y,Fs,bits,aufile)
+auwrite(y,Fs,bits,method,aufile)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real vector or matrix with entries in [-1,1].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>aufile</term>
+        <listitem>
+          <para>string (The .au extension is appended if no extension is given)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Fs</term>
+        <listitem>
+          <para>integer, frequency sampling in Hz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bits</term>
+        <listitem>
+          <para>integer, number of bits in the encoding.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>method</term>
+        <listitem>
+          <para>string , <literal>'mu'</literal> (default) or <literal>'linear'</literal>, encoding method.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function to save <literal>.au</literal> sound file.
+    <literal>auwrite(y,aufile)</literal> writes a sound file specified by the
+    string aufile.  The data should be arranged with one channel
+    per column.  Amplitude values outside the range [-1,+1] are
+    ignored.
+    Supports multi-channel data for 8-bit mu-law, and 8, 16, 32, 64 bits linear formats.</para>
+    <para><literal>auwrite(y,Fs,aufile)</literal> specifies in <literal>Fs</literal> the sample rate of the data
+    in Hertz.</para>
+    <para><literal>auwrite(y,Fs,bits,aufile)</literal> selects the number of bits in
+    the encoder. Allowable settings are bits in [8,16,32,64].
+     
+    <literal>auwrite(y,Fs,bits,method,aufile)</literal> allows selection of the
+    encoding method, which can be either 'mu' or 'linear'.
+    Note that bits must be 8 for 'mu' choice. The default method is 8-bits mu-law enconding.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+  A=matrix(1:6,2,3);
+  auwrite(A/6,22050,64,'linear',TMPDIR+'/foo.au');
+  B=auread(TMPDIR+'/foo.au');
+  maxi(abs(A- round(B*6)))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="auread">auread</link>
+      </member>
+      <member>
+        <link linkend="wavread">wavread</link>
+      </member>
+      <member>
+        <link linkend="savewave">savewave</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+      <member>
+        <link linkend="mapsound">mapsound</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,12 @@
+LIBRARY    sciconsole.dll
+
+
+EXPORTS
+	ClearConsole
+	ClearConsolePart
+	PromptToHome
+	ConsoleRead
+	ConsolePrintf
+	GetCharWithoutOutput
+	SetConsolePrompt
+	ConsoleIsWaitingForInput

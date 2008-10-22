@@ -1,0 +1,36 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/mkdir_data.ref','rb');
+ 
+rmdir(SCI + '/Directory');//remove the directory if it exists
+ 
+%ans = mkdir(SCI, 'Directory');
+ 
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
+ 
+ 
+status = mkdir(SCI, 'Directory');
+ 
+if load_ref('status') then   bugmes();quit;end,
+ 
+ 
+[status,msg] = mkdir(SCI, 'Directory');
+ 
+if load_ref('msg') then   bugmes();quit;end,
+ 
+if load_ref('status') then   bugmes();quit;end,
+ 
+ 
+%ans = rmdir(SCI + '/Directory');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

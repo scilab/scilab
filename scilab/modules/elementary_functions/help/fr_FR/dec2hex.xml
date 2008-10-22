@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="dec2hex">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dec2hex</refname>
+    <refpurpose>  représentation hexadécimale d'un entier  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>h=dec2hex(d)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>d</term>
+        <listitem>
+          <para>matrice d'entiers positifs</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>matrice de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>dec2hex(x)</literal> renvoie la représentation hexadécimale d'une matrice
+			d'entiers.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+
+dec2hex([2748 10;11 3])
+
+	]]></programlisting>
+  </refsection>
+</refentry>

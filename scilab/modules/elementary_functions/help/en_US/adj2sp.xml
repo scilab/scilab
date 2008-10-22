@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="adj2sp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>adj2sp</refname>
+    <refpurpose> converts adjacency form into  sparse matrix.  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xadj</term>
+        <listitem>
+          <para> integer vector of length (n+1).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>adjncy</term>
+        <listitem>
+          <para> integer vector of length nz containing the row indices     for the corresponding elements in anz</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>anz</term>
+        <listitem>
+          <para> column vector of length nz, containing the non-zero     elements of A</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mn</term>
+        <listitem>
+          <para>row vector with 2 entries, <literal>mn=size(A)</literal> (optional).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para> real or complex sparse matrix (nz non-zero entries)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <programlisting><![CDATA[
+
+sp2adj converts an adjacency form representation of a matrix
+into its standard Scilab representation (utility fonction).
+xadj, adjncy, anz = adjacency representation of A i.e:
+   
+    ]]></programlisting>
+    <para><literal>xadj(j+1)-xadj(j)</literal> = number of non zero entries in row j.
+    <literal>adjncy</literal> = column index of the non zeros entries 
+    in row 1, row 2,..., row n.
+    <literal>anz</literal> = values of non zero entries in row 1, row 2,..., row n.
+    <literal>xadj</literal> is a (column) vector of size n+1 and 
+    <literal>adjncy</literal> is an integer (column) vector of size <literal>nz=nnz(A)</literal>.
+    <literal>anz</literal> is a real vector of size <literal>nz=nnz(A)</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A = sprand(100,50,.05);
+[xadj,adjncy,anz]= sp2adj(A);
+[n,m]=size(A);
+p = adj2sp(xadj,adjncy,anz,[n,m]);
+A-p,
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sp2adj">sp2adj</link>
+      </member>
+      <member>
+        <link linkend="spcompack">spcompack</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

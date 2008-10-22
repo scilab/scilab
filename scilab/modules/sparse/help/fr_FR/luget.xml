@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="luget">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>luget</refname>
+    <refpurpose> extraction de facteurs LU creux  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[P,L,U,Q]=luget(hand)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>hand  </term>
+        <listitem>
+          <para>pointeur vers des facteurs L,U creux déjà calculés (sortie de lufact)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P  </term>
+        <listitem>
+          <para>matrice de permutation (creuse)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>L  </term>
+        <listitem>
+          <para>matrice creuse, triangulaire inférieure si <literal>hand</literal> provient de la factorisation d'une matrice régulière.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U  </term>
+        <listitem>
+          <para>matrice carrée creuse, régulière, triangulaire supérieure à diagonale unité.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q  </term>
+        <listitem>
+          <para>matrice de permutation (creuse)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[P,L,U,Q]=luget(hand)</literal> avec <literal>hand</literal> obtenue avec la commande <literal>[hand,rk]=lufact(A)</literal> avec <literal>A</literal> une matrice creuse, renvoie quatre matrices P,L,U,Q telles que <literal>P*L*U*Q=A</literal>.
+  </para>
+    <para>
+    La  matrice A n'est pas obligatoirement de rang plein mais doit être carrée
+    (puisque A est supposée creuse on peut lui ajouter des lignes ou des colonnes nulles pour la rendre carrée).
+  </para>
+    <para>
+    Si <literal>A</literal> est singulière, la matrice <literal>L</literal> est à colonnes compressées (avec
+    <literal>rk</literal> colonnes indépendantes non nulles) :  la matrice creuse régulière 
+    <literal>Q'*inv(U)</literal> compresse les colonnes de <literal>A</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+a=rand(5,2)*rand(2,5);A=sparse(a);
+[hand,rk]=lufact(A);[P,L,U,Q]=luget(hand);
+full(L), P*L*U*Q-A
+clean(P*L*U*Q-A)
+ludel(hand)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+      <member>
+        <link linkend="lusolve">lusolve</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

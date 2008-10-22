@@ -1,0 +1,40 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/set_data.ref','rb');
+
+
+%ans = clf_run();
+if load_ref('%ans') then   pause,end,
+
+%ans = set('figure_style', 'new');
+if load_ref('%ans') then   pause,end,
+//create a figure
+set('auto_clear', 'off');
+// Exemple of a Plot 2D
+x = (-0.2:0.1:2 * %pi)';
+plot2d(x - 0.3, [sin(x - 1),cos(2 * x)], [1,2]);
+a = get('current_axes');
+p1 = a.children.children(1);
+p2 = a.children.children(2);
+// set the named properties to the specified values on the objects
+set(p2, 'foreground', 13);
+set(p2, 'polyline_style', 2);
+set(a, 'tight_limits', 'on');
+set(a, 'box', 'off');
+set(a, 'sub_tics', [7,0]);
+%ans = set(a, 'y_location', 'middle');
+if load_ref('%ans') then   pause,end,
+
+set(p2, 'thickness', 2);
+set(p1, 'mark_mode', 'on');
+set(p1, 'mark_style', 3);
+plot2d(x - 2, x.^2/20);
+p3 = a.children(1).children;
+%ans = set([a,p1,p2,p3], 'foreground', 5);
+if load_ref('%ans') then   pause,end,
+
+
+
+xdel_run(winsid());
+
+mclose(%U);

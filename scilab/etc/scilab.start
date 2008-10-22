@@ -1,0 +1,202 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+// Main Scilab initialisation file
+
+mode(-1);  // silent execution mode
+
+// clean database when restarted ======================================
+predef('clear'); //unprotect all variables
+clear  // erase all variables
+clearglobal();
+
+// Set stack size   ===================================================
+defaultstacksize = 5000000;
+old = stacksize()
+params = sciargs();
+nparam = find(params=='-mem');
+if (nparam) then
+  ierr = execstr('newstacksize='+params(nparam+1),'errcatch');
+  if (ierr == 0) then
+    if old(1) <> newstacksize then
+      stacksize(newstacksize);
+    end
+  else
+    if old(1) <> defaultstacksize then 
+      stacksize(defaultstacksize);
+    end
+  end
+else
+  if old(1) <> defaultstacksize then 
+    stacksize(defaultstacksize);
+  end
+end
+clear nparam params ierr old newstacksize defaultstacksize
+
+// Special variables definition =======================================
+ieee(2);
+%inf = 1/0;
+ieee(0);
+%nan = %inf-%inf;
+// boolean variables
+%T = %t;
+%F = %f;
+// Startup message  ===================================================
+verbose = (sciargs()<>"-nb");
+if verbose then
+  if ~fromjava() & ~fromc() then
+    banner();
+    write(%io(2),[' ';' ';gettext("Startup execution:")]);
+  end
+end
+
+// Load scilab functions libraries  ===================================
+if verbose then
+  if ~fromjava() & ~fromc() then
+    write(%io(2),gettext("  loading initial environment"));
+  end
+end
+clear verbose
+
+// Default Obsolete Warning policy  ===================================
+global %modalWarning;
+// False -> 	Scilab will only display a Warning message in the console
+// 		if warnings are enabled [warning('on'/'off')].
+// True ->	Scilab will show a blocking popup.
+%modalWarning = %F;
+clear %modalWarning;
+
+// Create some configuration variables ================================
+PWD = getcwd();
+
+// Define Initial demo tables  ========================================
+// demolist is a two column matrix of strings
+global demolist
+demolist = [];
+clear demolist;
+
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
+args = sciargs();
+larg = find(args=="-l");
+if larg<>[] & larg<=size(args,"*") then
+  L = args(larg+1);
+  setlanguage(L);
+end
+clear larg args L
+
+// loads modules ======================================================
+
+modules = getmodules();
+index = size(modules);
+for i = 1:index(1) do
+ exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
+end
+
+clear modules index i add_demo add_help_chapter add_module_help_chapter
+
+// Create some configuration variables ================================
+home = getenv('HOME',SCI);
+if MSDOS then
+  // path of scilab main directory for Windows
+  WSCI = getlongpathname(pathconvert(SCI,%f,%f,'w'));
+  clear pathconvert
+else
+  if getenv('PRINTERS','ndef') == "ndef" then
+    setenv("PRINTERS","lp");
+  end
+end
+setenv("VERSION",getversion());
+
+clear  pathconvert //remove the local variable
+
+// Protect variable previously defined  ================================
+predef('all')
+
+// load contrib menu if present ========================================
+if fileinfo(SCI+'/contrib/loader.sce') <> [] then
+  global %toolboxes
+  global %toolboxes_dir
+  exec(SCI+'/contrib/loader.sce');
+  clear %toolboxes %toolboxes_dir
+end
+
+// calling user initialization =========================================
+// Home dir startup (if any)
+if sciargs()<>'-nouserstartup' then
+  startup_path = SCIHOME+filesep();
+
+  [startup,ierr] = mopen(startup_path+'.scilab','r');
+  if ierr == 0 then
+    exec(startup,-1);mclose(startup);
+  else
+    [startup,ierr] = mopen(startup_path+'scilab.ini','r');
+    if ierr == 0 then
+      exec(startup,-1);mclose(startup);
+    end
+  end
+  clear startup ierr startup_path
+
+  // working dir startup (if any)
+  if  home<>PWD then
+    [startup,ierr] = mopen('.scilab','r');
+    if ierr == 0 then
+      exec(startup,-1);
+      mclose(startup);
+    else
+      [startup,ierr] = mopen('scilab.ini','r');
+      if ierr == 0 then
+		    exec(startup,-1);
+		    mclose(startup);
+      end
+    end
+  end
+end
+clear startup ierr
+
+// Detects if the bug 3443  ====================================
+// ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
+// is present or not
+//foo = 8.8353017163510351e-10;
+//if ( ( sqrt(foo) == foo^(0.5) ) == %f & ~MSDOS ) then
+//	disp(gettext("This case should NOT occur. You are faced to the bug #3443. Please report to Scilab''s bugtracker ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 ) with your CPU (cat /proc/cpuinfo), your operating system, your kernel (uname -a) and the result of the Scilab command ''ver''."));
+//end
+//clear foo
+
+// Menus/toolbar can now be enabled ====================================
+if ( getscilabmode() == 'STD') then
+        setmenu(gettext("&File"));
+        setmenu(gettext("&Edit"));
+        setmenu(gettext("&Preferences"));
+        setmenu(gettext("&Control"));
+        setmenu(gettext("&Applications"));
+        if ~with_module("scipad") then // Desactivate Editor menu
+          unsetmenu(gettext("&Applications"),2);
+        end
+        if ~with_module("scicos") then // Desactivate Scicos menu
+          unsetmenu(gettext("&Applications"),4);
+        end
+        if ~with_module("metanet") then // Desactivate EditGraph menu
+          unsetmenu(gettext("&Applications"),6);
+        end
+        if ~with_module("m2sci") then // Desactivate mfile2sci menu
+          unsetmenu(gettext("&Applications"),8);
+        end
+        if ~with_module("tclsci") then // Desactivate Browsevar menu
+          unsetmenu(gettext("&Applications"),10);
+        end
+        setmenu(gettext("&?"));
+        setmenu(gettext("&Toolboxes"));
+        toolbar(-1, "on");
+end
+// =====================================================================
+
+clear ans
+// =====================================================================

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE modules SYSTEM "../modules/core/xml/modules.dtd">
+<!-- =================== -->
+<!--
+ Modules list for Scilab
+ @author Allan CORNET
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+ Warning "core" module must be always the first module
+ activate="yes" module will be launched ( or not "no")
+ -->
+<!-- =================== -->
+<modules>
+<module name="core" activate="yes"/>
+<module name="helptools" activate="yes"/>
+<module name="differential_equations" activate="yes"/>
+<module name="double" activate="yes"/>
+<module name="elementary_functions" activate="yes"/>
+<module name="functions" activate="yes"/>
+<module name="fileio" activate="yes"/>
+<module name="graphics" activate="yes"/>
+<module name="renderer" activate="yes"/>
+<module name="graphic_export" activate="yes"/>
+<module name="boolean" activate="yes"/>
+<module name="cacsd" activate="yes"/>
+<module name="data_structures" activate="yes"/>
+<module name="shell" activate="yes"/>
+<module name="action_binding" activate="yes"/>
+<module name="console" activate="yes"/>
+<module name="completion" activate="yes"/>
+<module name="history_manager" activate="yes"/>
+<module name="gui" activate="yes"/>
+<module name="dynamic_link" activate="yes"/>
+<module name="integer" activate="yes"/>
+<module name="interpolation" activate="yes"/>
+<module name="io" activate="yes"/>
+<module name="output_stream" activate="yes"/>
+<module name="intersci" activate="yes"/>
+<module name="jvm" activate="yes"/>
+<module name="linear_algebra" activate="yes"/>
+<module name="localization" activate="yes"/>
+<module name="optimization" activate="yes"/>
+<module name="overloading" activate="yes"/>
+<module name="polynomials" activate="yes"/>
+<module name="signal_processing" activate="yes"/>
+<module name="sparse" activate="yes"/>
+<module name="special_functions" activate="yes"/>
+<module name="string" activate="yes"/>
+<module name="symbolic" activate="yes"/>
+<module name="time" activate="yes"/>
+<module name="windows_tools" activate="yes"/>
+<module name="statistics" activate="yes"/>
+<!-- comments -->
+<module name="arnoldi" activate="yes"/>
+<module name="compatibility_functions" activate="yes"/>
+<module name="metanet" activate="yes"/>
+<module name="javasci" activate="yes"/>
+<module name="maple2scilab" activate="yes"/>
+<module name="m2sci" activate="yes"/>
+<module name="mexlib" activate="yes"/>
+<module name="tclsci" activate="yes"/>
+<module name="texmacs" activate="yes"/>
+<module name="sound" activate="yes"/>
+<module name="scipad" activate="yes"/>
+<module name="randlib" activate="yes"/>
+<module name="scilab2fortran" activate="yes"/>
+<module name="development_tools" activate="yes"/>
+<module name="demo_tools" activate="yes"/>
+<module name="spreadsheet" activate="yes"/>
+<!-- comments -->
+<module name="scicos" activate="yes"/>
+<module name="scicos_blocks" activate="yes"/>
+<!-- comments -->
+<module name="pvm" activate="no"/>
+<module name="sci2c" activate="no"/>
+<module name="fftw" activate="yes"/>
+<module name="umfpack" activate="yes"/>
+<module name="module_skeleton" activate="no"/>
+<!-- comments -->
+<module name="genetic_algorithms" activate="yes"/>
+<module name="simulated_annealing" activate="yes"/>
+<module name="parameters" activate="yes"/>
+<module name="matio" activate="yes"/>
+</modules>

@@ -1,0 +1,147 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "wresource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_TEST           ICON                    "..\\resources\\TST.ICO"
+IDI_ICON_BIN            ICON                    "..\\resources\\BIN.ICO"
+IDI_ICON_COS            ICON                    "..\\resources\\COS.ICO"
+IDI_ICON_COSF           ICON                    "..\\resources\\COSF.ICO"
+IDI_ICON_DEM            ICON                    "..\\resources\\DEM.ICO"
+IDI_ICON_GRAPH          ICON                    "..\\resources\\Graph.ICO"
+IDI_ICON_SAV            ICON                    "..\\resources\\SAV.ICO"
+IDI_ICON_SCE            ICON                    "..\\resources\\SCE.ICO"
+IDI_ICON_SCI            ICON                    "..\\resources\\SCI.ICO"
+IDI_ICON_SCILAB         ICON                    "..\\resources\\scilab.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""wresource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 5,0,0,0
+ PRODUCTVERSION 5,0,0,0
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "CompanyName", "INRIA"
+            VALUE "FileDescription", "Scilab 5.0 (GUI)"
+            VALUE "FileVersion", "5, 0, 0, 0"
+            VALUE "InternalName", "WScilex"
+            VALUE "LegalCopyright", "Copyright (C) 2008"
+            VALUE "OriginalFilename", "WScilex.exe"
+            VALUE "ProductName", "Scilab 5.x Application"
+            VALUE "ProductVersion", "5, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

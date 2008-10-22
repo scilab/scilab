@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="wavwrite">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>wavwrite</refname>
+    <refpurpose> writes .wav sound file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>wavwrite(y,wavfile)
+wavwrite(y,Fs,wavfile)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real vector or matrix with entries in [-1,1].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wavfile</term>
+        <listitem>
+          <para>string (The .wav extension is appended if no extension is given)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Fs</term>
+        <listitem>
+          <para>integer, frequency sampling in Hz.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function to save <literal>.wav</literal> sound file.
+    <literal>wavwrite(y,wavfile)</literal> writes a sound file specified by the
+    string wavfile.  The data should be arranged with one channel
+    per column.  Amplitude values outside the range [-1,+1] are
+    ignored.
+    </para>
+    <para><literal>wavwrite(y,Fs,wavfile)</literal> specifies in <literal>Fs</literal> the sample rate of the data
+    in Hertz.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+  A=matrix(1:6,2,3);
+  wavwrite(A/6,TMPDIR+'/foo.wav');
+  B=wavread(TMPDIR+'/foo.wav');
+  maxi(abs(A- round(B*6)))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="auread">auread</link>
+      </member>
+      <member>
+        <link linkend="wavread">wavread</link>
+      </member>
+      <member>
+        <link linkend="savewave">savewave</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+      <member>
+        <link linkend="mapsound">mapsound</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

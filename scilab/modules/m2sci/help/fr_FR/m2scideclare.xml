@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="m2scideclare">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>m2scideclare</refname>
+    <refpurpose>Donner des indices pour aider M2SCI...</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+  La principale difficulté de M2SCI (<literal>mfile2sci</literal>) est de trouver
+  ce que sont les variables : dimensions, type...  
+  </para>
+    <para>
+  Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
+  <literal>%m2scideclare</literal> dans le fichier Matlab à convertir,
+  (<literal>%m2sciassume</literal> était utilisée dans les versions précédentes
+  de Scilab mais est maintenant obsolète).
+  </para>
+    <para>
+  La syntaxe de cette commande est :
+  </para>
+    <para>
+      <literal>%m2scideclare nom_de_variable|dimensions|type_de_données|propriété</literal>
+    </para>
+    <para>
+  avec :
+  </para>
+    <itemizedlist>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+      nom_de_variable : nom de la variable déclarée. Ce nom peut être
+      un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
+      ou décrire le contenu d'une Cell en utilisant la syntaxe
+      <literal>x(1,2).entries</literal>. NOTEZ que pour les Cells et les
+      Structs <literal>*</literal> peut être utilisé comme index.
+      </para>
+          </listitem>
+          <listitem>
+            <para>
+      dimensions : dimensions de la variable déclarée séparées par des espaces,
+      si une dimension est inconnue, remplacez la par <literal>?</literal>. NOTEZ que
+      les dimensions des chaînes de caractère doivent être identiques aux dimensions
+      Matlab e.g. <literal>1 6</literal> pour la chaîne de caractères 'chaine'.
+      </para>
+          </listitem>
+          <listitem>
+            <para>
+      type_de_données: le type de donnée de la variable qui peut être :
+      </para>
+            <informaltable border="1">
+              <tr>
+                <td>Type de donnée m2scideclare</td>
+                <td>Type Scilab "équivalent"</td>
+              </tr>
+              <tr>
+                <td>Double</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Boolean</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Sparse</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Int</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>Handle</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td>String</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Struct</td>
+                <td>Struct Matlab (16)</td>
+              </tr>
+              <tr>
+                <td>Cell</td>
+                <td>Cell Matlab (17)</td>
+              </tr>
+              <tr>
+                <td>Void</td>
+                <td>Sans type (0)</td>
+              </tr>
+              <tr>
+                <td>?</td>
+                <td>Type inconnu</td>
+              </tr>
+            </informaltable>
+          </listitem>
+          <listitem>
+            <para>
+      propriété : propriété de la variable qui peut être : 
+      </para>
+            <informaltable border="1">
+              <tr>
+                <td>Propriété m2scideclare</td>
+                <td>"Equivalent" Scilab</td>
+              </tr>
+              <tr>
+                <td>Real</td>
+                <td>Donnée réelle</td>
+              </tr>
+              <tr>
+                <td>Complex</td>
+                <td>Donnée complexe</td>
+              </tr>
+              <tr>
+                <td>?</td>
+                <td>Property inconnue</td>
+              </tr>
+            </informaltable>
+            <para>Ce champ est ignoré pour les types de données suivants : <literal>Cell</literal>,
+      <literal>Struct</literal>, <literal>String</literal> et <literal>Boolean</literal>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+    <para>
+  Toutes les informations données par <literal>m2scideclare</literal> sont comparées avec
+  les données inférées, en cas de conflit, les données inférées sont conservées et
+  un warning est affiché. Si vous êtes sûrs de vos informations, rapportez ce bug.
+  </para>
+    <para>Voici quelques exemples :</para>
+    <itemizedlist>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para><literal>%m2scideclare var1|2 3|Double|Real</literal>var1 est déclarée comme une matrice de Doubles de taille 2x3
+      et contenant des données réelles</para>
+          </listitem>
+          <listitem>
+            <para><literal>%m2scideclare var2|2 3 10|Double|Complex</literal>var2 est déclarée comme une hypermatrice de Doubles de taille 2x3x10
+      et contenant des données complexes</para>
+          </listitem>
+          <listitem>
+            <para><literal>%m2scideclare var3(1,2).name|1 10|String|?</literal>var3 est déclarée comme un tableau de Structs contenant une chaîne de
+      caractères de taille 1x10 dans le champ 'name' de la Struct à l'indice (1,2) </para>
+          </listitem>
+          <listitem>
+            <para><literal>%m2scideclare var4(1,5).entries|1 ?|Boolean|?</literal>var4 est déclarée comme un tableau de Cells contenant
+      un vecteur ligne de booléens à l'indice (1,5)</para>
+          </listitem>
+          <listitem>
+            <para><literal>%m2scideclare var4(1,6).entries|? ?|Int|?</literal>var4 est déclarée comme un tableau de Cells contenant
+      un vecteur ligne de booléens à l'indice (1,5)
+      et des données entières à l'indice (1,6)</para>
+          </listitem>
+          <listitem>
+            <para><literal>%m2scideclare var5(*,*).name|1 ?|String|?</literal>var5 est déclarée comme un tableau de Structs contenant une
+      chaîne de caractères de taille 1xn dans chaque champ 'name'</para>
+          </listitem>
+          <listitem>
+            <para><literal>%m2scideclare var6(2,*).entries|1 3|Double|Real</literal>var6 est déclarée comme un tableau de Cells contenant un
+      veteur de Doubles de taille 1x3 dans chaque élement de sa
+      seconde ligne.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

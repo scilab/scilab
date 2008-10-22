@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="write4b">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>write4b</refname>
+    <refpurpose> fortran file binary write</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>write4b(file-name,a [,rec])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+        <listitem>
+          <para>string or integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rec</term>
+        <listitem>
+          <para>vector of positive integers. the selected records for direct access. This vector size must be equal to the number of rows of <literal>a</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    writes in binary format the matrix <literal>a</literal> in the file
+    <literal>'filename'</literal>. Matrix entries are  stored on 8 byte words</para>
+    <para>
+    For direct record access, file must have been previously opened using
+    <literal>file</literal> function to set the record_length. <literal>file-name</literal> must be
+    the result of the <literal>file</literal> function.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="readb">readb</link>
+      </member>
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="read4b">read4b</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

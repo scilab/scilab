@@ -1,0 +1,5 @@
+#
+#generated .def files (windows)
+#
+src/c/completion.def
+src/nocompletion/nocompletion.def

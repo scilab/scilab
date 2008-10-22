@@ -1,0 +1,14 @@
+// <-- Non-regression test for bug 801 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=801
+//
+// <-- Short Description -->
+//    error in the routine covar.sci
+// Copyright INRIA
+// Scilab Project - Pierre MARECHAL
+// Date : 3 mai 2005
+x=[4 5];
+y=[3 4 5 6];
+m=[ 2 3 4 5; 5 4 3 2];
+if execstr('covar(x,y,m)','errcatch') <> 0 then bugmes();quit;end

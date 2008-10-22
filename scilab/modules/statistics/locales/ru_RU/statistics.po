@@ -1,0 +1,416 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-09-16 07:50+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось ''%s'', ''%s'', ''%s'', %d "
+"или %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался численный тип.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось ''%s'', ''%s'', %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось меньшее или равное длины "
+"последнего аргумента.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался вектор.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Должно быть такое же количество строк, "
+"как и в первом аргументе.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Должно быть такое же количество "
+"столбцов, как и в первом аргументе.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr "%s: Неверный тип аргумента #%d: Ожидалось логическое значение."
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался вектор или матрица чисел или "
+"строк.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось ''%s'' или ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Real number between %d to %d "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось вещественное число между %d и "
+"%d.\n"
+
+#, c-format
+msgid "Wrong value for input argument orien: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "Size of x is zero : returning NaN.\n"
+msgstr ""
+
+#, c-format
+msgid "discard=%s\n"
+msgstr ""
+
+#, c-format
+msgid "orien=%s\n"
+msgstr ""
+
+#, c-format
+msgid "Size of x:%i\n"
+msgstr ""
+
+#, c-format
+msgid "Keeping %i values from %i to %i in sorted order\n"
+msgstr ""
+
+#, c-format
+msgid "Unexpected value of orien : %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
+"number expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось ''%s'', ''%s'',''%s'' или "
+"положительное число.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался размер %s.\n"
+
+#, c-format
+msgid "%s: Graph demand out of bounds.\n"
+msgstr "%s: Графический запрос не укладывается в границы.\n"
+
+msgid "Correlations Circle"
+msgstr "Корреляцонный Круг"
+
+msgid "Eigenvalues (in percent)"
+msgstr "Собственные значения (в процентах)"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: ''%s'', ''%s'',''%s'', %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: Неверное значение аргумента #%d: Должно быть > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента: Ожидалось ''%s'', ''%s'', %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr "%s: Неверны типы аргументов: Ожидались численные типы.\n"
+
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr ""
+"%s: Неверны размеры обоих аргументов: аргументы должны иметь одинаковый "
+"размер.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr "%s: Неверный размер аргумента #%d: Должен быть > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента %d: Ожидалось ''%s'', ''%s'', %d или %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался вещественный вектор или матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип аргумента #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался скаляр или вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr "%s: Неверны размеры аргументов #%d и #%d: Размер должен совпадать.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Ожидалось такое же количество строк как и "
+"во втором аргументе.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Ожидалось такое же количество столбцов "
+"как и во втором аргументе.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: Неверное значение аргумента #%d: Должно быть между %d и %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался численный тип.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Неверный размер аргументов #%d и #%d: Размерности должны совпадать.\n"
+
+msgid "S,XN,PR and OMPR"
+msgstr "S,XN,PR и OMPR"
+
+msgid "XN,PR,OMPR,P and Q"
+msgstr "XN,PR,OMPR,P и Q"
+
+msgid "PR,OMPR,P,Q and S"
+msgstr "PR,OMPR,P,Q и S"
+
+msgid "P,Q,S and Xn"
+msgstr "P,Q,S и Xn"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Answer appears to be lower than lowest search bound %f\n"
+msgstr "Похоже ответ будет ниже нижней границы поиска %f\n"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %f\n"
+msgstr "Похоже ответ будет выше верхней границы поиска %f\n"
+
+#, c-format
+msgid ""
+"Input argument %c is out of range.\n"
+"Bound exceeded: %f\n"
+msgstr ""
+"Аргумент %c  вне допустимого диапазона.\n"
+"Превышен предел: %f\n"
+
+msgid "S,Xn,Pr and Ompr"
+msgstr "S,Xn,Pr и Ompr"
+
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr "Xn,Pr,Ompr,P и Q"
+
+msgid "Pr,OMPr,P,Q and S"
+msgstr "Pr,OMPr,P,Q и S"
+
+msgid "P,Q,S  and Xn"
+msgstr "P,Q,S  и Xn"
+
+msgid "T and Df"
+msgstr "T и Df"
+
+msgid "Df, P and Q"
+msgstr "Df, P и Q"
+
+msgid "P,Q and T"
+msgstr "P,Q и T"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s' или '%s'.\n"
+
+msgid "S and Xlam"
+msgstr "S и Xlam"
+
+msgid "Xlam,P and Q"
+msgstr "Xlam,P и Q"
+
+msgid "P,Q and S"
+msgstr "P,Q и S"
+
+msgid "F,Dfn and Dfd"
+msgstr "F, Dfn и Dfd"
+
+msgid "Dfn,Dfd,P and Q"
+msgstr "Dfn, Dfd, P и Q"
+
+msgid "Dfd,P,Q and F"
+msgstr "Dfd, P, Q и F"
+
+msgid "P,Q,F and Dfn"
+msgstr "P, Q, F и Dfn"
+
+msgid "X and Df"
+msgstr "X и Df"
+
+msgid "P,Q and X"
+msgstr "P,Q и X"
+
+msgid "cdfchi: Error in cumgam\n"
+msgstr "cdfchi: Ошибка в cumgam\n"
+
+msgid "X,Shape and Scale"
+msgstr "X, Shape и Scale"
+
+msgid "Shape,Scale,P and Q"
+msgstr "Shape, Scale, P и Q"
+
+msgid "Scale,P,Q and X"
+msgstr "Scale, P, Q и X"
+
+msgid "P,Q,X and Shape"
+msgstr "P, Q, X и Shape"
+
+msgid "X,Y,A and B"
+msgstr "X,Y,A и B"
+
+msgid "A,B,P and Q"
+msgstr "A,B,P и Q"
+
+msgid "B,P,Q,X and Y"
+msgstr "B,P,Q,X и Y"
+
+msgid "P,Q,X,Y and A"
+msgstr "P,Q,X,Y и A"
+
+msgid "X,Df and Pnonc"
+msgstr "X,Df и Pnonc"
+
+msgid "Df,Pnonc,P and Q"
+msgstr "Df,Pnonc,P и Q"
+
+msgid "Pnonc,P,Q and X"
+msgstr "Pnonc,P,Q и X"
+
+msgid "P,Q,X and Df"
+msgstr "P,Q,X и Df"
+
+msgid "F,Dfn,Dfd and Pnonc"
+msgstr "F, Dfn, Dfd и Pnonc"
+
+msgid "Dfn,Dfd,Pnonc,P and Q"
+msgstr "Dfn, Dfd, Pnonc, P и Q"
+
+msgid "Dfd,Pnonc,P,Q and F"
+msgstr "Dfd,Pnonc,P,Q и F"
+
+msgid "Pnonc,P,Q,F and Dfn"
+msgstr "Pnonc,P,Q,F и Dfn"
+
+msgid "P,Q,F,Dfn and Dfd"
+msgstr "P,Q,F,Dfn и Dfd"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s', '%s', '%s' или "
+"'%s'.\n"
+
+msgid "X,Mean and Std"
+msgstr "X,Mean и Std"
+
+msgid "Mean,Std,P and Q"
+msgstr "Mean,Std,P и Q"
+
+msgid "Std,P,Q and X"
+msgstr "Std,P,Q и X"
+
+msgid "P,Q,X and Mean"
+msgstr "P,Q,X и Mean"
+
+msgid " Std must not be zero\n"
+msgstr " Std не может быть нулевым\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
+msgstr "%s: Неверное количество аргументов при опции '%s': Ожидалось %d.\n"
+
+#, c-format
+msgid "%s and %s must have same size.\n"
+msgstr "%s и %s должны иметь одинаковые размеры.\n"

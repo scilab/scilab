@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gstacksize">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gstacksize</refname>
+    <refpurpose> set/get scilab global stack size</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>gstacksize(n)
+gstacksize('max')
+gstacksize('min')
+sz=gstacksize()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integer, the required global stack size given in number of double precision words</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sz</term>
+        <listitem>
+          <para>2-vector [total used]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Scilab stores gobal variables in a stack</para>
+    <para><literal>gstacksize(n)</literal> allows the user to increase or decrease the size of
+    this stack. The maximum allowed size depends on the amount of
+    free memory and swap space available at the time. Note that Scilab can
+    increase automatically the global stacksize when needed</para>
+    <para><literal>sz=gstacksize()</literal> returns a 2-vector which contains  the current
+    total and used global stack size.</para>
+    <para><literal>gstacksize('max')</literal> allows the user to increase the size of
+    this global stack to the maximum.</para>
+    <para><literal>gstacksize('min')</literal> allows the user to decrease the size of
+    this global stack to the minimum.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="stacksize">stacksize</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

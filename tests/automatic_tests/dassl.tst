@@ -1,0 +1,29 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/dassl_data.ref','rb');
+deff('[r,ires]=chemres(t,y,yd)', [
+  'r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);';
+  'r(2)=0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2);';
+  'r(3)=y(1)+y(2)+y(3)-1;';
+  'ires=0']);
+%ans = deff('[pd]=chemjac(x,y,yd,cj)', [
+  'pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);';
+  '0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);';
+  '1       , 1                      , 1       ]']);
+if load_ref('%ans') then   pause,end,
+
+
+y0 = [1;0;0];
+yd0 = [-0.04;0.04;0];
+t = [0.00001:0.02:0.4,0.41:0.1:4,40,400,4000,40000,400000,4000000,40000000,400000000,4000000000,40000000000];
+
+
+y = dassl([y0,yd0], 0, t, chemres);
+
+info = list([], 0, [], [], [], 0, 0);
+info(2) = 1;
+y = dassl([y0,yd0], 0, 40000000000, chemres, info);
+y = dassl([y0,yd0], 0, 40000000000, chemres, chemjac, info);
+xdel_run(winsid());
+
+mclose(%U);

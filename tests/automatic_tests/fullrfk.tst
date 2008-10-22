@@ -1,0 +1,10 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/fullrfk_data.ref','rb');
+A = rand(5, 2) * rand(2, 5);[Bk,Ck] = fullrfk(A, 3);
+%ans = norm(Bk * Ck - (A^3), 1);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

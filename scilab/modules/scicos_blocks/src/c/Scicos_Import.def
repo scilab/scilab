@@ -1,0 +1,17 @@
+LIBRARY    scicos.dll
+
+
+EXPORTS
+;
+scicos_malloc
+scicos_free
+get_phase_simulation
+set_block_error
+get_scicos_time
+set_pointer_xproperty
+do_cold_restart
+get_block_number
+getlabel_
+getouttb_
+scsptr_
+end_scicos_sim

@@ -1,0 +1,75 @@
+# Localization of the module developement_tools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+
+# File: macros/scitest.sci, line: 23
+msgid "scitest: first input argument should not be a file with .dia suffix"
+msgstr ""
+"scitest: Le premier argument d'entrée ne devrait pas être un fichier avec "
+"l'extension .dia"
+
+#
+# File: macros/scitest.sci, line: 115
+# File: macros/scitest.sci, line: 121
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "Test échoué. Erreur detectée en exécutant %s"
+
+#
+# File: macros/scitest.sci, line: 136
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "Test échoué. Voir : fc /L /N  %s"
+
+#
+# File: macros/scitest.sci, line: 138
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "Test échoué. Voir : diff -wu  %s"
+
+#
+# File: macros/scitest.sci, line: 141
+msgid "Test passed"
+msgstr "Test réussi"
+
+# File: macros/testexamples.sci, line: 8
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "Pas de variable %s_ref dans le fichier de référence"
+
+#
+# File: macros/unit_test_run.sci, line: 53
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s n'est pas un module installé"
+
+#
+# File: macros/unit_test_run.sci, line: 73
+msgid "error : Input argument sizes are not valid"
+msgstr "Erreur: Taille des arguments d'entrées incorrecte"
+
+#
+# File: macros/unit_test_run.sci, line: 83
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "Le test %s n'est pas disponible pour le module %s"
+
+#
+# File: macros/unit_test_run.sci, line: 360
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "Le fichier de référence (%s) n'existe pas"

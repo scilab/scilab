@@ -1,0 +1,24 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 2655 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2655
+//
+// <-- Short Description -->
+// plot2d produces an error when called with some functions
+
+
+function r=f(x); r=x; endfunction 
+function r=g(x2); r=x2 + 1; endfunction
+x=linspace(0,1,100);
+
+plot(x,f,x,g);
+

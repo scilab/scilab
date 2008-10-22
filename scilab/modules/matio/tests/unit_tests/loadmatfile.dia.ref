@@ -1,0 +1,474 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Vincent Couvert <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// This Scilab script loads MAT-files to test the MATIO module
+clear all
+//
+// Loads all MAT-files
+//
+binFormats = ["-v4";"-v6";"-v7"];
+for formatIndex = 1:size(binFormats, "*")
+  matFiles = gsort(listfiles("SCI/modules/matio/tests/unit_tests/*" + binFormats(formatIndex) + ".mat"), "r", "i");
+  for fileIndex=1:size(matFiles, "*")
+    disp(fileparts(matFiles(fileIndex), "fname") + fileparts(matFiles(fileIndex), "extension"));
+    loadmatfile(matFiles(fileIndex));
+  end
+  //
+  // TESTS FOR CELL ARRAYS
+  //
+  if binFormats(formatIndex) <> "-v4" then // Cell arrays can not be stored in Matlab 4 binary files
+    if or(emptycell <> cell()) then bugmes();quit;end
+    if or(scalarcell <> makecell([1 1], 1.23)) then bugmes();quit;end
+    if or(rowcell <> makecell([1 3], "abc", [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i], 1.23)) then bugmes();quit;end
+    if or(colcell <> makecell([3 1], [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i], "abc", 1.23)) then bugmes();quit;end
+    if or(arraycell <> makecell([2 3], "a", [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i], int8(1), "abc", 1.23, eye(100,100))) then bugmes();quit;end
+    if or(stringcell <> makecell([2 3], "abc", "def", "ghi", "jkl", "mno", "pqr")) then bugmes();quit;end
+    clear emptycell scalarcell rowcell colcell arraycell stringcell
+  end
+  //
+  // TESTS FOR STRUCTURE ARRAYS
+  //
+  if binFormats(formatIndex) <> "-v4" then // Struct arrays can not be stored in Matlab 4 binary files
+    sciemptystruct = struct();
+    if or(emptystruct <> sciemptystruct) then bugmes();quit;end
+    sciscalarstruct = struct("f1", 10, "ftwo", "Hello", "field3", int8(12));
+    if or(scalarstruct <> sciscalarstruct) then bugmes();quit;end
+    scirowstruct = struct("field1", 10, "field2", "Hello", "field3", int8(12));
+    scirowstruct(1,2).field1 = "test";
+    scirowstruct(1,2).field2 = eye(10, 10);
+    scirowstruct(1,3).field2 = "a field contents";
+    scirowstruct(1,3).field3 = 1.23+4.56*%i;
+    if or(rowstruct <> scirowstruct) then bugmes();quit;end
+    scicolstruct = struct("name", 10, "phone", "Hello", "address", int8(12));
+    scicolstruct(2,1).name = "test";
+    scicolstruct(2,1).phone = eye(10, 10);
+    scicolstruct(3,1).phone = "a field contents";
+    scicolstruct(3,1).address = 1.23+4.56*%i;
+    if or(colstruct <> scicolstruct) then bugmes();quit;end
+    sciarraystruct = struct("field1", 10, "field2", "Hello", "field3", int8(12));
+    sciarraystruct(1,2).field1 = "test";
+    sciarraystruct(1,2).field2 = eye(10, 10);
+    sciarraystruct(1,3).field2 = "a field contents";
+    sciarraystruct(1,3).field3 = 1.23+4.56*%i;
+    sciarraystruct(2,1).name = "test";
+    sciarraystruct(2,1).phone = eye(10, 10);
+    sciarraystruct(3,1).phone = "a field contents";
+    sciarraystruct(3,1).address = 1.23+4.56*%i;
+    if or(arraystruct <> sciarraystruct) then bugmes();quit;end
+    clear emptystruct scalarstruct rowstruct colstruct arraystruct
+    clear sciemptystruct sciscalarstruct scirowstruct scicolstruct sciarraystruct
+  end
+  //
+  // TESTS FOR OBJECTS
+  //
+  // TODO
+  //
+  // TESTS FOR CHARACTER ARRAYS
+  //
+  if or(emptystringmatrix <> "") then bugmes();quit;end
+  if or(stringscalar <> "a") then bugmes();quit;end
+  if or(stringrowvector <> ["abc"]) then bugmes();quit;end
+  if or(stringcolvector <> ["a";"b";"c"]) then bugmes();quit;end
+  if or(stringmatrix <> ["abc";"def"]) then bugmes();quit;end
+  clear emptystringmatrix stringscalar stringrowvector stringcolvector stringmatrix
+  //
+  // TESTS FOR DOUBLE PRECISION ARRAYS
+  //
+  if or(emptydoublematrix <> []) then bugmes();quit;end
+  if or(realdoublescalar <> 1.23) then bugmes();quit;end
+  if or(cplxdoublescalar <> 1.23 + 4.56*%i) then bugmes();quit;end
+  if or(realdoublerowvector <> [1.23 -4.56 7.89]) then bugmes();quit;end
+  if or(cplxdoublerowvector <> [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i]) then bugmes();quit;end
+  if or(realdoublecolvector <> [1.23;-4.56;7.89]) then bugmes();quit;end
+  if or(cplxdoublecolvector <> [1.23+7.89*%i;4.56-1.23*%i;7.89+4.56*%i]) then bugmes();quit;end
+  if or(realdoublematrix <> [1.23 -4.56 7.89;9.87 6.54 -3.21]) then bugmes();quit;end
+  if or(cplxdoublematrix <> [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i;9.87+3.21*%i 6.54+9.87*%i 3.21-6.54*%i]) then bugmes();quit;end
+  clear emptydoublematrix realdoublescalar cplxdoublescalar realdoublerowvector cplxdoublerowvector realdoublecolvector cplxdoublecolvector realdoublematrix cplxdoublematrix
+  //
+  // TESTS FOR SINGLE PRECISION ARRAYS
+  //
+  // TODO
+  //
+  // TESTS FOR SPARSE MATRICES
+  //
+  if binFormats(formatIndex) <> "-v4" then // Integers can not be stored in Matlab 4 binary files
+  if or(emptysparse <> []) then bugmes();quit;end
+  if or(realscalarsparse <> sparse(1.23)) then bugmes();quit;end
+  //if or(cplxscalarsparse <> sparse(1.23 + 4.56i)) then bugmes();quit;end
+  if or(realrowvectorsparse <> sparse([1.23 0 7.89])) then bugmes();quit;end
+  //if or(cplxrowvectorsparse <> sparse([1.23+7.89i 0 7.89+4.56i])) then bugmes();quit;end
+  if or(realcolvectorsparse <> sparse([1.23;0;7.89])) then bugmes();quit;end
+  //if or(cplxcolvectorsparse <> sparse([1.23+7.89i;;7.89+4.56i])) then bugmes();quit;end
+  if or(realmatrixsparse <> sparse([1.23 0 7.89;0 6.54 -3.21])) then bugmes();quit;end
+  //if or(cplxmatrixsparse <> sparse([1.23+7.89i 0 7.89+4.56i;0 6.54+9.87i 3.21-6.54i])) then bugmes();quit;end
+end
+  if binFormats(formatIndex) <> "-v4" then // Integers can not be stored in Matlab 4 binary files
+    //
+    // TESTS FOR 8-BITS SIGNED INTEGERS
+    //
+    if or(emptyint8matrix <> int8([])) then bugmes();quit;end
+    if or(int8scalar <> int8(1)) then bugmes();quit;end
+    if or(int8rowvector <> int8([1 -4 7])) then bugmes();quit;end
+    if or(int8colvector <> int8([1;-4;7])) then bugmes();quit;end
+    if or(int8matrix <> int8([1 -4 7;-9 6 -3])) then bugmes();quit;end
+    clear emptyint8matrix int8scalar int8rowvector int8colvector int8matrix
+    //
+    // TESTS FOR 16-BITS SIGNED INTEGERS
+    //
+    if or(emptyint16matrix <> int16([])) then bugmes();quit;end
+    if or(int16scalar <> int16(1)) then bugmes();quit;end
+    if or(int16rowvector <> int16([1 -4 7])) then bugmes();quit;end
+    if or(int16colvector <> int16([1;-4;7])) then bugmes();quit;end
+    if or(int16matrix <> int16([1 -4 7;-9 6 -3])) then bugmes();quit;end
+    clear emptyint16matrix int16scalar int16rowvector int16colvector int16matrix
+    //
+    // TESTS FOR 32-BITS SIGNED INTEGERS
+    //
+    if or(emptyint32matrix <> int32([])) then bugmes();quit;end
+    if or(int32scalar <> int32(1)) then bugmes();quit;end
+    if or(int32rowvector <> int32([1 -4 7])) then bugmes();quit;end
+    if or(int32colvector <> int32([1;-4;7])) then bugmes();quit;end
+    if or(int32matrix <> int32([1 -4 7;-9 6 -3])) then bugmes();quit;end
+    clear emptyint32matrix int32scalar int32rowvector int32colvector int32matrix
+    // TODO: int64 tests ?
+    //
+    // TESTS FOR 8-BITS UNSIGNED INTEGERS
+    //
+    if or(emptyuint8matrix <> uint8([])) then bugmes();quit;end
+    if or(uint8scalar <> uint8(1)) then bugmes();quit;end
+    //if or(uint8rowvector <> uint8([1 -4 7])) then bugmes();quit;end
+    if or(uint8rowvector <> [1 0 7]) then bugmes();quit;end
+    //if or(uint8colvector <> uint8([1;-4;7])) then bugmes();quit;end
+    if or(uint8colvector <> [1;0;7]) then bugmes();quit;end
+    //if or(uint8matrix <> uint8([1 -4 7;-9 6 -3])) then bugmes();quit;end
+    if or(uint8matrix <> [1 0 7;0 6 0]) then bugmes();quit;end
+    clear emptyuint8matrix uint8scalar uint8rowvector uint8colvector uint8matrix
+    //
+    // TESTS FOR 16-BITS UNSIGNED INTEGERS
+    //
+    if or(emptyuint16matrix <> uint16([])) then bugmes();quit;end
+    if or(uint16scalar <> uint16(1)) then bugmes();quit;end
+    //if or(uint16rowvector <> uint16([1 -4 7])) then bugmes();quit;end
+    if or(uint16rowvector <> [1 0 7]) then bugmes();quit;end
+    //if or(uint16colvector <> uint16([1;-4;7])) then bugmes();quit;end
+    if or(uint16colvector <> [1;0;7]) then bugmes();quit;end
+    //if or(uint16matrix <> uint16([1 -4 7;-9 6 -3])) then bugmes();quit;end
+    if or(uint16matrix <> [1 0 7;0 6 0]) then bugmes();quit;end
+    clear emptyuint16matrix uint16scalar uint16rowvector uint16colvector uint16matrix
+    //
+    // TESTS FOR 32-BITS UNSIGNED INTEGERS
+    //
+    if or(emptyuint32matrix <> uint32([])) then bugmes();quit;end
+    if or(uint32scalar <> uint32(1)) then bugmes();quit;end
+    //if or(uint32rowvector <> uint32([1 -4 7])) then bugmes();quit;end
+    if or(uint32rowvector <> [1 0 7]) then bugmes();quit;end
+    //if or(uint32colvector <> uint32([1;-4;7])) then bugmes();quit;end
+    if or(uint32colvector <> [1;0;7]) then bugmes();quit;end
+    //if or(uint32matrix <> uint32([1 -4 7;-9 6 -3])) then bugmes();quit;end
+    if or(uint32matrix <> [1 0 7;0 6 0]) then bugmes();quit;end
+    clear emptyuint32matrix uint32scalar uint32rowvector uint32colvector uint32matrix
+    // TODO: uint64 tests ?
+    //
+    // TESTS FOR ND-ARRAYS
+    //
+    sciemptyNDarray = hypermat([0 0 0], []);
+    if or(emptyNDarray.dims <> sciemptyNDarray.dims) | or(emptyNDarray.entries <> sciemptyNDarray.entries) then bugmes();quit;end
+    if or(realdoubleNDarray <> matrix(1:24, 2, 3, 4)) then bugmes();quit;end
+    if or(complexdoubleNDarray <> matrix((1:24) + (1:24)*%i, 2, 3, 4)) then bugmes();quit;end
+    clear sciemptyNDarray emptyNDarray realdoubleNDarray complexdoubleNDarray
+  end
+  //
+  // MISC
+  //
+  if or(eye100x100 <> eye(100,100)) then bugmes();quit;end
+end
+ 
+ cplxdoublecolvector-v4.mat   
+ 
+ cplxdoublematrix-v4.mat   
+ 
+ cplxdoublerowvector-v4.mat   
+ 
+ cplxdoublescalar-v4.mat   
+ 
+ emptydoublematrix-v4.mat   
+ 
+ emptystringmatrix-v4.mat   
+ 
+ eye100x100-v4.mat   
+ 
+ realdoublecolvector-v4.mat   
+ 
+ realdoublematrix-v4.mat   
+ 
+ realdoublerowvector-v4.mat   
+ 
+ realdoublescalar-v4.mat   
+ 
+ stringcolvector-v4.mat   
+ 
+ stringmatrix-v4.mat   
+ 
+ stringrowvector-v4.mat   
+ 
+ stringscalar-v4.mat   
+ 
+ arraycell-v6.mat   
+ 
+ arraystruct-v6.mat   
+ 
+ colcell-v6.mat   
+ 
+ colstruct-v6.mat   
+ 
+ complexdoubleNDarray-v6.mat   
+ 
+ cplxdoublecolvector-v6.mat   
+ 
+ cplxdoublematrix-v6.mat   
+ 
+ cplxdoublerowvector-v6.mat   
+ 
+ cplxdoublescalar-v6.mat   
+ 
+ emptyNDarray-v6.mat   
+ 
+ emptycell-v6.mat   
+ 
+ emptydoublematrix-v6.mat   
+ 
+ emptyint16matrix-v6.mat   
+ 
+ emptyint32matrix-v6.mat   
+ 
+ emptyint8matrix-v6.mat   
+ 
+ emptysparse-v6.mat   
+ 
+ emptystringmatrix-v6.mat   
+ 
+ emptystruct-v6.mat   
+ 
+ emptyuint16matrix-v6.mat   
+ 
+ emptyuint32matrix-v6.mat   
+ 
+ emptyuint8matrix-v6.mat   
+ 
+ eye100x100-v6.mat   
+ 
+ int16colvector-v6.mat   
+ 
+ int16matrix-v6.mat   
+ 
+ int16rowvector-v6.mat   
+ 
+ int16scalar-v6.mat   
+ 
+ int32colvector-v6.mat   
+ 
+ int32matrix-v6.mat   
+ 
+ int32rowvector-v6.mat   
+ 
+ int32scalar-v6.mat   
+ 
+ int8colvector-v6.mat   
+ 
+ int8matrix-v6.mat   
+ 
+ int8rowvector-v6.mat   
+ 
+ int8scalar-v6.mat   
+ 
+ realcolvectorsparse-v6.mat   
+ 
+ realdoubleNDarray-v6.mat   
+ 
+ realdoublecolvector-v6.mat   
+ 
+ realdoublematrix-v6.mat   
+ 
+ realdoublerowvector-v6.mat   
+ 
+ realdoublescalar-v6.mat   
+ 
+ realmatrixsparse-v6.mat   
+ 
+ realrowvectorsparse-v6.mat   
+ 
+ realscalarsparse-v6.mat   
+ 
+ rowcell-v6.mat   
+ 
+ rowstruct-v6.mat   
+ 
+ scalarcell-v6.mat   
+ 
+ scalarstruct-v6.mat   
+ 
+ stringcell-v6.mat   
+ 
+ stringcolvector-v6.mat   
+ 
+ stringmatrix-v6.mat   
+ 
+ stringrowvector-v6.mat   
+ 
+ stringscalar-v6.mat   
+ 
+ uint16colvector-v6.mat   
+ 
+ uint16matrix-v6.mat   
+ 
+ uint16rowvector-v6.mat   
+ 
+ uint16scalar-v6.mat   
+ 
+ uint32colvector-v6.mat   
+ 
+ uint32matrix-v6.mat   
+ 
+ uint32rowvector-v6.mat   
+ 
+ uint32scalar-v6.mat   
+ 
+ uint8colvector-v6.mat   
+ 
+ uint8matrix-v6.mat   
+ 
+ uint8rowvector-v6.mat   
+ 
+ uint8scalar-v6.mat   
+ 
+ arraycell-v7.mat   
+ 
+ arraystruct-v7.mat   
+ 
+ colcell-v7.mat   
+ 
+ colstruct-v7.mat   
+ 
+ complexdoubleNDarray-v7.mat   
+ 
+ cplxdoublecolvector-v7.mat   
+ 
+ cplxdoublematrix-v7.mat   
+ 
+ cplxdoublerowvector-v7.mat   
+ 
+ cplxdoublescalar-v7.mat   
+ 
+ emptyNDarray-v7.mat   
+ 
+ emptycell-v7.mat   
+ 
+ emptydoublematrix-v7.mat   
+ 
+ emptyint16matrix-v7.mat   
+ 
+ emptyint32matrix-v7.mat   
+ 
+ emptyint8matrix-v7.mat   
+ 
+ emptysparse-v7.mat   
+ 
+ emptystringmatrix-v7.mat   
+ 
+ emptystruct-v7.mat   
+ 
+ emptyuint16matrix-v7.mat   
+ 
+ emptyuint32matrix-v7.mat   
+ 
+ emptyuint8matrix-v7.mat   
+ 
+ eye100x100-v7.mat   
+ 
+ int16colvector-v7.mat   
+ 
+ int16matrix-v7.mat   
+ 
+ int16rowvector-v7.mat   
+ 
+ int16scalar-v7.mat   
+ 
+ int32colvector-v7.mat   
+ 
+ int32matrix-v7.mat   
+ 
+ int32rowvector-v7.mat   
+ 
+ int32scalar-v7.mat   
+ 
+ int8colvector-v7.mat   
+ 
+ int8matrix-v7.mat   
+ 
+ int8rowvector-v7.mat   
+ 
+ int8scalar-v7.mat   
+ 
+ realcolvectorsparse-v7.mat   
+ 
+ realdoubleNDarray-v7.mat   
+ 
+ realdoublecolvector-v7.mat   
+ 
+ realdoublematrix-v7.mat   
+ 
+ realdoublerowvector-v7.mat   
+ 
+ realdoublescalar-v7.mat   
+ 
+ realmatrixsparse-v7.mat   
+ 
+ realrowvectorsparse-v7.mat   
+ 
+ realscalarsparse-v7.mat   
+ 
+ rowcell-v7.mat   
+ 
+ rowstruct-v7.mat   
+ 
+ scalarcell-v7.mat   
+ 
+ scalarstruct-v7.mat   
+ 
+ stringcell-v7.mat   
+ 
+ stringcolvector-v7.mat   
+ 
+ stringmatrix-v7.mat   
+ 
+ stringrowvector-v7.mat   
+ 
+ stringscalar-v7.mat   
+ 
+ uint16colvector-v7.mat   
+ 
+ uint16matrix-v7.mat   
+ 
+ uint16rowvector-v7.mat   
+ 
+ uint16scalar-v7.mat   
+ 
+ uint32colvector-v7.mat   
+ 
+ uint32matrix-v7.mat   
+ 
+ uint32rowvector-v7.mat   
+ 
+ uint32scalar-v7.mat   
+ 
+ uint8colvector-v7.mat   
+ 
+ uint8matrix-v7.mat   
+ 
+ uint8rowvector-v7.mat   
+ 
+ uint8scalar-v7.mat   
+// TODO: read all variables from a single file ?

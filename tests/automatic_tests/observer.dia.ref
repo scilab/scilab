@@ -1,0 +1,108 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/observer_data.ref','rb');
+ 
+nx = 5;nu = 1;ny = 1;un = 3;us = 2;Sys = ssrand(ny, nu, nx, list('dt', us, us, un));
+ 
+//nx=5 states, nu=1 input, ny=1 output,
+ 
+//un=3 unobservable states, us=2 of them unstable.
+ 
+[Obs,U,m] = observer(Sys);//Stable observer (default)
+ 
+W = U';H = W(m + 1:nx, :);[A,B,C,D] = abcd(Sys);//H*U=[0,eye(no,no)];
+ 
+Sys2 = ss2tf(syslin('c', A, B, H));
+ 
+if load_ref('Sys2') then   bugmes();quit;end,
+ 
+//Transfer u-->z
+ 
+Idu = eye(nu, nu);Sys3 = ss2tf(H * U(:, m + 1:$) * Obs * [Idu;Sys]);
+ 
+if load_ref('Sys3') then   bugmes();quit;end,
+ 
+ 
+//Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
+ 
+//this transfer must equal Sys2, the u-->z transfer  (H2=eye).
+ 
+ 
+//Assume a Kalman model
+ 
+//dotx = A x + B u + G w
+ 
+// y   = C x + D u + H w + v
+ 
+//with Eww' = QN, Evv' = RN, Ewv' = NN
+ 
+//To build a Kalman observer:
+ 
+//1-Form BigR = [G*QN*G'         G*QN*H'+G*NN;
+ 
+//               H*QN*G'+NN*G'   H*QN*H'+RN];
+ 
+//the covariance matrix of the noise vector [Gw;Hw+v]
+ 
+//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e
+ 
+//with e a unit white noise.
+ 
+// [W,Wt]=fullrf(BigR);
+ 
+//B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);
+ 
+//C2=C;
+ 
+//P21=syslin('c',A,B1,C2,D21);
+ 
+//3-Compute the Kalman gain
+ 
+//L = lqe(P21);
+ 
+//4- Build an observer for the plant [A,B,C,D];
+ 
+//Plant = syslin('c',A,B,C,D);
+ 
+//Obs = observer(Plant,L);
+ 
+//Test example:
+ 
+A = -diag(1:4);
+ 
+B = ones(4, 1);
+ 
+C = B';D = 0;G = 2 * B;H = -3;QN = 2;
+ 
+RN = 5;NN = 0;
+ 
+BigR = [G * QN * G',G * QN * H' + G * NN;
+  H * QN * G' + NN * G',H * QN * H' + RN];
+ 
+[W,Wt] = fullrf(BigR);
+ 
+B1 = W(1:size(G, 1), :);D21 = W($ + 1 - size(C, 1):$, :);
+ 
+C2 = C;
+ 
+P21 = syslin('c', A, B1, C2, D21);
+ 
+L = lqe(P21);
+ 
+Plant = syslin('c', A, B, C, D);
+ 
+Obs = observer(Plant, L);
+ 
+%ans = spec(Obs('A'));
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="function">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>function</refname>
+    <refpurpose> définition d'une fonction Scilab  </refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="endfunction">
+    <refname>endfunction</refname>
+    <refpurpose> fin de la définition d'une fonction Scilab  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <programlisting><![CDATA[
+       function <arguments_sortie>=<nom_de_la_fonction><arguments_entrée>
+       <instructions>
+        endfunction
+   ]]></programlisting>
+    <para>  où</para>
+    <variablelist>
+      <varlistentry>
+        <term>&lt;nom_de_la_fonction&gt;</term>
+        <listitem>
+          <para>est le nom de la fonction</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;arguments_entrée&gt;</term>
+        <listitem>
+          <para>est la liste d'arguments d'entrée. Il peut s'agir de :</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>une liste de noms de variables séparés par des virgules, entourée de parenthèses, comme  <literal>(x1,...,xm)</literal>. Le dernier nom de variable peut être <literal>varargin</literal> (voir varargin)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>la séquence <literal>()</literal> ou rien du tout, si la fonction n'a pas d'argument d'entrée.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;arguments_sortie&gt;</term>
+        <listitem>
+          <para>Est la liste d'arguments de sortie. Il peut s'agir de</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>une liste de noms de variables séparés par des virgules, entourée de crochets, comme  <literal>[y1,...,ym]</literal>. Le dernier nom de variable peut être <literal>varargout</literal> (voir varargout)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>la séquence <literal>[]</literal>, si la fonction n'a pas d'argument de sortie. Dans ce cas la syntaxe d'appel peut aussi être : <literal>function &lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;instructions&gt;</term>
+        <listitem>
+          <para>une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir functions) en ligne ou dans un script (voir exec). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <literal>getf</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    La séquence <literal>function &lt;arguments_sortie&gt;=&lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal>
+    doit apparaître sur une seule ligne. Cette suite peut être suivie d'instructions Scilab si une virgule ou un point-virgule est ajouté à la fin.
+  </para>
+    <para>    Les définitions de fonctions peuvent être imbriquées.  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+// définition en ligne
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+// définition sur une seule ligne
+function y=sq(x),y=x^2,endfunction
+
+sq(3)
+
+// définitions imbriquées
+function y=foo(x)
+a=sin(x)
+function y=sq(x), y=x^2,endfunction
+y=sq(a)+1
+endfunction
+
+foo(%pi/3)
+
+
+// définition dans un script
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="functions">functions</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

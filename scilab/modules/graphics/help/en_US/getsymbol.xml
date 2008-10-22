@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getsymbol" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getsymbol</refname>
+
+    <refpurpose>dialog to select a symbol and its size. <emphasis
+    role="bold">Obsolete function</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>c=getsymbol([title])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+
+        <listitem>
+          <para>string, dialog title.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c</term>
+
+        <listitem>
+          <para>vector of size 2 <literal>[n,sz]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function designed to work with the <link
+    linkend="xset">xset</link> function <emphasis role="bold">is also
+    obsolete</emphasis>. Use the property editor <link
+    linkend="ged">ged</link> instead.</para>
+
+    <para><literal>getsymbol</literal> opens a dialog choice box with title
+    <literal>title</literal> if given where the user can select a symbol and
+    its size. <literal>getsymbol</literal> returns the id of the mark
+    <literal>n</literal> and the id of its size <literal>sz</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="polyline_properties">segs_properties</link></member>
+
+      <member><link linkend="segs_properties">segs_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

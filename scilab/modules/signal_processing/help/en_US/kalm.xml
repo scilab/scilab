@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kalm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>kalm</refname>
+    <refpurpose> Kalman update</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>f,g,h</term>
+        <listitem>
+          <para>current system matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>q, r</term>
+        <listitem>
+          <para>covariance matrices of dynamics and observation noise</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0,p0</term>
+        <listitem>
+          <para>state estimate and error variance at t=0 based on data up to t=-1</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>current observation Output from the function is:</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x1,p1</term>
+        <listitem>
+          <para>updated estimate and error covariance at t=1 based on data up to t=0</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>updated estimate and error covariance at t=0  based on data up to t=0</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    function which gives the Kalman update and error variance</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. B.  </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,15 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/fullrf_data.ref','rb');
+A = rand(5, 2) * rand(2, 5);
+[Q,M] = fullrf(A);
+%ans = norm(Q * M - A, 1);
+if load_ref('%ans') then   pause,end,
+
+[X,d] = rowcomp(A);Y = X';
+%ans = svd([A,Y(:, 1:d),Q]);
+if load_ref('%ans') then   pause,end,
+//span(Q) = span(A) = span(Y(:,1:2))
+xdel_run(winsid());
+
+mclose(%U);

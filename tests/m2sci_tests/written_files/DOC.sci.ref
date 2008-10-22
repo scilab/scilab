@@ -1,0 +1,21 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function doc()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+doc
+// !! L.7: No Scilab equivalent for: doc("/")
+doc("/")
+doc("function")
+// !! L.9: No Scilab equivalent for: doc("toolbox/")
+doc("toolbox/")
+// !! L.10: No Scilab equivalent for: doc("toolbox/function")
+doc("toolbox/function")
+doc("names")

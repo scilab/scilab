@@ -1,0 +1,256 @@
+# Localization of the module pvm
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-09-22 14:09+0100\n"
+
+# File: sci_gateway/c/sci_pvm_error_mode.c, line: 42
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_pvm_tasks.c, line: 43
+# File: sci_gateway/c/sci_pvm_config.c, line: 37
+# File: src/c/pvm_info.c, line: 51
+# File: src/c/pvm_info.c, line: 114
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 49
+# File: sci_gateway/c/sci_pvm_send.c, line: 50
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 51
+# File: sci_gateway/c/sci_pvm_send.c, line: 52
+#, c-format
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr ""
+#
+# File: etc/pvm.start, line: 23
+msgid "PVM parallel Toolbox"
+msgstr ""
+#
+# File: src/nopvm/nopvm.c, line: 23
+msgid "Scilab PVM module not installed.\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 198
+# File: src/c/pvm_proc_ctrl.c, line: 238
+msgid "Unknown Error"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 205
+msgid "OK"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 206
+msgid "Bad parameter"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 207
+msgid "Barrier count mismatch"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 208
+msgid "Read past end of buffer"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 209
+msgid "No such host"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 210
+msgid "No such executable"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 211
+msgid "Can not get memory"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 212
+msgid "Can not decode received msg"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 213
+msgid "Daemon pvmd is not responding"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 214
+msgid "No current buffer"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 215
+msgid "Bad message id"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 216
+msgid "Null group name is illegal"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 217
+msgid "Already in group"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 218
+msgid "No group with that name"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 219
+msgid "Not in group"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 220
+msgid "No such instance in group"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 221
+msgid "Host failed"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 222
+msgid "No parent task"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 223
+msgid "Function not implemented"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 224
+msgid "Pvmd system error"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 225
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 226
+msgid "Out of ressources"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 227
+msgid "Host already configured (Duplicate host)"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 228
+msgid "Failed to exec new slave pvmd"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 229
+msgid "Already oing operation"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 230
+msgid "No such task"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 232
+msgid "PVM not found"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 233
+msgid "PVM exists"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 235
+msgid "No such (group,instance)"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 236
+msgid "(group,instance) already exists"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 269
+#, c-format
+msgid "Error MALLOC in pvm_error\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 278
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 283
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 284
+msgid "but there exists no configuration file:\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 290
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 296
+# File: src/c/sci_tools.c, line: 94
+# File: src/c/sci_tools.c, line: 118
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 305
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 310
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 320
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 325
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 345
+# File: src/c/pvm_proc_ctrl.c, line: 356
+# File: src/c/pvm_proc_ctrl.c, line: 362
+#, c-format
+msgid "Error pvm_halt - signal\n"
+msgstr ""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 447
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr ""
+#
+# File: src/c/pvm_grp.c, line: 120
+#, c-format
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr ""
+#
+# File: src/c/pvm_grp.c, line: 138
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr ""

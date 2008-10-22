@@ -1,0 +1,21 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function diary()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+// !! L.6: No Scilab equivalent for: diary toggle
+diary
+diary("filename")
+diary("filename")
+diary("filename")
+diary("off")
+diary("on")
+filename = "diary_filename"
+diary(filename)

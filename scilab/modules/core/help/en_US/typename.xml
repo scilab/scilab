@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="typename">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>typename</refname>
+    <refpurpose> associates a name to variable type</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[types [ [,names]]=typename()
+typename(name,type)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>types</term>
+        <listitem>
+          <para>integer column vector: the types codes of each defined data types.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>column vector of strings: the names associated to type codes.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>type</term>
+        <listitem>
+          <para>integer: the type code of new data type.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>string: the name associated to the type code</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The function and operator overloading make use of a formal name
+    associated to data types to form the name of the overloading function
+    (see overloading). The <literal>typename</literal> can be used to handle this
+    formal names for hard coded data types (the <literal>tlist</literal> or <literal>mlist</literal>
+    coded data types formal names are defined in an other way, see <literal>overloading</literal>).</para>
+    <para>
+    Called without right hand side argument, <literal>typename</literal> returns
+    informations on defined data types.</para>
+    <para>
+    Called with right hand side argument, <literal>typename</literal> associates a name
+    to a data type code.</para>
+    <para><literal>typename('',type)</literal> suppress the data type given by its code
+    <literal>type</literal> out of the table of known data types.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="type">type</link>
+      </member>
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="mlist">mlist</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

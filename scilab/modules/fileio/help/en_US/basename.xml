@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="basename">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>basename</refname>
+    <refpurpose> strip directory and suffix from filenames</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>files= basename(files[,flag [,flagexpand]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>a string matrix giving a set of file names.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag,flagexpand</term>
+        <listitem>
+          <para>boolean optional parameters. (default value <literal>%t</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>a string matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>basename</literal> return the basename of the file entries given in files.</para>
+    <para>
+    If <literal>flag</literal> is true the files are first converted to the target 
+    type given by the <literal>MSDOS</literal> variable. 
+    Moreover, if <literal>flagexpand</literal> is true leading strings like
+    <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
+    variables.</para>
+    <para>
+    Note that <literal>basename(files,%f)</literal> can give erroneous results if 
+    pathnames given in files do not follow the convention 
+    given by the <literal>MSDOS</literal> variable.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+files=basename('SCI/modules/fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci.k')
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="listfiles">listfiles</link>
+      </member>
+      <member>
+        <link linkend="pathconvert">pathconvert</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

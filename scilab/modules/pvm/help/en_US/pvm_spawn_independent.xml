@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_spawn_independent">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_spawn_independent</refname>
+    <refpurpose> Starts new PVM processes.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[tids, numt] = pvm_spawn_independent(task, ntask, [where])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>task:  </term>
+        <listitem>
+          <para>string, which is the executable file name of the PVM process to be started. The executable must already reside on the host on which it is to be started.  The name may be a file in the PVM search path or an absolute path.  The default PVM search path is $HOME/pvm3/bin/$PVM_ARCH/ .</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ntask:  </term>
+        <listitem>
+          <para>integer, specifying the number of copies of the executable file to start.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>where:  </term>
+        <listitem>
+          <para>string (optional), can be a host name such as ``tequila.ens-lyon.fr'' or a PVM architecture class such as ``SUN4''.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>numt:  </term>
+        <listitem>
+          <para>integer, the actual number of tasks started.  Values less than zero indicate a system error.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tids</term>
+        <listitem>
+          <para>row of integers, array of the tids of the PVM processes started by this pvm_spawn_independent call.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_spawn_independent</literal> 
+    starts <literal>ntask</literal> copies of the executable named 
+    <literal>task</literal>.</para>
+    <para>
+    On systems that support environment variables, 
+    <literal>pvm_spawn_independent</literal> passes selected variables
+    from parent environment to children tasks.  If set, the envar
+    <literal>PVM_EXPORT</literal> is passed.  If <literal>PVM_EXPORT</literal> contains other names
+    (separated by ':') they will be passed too.  This is useful for e.g.:</para>
+    <programlisting><![CDATA[
+
+ setenv DISPLAY myworkstation:0.0
+ setenv MYSTERYVAR 13
+ setenv PVM_EXPORT DISPLAY:MYSTERYVAR
+   
+    ]]></programlisting>
+    <para>
+    The hosts on which the PVM processes are started are determined by the
+     <literal>where</literal> arguments. On return the array
+    <literal>tids</literal> contains the PVM task identifiers for each process started.
+    If <literal>pvm_spawn_independent</literal> starts one or more tasks,
+    <literal>numt</literal>
+    will be the actual number of tasks started.  If a system error occurs
+    then <literal>numt</literal> will be &lt; 0.
+    If <literal>numt</literal> is les than  <literal>ntask</literal>
+    then some executables have failed to start. 
+    The last locations in the <literal>tids</literal> array 
+    will contain error codes (see below for meaning). Note that the 
+    first tids in the array are always valid.</para>
+    <para>
+    When the argument  <literal>where</literal> 
+    is omitted  an heuristic (round-robin assignment) is used to
+    distribute the <literal>ntask</literal> 
+    processes across the virtual machine.</para>
+    <para>
+    In the special case where a multiprocessor is specified by
+    <literal>where</literal>. 
+    <literal>pvm_spawn_independent</literal> will start all
+    copies on this single machine using the vendor's underlying routines.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm">pvm</link>
+      </member>
+      <member>
+        <link linkend="pvm_spawn">pvm_spawn</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edit_curv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>edit_curv</refname>
+    <refpurpose> interactive graphic curve editor</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x,y,ok,gc] = edit_curv(y)
+[x,y,ok,gc] = edit_curv(x,y)
+[x,y,ok,gc] = edit_curv(x,y,job)
+[x,y,ok,gc] = edit_curv(x,y,job,tit)
+[x,y,ok,gc] = edit_curv(x,y,job,tit,gc)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vector of x coordinates</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>vector of y coordinates</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>job</term>
+        <listitem>
+          <para>a character string formed by one to three of the characters 'a','x','y'</para>
+          <variablelist>
+            <varlistentry>
+              <term>'a'</term>
+              <listitem>
+                <para>to add points to the edited curve</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'x' </term>
+              <listitem>
+                <para>to modify x coordinates of the edited curve points</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'y'  </term>
+              <listitem>
+                <para>to modify y coordinates of the edited curve points</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tit</term>
+        <listitem>
+          <para>a vector of three character strings which give the curve legend</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gc</term>
+        <listitem>
+          <para>a list of graphic window parameters: <literal>gc=list(rect,nax)</literal></para>
+          <variablelist>
+            <varlistentry>
+              <term>rect</term>
+              <listitem>
+                <para>bounds of the graphics (see plot2d for details)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nax</term>
+              <listitem>
+                <para>graduation parameters (see plot2d for details)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ok</term>
+        <listitem>
+          <para>indicator if ok==%t user as returned with 'ok' menu else user as returned with 'abort' menu  : list (graphical objects created under <literal>edit_curv</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>edit_curv</literal> is an interactive graphic curve editor. To add a new point
+    simply click at the desired location, the added point will be
+    connected to the nearest end-point. to move a point click on it, drag
+    the mouse to the new position and click to set the new position</para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer ; ; ; ; ;   </para>
+  </refsection>
+</refentry>

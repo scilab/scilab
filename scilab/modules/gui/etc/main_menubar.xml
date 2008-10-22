@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<menubar>
+
+   <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
+
+   <!-- File menu -->
+   <menu label="&amp;File" enabled="false">
+        <submenu label="&amp;Execute...">
+            <callback
+            instruction='
+              %fileToExec = xgetfile("*.sc*", getcwd(), gettext("Select a file to execute"));
+              if ~isempty(%fileToExec) then
+                exec(%fileToExec);
+                disp(msprintf(gettext("Execution done.\n")));
+              end
+              clear %fileToExec isempty'
+            type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Open a file...">
+            <callback
+            instruction='
+              %fileToOpen = xgetfile("*.sc*", getcwd(), gettext("Select a file to open with Scipad"));
+              if ~isempty(%fileToOpen) then
+                scipad(%fileToOpen);
+              end
+              clear %fileToOpen isempty'
+            type="0"/>
+        </submenu>
+        <submenu label="&amp;Load environment...">
+            <callback
+            instruction='
+              %fileToLoad = xgetfile("*.sav", getcwd(), gettext("Select a file to load"));
+              if ~isempty(%fileToLoad) then
+                load(%fileToLoad);
+                disp(msprintf(gettext("Environment loaded.\n")));
+              end
+              clear %fileToLoad isempty'
+            type="0"/>
+        </submenu>
+        <submenu label="&amp;Save environment...">
+            <callback
+            instruction='
+              %fileToSave = xgetfile("*.sav", getcwd(), gettext("Select a file to write"));
+              if ~isempty(%fileToSave) then
+                if isempty(fileparts(%fileToSave, "extension")) then
+                  %fileToSave = %fileToSave + ".sav";
+                end
+                save(%fileToSave);
+                disp(msprintf(gettext("Environment saved.\n")));
+              end
+              clear %fileToSave isempty fileparts'
+            type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Change current directory...">
+            <callback
+            instruction='
+              %newDir = uigetdir(getcwd(), gettext("Select a directory"));
+              if ~isempty(%newDir) then
+                cd(%newDir);
+              end
+              clear %newDir isempty'
+            type="0"/>
+        </submenu>
+        <submenu label="&amp;Display current directory">
+            <callback instruction='if iswaitingforinput() then printf("\n%s\n\n%s\n",prompt(),getcwd()); else printf("\n\n%s\n\n",getcwd());end' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="P&amp;age setup...">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup' type="3"/>
+        </submenu>
+        <submenu label="&amp;Print...">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents' type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Quit">
+            <callback instruction='exit();' type="0"/>
+        </submenu>
+    </menu>
+
+    <!-- Edit menu -->
+    <menu label="&amp;Edit" enabled="false">
+        <submenu label="C&amp;ut">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection' type="3"/>
+        </submenu>
+        <submenu label="&amp;Copy">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection' type="3"/>
+        </submenu>
+        <submenu label="&amp;Paste">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole' type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Empty clipboard">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.emptyClipboard' type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Select all">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents' type="3"/>
+        </submenu>
+    </menu>
+
+    <!-- Preferences menu -->
+    <menu label="&amp;Preferences" enabled="false">
+        <submenu label="&amp;Colors">
+            <submenu label="Console &amp;Background...">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleBackground' type="3"/>
+            </submenu>
+            <submenu label="Console &amp;Font...">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleForeground' type="3"/>
+            </submenu>
+        </submenu>
+        <submenu label="&amp;Font...">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont' type="3"/>
+        </submenu>
+        <submenu label="Show/Hide &amp;Toolbar">
+              <callback
+              instruction='
+                if toolbar(-1)=="on" then
+                  toolbar(-1, "off");
+                else
+                  toolbar(-1, "on");
+                end'
+              type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="Clear &amp;History">
+           <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory' type="3"/>
+        </submenu>
+        <submenu label="Clear C&amp;onsole">
+          <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.clear' type="3"/>
+        </submenu>
+    </menu>
+
+    <!-- Control menu -->
+    <menu label="&amp;Control" enabled="false">
+        <submenu label="&amp;Resume">
+            <callback instruction='resume;' type="-2"/>
+        </submenu>
+        <submenu label="&amp;Abort">
+            <callback instruction='abort;' type="-2"/>
+        </submenu>
+        <submenu label="&amp;Interrupt">
+            <callback instruction='pause;' type="-2"/>
+        </submenu>
+    </menu>
+
+    <!-- Applications menu -->
+    <menu label="&amp;Applications" enabled="false">
+        <submenu label="&amp;Editor">
+            <callback instruction='scipad();' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Scicos">
+            <callback instruction='scicos();' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Matlab to Scilab translator">
+            <callback instruction='mfile2sci();' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Variable Editor">
+            <callback instruction='browsevar();' type="0"/>
+        </submenu>
+    </menu>
+
+    <!-- Help menu -->
+    <menu label="&amp;?" enabled="false">
+        <submenu label="Scilab &amp;Help">
+            <callback instruction='help();' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="Scilab &amp;Demonstrations">
+             <callback instruction='demo_gui();' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Web links">
+            <submenu label="Scilab &amp;Web Site">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite' type="3"/>
+            </submenu>
+            <submenu label="&amp;Contributions">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite' type="3"/>
+            </submenu>
+            <submenu label="&amp;Bug And Request database">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite' type="3"/>
+            </submenu>
+            <submenu label="&amp;Newsgroup Archives">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openNewsgroupWebSite' type="3"/>
+            </submenu>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;About Scilab...">
+              <callback instruction='about()' type="0"/>
+        </submenu>
+    </menu>
+</menubar>

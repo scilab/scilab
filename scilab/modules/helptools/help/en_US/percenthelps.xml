@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="helps">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>%helps</refname>
+    <refpurpose> Variable defining the path of help directories</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
+    The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
+    the kth chapter of the manual and is made of two strings:</para>
+    <para><literal>%helps(k,1)</literal> is the absolute pathname for a help directory.</para>
+    <para><literal>%helps(k,2)</literal> is a title for this help directory.
+    For instance, for k=2, we have the graphics chapter 
+    <literal>%helps(2,:)</literal>.</para>
+    <para>
+    The variable <literal>%helps</literal> is defined in the Scilab startup
+    file <literal>SCI+"/scilab.start"</literal>.</para>
+    <para>
+    To add a new help directory, the user should add a row to
+    the variable <literal>%helps</literal>. (One row for each directory).</para>
+    <para>
+    For instance, <literal>%helps=[%helps; "Path-Of-My-Help-Dir","My-Title"];</literal>
+    enables the Scilab help browser to look for help manual items
+    in the directory with pathname "Path-Of-My-Help-Dir".</para>
+    <para>
+    "My-Title" is then the title of a new help chapter.</para>
+    <para>
+    A valid help directory must contain:</para>
+    <para>
+    1- A set of <literal>.html</literal> files (e.g. <literal>item1.html, item2.html</literal> etc).
+    The <literal>.html</literal> files are usually built from XML files.</para>
+    <para>
+    2- A <literal>whatis.html</literal> file, which must have a special format. Each row
+    of the <literal>whatis</literal> must be as follows:</para>
+    <programlisting><![CDATA[
+
+<BR><A HREF="item.html">item</A> - quick description
+   
+    ]]></programlisting>
+    <para><literal>item</literal> is the item of the help, i.e. the command <literal>help item</literal>
+    displays the contents of the file <literal>item.html</literal>.</para>
+    <para>
+    The command <literal>apropos keyword</literal> returns the row(s) of all
+    the <literal>whatis.html</literal> file(s) in which the keyword appears.</para>
+    <para>
+    On Linux platforms Scilab provides a Makefile for transforming
+    <literal>.xml</literal> pages into <literal>.html</literal> pages (see SCIDIR/examples/man-examples).</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="apropos">apropos</link>
+      </member>
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="man">man</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

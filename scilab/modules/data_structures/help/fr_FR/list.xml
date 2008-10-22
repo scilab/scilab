@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="list">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>list</refname>
+    <refpurpose> Objet Scilab, Définition d'une liste  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>list(a1,....an)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+		Crée une <literal>liste</literal> avec les éléments <literal>ai</literal> 
+		qui sont des objets Scilab arbitraires (<literal>matrice, 
+		liste, ...</literal>). Le numéro de type des objets <emphasis>liste</emphasis> 
+		(renvoyé par la fonction <literal>type</literal>) est 15.
+		</para>
+    <para><literal>list()</literal> crée une liste vide (0 élément).
+		</para>
+  </refsection>
+  <refsection>
+    <title>Operations sur les listes</title>
+    <variablelist>
+      <varlistentry>
+        <term>extraction</term>
+        <listitem>
+          <para>: <literal>[x,y,z...]=L(v)</literal> où <literal>v</literal> est un vecteur d'indices; 
+				<literal>[x,y,z]=L(:)</literal>  extrait tous les éléments.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>insertion en position i</term>
+        <listitem>
+          <para>:  <literal>L(i)=a</literal> . Remarque : l'opération <literal>L(i)=a</literal>
+				avec <emphasis>i &gt; 1 + size(L)</emphasis> ne génère pas d'erreur les
+				entrées en position  <emphasis>1 + size(L), ..., i-1</emphasis> étant
+				alors <emphasis>indéfinies</emphasis>. Par contre l'extraction d'un élément
+				<emphasis>indéfini</emphasis> en génère une.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ajouter un élément en queue de liste</term>
+        <listitem>
+          <para>:  <literal>L($+1)=e</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ajouter un élément en tête de liste</term>
+        <listitem>
+          <para>:  <literal>L(0)=e</literal>. (remarque : après cette opération <literal>e</literal> est
+				en position 1, la position des éléments initiaux de la liste étant 
+				décalée vers la droite).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>suppression</term>
+        <listitem>
+          <para>: <literal>L(i)=null()</literal> supprime l'élément en position i de la liste <literal>L</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>concaténation de deux listes</term>
+        <listitem>
+          <para>: <literal>L3 = lstcat(L1,L2)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nombre d'éléments d'une liste</term>
+        <listitem>
+          <para> vous pouvez utiliser <literal>nb_elm = size(L)</literal> 
+				ou encore <literal>nb_elm = length(L)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>itérer avec une liste</term>
+        <listitem>
+          <para> il est possible d'utiliser une liste <literal>L</literal> pour piloter une boucle <link linkend="for">for</link> : 
+				<literal>for e=L,...,end</literal> est une boucle avec <literal>length(L)</literal> 
+				itérations, la variable <literal>e</literal> de la boucle prenant la valeur <literal>L(i)</literal>
+				à l'itération i.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Remarques</title>
+    <para>Scilab propose deux autres sortes de liste, les <link linkend="tlist">tlist</link> (pour listes typées)
+			et les <link linkend="mlist">mlist</link> qui sont très utiles pour définir de nouveaux types de 
+			données avec possibilité de surcharge des opérateurs classiques (voir <link linkend="overloading">overloading</link>).
+			Les tableaux multidimensionnels de scilab (les <link linkend="hypermatrices">hypermatrices</link>) sont en fait
+			codés comme des <emphasis>mlist</emphasis>.
+		</para>
+    <para>Les structures Matlab (<emphasis>struct</emphasis>) sont aussi utilisables.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+l = list(1,["a" "b"])
+l(0) = "foo"
+l($+1) = "hello"
+l(2) = "toto"
+l(3) = rand(1,2)
+l(3) = null()
+lbis = list("gewurtz", "caipirina" ,"debug")
+lter = lstcat(l,lbis)
+size(lter) - size(lbis) - size(l)  // doit être nul
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="null">null</link>
+      </member>
+      <member>
+        <link linkend="lstcat">lstcat</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="size">size</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

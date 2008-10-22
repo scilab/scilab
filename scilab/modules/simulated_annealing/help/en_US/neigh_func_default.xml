@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="neigh_func_default">
+  <info>
+    <pubdate>29-Nov-2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>neigh_func_default</refname>
+    <refpurpose> A SA function which computes a neighbor of a given point </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x_neigh = neigh_func_default(x_current,T,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x_current</term>
+        <listitem>
+          <para>the point for which we want to compute a neighbor
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>T</term>
+        <listitem>
+          <para>the current temperature
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a two columns vector. The first column correspond to the negative amplitude of variation and the second column corresponds to
+       the positive amplitude of variation of the neighborhood. By default, the first column is a column of -0.1 and the second column
+       is a column of 0.1.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x_neigh</term>
+        <listitem>
+          <para>the computed neighbor
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+      This function computes a neighbor of a given point. For example, for a continuous vector, a neighbor will be produced by adding some 
+      noise to each component of the vector. For a binary string, a neighbor will be produced by changing one bit from 0 to 1 or from 1 to 0.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    // We produce a neighbor by adding some noise to each component of a given vector
+    function x_neigh = neigh_func_default(x_current, T)
+      sa_min_delta = -0.1*ones(size(x_current,1),size(x_current,2));
+      sa_max_delta = 0.1*ones(size(x_current,1),size(x_current,2));
+      x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(size(x_current,1),size(x_current,2)) + sa_min_delta;
+    endfunction
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="optim_sa"> optim_sa </link>
+      </member>
+      <member>
+        <link linkend="compute_initial_temp"> compute_initial_temp </link>
+      </member>
+      <member>
+        <link linkend="temp_law_default"> temp_law_default </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
+    Yann COLLETTE (yann.collette@renault.com)
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

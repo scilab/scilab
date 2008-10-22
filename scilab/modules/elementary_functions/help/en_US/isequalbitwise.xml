@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isequalbitwise">
+  <info>
+    <pubdate>2007</pubdate>
+  </info>
+  <refnamediv>
+    <refname>isequalbitwise</refname>
+    <refpurpose> bitwise comparison of variables</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>t=isequalbitwise(a,b)
+t=isequalbitwise(a,b,..)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a, b , ...  </term>
+        <listitem>
+          <para>variables of any types</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal> isequalbitwise</literal> compares its arguments. If all of them
+    are equals function returns <literal> %t</literal> and in the other case
+    it returns <literal> %f</literal>.</para>
+    <para> When comparing list's, structures,... the comparison is made
+    recursively, the order of the fields matters. </para>
+    <para>floating point data are compared bitwise, i.e.
+    NaN values are not equal, double(1) and int32(1) are not equal. See <link linkend="isequal">isequal</link> for IEEE
+    comparisons. </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a=list(1:5,%s+1,'ABCDEFG');
+isequalbitwise(a,a)
+   
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="isequal">isequal</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

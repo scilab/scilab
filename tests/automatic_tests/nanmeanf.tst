@@ -1,0 +1,21 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/nanmeanf_data.ref','rb');
+x = [0.2113249,%nan,0.6653811;0.7560439,0.3303271,0.6283918];
+if load_ref('x') then   pause,end,
+
+fre = [34,12,25;12,23,5];
+if load_ref('fre') then   pause,end,
+
+m = nanmeanf(x, fre);
+if load_ref('m') then   pause,end,
+
+m = nanmeanf(x, fre, 1);
+if load_ref('m') then   pause,end,
+
+m = nanmeanf(x, fre, 2);
+if load_ref('m') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

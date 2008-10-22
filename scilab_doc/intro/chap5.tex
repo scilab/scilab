@@ -1,0 +1,329 @@
+\chapter{Graphics}\label{Graphics}
+The graphics primitives in Scilab release 3.0 accept two graphic ``styles'',
+the ``old'' style which is based on a pre-processing treatment 
+and the ``new'' style, used by default, which is based on an object 
+oriented environment.
+
+These two styles are not fully compatible. To switch to the old style,
+use the command \verb!set old_style on!.
+
+The old style mode is essentially based on two functions, 
+{\tt xset} and {\tt xsetech} which act on the graphic environment.
+Once the graphic environment parameters are set, the graphic commands
+are used for plotting.
+
+In the new style mode, once the plotting command is issued, it is 
+possible to act on the graphic environment by changing the
+properties of the graphic objects made by the plot command.
+The graphic environment is post-processed.
+
+%Nouvelles primitives
+%set get draw drawlater drawnow move copy delete glue unglue
+%Nouvelles macros
+%gcf gca gdf gda sdf sda clearpixmap showpixmap
+
+%primitives obsolete pour le nouveau graphique
+%xset (sauf 'window' et 'alufunction')
+%xget (sauf 'window' et 'alufunction')
+%xtape xname xgrid replot isoview
+
+Scilab graphics are based on a set a graphics functions such as {\tt plot2d},
+{\tt plot3d} \ldots and an object oriented graphic environment.
+The properties of the graphic objects (color, thickness, ...) are manipulated
+with the functions {\tt get} and {\tt set}. The main graphic objects
+are the figure entity and the axes entity. 
+We give here a description of the most useful functions illustrated by
+simple examples. For more sophisticated examples, it is necessary to read
+the on-line help pages. The graphic demos are also useful and it is
+a good way to start.
+
+\section{Function plot2d}
+The basic graphic function \index{plot2d@\scilab{plot2d}} used
+for plotting one or several 2D curves is \scifun{plot2d}.
+The simplest graphic command is \scilab{plot2d(x,y)} where 
+x and y are two vectors with same dimension.
+This command gives the graph of the polyline which links each
+point with  coordinates \scilab{(x(i),y(i))} with the next point
+with coordinates \scilab{(x(i+1),y(i+1))}. The vectors
+\scilab{x} et \scilab{y} must have at least two components. 
+The vector \scilab{x} can be omitted, its default value being 
+\scilab{1:n} where \scilab{n} is the size of \scilab{y}. 
+\begin{figure}
+\begin{center}
+%\includegraphics[width=10cm]{figures/graphique0.eps}
+\includegraphics[width=10cm,height=7.6cm]{figures/f0.eps}
+\end{center}
+\caption{A simple graph}
+\label{f0}
+\end{figure}
+
+Let us start with a simple example. Entering the commands 
+\begin{verbatim}
+-->x=linspace(0,2*%pi,100);plot2d(x,sin(x))
+\end{verbatim}
+opens a graphic window and produces a graph of the sine function
+for 100 values of x equally spaced between 0 and $2 \pi$.
+ The  \scilab{plot2d} command opens a graphic window
+(see figure \ref{f0}) in which the plot appears. 
+The graph is plotted in a rectangular frame and the bottom and left
+sides are used for axes with ticks.
+
+By default, \scifun{plot2d} does not erase the graphic window, but
+the plot is made in the current windows, which possibly contains older
+plots. Thus, if after the preceding command the following is entered~:
+\begin{verbatim}
+t=linspace(0,4*%pi,100);plot2d(t,0.5*cos(t))
+\end{verbatim}
+\noindent we get figure \ref{g0}) in which the graph of th
+two functions, sine and cosine, appear with a common x axis.
+(note that the x-axis goes from  $0$ to $4\pi$ after the second
+plot command).
+\begin{figure}
+\begin{center}
+%\includegraphics[width=10cm]{figures/graphique0.eps}
+%\includegraphics[width=10cm]{figures/gg.eps}
+\includegraphics[width=10cm]{figures/f1.eps}
+\end{center}
+\caption{Two plots: superposing curves}\label{g0}
+\end{figure}
+
+To clear the graphic window, the command \scifun{xbasc()} should be
+used or just click the \scifun{Clear} button of the  \scifun{File} menu.
+
+Using the standard menus, it is possible to zoom a part of the graph or
+to export the graphic window into a file or to see the 2D plot in a
+3D figure. Menus can be interactively 
+added or removed, using \scifun{delmenu}  \scifun{addmenu} functions.
+
+Parameters such as the color or the thickness of the frame can be
+given to the {\tt plot2d} function. Note that the graphic parameters are 
+given to {\tt plot2d} with a particular syntax. For instance to select a 
+color or a line style we can use the ``style'' keyword inside the plot2d
+command as follows:
+\begin{verbatim}
+-->plot2d(x,y,style=5) //5 means ``red''
+\end{verbatim}
+
+The basic properties of a figure can be accessed by clicking on the {\tt Edit}
+button of the graphic window. For instance to select a particular color
+(as done with style=5 before) we can use the command
+\begin{verbatim}
+-->plot2d(x,y)
+\end{verbatim}
+and select the {\tt Start entity picker} item of the {\tt Edit} button, then
+click on the curve, select a particular color and finally select the 
+{\tt Stop entity picker} item. 
+
+\section{Figure, axes, etc}
+Once a graphic command has been issued, the properties of the figure
+obtained are retrieved by the command 
+\begin{verbatim}
+-->f=gcf()
+\end{verbatim}
+Here {\tt f} is a handle which describes the figure properties.
+It has many fields which can be modified to change the properties
+of the figure.
+For instance, issuing
+\begin{verbatim}
+-->f.figure_name='My figure'
+\end{verbatim}
+will modify the \verb!figure_name! field and change the name of the 
+figure which appears in the current graphic window.
+
+The handle {\tt f} has a field called ``children'' which is an handle
+descrining the properties of the axes of the figure.
+
+Assume now that we have plotted a graph by the 
+{\tt plot2d(x,y)} command want add a title to the graph obtained.
+The handle associated with the figure is \verb!f=gcf()!.
+To access to the properties of the axes of the figure one can enter
+\begin{verbatim}
+-->a=f.children
+\end{verbatim}
+and we see that the handle {\tt a} has a field named ``title''.
+Now if we enter 
+\begin{verbatim}
+-->l=a.title
+\end{verbatim}
+we see that {\tt l} is itself a handle with a field named ``text''.
+We can give a title to the plot by the command \verb!l.text=My plot'!
+Of course it is possible to obtain the same result by
+the command
+\begin{verbatim}
+f.children.title.text='My plot'
+\end{verbatim}
+This simple example illustrates how to manipulate graphics within Scilab.
+
+\section{Graphic objects properties}
+Help on the graphics objects can obtained by the command
+\begin{verbatim}
+-->help graphics_entities
+\end{verbatim}
+The properties of the various graphic objects are obtained by the command 
+\begin{verbatim}
+-->help object_properties
+\end{verbatim}
+where {\verb!object_properties!} is in the following table.
+\begin{center}
+\begin{tabular}{|c|}
+\hline
+{\verb!agregation_properties!} \\ \hline
+{\verb!arc_properties!} \\ \hline
+{\verb!axes_properties!} \\ \hline
+{\verb!axis_properties! }  \\ \hline
+{\verb!champ_properties! } \\ \hline
+{\verb!fec_properties!} \\
+{\verb!figure_properties!} \\ \hline
+{\verb!grayplot_properties!} \\ \hline
+{\verb!label_properties! } \\ \hline
+{\verb!legend_properties! } \\ \hline
+{\verb!param3d_properties !} \\ \hline
+{\verb!polyline_properties! } \\ \hline
+{\verb!rectangle_properties !} \\ \hline
+{\verb!segs_properties! } \\ \hline
+{\verb!text_properties! } \\ \hline
+{\verb!title_properties! } \\ \hline
+\end{tabular}
+\end{center}
+
+To get a handle associated with a graphic object, one can use the 
+functions {\tt gcf()} (current Figure), {\tt gca()} (current Axes),
+or {\tt gce()} (current Entity). From the top figure handle, one 
+can access the complete tree of (sub)handles by selecting the various
+children and parents of a given handle.
+
+\section{Some useful plotting functions}
+\subsection{2D plots}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt plot2d }  & basic plot function \\ \hline
+{\tt plot3d } & plot surface \\ \hline
+{\tt param3d } &  parametric plot \\ \hline
+{\tt (f)champ} & vector field plot \\ \hline
+{\tt contour}, {\tt fcontour}, {\tt (f)contour2d}, \\
+{\tt contourf}, {\tt fcontour2d} & level curve plot \\ \hline
+{\tt errbar  }  & add error bar \\ \hline
+{\tt Matplot }  & 2D plot of a matrix using colors \\ \hline
+{\tt histplot}  & histogram \\ \hline
+{\tt errbar}  & vertical bars \\ \hline
+{\tt S(f)grayplot}  & smooth 2D plot of surface \\ \hline
+{\tt (f)grayplot}  & 2D plot of surface \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{3D plots}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt (f)plot3d } & plot surface \\ \hline
+{\tt param3d(1) } &  parametric plot \\ \hline
+{\tt contour} & level curve plot \\ \hline
+{\tt hist3d}  & 3D histogram\\ \hline
+{\tt genfac3d, eval3dp }  & compute factes \\ \hline
+{\tt hist3d}  & histogram \\ \hline
+{\tt geom3d}  & 3D projection \\ \hline
+{\tt S(f)grayplot}  & smooth 2D plot of surface \\ \hline
+{\tt (f)grayplot}  & 2D plot of surface \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Low level 2D plots}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt xpoly} & polyline plot \\ \hline
+{\tt xpolys } &  multi-polyline plot \\ \hline
+{\tt xrpoly} & regular polygon plot \\ \hline
+{\tt xsegs}  & draw unconnected segments\\ \hline
+{\tt xfpoly(s) }  & filled polygon(s) \\ \hline
+{\tt xrect }  & rectangle plot \\ \hline
+{\tt xfrect }  & filled rectangle plot \\ \hline
+{\tt xrects }  & draw or fill rectangles \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Strings, ...}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt xstring, xstringl, xstringb} & string plots \\ \hline
+{\tt xarrows} & arrows plot \\ \hline
+{\tt xarc(s), xfarc, xfarcs} & arcs plot \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Colors}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt colormap} & set colormap \\ \hline
+{\tt getcolor} & select color \\ \hline
+{\tt addcolor} & add color to colormap \\ \hline
+{\tt graycolormap} & gray colormap \\ \hline
+{\tt hotcolormap} & red to yellow colormap \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Mouse position}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt xclick} & wait for a mouse click \\ \hline
+{\tt locate } & mouse selection of a set of points \\ \hline
+{\tt xgetmouse} & add color to colormap \\ \hline
+{\tt graycolormap} & get the current position of the mouse\\ \hline
+\end{tabular}
+\end{center}
+
+\section{Animated plot}\label{Animation}
+\index{animated plot}
+\subsection{pixmap mode}
+To run the pixmap mode, get the handle of the current figure
+\verb!f=gcf();! and activate the pixmap mode \verb!f.pixmap='on'!.
+
+When the pixmap mode is on, the pixels of the graphic window
+are stored into a temporary buffer which is displayed upon request.
+The various steps corresponding to the creation of the image are not
+displayed. 
+
+An animated plot using this mode is generally obtained by a 
+a for or while loop which produces a new image at each iteration.
+
+When the image is ready, the screen display is realized by
+the \scifun{show\_pixmap()} command.
+
+In the animation mode, it is often necessary to set a frame 
+with given dimensions in which the animated plotting command will take place.
+
+To fix an appropriate frame with extremal values 
+\scilab{rect=[xmin,ymin,xmax,ymax]} one can set properties of the axes
+(\verb!data_bounds! field obtained by \verb!gca()!) or alternaltively 
+enter the command 
+\noindent
+\begin{verbatim}
+plot2d([],[],rect=[xmin,ymin,xmax,ymax]). 
+\end{verbatim}
+
+Assume that \scilab{y=phi(x,t)} is a vector with the same 
+dimension as \scilab{x}
+and depending on the parameter \scilab{t}. The animated graph of \scilab{y} 
+as a function of \scilab{t} (for a fixed \scilab{x} vector), is seen by
+the following code~:
+\begin{verbatim}
+f.pixmap='on';     //The data is sent into a pixmap
+plot2d(x,phi(x,theta(1)));   //First y for t=theta(1)
+w=gce();     //The current entity
+for t=theta
+ w.children.data(:,2)=phi(x,t)';  //update y
+ show_pixmap(); //display the pixmap content
+end
+\end{verbatim}
+The role of pixmap mode is to avoid image blinking. Any modification
+of a graphic property implies a complete display of the new graph
+(including axes, titles etc). In the pixmap mode the new image is
+built and displayed afterwards by the  \scifun{show\_pixmap()} command.
+
+Function \scifun{xpause} can be used to slow down the graphic display.
+
+%\end{center}

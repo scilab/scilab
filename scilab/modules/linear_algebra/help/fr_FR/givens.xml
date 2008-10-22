@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="givens">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>givens</refname>
+    <refpurpose> Transformation de Givens  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>U=givens(xy)
+U=givens(x,y)
+[U,c]=givens(xy)
+[U,c]=givens(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y  </term>
+        <listitem>
+          <para>deux nombres réels ou complexes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xy  </term>
+        <listitem>
+          <para> vecteur colonne réel ou complexe à deux composantes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U  </term>
+        <listitem>
+          <para>matrice unitaire 2 x 2
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c  </term>
+        <listitem>
+          <para> vecteur colonne réel ou complexe à deux composantes
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>U = givens(x, y)</literal> ou <literal>U = givens(xy)</literal> avec <literal>xy = [x;y]</literal>
+    renvoie <literal>U</literal> une matrice unitaire <literal>2</literal>x<literal>2</literal> telle que :
+  </para>
+    <para><literal>U*xy=[r;0]=c</literal>.
+  </para>
+    <para>
+    Notez que <literal>givens(x,y)</literal> et <literal>givens([x;y])</literal> sont équivalents.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[3,4;5,6];
+U=givens(A(:,1));
+U*A
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

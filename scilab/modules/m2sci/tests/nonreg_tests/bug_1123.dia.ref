@@ -1,0 +1,71 @@
+// <-- Non-regression test for bug 1123 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1123
+//
+// <-- Short Description -->
+//    I think this bug is related to other ones but the matlab
+//    construction :
+//
+//    if(mod(N,2))N=N-1;t=t(1:N);xs=xs(1:N);xp=xp(1:N); x=x(1:N);end
+//
+//    leads to a error 43 the m2sci script
+// Copyright INRIA
+// Scilab Project - F. Belahcene
+MFILECONTENTS = "if(true)t=1;end"
+ MFILECONTENTS  =
+ 
+ if(true)t=1;end   
+MFILE         = TMPDIR+"/bug1123.m"
+ MFILE  =
+ 
+ TMPDIR/bug1123.m   
+SCIFILE       = TMPDIR+"/bug1123.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug1123.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug1123.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"if %t then t = 1;end;"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!if %t then t = 1;end;                            !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

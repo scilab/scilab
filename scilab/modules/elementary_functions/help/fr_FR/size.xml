@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="size">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>size</refname>
+    <refpurpose> taille d'un objet  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=size(x [,sel])
+[nr,nc]=size(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>matrice, liste ou liste de type <literal>syslin</literal>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y  </term>
+        <listitem>
+          <para> un entier ou un vecteur d'entiers <literal> 1x2 </literal>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sel  </term>
+        <listitem>
+          <para>un entier ou une chaîne de caractères
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nr,nc  </term>
+        <listitem>
+          <para>deux entiers
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>Appliquée à :</term>
+        <listitem>
+          <para>une matrice (constante, polynomiale, de chaînes de caractères, booléenne, rationnelle) <literal>x</literal>, avec un seul argument en sortie, <literal>size</literal> renvoie un vecteur <literal>1</literal>x<literal>2</literal> [nombre de lignes, nombre de colonnes].  Appelée avec deux arguments en sortie, size renvoie <literal>nr,nc</literal> = [nombre de lignes, nombre de colonnes].  <literal>sel</literal> peut être utilisé pour indiquer la dimension désirée</para>
+          <variablelist>
+            <varlistentry>
+              <term>1 ou 'r'</term>
+              <listitem>
+                <para>pour obtenir le nombre de lignes </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>2 ou 'c'</term>
+              <listitem>
+                <para>pour obtenir le nombre de colonnes</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'*'</term>
+              <listitem>
+                <para>pour obtenir le produit du nombre de lignes et de colonnes</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Appliquée à :</term>
+        <listitem>
+          <para>une liste, size en renvoie le nombre d'éléments. Dans ce cas seule la syntaxe <literal>y=size(x)</literal> peut être utilisée.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Appliquée à :</term>
+        <listitem>
+          <para>un système dynamique linéaire, <literal>y=size(x)</literal> renvoie le vecteur ligne <literal>y</literal> = [nombre de sorties, nombre d'entrées] c'est à dire les dimensions de la matrice de transfert correspondante. La syntaxe <literal>[nr,nc]=size(x)</literal> est aussi valide (avec <literal>(nr,nc)=(y(1),y(2)</literal>).  Si <literal>x</literal> est un système dynamique linéaire donnée par sa représentation d'état, alors <literal> [nr,nc,nx]=size(x) </literal> renvoie de plus <literal>nx</literal> la dimension de la matrice <literal>A</literal> de <literal>x</literal> (la dimension de l'état).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Appliquée à :</term>
+        <listitem>
+          <para>une hypermatrice, <literal> y=size(x) </literal> renvoie le vecteur de ses dimensions. La syntaxe <literal> [n1,n2,...nn]=size(x) </literal> est aussi acceptée. <literal> ni=size(x,i) </literal> renvoie la ième dimension et <literal>size(x,'*') </literal> renvoie le produit des dimensions.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+[n,m]=size(rand(3,2))
+[n,m]=size(['a','b';'c','d'])
+x=ssrand(3,2,4);[ny,nu]=size(x)
+[ny,nu]=size(ss2tf(x))
+[ny,nu,nx]=size(x)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

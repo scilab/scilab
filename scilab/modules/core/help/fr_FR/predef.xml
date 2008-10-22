@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="predef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>predef</refname>
+    <refpurpose> protection de variables  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>n=predef()
+oldnew=predef(n)
+oldnew=predef('all')
+oldnew=predef('clear')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Function utilitaire permettant de déclarer comme "protégées"
+      les variables "les plus anciennes". Les variables protégées ne
+      peuvent pas être effacées. Elles ne sont pas non plus sauvées par la
+      commande <literal>'save'</literal>. Les variables "les plus
+      anciennes" sont celles qui apparaissent avec la commande
+      <literal>who('get')</literal>.
+    </para>
+    <para><literal>predef()</literal> renvoie le nombre de variables protégées.
+    </para>
+    <para><literal>predef('a[ll]')</literal> protège toutes les variables et
+      renvoie l'ancien et le nouveau nombre de variables protégées.
+    </para>
+    <para><literal>predef('c[lear]')</literal> enlève la protection de toutes
+      les variables sauf les 7 définies dernièrement. Renvoie l'ancien et
+      le nouveau nombre de variables protégées.
+    </para>
+    <para><literal>predef(n)</literal> protège les <literal>max(n,7)</literal> variables
+      définies dernièrement. Renvoie l'ancien et le nouveau nombre de
+      variables protégées.
+    </para>
+    <para>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Remarques</title>
+    <para>
+			Le nombre de variables protégées est défini dans le fichier de démarrage
+			<literal>SCI/etc/scilab.start</literal>. L'utilisateur a la possibilité de
+			définir ses propres variables protégées dans les fichiers de démarrage
+			<literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
+		</para>
+    <para>
+			Définition de SCIHOME : 
+			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+		</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clear">clear</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

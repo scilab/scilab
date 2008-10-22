@@ -1,0 +1,5 @@
+ p=poly([1 2],'s')
+ q=poly([1 2],'s','c')
+ p+q
+ p*q
+ q/p

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="end">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>end</refname>
+    <refpurpose> end keyword</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Used at end of loops or conditionals.
+    <literal>for, while, if, select</literal> must be terminated by <literal>end</literal> .</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="for">for</link>
+      </member>
+      <member>
+        <link linkend="while">while</link>
+      </member>
+      <member>
+        <link linkend="if">if</link>
+      </member>
+      <member>
+        <link linkend="select">select</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,27 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function fileparts()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+file = "\home\user4\matlab\classpath.txt";
+
+fileparts(file)+pathconvert("/")
+
+pathstr = fileparts(file)+pathconvert("/")
+
+[pathstr,name] = fileparts(file)
+pathstr = pathstr+pathconvert("/");
+
+[pathstr,name,ext] = fileparts(file)
+pathstr = pathstr+pathconvert("/");
+
+[pathstr,name,ext] = fileparts(file)
+pathstr = pathstr+pathconvert("/");
+versn = "";

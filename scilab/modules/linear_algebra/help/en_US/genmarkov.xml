@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="genmarkov">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>genmarkov</refname>
+    <refpurpose> generates random markov matrix with recurrent and transient classes</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>M=genmarkov(rec,tr)
+M=genmarkov(rec,tr,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>rec</term>
+        <listitem>
+          <para>integer row vector (its dimension is the number of recurrent classes).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tr</term>
+        <listitem>
+          <para>integer (number of transient states)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>real Markov matrix. Sum of entries in each row should add to one.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>string <literal>'perm'</literal>. If given, a random permutation of the states is done.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Returns in M a random Markov transition probability matrix
+    with <literal>size(rec,1)</literal> recurrent classes with <literal>rec(1),...rec($)</literal> 
+    entries respectively and tr transient states.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//P has two recurrent classes (with 2 and 1 states) 2 transient states
+P=genmarkov([2,1],2,'perm')
+[perm,rec,tr,indsRec,indsT]=classmarkov(P);
+P(perm,perm)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="classmarkov">classmarkov</link>
+      </member>
+      <member>
+        <link linkend="eigenmarkov">eigenmarkov</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

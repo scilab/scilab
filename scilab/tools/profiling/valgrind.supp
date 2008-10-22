@@ -1,0 +1,1142 @@
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:xmlInitMemory
+   fun:xmlInitParser
+   fun:xmlSAXParseFileWithData
+   fun:xmlSAXParseFile
+   fun:xmlParseFile
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_nc_next_db
+   fun:_nc_read_entry
+   fun:_nc_setupterm
+   fun:tgetent
+   fun:scilinesdefault
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_nc_getenv_num
+   fun:_nc_get_screensize
+   fun:_nc_setupterm
+   fun:tgetent
+   fun:scilinesdefault
+}
+
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+   fun:dlopen
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_ZN2os6getenvEPKcPci
+   fun:_ZN9Arguments34parse_options_environment_variableEPKcP12SysClassPathPb
+   fun:_ZN9Arguments18parse_vm_init_argsEPK14JavaVMInitArgs
+   fun:_ZN9Arguments5parseEPK14JavaVMInitArgs
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_Z13SR_initializev
+   fun:_ZN2os6init_2Ev
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+   fun:JNI_CreateJavaVM
+   fun:SciJNI_CreateJavaVM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass18link_class_or_failEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+   fun:JNI_CreateJavaVM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass18link_class_or_failEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass18link_class_or_failEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_ZN13instanceKlass15initialize_implE19instanceKlassHandleP6Thread
+   fun:_ZN13instanceKlass10initializeEP6Thread
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+   fun:JNI_CreateJavaVM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_ZN13instanceKlass15initialize_implE19instanceKlassHandleP6Thread
+   fun:_ZN13instanceKlass10initializeEP6Thread
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+   fun:_ZN2os20os_exception_wrapperEPFvP9JavaValueP12methodHandleP17JavaCallArgumentsP6ThreadES1_S3_S5_S7_
+   fun:_ZN9JavaCalls4callEP9JavaValue12methodHandleP17JavaCallArgumentsP6Thread
+   fun:_ZN13instanceKlass27call_class_initializer_implE19instanceKlassHandleP6Thread
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:FcConfigFilename
+   fun:FcConfigParseAndLoad
+   fun:FcInitLoadConfig
+   fun:FcInitLoadConfigAndFonts
+   fun:FcInit
+}
+{
+   <insert a suppression name here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/ld-2.7.so
+   fun:_X11TransWrite
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:_XReply
+   fun:XInternAtom
+   fun:gdk_x11_atom_to_xatom_for_display
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:g_get_filename_charsets
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_filename_to_utf8
+   fun:g_dir_open
+   obj:/usr/lib/libgtk-x11-2.0.so.0.1200.7
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_XimLocalOpenIM
+   fun:_XimOpenIM
+   fun:XOpenIM
+   obj:/usr/lib/libtk8.5.so.0
+   fun:TkpOpenDisplay
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_XInitKeysymDB
+   fun:XStringToKeysym
+   fun:TkStringToKeysym
+   obj:/usr/lib/libtk8.5.so.0
+   obj:/usr/lib/libtk8.5.so.0
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_XimLocalOpenIM
+   fun:_XimOpenIM
+   fun:XOpenIM
+   obj:/usr/lib/libtk8.5.so.0
+   fun:TkpOpenDisplay
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   obj:/usr/lib/libtcl8.5.so.0
+   fun:TclpAlloc
+   fun:TclpRealloc
+   fun:Tcl_Realloc
+   fun:Tcl_SetObjLength
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_memalign
+   fun:_vgrZU_libcZdsoZa_posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_slice_alloc
+   fun:g_slice_alloc0
+   fun:g_type_create_instance
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:TclpAlloc
+   fun:Tcl_Alloc
+   fun:Tcl_GetThreadData
+   obj:/usr/lib/libtcl8.5.so.0
+   obj:/usr/lib/libtcl8.5.so.0
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_realloc
+   obj:/usr/lib/libfontconfig.so.1.3.0
+   obj:/usr/lib/libfontconfig.so.1.3.0
+   obj:/usr/lib/libfontconfig.so.1.3.0
+   fun:FcFontRenderPrepare
+   obj:/usr/lib/libpangoft2-1.0.so.0.1800.4
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:_Znwj
+   fun:_Znaj
+   fun:_ZN18ObjectSynchronizer7omAllocEP6Thread
+   fun:_ZN18ObjectSynchronizer7inflateEP6ThreadP7oopDesc
+   fun:_ZN18ObjectSynchronizer19waitUninterruptiblyE6HandlexP6Thread
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_realloc
+   fun:XGetVisualInfo
+   fun:getAllConfigs
+   fun:ensureConfigsInited
+   fun:Java_sun_awt_X11GraphicsDevice_getConfigVisualId
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+   fun:dlopen
+   fun:LoadFuntionsJVM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass18link_class_or_failEP6Thread
+   fun:_Z18universe_post_initv
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:_dl_sym
+   obj:/lib/i686/cmov/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/usr/lib/libfontconfig.so.1.3.0
+   fun:FcInitLoadConfig
+   fun:FcInitLoadConfigAndFonts
+   fun:FcInit
+   fun:FcConfigGetCurrent
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:openFontConfig
+   fun:getFontConfigLocations
+   fun:getPlatformFontPathChars
+   fun:Java_sun_font_FontManager_getFontPath
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:g_getenv
+   fun:g_type_init_with_debug_flags
+   fun:g_type_init
+   fun:gdk_pre_parse_libgtk_only
+   obj:/usr/lib/libgtk-x11-2.0.so.0.1200.7
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_get_charset
+   obj:/usr/lib/libgtk-x11-2.0.so.0.1200.7
+   fun:gtk_target_list_add_text_targets
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:_XlcFileName
+   fun:_XimCheckIfLocalProcessing
+   fun:_XimOpenIM
+   fun:XOpenIM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Free
+   fun:_vgrZU_libcZdsoZa_free
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:__libc_freeres
+   fun:_vgnU_freeres
+   fun:pthread_cond_wait@@GLIBC_2.3.2
+   fun:pthread_cond_wait
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+   fun:JNI_CreateJavaVM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+   fun:JNI_CreateJavaVM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass15link_class_implE19instanceKlassHandlebP6Thread
+   fun:_ZN13instanceKlass10link_classEP6Thread
+   fun:_Z18universe_post_initv
+   fun:_Z12init_globalsv
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/usr/lib/libtcl8.5.so.0
+   obj:/usr/lib/libtcl8.5.so.0
+   fun:TclGetLibraryPath
+   obj:/usr/lib/libtcl8.5.so.0
+   obj:/usr/lib/libtcl8.5.so.0
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr1
+   obj:/usr/lib/libtcl8.5.so.0
+   fun:Tcl_ExternalToUtfDString
+   fun:TclSetupEnv
+   fun:Tcl_CreateInterp
+   fun:initTclInterp
+   fun:DaemonOpenTCLsci
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr1
+   fun:_vgrZU_libcZdsoZa_strlen
+   fun:Tcl_ExternalToUtfDString
+   fun:TclSetupEnv
+   fun:Tcl_CreateInterp
+   fun:initTclInterp
+   fun:DaemonOpenTCLsci
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:*
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+   fun:_ZN2os20os_exception_wrapperEPFvP9JavaValueP12methodHandleP17JavaCallArgumentsP6ThreadES1_S3_S5_S7_
+   fun:_ZN9JavaCalls4callEP9JavaValue12methodHandleP17JavaCallArgumentsP6Thread
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:*
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+   fun:_ZN2os20os_exception_wrapperEPFvP9JavaValueP12methodHandleP17JavaCallArgumentsP6ThreadES1_S3_S5_S7_
+   fun:_ZN9JavaCalls4callEP9JavaValue12methodHandleP17JavaCallArgumentsP6Thread
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+   fun:_ZN2os20os_exception_wrapperEPFvP9JavaValueP12methodHandleP17JavaCallArgumentsP6ThreadES1_S3_S5_S7_
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+   fun:_ZN2os20os_exception_wrapperEPFvP9JavaValueP12methodHandleP17JavaCallArgumentsP6ThreadES1_S3_S5_S7_
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN16BacktraceBuilder6expandEP6Thread
+   fun:_ZN19java_lang_Throwable19fill_in_stack_traceE6HandleP6Thread
+   fun:_ZN19java_lang_Throwable19fill_in_stack_traceE6Handle
+   fun:JVM_FillInStackTrace
+   fun:Java_java_lang_Throwable_fillInStackTrace
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_malloc0
+   fun:g_option_context_new
+   fun:gtk_parse_args
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:g_get_charset
+   obj:/usr/lib/libgtk-x11-2.0.so.0.1200.7
+   fun:gtk_target_list_add_text_targets
+   fun:gtk_drag_dest_add_text_targets
+   obj:/usr/lib/libgtk-x11-2.0.so.0.1200.7
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:gtk2_load
+   fun:Java_sun_awt_UNIXToolkit_load_1gtk
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:readEnv
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:_dl_sym
+   obj:/lib/i686/cmov/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr1
+   fun:_vgrZU_libcZdsoZa_index
+   fun:Java_java_lang_ProcessEnvironment_environ
+   obj:*
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:AWT_OnLoad
+   fun:JNI_OnLoad
+   fun:Java_java_lang_ClassLoader_00024NativeLibrary_load
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/lib/i686/cmov/libc-2.7.so
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:dcgettext
+   fun:strerror_r
+   fun:strerror
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/lib/i686/cmov/libc-2.7.so
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:pthread_once
+   obj:/lib/i686/cmov/libc-2.7.so
+   obj:/lib/i686/cmov/libc-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:XkbUseExtension
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:XkbUseExtension
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:XkbUseExtension
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:makeDefaultConfig
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:getenv
+   fun:awt_allocate_colors
+   fun:awtCreateX11Colormap
+   fun:findWithTemplate
+   fun:makeDefaultConfig
+   fun:awt_init_Display
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:getenv
+   fun:awt_allocate_colors
+   fun:awtCreateX11Colormap
+   fun:findWithTemplate
+   fun:makeDefaultConfig
+   fun:awt_init_Display
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:_dl_sym
+   obj:/lib/i686/cmov/libdl-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:Java_sun_java2d_x11_X11SurfaceData_initIDs
+   obj:*
+   obj:*
+   obj:*
+   fun:_ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/i686/cmov/libdl-2.7.so
+   fun:dlopen
+   fun:Java_sun_java2d_x11_X11SurfaceData_initIDs
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:g_malloc0
+   obj:/usr/lib/libgobject-2.0.so.0.1400.6
+   obj:/usr/lib/libgobject-2.0.so.0.1400.6
+   fun:g_type_register_fundamental
+   obj:/usr/lib/libgobject-2.0.so.0.1400.6
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:XdbeGetVisualInfo
+   fun:Java_sun_awt_X11GraphicsDevice_getDoubleBufferVisuals
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:_ZN2os16format_boot_pathEPKcS1_icc
+   fun:_ZN2os13set_boot_pathEcc
+   fun:_ZN2os29init_system_properties_valuesEv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+   fun:JNI_CreateJavaVM
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:_ZN2os6strdupEPKc
+   fun:_ZN11ClassLoader27setup_bootstrap_search_pathEv
+   fun:_ZN11ClassLoader10initializeEv
+   fun:_Z12init_globalsv
+   fun:_ZN7Threads9create_vmEP14JavaVMInitArgsPb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:__nss_database_lookup
+   obj:*
+   obj:*
+   fun:getpwuid_r
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:XcursorLibraryPath
+   obj:/usr/lib/libXcursor.so.1.0.2
+   fun:XcursorLibraryLoadImages
+   fun:XcursorShapeLoadImages
+   fun:XcursorTryShapeCursor
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:_XcursorGetDisplayInfo
+   fun:XcursorSupportsARGB
+   fun:XcursorTryShapeCursor
+   fun:XCreateGlyphCursor
+   fun:XCreateFontCursor
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:XGetDefault
+   fun:_XcursorGetDisplayInfo
+   fun:XcursorSupportsARGB
+   fun:XcursorTryShapeCursor
+   fun:XCreateGlyphCursor
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN20LinearLeastSquareFit6updateEdd
+   fun:_ZN18AdaptiveSizePolicy20minor_collection_endEN7GCCause5CauseE
+   fun:_ZN10PSScavenge16invoke_no_policyEv
+   fun:_ZN10PSScavenge6invokeEv
+   fun:_ZN20ParallelScavengeHeap19failed_mem_allocateEjb
+   fun:_ZN29VM_ParallelGCFailedAllocation4doitEv
+}
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN20LinearLeastSquareFit6updateEdd
+   fun:_ZN20PSAdaptiveSizePolicy32update_minor_pause_old_estimatorEd
+   fun:_ZN18AdaptiveSizePolicy20minor_collection_endEN7GCCause5CauseE
+   fun:_ZN10PSScavenge16invoke_no_policyEv
+   fun:_ZN10PSScavenge6invokeEv
+   fun:_ZN20ParallelScavengeHeap19failed_mem_allocateEjb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:findJavaTZ_md
+   fun:Java_java_util_TimeZone_getSystemTimeZoneID
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:_ZN2os6mallocEj
+   fun:_ZN11ResourceObjnwEjNS_15allocation_typeE
+   fun:_Z41__static_initialization_and_destruction_0ii
+   fun:_GLOBAL__I__ZN17FilteredFieldsMap16_filtered_fieldsE
+   obj:/usr/lib/jvm/java-6-sun-1.6.0.04/jre/lib/i386/server/libjvm.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:zcalloc
+   fun:inflate_blocks_new
+   fun:inflateInit2_
+   fun:Java_java_util_zip_Inflater_init
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:readCEN
+   fun:ZIP_Put_In_Cache
+   fun:ZIP_Open_Generic
+   fun:ZIP_Open
+   fun:_ZN11ClassLoader23create_class_path_entryEPc4statPP14ClassPathEntryb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:g_try_malloc
+   fun:gdk_pixbuf_new
+   fun:gtk2_init_painting
+   fun:Java_com_sun_java_swing_plaf_gtk_GTKNativeEngine_nativeStartPainting
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:tsi_AllocMem
+   fun:tsi_AllocArray
+   fun:ag_HintInit
+   fun:T2KDoGriddingSetUp
+   fun:T2K_NewTransformation
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_memalign
+   fun:_vgrZU_libcZdsoZa_posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_slice_alloc
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_hash_table_insert
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:XOpenDisplay
+   fun:Java_com_sun_opengl_impl_x11_GLX_XOpenDisplay__Ljava_lang_String_2
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:g_malloc0
+   fun:g_type_class_ref
+   fun:g_param_spec_enum
+   obj:/usr/lib/libgtk-x11-2.0.so.0.1200.7
+   fun:g_type_class_ref
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_realloc
+   fun:_XimParseStringFile
+   fun:_XimLocalOpenIM
+   fun:_XimOpenIM
+   fun:XOpenIM
+   obj:/usr/lib/libtk8.5.so.0
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   obj:/usr/lib/libfreetype.so.6.3.16
+   fun:ft_mem_qalloc
+   fun:ft_mem_alloc
+   fun:FT_New_Library
+   fun:FT_Init_FreeType
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:readCEN
+   fun:ZIP_Put_In_Cache
+   fun:ZIP_Open_Generic
+   fun:ZIP_Open
+   fun:_ZN11ClassLoader23create_class_path_entryEPc4statPP14ClassPathEntryb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   obj:/usr/lib/libfontconfig.so.1.3.0
+   obj:/usr/lib/libfontconfig.so.1.3.0
+   fun:FcFontRenderPrepare
+   obj:/usr/lib/libpangoft2-1.0.so.0.1800.4
+   fun:pango_font_map_load_fontset
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:g_malloc
+   fun:g_signal_newv
+   fun:g_signal_new_valist
+   fun:g_signal_new
+   obj:/usr/lib/libgtk-x11-2.0.so.0.1200.7
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:init
+   obj:/usr/lib/jvm/java-6-sun-1.6.0.04/jre/lib/i386/libnet.so
+   obj:/usr/lib/jvm/java-6-sun-1.6.0.04/jre/lib/i386/libnet.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   obj:/usr/lib/libfontconfig.so.1.3.0
+   fun:FcObjectSetAdd
+   fun:FcObjectSetBuild
+   fun:getFontConfigLocations
+   fun:getPlatformFontPathChars
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_realloc
+   fun:g_realloc
+   obj:/usr/lib/libgobject-2.0.so.0.1400.6
+   fun:g_signal_newv
+   fun:g_signal_new_valist
+   fun:g_signal_new
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:_XEnq
+   fun:_XReply
+   fun:XSync
+   obj:/usr/lib/libgdk-x11-2.0.so.0.1200.7
+   fun:gdk_drawable_copy_to_image
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:_XrmInternalStringToQuark
+   fun:XrmStringToQuark
+   fun:_XlcGetCharSet
+   fun:_XlcAddCT
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   obj:/usr/lib/libX11.so.6.2.0
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:XrmGetStringDatabase
+   fun:XGetDefault
+   fun:_XcursorGetDisplayInfo
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:setlocale
+   fun:GetJavaProperties
+   fun:Java_java_lang_System_initProperties
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   obj:/lib/i686/cmov/libc-2.7.so
+   fun:tzset
+   fun:GetJavaProperties
+   fun:Java_java_lang_System_initProperties
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:setPathEnvironment
+   fun:GetJavaProperties
+   fun:Java_java_lang_System_initProperties
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:zcalloc
+   fun:inflateInit2_
+   fun:Java_java_util_zip_Inflater_init
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_memalign
+   fun:_vgrZU_libcZdsoZa_posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_slice_alloc
+   fun:g_hash_table_new_full
+   fun:g_hash_table_new
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:g_malloc0
+   obj:/usr/lib/libglib-2.0.so.0.1400.6
+   fun:g_slice_alloc
+   fun:g_hash_table_new_full
+   fun:g_hash_table_new
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_calloc
+   fun:XOpenDisplay
+   fun:awt_init_Display
+   fun:Java_sun_awt_X11GraphicsEnvironment_initDisplay
+   obj:*
+   obj:*
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_malloc
+   fun:g_malloc
+   fun:g_strdup
+   fun:g_set_prgname
+   fun:g_option_context_parse
+   fun:gtk_parse_args
+}
+{
+   <insert a suppression name here>
+   Memcheck:Leak
+   fun:_vgrZU_libcZdsoZa_realloc
+   fun:g_realloc
+   obj:/usr/lib/libgobject-2.0.so.0.1400.6
+   obj:/usr/lib/libgobject-2.0.so.0.1400.6
+   fun:g_type_register_static
+   fun:g_param_type_register_static
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="PlotSparse">
+  <info>
+    <pubdate/>
+  </info>
+  <refnamediv>
+    <refname>PlotSparse</refname>
+    <refpurpose> plot the pattern of non nul elements of a sparse matrix  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>PlotSparse(A [,style])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>a sparse matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style  </term>
+        <listitem>
+          <para>(optional) a string given the color and/or the marker type of the form "[color][mark]" 
+      where color may be a number referring the color you want to use (in the current colormap). 
+      If you use the std colormap then color may be one of the following letters :</para>
+          <programlisting><![CDATA[
+    k  for black       b  for blue
+    r  for red         g  for green
+    c  for cyan        m  for magenta
+    y  for yellow      t  for turquoise
+    G  a dark green
+   ]]></programlisting>
+          <para>
+    mark must be one of the following :
+  </para>
+          <programlisting><![CDATA[
+    .  point           +  plus 
+    x  cross           *  circled plus 
+    D  filled diamond  d  diamond
+    ^  upper triangle  v  down triangle
+    o  circle
+   ]]></programlisting>
+          <para>
+    by default you have "b." (in fact the 2d color) and this is also forced in case of error. 
+  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    plot the pattern of non nul elements of a sparse matrix :
+    each non nul element is drawn with a marker. For "big" 
+    matrix use essentially the point . as marker
+  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+[A,description,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+set figure_style old
+PlotSparse(A,"y+")
+xtitle(ref + "." + mtype + " : " + description)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ReadHBSparse">ReadHBSparse</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Bruno Pincon  &lt;Bruno.Pincon@iecn.u-nancy.fr&gt;  </para>
+  </refsection>
+</refentry>

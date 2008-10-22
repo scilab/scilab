@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="c_link">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>c_link</refname>
+    <refpurpose> check incremental/dynamic link</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>c_link(routine-name)
+[test,ilib]=c_link(routine-name)
+test=c_link(routine-name,num)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>routine-name</term>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>num</term>
+        <listitem>
+          <para>:</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>test</term>
+        <listitem>
+          <para>boolean, indicates if there is a shared library which contains <literal>routine-name</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ilib</term>
+        <listitem>
+          <para>a scalar, the number of the shared library which contains <literal>routine-name</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>c_link</literal> is a boolean function which checks if the routine <literal>routine-name</literal> is currently linked. This function returns a
+    boolean value true or false. When used with two return values, the
+    function <literal>c_link</literal> returns a boolean value in <literal>test</literal> and the
+    number of the shared library which contains <literal>routine-name</literal> in
+    <literal>ilib</literal> (when <literal>test</literal> is true).</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="fort">fort</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

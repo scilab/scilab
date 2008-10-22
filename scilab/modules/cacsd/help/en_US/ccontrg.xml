@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - P. Gahinet
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ccontrg">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ccontrg</refname>
+    <refpurpose> central H-infinity controller</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[K]=ccontrg(P,r,gamma);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (linear system in state-space representation)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1x2 row vector, dimension of the 2,2 part of <literal>P</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gamma</term>
+        <listitem>
+          <para>real number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    returns a realization <literal>K</literal> of the central controller for the
+    general standard problem in state-space form.</para>
+    <para>
+    Note that gamma must be &gt; gopt (ouput of <literal>gamitg</literal>)</para>
+    <para>
+    P contains the parameters of plant realization <literal>(A,B,C,D)</literal>
+    (<literal>syslin</literal> list) with</para>
+    <programlisting><![CDATA[
+
+B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
+                            ( C2 )          ( D21  D22)
+   
+    ]]></programlisting>
+    <para><literal>r(1)</literal> and <literal>r(2)</literal> are the dimensions of <literal>D22</literal> (rows x columns)</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gamitg">gamitg</link>
+      </member>
+      <member>
+        <link linkend="h_inf">h_inf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>P. Gahinet (INRIA);   </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/tokenpos_data.ref','rb');
+str = 'This is a character string';
+kdf = tokenpos(str);
+if load_ref('kdf') then   pause,end,
+
+first = part(str, kdf(1, 1):kdf(1, 2));
+if load_ref('first') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

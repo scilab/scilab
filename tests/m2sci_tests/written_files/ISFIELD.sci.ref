@@ -1,0 +1,40 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function isfield()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+
+
+mtlb_tree(ST1,F1)
+tf1 = mtlb_tree(ST1,F1)
+
+
+%v0 = getfield(1,ST2);
+or(%v0(3:$)==F2)
+%v0 = getfield(1,ST2);
+tf2 = or(%v0(3:$)==F2)
+
+
+mtlb_tree(ST3,F3)
+tf3 = mtlb_tree(ST3,F3)
+
+
+%v0 = getfield(1,ST4);
+or(%v0(3:$)==F4)
+%v0 = getfield(1,ST4);
+tf4 = or(%v0(3:$)==F4)
+
+
+%f
+tf5 = %f
+
+
+mtlb_tree(ST6,F6)
+tf6 = mtlb_tree(ST6,F6)

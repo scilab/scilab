@@ -1,0 +1,12 @@
+LIBRARY    scigraphic_export.dll
+
+
+EXPORTS
+
+; --------------------------------------- 
+; scigraphic_export
+; --------------------------------------- 
+; add here exports from cpp
+;
+; --------------------------------------- 
+

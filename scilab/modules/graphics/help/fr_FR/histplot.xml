@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="histplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>histplot</refname>
+    <refpurpose>dessine un histogramme</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>histplot(n, data, &lt;opt_args&gt;)
+histplot(x, data, &lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>entier strictement positif (nombre de classes)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vecteur (strictement croissant) definissant les classes</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data</term>
+        <listitem>
+          <para>vecteur (contenant les données à  analyser)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>Représente une séquence de la forme <literal>clé1=valeur1,
+          clé2=valeur2</literal>,... où <literal>clé1</literal>,
+          <literal>clé2,...</literal> peut être n'importe quel paramètre optionnel de <link linkend="plot2d">plot2d</link> 
+          (<literal>style,strf,leg, rect,nax, logflag,frameflag, axesflag</literal>) ou encore <literal>normalization</literal>. 
+          Pour ce dernier la valeur correspondante est un scalaire booléen 
+          (la valeur par défaut étant %t).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para> Cette fonction dessine un histogramme des données contenues dans le vecteur <literal>data</literal>
+        en utilisant les classes <literal>x</literal>. Quand le nombre de classes <literal>n</literal> est fourni
+        au lieu de <literal>x</literal>, celles-ci sont définies de manière équirépartie et telles que
+        <emphasis>x(1) = min(data) &lt;  x(2) = x(1) + dx  &lt;  ...  &lt; x(n+1) = max(data)</emphasis>
+        avec <emphasis>dx = (x(n+1)-x(1))/n</emphasis>.
+    </para>
+    <para> Les classes sont définies par C1 = [x(1), x(2)] puis  Ci = ] x(i), x(i+1)] pour i = 2,3,...,n.
+        En notant Nmax le nombre total de données (Nmax = length(data)) et Ni le nombre de données 
+        se situant dans Ci, la valeur de l'histogramme pour x appartenant à  Ci 
+        est égale à  <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> quand <literal>normalization</literal> est vrai
+        (comportement par défaut) et sinon elle vaut simplement <emphasis>Ni</emphasis>. Quand l'histogramme
+        est normalisé il vérifie la propriété suivante :
+    </para>
+    <programlisting><![CDATA[
+            x(n+1)
+           /  
+           |   h(x) dx = 1,  quand x(1)<=min(data) et max(data) <= x(n+1)) 
+           /
+           x(1)
+     
+    ]]></programlisting>
+    <para>N'importe quel paramètre optionnel de <link linkend="plot2d">plot2d</link> peut être passé à  histplot ; par exemple
+       pour dessiner votre histogramme avec la couleur numéro 2 (du bleu si vous utilisez la carte
+       des couleurs standard) tout en restreignant le dessin au le rectangle [-3,3]x[0,0.5],
+       vous pouvez utiliser <literal>histplot(n,data, style=2, rect=[-3,0,3,0.5])</literal>.
+    </para>
+    <para>La commande <literal>histplot()</literal> sans argument montre un example.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+// exemple #1: variations sur l'histogramme d'un échantillon gaussien N(0,1)
+d=rand(1,10000,'normal');
+clf();histplot(20,d)
+clf();histplot(20,d,normalization=%f)
+clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
+clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]); 
+
+// exemple #2: histogramme d'un échantillon de loi binomiale B(6,0.5)
+d = grand(1000,1,"bin", 6, 0.5);
+c = linspace(-0.5,6.5,8);
+xbasc()
+subplot(2,1,1)
+   histplot(c, d, style=2)
+   xtitle("l''histogramme normalisé")
+subplot(2,1,2)
+   histplot(c, d, normalization=%f, style=5)
+   xtitle("l''histogramme non normalisé")
+
+// exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
+lambda = 2;
+X = grand(100000,1,"exp", 1/lambda);
+Xmax = max(X);
+xbasc()
+histplot(40, X, style=2)
+x = linspace(0,max(Xmax),100)';
+plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
+legend(["histogramme d''un échantillon E(lambda)" "densité exacte"]);
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hist3d">hist3d</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="dsearch">dsearch</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

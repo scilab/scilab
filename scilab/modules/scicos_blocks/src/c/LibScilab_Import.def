@@ -1,0 +1,25 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+; core
+namstr_
+cluni0_
+
+
+;
+; elementary_functions
+dmmul_  
+dmmul1_
+urand_
+wmmul_
+wsqrt_
+mtran_
+wexpm1_
+dexpm1_
+
+;
+; polynomials
+dprxc_
+wprxc_

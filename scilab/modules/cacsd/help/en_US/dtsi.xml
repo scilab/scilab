@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dtsi">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dtsi</refname>
+    <refpurpose> stable anti-stable decomposition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ga,Gs,Gi]=dtsi(G,[tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>G</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ga</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list) antistable and strictly proper</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Gs</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list) stable and strictly proper</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Gi</term>
+        <listitem>
+          <para>real matrix (or polynomial matrix for improper systems)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>optional parameter for detecting stables poles. Default value: <literal>100*%eps</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    returns the stable-antistable decomposition of <literal>G</literal>:</para>
+    <para><literal>G = Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal></para>
+    <para><literal>G</literal> can be given in state-space form or in transfer form.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="pbig">pbig</link>
+      </member>
+      <member>
+        <link linkend="psmall">psmall</link>
+      </member>
+      <member>
+        <link linkend="pfss">pfss</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

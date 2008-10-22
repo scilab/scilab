@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umf_ludel">
+  <info>
+    <pubdate>scispt toolbox  </pubdate>
+  </info>
+  <refnamediv>
+    <refname>umf_ludel</refname>
+    <refpurpose> utility function used with umf_lufact  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>umf_ludel(LU_ptr) or umf_ludel()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>LU_ptr  </term>
+        <listitem>
+          <para>a pointer to an handle of umf lu factors (L,U,p,q,R)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function must be used in conjunction with <link linkend='umf_lufact'>umf_lufact</link> and <link linkend='umf_lusolve'>umf_lusolve</link>.
+    It clears the internal memory space used to store the LU factors (got with umf_lufact).
+    Use without argument it frees the memory for all the current scilab umfpack LU factors. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <para>
+    see the example section of <link linkend='umf_lufact'>umf_lufact</link>
+  </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="umfpack">umfpack</link>
+      </member>
+      <member>
+        <link linkend="umf_lufact">umf_lufact</link>
+      </member>
+      <member>
+        <link linkend="umf_lusolve">umf_lusolve</link>
+      </member>
+      <member>
+        <link linkend="umf_luget">umf_luget</link>
+      </member>
+      <member>
+        <link linkend="umf_luinfo">umf_luinfo</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>umfpack by Timothy A. Davis (see umf_license)</member>
+      <member>scilab interface by Bruno Pincon</member>
+    </simplelist>
+  </refsection>
+</refentry>

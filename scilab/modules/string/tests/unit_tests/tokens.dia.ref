@@ -1,0 +1,23 @@
+//===============================
+// unit tests tokens
+// INRIA 2007
+//===============================
+if tokens('This is a character string') <> ['This'; 'is'; 'a'; 'character'; 'string'] then bugmes();quit;end
+if tokens('SCI/demos/scicos','/') <> ['SCI';'demos';'scicos'] then bugmes();quit;end
+if tokens('y=a+b*2',['=','+','*']) <> ['y';'a';'b';'2'] then bugmes();quit;end
+if length(tokens('',['=','+','*'])) <> 0 then bugmes();quit;end
+//===============================
+if tokens(' ',' ') <> [] then bugmes();quit;end
+//===============================
+s = tokens(' '+ascii(9)+' ',ascii(9));
+if  s <> [' '; ' '] then bugmes();quit;end
+//===============================
+s = tokens(' '+ascii(9)+' ',' ');
+if  s <> ascii(9) then bugmes();quit;end
+//===============================
+s = tokens(' '+ascii(9)+' ',ascii(9));
+if  s <> [' '; ' '] then bugmes();quit;end
+//===============================
+s = tokens(' '+ascii(9)+' ',' ');
+if  s <> ascii(9) then bugmes();quit;end
+//===============================

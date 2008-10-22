@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="im_inv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>im_inv</refname>
+    <refpurpose> inverse image</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X,dim]=im_inv(A,B [,tol])
+[X,dim,Y]=im_inv(A,B, [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B</term>
+        <listitem>
+          <para>two real or complex matrices with equal number of columns</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>orthogonal or unitary square matrix of order equal to the  number of columns of <literal>A</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>integer (dimension of subspace)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y</term>
+        <listitem>
+          <para>orthogonal matrix of order equal to the number of rows  of <literal>A</literal> and <literal>B</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[X,dim]=im_inv(A,B)</literal> computes <literal>(A^-1)(B)</literal>
+     i.e vectors whose image through <literal>A</literal> are in
+     range(<literal>B</literal>)</para>
+    <para>
+    The <literal>dim</literal> first columns of <literal>X</literal> span
+    <literal>(A^-1)(B)</literal></para>
+    <para><literal>tol</literal> is a threshold used to test if subspace inclusion;
+    default value is <literal>tol = 100*%eps</literal>.
+    If <literal>Y</literal> is returned, then <literal>[Y*A*X,Y*B]</literal> is partitioned as follows:
+  <literal>[A11,A12;0,A22]</literal>,<literal>[B1;0]</literal></para>
+    <para>
+    where <literal>B1</literal> has full row rank (equals
+    <literal>rank(B)</literal>) and <literal>A22</literal> has full column rank
+    and has <literal>dim</literal> columns.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=[rand(2,5);[zeros(3,4),rand(3,1)]];B=[[1,1;1,1];zeros(3,2)];
+W=rand(5,5);A=W*A;B=W*B;
+[X,dim]=im_inv(A,B)
+svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
+[X,dim,Y]=im_inv(A,B);[Y*A*X,Y*B]
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="spaninter">spaninter</link>
+      </member>
+      <member>
+        <link linkend="spanplus">spanplus</link>
+      </member>
+      <member>
+        <link linkend="linsolve">linsolve</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. Delebecque INRIA</para>
+  </refsection>
+</refentry>

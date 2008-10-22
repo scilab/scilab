@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 3116 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3116
+//
+// <-- Short Description -->
+// if x axis is in log mode the x_ticks labels are not well placed (too high)
+
+subplot(212),plot([0.01,100],[1,10]);a=gca();a.log_flags='lnn';
+
+// check that the ticks are below the axis
+

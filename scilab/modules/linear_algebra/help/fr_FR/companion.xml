@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="companion">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>companion</refname>
+    <refpurpose> matrice compagnon  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>A=companion(p)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>p  </term>
+        <listitem>
+          <para>polynôme ou vecteur de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>matrice carrée
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Renvoie une matrice <literal>A</literal> dont le polynôme caractéristique est
+    <literal>p</literal> si <literal>p</literal> est unitaire (le coefficient de plus haut degré est égal à un). Si <literal>p</literal> n'est pas unitaire
+    le polynôme caractéristique de <literal>A</literal> est égal à
+    <literal>p/c</literal> où <literal>c</literal> est le coefficient de plus haut degré de <literal>p</literal>.
+  </para>
+    <para>
+    Si <literal>p</literal> est un vecteur de polynômes unitaires, <literal>A</literal> est bloc-diagonale,
+    et le polynôme caractéristique du i-ème bloc est égal à <literal>p(i)</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+p=poly([1,2,3,4,1],'s','c')
+det(s*eye()-companion(p))
+roots(p)
+spec(companion(p))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="randpencil">randpencil</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>F.D.  </para>
+  </refsection>
+</refentry>

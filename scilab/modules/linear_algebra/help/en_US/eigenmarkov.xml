@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eigenmarkov">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>eigenmarkov</refname>
+    <refpurpose> normalized left and right Markov eigenvectors</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[M,Q]=eigenmarkov(P)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>real N x N Markov matrix. Sum of entries in each row should add to one.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>real matrix with N columns.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q</term>
+        <listitem>
+          <para>real matrix with N rows.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Returns normalized left and right eigenvectors
+    associated with the eigenvalue 1 of the Markov transition matrix P.
+    If the multiplicity of this eigenvalue is m and P
+    is N x N, M is a m x N matrix and Q a N x m matrix.
+    M(k,:) is the probability distribution vector associated with the kth
+    ergodic set (recurrent class). M(k,x) is zero if x is not in the
+    k-th recurrent class.
+    Q(x,k) is the probability to end in the k-th recurrent class starting
+    from x. If <literal>P^k</literal> converges for large <literal>k</literal> (no eigenvalues on the
+    unit circle except 1), then the limit is <literal>Q*M</literal> (eigenprojection).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//P has two recurrent classes (with 2 and 1 states) 2 transient states
+P=genmarkov([2,1],2) 
+[M,Q]=eigenmarkov(P);
+P*Q-Q
+Q*M-P^20
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="genmarkov">genmarkov</link>
+      </member>
+      <member>
+        <link linkend="classmarkov">classmarkov</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

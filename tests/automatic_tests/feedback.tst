@@ -1,0 +1,26 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/feedback_data.ref','rb');
+S1 = ssrand(2, 2, 3);S2 = ssrand(2, 2, 2);
+W = S1 /. S2;
+%ans = ss2tf(S1 /. S2);
+if load_ref('%ans') then   pause,end,
+
+//Same operation by LFT:
+%ans = ss2tf(lft([zeros(2, 2),eye(2, 2);eye(2, 2),-S2], S1));
+if load_ref('%ans') then   pause,end,
+
+//Other approach: with constant feedback
+BigS = sysdiag(S1, S2);F = [zeros(2, 2),eye(2, 2);-eye(2, 2),zeros(2, 2)];
+Bigclosed = BigS /. F;
+W1 = Bigclosed(1:2, 1:2);//W1=W (in state-space).
+%ans = ss2tf(W1);
+if load_ref('%ans') then   pause,end,
+
+//Inverting
+%ans = ss2tf(S1 * inv(eye() + S2 * S1));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,83 @@
+// <-- Non-regression test for bug 750 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=750
+//
+// <-- Short Description -->
+//    I try to translate to Scilab the benchmark m-file of matlab.
+//    This should give a comparison of scilab and matlab execution
+//    times.
+//
+//    It does not translate. Too bad...
+// Copyright INRIA
+// Scilab Project - V. Couvert
+// Modified by Pierre MARECHAL
+// Copyright INRIA
+// Date : 22 Mar 2005
+MFILECONTENTS=["t=[];";"cputime;";"t(10)=cputime;"]
+ MFILECONTENTS  =
+ 
+!t=[];           !
+!                !
+!cputime;        !
+!                !
+!t(10)=cputime;  !
+MFILE=TMPDIR+"/bug750.m"
+ MFILE  =
+ 
+ TMPDIR/bug750.m   
+SCIFILE=TMPDIR+"/bug750.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug750.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug750.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+		"// Display mode";
+		"mode(0);";
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"t = [];";
+		"timer;";
+		"t(1,10) = timer();"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!t = [];                                          !
+!                                                 !
+!timer;                                           !
+!                                                 !
+!t(1,10) = timer();                               !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

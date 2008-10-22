@@ -1,0 +1,6 @@
+LIBRARY    linear_algebra_f.dll
+
+
+EXPORTS
+dgelsy1_
+zgelsy1_

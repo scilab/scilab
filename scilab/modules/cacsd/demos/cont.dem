@@ -1,0 +1,22 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
+deff('[]=demoexc(fil)','exec(''SCI/modules/cacsd/demos/''+fil)')
+while %t do
+  n=x_choose(['LQG','Mixed-sensitivity','PID'],'Select a demo');
+  select n
+  case 0
+    break
+  case 1
+    demoexc('lqg/lqg.dem')
+  case 2
+    demoexc('mixed.dem')
+  case 3
+    demoexc('pid.dem')
+  end
+end
+

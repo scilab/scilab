@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE jvm_options SYSTEM "../modules/jvm/xml/jvm-options.dtd">
+<!-- =================== -->
+<!--
+ Options JVM
+ @author Allan CORNET
+ ===================
+ Don't touch if you do not know what you are doing
+ http://blogs.sun.com/watt/resource/jvm-options-list.html
+ http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp
+ http://java.sun.com/javase/technologies/hotspot/exactoptions.jsp
+ -->
+<!-- =================== -->
+<!--
+$PATH_SEPARATOR : path separator ';' (windows) ':' linux
+$SCILAB : scilab path (SCI in Scilab)
+-->
+<jvm_options>
+<option value="-Djava.library.path=$SCILAB/java/jre"/>
+<option value="-Djava.class.path=$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+
+<!-- ENABLE Just In Time java compiler -->
+<option value="-Djava.compiler=JIT"/>
+
+<!-- Set Java Heap space to 256mb -->
+<option value="-Xmx256m"/>
+
+<!-- DISABLE Just In Time java compiler -->
+<!--
+<option value="-Djava.compiler=NONE"/>
+-->
+
+<!-- comments -->
+<!--
+<option value="-verbose:jni"/>
+<option value="-Xcheck:jni"/>
+-->
+<!-- comments -->
+</jvm_options>

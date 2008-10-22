@@ -1,0 +1,87 @@
+Validation manuelle de certains fichiers de test pour M2SCI
+
+ACOTH :
+ - Problème de signe de la partie complex du résultat pour certaines valeurs (un message l'indique dans le fichier traduit)
+
+ALL :
+ - Problème de taille inférée pour la matrice vide
+ - une matrice vide est forcément un Double en Scilab jamais un Booléen contrairement à Matlab
+
+ANY : 
+ - Voir ALL
+
+ASIN :
+ - Résultats parfois de signes contraires entre Matlab et Scilab (un message l'indique dans le fichier traduit)
+
+ATANH : 
+ - Voir ASIN 
+ - Parfois Scilab revoit Nan+Nan*i quand Matlab revoie Inf
+
+COLON : 
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+ 
+DIFF : 
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+
+DOT_POWER : 
+ - Problème du au fait que Matlab considère que Nan + Nan*i est complexe et pas Scilab. 
+ - En Matlab mat2str(Nan+Nan*i) = Nan !!!
+
+EIG : 
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+
+EQUAL : 
+ - Problème de la matrice vide est forcément un Double en Scilab jamais un Booléen contrairement à Matlab
+ - Quand on impose la valeur de sortie [], le type inféré est Double au lieu de Boolean
+
+GREATER_EQUAL : 
+ - Voir EQUAL
+
+GREATER : 
+ - Voir EQUAL
+
+LEFT_DIVISION : 
+ - Le problème vient de l'usage de isreal avec 0 comme précision...il faudrait peut être utiliser %eps à la place 
+
+LESS_EQUAL : 
+ - Voir EQUAL
+
+LESS : 
+ - Voir EQUAL
+
+LOGICAL : 
+ - Voir EQUAL
+
+MAX : 
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+
+MIN :
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+
+NOT_EQUAL : 
+ - Voir EQUAL
+
+POWER : 
+ - BUG DE SCILAB 
+ - Problème du au fait que Matlab considère que Nan + Nan*i est complexe et pas Scilab. 
+ - En Matlab mat2str(Nan+Nan*i) = Nan !!!
+
+PROD : 
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+
+QR : 
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+
+SCHUR : 
+ - Les signes des résultats diffèrent parfois mais les résulats Matlab et Scilab sont considéres comme exacts...
+
+SPARSE :
+ - Une matrice vide peut etre de type sparse en Matlab mais pas en Scilab
+ - Usage de isreal avec 0 comme précision...il faudrait peut être utiliser %eps à la place 
+
+SUM : 
+ - Problème de taille de la matrice vide (Scilab [0 0] et Matlab une seule dimension à 0)
+
+SVD : 
+ - Problème de taille inférée pour la matrice vide
+ - Pour deux RHS, la fonction Matlab a un bug, S n'est pas carrée...

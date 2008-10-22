@@ -1,0 +1,295 @@
+ 
+// Copyright INRIA
+ 
+ 
+ 
+ 
+// length
+ 
+if length('abd')<>3 then bugmes();quit;end
+ 
+if length(emptystr())<>0 then bugmes();quit;end
+ 
+if or(length(['abd';emptystr()])<>[3;0]) then bugmes();quit;end
+ 
+if or(length(string(ones(10,10)))<>1) then bugmes();quit;end
+ 
+ 
+//part
+ 
+if part('abc',1)<>'a' then bugmes();quit;end
+ 
+if part('abc',[1 1])<>'aa' then bugmes();quit;end
+ 
+if part('abc',[1;1])<>'aa' then bugmes();quit;end
+ 
+if part('abc',[])<>emptystr() then bugmes();quit;end
+ 
+if part('abc',5)<>' ' then bugmes();quit;end
+ 
+if part('abc',5:6)<>'  ' then bugmes();quit;end
+ 
+if or(part(['abc';'x'],1)<>['a';'x']) then bugmes();quit;end
+ 
+if or(part(['abc';'x'],[1 1])<>['aa';'xx']) then bugmes();quit;end
+ 
+//if or(part(['abc';'x'],[1 2])<>['aa';'x ']) then bugmes();quit;end
+ 
+ 
+//string
+ 
+if string(1)<>'1' then bugmes();quit;end
+ 
+if string(1.5)<>'1.5' then bugmes();quit;end
+ 
+if string([])<>[] then bugmes();quit;end
+ 
+if or(string(1:3)<>['1','2','3']) then bugmes();quit;end
+ 
+if or(string([1;2;3])<>['1';'2';'3']) then bugmes();quit;end
+ 
+if string('foo')<>'foo' then bugmes();quit;end
+ 
+deff('y=mymacro(x)','y=x+1');
+ 
+[out,in,text]=string(mymacro);
+ 
+if out<>'y'|in<>'x'|text<>[] then bugmes();quit;end
+ 
+mymacro=null();deff('y=mymacro(x)','y=x+1','n');
+ 
+[out,in,text]=string(mymacro);
+ 
+if out<>'y'|in<>'x'|text<>'y=x+1' then bugmes();quit;end
+ 
+ 
+ 
+//convstr
+ 
+if convstr('ABC')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','l')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','u')<>'ABC' then bugmes();quit;end
+ 
+if convstr(['ABC';'x'])<>['abc';'x'] then bugmes();quit;end
+ 
+if convstr(['ABC';'x'],'l')<>['abc';'x'] then bugmes();quit;end
+ 
+if convstr(['ABC';'x'],'u')<>['ABC';'X'] then bugmes();quit;end
+ 
+ 
+if convstr('ABC')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','l')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','u')<>'ABC' then bugmes();quit;end
+ 
+if convstr(['ABC','x'])<>['abc','x'] then bugmes();quit;end
+ 
+if convstr(['ABC','x'],'l')<>['abc','x'] then bugmes();quit;end
+ 
+if convstr(['ABC','x'],'u')<>['ABC','X'] then bugmes();quit;end
+ 
+if convstr(emptystr())<>emptystr() then bugmes();quit;end
+ 
+ 
+//str2code
+ 
+if or(str2code('abcdefghijklmnopqrstuvwxyz')<>(10:35)') then bugmes();quit;end
+ 
+if or(str2code('ABCDEFGHIJKLMNOPQRSTUVWXYZ')<>-(10:35)') then bugmes();quit;end
+ 
+if or(str2code('0123456789')<>(0:9)') then bugmes();quit;end
+ 
+if str2code(emptystr())<>[] then bugmes();quit;end
+ 
+ 
+ 
+//code2str
+ 
+ 
+if code2str(10:35)<>'abcdefghijklmnopqrstuvwxyz' then bugmes();quit;end
+ 
+if code2str(-(10:35))<>'ABCDEFGHIJKLMNOPQRSTUVWXYZ' then bugmes();quit;end
+ 
+if code2str(0:9)<>'0123456789' then bugmes();quit;end
+ 
+if code2str([])<>emptystr() then bugmes();quit;end
+ 
+ 
+ 
+//sort
+ 
+[s]=sort(['abc','abd','aa','bxe']);
+ 
+if or(s<>['aa','abc','abd','bxe']) then bugmes();quit;end
+ 
+ 
+[s,k]=sort(['abc','abd','aa','bxe']);
+ 
+if or(s<>['aa','abc','abd','bxe']) then bugmes();quit;end
+ 
+if or(k<>[3 1 2 4])  then bugmes();quit;end
+ 
+ 
+if sort('abc')<>'abc' then bugmes();quit;end
+ 
+ 
+//strcat
+ 
+ 
+if strcat(['abc','abd','aa','bxe'])<>'abcabdaabxe' then bugmes();quit;end
+ 
+if strcat(['abc','abd','aa','bxe'],',')<>'abc,abd,aa,bxe' then bugmes();quit;end
+ 
+if strcat('abc')<>'abc' then bugmes();quit;end
+ 
+if strcat('abc','sd')<>'abc' then bugmes();quit;end
+ 
+ 
+//strindex
+ 
+if or(strindex('abc,abd,aa,bxe',',')<>[4 8 11]) then bugmes();quit;end
+ 
+if or(strindex('abc',',')<>[]) then bugmes();quit;end
+ 
+if or(strindex('abc,abd,aa,bxe',',a')<>[4 8]) then bugmes();quit;end
+ 
+if or(strindex('abc,abd,aa,bxe','a')<>[1 5 9 10]) then bugmes();quit;end
+ 
+if strindex(emptystr(),'a')<>[] then bugmes();quit;end
+ 
+ 
+[pos,which]=strindex('abc,abd,aa,bxe',',');
+ 
+if or(pos<>[4 8 11])|or(which<>[1 1 1]) then bugmes();quit;end
+ 
+[pos,which]=strindex('abc',',');
+ 
+if or(pos<>[])|or(which<>[]) then bugmes();quit;end
+ 
+[pos,which]=strindex('abc,abd,aa,bxe',',a');
+ 
+if or(pos<>[4 8])|or(which<>[1 1]) then bugmes();quit;end
+ 
+[pos,which]=strindex('abc,abd,aa,bxe','a');
+ 
+if or(pos<>[1 5 9 10])|or(which<>[1 1 1 1]) then bugmes();quit;end
+ 
+[pos,which]=strindex('','a');
+ 
+if or(pos<>[])|or(which<>[]) then bugmes();quit;end
+ 
+ 
+[pos,which]=strindex('abc,cbd,aa,bxe',[',a',',b']);
+ 
+if or(pos<>[8 11])|or(which<>[1 2]) then bugmes();quit;end
+ 
+[pos,which]=strindex('abc,cbd,aa,bxe',[',a','bb']);
+ 
+if or(pos<>[8])|or(which<>[1]) then bugmes();quit;end
+ 
+ 
+rand('u');str=strcat(string(round(8*rand(1,5000))));s= string(0:9);
+ 
+[pos,which]=strindex(str,s);
+ 
+if part(str,pos)<>strcat(s(which)) then bugmes();quit;end
+ 
+ 
+//strsubst
+ 
+if strsubst('abc,abd,aa,bxe',',',';')<>'abc;abd;aa;bxe'  then bugmes();quit;end
+ 
+if strsubst('abc,abd,aa,bxe',',',emptystr())<>'abcabdaabxe'  then bugmes();quit;end
+ 
+if strsubst(',abc,abd,aa,bxe',',',emptystr())<>'abcabdaabxe'  then bugmes();quit;end
+ 
+if strsubst('abc',',',';')<>'abc'  then bugmes();quit;end
+ 
+ 
+//formal
+ 
+if addf('1','1')<>'2' then bugmes();quit;end
+ 
+if addf('1','0')<>'1' then bugmes();quit;end
+ 
+if addf('0','1')<>'1' then bugmes();quit;end
+ 
+if addf('0','0')<>'0' then bugmes();quit;end
+ 
+if addf('1','-1')<>'0' then bugmes();quit;end
+ 
+if addf('-1','1')<>'0' then bugmes();quit;end
+ 
+if addf('-1','0')<>'-1' then bugmes();quit;end
+ 
+if addf('0','-1')<>'-1' then bugmes();quit;end
+ 
+ 
+if addf('1','a')<>'a+1' then bugmes();quit;end
+ 
+if addf('a','1')<>'a+1' then bugmes();quit;end
+ 
+if addf('a','0')<>'a' then bugmes();quit;end
+ 
+if addf('0','a')<>'a' then bugmes();quit;end
+ 
+if addf('a','-1')<>'a-1' then bugmes();quit;end
+ 
+if addf('-1','a')<>'a-1' then bugmes();quit;end
+ 
+if addf('a','b')<>'a+b' then bugmes();quit;end
+ 
+if addf('a+b','c')<>'a+b+c' then bugmes();quit;end
+ 
+if addf('c','a+b')<>'c+a+b' then bugmes();quit;end
+ 
+if addf('a+b','a+b')<>'a+b+a+b' then bugmes();quit;end
+ 
+if addf('a+b','a-b')<>'a+a' then bugmes();quit;end
+ 
+if addf('2*a+b','a-b')<>'2*a+a' then bugmes();quit;end
+ 
+ 
+if mulf('1','1')<>'1' then bugmes();quit;end
+ 
+if mulf('1','0')<>'0' then bugmes();quit;end
+ 
+if mulf('0','1')<>'0' then bugmes();quit;end
+ 
+if mulf('0','0')<>'0' then bugmes();quit;end
+ 
+if mulf('1','-1')<>'-1' then bugmes();quit;end
+ 
+if mulf('-1','1')<>'-1' then bugmes();quit;end
+ 
+if mulf('-1','0')<>'0' then bugmes();quit;end
+ 
+if mulf('0','-1')<>'0' then bugmes();quit;end
+ 
+ 
+if mulf('1','a')<>'a' then bugmes();quit;end
+ 
+if mulf('a','1')<>'a' then bugmes();quit;end
+ 
+if mulf('a','0')<>'0' then bugmes();quit;end
+ 
+if mulf('0','a')<>'0' then bugmes();quit;end
+ 
+if mulf('a','-1')<>'-a' then bugmes();quit;end
+ 
+if mulf('-1','a')<>'-a' then bugmes();quit;end
+ 
+if mulf('a','b')<>'a*b' then bugmes();quit;end
+ 
+if mulf('a+b','c')<>'(a+b)*c' then bugmes();quit;end
+ 
+if mulf('c','a+b')<>'c*(a+b)' then bugmes();quit;end
+ 
+if mulf('a+b','a+b')<>'(a+b)*(a+b)' then bugmes();quit;end
+ 
+if mulf('2*a+b','a-b')<>'(2*a+b)*(a-b)' then bugmes();quit;end
+ 
+ 

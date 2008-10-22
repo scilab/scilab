@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - JPC
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="arma">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>arma</refname>
+    <refpurpose> Scilab arma library</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Armax processes can be coded with Scilab tlist of type <literal>'ar'</literal>. 
+    <literal>armac</literal> is used to build <literal>Armax</literal> scilab object. An <literal>'ar'</literal> 
+    tlist contains the fields <literal>['a','b','d','ny','nu','sig']</literal>. 
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>armac</term>
+        <listitem>
+          <para>this function creates a Scilab tlist which code an  Armax
+  process    <literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal></para>
+          <programlisting><![CDATA[
+
+-->ar=armac([1,2],[3,4],1,1,1,sig);
+ 
+-->ar('a')   
+ ans  =
+ 
+!   1.    2. !
+-->ar('sig')
+ ans  =
+ 
+    1.  
+   
+        ]]></programlisting>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>armap(ar [,out])</term>
+        <listitem>
+          <para>Display the armax equation associated with <literal>ar</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>armap_p(ar [,out])</term>
+        <listitem>
+          <para>Display the armax equation associated with <literal>ar</literal>  using polynomial matrix display.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>[A,B,D]=armap2p(ar)</term>
+        <listitem>
+          <para>extract polynomial matrices from ar representation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>armax</term>
+        <listitem>
+          <para>is used to identify the coefficients of a n-dimensional  ARX process   <literal>A(z^-1)y= B(z^-1)u + sig*e(t)</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>armax1</term>
+        <listitem>
+          <para>armax1 is used to identify the coefficients of a 1-dimensional  ARX process    
+         <literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arsimul</term>
+        <listitem>
+          <para>armax trajectory simulation.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>narsimul</term>
+        <listitem>
+          <para>armax simulation ( using rtitr)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>odedi</term>
+        <listitem>
+          <para>Simple tests of ode and arsimul. Tests the option 'discret' of ode</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>prbs_a</term>
+        <listitem>
+          <para>pseudo random binary sequences generation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>reglin</term>
+        <listitem>
+          <para>Linear regression</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.P.C ; ;   </para>
+  </refsection>
+</refentry>

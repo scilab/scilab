@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="kron">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>kron</refname>
+    <refpurpose> produit de kronecker (.*.)  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>kron(x,y)
+x.*.y</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Produit tensoriel de Kronecker de deux matrices <literal>x</literal> et <literal>y</literal>.
+    Identique à <literal>x.*.y</literal>. <literal>x</literal> et <literal>y</literal> peuvent être des matrices creuses.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=[1,2;3,4];
+kron(A,A)
+A.*.A
+sparse(A).*.sparse(A)
+A(1,1)=%i;
+kron(A,A)
+ ]]></programlisting>
+  </refsection>
+</refentry>

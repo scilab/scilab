@@ -1,0 +1,7 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/listfiles_data.ref','rb');
+files = listfiles(['SCI/macros/util/*.sci';'SCI/macros/util/*.bin']);
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pencan">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pencan</refname>
+    <refpurpose> canonical form of matrix pencil</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Q,M,i1]=pencan(Fs)
+[Q,M,i1]=pencan(E,A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Fs</term>
+        <listitem>
+          <para>a regular pencil <literal>s*E-A</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E,A</term>
+        <listitem>
+          <para>two real square matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,M</term>
+        <listitem>
+          <para>two non-singular real matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i1</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Given the regular pencil <literal>Fs=s*E-A</literal>, <literal>pencan</literal> returns matrices <literal>Q</literal> 
+    and <literal>M</literal>
+    such than <literal>M*(s*E-A)*Q</literal> is in "canonical" form.</para>
+    <para><literal>M*E*Q</literal> is a block matrix</para>
+    <programlisting><![CDATA[
+
+[I,0;
+ 0,N]
+   
+    ]]></programlisting>
+    <para>
+    with <literal>N</literal> nilpotent and <literal>i1</literal> = size of the <literal>I</literal> matrix above.</para>
+    <para><literal>M*A*Q</literal> is a block matrix:</para>
+    <programlisting><![CDATA[
+
+[Ar,0;
+ 0,I]
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+F=randpencil([],[1,2],[1,2,3],[]);
+F=rand(6,6)*F*rand(6,6);
+[Q,M,i1]=pencan(F);
+W=clean(M*F*Q)
+roots(det(W(1:i1,1:i1)))
+det(W($-2:$,$-2:$))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="glever">glever</link>
+      </member>
+      <member>
+        <link linkend="penlaur">penlaur</link>
+      </member>
+      <member>
+        <link linkend="rowshuff">rowshuff</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. D.; ;   </para>
+  </refsection>
+</refentry>

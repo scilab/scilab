@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005      - INRIA - Pierrick MODE
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xls_read">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xls_read</refname>
+    <refpurpose>read a sheet in an Excel file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>a number, the logical unit on the Excel stream returned by <link linkend="xls_open">xls_open</link>.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sheetpos</term>
+        <listitem>
+          <para> a number: the position of the beginning of the sheet in the
+	    Excel stream. This position is one of those returned by <link linkend="xls_open">xls_open</link>.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Value</term>
+        <listitem>
+          <para>a matrix of numbers, the numerical data found in the sheet. The cell
+	    without numerical data are represented by <literal>NaN</literal> values.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>TextInd</term>
+        <listitem>
+          <para>a matrix of indices with the same size as <literal>Value</literal>. The 0
+	    indices indicates that no string exists in the correspondin Excel
+	    cell. a positive index <literal>i </literal> points to the string
+	    <literal>SST(i)</literal>  where <literal>SST</literal>  is given by <link linkend="xls_open">xls_open</link>.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+     This function reads an Excel sheet given a logical unit on an Excel stream
+      ant the position of the beginning of the sheet within this stream. It
+      returns the numerical data and the strings contained by the Excel cells.
+     </para>
+    <para>The <link linkend="readxls">readxls</link> function can be used to read all an Excel file
+      in one function with a single function call.</para>
+    <para> Warning only BIFF8 Excel files (last Excel file version) are handled  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+   //Decode ole file, extract and open Excel stream
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
+    //Read first data sheet
+    [Value,TextInd] = xls_read(fd,Sheetpos(1))
+    //close the spreadsheet stream
+    mclose(fd)
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xls_open">xls_open</link>
+      </member>
+      <member>
+        <link linkend="readxls">readxls</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Pierrick Mode</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>This function is based on Excel
+      stream description from OpenOffice (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).</para>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para>
+     This function uses the xls.c file which can be found in a Scilab source
+      version in the directory SCIDIR/modules/spreadsheet/src/c
+     </para>
+  </refsection>
+</refentry>

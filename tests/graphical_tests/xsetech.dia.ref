@@ -1,0 +1,165 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/graphical_tests/xsetech_data.ref','rb');
+ 
+// To get a graphical explanation of xsetech parameters enter:
+ 
+ 
+ 
+ 
+// Here xsetech is used to split the graphics window in two parts
+ 
+// first xsetech is used to set the first sub-window
+ 
+// and the graphics scale
+ 
+%ans = xsetech([0,0,1,0.5], [-5,-3,5,3]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// we call plot2d with the "001" option to use the graphics scale
+ 
+// set by xsetech
+ 
+%ans = plot2d((1:10)', (1:10)', 1, '001', ' ');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// then xsetech is used to set the second sub-window
+ 
+%ans = xsetech([0,0.5,1,0.5]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// the graphics scale is set by xsetech to [0,0,1,1] by default
+ 
+// and we change it with the use of the rect argument in plot2d
+ 
+%ans = plot2d((1:10)', (1:10)', 1, '011', ' ', [-6,-6,6,6]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// Four plots on a single graphics window
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xset('font', 2, 0);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xsetech([0,0,0.5,0.5]);%ans = plot3d();
+
+Demo of plot3d()
+========================================
+t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xsetech([0.5,0,0.5,0.5]);%ans = plot2d();
+
+Demo of plot2d()
+========================================
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xsetech([0.5,0.5,0.5,0.5]);%ans = grayplot();
+
+Demo of grayplot()
+========================================
+t=-%pi:0.1:%pi;m=sin(t)'*cos(t);grayplot(t,t,m);
+
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xsetech([0,0.5,0.5,0.5]);%ans = histplot();
+ 
+Demo of histplot()
+========================================
+ 
+histplot([-4.5:0.25:4.5],rand(1,20000,'n'),style=2);
+deff('[y]=f(x)','y=exp(-x.*x/2)/sqrt(2*%pi);');
+x=-4.5:0.125:4.5;x=x';plot2d(x,f(x),26,"000");
+titre= 'macro histplot : (normalized) histogram plot';
+xtitle(titre,'C (Classes)','N(C)/(Nmax length(C))');
+legends(['gaussian random sample histogram' 'exact gaussian density'],[2 26],1)
+ 
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// back to default values for the sub-window
+ 
+%ans = xsetech([0,0,1,1]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// One plot with changed arect
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xset('default');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xsetech(arect=[0,0,0,0]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+x = 1:0.1:10;%ans = plot2d(x', sin(x)');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xsetech(arect=[1/8,1/8,1/16,1/4]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+x = 1:0.1:10;%ans = plot2d(x', sin(x)');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xbasc_run();
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xset('default');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

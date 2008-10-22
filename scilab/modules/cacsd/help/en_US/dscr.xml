@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dscr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dscr</refname>
+    <refpurpose>  discretization of linear system</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[sld [,r]]=dscr(sl,dt [,m])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list containing <literal>[A,B,C,D]</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dt</term>
+        <listitem>
+          <para>real number, sampling period</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>covariance of the input noise (continuous time)(default value=0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>covariance of the output noise (discrete time) given if <literal>m</literal> is  given as input</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sld</term>
+        <listitem>
+          <para>sampled (discrete-time) linear system, <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Discretization of linear system. <literal>sl</literal> is a continuous-time system:</para>
+    <para><literal>dx/dt=A*x+B*u (+ noise)</literal>.</para>
+    <para><literal>sld</literal> is the discrete-time system obtained by 
+    sampling <literal>sl</literal> with the sampling period <literal>dt</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+s=poly(0,'s');
+Sys=syslin('c',[1,1/(s+1);2*s/(s^2+2),1/s])
+ss2tf(dscr(tf2ss(Sys),0.1))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="flts">flts</link>
+      </member>
+      <member>
+        <link linkend="dsimul">dsimul</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="windows_tools">
+<!-- =================== -->
+<!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+ 
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+-->
+<!-- =================== -->
+
+<PRIMITIVE gatewayId="47" primitiveId="1" primitiveName="winopen" />
+<PRIMITIVE gatewayId="47" primitiveId="2" primitiveName="winqueryreg" />
+<PRIMITIVE gatewayId="47" primitiveId="3" primitiveName="findfileassociation" />
+<PRIMITIVE gatewayId="47" primitiveId="4" primitiveName="dos" />
+<PRIMITIVE gatewayId="47" primitiveId="5" primitiveName="mcisendstring" />
+<PRIMITIVE gatewayId="47" primitiveId="6" primitiveName="oemtochar" />
+<PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="chartooem" />
+<PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="consolebox" />
+<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="win64" />
+<PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="istssession" />
+<PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="getsystemmetrics" />
+<PRIMITIVE gatewayId="47" primitiveId="12" primitiveName="createGUID" />
+<PRIMITIVE gatewayId="47" primitiveId="13" primitiveName="setdefaultlanguage" />
+</GATEWAY>

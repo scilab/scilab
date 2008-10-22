@@ -1,0 +1,4 @@
+//exec('eqiir.1.ex')
+[cells,fact,zeros,zpoles]=...
+eqiir('lp','ellip',[2*%pi/10,4*%pi/10],0.02,0.001)
+transfer=fact*poly(zeros,'z')/poly(zpoles,'z')

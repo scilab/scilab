@@ -1,0 +1,379 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2008-05-25 07:56+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-05-30 14:44+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Same type expected for all cell "
+"contents"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s：输入参数的大小错误：应该为同样的大小。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
+"integers expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid hexadecimal representations "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr "%s：输入参数的大小错误：大小不兼容。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr "%s：输入参数的数目错误：必须介于%d与%d之间。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
+"ones expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Matrix is not diagonalisable.\n"
+msgstr "%s：矩阵不是对角阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
+"positive integers expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s：输入参数的数目错误：应该为%d。"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
+"or %s expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr "%s：参数的类型错误#%d：应该为实数。\n"
+
+#, c-format
+msgid "%s: Log of a singular matrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s：不能对角化。\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该至少%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of output arguments vs. input arguments: Same number "
+"expected.\n"
+msgstr "%s：输出参数和输入参数的个数错误：应该数目相同。\n"
+
+#, c-format
+msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid base %d representations "
+"expected.\n"
+msgstr "%s：输入参数的值错误：应该为争取的基于%d进制的表示。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d:\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid octal representations "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
+"''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real, complex, integer matrix or "
+"matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"

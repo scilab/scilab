@@ -1,0 +1,93 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/syslin_data.ref','rb');
+ 
+A = [0,1;0,0];B = [1;1];C = [1,1];
+ 
+S1 = syslin('c', A, B, C);
+ 
+if load_ref('S1') then   bugmes();quit;end,
+ 
+//Linear system definition
+ 
+%ans = S1('A');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//Display of A-matrix
+ 
+%ans = S1('X0');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+%ans = S1('dt');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// Display of X0 and time domain
+ 
+s = poly(0, 's');
+ 
+D = s;
+ 
+S2 = syslin('c', A, B, C, D);
+ 
+if load_ref('S2') then   bugmes();quit;end,
+ 
+ 
+H1 = (1 + 2 * s)/(s^2);
+ 
+if load_ref('H1') then   bugmes();quit;end,
+ 
+S1bis = syslin('c', H1);
+ 
+if load_ref('S1bis') then   bugmes();quit;end,
+ 
+ 
+H2 = (1 + 2 * s + s^3)/(s^2);
+ 
+if load_ref('H2') then   bugmes();quit;end,
+ 
+S2bis = syslin('c', H2);
+ 
+if load_ref('S2bis') then   bugmes();quit;end,
+ 
+ 
+%ans = S1 + S2;
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = [S1,S2];
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = ss2tf(S1) - S1bis;
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = S1bis + S2bis;
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = S1 * S2bis;
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = size(S1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

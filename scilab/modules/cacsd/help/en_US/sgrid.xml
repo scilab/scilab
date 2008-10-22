@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sgrid">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sgrid</refname>
+    <refpurpose> s-plane grid lines.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sgrid()
+sgrid('new')
+sgrid(zeta,wn [,color])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Used in conjonction with evans, 
+    plots lines of constant damping ratio (<literal>zeta</literal>)
+    and natural frequency (<literal>wn</literal>).
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>sgrid()</term>
+        <listitem>
+          <para>add a grid over an existing continuous s-plane root with default values for <literal>zeta</literal> and <literal>wn</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sgrid('new')</term>
+        <listitem>
+          <para>clears the graphic screen and then plots a default  s-plane grid</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sgrid(zeta,wn [,color])</term>
+        <listitem>
+          <para>same as <literal>sgrid()</literal> but uses the provided damping ratio and  natural frequency.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(H,100)
+sgrid()
+sgrid(0.6,2,7)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="evans">evans</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

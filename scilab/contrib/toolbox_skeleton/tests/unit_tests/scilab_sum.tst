@@ -1,0 +1,4 @@
+// This file is released into the public domain
+//=================================
+if scilab_sum(3,5) <> 8 then pause,end
+//=================================

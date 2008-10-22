@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xclick" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xclick</refname>
+
+    <refpurpose>Attend un appui sur un bouton de la souris.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>[ibutton,xcoord,yxcoord,iwin,cbmenu]=xclick([flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibutton</term>
+
+        <listitem>
+          <para>Scalaire réel (valeur entière): numéro de bouton, code de
+          touche clavier...(Voir description ci-dessous).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xccord</term>
+
+        <listitem>
+          <para>Scalaire réel: abscisse du pointeur de la souris au moment du
+          clic, à l'échelle graphique courante.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ycoord</term>
+
+        <listitem>
+          <para>Scalaire réel: ordonnée du pointeur de la souris au moment du
+          clic, à l'échelle graphique courante.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iwin</term>
+
+        <listitem>
+          <para>Scalaire réel (valeur entière): numéro de la fenêtre où
+          l'action s'est produite.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cbmenu</term>
+
+        <listitem>
+          <para>Chaîne de caractères: callback associé à un menu dynamique si
+          <literal>xclick</literal> se termine à cause d'un clic sur un menu.
+          Dans ce cas, <literal>ibutton</literal>, <literal>xcoord</literal>,
+          <literal>ycoord</literal>, et <literal>iwin</literal> prennent des
+          valeurs arbitraires.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>Scalaire réel (valeur entière): S'il est présent, la queue
+          d'évènements des clics de souris n'est pas vidée
+          préalablement.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>xclick</literal> attend l'appui sur un bouton de la
+    souris.</para>
+
+    <para>Appelée avec 3 arguments en sortie, cette fonction attend qu'un
+    bouton de la souris soit pressé avec le pointeur dans la fenêtre graphique
+    courante.</para>
+
+    <para>Avec 4 ou 5 arguments en sortie, l'appui sur un bouton de la souris
+    est attendu dans toutes les fenêtres graphiques.</para>
+
+    <para>Les valeurs de <literal>ibutton</literal> sont décrites ci-dessous
+    :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibutton==0</term>
+
+        <listitem>
+          <para>Le bouton gauche a été pressé.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==1</term>
+
+        <listitem>
+          <para>Le bouton central a été pressé.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==2</term>
+
+        <listitem>
+          <para>Le bouton droit a été pressé.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==3</term>
+
+        <listitem>
+          <para>Le bouton gauche a été cliqué.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==4</term>
+
+        <listitem>
+          <para>Le bouton central a été cliqué.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==5</term>
+
+        <listitem>
+          <para>Le bouton droit a été cliqué.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==10</term>
+
+        <listitem>
+          <para>Le bouton gauche a été double-cliqué.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==11</term>
+
+        <listitem>
+          <para>Le bouton central a été double-cliqué.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==12</term>
+
+        <listitem>
+          <para>Le bouton droit a été double-cliqué.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt;=32</term>
+
+        <listitem>
+          <para>La touche de code ASCII <literal>ibutton</literal> a été
+          pressée.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &lt;=32</term>
+
+        <listitem>
+          <para>La touche de code ASCII <literal>-ibutton</literal> a été
+          relachée.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt;=1000+32</term>
+
+        <listitem>
+          <para>La touche de code ASCII <literal>ibutton-1000</literal> a été
+          pressée avec la touche CTRL enfoncée.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-1000</term>
+
+        <listitem>
+          <para>La fenêtre graphique a été fermée.</para>
+
+          <para>ATTENTION : ibutton était égal à -100 pour la fermeture de la
+          fenêtre graphique jusqu'à Scilab 4.1.2, mais ce code a été changé
+          (dans Scilab 5.0) parce qu'il correspondait aussi au code retourné
+          pour la touche <literal>d</literal> relachée.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-2</term>
+
+        <listitem>
+          <para>Un menu dynamique a été selectionné et son callback est
+          retourné par <literal>cbmenu</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="locate">locate</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+
+      <member><link linkend="seteventhandler">seteventhandler</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Auteurs</title>
+
+    <para>J.Ph.C.</para>
+
+    <para>V.C.</para>
+  </refsection>
+</refentry>

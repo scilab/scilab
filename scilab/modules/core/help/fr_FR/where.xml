@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="where">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>where</refname>
+    <refpurpose> donne l'arborescence d'appel courante  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[linenum,mac]=where()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>linenum  </term>
+        <listitem>
+          <para>vecteur colonne d'entiers
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mac  </term>
+        <listitem>
+          <para>vecteur colonne de chaînes de caractères
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Renvoie <literal>linenum</literal> et <literal>mac</literal> tels que l'instruction courante a été appelée par la ligne linenum(1) de la fonction mac(1),
+    mac(1) a été appelée par la ligne linenum(2) de la fonction mac(2)
+    et ainsi de suite.
+  </para>
+    <para>
+    mac(i) est en général le nom d'une fonction mais il peut être égal à
+    "exec" ou "execstr" si l'instruction est dans un script ou dans une chaîne argument de execstr.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="whereami">whereami</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

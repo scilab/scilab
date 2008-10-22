@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="MatlabScilab_character_strings">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Matlab-Scilab_character_strings</refname>
+    <refpurpose>Generally speaking about...</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>    
+  Matlab and Scilab character strings are not considered in the same way.
+  Here is a little talk about differences between them.
+  </para>
+    <para>
+  Matlab considers a character string as Scilab considers a matrix of characters.
+  For example, a Scilab equivalent for Matlab 'mystring' could be ["m","y","s","t","r","i","n","g"]. 
+  So in Scilab, a character string is a object of type string (10) and always have size 1 x 1 but in Matlab, a character string have size equal to 1 x number_of_characters.
+  </para>
+    <para>
+  Considering this, we can see that a Matlab character string matrix column can only be made of same-size character strings what is not true in Scilab. We can say that a Scilab character string matrix is equivalent to a Matlab cell of character strings.
+  </para>
+    <para>
+  All these differences can lead to different results while executing same commands in Scilab or in Matlab, particularly for "dimension" functions such as length() or size().
+  </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mstr2sci">mstr2sci</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

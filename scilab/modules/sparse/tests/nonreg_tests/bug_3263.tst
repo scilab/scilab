@@ -1,0 +1,39 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 3263 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3263
+//
+// <-- Short Description -->
+// ludel(h) fails @ rev. 25935
+
+
+a=[0.2,0.6,0.6,0.2,0.3;
+0.8,0.8,0.7,0.2,0.9;
+0,0.7,0.7,0.2,0.2;
+0.3,0.9,0.2,0.9,0.3;
+0.7,0.1,0.5,0.7,0.4];
+
+b=[0.3;0.6;0.5;0.3;0.6];
+
+A=sparse(a);
+
+[h,rk]=lufact(A);
+
+x=lusolve(h,b);
+
+if norm(a*x-b)>1d-10 then pause,end
+
+[P,L,U,Q]=luget(h);
+
+if norm(P*L*U*Q-A)>1d-10 then pause,end
+
+ierr = execstr('ludel(h);','errcatch');
+if ierr <> 0 then pause,end;
+

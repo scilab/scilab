@@ -1,0 +1,28 @@
+//exec('group6_8.code')
+//save and change dess
+   xinit('group6.ps');
+
+//create filter using ffir
+
+   [h w]=wfir('lp',7,[.2,0],'hm',[0.01,-1]);
+   [tg,fr]=group(100,h);
+   plot2d(fr',tg',1,'011',' ',[0,2,0.5,4.])
+   xend()
+
+//demonstrate rational polynomial
+   xinit('group7.ps');
+   z=poly(0,'z');
+   h=z/(z-.5);
+   [tg,fr]=group(100,h);
+   plot(fr,tg)
+   xend()
+
+//demonstrate cascade realization
+   xinit('group8.ps');
+   h=[1 1.5 -1 1;2 -2.5 -1.7 0;3 3.5 2 5];
+   h=h';
+   h=casc(h,'z');
+   [tg,fr]=group(100,h);
+   plot(fr,tg)
+   xend()
+

@@ -1,0 +1,27 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+// ====================================================================
+// This file contains scilab command to be executed at the end 
+// of a scilab session
+// ====================================================================
+// starts modules .quit
+ modules = getmodules();
+ index = size(modules);
+
+ for i = 1:index(1) do 
+  exec("SCI/modules/"+modules(index(1)-i+1)+"/etc/"+modules(index(1)-i+1)+".quit",-1);
+ end  
+ 
+clear modules index i
+// ====================================================================
+// free all dynamics libraries
+ulink();
+// ====================================================================

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fscanfMat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fscanfMat</refname>
+    <refpurpose> Reads a Matrix from a text file.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>M=fscanfMat(filename);
+[M,text]=fscanfMat(filename);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>a character string giving the name of the  file  to  be scanned.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>Output variable. A matrix of real numbers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text</term>
+        <listitem>
+          <para>Output variable. A string matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    The <literal>fscanfMat</literal> function is used to read a scalar matrix from a
+    text file.  The first non-numeric lines of the file are returned
+    in <literal>text</literal> if requested and
+    all the remaining lines must have the same number of columns (column 
+    separator are assumed to be white spaces or tab characters). The
+    number of columns of the matrix will  follow the number 
+    of columns found in the file and the number of lines is fetched by 
+    detecting eof in the input file. This function can be used to read 
+    back numerical data saved with the <literal>fprintfMat</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+fd=mopen(TMPDIR+'/Mat','w');
+mfprintf(fd,'Some text.....\n');
+mfprintf(fd,'Some text again\n');
+a=rand(6,6);
+for i=1:6 ,
+ for j=1:6, mfprintf(fd,'%5.2f ',a(i,j));end;
+ mfprintf(fd,'\n'); 
+end
+mclose(fd);
+a1=fscanfMat(TMPDIR+'/Mat')
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="meof">meof</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mseek">mseek</link>
+      </member>
+      <member>
+        <link linkend="mtell">mtell</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

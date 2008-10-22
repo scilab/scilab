@@ -1,0 +1,12 @@
+LIBRARY    graphics.dll
+
+
+EXPORTS
+sciGetParentSubwin
+sciGetPointerFromHandle
+sciSetCurrentObj
+ConstructCompoundSeq
+sciSetFontSize
+sciGetCurrentObj
+Objstring
+SciWin

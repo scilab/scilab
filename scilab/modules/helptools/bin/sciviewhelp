@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - INRIA
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+if [ $# -eq 0 ]; then
+    echo "Usage: sciviewhelp javahelp_jar_file ... javahelp_jar_file"
+    echo "Allows to browse the contents of one or more"
+    echo "JavaHelp[tm] .jar files created using sci2jh."
+    echo "The name of a JavaHelp .jar file must end with '_help.jar'."
+    exit 1
+fi
+
+binDir=`dirname $0`
+
+# libDir path
+# ==============================================================================
+
+if [ -e "$binDir/../../../thirdparty" ]; then
+	libDir=$binDir/../../../thirdparty
+elif [ -e "$binDir/../../../../../thirdparty" ]; then
+	libDir=$binDir/../../../../../thirdparty
+else
+	echo "Don't find the thirdparty directory."
+	exit 2
+fi
+
+# jar checks
+# ==============================================================================
+
+if [ ! -e "$libDir/sci_doc_kit.jar" ]; then
+    echo "Don't find the sci_doc_kit.jar file."
+    exit 3
+fi
+
+if [ ! -e "$libDir/jhall.jar" ]; then
+    echo "Don't find the sci_doc_kit.jar file."
+    exit 4
+fi
+
+# launch the browser
+# ==============================================================================
+
+java -cp "$libDir/sci_doc_kit.jar:$libDir/jhall.jar" \
+        org.scilab.doc_kit.HelpViewer "$@"

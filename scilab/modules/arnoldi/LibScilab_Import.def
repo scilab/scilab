@@ -1,0 +1,14 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+ checklhs_
+ checkrhs_
+ getrhsvar_
+ stack_
+ errorinfo_
+ intersci_
+ putlhsvar_
+ com_
+ callFunctionFromGateway

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) DIGITEO - 2008 - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xlfont" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xlfont</refname>
+
+    <refpurpose>load a font in the graphic context or query loaded
+    font</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>xlfont(font-name)
+xlfont(font-filename)
+xlfont('reset')
+xlfont(font-name,font-id)
+xlfont(font-filename,font-id)
+xlfont(font-name,font-id,bold)
+xlfont(font-name,font-id,bold,italic)
+fonts=xlfont('AVAILABLE_FONTS')
+fonts=xlfont()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>font-name</term>
+
+        <listitem>
+          <para>string, name of the font family.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font-filename</term>
+
+        <listitem>
+          <para>string, filename of a true type font.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font-id</term>
+
+        <listitem>
+          <para>integer &gt;= 0 .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fonts</term>
+
+        <listitem>
+          <para>a column vector of font names.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Without any argument, <literal>xlfont()</literal> returns the list
+    of currently loaded fonts.</para>
+
+    <para>xlfont('AVAILABLE_FONTS') returns list of fonts available on your
+    system.</para>
+
+    <para>xlfont('reset') reset to initial index list of fonts.</para>
+
+    <para>With arguments, <literal>xlfont</literal> is used to load a new font
+    at different sizes in the graphics context.</para>
+
+    <para>Default fonts are "Monospaced" (0), "Symbol" (1), "Serif" (2),
+    "Serif Italic" (3), "Serif Bold" (4), "Serif Bold Italic" (5), "SansSerif"
+    (6), "SansSerif Italic" (7), "SansSerif Bold" (8), "SansSerif Bold Italic"
+    (9). These default fonts are automaticaly loaded when needed and so
+    <literal>xlfont</literal> is not really required for them. In fact
+    <literal>xlfont</literal> is essentially useful to load a new font.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+xlfont('reset');
+xlfont()
+
+// Caution : this example may not work if your system have not Monospaced font.
+xlfont("Monospaced",10,%t,%t);
+xset("font", 10, 4) // use Monospaced Bold Italic
+plot2d()
+
+xlfont()
+
+xlfont(SCI+'/thirdparty/fonts/scilabsymbols.ttf')
+xset("font", 12, 4) // use scilabsymbols.ttf font
+plot2d()
+
+xlfont()
+
+xlfont('reset');
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xset">xset</link></member>
+
+      <member><link linkend="getfont">getfont</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Allan CORNET.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hypermatrices">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hypermatrices</refname>
+    <refpurpose> Objet Scilab, matrices à N dimensions  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Le type Hypermatrice permet de manipuler des tableaux multidimensionnels. 
+    Ce type d'objet peut être défini par extension des matrices 2D comme ceci : 
+  </para>
+    <para>
+    a=[1 2;3 4];a(:,:,2)=rand(2,2)
+  </para>
+    <para>
+    ou directement en utilisant la fonction <literal>hypermat</literal>.
+  </para>
+    <para>
+    Les termes peuvent être réels, complexes, polynômiaux, rationnels, booléens
+      ou de type chaîne de caractères. 
+  </para>
+    <para>
+    Les Hypermatrices sont des <literal>mlists</literal> :
+    <literal>mlist(['hm','dims','entries'],sz,v)</literal> où <literal>sz</literal> est 
+      le vecteur ligne des dimensions et <literal>v</literal> le vecteur colonne des termes (rangés tel que 
+      l'indice le plus à gauche varie en premier).
+  </para>
+    <para>NOTES: le nombre de dimensions des hypermatrices dont les dimensions les plus à droite sont egales  
+     à 1 est automatiquement réduit. Une hypermatrice n'ayant que 2 dimensions
+      est automatiquement transformée en une matrice standard (de type 1).</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+a(1,1,1,1:2)=[1 2]
+a=[1 2;3 4];a(:,:,2)=rand(2,2)
+a(1,1,:)
+
+size(a)
+
+a(:,:,1) //dimensionnality reduction 
+type(a(:,:,1))
+
+[a a]
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hypermat">hypermat</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

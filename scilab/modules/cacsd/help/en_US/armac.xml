@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="armac">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>armac</refname>
+    <refpurpose> Scilab description of an armax process</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ar]=armac(a,b,d,ny,nu,sig)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a=[Id,a1,..,a_r]  </term>
+        <listitem>
+          <para>is a matrix of size (ny,r*ny)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b=[b0,.....,b_s]  </term>
+        <listitem>
+          <para>is a matrix of size (ny,(s+1)*nu)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>d=[Id,d1,..,d_p]  </term>
+        <listitem>
+          <para>is a matrix of size (ny,p*ny);</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ny</term>
+        <listitem>
+          <para>dimension of the output  y</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nu</term>
+        <listitem>
+          <para>dimension of the output  u</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sig</term>
+        <listitem>
+          <para>a matrix of size (ny,ny)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function creates a description as a tlist of an  ARMAX process</para>
+    <para><literal>ar</literal> is defined by</para>
+    <programlisting><![CDATA[
+
+ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
+   
+    ]]></programlisting>
+    <para>
+    and thus the coefficients of <literal>ar</literal> can be retrieved by e.g.
+    <literal> ar('a') </literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a=[1,-2.851,2.717,-0.865].*.eye(2,2)
+b=[0,1,1,1].*.[1;1];
+d=[1,0.7,0.2].*.eye(2,2);
+sig=eye(2,2);
+ar=armac(a,b,d,2,1,sig)
+// extract polynomial matrices from ar representation 
+[A,B,D]=arma2p(ar);
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="arma">arma</link>
+      </member>
+      <member>
+        <link linkend="armax">armax</link>
+      </member>
+      <member>
+        <link linkend="armax1">armax1</link>
+      </member>
+      <member>
+        <link linkend="arsimul">arsimul</link>
+      </member>
+      <member>
+        <link linkend="arma2p">arma2p</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

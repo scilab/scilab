@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="try">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>try</refname>
+    <refpurpose> beginning of try block in try-catch control instruction</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="catch">
+    <refname>catch</refname>
+    <refpurpose> beginning of catch block in try-catch control instruction </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>try
+statements
+catch
+statements
+end</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The <literal>try</literal>-<literal>catch</literal> control instruction can be used
+      to manage codes that could possibly generate errors.</para>
+    <para>When a <literal>try</literal>-<literal>catch</literal> control instruction is
+      executed, normally only the statements between the <literal>try</literal> and 
+      <literal>catch</literal> keywords are executed. However, if an error occurs
+      during execution of any of these statements, the error is recorded, the
+      remaining statements up to the <literal>catch</literal> keyword 
+      are skipped and the statements between the <literal>catch</literal> and
+      <literal>end</literal> keywords are executed using the default error handling
+      mode (see: <link linkend="errcatch">errcatch</link>. </para>
+    <para>The recorded error can be retreived using the <link linkend="lasterror">lasterror</link>
+      function.</para>
+    <para>The <literal>catch</literal> statements as well as the <literal>catch</literal>
+      keyword can be omitted if no alternative statements are given.</para>
+    <para>Note that one can also use the <link linkend="execstr">execstr</link> function with
+      <literal>'errcatch'</literal> argument for error handling. This can be
+      particularily useful for handling syntactical errors.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+ file_path=TMPDIR+'/wrong'
+ try
+    u=mopen(file_path,'r')
+    x=mget(10,'c',u)
+  catch
+    disp(['file '+file_path+ 'cannot be read',
+          'using default values for x'])
+    x=1:10
+  end 
+  [error_message,error_number]=lasterror(%t) 
+
+ 
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="error">error</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="if">if</link>
+      </member>
+      <member>
+        <link linkend="lasterror">lasterror</link>
+      </member>
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Serge Steer, INRIA</para>
+  </refsection>
+</refentry>

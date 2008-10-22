@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="min_lcost_cflow">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>min_lcost_cflow</refname>
+    <refpurpose> flot contraint de coût linéaire minimum  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[c,phi,v,flag] = min_lcost_cflow(i,j,cv,g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>i  </term>
+        <listitem>
+          <para>entier, numéros des sommets sources
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>j  </term>
+        <listitem>
+          <para>entier, numéros des sommets puits
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cv  </term>
+        <listitem>
+          <para>scalaire, valeur du flot contraint
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g  </term>
+        <listitem>
+          <para>graphe (liste)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c  </term>
+        <listitem>
+          <para>valeur du coût
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>phi  </term>
+        <listitem>
+          <para>vecteur ligne des valeurs des flots sur les arcs
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v  </term>
+        <listitem>
+          <para>vecteur ligne des flots des sources aux puits
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag  </term>
+        <listitem>
+          <para>problème soluble ou pas (0 ou 1)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>min_lcost_cflow</literal> calcule flot de coût linéaire minimum dans un réseau 
+    <literal>g</literal>, avec les valeurs des flots des sommets sources <literal>i</literal> aux
+    puits <literal>j</literal> contraints à valoir <literal>cv</literal>.
+  </para>
+    <para>
+    Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
+    le vecteur ligne des flots sur les arcs <literal>phi</literal> et les valeurs des flots 
+    <literal>v</literal> sur les arcs virtuels des sources aux puits. Si <literal>v</literal> est plus petit que <literal>cv</literal>, un message est affiché, mais le calcul est fait quand même. Dans ce cas<literal>flag</literal> est égal à 0, sinon il est égal à 1.
+  </para>
+    <para>
+    es bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
+    <literal>edge_max_cap</literal> du graphe. 
+    La valeur de la capacité minimum doit être égal à zéro. Les valeurs des capacités maximum doivent être entières et positives.
+    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles sur chaque arête.
+  </para>
+    <para>
+    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_cost</literal> du graphe.
+    Les coûts doivent être positifs.
+  </para>
+    <para>
+    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
+    elle est supposé nulle sur chaque arête.
+  </para>
+    <para>
+    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
+    elle est supposé nulle sur chaque arête.
+  </para>
+    <para>
+    Cette fonction utilise l'algorithme de Busacker et Goven.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
+he=[2 6 3 4 5 1 3 5 1 7 10 11 5 8 9 5 8 11 10 11 9 11 15 13 14 4 6 9 1];
+g=make_graph('foo',1,15,ta,he);
+g('node_x')=[194 191 106 194 296 305 305 418 422 432 552 550 549 416 548];
+g('node_y')=[56 181 276 278 276 103 174 281 177 86 175 90 290 397 399];
+show_graph(g);
+g1=g; ma=arc_number(g1); n=g1('node_number');
+g1('edge_min_cap')=0*ones(1,ma);
+rand('uniform');
+g1('edge_max_cap')=round(20*rand(1,ma))+ones(1,ma);
+g1('edge_cost')=10*rand(1,ma)+ones(1,ma);
+source=15; sink=1; cv=5;
+[c,phi,v]=min_lcost_cflow(source,sink,cv,g1);
+x_message(['Le cout est: '+string(c);
+           'Voici les flots sur les arcs']);
+nodetype=0*ones(1,n); nodetype(source)=2; nodetype(sink)=1;
+g1('node_type')=nodetype;
+ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
+g1('edge_color')=edgecolor;
+edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
+nodecolor=0*ones(1,n); nodecolor(source)=11; nodecolor(sink)=11;
+g1('node_color')=nodecolor;
+g1('edge_font_size')=edgefontsize;
+g1('edge_label')=string(phi);
+show_graph(g1);
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="min_lcost_flow1">min_lcost_flow1</link>
+      </member>
+      <member>
+        <link linkend="min_lcost_flow2">min_lcost_flow2</link>
+      </member>
+      <member>
+        <link linkend="min_qcost_flow">min_qcost_flow</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

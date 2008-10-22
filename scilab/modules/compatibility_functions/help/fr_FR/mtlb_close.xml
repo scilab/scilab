@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_close">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_close</refname>
+    <refpurpose>Fonction d'émulation de la fonction Matlab close</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Suivant le type de la figure courante (uicontrol ou graphique), l'équivalent Scilab pour
+    la fonction Matlab <literal>close</literal> est différent :</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si la figure courante est de type uicontrol : l'équivalent Scilab pour la fonction Matlab 
+	<literal>close</literal> est <literal>close</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si la fenêtre courante est une fenêtre graphique : l'équivalent Scilab pour la fonction Matlab 
+	<literal>close</literal> est <literal>xdel</literal> ou <literal>delete</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	Dans Scilab on ne récupère pas de statut d'erreur.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    La fonction <literal>mtlb_close([h])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>close([h])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_close</literal> :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>h</literal> est une figure de type uicontrol,
+        <literal>mtlb_close(h)</literal> peut être remplacé par <literal>close(h)</literal>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Si <literal>h</literal> est une figure graphique,
+        <literal>mtlb_close(h)</literal> peut être remplacé par <literal>delete(h)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>Attention : <literal>mtlb_close</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xdel">xdel</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="winsid">winsid</link>
+      </member>
+      <member>
+        <link linkend="close">close</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

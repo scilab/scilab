@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="neigh_func_csa">
+  <info>
+    <pubdate>4-Dec-2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>neigh_func_csa</refname>
+    <refpurpose> The classical neighborhood relationship for the simulated annealing </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x_neigh = neigh_func_csa(x_current,T,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x_current</term>
+        <listitem>
+          <para>the point for which we want to compute a neighbor
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>T</term>
+        <listitem>
+          <para>the current temperature
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a vector with the same size than x_current. A normalisation vector which allows to distort the shape of the neighborhood.
+       This parameter allows to take into account the differences of interval of variation between variables.
+       By default, this parameter is set to a vector of ones.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x_neigh</term>
+        <listitem>
+          <para>the computed neighbor
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+     This function implements the classical neighborhood relationship for the simulated annealing. The neighbors distribution is a gaussian 
+     distribution which is more and more peaked as the temperature decrease.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="neigh_func_default"> neigh_func_default </link>
+      </member>
+      <member>
+        <link linkend="temp_law_huang"> temp_law_huang </link>
+      </member>
+      <member>
+        <link linkend="optim_sa"> optim_sa </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
+    Yann COLLETTE (yann.collette@renault.com)
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

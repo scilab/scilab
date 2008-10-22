@@ -1,0 +1,5 @@
+//filtering with flts 
+xinit('flts2.ps')
+exec('SCI/doc/signal/Nsource_diary/Sflts2.code')
+xend()
+

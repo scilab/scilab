@@ -1,0 +1,18 @@
+// <-- Non-regression test for bug 2665 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2665
+//
+// <-- Short Description -->
+// The example provided with the on-line help of grep crashes Scilab
+// grep('2' ,'/2(]*)?$\1/' ,'r')
+//
+// =============================================================================
+// Author : Pierre MARECHAL
+// Scilab Project
+// Copyright INRIA 2007
+// =============================================================================
+//
+if grep("2" ,"/2(]*)?$\1/" ,"r")       <> 1      then bugmes();quit;end
+if or( regexp("xabyabbbz","/ab*/")     <> [2 5]) then bugmes();quit;end
+if strindex("2","/2(]*)?$\1/" ,"r")    <> 1      then bugmes();quit;end

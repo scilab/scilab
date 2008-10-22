@@ -1,0 +1,211 @@
+//x_choose:  Click to choose a demo
+  3//Simulation
+//x_choose:  Choose a demo
+  1//n-pendulum
+//x_choose:  Choose a demo
+  2//Wheel simulation
+//x_choose:  Simulation or Visualisation ? (click below)
+  1//Reading a precomputed trajectory
+//x_mdialog: time unit for graphics
+  0.02
+  o //OK
+//x_choose:  Choose a demo
+  2//Wheel simulation
+//x_choose:  Simulation or Visualisation ? (click below)
+  2//Simulation with ode (needs f77 and link. may fail, see help link)
+//x_mdialog: time unit for graphics
+  0.02
+  o //OK
+//x_choose:  Choose
+  1//Stop
+//x_choose:  Choose a demo
+  3//Bike Simulation
+//x_choose:  Choose a bike
+  1//bike : unstable trajectory
+//x_choose:  Choose a bike
+  2//bike : stable trajectory!
+//x_choose:  Choose a bike
+  0// Cancel
+//x_choose:  Choose a demo
+  4//ODE'S
+//x_choose:  Click to choose a demo
+  1//Simple ODE
+//x_choose:  Click to choose a demo
+  2//Chemical process (Stiff)
+//x_choose:  Click to choose a demo
+  3//Chemical process (Implicit)
+//x_choose:  Click to choose a demo
+  4//Lorenz equation
+//x_choose:  Click to choose a demo
+  5//ODE 1D vector field
+0,-1,0.1 
+-1,0.1,-1//xgemouse
+-0.9,0.1,-1//xgemouse
+-0.8,0,-1//xgemouse
+-0.7,0,-1//xgemouse
+-0.6,0,-1//xgemouse
+-0.5,-0.1,-1//xgemouse
+-0.4,-0.1,-1//xgemouse
+-0.3,-0.1,-1//xgemouse
+-0.2,-0.1,-1//xgemouse
+-0.2,-0.2,-1//xgemouse
+-0.1,-0.2,-1//xgemouse
+0,-0.2,-1//xgemouse
+0.1,-0.2,-1//xgemouse
+0.2,-0.2,-1//xgemouse
+0.3,-0.2,-1//xgemouse
+0.4,-0.2,-1//xgemouse
+0.4,-0.1,-1//xgemouse
+0.5,-0.1,-1//xgemouse
+0.5,0,-1//xgemouse
+0.7,0.1,-1//xgemouse
+0.7,0.2,-1//xgemouse
+0.8,0.2,-1//xgemouse
+0.9,0.3,-1//xgemouse
+1,0.4,-1//xgemouse
+1.1,0.5,-1//xgemouse
+1.3,0.7,-1//xgemouse
+1.4,0.8,-1//xgemouse
+1.4,0.9,-1//xgemouse
+1.5,0.9,-1//xgemouse
+1.5,1,-1//xgemouse
+1.5,1.1,-1//xgemouse
+1.6,1.1,-1//xgemouse
+1.7,1.2,-1//xgemouse
+1.8,1.2,-1//xgemouse
+1.8,1.3,-1//xgemouse
+1.8,1.4,-1//xgemouse
+1.9,1.4,-1//xgemouse
+1.9,1.5,-1//xgemouse
+1.9,1.7,-1//xgemouse
+1.8,1.8,-1//xgemouse
+1.4,2,-1//xgemouse
+1.3,2,-1//xgemouse
+1.2,2,-1//xgemouse
+1.1,1.9,-1//xgemouse
+1,1.8,0//xgemouse
+2,0.5,-0.9 
+//x_choose:  Click to choose a demo
+  5//ODE 1D vector field
+0,-0.8,-0.2 
+-0.8,-0.2,-1//xgemouse
+-0.7,-0.2,-1//xgemouse
+-0.6,-0.2,-1//xgemouse
+-0.5,-0.2,-1//xgemouse
+-0.5,-0.1,-1//xgemouse
+-0.4,0,-1//xgemouse
+-0.4,0.1,-1//xgemouse
+-0.3,0.1,-1//xgemouse
+-0.3,0.2,-1//xgemouse
+-0.3,0.3,-1//xgemouse
+-0.2,0.3,-1//xgemouse
+-0.2,0.4,-1//xgemouse
+-0.2,0.5,-1//xgemouse
+-0.1,0.5,-1//xgemouse
+-0.1,0.6,-1//xgemouse
+-0.1,0.7,-1//xgemouse
+0,1,-1//xgemouse
+0,1.3,-1//xgemouse
+-0.1,1.5,-1//xgemouse
+-0.1,1.5,0//xgemouse
+0,1.6,0.7 
+1.6,0.7,-1//xgemouse
+1.6,0.6,-1//xgemouse
+1.5,0.6,-1//xgemouse
+1.5,0.5,-1//xgemouse
+1.5,0.4,-1//xgemouse
+1.5,0.3,-1//xgemouse
+1.5,0.2,-1//xgemouse
+1.5,0,-1//xgemouse
+1.5,-0.1,-1//xgemouse
+1.5,-0.2,-1//xgemouse
+1.5,-0.3,-1//xgemouse
+1.6,-0.3,-1//xgemouse
+1.6,-0.4,-1//xgemouse
+1.6,-0.5,-1//xgemouse
+1.7,-0.5,-1//xgemouse
+1.7,-0.6,-1//xgemouse
+1.8,-0.6,-1//xgemouse
+1.8,-0.7,-1//xgemouse
+1.8,-0.8,-1//xgemouse
+1.8,-0.9,-1//xgemouse
+1.8,-0.9,0//xgemouse
+2,1.8,-0.9 
+//x_choose:  Click to choose a demo
+  6//Van der Pol vector field
+0,-1.1,-0.3 
+-1.1,-0.4,-1//xgemouse
+-1.1,-0.5,-1//xgemouse
+-1.1,-0.6,-1//xgemouse
+-1.1,-0.8,-1//xgemouse
+-1,-1,-1//xgemouse
+-0.9,-1.2,-1//xgemouse
+-0.9,-1.3,-1//xgemouse
+-0.9,-1.5,-1//xgemouse
+-0.9,-1.7,-1//xgemouse
+-0.9,-1.8,-1//xgemouse
+-0.9,-1.8,0//xgemouse
+0,0.4,-2.8 
+0.4,-2.9,-1//xgemouse
+0.4,-2.8,-1//xgemouse
+0.3,-2.3,-1//xgemouse
+0,-1,-1//xgemouse
+-0.1,-0.7,-1//xgemouse
+-0.1,-0.6,-1//xgemouse
+-0.1,-0.5,-1//xgemouse
+-0.1,-0.5,2//xgemouse
+-0.1,-0.6,-1//xgemouse
+-0.1,-0.7,-1//xgemouse
+-0.2,-0.7,-1//xgemouse
+-0.3,-0.7,-1//xgemouse
+-0.3,-0.6,-1//xgemouse
+-0.3,-0.6,0//xgemouse
+2,-2.4,-2.9 
+//x_choose:  Click to choose a demo
+  7//Lotka-Volterra vector field
+0,2,1.7 
+2,1.7,-1//xgemouse
+1.9,1.7,-1//xgemouse
+1.9,1.8,-1//xgemouse
+1.9,1.9,-1//xgemouse
+1.9,2,-1//xgemouse
+1.9,2.1,-1//xgemouse
+1.9,2.2,-1//xgemouse
+1.8,2.2,-1//xgemouse
+1.8,2.3,-1//xgemouse
+1.8,2.3,0//xgemouse
+0,1.8,2.8 
+1.8,2.8,-1//xgemouse
+1.7,2.8,-1//xgemouse
+1.6,2.9,-1//xgemouse
+1.5,2.9,-1//xgemouse
+1.4,2.9,-1//xgemouse
+1.4,2.9,0//xgemouse
+2,0.8,2.6 
+//x_choose:  Click to choose a demo
+  0// Cancel
+//x_choose:  Choose a demo
+  5//DAE'S
+//x_choose:  Examples of DAE
+  1//Spherical pendulum
+//x_choose:  Choose the type of the system
+  1//Index 2
+//x_choose:  Choose the type of the system
+  2//Index 1
+//x_choose:  Choose the type of the system
+  3//Index 1 with stabilization
+//x_choose:  Choose the type of the system
+  0// Cancel
+//x_choose:  Examples of DAE
+  2//Sliding pendulum
+//x_choose:  Choose a curve
+  1//Parabola
+//x_choose:  Choose a curve
+  2//Upside down camel
+//x_choose:  Choose a curve
+  0// Cancel
+//x_choose:  Examples of DAE
+  0// Cancel
+//x_choose:  Choose a demo
+  0// Cancel
+  0// Cancel

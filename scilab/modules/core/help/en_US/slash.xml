@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="slash">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>slash</refname>
+    <refpurpose> (/) right division and feed back</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Right division.  <literal>x=A / b</literal> is the solution of <literal>x*b=A</literal> .</para>
+    <para><literal>b/a = (a' \ b')'</literal> .</para>
+    <para><literal>a ./  b</literal> is the matrix with entries <literal>a(i,j)/ b(i,j)</literal>.
+    If <literal>b</literal> is scalar (1x1 matrix) this operation is the same
+    as <literal> a./b*ones(a)</literal>. (Same convention if <literal>a</literal> is a scalar).</para>
+    <para>
+    Remark that <literal>123./b</literal> is interpreted as <literal>(123.)/b</literal>. In this
+    cases dot is part of the  number not of the operator.</para>
+    <para>
+    Backslash stands for left division.</para>
+    <para>
+    System feed back.  <literal>S=G/.K</literal> evaluates <literal>S=G*(eye()+K*G)^(-1)</literal>
+    this operator avoid simplification problem.</para>
+    <para>
+    Remark that <literal>G/.5</literal> is interpreted as <literal>G/(.5)</literal>. In such 
+    cases dot is part of the number, not of the operator.</para>
+    <para>
+    Comment <literal>//</literal> comments a line i.e lines which begin by <literal>//</literal> are
+    ignored by the interpreter.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+      <member>
+        <link linkend="percent">percent</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
+      </member>
+      <member>
+        <link linkend="ieee">ieee</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="scanf_conversion">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>scanf_conversion</refname>
+    <refpurpose> scanf, sscanf, fscanf conversion specifications</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Each conversion specification in the format parameter
+    contains the following elements:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>The character % (percent sign)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>The optional assignment suppression character *</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>An optional numeric maximum field width</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>A conversion code</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    The conversion specification has the following syntax:
+  </para>
+    <para><literal>[*][width][size]convcode</literal>.
+  </para>
+    <para>
+    The results from the conversion are placed in v_i arguments
+    unless you specify assignment suppression with * (asterisk). Assignment
+    suppression provides a way to describe an input field that is to be
+    skipped. The input field is a string of nonwhite-space characters.
+    It extends to the next inappropriate character or until the field
+    width, if specified, is exhausted.
+  </para>
+    <para>
+    The conversion code indicates how to interpret the input field.
+     You should not specify the v_i parameter for a
+    suppressed field. You can use the following conversion codes:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>%</term>
+        <listitem>
+          <para>:Accepts a single % (percent sign) input at this point; no assignment is done.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>d, i</term>
+        <listitem>
+          <para>:Accepts a decimal integer;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>u</term>
+        <listitem>
+          <para>:Accepts an unsigned decimal integer;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>o</term>
+        <listitem>
+          <para>:Accepts an octal integer;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>:Accepts a hexadecimal integer;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>e,f,g</term>
+        <listitem>
+          <para>:Accepts a floating-point number. The next field is converted accordingly and stored through the corresponding parameter, which should be a pointer to a float. The input format for floating-point numbers is a string of digits, with the following optional characteristics:</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>It can be a signed value.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>It can be an exponential value, containing a decimal point followed by an exponent field, which consists of an E or an e followed by an (optionally signed) integer.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>It can be one of the special values INF, NaN,</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>:Accepts a string of characters.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>:character value is expected. The normal skip over white space is suppressed.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scanf">scanf</link>
+      </member>
+      <member>
+        <link linkend="scanf">scanf</link>
+      </member>
+      <member>
+        <link linkend="fscanf">fscanf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

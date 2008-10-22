@@ -1,0 +1,64 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/mput_data.ref','rb');
+ 
+filen = 'test.bin';
+ 
+mopen(filen, 'wb');
+ 
+mput(1996, 'l');mput(1996, 'i');mput(1996, 's');mput(98, 'c');
+ 
+// force little-endian
+ 
+mput(1996, 'll');mput(1996, 'il');mput(1996, 'sl');mput(98, 'cl');
+ 
+// force big-endian
+ 
+mput(1996, 'lb');mput(1996, 'ib');mput(1996, 'sb');mput(98, 'cb');
+ 
+//
+ 
+mclose();
+ 
+mopen(filen, 'rb');
+ 
+if 1996 ~= mget(1, 'l') then   bugmes();quit;end,
+ 
+if 1996 ~= mget(1, 'i') then   bugmes();quit;end,
+ 
+if 1996 ~= mget(1, 's') then   bugmes();quit;end,
+ 
+if 98 ~= mget(1, 'c') then   bugmes();quit;end,
+ 
+// force little-endian
+ 
+if 1996 ~= mget(1, 'll') then   bugmes();quit;end,
+ 
+if 1996 ~= mget(1, 'il') then   bugmes();quit;end,
+ 
+if 1996 ~= mget(1, 'sl') then   bugmes();quit;end,
+ 
+if 98 ~= mget(1, 'cl') then   bugmes();quit;end,
+ 
+// force big-endian
+ 
+if 1996 ~= mget(1, 'lb') then   bugmes();quit;end,
+ 
+if 1996 ~= mget(1, 'ib') then   bugmes();quit;end,
+ 
+if 1996 ~= mget(1, 'sb') then   bugmes();quit;end,
+ 
+if 98 ~= mget(1, 'cb') then   bugmes();quit;end,
+ 
+//
+ 
+mclose();
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

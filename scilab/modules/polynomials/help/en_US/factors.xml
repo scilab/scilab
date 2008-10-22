@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="factors">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>factors</refname>
+    <refpurpose> numeric real factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[lnum,g]=factors(pol [,'flag'])
+[lnum,lden,g]=factors(rat [,'flag'])
+rat=factors(rat,'flag')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>pol</term>
+        <listitem>
+          <para>real polynomial</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rat</term>
+        <listitem>
+          <para>real rational polynomial (<literal>rat=pol1/pol2</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lnum</term>
+        <listitem>
+          <para>list of polynomials (of degrees 1 or 2)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lden</term>
+        <listitem>
+          <para>list of polynomials (of degrees 1 or 2)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>real number</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>character string <literal>'c'</literal> or <literal>'d'</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    returns the factors of polynomial <literal>pol</literal> in the list <literal>lnum</literal>
+    and the "gain" g.</para>
+    <para>
+    One has pol= g times product of entries of the list <literal>lnum</literal>
+    (if <literal>flag</literal> is not given). If <literal>flag='c'</literal> is given, then
+    one has <literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>.
+    If <literal>flag='d'</literal> is given, then
+    one has <literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>.
+    If argument of <literal>factors</literal> is a 1x1 rational <literal>rat=pol1/pol2</literal>,
+    the factors of the numerator <literal>pol1</literal> and the denominator <literal>pol2</literal>
+    are returned in the lists <literal>lnum</literal> and <literal>lden</literal> respectively.</para>
+    <para>
+    The "gain" is returned as <literal>g</literal>,i.e. one has:
+    rat= g times (product entries in lnum) / (product entries in lden).</para>
+    <para>
+    If <literal>flag</literal> is <literal>'c'</literal> (resp. <literal>'d'</literal>), the roots of <literal>pol</literal>
+    are refected wrt the imaginary axis (resp. the unit circle), i.e.
+    the factors in <literal>lnum</literal> are stable polynomials.</para>
+    <para>
+    Same thing if <literal>factors</literal> is invoked with a rational arguments:
+    the entries in <literal>lnum</literal> and <literal>lden</literal> are stable polynomials if
+    <literal>flag</literal> is given. <literal>R2=factors(R1,'c')</literal> or <literal>R2=factors(R1,'d')</literal>
+    with <literal>R1</literal> a rational function or SISO <literal>syslin</literal> list then the
+    output <literal>R2</literal> is a transfer with stable numerator and denominator and
+    with same magnitude as <literal>R1</literal> along the imaginary axis (<literal>'c'</literal>)
+    or unit circle (<literal>'d'</literal>).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+n=poly([0.2,2,5],'z');
+d=poly([0.1,0.3,7],'z');
+R=syslin('d',n,d);
+R1=factors(R,'d')
+roots(R1('num'))
+roots(R1('den'))
+w=exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w))-abs(horner(R,w)))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

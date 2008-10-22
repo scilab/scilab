@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rmdir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rmdir</refname>
+    <refpurpose>Remove a directory</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>rmdir('dirname')
+rmdir('dirname','s')
+[status,message] = rmdir('dirname','s')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>rmdir('dirname') removes the directory dirname from the current
+    directory. If the directory is not empty, you must use the s argument. If
+    dirname is not in the current directory, specify the relative path to the
+    current directory or the full path for dirname.</para>
+    <para>rmdir('dirname','s') removes the directory dirname and its contents
+    from the current directory. </para>
+    <para>[status, message] = rmdir('dirname','s') removes the directory dirname
+    and its contents from the current directory, returning the status, and a
+    message. Here, status is 1 for success and is 0 for error.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+mkdir(SCI,'Directory')
+rmdir(SCI+'/Directory')
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cd">cd</link>
+      </member>
+      <member>
+        <link linkend="dir">dir</link>
+      </member>
+      <member>
+        <link linkend="mkdir">mkdir</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
+</refentry>

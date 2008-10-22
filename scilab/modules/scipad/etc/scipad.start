@@ -1,0 +1,11 @@
+// ====================================================================
+// scipad module initialization file 
+// Copyright INRIA 2006
+// ====================================================================
+//Load functions library
+load('SCI/modules/scipad/macros/lib');
+load('SCI/modules/scipad/macros/scipad_internals/lib');
+// ====================================================================
+//add help chapter
+add_module_help_chapter('scipad');
+// ====================================================================

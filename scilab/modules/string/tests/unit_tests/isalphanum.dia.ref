@@ -1,0 +1,97 @@
+//===============================
+// unit tests isalphanum
+// INRIA 2007
+//===============================
+TXT = 'A1,B2,C3';
+//===============================
+if isalphanum(TXT) <> [ %T %T %F %T %T %F %T %T] then bugmes();quit;end
+//===============================
+if isalphanum('') <> [] then bugmes();quit;end
+//===============================
+if ~isalphanum('a') then bugmes();quit;end
+if ~isalphanum('b') then bugmes();quit;end
+if ~isalphanum('c') then bugmes();quit;end
+if ~isalphanum('d') then bugmes();quit;end
+if ~isalphanum('e') then bugmes();quit;end
+if ~isalphanum('f') then bugmes();quit;end
+if ~isalphanum('g') then bugmes();quit;end
+if ~isalphanum('h') then bugmes();quit;end
+if ~isalphanum('i') then bugmes();quit;end
+if ~isalphanum('j') then bugmes();quit;end
+if ~isalphanum('k') then bugmes();quit;end
+if ~isalphanum('l') then bugmes();quit;end
+if ~isalphanum('m') then bugmes();quit;end
+if ~isalphanum('n') then bugmes();quit;end
+if ~isalphanum('o') then bugmes();quit;end
+if ~isalphanum('p') then bugmes();quit;end
+if ~isalphanum('q') then bugmes();quit;end
+if ~isalphanum('r') then bugmes();quit;end
+if ~isalphanum('s') then bugmes();quit;end
+if ~isalphanum('t') then bugmes();quit;end
+if ~isalphanum('u') then bugmes();quit;end
+if ~isalphanum('v') then bugmes();quit;end
+if ~isalphanum('x') then bugmes();quit;end
+if ~isalphanum('y') then bugmes();quit;end
+if ~isalphanum('z') then bugmes();quit;end
+if ~isalphanum('A') then bugmes();quit;end
+if ~isalphanum('B') then bugmes();quit;end
+if ~isalphanum('C') then bugmes();quit;end
+if ~isalphanum('D') then bugmes();quit;end
+if ~isalphanum('E') then bugmes();quit;end
+if ~isalphanum('F') then bugmes();quit;end
+if ~isalphanum('G') then bugmes();quit;end
+if ~isalphanum('H') then bugmes();quit;end
+if ~isalphanum('I') then bugmes();quit;end
+if ~isalphanum('J') then bugmes();quit;end
+if ~isalphanum('K') then bugmes();quit;end
+if ~isalphanum('L') then bugmes();quit;end
+if ~isalphanum('M') then bugmes();quit;end
+if ~isalphanum('O') then bugmes();quit;end
+if ~isalphanum('P') then bugmes();quit;end
+if ~isalphanum('Q') then bugmes();quit;end
+if ~isalphanum('R') then bugmes();quit;end
+if ~isalphanum('S') then bugmes();quit;end
+if ~isalphanum('T') then bugmes();quit;end
+if ~isalphanum('U') then bugmes();quit;end
+if ~isalphanum('V') then bugmes();quit;end
+if ~isalphanum('X') then bugmes();quit;end
+if ~isalphanum('Y') then bugmes();quit;end
+if ~isalphanum('Z') then bugmes();quit;end
+if ~isalphanum('1') then bugmes();quit;end
+if ~isalphanum('2') then bugmes();quit;end
+if ~isalphanum('3') then bugmes();quit;end
+if ~isalphanum('4') then bugmes();quit;end
+if ~isalphanum('5') then bugmes();quit;end
+if ~isalphanum('6') then bugmes();quit;end
+if ~isalphanum('7') then bugmes();quit;end
+if ~isalphanum('8') then bugmes();quit;end
+if ~isalphanum('9') then bugmes();quit;end
+if isalphanum('!') then bugmes();quit;end
+if isalphanum('#') then bugmes();quit;end
+if isalphanum('$') then bugmes();quit;end
+if isalphanum('%') then bugmes();quit;end
+if isalphanum('&') then bugmes();quit;end
+if isalphanum('(') then bugmes();quit;end
+if isalphanum(')') then bugmes();quit;end
+if isalphanum('*') then bugmes();quit;end
+if isalphanum('+') then bugmes();quit;end
+if isalphanum(',') then bugmes();quit;end
+if isalphanum('-') then bugmes();quit;end
+if isalphanum('.') then bugmes();quit;end
+if isalphanum('/') then bugmes();quit;end
+if isalphanum(':') then bugmes();quit;end
+if isalphanum(';') then bugmes();quit;end
+if isalphanum('<') then bugmes();quit;end
+if isalphanum('=') then bugmes();quit;end
+if isalphanum('>') then bugmes();quit;end
+if isalphanum('@') then bugmes();quit;end
+if isalphanum('[') then bugmes();quit;end
+if isalphanum('\') then bugmes();quit;end
+if isalphanum(']') then bugmes();quit;end
+if isalphanum('^') then bugmes();quit;end
+if isalphanum('_') then bugmes();quit;end
+if isalphanum('`') then bugmes();quit;end
+if isalphanum('{') then bugmes();quit;end
+if isalphanum('|') then bugmes();quit;end
+if isalphanum('}') then bugmes();quit;end
+if isalphanum('~') then bugmes();quit;end

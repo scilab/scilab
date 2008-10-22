@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="LineSpec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>LineSpec</refname>
+    <refpurpose>to quickly customize the lines appearance
+  in a plot</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>None. The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very usefull to quickly specify such basic line properties.
+
+
+To specify a red longdash-dot with diamond marker, the string can be 'r-.diam'. As you can see, a full complete spelling of each property value is not required but the string, which is a concatenation (in any order) of these three types of properties , must remain unambiguous. Furthermore, the string specification is not case sensitive.</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Here is a complete list of the <literal>LineSpec</literal> types you can
+    specify (using <link linkend="plot">plot</link>).</para>
+    <variablelist>
+      <varlistentry>
+        <term>LineStyle: </term>
+        <listitem>
+          <para>a string defining the line style. This property is linked to the
+        object's <literal>line_style</literal> property (see
+        <link linkend="polyline_properties">polyline_properties</link>).</para>
+          <para/>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>Specifier</literal>
+              </td>
+              <td>
+                <literal>Line Style</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>-</literal>
+              </td>
+              <td>Solid line (default)</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>--</literal>
+              </td>
+              <td>Dashed line</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>:</literal>
+              </td>
+              <td>Dotted line</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>-.</literal>
+              </td>
+              <td>Dash-dotted line</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Color: </term>
+        <listitem>
+          <para>a string defining the line color. This property is linked to the
+        object's <literal>foreground</literal> property (see
+        <link linkend="polyline_properties">polyline_properties</link>).</para>
+          <para/>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>Specifier</literal>
+              </td>
+              <td>
+                <literal>Color</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>r</literal>
+              </td>
+              <td>Red</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>g</literal>
+              </td>
+              <td>Green</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>b</literal>
+              </td>
+              <td>Blue</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>c</literal>
+              </td>
+              <td>Cyan</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>m</literal>
+              </td>
+              <td>Magenta</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>y</literal>
+              </td>
+              <td>Yellow</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>k</literal>
+              </td>
+              <td>Black</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>w</literal>
+              </td>
+              <td>White</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term/>
+        <listitem>
+          <para>A default color table is used to color plotted curves if you do
+        not specify a color (neither with <literal>LineSpec</literal> nor with
+        <link linkend="GlobalProperty">GlobalProperty</link>). When drawing multiple lines, the plot
+        command automatically cycles through this table. Here are the used
+        colors:</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term/>
+        <listitem>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>R</literal>
+              </td>
+              <td>
+                <literal>G</literal>
+              </td>
+              <td>
+                <literal>B</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>0.</td>
+              <td>0.</td>
+              <td>1.</td>
+            </tr>
+            <tr>
+              <td>0.</td>
+              <td>0.5</td>
+              <td>0.</td>
+            </tr>
+            <tr>
+              <td>1.</td>
+              <td>0.</td>
+              <td>0.</td>
+            </tr>
+            <tr>
+              <td>0.</td>
+              <td>0.75</td>
+              <td>0.75</td>
+            </tr>
+            <tr>
+              <td>0.75</td>
+              <td>0.</td>
+              <td>0.75</td>
+            </tr>
+            <tr>
+              <td>0.75</td>
+              <td>0.75</td>
+              <td>0.</td>
+            </tr>
+            <tr>
+              <td>0.25</td>
+              <td>0.25</td>
+              <td>0.25</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Marker type: </term>
+        <listitem>
+          <para>A string defining the marker type. note that if you specify a
+        marker wihtout a line style, only the marker is drawn. This property
+        is linked to the object's <literal>mark_style</literal> and
+        <literal>mark_mode</literal> properties (see
+        <link linkend="polyline_properties">polyline_properties</link>).</para>
+          <para/>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>Specifier</literal>
+              </td>
+              <td>
+                <literal>Marker Type</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>+</literal>
+              </td>
+              <td>Plus sign</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>o</literal>
+              </td>
+              <td>Circle</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>*</literal>
+              </td>
+              <td>Asterisk</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>.</literal>
+              </td>
+              <td>Point</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>x</literal>
+              </td>
+              <td>Cross</td>
+            </tr>
+            <tr>
+              <td><literal>'square'</literal> or
+            <literal>'s'</literal></td>
+              <td>Square</td>
+            </tr>
+            <tr>
+              <td><literal>'diamond'</literal> or
+            <literal>'d'</literal></td>
+              <td>Diamond</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>^</literal>
+              </td>
+              <td>Upward-pointing triangle</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>v</literal>
+              </td>
+              <td>Downward-pointing triangle</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>&gt;</literal>
+              </td>
+              <td>Right-pointing triangle</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>&lt;</literal>
+              </td>
+              <td>Left-pointing triangle</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>'pentagram'</literal>
+              </td>
+              <td>Five-pointed star (pentagram)</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>'none'</literal>
+              </td>
+              <td>No marker (default)</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[x=1:0.1:10; // Init.
+plot(x,sin(x),'r.->') // plots a dash-dotted line with a right-pointing triangle centered on each points.
+clf();
+
+// If you specify a marker wihtout a line style, only the marker is drawn
+plot(x,sin(x),'d') // plots a dash-dotted line with a right-pointing triangle centered on each points.
+
+x=1:10; // Init.
+// combinations' order does not matter
+plot(x,x.*x,'*cya--') 
+
+//multiple plots with different LineSpecs
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+ 
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="GlobalProperty">GlobalProperty</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

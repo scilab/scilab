@@ -1,0 +1,21 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/ltitr_data.ref','rb');
+A = eye(2, 2);B = [1;1];
+x0 = [-1;-2];
+u = [1,2,3,4,5];
+x = ltitr(A, B, u, x0);
+if load_ref('x') then   pause,end,
+
+x1 = A * x0 + B * u(1);
+if load_ref('x1') then   pause,end,
+
+x2 = A * x1 + B * u(2);
+if load_ref('x2') then   pause,end,
+
+x3 = A * x2 + B * u(3);
+if load_ref('x3') then   pause,end,
+//....
+xdel_run(winsid());
+
+mclose(%U);

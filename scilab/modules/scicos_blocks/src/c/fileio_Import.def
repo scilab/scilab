@@ -1,0 +1,10 @@
+LIBRARY    fileio.dll
+
+
+EXPORTS
+mput2
+mputnc_
+mget2
+mopen_
+mclose_
+mgetnc_

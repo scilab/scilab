@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="G_make">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>G_make</refname>
+    <refpurpose> call make or nmake</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>Rfiles=G_make(files,dllname)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>a character string or a vector of character string.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dllname</term>
+        <listitem>
+          <para>a character string.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Rfiles</term>
+        <listitem>
+          <para>vector of character string. <literal>Rfiles</literal> can be used as a first argument when calling <literal>addinter</literal> function.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>On Unix like systems <literal>G_make</literal> calls the <literal>make</literal> utility for building target <literal>files</literal>
+    and returns the value of <literal>files</literal> in the variable <literal>Rfiles</literal>.
+    On windows platforms, <literal>G_make</literal> calls the <literal>nmake</literal> utility for building target <literal>dllname</literal> and it
+    returns the value of <literal>dllname</literal> in the variable <literal>Rfiles</literal>. 
+    Of course <literal>G_make</literal> will work if apropriate Makefiles are 
+    provided in the current Scilab directory.
+    </para>
+    <para><literal>G_make</literal> can be used to provide OS independant call to addinter.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+if MSDOS then
+ txt = ['ex1c.dll:',
+	       '  @echo ------------------------------------------',
+         '  @echo From Makefile.mak',
+	       '  @echo ------------------------------------------',
+	       ' '];
+  mputl(txt,TMPDIR+'/makefile.mak')
+  current_dir = pwd();  
+  cd TMPDIR
+  files=G_make([TMPDIR+'/ex1cI.o',TMPDIR+'/ex1c.o'],'ex1c.dll');// compilation 
+  //
+  //addinter(files,'foobar','foubare'); // link 
+  cd(current_dir);
+end
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

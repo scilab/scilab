@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chdir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chdir</refname>
+    <refpurpose>changes Scilab current directory</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="cd">
+    <refname>cd</refname>
+    <refpurpose>changes Scilab current directory</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>b=chdir(path)
+realpath=cd(path)
+cd path</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>a boolean %t if chdir operation is ok. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>realpath</term>
+        <listitem>
+          <para>a character string, the real path name after pathname
+          conversion (see below)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Change the current Scilab directory to those given by
+    <literal>path</literal>. Note that path conversion is performed and for example
+    <literal>SCI/modules/core/macros</literal> is a valid pattern for both unix and windows.
+    If path is empty change to "home" directory.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+chdir(TMPDIR);
+pwd
+cd 
+cd SCI
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getcwd">getcwd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

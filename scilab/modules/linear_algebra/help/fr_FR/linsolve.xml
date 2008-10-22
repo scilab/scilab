@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="linsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>linsolve</refname>
+    <refpurpose> solveur d'équation linéaire  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>une matrice réelle <literal>na x ma</literal> (éventuellement creuse)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b  </term>
+        <listitem>
+          <para>un vecteur <literal>na x 1</literal> 
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0  </term>
+        <listitem>
+          <para>un vecteur réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kerA  </term>
+        <listitem>
+          <para>une matrice réelle <literal>ma x k </literal>
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>linsolve</literal> donne toutes les solutions de <literal> A*x+b=0</literal>.
+  </para>
+    <para><literal>x0</literal> est une solution particulière (s'il en existe une) et <literal>kerA</literal> est le noyau de <literal>A</literal>. Tout vecteur de la forme <literal>x=x0+kerA*w</literal> avec <literal>w</literal> quelconque vérifie
+    <literal> A*x+b=0</literal>.
+  </para>
+    <para>
+    Si un <literal>x0</literal> compatible est donné en entrée, <literal>x0</literal> est renvoyé. Dans le cas contraire un <literal>x0</literal> compatible, s'il en existe un, est renvoyé.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+A=rand(5,3)*rand(3,8);
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   // b compatible
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   // b incompatible
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  // x est unique
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="im_inv">im_inv</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

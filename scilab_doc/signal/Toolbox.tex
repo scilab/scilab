@@ -1,0 +1,49 @@
+% Copyright INRIA
+
+\documentstyle[amssymb,11pt,makeidx]{book}
+\textheight=660pt \textwidth=470pt
+\topmargin=-27pt
+\oddsidemargin=0pt 
+\evensidemargin=0pt 
+\marginparwidth=60pt            
+
+%\input{amssym.def}
+%\input{amssym}
+ 
+\def\mtt#1{\mbox{{\tt #1}}}
+
+\def\verbatok#1{\expandafter \begin{verbatim}
+\input{#1}}
+\def\Figdir{Nfigs_source/}
+\def\Diary{Nsource_diary/}
+\def\MACROSSIGLIB{../../macros/signal/}
+
+\newcount\quadcount
+\def\Nquad#1{\quadcount=0
+ \loop\ifnum\quadcount <#1 \advance \quadcount by1 \quad \repeat}
+
+
+\makeindex
+\begin{document}
+
+\include{chap0}
+
+\pagenumbering{arabic}
+\include{chap1}	%{Description of the Basic Tools}
+\include{chap2}	%{Time and Frequency Representation of Signals}
+\include{chap3}	%{Design of Finite Impulse Response Filters}
+\include{chap4}	%{Design of Infinite Impulse Response Filters}
+\include{chap5}	%{Spectral Estimation}
+\include{chap6}	%{Optimal Filtering and Smoothing}
+\include{chap7}	%{Optimization in filter design}
+\include{chap8}	%{Stochastic realization}
+\include{chap9}	%{Time-Frequency representations of signals}
+
+\include{bibli}
+
+\listoffigures
+
+\printindex 
+
+\end{document}
+

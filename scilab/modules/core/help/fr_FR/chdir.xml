@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="chdir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chdir</refname>
+    <refpurpose>change le répertoire courant de
+  Scilab</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="cd">
+    <refname>cd</refname>
+    <refpurpose>change le répertoire courant de
+  Scilab</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>chdir(path)
+realpath=cd(path)
+cd path</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>une chaîne de caractères fournissant le chemin du
+          répertoire.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>realpath</term>
+        <listitem>
+          <para>une chaîne de caractères, le chemin effectif après conversion
+          (voir ci-dessous)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Change le répertoire courrant de Scilab par celui donné par la
+    variable <literal>path</literal>. Notez que le chemin fourni est converti. Ainsi
+    <literal>SCI/modules/fileio/macros</literal> est un chemin valide pour Unix et Windows. Si
+    path est vide , le chemin de destination est alors "home".</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    chdir(TMPDIR);
+    pwd
+    cd 
+    cd SCI
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getcwd">getcwd</link>
+      </member>
+      <member>
+        <link linkend="pwd">pwd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

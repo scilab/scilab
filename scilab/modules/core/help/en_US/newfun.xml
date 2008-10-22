@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="newfun">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>newfun</refname>
+    <refpurpose> add a name in the table of functions</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>newfun("function-name",nameptr)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function (for experts only). Adds the name <literal>"function-name"</literal>
+    in the table
+    of functions known to the interpreter. <literal>"nameptr"</literal> is an integer
+    <literal>100*fun+fin</literal> where <literal>fun</literal> and <literal>fin</literal> is the internal coding of
+    the primitive <literal>"function-name"</literal>.
+    This function is useful to associate a primitive to a routine
+    interfaced in <literal>"matusr.f"</literal> (<literal>fun=14</literal>).
+    Used with <literal>funptr</literal> and <literal>clearfun</literal> one can redefine a primitive
+    by a function with same name.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clearfun">clearfun</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

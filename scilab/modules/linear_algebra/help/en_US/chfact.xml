@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chfact">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chfact</refname>
+    <refpurpose> sparse Cholesky factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>spcho=chfact(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>square symmetric positive sparse matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>spcho</term>
+        <listitem>
+          <para>list containing the Cholesky factors in coded form</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>spcho=chfact(A)</literal> computes the sparse Cholesky factors of sparse
+    matrix <literal>A</literal>, assumed symmetric positive definite.
+    This function is based on the Ng-Peyton programs (ORNL). See the
+    Fortran programs for a complete description of the variables in
+    <literal>spcho</literal>. This function is to be used with <literal>chsolve</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="chsolve">chsolve</link>
+      </member>
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+      <member>
+        <link linkend="spchol">spchol</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

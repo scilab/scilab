@@ -1,0 +1,22 @@
+foobar	ch	a	b	c
+ch	string	nch
+a	vector	ma
+b	row	mb
+c	matrix	mc	nc
+d	matrix	mc	nc
+w	matrix  mc	nc
+
+foubare2	ch	a	ma	b	mb	c	mc	nc	d	w
+ch	char
+a	int
+ma	int
+b	real
+mb	int
+c	double
+mc	int
+nc	int
+d	double
+w	double
+
+out	sequence	a	b	c	d
+***************************

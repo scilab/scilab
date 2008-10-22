@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="param3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>param3d</refname>
+
+    <refpurpose>3D plot of a parametric curve</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>param3d(x,y,z,[theta,alpha,leg,flag,ebox])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y,z</term>
+
+        <listitem>
+          <para>three vectors of the same size (points of the parametric
+          curve).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>theta, alpha</term>
+
+        <listitem>
+          <para>real values giving in degree the spherical coordinates of the
+          observation point. <emphasis>The default values are 35 and 45
+          degree.</emphasis></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>leg</term>
+
+        <listitem>
+          <para>string defining the labels for each axis with @ as a field
+          separator, for example "X@Y@Z".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag=[type,box]</term>
+
+        <listitem>
+          <para>: <literal>type</literal> and <literal>box</literal> have the
+          same meaning as in <literal>plot3d</literal>:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>type</term>
+
+              <listitem>
+                <para>an integer (scaling).</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>type=0</term>
+
+                    <listitem>
+                      <para>the plot is made using the current 3D scaling (set
+                      by a previous call to <literal>param3d</literal>,
+                      <literal>plot3d</literal>, <literal>contour</literal> or
+                      <literal>plot3d1</literal>).</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=1</term>
+
+                    <listitem>
+                      <para>rescales automatically 3d boxes with extreme
+                      aspect ratios, the boundaries are specified by the value
+                      of the optional argument <literal>ebox</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=2</term>
+
+                    <listitem>
+                      <para>rescales automatically 3d boxes with extreme
+                      aspect ratios, the boundaries are computed using the
+                      given data. <emphasis>This is the default
+                      value.</emphasis></para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=3</term>
+
+                    <listitem>
+                      <para>3d isometric with box bounds given by optional
+                      <literal>ebox</literal>, similarily to
+                      <literal>type=1</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=4</term>
+
+                    <listitem>
+                      <para>3d isometric bounds derived from the data,
+                      similarily<literal> to type=2</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=5</term>
+
+                    <listitem>
+                      <para>3d expanded isometric bounds with box bounds given
+                      by optional <literal>ebox</literal>, similarily to
+                      <literal>type=1</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=6</term>
+
+                    <listitem>
+                      <para>3d expanded isometric bounds derived from the
+                      data, similarily to <literal>type=2</literal>.Note that
+                      axes boundaries can be customized through the axes
+                      entity properties (see <link
+                      linkend="axes_properties">axes_properties</link>).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>box</term>
+
+              <listitem>
+                <para>an integer (frame around the plot).</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>box=0</term>
+
+                    <listitem>
+                      <para>nothing is drawn around the plot.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=1</term>
+
+                    <listitem>
+                      <para>unimplemented (like box=0).</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=2</term>
+
+                    <listitem>
+                      <para>only the axes behind the surface are drawn.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=3</term>
+
+                    <listitem>
+                      <para>a box surrounding the surface is drawn and
+                      captions are added.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=4</term>
+
+                    <listitem>
+                      <para>a box surrounding the surface is drawn, captions
+                      and axes are added.Note that axes aspect can also be
+                      customized through the axes entity properties (see <link
+                      linkend="axes_properties">axes_properties</link>).
+                      <emphasis>This is the default value.</emphasis></para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ebox</term>
+
+        <listitem>
+          <para>It specifies the boundaries of the plot as the vector
+          <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>. This argument is
+          used together with <literal>type</literal> in
+          <literal>flag</literal> : if it is set to <literal>1</literal>,
+          <literal>3</literal> or <literal>5</literal> (see above to see the
+          corresponding behaviour). If <literal>flag</literal> is missing,
+          <literal>ebox</literal> is not taken into acoount. Note that, when
+          specified, the <literal>ebox</literal> argument acts on the
+          <literal>data_bounds</literal> field that can also be reset through
+          the axes entity properties (see <link
+          linkend="axes_properties">axes_properties</link>). The ebox default
+          value is [0,1,0,1,0,1].</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>param3d</literal> is used to plot a 3D curve defined by its
+    coordinates <literal>x</literal>, <literal>y</literal> and
+    <literal>z</literal>. Note that data can also be got or modified through
+    the surface entity properties (see <link
+    linkend="surface_properties">surface_properties</link>).</para>
+
+    <para>Note that properties like <literal>rotation angles</literal>,
+    <literal>colors</literal> and <literal>thickness</literal> of the plotted
+    curves can also be got or modified through the param3d entity properties
+    (see <link linkend="param3d_properties">param3d_properties</link>).</para>
+
+    <para>Use <literal>param3d1</literal> to do multiple plots.</para>
+
+    <para>Enter the command <literal>param3d()</literal> to see a demo.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+t=0:0.1:5*%pi;
+param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+
+e=gce() //the handle on the 3D polyline
+
+e.foreground=color('red');
+
+a=gca(); //the handle on the axes
+a.rotation_angles=[10 70];
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="param3d1">param3d1</link></member>
+
+      <member><link linkend="plot3d">plot3d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,30 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function isequal()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+
+
+
+isequal(A,B)
+tf = isequal(A,B)
+isequal(A,B,C)
+tf = isequal(A,B,C)
+
+
+
+// !! L.16: isequal requires fields are in the same order for structs to be equal
+isequal(D,E)
+// !! L.17: isequal requires fields are in the same order for structs to be equal
+tf = isequal(D,E)
+// !! L.18: isequal requires fields are in the same order for structs to be equal
+isequal(D,E,F)
+// !! L.19: isequal requires fields are in the same order for structs to be equal
+tf = isequal(D,E,F)

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matrix">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matrix</refname>
+    <refpurpose> reshape a vector or a matrix to a different size matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=matrix(v,n,m)
+y=matrix(v,[sizes])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>a vector, a matrix or an hypermatrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n,m</term>
+        <listitem>
+          <para>integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sizes</term>
+        <listitem>
+          <para>vector of integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>a vector, a matrix or hypermatrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    For a vector or a matrix with <literal>n</literal> x <literal>m</literal> entries, the command
+    <literal>y=matrix(v,n,m)</literal> or similarily <literal>y=matrix(v,[n,m])</literal>
+    transforms the <literal>v</literal> vector (or matrix) into an <literal>nxm</literal> matrix by
+    stacking columnwise the entries of <literal>v</literal>.</para>
+    <para>
+    if one of the dimension m or n is equal to -1 it is automatically
+    assigned to the quotient of size(v,'*') by the other dimension,</para>
+    <para>
+    For an hypermatrix such as
+    <literal>prod(size(v))==prod(sizes)</literal>, the command <literal>y=matrix(v,sizes)</literal> (or
+    equivalently <literal>y=matrix(v,n1,n2,...nm)</literal>) transforms
+    <literal>v</literal>  into an  matrix or hypermatrix by 
+    stacking "columnwise" (first dimension is varying first) the entries of <literal>v</literal>. <literal>y=matrix(v,sizes)</literal>
+    results in a regular matrix if sizes is a scalar or a 2-vector.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+a=[1 2 3;4 5 6]
+matrix(a,1,6)
+matrix(a,1,-1)
+matrix(a,3,2)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matrices">matrices</link>
+      </member>
+      <member>
+        <link linkend="hypermatrices">hypermatrices</link>
+      </member>
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+      <member>
+        <link linkend="rand">rand</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="empty">empty</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

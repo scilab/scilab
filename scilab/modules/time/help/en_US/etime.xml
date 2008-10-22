@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="etime">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>etime</refname>
+    <refpurpose>Elapsed time</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>e = etime(t2,t1)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>t2</term>
+        <listitem>
+          <para>a vector with 6 or 10 values.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t1</term>
+        <listitem>
+          <para>a vector with 6 or 10 values.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>e</term>
+        <listitem>
+          <para>number of seconds between <literal>t2</literal> and <literal>t1</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>t1 and t2 with 10 values</term>
+        <listitem>
+          <para>: <literal>t2</literal> and <literal>t1</literal> must have format returned by <literal>getdate</literal>. 
+				In this case, their third, fourth and fifth values are ignored.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t1 and t2 with 6 values</term>
+        <listitem>
+          <para>: <literal>t2</literal> and <literal>t1</literal> must have format: T = [Year Month Day Hour Minute Second]
+				with Second a number of seconds with milliseconds (e.g: 12.345).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para><literal>t2</literal> and <literal>t1</literal> must have the same size.</para>
+    <para><literal>t2</literal> et <literal>t1</literal> can be matrices with each line containing a format described above (all lines having same format).</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+t1=[2004 06 10 17 00 12.345]
+t2=[2004 06 10 17 01 13.965]
+E1=etime(t2,t1)
+t1=[2004 06 24 162 5 10 17 00 12 345]
+t2=[2004 06 24 162 5 10 17 01 13 965]
+E2=etime(t2,t1)
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tic">tic</link>
+      </member>
+      <member>
+        <link linkend="toc">toc</link>
+      </member>
+      <member>
+        <link linkend="getdate">getdate</link>
+      </member>
+      <member>
+        <link linkend="datenum">datenum</link>
+      </member>
+      <member>
+        <link linkend="datevec">datevec</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

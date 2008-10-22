@@ -1,0 +1,10 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/graphical_tests/sinc_data.ref','rb');
+x = linspace(-10, 10, 3000);
+%ans = plot2d(x, sinc(x));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

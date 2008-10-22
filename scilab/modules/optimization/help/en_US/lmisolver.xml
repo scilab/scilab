@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lmisolver">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lmisolver</refname>
+    <refpurpose> linear matrix inequation solver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[XLISTF[,OPT]] = lmisolver(XLIST0,evalfunc [,options])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>XLIST0</term>
+        <listitem>
+          <para>a list of containing initial guess (e.g. <literal>XLIST0=list(X1,X2,..,Xn)</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>evalfunc</term>
+        <listitem>
+          <para>a Scilab function ("external" function with specific
+    syntax)</para>
+          <para>
+    The syntax the function <literal>evalfunc</literal> must be as follows:
+  </para>
+          <para><literal>[LME,LMI,OBJ]=evalfunct(X)</literal> where <literal>X</literal> is a list of matrices, <literal>LME, LMI</literal> are lists and <literal>OBJ</literal> a real scalar.
+  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>XLISTF</term>
+        <listitem>
+          <para>a list of matrices (e.g. <literal>XLIST0=list(X1,X2,..,Xn)</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>options</term>
+        <listitem>
+          <para>optional parameter. If given, <literal>options</literal> is  a real row vector with 5 components <literal>[Mbound,abstol,nu,maxiters,reltol]</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>lmisolver</literal> solves the following problem:</para>
+    <para>
+    minimize <literal>f(X1,X2,...,Xn)</literal> a linear function of Xi's</para>
+    <para>
+    under the linear constraints:
+    <literal>Gi(X1,X2,...,Xn)=0</literal> for i=1,...,p and LMI (linear matrix
+    inequalities) constraints:</para>
+    <para><literal>Hj(X1,X2,...,Xn) &gt; 0</literal> for j=1,...,q</para>
+    <para>
+    The functions f, G, H are coded in the Scilab function <literal>evalfunc</literal>
+    and the set of matrices Xi's in the list X (i.e.
+    <literal>X=list(X1,...,Xn)</literal>).</para>
+    <para>
+    The function <literal>evalfun</literal> must return in the list <literal>LME</literal> the matrices
+    <literal>G1(X),...,Gp(X)</literal> (i.e. <literal>LME(i)=Gi(X1,...,Xn),</literal> i=1,...,p).
+    <literal>evalfun</literal> must return in the list <literal>LMI</literal> the matrices
+    <literal>H1(X0),...,Hq(X)</literal> (i.e. <literal>LMI(j)=Hj(X1,...,Xn)</literal>, j=1,...,q). 
+    <literal>evalfun</literal> must return in <literal>OBJ</literal> the value of <literal>f(X)</literal>
+    (i.e. <literal>OBJ=f(X1,...,Xn)</literal>).</para>
+    <para><literal>lmisolver</literal>  returns in <literal>XLISTF</literal>, a list of real matrices,
+    i. e. <literal>XLIST=list(X1,X2,..,Xn)</literal> where the Xi's solve the LMI
+    problem:</para>
+    <para>
+    Defining <literal>Y,Z</literal> and <literal>cost</literal> by:</para>
+    <para><literal>[Y,Z,cost]=evalfunc(XLIST)</literal>, <literal>Y</literal> is a list of zero matrices, 
+    <literal>Y=list(Y1,...,Yp)</literal>, <literal>Y1=0, Y2=0, ..., Yp=0</literal>.</para>
+    <para><literal> Z</literal> is a list of square symmetric matrices, 
+    <literal> Z=list(Z1,...,Zq) </literal>, which are semi positive definite
+    <literal> Z1&gt;0, Z2&gt;0, ..., Zq&gt;0</literal> (i.e. <literal>spec(Z(j))</literal> &gt; 0),</para>
+    <para><literal>cost</literal> is minimized.</para>
+    <para><literal>lmisolver</literal> can also solve LMI problems in which the <literal>Xi's</literal> 
+    are not matrices but lists of matrices. More details are given in the 
+    documentation of LMITOOL.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+//Find diagonal matrix X (i.e. X=diag(diag(X), p=1) such that
+//A1'*X+X*A1+Q1 < 0, A2'*X+X*A2+Q2 < 0 (q=2) and trace(X) is maximized 
+n=2;A1=rand(n,n);A2=rand(n,n);
+Xs=diag(1:n);Q1=-(A1'*Xs+Xs*A1+0.1*eye());
+Q2=-(A2'*Xs+Xs*A2+0.2*eye());
+deff('[LME,LMI,OBJ]=evalf(Xlist)','X=Xlist(1),LME=X-diag(diag(X));...
+LMI=list(-(A1''*X+X*A1+Q1),-(A2''*X+X*A2+Q2)),OBJ= -sum(diag(X))  ');
+X=lmisolver(list(zeros(A1)),evalf);X=X(1)
+[Y,Z,c]=evalf(X)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lmitool">lmitool</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

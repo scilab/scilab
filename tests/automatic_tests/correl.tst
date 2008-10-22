@@ -1,0 +1,18 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/correl_data.ref','rb');
+x = [2.5,7.5,12.5,17.5];
+if load_ref('x') then   pause,end,
+
+h = [0,1,2];
+if load_ref('h') then   pause,end,
+
+fre = [0.03,0.12,0.07;0.02,0.13,0.11;0.01,0.13,0.14;0.01,0.09,0.14];
+if load_ref('fre') then   pause,end,
+
+rho = correl(x, h, fre);
+if load_ref('rho') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="svd">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>svd</refname>
+    <refpurpose>  singular value decomposition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>s=svd(X)
+[U,S,V]=svd(X)
+[U,S,V]=svd(X,0) (obsolete)
+[U,S,V]=svd(X,"e")
+[U,S,V,rk]=svd(X [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>a real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>real vector (singular values)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>real diagonal matrix (singular values)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U,V</term>
+        <listitem>
+          <para>orthogonal or unitary square matrices (singular vectors).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>real number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[U,S,V] = svd(X)</literal> produces a diagonal matrix
+    <literal>S</literal> , of the same dimension as <literal>X</literal> and with
+    nonnegative diagonal elements in decreasing order, and unitary
+    matrices <literal>U</literal> and <literal>V</literal> so that <literal>X = U*S*V'</literal>.</para>
+    <para><literal>[U,S,V] = svd(X,0)</literal> produces the "economy
+    size" decomposition. If <literal>X</literal> is m-by-n with m &gt;
+    n, then only the first n columns of <literal>U</literal> are computed
+    and <literal>S</literal> is n-by-n.</para>
+    <para><literal>s = svd(X)</literal> by itself, returns a vector <literal>s</literal>
+    containing the singular values.</para>
+    <para><literal>[U,S,V,rk]=svd(X,tol)</literal> gives in addition <literal>rk</literal>, the numerical rank of <literal>X</literal> i.e. the number of 
+    singular values larger than <literal>tol</literal>.</para>
+    <para>
+    The default value of <literal>tol</literal> is the same as in <literal>rank</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+X=rand(4,2)*rand(2,4)
+svd(X)
+sqrt(spec(X*X'))
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="sva">sva</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para>
+   svd decompositions are based on  the Lapack routines DGESVD for
+   real matrices and  ZGESVD for the complex case.</para>
+  </refsection>
+</refentry>

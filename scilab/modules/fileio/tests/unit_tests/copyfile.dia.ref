@@ -1,0 +1,55 @@
+// =============================================================================
+// Authors : Bruno JOFRET
+//           CORNET Allan
+//          Scilab Team
+// Copyright INRIA 2007
+//
+// Date   : 13/12/2007
+//
+// Unitary tests for copyfile function
+// =============================================================================
+// TEST 1 : copyfile
+cd TMPDIR;
+mkdir test_copyfile_source;
+mkdir test_copyfile_target;
+cd('test_copyfile_source');
+mputl('I am a dummy String', 'dummyFile.dummy')
+lsResult = ls("dummyFile.dummy");
+if lsResult == [] then bugmes();quit;end
+r = copyfile(TMPDIR+'/test_copyfile_source/dummyFile.dummy',TMPDIR+'/test_copyfile_target/dummyFile.dummy');
+if r <> 1 then bugmes();quit;end
+lsResult = ls(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
+if lsResult == [] then bugmes();quit;end
+mdelete(TMPDIR+'/test_copyfile_source/dummyFile.dummy');
+mdelete(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
+rmdir(TMPDIR+'/test_copyfile_source');
+rmdir(TMPDIR+'/test_copyfile_target');
+// =============================================================================
+cd TMPDIR;
+dir1="test dir with space"
+ dir1  =
+ 
+ test dir with space   
+dir2="test dir with space number 2"
+ dir2  =
+ 
+ test dir with space number 2   
+file1='dummyFile.dummy'
+ file1  =
+ 
+ dummyFile.dummy   
+mkdir(dir1)
+ ans  =
+ 
+    1.  
+mkdir(dir2)
+ ans  =
+ 
+    1.  
+mputl('I am a dummy String', dir1+'/'+file1)
+copyfile(dir1+'/'+file1,dir2)
+ ans  =
+ 
+    1.  
+lsResult = ls(dir2+'/'+file1);
+if lsResult == [] then bugmes();quit;end

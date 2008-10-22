@@ -1,0 +1,64 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/file_data.ref','rb');
+ 
+u = file('open', TMPDIR + '/foo', 'unknown');
+ 
+if load_ref('u') then   bugmes();quit;end,
+ 
+ 
+for k = 1:4,
+  a = rand(1, 4);
+  if load_ref('a') then   bugmes();quit;end,
+  %ans = write(u, a);
+  if load_ref('%ans') then   bugmes();quit;end,
+end,
+ 
+%ans = file('rewind', u);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+x = read(u, 2, 4);
+ 
+if load_ref('x') then   bugmes();quit;end,
+ 
+ 
+%ans = file('close', u);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+//
+ 
+u1 = file('open', TMPDIR + '/foo', 'unknown');
+ 
+if load_ref('u1') then   bugmes();quit;end,
+ 
+ 
+u2 = mopen(TMPDIR + '/foo1', 'wb');
+ 
+if load_ref('u2') then   bugmes();quit;end,
+ 
+ 
+[units,typs,nams] = file();
+ 
+if load_ref_nocheck('nams') then   bugmes();quit;end,
+ 
+if load_ref('typs') then   bugmes();quit;end,
+ 
+if load_ref('units') then   bugmes();quit;end,
+ 
+ 
+file('close', u1);
+ 
+mclose(u2);
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

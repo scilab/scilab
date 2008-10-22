@@ -1,0 +1,454 @@
+# Localization of the module randlib
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+
+#
+# File: src/c/clcg2.c, line: 83
+msgid ""
+"\n"
+"Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
+"                                        and  s2 in [1, 2147483398]\n"
+msgstr ""
+
+#
+# File: src/norandlib/norandlib.c, line: 11
+msgid "Scilab randlib interface not installed.\n"
+msgstr "Interface Scilab randlib non installée.\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 172
+msgid "The setall option affect only the clcg4 generator !\n"
+msgstr "L'option setall ne concerne que le générateur clcg !\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 175
+msgid "Input argument (RHS) should be 5 for 'setall' option\n"
+msgstr "L'argument d'entrée (RHS) doit être 5 pour l'option 'setall'\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 179
+# File: sci_gateway/c/sci_grand.c, line: 236
+# File: sci_gateway/c/sci_grand.c, line: 258
+# File: sci_gateway/c/sci_grand.c, line: 283
+# File: sci_gateway/c/sci_grand.c, line: 299
+msgid "Second input argument must be scalar\n"
+msgstr "Le second argument d'entrée doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 182
+# File: sci_gateway/c/sci_grand.c, line: 239
+# File: sci_gateway/c/sci_grand.c, line: 261
+# File: sci_gateway/c/sci_grand.c, line: 286
+msgid "Third input argument must be scalar\n"
+msgstr "Le troisième argument d'entrée doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 185
+# File: sci_gateway/c/sci_grand.c, line: 264
+msgid "Fourth input argument must be scalar\n"
+msgstr "Le quatrième argument d'entrée doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 188
+# File: sci_gateway/c/sci_grand.c, line: 267
+msgid "Fifth input argument must be scalar\n"
+msgstr "Le cinquième argument d'entrée doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 337
+msgid "For initgn option argument must be -1,0 or 1\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 448
+#, c-format
+msgid "%s Wrong first input argument %s\n"
+msgstr "%s mauvais argument d'entrée %s\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 459
+# File: sci_gateway/c/sci_grand.c, line: 463
+msgid "First input argument must be scalar\n"
+msgstr "Le premier argument d'entrée doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 478
+msgid "Missing A and B for beta law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 480
+msgid "A must be scalar\n"
+msgstr "A doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 482
+msgid "B must be scalar\n"
+msgstr "B doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 500
+msgid "Missing Dfn and Dfd for F law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 502
+# File: sci_gateway/c/sci_grand.c, line: 932
+msgid "Dfn must be scalar\n"
+msgstr "Dfn doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 504
+# File: sci_gateway/c/sci_grand.c, line: 934
+msgid "Dfd must be scalar\n"
+msgstr "Dfd doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 508
+msgid "Degrees of freedom nonpositive\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 529
+msgid "Missing N and P for MULtinomial law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 531
+# File: sci_gateway/c/sci_grand.c, line: 717
+# File: sci_gateway/c/sci_grand.c, line: 744
+msgid "N must be scalar\n"
+msgstr "B doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 535
+msgid "P must be a column vector\n"
+msgstr "P doit être un vecteur colonne\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 542
+# File: sci_gateway/c/sci_grand.c, line: 728
+# File: sci_gateway/c/sci_grand.c, line: 755
+msgid "N < 0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 547
+msgid "Ncat <= 1\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 555
+#, c-format
+msgid "P(%d) < 0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 560
+#, c-format
+msgid "P(%d) > 1\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 567
+msgid "Sum of P(i) > 1\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 585
+msgid "Missing shape and scale for Gamma law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 587
+msgid "shape must be scalar\n"
+msgstr "shape doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 589
+msgid "scale must be scalar\n"
+msgstr "scale doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 593
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 610
+msgid "Missing Av and Sd for Normal law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 612
+# File: sci_gateway/c/sci_grand.c, line: 979
+# File: sci_gateway/c/sci_grand.c, line: 1021
+msgid "Av must be scalar\n"
+msgstr "Av doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 614
+msgid "Sd must be scalar\n"
+msgstr "Sd doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 618
+msgid "SD < 0.0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 631
+msgid "Missing Low and High for Uniform Real law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 633
+# File: sci_gateway/c/sci_grand.c, line: 655
+msgid "Low must be scalar\n"
+msgstr "Low doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 635
+# File: sci_gateway/c/sci_grand.c, line: 657
+msgid "High must be scalar\n"
+msgstr "High doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 640
+msgid "Low > High\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 653
+msgid "Missing Low and High for Uniform integer law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 661
+msgid " a and b must integers with (b-a+1) <= 2147483561"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 675
+#, c-format
+msgid "Only %d input arguments required for 'lgi' option"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 690
+msgid ""
+"First input argument for 'prm' option must be the number of random "
+"simulation\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 696
+msgid "Missing vect for random permutation\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 699
+msgid "vect must be column vector\n"
+msgstr "vect doit être un vecteur colonne\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 715
+msgid "Missing N and P for Negative Binomial law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 719
+# File: sci_gateway/c/sci_grand.c, line: 746
+msgid "P must be scalar\n"
+msgstr "P doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 723
+# File: sci_gateway/c/sci_grand.c, line: 750
+msgid "P is not in [0,1]\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 742
+msgid "Missing N and P for Binomial law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 771
+msgid ""
+"First input argument for 'mn' option must be the number of random "
+"simulation\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 775
+msgid "Missing Mean and Cov for Multivariate Normal law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 777
+msgid "Mean must be column vector\n"
+msgstr "Mean doit être un vecteur colonne\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 779
+msgid "Cov must be a square matrix\n"
+msgstr "Cov doit être une matrice carrée\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 780
+msgid "Mean and Cov have incompatible dimensions\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 788
+msgid "Mean and Cov are of null size\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 808
+msgid ""
+"First input argument for 'markov' option must be the number of random "
+"simulation\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 812
+msgid "Missing P matrix and X0 for Markov chain\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 817
+msgid "P must be a square matrix or a row vector\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 820
+msgid "X0 is empty\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 825
+#, c-format
+msgid "X0(%d) must be in the range [1,%d]\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 840
+#, c-format
+msgid "P(%d,%d) < 0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 845
+#, c-format
+msgid "P(%d,%d) > 1\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 852
+#, c-format
+msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
+msgstr "Somme de P(%d,1:%d)=%f ~= 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 892
+msgid "no input argument required for 'def' option\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 906
+msgid "Missing Df and Xnonc for non-central chi-square law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 908
+# File: sci_gateway/c/sci_grand.c, line: 959
+msgid "Df must be scalar\n"
+msgstr "Df doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 910
+# File: sci_gateway/c/sci_grand.c, line: 936
+msgid "Xnonc must be scalar\n"
+msgstr "Xnonc doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 914
+msgid "DF < 1 or XNONC < 0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 929
+msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 940
+msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 955
+msgid "Missing Df for chi-square law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 963
+msgid "Rand: DF <= 0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 976
+msgid "Missing Av for Poisson law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 983
+msgid "Av < 0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 998
+msgid "Missing p for Geometric law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1001
+msgid "p must be scalar\n"
+msgstr "p doit être un scalaire\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1003
+msgid "p must be in [pmin,1]\n"
+msgstr "p doit être dans [pmin,1]\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1018
+msgid "Missing Av for exponential law\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1025
+msgid "Av < 0.0\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1039
+#, c-format
+msgid "%s Wrong input argument %s\n"
+msgstr "%s Mauvais argument d'entrée %s\n"

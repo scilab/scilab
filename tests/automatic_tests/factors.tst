@@ -1,0 +1,22 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/factors_data.ref','rb');
+n = poly([0.2,2,5], 'z');
+d = poly([0.1,0.3,7], 'z');
+R = syslin('d', n, d);
+R1 = factors(R, 'd');
+if load_ref('R1') then   pause,end,
+
+%ans = roots(R1('num'));
+if load_ref('%ans') then   pause,end,
+
+%ans = roots(R1('den'));
+if load_ref('%ans') then   pause,end,
+
+w = exp(2 * %i * %pi * (0:0.1:1));
+%ans = norm(abs(horner(R1, w)) - abs(horner(R, w)));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

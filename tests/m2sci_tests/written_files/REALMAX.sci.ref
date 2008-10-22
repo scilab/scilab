@@ -1,0 +1,24 @@
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function realmax()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+number_properties("huge");
+number_properties("huge");
+// !! L.8: No Scilab equivalent for: realmax("single")
+realmax("single");
+typ = "double";
+mtlb_realmax(typ);
+
+val = number_properties("huge");
+val = number_properties("huge");
+// !! L.14: No Scilab equivalent for: realmax("single")
+val = realmax("single");
+val = mtlb_realmax(typ);

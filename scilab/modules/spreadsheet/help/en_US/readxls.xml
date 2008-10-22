@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005      - INRIA - Pierrick MODE
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="readxls">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>readxls</refname>
+    <refpurpose>reads an Excel file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sheets = readxls(file_path)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file_path</term>
+        <listitem>
+          <para>a character string: the path of the Excel file.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sheets</term>
+        <listitem>
+          <para>an <literal>mlist</literal> of type <literal>xls</literal>, with one field named <literal>sheets</literal>
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Given an Excel file path this function returns an <literal>mlist</literal> data structure
+      of type <literal>xls</literal>, with one field named <literal>sheets</literal>. The
+      <literal>sheets</literal> field itself contains a list of sheet data structure.</para>
+    <para><literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> where 
+      <literal>sheetname</literal> is a character string containing the name of the sheet,
+      <literal>Text</literal> is a matrix of string which contains the cell's
+      strings and  <literal>Value</literal> is a matrix of numberswhich contains the cell's
+      values. </para>
+    <para> Warning only BIFF8 Excel files (last Excel file version) are handled  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
+    // some basic operations on Sheets
+    typeof(Sheets)
+    s1=Sheets(1) //get the first sheet
+    typeof(s1)
+    s1.value //get the first sheet value field
+    s1.text  //get the first sheet text field
+    s1(2,:)  //get the 2 row of the sheet
+    typeof(s1(2,:))
+
+    editvar s1
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xls_open">xls_open</link>
+      </member>
+      <member>
+        <link linkend="xls_read">xls_read</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Pierrick Mode</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para> This function is based on the Scilab functions <literal>xls_open</literal>
+      and  <literal>xls_read</literal>
+     </para>
+  </refsection>
+</refentry>

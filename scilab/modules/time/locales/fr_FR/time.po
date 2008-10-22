@@ -1,0 +1,241 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2008-08-13 08:08+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument d'entrée: %d à %d attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice de constantes "
+"réelles attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' ou ''%s'' "
+"attendu.\n"
+
+msgid "Sat"
+msgstr "Sam"
+
+msgid "Sun"
+msgstr "Dim"
+
+msgid "Mon"
+msgstr "Lun"
+
+msgid "Tue"
+msgstr "Mar"
+
+msgid "Wed"
+msgstr "Mer"
+
+msgid "Thu"
+msgstr "Jeu"
+
+msgid "Fri"
+msgstr "Ven"
+
+msgid "Saturday"
+msgstr "Samedi"
+
+msgid "Sunday"
+msgstr "Dimanche"
+
+msgid "Monday"
+msgstr "Lundi"
+
+msgid "Tuesday"
+msgstr "Mardi"
+
+msgid "Wednesday"
+msgstr "Mercredi"
+
+msgid "Thursday"
+msgstr "Jeudi"
+
+msgid "Friday"
+msgstr "Vendredi"
+
+msgid "Jan"
+msgstr "Jan"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgstr ""
+"%s: Mauvais type pour les arguments d'entrée : ils doivent être des "
+"scalaires.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: Il doit être compris entre %d "
+"et %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: Mauvais nombre d'arguments d'entrée.\n"
+
+msgid "Feb"
+msgstr "Fév"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Avr"
+
+msgid "May"
+msgstr "Mai"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "Aug"
+msgstr "Aoû"
+
+msgid "Sep"
+msgstr "Sép"
+
+msgid "Oct"
+msgstr "Oct"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Déc"
+
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   L Ma M Je V Sam Dim"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice réelle "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: une matrice m*3 ou "
+"une matrice m*6 attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: %s doit être entre %d et "
+"%d.\n"
+
+msgid "Month"
+msgstr "Mois"
+
+msgid "Day"
+msgstr "Jour"
+
+msgid "Hour"
+msgstr "Heure"
+
+msgid "Minute"
+msgstr "Minute"
+
+msgid "Second"
+msgstr "Second"
+
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s: Mauvais type des arguments d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Mauvaise taille pour les arguments en entrée: Mêmes tailles attendues.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être entre %d et "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Mauvais nombre d'argument d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée : Même dimension attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgstr "%s: Mauvais type pour les arguments d'entrée: entiers attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un vecteur réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée #%d: Cela doit être entre %d "
+"et %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
+msgstr ""
+"%s: Mauvais type pour les arguments d'entrée: Valeurs scalaires attendues.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Une erreur s'est produite: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Entier ou '%s' attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Un entier non-négatif "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être < %d.\n"

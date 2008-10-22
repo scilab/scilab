@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="denom">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>denom</refname>
+    <refpurpose> dénominateur  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>den=denom(r)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>r  </term>
+        <listitem>
+          <para>matrice de fractions rationnelles
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>den  </term>
+        <listitem>
+          <para>matrice de polynômes
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>den=denom(r)</literal> renvoie le dénominateur d'une
+    matrice rationnelle <literal>R</literal> (<literal>R</literal> peut aussi être
+    une matrice constante ou une matrice de polynômes).
+  </para>
+    <para>
+    Puisque dans Scilab les matrices rationnelles sont représentées
+    comme
+    <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
+    <literal>denom(r</literal>) est équivalent à <literal>r(3)</literal>,
+    <literal>r('den')</literal> ou <literal>r.den)</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="numer">numer</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

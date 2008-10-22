@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="chol">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chol</refname>
+    <refpurpose> Factorisation de Cholesky  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[R]=chol(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>matrice réelle ou complexe
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Si <literal>X</literal> est hermitienne (symétrique dans le cas réel) définie positive, alors <literal>R = chol(X)</literal> renvoie une matrice triangulaire supérieure <literal>R</literal> telle que <literal>R'*R = X</literal>.
+    </para>
+    <para><literal>chol(X)</literal> utilise uniquement la partie triangulaire supérieure de <literal>X</literal> dont la
+      partie triangulaire inférieure est supposée être la transposée (transposée conjuguée dans le cas complexe).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    W=rand(5,5)+%i*rand(5,5);
+    X=W*W';
+    R=chol(X);
+    norm(R'*R-X)
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="spchol">spchol</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Fonctions Utilisées</title>
+    <para>
+      La décomposition de Cholesky est basée sur les routines Lapack
+      DPOTRF pour les matrices réelles et  ZPOTRF pour le cas complexe.
+    </para>
+  </refsection>
+</refentry>

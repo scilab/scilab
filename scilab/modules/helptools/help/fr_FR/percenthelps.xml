@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="helps">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>%helps</refname>
+    <refpurpose> variable contenant les noms des répertoires des chapitres d'aide  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>%helps</literal> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
+  </para>
+    <programlisting><![CDATA[
+répertoire_du_chapitre    titre_du_chapitre
+   ]]></programlisting>
+    <para>
+    Par exemple, nous avons le chapitre "graphics". 
+    <literal>%helps(2,:)</literal>.
+  </para>
+    <para>
+    La valeur par défaut de <literal>%helps</literal> est initialisée dans le fichier <literal>SCI+"scilab.start"</literal>.
+  </para>
+    <para>
+    Pour ajouter de nouveaux chapitres d'aide il suffit d'ajouter des lignes à la variable <literal>%helps</literal>, par exemple dans le fichier utilisateur de démarrage <literal>SCIHOME/.scilab</literal> ou <literal>SCIHOME/scilab.ini</literal>.
+  </para>
+    <para>
+    Par exemple, 
+    <literal>%helps=[%helps; "répertoire_du_chapitre",  "titre_du_chapitre"];</literal>
+  </para>
+    <para>
+    "titre_du_chapitre" devient le titre d'un nouveau chapitre.
+  </para>
+    <para>
+    Chaque répertoire d'aide contient des fichiers <literal>*.html</literal>,
+    généralement généré à partir d'un fichier XML, et un fichier
+    <literal>whatis.html</literal> contenant une ligne pour chaque mot-clé documenté
+    dans le chapitre correspondant. Chaque ligne doit avoir le format :
+  </para>
+    <para>
+  </para>
+    <programlisting><![CDATA[
+<BR><A HREF="item.html">item</A> - description rapide
+   ]]></programlisting>
+    <para><literal>item</literal> est l'article de la liste d'aide, c'est-à-dire que la commande <literal>help item</literal> affiche le contenu du fichier <literal>item.html</literal>.
+  </para>
+    <para>
+      
+    La commande <literal>apropos mot-clé</literal> renvoie les lignes de tous les fichiers
+    <literal>whatis</literal> dans lesquels <literal>mot-clé</literal> apparaît.
+  </para>
+    <para>
+  </para>
+    <para>
+    Sur les plates-formes Linux, Scilab dispose d'un Makefile pour transformer les fichiers <literal>.xml</literal> en <literal>.html</literal> (voir SCIDIR/examples/man-examples).
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="apropos">apropos</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

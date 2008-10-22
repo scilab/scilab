@@ -1,0 +1,20 @@
+SHELL = /bin/sh
+
+SCIDIR=../../..
+include ../../../Makefile.incl
+
+.SUFFIXES: .sci .vtex $(SUFFIXES)
+
+VTEX = make_macro.vtex
+
+all:: $(VTEX)
+
+distclean::
+	$(RM) $(VTEX)
+
+.sci.vtex:
+	@echo "\begin{verbatim}" > prov1
+	@cat prov1 $*.sci > prov2
+	@echo "\end{verbatim}" > prov1
+	@cat prov2 prov1 > $*.vtex
+	@$(RM) prov1 prov2

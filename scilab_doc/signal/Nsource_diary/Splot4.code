@@ -1,0 +1,3 @@
+//Demonstrate function plzr
+hz=iir(4,'lp','butt',[.25 0],[0 0])
+plzr(hz)

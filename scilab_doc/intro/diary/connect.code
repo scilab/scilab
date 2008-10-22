@@ -1,0 +1,17 @@
+//system connecting
+s=poly(0,'s');
+S1=1/(s-1)
+S2=1/(s-2)
+S1=syslin('c',S1);
+S2=syslin('c',S2);
+Gls=tf2ss(S2);
+ssprint(Gls)
+hls=Gls*S1;
+ssprint(hls)
+ht=ss2tf(hls)
+S2*S1
+S1+S2
+[S1,S2]
+[S1;S2]
+S1/.S2
+S1./(2*S2)

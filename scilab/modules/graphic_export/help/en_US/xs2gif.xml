@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xs2gif" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xs2gif</refname>
+
+    <refpurpose>send graphics to a file in GIF syntax</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>xs2gif(win_num,filen)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
+
+        <listitem>
+          <para>integer scalar or vector .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>filen</term>
+
+        <listitem>
+          <para>string, file name.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>xs2gif</literal> sends the recorded graphics of the window
+    <literal>win_num</literal> in the file <literal>filen</literal> in GIF
+    format. </para>
+
+    <para>To convert a sequence of "GIF" files to an animated GIF file one can
+    use the "convert" program for ImageMagic
+    (http://www.imagemagick.org/)</para>
+
+    <para>For example if one has generated a sequence of Gif files named
+    <literal>img*.gif</literal> it is possible to build an animated Gif file
+    (named anim.gif) by</para>
+
+    <programlisting>
+    
+    convert -delay 10  img*.gif anim.gif  
+     
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    scf(0)
+    plot2d()
+    //GIF export
+    xs2gif(0,'foo.gif')
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xs2bmp">xs2bmp</link></member>
+
+      <member><link linkend="xs2jpg">xs2jpg</link></member>
+
+      <member><link linkend="xs2png">xs2png</link></member>
+
+      <member><link linkend="xs2ppm">xs2ppm</link></member>
+
+      <member><link linkend="xs2eps">xs2eps</link></member>
+
+      <member><link linkend="xs2pdf">xs2pdf</link></member>
+
+      <member><link linkend="xs2svg">xs2svg</link></member>
+
+      <member><link linkend="xs2ps">xs2ps</link></member>
+
+      <member><link linkend="xs2fig">xs2fig</link></member>
+
+      <member><link linkend="xs2emf">xs2emf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

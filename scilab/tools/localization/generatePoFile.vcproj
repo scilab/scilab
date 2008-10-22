@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9,00"
+	Name="generatePoFile"
+	ProjectGUID="{6880D4DF-BC7A-411F-AD9B-20A14429A92F}"
+	RootNamespace="generatePoFile"
+	Keyword="MakeFileProj"
+	TargetFrameworkVersion="0"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
+				Output=""
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
+				Output=""
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
+				Output=""
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;set TMPDIR=%TEMP%&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)java\ant\bin;$(SolutionDir)java\jdk\bin;%PATH%;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_TW\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_TW  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_TW\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\ru_RU\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale ru_RU  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\ru_RU\LC_MESSAGES\scilab.po&#x0D;&#x0A;IF EXIST &quot;$(SolutionDir)\locale\zh_CN\LC_MESSAGES\scilab.po&quot; &quot;$(SolutionDir)tools\gettext\msgfmt&quot;  --statistics --locale zh_CN  -r org.scilab.modules.localization.Messages --java2 -d ..\..\modules\localization\build\classes\  ..\..\locale\zh_CN\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd &quot;$(SolutionDir)modules\localization&quot;&#x0D;&#x0A;call ant&#x0D;&#x0A;"
+				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
+				Output=""
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+		<File
+			RelativePath=".\generatePoFile.sce"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

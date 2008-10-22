@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rankqr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rankqr</refname>
+    <refpurpose>  rank revealing QR factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>RCOND</term>
+        <listitem>
+          <para>real number used to determine the effective rank of
+  <literal>A</literal>, which is defined as the order of the largest leading
+  triangular submatrix <literal>R11</literal> in the QR factorization with
+  pivoting of<literal>A</literal>, whose estimated condition number &lt;
+  <literal>1/RCOND</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>JPVT</term>
+        <listitem>
+          <para>integer vector on entry, if <literal>JPVT(i)</literal> is not 0, the
+ <literal>i</literal>-th column of <literal> A</literal> is permuted to the front
+ of <literal>AP</literal>, otherwise column <literal>i</literal> is a free
+ column. On exit, if <literal>JPVT(i) = k</literal>, then the
+ <literal>i</literal>-th column of <literal>A*P</literal> was the
+ <literal>k</literal>-th column of <literal>A</literal>. 
+  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>RANK</term>
+        <listitem>
+          <para>the effective rank of <literal>A</literal>, i.e., the order of the
+  submatrix <literal>R11</literal>.  This is the same as the order of the
+  submatrix <literal>T1</literal> in the complete orthogonal factorization
+  of <literal>A</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SVAL</term>
+        <listitem>
+          <para>real vector with 3 components; The estimates of some of the
+  singular values of the triangular factor <literal>R</literal>.</para>
+          <para><literal>SVAL(1)</literal> is the largest singular value of
+  <literal>R(1:RANK,1:RANK)</literal>;</para>
+          <para><literal>SVAL(2)</literal> is the
+  smallest singular value of <literal>R(1:RANK,1:RANK)</literal>;</para>
+          <para><literal>SVAL(3)</literal> is the smallest singular value of
+  <literal>R(1:RANK+1,1:RANK+1)</literal>, if <literal>RANK</literal> &lt; <literal>MIN(M,N)</literal>, 
+  or of <literal>R(1:RANK,1:RANK)</literal>, otherwise.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+To compute (optionally) a rank-revealing QR factorization of a real
+general M-by-N real or complex matrix <literal>A</literal>, which may be
+rank-deficient, and estimate its effective rank using incremental
+condition estimation.</para>
+    <para>
+The routine uses a QR factorization with column pivoting:</para>
+    <programlisting><![CDATA[
+
+        A * P = Q * R,  where  R = [ R11 R12 ],
+                                   [  0  R22 ]
+
+    ]]></programlisting>
+    <para>
+with <literal>R11</literal> defined as the largest leading submatrix whose
+estimated condition number is less than <literal>1/RCOND</literal>.  The
+order of <literal>R11</literal>, <literal>RANK</literal>, is the effective rank of
+<literal>A</literal>.</para>
+    <para>
+If the triangular factorization is a rank-revealing one (which will be
+the case if the leading columns were well- conditioned), then
+<literal>SVAL(1)</literal> will also be an estimate for the largest singular
+value of <literal>A</literal>, and <literal>SVAL(2)</literal> and
+<literal>SVAL(3)</literal> will be estimates for the <literal>RANK</literal>-th
+and <literal>(RANK+1)</literal>-st singular values of <literal>A</literal>,
+respectively.</para>
+    <para>
+By examining these values, one can confirm that the
+rank is well defined with respect to the chosen value of
+<literal>RCOND</literal>.  The ratio <literal>SVAL(1)/SVAL(2)</literal> is an
+estimate of the condition number of <literal>R(1:RANK,1:RANK)</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+A=rand(5,3)*rand(3,7);
+[Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para>
+    Slicot library routines MB03OD, ZB03OD.</para>
+  </refsection>
+</refentry>

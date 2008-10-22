@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<Setting>
+	<!-- Scilab configuration -->
+	<Profile name="scilab">
+		<!-- Welcome line -->
+		<WelcomeLine useCache="true" value=""/>
+
+		<!-- GUI Part -->
+		<PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
+		<OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
+		<InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
+		<BackgroundColor useCache="true" value="#FFFFFF"/>
+		<ForegroundColor useCache="true" value="#000000"/>
+		<ScrollableUnitIncrement useCache="true" value="20"/>
+		<ScrollableBlockIncrement useCache="true" value="20"/>
+		<VerticalWrapAllowed useCache="true" value="false"/>
+		<HorizontalWrapAllowed useCache="true" value="false"/>
+		<FontName useCache="true" value="Monospaced"/>
+                <FontStyle useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+                <FontSize useCache="true" value="13"/>
+
+                <MainWindowPosition useCache="true" x="0" y="0"/>
+                <MainWindowSize useCache="true" width="650" height="550"/>
+
+		<!-- Core part -->
+		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+		<InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+		<InputParsingManager useCache="true" value="org.scilab.modules.console.SciInputParsingManager"/>
+		<GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
+		<CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
+		<CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
+		<HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
+		<MaxOutputSize useCache="true" value="10000"/>
+
+		<!-- Key mapping -->
+		<KeyMapping>
+			<Key name="VK_ENTER" mask="" action="VALIDATE"/>
+			<Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
+			<Key name="VK_TAB" mask="" action="COMPLETION"/>
+			<Key name="VK_UP" mask="" action="PREVIOUS_HISTORY_LINE"/>
+			<Key name="VK_DOWN" mask="" action="NEXT_HISTORY_LINE"/>
+                        <Key name="VK_A" mask="CTRL_MASK" action="LINE_BEGINNING"/>
+                        <Key name="VK_B" mask="CTRL_MASK" action="PREVIOUS_CHAR"/>
+                        <Key name="VK_C" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_COPY"/>
+                        <Key name="VK_D" mask="CTRL_MASK" action="DEL_NEXT_CHAR"/>
+                        <Key name="VK_E" mask="CTRL_MASK" action="LINE_END"/>
+                        <Key name="VK_F" mask="CTRL_MASK" action="NEXT_CHAR"/>
+                        <Key name="VK_H" mask="CTRL_MASK" action="DEL_PREVIOUS_CHAR"/>
+                        <Key name="VK_K" mask="CTRL_MASK" action="DEL_END_OF_LINE"/>
+			<Key name="VK_N" mask="CTRL_MASK" action="NEXT_HISTORY_LINE"/>
+			<Key name="VK_P" mask="CTRL_MASK" action="PREVIOUS_HISTORY_LINE"/>
+                        <Key name="VK_U" mask="CTRL_MASK" action="DEL_WHOLE_LINE"/>
+                        <Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
+                        <Key name="VK_X" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_CUT"/>
+		</KeyMapping>
+
+		<!-- Key mapping -->
+		<!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
+		<ActionMapping>
+			<Action name="VALIDATE" className="org.scilab.modules.console.ValidationAction"/>
+			<Action name="COMPLETION" className="org.scilab.modules.console.CompletionAction"/>
+			<Action name="LINE_BEGINNING" className="org.scilab.modules.console.LineBeginningAction"/>
+			<Action name="PREVIOUS_HISTORY_LINE" className="com.artenum.rosetta.core.action.GetPreviousAction"/>
+			<Action name="NEXT_HISTORY_LINE" className="com.artenum.rosetta.core.action.GetNextAction"/>
+			<Action name="LINE_END" className="org.scilab.modules.console.LineEndAction"/>
+			<Action name="PREVIOUS_CHAR" className="org.scilab.modules.console.PreviousCharAction"/>
+			<Action name="NEXT_CHAR" className="org.scilab.modules.console.NextCharAction"/>
+			<Action name="DEL_PREVIOUS_CHAR" className="org.scilab.modules.console.DelPreviousCharAction"/>
+			<Action name="DEL_NEXT_CHAR" className="org.scilab.modules.console.DelNextCharAction"/>
+			<Action name="DEL_LAST_WORD" className="org.scilab.modules.console.DelLastWordAction"/>
+			<Action name="DEL_END_OF_LINE" className="org.scilab.modules.console.DelEndOfLineAction"/>
+			<Action name="DEL_WHOLE_LINE" className="org.scilab.modules.console.DelWholeLineAction"/>
+			<Action name="INTERRUPT_SCILAB_WORK_OR_CUT" className="org.scilab.modules.console.InterruptScilabWorkOrCut"/>
+			<Action name="INTERRUPT_SCILAB_WORK_OR_COPY" className="org.scilab.modules.console.InterruptScilabWorkOrCopy"/>
+		</ActionMapping>
+
+	</Profile>
+</Setting>

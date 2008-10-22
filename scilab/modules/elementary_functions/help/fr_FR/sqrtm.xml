@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sqrtm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sqrtm</refname>
+    <refpurpose> racine carrée matricielle  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=sqrtm(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>y=sqrt(x)</literal> est la racine carrée matricielle de la matrice <literal>x</literal> (<literal>x=y^2</literal>)
+    Le résultat peut être imprécis si <literal>x</literal> n'est pas symétrique.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+x=[0 1;2 4]
+w=sqrtm(x); 
+norm(w*w-x)
+x(1,2)=%i;
+w=sqrtm(x);norm(w*w-x,1)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="expm">expm</link>
+      </member>
+      <member>
+        <link linkend="sqroot">sqroot</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

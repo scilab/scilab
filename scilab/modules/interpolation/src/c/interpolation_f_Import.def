@@ -1,0 +1,22 @@
+LIBRARY    interpolation_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; interpolation_f
+; --------------------------------------- 
+cshep2_
+bicubicsubspline_
+bicubicspline_
+derivd_
+splinecub_
+spfit_
+driverdb3val_
+driverdb3valwithgrad_
+bicubicinterp_
+bicubicinterpwithgrad_
+bicubicinterpwithgradandhes_
+evalpwhermite_
+cs2val_
+cs2grd_
+cs2hes_

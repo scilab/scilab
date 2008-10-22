@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rafiter">
+  <info>
+    <pubdate>  </pubdate>
+  </info>
+  <refnamediv>
+    <refname>rafiter</refname>
+    <refpurpose> (obsolete) iterative refinement for a s.p.d. linear system  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xn, rn] = rafiter(A, C_ptr, b, x0, [, nb_iter, verb])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A  </term>
+        <listitem>
+          <para>a real symetric positive definite sparse matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C_ptr  </term>
+        <listitem>
+          <para>a pointer to a Cholesky factorization (got with taucs_chfact)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b  </term>
+        <listitem>
+          <para>column vector (r.h.s of the linear system) but "matrix" (multiple r.h.s.) are allowed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0  </term>
+        <listitem>
+          <para>first solution obtained with taucs_chsolve(C_ptr, b)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nb_iter  </term>
+        <listitem>
+          <para>(optional) number of raffinement iterations (default 2)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>verb  </term>
+        <listitem>
+          <para>(optional) boolean, must be %t for displaying the intermediary results, 
+      and %f (default) if you don't want.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xn  </term>
+        <listitem>
+          <para>new refined solution</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rn  </term>
+        <listitem>
+          <para>residual (<literal>A*xn - b</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    This function is somewhat obsolete, use <literal>x = taucs_chsolve(C_ptr,b,A)</literal>
+    (see <link linkend="taucs_chsolve">taucs_chsolve</link>) which do one iterative refinement step.
+  </para>
+    <para>
+    To use if you want to improve a little the solution got with taucs_chsolve.
+    Note that with verb=%t the displayed internal steps are essentially meaningful 
+    in the case where b is a column vector.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Caution</title>
+    <para>
+    Currently there is no verification for the input parameters !
+  </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+C_ptr = taucs_chfact(A);
+b = rand(size(A,1),1);
+x0 = taucs_chsolve(C_ptr, b);
+norm(A*x0 - b)
+[xn, rn] = rafiter(A, C_ptr, b, x0, verb=%t);
+norm(A*xn - b)
+taucs_chdel(C_ptr)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="taucs_chsolve">taucs_chsolve</link>
+      </member>
+      <member>
+        <link linkend="taucs_chfact">taucs_chfact</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Bruno Pincon &lt;Bruno.Pincon@iecn.u-nancy.fr&gt; </para>
+  </refsection>
+</refentry>

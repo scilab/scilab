@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="head_comments">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>head_comments</refname>
+    <refpurpose>display scilab function header comments</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>head_comments(name)
+head_comments(name,%paths)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>character string, the function name</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>%paths</term>
+        <listitem>
+          <para>character string vector, paths where to look for the asscoated sci-file</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>comments(name)</literal> displays the function header comments (like the
+			Matlab help). The comments are read from the associated sci-file. If <literal>name</literal>
+			if a function in a library the sci-file path is those given by the library
+			path (see <literal>lib</literal>). If <literal>name</literal> if a function which is
+			not in a library, a file with name <literal>name.sci</literal> is searched in the
+			directories given by the variable <literal>%paths</literal>
+		</para>
+    <para>
+			Warning, most of the scilab predefined functions have no header comments.
+		</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+head_comments sinc
+
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="help">help</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
+		Serge Steer, INRIA
+	</para>
+  </refsection>
+</refentry>

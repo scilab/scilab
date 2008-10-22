@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rpem">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rpem</refname>
+    <refpurpose> RPEM estimation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a,b,c</term>
+        <listitem>
+          <para>: <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w0</term>
+        <listitem>
+          <para>: <literal>list(theta,p,phi,psi,l)</literal> where:</para>
+          <variablelist>
+            <varlistentry>
+              <term>theta</term>
+              <listitem>
+                <para>[a,b,c] is a real vector of order <literal>3*n</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>p</term>
+              <listitem>
+                <para>(3*n x 3*n) real matrix.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>phi,psi,l</term>
+              <listitem>
+                <para>real vector of dimension <literal>3*n</literal></para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+          <para>
+    During the first call on can take:
+  </para>
+          <programlisting><![CDATA[
+
+theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
+   
+          ]]></programlisting>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>u0</term>
+        <listitem>
+          <para>real vector of inputs (arbitrary size) (if no input take <literal>u0=[ ]</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y0</term>
+        <listitem>
+          <para>vector of outputs (same dimension as <literal>u0</literal> if <literal>u0</literal> is not empty). (<literal>y0(1)</literal> is not used by rpem).</para>
+          <para>
+    If the time domain is <literal>(t0,t0+k-1)</literal> the <literal>u0</literal> vector contains the inputs 
+  </para>
+          <para><literal>u(t0),u(t0+1),..,u(t0+k-1)</literal> and <literal>y0</literal> the outputs 
+  </para>
+          <para>
+            <literal>y(t0),y(t0+1),..,y(t0+k-1)</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Recursive estimation of parameters in an ARMAX model.
+    Uses Ljung-Soderstrom recursive prediction error method.
+    Model considered is the following:
+  </para>
+    <programlisting><![CDATA[
+
+y(t)+a(1)*y(t-1)+...+a(n)*y(t-n)=
+b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
+   
+    ]]></programlisting>
+    <para>
+  </para>
+    <para>
+    The effect of this command is to update the estimation of
+    unknown parameter <literal>theta=[a,b,c]</literal> with
+  </para>
+    <para><literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Optional parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>lambda</term>
+        <listitem>
+          <para>optional parameter (forgetting constant) choosed close to 1 as convergence occur:</para>
+          <para><literal>lambda=[lambda0,alfa,beta]</literal> evolves according to :</para>
+          <programlisting><![CDATA[
+
+lambda(t)=alfa*lambda(t-1)+beta 
+   
+        ]]></programlisting>
+          <para>
+    with <literal>lambda(0)=lambda0</literal></para>
+          <para><literal>k</literal>contraction factor to be chosen close to 1 as convergence occurs.</para>
+          <para><literal>k=[k0,mu,nu]</literal> evolves according to:</para>
+          <programlisting><![CDATA[
+
+k(t)=mu*k(t-1)+nu 
+   
+        ]]></programlisting>
+          <para>
+    with <literal>k(0)=k0</literal>.</para>
+          <para><literal>c</literal>large parameter.(<literal>c=1000</literal> is the default value).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Output parameters:</title>
+    <para><literal>w1</literal>update for <literal>w0</literal>.</para>
+    <para><literal>v</literal>sum of squared prediction errors on <literal>u0, y0</literal>.(optional).</para>
+    <para>
+    In particular <literal>w1(1)</literal> is the new estimate of <literal>theta</literal>. If a new sample <literal>u1, y1</literal> is available the update is obtained by:</para>
+    <para><literal>[w2,[v]]=rpem(w1,u1,y1,[lambda,[k,[c]]])</literal>. Arbitrary large series can thus be treated.</para>
+  </refsection>
+</refentry>

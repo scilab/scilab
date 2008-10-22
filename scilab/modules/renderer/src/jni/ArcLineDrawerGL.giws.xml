@@ -1,0 +1,43 @@
+<package name="org.scilab.modules.renderer.arcDrawing">
+  <object name="ArcLineDrawerGL">
+    <method name="display" returnType="void">
+    </method>
+    <method name="initializeDrawing" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="endDrawing" returnType="void">
+    </method>
+    <method name="show" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="destroy" returnType="void">
+      <param type="int" name="parentFigureIndex" />
+    </method>
+    <method name="setFigureIndex" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="setLineParameters" returnType="void">
+      <param type="int" name="lineColor" />
+      <param type="float" name="thickness" />
+      <param type="int" name="lineStyle" />
+    </method>
+    <method name="drawArc" returnType="void">
+      <param type="double" name="centerX" />
+      <param type="double" name="centerY" />
+      <param type="double" name="centerZ" />
+      <param type="double" name="semiMinorAxisX" />
+      <param type="double" name="semiMinorAxisY" />
+      <param type="double" name="semiMinorAxisZ" />
+      <param type="double" name="semiMajorAxisX" />
+      <param type="double" name="semiMajorAxisY" />
+      <param type="double" name="semiMajorAxisZ" />
+      <param type="double" name="startAngle" />
+      <param type="double" name="endAngle" />
+    </method>
+    <method name="redrawArc" returnType="void">
+    </method>
+    <method name="setUseNurbs" returnType="void">
+      <param type="boolean" name="useNurbs" />
+    </method>
+  </object>
+</package>

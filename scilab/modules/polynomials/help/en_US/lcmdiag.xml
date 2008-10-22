@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lcmdiag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lcmdiag</refname>
+    <refpurpose> least common multiple diagonal factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[N,D]=lcmdiag(H)
+[N,D]=lcmdiag(H,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>rational matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N</term>
+        <listitem>
+          <para>polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>D</term>
+        <listitem>
+          <para>diagonal polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>character string: <literal>'row'</literal> or <literal>'col'</literal> (default)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>[N,D]=lcmdiag(H,'row')</literal> computes a factorization <literal>D*H=N</literal>,
+    i.e.  <literal>H=D^(-1)*N</literal>  where D is a diagonal matrix with D(k,k)=lcm of
+    kth row of H('den').</para>
+    <para><literal>[N,D]=lcmdiag(H)</literal> or <literal>[N,D]=lcmdiag(H,'col)</literal> returns
+    <literal>H=N*D^(-1)</literal> with diagonal D and D(k,k)=lcm of kth col of H('den')</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+s=poly(0,'s');
+H=[1/s,(s+2)/s/(s+1)^2;1/(s^2*(s+2)),2/(s+2)];
+[N,D]=lcmdiag(H);
+N/D-H
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lcm">lcm</link>
+      </member>
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+      <member>
+        <link linkend="bezout">bezout</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

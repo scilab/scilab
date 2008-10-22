@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_lvgroup">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_lvgroup</refname>
+    <refpurpose> Unenrolls the calling process from a named group.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[info] = pvm_lvgroup(group)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>group</term>
+        <listitem>
+          <para>string, group name of an existing group.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>integer, status code returned by the routine.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pvm_lvgroup</literal> 
+    unenrolls the calling process from
+    the group named <literal>group</literal></para>
+    <para>
+    The returned value will be &gt;= 0 if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs.</para>
+    <para>
+    If a process leaves a group by calling either pvm_lvgroup
+    or pvm_exit, and later rejoins the same group, the process
+    may be assigned a new instance number. Old instance
+    numbers are reassigned to processes calling pvm_joingroup.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_joingroup">pvm_joingroup</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

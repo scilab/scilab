@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE toolboxes SYSTEM "../modules/toolboxes_management/xml/toolboxes.dtd">
+<!-- =================== -->
+<!--
+ Toolboxes list for Scilab
+ @author Allan CORNET
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+ activate="1" toolboxe will be launched ( or not "0")
+ -->
+<!-- =================== -->
+<toolboxes users="all">
+<toolboxe name="toolboxe_skeleton" path="$SCILAB/contrib/toolboxe_skeleton" activate="0"/>
+<!-- comments -->
+</toolboxes>
+ 

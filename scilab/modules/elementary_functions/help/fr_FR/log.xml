@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="log">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>log</refname>
+    <refpurpose> logarithme naturel  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y=log(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur ou matrice (réelle ou complexe)
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>log(x)</literal> calcule le logarithme élément par élément : <literal>y(i,j)=log(x(i,j))</literal>.
+    Pour le logarithme matriciel voir la fonction <literal>logm</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+exp(log([1,%i,-1,-%i]))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="log2">log2</link>
+      </member>
+      <member>
+        <link linkend="log10">log10</link>
+      </member>
+      <member>
+        <link linkend="hat">hat</link>
+      </member>
+      <member>
+        <link linkend="exp">exp</link>
+      </member>
+      <member>
+        <link linkend="frexp">frexp</link>
+      </member>
+      <member>
+        <link linkend="logm">logm</link>
+      </member>
+      <member>
+        <link linkend="ieee">ieee</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Signal">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Signal</refname>
+    <refpurpose> Signal manual description</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Filters</title>
+    <variablelist>
+      <varlistentry>
+        <term>analpf</term>
+        <listitem>
+          <para>analog low-pass filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>buttmag</term>
+        <listitem>
+          <para>squared magnitude response of a Butterworth filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>casc</term>
+        <listitem>
+          <para>creates cascade realization of filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cheb1mag</term>
+        <listitem>
+          <para>square magnitude response of a type 1 Chebyshev filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cheb2mag</term>
+        <listitem>
+          <para>square magnitude response of a type 1 Chebyshev filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>chepol</term>
+        <listitem>
+          <para>recursive implementation of Chebychev polynomial</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>convol</term>
+        <listitem>
+          <para>convolution of 2 discrete series</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ell1 mag</term>
+        <listitem>
+          <para>squared magnitude of an elliptic filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eqfir</term>
+        <listitem>
+          <para>minimax multi-band, linear phase, FIR filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eqiir</term>
+        <listitem>
+          <para>design of iir filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>faurre</term>
+        <listitem>
+          <para>optimal lqg filter.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lindquis</term>
+        <listitem>
+          <para>optimal lqg filter lindquist algorithm</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ffilt</term>
+        <listitem>
+          <para>FIR low-pass,high-pass, band-pass, or stop-band filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>filter</term>
+        <listitem>
+          <para>compute the filter model</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>find_freq</term>
+        <listitem>
+          <para>parameter compatibility for elliptic filter design</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>findm</term>
+        <listitem>
+          <para>for elliptic filter design</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>frmag</term>
+        <listitem>
+          <para>magnitude of the frequency responses of FIR and IIR filters.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fsfirlin</term>
+        <listitem>
+          <para>design of FIR, linear phase (frequency sampling technique)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fwiir</term>
+        <listitem>
+          <para>optimum design of IIR filters in cascade realization,</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iir</term>
+        <listitem>
+          <para>designs an iir digital filter using analog filter designs.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iirgroup</term>
+        <listitem>
+          <para>group delay of iir filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iirlp</term>
+        <listitem>
+          <para>Lp IIR filters optimization</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>group</term>
+        <listitem>
+          <para>calculate the group delay of a digital filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>remezb</term>
+        <listitem>
+          <para>minimax approximation of a frequency domain magnitude response.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kalm</term>
+        <listitem>
+          <para>Kalman update and error variance</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lev</term>
+        <listitem>
+          <para>resolve the Yule-Walker equations :</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>levin</term>
+        <listitem>
+          <para>solve recursively Toeplitz system (normal equations)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>srfaur</term>
+        <listitem>
+          <para>square-root algorithm for the algebraic Riccati equation.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>srkf</term>
+        <listitem>
+          <para>square-root Kalman filter algorithm</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sskf</term>
+        <listitem>
+          <para>steady-state Kalman filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>system</term>
+        <listitem>
+          <para>generates the next observation given the old state</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>trans</term>
+        <listitem>
+          <para>transformation of standardized low-pass filter into low-pass, high-pass, band-pass, stop-band.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wfir</term>
+        <listitem>
+          <para>linear-phase windowed FIR low-pass, band-pass, high-pass, stop-band</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wiener</term>
+        <listitem>
+          <para>Wiener estimate (forward-backward Kalman filter formulation)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wigner</term>
+        <listitem>
+          <para>time-frequency wigner spectrum of a signal.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>window</term>
+        <listitem>
+          <para>calculate symmetric window</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zpbutt</term>
+        <listitem>
+          <para>Butterworth analog filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zpch1</term>
+        <listitem>
+          <para>poles of a type 1 Chebyshev analog filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zpch2</term>
+        <listitem>
+          <para>poles and zeros of a type 2 Chebyshev analog filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zpell</term>
+        <listitem>
+          <para>poles and zeros of prototype lowpass elliptic filter</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Spectral estimation</title>
+    <variablelist>
+      <varlistentry>
+        <term>corr</term>
+        <listitem>
+          <para>correlation coefficients</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cspect</term>
+        <listitem>
+          <para>spectral estimation using the modified periodogram method.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>czt</term>
+        <listitem>
+          <para>chirp z-transform algorithm</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>intdec</term>
+        <listitem>
+          <para>change the sampling rate of a 1D or 2D signal</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mese</term>
+        <listitem>
+          <para>calculate the maximum entropy spectral estimate</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pspect</term>
+        <listitem>
+          <para>auto and cross-spectral estimate</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wigner</term>
+        <listitem>
+          <para>Wigner-Ville time/frequency spectral estimation</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Transforms</title>
+    <variablelist>
+      <varlistentry>
+        <term>dft</term>
+        <listitem>
+          <para>discrete Fourier transform</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fft</term>
+        <listitem>
+          <para>fast flourier transform</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hilb</term>
+        <listitem>
+          <para>Hilbert transform centred around the origin.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hank</term>
+        <listitem>
+          <para>hankel matrix of the covariance sequence of a vector process</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mfft</term>
+        <listitem>
+          <para>fft for a multi-dimensional signal</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Identification</title>
+    <variablelist>
+      <varlistentry>
+        <term>lattn,lattp</term>
+        <listitem>
+          <para>recursive solution of normal equations</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>phc</term>
+        <listitem>
+          <para>State space realisation by the principal hankel component  approximation method,</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rpem</term>
+        <listitem>
+          <para>identification by the recursive prediction error method</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Miscellaneous</title>
+    <variablelist>
+      <varlistentry>
+        <term>lgfft</term>
+        <listitem>
+          <para>computes p = ceil (log_2(x))</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sinc</term>
+        <listitem>
+          <para>calculate the function sin(2*pi*fl*t)/(pi*t)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sincd</term>
+        <listitem>
+          <para>calculates the function Sin(N*x)/Sin(x)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>%k</term>
+        <listitem>
+          <para>Jacobi's complete elliptic integral</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>%asn</term>
+        <listitem>
+          <para>.TP the elliptic integral :</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>%sn</term>
+        <listitem>
+          <para>Jacobi 's elliptic function with parameter m</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bilt</term>
+        <listitem>
+          <para>bilinear transform or biquadratic transform.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>jmat</term>
+        <listitem>
+          <para>permutes block rows or block columns of a matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

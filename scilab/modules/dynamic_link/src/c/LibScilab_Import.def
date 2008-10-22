@@ -1,0 +1,25 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+;
+vstk_
+gettype_
+freeArrayOfString
+stack_
+createvarfromptr_
+createvar_
+checkrhs_
+checklhs_
+vartype_
+getrhsvar_
+intersci_
+putlhsvar_
+com_
+iop_
+callFunctionFromGateway
+getWarningMode
+cvname_
+funtab_
+ExceptionMessage

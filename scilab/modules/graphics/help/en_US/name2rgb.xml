@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="name2rgb">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>name2rgb</refname>
+    <refpurpose> returns the RGB values of a named color</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>rgb=name2rgb(name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>name of the color.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rgb</term>
+        <listitem>
+          <para>vector of RGB integer values of a color.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>name2rgb</literal> returns the RGB values of a color given by its name. The result is
+    a vector <literal>[r,g,b]</literal> where <literal>r</literal>, <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
+    corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+    255 means all the intensity of the color.
+    </para>
+    <para> If no color is found <literal>[]</literal> is returned.</para>
+    <para> The list of all known colors is given by <link linkend="color_list">color_list</link>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+rgb=name2rgb("gold")
+rgb2name(rgb)
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="color_list">color_list</link>
+      </member>
+      <member>
+        <link linkend="rgb2name">rgb2name</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

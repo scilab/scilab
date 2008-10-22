@@ -1,0 +1,14 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/tf2des_data.ref','rb');
+s = poly(0, 's');
+G = [1/(s - 1),s;1,2/(s^3)];
+S1 = tf2des(G);%ans = des2tf(S1);
+if load_ref('%ans') then   pause,end,
+
+S2 = tf2des(G, 'withD');%ans = des2tf(S2);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

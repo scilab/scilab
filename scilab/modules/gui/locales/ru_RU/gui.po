@@ -1,0 +1,1053 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-09-14 09:09+0000\n"
+"Last-Translator: Petr E. Antonov <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "&File"
+msgstr "Файл ( &F)"
+
+msgid "&New figure..."
+msgstr "Новый график ( &N)"
+
+msgid "&Load..."
+msgstr "Загрузить... ( &L)"
+
+msgid "&Save..."
+msgstr "Сохранить... ( &S)"
+
+msgid "&Export to..."
+msgstr "Экспортировать в... (&E)"
+
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&GIF"
+msgstr "&GIF"
+
+msgid "&JPG"
+msgstr "&JPG"
+
+msgid "P&NG"
+msgstr "P&NG"
+
+msgid "&PPM"
+msgstr "&PPM"
+
+msgid "&Vectorial export"
+msgstr "Векторный экспорт ( &V)"
+
+msgid "&EMF"
+msgstr "&EMF"
+
+msgid "&EPS"
+msgstr "&EPS"
+
+msgid "&FIG"
+msgstr "&FIG"
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&SVG"
+msgstr "&SVG"
+
+msgid "&Copy to clipboard"
+msgstr "Копировать в буфер обмена ( &C)"
+
+msgid "P&age setup..."
+msgstr "Параметры страницы... (&A)"
+
+msgid "&Print..."
+msgstr "Печать... ( &P)"
+
+msgid "C&lose"
+msgstr "Закрыть (&L)"
+
+msgid "&Tools"
+msgstr "Инструменты ( &T)"
+
+msgid "Show/Hide &Toolbar"
+msgstr "Показать/скрыть панель инструментов (&T)"
+
+msgid "&Zoom"
+msgstr "Масштаб (&Z)"
+
+msgid "&UnZoom"
+msgstr "Исходный массштаб ( &U)"
+
+msgid "2D/3D &Rotation"
+msgstr "2D/3D Вращение (&R)"
+
+msgid "&Edit"
+msgstr "Правка ( &E)"
+
+msgid "&Select as current figure"
+msgstr "Установить графиком по умолчанию ( &S)"
+
+msgid "&Redraw figure"
+msgstr "Redraw figure ( &R)"
+
+msgid "&Clear figure"
+msgstr "Очистить график ( &C)"
+
+msgid "&Figure properties"
+msgstr "Figure properties ( &F)"
+
+msgid "&Axes properties"
+msgstr "Свойства осей координат ( &A)"
+
+msgid "&Start entity picker"
+msgstr "Начать интерактивное редактирование ( &S)"
+
+msgid "S&top entity picker"
+msgstr "Закончить интерактивное редактирование (&T)"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Scilab Help"
+msgstr "Справка по  &Scilab"
+
+msgid "&About Scilab..."
+msgstr "О Scilab ( &A)"
+
+msgid "&Close"
+msgstr "Закрыть ( &C)"
+
+msgid "&Execute..."
+msgstr "Выполнить ( &E)"
+
+msgid "&Open a file..."
+msgstr "Открыть файл ( &O)"
+
+msgid "&Load environment..."
+msgstr "Загрузить окружение ( &L)"
+
+msgid "&Save environment..."
+msgstr "Сохранить окружение ( &S)"
+
+msgid "&Change current directory..."
+msgstr "Сменить текущий каталог ( &C)"
+
+msgid "&Display current directory"
+msgstr "Отобразить текущий каталог ( &D)"
+
+msgid "&Quit"
+msgstr "Выход ( &Q)"
+
+msgid "C&ut"
+msgstr "Вырезать (&C)"
+
+msgid "&Copy"
+msgstr "Копировать ( &C)"
+
+msgid "&Paste"
+msgstr "Вставить ( &P)"
+
+msgid "&Empty clipboard"
+msgstr "Очистить буфер обмена ( &E)"
+
+msgid "&Select all"
+msgstr "Выбрать всё ( &S)"
+
+msgid "&Preferences"
+msgstr "Настройки ( &P)"
+
+msgid "&Colors"
+msgstr "Цвета ( &C)"
+
+msgid "Console &Background..."
+msgstr "Цвет фона в консоли... (&B)"
+
+msgid "Console &Font..."
+msgstr "Цвет текста в консоли... (&F)"
+
+msgid "&Font..."
+msgstr "Шрифт... ( &F)"
+
+msgid "Clear &History"
+msgstr "Очистить журнал (&H)"
+
+msgid "Clear C&onsole"
+msgstr "Очистить консоль (&O)"
+
+msgid "&Control"
+msgstr "Управление ( &C)"
+
+msgid "&Resume"
+msgstr "Продолжить ( &R)"
+
+msgid "&Abort"
+msgstr "Остановить ( &A)"
+
+msgid "&Interrupt"
+msgstr "Прервать ( &I)"
+
+msgid "&Applications"
+msgstr "Инструменты ( &A)"
+
+msgid "&Editor"
+msgstr "Редактор ( &E)"
+
+msgid "&Scicos"
+msgstr "&Scicos"
+
+msgid "&Matlab to Scilab translator"
+msgstr "Конвертор Matlab -> Scilab ( &M)"
+
+msgid "&Variable Editor"
+msgstr "Редактор переменных ( &V)"
+
+msgid "Scilab &Help"
+msgstr "Справка Scilab (&H)"
+
+msgid "Scilab &Demonstrations"
+msgstr "Демонстрация возможностей Scilab (&D)"
+
+msgid "&Web links"
+msgstr "&Web-ссылки"
+
+msgid "Scilab &Web Site"
+msgstr "&Web-сайт Scilab"
+
+msgid "&Contributions"
+msgstr "Участники ( &C)"
+
+msgid "&Bug And Request database"
+msgstr "Сообщить об ошибке ( &B)"
+
+msgid "&Newsgroup Archives"
+msgstr "Архив списков рассылки ( &N)"
+
+msgid "Rotate"
+msgstr "Повернуть"
+
+msgid "Zoom Area"
+msgstr "Увеличить область"
+
+msgid "Original View"
+msgstr "Исходный размер"
+
+msgid "Help Browser"
+msgstr "Просмотр справки"
+
+msgid "Launch Scipad"
+msgstr "Запустить Scipad"
+
+msgid "Open a file"
+msgstr "Открыть файл"
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Change Current Directory"
+msgstr "Изменить текущий каталог"
+
+msgid "Choose Font..."
+msgstr "Шрифт..."
+
+msgid "Print..."
+msgstr "Напечатать..."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался список из двух элементов.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: Неверные аргументы: Ожидалось %s или %s.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: Неверные аргументы: Ожидалось %s, %s или %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+msgstr "%s: Неверное значение свойства ''%s'': Ожидалось %d, %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+msgstr "%s: Неверный тип свойства ''%s'': Ожидалась строка.\n"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+"Scilab 5.0 и будущие версии выпущены в соответствии с лицензией CeCILL.\n"
+
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"Некоторые модули Scilab распространяются на условиях лицензии GPLv2.\n"
+"\n"
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"Авторы:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"Версия %s (%s)\n"
+"\n"
+
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "About Scilab..."
+msgstr ""
+
+msgid "Acknowledgements"
+msgstr "Благодарности"
+
+msgid "Ok"
+msgstr ""
+
+msgid "Scilab Contributors..."
+msgstr ""
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: Тип %s не реализован.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Данный для %s ответ \n"
+" имеет неправильную размерность: \n"
+" ожидание размерности %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Данный для %s ответ \n"
+" имеет некорректный тип %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect see error message in scilab window.\n"
+msgstr ""
+"Данный для %s ответ \n"
+" некорректне, смотрите сообщение об ошибка в окне scilab.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Ожидался дескриптор ''Figure'' или "
+"действительное число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось ''%s'', ''%s'' или ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось ''%s'' или ''%s''.\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: функция недоступна в режиме NWNI.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался список.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: Неверный тип %s: Ожидался список.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: Неверный тип %s: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s: Неверный тип %s: Ожидался вектор-строка состоящий из строк.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr "%s: Неверный размер %s: Ожидался вектор-строка состоящий из строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: Неверный тип %s: Ожидалось действительное число.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: Неверный размер %s: Ожидалось действительное число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался графический дескриптор или "
+"действительное число.\n"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: найдено пустое выпадающее меню."
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr "%s: Неверное значение аргумента #%d: Должно быть >= %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалась строка или действительное число.\n"
+
+#, c-format
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s: Функция недоступна в режиме NWNI.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался графический дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался дескриптор графика.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался дескриптор '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Could not set property '%s'.\n"
+msgstr "%s: Не удалось установить свойство '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s: Разряд числа не может быть представлен в '%s' режиме.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался дескриптор '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+"%s: Неверный тип для введенного аргумента #%d: Ожидается '%s' или дескриптор "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+"%s: Неверный размер для введенного аргумента #%d: Ожидается '%s' или "
+"дескриптор '%s'.\n"
+
+#, c-format
+msgid "%s: Unknown property: %s for '%s' handles.\n"
+msgstr "%s: Неизвестное свойства: %s для дескриптора '%s'.\n"
+
+#, c-format
+msgid "%s: Could not create 'Uicontrol' handle.\n"
+msgstr "%s: Не удалось создать дескриптор 'Uicontrol'.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: Неверный тип для введенного аргумента #%d: Ожидается действительный "
+"вектор-строка 1 x %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался действительное число или строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: Неверный тип для введенного аргумента #%d: Ожидается действительный "
+"вектор-строка 1 x %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
+msgstr "%s: Неверное значение аргумента #%d: Должно быть больше %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
+"exist.\n"
+msgstr ""
+"%s: Неверное значение аргумента #%d: 'Graphic Window Number %d' не "
+"существует.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
+msgstr "%s: Неверное значение аргумента #%d: дескприптор не существует.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось действительное число или "
+"дескриптор 'Figure'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось действительное число или "
+"дескриптор 'Figure'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a string vector "
+"expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка или вектор строк.\n"
+
+msgid "Scilab Message"
+msgstr "Сообщение Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество аргументов: ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался вектор строк.\n"
+
+msgid "Scilab Choose Message"
+msgstr "Сообщение выбора Scilab"
+
+msgid "Scilab Input Value Request"
+msgstr "Запрос входного значение Scilab"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Ожидался вещественный скаляр или "
+"дескриптор 'Figure'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался вещественный скаляр или дескриптор "
+"'Figure'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался дескриптор '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: Неверные аргументы: Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидался дескриптор '%s'.\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "Модуль Scilab '%s' отключён в режимах  -nogui и -nwni."
+
+msgid "Scilab Multiple Values Request"
+msgstr "Запрос множества значений Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидался вектор строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Ожидалася матрица строк %d x %d.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
+msgstr "%s: Неверные аргументы: Ожидалось '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong name for optional input argument #%d: '%s' expected.\n"
+msgstr "%s: Неверное имя необязательного аргумента #%d: Ожидалось '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался вектор действительных или "
+"комплексных чисел.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Запрос выбора Scilab"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a string "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Ожидался графический дескриптор или "
+"строка.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' expected.\n"
+msgstr "%s: Неверные аргументы: Ожидалось '%s'.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr ""
+
+msgid "Impossible to get current look and feel"
+msgstr ""
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Файл %s не существует.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось неотрицательно целое число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидался неотрицательное целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
+msgstr "%s: Неверный аргумент #%d: Ожидался '%s' или '%s'"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+msgstr ""
+"%s: Неверный тип аргумента #%d: Ожидалось неотрицательное целое число\n"
+
+msgid "GUI"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль Scilab '%s' не установлен.\n"
+
+#, c-format
+msgid "%s: Only available under 'STANDARD' mode.\n"
+msgstr "%s: Доступно только в режиме 'STANDARD'.\n"
+
+msgid "Error. A signal has been caught.\n"
+msgstr "Ошибка. Был получен сигнал.\n"
+
+#, c-format
+msgid "%s: Could not create uicontrol of type %s."
+msgstr "%s: Не удалось создать uicontrol типа %s."
+
+msgid "Console Font..."
+msgstr "Шрифт консоли.."
+
+msgid "Console Background..."
+msgstr "Фон консоли..."
+
+msgid "Loading help browser..."
+msgstr "Загрузка справочной системы..."
+
+#, c-format
+msgid "Wrong size for '%s' property: A graphic handle expected.\n"
+msgstr ""
+"Неверный размер для свойства '%s': Ожидался графический дескриптор.\n"
+
+#, c-format
+msgid "No '%s' property for uicontrols of style: %s.\n"
+msgstr "Не существует свойства '%s' для uicontrol'ов стиля: %s.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr ""
+"Неверное значение для характеристики '%s' : Ожидается '%s' или дескриптор "
+"'%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A string expected.\n"
+msgstr "Неверное значение для свойства '%s': Ожидалась строка.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr "Неверный размер для свойства '%s': Ожидалась строка.\n"
+
+#, c-format
+msgid "No '%s' property for this object.\n"
+msgstr "Не существует свойства '%s' для этого объекта.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный размер для свойства '%s': Ожидался '%s', '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверное значение для свойства '%s': Ожидалось '%s', '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный тип для свойства '%s': Ожидалось '%s', '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный размер для свойства '%s': Ожидался '%s', '%s', '%s', '%s' или "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверное значение для свойства '%s': Ожидалось '%s', '%s', '%s', '%s' или "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный тип для свойства '%s': Ожидался '%s', '%s', '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверное значение для свойства '%s': Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Неверный размер для свойства '%s': Ожидался '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr ""
+"Неверное значение для свойства '%s': Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Неверный тип для свойства '%s': Ожидался '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "Неверный размер для свойства '%s': Ожидалсь действительное число.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A real expected.\n"
+msgstr "Неверный тип для свойства '%s': Ожидалось действительное число.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr "Неверный тип для свойства '%s': Ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+"Неверный размер для свойства '%s': Ожидалась строка или вектор строк.\n"
+
+#, c-format
+msgid ""
+"Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
+"property value.\n"
+msgstr ""
+"Предупреждение: Характеристика 'значения' '%s' должна быть такой же как у "
+"'%s' или у характеристики значения '%s'.\n"
+
+msgid "Could not destroy this object.\n"
+msgstr "Невозможно уничтожить этот объект.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Неверный размер для свойства '%s': Ожидался '%s', '%s', '%s', '%s', '%s' или "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Неверное значение свойства '%s': Ожидалось '%s', '%s', '%s', '%s', '%s' или "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Неверный тип для свойства '%s': Ожидался '%s', '%s', '%s', '%s', '%s' или "
+"'%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real row vector expected.\n"
+msgstr ""
+"Неверный размер для свойства '%s': Ожидался вектор-строка действительных "
+"чисел.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgstr ""
+"Неверный тип для свойства '%s': Ожидался вектор-строка действительных "
+"чисел.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Неверный размер для характеристики '%s' : Ожидается действительная вектор-"
+"строка 1 x %d.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Неверный тип для характеристики '%s' : Ожидается действительная вектор-"
+"строка 1 x %d.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Неверный размер свойства '%s' : Ожидался вещественный вектор 1x3 или строка "
+"вида 'R|G|B'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Неверное значение свойства '%s': Ожидался вещественный вектор 1x3 или строка "
+"вида 'R|G|B'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Неверный тип свойства '%s': Ожидался вещественный вектор 1x3 или строка вида "
+"'R|G|B'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверный размер для свойства '%s': Ожидался '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверный тип для свойства '%s': Ожидался '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "Неверное значение для свойства '%s': Ожидалось '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
+"expected.\n"
+msgstr ""
+"Неверное значение для свойства '%s': Ожидалось 'light', 'normal', 'demi' или "
+"'bold'.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
+msgstr "%s: Неверный тип для родителя: ожидался Figure или uimenu.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A real expected.\n"
+msgstr ""
+"Неверное значение для свойства '%s': Ожидалось действительное число.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+"Неверное значение для характеристики '%s' : Ожидается строка или "
+"действительная вектор-строка 1 x %d.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+"Неверный тип для характеристики '%s' : Ожидается строка или действительная "
+"вектор-строка 1 x %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
+"or pixels expected.\n"
+msgstr ""
+"%s: Неверное значение для свойства '%s': Ожидалось points, normalized, "
+"inches, centimeters или pixels.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr ""
+"Неверный размер для свойства '%s': ожидался список из двух элементов.\n"
+
+msgid "Control Plot3d"
+msgstr "Управление Plot3d"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Select a file to load"
+msgstr "Выберите файл для импорта"
+
+msgid "Figure loaded.\n"
+msgstr "График загружен.\n"
+
+msgid "Select a file to write"
+msgstr "Выберите файл для записи"
+
+msgid "Figure saved.\n"
+msgstr "График сохранён.\n"
+
+msgid "Select a file name"
+msgstr "Выберите имя файла"
+
+msgid "Select a file to execute"
+msgstr "Выберите файл для запуска"
+
+msgid "Execution done.\n"
+msgstr "Исполнение завершено.\n"
+
+msgid "Select a file to open with Scipad"
+msgstr "Выберите файл для открытия в Scipad"
+
+msgid "Environment loaded.\n"
+msgstr "Окружение загружено.\n"
+
+msgid "Environment saved.\n"
+msgstr "Окружение сохранено.\n"
+
+msgid "Select a directory"
+msgstr "Выберите каталог"

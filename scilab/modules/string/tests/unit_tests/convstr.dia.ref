@@ -1,0 +1,64 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//===============================
+// unit tests convstr
+//===============================
+if convstr('ABC')<>'abc' then bugmes();quit;end
+if convstr('ABC','l')<>'abc' then bugmes();quit;end
+if convstr('ABC','u')<>'ABC' then bugmes();quit;end
+if convstr(['ABC';'x'])<>['abc';'x'] then bugmes();quit;end
+if convstr(['ABC';'x'],'l')<>['abc';'x'] then bugmes();quit;end
+if convstr(['ABC';'x'],'u')<>['ABC';'X'] then bugmes();quit;end
+if convstr(['ABC';'x'],'L')<>['abc';'x'] then bugmes();quit;end
+if convstr(['ABC';'x'],'U')<>['ABC';'X'] then bugmes();quit;end
+if or(convstr(['';''],'u')<>['';'']) then bugmes();quit;end
+//===============================
+if convstr('ABC')<>'abc' then bugmes();quit;end
+if convstr('ABC','l')<>'abc' then bugmes();quit;end
+if convstr('ABC','u')<>'ABC' then bugmes();quit;end
+if convstr('ABC','L')<>'abc' then bugmes();quit;end
+if convstr('ABC','U')<>'ABC' then bugmes();quit;end
+if convstr(['ABC','x'])<>['abc','x'] then bugmes();quit;end
+if convstr(['ABC','x'],'l')<>['abc','x'] then bugmes();quit;end
+if convstr(['ABC','x'],'u')<>['ABC','X'] then bugmes();quit;end
+if convstr(emptystr())<>emptystr() then bugmes();quit;end
+//===============================
+if convstr('') <> '' then bugmes();quit;end
+if convstr('','u') <> '' then bugmes();quit;end
+if convstr('','U') <> '' then bugmes();quit;end
+if convstr('','l') <> '' then bugmes();quit;end
+if convstr('','L') <> '' then bugmes();quit;end
+//===============================
+if convstr([]) <> [] then bugmes();quit;end
+if convstr([],'u') <> [] then bugmes();quit;end
+if convstr([],'U') <> [] then bugmes();quit;end
+if convstr([],'l') <> [] then bugmes();quit;end
+if convstr([],'L') <> [] then bugmes();quit;end
+//===============================
+if ( convstr('SCILAB','l') <> convstr('scilab','l') ) then bugmes();quit;end
+if ( convstr('SCILAB','u') <> convstr('scilab','u') ) then bugmes();quit;end
+//===============================
+if convstr("0123456789",'u') <> "0123456789" then bugmes();quit;end
+if convstr("0123456789",'l') <> "0123456789" then bugmes();quit;end
+//===============================
+a=[''];
+if length(convstr(a,'u')) <> 0 then bugmes();quit;end
+if length(convstr(a,'l')) <> 0 then bugmes();quit;end
+//===============================
+a=['';''];
+if length(convstr(a,'u')) <> 0 then bugmes();quit;end
+if length(convstr(a,'l')) <> 0 then bugmes();quit;end
+//===============================
+STR = ['this','is';'my','matrix'];
+if convstr(STR,'u') <> ['THIS' 'IS';'MY' 'MATRIX'] then bugmes();quit;end
+if convstr(STR,'l') <> STR then bugmes();quit;end
+//===============================
+//===============================
+// interface tests
+//===============================
+if execstr("convstr(''abc'',''i''))","errcatch") <= 0 then bugmes();quit;end
+if execstr("convstr(''abc'',''i''))","errcatch") <= 0 then bugmes();quit;end

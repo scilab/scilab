@@ -1,0 +1,5 @@
+#
+#generated .def files (windows)
+#
+src/c/symbolic.def
+src/fortran/symbolic_f.def

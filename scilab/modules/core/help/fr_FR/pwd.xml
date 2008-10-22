@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pwd">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pwd</refname>
+    <refpurpose> affiche le répertoire courant de Scilab  </refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="getcwd">
+    <refname>getcwd</refname>
+    <refpurpose> renvoie le répertoire courant de Scilab  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>pwd
+x=pwd()
+x=getcwd()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>pwd</literal> renvoie dans <literal>ans</literal> le répertoire courant de Scilab.
+      <literal>x=pwd()</literal> ou <literal>x=getcwd()</literal> renvoie dans <literal>x</literal> le répertoire courant de Scilab.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    pwd
+    x=pwd()
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="chdir">chdir</link>
+      </member>
+      <member>
+        <link linkend="cd">cd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

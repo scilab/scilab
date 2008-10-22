@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="frexp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>frexp</refname>
+    <refpurpose> calcule la représentation en base 2 (mantisse et exposant) d'un nombre flottant.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[f,e]=frexp(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>matrice ou vecteur réel
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f  </term>
+        <listitem>
+          <para>matrice ou vecteur réel, habituellement dans l'intervalle 0.5 &lt;= abs(f) &lt; 1.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>e  </term>
+        <listitem>
+          <para>matrice ou vecteur d'entiers satisfaisant l'équation: x = f.*2.^e
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+  </para>
+    <para>
+    Cette fonction correspond à la fonction ANSI C frexp(). Chaque 0 dans <literal>x</literal> produit <literal>f=0</literal> et <literal>e=0</literal>.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+[f,e]=frexp([1,%pi,-3,%eps])
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="log">log</link>
+      </member>
+      <member>
+        <link linkend="hat">hat</link>
+      </member>
+      <member>
+        <link linkend="ieee">ieee</link>
+      </member>
+      <member>
+        <link linkend="log2">log2</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

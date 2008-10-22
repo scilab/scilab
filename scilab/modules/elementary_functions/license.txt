@@ -1,0 +1,102 @@
+Copyright:
+Copyright (c) 2008 - DIGITEO
+Copyright (c) 1989-2008 - INRIA
+Copyright (c) 1989-2007 - ENPC
+Copyright (c) Bruno Pincon
+
+License:
+This module must be used under the terms of the CeCILL.
+This module file is licensed as described in the file COPYING, which
+you should have received as part of this distribution.  The terms
+are also available at
+http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+Slatec:
+=======
+
+Files:
+src/fortran/slatec/
+
+Copyright:
+
+License:
+This is public domain software.
+
+C   The SLATEC Common Mathematical Library is issued by the following
+C           Air Force Weapons Laboratory, Albuquerque
+C           Lawrence Livermore National Laboratory, Livermore
+C           Los Alamos National Laboratory, Los Alamos
+C           National Institute of Standards and Technology, Washington
+C           National Energy Research Supercomputer Center, Livermore
+C           Oak Ridge National Laboratory, Oak Ridge
+C           Sandia National Laboratories, Albuquerque
+C           Sandia National Laboratories, Livermore
+C   All questions concerning the distribution of the library should be
+C   directed to the NATIONAL ENERGY SOFTWARE CENTER, 9700 Cass Ave.,
+C   Argonne, Illinois  60439, and not to the authors of the subprograms.
+C   This material was prepared as an account of work sponsored by the
+C   United States Government.  Neither the United States, nor the
+C   Department of Energy, nor the Department of Defense, nor any of
+C   their employees, nor any of their contractors, subcontractors, or
+C   their employees, makes any warranty, expressed or implied, or
+C   assumes any legal liability or responsibility for the accuracy,
+C   completeness, or usefulness of any information, apparatus, product,
+C   or process disclosed, or represents that its use would not infringe
+C   upon privately owned rights.
+
+
+
+calerf:
+=======
+
+File: src/fortran/calerf.f
+
+Copyright:
+Takuya OOURA, Research Institute for Mathematical Sciences 
+Kyoto University, Kyoto 606-01 Japan
+
+License: 
+You may use, copy, modify this code for any purpose and without fee. 
+See http://www.kurims.kyoto-u.ac.jp/~ooura/index.html
+
+
+qsort:
+======
+
+File: src/c/qsort.c
+
+Copyright:
+The Regents of the University of California.
+
+License: 
+BSD license
+
+Linpack:
+========
+
+Files:
+src/c/unsfdcopy.c, src/fortran/linpack/{dgefa.f,dgesl.f,icopy.f,pade.f,wcopy.f,wpade.f}
+
+Copyright:
+1978-1993 - Jack Dongarra
+
+License:
+BSD
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+   1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions, and the following disclaimer in the documentation and/or other materials provided with the distribution.
+   3. All advertising materials mentioning features or use of this software must display the following acknowledgement: This product includes software developed at the University of Tennessee, Knoxville, Innovative Computing Laboratories.
+   4. The name of the University, the name of the Laboratory, or the names of its contributors may not be used to endorse or promote products derived from this software without specific written permission. 
+
+Eispack:
+========
+
+Files: src/fortran/hqror2.f
+
+Copyright:
+1983 - Burton s. Garbow
+
+License:
+Public domain

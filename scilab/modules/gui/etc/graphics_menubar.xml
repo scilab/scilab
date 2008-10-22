@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure -->
+<menubar>
+    <menu label="&amp;File">
+        <submenu label="&amp;New figure...">
+            <callback instruction="scf();" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Load...">
+            <callback
+            instruction='
+              %fileToLoad = xgetfile("*.scg", getcwd(), gettext("Select a file to load"));
+              if ~isempty(%fileToLoad) then
+                xload(%fileToLoad,[SCILAB_FIGURE_ID]);
+                disp(msprintf(gettext("Figure loaded.\n")));
+              end
+              clear %fileToLoad'
+            type="0"/>
+        </submenu>
+        <submenu label="&amp;Save...">
+             <callback
+            instruction='
+              %fileToSave = xgetfile("*.scg", getcwd(), gettext("Select a file to write"));
+              if ~isempty(%fileToSave) then
+                if isempty(fileparts(%fileToSave, "extension")) then
+                  %fileToSave = %fileToSave + ".scg";
+                end
+                xsave(%fileToSave, get_figure_handle([SCILAB_FIGURE_ID]));
+                disp(msprintf(gettext("Figure saved.\n")));
+              end
+              clear %fileToSave isempty fileparts'
+            type="0"/>
+        </submenu>
+        <separator/>
+		<submenu label="&amp;Export to...">
+			<callback instruction='exportUI([SCILAB_FIGURE_ID])' type="0"/>
+			<!--<submenu label="&amp;BMP">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.bmp", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2bmp([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;GIF">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.gif", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2gif([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;JPG">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.jpg", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2jpg([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="P&amp;NG">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.png", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2png([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;PPM">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.ppm", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2ppm([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+		</submenu>
+		<submenu label="&amp;Vectorial export">
+			<submenu label="&amp;EMF">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.emf", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2emf([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;EPS">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.eps", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2eps([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;FIG">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.fig", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2fig([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;PDF">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.pdf", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2pdf([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;SVG">
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
+				<callback
+				instruction='
+				%fileToWrite = xgetfile("*.svg", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then
+					xs2svg([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>-->
+		</submenu>
+        <submenu label="&amp;Copy to clipboard">
+            <callback instruction='clipboard([SCILAB_FIGURE_ID], "EMF");' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="P&amp;age setup...">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup' type="3"/>
+        </submenu>
+        <submenu label="&amp;Print...">
+            <callback instruction='printfigure([SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="C&amp;lose">
+            <callback instruction='
+				   if (get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler_enable") == "on" );
+				   execstr(get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler")+"([SCILAB_FIGURE_ID], -1, -1, -1000)");
+				   end;
+				   delete(get_figure_handle([SCILAB_FIGURE_ID]));'
+		      type="0"/>
+        </submenu>
+    </menu>
+
+    <menu label="&amp;Tools">
+        <submenu label="Show/Hide &amp;Toolbar">
+             <callback
+             instruction='
+               if toolbar([SCILAB_FIGURE_ID])=="on" then
+                 toolbar([SCILAB_FIGURE_ID], "off");
+               else
+                 toolbar([SCILAB_FIGURE_ID], "on");
+               end'
+             type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Zoom">
+          <callback instruction='zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
+        </submenu>
+        <submenu label="&amp;UnZoom">
+          <callback instruction='unzoom(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="2D/3D &amp;Rotation">
+            <callback instruction='rotate_axes(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
+        </submenu>
+    </menu>
+
+    <menu label="&amp;Edit">
+        <submenu label="&amp;Select as current figure">
+            <callback instruction='scf([SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
+        <submenu label="&amp;Redraw figure">
+            <callback instruction='xbasr([SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
+        <submenu label="&amp;Clear figure">
+            <callback instruction='clf(get_figure_handle([SCILAB_FIGURE_ID]));' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Figure properties">
+            <callback instruction='ged(8,[SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
+        <submenu label="&amp;Axes properties">
+            <callback instruction='ged(9,[SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Start entity picker">
+            <callback instruction='ged(10,[SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
+        <submenu label="S&amp;top entity picker">
+            <callback instruction='ged(11,[SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
+    </menu>
+
+    <menu label="&amp;?">
+        <submenu label="&amp;Scilab Help">
+            <callback instruction='help();' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;About Scilab...">
+            <callback instruction='about()' type="0"/>
+        </submenu>
+    </menu>
+</menubar>

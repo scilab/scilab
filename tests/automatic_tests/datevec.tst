@@ -1,0 +1,14 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/automatic_tests/datevec_data.ref','rb');
+%ans = datevec(720840);
+if load_ref('%ans') then   pause,end,
+
+
+%ans = datevec(datenum());
+if load_ref_nocheck('%ans') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

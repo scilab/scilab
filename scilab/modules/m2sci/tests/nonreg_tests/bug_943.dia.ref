@@ -1,0 +1,113 @@
+// <-- Non-regression test for bug 943 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=943
+//
+// <-- Short Description -->
+//    Conversion of (if, elseif, else) structure leads to
+//    mfile2sci failure in some particular indentation scheme.
+//
+//    Cyl_.m
+//
+//    function [v,G,J] = Cyl_(a,p1,p2,r)
+//    v = (r^2)*abs(p2-p1)*pi;
+//    l = p1-p2 ; d = 0.5*(p1+p2) ;
+//    j1 = (r^2)/2. ; j2 = (r^2)/4. + (l^2)/12. + d^2 ;
+//    if     (a==1), J = [j1,0.,0. ; 0.,j2,0. ; 0.,0.,j2] ; G =
+//    [0.5*(p1+p2);0.;0.] ;
+//    elseif (a==2), J = [j2,0.,0. ; 0.,j1,0. ; 0.,0.,j2] ; G =
+//    [0.;0.5*(p1+p2);0.] ;
+//    elseif (a==3), J = [j2,0.,0. ; 0.,j2,0. ; 0.,0.,j1] ; G =
+//    [0.;0.;0.5*(p1+p2)] ;
+//    else, J = [0.,0.,0. ; 0.,0.,0. ; 0.,0.,0.] ; G =
+//    [0.;0.;0.] ; end,
+//
+//    Cyl2_.m
+//
+// ...
+// Copyright INRIA
+// Scilab Project - V. Couvert
+// Modified by Pierre MARECHAL
+// Copyright INRIA
+// Date : 18 Mar 2005
+MFILECONTENTS=["a=10;";
+		"if     (a==1), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+		"elseif (a==2), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+		"elseif (a==3), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+		"else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,"]
+ MFILECONTENTS  =
+ 
+!a=10;                                               !
+!                                                    !
+!if     (a==1), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;  !
+!                                                    !
+!elseif (a==2), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;  !
+!                                                    !
+!elseif (a==3), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;  !
+!                                                    !
+!else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,      !
+MFILE=TMPDIR+"/bug943.m"
+ MFILE  =
+ 
+ TMPDIR/bug943.m   
+SCIFILE=TMPDIR+"/bug943.sci"
+ SCIFILE  =
+ 
+ TMPDIR/bug943.sci   
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+  ****** Beginning of mfile2sci() session ******
+  File to convert: TMPDIR/bug943.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 3
+  Generate formated code: NO
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+SCIFILECONTENTS=mgetl(SCIFILE);
+SCIFILECONTENTSREF=["";
+		"// Display mode";
+		"mode(0);";
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"a = 10;";
+		"if a==1 then J = [1;2;3]; G = [4;5;6];";
+		"elseif a==2 then J = [1;2;3]; G = [4;5;6];";
+		"elseif a==3 then J = [1;2;3]; G = [4;5;6];";
+		"else J = [1;2;3]; G = [4;5;6];end;"]
+ SCIFILECONTENTSREF  =
+ 
+!                                                 !
+!                                                 !
+!// Display mode                                  !
+!                                                 !
+!mode(0);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!// Display warning for floating point exception  !
+!                                                 !
+!ieee(1);                                         !
+!                                                 !
+!                                                 !
+!                                                 !
+!a = 10;                                          !
+!                                                 !
+!if a==1 then J = [1;2;3]; G = [4;5;6];           !
+!                                                 !
+!elseif a==2 then J = [1;2;3]; G = [4;5;6];       !
+!                                                 !
+!elseif a==3 then J = [1;2;3]; G = [4;5;6];       !
+!                                                 !
+!else J = [1;2;3]; G = [4;5;6];end;               !
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

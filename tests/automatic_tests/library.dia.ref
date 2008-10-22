@@ -1,0 +1,52 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/automatic_tests/library_data.ref','rb');
+ 
+// elemlib is a predefined library
+ 
+elemlib;
+ 
+if load_ref('elemlib') then   bugmes();quit;end,
+ 
+///displays the contents of the library
+ 
+A = rand(3, 3);
+ 
+%ans = cosm(A);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//loads cosm and executes it
+ 
+ 
+%ans = whos('-name', 'cosm');
+Name                     Type           Size           Bytes        
+ 
+cosm                     function                      2224         
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+// now cosm is a variable
+ 
+ 
+%ans = elemlib('sinm');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//loads sinm from the library
+ 
+ 
+%ans = elemlib.cosm(A);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+//reloads cosm and executes it
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

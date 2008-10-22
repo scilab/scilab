@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="gstacksize">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gstacksize</refname>
+    <refpurpose>obtenir ou changer la taille de la pile
+  des variables globales</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>gstacksize(n)
+sz=gstacksize()
+gstacksize('min')
+gstacksize('max')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>entier, la taille de pile désirée, en nombre de mots
+          double-précision</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sz</term>
+        <listitem>
+          <para>vecteur à  deux composantes [taille_totale
+          taille_utilisée]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Scilab stocke les variables globales dans une pile.</para>
+    <para><literal>gstacksize(n)</literal> permet d'augmenter ou de diminuer la taille
+    de cette pile. La taille maximum dépend de la mémoire (physique ou
+    virtuelle) restante. Notez que Scilab peut augmenter automatiquement la
+    taille de la pile globale si cela s'avère nécessaire.</para>
+    <para><literal>sz=gstacksize()</literal> renvoie un vecteur à  deux composantes
+    contenant la taille totale de la pile et la taille actuellement
+    utilisée.</para>
+    <para><literal>gstacksize('max')</literal> permet d'augmenter la taille au maximum
+    de la pile scilab des variables globales.</para>
+    <para><literal>gstacksize('min')</literal> permet de diminuer la taille au minimum
+    de la pile scilab des variables globales.</para>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="stacksize">stacksize</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

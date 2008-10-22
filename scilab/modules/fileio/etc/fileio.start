@@ -1,0 +1,11 @@
+// ====================================================================
+// fileio module initialisation file 
+// Copyright INRIA 2006
+// ====================================================================
+clear pathconvert
+//Load  functions librarie
+load('SCI/modules/fileio/macros/lib');
+// ====================================================================
+//add help chapter
+add_module_help_chapter('fileio');
+// ====================================================================
