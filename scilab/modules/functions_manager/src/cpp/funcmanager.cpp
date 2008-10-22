@@ -40,6 +40,7 @@ FuncManager::FuncManager(void)
 	szPath += BASENAMEMODULESFILE;
 	cout << szPath << endl;
 
+	/*get module list from xml file*/
 	if(GetModules() == true)
 	{
 		AppendModules();
