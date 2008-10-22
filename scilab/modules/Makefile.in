@@ -39,6 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+# memory_manager 
 
 #umfpack
 
@@ -140,6 +141,7 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	scipad scilab2fortran development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio \
+	abstractSyntaxTree symbol parse types functions_manager \
 	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -207,6 +209,9 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -282,6 +287,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -334,6 +341,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
@@ -349,7 +357,8 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio $(am__append_1) scicos . $(am__append_2)
+	parameters matio abstractSyntaxTree symbol parse types \
+	functions_manager $(am__append_1) scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -402,7 +411,12 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
+	$(top_builddir)/modules/symbol/libscisymbol.la \
+	$(top_builddir)/modules/parse/libsciparse.la \
+	$(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
 
 
 # Dev in progress

@@ -233,7 +233,6 @@ src/fortran/cerr.f \
 src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
-src/fortran/wnrm2.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
@@ -272,7 +271,8 @@ src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
-src/fortran/rybesl.f
+src/fortran/rybesl.f \
+src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \

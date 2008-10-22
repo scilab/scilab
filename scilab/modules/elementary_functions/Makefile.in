@@ -329,7 +329,6 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-rcopy.lo \
 	libscielementary_functions_la-wdpow.lo \
 	libscielementary_functions_la-orthes.lo \
-	libscielementary_functions_la-wnrm2.lo \
 	libscielementary_functions_la-waxpy.lo \
 	libscielementary_functions_la-coef.lo \
 	libscielementary_functions_la-dwdiv.lo \
@@ -368,7 +367,8 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-ribesl.lo \
 	libscielementary_functions_la-rjbesl.lo \
 	libscielementary_functions_la-rkbesl.lo \
-	libscielementary_functions_la-rybesl.lo
+	libscielementary_functions_la-rybesl.lo \
+	libscielementary_functions_la-old_pythag.lo
 am__objects_5 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_prod.lo \
@@ -580,6 +580,9 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -655,6 +658,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -707,6 +712,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
 src/c/finite.c \
 src/c/vfinite.c \
@@ -937,7 +943,6 @@ src/fortran/cerr.f \
 src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
-src/fortran/wnrm2.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
@@ -976,7 +981,8 @@ src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
-src/fortran/rybesl.f
+src/fortran/rybesl.f \
+src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -2616,9 +2622,6 @@ libscielementary_functions_la-wdpow.lo: src/fortran/wdpow.f
 libscielementary_functions_la-orthes.lo: src/fortran/orthes.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-orthes.lo `test -f 'src/fortran/orthes.f' || echo '$(srcdir)/'`src/fortran/orthes.f
 
-libscielementary_functions_la-wnrm2.lo: src/fortran/wnrm2.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wnrm2.lo `test -f 'src/fortran/wnrm2.f' || echo '$(srcdir)/'`src/fortran/wnrm2.f
-
 libscielementary_functions_la-waxpy.lo: src/fortran/waxpy.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-waxpy.lo `test -f 'src/fortran/waxpy.f' || echo '$(srcdir)/'`src/fortran/waxpy.f
 
@@ -2735,6 +2738,9 @@ libscielementary_functions_la-rkbesl.lo: src/fortran/rkbesl.f
 
 libscielementary_functions_la-rybesl.lo: src/fortran/rybesl.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rybesl.lo `test -f 'src/fortran/rybesl.f' || echo '$(srcdir)/'`src/fortran/rybesl.f
+
+libscielementary_functions_la-old_pythag.lo: src/fortran/old_pythag.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-old_pythag.lo `test -f 'src/fortran/old_pythag.f' || echo '$(srcdir)/'`src/fortran/old_pythag.f
 
 libscielementary_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f

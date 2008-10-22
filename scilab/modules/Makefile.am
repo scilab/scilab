@@ -72,7 +72,13 @@ demo_tools \
 genetic_algorithms \
 simulated_annealing \
 parameters \
-matio
+matio \
+abstractSyntaxTree \
+symbol \
+parse \
+types \
+functions_manager
+# memory_manager 
 
 #umfpack
 
@@ -155,7 +161,13 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
+	$(top_builddir)/modules/symbol/libscisymbol.la \
+	$(top_builddir)/modules/parse/libsciparse.la \
+	$(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+
 
 # Dev in progress
 
