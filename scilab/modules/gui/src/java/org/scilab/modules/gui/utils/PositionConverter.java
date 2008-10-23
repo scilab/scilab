@@ -16,7 +16,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import org.scilab.modules.gui.bridge.canvas.ScrolledSwingScilabCanvas;
+import javax.swing.JPanel;
+
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 
 /**
@@ -46,13 +47,13 @@ public final class PositionConverter {
 		}
 		
 		SwingScilabTab parentTab = (SwingScilabTab) parent;
-		ScrolledSwingScilabCanvas canvas = (ScrolledSwingScilabCanvas) parentTab.getContentPane();
+		JPanel canvas = (JPanel) parentTab.getContentPane();
 		
-		int xOffset = (parentTab.getDims().getWidth() - canvas.getDims().getWidth()) / 2; /* Border Width */
+		int xOffset = (parentTab.getDims().getWidth() - canvas.getWidth()) / 2; /* Border Width */
 		int yOffset = parentTab.getTitlebar().getHeight();
 		
 		int xCoord = scilabPosition.getX() + xOffset;
-		int yCoord = canvas.getDims().getHeight() - scilabPosition.getY() - objectSize.getHeight() + yOffset + xOffset;
+		int yCoord = canvas.getHeight() - scilabPosition.getY() - objectSize.getHeight() + yOffset + xOffset;
 
 		return new Position(xCoord, yCoord);
 	}
@@ -71,13 +72,13 @@ public final class PositionConverter {
 		}
 		
 		SwingScilabTab parentTab = (SwingScilabTab) parent;
-		ScrolledSwingScilabCanvas canvas = (ScrolledSwingScilabCanvas) parentTab.getContentPane();
+		JPanel canvas = (JPanel) parentTab.getContentPane();
 		
-		int xOffset = (parentTab.getDims().getWidth() - canvas.getDims().getWidth()) / 2; /* Border Width */
+		int xOffset = (parentTab.getDims().getWidth() - canvas.getWidth()) / 2; /* Border Width */
 		int yOffset = parentTab.getTitlebar().getHeight();
 		
 		int xCoord = javaPosition.x - xOffset;
-		int yCoord = canvas.getDims().getHeight() - javaPosition.y - objectSize.height + yOffset + xOffset;
+		int yCoord = canvas.getHeight() - javaPosition.y - objectSize.height + yOffset + xOffset;
 
 		return new Position(xCoord, yCoord);
 	}
