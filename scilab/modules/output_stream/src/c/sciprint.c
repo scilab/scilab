@@ -95,9 +95,9 @@ void printf_scilab(char *buffer,BOOL withDiary)
 		else
 		{
 			#ifdef _MSC_VER
-			TermPrintf_Windows(buffer);
+			TermPrintf_Windows(UTFToLocale(buffer));
 			#else
-			printf("%s",buffer);
+			printf("%s",UTFToLocale(buffer));
 			#endif
 		}
 
