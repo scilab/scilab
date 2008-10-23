@@ -386,7 +386,8 @@ fi
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 IS_64_BITS_CPU=false
-if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
+case "$CC" in
+	 gcc-* | gcc | cc | cc-* | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
@@ -411,7 +412,7 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
 	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
 	;;
-	 x86_64-*-linux-gnu)
+	 x86_64-*-linux-gnu | x86_64-linux-gnu)
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -m64"
 		IS_64_BITS_CPU=true
     ;;
@@ -454,8 +455,8 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
      LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
 esac
-
-else
+;; # end of the gcc case on the $CC
+   *)
 
 		## CC compiler (not GCC)
         if test "$enable_debug_C" = yes; then
@@ -499,7 +500,8 @@ case "$host" in
 	LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
   ;;
 esac
-fi
+;; # end of not a gcc compiler
+esac
 
 
 # flag for possible compilations in configure
