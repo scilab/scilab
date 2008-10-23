@@ -10542,7 +10542,8 @@ fi
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 IS_64_BITS_CPU=false
-if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
+case "$CC" in
+	 gcc-* | gcc | cc | cc-* | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
@@ -10567,7 +10568,7 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
 	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
 	;;
-	 x86_64-*-linux-gnu)
+	 x86_64-*-linux-gnu | x86_64-linux-gnu)
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -m64"
 		IS_64_BITS_CPU=true
     ;;
@@ -10610,8 +10611,8 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
      LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
 esac
-
-else
+;; # end of the gcc case on the $CC
+   *)
 
 		## CC compiler (not GCC)
         if test "$enable_debug_C" = yes; then
@@ -10655,7 +10656,8 @@ case "$host" in
 	LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
   ;;
 esac
-fi
+;; # end of not a gcc compiler
+esac
 
 
 # flag for possible compilations in configure
@@ -11143,7 +11145,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 11146 "configure"
+// #line 11148 "configure"
 
 
 public class conftest {
@@ -11193,7 +11195,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 11196 "configure"
+// #line 11198 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -11241,7 +11243,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 11244 "configure"
+// #line 11246 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -11268,7 +11270,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 11271 "configure"
+// #line 11273 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -12547,7 +12549,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12550 "configure"
+// #line 12552 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12615,7 +12617,7 @@ echo $ECHO_N "checking looks... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12618 "configure"
+// #line 12620 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -12683,7 +12685,7 @@ echo $ECHO_N "checking skinlf... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12686 "configure"
+// #line 12688 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -12751,7 +12753,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12754 "configure"
+// #line 12756 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -12819,7 +12821,7 @@ echo $ECHO_N "checking jhall... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12822 "configure"
+// #line 12824 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12887,7 +12889,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12890 "configure"
+// #line 12892 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -12955,7 +12957,7 @@ echo $ECHO_N "checking jrosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12958 "configure"
+// #line 12960 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13023,7 +13025,7 @@ echo $ECHO_N "checking jrosetta-engine... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13026 "configure"
+// #line 13028 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13091,7 +13093,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13094 "configure"
+// #line 13096 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -24691,7 +24693,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24694 "configure"
+#line 24696 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -25225,7 +25227,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 25228 "configure"
+#line 25230 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -26049,7 +26051,7 @@ echo $ECHO_N "checking batik-all... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26052 "configure"
+// #line 26054 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -26117,7 +26119,7 @@ echo $ECHO_N "checking saxon... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26120 "configure"
+// #line 26122 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -26185,7 +26187,7 @@ echo $ECHO_N "checking fop... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26188 "configure"
+// #line 26190 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -26253,7 +26255,7 @@ echo $ECHO_N "checking jeuclid-core... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26256 "configure"
+// #line 26258 "configure"
 import net.sourceforge.jeuclid.ant.MathMLConverter;
 
 public class conftest {
@@ -26321,7 +26323,7 @@ echo $ECHO_N "checking commons-io... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26324 "configure"
+// #line 26326 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -26389,7 +26391,7 @@ echo $ECHO_N "checking xmlgraphics-commons... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26392 "configure"
+// #line 26394 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -26458,7 +26460,7 @@ echo $ECHO_N "checking avalon-framework... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26461 "configure"
+// #line 26463 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -27098,7 +27100,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 27101 "configure"' > conftest.$ac_ext
+  echo '#line 27103 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -28968,11 +28970,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28971: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28973: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:28975: \$? = $ac_status" >&5
+   echo "$as_me:28977: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -29258,11 +29260,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29261: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29263: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:29265: \$? = $ac_status" >&5
+   echo "$as_me:29267: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -29362,11 +29364,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29365: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29367: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:29369: \$? = $ac_status" >&5
+   echo "$as_me:29371: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -31811,7 +31813,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 31814 "configure"
+#line 31816 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31911,7 +31913,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 31914 "configure"
+#line 31916 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -34332,11 +34334,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34335: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34337: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:34339: \$? = $ac_status" >&5
+   echo "$as_me:34341: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -34436,11 +34438,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34439: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34441: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:34443: \$? = $ac_status" >&5
+   echo "$as_me:34445: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -36034,11 +36036,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36037: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36039: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:36041: \$? = $ac_status" >&5
+   echo "$as_me:36043: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -36138,11 +36140,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36141: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36143: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:36145: \$? = $ac_status" >&5
+   echo "$as_me:36147: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -38362,11 +38364,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38365: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38367: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:38369: \$? = $ac_status" >&5
+   echo "$as_me:38371: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -38652,11 +38654,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38655: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38657: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:38659: \$? = $ac_status" >&5
+   echo "$as_me:38661: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -38756,11 +38758,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38759: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38761: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:38763: \$? = $ac_status" >&5
+   echo "$as_me:38765: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized

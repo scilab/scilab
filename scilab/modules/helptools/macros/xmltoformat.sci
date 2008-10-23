@@ -1003,12 +1003,15 @@ function create_MD(dirs,titles,output_filename,language)
 			"<!--Begin Entities-->"];
 	xml_files          = listfiles(dirs+"/*.xml");
 	
+	filesbasename = basename(xml_files);
 	if MSDOS then
-	  xml_files = "file:///"+xml_files;
+	  for j=1:size(xml_files,'*')
+	    xml_files(j) = "file:///"+ getshortpathname(xml_files(j));
+	  end
 	end
 	
 	master_document    = [master_document; ..
-		"<!ENTITY "+basename(xml_files)+" SYSTEM """+xml_files+""">"];
+		"<!ENTITY "+ filesbasename+" SYSTEM """+xml_files+""">"];
 	
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
@@ -1076,7 +1079,9 @@ function create_MD_dir(my_dir,my_title,output_filename,language)
 	xml_files(grep(xml_files,"master_help.xml")) = [];
 	
 	if MSDOS then
-	  xml_files_tmp = "file:///"+xml_files;
+	  for j=1:size(xml_files,'*')
+	    xml_files_tmp(j) = "file:///"+ getshortpathname(xml_files(j));
+	  end
 	else
 	  xml_files_tmp = xml_files;
 	end

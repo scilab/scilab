@@ -32,7 +32,9 @@ Enhancement:
 
 * Scilab uses Atlas 3.8.2 on Windows
 
-* License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module) 
+* License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module)
+
+* test_run() now accepts absolute paths as first input argument. It permits toolboxes to use this system.
 
 Bug fixes:
 ==========
@@ -50,6 +52,8 @@ Bug fixes:
 * bug 3314 fixed - linspace primitive - rev 27707 - removed use of "ones" and use colon (i.e. :) operator only
 
 * bug 3322 fixed - trimmean primitive - rev 27627 - Added verbose option, added unit tests, updated doc.
+
+* bug 3411 fixed - eye on a sparse is not explicit
 
 * bug 3512 fixed - regexp could return incorrect results
 
@@ -105,8 +109,11 @@ Bug fixes:
 
 * bug 3605 fixed - Could not use javasci in the Linux binary
 
-* bug 3070 fixed - Could not use non-simple character like °, µ, ø ....
+* bug 3070 fixed - Could not use non-simple character like Â°, Âµ, Ã¸ ....
 
 * bug 3554 fixed - 'findobj' function does not find figures nor sub-menus and the help example does not work.
 
 * bug 3590 fixed - Error message when we want to see a figure which has as userdata a structure (struct).
+
+* bug 3645 fixed - SCI/contrib/toolbox_skeleton package does not work out of the box, and crashes on help
+

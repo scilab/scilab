@@ -20,7 +20,8 @@ function a=%r_r_s(a,b)
     end
     return,
   end
-  [ma,na]=abs(size(a.num))
+  [ma,na]=size(a.num)
+  ma=abs(ma);na=abs(na);
   mb=abs(mb);nb=abs(nb)
   if na==1 then
     a=rlist(a.num/b,ones(nb,mb)*a.den,a.dt)

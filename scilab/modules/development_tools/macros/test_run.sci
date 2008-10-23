@@ -54,7 +54,7 @@
 //       'help' : display some examples about how to use this command
 //       "nonreg_tests" : runs only the non-regression tests, skipping unit tests
 //       "unit_tests" : runs only the unit tests, skipping non-regression tests
-//       
+//
 // =============================================================================
 // Launch tests
 // =============================================================================
@@ -64,15 +64,15 @@
 // test_run();
 // test_run([]);
 // test_run([],[]);
-// 
+//
 // Test one or several module
 // test_run('core');
 // test_run('core',[]);
 // test_run(['core','string']);
-// 
+//
 // Launch one or several test in a specified module
 // test_run('core',['trycatch','opcode']);
-// 
+//
 // With options
 // test_run([],[],'no_check_ref');
 // test_run([],[],'no_check_error_output');
@@ -82,6 +82,8 @@
 // test_run([],[],'mode_nwni');
 // test_run([],[],'help');
 // test_run([],[],['no_check_error_output','create_ref']);
+
+
 function test_run(varargin)
 	
 	lhs = argn(1);
@@ -180,10 +182,12 @@ function test_run(varargin)
 		
 		for i=1:nl
 			for j=1:nc
-				if( with_module(module_mat(i,j)) ) then
+				if( (with_module(module_mat(i,j))) | .. // It's a scilab internal module
+					( isdir(module_mat(i,j)) & ..       // It's a toolbox
+					  ( isdir(module_mat(i,j)+"/tests/unit_tests") | isdir(module_mat(i,j)+"/tests/nonreg_tests") ) ) ) then
 					test_add_module(module_mat(i,j),test_types_keeped);
 				else
-					error(sprintf(gettext("%s is not an installed module"),module_mat(i,j)));
+					error(sprintf(gettext("%s is not an installed module or toolbox"),module_mat(i,j)));
 				end
 			end
 		end
@@ -212,18 +216,34 @@ function test_run(varargin)
 		for i=1:nl
 			for j=1:nc
 				
-				if (fileinfo(SCI+"/modules/"+module+"/tests/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
-					& ( (test_types_keeped=="all_tests") | (test_types_keeped=="unit_tests") ) then
-					test_add_onetest(module,test_mat(i,j),"unit_tests");
-					
-				elseif (fileinfo(SCI+"/modules/"+module+"/tests/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
-					& ( (test_types_keeped=="all_tests") | (test_types_keeped=="nonreg_tests") ) then
-					test_add_onetest(module,test_mat(i,j),"nonreg_tests");
+				if with_module(module) then
 				
+					if (fileinfo(SCI+"/modules/"+module+"/tests/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
+						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="unit_tests") ) then
+						test_add_onetest(module,test_mat(i,j),"unit_tests");
+						
+					elseif (fileinfo(SCI+"/modules/"+module+"/tests/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
+						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="nonreg_tests") ) then
+						test_add_onetest(module,test_mat(i,j),"nonreg_tests");
+					else
+						error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"),test_mat(i,j),module));
+					end
+					
 				else
-					error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"),test_mat(i,j),module));
+					
+					if (fileinfo(module+"/tests/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
+						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="unit_tests") ) then
+						test_add_onetest(module,test_mat(i,j),"unit_tests");
+						
+					elseif (fileinfo(module+"/tests/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
+						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="nonreg_tests") ) then
+						test_add_onetest(module,test_mat(i,j),"nonreg_tests");
+					else
+						error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" toolbox"),test_mat(i,j),module));
+					end
 				
 				end
+				
 			end
 		end
 	else
@@ -370,7 +390,14 @@ function test_add_module(module_mat,test_type)
 	
 	if (test_type == "all_tests") | (test_type == "unit_tests") then
 	
-		module_test_dir = SCI+"/modules/"+module_mat+"/tests/unit_tests";
+		if with_module(module_mat) then
+			// It's a scilab internal module
+			module_test_dir = SCI+"/modules/"+module_mat+"/tests/unit_tests";
+		else
+			// It's a toolbox
+			module_test_dir = module_mat+"/tests/unit_tests";
+		end
+		
 		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
 		
 		nl = size(test_mat,"*");
@@ -382,7 +409,14 @@ function test_add_module(module_mat,test_type)
 	
 	if (test_type == "all_tests") | (test_type == "nonreg_tests") then
 		
-		module_test_dir = SCI+"/modules/"+module_mat+"/tests/nonreg_tests";
+		if with_module(module_mat) then
+			// It's a scilab internal module
+			module_test_dir = SCI+"/modules/"+module_mat+"/tests/nonreg_tests";
+		else
+			// It's a toolbox
+			module_test_dir = module_mat+"/tests/nonreg_tests";
+		end
+		
 		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
 		
 		nl = size(test_mat,"*");
@@ -441,7 +475,15 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	
 	// Some definitions
-	fullPath=SCI+"/modules/"+module+"/tests/"+test_type+"/"+test
+	
+	if with_module(module) then
+		// It's a scilab internal module
+		fullPath=SCI+"/modules/"+module+"/tests/"+test_type+"/"+test
+	else
+		// It's a toolbox
+		fullPath=module+"/tests/"+test_type+"/"+test
+	end
+	
 	tstfile     = pathconvert(fullPath+".tst",%f,%f);
 	diafile     = pathconvert(fullPath+".dia",%f,%f);
 	reffile     = pathconvert(fullPath+".dia.ref",%f,%f);
