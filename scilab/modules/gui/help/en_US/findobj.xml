@@ -42,17 +42,18 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
+// Create a figure
 h=figure();
-// creates  figure number 1.
-uicontrol( h, 'style','text', ...
- 'string','This is a figure', ...
- 'position',[50 70 100 100], ...
- 'fontsize',15, ...
- 'tag','Alabel');
-// put a  text in figure 1
-lab=findobj('tag','Alabel');
-// find the object which 'tag' value is 'Alabel'
-disp('the handle of the label is '+string(lab));
+// Put a text in the figure
+uicontrol(h, "style","text", ...
+ "string","This is a figure", ...
+ "position",[50 70 100 100], ...
+ "fontsize",15, ...
+ "tag","Alabel");
+// Find the object which "tag" value is "Alabel"
+lab=findobj("tag","Alabel");
+disp("The text of the label is """+lab.string+"""");
+// Close the figure
 close();
  
   ]]></programlisting>
@@ -77,5 +78,6 @@ close();
   <refsection>
     <title>Authors</title>
     <para>Bertrand Guiheneuf</para>
+    <para>V.C.</para>
   </refsection>
 </refentry>

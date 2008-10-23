@@ -100,7 +100,7 @@ void destroyUiobjectTag(sciPointObj * pobj) {
 	case SCI_FIGURE:
 		if (pFIGURE_FEATURE(pobj)->tag != NULL)
 		{
-			delete[] pUIMENU_FEATURE(pobj)->tag;
+			delete[] pFIGURE_FEATURE(pobj)->tag;
 			pFIGURE_FEATURE(pobj)->tag = NULL;
 		}
 		break;
