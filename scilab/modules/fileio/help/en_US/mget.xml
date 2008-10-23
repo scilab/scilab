@@ -51,7 +51,7 @@ x=mgeti([n,type,fd])</synopsis>
         <term>n</term>
 
         <listitem>
-          <para>:a positive scalar: The number of items to be read.</para>
+          <para>a positive scalar: The number of items to be read.</para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@ x=mgeti([n,type,fd])</synopsis>
         <term>fd</term>
 
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the
+          <para>a scalar. The <literal>fd</literal> parameter returned by the
           function <literal>mopen</literal>. -1 stands for last opened file.
           Default value is -1.</para>
         </listitem>
