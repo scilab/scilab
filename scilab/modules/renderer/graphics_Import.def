@@ -168,3 +168,4 @@ sciGetAutoSubticks
 sciisTextEmpty
 sciGetIsFilled
 sciGetRealVisibility
+needsDisplay

@@ -30,7 +30,7 @@ import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab Canvas without scrollbars in GUIs This implementation requires
- * JOGL
+ * JOGL.
  *
  * @author Jean-Baptiste Silvy
  */
@@ -43,14 +43,14 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 
 	private ScilabEventListener eventHandler;
 	/**
-	 * Default contsructor
+	 * Default constructor
 	 * @param canvas the canvas to view
 	 */
 	public ScrolledSwingScilabCanvas(ScrollabeSwingScilabCanvas canvas) {
 		super(canvas);
 		this.canvas = canvas;
-		// actually with the current impelementation of GLJPanel.paintComponent,
-		// the panel is totally redrawed each time.
+		// actually with the current implementation of GLJPanel.paintComponent,
+		// the panel is totally redrawn each time.
 		this.getViewport().setScrollMode(JViewport.BLIT_SCROLL_MODE);
 	}
 

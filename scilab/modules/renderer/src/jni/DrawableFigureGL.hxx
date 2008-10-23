@@ -44,8 +44,6 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
-#include "GiwsException.hxx"
-
 namespace org_scilab_modules_renderer_figureDrawing {
 
 class DrawableFigureGL {
@@ -61,7 +59,6 @@ jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voiddrawCanvasID; // cache method id
-jmethodID voidcloseRenderingCanvasID; // cache method id
 jmethodID voiddrawBackgroundID; // cache method id
 jmethodID voidsetBackgroundColorjintID; // cache method id
 jmethodID voidsetLogicalOpjintID; // cache method id
@@ -88,6 +85,8 @@ jmethodID jintArraygetRotationDisplacementID; // cache method id
 jmethodID voidstopRotationRecordingID; // cache method id
 jmethodID voidshowWindowID; // cache method id
 jmethodID voidsetNbSubwinsjintID; // cache method id
+jmethodID voidopenGraphicCanvasID; // cache method id
+jmethodID voidcloseGraphicCanvasID; // cache method id
 
 
 /**
@@ -143,8 +142,6 @@ void setFigureIndex(int figureIndex);
 
 void drawCanvas();
 
-void closeRenderingCanvas();
-
 void drawBackground();
 
 void setBackgroundColor(int colorIndex);
@@ -196,6 +193,10 @@ void stopRotationRecording();
 void showWindow();
 
 void setNbSubwins(int nbSubwins);
+
+void openGraphicCanvas();
+
+void closeGraphicCanvas();
 
 
                         /**

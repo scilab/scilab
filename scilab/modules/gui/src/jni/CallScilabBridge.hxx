@@ -44,8 +44,6 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
-#include "GiwsException.hxx"
-
 namespace org_scilab_modules_gui_bridge {
 
 class CallScilabBridge {
@@ -71,6 +69,8 @@ jclass stringArrayClass;
 jmethodID jintnewContextMenuID; // cache method id
 jmethodID voiddestroyWidgetjintID; // cache method id
 jmethodID voiddestroyFramejintID; // cache method id
+jmethodID jintnewWindowjintID; // cache method id
+jmethodID jintnewGraphicCanvasjintID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
 jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
@@ -311,6 +311,10 @@ static int newContextMenu(JavaVM * jvm_);
 static void destroyWidget(JavaVM * jvm_, int objID);
 
 static void destroyFrame(JavaVM * jvm_, int objID);
+
+static int newWindow(JavaVM * jvm_, int figureIndex);
+
+static int newGraphicCanvas(JavaVM * jvm_, int parentFigureIndex);
 
 static void setFigureAsParent(JavaVM * jvm_, int figureID, int objID);
 

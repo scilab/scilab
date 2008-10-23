@@ -45,6 +45,7 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
@@ -55,12 +56,14 @@ import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.fontchooser.FontChooser;
 import org.scilab.modules.gui.fontchooser.ScilabFontChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrame;
+import org.scilab.modules.gui.graphicWindow.ScilabGraphicWindow;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -83,22 +86,30 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
+import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
 import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.ScilabWindowBridge;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -133,6 +144,7 @@ public class CallScilabBridge {
 	private static final double DEFAULT_RED_FOREGROUND = 0;
 	private static final double DEFAULT_GREEN_FOREGROUND = 0;
 	private static final double DEFAULT_BLUE_FOREGROUND = 0;
+
 	
 	private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
 	private static String tmpPrinterFile = System.getenv("TMPDIR") + "scilabfigure";
@@ -547,6 +559,16 @@ public class CallScilabBridge {
 	public static void destroyFrame(int id) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).destroy();
 		UIElementMapper.removeMapping(id);
+	}
+	
+	/**
+	 * Create a new window with id figureIndex.
+	 * The created window contains an empty tab.
+	 * @param figureIndex index of the figure to create
+	 * @return id of the window
+	 */
+	public static int newWindow(int figureIndex) {
+		return ScilabGraphicWindow.newWindow(figureIndex);
 	}
 
 	/****************************/
@@ -1976,7 +1998,9 @@ public class CallScilabBridge {
 	 * @param command the name of the Scilab function to call
 	 */
 	public static void setEventHandler(int figNum, String command) {
-		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum).getRendererProperties()).getCanvas().setEventHandler(command);
+		if (((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum).getRendererProperties()).getCanvas() != null) {
+			((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum).getRendererProperties()).getCanvas().setEventHandler(command);
+		}
 	}
 	
 	/**
@@ -1985,8 +2009,10 @@ public class CallScilabBridge {
 	 * @param status is true to set the event handler active
 	 */
 	public static void setEventHandlerEnabled(int figNum, boolean status) {
-		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum)
-				.getRendererProperties()).getCanvas().setEventHandlerEnabled(status);
+		if (((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum).getRendererProperties()).getCanvas() != null) {
+			((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum)
+					.getRendererProperties()).getCanvas().setEventHandlerEnabled(status);
+		}
 	}
 	
 	/******************/

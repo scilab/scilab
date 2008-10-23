@@ -302,5 +302,13 @@ public interface SimpleTab {
 	 * Set this tab as the current tab of its parent Window
 	 */
 	void setCurrent();
+	
+	/**
+	 * Set the background color of the tab.
+	 * @param red red channel of the color
+	 * @param green green channel
+	 * @param blue blue channel
+	 */
+	void setBackground(double red, double green, double blue);
 
 }
