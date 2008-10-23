@@ -226,11 +226,28 @@ public class SwingScilabTab extends View implements SimpleTab {
 		//this.setContentPane(member);
 		// Canvas should always be in the back
 		//this.setComponentZOrder(member, getComponentCount());
+		
 		this.setLayout(new BorderLayout());
-		this.add(member, BorderLayout.CENTER);
-		//this.setComponentZOrder(member, TOP_LAYER);
-		this.revalidate();
-		//this.setLayout(null);
+		if (SwingUtilities.isEventDispatchThread()) {
+			add(member, BorderLayout.CENTER);
+			revalidate();
+			repaint();
+		} else {
+			final ScrolledSwingScilabCanvas memberF = member;
+			try {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						add(memberF, BorderLayout.CENTER);
+						revalidate();
+						repaint();
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
 		return this.getComponentZOrder(member);
 	}
 	
