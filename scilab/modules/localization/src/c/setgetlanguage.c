@@ -264,6 +264,11 @@ char *convertlanguagealias(char *strlanguage)
  */
 BOOL exportLocaleToSystem(char *locale){
 
+	if (locale==NULL) {
+		fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default.\n", EXPORTENVLOCALE);
+		return FALSE;
+	}
+
 	/* It will put in the env something like LC_ALL=fr_FR */
 	if ( !setenvc(EXPORTENVLOCALESTR,locale))
 	{
