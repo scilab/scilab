@@ -27,6 +27,7 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "DrawObjects.h"
 }
 
 
@@ -48,7 +49,7 @@ DrawableFigure::DrawableFigure( sciPointObj * pObj )
 /*---------------------------------------------------------------------------------*/
 DrawableFigure::~DrawableFigure( void )
 {
-  closeRenderingCanvas() ;
+  closeVisualFigure() ;
   if ( m_pSynchronizer != NULL )
   {
     delete m_pSynchronizer;
@@ -89,14 +90,14 @@ void DrawableFigure::setWindowSize( const int size[2] )
   getFigureImp()->setWindowSize(size);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::openRenderingCanvas( void )
+void DrawableFigure::createVisualFigure( void )
 {
-  getFigureImp()->openRenderingCanvas( sciGetNum( m_pDrawed ) ) ;
+  getFigureImp()->createVisualFigure( sciGetNum( m_pDrawed ) ) ;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::closeRenderingCanvas( void )
+void DrawableFigure::closeVisualFigure( void )
 {
-  getFigureImp()->closeRenderingCanvas() ;
+  getFigureImp()->closeVisualFigure() ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::drawBackground(void)
@@ -165,6 +166,17 @@ void DrawableFigure::forceDisplay( void )
     // if a single object is available this override drawlater()/ drawnow()
     return;
   }
+
+	if (needsDisplay(m_pDrawed) || isDisplayingSingleObject())
+	{
+		// to be sure that the canvas exists
+		openGraphicCanvas();
+	}
+	else
+	{
+		// to be sure that the canvas does not exists
+		closeGraphicCanvas();
+	}
 
   // make sure the context is created
  
@@ -269,7 +281,17 @@ void DrawableFigure::stopRotationRecording(void)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::showWindow(void)
 {
-  return getFigureImp()->showWindow();
+  getFigureImp()->showWindow();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::openGraphicCanvas(void)
+{
+	getFigureImp()->openGraphicCanvas();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::closeGraphicCanvas(void)
+{
+	getFigureImp()->closeGraphicCanvas();
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigure::isAbleToCreateFigure(void)

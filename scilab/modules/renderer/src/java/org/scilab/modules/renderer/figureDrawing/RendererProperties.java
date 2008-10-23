@@ -125,9 +125,9 @@ public interface RendererProperties {
     boolean getPixmapMode();
     
     /**
-     * Close the rendering canvas
+     * Close the figure
      */
-    void closeCanvas();
+    void closeFigure();
     
     /**
      * Specify wether the canvas should fit the parent tab size
@@ -210,5 +210,17 @@ public interface RendererProperties {
 	 * Disable canvas
 	 */
 	void disableCanvas();
+	
+	/**
+	 * If the window does not already contains a 3D canvas,
+	 * add one.
+	 * @param figureIndex index of the figure in which the canvas is added
+	 */
+	void openGraphicCanvas(int figureIndex);
+	
+	/**
+	 * Destroy the canvas if one already exists
+	 */
+	void closeGraphicCanvas();
 	
 }

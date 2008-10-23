@@ -42,6 +42,7 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "WindowList.h"
+#include "ObjectSelection.h"
 
 #include "math_graphics.h"
 #include "Format.h"
@@ -61,7 +62,7 @@
 
 
 
-
+static BOOL subwinNeedsDisplay(sciPointObj * pSubwin);
 
 
 
@@ -558,5 +559,73 @@ void clearPixmap(sciPointObj * pFigure)
   // nothing to do with the hack
 }
 /*---------------------------------------------------------------------------------*/
+BOOL needsDisplay(sciPointObj * pFigure)
+{
+	/* return false if the figure contains no or one subwindow and the subwindow is not displayed. */
+	
 
+	if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 0)
+	{
+		/* No subwindows, return true */
+		return FALSE;
+	}
+	else if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 1)
+	{
+		/* One subwindow check if it is visible */
+		sciPointObj * onlySubwin = sciGetFirstTypedSelectedSon(pFigure, SCI_SUBWIN);
+		return subwinNeedsDisplay(onlySubwin);
+	}
+	else
+	{
+		return TRUE;
+	}
+}
+/*---------------------------------------------------------------------------------*/
+static BOOL subwinNeedsDisplay(sciPointObj * pSubwin)
+{
+	/* the subwindow is not displayed if it does not have any children, its box is of and is transparent or */
+	/* has the same background as the figure */
+	if (sciGetNbChildren(pSubwin) > 4)
+	{
+		/* Other children than the labels */
+		return TRUE;
+	}
+	else
+	{
+		BOOL axesVisible[3];
+
+		if (sciGetBoxType(pSubwin) != BT_OFF)
+		{
+			/* Box is displayed */
+			return TRUE;
+		}
+
+		sciGetAxesVisible(pSubwin, axesVisible);
+		if (axesVisible[0] || axesVisible[1] || axesVisible[2])
+		{
+			/* One axis is visible */
+			return TRUE;
+		}
+
+		if (   sciGetIsFilled(pSubwin)
+			  && sciGetBackground(sciGetParentFigure(pSubwin)) != sciGetBackground(pSubwin))
+		{
+			/* Compare subwin background and figure one */
+			return TRUE;
+		}
+
+		/* Check that labels texts are empty */
+		if (   !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_title)
+				|| !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_x_label)
+				|| !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_y_label)
+				|| !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_z_label))
+		{
+			return TRUE;
+		}
+
+		/* apparently no need to display the axes */
+		return FALSE;
+	}
+}
+/*---------------------------------------------------------------------------------*/
 #undef round

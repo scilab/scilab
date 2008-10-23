@@ -68,7 +68,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 localClass = curEnv->FindClass( this->className().c_str() ) ;
 if (localClass == NULL) {
-  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+std::cerr << "Could not get the Class " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass) ;
@@ -77,23 +79,31 @@ this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass) ;
 curEnv->DeleteLocalRef(localClass);
 
 if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 
 constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
 if(constructObject == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not retrieve the constructor of the class " << this->className() << " with the profile : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
 if(localInstance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not instantiate the object " << this->className() << " with the constructor : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
  
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 /* localInstance not needed anymore */
 curEnv->DeleteLocalRef(localInstance);
@@ -106,7 +116,6 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
-voidcloseRenderingCanvasID=NULL; 
 voiddrawBackgroundID=NULL; 
 voidsetBackgroundColorjintID=NULL; 
 voidsetLogicalOpjintID=NULL; 
@@ -133,6 +142,8 @@ jintArraygetRotationDisplacementID=NULL;
 voidstopRotationRecordingID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
+voidopenGraphicCanvasID=NULL; 
+voidcloseGraphicCanvasID=NULL; 
 
 
 }
@@ -147,12 +158,18 @@ jclass localClass = curEnv->GetObjectClass(JObj);
         curEnv->DeleteLocalRef(localClass);
 
         if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
 
         this->instance = curEnv->NewGlobalRef(JObj) ;
         if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
         voiddisplayID=NULL; 
@@ -162,7 +179,6 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
-voidcloseRenderingCanvasID=NULL; 
 voiddrawBackgroundID=NULL; 
 voidsetBackgroundColorjintID=NULL; 
 voidsetLogicalOpjintID=NULL; 
@@ -189,6 +205,8 @@ jintArraygetRotationDisplacementID=NULL;
 voidstopRotationRecordingID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
+voidopenGraphicCanvasID=NULL; 
+voidcloseGraphicCanvasID=NULL; 
 
 
 }
@@ -219,13 +237,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voiddisplayID==NULL) { /* Use the cache Luke */ voiddisplayID = curEnv->GetMethodID(this->instanceClass, "display", "()V" ) ;
 if (voiddisplayID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "display");
+std::cerr << "Could not access to the method " << "display" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddisplayID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::initializeDrawing (int figureIndex){
@@ -234,13 +256,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidinitializeDrawingjintID==NULL) { /* Use the cache Luke */ voidinitializeDrawingjintID = curEnv->GetMethodID(this->instanceClass, "initializeDrawing", "(I)V" ) ;
 if (voidinitializeDrawingjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "initializeDrawing");
+std::cerr << "Could not access to the method " << "initializeDrawing" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::endDrawing (){
@@ -249,13 +275,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidendDrawingID==NULL) { /* Use the cache Luke */ voidendDrawingID = curEnv->GetMethodID(this->instanceClass, "endDrawing", "()V" ) ;
 if (voidendDrawingID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "endDrawing");
+std::cerr << "Could not access to the method " << "endDrawing" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidendDrawingID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::show (int figureIndex){
@@ -264,13 +294,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidshowjintID==NULL) { /* Use the cache Luke */ voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
 if (voidshowjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "show");
+std::cerr << "Could not access to the method " << "show" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidshowjintID ,figureIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::destroy (int parentFigureIndex){
@@ -279,13 +313,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voiddestroyjintID==NULL) { /* Use the cache Luke */ voiddestroyjintID = curEnv->GetMethodID(this->instanceClass, "destroy", "(I)V" ) ;
 if (voiddestroyjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "destroy");
+std::cerr << "Could not access to the method " << "destroy" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::setFigureIndex (int figureIndex){
@@ -294,13 +332,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetFigureIndexjintID==NULL) { /* Use the cache Luke */ voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
 if (voidsetFigureIndexjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setFigureIndex");
+std::cerr << "Could not access to the method " << "setFigureIndex" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::drawCanvas (){
@@ -309,28 +351,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voiddrawCanvasID==NULL) { /* Use the cache Luke */ voiddrawCanvasID = curEnv->GetMethodID(this->instanceClass, "drawCanvas", "()V" ) ;
 if (voiddrawCanvasID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "drawCanvas");
+std::cerr << "Could not access to the method " << "drawCanvas" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddrawCanvasID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
 
-void DrawableFigureGL::closeRenderingCanvas (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidcloseRenderingCanvasID==NULL) { /* Use the cache Luke */ voidcloseRenderingCanvasID = curEnv->GetMethodID(this->instanceClass, "closeRenderingCanvas", "()V" ) ;
-if (voidcloseRenderingCanvasID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "closeRenderingCanvas");
-}
-}
-                         curEnv->CallVoidMethod( this->instance, voidcloseRenderingCanvasID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
 }
 
 void DrawableFigureGL::drawBackground (){
@@ -339,13 +370,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voiddrawBackgroundID==NULL) { /* Use the cache Luke */ voiddrawBackgroundID = curEnv->GetMethodID(this->instanceClass, "drawBackground", "()V" ) ;
 if (voiddrawBackgroundID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "drawBackground");
+std::cerr << "Could not access to the method " << "drawBackground" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddrawBackgroundID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::setBackgroundColor (int colorIndex){
@@ -354,13 +389,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetBackgroundColorjintID==NULL) { /* Use the cache Luke */ voidsetBackgroundColorjintID = curEnv->GetMethodID(this->instanceClass, "setBackgroundColor", "(I)V" ) ;
 if (voidsetBackgroundColorjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setBackgroundColor");
+std::cerr << "Could not access to the method " << "setBackgroundColor" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetBackgroundColorjintID ,colorIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::setLogicalOp (int logicOpIndex){
@@ -369,13 +408,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetLogicalOpjintID==NULL) { /* Use the cache Luke */ voidsetLogicalOpjintID = curEnv->GetMethodID(this->instanceClass, "setLogicalOp", "(I)V" ) ;
 if (voidsetLogicalOpjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setLogicalOp");
+std::cerr << "Could not access to the method " << "setLogicalOp" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetLogicalOpjintID ,logicOpIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::setColorMapData (double * rgbmat, int rgbmatSize){
@@ -384,25 +427,23 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetColorMapDatajdoubleArrayID==NULL) { /* Use the cache Luke */ voidsetColorMapDatajdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "setColorMapData", "([D)V" ) ;
 if (voidsetColorMapDatajdoubleArrayID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setColorMapData");
+std::cerr << "Could not access to the method " << "setColorMapData" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
 jdoubleArray rgbmat_ = curEnv->NewDoubleArray( rgbmatSize ) ;
-
-if (rgbmat_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
 
 curEnv->SetDoubleArrayRegion( rgbmat_, 0, rgbmatSize, (jdouble*) rgbmat ) ;
 
 
                          curEnv->CallVoidMethod( this->instance, voidsetColorMapDatajdoubleArrayID ,rgbmat_);
                         curEnv->DeleteLocalRef(rgbmat_);
+
 if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 double * DrawableFigureGL::getColorMapData (){
@@ -411,7 +452,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jdoubleArraygetColorMapDataID==NULL) { /* Use the cache Luke */ jdoubleArraygetColorMapDataID = curEnv->GetMethodID(this->instanceClass, "getColorMapData", "()[D" ) ;
 if (jdoubleArraygetColorMapDataID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getColorMapData");
+std::cerr << "Could not access to the method " << "getColorMapData" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jdoubleArray res =  (jdoubleArray) curEnv->CallObjectMethod( this->instance, jdoubleArraygetColorMapDataID );
@@ -429,9 +472,11 @@ myArray[i]=resultsArray[i];
 curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
                         curEnv->DeleteLocalRef(res);
+
 if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
 return myArray;
 
 }
@@ -442,13 +487,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintgetColorMapSizeID==NULL) { /* Use the cache Luke */ jintgetColorMapSizeID = curEnv->GetMethodID(this->instanceClass, "getColorMapSize", "()I" ) ;
 if (jintgetColorMapSizeID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getColorMapSize");
+std::cerr << "Could not access to the method " << "getColorMapSize" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetColorMapSizeID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -459,13 +508,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintgetCanvasWidthID==NULL) { /* Use the cache Luke */ jintgetCanvasWidthID = curEnv->GetMethodID(this->instanceClass, "getCanvasWidth", "()I" ) ;
 if (jintgetCanvasWidthID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getCanvasWidth");
+std::cerr << "Could not access to the method " << "getCanvasWidth" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetCanvasWidthID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -476,13 +529,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintgetCanvasHeightID==NULL) { /* Use the cache Luke */ jintgetCanvasHeightID = curEnv->GetMethodID(this->instanceClass, "getCanvasHeight", "()I" ) ;
 if (jintgetCanvasHeightID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getCanvasHeight");
+std::cerr << "Could not access to the method " << "getCanvasHeight" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetCanvasHeightID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -493,13 +550,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintsetCanvasSizejintjintID==NULL) { /* Use the cache Luke */ jintsetCanvasSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setCanvasSize", "(II)I" ) ;
 if (jintsetCanvasSizejintjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setCanvasSize");
+std::cerr << "Could not access to the method " << "setCanvasSize" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintsetCanvasSizejintjintID ,width, height);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -510,13 +571,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintgetWindowPosXID==NULL) { /* Use the cache Luke */ jintgetWindowPosXID = curEnv->GetMethodID(this->instanceClass, "getWindowPosX", "()I" ) ;
 if (jintgetWindowPosXID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowPosX");
+std::cerr << "Could not access to the method " << "getWindowPosX" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowPosXID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -527,13 +592,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintgetWindowPosYID==NULL) { /* Use the cache Luke */ jintgetWindowPosYID = curEnv->GetMethodID(this->instanceClass, "getWindowPosY", "()I" ) ;
 if (jintgetWindowPosYID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowPosY");
+std::cerr << "Could not access to the method " << "getWindowPosY" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowPosYID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -544,13 +613,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetWindowPositionjintjintID==NULL) { /* Use the cache Luke */ voidsetWindowPositionjintjintID = curEnv->GetMethodID(this->instanceClass, "setWindowPosition", "(II)V" ) ;
 if (voidsetWindowPositionjintjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setWindowPosition");
+std::cerr << "Could not access to the method " << "setWindowPosition" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetWindowPositionjintjintID ,posX, posY);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 int DrawableFigureGL::getWindowWidth (){
@@ -559,13 +632,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintgetWindowWidthID==NULL) { /* Use the cache Luke */ jintgetWindowWidthID = curEnv->GetMethodID(this->instanceClass, "getWindowWidth", "()I" ) ;
 if (jintgetWindowWidthID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowWidth");
+std::cerr << "Could not access to the method " << "getWindowWidth" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowWidthID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -576,13 +653,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintgetWindowHeightID==NULL) { /* Use the cache Luke */ jintgetWindowHeightID = curEnv->GetMethodID(this->instanceClass, "getWindowHeight", "()I" ) ;
 if (jintgetWindowHeightID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowHeight");
+std::cerr << "Could not access to the method " << "getWindowHeight" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowHeightID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return res;
 
 }
@@ -593,13 +674,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetWindowSizejintjintID==NULL) { /* Use the cache Luke */ voidsetWindowSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setWindowSize", "(II)V" ) ;
 if (voidsetWindowSizejintjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setWindowSize");
+std::cerr << "Could not access to the method " << "setWindowSize" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetWindowSizejintjintID ,width, height);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::setInfoMessage (char * infoMessage){
@@ -608,15 +693,19 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetInfoMessagejstringID==NULL) { /* Use the cache Luke */ voidsetInfoMessagejstringID = curEnv->GetMethodID(this->instanceClass, "setInfoMessage", "(Ljava/lang/String;)V" ) ;
 if (voidsetInfoMessagejstringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setInfoMessage");
+std::cerr << "Could not access to the method " << "setInfoMessage" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
 jstring infoMessage_ = curEnv->NewStringUTF( infoMessage );
 
                          curEnv->CallVoidMethod( this->instance, voidsetInfoMessagejstringID ,infoMessage_);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::setAutoResizeMode (bool onOrOff){
@@ -625,15 +714,19 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetAutoResizeModejbooleanID==NULL) { /* Use the cache Luke */ voidsetAutoResizeModejbooleanID = curEnv->GetMethodID(this->instanceClass, "setAutoResizeMode", "(Z)V" ) ;
 if (voidsetAutoResizeModejbooleanID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setAutoResizeMode");
+std::cerr << "Could not access to the method " << "setAutoResizeMode" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
 jboolean onOrOff_ = ((bool) onOrOff ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallVoidMethod( this->instance, voidsetAutoResizeModejbooleanID ,onOrOff_);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 bool DrawableFigureGL::getAutoResizeMode (){
@@ -642,13 +735,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jbooleangetAutoResizeModeID==NULL) { /* Use the cache Luke */ jbooleangetAutoResizeModeID = curEnv->GetMethodID(this->instanceClass, "getAutoResizeMode", "()Z" ) ;
 if (jbooleangetAutoResizeModeID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getAutoResizeMode");
+std::cerr << "Could not access to the method " << "getAutoResizeMode" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleangetAutoResizeModeID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 return (res == JNI_TRUE);
 
 }
@@ -659,7 +756,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintArraygetViewportID==NULL) { /* Use the cache Luke */ jintArraygetViewportID = curEnv->GetMethodID(this->instanceClass, "getViewport", "()[I" ) ;
 if (jintArraygetViewportID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getViewport");
+std::cerr << "Could not access to the method " << "getViewport" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetViewportID );
@@ -677,9 +776,11 @@ myArray[i]=resultsArray[i];
 curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
                         curEnv->DeleteLocalRef(res);
+
 if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
 return myArray;
 
 }
@@ -690,13 +791,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetViewportjintjintjintjintID==NULL) { /* Use the cache Luke */ voidsetViewportjintjintjintjintID = curEnv->GetMethodID(this->instanceClass, "setViewport", "(IIII)V" ) ;
 if (voidsetViewportjintjintjintjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setViewport");
+std::cerr << "Could not access to the method " << "setViewport" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetViewportjintjintjintjintID ,posX, posY, width, height);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 int * DrawableFigureGL::rubberBox (bool isClick, bool isZoom, int * initialRect, int initialRectSize){
@@ -705,7 +810,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintArrayrubberBoxjbooleanjbooleanjintArrayID==NULL) { /* Use the cache Luke */ jintArrayrubberBoxjbooleanjbooleanjintArrayID = curEnv->GetMethodID(this->instanceClass, "rubberBox", "(ZZ[I)[I" ) ;
 if (jintArrayrubberBoxjbooleanjbooleanjintArrayID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "rubberBox");
+std::cerr << "Could not access to the method " << "rubberBox" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
 jboolean isClick_ = ((bool) isClick ? JNI_TRUE : JNI_FALSE);
@@ -713,12 +820,6 @@ jboolean isClick_ = ((bool) isClick ? JNI_TRUE : JNI_FALSE);
 jboolean isZoom_ = ((bool) isZoom ? JNI_TRUE : JNI_FALSE);
 
 jintArray initialRect_ = curEnv->NewIntArray( initialRectSize ) ;
-
-if (initialRect_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
 
 curEnv->SetIntArrayRegion( initialRect_, 0, initialRectSize, (jint*) initialRect ) ;
 
@@ -739,9 +840,11 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
                         curEnv->DeleteLocalRef(res);
 curEnv->DeleteLocalRef(initialRect_);
+
 if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
 return myArray;
 
 }
@@ -752,15 +855,19 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetTitlejstringID==NULL) { /* Use the cache Luke */ voidsetTitlejstringID = curEnv->GetMethodID(this->instanceClass, "setTitle", "(Ljava/lang/String;)V" ) ;
 if (voidsetTitlejstringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setTitle");
+std::cerr << "Could not access to the method " << "setTitle" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
 jstring title_ = curEnv->NewStringUTF( title );
 
                          curEnv->CallVoidMethod( this->instance, voidsetTitlejstringID ,title_);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 int * DrawableFigureGL::getRotationDisplacement (){
@@ -769,7 +876,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (jintArraygetRotationDisplacementID==NULL) { /* Use the cache Luke */ jintArraygetRotationDisplacementID = curEnv->GetMethodID(this->instanceClass, "getRotationDisplacement", "()[I" ) ;
 if (jintArraygetRotationDisplacementID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getRotationDisplacement");
+std::cerr << "Could not access to the method " << "getRotationDisplacement" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                         jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetRotationDisplacementID );
@@ -787,9 +896,11 @@ myArray[i]=resultsArray[i];
 curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
                         curEnv->DeleteLocalRef(res);
+
 if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
 return myArray;
 
 }
@@ -800,13 +911,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidstopRotationRecordingID==NULL) { /* Use the cache Luke */ voidstopRotationRecordingID = curEnv->GetMethodID(this->instanceClass, "stopRotationRecording", "()V" ) ;
 if (voidstopRotationRecordingID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "stopRotationRecording");
+std::cerr << "Could not access to the method " << "stopRotationRecording" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidstopRotationRecordingID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::showWindow (){
@@ -815,13 +930,17 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidshowWindowID==NULL) { /* Use the cache Luke */ voidshowWindowID = curEnv->GetMethodID(this->instanceClass, "showWindow", "()V" ) ;
 if (voidshowWindowID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "showWindow");
+std::cerr << "Could not access to the method " << "showWindow" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidshowWindowID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 void DrawableFigureGL::setNbSubwins (int nbSubwins){
@@ -830,13 +949,55 @@ JNIEnv * curEnv = getCurrentEnv();
 
 if (voidsetNbSubwinsjintID==NULL) { /* Use the cache Luke */ voidsetNbSubwinsjintID = curEnv->GetMethodID(this->instanceClass, "setNbSubwins", "(I)V" ) ;
 if (voidsetNbSubwinsjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setNbSubwins");
+std::cerr << "Could not access to the method " << "setNbSubwins" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetNbSubwinsjintID ,nbSubwins);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
+
+}
+
+void DrawableFigureGL::openGraphicCanvas (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidopenGraphicCanvasID==NULL) { /* Use the cache Luke */ voidopenGraphicCanvasID = curEnv->GetMethodID(this->instanceClass, "openGraphicCanvas", "()V" ) ;
+if (voidopenGraphicCanvasID == NULL) {
+std::cerr << "Could not access to the method " << "openGraphicCanvas" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidopenGraphicCanvasID );
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+}
+
+void DrawableFigureGL::closeGraphicCanvas (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidcloseGraphicCanvasID==NULL) { /* Use the cache Luke */ voidcloseGraphicCanvasID = curEnv->GetMethodID(this->instanceClass, "closeGraphicCanvas", "()V" ) ;
+if (voidcloseGraphicCanvasID == NULL) {
+std::cerr << "Could not access to the method " << "closeGraphicCanvas" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidcloseGraphicCanvasID );
+                        
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
 }
 
 }

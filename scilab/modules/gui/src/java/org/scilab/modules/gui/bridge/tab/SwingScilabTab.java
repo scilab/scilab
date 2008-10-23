@@ -14,6 +14,8 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.lang.reflect.InvocationTargetException;
@@ -221,7 +223,14 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	private int addMember(ScrolledSwingScilabCanvas member) {
 		// TODO : Check wether we want a Canvas in a Tab or not.
-		this.setContentPane(member);
+		//this.setContentPane(member);
+		// Canvas should always be in the back
+		//this.setComponentZOrder(member, getComponentCount());
+		this.setLayout(new BorderLayout());
+		this.add(member, BorderLayout.CENTER);
+		//this.setComponentZOrder(member, TOP_LAYER);
+		this.revalidate();
+		//this.setLayout(null);
 		return this.getComponentZOrder(member);
 	}
 	
@@ -817,6 +826,16 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void setCurrent() {
 		super.setActive(true);
+	}
+	
+	/**
+	 * Set the background color of the tab.
+	 * @param red red channel of the color
+	 * @param green green channel
+	 * @param blue blue channel
+	 */
+	public void setBackground(double red, double green, double blue) {
+		this.getContentPane().setBackground(new Color((float) red, (float) green, (float) blue));
 	}
 
 }

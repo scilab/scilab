@@ -68,7 +68,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 localClass = curEnv->FindClass( this->className().c_str() ) ;
 if (localClass == NULL) {
-  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+std::cerr << "Could not get the Class " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass) ;
@@ -77,29 +79,38 @@ this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass) ;
 curEnv->DeleteLocalRef(localClass);
 
 if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 
 constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
 if(constructObject == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not retrieve the constructor of the class " << this->className() << " with the profile : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
 if(localInstance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not instantiate the object " << this->className() << " with the constructor : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
  
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 /* localInstance not needed anymore */
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidsetFigureIndexjintID=NULL; 
+jintnewWindowjintID=NULL; 
+jintnewGraphicCanvasjintID=NULL; 
 
 
 }
@@ -114,15 +125,22 @@ jclass localClass = curEnv->GetObjectClass(JObj);
         curEnv->DeleteLocalRef(localClass);
 
         if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
 
         this->instance = curEnv->NewGlobalRef(JObj) ;
         if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
-        voidsetFigureIndexjintID=NULL; 
+        jintnewWindowjintID=NULL; 
+jintnewGraphicCanvasjintID=NULL; 
 
 
 }
@@ -147,19 +165,50 @@ exit(EXIT_FAILURE);
 
 // Method(s)
 
-void ScilabGraphicWindow::setFigureIndex (int figureIndex){
+int ScilabGraphicWindow::newWindow (JavaVM * jvm_, int figureIndex){
 
-JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
 
-if (voidsetFigureIndexjintID==NULL) { /* Use the cache Luke */ voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
-if (voidsetFigureIndexjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setFigureIndex");
+jmethodID jintnewWindowjintID = curEnv->GetStaticMethodID(cls, "newWindow", "(I)I" ) ;
+if (jintnewWindowjintID == NULL) {
+std::cerr << "Could not access to the method " << "newWindow" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewWindowjintID ,figureIndex);
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+
+return res;
+
 }
+
+int ScilabGraphicWindow::newGraphicCanvas (JavaVM * jvm_, int parentFigureIndex){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewGraphicCanvasjintID = curEnv->GetStaticMethodID(cls, "newGraphicCanvas", "(I)I" ) ;
+if (jintnewGraphicCanvasjintID == NULL) {
+std::cerr << "Could not access to the method " << "newGraphicCanvas" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewGraphicCanvasjintID ,parentFigureIndex);
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+return res;
+
 }
 
 }
