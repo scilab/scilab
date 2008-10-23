@@ -10,13 +10,17 @@
 ##
 ##
 
-FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp
+FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp \
+				src/cpp/scilabFunction.cpp \
+				$(top_builddir)/modules/core/src/cpp/configvariable.cpp
+
 
 pkglib_LTLIBRARIES 	= libscifunctions_manager.la
 
 libscifunctions_manager_la_SOURCES 	= $(FUNCTION_MANAGER_CPP_SOURCES)
 
 libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ \
+						-I$(top_builddir)/modules/core/includes/ \
 						-Iincludes/ \
 						-Isrc/cpp \
 						$(XML_FLAGS)
