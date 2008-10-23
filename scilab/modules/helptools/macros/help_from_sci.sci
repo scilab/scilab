@@ -103,11 +103,9 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //  The fact that you are presently reading this means that you have had
 //  knowledge of the CeCILL license and that you accept its terms.
 
-try
- getversion('scilab');
-catch
- error(gettext('Scilab 5.0 or more is required.'));  
-end;
+if execstr("getversion(""scilab"");","errcatch") <> 0 then
+	error(gettext("Scilab 5.0 or more is required."));
+end
 
 if argn(2)==0 then
   template=[ ..
@@ -157,9 +155,9 @@ end
 
 if argn(2)<3 then demodir=[]; end
 if argn(2)<2 then helpdir=[]; end
-  
+
 if ~isempty(demodir) & ~isdir(demodir) then 
-  error('...demodir must be a directory.'); 
+  error(gettext("...demodir must be a directory."));
 end
 
 if isdir(funname) then
