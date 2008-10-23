@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,103 +11,139 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mget">
+<refentry version="5.0-subset Scilab" xml:id="mget" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>mget</refname>
-    <refpurpose> reads  byte or word in a given binary format and convert to double</refpurpose>
+
+    <refpurpose>reads byte or word in a given binary format and convert to
+    double</refpurpose>
   </refnamediv>
+
   <refnamediv xml:id="mgeti">
     <refname>mgeti</refname>
-    <refpurpose> reads  byte or word in a given binary format return an int type</refpurpose>
+
+    <refpurpose>reads byte or word in a given binary format return an int
+    type</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>x=mget([n,type,fd])
 x=mgeti([n,type,fd])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>n</term>
+
         <listitem>
           <para>:a positive scalar: The number of items to be read.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>fd</term>
+
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the function
-	    <literal>mopen</literal>. -1 stands for last opened file. Default value
-	    is -1.</para>
+          <para>scalar. The <literal>fd</literal> parameter returned by the
+          function <literal>mopen</literal>. -1 stands for last opened file.
+          Default value is -1.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>type</term>
+
         <listitem>
-          <para>a string. Give the binary format used to write all the entries of x.</para>
+          <para>a string. Give the binary format used to write all the entries
+          of x.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>a vector of floating point or integer type numbers</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-      The <literal>mget</literal> function reads data in the input specified by the
-      stream parameter <literal>fd</literal> and returns a vector of floating point data.
-      The <literal>mgeti</literal> function reads data in the input specified by the
-      stream parameter <literal>fd</literal> and returns a vector of integer data.
-    </para>
-    <para>
-      Data is read at the position at which the file pointer is currently
-      pointing and advances the indicator appropriately.
-    </para>
-    <para>
-      The <literal>type</literal> parameter is a conversion specifier which may be set to any of the
-      following flag characters (with default value "l"):
-    </para>
-    <para><emphasis role="bold">WARNING</emphasis>, when reading binary files under Windows to not forget to open
-      the file with the <literal>b</literal> option like
-      <literal>fd1=mopen(file1,'rb')</literal> if not the file will be interpreted as
-      text file and the bytes with value <literal>13</literal> will be interpreted as
-      newlines and ommitted. </para>
-    <variablelist>
-      <varlistentry>
-        <term>"l", "i", "s", "ul",  "ui", "us", "d", "f",  "c", "uc"</term>
-        <listitem>
-          <para>for reading respectively a long, an int, a short, an unsigned
-	  long, an unsigned int, an unsigned short, a double, a float, a char
-	  and an unsigned char. The bytes which are read are automatically
-	  swapped if necessary (by checking little-endian status). This default
-	  swapping mode can be suppressed by adding a flag in the
-	  <literal>mopen</literal> function. Format "l", "d" and
-	  "f" are valid only with the <literal>mget</literal>
-	  function.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"..l" or "..b"</term>
-        <listitem>
-          <para>It is also possible to read in little-endian or big-endian mode
-	  by adding a 'l' or 'b' character at the end of a type
-	  specification. For example "db" will read a double in
-	  big-endian mode.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+
+    <para>The <literal>mget</literal> function reads data in the input
+    specified by the stream parameter <literal>fd</literal> and returns a
+    vector of floating point data. The <literal>mgeti</literal> function reads
+    data in the input specified by the stream parameter <literal>fd</literal>
+    and returns a vector of integer data.</para>
+
+    <para>Data is read at the position at which the file pointer is currently
+    pointing and advances the indicator appropriately.</para>
+
+    <para>The <literal>type</literal> parameter is a conversion specifier
+    which may be set to any of the following flag characters (with default
+    value "l"):</para>
+
+    <para><emphasis role="bold">Note </emphasis>, On Windows, default behavior
+    is to skip byte 13 (0x0D). mopen should be called with the `b` option,
+    e.g. fd1=mopen(file1,'rb') , so that all bytes will be read without
+    exception.</para>
+
+    <para>Data type:</para>
+
+    <para><term>d</term> double</para>
+
+    <para><term>f</term> float</para>
+
+    <para><term>l</term> long</para>
+
+    <para><term>i</term> int</para>
+
+    <para><term>s</term> short</para>
+
+    <para><term>c</term> character</para>
+
+    <para>Optional flag:</para>
+
+    <para><term>u..</term> unsigned (in combination with one of the above
+    types)</para>
+
+    <para><term>..l</term> little endian (in combination with one of the above
+    types)</para>
+
+    <para><term>..b</term> big endian (in combination with one of the above
+    types)</para>
+
+    <para>Bytes read are automatically swapped if necessary (by checking
+    little=endian status).</para>
+
+    <para>This default swapping behavior can be suprressed by adding a flag in
+    the mopen function.</para>
+
+    <para>Formats "l", "d", and "f" are only valid with the mget
+    function.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
     
     file1 = 'test1.bin';
     file2 = 'test2.bin';
@@ -119,68 +155,52 @@ x=mgeti([n,type,fd])</synopsis>
     mclose(fd2);
 
     fd1=mopen(file1,'rb');
-    if 1996<>mget(1,'ull',fd1) ;write(%io(2),'Bug');end;
+    if 1996&lt;&gt;mget(1,'ull',fd1) ;write(%io(2),'Bug');end;
     fd2=mopen(file2,'rb');
-    if 1996<>mget(1,'ull',fd2) ;write(%io(2),'Bug');end;
+    if 1996&lt;&gt;mget(1,'ull',fd2) ;write(%io(2),'Bug');end;
     mclose(fd1);
     mclose(fd2);
     
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="fprintfMat">fprintfMat</link>
-      </member>
-      <member>
-        <link linkend="mfscanf">mfscanf</link>
-      </member>
-      <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
-        <link linkend="mgetl">mgetl</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mputl">mputl</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mscanf">mscanf</link>
-      </member>
-      <member>
-        <link linkend="mseek">mseek</link>
-      </member>
-      <member>
-        <link linkend="mtell">mtell</link>
-      </member>
-      <member>
-        <link linkend="mdelete">mdelete</link>
-      </member>
+      <member><link linkend="mclose">mclose</link></member>
+
+      <member><link linkend="meof">meof</link></member>
+
+      <member><link linkend="mfprintf">mfprintf</link></member>
+
+      <member><link linkend="fprintfMat">fprintfMat</link></member>
+
+      <member><link linkend="mfscanf">mfscanf</link></member>
+
+      <member><link linkend="fscanfMat">fscanfMat</link></member>
+
+      <member><link linkend="mgetl">mgetl</link></member>
+
+      <member><link linkend="mgetstr">mgetstr</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mprintf">mprintf</link></member>
+
+      <member><link linkend="mput">mput</link></member>
+
+      <member><link linkend="mputl">mputl</link></member>
+
+      <member><link linkend="mputstr">mputstr</link></member>
+
+      <member><link linkend="mscanf">mscanf</link></member>
+
+      <member><link linkend="mseek">mseek</link></member>
+
+      <member><link linkend="mtell">mtell</link></member>
+
+      <member><link linkend="mdelete">mdelete</link></member>
     </simplelist>
   </refsection>
 </refentry>
