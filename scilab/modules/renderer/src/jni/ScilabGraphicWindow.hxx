@@ -44,6 +44,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
+#include "GiwsException.hxx"
+
 namespace org_scilab_modules_gui_graphicWindow {
 
 class ScilabGraphicWindow {
@@ -53,7 +55,6 @@ jobject instance;
 
 jclass instanceClass; // cache class
 jmethodID jintnewWindowjintID; // cache method id
-jmethodID jintnewGraphicCanvasjintID; // cache method id
 
 
 /**
@@ -96,8 +97,6 @@ void endSynchronize();
 
 // Methods
 static int newWindow(JavaVM * jvm_, int figureIndex);
-
-static int newGraphicCanvas(JavaVM * jvm_, int parentFigureIndex);
 
 
                         /**
