@@ -330,6 +330,7 @@ libsciabstractSyntaxTree_la_SOURCES = src/cpp/libAst.cpp \
 
 libsciabstractSyntaxTree_la_CXXFLAGS = -I$(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \
+			-I $(top_srcdir)/modules/functions_manager/includes \
 			-I includes \
 			-I src/cpp
 

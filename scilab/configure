@@ -44173,6 +44173,15 @@ echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"
 echo "  PCRE_VERSION ....... = $PCRE_VERSION"
 
+echo ""
+echo "Regenerate Scilab's parser"
+if test "$enable_build_parser" != no; then
+echo "  YACC ............... = $YACC"
+echo "  LEX ................ = $LEX"
+echo "  YFLAGS ............. = $YFLAGS"
+else
+echo "  Regenerate parser disabled (will use embedded sources)"
+fi
 
 echo ""
 echo "SWIG Configuration:"

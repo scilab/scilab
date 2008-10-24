@@ -20,6 +20,7 @@ libscisymbol_la_SOURCES 	= $(SYMBOL_CPP_SOURCES)
 
 libscisymbol_la_CXXFLAGS	= -I includes/ \
 				-I $(top_builddir)/modules/types/includes \
+				-I $(top_builddir)/modules/functions_manager/includes \
 				-I src/cpp
 
 libscisymbol_la_includedir=$(pkgincludedir)/Symbol
