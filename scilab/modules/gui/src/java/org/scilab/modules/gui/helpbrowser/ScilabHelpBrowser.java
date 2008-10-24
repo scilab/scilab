@@ -120,6 +120,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	public void close() {
 		ScilabBridge.close(this);
 		helpTab.close();
+		instance = null;
 	}
 
 
