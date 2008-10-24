@@ -14,6 +14,7 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
@@ -393,5 +394,16 @@ public class ScilabTabBridge {
 	 */
 	public static void setCurrent(Tab tab) {
 		tab.getAsSimpleTab().setCurrent();
+	}
+	
+	/**
+	 * Set the background color of a tab.
+	 * @param tab tab to modify
+	 * @param red red channel of the color
+	 * @param green green channel
+	 * @param blue blue channel
+	 */
+	public static void setBackground(Tab tab, double red, double green, double blue) {
+		tab.getAsSimpleTab().setBackground(red, green, blue);
 	}
 }

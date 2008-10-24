@@ -140,7 +140,7 @@ public:
    /**
     * Create the rendering canvas for the figure.
     */
-   void openRenderingCanvas( void ) ;
+   void createVisualFigure( void ) ;
 
   /**
    * Set the figure title
@@ -165,6 +165,18 @@ public:
    * Put the figure in top of other windows.
    */
   void showWindow(void);
+
+	/**
+	 * Create a graphic canvas for the figure.
+	 * Figure is then able to draw 3d plots.
+	 */
+	void openGraphicCanvas(void);
+
+	/**
+	 * Remove the graphic canvas for the figure.
+	 * Figure is no longer able to display 3D plots.
+	 */
+	void closeGraphicCanvas(void);
 
   /**
    * Check wether we the environemebnt allows us to create a new window.
@@ -231,7 +243,7 @@ protected:
   /**
    * Close the rendering canvas
    */
-  void closeRenderingCanvas( void ) ;
+  void closeVisualFigure( void ) ;
 
   /**
    * Set the background color of the figure

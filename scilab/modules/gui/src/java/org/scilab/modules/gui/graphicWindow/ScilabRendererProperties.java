@@ -18,6 +18,7 @@ package org.scilab.modules.gui.graphicWindow;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -60,7 +61,11 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getCanvasHeight()
 	 */
 	public int getCanvasHeight() {
-		return parentCanvas.getDims().getHeight();
+		if (parentCanvas != null) {
+			return parentCanvas.getDims().getHeight();
+		} else {
+			return 0;
+		}
 	}
 
 	/**
@@ -69,7 +74,11 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getCanvasWidth()
 	 */
 	public int getCanvasWidth() {
-		return parentCanvas.getDims().getWidth();
+		if (parentCanvas != null) {
+			return parentCanvas.getDims().getWidth();
+		} else {
+			return 0;
+		}
 	}
 
 	/**
@@ -78,7 +87,11 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getGLPipeline()
 	 */
 	public GL getGLPipeline() {
-		return parentCanvas.getGL();
+		if (parentCanvas != null) {
+			return parentCanvas.getGL();
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -134,6 +147,11 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#setCanvasSize(int, int)
 	 */
 	public int setCanvasSize(int width, int height) {
+		
+		if (parentCanvas == null) {
+			return RESIZE_SUCCESS;
+		}
+		
 		if (!getAutoResizeMode()) {
 			// autore size off, just resize the canvas
 			try {
@@ -218,7 +236,9 @@ public class ScilabRendererProperties implements RendererProperties {
      */
 	public void setPixmapMode(boolean onOrOff) {
 		// pixmap "on" means auto swap buffer off.
-		parentCanvas.setAutoSwapBufferMode(!onOrOff);
+		if (parentCanvas != null) {
+			parentCanvas.setAutoSwapBufferMode(!onOrOff);
+		}
 	}
     
     /**
@@ -227,7 +247,11 @@ public class ScilabRendererProperties implements RendererProperties {
      * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getPixmapMode()
      */
     public boolean getPixmapMode() {
-    	return !(parentCanvas.getAutoSwapBufferMode());
+    	if (parentCanvas != null) {
+    		return !(parentCanvas.getAutoSwapBufferMode());
+    	} else {
+    		return false;
+    	}
     }
 
 	/**
@@ -247,9 +271,9 @@ public class ScilabRendererProperties implements RendererProperties {
 	}
 	
 	/**
-     * Close the rendering canvas
+     * Close the figure
      */
-   public void closeCanvas() {
+   public void closeFigure() {
 	   // hide tab before to avoid unwanted display
 	   parentTab.setVisible(false);
 	   
@@ -262,14 +286,20 @@ public class ScilabRendererProperties implements RendererProperties {
     * @param onOrOff true to enable autoresize mode
     */
    public void setAutoResizeMode(boolean onOrOff) {
-	   parentCanvas.setAutoResizeMode(onOrOff);
+	   if (parentCanvas != null) {
+		   parentCanvas.setAutoResizeMode(onOrOff);
+	   }
    }
 
    /**
     * @return wether the resize mode is on or off
     */
    public boolean getAutoResizeMode() {
-	   return parentCanvas.getAutoResizeMode();
+	   if (parentCanvas != null) {
+		   return parentCanvas.getAutoResizeMode();
+	   } else {
+		   return false;
+	   }
    }
    
    /**
@@ -277,7 +307,12 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @return [x,y,w,h] array
 	 */
    public int[] getViewport() {
-	   return parentCanvas.getViewingRegion();
+	   if (parentCanvas != null) {
+		   return parentCanvas.getViewingRegion();
+	   } else {
+		   int[] res = {0, 0, 0, 0};
+		   return res;
+	   }
    }
    
    /**
@@ -290,7 +325,9 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @param height height of the viewport
 	 */
 	public void setViewport(int posX, int posY, int width, int height) {
-		parentCanvas.setViewingRegion(posX, posY, width, height);
+		if (parentCanvas != null) {
+			parentCanvas.setViewingRegion(posX, posY, width, height);
+		}
 	}
 	
 	/**
@@ -300,12 +337,15 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @param blue blue channel
 	 */
 	public void setBackgroundColor(double red, double green, double blue) {
-		parentCanvas.setBackgroundColor(red, green, blue);
+		if (parentCanvas != null) {
+			parentCanvas.setBackgroundColor(red, green, blue);
+		}
+		parentTab.setBackground(red, green, blue);
 	}
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
@@ -313,7 +353,11 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @return Scilab code of the pressed button
 	 */
 	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
-		return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
+		if (parentCanvas != null) {
+			return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
+		} else {
+			return 0;
+		}
 	}
 	
 	/**
@@ -338,14 +382,20 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @return true if the diplacement recording continue, false otherwise
 	 */
 	public boolean getRotationDisplacement(int[] displacement) {
-		return parentCanvas.getRotationDisplacement(displacement);
+		if (parentCanvas != null) {
+			return parentCanvas.getRotationDisplacement(displacement);
+		} else {
+			return false;
+		}
 	}
 
 	/**
 	 * Ansynchrnous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
-		parentCanvas.stopRotationRecording();
+		if (parentCanvas != null) {
+			parentCanvas.stopRotationRecording();
+		}
 	}
 	
 	/**
@@ -359,7 +409,40 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * Disable canvas
 	 */
 	public void disableCanvas() {
-		parentCanvas.close();
+		if (parentCanvas != null) {
+			parentCanvas.close();
+		}
+	}
+	
+	/**
+	 * If the window does not already contains a 3D canvas,
+	 * add one.
+	 * @param figureIndex index of the figure in which the canvas is added
+	 */
+	public void openGraphicCanvas(int figureIndex) {
+		if (parentCanvas == null) {
+		
+			// create canvas
+			parentCanvas = ScilabCanvas.createCanvas(figureIndex);
+		
+			// add it to the tab
+			parentTab.addMember(parentCanvas);
+			
+		}
+	}
+	
+	/**
+	 * Destroy the canvas if one already exists
+	 */
+	public void closeGraphicCanvas() {
+		if (parentCanvas != null) {
+			// disable the canvas
+			parentCanvas.close();
+			
+			// remove it from the tab
+			parentTab.removeMember(parentCanvas);
+		}
+		parentCanvas = null;
 	}
 
 }

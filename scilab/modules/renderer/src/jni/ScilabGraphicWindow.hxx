@@ -54,7 +54,7 @@ JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
-jmethodID voidsetFigureIndexjintID; // cache method id
+jmethodID jintnewWindowjintID; // cache method id
 
 
 /**
@@ -96,7 +96,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-void setFigureIndex(int figureIndex);
+static int newWindow(JavaVM * jvm_, int figureIndex);
 
 
                         /**

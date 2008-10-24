@@ -20,7 +20,7 @@
  * change language
  * @param lang
  */
-BOOL setlanguage(char *lang,BOOL updateHelpIndex,BOOL updateMenus);
+BOOL setlanguage(char *lang);
 
 
 /** 

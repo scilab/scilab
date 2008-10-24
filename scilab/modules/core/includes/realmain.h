@@ -39,8 +39,9 @@ typedef enum {
 * @param initial_script 
 * @param initial_script_type    
 * @param memory 
+* @return 0 is everything went fine. not 0 is everything went wrong. (@TODO: should be changed... returning only 0 here)
 */
-void realmain(int no_startup_flag_l,char *initial_script,InitScriptType initial_script_type,int memory);
+int realmain(int no_startup_flag_l,char *initial_script,InitScriptType initial_script_type,int memory);
 
 /**
  * @TODO add comment

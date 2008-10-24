@@ -20,6 +20,11 @@
 #include "texmacs.h"
 #include "x_main.h"
 #include "Thread_Wrapper.h"
+
+#if defined(linux) && defined(__i386__)
+#include "setPrecisionFPU.h"
+#endif
+
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
 /*--------------------------------------------------------------------------*/
@@ -33,7 +38,7 @@ __threadSignal	LaunchScilab;
 __threadLock	LaunchScilabLock;
 /*--------------------------------------------------------------------------*/
 
-void mainscic(int argc, char **argv)
+void main(int argc, char **argv)
 {
   int i;
   int  no_startup_flag=0;
@@ -41,7 +46,10 @@ void mainscic(int argc, char **argv)
 
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
-
+  /* This bug only occurs under Linux 32 bits */
+#if defined(linux) && defined(__i386__)
+  setFPUToDouble();
+#endif
   __InitSignal(&LaunchScilab);
   __InitLock(&LaunchScilabLock);
 
@@ -128,6 +136,6 @@ fpsetmask(0);
   }
 #endif
 
-  realmain(no_startup_flag,initial_script,initial_script_type,memory);
+  return realmain(no_startup_flag,initial_script,initial_script_type,memory);
 }
 /*--------------------------------------------------------------------------*/

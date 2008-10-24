@@ -24,6 +24,7 @@ extern "C"{
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
 #include "sciprint.h"
+
 }
 
 using namespace org_scilab_modules_gui_bridge;
@@ -114,40 +115,33 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
   
 }
 
-extern "C" void localeToUTF(char** buffer)  ; 
 
 void EnableRootMenu(char *name, BOOL status)
 {
-  localeToUTF(&name);
-  CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(), name, BOOLtobool(status));
+  CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(),  name, BOOLtobool(status));
 }
 
 void EnableRootSubMenu(char *name, int position, BOOL status)
 {
-  localeToUTF(&name);
   CallScilabBridge::setRootSubMenuEnabled(getScilabJavaVM(), name, position, BOOLtobool(status));
 }
 
 void EnableFigureMenu(int figurenum, char *name, BOOL status)
 {
-  localeToUTF(&name);
   CallScilabBridge::setFigureMenuEnabled(getScilabJavaVM(), figurenum, name, BOOLtobool(status));
 }
 
 void EnableFigureSubMenu(int figurenum, char *name, int position, BOOL status)
 {
-  localeToUTF(&name);
  CallScilabBridge::setFigureSubMenuEnabled(getScilabJavaVM(), figurenum, name, position, BOOLtobool(status));
 }
 
 void DeleteRootMenu(char *name)
 {
-  localeToUTF(&name);
-  CallScilabBridge::removeRootMenu(getScilabJavaVM(), name);
+   CallScilabBridge::removeRootMenu(getScilabJavaVM(), name);
 }
 
 void DeleteFigureMenu(int figurenum, char *name)
 {
-  localeToUTF(&name);
   CallScilabBridge::removeFigureMenu(getScilabJavaVM(), figurenum, name);
 }

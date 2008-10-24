@@ -63,6 +63,7 @@ proc dokeyposn {textarea} {
 # this proc gets the posn and sets the statusbar, enables context menues, etc.
     global pad listoffile
     global MenuEntryId
+    global Scilab5
 
     # update the status bars data
     $pad.statusind configure -state normal
@@ -87,6 +88,14 @@ proc dokeyposn {textarea} {
                  $lineinfun [mc "in"] $funname]
             # create help skeleton enabled since we're in a Scilab function
             $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state normal
+            if {$Scilab5} {
+                # help from head comments only available in Scilab 5
+                # there is no function help_from_sci in Scilab-4.x or Scilab-gtk
+                $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help from hea&d comments..."]) -state normal
+            } else {
+                # nothing to do, the menu entry is always disabled
+                # since the above condition is the only place where it can be enableds
+            }
         } else {
             # display logical line number in current buffer
             set contlines [countcontlines $textarea 1.0 $indexin]
@@ -95,6 +104,7 @@ proc dokeyposn {textarea} {
             $pad.statusind2 configure -text [concat [mc "Logical line:"] $ylogicpos]
             # create help skeleton disabled since we're outside any Scilab function
             $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled
+            $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help from hea&d comments..."]) -state disabled
         }
     }
 

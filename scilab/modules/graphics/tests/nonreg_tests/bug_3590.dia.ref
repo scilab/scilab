@@ -1,0 +1,42 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 3590 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3590
+//
+// <-- Short Description -->
+// Error message when we want to see a figure which has as userdata a structure (struct).
+//
+userdata = struct("dd",2);
+h=figure();
+set(h,"userdata",userdata);
+if execstr("disp(h)","errcatch")<>0 then bugmes();quit;end
+ 
+Handle of type "Figure" with properties:
+========================================
+children: "Axes"
+figure_position = [200,200]
+figure_size = [622,594]
+axes_size = [618,471]
+auto_resize = "on"
+viewport = [0,0]
+figure_name = "Figure n°%d"
+figure_id = 0
+info_message = ""
+color_map= matrix 33x3
+pixmap = "off"
+pixel_drawing_mode = "copy"
+immediate_drawing = "on"
+background =  33
+visible = "on"
+rotation_style = "unary"
+event_handler = ""
+event_handler_enable = "off"
+user_data = struct with fields: dd
+tag = ""

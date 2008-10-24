@@ -49,35 +49,23 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       char *AsciiFromUTF8=NULL;
       char *msg=_("TCL_EvalScilabCmd %s");
 
-      AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
-
-      /* UTF to ANSI */
-      Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
-
-      sciprint_full(msg,AsciiFromUTF8);
+ 
+      sciprint_full(msg,argv[1]);
 
       while (argv[++argc]) sciprint(" %s",argv[argc]);
       sciprint("\n");
 
-      if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
-    }
+     }
 
   if (argv[1] != (char *)0)
     {
-      char *AsciiFromUTF8=NULL;
-      AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
-
-      /* UTF to ANSI */
-      Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
-
-      command = strdup(AsciiFromUTF8);
+       command = strdup(argv[1]);
       if (command == (char *) 0)
 	{
 	  sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
 	  return TCL_ERROR;
 	}
 
-      if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
 
       if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{

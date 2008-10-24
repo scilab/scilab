@@ -35,6 +35,7 @@
 #include "charEncoding.h"
 #include "completion.h"
 #include "preparsecompletion_nw.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
@@ -412,7 +413,7 @@ char * readline_nw (char *prompt)
 						if (line)
 						{
 							clear_line(prompt);
-							copy_line(line);
+ 							copy_line( UTFToLocale(line) );// Scilab history record must saved in UTF format
 							FREE(line);
 						}
 					}
