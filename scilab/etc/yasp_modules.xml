@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE modules SYSTEM "../modules/core/xml/modules.dtd">
+<!-- =================== -->
+<!--
+ Modules list for Scilab
+ @author Allan CORNET
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+ Warning "core" module must be always the first module
+ activate="yes" module will be launched ( or not "no")
+ -->
+<!-- =================== -->
+<modules>
+<module name="core" activate="no"/>
+<module name="double" activate="no"/>
+<module name="elementary_functions" activate="yes"/>
+</modules>

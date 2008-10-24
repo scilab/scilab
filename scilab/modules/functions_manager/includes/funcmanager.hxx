@@ -17,29 +17,23 @@
 #include <list>
 #include <iostream>
 #include <string>
+#include <alltypes.hxx>
+#include "scilabfunction.hxx"
 
 using namespace std;
 
-
 //Gateway function pointer
-typedef int (*GW_FUNC)(void); 
-
-//class container
-class FuncInfo
-{
-public :
-	FuncInfo(string _szName, GW_FUNC* _pFunc, string _szModule)
-	{
-	}
-	~FuncInfo(){};
-
-	string		m_szName;
-	GW_FUNC*	m_pFunc;
-	string		m_szModule;
-};
+typedef bool (*GW_MOD)(void); 
 
 class FuncManager
 {
+private : 
+//	map <string, FuncInfo*>	m_FuncMap;
+	map <string, GW_MOD>		m_ModuleMap;
+	map <string, GW_MOD>		m_ActivModuleMap;
+	list <string>						m_ModuleName;
+	string									m_szXmlFile;
+
 public:
 	FuncManager(void);
 	~FuncManager(void);
@@ -48,11 +42,9 @@ public:
 	bool AppendModules();
 	bool VerifyModule(char *ModuleName);
 
-
-
-	map <string, FuncInfo*> m_mapFuncList;
-	list <string> m_ModuleList;
-	string m_szXmlFile;
+	bool CreateModuleList(void);
+	bool CreateActivModuleList(void);
+	bool LoadFuncByModule(void);
 };
 
 #endif //__FUNCMANAGER_HH__

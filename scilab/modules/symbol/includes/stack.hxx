@@ -46,16 +46,16 @@ namespace symbol
     }
 
     /** Associate value to key in the current scope. */
-    void	put (Symbol key, GenericType &value)
+    void	put (Symbol key, InternalType &value)
     {
       (this->l_scope.front()).put(key, value);
     }
 
     /** If key was associated to some Entry_T in the open scopes, return the
      ** most recent insertion. Otherwise return the empty pointer. */
-    GenericType*	get (Symbol key) const
+    InternalType*	get (Symbol key) const
 		{
-			GenericType* result = 0;
+			InternalType* result = 0;
 
 			std::list<Scope>::const_iterator it_list_scope;
 

@@ -38,7 +38,7 @@ namespace types
     GenericType() {}
 
   public :
-    virtual void whoAmI(void) { std::cout << "types::GenericType" << std::endl; }
+    void whoAmI(void) { std::cout << "types::GenericType" << std::endl; }
 
 		/*sub Type management*/
     /* String */
@@ -59,6 +59,10 @@ namespace types
     /* Bool */
     bool isBool(void) { return (getType() == RealBool); }
 
+    /* Function */
+    bool isFunction(void) { return (getType() == RealFunction); }
+		
+
 		/*commun functions*/
 		int cols_get();
 		int rows_get();
@@ -74,7 +78,7 @@ namespace types
   /*
   ** List of types
   */
-  typedef std::vector<GenericType *> typed_list;
+  typedef std::vector<InternalType *> typed_list;
 
 }
 #endif /* !__TYPES_HH__ */

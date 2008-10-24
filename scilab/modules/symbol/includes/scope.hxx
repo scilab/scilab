@@ -19,7 +19,7 @@
 #include "symbol.hxx"
 #include "alltypes.hxx"
 
-using types::GenericType;
+using types::InternalType;
 
 namespace symbol
 {
@@ -32,13 +32,13 @@ namespace symbol
 		/** \brief Construct a Scope */
 		explicit Scope()
 		{
-			_scope = new std::map<Symbol, GenericType*>();
+			_scope = new std::map<Symbol, InternalType*>();
 			_name = "";
 		}
 		/** \brief Construct a named Scope i.e Namespace */
 		explicit Scope(std::string name)
 		{
-			_scope = new std::map<Symbol, GenericType*>();
+			_scope = new std::map<Symbol, InternalType*>();
 			_name = name;
 		}
 
@@ -50,9 +50,9 @@ namespace symbol
 
 
 		/** Associate value to key in the current scope. */
-		void	put (Symbol key, GenericType &value)
+		void	put (Symbol key, InternalType &value)
 		{
-			GenericType *pOld = (*_scope)[key];
+			InternalType *pOld = (*_scope)[key];
 			if(pOld != NULL)
 			{
 				delete pOld;
@@ -62,9 +62,9 @@ namespace symbol
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		GenericType*	get (Symbol key) const
+		InternalType*	get (Symbol key) const
 		{
-			std::map<Symbol, GenericType*>::const_iterator it_scope;
+			std::map<Symbol, InternalType*>::const_iterator it_scope;
 
 			it_scope = (*_scope).find(key);
 			if (it_scope == (*_scope).end())
@@ -82,7 +82,7 @@ namespace symbol
 		** of the stack being displayed last. */
 		void	print (std::ostream& ostr) const
 		{
-			std::map<Symbol, GenericType*>::const_iterator it_scope;
+			std::map<Symbol, InternalType*>::const_iterator it_scope;
 
 			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
 			{
@@ -128,7 +128,8 @@ namespace symbol
 							ostr  << std::endl;
 						}
 						ostr << " ]" << std::endl;
-					}				}
+					}				
+				}
 				else if((*it_scope).second->isInt())
 				{
 					types::Int *pi = (*it_scope).second->getAsInt();
@@ -224,11 +225,16 @@ namespace symbol
 						ostr << " ]" << std::endl;
 					}
 				}
+				else if((*it_scope).second->isFunction())
+				{
+					types::Function *pF = (*it_scope).second->getAsFunction();
+					ostr << "Module : " << pF->m_szModule << " Function : " << pF->m_szName << std::endl;
+				}
 			}
 		}
 
 	private:
-		std::map<Symbol, GenericType*>* 	_scope;
+		std::map<Symbol, InternalType*>* 	_scope;
 		std::string				_name;
 	};
 

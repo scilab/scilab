@@ -23,6 +23,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "modules\core\core.v
 		{8EAC9381-C059-43EA-B5D7-FD5D6997B0BD} = {8EAC9381-C059-43EA-B5D7-FD5D6997B0BD}
 		{74D43792-DBFC-47F0-ADBC-4D7A20CDADA2} = {74D43792-DBFC-47F0-ADBC-4D7A20CDADA2}
 		{64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF} = {64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF}
+		{7CA60AEF-9AFA-4D06-AF28-613C0AA27640} = {7CA60AEF-9AFA-4D06-AF28-613C0AA27640}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types", "modules\types\types.vcproj", "{64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF}"
@@ -39,9 +40,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "symbol_test", "modules\symb
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functions_manager", "modules\functions_manager\functions_manager.vcproj", "{8EAC9381-C059-43EA-B5D7-FD5D6997B0BD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E1284D3E-4B3F-446B-B541-F661A8A166A7} = {E1284D3E-4B3F-446B-B541-F661A8A166A7}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functions_manager_test", "modules\functions_manager\functions_manager_test\functions_manager_test.vcproj", "{44DCB5D6-A6CB-4B12-9C9E-FD24E2431ED4}"
 	ProjectSection(ProjectDependencies) = postProject
+		{14373D41-991A-412E-8EA7-A832D98047B8} = {14373D41-991A-412E-8EA7-A832D98047B8}
 		{8EAC9381-C059-43EA-B5D7-FD5D6997B0BD} = {8EAC9381-C059-43EA-B5D7-FD5D6997B0BD}
 		{64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF} = {64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF}
 	EndProjectSection
@@ -82,6 +87,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "symbol_scope_test", "module
 		{2C60033B-0DBD-4CA4-80D3-176C9BE9CE2F} = {2C60033B-0DBD-4CA4-80D3-176C9BE9CE2F}
 		{64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF} = {64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_env", "modules\system_env\system_env.vcproj", "{7CA60AEF-9AFA-4D06-AF28-613C0AA27640}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "elem_func", "modules\elementary_functions\src\cpp\elem_func\elem_func.vcproj", "{E1284D3E-4B3F-446B-B541-F661A8A166A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -157,6 +166,14 @@ Global
 		{C75B8595-1B1E-4B53-9CF3-B86068BA813F}.Debug|Win32.Build.0 = Debug|Win32
 		{C75B8595-1B1E-4B53-9CF3-B86068BA813F}.Release|Win32.ActiveCfg = Release|Win32
 		{C75B8595-1B1E-4B53-9CF3-B86068BA813F}.Release|Win32.Build.0 = Release|Win32
+		{7CA60AEF-9AFA-4D06-AF28-613C0AA27640}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7CA60AEF-9AFA-4D06-AF28-613C0AA27640}.Debug|Win32.Build.0 = Debug|Win32
+		{7CA60AEF-9AFA-4D06-AF28-613C0AA27640}.Release|Win32.ActiveCfg = Release|Win32
+		{7CA60AEF-9AFA-4D06-AF28-613C0AA27640}.Release|Win32.Build.0 = Release|Win32
+		{E1284D3E-4B3F-446B-B541-F661A8A166A7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E1284D3E-4B3F-446B-B541-F661A8A166A7}.Debug|Win32.Build.0 = Debug|Win32
+		{E1284D3E-4B3F-446B-B541-F661A8A166A7}.Release|Win32.ActiveCfg = Release|Win32
+		{E1284D3E-4B3F-446B-B541-F661A8A166A7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

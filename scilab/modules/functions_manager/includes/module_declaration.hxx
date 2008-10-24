@@ -10,24 +10,4 @@
 *
 */
 
-#include <map>
-
-using namespace std;
-
-class ConfigVariable
-{
-private :
-	ConfigVariable(){};
-	~ConfigVariable(){};
-
-	static ConfigVariable *me;
-
-	map<string, string>m_VarList;
-public :
-
-	static ConfigVariable* getInstance();
-
-	string	get(string _szVar);
-	bool		set(string _szVar, string _szVal);
-
-};
+#include "../../elementary_functions/includes/elem_func.hxx"

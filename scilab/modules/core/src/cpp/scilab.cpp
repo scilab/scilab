@@ -185,6 +185,7 @@ int	main (int argc, char *argv[])
 			SetScilabEnvironment();
  			types::Double* Img = new types::Double(1,1,true);
 			Img->val_set(0,0,0,1);
+			FuncManager *pFM = new FuncManager();
 			Context::getInstance()->put(*new symbol::Symbol("%i"), *Img);
 
 	

@@ -358,14 +358,33 @@ namespace ast
 
 	void ExecVisitor::visit(const CallExp &e)
 	{
-		ExecVisitor *execMe = new ast::ExecVisitor();
+		ExecVisitor *execVar	= new ast::ExecVisitor();
+		ExecVisitor *execFunc = new ast::ExecVisitor();
 		std::list<Exp *>::const_iterator	i;
+
+		types::typed_list in;
 		for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
 		{
-			(*i)->accept (*this);
+			(*i)->accept (*execVar);
+			in.push_back(execVar->result_get());
 		}
 
-		delete execMe;
+		e.name_get().accept(*execFunc);
+		if(execFunc->result_get()->getType() == InternalType::RealFunction)
+		{//function call
+			Function *pF = execFunc->result_get()->getAsFunction();
+			types::typed_list out;
+			Function::ReturnValue Ret = pF->m_pFunc(in, 0, out);
+			if(Ret == Function::AllGood)
+			{
+				result_set(out.front()->getAsDouble());
+			}
+		}
+		else
+		{//array
+		}
+		delete execVar;
+		delete execFunc;
 	}
 
 	void ExecVisitor::visit (const IfExp  &e)

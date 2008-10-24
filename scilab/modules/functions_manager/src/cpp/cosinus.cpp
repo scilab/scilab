@@ -15,31 +15,31 @@
 #include "alltypes.hxx"
 #include "cosinus.hxx"
 
-ScilabFunction::ReturnValue Cosinus::call(types::Int *in)
+types::Function::ReturnValue Cosinus::call(types::Int *in)
 {
 	std::cout << "cos( in int : ";
 	std::cout << in->real_get() ;
 	std::cout << " )" << std::endl;
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
-ScilabFunction::ReturnValue Cosinus::call(types::String *in)
+types::Function::ReturnValue Cosinus::call(types::String *in)
 {
 	std::cout << "cos( in string : ";
 	std::cout << in->string_get(0,0);
 	std::cout << " )" << std::endl;
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
-ScilabFunction::ReturnValue Cosinus::callout(types::String *out)
+types::Function::ReturnValue Cosinus::callout(types::String *out)
 {
 	std::cout << "cos( out string : ";
 	std::cout << out->string_get(0,0);
 	std::cout << " )" << std::endl;
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
-ScilabFunction::ReturnValue Cosinus::callUntyped(types::GenericType *in, types::typed_list &out)
+types::Function::ReturnValue Cosinus::callUntyped(types::InternalType *in, types::typed_list &out)
 {
 	int *piVal = NULL;
 	types::Int *myInt;
@@ -50,17 +50,17 @@ ScilabFunction::ReturnValue Cosinus::callUntyped(types::GenericType *in, types::
 	out.push_back(myInt);
 	out.push_back(new types::Double(42));
 	out.push_back(new types::String("42"));
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
 
 
-ScilabFunction::ReturnValue Cosinus::call(types::typed_list& in, types::typed_list& out)
+types::Function::ReturnValue Cosinus::call(types::typed_list& in, types::typed_list& out)
 {
 	if (out.size() > 1)
 	{
 		std::cerr << "[ERROR] Cos must have one or no return value." << std::endl;
-		return ScilabFunction::WrongParamNumber;
+		return types::Function::WrongParamNumber;
 	}
 
 	if (in.size() == 0 && out.size() == 1
@@ -88,6 +88,6 @@ ScilabFunction::ReturnValue Cosinus::call(types::typed_list& in, types::typed_li
 
 
 	std::cerr << "[ERROR] Generic Error." << std::endl;
-	return ScilabFunction::WrongParamNumber;
+	return types::Function::WrongParamNumber;
 }
 
