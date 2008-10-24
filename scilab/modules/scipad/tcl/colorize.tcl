@@ -946,8 +946,9 @@ proc schememenus {textarea} {
             [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
             [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
         }
-        #disable "create help skeleton"
+        #disable "create help skeleton" and "help from sci"
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help from hea&d comments..."]) -state disabled
         # disable "Show continued lines"
         $pad.filemenu.options.colorizeoptions entryconfigure $MenuEntryId($pad.filemenu.options.colorizeoptions.[mcra "Show c&ontinued lines"]) -state disabled
     }

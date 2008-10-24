@@ -40,12 +40,12 @@ public:
   /**
    * Create the rendering canvas for the figure.
    */
-  virtual void openRenderingCanvas( int figureIndex ) = 0 ;
+  virtual void createVisualFigure( int figureIndex ) = 0 ;
 
   /**
    * Close the rendering canvas
    */
-  virtual void closeRenderingCanvas( void ) = 0 ;
+  virtual void closeVisualFigure( void ) = 0 ;
 
   /**
    * Set the background color of the figure
@@ -165,6 +165,18 @@ public:
    * Put the figure in top of other windows.
    */
   virtual void showWindow(void) = 0;
+
+	/**
+	 * Create a graphic canvas for the figure.
+	 * Figure is then able to draw 3d plots.
+	 */
+	virtual void openGraphicCanvas(void) = 0;
+
+	/**
+	 * Remove the graphic canvas for the figure.
+	 * Figure is no longer able to display 3D plots.
+	 */
+	virtual void closeGraphicCanvas(void) = 0;
 
   /**
    * Return the drawed object

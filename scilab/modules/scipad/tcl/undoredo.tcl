@@ -144,7 +144,7 @@ proc resetmodified {textarea {clearstacks "keepundoredostacks"}} {
     # the modified flag is also common to all peers
     $textarea edit modified false
 
-    foreach ta [getfullpeerset $textarea] {
+    foreach ta [getpeerlist $textarea] {
         if {$clearstacks == "clearundoredostacks"} {
             set listoffile("$ta",undostackdepth) 0
             set listoffile("$ta",redostackdepth) 0
@@ -157,6 +157,12 @@ proc resetmodified {textarea {clearstacks "keepundoredostacks"}} {
         # the line below fixes Scilab bug 2650
         event generate $ta <<Modified>>
     }
+    # send a <<Modified>> event to the textarea sent to resetmodified
+    # this allows for updating the title bar with information from the right
+    # peer, otherwise the last peer from the [getfullpeerset $textarea] list
+    # updates the title bar last and we might be left with a title bar which
+    # is no longer consistent with the focused peer
+    event generate $textarea <<Modified>>
 }
 
 proc commonPrefix {a b} {

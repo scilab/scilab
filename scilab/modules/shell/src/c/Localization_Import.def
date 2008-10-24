@@ -1,0 +1,6 @@
+	LIBRARY    scilocalization.dll
+
+
+EXPORTS
+	UTFToLocale
+	localeToUTF

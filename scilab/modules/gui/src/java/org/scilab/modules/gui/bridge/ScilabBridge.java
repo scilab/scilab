@@ -893,6 +893,17 @@ public class ScilabBridge {
 	public static void setCurrent(Tab tab) {
 		ScilabTabBridge.setCurrent(tab);
 	}
+	
+	/**
+	 * Set the background color of a tab.
+	 * @param tab tab to modify
+	 * @param red red channel of the color
+	 * @param green green channel
+	 * @param blue blue channel
+	 */
+	public static void setBackground(Tab tab, double red, double green, double blue) {
+		ScilabTabBridge.setBackground(tab, red, green, blue);
+	}
 
 	/******************/
 	/* Console Bridge */

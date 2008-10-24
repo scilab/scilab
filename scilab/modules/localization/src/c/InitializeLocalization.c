@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include "machine.h"
 #ifndef _MSC_VER
  #ifdef HAVE_LIBINTL_H
   #include <libintl.h>
@@ -90,13 +90,13 @@ BOOL InitializeLocalization(void)
 #ifndef _MSC_VER
 	/* Here, the "" means that we will try to use the language of the system
 	 * first. If it doesn't work, we switch back to default (English) */
-	setlanguage("", FALSE, FALSE); /* Booleans are : BOOL updateHelpIndex, BOOL updateMenus */
+	setlanguage("");
 #else
 	/* We look if a file language.ini exists in SCIHOME */
 	/* If not exists the "" means that we will try to use the language of the system.*/
 	{
 		char *loadLanguage = loadLanguagePref();
-		setlanguage(loadLanguage, FALSE, FALSE);
+		setlanguage(loadLanguage);
 		if (loadLanguage) {FREE(loadLanguage); loadLanguage = NULL;}
 	}
 #endif

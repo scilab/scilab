@@ -116,11 +116,9 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 			char *RetStr = (char*)Tcl_GetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
 			if ( RetStr )
 			{
-				char *AsciiFromUTF8 = NULL;
 				char *output = NULL ;
 
-				AsciiFromUTF8 = UTF8toANSI(TCLinterpreter,RetStr);
-				output = strdup(AsciiFromUTF8);
+				output = strdup(RetStr);
 
 				n1=1;
 				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
@@ -129,7 +127,6 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 				C2F(putlhsvar)();
 
 				if (output) {FREE(output);output=NULL;}
-				if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
 			}
 			else
 			{

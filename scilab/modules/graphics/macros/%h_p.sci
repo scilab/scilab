@@ -887,7 +887,7 @@ function t=fmtuser_data(d)
             t="cell "+strcat(string(size(d)),'x'),
         elseif typeof(d)=="st" then
             T=getfield(1,d)
-            t="struct with fields: "+strcat(d(2:$),' '),
+            t="struct with fields: "+strcat(T(3:$),' '),
         else
             t=typeof(d)
         end

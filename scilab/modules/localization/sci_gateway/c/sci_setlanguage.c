@@ -66,7 +66,7 @@ int C2F(sci_setlanguage)(char *fname,unsigned long fname_len)
 		{
 			if (needtochangelanguage(newlanguage))
 			{
-				if (!setlanguage(newlanguage,TRUE,TRUE))
+				if (!setlanguage(newlanguage))
 				{
 					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 					*istk(l1)=(int)(FALSE);
@@ -91,7 +91,7 @@ int C2F(sci_setlanguage)(char *fname,unsigned long fname_len)
 				sciprint(_("Unsupported language '%s'.\n"),param);
 				sciprint(_("Switching to default language : '%s'.\n"),SCILABDEFAULTLANGUAGE);	
 			}
-			setlanguage(SCILABDEFAULTLANGUAGE,TRUE,TRUE);
+			setlanguage(SCILABDEFAULTLANGUAGE);
 
 			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);

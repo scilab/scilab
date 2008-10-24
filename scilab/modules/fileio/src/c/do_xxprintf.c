@@ -22,6 +22,8 @@
 #include "localization.h"
 #include "set_xxprintf.h"
 #include "fileio.h"
+#include "charEncoding.h"
+
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -59,17 +61,29 @@ static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *as
 	switch (choosetype (asterisk_count, conversion_type))
 	{
 		case choosetype (0, PF_S):
-		retval += (*xxprintf) ((VPTR) target, p, sval);
+			if (isOutputInUTF()) {
+				retval += (*xxprintf) ((VPTR) target, p, sval);
+		 } else {
+			 retval += (*xxprintf) ((VPTR) target, p, UTFToLocale(sval));
+		 }
 		FREE(sval);
 		break;
 
 		case choosetype (1, PF_S):
-		retval += (*xxprintf) ((VPTR) target, p, asterisk[0], sval);
+			if (isOutputInUTF()) {
+				retval += (*xxprintf) ((VPTR) target, p, asterisk[0], sval);
+			} else {
+				retval += (*xxprintf) ((VPTR) target, p, asterisk[0], UTFToLocale(sval));
+			}	
 		FREE(sval);
 		break;
 
 		case choosetype (2, PF_S):
-		retval += (*xxprintf) ((VPTR) target, p, asterisk[0], asterisk[1], sval);
+			if (isOutputInUTF()) {
+				retval += (*xxprintf) ((VPTR) target, p, asterisk[0], asterisk[1], sval);
+			} else {
+				retval += (*xxprintf) ((VPTR) target, p, asterisk[0], asterisk[1], UTFToLocale(sval));
+			}
 		FREE(sval);
 		break;
 
@@ -140,12 +154,16 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 	FLUSH flush                = NULL;
 	char *target               = NULL;
 	register char *currentchar = NULL;
+	int  charBytes;
+	char* UTFChar;
+	char* outStr; /** locale char at most 2 bytes*/
 
 	currentchar = format;
 	arg_count   = argcount;
 	ccount      = 1;
-	
+
 	set_xxprintf(fp,&xxprintf,&flush,&target);
+	/* Use file handle to set an internal boolean value for output encoding (UTF or system locale)*/
 	
 	/* "scan" string format. */
 	while (TRUE)
@@ -221,9 +239,19 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					break;
 				default:
 					/* putc */
-					(*xxprintf) ((VPTR) target, "%c",*currentchar);
-					currentchar++;
-					retval++;
+				    UTFChar = readNextUTFChar(currentchar,&charBytes);
+                    currentchar += charBytes;
+	                if (isOutputInUTF() ) /** if output in UTF encoding*/
+					{
+					  outStr = UTFChar;
+                      retval += charBytes;
+					}
+					else 
+					{
+                        outStr  = UTFToLocale(UTFChar);
+                        retval += strlen(outStr);
+					}
+					(*xxprintf) ((VPTR) target, "%s",outStr);	
 					break;
 				}
 			}
@@ -472,7 +500,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 						/* valueinf FREED in call_printf */
 						call_printf(xxprintf,target,formatinf,valueinf,asterisk,asterisk_count,conversion_type,dval );
 					}
-				}
+				} 
 			}
 			else
 			{

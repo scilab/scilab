@@ -14,8 +14,6 @@
 
 package org.scilab.modules.gui.graphicWindow;
 
-import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -31,9 +29,9 @@ import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 /**
- * Scilab graphic Window class
+ * Utilities to create a graphic window
  */
-public final class ScilabGraphicWindow extends ScilabWindow {
+public final class ScilabGraphicWindow {
 
 	private static final String FIGURE_TITLE = "Graphic window number ";
 	
@@ -50,12 +48,15 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 	}
 	
 	/**
-	 * Specify the window we wants to use
-	 * Real creation starts here
-	 * @param figureIndex index of the figure associated with the window
+	 * Create a new window with id figureIndex.
+	 * The created window contains an empty tab.
+	 * @param figureIndex index of the figure to create
+	 * @return id of the window
 	 */
-	public void setFigureIndex(int figureIndex) {
-		this.setTitle(FIGURE_TITLE + figureIndex);
+	public static int newWindow(int figureIndex) {
+		Window newWindow = ScilabWindow.createWindow();
+		
+		newWindow.setTitle(FIGURE_TITLE + figureIndex);
 		/* MENUBAR */
 		MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
 		/* TOOLBAR */
@@ -66,34 +67,25 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		/* Destroy the graphic figure when the tab is closed */
 		graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, getClosingWindowCommand(figureIndex)));
-		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
 		graphicTab.addMenuBar(menuBar);
 		graphicTab.addToolBar(toolBar);
 		graphicTab.addInfoBar(infoBar);
-		graphicTab.addMember(graphicCanvas);
-		this.addTab(graphicTab);
+		newWindow.addTab(graphicTab);
 		
 		// link the tab and canvas with their figure
 		DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
-		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
-		
+		//associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
+		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null));
 		// don't draw now, figure will show itself when all its parameters will be set
-	}
-
-	/**
-	 * Creates a Scilab window object
-	 * @param figureIndex index of the figure associated with the window
-	 * @return the created window
-	 */
-	public static Window createWindow(int figureIndex) {
-		return new ScilabGraphicWindow();
+		
+		return 0;
 	}
 	
 	/**
 	 * @param figureIndex of the figure to close
 	 * @return Scilab command used to close a window.
 	 */
-	private String getClosingWindowCommand(int figureIndex) {
+	private static String getClosingWindowCommand(int figureIndex) {
 		// // check if figure is already closed
 		// if (get_figure_handle(fid) <> []) then
 		//   if (get(get_figure_handle(fid), 'event_handler_enable') == 'on') then

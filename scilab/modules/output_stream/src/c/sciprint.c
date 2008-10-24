@@ -17,6 +17,7 @@
 #include "stack-def.h" /* bsiz */
 #include "scilabmode.h"
 #include "../../console/includes/ConsolePrintf.h"
+#include "charEncoding.h"
 #ifdef _MSC_VER
 #include "TermPrintf.h"
 #endif
@@ -94,16 +95,16 @@ void printf_scilab(char *buffer,BOOL withDiary)
 		else
 		{
 			#ifdef _MSC_VER
-			TermPrintf_Windows(buffer);
+			TermPrintf_Windows(UTFToLocale(buffer));
 			#else
-			printf("%s",buffer);
+			printf("%s",UTFToLocale(buffer));
 			#endif
 		}
 
 		if ( (withDiary) && getdiary() ) 
 		{
-			int lstr = (int)strlen(buffer);
-			diary_nnl(buffer,&lstr);
+			int lstr = (int)strlen(UTFToLocale(buffer));
+			diary_nnl(UTFToLocale(buffer),&lstr);
 		}
 	}
 }

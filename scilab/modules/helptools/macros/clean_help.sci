@@ -129,9 +129,9 @@ function clean_help(dirs)
 			help_file_to_rm = pathconvert(SCI+"/modules/helptools/"+format_to_test(k)+"/scilab_"+getlanguage()+"_help."+format_to_test(k),%f,%f);
 			log_file_to_rm  = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help."+format_to_test(k)+".log",%f,%f);
 			
-			if fileinfo(file_to_rm)<>[] then
+			if fileinfo(help_file_to_rm)<>[] then
 				mprintf(".");
-				mdelete(file_to_rm);
+				mdelete(help_file_to_rm);
 				mdelete(log_file_to_rm);
 			end
 		end

@@ -18,8 +18,6 @@
     </method>
     <method name="drawCanvas" returnType="void">
     </method>
-    <method name="closeRenderingCanvas" returnType="void">
-    </method>
     <method name="drawBackground" returnType="void">
     </method>
     <method name="setBackgroundColor" returnType="void">
@@ -91,6 +89,10 @@
     </method>
     <method name="setNbSubwins" returnType="void">
       <param type="int" name="nbSubwins" />
+    </method>
+	<method name="openGraphicCanvas" returnType="void">
+    </method>
+	<method name="closeGraphicCanvas" returnType="void">
     </method>
   </object>
 </package>

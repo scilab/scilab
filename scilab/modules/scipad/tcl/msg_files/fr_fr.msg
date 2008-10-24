@@ -25,7 +25,7 @@
 #
 
 # Scipad texts in French by Francois Vogel
-# in sync at least with v7.0
+# in sync at least with v7.7
 
 
 # commons
@@ -533,6 +533,7 @@
     ::msgcat::mcset fr_fr "&Revert..." "Re&venir..."
     ::msgcat::mcset fr_fr "Import &Matlab file..."  "Importer fichier &Matlab..."
     ::msgcat::mcset fr_fr "Create help s&keleton..." "Créer un &squelette d'aide XML..."
+    ::msgcat::mcset fr_fr "Create help from hea&d comments..." "Créer l'aide &XML à partir des commentaires..."
     ::msgcat::mcset fr_fr "Compile as &help page" "Compiler comme fichier d'&aide"
     ::msgcat::mcset fr_fr "Open &function source" "Ouvrir le source &de la fonction"
     ::msgcat::mcset fr_fr "Print Se&tup" "Mise en pa&ge"

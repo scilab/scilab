@@ -106,7 +106,6 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
-voidcloseRenderingCanvasID=NULL; 
 voiddrawBackgroundID=NULL; 
 voidsetBackgroundColorjintID=NULL; 
 voidsetLogicalOpjintID=NULL; 
@@ -133,6 +132,8 @@ jintArraygetRotationDisplacementID=NULL;
 voidstopRotationRecordingID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
+voidopenGraphicCanvasID=NULL; 
+voidcloseGraphicCanvasID=NULL; 
 
 
 }
@@ -162,7 +163,6 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
-voidcloseRenderingCanvasID=NULL; 
 voiddrawBackgroundID=NULL; 
 voidsetBackgroundColorjintID=NULL; 
 voidsetLogicalOpjintID=NULL; 
@@ -189,6 +189,8 @@ jintArraygetRotationDisplacementID=NULL;
 voidstopRotationRecordingID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
+voidopenGraphicCanvasID=NULL; 
+voidcloseGraphicCanvasID=NULL; 
 
 
 }
@@ -313,21 +315,6 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "drawCanvas");
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddrawCanvasID );
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void DrawableFigureGL::closeRenderingCanvas (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidcloseRenderingCanvasID==NULL) { /* Use the cache Luke */ voidcloseRenderingCanvasID = curEnv->GetMethodID(this->instanceClass, "closeRenderingCanvas", "()V" ) ;
-if (voidcloseRenderingCanvasID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "closeRenderingCanvas");
-}
-}
-                         curEnv->CallVoidMethod( this->instance, voidcloseRenderingCanvasID );
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
@@ -834,6 +821,36 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "setNbSubwins");
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetNbSubwinsjintID ,nbSubwins);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void DrawableFigureGL::openGraphicCanvas (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidopenGraphicCanvasID==NULL) { /* Use the cache Luke */ voidopenGraphicCanvasID = curEnv->GetMethodID(this->instanceClass, "openGraphicCanvas", "()V" ) ;
+if (voidopenGraphicCanvasID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "openGraphicCanvas");
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidopenGraphicCanvasID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void DrawableFigureGL::closeGraphicCanvas (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidcloseGraphicCanvasID==NULL) { /* Use the cache Luke */ voidcloseGraphicCanvasID = curEnv->GetMethodID(this->instanceClass, "closeGraphicCanvas", "()V" ) ;
+if (voidcloseGraphicCanvasID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "closeGraphicCanvas");
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidcloseGraphicCanvasID );
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

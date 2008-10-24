@@ -389,7 +389,8 @@ fi
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 IS_64_BITS_CPU=false
-if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
+case "$CC" in
+	 gcc-* | gcc | cc | cc-* | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
@@ -412,26 +413,26 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
-	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
+	    CFLAGS="$CFLAGS -fwritable-strings"
 	;;
-	 x86_64-*-linux-gnu)
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -m64"
+	 x86_64-*-linux-gnu | x86_64-linux-gnu)
+		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
 		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CFLAGS="$CFLAGS  -DNARROWPROTO"
 	;;
 	 ia64-*-linux-gnu )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CFLAGS="$CFLAGS -DNARROWPROTO"
 		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
-		CFLAGS="$CFLAGS  -mieee-with-inexact -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
 		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
-		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
 	;;
 	 *-*-solaris*)
         if test "$enable_debug_C" = yes; then
@@ -457,8 +458,8 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
      LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
 esac
-
-else
+;; # end of the gcc case on the $CC
+   *)
 
 		## CC compiler (not GCC)
         if test "$enable_debug_C" = yes; then
@@ -502,7 +503,8 @@ case "$host" in
 	LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
   ;;
 esac
-fi
+;; # end of not a gcc compiler
+esac
 
 
 # flag for possible compilations in configure

@@ -27,7 +27,7 @@ void SetFromJavaToON(void);
  * @param void  
  * @return <ReturnValue>
  */
-int IsFromJava(void);
+BOOL IsFromJava(void);
 
 #endif /*FROMJAVA*/
 /*--------------------------------------------------------------------------*/ 

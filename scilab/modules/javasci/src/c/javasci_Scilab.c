@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include "javasci_Scilab.h"
+#include "CallScilab.h"
 #include "../../../modules/graphics/includes/WindowList.h"
 
 JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl)
@@ -57,7 +58,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
   }
   else
   {
-	  if ( send_scilab_job((char *)cjob) != 0) 
+	  if ( SendScilabJob((char *)cjob) != 0) 
 	  {
 		  fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
 		  bOK=JNI_FALSE;

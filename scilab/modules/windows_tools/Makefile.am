@@ -43,7 +43,6 @@ libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
 libsciwindows_tools_la_includedir=$(pkgincludedir)/windows_tools
 libsciwindows_tools_la_include_HEADERS = includes/gw_windows_tools.h \
 includes/ConvertSlash.h \
-includes/charEncoding.h \
 includes/InitializeWindows_tools.h \
 includes/strdup_windows.h \
 includes/TerminateWindows_tools.h
