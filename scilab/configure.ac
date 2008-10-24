@@ -406,26 +406,26 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
-	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
+	    CFLAGS="$CFLAGS -fwritable-strings"
 	;;
-	 x86_64-*-linux-gnu)
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -m64"
+	 x86_64-*-linux-gnu | x86_64-linux-gnu)
+		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
 		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CFLAGS="$CFLAGS  -DNARROWPROTO"
 	;;		
 	 ia64-*-linux-gnu )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CFLAGS="$CFLAGS -DNARROWPROTO"
 		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
-		CFLAGS="$CFLAGS  -mieee-with-inexact -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
 		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
-		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
 	;;
 	 *-*-solaris*)
         if test "$enable_debug_C" = yes; then

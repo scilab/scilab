@@ -30,20 +30,13 @@ static int UpdateEnvVar=0;
 /*--------------------------------------------------------------------------*/
 int setenvc(char *string,char *value)
 {
-	int ret=0;
-	char* env;
+	int ret = 0;
+	/* 2 is = and \0 */
 
-	/* @TODO Check where stands Mac OS X */
-#ifdef LINUX
-	if ( setenv(string,value,1) ) ret=FALSE;
-	else 
-	{
-		ret = TRUE;
-		UpdateEnvVar = 1;
-    }
-#else /* others HP Solaris WIN32*/
-	env = (char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
-	#ifdef _MSC_VER
+	char *env = (char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
+
+#ifdef _MSC_VER
+
 	/* 
 	 On Windows :
      each process has two copies of the environment variables,
@@ -52,27 +45,29 @@ int setenvc(char *string,char *value)
      one place or the other is guaranteed to see the value.
 	*/
 	SetEnvironmentVariableA(string,value);
-	#endif
+#endif
 
+#ifdef linux	/* @TODO Check where stands Mac OS X */
+	if ( setenv(string,value,1) ) {
+#else /* others HP Solaris WIN32*/
 	sprintf(env,"%s=%s",string,value);
-	if ( putenv(env) )
-	{ 
+	if ( putenv(env) ) {
+#endif
+
 		ret = FALSE;
 	}
 	else 
 	{
-		setenvtcl(string,value);
-		ret=TRUE;
-		UpdateEnvVar=1;
-	}
-	#ifdef _MSC_VER
-	if (env)
-	{
-		FREE(env);
-		env = NULL;
+		UpdateEnvVar = 1;
+		ret = TRUE;
     }
-	#endif
-#endif
+
+	if (ret) {
+		setenvtcl(string,value);
+	}
+
+
+	FREE(env);
 
   return ret;
 }
