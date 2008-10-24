@@ -10,15 +10,33 @@
 *
 */
 
+
 #include "function.hxx"
 
 namespace types
 {
-	Function::Function()
+	Function::Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule)
 	{
+		m_szName		= _szName;
+		m_pFunc			= _pFunc;
+		m_szModule	= _szModule;
 	}
 
 	Function::~Function()
 	{
 	}
+
+	Function* Function::getAsFunction(void)		
+	{ 
+		return this; 
+	}
+
+	/*--------------*/
+	/*		whoIAm		*/
+	/*--------------*/
+	void Function::whoAmI() 
+	{ 
+		std::cout << "types::Function" << std::endl; 
+	}
+
 }

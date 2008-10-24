@@ -21,14 +21,14 @@
 class Foo : public ScilabFunction {
 
 public :
-  ReturnValue call(types::typed_list &in, int _iRetCount, types::typed_list &out);
+	types::Function::ReturnValue call(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 public :
-  ReturnValue callUntyped(types::GenericType *in, int _iRetCount, types::typed_list &out);
+  types::Function::ReturnValue callUntyped(types::InternalType *in, int _iRetCount, types::typed_list &out);
 
-  ReturnValue callout(int _iRetCount, types::String *out);
-  ReturnValue call(types::String *in);
-  ReturnValue call(types::Int *in);
+  types::Function::ReturnValue callout(int _iRetCount, types::String *out);
+  types::Function::ReturnValue call(types::String *in);
+  types::Function::ReturnValue call(types::Int *in);
 };
 
 #endif /* !__FOO_HH__ */

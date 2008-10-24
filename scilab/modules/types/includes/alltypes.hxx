@@ -21,5 +21,6 @@
 #include "float.hxx"
 #include "uint.hxx"
 #include "bool.hxx"
+#include "function.hxx"
 
 #endif /* !ALL_TYPES_HH */

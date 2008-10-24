@@ -24,6 +24,8 @@
 #include "foo.hxx"
 #include "cosinus.hxx"
 #include "configvariable.hxx"
+#include "module_declaration.hxx"
+
 
 using namespace std;
 
@@ -40,19 +42,20 @@ FuncManager::FuncManager(void)
 	szPath += BASENAMEMODULESFILE;
 	cout << szPath << endl;
 
-	/*get module list from xml file*/
+	CreateModuleList();
+
+	/*get module activation list from xml file*/
 	if(GetModules() == true)
 	{
 		AppendModules();
 	}
+	CreateActivModuleList();
+
+	LoadFuncByModule();
 }
 
 FuncManager::~FuncManager(void)
 {
-	map <string, FuncInfo*>::iterator itMap;
-	//clear containt of m_mapFuncList map
-	for (itMap = m_mapFuncList.begin( ); itMap != m_mapFuncList.end( ); itMap++ )
-		delete m_mapFuncList[itMap->first];
 }
 
 bool FuncManager::GetModules()
@@ -147,7 +150,7 @@ bool FuncManager::AppendModules()
 				{
 					if(VerifyModule(name))
 					{
-						m_ModuleList.push_back(name);
+						m_ModuleName.push_back(name);
 /*
 						if (indice==0)
 						{
@@ -254,3 +257,37 @@ char *GetXmlFileEncoding(string _filename)
 	xmlFreeDoc(doc);
 	return encoding;
 }
+
+bool FuncManager::CreateModuleList(void)
+{
+	bool bRet = true;
+	m_ModuleMap.insert(pair<string, GW_MOD>("elementary_functions", &ElemFuncModule::Load));
+	return bRet;
+}
+
+bool FuncManager::CreateActivModuleList(void)
+{
+	bool bRet	= true;
+	list<string>::const_iterator itName;
+	for(itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
+	{
+		map<string, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
+		if(itModule != m_ModuleMap.end())
+		{
+			m_ActivModuleMap.insert(pair<string, GW_MOD>(itModule->first,itModule->second));
+		}
+	}
+	return bRet;
+}
+
+bool FuncManager::LoadFuncByModule(void)
+{
+	bool bRet	= true;
+	map<string, GW_MOD>::const_iterator itMod;
+	for(itMod = m_ActivModuleMap.begin() ; itMod != m_ActivModuleMap.end() ; itMod++)
+	{
+		itMod->second();
+	}
+	return bRet;
+}
+

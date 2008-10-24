@@ -15,31 +15,31 @@
 #include "alltypes.hxx"
 #include "foo.hxx"
 
-ScilabFunction::ReturnValue Foo::call(types::Int *in)
+types::Function::ReturnValue Foo::call(types::Int *in)
 {
 	std::cout << "foo( in int : ";
 	std::cout << in->real_get() ;
 	std::cout << " )" << std::endl;
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
-ScilabFunction::ReturnValue Foo::call(types::String *in)
+types::Function::ReturnValue Foo::call(types::String *in)
 {
 	std::cout << "foo( in string : ";
 	std::cout << in->string_get(0,0);
 	std::cout << " )" << std::endl;
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
-ScilabFunction::ReturnValue Foo::callout(int _iRetCount, types::String *out)
+types::Function::ReturnValue Foo::callout(int _iRetCount, types::String *out)
 {
 	std::cout << "foo( out string : ";
 	std::cout << out->string_get(0,0);
 	std::cout << " )" << std::endl;
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
-ScilabFunction::ReturnValue Foo::callUntyped(types::GenericType *in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue Foo::callUntyped(types::InternalType *in, int _iRetCount, types::typed_list &out)
 {
 	if(in[0].isDouble())
 		out.push_back(in[0].getAsDouble());
@@ -48,7 +48,7 @@ ScilabFunction::ReturnValue Foo::callUntyped(types::GenericType *in, int _iRetCo
 	if(in[0].isInt())
 		out.push_back(in[0].getAsInt());
 
-	return ScilabFunction::AllGood;
+	return types::Function::AllGood;
 }
 
 /*
@@ -60,12 +60,12 @@ return 1;
 */
 
 
-ScilabFunction::ReturnValue Foo::call(types::typed_list& in, int _iRetCount, types::typed_list& out)
+types::Function::ReturnValue Foo::call(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
 	if (out.size() > 1)
 	{
 		std::cerr << "[ERROR] Foo must have one or no return value." << std::endl;
-		return ScilabFunction::WrongParamNumber;
+		return types::Function::WrongParamNumber;
 	}
 
 	if (in.size() == 0 && out.size() == 1
@@ -125,6 +125,6 @@ ScilabFunction::ReturnValue Foo::call(types::typed_list& in, int _iRetCount, typ
 	}
 	*/
 	std::cerr << "[ERROR] Generic Error." << std::endl;
-	return ScilabFunction::WrongParamNumber;
+	return types::Function::WrongParamNumber;
 }
 

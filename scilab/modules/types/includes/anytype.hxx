@@ -22,8 +22,9 @@ namespace types
 	class UInt;
   class Bool;
 	class MatrixType;
-	class InternalType;
+	class GenericType;
 	class ImplicitList;
+	class Function;
 }
 
 #endif /* !__ANY_TYPES_HH__ */

@@ -45,17 +45,19 @@ namespace symbol
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		GenericType*	get(Symbol key) const;
+		InternalType*	get(Symbol key) const;
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		GenericType*	get_fun(Symbol key) const;
+		InternalType*	get_fun(Symbol key) const;
 
 		/*print all tables*/
 		void print();
 
 		/*add symbol and value in the stack*/
-		bool put(Symbol key, GenericType &type);
+		bool put(Symbol key, InternalType &type);
+
+		bool AddFunction(types::Function *_info);
 
 	private :
 		Stack PrivateFunTable;
@@ -64,8 +66,6 @@ namespace symbol
 		Heap HeapVarTable;
 		Stack EnvFunTable;
 		Stack EnvVarTable;
-
-		FuncManager FuncList;
 
 		static Context* me;
 	};

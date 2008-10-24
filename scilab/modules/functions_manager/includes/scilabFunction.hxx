@@ -18,14 +18,9 @@
 class ScilabFunction {
 
 public :
-  enum ReturnValue {
-    AllGood,
-    WrongParamNumber,
-    WrongParamType
-  };
 
 public :
-  virtual ReturnValue call(types::typed_list &in, int _iRetCount, types::typed_list &out) = 0;
+	virtual types::Function::ReturnValue call(types::typed_list &in, int _iRetCount, types::typed_list &out) = 0;
 
 
 };

@@ -21,14 +21,14 @@
 class Cosinus : public ScilabFunction {
 
 public :
-  ReturnValue call(types::typed_list &in, types::typed_list &out);
+  types::Function::ReturnValue call(types::typed_list &in, types::typed_list &out);
 
 public :
-  ReturnValue callUntyped(types::GenericType *in, types::typed_list &out);
+  types::Function::ReturnValue callUntyped(types::InternalType *in, types::typed_list &out);
 
-  ReturnValue callout(types::String *in);
-  ReturnValue call(types::String *in);
-  ReturnValue call(types::Int *in);
+	types::Function::ReturnValue callout(types::String *in);
+  types::Function::ReturnValue call(types::String *in);
+  types::Function::ReturnValue call(types::Int *in);
 };
 
 #endif /* !__COSINUS_HH__ */

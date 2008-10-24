@@ -23,7 +23,7 @@
 
 int main(void)
 {
-	FuncManager FM;
+	//FuncManager FM;
 
 
 	cout << "Start" << endl;

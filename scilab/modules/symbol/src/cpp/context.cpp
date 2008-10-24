@@ -53,19 +53,37 @@ namespace symbol
 		HeapVarTable.scope_end();
 	}
 
-	GenericType*	Context::get(Symbol key) const
+	InternalType*	Context::get(Symbol key) const
 	{
 		// FIXME
-		return EnvVarTable.get(key);
+		InternalType* pI = NULL;
+		pI = EnvVarTable.get(key);
+
+		if(pI != NULL)
+		{
+			return pI;
+		}
+		else
+		{
+			pI = EnvFunTable.get(key);
+			if(pI != NULL)
+			{
+				return pI;
+			}
+			else
+			{
+				return NULL;
+			}
+		}
 	}
 
-	GenericType*	Context::get_fun(Symbol key) const
+	InternalType*	Context::get_fun(Symbol key) const
 	{
 		return EnvFunTable.get(key);
 		// FIXME
 	}
 
-	bool Context::put(Symbol key, GenericType &type)
+	bool Context::put(Symbol key, InternalType &type)
 	{
 		// FIXME
 		EnvVarTable.put(key, type);
@@ -89,4 +107,10 @@ namespace symbol
 		//FIXME
 	}
 
+	bool Context::AddFunction(types::Function *_info)
+	{
+		EnvFunTable.put(Symbol(_info->m_szName), *_info);
+		return true;
+	}
 }
+

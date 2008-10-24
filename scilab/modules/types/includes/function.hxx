@@ -13,18 +13,36 @@
 #ifndef __FUNCTION_HXX__
 #define __FUNCTION_HXX__
 
+#include <string>
 #include "types.hxx"
 
 namespace types
 {
-	class Function : public GenericType
+	class Function : public InternalType
 	{
-  public :
-		Function();
-		~Function();
-	private:
+	public :
+		enum ReturnValue
+		{
+			AllGood,
+			WrongParamNumber,
+			WrongParamType
+		};
 
+		Function * 	getAsFunction(void);
+		RealType getType(void) { return RealFunction; }
+
+		typedef Function::ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
+
+    void					whoAmI();
+		Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
+		~Function();
+	//private:
+		std::string			m_szName;
+		GW_FUNC					m_pFunc;
+		std::string			m_szModule;
 	};
+
 }
+
 
 #endif /* !__FUNCTION_HXX__ */

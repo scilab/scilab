@@ -34,10 +34,13 @@ namespace types
       RealGeneric,
 			RealUserType,
 			RealImplicitList,
-			RealInternal
+			RealInternal,
+			RealFunction
     };
 
-    virtual bool isAssignable(void) { return false; }
+    virtual void whoAmI(void) { std::cout << "types::Inernal" << std::endl; }
+
+		virtual bool isAssignable(void) { return false; }
 		virtual RealType getType(void) { return RealInternal; }
 
     bool isString(void) { return (getType() == RealString); }
@@ -62,6 +65,10 @@ namespace types
     /* Bool */
     bool isBool(void) { return (getType() == RealBool); }
     virtual Bool* getAsBool(void) { return NULL; }
+
+    /* Function */
+    bool isFunction(void) { return (getType() == RealFunction); }
+    virtual Function* getAsFunction(void) { return NULL; }
 
     /* ImplicitList */
 		bool isList(void) { return (getType() == RealImplicitList); }

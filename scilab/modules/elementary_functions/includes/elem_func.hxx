@@ -10,24 +10,14 @@
 *
 */
 
-#include <map>
 
-using namespace std;
+#include "funcmanager.hxx"
 
-class ConfigVariable
+class ElemFuncModule
 {
 private :
-	ConfigVariable(){};
-	~ConfigVariable(){};
-
-	static ConfigVariable *me;
-
-	map<string, string>m_VarList;
+	ElemFuncModule(){};
+	~ElemFuncModule(){};
 public :
-
-	static ConfigVariable* getInstance();
-
-	string	get(string _szVar);
-	bool		set(string _szVar, string _szVal);
-
+	static bool Load();
 };
