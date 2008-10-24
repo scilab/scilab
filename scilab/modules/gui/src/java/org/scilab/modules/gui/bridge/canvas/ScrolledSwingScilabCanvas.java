@@ -245,6 +245,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			} else {
 				realPosY = viewPortPosY;
 			}
+			
 			realPosY = Math.max(0, realPosY);
 
 			// must be called on the Swing thread otherwise some JOGL corruption may appear
@@ -260,7 +261,6 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			} catch (InvocationTargetException e) {
 				e.getCause().printStackTrace();
 			}
-			
 			
 		}
 	}
