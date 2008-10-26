@@ -32,9 +32,10 @@ names
 lib
 
 #
-# backup file (xxe)
+# backup files
 #
-*.xml~
+*~
+*.bak
 
 #
 # windows files
@@ -85,7 +86,6 @@ Debug
 # others files (windows)
 #
 *.db
-*.bak
 
 #
 # scilab/ specific files
@@ -121,3 +121,8 @@ scilab.pc
 pvm3
 *.class
 *.dia
+
+#
+# Subversion directories
+#
+.svn
