@@ -44,7 +44,7 @@ void SetScilabEnvironment(void)
 #else
 	SciEnvForOthers();
 #endif
-	if(!setSCIHOME())
+	if(!setYASPHOME())
 	{
 		std::cerr << "Error: Impossible to define SCIHOME environment variable." << endl;
 	}
@@ -82,7 +82,7 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 {
 	if (DefaultSCIPATH)
 	{
-		Set_SCI_PATH(DefaultSCIPATH);
+		Set_YASP_PATH(DefaultSCIPATH);
 		Set_HOME_PATH(DefaultSCIPATH);
 		Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
 	}
@@ -95,7 +95,7 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 }
 
 /*--------------------------------------------------------------------------*/
-bool Set_SCI_PATH(char *DefaultPath)
+bool Set_YASP_PATH(char *DefaultPath)
 {
 	char env[PATH_MAX + 1 + 10];
 	char ShortPath[PATH_MAX+1];
@@ -110,7 +110,7 @@ bool Set_SCI_PATH(char *DefaultPath)
 		AntislashToSlash(ShortPath,CopyOfDefaultPath);
 
 		sprintf (env, "SCI=%s",ShortPath);
-		setSCIpath(ShortPath);
+		setYASPpath(ShortPath);
 
 		if(CopyOfDefaultPath)
 		{
@@ -323,13 +323,13 @@ char *getScilabDirectory(bool UnixStyle)
 			}
 		}
 		SciPathName[strlen(SciPathName)-1]='\0';
-		setSCIpath(SciPathName);
+		setYASPpath(SciPathName);
 
 	}
 	return SciPathName;
 }
 
-bool setSCIHOME(void)
+bool setYASPHOME(void)
 {
 	int ierr = 0;
 	int buflen = PATH_MAX;
@@ -482,13 +482,13 @@ bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
 
 static char SCIPATH[PATH_MAX];
 /*--------------------------------------------------------------------------*/
-void setSCIpath(char *path)
+void setYASPpath(char *path)
 {
 	//if (path) strcpy(SCIPATH,path);
 	ConfigVariable::getInstance()->set("SCI", path);
 }
 /*--------------------------------------------------------------------------*/
-char *getSCIpath(void)
+char *getYASPpath(void)
 {
 	return strdup(SCIPATH);
 }
@@ -659,7 +659,7 @@ int SciEnvForOthers(void)
 			cerr << "SCI environment variable not defined." << endl;
 			exit(1);
 		}
-		setSCIpath(buf);
+		setYASPpath(buf);
 		delete buf;
 		buf = NULL;
 	}
