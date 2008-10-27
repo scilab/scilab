@@ -16,6 +16,8 @@ Enhancement:
 
 - Update of the license.txt of each module
 
+- License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module)
+
 Bug fixes:
 ==========
 

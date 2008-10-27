@@ -1,6 +1,7 @@
 // ====================================================================
 // Allan CORNET
 // Copyright INRIA 2008
+// This file is released into the public domain
 // ====================================================================
 warning_mode = warning('query');
 warning('off');
