@@ -29,6 +29,7 @@
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 #include "BOOL.h"
+#include "fromjava.h"
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 
@@ -122,6 +123,7 @@ static void *DaemonOpenTCLsci(void* in)
 			Scierror(999,_("Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"));
 		}
 		releaseTclInterp();
+
 		if ( Tcl_Init(getTclInterp()) == TCL_ERROR)
 		{
 			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),getTclInterp()->result);
@@ -129,9 +131,18 @@ static void *DaemonOpenTCLsci(void* in)
 		releaseTclInterp();
 		if ( Tk_Init(getTclInterp()) == TCL_ERROR)
 		{
-			Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init):%s\n"),getTclInterp()->result);
+			Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init).\n"));
+			if (!IsFromJava()){
+				/* When we are calling this stuff from javasci in the binary,
+				 * not finding TCL_LIBRARY is causing issue to display the 
+				 * actual error (infinity loop)
+				 * See: http://bugzilla.scilab.org/show_bug.cgi?id=3605
+				 */
+				Scierror(999,_("Reason: %s:\n"),getTclInterp()->result);
+			}
 			tkStarted=FALSE;
 		}
+
 		releaseTclInterp();
 		sprintf(MyCommand, "set SciPath \"%s\";",SciPath);
 
@@ -139,6 +150,7 @@ static void *DaemonOpenTCLsci(void* in)
 		{
 			Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),getTclInterp()->result);
 		}
+
 		releaseTclInterp();
 		Tcl_CreateCommand(getTclInterp(),"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
 		releaseTclInterp();
