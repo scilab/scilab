@@ -242,7 +242,8 @@ am__objects_3 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-mprod.lo \
 	libscielementary_functions_la-pythag.lo \
 	libscielementary_functions_la-matrix_generation.lo \
-	libscielementary_functions_la-vmul.lo
+	libscielementary_functions_la-vmul.lo \
+	libscielementary_functions_la-add_vector.lo
 am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wasum.lo \
 	libscielementary_functions_la-dexpm1.lo \
@@ -761,7 +762,8 @@ src/c/floor.c \
 src/c/mprod.c \
 src/c/pythag.c \
 src/c/matrix_generation.c \
-src/c/vmul.c
+src/c/vmul.c \
+src/c/add_vector.c
 
 
 # List of the cpp files
@@ -1298,6 +1300,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-IsEqualVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-abs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-acos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-add_vector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-asin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-atan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-basic_functions.Plo@am__quote@
@@ -1734,6 +1737,13 @@ libscielementary_functions_la-vmul.lo: src/c/vmul.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vmul.c' object='libscielementary_functions_la-vmul.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-vmul.lo `test -f 'src/c/vmul.c' || echo '$(srcdir)/'`src/c/vmul.c
+
+libscielementary_functions_la-add_vector.lo: src/c/add_vector.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-add_vector.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-add_vector.Tpo -c -o libscielementary_functions_la-add_vector.lo `test -f 'src/c/add_vector.c' || echo '$(srcdir)/'`src/c/add_vector.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-add_vector.Tpo $(DEPDIR)/libscielementary_functions_la-add_vector.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/add_vector.c' object='libscielementary_functions_la-add_vector.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-add_vector.lo `test -f 'src/c/add_vector.c' || echo '$(srcdir)/'`src/c/add_vector.c
 
 libscielementary_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
