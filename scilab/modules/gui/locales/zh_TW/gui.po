@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-08-14 18:18+0000\n"
+"PO-Revision-Date: 2008-09-27 10:13+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Launchpad-Export-Date: 2008-10-27 10:41+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "&File"
@@ -308,7 +308,7 @@ msgstr "%s:  屬性 ''%s'' 之型態錯誤: 應為一字串.\n"
 msgid ""
 "Scilab 5.0 and future versions are released under the terms of the CeCILL "
 "license.\n"
-msgstr ""
+msgstr "Scilab 5.0 及為來版本將以 CeCILL  版權方式發行.\n"
 
 msgid ""
 "Some Scilab modules are released under the GPLv2 license.\n"
@@ -338,16 +338,16 @@ msgid "http://www.scilab.org/"
 msgstr "http://www.scilab.org/"
 
 msgid "About Scilab..."
-msgstr ""
+msgstr "有關 Scilab ..."
 
 msgid "Acknowledgements"
-msgstr ""
+msgstr "致謝"
 
 msgid "Ok"
-msgstr ""
+msgstr "確定"
 
 msgid "Scilab Contributors..."
-msgstr ""
+msgstr "Scilab 貢獻者..."
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
@@ -486,7 +486,7 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串向量.\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr ""
+msgstr "%s: 當不是在 '%s' 模式時圖形 (Figure) 編號必須給定.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -501,12 +501,12 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一 '%s', '%s' 或 '%s' �
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為 '%s' 或  '%s' 代碼 (handle).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 '%s' 或  '%s' 代碼 (handle).\n"
 
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
@@ -702,7 +702,7 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為非負整數\n"
 
 msgid "GUI"
-msgstr ""
+msgstr "圖形使用者介面"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -720,10 +720,10 @@ msgid "%s: Could not create uicontrol of type %s."
 msgstr "%s: 無法產生型態 %s 的 uicontrol."
 
 msgid "Console Font..."
-msgstr ""
+msgstr "控制台字體 ...."
 
 msgid "Console Background..."
-msgstr ""
+msgstr "控制台背景..."
 
 msgid "Loading help browser..."
 msgstr "載入線上手冊瀏覽器..."
@@ -738,7 +738,7 @@ msgstr "屬性 '%s' 不屬於在  uicontrols 之型態: %s .\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
+msgstr "'%s’　屬性錯誤: 應為　'%s' 或 '%s' 代碼 (handle).\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
@@ -816,7 +816,7 @@ msgstr "屬性 '%s' 長度錯誤: 應為一字串或字串向量d.\n"
 msgid ""
 "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
 "property value.\n"
-msgstr ""
+msgstr "警告: '%s’　之 'Value' 屬性 應為　'%s' 或 '%s' 屬性值.\n"
 
 msgid "Could not destroy this object.\n"
 msgstr "無法清除此物件.\n"
