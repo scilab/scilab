@@ -84,6 +84,10 @@ Debug
 *.ncb
 VTune
 #
+# F2C files (windows)
+#
+modules/*/src/fortran/*.c
+#
 # others files (windows)
 #
 *.db
