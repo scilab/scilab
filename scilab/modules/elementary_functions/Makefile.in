@@ -450,7 +450,6 @@ am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_ones.lo \
 	libscielementary_functions_la-sci_f_diag.lo \
 	libscielementary_functions_la-sci_f_number_properties.lo \
-	libscielementary_functions_la-sci_f_cumprod.lo \
 	libscielementary_functions_la-sci_f_abs.lo \
 	libscielementary_functions_la-sci_f_spones.lo \
 	libscielementary_functions_la-sci_f_kron.lo \
@@ -1070,7 +1069,6 @@ sci_gateway/fortran/sci_f_zeros.f \
 sci_gateway/fortran/sci_f_ones.f \
 sci_gateway/fortran/sci_f_diag.f \
 sci_gateway/fortran/sci_f_number_properties.f \
-sci_gateway/fortran/sci_f_cumprod.f \
 sci_gateway/fortran/sci_f_abs.f \
 sci_gateway/fortran/sci_f_spones.f \
 sci_gateway/fortran/sci_f_kron.f \
@@ -2871,9 +2869,6 @@ libscielementary_functions_la-sci_f_diag.lo: sci_gateway/fortran/sci_f_diag.f
 
 libscielementary_functions_la-sci_f_number_properties.lo: sci_gateway/fortran/sci_f_number_properties.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_number_properties.lo `test -f 'sci_gateway/fortran/sci_f_number_properties.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_number_properties.f
-
-libscielementary_functions_la-sci_f_cumprod.lo: sci_gateway/fortran/sci_f_cumprod.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_cumprod.lo `test -f 'sci_gateway/fortran/sci_f_cumprod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cumprod.f
 
 libscielementary_functions_la-sci_f_abs.lo: sci_gateway/fortran/sci_f_abs.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_abs.lo `test -f 'sci_gateway/fortran/sci_f_abs.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_abs.f

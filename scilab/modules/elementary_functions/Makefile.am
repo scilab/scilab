@@ -356,7 +356,6 @@ sci_gateway/fortran/sci_f_zeros.f \
 sci_gateway/fortran/sci_f_ones.f \
 sci_gateway/fortran/sci_f_diag.f \
 sci_gateway/fortran/sci_f_number_properties.f \
-sci_gateway/fortran/sci_f_cumprod.f \
 sci_gateway/fortran/sci_f_abs.f \
 sci_gateway/fortran/sci_f_spones.f \
 sci_gateway/fortran/sci_f_kron.f \
