@@ -49,7 +49,8 @@ src/c/mprod.c \
 src/c/pythag.c \
 src/c/matrix_generation.c \
 src/c/vmul.c \
-src/c/add_vector.c
+src/c/add_vector.c \
+src/c/sub_vector.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp \
@@ -355,7 +356,6 @@ sci_gateway/fortran/sci_f_zeros.f \
 sci_gateway/fortran/sci_f_ones.f \
 sci_gateway/fortran/sci_f_diag.f \
 sci_gateway/fortran/sci_f_number_properties.f \
-sci_gateway/fortran/sci_f_sum.f \
 sci_gateway/fortran/sci_f_cumprod.f \
 sci_gateway/fortran/sci_f_abs.f \
 sci_gateway/fortran/sci_f_spones.f \
