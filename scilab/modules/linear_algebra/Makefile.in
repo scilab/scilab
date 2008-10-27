@@ -56,7 +56,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la 
+@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libscilinear_algebra_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -132,7 +132,8 @@ am__objects_4 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-gw_linear_algebra.lo \
 	libscilinear_algebra_la-sci_inv.lo \
 	libscilinear_algebra_la-sci_svd.lo \
-	libscilinear_algebra_la-sci_lsq.lo
+	libscilinear_algebra_la-sci_lsq.lo \
+	libscilinear_algebra_la-sci_invnew.lo
 am__objects_5 = bschur.lo
 am_libscilinear_algebra_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5)
@@ -453,7 +454,8 @@ sci_gateway/c/sci_eig.c \
 sci_gateway/c/gw_linear_algebra.c \
 sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
-sci_gateway/c/sci_lsq.c
+sci_gateway/c/sci_lsq.c \
+sci_gateway/c/sci_invnew.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 libscilinear_algebra_la_CFLAGS = -I$(srcdir)/includes/ \
@@ -628,6 +630,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_eig.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_hess.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_inv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_invnew.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_lsq.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_lu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_qr.Plo@am__quote@
@@ -789,6 +792,13 @@ libscilinear_algebra_la-sci_lsq.lo: sci_gateway/c/sci_lsq.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lsq.c' object='libscilinear_algebra_la-sci_lsq.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_lsq.lo `test -f 'sci_gateway/c/sci_lsq.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsq.c
+
+libscilinear_algebra_la-sci_invnew.lo: sci_gateway/c/sci_invnew.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_invnew.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_invnew.Tpo -c -o libscilinear_algebra_la-sci_invnew.lo `test -f 'sci_gateway/c/sci_invnew.c' || echo '$(srcdir)/'`sci_gateway/c/sci_invnew.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-sci_invnew.Tpo $(DEPDIR)/libscilinear_algebra_la-sci_invnew.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_invnew.c' object='libscilinear_algebra_la-sci_invnew.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_invnew.lo `test -f 'sci_gateway/c/sci_invnew.c' || echo '$(srcdir)/'`sci_gateway/c/sci_invnew.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
