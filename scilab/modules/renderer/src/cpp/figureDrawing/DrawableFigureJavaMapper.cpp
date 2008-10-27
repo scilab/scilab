@@ -71,11 +71,6 @@ void DrawableFigureJavaMapper::drawCanvas(void)
   m_pJavaObject->drawCanvas();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::closeRenderingCanvas(void)
-{
-  m_pJavaObject->closeRenderingCanvas();
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::drawBackground(void)
 {
   m_pJavaObject->drawBackground(); 
@@ -242,6 +237,16 @@ void DrawableFigureJavaMapper::showWindow(void)
 void DrawableFigureJavaMapper::setNbSubwins(int nbSubwins)
 {
   m_pJavaObject->setNbSubwins(nbSubwins);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::openGraphicCanvas(void)
+{
+	m_pJavaObject->openGraphicCanvas();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::closeGraphicCanvas(void)
+{
+	m_pJavaObject->closeGraphicCanvas();
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::isAbleToCreateFigure(void)

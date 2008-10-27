@@ -36,7 +36,7 @@ DrawableObject * DrawableFigureFactory::create( void )
   GraphicSynchronizerFactory fact;
   newFig->setSynchronizer(fact.createLocalSynchronizer());
 
-  newFig->openRenderingCanvas();
+  newFig->createVisualFigure();
 
   return newFig ;
 

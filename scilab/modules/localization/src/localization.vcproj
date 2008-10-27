@@ -399,6 +399,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\includes\charEncoding.h"
+				>
+			</File>
+			<File
 				RelativePath=".\c\getLocaleInfo_Windows.h"
 				>
 			</File>
@@ -476,6 +480,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\c\charEncoding.c"
+				>
+			</File>
+			<File
 				RelativePath=".\c\DllmainLocalization.c"
 				>
 			</File>
@@ -497,10 +505,6 @@
 			</File>
 			<File
 				RelativePath=".\c\loadLanguagePref.c"
-				>
-			</File>
-			<File
-				RelativePath=".\c\localetoutf.c"
 				>
 			</File>
 			<File

@@ -1,0 +1,17 @@
+// This file is released into the public domain
+//=================================
+// load toolbox_skeleton
+if funptr('fortran_sum') == 0 then
+  root_tlbx_path = SCI+'\contrib\toolbox_skeleton\';
+ 
+ Start Toolbox skeleton   
+ 
+ Load macros   
+ 
+ Load gateways   
+ 
+ Load help   
+end
+//=================================
+if fortran_sum(3,5) <> 8 then bugmes();quit;end
+//=================================

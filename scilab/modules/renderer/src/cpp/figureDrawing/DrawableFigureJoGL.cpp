@@ -16,6 +16,7 @@
 #include "DrawableFigureBridge.h"
 #include "DrawableFigureJoGL.h"
 #include "GraphicSynchronizerInterface.h"
+#include "ScilabGraphicWindow.hxx"
 
 extern "C"
 {
@@ -40,7 +41,7 @@ DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
 /*---------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
 {
-  closeRenderingCanvas() ;
+  closeVisualFigure() ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::drawCanvas( void )
@@ -48,24 +49,21 @@ void DrawableFigureJoGL::drawCanvas( void )
   getFigureJavaMapper()->drawCanvas();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
+void DrawableFigureJoGL::createVisualFigure( int figureIndex )
 {
-  m_pJavaWindow = new org_scilab_modules_gui_graphicWindow::ScilabGraphicWindow(getScilabJavaVM());
-  getFigureJavaMapper()->setFigureIndex(figureIndex);
-  m_pJavaWindow->setFigureIndex(figureIndex);
+	// add the figure in the hashmap
+	getFigureJavaMapper()->setFigureIndex(figureIndex);
+
+	// create the window
+	org_scilab_modules_gui_graphicWindow::ScilabGraphicWindow::newWindow(getScilabJavaVM(), figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::closeRenderingCanvas( void )
+void DrawableFigureJoGL::closeVisualFigure( void )
 {
   // disable synchrnonization here to avoid deadlocks
   endGraphicDataWriting();
   DrawableObjectJoGL::destroy() ;
   startGraphicDataWriting();
-  if ( m_pJavaWindow != NULL )
-  {
-    delete m_pJavaWindow;
-    m_pJavaWindow = NULL;
-  }
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setFigureParameters(void)
@@ -201,6 +199,17 @@ void DrawableFigureJoGL::stopRotationRecording(void)
 void DrawableFigureJoGL::showWindow(void)
 {
   getFigureJavaMapper()->showWindow();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::openGraphicCanvas(void)
+{
+	getFigureJavaMapper()->openGraphicCanvas();
+
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::closeGraphicCanvas(void)
+{
+	getFigureJavaMapper()->closeGraphicCanvas();
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJoGL::isAbleToCreateFigure(void)

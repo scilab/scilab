@@ -1,0 +1,12 @@
+#
+# Generated files
+#
+*.dll
+*.def
+*.obj
+Makelib.mak
+loader.sce
+master_help.xml
+loader_gateway.sce
+skeleton_*.c
+scilab_*_help

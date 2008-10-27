@@ -276,13 +276,6 @@ public class DrawableFigureGL extends ObjectGL {
 	public synchronized void setRenderingRequested(boolean requested) {
 		this.renderRequested = requested;
 	}
-
-  	/**
-  	 * Destroyr the rendering context
-  	 */
-  	public void closeRenderingCanvas() {
-  		guiProperties = null;
-   	}
   
   /**
    * Set a new colormap to the figure.
@@ -389,7 +382,7 @@ public class DrawableFigureGL extends ObjectGL {
   		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
-					getRendererProperties().closeCanvas();
+					getRendererProperties().closeFigure();
 				}
 			});
 		} catch (InterruptedException e) {
@@ -676,6 +669,21 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void showWindow() {
 		getRendererProperties().showWindow();
+	}
+	
+	/**
+	 * If the window does not already contains a 3D canvas,
+	 * add one.
+	 */
+	public void openGraphicCanvas() {
+		getRendererProperties().openGraphicCanvas(figureId);
+	}
+	
+	/**
+	 * Destroy the canvas if one already exists.
+	 */
+	public void closeGraphicCanvas() {
+		getRendererProperties().closeGraphicCanvas();
 	}
 	
 }

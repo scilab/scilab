@@ -32,7 +32,7 @@ static int no_startup_flag=0;
 /*--------------------------------------------------------------------------*/
 #define BSIZE 128
 /*--------------------------------------------------------------------------*/
-void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
+int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
 {
   static int initialization=-1;
   int ierr=0;
@@ -148,6 +148,8 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
   FREE(startup);
   /* cleaning */
   C2F(sciquit)();
+  /* Actually manage the return code */
+  return 0;
 }
 /*--------------------------------------------------------------------------*/
 void Set_no_startup_flag(int start)

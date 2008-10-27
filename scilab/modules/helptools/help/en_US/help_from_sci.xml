@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * 
+ * This help file was generated from help_from_sci.sci using help_from_sci().
+ * 
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="help_from_sci" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <info>
+    <pubdate>$LastChangedDate: 19-Oct-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>help_from_sci</refname><refpurpose>Generate help files and demo files from the head comments section of a .sci source file.</refpurpose>
+  </refnamediv>
+
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>help_from_sci() // generate an empty function template</synopsis>
+   <synopsis>help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci</synopsis>
+   <synopsis>help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.</synopsis>
+   <synopsis>help_from_sci(dirname,helpdir,helpdir) // as above but also creating helpdir/*.dem.sce demo files.</synopsis>
+   <synopsis>[helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.</synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>funname:</term>
+      <listitem><para> the name of a single .sci source file to be processed.</para></listitem></varlistentry>
+   <varlistentry><term>dirname:</term>
+      <listitem><para> directory name where all .sci files will be processed.</para></listitem></varlistentry>
+   <varlistentry><term>helpdir:</term>
+      <listitem><para> optional path where the .xml help file will be created.</para></listitem></varlistentry>
+   <varlistentry><term>demodir:</term>
+      <listitem><para> optional path where .dem.sce demo files will be created based on code from the Examples section.</para></listitem></varlistentry>
+   <varlistentry><term>helptxt:</term>
+      <listitem><para> returns the XML help code if helpdir is empty, or the path to the new .xml file.</para></listitem></varlistentry>
+   <varlistentry><term>demotxt:</term>
+      <listitem><para> returns the demo code if demodir is empty, or the path to the new .dem.sc file.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+help_from_sci is a revised version of the help_skeleton function.
+Its objective is to generate .xml help files based on the head comments section
+of .sci source files. Optionally .dem.sce demo files can be generated based on
+code from the Examples section in the head comments section of .sci files.
+   </para>
+   <para>
+In order for help_from_sci to format the .xml file properly the
+head comments section should comply with some simple formatting rules.
+   </para>
+   <para>
+The first comment line following the function definition should contain a short description
+of the function.
+   </para>
+   <para>
+The remaining comments are formatted according to the following (optional) headlines:
+"Calling Sequence", "Parameters", "Description", "Examples", "See also", "Used functions",
+"Authors" and "Bibliography".
+   </para>
+   <para>
+The following guidelines should be used when writing the source code comments:
+<itemizedlist>
+<listitem><literal>Calling Sequence</literal> - one example pr. line.</listitem>
+<listitem><literal>Parameters</literal> - separate parameter name and
+description by a ":". Keep the description of each parameter on the same line.</listitem>
+<listitem><literal>Description</literal> - formatting of the text can be done
+using XML commands.
+Adding an empty comment line in the Description section is interpreted as the
+start of a new paragraph.</listitem>
+<listitem><literal>See also</literal> - list one function name pr line.</listitem>
+<listitem><literal>Authors</literal> - write one author on each line following
+the Authors headline. Use ";" to separate the authors name
+from any add additional information.</listitem>
+<listitem><literal>Bibliography</literal> - write one reference pr line
+following the References headline.</listitem>
+</itemizedlist>
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example">
+help_from_sci()   // Open an empty source code template in the Scipad editor.
+// Save this template as test_fun.sci in the current directory before running
+// the next example commands.
+
+help_from_sci('test_fun')        // return the xml skeleton as a text string
+
+help_from_sci('test_fun','.')    // create the xml help file in the current directory.
+
+// create both a xml help file and a demo file in the current directory.
+help_from_sci('test_fun','.','.')
+
+// From a toolbox root directory a typical calling sequence would be:
+// help_from_sci('macros','help\en_US','demos')
+// This command would process all .sci files in the macros directory
+// and use the head comments section to update all .xml help files in the
+// help\en_US directory an rebuild the .dem.sce files in the demos\ directory.
+
+   </programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="help">help</link></member>
+   <member><link linkend="help_skeleton">help_skeleton</link></member>
+   <member><link linkend="xmltohtml">xmltohtml</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <variablelist>
+   <varlistentry><term>T. Pettersen </term><listitem><para> torbjorn.pettersen@broadpark.no</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+</refentry>

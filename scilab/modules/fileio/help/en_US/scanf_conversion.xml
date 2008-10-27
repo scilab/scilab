@@ -136,6 +136,12 @@
           <para>:character value is expected. The normal skip over white space is suppressed.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>%lg</term>
+        <listitem>
+          <para>: get value as a double.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>

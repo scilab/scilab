@@ -35,7 +35,7 @@
 #include "getLocaleInfo_Windows.h"
 #endif
 
-#include "localetoutf.h"
+#include "charEncoding.h"
 
 #include "setgetlanguage.h"
 #include "MALLOC.h"
@@ -55,7 +55,7 @@ static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
 static char *GetLanguageFromAlias(char *langAlias);
 /*--------------------------------------------------------------------------*/
-BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
+BOOL setlanguage(char *lang)
 {
 	if (lang)
 	{
@@ -110,7 +110,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 
 				exportLocaleToSystem(CURRENTLANGUAGESTRING);
 
-				openLocaleToUTFConverter(ret,CURRENTLANGUAGESTRING);/*open a localeToUTF converter if needed*/
+				openCharEncodingConverter(getEncoding(ret));/*open a localeToUTF converter if needed*/
 				return TRUE;
 			}
 		#ifndef _MSC_VER
@@ -263,6 +263,11 @@ char *convertlanguagealias(char *strlanguage)
  * @param locale the locale (ex : fr_FR or en_US)
  */
 BOOL exportLocaleToSystem(char *locale){
+
+	if (locale==NULL) {
+		fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default.\n", EXPORTENVLOCALE);
+		return FALSE;
+	}
 
 	/* It will put in the env something like LC_ALL=fr_FR */
 	if ( !setenvc(EXPORTENVLOCALESTR,locale))

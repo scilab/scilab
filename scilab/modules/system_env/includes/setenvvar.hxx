@@ -49,3 +49,5 @@ bool isdir(const char * path);
 bool createdirectory(const char *path);
 bool isDrive(const char *strname);
 void SetScilabEnvironment(void);
+int SciEnvForOthers(void);
+

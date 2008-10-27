@@ -46,8 +46,6 @@ public:
   // specific for figures
   virtual void drawCanvas(void);
 
-  virtual void closeRenderingCanvas(void);
-
   virtual void drawBackground();
   
   virtual void setLogicalOp(int logicOpIndex);
@@ -88,6 +86,10 @@ public:
   virtual void showWindow(void);
 
   virtual void setNbSubwins(int nbSubwins);
+
+	virtual void openGraphicCanvas(void);
+
+	virtual void closeGraphicCanvas(void);
 
   static bool isAbleToCreateFigure(void);
 

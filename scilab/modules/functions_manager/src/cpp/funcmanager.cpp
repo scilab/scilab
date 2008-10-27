@@ -26,6 +26,10 @@
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
 
+#ifndef _MSC_VER
+#include "stricmp.h"
+#endif
+
 
 using namespace std;
 

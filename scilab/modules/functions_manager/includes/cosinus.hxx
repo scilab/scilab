@@ -16,7 +16,7 @@
 #include <iostream>
 
 #include "alltypes.hxx"
-#include "scilabFunction.hxx"
+#include "scilabfunction.hxx"
 
 class Cosinus : public ScilabFunction {
 

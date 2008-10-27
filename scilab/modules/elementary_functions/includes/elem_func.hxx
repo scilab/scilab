@@ -21,3 +21,4 @@ private :
 public :
 	static bool Load();
 };
+

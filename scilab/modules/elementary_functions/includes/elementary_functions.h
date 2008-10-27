@@ -32,8 +32,6 @@ extern double C2F(derfcx)(double *x);
 extern int C2F(dgefa)(double *a, int *lda, int *n, int *ipvt, int *info);
 extern int C2F(ccopy)(int *n, char *dx, int *incx, char *dy, int *incy, int dx_len, int dy_len);
 extern double C2F(coshin)(double *x);
-extern int C2F(cupro)(int *n, double *w);
-extern int C2F(cuproi)(int *n, double *wr, double *wi);
 extern int C2F(cusum)(int *n, double *w);
 extern int C2F(dadd)(int *n, double *dx, int *incx, double *dy, int *incy);
 extern int C2F(dad)(double *a, int *na, int *i1, int *i2, int *j1, int *j2, double *r__, int *isw);

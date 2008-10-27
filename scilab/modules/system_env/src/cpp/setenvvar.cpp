@@ -14,10 +14,13 @@
 
 #ifdef _MSC_VER
 #include "windows.h"
+#else
+#include <stdlib.h>
+#include <string.h>
+#define putenv _putenv
 #endif
 
 #include "setenvvar.hxx"
-
 #include "configvariable.hxx"
 
 using namespace std;
@@ -27,19 +30,19 @@ using namespace std;
 /**
 * Les variables d'environnements SCI, and some others
 * sont définies directement dans scilab
-* scilex peut donc etre executé seul 
+* scilex peut donc etre executé seul
 */
 
 /*--------------------------------------------------------------------------*/
 /**
-* Define SCI and some others Environments variables 
+* Define SCI and some others Environments variables
 */
-void SetScilabEnvironment(void) 
+void SetScilabEnvironment(void)
 {
 #ifdef _MSC_VER
-	SciEnvForWindows(); 
+	SciEnvForWindows();
 #else
-	SetSci();
+	SciEnvForOthers();
 #endif
 	if(!setSCIHOME())
 	{
@@ -47,6 +50,7 @@ void SetScilabEnvironment(void)
 	}
 }
 
+#ifdef _MSC_VER
 void SciEnvForWindows(void)
 {
 	char *SCIPathName = 0;
@@ -54,7 +58,7 @@ void SciEnvForWindows(void)
 	SCIPathName = getScilabDirectory(true);
 
 	/* Correction Bug 1579 */
-	if (!IsTheGoodShell()) 
+	if (!IsTheGoodShell())
 	{
 		if ( (!Set_Shell()) || (!IsTheGoodShell()))
 		{
@@ -93,7 +97,6 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 /*--------------------------------------------------------------------------*/
 bool Set_SCI_PATH(char *DefaultPath)
 {
-	bool bOK = false;
 	char env[PATH_MAX + 1 + 10];
 	char ShortPath[PATH_MAX+1];
 	char *CopyOfDefaultPath = NULL;
@@ -117,14 +120,14 @@ bool Set_SCI_PATH(char *DefaultPath)
 
 		if (_putenv (env))
 		{
-			bOK=false;
+		  return false;
 		}
 		else
 		{
-			bOK=true;
+		  return true;
 		}
 	}
-	return bOK;
+	return false;
 }
 /*--------------------------------------------------------------------------*/
 bool Set_HOME_PATH(char *DefaultPath)
@@ -135,7 +138,7 @@ bool Set_HOME_PATH(char *DefaultPath)
 
 	GetHOMEpath=getenv ("HOME");
 
-	if (GetHOMEpath) 
+	if (GetHOMEpath)
 	{
 		char ShortPath[PATH_MAX+1];
 		char *CopyOfDefaultPath=NULL;
@@ -157,12 +160,12 @@ bool Set_HOME_PATH(char *DefaultPath)
 			slashToAntislash(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",ShortPath);
 
-			if(CopyOfDefaultPath) 
+			if(CopyOfDefaultPath)
 			{
 				delete CopyOfDefaultPath;
 				CopyOfDefaultPath = NULL;
 			}
-			
+
 		}
 		else
 		{
@@ -188,8 +191,8 @@ bool Set_HOME_PATH(char *DefaultPath)
 		AntislashToSlash(DefaultPath,CopyOfDefaultPath);
 		GetShortPathName(CopyOfDefaultPath,ShortPath,PATH_MAX);
 		sprintf (env, "HOME=%s",ShortPath);
-		
-		if(CopyOfDefaultPath) 
+
+		if(CopyOfDefaultPath)
 		{
 			delete CopyOfDefaultPath;
 			CopyOfDefaultPath = NULL;
@@ -226,7 +229,7 @@ bool Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 		putenv ("WIN64=OK");
 	#endif
 
-	if ( GetSystemMetrics(SM_REMOTESESSION) ) 
+	if ( GetSystemMetrics(SM_REMOTESESSION) )
 	{
 		putenv ("SCILAB_MSTS_SESSION=OK");
 	}
@@ -249,7 +252,7 @@ bool IsTheGoodShell(void)
 	_splitpath(shellCmd,drive,dir,fname,ext);
 
 	if (_stricmp(fname,"cmd")==0) bOK=true;
-	
+
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/
@@ -261,20 +264,20 @@ bool Set_Shell(void)
 
 	WINDIRPATH=getenv ("SystemRoot");
 	sprintf(env,"ComSpec=%s\\system32\\cmd.exe",WINDIRPATH);
-	
+
 	if (_putenv (env))
 	{
-		bOK=false;		
+		bOK=false;
 	}
 	else
 	{
 		bOK=true;
 	}
-	
+
 	if(WINDIRPATH)
-	{ 
-		delete WINDIRPATH; 
-		WINDIRPATH = NULL; 
+	{
+		delete WINDIRPATH;
+		WINDIRPATH = NULL;
 	}
 	return bOK;
 }
@@ -312,7 +315,7 @@ char *getScilabDirectory(bool UnixStyle)
 		_makepath(SciPathName,drive,dir,NULL,NULL);
 
 		if ( UnixStyle )
-		{	
+		{
 			int i=0;
 			for (i=0;i<(int)strlen(SciPathName);i++)
 			{
@@ -331,10 +334,10 @@ bool setSCIHOME(void)
 	int ierr = 0;
 	int buflen = PATH_MAX;
 	int iflag = 0;
-	
+
 	char SCIHOME[PATH_MAX];
 	char USERPATHSCILAB[PATH_MAX];
-	
+
 	getenvc(&ierr,"SCIHOME",SCIHOME,&buflen,&iflag);
 
 	if (ierr) /* SCIHOME not define */
@@ -354,7 +357,7 @@ bool setSCIHOME(void)
 		{
 			char *SHORTUSERHOMESYSTEM = NULL;
 			bool bConverted = false;
-			
+
 			getenvc(&ierr,"APPDATA",USERHOMESYSTEM,&buflen,&iflag);
 
 			/* if APPDATA not found we try with USERPROFILE */
@@ -364,11 +367,11 @@ bool setSCIHOME(void)
 			SHORTUSERHOMESYSTEM = getshortpathname(USERHOMESYSTEM,&bConverted);
 			if (SHORTUSERHOMESYSTEM)
 			{
-				if (!isdir(SHORTUSERHOMESYSTEM)) 
+				if (!isdir(SHORTUSERHOMESYSTEM))
 				{
 					/* last chance, we try to get default all users profile */
 					getenvc(&ierr,"ALLUSERSPROFILE",USERHOMESYSTEM,&buflen,&iflag);
-					if (ierr) 
+					if (ierr)
 					{
 						delete SHORTUSERHOMESYSTEM;
 						SHORTUSERHOMESYSTEM = NULL;
@@ -380,10 +383,10 @@ bool setSCIHOME(void)
 
 					if ( (!SHORTUSERHOMESYSTEM) || (!isdir(SHORTUSERHOMESYSTEM)) )
 					{
-						if(SHORTUSERHOMESYSTEM) 
-						{ 
-							delete SHORTUSERHOMESYSTEM; 
-							SHORTUSERHOMESYSTEM = NULL; 
+						if(SHORTUSERHOMESYSTEM)
+						{
+							delete SHORTUSERHOMESYSTEM;
+							SHORTUSERHOMESYSTEM = NULL;
 						}
 						return false;
 					}
@@ -391,25 +394,25 @@ bool setSCIHOME(void)
 			}
 			else
 			{
-				if(SHORTUSERHOMESYSTEM) 
-				{ 
-					delete SHORTUSERHOMESYSTEM; 
-					SHORTUSERHOMESYSTEM = NULL; 
+				if(SHORTUSERHOMESYSTEM)
+				{
+					delete SHORTUSERHOMESYSTEM;
+					SHORTUSERHOMESYSTEM = NULL;
 				}
 				return false;
 			}
 
 			/* checks that directory exists */
 			strcpy(USERHOMESYSTEM,SHORTUSERHOMESYSTEM);
-			if(SHORTUSERHOMESYSTEM) 
-			{ 
-				delete SHORTUSERHOMESYSTEM; 
-				SHORTUSERHOMESYSTEM = NULL; 
+			if(SHORTUSERHOMESYSTEM)
+			{
+				delete SHORTUSERHOMESYSTEM;
+				SHORTUSERHOMESYSTEM = NULL;
 			}
 		}
 		#else /* Linux */
-			C2F(getenvc)(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
-			if (ierr) return false; 
+			getenvc(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
+			if (ierr) return false;
 		#endif
 
 		/* Set SCIHOME environment variable */
@@ -456,7 +459,7 @@ bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
 		{
 			if ( slashToAntislash )
 			{
-				if (path_in[i] == UNIX_SEPATATOR) 
+				if (path_in[i] == UNIX_SEPATATOR)
 				{
 					path_out[i] = WINDOWS_SEPATATOR;
 					bOK = true;
@@ -464,7 +467,7 @@ bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
 			}
 			else
 			{
-				if (path_in[i] == WINDOWS_SEPATATOR) 
+				if (path_in[i] == WINDOWS_SEPATATOR)
 				{
 					path_out[i] = UNIX_SEPATATOR;
 					bOK = true;
@@ -478,13 +481,13 @@ bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
 }
 
 static char SCIPATH[PATH_MAX];
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 void setSCIpath(char *path)
 {
 	//if (path) strcpy(SCIPATH,path);
 	ConfigVariable::getInstance()->set("SCI", path);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 char *getSCIpath(void)
 {
 	return strdup(SCIPATH);
@@ -495,7 +498,7 @@ void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	#ifdef _MSC_VER
 	if (GetEnvironmentVariable(var,buf,(DWORD)*buflen) == 0)
 	{
-		if(*iflag == 1) 
+		if(*iflag == 1)
 			cout << "Undefined environment variable " << var << endl;
 		*ierr=1;
 	}
@@ -534,7 +537,7 @@ char *getshortpathname(char *longpathname,bool *convertok)
 
 		ShortName = new char[length];
 
-		if (ShortName) 
+		if (ShortName)
 		{
 			/* second converts path */
 			if ( GetShortPathName(longpathname, ShortName, length) )
@@ -605,7 +608,7 @@ bool createdirectory(const char *path)
 {
 	bool bOK=false;
 #ifndef _MSC_VER
-	if  (!isdir(path)) 
+	if  (!isdir(path))
 	{
 		if (mkdir(path, DIRMODE) == 0) bOK=true;
 	}
@@ -641,4 +644,27 @@ bool isDrive(const char *strname)
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/
+#else
+int SciEnvForOthers(void)
+{
+	int ierr,iflag=0;
+	int lbuf=PATH_MAX;
+	char *buf = new char[PATH_MAX];
+	if (buf)
+	{
+		getenvc(&ierr,"SCI",buf,&lbuf,&iflag);
 
+		if ( ierr== 1) 
+		{
+			cerr << "SCI environment variable not defined." << endl;
+			exit(1);
+		}
+		setSCIpath(buf);
+		delete buf;
+		buf = NULL;
+	}
+	
+	return 0;
+}
+
+#endif

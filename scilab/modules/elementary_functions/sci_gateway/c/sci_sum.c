@@ -1,31 +1,27 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
 
-#define _NEW_TONIO_
 /*--------------------------------------------------------------------------*/
 int sum_matrix(int _iMode);
 int sum_sparse();
 
-extern int C2F(intsum) _PARAMS((int *id));
 /*--------------------------------------------------------------------------*/
 int C2F(sci_sum) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iType				= 0;	
+	int iType				= 0;
 	int iMode				= 0;
 
 
@@ -58,9 +54,6 @@ int C2F(sci_sum) _PARAMS((char *fname,unsigned long fname_len))
 		OverLoad(1);
 		break;
 	}
-#else
-	C2F(intsum)(id);
-#endif
 	return 0;
 }
 
@@ -70,7 +63,7 @@ int sum_sparse()
 	int iCols				= 0;
 	int iRealData			= 0;
 	int iImgData			= 0;
-	
+
 	int iTotalElem		= 0;
 	int *piElemByRow	= NULL;
 	int *piColByRow		= NULL;
@@ -123,7 +116,7 @@ int sum_matrix(int _iMode)
 	int iRealData			= 0;
 	int iImgData			= 0;
 	int iIndex				= 0;
-	
+
 	double *pdblReal		= NULL;
 	double *pdblImg			= NULL;
 	double *pReturnRealData	= NULL;
@@ -135,7 +128,7 @@ int sum_matrix(int _iMode)
 		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
 		pdblReal		= stk(iRealData);
 		pdblImg			= stk(iImgData);
-	} 
+	}
 	else
 	{
 		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
@@ -167,7 +160,7 @@ int sum_matrix(int _iMode)
 		iReturnRows	= 1;
 		iReturnCols	= iCols;
 		break;
-	case BY_COLS : 
+	case BY_COLS :
 		iReturnRows	= iRows;
 		iReturnCols	= 1;
 		break;

@@ -47,10 +47,14 @@ src/c/dsearch.c \
 src/c/floor.c \
 src/c/mprod.c \
 src/c/pythag.c \
-src/c/matrix_generation.c
+src/c/matrix_generation.c \
+src/c/vmul.c \
+src/c/add_vector.c \
+src/c/sub_vector.c
 
 # List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
+ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp \
+					src/cpp/elem_func.cpp
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -164,7 +168,6 @@ src/fortran/split.f \
 src/fortran/wdrdiv.f \
 src/fortran/imcopy.f \
 src/fortran/cbal.f \
-src/fortran/cuproi.f \
 src/fortran/dsum.f \
 src/fortran/urand.f \
 src/fortran/intp.f \
@@ -352,12 +355,9 @@ sci_gateway/fortran/sci_f_zeros.f \
 sci_gateway/fortran/sci_f_ones.f \
 sci_gateway/fortran/sci_f_diag.f \
 sci_gateway/fortran/sci_f_number_properties.f \
-sci_gateway/fortran/sci_f_sum.f \
-sci_gateway/fortran/sci_f_cumprod.f \
 sci_gateway/fortran/sci_f_abs.f \
 sci_gateway/fortran/sci_f_spones.f \
 sci_gateway/fortran/sci_f_kron.f \
-sci_gateway/fortran/sci_f_dsearch.f \
 sci_gateway/fortran/sci_f_cumsum.f \
 sci_gateway/fortran/sci_f_nearfloat.f \
 sci_gateway/fortran/sci_f_isreal.f \
@@ -394,7 +394,11 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_builddir)/modules/functions_manager/includes \
+	-I$(top_builddir)/modules/types/includes \
+	-I$(top_builddir)/modules/symbol/includes
+
 
 # Includes need for the compilation
 libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
@@ -413,7 +417,8 @@ libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES) $(E
 CHECK_SRC= $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
 
-libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
+libscielementary_functions_la_LIBADD = 	libdummy-elementary_functions.la \
+					$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
 # Commented because it is one of the first module to be compiled
 #libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
 

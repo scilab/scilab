@@ -389,7 +389,8 @@ fi
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 IS_64_BITS_CPU=false
-if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
+case "$CC" in
+	 gcc-* | gcc | cc | cc-* | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
@@ -412,26 +413,26 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
-	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
+	    CFLAGS="$CFLAGS -fwritable-strings"
 	;;
-	 x86_64-*-linux-gnu)
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -m64"
+	 x86_64-*-linux-gnu | x86_64-linux-gnu)
+		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
 		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
-	;;		
+		CFLAGS="$CFLAGS  -DNARROWPROTO"
+	;;
 	 ia64-*-linux-gnu )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CFLAGS="$CFLAGS -DNARROWPROTO"
 		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
-		CFLAGS="$CFLAGS  -mieee-with-inexact -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
 		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
-		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
 	;;
 	 *-*-solaris*)
         if test "$enable_debug_C" = yes; then
@@ -457,8 +458,8 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
      LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
 esac
-
-else
+;; # end of the gcc case on the $CC
+   *)
 
 		## CC compiler (not GCC)
         if test "$enable_debug_C" = yes; then
@@ -502,7 +503,8 @@ case "$host" in
 	LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
   ;;
 esac
-fi
+;; # end of not a gcc compiler
+esac
 
 
 # flag for possible compilations in configure
@@ -527,7 +529,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 
 ###############################
 ### Regenerate the parser files
-### Flex & Yacc 
+### Flex & Yacc
 ###############################
 
 if test "$enable_build_parser" != no; then
@@ -541,7 +543,7 @@ if test "$enable_build_parser" != no; then
    if test -z "$YACC"; then
 	  AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)])
   fi
-# Actually, AC_PROG_YACC is lying. It sometimes put yacc into $YACC even it 
+# Actually, AC_PROG_YACC is lying. It sometimes put yacc into $YACC even it
 # hasn't been able to find it.
 #  AC_CHECK_PROG(YACC_PRESENT, $YACC, AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)]) )
 
@@ -591,7 +593,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 				LOOKS=$PACKAGE_JAR_FILE
 				AC_SUBST(LOOKS)
 
-				#  Skin Look and Feel 
+				#  Skin Look and Feel
 				AC_JAVA_CHECK_PACKAGE([skinlf],[com.l2fprod.util.AccessUtils],[Scilab Gui - Skin Look and Feel])
 				SKINLF=$PACKAGE_JAR_FILE
 				AC_SUBST(SKINLF)
@@ -832,7 +834,7 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 fi
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)
 AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
 
@@ -875,7 +877,7 @@ AC_ARG_WITH(pvm,
 
 PVM_ENABLE=no
 if test "$with_pvm" = yes; then
-   AC_PVM()	
+   AC_PVM()
    PVM_ENABLE=yes
 fi
 AC_SUBST(PVM_ENABLE)
@@ -966,7 +968,7 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
 #######################
 
 AC_PCRE()
-	  	 
+
  #############################################
 #################
 ## Tcl/Tk library
@@ -1002,7 +1004,7 @@ if test "$with_tk" != no; then
 
 ###########################
 ########## X11 checks
-########################### 	 
+###########################
 		## This check is mandatory since tk needs Xlib headers and libs
 		AC_PATH_XTRA
 		##
@@ -1053,21 +1055,21 @@ if test "$with_matio" != no; then
    else
       PKG_CHECK_MODULES(MATIO, [matio >= 1.3.3])
    fi
-   
+
    save_CFLAGS="$CFLAGS"
    save_LIBS="$LIBS"
 
    CFLAGS="$CFLAGS $MATIO_CFLAGS"
    LIBS="$LIBS $MATIO_LIBS"
-   
+
    AC_CHECK_HEADERS([matio.h matioConfig.h], [],
      [AC_MSG_ERROR([Invalid MATIO_CFLAGS returned by pkg-config. Try to define MATIO_CFLAGS.])])
    AC_CHECK_LIB([matio], [Mat_Open], [],
      [AC_MSG_ERROR([Invalid MATIO_LIBS returned by pkg-config. Try to define MATIO_LIBS.])])
-   
+
    LIBS="$save_LIBS"
    CFLAGS="$save_CFLAGS"
-   
+
    AC_DEFINE([WITH_MATIO], [], [With the MATIO library])
    MATIO_ENABLE=yes
 fi
@@ -1088,7 +1090,7 @@ if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
     AC_DOCBOOK()
 	HELP_ENABLE=yes
 
-fi 
+fi
 AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
 ## Install XML help files ###
@@ -1098,7 +1100,7 @@ AC_ARG_WITH(install-help-xml,
 HELP_INSTALL_ENABLE=no
 if test "$with_install_help_xml" != no -a "$with_install_help_xml" != ""; then
    HELP_INSTALL_ENABLE=yes
-fi 
+fi
 AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 
 
@@ -1191,6 +1193,7 @@ modules/parse/Makefile
 modules/symbol/Makefile
 modules/types/Makefile
 modules/functions_manager/Makefile
+modules/system_env/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
@@ -1309,7 +1312,7 @@ AC_CONFIG_COMMANDS([modules/core/includes/stack.h],
 
 AC_OUTPUT
 
-# To distribution packager, you can uncomment this stuff is you want to 
+# To distribution packager, you can uncomment this stuff is you want to
 # disable the rpath issue
 # However, you will have to set all the LD_LIBRARY_PATH to .libs/ directory
 # since scilab is compiling macros and help into the source tree (ie before
@@ -1380,7 +1383,7 @@ if test $SCICOS_ENABLE = yes; then
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
-else 
+else
    echo "Not using Scicos"
 fi
 fi
@@ -1507,7 +1510,7 @@ else
 echo "  JAVA disabled"
 fi
 
-echo "" 
+echo ""
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
 echo "  TCL_INC_PATH ....... = $TCL_INC_PATH"
@@ -1515,13 +1518,13 @@ echo "  TCLTK_LIBS ......... = $TCLTK_LIBS"
 echo "  TCL_SERIAL_VERSION . = $TCL_SERIAL_VERSION"
 echo "  TK_SERIAL_VERSION .. = $TK_SERIAL_VERSION"
 
-echo "" 
+echo ""
 echo "XML configuration:"
 echo "  XML_FLAGS .......... = $XML_FLAGS"
 echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
 
-echo "" 
+echo ""
 echo "PCRE configuration:"
 echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"
@@ -1571,7 +1574,7 @@ if test "$SCI_SRCDIR_FULL" != "$SCI_BUILDDIR"; then
 echo "  VPATH build ......... = Activated"
 fi
 
-echo "" 
+echo ""
 echo "Platform informations:"
 echo "  host ........... = $host"
 echo "  host_cpu ....... = $host_cpu"

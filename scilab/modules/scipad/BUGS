@@ -464,6 +464,9 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  Could be done with the Ttk notebook widget (Tk 8.5 only) - perhaps allow it
  only with 8.5, and have a switch between paned scheme and tabbed scheme
  (not sure what would be the result in mixing both)
+ An interesting thread mentioning a limitation of the Ttk notebook widget
+ (single row of panes) is:
+http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/bba512d685cfd751
 
 -Requests 461 and 462: improvements wrt to xml editing. However, the position
  expressed by Enrico says it all: "Scipad was never really conceived to be a

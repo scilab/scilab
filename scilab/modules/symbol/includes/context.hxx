@@ -20,7 +20,6 @@
 
 #include "stack.hxx"
 #include "heap.hxx"
-#include "funcmanager.hxx"
 
 namespace symbol
 {

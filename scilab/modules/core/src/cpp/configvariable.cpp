@@ -11,7 +11,6 @@
 */
 
 #include "configvariable.hxx"
-#include <string>
 
 ConfigVariable* ConfigVariable::me;
 
@@ -24,9 +23,9 @@ ConfigVariable* ConfigVariable::getInstance()
 	return me;
 }
 
-string ConfigVariable::get(string _szVar)
+std::string ConfigVariable::get(std::string _szVar)
 {
-	map<string, string>::const_iterator it;
+	std::map<std::string, std::string>::const_iterator it;
 	it = m_VarList.find(_szVar);
 	if(it != m_VarList.end())
 	{
@@ -38,11 +37,11 @@ string ConfigVariable::get(string _szVar)
 	}
 }
 
-bool ConfigVariable::set(string _szVar, string _szVal)
+bool ConfigVariable::set(std::string _szVar, std::string _szVal)
 {
 	bool bReturn = true;
-	//map <string, string> ::const_iterator it;
-	m_VarList.insert(pair<string,string>(_szVar,_szVal));
+	//std::map <std::string, std::string> ::const_iterator it;
+	m_VarList.insert(std::pair<std::string,std::string>(_szVar,_szVal));
 	//m_VarList[_szVar] = _szVal;
 	return bReturn;
 }

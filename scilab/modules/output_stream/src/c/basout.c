@@ -73,14 +73,16 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
+		buffer=UTFToLocale(string); /** convert string to system locale encoding for file output*/
+        nbcharacters=strlen(buffer);
 		/* Output to a file */
 		if (*lunit == C2F(iop).wio) 
 		{
-			diary(string, &nbcharacters);
+			diary(buffer, &nbcharacters);
 		}
 		else 
 		{
-			C2F(writelunitstring)(lunit, string,nbcharacters);
+			C2F(writelunitstring)(lunit, buffer,nbcharacters);
 		}
 	}
 	return 0;

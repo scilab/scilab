@@ -1,3 +1,11 @@
+Francois VOGEL, 20/10/08
+ * Fixed wrong title bar update when saving while focused in peer <x> (x>1),
+   the last peer in the list (instead of the focused peer) did win the title
+   bar label
+ * Added new command "Create help from head comments" - Initial code and
+   function help_from_sci courtesy of Torbjørn Pettersen
+ * version --> 7.7
+
 Francois VOGEL, 03/10/08
  * Worked around bug 3631 (empty primitive name output by what())
  * version --> 7.6

@@ -22,8 +22,9 @@
 #ifdef HAVE_LIBINTL_H
 /* Have been able to find the libintl.h file on the system */
 #include <libintl.h>
+#include "charEncoding.h"
 
-#define _(String) gettext (String)
+#define _(String)   gettext(String)/** for console message*/
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 
 #else

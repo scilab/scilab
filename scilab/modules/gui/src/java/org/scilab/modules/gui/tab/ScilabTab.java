@@ -495,6 +495,16 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public void setCurrent() {
 		ScilabBridge.setCurrent(this);
 	}
+	
+	/**
+	 * Set the background color of the tab.
+	 * @param red red channel of the color
+	 * @param green green channel
+	 * @param blue blue channel
+	 */
+	public void setBackground(double red, double green, double blue) {
+		ScilabBridge.setBackground(this, red, green, blue);
+	}
 
 }
 

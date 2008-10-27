@@ -12,6 +12,7 @@
  */
 
 #include "javasci_Scilab2.h"
+#include "CallScilab.h"
 /*****************************************************************************/
 /**
 * Add on  : Javasci for Pro-Active 
@@ -277,7 +278,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
 
 			sprintf(job,"%s(%d,%d)=\"\"%s\"\";",cname,i+1,j+1,element);
 
-			if (send_scilab_job(job))
+			if (SendScilabJob(job))
 			{
 				/* throws exceptions */
 			}

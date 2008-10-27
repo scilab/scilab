@@ -99,7 +99,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidsetFigureIndexjintID=NULL; 
+jintnewWindowjintID=NULL; 
 
 
 }
@@ -122,7 +122,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        voidsetFigureIndexjintID=NULL; 
+        jintnewWindowjintID=NULL; 
 
 
 }
@@ -147,19 +147,23 @@ exit(EXIT_FAILURE);
 
 // Method(s)
 
-void ScilabGraphicWindow::setFigureIndex (int figureIndex){
+int ScilabGraphicWindow::newWindow (JavaVM * jvm_, int figureIndex){
 
-JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
 
-if (voidsetFigureIndexjintID==NULL) { /* Use the cache Luke */ voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
-if (voidsetFigureIndexjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setFigureIndex");
+jmethodID jintnewWindowjintID = curEnv->GetStaticMethodID(cls, "newWindow", "(I)I" ) ;
+if (jintnewWindowjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newWindow");
 }
-}
-                         curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
-                        if (curEnv->ExceptionCheck()) {
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewWindowjintID ,figureIndex);
+if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+return res;
+
 }
 
 }

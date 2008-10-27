@@ -21,12 +21,14 @@
 * DEMOS_ID returns "scilab_demos();"
 * SAVE_ID returns "home/scilab.save"
 * QUIT_ID returns "exec('SCI/etc/scilab.quit',-1);quit;"
+* QUIT_ERRCATCH_ID returns "exec('SCI/etc/scilab.quit','errcatch',-1);quit;"
 */
 #define MANUAL_ID 0 
 #define STARTUP_ID 1
 #define DEMOS_ID 2
 #define SAVE_ID 3
 #define QUIT_ID 4
+#define QUIT_ERRCATCH_ID 5
 
 void C2F(inffic)(int *iopt, char *name, int *nc);
 
