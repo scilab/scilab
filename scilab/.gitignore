@@ -82,6 +82,7 @@ Debug
 *.u2d
 *.suo
 *.ncb
+VTune
 #
 # others files (windows)
 #
