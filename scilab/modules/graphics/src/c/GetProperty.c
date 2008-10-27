@@ -2029,33 +2029,8 @@ sciGetName (sciPointObj * pobj)
     case SCI_SUBWIN:
     case SCI_AGREG:
     default:
-      printSetGetErrorMessage("name");
+      printSetGetErrorMessage("figure_name");
       return NULL;
-      break;
-    }
-}
-
-
-/**sciGetNameLength
- * Returns the length of the name of the Figure or SubWindow
- * @param sciPointObj * pobj: the pointer to the entity
- * @return the length of the Name
- */
-int
-sciGetNameLength (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return pFIGURE_FEATURE (pobj)->namelen;
-      break;
-    case SCI_SUBWIN:
-      return pSUBWIN_FEATURE (pobj)->namelen;
-      break;
-    case SCI_AGREG:
-    default:
-      printSetGetErrorMessage("name");
-      return 0;
       break;
     }
 }
