@@ -264,7 +264,6 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wdrdiv.lo \
 	libscielementary_functions_la-imcopy.lo \
 	libscielementary_functions_la-cbal.lo \
-	libscielementary_functions_la-cuproi.lo \
 	libscielementary_functions_la-dsum.lo \
 	libscielementary_functions_la-urand.lo \
 	libscielementary_functions_la-intp.lo \
@@ -881,7 +880,6 @@ src/fortran/split.f \
 src/fortran/wdrdiv.f \
 src/fortran/imcopy.f \
 src/fortran/cbal.f \
-src/fortran/cuproi.f \
 src/fortran/dsum.f \
 src/fortran/urand.f \
 src/fortran/intp.f \
@@ -2455,9 +2453,6 @@ libscielementary_functions_la-imcopy.lo: src/fortran/imcopy.f
 
 libscielementary_functions_la-cbal.lo: src/fortran/cbal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-cbal.lo `test -f 'src/fortran/cbal.f' || echo '$(srcdir)/'`src/fortran/cbal.f
-
-libscielementary_functions_la-cuproi.lo: src/fortran/cuproi.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-cuproi.lo `test -f 'src/fortran/cuproi.f' || echo '$(srcdir)/'`src/fortran/cuproi.f
 
 libscielementary_functions_la-dsum.lo: src/fortran/dsum.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dsum.lo `test -f 'src/fortran/dsum.f' || echo '$(srcdir)/'`src/fortran/dsum.f

@@ -168,7 +168,6 @@ src/fortran/split.f \
 src/fortran/wdrdiv.f \
 src/fortran/imcopy.f \
 src/fortran/cbal.f \
-src/fortran/cuproi.f \
 src/fortran/dsum.f \
 src/fortran/urand.f \
 src/fortran/intp.f \
