@@ -26,6 +26,7 @@
 #include "debugvisitor.hxx"
 #include "configvariable.hxx"
 #include "setenvvar.hxx"
+#include "funcmanager.hxx"
 
 const char*	prog_name;
 const char*	file_name;
@@ -39,6 +40,11 @@ bool timed = false;
 
 using symbol::Context;
 using std::string;
+
+void Add_i(void);
+void Add_pi(void);
+void Add_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
+
 
 void usage ()
 {
@@ -183,12 +189,10 @@ int	main (int argc, char *argv[])
 		if (timed) { _timer.start(); }
 		{
 			SetScilabEnvironment();
- 			types::Double* Img = new types::Double(1,1,true);
-			Img->val_set(0,0,0,1);
 			FuncManager *pFM = new FuncManager();
-			Context::getInstance()->put(*new symbol::Symbol("%i"), *Img);
 
-	
+			Add_pi();
+			Add_i();
 			ast::ExecVisitor *execMe = new ast::ExecVisitor();
 			try
 			{
@@ -227,3 +231,20 @@ int	main (int argc, char *argv[])
 	return WELL_DONE;
 }
 
+
+void Add_pi(void)
+{
+	Add_Constant("%pi", 3.1415926535897931159980, 0, false);
+}
+
+void Add_i(void)
+{
+	Add_Constant("%i", 0, 1, true);
+}
+
+void Add_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex)
+{
+	types::Double* pVal = new types::Double(1,1,_bComplex);
+	pVal->val_set(0,0,_dblReal,_dblImg);
+	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
+}

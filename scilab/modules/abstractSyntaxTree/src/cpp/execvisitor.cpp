@@ -328,16 +328,18 @@ namespace ast
 	void ExecVisitor::visit (const AssignExp  &e)
 	{
 		/*Create local exec visitor*/
-		ExecVisitor* execMe = new ast::ExecVisitor();
+		ExecVisitor* execMeR = new ast::ExecVisitor();
+		ExecVisitor* execMeL = new ast::ExecVisitor();
 		try
 		{
 			/*getting what to assign*/
-			e.right_exp_get().accept(*execMe);
+			e.right_exp_get().accept(*execMeR);
+			e.left_exp_get().accept(*execMeL);
 
 			/*get symbol*/
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.left_exp_get());
 			
-			InternalType *pVar	=	execMe->result_get();
+			InternalType *pVar	=	execMeR->result_get();
 			if(pVar->isList())
 			{
 				double *pData = NULL;
@@ -353,7 +355,8 @@ namespace ast
 		{
 			throw sz;
 		}
-		delete execMe;
+		delete execMeR;
+		delete execMeL;
 	}
 
 	void ExecVisitor::visit(const CallExp &e)

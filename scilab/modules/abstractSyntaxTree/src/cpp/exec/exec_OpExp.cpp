@@ -370,6 +370,68 @@ namespace ast
 				}
 				break;
 			}
+		case OpExp::divide:
+			{
+				if(TypeR == GenericType::RealDouble)
+				{
+					Double *pL			= (Double*)execMeL.result_get();
+					Double *pR			= (Double*)execMeR.result_get();
+					Double *pResult = NULL;
+
+
+					if(pR->size_get() == 1)
+					{
+						double *pReal			= NULL;
+						double *pImg			= NULL;
+
+						double *pdblRealL	= pL->real_get();
+						double *pdblImgL	= pL->img_get();
+						double pdblRealR	= pR->real_get() == NULL ? 0 : pR->real_get()[0];
+						double pdblImgR		= pR->img_get() == NULL ? 0 : pR->img_get()[0];
+
+						pResult						= new Double(pL->rows_get(), pL->cols_get(), &pReal, &pImg);
+
+						for(int i = 0 ; i < pL->size_get() ; i++)
+						{
+							pReal[i]	= (pdblRealL == NULL ? 0 : pdblRealL[i])	/ pdblRealR;
+							pImg[i]		= (pdblImgL == NULL ? 0 : pdblImgL[i])		/ pdblImgR;
+						}
+
+						if(pL->isComplex() == false && pR->isComplex() == false)
+						{
+							pResult->complex_set(false);
+						}
+					}
+					else if(pR->size_get() == 1)
+					{//add pL with each element of pR
+						double *pReal			= NULL;
+						double *pImg			= NULL;
+
+						double *pdblRealR	= pR->real_get();
+						double *pdblImgR	= pR->img_get();
+						double pdblRealL	= pL->real_get() == NULL ? 0 : pL->real_get()[0];
+						double pdblImgL		= pL->img_get() == NULL ? 0 : pL->img_get()[0];
+
+						pResult						= new Double(pR->rows_get(), pR->cols_get(), &pReal, &pImg);
+
+						for(int i = 0 ; i < pR->size_get() ; i++)
+						{
+							pReal[i]	= pdblRealL * (pdblRealR == NULL ? 0 : pdblRealR[i])	-  pdblImgL	* (pdblImgR == NULL ? 0 : pdblImgR[i]);
+							pImg[i]		= pdblRealL	* (pdblImgR == NULL ? 0 : pdblImgR[i])		+  pdblImgL	* (pdblRealR == NULL ? 0 : pdblRealR[i]);
+						}
+
+						if(pL->isComplex() == false && pR->isComplex() == false)
+						{
+							pResult->complex_set(false);
+						}
+					}
+					else
+					{//matrix * matrix call atlas :(
+					}
+					result_set(pResult);
+				}
+				break;
+			}
 		case OpExp::eq :
 			{
 				if(TypeR == GenericType::RealDouble)
