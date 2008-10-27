@@ -105,10 +105,12 @@ void Initialize(void)
   #else
    if (sciPath==NULL)
    {
-   	fprintf(stderr,"Please define SCI environment variable\n");
-	sprintf (env, "%s=%s", "SCI",sciPath);
-	setSCIpath(SCI);
-	putenv (env);
+	   fprintf(stderr,"Please define SCI environment variable\n");
+	   exit(EXIT_FAILURE);
+   }else{
+	   sprintf (env, "%s=%s", "SCI",sciPath);
+	   setSCIpath(SCI);
+	   putenv (env);
    }
 
 
