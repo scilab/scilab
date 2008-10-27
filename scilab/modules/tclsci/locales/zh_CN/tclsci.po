@@ -252,13 +252,13 @@ msgid "Impossible to set system encoding."
 msgstr "不可能设置系统编码。"
 
 msgid "&File"
-msgstr "文件( &F)"
+msgstr "文件(&F)"
 
 msgid "&Tools"
-msgstr "工具( &T)"
+msgstr "工具(&T)"
 
 msgid "&Edit"
-msgstr "编辑( &E)"
+msgstr "编辑(&E)"
 
 msgid "&?"
 msgstr "&?"

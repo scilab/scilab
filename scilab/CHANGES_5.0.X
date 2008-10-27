@@ -1,19 +1,51 @@
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
 
+Compilation:
+============
+
+- DLINUX option for the gcc removed (useless)
+
+Enhancement:
+============
+
 - The toolbox skeleton is now released into the public domain to facilitate
   the reuse of the code
 
+- Scilab 5.0.3 uses GIWS 1.0.1
+
+- Update of the license.txt of each module
+
+- License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module)
+
 Bug fixes:
 ==========
+
+* rmdir & removedir had problems with the recursive delete under GNU/Linux
 
 * bug 2647 fixed - Bad display of some numbers in special cases due to a gfortran bug
 
 * bug 3484 fixed - Scilab crashes when scicos is invoked from the command line.
 
+* bug 3529 fixed - rmdir was trying to change the permission on the file/directory. This behavior has been removed.
+
 * bug 3588 fixed - The figure number is missing from the title of graphic windows when Scilab in launched in French.
 
+* bug 3602 fixed - format("e",dd) was causing a bug in gettklib (format of the number)
+
+* bug 3604 fixed - Problems with getting Frame uicontrol position (Scilab crash)
+* bug 3605 fixed - Could not use javasci in the Linux binary
+
+* bug 3607 fixed - Wrong values in Java configuration was causing the memory issues
+
 * bug 3621 fixed - Wrong setting of figure_position in the default figure.
+
+* bug 3646 fixed - Scilab GUI doesn't start on some Windows
+
+* bug 3647 fixed - 'call' doesn't manage external functions named with more 23 characters
+
+* bug 3663 fixed - getshortpathname & getlongpathname could return '' and not a correct path
+
 
                           Changes Scilab 5.0.1 -> 5.0.2
                           =============================

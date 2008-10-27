@@ -12,6 +12,6 @@
 x0 = 0;
 x1=0:0.1:2*%pi;
 computed = integrate('sin(x)','x',x0,x1);
-expected = 1 - cos(x1)
+expected = 1 - cos(x1);
 if (norm(computed-expected) > 10* %eps) then pause,end
 
