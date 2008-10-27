@@ -1888,51 +1888,44 @@ sciSetResize (sciPointObj * pobj, BOOL value)
 
 
 
-/**sciSetName
- * Sets the name of the Figure
- * @param sciPointObj * pobj: the pointer to the entity
- * @param char pvalue: a pointer to the string contening name
- * @param int length: the length of the string (without the ending (char)0 ).
- * @return
- */
-int
-sciSetName (sciPointObj * pobj, char *pvalue, int length)
+int sciInitName(sciPointObj * pobj, char * newName)
 {
   switch (sciGetEntityType (pobj))
-    {
+  {
     case SCI_FIGURE:
     {
-      /* the length of the C string */
-      int realLength = length + 1 ;
+      int newNameLength;
       int percentStatus = 0 ;
-      if( realLength > SCI_FIGURE_NAME_LENGTH )
-      {
-	sciprint(_("Figure name is limited to %d characters.\n"), SCI_FIGURE_NAME_LENGTH - 1 );
-        return -1 ;
-      }
 
-      percentStatus = checkPercent( pvalue ) ;
-      if ( percentStatus < 0  )
-      {
-        sciprint(_("Figure name may not contains any %% character, except a single %%d.\n")) ;
-        return -1 ;
-      }
+			/* first case newName is NULL */
+			if (newName == NULL)
+			{
+				/* Just set tan empty title for the phisical window if needed */
+				if (!isFigureModel(pobj))
+				{
+					sciSetJavaTitle(pobj, "");
+				}
+				
+				return 0;
+			}
+			
+			/* newName is a valid string */
+			newNameLength = strlen(newName);
+      
+      /* Reallocate name */
+      pFIGURE_FEATURE(pobj)->name = MALLOC( (newNameLength + 1) * sizeof(char) );
 
-      strcpy (pFIGURE_FEATURE (pobj)->name, pvalue ) ;
-      pFIGURE_FEATURE (pobj)->namelen = length ;
-
-      if (pobj != getFigureModel())
+			/* copy the string */
+      strcpy(pFIGURE_FEATURE(pobj)->name, newName) ;
+			
+			/* Update the name of the physical window if one exists */
+      if (!isFigureModel(pobj))
       {
-	char * str = NULL ;
-        if ( percentStatus == 0 )
+      	/* In this case, we need to send the name to the physical window */
+        if ( checkPercent(newName) == 0 )
         {
-          str = CALLOC( realLength, sizeof(char) ) ;
-          if ( str == NULL )
-          {
-            sciprint(_("%s: No more memory.\n"),"sciSetName");
-            return -1 ;
-          }
-          strcpy( str, pvalue ) ;
+         	/* no %d, set the java title directly */
+        	sciSetJavaTitle(pobj, pFIGURE_FEATURE(pobj)->name);
         }
         else
         {
@@ -1940,33 +1933,62 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
           /* get the number digits of the window number */
           int figureNumber = sciGetNum( pobj ) ;
           int nbDigits = GET_NB_DIGITS( figureNumber ) ;
-          realLength = realLength + nbDigits - 2 ; /* -2 for the %d */
-          str = CALLOC( realLength, sizeof(char) ) ;
-          if ( str == NULL )
+          int realTitleLength = newNameLength + nbDigits - 2 ; /* -2 for the %d which is replaced */
+          char * realTitle = MALLOC( (realTitleLength + 1) * sizeof(char) ) ;
+          if ( realTitle == NULL )
           {
             sciprint(_("%s: No more memory.\n"),"sciSetName");
             return -1 ;
           }
-          sprintf( str, pvalue, figureNumber ) ;
-          length = realLength - 1 ;
+          sprintf( realTitle, newName, figureNumber ) ;
+          sciSetJavaTitle(pobj, realTitle);
+          FREE(realTitle) ;
         }
 
-        /* set the java title */
-        sciSetJavaTitle(pobj, str);
-
-        FREE(str) ;
+        
       }
 
-      break;
+      return 0 ;
     }
-    case SCI_SUBWIN:
-    case SCI_AGREG:
     default:
-      printSetGetErrorMessage("name");
+      printSetGetErrorMessage("figure_name");
       return -1 ;
       break;
     }
-  return 0 ;
+}
+
+/**sciSetName
+ * Sets the name of the Figure
+ * @param sciPointObj * pobj: the pointer to the entity
+ * @param char newName: a pointer to the string contening name
+ * @return
+ */
+int
+sciSetName(sciPointObj * pobj, char * newName)
+{
+  if (   newName != NULL
+      && sciGetName(pobj) != NULL
+      && strcmp(sciGetName(pobj), newName) == 0)
+	{
+		// nothing to do
+		return 1;
+	}
+	
+	/* Check that the string contains at most one %d character */
+	if (checkPercent(newName) < 0)
+  {
+  	sciprint(_("Figure name may not contains any %% character, except a single %%d.\n")) ;
+  	return -1 ;
+  }
+	
+	/* Free the current name if needed */
+	if (sciGetName(pobj) != NULL)
+	{
+		FREE(pFIGURE_FEATURE(pobj)->name);
+		pFIGURE_FEATURE(pobj)->name = NULL;
+	}
+	
+	return sciInitName(pobj, newName);
 }
 
 int sciInitNum( sciPointObj * pobj, int value )
