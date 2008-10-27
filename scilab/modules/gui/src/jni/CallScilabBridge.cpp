@@ -115,6 +115,7 @@ jstringnewContextMenujobjectArrayID=NULL;
 jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
+jintnewWindowjintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -321,6 +322,7 @@ jstringnewContextMenujobjectArrayID=NULL;
 jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
+jintnewWindowjintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -844,6 +846,25 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "destroyFrame");
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+int CallScilabBridge::newWindow (JavaVM * jvm_, int figureIndex){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewWindowjintID = curEnv->GetStaticMethodID(cls, "newWindow", "(I)I" ) ;
+if (jintnewWindowjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newWindow");
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewWindowjintID ,figureIndex);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
 }
 
 void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, int figureID, int objID){
