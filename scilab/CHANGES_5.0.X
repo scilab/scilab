@@ -33,7 +33,19 @@ Bug fixes:
 
 * bug 3602 fixed - format("e",dd) was causing a bug in gettklib (format of the number)
 
+* bug 3604 fixed - Problems with getting Frame uicontrol position (Scilab crash)
+* bug 3605 fixed - Could not use javasci in the Linux binary
+
+* bug 3607 fixed - Wrong values in Java configuration was causing the memory issues
+
 * bug 3621 fixed - Wrong setting of figure_position in the default figure.
+
+* bug 3646 fixed - Scilab GUI doesn't start on some Windows
+
+* bug 3647 fixed - 'call' doesn't manage external functions named with more 23 characters
+
+* bug 3663 fixed - getshortpathname & getlongpathname could return '' and not a correct path
+
 
                           Changes Scilab 5.0.1 -> 5.0.2
                           =============================
