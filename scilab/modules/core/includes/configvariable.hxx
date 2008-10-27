@@ -1,34 +1,33 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #include <map>
-
-using namespace std;
+#include <string>
 
 class ConfigVariable
 {
 private :
-	ConfigVariable(){};
-	~ConfigVariable(){};
+  ConfigVariable(){};
+  ~ConfigVariable(){};
 
-	static ConfigVariable *me;
+  static ConfigVariable *me;
 
-	map<string, string>m_VarList;
+  std::map<std::string, std::string>m_VarList;
 public :
 
-	static ConfigVariable* getInstance();
+  static ConfigVariable* getInstance();
 
-	string	get(string _szVar);
-	bool		set(string _szVar, string _szVal);
+  std::string	get(std::string _szVar);
+  bool		set(std::string _szVar, std::string _szVal);
 
 };
 
