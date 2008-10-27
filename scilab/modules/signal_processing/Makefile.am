@@ -3,7 +3,9 @@
 ### INRIA - Scilab 2006
 ##########
 
-SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
+SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c \
+src/c/sci_levinson.c \
+src/c/sci_fftnew.c
 
 SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/sci_ffir.f \
 src/fortran/degree.f \
@@ -94,7 +96,11 @@ sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes \
+-I$(top_srcdir)/modules/double/includes
+
+
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 
@@ -106,7 +112,7 @@ libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGN
 CHECK_SRC= $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisignal_processing_la_CFLAGS)
 
-libscisignal_processing_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscisignal_processing_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 if USE_EMBEDDED_LAPACK
@@ -114,7 +120,7 @@ libscisignal_processing_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
 endif
 
 if USE_EMBEDDED_BLAS
-libscisignal_processing_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la 
+libscisignal_processing_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
 endif
 
 #### Target ######

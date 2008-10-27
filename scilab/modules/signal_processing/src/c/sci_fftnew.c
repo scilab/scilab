@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,7 +16,7 @@
 #include "stack-c.h"
 #include "stackinfo.h"
 #include "sciprint.h"
-#include "..\localization\includes\localization.h"
+#include "localization.h"
 #include <stdlib.h>
 
 extern int C2F(fft842)();
@@ -99,7 +99,7 @@ int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 		else
 		{
 			GetRhsHyperMatrixVar(1, &iDims, &iReal1);
-			
+
 		}
 
 */
@@ -169,7 +169,7 @@ int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 			iColsPow2	= (int)pow(2,(int)((log(iCols1 + 0.5) / log(2))));
 
 			//first call ()
-			//If m2 is a power of two and less than m<2^15 use fft842 for efficiency 
+			//If m2 is a power of two and less than m<2^15 use fft842 for efficiency
 			if(iRowsPow2 == iRows1 && iRows1 < pow(2,15))
 				for(iIndex1 = 0 ; iIndex1 < iCols1 ; iIndex1++)
 					C2F(fft842)(&iWay, &iRows1, &pReturnReal[iRows1 * iIndex1],
@@ -183,8 +183,8 @@ int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 			}
 
 			//second call ()
-			if(	pow(2,iCols1) <= iSpaceFree && 
-				iColsPow2 == iCols1 && 
+			if(	pow(2,iCols1) <= iSpaceFree &&
+				iColsPow2 == iCols1 &&
 				iCols1 <= pow(2,15))
 			{
 				double *pdblWorkSpaceReal	= (double*)malloc(sizeof(double) * iCols1);
@@ -263,7 +263,7 @@ int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 
 		iSeg = iSize1/iDim/iInc;
 		pdblWorkSpace	= (double*)malloc(sizeof(double) * iSpaceFree);
-		C2F(dfft2)(pReturnReal, pReturnImg, &iSeg, &iDim, &iInc, &iWay, &iErr, 
+		C2F(dfft2)(pReturnReal, pReturnImg, &iSeg, &iDim, &iInc, &iWay, &iErr,
 			pdblWorkSpace, &iSpaceFree);
 		free(pdblWorkSpace);
 	}
