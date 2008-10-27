@@ -10246,7 +10246,7 @@ SCIVERSION=`cat $SCI_SRCDIR/Version.incl | sed -e "s/SCIVERSION=//" `
 if test "$with_intelcompilers" = yes; then
 
 
-		CFLAGS=" $CFLAGS -Dlinux -DNARROWPROTO -mp"
+		CFLAGS=" $CFLAGS -DNARROWPROTO -mp"
 		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
 
 		FFLAGS=" $FFLAGS -cm  -w90 -w95 -mp"
