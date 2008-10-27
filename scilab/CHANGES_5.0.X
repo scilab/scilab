@@ -31,6 +31,8 @@ Bug fixes:
 
 * bug 3588 fixed - The figure number is missing from the title of graphic windows when Scilab in launched in French.
 
+* bug 3602 fixed - format("e",dd) was causing a bug in gettklib (format of the number)
+
 * bug 3621 fixed - Wrong setting of figure_position in the default figure.
 
                           Changes Scilab 5.0.1 -> 5.0.2
