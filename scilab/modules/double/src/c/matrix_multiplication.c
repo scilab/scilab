@@ -13,14 +13,25 @@
 #include "double.h"
 
 int iMultiComplexMatrixByComplexMatrix(
-		double *_pdblReal1,		double *_pdblImg1, int _iRows1, int _iCols1,
-		double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
+		double *_pdblReal1,		double *_pdblImg1,	int _iRows1, int _iCols1,
+		double *_pdblReal2,		double *_pdblImg2,	int _iRows2, int _iCols2,
 		double *_pdblRealOut,	double *_pdblImgOut)
 {
-	zwmmuls(_pdblReal1, _pdblImg1, _iRows1,
-			_pdblReal2, _pdblImg2, _iRows2,
-			_pdblRealOut, _pdblImgOut, _iRows1,
-			_iRows1,	_iCols1, _iCols2);
+	double dblOne		= 1;
+	double dblMinusOne	= -1;
+	double dblZero		= 0;
+
+	int iRowsOut	= _iRows1;
+
+	//Cr <-  1*Ar*Br + 0*Cr
+	F2C(dgemm)("N","N", &iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblReal1	, &_iRows1, _pdblReal2	, &_iRows2, &dblZero	, _pdblRealOut	, &iRowsOut);
+	//Cr <- -1*Ai*Bi + 1*Cr
+	F2C(dgemm)("N","N", &iRowsOut, &_iCols2, &_iCols1, &dblMinusOne	, _pdblImg1		, &_iRows1, _pdblImg2	, &_iRows2, &dblOne		, _pdblRealOut	, &iRowsOut);
+	//Ci <-  1*Ar*Bi + 0*Ci
+	F2C(dgemm)("N","N", &iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblReal1	, &_iRows1, _pdblImg2	, &_iRows2, &dblZero	, _pdblImgOut	, &iRowsOut);
+	//Ci <-  1*Ai*Br + 1*Ci
+	F2C(dgemm)("N","N", &iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblImg1		, &_iRows1, _pdblReal2	, &_iRows2, &dblOne		, _pdblImgOut	, &iRowsOut);
+
 	return 0;
 }
 

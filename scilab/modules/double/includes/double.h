@@ -42,11 +42,6 @@ extern C2F(zgelsy1)();
 extern int C2F(zscal)();
 extern int C2F(dscal)();
 
-/*Tools to convert memory matrix storage from C to Z and Z to C*/
-doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
-void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
-
 void vTransposeRealMatrix(
 			double *_pdblRealIn, 
 			int _iRowsIn,			int _iColsIn, 

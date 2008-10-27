@@ -81,7 +81,7 @@ int matldiv()
 			return 0;
 		}
 
-		if(iRows1 != iRows2)
+		if(iRows1 != iRows2 && iSize2 != 1)
 		{
 			Error(265);
 			return 0;

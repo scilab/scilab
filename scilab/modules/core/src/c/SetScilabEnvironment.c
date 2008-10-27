@@ -29,8 +29,8 @@ void SetScilabEnvironment(void)
 {
 #ifdef _MSC_VER
 	SciEnvForWindows(); 
-#else
 	SetSci();
+#else
 #endif
 	if (!setSCIHOME())
 	{

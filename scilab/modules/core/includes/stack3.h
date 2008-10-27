@@ -131,9 +131,12 @@ int iGetOrient(int _iVal);
 
 int iAllocMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData);
 int	iAllocComplexMatrixOfDouble(int _iNewVal, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+int	iAllocComplexMatrixOfDoubleToAddress(int* _piAddr, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+
 
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
+int iAllocComplexMatrixOfPolyToAddress(int _iAddr, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
 
 int iAllocSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData);
 int iAllocComplexSparseMatrix(int _iNewVal,int _iComplex, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData, double** _pdblImgData);
@@ -141,7 +144,8 @@ int iAllocComplexSparseMatrix(int _iNewVal,int _iComplex, int _iRows, int _iCols
 int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolData);
 int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow);
 
-int iAllocMatricOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _pszRealData);
+int iAllocMatrixOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _piStringData);
+int iAllocMatrixOfStringToAddress(int _iAddr, int _iRows, int _iCols, int *_piLen, char **_piStringData);
 
 /*Get List Information*/
 //Get Item Count and type of each item
@@ -157,6 +161,62 @@ int iIsComplexItemElem(int _iVar, int _iItemNumber);
 //Get Item String
 int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
 
+/*Create List*/
+//Reserved VarNum for List
+int* iAllocList(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for TList
+int* iAllocTList(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for MList
+int* iAllocMList(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for HyperMatrix
+int* iAllocHyperMatrix(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for list
+int* iAllocListCommon(int _iVar, int _iItemNumber, int _iListType);
+
+//Child
+//Add Common List to ParentList ( internal use only )
+int* iListAllocListCommon(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber, int _iListType);
+
+//Add HyperMatrix to ParentList
+int* iListAllocHyperMatrix(int _iVar, int* _piParentList, int _iItemPos, int _iDims);
+
+//Add MList to ParentList 
+int* iListAllocMList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
+
+//Add TList to ParentList
+int* iListAllocTList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
+
+//Add List to ParentList
+int* iListAllocList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
+
+//Add real matrix in _iVar list
+int iListAllocMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double **_pdblRealData);
+
+//Add complex matrix in _iVar list
+int iListAllocComplexMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+
+//Add real polynomial in _iVar list
+int iListAllocMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
+
+//Add complex polynomial in _iVar list
+int iListAllocComplexMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
+
+//Add string matrix in _iVar list
+int iListAllocString(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int *_piLen, char** _pszData);
+
+//Internal function automaticly call after the last insertion of data
+void vListClose(int _iVar);
+int* piGetParentNode(int* _piStart, int* _piToFind, int *_piPos);
+int IsKindOfList(int* _piNode);
+void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
+
+
+
+
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg);
 int iGetPolyFromAddress(int _iAddr, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
@@ -164,4 +224,12 @@ int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalE
 int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow);
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
+
+typedef struct { double r, i; } doublecomplex;
+
+/*Tools to convert memory matrix storage from C to Z and Z to C*/
+doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
+void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
+
 #endif 

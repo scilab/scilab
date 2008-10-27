@@ -26,6 +26,8 @@ int C2F(sci_amell)(char *fname,unsigned long fname_len);
 int C2F(sci_delip)(char *fname,unsigned long fname_len);
 int C2F(sci_remez)(char *fname,unsigned long fname_len);
 int C2F(sci_syredi)(char *fname,unsigned long fname_len);
+int C2F(sci_fftnew)(char *fname,unsigned long fname_len);
+int C2F(sci_levinson)(char *fname,unsigned long fname_len);
 
 void dfft2 ( double* a , double* b , int nseg , int n , int nspn ,
              int isn , int ierr, int* iw , int lw );
@@ -47,6 +49,7 @@ int dfftmx ( double* _pdblA , double* _pdblB , int _iNtot, int _iN, int _iNspan,
              int _iIsn, int _iM, int _iKt, int* _piWt, int* _piCk,
              int* _piBt, int* _piSk ,int* _piNp, int* _piNfac);
 /* under functions used by dfftmx */
+   void preliminaryWork (void);
    void preliminaryWork (void);
    void permute_stage1 (void);
    void permute_stage2 (void);
@@ -71,9 +74,6 @@ int dfftmx ( double* _pdblA , double* _pdblB , int _iNtot, int _iN, int _iNspan,
    int  preF2transform (void) ;
    int  multi_sqFactor2NormlOrder (void);
    int  end (void) ;
-
-
-
 
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/

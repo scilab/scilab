@@ -17,38 +17,134 @@
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 #include "localization.h"
+
+int iRealCholProduct(double *_pdblReal, int _iLeadDim);
+int iComplexCholProduct(doublecomplex *_poIn, int _iLeadDim);
+
+
 /*--------------------------------------------------------------------------*/
+extern int C2F(dpotrf)();
+extern int C2F(zpotrf)();
 extern int C2F(intdpotrf)(char *fname, unsigned long fname_len);
 extern int C2F(intzpotrf)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 int C2F(intchol)(char *fname,unsigned long fname_len)
 {
-	int *header1;
-	int CmplxA;int ret;
+	int iRows	= 0;
+	int iCols	= 0;
 
-	/*   chol(A)  */
-	if (GetType(1)!=sci_matrix) 
+	int iReal	= 0;
+	int iImg	= 0;
+
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+	double *pdblReturnReal	= NULL;
+	double *pdblReturnImg	= NULL;
+
+	if (GetType(1) != sci_matrix) 
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	header1 = (int *) GetData(1);
-	CmplxA=header1[3];
-
-	switch (CmplxA) 
+	GetVarDimension(1, &iRows, &iCols);
+	if(iRows != iCols)
 	{
-		case REAL:
-			ret = C2F(intdpotrf)("chol",4L);
-		break;
-		case COMPLEX:
-			ret = C2F(intzpotrf)("chol",4L);
-		break;
-		default:
-			Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-					fname,1);
-		break;
+		Err = 1;
+		Error(20);
+		return 0;
 	}
+
+	if(iRows == 0)
+	{
+		LhsVar(1) = 1;
+		return 0;
+	}
+	else if(iRows == -1) // What is it ?
+	{
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iReal);
+		pdblReal		= stk(iReal);
+		pdblReal[0]		= sqrt(pdblReal[0]);
+		LhsVar(1) = 1;
+		return 0;
+	}
+
+	if(iIsComplex(1))
+	{
+		int iComplex	= 1;
+		doublecomplex *poData = NULL;
+		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iReal, &iImg);
+		pdblReal		= stk(iReal);
+		pdblImg			= stk(iImg);
+
+		poData = oGetDoubleComplexFromPointer(pdblReal, pdblImg, iRows * iCols);
+		iComplexCholProduct(poData, iRows);
+
+		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
+
+		vGetPointerFromDoubleComplex(poData, iRows * iCols, pdblReturnReal, pdblReturnImg);
+		vFreeDoubleComplexFromPointer(poData);
+	}
+	else
+	{
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iReal);
+		pdblReal		= stk(iReal);
+
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal);
+		
+		memcpy(pdblReturnReal, pdblReal, iRows * iCols * sizeof(double));
+
+		iRealCholProduct(pdblReturnReal, iRows);
+	}
+
+	LhsVar(1) = Rhs + 1;
+	return 0;
+}
+
+int iRealCholProduct(double *_pdblReal, int _iLeadDim)
+{
+	char cOrient = 'U';
+	int iInfo;
+
+	C2F(dpotrf)(&cOrient, &_iLeadDim, _pdblReal, &_iLeadDim, &iInfo);
+	if(iInfo > 0)
+		return iInfo;
+
+	if(iInfo == 0 && _iLeadDim > 1)
+	{
+		int iIndex1 = 0, iIndex2 = 0;
+		for(iIndex1 = 0 ; iIndex1 < _iLeadDim ; iIndex1++)
+		{
+			for(iIndex2 = iIndex1 + 1 ; iIndex2 < _iLeadDim ; iIndex2++)
+			{
+				_pdblReal[iIndex2 + iIndex1 * _iLeadDim] = 0;
+			}
+		}
+	}
+
+	return 0;
+}
+
+int iComplexCholProduct(doublecomplex *_poIn, int _iLeadDim)
+{
+	char cOrient = 'U';
+	int iInfo;
+
+	C2F(zpotrf)(&cOrient, &_iLeadDim, _poIn, &_iLeadDim, &iInfo);
+
+	if(iInfo == 0 && _iLeadDim > 1)
+	{
+		int iIndex1 = 0, iIndex2 = 0;
+		for(iIndex1 = 0 ; iIndex1 < _iLeadDim ; iIndex1++)
+		{
+			for(iIndex2 = iIndex1 + 1 ; iIndex2 < _iLeadDim ; iIndex2++)
+			{
+				_poIn[iIndex2 + iIndex1 * _iLeadDim].r = 0;
+				_poIn[iIndex2 + iIndex1 * _iLeadDim].i = 0;
+			}
+		}
+	}
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

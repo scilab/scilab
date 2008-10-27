@@ -18,9 +18,10 @@ int matrdiv()
 	int iRows1	= 0, iRows2	= 0, iCols1	= 0, iCols2	= 0;
 	int iReal1	= 0, iReal2 = 0, iImg1	= 0, iImg2	= 0;
 	int iSize1	= 0, iSize2 = 0;
-	int iGlobalComplex		= 0;
-	int iRet	= 0;
-	int iIndex	= 0;
+
+	int iGlobalComplex	= 0;
+	int iRet			= 0;
+	int iIndex			= 0;
 
 	double *pReal1 = NULL, *pReal2 = NULL, *pImg1 = NULL, *pImg2 = NULL;
 	int iComplex1 = 0, iComplex2 = 0;
@@ -82,7 +83,7 @@ int matrdiv()
 			return 0;
 		}
 
-		if(iCols1 != iCols2)
+		if(iCols1 != iCols2 && iSize2 != 1 && iSize1 != 1)
 		{
 			Error(266);
 			return 0;
@@ -142,12 +143,20 @@ int matrdiv()
 				}
 			}
 		}
-		if(iSize2 != 1)
+
+		if(iSize2 != 1 /*&& iSize1 != 1*/)
 		{
+			if(iCols2 != iCols1 && iRows1 * iCols1 == 1)
+			{
+				C2F(com).fun=0;
+				Fin=-Fin;
+				return 0;
+			}
+
 
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// A and B are both real
-				iAllocMatrixOfDouble(Rhs + 1, iRows1, iRows2, &pReturnReal);
+				iAllocMatrixOfDouble(Rhs + 1,  iRows1, iRows2, &pReturnReal);
 				iRet = iRightDivisionOfRealMatrix(pReal1, iRows1, iCols1, pReal2, iRows2, iCols2, pReturnReal, iRows2, iRows1);
 
 				if(iRet != 0)
@@ -183,41 +192,64 @@ int matrdiv()
 		}
 		else
 		{// Scalar / Matrix 
-			int iErr = 0;
+			int iErr		= 0;
+			int iResultRows	= 0;
+			int iResultCols	= 0;
+			int iInc1		= 0;
+			int iInc2		= 0;
+			int iResultSize	= 0;
+
+			if(iSize1 == 1)
+			{
+				iResultRows = iCols2;
+				iResultCols = iRows2;
+				iInc1		= 0;
+				iInc2		= 1;
+			}
+			else
+			{
+				iResultRows = iRows1;
+				iResultCols = iCols1;
+				iInc1		= 1;
+				iInc2		= 0;
+			}
+
 			if(iRows1 < 0 && iSize2 != 1)
 			{
 				Error(14);
 				return 0;
 			}
-			iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows1, iCols1, &pReturnReal, &pReturnImg);
+
+			iResultSize	= iResultRows * iResultCols;
+			iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iResultRows, iResultCols, &pReturnReal, &pReturnImg);
 
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// Real1 \ Real2 -> Real2 / Real1
 				iErr = iRightDivisionRealMatrixByRealMatrix(
-					pReal1,						1, 
-					pReal2,						0, 
-					pReturnReal, 1, iSize1);
+					pReal1,						iInc1, 
+					pReal2,						iInc2, 
+					pReturnReal, 1, iResultSize);
 			}
 			else if(iComplex1 == 1 && iComplex2 == 0)
 			{// Real \ Complex -> Complex / Real
 				iErr = iRightDivisionComplexMatrixByRealMatrix(
-					pReal1,			pImg1,		1, 
-					pReal2,						0,
-					pReturnReal,	pReturnImg, 1, iSize1);
+					pReal1,			pImg1,		iInc1, 
+					pReal2,						iInc2,
+					pReturnReal,	pReturnImg, 1, iResultSize);
 			}
 			else if(iComplex1 == 0 && iComplex2 == 1)
 			{// Complex \ Real -> Real / Complex
 				iErr = iRightDivisionRealMatrixByComplexMatrix(
-					pReal1,						1, 
-					pReal2,			pImg2,		0, 
-					pReturnReal,	pReturnImg,	1,  iSize1);
+					pReal1,						iInc1, 
+					pReal2,			pImg2,		iInc2, 
+					pReturnReal,	pReturnImg,	1,  iResultSize);
 			}
 			else if(iComplex1 == 1 && iComplex2 == 1)
 			{// Complex \ Complex
 				iErr = iRightDivisionComplexMatrixByComplexMatrix(
-					pReal1,			pImg1,		1, 
-					pReal2,			pImg2,		0,
-					pReturnReal,	pReturnImg,	1, iSize1);
+					pReal1,			pImg1,		iInc1, 
+					pReal2,			pImg2,		iInc2,
+					pReturnReal,	pReturnImg,	1, iResultSize);
 			}
 
 			if(iErr != 0)

@@ -11,6 +11,7 @@
  */
 
 #include "gw_signal.h"
+#include "stack-c.h"
 
 
 /*c'est moche je sais */
@@ -92,6 +93,7 @@ int dfftmx ( double* _pdblA , double* _pdblB , int _iNtot, int _iN,     int _iNs
             int* _piBt,       int* _piSk ,     int* _piNp, int* _piNfac)
 {
 
+   int retVal = 0 ;
    a = _pdblA ;
    b = _pdblB ;
 
@@ -108,7 +110,6 @@ int dfftmx ( double* _pdblA , double* _pdblB , int _iNtot, int _iN,     int _iNs
    np   = _piNp;
    nfac = _piNfac;
 
-   int retVal = 0 ;
 
    inc = abs ( isn ) ;
    nt = inc*ntot ;
@@ -186,7 +187,7 @@ void preliminaryWork (void)
    maxf = nfac[maxf-1] ;
 
    if ( kt > 0 )
-      maxf = max ( nfac[kt-1] , maxf );
+      maxf = Max ( nfac[kt-1] , maxf );
 
 
 }
@@ -356,7 +357,7 @@ int doOnceAgain = 1 ;
    {
    c1 = 1 - cd ;
    s1 = sd ;
-   mm = min( k1/2 , klim);
+   mm = Min( k1/2 , klim);
 
 
 do
@@ -401,7 +402,7 @@ do
                         s1 = (double) ((kk-1)/jc)*dr*rad;
                         c1 = cos (s1);
                         s1 = cos (s1);
-                        mm = min ( (k1 >> 1 ) , mm+klim );
+                        mm = Min ( (k1 >> 1 ) , mm+klim );
                         }
                      else
                         {
@@ -434,7 +435,7 @@ int factorOf4Transform (void)
          c1 = 1 ;
          s1 = 0 ;
 
-         mm = min ( kspan , klim ) ;
+         mm = Min ( kspan , klim ) ;
 
          do
             {
@@ -562,7 +563,7 @@ int  f4t_170 (void)
           s1 = dr*rad * (kk-1)/jc ;
           c2 = cos (s1) ;
           s1 = sin (s1) ;
-          mm = min ( kspan , mm  + klim );
+          mm = Min ( kspan , mm  + klim );
 
          /*140*/
 
@@ -693,8 +694,8 @@ void preFOtherTransform (void)
 
    do
    {
-      ck[j-1] = ck[k-1] * c1 +  sk[k-1]*s1 ;
-      sk[j-1] = ck[k-1] * c1 +  sk[k-1]*s1 ;
+      ck[j-1] = (int)(ck[k-1] * c1 +  sk[k-1]*s1);
+      sk[j-1] = (int)(ck[k-1] * c1 +  sk[k-1]*s1);
 
       k -- ;
 
@@ -726,13 +727,13 @@ do
       k2 -= kspan ;
       j++ ;
 
-      wt[j-1] = a[k1-1] + a[k2-1] ;
+      wt[j-1] = (int)(a[k1-1] + a[k2-1]);
       ak = wt[j-1] + ak ;
-      bt[j-1] = b[k1-1] + bk ;
+      bt[j-1] = (int)(b[k1-1] + bk);
       j++ ;
 
-      wt[j-1] = a[k1-1] - a[k2-1] ;
-      bt[j-1] = b[k1-1] - b[k2-1] ;
+      wt[j-1] =(int)( a[k1-1] - a[k2-1]);
+      bt[j-1] = (int)(b[k1-1] - b[k2-1]);
 
       k1 += kspan;
    }while ( k1 < k2 ) ;
@@ -804,7 +805,7 @@ int mulByRotationFactor (void )
          {
          c2 = 1 - cd ;
          s1 = sd ;
-         mm = min ( kspan , klim ) ;
+         mm = Min ( kspan , klim ) ;
 
          /*320 */
          do
@@ -856,7 +857,7 @@ int mulByRotationFactor (void )
                       s1 = dr*rad * (kk-1)/jc ;
                       c2 = cos (s1) ;
                       s1 = sin (s1) ;
-                      mm = min ( kspan , mm  + klim );
+                      mm = Min ( kspan , mm  + klim );
                      }
                }
             }while (  kk <= kspnn || kk <= kspan ) ;
@@ -1141,8 +1142,8 @@ void  reorderMatrix (void)
          do
             {
                k2 ++ ;
-               wt[k2-1] = a[k1-1] ;
-               bt[k2-1] = b[k-1] ;
+               wt[k2-1] = (int)a[k1-1] ;
+               bt[k2-1] = (int)b[k-1] ;
                k1 -= inc ;
 
             }while ( k1 < kk );

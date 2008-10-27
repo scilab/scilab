@@ -290,7 +290,19 @@ int	iRightDivisionOfRealMatrix(
 	//tranpose A and B
 
 	vTransposeRealMatrix(_pdblReal2, _iRows2, _iCols2, pAt);
-	vTransposeRealMatrix(_pdblReal1, _iRows1, _iCols2, pBt);
+
+	{
+		int i,j,ij,ji;
+		for(j = 0 ; j < _iRows1 ; j++)
+		{
+			for(i = 0 ; i < _iCols2 ; i++)
+			{
+				ij = i + j * Max(_iRows2, _iCols2);
+				ji = j + i * _iRows1;
+				pBt[ij]	= _pdblReal1[ji];
+			}//for(j = 0 ; j < _iRows1 ; j++)
+		}//for(i = 0 ; i < _iCols2 ; i++)
+	}//bloc esthetique
 
 	if(_iRows2 == _iCols2)
 	{
@@ -771,72 +783,6 @@ int	iLeftDivisionOfComplexMatrix(
 }
 
 
-doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
-{
-	int iIndex = 0;
-	doublecomplex *poComplex = (doublecomplex*)malloc(sizeof(doublecomplex) * _iSize);
-
-	if(_pdblReal != NULL && _pdblImg != NULL)
-	{
-		for(iIndex = 0; iIndex < _iSize ; iIndex++)
-		{
-			poComplex[iIndex].r = _pdblReal[iIndex];
-			poComplex[iIndex].i = _pdblImg[iIndex];
-		}
-	}
-	else if(_pdblReal != NULL && _pdblImg == NULL)
-	{
-		for(iIndex = 0; iIndex < _iSize ; iIndex++)
-		{
-			poComplex[iIndex].r = _pdblReal[iIndex];
-			poComplex[iIndex].i = 0;
-		}
-	}
-	else if(_pdblReal == NULL && _pdblImg != NULL)
-	{
-		for(iIndex = 0; iIndex < _iSize ; iIndex++)
-		{
-			poComplex[iIndex].r = 0;
-			poComplex[iIndex].i = _pdblImg[iIndex];
-		}
-	}
-	else
-	{
-		free(poComplex);
-		return NULL;
-	}
-	return poComplex;
-}
-
-void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
-{
-	if(_poComplex != NULL)
-		free(_poComplex);
-}
-
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
-{
-	int iIndex = 0;
-
-	if(_pdblReal != NULL && _pdblImg != NULL)
-	{
-		for(iIndex = 0; iIndex < _iSize ; iIndex++)
-		{
-			_pdblReal[iIndex] = _poComplex[iIndex].r;
-			_pdblImg[iIndex] = _poComplex[iIndex].i;
-		}
-	}
-	else if(_pdblReal != NULL && _pdblImg == NULL)
-	{
-		for(iIndex = 0; iIndex < _iSize ; iIndex++)
-			_pdblReal[iIndex] = _poComplex[iIndex].r;
-	}
-	else if(_pdblReal == NULL && _pdblImg != NULL)
-	{
-		for(iIndex = 0; iIndex < _iSize ; iIndex++)
-			_pdblImg[iIndex] = _poComplex[iIndex].i;
-	}
-}
 /*
 +---+---+
 | 1 | 2 |		+---+---+---+

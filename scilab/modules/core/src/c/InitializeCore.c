@@ -28,7 +28,7 @@ BOOL InitializeCore(void)
 
 	InitializeScilabFilesList();
 
-	getmodules();
+	//getmodules();
 
 	if ( create_hashtable_scilab_functions(MAXELEMENTFUNCTIONLIST) == 0 ) 
 	{

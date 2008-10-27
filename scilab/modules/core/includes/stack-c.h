@@ -167,7 +167,9 @@ static void initial_c1_local(void)
 #define istk(x) (((int *) C2F(stack).Stk) + x-1 )
 #define sstk(x) (((float *) C2F(stack).Stk) + x-1 )
 #define cstk(x) (((char *) C2F(stack).Stk) + x-1 )
-typedef struct { double r, i; } doublecomplex;
+
+//move to stack3.h
+//typedef struct { double r, i; } doublecomplex;
 #define zstk(x) (((doublecomplex *) C2F(stack).Stk) + x-1 )
 
 

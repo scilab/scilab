@@ -160,10 +160,11 @@ int matmult()
 		iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows1, iCols2, &pReturnReal, &pReturnImg);
 		if(iComplex1 == 1 && iComplex2 == 1)
 		{//Both matrix are complex
-			zwmmuls(pReal1, pImg1, iRows1,
-					pReal2, pImg2, iRows2,
-					pReturnReal, pReturnImg, iRows1,
-					iRows1,	iCols1, iCols2);
+
+			iMultiComplexMatrixByComplexMatrix(
+					pReal1, pImg1, iRows1, iCols1,
+					pReal2, pImg2, iRows2, iCols2,
+					pReturnReal, pReturnImg);
 		}
 		else
 		{

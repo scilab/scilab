@@ -33,6 +33,7 @@ int C2F(intbackslash)(char *fname,unsigned long fname_len);
 int C2F(intbdiagr)(char *fname, long unsigned int fname_len);
 int C2F(intdet)(char *fname,unsigned long fname_len);
 int C2F(intinv)(char *fname,unsigned long fname_len);
+int C2F(invnew)(char *fname,unsigned long fname_len);
 int C2F(intlu)(char *fname,unsigned long fname_len);
 int C2F(intrcond)(char *fname,unsigned long fname_len);
 int C2F(intslash)(char *fname,unsigned long fname_len);
