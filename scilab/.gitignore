@@ -87,6 +87,7 @@ VTune
 # F2C files (windows)
 #
 modules/*/src/fortran/*.c
+modules/*/sci_gateway/fortran/*.c
 #
 # others files (windows)
 #
