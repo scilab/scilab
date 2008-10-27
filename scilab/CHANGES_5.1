@@ -26,8 +26,6 @@ Enhancement:
 
 * Scilab uses Atlas 3.8.2 on Windows
 
-* License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module)
-
 * test_run() now accepts absolute paths as first input argument. It permits toolboxes to use this system.
 
 Bug fixes:
@@ -53,11 +51,7 @@ Bug fixes:
 
 * bug 3530 fixed - Check that X11/Xlib.h is available since the Tk header needs it
 
-* bug 3540 fixed - With the linux binary version, a symbolic link of <SCILAB INSTALL PATH>/bin/scilab in /usr/local/bin (for example) did not work.
-
 * bug 3546 fixed - frmag is broken when called with hn given by a vector of coefficients instead of a polynomial.
-
-* bug 3551 fixed - bvodeS and bvode hang and close Scilab 5.0.1
 
 * bug 3549 fixed - machine.h was including PATH_MAX.h, BOOL.h and PARAMS.h, includes have been cleaned up.
 
