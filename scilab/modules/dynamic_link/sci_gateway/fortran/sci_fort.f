@@ -38,11 +38,6 @@ c     get a scilab string the fort function name
       top2=top-rhs+1
       if(.not.getsmat(fname,top,top2,m1,n1,1,1,lrc,nc))return
       name=' '
-      if ( nc.gt.fortname ) then 
-         buf = fname // ' first argument must be of length < 24'
-         call error(999)
-         return
-      endif
       call cvstr(nc,istk(lrc),name,1)
       name(nc+1:nc+1)=char(0)
 C     Check the name in the <<fort>> table 
