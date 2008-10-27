@@ -148,7 +148,8 @@ int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-int sciSetName (sciPointObj * pobj, char *pvalue, int length); /* SET */
+int sciInitName(sciPointObj * pobj, char * newName); /* SET */
+int sciSetName (sciPointObj * pobj, char * newName); /* SET */
 int sciInitNum( sciPointObj * pobj, int value ) ;
 int sciSetNum ( sciPointObj * pobj, int value ) ; /* SET */
 

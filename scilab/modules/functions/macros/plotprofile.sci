@@ -150,9 +150,9 @@ function plotprofile(fun)
         k=min(n,k+1)
       end
       if ncalls(k)==1 then
-        msg=msprintf(gettext("line %s [%s call, %s sec] :: "+txt(k)), string(k), string(ncalls(k)), string(tcpu(k)) );
+        msg=msprintf(gettext("line %s [%s call, %s sec] :: "), string(k), string(ncalls(k)), string(tcpu(k)) ) + txt(k);
       else
-        msg=msprintf(gettext("line %s [%s calls, %s sec] :: "+txt(k)), string(k), string(ncalls(k)), string(tcpu(k)) );
+        msg=msprintf(gettext("line %s [%s calls, %s sec] :: "), string(k), string(ncalls(k)), string(tcpu(k)) ) + txt(k);
       end
    // show source code in another window
       if withpad then

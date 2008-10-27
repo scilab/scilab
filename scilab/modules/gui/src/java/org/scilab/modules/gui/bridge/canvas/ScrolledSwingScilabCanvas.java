@@ -245,6 +245,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			} else {
 				realPosY = viewPortPosY;
 			}
+
 			realPosY = Math.max(0, realPosY);
 
 			// must be called on the Swing thread otherwise some JOGL corruption may appear
@@ -260,8 +261,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			} catch (InvocationTargetException e) {
 				e.getCause().printStackTrace();
 			}
-			
-			
+
 		}
 	}
 
@@ -312,7 +312,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			canvas.removeMouseMotionListener(eventHandler);
 		}
 	}
-	
+
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
 	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
@@ -325,7 +325,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
 		return getCanvas().rubberBox(isClick, isZoom, initialRect, endRect);
 	}
-	
+
 	/**
 	 * Get the displacement in pixel that should be used for rotating axes
 	 * @param displacement out parameter, [x,y] array of displacement in pixels
@@ -334,14 +334,14 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	public boolean getRotationDisplacement(int[] displacement) {
 		return getCanvas().getRotationDisplacement(displacement);
 	}
-	
+
 	/**
 	 * Ansynchrnous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
 		getCanvas().stopRotationRecording();
 	}
-	
+
 	/**
 	 * Disable the canvas befor closing
 	 */
@@ -364,7 +364,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			e.getCause().printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Convert a Canvas to an BufferedImage
 	 * @return a BufferedImage

@@ -148,9 +148,9 @@ void DrawableFigureJavaMapper::setWindowSize(int width, int height)
   m_pJavaObject->setWindowSize(width, height);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::setInfoMessage(char * infoMessage)
+void DrawableFigureJavaMapper::setInfoMessage(const char * infoMessage)
 {
-  m_pJavaObject->setInfoMessage(infoMessage);
+  m_pJavaObject->setInfoMessage((char *) infoMessage);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setAutoResizeMode(bool onOrOff)
@@ -205,9 +205,9 @@ void DrawableFigureJavaMapper::rubberBox(bool isClick, bool isZoom, const int in
 
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::setTitle(char * title)
+void DrawableFigureJavaMapper::setTitle(const char * title)
 {
-  m_pJavaObject->setTitle(title);
+  m_pJavaObject->setTitle((char *) title);
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::getRotationDisplacement(int displacement[2])

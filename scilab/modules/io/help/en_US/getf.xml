@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -120,10 +120,11 @@ function [y1,...,yn]=foo(x1,...,xm)
     function definition using the <literal>getf</literal> function.</para>
 
     <para><literal>getf</literal> is an obsolete way for loading functions
-    into scilab from a file. It is replaced by the function. Note that
-    functions in a file should be terminated by an
-    <literal>endfunction</literal> keyword. The <literal>exec</literal>
-    function supposes <literal>opt=='c'</literal>. </para>
+    into scilab from a file. It is replaced by the function <link
+    linkend="exec">exec</link>. Note that functions in a file should be
+    terminated by an <literal>endfunction</literal> keyword. The
+    <literal>exec</literal> function supposes
+    <literal>opt=='c'</literal>.</para>
 
     <para>To prepare a function for profiling please use the <link
     linkend="add_profiling">add_profiling</link> function.</para>
@@ -158,6 +159,7 @@ getf SCI/modules/graphics/macros/plot.sci
       <member><link linkend="edit">edit</link></member>
 
       <member><link linkend="comp">comp</link></member>
+
       <member><link linkend="add_profiling">add_profiling</link></member>
     </simplelist>
   </refsection>
