@@ -1,6 +1,7 @@
 // ====================================================================
 // Copyright INRIA 2008
 // Allan CORNET
+// This file is released into the public domain
 // ====================================================================
 demopath = get_absolute_file_path("toolbox_skeleton.dem.gateway.sce");
 
