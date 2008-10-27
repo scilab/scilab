@@ -144,22 +144,12 @@ static void *DaemonOpenTCLsci(void* in)
 		if ( Tk_Init(getTclInterp()) == TCL_ERROR)
 		{
 			Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init).\n"));
-<<<<<<< HEAD:scilab/modules/tclsci/src/c/InitTclTk.c
 			if (IsFromJava()){
 				/* Same comment as upper about TCL_LIBRARY */
 				sciprint(_("Please check if TK_LIBRARY has been set.\n"));
 
 			}else{
 				sciprint(_("Reason: %s:\n"),getTclInterp()->result);
-=======
-			if (!IsFromJava()){
-				/* When we are calling this stuff from javasci in the binary,
-				 * not finding TCL_LIBRARY is causing issue to display the 
-				 * actual error (infinity loop)
-				 * See: http://bugzilla.scilab.org/show_bug.cgi?id=3605
-				 */
-				Scierror(999,_("Reason: %s:\n"),getTclInterp()->result);
->>>>>>> refs/heads/5.0:scilab/modules/tclsci/src/c/InitTclTk.c
 			}
 			tkStarted=FALSE;
 		}
