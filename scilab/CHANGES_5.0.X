@@ -1,15 +1,31 @@
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
 
+Compilation:
+============
+
+- DLINUX option for the gcc removed (useless)
+
+Enhancement:
+============
+
 - The toolbox skeleton is now released into the public domain to facilitate
   the reuse of the code
+
+- Scilab 5.0.3 uses GIWS 1.0.1
+
+
 
 Bug fixes:
 ==========
 
+* rmdir & removedir had problems with the recursive delete under GNU/Linux
+
 * bug 2647 fixed - Bad display of some numbers in special cases due to a gfortran bug
 
 * bug 3484 fixed - Scilab crashes when scicos is invoked from the command line.
+
+* bug 3529 fixed - rmdir was trying to change the permission on the file/directory. This behavior has been removed.
 
 * bug 3588 fixed - The figure number is missing from the title of graphic windows when Scilab in launched in French.
 
