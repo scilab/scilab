@@ -360,7 +360,6 @@ sci_gateway/fortran/sci_f_cumprod.f \
 sci_gateway/fortran/sci_f_abs.f \
 sci_gateway/fortran/sci_f_spones.f \
 sci_gateway/fortran/sci_f_kron.f \
-sci_gateway/fortran/sci_f_dsearch.f \
 sci_gateway/fortran/sci_f_cumsum.f \
 sci_gateway/fortran/sci_f_nearfloat.f \
 sci_gateway/fortran/sci_f_isreal.f \

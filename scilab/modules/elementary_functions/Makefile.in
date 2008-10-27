@@ -454,7 +454,6 @@ am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_abs.lo \
 	libscielementary_functions_la-sci_f_spones.lo \
 	libscielementary_functions_la-sci_f_kron.lo \
-	libscielementary_functions_la-sci_f_dsearch.lo \
 	libscielementary_functions_la-sci_f_cumsum.lo \
 	libscielementary_functions_la-sci_f_nearfloat.lo \
 	libscielementary_functions_la-sci_f_isreal.lo \
@@ -1075,7 +1074,6 @@ sci_gateway/fortran/sci_f_cumprod.f \
 sci_gateway/fortran/sci_f_abs.f \
 sci_gateway/fortran/sci_f_spones.f \
 sci_gateway/fortran/sci_f_kron.f \
-sci_gateway/fortran/sci_f_dsearch.f \
 sci_gateway/fortran/sci_f_cumsum.f \
 sci_gateway/fortran/sci_f_nearfloat.f \
 sci_gateway/fortran/sci_f_isreal.f \
@@ -2885,9 +2883,6 @@ libscielementary_functions_la-sci_f_spones.lo: sci_gateway/fortran/sci_f_spones.
 
 libscielementary_functions_la-sci_f_kron.lo: sci_gateway/fortran/sci_f_kron.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_kron.lo `test -f 'sci_gateway/fortran/sci_f_kron.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_kron.f
-
-libscielementary_functions_la-sci_f_dsearch.lo: sci_gateway/fortran/sci_f_dsearch.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_dsearch.lo `test -f 'sci_gateway/fortran/sci_f_dsearch.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dsearch.f
 
 libscielementary_functions_la-sci_f_cumsum.lo: sci_gateway/fortran/sci_f_cumsum.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_cumsum.lo `test -f 'sci_gateway/fortran/sci_f_cumsum.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cumsum.f
