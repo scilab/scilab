@@ -623,7 +623,7 @@ msgstr ""
 
 #, c-format
 msgid "Graphic window number %d"
-msgstr "Figure n°%d"
+msgstr "Figure n %d"
 
 msgid "This object has not any graphic mode\n"
 msgstr ""
