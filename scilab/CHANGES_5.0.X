@@ -7,9 +7,11 @@
 Bug fixes:
 ==========
 
+* bug 2647 fixed - Bad display of some numbers in special cases due to a gfortran bug
+
 * bug 3484 fixed - Scilab crashes when scicos is invoked from the command line.
 
-* bug 2647 fixed - Bad display of some numbers in special cases due to a gfortran bug
+* bug 3588 fixed - The figure number is missing from the title of graphic windows when Scilab in launched in French.
 
 * bug 3621 fixed - Wrong setting of figure_position in the default figure.
 
