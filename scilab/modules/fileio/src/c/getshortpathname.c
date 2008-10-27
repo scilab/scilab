@@ -15,8 +15,10 @@
 #include "getshortpathname.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-#ifndef MAX_PATH_SHORT
-#define MAX_PATH_SHORT 260
+#ifdef _MSC_VER
+	#ifndef MAX_PATH_SHORT
+		#define MAX_PATH_SHORT 260
+	#endif
 #endif
 /*--------------------------------------------------------------------------*/
 char *getshortpathname(char *longpathname,BOOL *convertok)
@@ -25,24 +27,45 @@ char *getshortpathname(char *longpathname,BOOL *convertok)
 
 	if (longpathname)
 	{
-		ShortName=(char*)MALLOC((strlen(longpathname)+1)*sizeof(char));
-
 		#ifdef _MSC_VER
-		if (GetShortPathName(longpathname,ShortName,(DWORD)strlen(longpathname)+1))
+		/* first we try to call to know path length */
+		int length = GetShortPathName(longpathname, NULL, 0);
+
+		if (length <= 0 ) length = MAX_PATH_SHORT;
+
+		ShortName = (char*)MALLOC((length)*sizeof(char));
+
+		if (ShortName) 
 		{
-			*convertok = TRUE;
+			/* second converts path */
+			if ( GetShortPathName(longpathname, ShortName, length) )
+			{
+				*convertok = TRUE;
+			}
+			else
+			{
+				/* FAILED */
+				strcpy(ShortName, longpathname);
+				*convertok = FALSE;
+			}
 		}
 		else
 		{
 			/* FAILED */
-			strcpy(ShortName,longpathname);
 			*convertok = FALSE;
 		}
 		#else
 		/* Linux */
-		strcpy(ShortName,longpathname);
+		int length = (int)strlen(longpathname) + 1;
+		ShortName = (char*)MALLOC((length) * sizeof(char));
+		if (ShortName) strcpy(ShortName, longpathname);
 		*convertok = FALSE;
 		#endif
+	}
+	else
+	{
+		/* FAILED */
+		*convertok = FALSE;
 	}
 	return ShortName;
 }
