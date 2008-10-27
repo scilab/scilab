@@ -11,23 +11,24 @@
 */
 
 #include <map>
-#include <string>
+
+using namespace std;
 
 class ConfigVariable
 {
 private :
-  ConfigVariable(){};
-  ~ConfigVariable(){};
+	ConfigVariable(){};
+	~ConfigVariable(){};
 
-  static ConfigVariable *me;
+	static ConfigVariable *me;
 
-  std::map<std::string, std::string>m_VarList;
+	map<string, string>m_VarList;
 public :
 
-  static ConfigVariable* getInstance();
+	static ConfigVariable* getInstance();
 
-  std::string	get(std::string _szVar);
-  bool		set(std::string _szVar, std::string _szVal);
+	string	get(string _szVar);
+	bool		set(string _szVar, string _szVal);
 
 };
 
