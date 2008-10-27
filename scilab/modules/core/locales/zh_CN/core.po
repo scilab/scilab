@@ -664,11 +664,7 @@ msgstr "%s：参数%d的类型错误：应该为多边形。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
-<<<<<<< HEAD:scilab/modules/core/locales/zh_CN/core.po
 msgstr "%s：参数%d的类型错误：应该为Working整数矩阵。\n"
-=======
-msgstr "%s：参数%d的类型错误：应该为Working整数矩阵。\\n\n"
->>>>>>> refs/heads/5.0:scilab/modules/core/locales/zh_CN/core.po
 
 #, c-format
 msgid ""
