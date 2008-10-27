@@ -14,7 +14,7 @@ Enhancement:
 
 - Scilab 5.0.3 uses GIWS 1.0.1
 
-
+- Update of the license.txt of each module
 
 Bug fixes:
 ==========
