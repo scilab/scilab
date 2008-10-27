@@ -1,0 +1,128 @@
+#
+# Linux objects files
+#
+*.lo
+*.la
+*.o
+
+#
+# Linux libtool files
+#
+.deps
+.libs
+Makefile
+
+#
+# Java compilation output dir
+#
+build
+jar
+
+#
+# Documentation generation output files
+#
+.last_*
+.list_*
+
+#
+# Scilab compiled macros
+#
+*.bin
+names
+lib
+
+#
+# backup files
+#
+*~
+*.bak
+
+#
+# windows files
+#
+
+#
+# Innosetup files (Windows)
+#
+Scilab.iss
+ScilabLogo.bmp
+ScilabLogoSmall.bmp
+scilab.ico
+French.isl
+English.isl
+puffin.ico
+base.iss
+Output
+atlas.iss
+code.iss
+components.iss
+files.iss
+icons.iss
+ini.iss
+languages.iss
+registry.iss
+run.iss
+setup.iss
+tasks.iss
+types.iss
+uninstalldelete.iss
+#
+# VS solution files (windows)
+#
+Scilab.sln_old
+*.lib
+*.exp
+*.vcdef
+Scilab.suo
+Scilab.ncb
+Release
+Debug
+*.icproj
+*.user
+*.u2d
+*.suo
+*.ncb
+#
+# others files (windows)
+#
+*.db
+
+#
+# scilab/ specific files
+#
+
+thirdparty
+Makefile.OBJ
+Makefile.incl
+Makemex
+Path.incl
+config.log
+config.status
+libtool
+history.scilab
+lib
+tcllib
+_tmp_project.h
+scilab-bin
+tclmajor
+tclminor
+.libs
+mainsci.o
+*.log
+java
+.metadata
+autom4te.cache
+.deps
+locale
+*.dat
+scilab-lib.properties
+scilab-lib-doc.properties
+scilab.pc
+pvm3
+*.class
+*.dia
+
+#
+# Subversion directories
+#
+.svn
