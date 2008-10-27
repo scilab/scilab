@@ -17,7 +17,8 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/bool.cpp \
 			src/cpp/float.cpp \
 			src/cpp/uint.cpp \
-			src/cpp/implicitlist.cpp
+			src/cpp/implicitlist.cpp \
+			src/cpp/function.cpp
 
 pkglib_LTLIBRARIES 	= libscitypes.la
 
