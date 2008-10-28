@@ -362,7 +362,8 @@ if test -z "$CXX"; then
   AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
 fi
 
-if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
+case "$CXX" in
+	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
 	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall "
@@ -375,7 +376,8 @@ if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
    else
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
-fi
+;;
+esac
 
 ##########"
 # not useful under Linux (and was only defined here with scilab 4)
@@ -384,7 +386,8 @@ fi
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 IS_64_BITS_CPU=false
-if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
+case "$CC" in
+	 gcc-* | gcc | cc | cc-* | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing"
@@ -451,8 +454,8 @@ if test "$CC" = "gcc" -o "$CC" = "ccache gcc"; then
      LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
 esac
-
-else
+;; # end of the gcc case on the $CC
+   *)
 
 		## CC compiler (not GCC)
         if test "$enable_debug_C" = yes; then
@@ -496,7 +499,8 @@ case "$host" in
 	LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
   ;;
 esac
-fi
+;; # end of not a gcc compiler
+esac
 
 
 # flag for possible compilations in configure
