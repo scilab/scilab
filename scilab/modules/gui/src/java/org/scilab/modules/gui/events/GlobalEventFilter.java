@@ -99,10 +99,10 @@ public class GlobalEventFilter {
 	    synchronized (ClickInfos.getInstance()) {
 		ClickInfos.getInstance().setXCoordinate(mouseEvent.getX() 
 			+ ((Component) mouseEvent.getSource()).getLocationOnScreen().getX() 
-			- ((Component) source).getLocationOnScreen().getX());
+			- source.getAsComponent().getLocationOnScreen().getX());
 		ClickInfos.getInstance().setYCoordinate(mouseEvent.getY() 
 			+ ((Component) mouseEvent.getSource()).getLocationOnScreen().getY() 
-			- ((Component) source).getLocationOnScreen().getY());
+			- source.getAsComponent().getLocationOnScreen().getY());
 		ClickInfos.getInstance().setMouseButtonNumber(
 			SciTranslator.javaButton2Scilab(mouseEvent.getButton(), buttonAction, isControlDown)
 		);
