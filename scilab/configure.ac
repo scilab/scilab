@@ -363,7 +363,8 @@ if test -z "$CXX"; then
   AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
 fi
 
-if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
+case "$CXX" in
+	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
 	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++"
@@ -377,7 +378,8 @@ if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
    CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
-fi
+   ;;
+esac
 
 ##########"
 # not useful under Linux (and was only defined here with scilab 4)
