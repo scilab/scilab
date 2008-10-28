@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) ????-2008 - ENPC
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -1902,7 +1903,6 @@ for k=1:30
   if or(a(p(ind),:)<>b) then pause,end
 end
 
-
 a=b;
 a([10 60],:)=a([60 10],:);
 [b,ind]=gsort(a,'lr','i');
@@ -1911,14 +1911,11 @@ if or(t(:,1)) then pause,end
 if or(t(b(2:$,1)==b(1:$-1,1),2)) then pause,end
 if or(a(ind,:)<>b) then pause,end
 
-
-
 [b,ind]=gsort(a,'lr','d');
 t=b(2:$,:)>b(1:$-1,:);
 if or(t(:,1)) then pause,end
 if or(t(b(2:$,1)==b(1:$-1,1),2)) then pause,end
 if or(a(ind,:)<>b) then pause,end
-
 
 //testing gsort with Nan's
 
@@ -1930,24 +1927,17 @@ b=gsort([1 2 %nan 1 3 ],'g','i');
 if or(b(1:4)<>[1 1 2 3]) then pause,end
 if find(isnan(b))<>5 then pause,end
 
-
-
 b=gsort([1 2 %nan 1 3 ],'g','d');
 if or(b(2:$)<>[3 2 1 1]) then pause,end
 if find(isnan(b))<>1 then pause,end
-
-
 
 b=gsort([1 2 %nan 1 3 %nan 2 3],'g','d');
 if or(b(3:$)<>[3,3,2,2,1,1]) then pause,end
 if or(find(isnan(b))<>[1 2]) then pause,end
 
-
-
 b=gsort([1 2 %nan 1 3 %nan 2 3],'g','i');
 if or(b(1:$-2)<>[1,1,2,2,3,3]) then pause,end
 if or(find(isnan(b))<>[7 8]) then pause,end
-
 
 m=[1 2 %nan;1 3 %nan;1 2 3];
 b=gsort(m,'lr','i');
@@ -1961,6 +1951,86 @@ m=m(:,[3 1 2]);
 b=gsort(m,'lc','i');
 if sci2exp(b,0)<>'[1,2,%nan;1,3,%nan;1,2,3]' then pause,end
 
-
 b=gsort(m,'lc','d');
 if sci2exp(b,0)<>'[%nan,2,1;%nan,3,1;3,2,1]' then pause,end
+
+//testing gsort with Inf's
+
+b=gsort([1 2 %inf 3 4],'g','i');
+if or(b(1:4)<>(1:4)) then pause,end
+if find(isinf(b))<>5 then pause,end
+
+b=gsort([1 2 %inf 1 3 ],'g','i');
+if or(b(1:4)<>[1 1 2 3]) then pause,end
+if find(isinf(b))<>5 then pause,end
+
+b=gsort([1 2 %inf 1 3 ],'g','d');
+if or(b(2:$)<>[3 2 1 1]) then pause,end
+if find(isinf(b))<>1 then pause,end
+
+b=gsort([1 2 %inf 1 3 %inf 2 3],'g','d');
+if or(b(3:$)<>[3,3,2,2,1,1]) then pause,end
+if or(find(isinf(b))<>[1 2]) then pause,end
+
+b=gsort([1 2 %inf 1 3 %inf 2 3],'g','i');
+if or(b(1:$-2)<>[1,1,2,2,3,3]) then pause,end
+if or(find(isinf(b))<>[7 8]) then pause,end
+
+m=[1 2 %inf;1 3 %inf;1 2 3];
+b=gsort(m,'lr','i');
+if sci2exp(b,0)<>'[1,2,%inf;1,2,3;1,3,%inf]' then pause,end
+
+b=gsort(m,'lr','d');
+if sci2exp(b,0)<>'[1,3,%inf;1,2,%inf;1,2,3]' then pause,end
+
+m=m(:,[3 1 2]);
+
+b=gsort(m,'lc','i');
+if sci2exp(b,0)<>'[1,2,%inf;1,3,%inf;1,2,3]' then pause,end
+
+
+b=gsort(m,'lc','d');
+if sci2exp(b,0)<>'[%inf,2,1;%inf,3,1;3,2,1]' then pause,end
+
+// sort complex matrix
+
+x = [3  1  5 ; 2 9 8];
+y = [2  4  1 ; 4 1 3];
+c = x+y*%i;
+
+ref_ind = [    4.    5.    3.  ;    6.    2.    1.  ];
+ref_values = [     9. + %i      5. + %i      1. + 4.*%i  ;    8. + 3.*%i    2. + 4.*%i    3. + 2.*%i ];
+[v,ind] = gsort(c);
+if or(ref_ind <> ind) then pause,end
+if or(ref_values <> v) then pause,end
+
+[v1,ind1] = gsort(abs(c));
+[v2,ind2] = gsort(c);
+
+if or(ind1<>ind2) then pause,end
+
+A = [18 21 10 7 5];
+B = [1  3  22 8 4];
+y = complex(A,B);
+[a,b] = gsort(y);
+if or( b <> [3 2 1 4 5] ) then pause,end
+if ( y(b) <> a  ) then pause,end
+
+ierr = execstr("[a,b] = gsort(y,''l'');","errcatch");
+if ierr<> 999 then pause,end
+
+ierr = execstr("[a,b] = gsort(y,''g'');","errcatch");
+if ierr<> 0 then pause,end
+
+ierr = execstr("[a,b] = gsort(y,''r'');","errcatch");
+if ierr<> 999 then pause,end
+
+ierr = execstr("[a,b] = gsort(y,''c'');","errcatch");
+if ierr<> 999 then pause,end
+
+ierr = execstr("[a,b] = gsort(y,''lc'');","errcatch");
+if ierr<> 999 then pause,end
+
+ierr = execstr("[a,b] = gsort(y,''lr'');","errcatch");
+if ierr<> 999 then pause,end
+
