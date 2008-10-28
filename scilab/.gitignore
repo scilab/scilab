@@ -66,6 +66,7 @@ setup.iss
 tasks.iss
 types.iss
 uninstalldelete.iss
+
 #
 # VS solution files (windows)
 #
@@ -83,11 +84,13 @@ Debug
 *.suo
 *.ncb
 VTune
+
 #
 # F2C files (windows)
 #
 modules/*/src/fortran/*.c
 modules/*/sci_gateway/fortran/*.c
+
 #
 # others files (windows)
 #
@@ -96,7 +99,6 @@ modules/*/sci_gateway/fortran/*.c
 #
 # scilab/ specific files
 #
-
 thirdparty
 Makefile.OBJ
 Makefile.incl
@@ -132,3 +134,4 @@ pvm3
 # Subversion directories
 #
 .svn
+
