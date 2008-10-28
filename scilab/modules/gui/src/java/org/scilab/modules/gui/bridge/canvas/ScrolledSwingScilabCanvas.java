@@ -47,7 +47,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 * @param canvas the canvas to view
 	 */
 	public ScrolledSwingScilabCanvas(ScrollabeSwingScilabCanvas canvas) {
-		super(canvas);
+		super(canvas.getAsComponent());
 		this.canvas = canvas;
 		// actually with the current implementation of GLJPanel.paintComponent,
 		// the panel is totally redrawn each time.
@@ -71,7 +71,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 */
 	public void setCanvas(ScrollabeSwingScilabCanvas canvas) {
 		this.canvas = canvas;
-		this.setViewportView(canvas);
+		this.setViewportView(canvas.getAsComponent());
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		getCanvas().setAutoResizeMode(onOrOff);
 
 		// so the canvas will retrieve its good position
-		getCanvas().revalidate();
+		//getCanvas().revalidate();
 	}
 
 	/**

@@ -21,9 +21,7 @@ import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
-import javax.media.opengl.GLJPanel;
 
-import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
@@ -43,7 +41,7 @@ import com.sun.opengl.util.Screenshot;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste silvy
  */
-public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
+public class SwingScilabCanvas extends SwingScilabCanvasImpl {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
@@ -68,7 +66,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
 		super(cap);
 		// TODO to remove, just for testing
-		this.setLayout(null);
+		//this.setLayout(null);
 		renderer = new SciRenderer(figureIndex);
 		this.addGLEventListener(renderer);
 		this.figureIndex = figureIndex;
@@ -76,7 +74,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		// Focusable in order to catch KeyEvents...
 		this.setFocusable(true);
 		// Enable mouse Events sensitivity...
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+		// FIXME !!!
+		//this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 		
 		rotationTracker = new AxesRotationTracker(this);
 	}
@@ -223,24 +222,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public void setBackgroundColor(double red, double green, double blue) {
 		this.setBackground(new Color((float) red, (float) green, (float) blue));
 	}
-	
 
-	/**
-	 * Set the event handler of the Canvas
-	 * @param command the name of the Scilab function to call
-	 */
-	public void setEventHandler(String command) {
-		// TODO Blouno !
-	}
-
-	/**
-	 * Set the status of the event handler of the Canvas
-	 * @param status is true to set the event handler active
-	 */
-	public void setEventHandlerEnabled(boolean status) {
-		// TODO Blouno !
-	}
-	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
 	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
@@ -289,7 +271,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 			// do nothing
 		}
 		
-		this.removeAll();
+		//this.removeAll();
 	}
 	
 	/**

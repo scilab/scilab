@@ -138,5 +138,5 @@ public class ScrollabeSwingScilabCanvas extends SwingScilabCanvas implements
 	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
 		return SMALL_DISPLACEMENT;
 	}
-
+	
 }
