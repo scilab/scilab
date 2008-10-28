@@ -182,6 +182,12 @@ void DrawableFigure::forceDisplay( void )
  
   //clock_gettime(0, &t_t1);
   drawCanvas() ;
+
+	if (!needsDisplay(m_pDrawed))
+	{
+		closeGraphicCanvas();
+	}
+
   //clock_gettime(0, &t_t4);
 
 //   double aa = (double) (t_t4.tv_sec - t_t1.tv_sec)
@@ -256,7 +262,7 @@ void DrawableFigure::setViewport(const int viewport[4])
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::setBackgroundColor(int backColor)
 {
-  getFigureImp()->setBackgroundColor(backColor);
+	getFigureImp()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)

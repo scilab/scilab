@@ -12,12 +12,11 @@
 
 package org.scilab.modules.gui.canvas;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.gui.bridge.canvas.ScrolledSwingScilabCanvas;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -40,7 +39,7 @@ public class ScilabCanvasBridge {
 	 * @return the created canvas
 	 */
 	public static SimpleCanvas createCanvas(int figureIndex) {
-		return ScrolledSwingScilabCanvas.createCanvas(figureIndex);
+		return SwingScilabCanvas.createCanvas(figureIndex);
 	}
 
 	/**
