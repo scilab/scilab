@@ -301,10 +301,10 @@ char * readline_nw (char *prompt)
 
 	/* print the prompt */
 	if (sendprompt) 
-          {
-            fputs ("\n", stdout);
-            fputs (prompt, stdout);
-          }
+    {
+		fputs ("\n", stdout);
+		fputs (prompt, stdout);
+	}
 	sendprompt=1;
 
 	cur_line[0] = '\0';
