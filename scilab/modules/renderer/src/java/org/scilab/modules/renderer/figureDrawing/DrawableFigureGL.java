@@ -676,7 +676,7 @@ public class DrawableFigureGL extends ObjectGL {
 	 * add one.
 	 */
 	public void openGraphicCanvas() {
-		getRendererProperties().openGraphicCanvas(figureId);
+		getRendererProperties().openGraphicCanvas();
 	}
 	
 	/**
