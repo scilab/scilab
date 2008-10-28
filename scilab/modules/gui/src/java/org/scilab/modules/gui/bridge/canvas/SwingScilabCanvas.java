@@ -35,6 +35,9 @@ import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 import com.sun.opengl.util.Screenshot;
 
+import javax.swing.SwingUtilities;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
  * JOGL
@@ -280,11 +283,17 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		removeGLEventListener(renderer);
 		renderer = null;
 		
-		// context need to be destroyed
-		// otherwise there are some memory leaks
 		try {
-			getContext().destroy();
-		} catch (NullPointerException e) {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+				// context need to be destroyed
+				// otherwise there are some memory leaks
+					getContext().destroy();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
 			// context not already created
 			// do nothing
 		}
