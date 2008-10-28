@@ -214,9 +214,8 @@ public interface RendererProperties {
 	/**
 	 * If the window does not already contains a 3D canvas,
 	 * add one.
-	 * @param figureIndex index of the figure in which the canvas is added
 	 */
-	void openGraphicCanvas(int figureIndex);
+	void openGraphicCanvas();
 	
 	/**
 	 * Destroy the canvas if one already exists

@@ -36,14 +36,19 @@ public class ScilabRendererProperties implements RendererProperties {
 	/** Enclosing tab */
 	private Tab parentTab;
 	
+	/** Index of the modified figure */
+	private int figureIndex;
+	
 	/**
 	 * Default constructor
 	 * @param parentTab the parent tab of this renderer 
-	 * @param parentCanvas the parent canvas of this renderer
+	 * @param parentCanvas the parent canvas of this renderer or null if none already exists
+	 * @param figureIndex index of the modified figure
 	 */
-	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas) {
+	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas, int figureIndex) {
 		this.parentCanvas = parentCanvas;
 		this.parentTab = parentTab;
+		this.figureIndex = figureIndex;
 	}
 	
 	/**
@@ -334,7 +339,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
 		// rubber box needs an OpenGL canvas to display the selection rectangle.
 		if (parentCanvas == null) {
-			openGraphicCanvas(0);
+			openGraphicCanvas();
 		}
 		return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
 	}
@@ -405,7 +410,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * add one.
 	 * @param figureIndex index of the figure in which the canvas is added
 	 */
-	public void openGraphicCanvas(int figureIndex) {
+	public void openGraphicCanvas() {
 		if (parentCanvas == null) {
 		
 			// create canvas
