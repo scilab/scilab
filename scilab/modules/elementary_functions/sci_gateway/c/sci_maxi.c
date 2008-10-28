@@ -25,9 +25,9 @@ void compare_sparse(int _iIsMaxi);
 int compare_double(int _iIsMaxi);
 int compare_double_inside(int _iIsMaxi, int _iMode);
 
-extern int C2F(intmaxi) _PARAMS((char *fname,int *id));
+extern int C2F(intmaxi) (char *fname,int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_maxi) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

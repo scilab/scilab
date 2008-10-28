@@ -16,12 +16,12 @@
 
 
 /*Some call to other module ( polynomial et sparse*/
-extern int C2F(sci_cleanp) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_spclean) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(ref2val) _PARAMS((void));
+extern int C2F(sci_cleanp) (char *fname,unsigned long fname_len);
+extern int C2F(sci_spclean) (char *fname,unsigned long fname_len);
+extern int C2F(ref2val) (void);
 extern double C2F(dasum)();
 
-int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_clean) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int iRows1		= 0;

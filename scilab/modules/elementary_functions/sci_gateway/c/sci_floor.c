@@ -19,9 +19,9 @@
 int floor_poly();
 int floor_double();
 
-extern int C2F(intfloor) _PARAMS((int *id));
+extern int C2F(intfloor) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_floor) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_floor) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

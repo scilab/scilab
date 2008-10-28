@@ -15,9 +15,9 @@
 #include "basic_functions.h"
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(inttan) _PARAMS((int *id));
+extern int C2F(inttan) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_tan) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int iRows = 0;

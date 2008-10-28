@@ -25,12 +25,12 @@ void vKronC(	double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRows
 
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intkron) _PARAMS((int *id));
+extern int C2F(intkron) (int *id);
 extern int C2F(dcopy)();
 extern int C2F(dscal)();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_kron) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_kron) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

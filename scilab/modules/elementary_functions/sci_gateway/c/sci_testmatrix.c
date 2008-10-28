@@ -21,10 +21,10 @@
 #define HILB_LETTER		'h'
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(inttestmatrix) _PARAMS((int *id));
+extern int C2F(inttestmatrix) (int *id);
 extern int C2F(magic)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_testmatrix) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_testmatrix) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

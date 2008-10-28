@@ -15,10 +15,10 @@
 #include "basic_functions.h"
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsin) _PARAMS((int *id));
+extern int C2F(intsin) (int *id);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sin) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sin) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int iRows = 0;

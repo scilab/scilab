@@ -26,6 +26,16 @@ intersci_
 createvar_
 checklhs_
 checkrhs_
+iAllocMatrixOfDouble
+vFreeDoubleComplexFromPointer
+vGetPointerFromDoubleComplex
+iAllocComplexMatrixOfDouble
+oGetDoubleComplexFromPointer
+iIsComplex
+GetVarDimension
+CheckVarUsed
+Msgs
+
 callFunctionFromGateway
 ;
 ;core_f

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
@@ -37,4 +37,6 @@
 <PRIMITIVE gatewayId="18" primitiveId="7" primitiveName="delip" />
 <PRIMITIVE gatewayId="18" primitiveId="8" primitiveName="remez" />
 <PRIMITIVE gatewayId="18" primitiveId="9" primitiveName="syredi" />
+<PRIMITIVE gatewayId="18" primitiveId="10" primitiveName="fftnew" />
+<PRIMITIVE gatewayId="18" primitiveId="11" primitiveName="levinson" />
 </GATEWAY>

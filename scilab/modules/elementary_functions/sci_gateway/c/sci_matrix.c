@@ -25,9 +25,9 @@ int matrix_sparse(int _iRowsRet, int _iColsRet);
 int matrix_poly(int _iRowsRet, int _iColsRet);
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intmatrix) _PARAMS((int *id));
+extern int C2F(intmatrix) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scimatrix) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

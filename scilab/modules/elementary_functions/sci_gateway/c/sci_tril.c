@@ -18,10 +18,10 @@
 /*--------------------------------------------------------------------------*/
 int tril_matrix(int _iOffset);
 
-extern int C2F(sci_ptril) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(inttril)	_PARAMS((int *id));
+extern int C2F(sci_ptril) (char *fname,unsigned long fname_len);
+extern int C2F(inttril)	(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tril) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_tril) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

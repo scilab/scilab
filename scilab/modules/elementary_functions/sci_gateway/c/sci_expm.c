@@ -85,9 +85,9 @@ extern int C2F(dexpm1)();
 extern int C2F(wexpm1)();
 extern int C2F(drot)();
 
-extern int C2F(intexpm) _PARAMS((int *id));
+extern int C2F(intexpm) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_expm) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_expm) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 
-int C2F(sci_cumprod) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_cumprod) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int iRows			= 0;

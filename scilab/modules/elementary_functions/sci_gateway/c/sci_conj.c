@@ -16,7 +16,7 @@
 
 extern int C2F(dscal)();
 
-int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_conj) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int iRows		= 0;

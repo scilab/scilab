@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="core"
+	Name="core_yasp"
 	ProjectGUID="{14373D41-991A-412E-8EA7-A832D98047B8}"
 	RootNamespace="core"
 	Keyword="Win32Proj"

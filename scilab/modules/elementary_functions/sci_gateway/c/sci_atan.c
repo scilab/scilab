@@ -17,9 +17,9 @@
 #include "../../core/src/c/parse.h"
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intatan) _PARAMS((int *id));
+extern int C2F(intatan) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_atan) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_atan) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int iRows1 = 0;

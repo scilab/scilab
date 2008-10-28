@@ -17,7 +17,7 @@
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dsearch) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 {
 	int iRows				= 0;
 	int iCols				= 0;

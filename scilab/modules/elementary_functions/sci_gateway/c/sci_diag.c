@@ -14,11 +14,11 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 
-extern int C2F(sci_pdiag) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_pdiag) (char *fname,unsigned long fname_len);
 
 #define _NEW_TONIO_
 
-int C2F(sci_diag) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_diag) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

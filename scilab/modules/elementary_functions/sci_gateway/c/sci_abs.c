@@ -19,9 +19,9 @@ int abs_poly();
 int abs_sparse();
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intabs) _PARAMS((int *id));
+extern int C2F(intabs) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_abs) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	CheckRhs(1,1);

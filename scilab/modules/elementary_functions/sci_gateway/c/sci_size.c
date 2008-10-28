@@ -25,9 +25,9 @@ void AddToFile(char *_pszFile, char * _pszVar, int _iVal);
 char **g_pfname;
 #define LOG_FILE "c:\\test.txt"
 int toto = 0;
-extern int C2F(intsize) _PARAMS((int *id));
+extern int C2F(intsize) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_size) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_size) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

@@ -17,9 +17,9 @@
 
 #define _NEW_TONIO_
 /*--------------------------------------------------------------------------*/
-extern int C2F(intlog1p) _PARAMS((int *id));
+extern int C2F(intlog1p) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_log1p) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_log1p) (char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_
