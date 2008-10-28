@@ -16,6 +16,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "readline.h"
 #include "filesmanagement.h"
 #include "charEncoding.h"
