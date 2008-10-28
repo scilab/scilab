@@ -566,7 +566,7 @@ BOOL needsDisplay(sciPointObj * pFigure)
 
 	if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 0)
 	{
-		/* No subwindows, return true */
+		/* No subwindows, return false */
 		return FALSE;
 	}
 	else if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 1)

@@ -14,7 +14,6 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
@@ -406,4 +405,98 @@ public class ScilabTabBridge {
 	public static void setBackground(Tab tab, double red, double green, double blue) {
 		tab.getAsSimpleTab().setBackground(red, green, blue);
 	}
+	
+	/**
+	  * Specify whether the canvas should fit the parent tab size
+	  * (and consequently the scrollpane size) or not
+	  * @param tab tab to modify
+	  * @param onOrOff true to enable autoresize mode
+	  */
+	 public static void setAutoResizeMode(Tab tab, boolean onOrOff) {
+		 tab.getAsSimpleTab().setAutoResizeMode(onOrOff);
+	 }
+
+	 /**
+	  * @param tab tab to modify
+	  * @return whether the resize mode is on or off
+	  */
+	 public static boolean getAutoResizeMode(Tab tab) {
+		 return tab.getAsSimpleTab().getAutoResizeMode();
+	 }
+	 
+	 /**
+	  * Get the part of the axes which is currently viewed
+	  * @param tab tab to modify
+	  * @return [x,y,w,h] array
+	  */
+	 public static int[] getViewingRegion(Tab tab) {
+		 return tab.getAsSimpleTab().getViewingRegion();
+	 }
+	 
+	 /**
+	  * Specify a new viewport for the axes
+	  * Only works if autoresize mode is off
+	  * @param tab tab to modify
+	  * @param posX X coordinate of upper left point of the viewport within the canvas
+	  * @param posY Y coordinate of upper left point of the viewport within the canvas
+	  * @param width width of the viewport
+	  * @param height height of the viewport
+	  */
+	 public static void setViewingRegion(Tab tab, int posX, int posY, int width, int height) {
+		 tab.getAsSimpleTab().setViewingRegion(posX, posY, width, height);
+	 }
+	 
+	 
+	 /**
+	  * @param tab tab to modify
+	  * @return size of the axes in pixels
+	  */
+	 public static Size getAxesSize(Tab tab) {
+		 return tab.getAsSimpleTab().getAxesSize();
+	 }
+	 
+	 
+	 /**
+	  * @param tab tab to modify
+	  * @param newSize set a new axes size
+	  */
+	 public static void setAxesSize(Tab tab, Size newSize) {
+		 tab.getAsSimpleTab().setAxesSize(newSize);
+	 }
+	 
+	 /**
+	  * Set the event handler of the Axes
+	  * @param tab tab to modify
+	  * @param command the name of the Scilab function to call
+	  */
+	 public static void setEventHandler(Tab tab, String command) {
+		 tab.getAsSimpleTab().setEventHandler(command);
+	 }
+
+	 /**
+	  * Set the status of the event handler of the Axes
+	  * @param tab tab to modify
+	  * @param status is true to set the event handler active
+	  */
+	 public static void setEventHandlerEnabled(Tab tab, boolean status) {
+		 tab.getAsSimpleTab().setEventHandlerEnabled(status);
+	 }
+	 
+	 /**
+	  * Get the displacement in pixel that should be used for rotating axes
+	  * @param tab tab on which the displacement is recorded
+	  * @param displacement out parameter, [x,y] array of displacement in pixels
+	  * @return true if the displacement recording continue, false otherwise
+	  */
+	 public static boolean getRotationDisplacement(Tab tab, int[] displacement) {
+		 return tab.getAsSimpleTab().getRotationDisplacement(displacement);
+	 }
+
+	 /**
+	  * Asynchronous stop of rotation tracking.
+	  * @param tab tab on which the displacement is recorded
+	  */
+	 public static void stopRotationRecording(Tab tab) {
+		 tab.getAsSimpleTab().stopRotationRecording();
+	 }
 }
