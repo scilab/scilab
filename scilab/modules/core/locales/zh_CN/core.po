@@ -664,7 +664,7 @@ msgstr "%s：参数%d的类型错误：应该为多边形。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
-msgstr "%s：参数%d的类型错误：应该为Working整数矩阵。\n"
+msgstr "%s：参数%d的类型错误：应该为Working整数矩阵。\\n\n"
 
 #, c-format
 msgid ""
