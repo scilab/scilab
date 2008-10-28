@@ -32,10 +32,10 @@
 #include "freeArrayOfString.h"
 #include "scilines.h"
 #include "strdup_windows.h"
-#include "charEncoding.h"
 #include "completion.h"
 #include "preparsecompletion_nw.h"
 #include "charEncoding.h"
+#include "FocusOnConsole.h"
 /*--------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
@@ -200,6 +200,7 @@ static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
 static int sendprompt = 1;  /* default */
 static int lenCurrentLine = 0;
+static BOOL forceFocus = TRUE;
 /*--------------------------------------------------------------------------*/
 static char msdos_getch (void);
 static void fix_line (void);
@@ -309,6 +310,13 @@ char * readline_nw (char *prompt)
 	cur_line[0] = '\0';
 	cur_pos = 0;
 	max_pos = 0;
+
+	/* bug 3702 */
+	if (forceFocus) 
+	{
+		setFocusOnConsole();
+		forceFocus = FALSE;
+	}
 
 	setSearchedTokenInScilabHistory(NULL);
 
