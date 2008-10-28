@@ -137,21 +137,21 @@ void Initialize(void)
    /* Test if we find the thirdparty directory. If it is the case, it is most 
 	* probable that we are working with the binary version of Scilab 
 	*/
-   if (isdir(pathToTcl))
-   {
-		#define EXPORTTCL "TCL_LIBRARY="
-		#define EXPORTTK "TK_LIBRARY="
-		char *pathToTk=(char*)MALLOC((strlen(DIRECTORYOFTK)+commonPart)*sizeof(char));
-		sprintf(pathToTk, "%s%s%s%s", sciPath, BASEPATHTOTHIRDPARTY, DIRECTORYOFTK, TCL_VERSION);
+   if (isdir(pathToTcl)){
+#define EXPORTTCL "TCL_LIBRARY="
+#define EXPORTTK "TK_LIBRARY="
+	   char *pathToTk=(char*)MALLOC((strlen(DIRECTORYOFTK)+commonPart)*sizeof(char));
+	   sprintf(pathToTk, "%s%s%s%s", sciPath, BASEPATHTOTHIRDPARTY, DIRECTORYOFTK, TCL_VERSION);
 
-		char *exportTcl=(char*)MALLOC((strlen(EXPORTTCL)+strlen(pathToTcl)+1)*sizeof(char));
-		char *exportTk=(char*)MALLOC((strlen(EXPORTTK)+strlen(pathToTk)+1)*sizeof(char));
-		sprintf(exportTcl,"%s%s",EXPORTTCL,pathToTcl);
-		sprintf(exportTk,"%s%s",EXPORTTK,pathToTk);
-		/* Export both TCL_LIBRARY & TK_LIBRARY */
-		putenv(exportTcl);
-		putenv(exportTk);
+	   char *exportTcl=(char*)MALLOC((strlen(EXPORTTCL)+strlen(pathToTcl)+1)*sizeof(char));
+	   char *exportTk=(char*)MALLOC((strlen(EXPORTTK)+strlen(pathToTk)+1)*sizeof(char));
+	   sprintf(exportTcl,"%s%s",EXPORTTCL,pathToTcl);
+	   sprintf(exportTk,"%s%s",EXPORTTK,pathToTk);
+	   /* Export both TCL_LIBRARY & TK_LIBRARY */
+	   putenv(exportTcl);
+	   putenv(exportTk);
    }
+
   #endif
   /* set TMPDIR */
   C2F(settmpdir)();
