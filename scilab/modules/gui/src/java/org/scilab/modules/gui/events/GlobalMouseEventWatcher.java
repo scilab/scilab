@@ -17,7 +17,6 @@ import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 
-import org.scilab.modules.gui.bridge.canvas.ScrollabeSwingScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.SciTranslator;
 
@@ -134,7 +133,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 			}
 
 		}
-		if (mouseEvent.getSource() instanceof ScrollabeSwingScilabCanvas) {
+		if (mouseEvent.getSource() instanceof SwingScilabCanvas) {
 			switch (mouseEvent.getID()) {
 			case MouseEvent.MOUSE_ENTERED :
 				this.inCanvas = true;
