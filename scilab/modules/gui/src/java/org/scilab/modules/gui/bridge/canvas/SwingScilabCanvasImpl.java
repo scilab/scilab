@@ -107,22 +107,22 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for implementation.");
+	    DEBUG("Using GLCanvas for OpenGL implementation.");
 	    realGLCanvas = new GLCanvas();
 	}
 	else {
-	    DEBUG("Using GLJPanel for implementation.");
+	    DEBUG("Using GLJPanel for OpenGL implementation.");
 	    realGLJPanel= new GLJPanel();
 	}
     }
 
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for implementation.");
+	    DEBUG("Using GLCanvas for OpenGL implementation.");
 	    realGLCanvas = new GLCanvas(cap);
 	}
 	else {
-	    DEBUG("Using GLJPanel for implementation.");
+	    DEBUG("Using GLJPanel for OpenGL implementation.");
 	    realGLJPanel = new GLJPanel(cap);
 	}
     }
@@ -162,9 +162,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GL getGL() {
-	//DEBUG("GL_VENDOR="+getAsGL().getGL().glGetString(GL.GL_VENDOR));
-	//DEBUG("GL_RENDERER="+getAsGL().getGL().glGetString(GL.GL_RENDERER));
-	//DEBUG("GL_VERSION="+getAsGL().getGL().glGetString(GL.GL_VERSION));
 	return getAsGL().getGL();
     }
 
@@ -312,6 +309,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public boolean postEvent(Event arg0) {
+	DEBUG("postEvent(Event arg0)");
 	return getAsComponent().postEvent(arg0);
     }
 
