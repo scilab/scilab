@@ -61,7 +61,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -105,7 +104,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 		
 		// create the panel in which all the uiobjects will lie.
 		contentPane = new SwingScilabAxes();
-		contentPane.setLayout(new BorderLayout());
 		
 		// add it inside a JSCrollPane
 		scrolling = new JScrollPane(contentPane);
@@ -209,7 +207,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param newSize new size to set for the axes
 	 */
 	public void setAxesSize(Size newSize) {
-		contentPane.setSize(new Dimension(contentPane.getWidth(), contentPane.getHeight()));
+		contentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
 	}
 
 	/**
@@ -362,7 +360,9 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabPushButton member) {
-		return contentPane.addWidget(member);
+		int res = contentPane.addWidget(member);
+		repaint();
+		return res;
 	}
 
 	/**

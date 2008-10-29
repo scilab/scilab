@@ -5,10 +5,10 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.lang.reflect.InvocationTargetException;
+import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.Scrollable;
 import javax.swing.SwingUtilities;
 
@@ -30,38 +30,42 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	private static final int SMALL_DISPLACEMENT = 2;
 	private static final int LARGE_DISPLACEMENT = 20;
 	
-	private static final int BACKGROUND_LAYER = 0;
-	private static final int CANVAS_LAYER = 1;
-	private static final int WIDGET_LAYER = 2;
+	// definition of layers from bottom to top
+	//private static final int BACKGROUND_LAYER = 0;
+	private static final Integer CANVAS_LAYER = 1;
+	private static final Integer WIDGET_LAYER = 2;
 	
+	/** Use to put a component above any other object within its layer */
 	private static final int TOP_POSITION = 0;
+	/** Use to put a component below any other object within its layer */
 	private static final int BOTTOM_POSITION = -1;
 	
 	private boolean autoResizeMode;
 	
 	private ScilabEventListener eventHandler;
 	
-	/** Needed to be able to change the background */
-	private JPanel backgroundFiller;
-	
 	private AxesRotationTracker rotationTracker;
+	
+	/** An axes may contain at most one canvas for now */
+	private SwingScilabCanvas graphicCanvas;
 	
 	/**
 	 * Default constructor
 	 */
 	public SwingScilabAxes() {
 		super();
+		// default behaviour
 		autoResizeMode = true;
-		eventHandler = null;
 		
+		eventHandler = null;
+		graphicCanvas = null;
+		
+		// we use a null layout. It's needed for uicontrol so they don't resize when the canvas
+		// is resized. However, its imply to set the canvas size by hand.
 		setLayout(null);
 		
-		// adding an object to fill the background
-		backgroundFiller = new JPanel();
-		add(backgroundFiller);
-		setLayer(backgroundFiller, BACKGROUND_LAYER , BOTTOM_POSITION);
-		
-		rotationTracker = new AxesRotationTracker(backgroundFiller);
+		// for rotations
+		rotationTracker = new AxesRotationTracker(this);
 	}
 	
 	/**
@@ -71,11 +75,16 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	public void setSize(Dimension newSize) {
 		super.setSize(newSize);
 		super.setPreferredSize(newSize);
-		backgroundFiller.setSize(newSize);
+		
+		// force resize of canvas also
+		// to be sure that the canvas has the same size as the axes
+		if (graphicCanvas != null) {
+			graphicCanvas.setSize(newSize);
+		}
 	}
 	
 	/**
-	 * Specify wether the canvas should fit the parent tab size
+	 * Specify whether the canvas should fit the parent tab size
 	 * (and consequently the scrollpane size) or not
 	 * @param onOrOff true to enable autoresize mode
 	 */
@@ -187,7 +196,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	public void setBackground(double red, double green, double blue) {
 		Color color = new Color((float) red, (float) green, (float) (blue));
 		setBackground(color);
-		backgroundFiller.setBackground(color);
 	}
 	
 	/**
@@ -196,12 +204,20 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return index of member in ArrayList
 	 */
 	public int addCanvas(SwingScilabCanvas canvas) {
+		
+		if (graphicCanvas != null) {
+			// should not happen, no need for localization
+			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
+		}
+		
 		final SwingScilabCanvas canvasf = canvas;
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
-					add(canvasf);
-					setLayer(canvasf, CANVAS_LAYER, TOP_POSITION);
+					// we use a null layout. It's needed for uicontrol so they should resize when the canvas
+					// is resized. However, its imply to set the canvas size by hand.
+					canvasf.setSize(getSize());
+					add(canvasf, CANVAS_LAYER, TOP_POSITION);
 					revalidate();
 				}
 			});
@@ -211,6 +227,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			e.getCause().printStackTrace();
 		}
 		
+		graphicCanvas = canvas;
+		
 		return getComponentZOrder(canvas);
 	}
 	
@@ -219,6 +237,12 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param canvas canvas to remove
 	 */
 	public void removeCanvas(SwingScilabCanvas canvas) {
+		
+		if (canvas != graphicCanvas) {
+			// should not happen, no need for localization
+			throw new UnsupportedOperationException("Trying to remove an unknown canvas.");
+		}
+		
 		final SwingScilabCanvas canvasf = canvas;
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -232,6 +256,9 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		} catch (InvocationTargetException e) {
 			e.getCause().printStackTrace();
 		}
+		
+		graphicCanvas = null;
+		
 	}
 	
 	/**
@@ -240,11 +267,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return index of member in ArrayList
 	 */
 	public int addWidget(JComponent widget) {
-		add(widget);
+		add(widget, WIDGET_LAYER, TOP_POSITION);
 		// put the newly added object above any other objects
-		setLayer(widget, WIDGET_LAYER, TOP_POSITION);
-		widget.setBounds(0, 0, 0, 0);
-		repaint();
 		return getComponentZOrder(widget);
 	}
 	
@@ -297,7 +321,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	}
 	
 	/**
-	 * Ansynchrnous stop of rotation tracking.
+	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
 		rotationTracker.cancelRecording();
