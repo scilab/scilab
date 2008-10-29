@@ -14,6 +14,7 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
@@ -50,6 +51,16 @@ public class ScilabTabBridge {
 	 */
 	public static SimpleTab createTab(String name) {
 		return new SwingScilabTab(name);
+	}
+	
+	/**
+	 * Creates a Scilab tab able to display a figure handle
+	 * @param name the name of the tab (used to identify it)
+	 * @param figureId id of the displayed figure
+	 * @return the created tab
+	 */
+	public static SimpleTab createTab(String name, int figureId) {
+		return new SwingScilabTab(name, figureId);
 	}
 
 	/**

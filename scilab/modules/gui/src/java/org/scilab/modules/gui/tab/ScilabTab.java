@@ -56,7 +56,16 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 */
 	protected ScilabTab(String name) {
 		component = ScilabBridge.createTab(name);
-   }
+	}
+	
+	/**
+	 * Constructor for a graphical tab
+	 * @param name - name of the Tab
+	 * @param figureId index of the displayed figure
+	 */
+	protected ScilabTab(String name, int figureId) {
+		component = ScilabBridge.createTab(name, figureId);
+	}
 
 	/**
 	 * Creates a Scilab Tab
@@ -65,6 +74,16 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 */
 	public static Tab createTab(String name) {
 		return new ScilabTab(name);
+	}
+	
+	/**
+	 * Creates a Scilab Tab
+	 * @param name the name of the tab (used to identify it)
+	 * @param figureId index of the figure to display
+	 * @return the created Scilab Tab
+	 */
+	public static Tab createTab(String name, int figureId) {
+		return new ScilabTab(name, figureId);
 	}
 
 	/**
@@ -585,7 +604,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 }
 
 	 /**
-	  * Ansynchrnous stop of rotation tracking.
+	  * Asynchronous stop of rotation tracking.
 	  */
 	 public void stopRotationRecording() {
 		 ScilabBridge.stopRotationRecording(this);

@@ -14,7 +14,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -28,7 +27,6 @@ import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
@@ -66,10 +64,10 @@ import org.scilab.modules.gui.utils.Size;
 /**
  * Swing implementation for Scilab tabs in GUIs
  * This implementation uses FlexDock package
- * @author Jean-Baptiste SILVY
  * @author Bruno JOFRET
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
+ * @author Jean-Baptiste SILVY
  */
 public class SwingScilabTab extends View implements SimpleTab {
 	
@@ -85,8 +83,10 @@ public class SwingScilabTab extends View implements SimpleTab {
 	
 	private TextBox infoBar;
 	
+	/** Contains the canvas and widgets */
 	private SwingScilabAxes contentPane;
 	
+	/** Scroll the axes */
 	private JScrollPane scrolling;
 
 	/**
@@ -102,9 +102,30 @@ public class SwingScilabTab extends View implements SimpleTab {
 		//this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
 		
+		// no need for an axes
+		contentPane = null;
+		scrolling = null;
+	
+		this.setVisible(true);
+
+	}
+	
+	/**
+	 * Create a graphic tab used to display a figure with 3D graphics and/or UIcontrols
+	 * @param name name of the tab
+	 * @param figureId id of the displayed figure
+	 */
+	public SwingScilabTab(String name, int figureId) {
+		super(name, name, name);
+		
+		// This button is "overloaded" when we add a callback
+		//this.addAction(DockingConstants.CLOSE_ACTION);
+		// Removed because make JOGL crash when "Unpin"
+		//this.addAction(DockingConstants.PIN_ACTION);
+		this.addAction(DockingConstants.ACTIVE_WINDOW);
+		
 		// create the panel in which all the uiobjects will lie.
-		contentPane = new SwingScilabAxes();
-		contentPane.setLayout(new BorderLayout());
+		contentPane = new SwingScilabAxes(figureId);
 		
 		// add it inside a JSCrollPane
 		scrolling = new JScrollPane(contentPane);
@@ -113,9 +134,8 @@ public class SwingScilabTab extends View implements SimpleTab {
 		setContentPane(scrolling);
 	
 		this.setVisible(true);
-
 	}
-
+	
 	/**
      * Repaint it
      */
@@ -244,16 +264,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
-		return this.addMember((SwingScilabCanvas) member.getAsSimpleCanvas());
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	private int addMember(SwingScilabCanvas member) {
-		return contentPane.addCanvas(member);
+		return contentPane.addMember(member);
 	}
 	
 	/**
@@ -261,15 +272,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member canvas to remove 
 	 */
 	public void removeMember(Canvas member) {
-		this.removeMember((SwingScilabCanvas) member.getAsSimpleCanvas());
-	}
-	
-	/**
-	 * We want to be able to remove directly a Canvas from a Tab.
-	 * @param member canvas to remove 
-	 */
-	public void removeMember(SwingScilabCanvas member) {
-		contentPane.removeCanvas(member);
+		contentPane.removeMember(member);
 	}
 	
 	/**
@@ -361,7 +364,9 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabPushButton member) {
-		return contentPane.addWidget(member);
+		int res = contentPane.addWidget(member);
+		repaint();
+		return res;
 	}
 
 	/**
@@ -869,7 +874,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 	
 	/**
-	 * @return wether the resize mode is on or off
+	 * @return whether the resize mode is on or off
 	 */
 	public boolean getAutoResizeMode() {
 		return contentPane.getAutoResizeMode();

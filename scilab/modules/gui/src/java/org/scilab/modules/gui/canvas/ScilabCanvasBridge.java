@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -117,7 +117,7 @@ public class ScilabCanvasBridge {
 	public static void display(Canvas canvas) {
 		canvas.getAsSimpleCanvas().display();
 	}
-	
+
 	/**
 	 * @param canvas the canvas we want to get the GL object from
 	 * @return GL pipeline of the object
@@ -125,7 +125,7 @@ public class ScilabCanvasBridge {
 	public static GL getGL(Canvas canvas) {
 		return canvas.getAsSimpleCanvas().getGL();
 	}
-	
+
 	/**
 	 * @param canvas the canvas of which we want to set the swap buffer mode.
 	 * @param onOrOff set wether the swap buffer mode is on or off.
@@ -133,7 +133,7 @@ public class ScilabCanvasBridge {
 	public static void setAutoSwapBufferMode(Canvas canvas, boolean onOrOff) {
 		canvas.getAsSimpleCanvas().setAutoSwapBufferMode(onOrOff);
 	}
-	
+
 	/**
 	 * @param canvas the canvas from which we want to retrieve the swap buffer mode.
 	 * @return set wether the swap buffer mode is on or off.
@@ -141,84 +141,25 @@ public class ScilabCanvasBridge {
 	public static boolean getAutoSwapBufferMode(Canvas canvas) {
 		return canvas.getAsSimpleCanvas().getAutoSwapBufferMode();
 	}
-	
+
 	/**
 	 * @param canvas the canvas we want to repaint
 	 */
 	public static void repaint(Canvas canvas) {
 		canvas.getAsSimpleCanvas().repaint();
 	}
-	
-	/**
-	 * Specify wether the canvas should fit the parent tab size
-	 * (and consequently the scrollpane size) or not
-	 * @param onOrOff true to enable autoresize mode
-	 * @param canvas the canvas we want to repaint
-	 */
-	public static void setAutoResizeMode(Canvas canvas, boolean onOrOff) {
-		canvas.getAsSimpleCanvas().setAutoResizeMode(onOrOff);
-	}
-	
-	/**
-	 * @param canvas the canvas we want to repaint
-	 * @return wether the resize mode is on or off
-	 */
-	public static boolean getAutoResizeMode(Canvas canvas) {
-		return canvas.getAsSimpleCanvas().getAutoResizeMode();
-	}
-	
-	/**
-	 * Get the part of the canvas which is currently viewed
-	 * @param canvas the canvas we want to repaint
-	 * @return [x,y,w,h] array
-	 */
-	public static int[] getViewingRegion(Canvas canvas) {
-		return canvas.getAsSimpleCanvas().getViewingRegion();
-	}
-	
-	/**
-	 * Specify a new viewport for the canvas
-	 * For SwingScilabCanvas viewport can not be modified
-	 * since it match the parent tab size
-	 * @param canvas the canvas we want to modify
-	 * @param posX X coordinate of upper left point of the viewport within the canvas
-	 * @param posY Y coordinate of upper left point of the viewport within the canvas
-	 * @param width width of the viewport
-	 * @param height height of the viewport
-	 */
-	public static void setViewingRegion(Canvas canvas, int posX, int posY, int width, int height) {
-		canvas.getAsSimpleCanvas().setViewingRegion(posX, posY, width, height);
-	}
-	
+
 	/**
 	 * Set the background of the Canvas.
 	 * @param canvas the canvas we want to modify
 	 * @param red red channel
-	 * @param green green channel 
+	 * @param green green channel
 	 * @param blue blue channel
 	 */
 	public static void setBackgroundColor(Canvas canvas, double red, double green, double blue) {
 		canvas.getAsSimpleCanvas().setBackgroundColor(red, green, blue);
 	}
-	
-	/**
-	 * Set the event handler of the Canvas
-	 * @param canvas the Canvas
-	 * @param command the name of the Scilab function to call
-	 */
-	public static void setEventHandler(Canvas canvas, String command) {
-		//canvas.getAsSimpleCanvas().setEventHandler(command);
-	}
 
-	/**
-	 * Set the status of the event handler of the Canvas
-	 * @param canvas the Canvas
-	 * @param status is true to set the event handler active
-	 */
-	public static void setEventHandlerEnabled(Canvas canvas, boolean status) {
-		//canvas.getAsSimpleCanvas().setEventHandlerEnabled(status);
-	}
-	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
 	 * @param canvas canvas on which the rubber box will be applied
@@ -232,7 +173,7 @@ public class ScilabCanvasBridge {
 	public static int rubberBox(Canvas canvas, boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
 		return canvas.getAsSimpleCanvas().rubberBox(isClick, isZoom, initialRect, endRect);
 	}
-	
+
 	/**
 	 * Get the displacement in pixel that should be used for rotating axes
 	 * @param canvas canvas on which the displacement is recorded
@@ -242,7 +183,7 @@ public class ScilabCanvasBridge {
 	public static boolean getRotationDisplacement(Canvas canvas, int[] displacement) {
 		return canvas.getAsSimpleCanvas().getRotationDisplacement(displacement);
 	}
-	
+
 	/**
 	 * Ansynchrnous stop of rotation tracking.
 	 * @param canvas canvas on which the displacement is be recorded
@@ -250,7 +191,7 @@ public class ScilabCanvasBridge {
 	public static void stopRotationRecording(Canvas canvas) {
 		canvas.getAsSimpleCanvas().stopRotationRecording();
 	}
-	
+
 	/**
 	  * Disable the canvas befor closing
 	  * @param canvas canvas to close

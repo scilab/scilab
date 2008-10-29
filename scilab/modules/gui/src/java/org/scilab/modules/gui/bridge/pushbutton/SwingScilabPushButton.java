@@ -87,8 +87,6 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setDims(Size newSize) {
 		setSize(newSize.getWidth(), newSize.getHeight());
 		setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
-		setMinimumSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
-		setMaximumSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
 	}
 
 	/**
