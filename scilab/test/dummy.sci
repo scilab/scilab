@@ -70,21 +70,27 @@ row_col = [
 col = [0;1.2345678901234567890;2;3;4;5;6;7;8;9;0;1;2;3;4;5;6;7;8;9]
 */
 
+/*
 a01 = 0.12345
-a02 = a01 * 10
+a02 = a01 * -10
 a03 = a02 * 10
-a04 = a03 * 10
+a04 = a03 * -10
 a05 = a04 * 10
+*/
 
-dbl01 =  0.12345678901234567890123456789
-dbl02 =  dbl01 * 10
-dbl03 =  dbl02 * 10
-dbl04 =  dbl03 * 10
-dbl05 =  dbl04 * 10
-dbl06 =  dbl05 * 10
-dbl07 =  dbl06 * 10
-dbl08 =  dbl07 * 10
-dbl09 =  dbl08 * 10
-dbl10 =  dbl09 * 10
-dbl11 =  dbl10 * 10
-dbl12 =  dbl11 * 10
+dbl01 =  0.123
+dbl02 =  dbl01 * -10
+dbl03 =  dbl02 * -10
+dbl04 =  dbl03 * -10
+dbl05 =  dbl04 * -10
+dbl06 =  dbl05 * -10
+dbl07 =  dbl06 * -10
+dbl08 =  dbl07 * -10
+dbl09 =  dbl08 * -10
+dbl10 =  dbl09 * -10
+dbl11 =  dbl10 * -10
+dbl12 =  dbl11 * -10
+
+dbl = [dbl01;dbl02;dbl03;dbl04;dbl05;dbl06;dbl07;dbl08;dbl09;dbl10;dbl11;dbl12]
+
+

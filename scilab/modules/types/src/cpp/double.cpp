@@ -14,9 +14,11 @@
 #include <math.h>
 #include "double.hxx"
 
-void GetFormat(double _dblVal, int _iPrecision, int *_piEntNb, int *_piDecNb);
-
 using namespace std;
+
+void GetFormat(double _dblVal, int _iPrecision, int *_piEntNb, int *_piDecNb);
+void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec);
+
 namespace types
 {
 	/*------------*/
@@ -389,173 +391,86 @@ namespace types
 
 	string Double::toString(int _iPrecision, int _iLineLen)
 	{
-		std::ostringstream ostr;
-		std::ostringstream szTemp;
+		ostringstream ostr;
 
 		/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
 		if(cols_get() == 1 && rows_get() == 1)
 		{//scalar
-			bool bSign	= m_pdblReal[0] < 0;
-			bool bStartByZero = false;
-
-			/*if the value start by zero, we have 1 caracter less for the precision*/
-			if(m_pdblReal[0] < 1 && m_pdblReal[0] > -1)
-				bStartByZero = true;
-
-
-			int iNbEnt = 0, iNbDec = 0;
-			GetFormat(m_pdblReal[0], _iPrecision, &iNbEnt, &iNbDec);
-			cout << "|";
-			cout << (bSign == true ? "- " : "  ");
-
-			//width is the min value between the max size and the needed space.
-			int width = min(_iPrecision, iNbEnt + iNbDec );
-			cout.width(width);
-			//presicion is the min vlaue between needed precision - 1 ( I don't not why Oo ) less NbEnt size ( +1 for the dot ) and iNbDec
-			int prec = _iPrecision - 1 - bStartByZero;
-			cout.precision(prec);
-			cout.fill(' ');
-			cout << left << abs(m_pdblReal[0]);
-			cout.width(0);
-			cout.precision(0);
-			cout << "|" << endl;
+			int iWidth = 0, iPrec = 0;
+			GetFormat(m_pdblReal[0], _iPrecision, &iWidth, &iPrec);
+			Add_Value(&ostr, m_pdblReal[0], iWidth, iPrec);
+				ostr << endl;
 		}
 		else if(cols_get() == 1)
 		{//column vector
-			ostr << "[" << std::endl;
 			for(int i = 0 ; i < rows_get() ; i++)
 			{
-				ostr << m_pdblReal[i] << std::endl;
+				int iWidth = 0, iPrec = 0;
+				GetFormat(m_pdblReal[i], _iPrecision, &iWidth, &iPrec);
+
+				Add_Value(&ostr, m_pdblReal[i], iWidth, iPrec);
+				ostr << endl;
 			}
-			ostr << "\x09]" << std::endl;
 		}
 		else if(rows_get() == 1)
 		{//row vector
-			bool bWordWarp = false;
-			int iLineTag = 5000; //or not Oo
-
-			if(_iLineLen == -1)
-			{
-				bWordWarp = true;
-			}
-
-			ostr << "[ ";
-			for(int i = 0 ; i < cols_get() ; i++)
-			{
-				if(i != 0)
-				{
-					szTemp << "\x09,";
-				}
-
-				if(bWordWarp == false && (int)szTemp.str().size() >= _iLineLen)
-				{
-					bWordWarp = true;
-					iLineTag	= i;
-				}
-
-				if(bWordWarp == true && i%iLineTag == 0)
-				{
-					ostr << std::endl << "\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << i << std::endl;
-					ostr << szTemp << std::endl;
-					szTemp.clear();
-				}
-
-				szTemp << m_pdblReal[i];
-			}
-			if(bWordWarp == true)
-			{
-				ostr << std::endl << "\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << cols_get() << std::endl;
-			}
-			ostr << szTemp;
-			ostr << " ]" << std::endl;
+			//
 		}
 		else 
 		{
-			bool bWordWarp = false;
-			int iLineTag = 5000; //or not Oo
-
-			unsigned int  *iSize = new unsigned int[cols_get()];
-			memset(iSize, 0x00, cols_get() * sizeof(int));
-
-			int iRows = rows_get();
-			for(int i = 0 ; i < cols_get() ; i++)
-			{
-				for(int j = 0 ; j < rows_get() ; j++)
-				{
-					double entier = (int)m_pdblReal[i * iRows + j];
-					double virgule = m_pdblReal[i * iRows + j] - entier;
-					double LogEntier = log10(entier);
-					double LogVirgule = abs(log10(virgule));
-					if(entier == 0)
-						LogEntier = 0;
-
-					if(virgule == 0)
-						LogVirgule = 0;
-
-					int iPres = /*(int)(LogEntier) +*/ (int)(LogVirgule);
-//					if((int)LogEntier != LogEntier)
-//						iPres += 1;
-					if((int)LogVirgule != LogVirgule)
-						iPres += 1;
-					std::ostringstream os;
-					//os.setf(std::ios_base::fixed);
-					os.precision(iPres);
-					os << std::fixed << m_pdblReal[i * iRows + j];
-					iSize[i] = (iSize[i] > os.str().size()) ? iSize[i] : os.str().size();
-					//std::cerr.precision(_iPrecison);
-					std::cerr << os.str() << "  " << os.str().size() << std::endl;
-				}
-				std::cerr << std::endl;
-			}
-
-			for(int i = 0 ; i < cols_get() ; i++)
-			{
-				//cout << "width : " << iSize[i] + 4 << endl;
-				cout.width(iSize[i] + 4 );
-				//cout.precision(iSize[i]);
-				
-				cout.fill('*');
-
-				for(int j = 0 ; j < rows_get() ; j++)
-				{
-					cout << fixed << left << m_pdblReal[i * rows_get() + j] << " ";
-				}
-				cout << endl;
-
-			}
 		}
 		return ostr.str();
 	}
 }
 
-void GetFormat(double _dblVal, int _iPrecision, int *_piEntNb, int *_piDecNb)
+void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec)
 {
-	double dblDec = 0;
-	double dblEnt = 0;
-	double dblAbs = abs(_dblVal);
-	int iNbDigit	= 0;
-	double dblTmp	= 0;
+	double dblDec				= 0;
+	double dblEnt				= 0;
+	double dblAbs				= abs(_dblVal);
+	int iNbDigit				= 0;
+	double dblTmp				= 0;
+	int iNbEnt					= 0;
+	int iNbDec					= 0;
+	bool bStartByZero		= dblAbs < 1;
 
 	dblDec				= modf(dblAbs, &dblEnt);
 
 	iNbDigit = ((int)log10(dblEnt + 0.4)) + 1;
-	if(iNbDigit <= _iPrecision - 2)
+	if(iNbDigit <= _iPrecNeeded - 2)
 	{
-		*_piEntNb	= iNbDigit;
-		iNbDigit	= _iPrecision - *_piEntNb;
-		*_piDecNb	= 0;
+		iNbEnt		= iNbDigit;
+		iNbDigit	= _iPrecNeeded - iNbEnt;
+		iNbDec		= 0;
 		dblTmp		= dblDec * pow(10.0e+0, iNbDigit + 1);
 		dblDec		= floor(dblTmp / 10.0e+0 + 0.5);
 
 		if(dblDec != 0)
 		{
-			*_piDecNb = iNbDigit;
+			iNbDec = iNbDigit;
 			while(fmod(dblDec, 10.0e+0) == 0)
 			{
-				*_piDecNb -= 1;
+				iNbDec -= 1;
 				dblDec = dblDec / 10.0e+0;
 			}
-			//*_piEntNb = _iPrecision - *_piDecNb;
 		}
 	}
+
+	*_piWidth = _iPrecNeeded < (iNbEnt + iNbDec) ? _iPrecNeeded : (iNbEnt + iNbDec);
+	*_piPrec	= _iPrecNeeded - 1 - bStartByZero;
+}
+
+void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec)
+{
+	bool bSign	= _dblVal < 0;
+	*_postr << "|";
+	*_postr << (bSign == true ? "- " : "  ");
+
+	_postr->width(_iWidth);
+	_postr->precision(_iPrec);
+	_postr->fill(' ');
+	*_postr << left << abs(_dblVal);
+	_postr->width(0);
+	_postr->precision(0);
+	*_postr << "|";
 }
