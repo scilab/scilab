@@ -58,7 +58,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	DEBUG("GL_VENDOR="+tmpCanvas.getGL().glGetString(GL.GL_VENDOR));
 	DEBUG("GL_RENDERER="+tmpCanvas.getGL().glGetString(GL.GL_RENDERER));
 	DEBUG("GL_VERSION="+tmpCanvas.getGL().glGetString(GL.GL_VERSION));
-	System.getProperties().list(System.err);
+	DEBUG("os.name="+System.getProperty("os.name"));
+	DEBUG("os.arch="+System.getProperty("os.arch"));
+	//System.getProperties().list(System.err);
 	noGLJPanel = true;
     }
     
@@ -140,6 +142,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GL getGL() {
+	DEBUG("GL_VENDOR="+getAsGL().getGL().glGetString(GL.GL_VENDOR));
+	DEBUG("GL_RENDERER="+getAsGL().getGL().glGetString(GL.GL_RENDERER));
+	DEBUG("GL_VERSION="+getAsGL().getGL().glGetString(GL.GL_VERSION));
 	return getAsGL().getGL();
     }
 
