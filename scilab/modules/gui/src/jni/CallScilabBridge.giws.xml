@@ -23,6 +23,9 @@
         <method name="destroyFrame" returnType="void" modifier="static">
           <parameter type="int" name="objID"/>
         </method>
+		<method name="newWindow" returnType="int" modifier="static">
+          <parameter type="int" name="figureIndex"/>
+        </method>
 <!-- Parent setting -->
 	<method name="setFigureAsParent" returnType="void" modifier="static">
 	  <parameter type="int" name="figureID"/>

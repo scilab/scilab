@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.events;
 
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Point;
@@ -21,7 +22,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 
 /**
  * Class used to retrieve displacement that must be used for interactive rotation.
@@ -40,7 +40,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 * default constructor
 	 * @param canvas canvas on which we want to recod mouse displacement
 	 */
-	public AxesRotationTracker(SwingScilabCanvas canvas) {
+	public AxesRotationTracker(Component canvas) {
 		super(canvas);
 		reinit();
 	}

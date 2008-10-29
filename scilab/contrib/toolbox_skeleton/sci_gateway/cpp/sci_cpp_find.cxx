@@ -26,6 +26,7 @@ extern "C"
   	
   	/* Retrieve the second input argument */
   	GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2); 
+
   	inputString2 = cstk(l2);
   	
   	std::string myMessage (inputString1);
@@ -46,7 +47,11 @@ extern "C"
   	
   	/* Create the output argument */
   	
+<<<<<<< HEAD:scilab/contrib/toolbox_skeleton/sci_gateway/cpp/sci_cpp_find.cxx
   	CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE ,&m3,&n3,&position); 
+=======
+  	CreateVarFromPtr(Rhs+1,"d",&m3,&n3,&position); 
+>>>>>>> refs/heads/5.0:scilab/contrib/toolbox_skeleton/sci_gateway/cpp/sci_cpp_find.cxx
   	LhsVar(1) = Rhs+1;
   	delete[] position;
   	return 0;

@@ -18,6 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <string.h>
+#include <math.h> /* exp10 */
 
 #include "axesScale.h"
 #include "math_graphics.h"

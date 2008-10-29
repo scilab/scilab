@@ -45,6 +45,12 @@ int C2F(initscilab)(void)
 
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
+		/* bug 3702 */
+		/* tclsci creates a TK window on Windows */
+		/* it changes focus on previous windows */
+		/* we put InitializeTclTk before InitializeGUI */
+
+		InitializeTclTk();
 		InitializeJVM();
 		InitializeGUI();
 		
@@ -57,8 +63,7 @@ int C2F(initscilab)(void)
 			/* Initialize console: lines... */
 			InitializeConsole();
 		}
-
-		InitializeTclTk();
+		
 		loadBackGroundClassPath();
 	}
 	return 0;

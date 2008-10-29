@@ -486,10 +486,6 @@ libscioptimization_la_CFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libscioptimization.la
 libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
-
-# For the code check (splint)
-CHECK_SRC = $(OPTIMIZATION_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscioptimization_la_CFLAGS)
 libscioptimization_la_LIBADD =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \

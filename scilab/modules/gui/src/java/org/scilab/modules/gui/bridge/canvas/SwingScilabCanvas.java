@@ -14,7 +14,6 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -35,13 +34,16 @@ import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 import com.sun.opengl.util.Screenshot;
 
+import javax.swing.SwingUtilities;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
  * JOGL
  * 
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
- * @author Jean-Baptiste silvy
+ * @author Jean-Baptiste Silvy
  */
 public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
@@ -67,17 +69,15 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
 		super(cap);
-		// TODO to remove, just for testing
 		this.setLayout(null);
+		
+		// create the GLEventListener
 		renderer = new SciRenderer(figureIndex);
 		this.addGLEventListener(renderer);
+		
 		this.figureIndex = figureIndex;
 		
-		// Focusable in order to catch KeyEvents...
-		this.setFocusable(true);
-		// Enable mouse Events sensitivity...
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
-		
+		// for recording of rotations
 		rotationTracker = new AxesRotationTracker(this);
 	}
 
@@ -165,7 +165,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 	/**
-	 * Get the Figuer Index : the Scilab ID of the figure.
+	 * Get the Figure Index : the Scilab ID of the figure.
 	 * 
 	 * @return the ID.
 	 */
@@ -174,7 +174,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	}
 	
 	/**
-	 * Specify wether the canvas should fit the parent tab size
+	 * Specify whether the canvas should fit the parent tab size
 	 * (and consequently the scrollpane size) or not
 	 * However JOGLSwingCanvas is always resized
 	 * @param onOrOff true to enable autoresize mode
@@ -184,7 +184,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	}
 	
 	/**
-	 * @return wether the resize mode is on or off
+	 * @return whether the resize mode is on or off
 	 * However JOGLSwingCanvas is always resized
 	 */
 	public boolean getAutoResizeMode() {
@@ -257,14 +257,14 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	/**
 	 * Get the displacement in pixel that should be used for rotating axes
 	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
+	 * @return true if the displacement recording continue, false otherwise
 	 */
 	public boolean getRotationDisplacement(int[] displacement) {
 		return rotationTracker.getDisplacement(displacement);
 	}
 	
 	/**
-	 * Ansynchrnous stop of rotation tracking.
+	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
 		rotationTracker.cancelRecording();
@@ -280,11 +280,17 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		removeGLEventListener(renderer);
 		renderer = null;
 		
-		// context need to be destroyed
-		// otherwise there are some memory leaks
 		try {
-			getContext().destroy();
-		} catch (NullPointerException e) {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					// context need to be destroyed
+					// otherwise there are some memory leaks
+					getContext().destroy();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
 			// context not already created
 			// do nothing
 		}

@@ -75,11 +75,13 @@ char *getEncoding(char *lang)
 
 
 char* localeToUTF(char* buffer) {
-	size_t inbytesleft=strlen(buffer);
-	size_t outbytesleft=ENCODE_BUF_SIZE;
+	size_t inbytesleft = 0;
+	size_t outbytesleft = ENCODE_BUF_SIZE;
 	char *inPtr = buffer;
-	char *outPtr= ENCODE_BUF;
+	char *outPtr = ENCODE_BUF;
 
+	if (buffer == NULL) return NULL;
+	inbytesleft = strlen(buffer);
 
 	if(unicodeSubset) return buffer; /*no need to convert for unicode subset encoding*/
 
@@ -97,11 +99,13 @@ char* localeToUTF(char* buffer) {
 
 char* UTFToLocale(char* buffer) 
 {
-	size_t inbytesleft=strlen(buffer);
-	size_t outbytesleft=ENCODE_BUF_SIZE;
+	size_t inbytesleft = 0;
+	size_t outbytesleft = ENCODE_BUF_SIZE;
 	char *inPtr = buffer;
 	char *outPtr= ENCODE_BUF;
 
+	if (buffer == NULL) return NULL;
+	inbytesleft = strlen(buffer);
 
 	if(unicodeSubset) return buffer; /*no need to convert for unicode subset encoding*/
 

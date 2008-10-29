@@ -78,4 +78,10 @@ void showPixmap(sciPointObj * pFigure);
  */
 void clearPixmap(sciPointObj * pFigure);
 
+/**
+ * @return true if the figure contains some objects
+ *         which needs to be displayed in 3D.
+ */
+BOOL needsDisplay(sciPointObj * pFigure);
+
 #endif /* __SCI_DRAWINGS__ */

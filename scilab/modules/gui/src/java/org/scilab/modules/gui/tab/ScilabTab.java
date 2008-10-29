@@ -495,6 +495,115 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public void setCurrent() {
 		ScilabBridge.setCurrent(this);
 	}
+	
+	/**
+	 * Set the background color of the tab.
+	 * @param red red channel of the color
+	 * @param green green channel
+	 * @param blue blue channel
+	 */
+	public void setBackground(double red, double green, double blue) {
+		ScilabBridge.setBackground(this, red, green, blue);
+	}
+	
+	/**
+	  * Specify whether the canvas should fit the parent tab size
+	  * (and consequently the scrollpane size) or not
+	  * @param onOrOff true to enable autoresize mode
+	  */
+	 public void setAutoResizeMode(boolean onOrOff) {
+		 ScilabBridge.setAutoResizeMode(this, onOrOff);
+	 }
+
+	 /**
+	  * @return whether the resize mode is on or off
+	  */
+	 public boolean getAutoResizeMode() {
+		 return ScilabBridge.getAutoResizeMode(this);
+	 }
+	 
+	 /**
+	  * Get the part of the axes which is currently viewed
+	  * @return [x,y,w,h] array
+	  */
+	 public int[] getViewingRegion() {
+		 return ScilabBridge.getViewingRegion(this);
+	 }
+	 
+	 /**
+	  * Specify a new viewport for the axes
+	  * For SwingScilabCanvas viewport can not be modified
+	  * since it match the parent tab size
+	  * @param posX X coordinate of upper left point of the viewport within the canvas
+	  * @param posY Y coordinate of upper left point of the viewport within the canvas
+	  * @param width width of the viewport
+	  * @param height height of the viewport
+	  */
+	 public void setViewingRegion(int posX, int posY, int width, int height) {
+		 ScilabBridge.setViewingRegion(this, posX, posY, width, height);
+	 }
+	 
+	 
+	 /**
+	  * @return size of the axes in pixels
+	  */
+	 public Size getAxesSize() {
+		 return ScilabBridge.getAxesSize(this);
+	 }
+	 
+	 
+	 /**
+	  * @param newSize set a new axes size
+	  */
+	 public void setAxesSize(Size newSize) {
+		 ScilabBridge.setAxesSize(this, newSize);
+	 }
+	 
+	 /**
+	  * Set the event handler of the Canvas
+	  * @param command the name of the Scilab function to call
+	  */
+	 public void setEventHandler(String command) {
+		 ScilabBridge.setEventHandler(this, command);
+	 }
+
+	 /**
+	  * Set the status of the event handler of the Canvas
+	  * @param status is true to set the event handler active
+	  */
+	 public void setEventHandlerEnabled(boolean status) {
+		 ScilabBridge.setEventHandlerEnabled(this, status);
+	 }
+	 
+	 /**
+	  * Get the displacement in pixel that should be used for rotating axes
+	  * @param displacement out parameter, [x,y] array of displacement in pixels
+	  * @return true if the diplacement recording continue, false otherwise
+	  */
+	 public boolean getRotationDisplacement(int[] displacement) {
+		 return ScilabBridge.getRotationDisplacement(this, displacement);
+	 }
+
+	 /**
+	  * Ansynchrnous stop of rotation tracking.
+	  */
+	 public void stopRotationRecording() {
+		 ScilabBridge.stopRotationRecording(this);
+	 }
+	 
+	 /**
+	  * @param figureId the figureId to set
+	  */
+	 public void setFigureId(int figureId) {
+		 ScilabBridge.setFigureId(this, figureId);
+	 }
+
+	 /**
+	  * @return the figureId
+	  */
+	 public int getFigureId() {
+		 return ScilabBridge.getFigureId(this);
+	 }
 
 }
 

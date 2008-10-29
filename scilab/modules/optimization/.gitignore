@@ -3,3 +3,8 @@
 #
 src/c/optimization.def
 src/fortran/optimization_f.def
+
+#
+# F2C conversion
+#
+src/fortran/*/*.c

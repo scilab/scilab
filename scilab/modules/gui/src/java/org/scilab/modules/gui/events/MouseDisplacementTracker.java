@@ -12,10 +12,11 @@
 
 package org.scilab.modules.gui.events;
 
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 
 /**
  * Class used to retrieve synchronous mouse displacements
@@ -24,8 +25,8 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 public class MouseDisplacementTracker implements MouseMotionListener {
 
 	/** Canvas on which the tracking is done */
-	private SwingScilabCanvas canvas;
-	/** For syncrnonisation */
+	private Component canvas;
+	/** For synchronization */
 	private Object lock;
 	
 	/** To know if the displacement has been updated and if we can send them */
@@ -39,10 +40,10 @@ public class MouseDisplacementTracker implements MouseMotionListener {
 	
 	
 	/**
-	 * Defautl constructor
+	 * Default constructor
 	 * @param canvas Canvas on which the tracking is done
 	 */
-	public MouseDisplacementTracker(SwingScilabCanvas canvas) {
+	public MouseDisplacementTracker(Component canvas) {
 		this.canvas = canvas;
 		this.lock = new Object();
 		reinit();
@@ -51,12 +52,12 @@ public class MouseDisplacementTracker implements MouseMotionListener {
 	/**
 	 * @return tracked canvas
 	 */
-	protected SwingScilabCanvas getTrackedCanvas() {
+	protected Component getTrackedCanvas() {
 		return canvas;
 	}
 	
 	/**
-	 * @return synchrnonization object
+	 * @return synchronization object
 	 */
 	protected Object getLock() {
 		return lock;
@@ -75,8 +76,8 @@ public class MouseDisplacementTracker implements MouseMotionListener {
 	
 	/**
 	 * Activate recording of mouse movement
-	 * @param initX intial X coordinate
-	 * @param initY intial Y coordinate
+	 * @param initX initial X coordinate
+	 * @param initY initial Y coordinate
 	 */
 	protected void activateTracking(int initX, int initY) {
 		previousX = initX;

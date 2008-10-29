@@ -15,6 +15,9 @@
 #endif
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
+#ifndef _MSC_VER
+#include "tcl.h"
+#endif
 #include "tmpdir.h"
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
@@ -57,7 +60,6 @@ void Initialize(void)
 
   
   char *sciPath = (char*)getenv("SCI");
-  
   
   #ifdef _MSC_VER
   /* Delete the windows mode and the banner */
@@ -107,7 +109,9 @@ void Initialize(void)
    {
 	   fprintf(stderr,"Please define SCI environment variable\n");
 	   exit(EXIT_FAILURE);
-   }else{
+   }
+   else
+   {
 	   sprintf (env, "%s=%s", "SCI", sciPath);
 	   setSCIpath(SCI);
 	   putenv (env);
@@ -123,12 +127,12 @@ void Initialize(void)
 	* See: http://bugzilla.scilab.org/show_bug.cgi?id=3605
 	*/
 
-#define BASEPATHTOTHIRDPARTY "/../../thirdparty/"
-#define DIRECTORYOFTCL "tcl"
-#define DIRECTORYOFTK "tk"
-   int commonPart=strlen(sciPath)+strlen(BASEPATHTOTHIRDPARTY)+strlen(".")+strlen(TCL_VERSION)+1;
-   char *pathToTcl=(char*)MALLOC((strlen(DIRECTORYOFTCL)+commonPart)*sizeof(char));
-   sprintf(pathToTcl, "%s%s%s%s", sciPath, BASEPATHTOTHIRDPARTY, DIRECTORYOFTCL, TCL_VERSION);
+	#define BASEPATHTOTHIRDPARTY "/../../thirdparty/"
+	#define DIRECTORYOFTCL "tcl"
+	#define DIRECTORYOFTK "tk"
+	int commonPart=strlen(sciPath)+strlen(BASEPATHTOTHIRDPARTY)+strlen(".")+strlen(TCL_VERSION)+1;
+	char *pathToTcl=(char*)MALLOC((strlen(DIRECTORYOFTCL)+commonPart)*sizeof(char));
+	sprintf(pathToTcl, "%s%s%s%s", sciPath, BASEPATHTOTHIRDPARTY, DIRECTORYOFTCL, TCL_VERSION);
 
    /* Test if we find the thirdparty directory. If it is the case, it is most 
 	* probable that we are working with the binary version of Scilab 
@@ -147,8 +151,6 @@ void Initialize(void)
 	   putenv(exportTcl);
 	   putenv(exportTk);
    }
-
-
 
   #endif
   /* set TMPDIR */

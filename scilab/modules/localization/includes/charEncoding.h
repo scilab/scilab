@@ -15,21 +15,6 @@
 #include "BOOL.h"
 
 /**
-* convert a ANSI string to UTF-8 string (Windows Encoding)
-* @param[in] ANSI string
-* @return UTF-8 string
-*/
-char * ANSIToUTF8(char * pszCode);
-
-/**
-* convert a UTF-8 string to ANSI string (Windows Encoding)
-* @param[in] UTF-8 string
-* @return ANSI string
-*/
-char* UTF8ToANSI(char *pszCode);
-
-
-/**
  * Set if the output must be in UTF or not (many used by do_xxprintf.c 
  * set_xxorintf.c)
  *

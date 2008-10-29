@@ -125,9 +125,9 @@ public interface RendererProperties {
     boolean getPixmapMode();
     
     /**
-     * Close the rendering canvas
+     * Close the figure
      */
-    void closeCanvas();
+    void closeFigure();
     
     /**
      * Specify wether the canvas should fit the parent tab size
@@ -210,5 +210,29 @@ public interface RendererProperties {
 	 * Disable canvas
 	 */
 	void disableCanvas();
+	
+	/**
+	 * If the window does not already contains a 3D canvas,
+	 * add one.
+	 */
+	void openGraphicCanvas();
+	
+	/**
+	 * Destroy the canvas if one already exists
+	 */
+	void closeGraphicCanvas();
+	
+	
+	/**
+	 * Set the event handler of the figure
+	 * @param command the name of the Scilab function to call
+	 */
+	void setEventHandler(String command);
+	
+	/**
+	 * Set the status of the event handler of the figure
+	 * @param status is true to set the event handler active
+	 */
+	void setEventHandlerEnabled(boolean status);
 	
 }

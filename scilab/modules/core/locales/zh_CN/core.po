@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2008-09-24 14:26+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2008-10-28 14:30+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-30 15:04+0000\n"
+"X-Launchpad-Export-Date: 2008-10-28 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Error(s) : see help powershell'';''verify your script without scilab."
@@ -664,7 +664,7 @@ msgstr "%s：参数%d的类型错误：应该为多边形。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
-msgstr "%s：参数%d的类型错误：应该为Working整数矩阵。\n"
+msgstr "%s：参数%d的类型错误：应该为Working整数矩阵。\\n\n"
 
 #, c-format
 msgid ""
@@ -1020,19 +1020,19 @@ msgid "  loading initial environment"
 msgstr "  载入初始环境中"
 
 msgid "&File"
-msgstr ""
+msgstr "文件(&F)"
 
 msgid "&Edit"
-msgstr ""
+msgstr "编辑(&E)"
 
 msgid "&Preferences"
-msgstr ""
+msgstr "首选项(&P)"
 
 msgid "&Control"
-msgstr ""
+msgstr "控制(&C)"
 
 msgid "&Applications"
-msgstr ""
+msgstr "应用程序(&A)"
 
 msgid "&?"
-msgstr ""
+msgstr "&?"

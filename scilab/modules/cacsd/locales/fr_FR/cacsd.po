@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-24 14:23+0000\n"
-"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"PO-Revision-Date: 2008-09-28 07:40+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -30,6 +30,8 @@ msgid ""
 "%s: Wrong size for input argument #%d: Single input, single output system "
 "expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Système mono-entrée / "
+"mono-sortie attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -58,10 +60,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: %s structure de données "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Input argument %d is assumed continuous time.\n"
-msgstr ""
+msgstr "%s: L'argument d'entrée n° %d doit être en temps continu.\n"
 
 #, c-format
 msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
@@ -69,7 +73,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Direct feedthrough set to zero.\n"
-msgstr ""
+msgstr "%s: L'action directe est réglée sur zéro.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -130,12 +134,16 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same formal variable names "
 "expected.\n"
 msgstr ""
+"%s: Arguments d'entrée n° %d et n° %d: Mêmes noms formels de variables "
+"attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n°%d: un tableau de nombre "
+"flottants est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -158,10 +166,14 @@ msgstr "%s: Arguments d'entrée n° #%d et n° #%d incompatibles: "
 msgid ""
 "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Système stabilisable "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Système détectable "
+"attendu.\n"
 
 #, c-format
 msgid ""
@@ -180,6 +192,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
 "of floats expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système linéaire "
+"dynamique ou un vecteur ligne de flottants attendu.\n"
 
 #, c-format
 msgid ""
@@ -247,17 +261,21 @@ msgstr ""
 "caractères attendue.\n"
 
 msgid "Nyquist plot"
-msgstr ""
+msgstr "Diagramme de Nyquist"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A linear dynamical system or a "
 "polynomial expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système linéaire "
+"dynamique ou un polynôme attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
 msgstr ""
+"%s:  Mauvaise dimension pour l'argument d'entrée n° %d: Système carré "
+"attendu.\n"
 
 #, c-format
 msgid ""
@@ -270,12 +288,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
-msgstr ""
+msgstr "%s: Ne peut pas trouver la dimension de l'état.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space system expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Système d'état d'espace "
+"linéaire attendu.\n"
 
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
@@ -285,6 +305,8 @@ msgstr "%s: Echec du solveur Riccati stationnaire.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: State-space linear system expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Système de l'espace d'état "
+"linéaire attendu.\n"
 
 #, c-format
 msgid ""
@@ -330,6 +352,8 @@ msgstr "%s: Les dimensions de %s ne sont pas adaptées.\n"
 #, c-format
 msgid "%s: %s is not full rank at the machine precision.\n"
 msgstr ""
+"%s: %s n'est pas de rang complet si on prend en compte la précision de la "
+"machine.\n"
 
 #, c-format
 msgid "%s: %s is nearly unstabilizable.\n"
@@ -360,11 +384,11 @@ msgstr ""
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
-msgstr ""
+msgstr "%s : Pas de ro faisables dans les bornes [%g %g]\n"
 
 #, c-format
 msgid "%s:  %s is not stabilizable.\n"
-msgstr ""
+msgstr "%s: %s n'est pas stabilisable.\n"
 
 #, c-format
 msgid "%s: %s is stabilizable.\n"
@@ -372,7 +396,7 @@ msgstr "%s: %s est stabilisable.\n"
 
 #, c-format
 msgid "%s:   %s is not detectable.\n"
-msgstr ""
+msgstr "%s: %s n'est pas détectable.\n"
 
 #, c-format
 msgid "%s: %s is detectable.\n"
@@ -399,7 +423,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
-msgstr ""
+msgstr "%s: Solution de Riccati imprécise : erreur de l'équation = %g.\n"
 
 #, c-format
 msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
@@ -407,13 +431,13 @@ msgstr ""
 "%s: Une valeur propre de %s (observateur) est proche de l'axe imaginaire.\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
-msgstr ""
+msgstr "Non-réalisable (Hamiltonien Hx)"
 
 msgid "Unfeasible (Hy hamiltonian)"
-msgstr ""
+msgstr "Non-réalisable (Hamiltonien Hy)"
 
 msgid "Unfeasible (spectral radius)"
-msgstr ""
+msgstr "Non-réalisable (Rayon spectral)"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
@@ -442,7 +466,7 @@ msgstr "%s: Mauvais nombre d'argument de sortie: %d attendu.\n"
 
 #, c-format
 msgid "%s: At least %s past values needed.\n"
-msgstr ""
+msgstr "%s: Au moins %s anciennes valeurs attendues.\n"
 
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
@@ -470,16 +494,21 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée: %d attendu"
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Système linéaire dynamique "
+"attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Tableau de nombres "
+"flottants attendus.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Système propre attendu.\n"
 
 #, c-format
 msgid "%s: System is not stable.\n"
@@ -491,6 +520,10 @@ msgid ""
 "Hinfnorm is probably exactly max sv(D)\n"
 "The system might be all-pass"
 msgstr ""
+"%s: la norme ne peut pas être calculée. La précision relative est plus "
+"petite que 1e-3\n"
+"Hinfnorm est probablement exactement égale à max sv(D)\n"
+"Le système est peut être passe tout"
 
 #, c-format
 msgid "%s: More than %d iterations.\n"
@@ -519,6 +552,8 @@ msgstr "%s: Solution infinie.\n"
 msgid ""
 "%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
 msgstr ""
+"%s: Mauvaise valeur pour les arguments d'entrée: Si %s et %s alors rien à "
+"identifier.\n"
 
 #, c-format
 msgid "%s: %s is numerically singular.\n"
@@ -526,7 +561,7 @@ msgstr "%s: %s est numériquement singulier.\n"
 
 #, c-format
 msgid "%s: Standard deviation of the estimator %s:\n"
-msgstr ""
+msgstr "%s: Variance de l'estimateur %s:\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
@@ -538,6 +573,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée: Système linéaire dynamique "
+"attendu.\n"
 
 msgid "Autocorrelation Function"
 msgstr "Fonction d'autocorrélation"
@@ -558,6 +595,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une liste attendue.\n"
 
 #, c-format
 msgid "%s: Undefined type ''%s''.\n"
@@ -565,11 +603,11 @@ msgstr "%s: Type''%s'' non défini.\n"
 
 #, c-format
 msgid "%s: Some output(s) are undefined.\n"
-msgstr ""
+msgstr "%s: Quelque(s) sortie(s) ne sont pas définies.\n"
 
 #, c-format
 msgid "%s: Some input(s) are undefined.\n"
-msgstr ""
+msgstr "%s: Quelque(s) entrée(s) ne sont pas définies.\n"
 
 #, c-format
 msgid ""
@@ -598,6 +636,8 @@ msgstr "%s: %s requis => Utilise la valeur par défaut %s=%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Système linéaire "
+"dynamique.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -606,6 +646,7 @@ msgstr "%s: Mauvais nombre d'arguments en entrée: %d attendu.\n"
 #, c-format
 msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Système propre attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -624,7 +665,7 @@ msgid "Real axis"
 msgstr "Axe réel"
 
 msgid "Imaginary axis"
-msgstr ""
+msgstr "Axe des imaginaires"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
@@ -665,20 +706,28 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
 msgstr ""
+"%s: Mauvaises valeurs pour l'argument d'entrée n° %d: La matrice d'état est "
+"singulière.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Matrice d'état - eye est "
+"singulière.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
 msgstr ""
+"%s: Mauvaises valeurs pour l'argument d'entrée n° %d: Elements propres "
+"attendus.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
 msgstr ""
+"%s: Mauvaises valeurs pour l'argument d'entrée n° %d: Fonction de transfert "
+"propre attendue.\n"
 
 #, c-format
 msgid "%s: Square but singular system.\n"
@@ -723,25 +772,27 @@ msgid ""
 "%s: Wrong value for input argument #%d: Single input, single output system "
 "expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Système mono-entrée / "
+"mono sortie attendu.\n"
 
 msgid "open loop zeroes"
-msgstr ""
+msgstr "zéros de la boucle ouverte"
 
 msgid "open loop poles"
-msgstr ""
+msgstr "pôles de la boucle ouverte"
 
 msgid "asymptotic directions"
 msgstr "Directions asymptotiques"
 
 msgid "Evans root locus"
-msgstr ""
+msgstr "Lieu d'Evans des racines"
 
 #, c-format
 msgid "%s: Curve truncated to the first %d discretization points.\n"
 msgstr "%s: Courbe tronqué aux premiers %d points de discrétisation.\n"
 
 msgid "Gain :"
-msgstr ""
+msgstr "Gain:"
 
 msgid "Numerator :"
 msgstr "Numérateur :"
@@ -773,7 +824,7 @@ msgstr "%s: Système hybride par encore implémenté.\n"
 
 #, c-format
 msgid "%s: Multi rate discrete system not implemented.\n"
-msgstr ""
+msgstr "%s: Système discret multi-fréquence par encore implémenté.\n"
 
 #, c-format
 msgid "%s: Incorrect link: %s"
@@ -789,11 +840,11 @@ msgstr "%s: Dimensions invalides trouvée durant le processus.\n"
 
 #, c-format
 msgid "%s: No output found.\n"
-msgstr ""
+msgstr "%s: Pas de sortie trouvée.\n"
 
 #, c-format
 msgid "%s: No input found.\n"
-msgstr ""
+msgstr "%s: Pas d'entrée trouvée.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -809,6 +860,8 @@ msgstr "%s Mauvais nombre d'arguments d'entrée: %d ou %d attendu.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Espace d'état linéaire "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -820,4 +873,4 @@ msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être dans [%d %d].\n"
 
 msgid "CACSD"
-msgstr ""
+msgstr "CACSD"

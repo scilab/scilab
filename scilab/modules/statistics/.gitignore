@@ -3,3 +3,8 @@
 #
 src/c/statistics.def
 src/dcdflib/dcd_f/dcd.def
+
+#
+# F2C conversion
+#
+src/dcdflib/*.c
