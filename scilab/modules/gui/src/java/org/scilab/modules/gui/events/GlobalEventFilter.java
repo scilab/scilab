@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.utils.SciTranslator;
 
@@ -100,10 +99,10 @@ public class GlobalEventFilter {
 	    synchronized (ClickInfos.getInstance()) {
 		ClickInfos.getInstance().setXCoordinate(mouseEvent.getX() 
 			+ ((Component) mouseEvent.getSource()).getLocationOnScreen().getX() 
-			- source.getAsComponent().getLocationOnScreen().getX());
+			- source.getLocationOnScreen().getX());
 		ClickInfos.getInstance().setYCoordinate(mouseEvent.getY() 
 			+ ((Component) mouseEvent.getSource()).getLocationOnScreen().getY() 
-			- source.getAsComponent().getLocationOnScreen().getY());
+			- source.getLocationOnScreen().getY());
 		ClickInfos.getInstance().setMouseButtonNumber(
 			SciTranslator.javaButton2Scilab(mouseEvent.getButton(), buttonAction, isControlDown)
 		);

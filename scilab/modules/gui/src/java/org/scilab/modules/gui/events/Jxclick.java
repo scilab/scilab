@@ -1,10 +1,3 @@
-package org.scilab.modules.gui.events;
-
-import java.awt.AWTEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Bruno Jofret
@@ -16,6 +9,13 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+package org.scilab.modules.gui.events;
+
+import java.awt.AWTEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 /**

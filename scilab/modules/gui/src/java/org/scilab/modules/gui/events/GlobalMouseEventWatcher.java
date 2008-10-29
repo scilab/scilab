@@ -36,7 +36,6 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	private long eventMask;
 	private SciTranslator clickTranslator;
 	private MouseEvent lastMouse;
-	
 
 	/**
 	 * Constructor.
@@ -60,7 +59,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	 */
 	public void eventDispatched(AWTEvent mouseEvent) {
 		// DEBUG
-		//System.out.println(((MouseEvent) mouseEvent).toString());
+		System.out.println(((MouseEvent) mouseEvent).toString());
 
 		/*
 		 * Managing Canvas

@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -45,7 +46,7 @@ import java.lang.reflect.InvocationTargetException;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste Silvy
  */
-public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
+public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
@@ -69,7 +70,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
 		super(cap);
-		this.setLayout(null);
 		
 		// create the GLEventListener
 		renderer = new SciRenderer(figureIndex);
@@ -237,8 +237,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 			// context not already created
 			// do nothing
 		}
-		
-		this.removeAll();
 	}
 	
 	/**
@@ -259,7 +257,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	private AxesRotationTracker getRotationTracker() {
 		if (rotationTracker == null) {
-			rotationTracker = new AxesRotationTracker(this);
+			rotationTracker = new AxesRotationTracker(this.getAsComponent());
 		}
 		return rotationTracker;
 	}
