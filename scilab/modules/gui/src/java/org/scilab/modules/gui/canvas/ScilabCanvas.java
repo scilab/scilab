@@ -188,7 +188,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
@@ -202,21 +202,21 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	/**
 	 * Get the displacement in pixel that should be used for rotating axes
 	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
+	 * @return true if the displacement recording continue, false otherwise
 	 */
 	public boolean getRotationDisplacement(int[] displacement) {
 		return ScilabBridge.getRotationDisplacement(this, displacement);
 	}
 	
 	/**
-	 * Ansynchrnous stop of rotation tracking.
+	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
 		ScilabBridge.stopRotationRecording(this);
 	}
 	
 	/**
-	  * Disable the canvas befor closing
+	  * Disable the canvas before closing
 	  */
 	public void close() {
 		ScilabBridge.close(this);

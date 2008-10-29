@@ -78,7 +78,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		this.figureIndex = figureIndex;
 		
 		// for recording of rotations
-		rotationTracker = new AxesRotationTracker(this);
+		rotationTracker = null;
 	}
 
 	/**
@@ -203,14 +203,14 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 * @return true if the displacement recording continue, false otherwise
 	 */
 	public boolean getRotationDisplacement(int[] displacement) {
-		return rotationTracker.getDisplacement(displacement);
+		return getRotationTracker().getDisplacement(displacement);
 	}
 	
 	/**
 	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
-		rotationTracker.cancelRecording();
+		getRotationTracker().cancelRecording();
 	}
 	
 	/**
@@ -251,6 +251,17 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		getContext().release();		
 
 		return dump;
+	}
+	
+	/**
+	 * Singleton creation for rotation tracker
+	 * @return the instance of the rotation tracker
+	 */
+	private AxesRotationTracker getRotationTracker() {
+		if (rotationTracker == null) {
+			rotationTracker = new AxesRotationTracker(this);
+		}
+		return rotationTracker;
 	}
 	
 }	
