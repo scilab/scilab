@@ -10,6 +10,8 @@
 *
 */
 
+#include <sstream>
+#include <math.h>
 #include "double.hxx"
 
 namespace types
@@ -381,5 +383,109 @@ namespace types
 
 		return true;	
 	}
-}
 
+	string Double::toString(int _iPrecison, int _iLineLen)
+	{
+		std::ostringstream ostr;
+		std::ostringstream szTemp;
+
+		ostr.precision(_iPrecison);
+		szTemp.precision(_iPrecison);
+		/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			ostr << m_pdblReal[0] << std::endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			ostr << "[" << std::endl;
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				ostr << m_pdblReal[i] << std::endl;
+			}
+			ostr << "\x09]" << std::endl;
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			bool bWordWarp = false;
+			int iLineTag = 5000; //or not Oo
+
+			if(_iLineLen == -1)
+			{
+				bWordWarp = true;
+			}
+
+			ostr << "[ ";
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				if(i != 0)
+				{
+					szTemp << "\x09,";
+				}
+
+				if(bWordWarp == false && (int)szTemp.str().size() >= _iLineLen)
+				{
+					bWordWarp = true;
+					iLineTag	= i;
+				}
+
+				if(bWordWarp == true && i%iLineTag == 0)
+				{
+					ostr << std::endl << "\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << i << std::endl;
+					ostr << szTemp << std::endl;
+					szTemp.clear();
+				}
+
+				szTemp << m_pdblReal[i];
+			}
+			if(bWordWarp == true)
+			{
+				ostr << std::endl << "\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << cols_get() << std::endl;
+			}
+			ostr << szTemp;
+			ostr << " ]" << std::endl;
+		}
+		else 
+		{
+			bool bWordWarp = false;
+			int iLineTag = 5000; //or not Oo
+
+			unsigned int  *iSize = new unsigned int[cols_get()];
+			memset(iSize, 0x00, cols_get() * sizeof(int));
+
+			int iRows = rows_get();
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				for(int j = 0 ; j < rows_get() ; j++)
+				{
+					char szVal[256];
+					sprintf(szVal, "%0.16f", m_pdblReal[i * iRows + j]);
+					int iLen = strlen(szVal);
+					std::ostringstream os;
+					//os.setf(std::ios_base::fixed);
+					double iLog = log10(abs(m_pdblReal[i * iRows + j]));
+					double plop = abs(iLog) + 0.5;
+					int iplop = (int)plop + 1;
+					os.precision(iplop);
+					os << std::fixed << m_pdblReal[i * iRows + j];
+					iSize[i] = (iSize[i] > os.str().size()) ? iSize[i] : os.str().size();
+					//std::cerr.precision(_iPrecison);
+					std::cerr << os.str() << "  " << os.str().size() << std::endl;
+				}
+			}
+
+			std::cerr.precision(_iPrecison);
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				std::cerr.width(iSize[i] + 4 );
+				for(int j = 0 ; j < rows_get() ; j++)
+				{
+					std::cerr << m_pdblReal[i * rows_get() + j];
+				}
+				std::cerr << std::endl;
+
+			}
+		}
+		return ostr.str();
+	}
+}

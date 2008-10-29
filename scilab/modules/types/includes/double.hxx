@@ -15,6 +15,8 @@
 
 #include "types.hxx"
 
+using std::string;
+
 namespace types
 {
 	class Double : public GenericType
@@ -49,6 +51,7 @@ namespace types
 		void					complex_set(bool _bComplex);
 
     Double*				getAsDouble(void);
+		string				toString(int _iPrecison, int _iLineLen);
 
   protected :
 		RealType			getType(void);

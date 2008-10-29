@@ -11,6 +11,7 @@
 */
 
 #include "bool.hxx"
+#include <sstream>
 
 namespace types
 {
@@ -54,7 +55,7 @@ namespace types
 		CreateBool(_iRows, _iCols, _pbData);
 		return;
 	}
-	
+
 	/*----------------------*/
 	/*			CreateBool			*/
 	/*	Commun constructor	*/
@@ -69,7 +70,7 @@ namespace types
 		{
 			/*alloc Real array*/
 			m_pbData = new bool[m_iSize];
-		
+
 			/*return it*/
 			*_pbData = m_pbData;
 		}
@@ -198,7 +199,7 @@ namespace types
 		}
 		else
 			return false;
-	
+
 		return true;
 	}
 
@@ -218,5 +219,120 @@ namespace types
 			return false;
 
 		return true;	
+	}
+
+	string Bool::toString(int _iLineLen)
+	{
+		std::ostringstream ostr;
+		/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			ostr << "[" << std::endl;
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				ostr << (m_pbData[i] == true ? "true" : "false");
+			}
+			ostr << "\x09]" << std::endl;
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			bool bWordWarp = false;
+			int iLineTag = 5000; //or not Oo
+			string szTemp;
+
+			if(_iLineLen == -1)
+			{
+				bWordWarp = true;
+			}
+
+			ostr << "[ ";
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				if(i != 0)
+				{
+					szTemp += "\x09,";
+				}
+
+				if(bWordWarp == false && (int)(szTemp.size() + strlen(m_pbData[i] == true ? "true" : "false")) >= _iLineLen)
+				{
+					bWordWarp = true;
+					iLineTag	= i;
+				}
+
+				if(bWordWarp == true && i%iLineTag == 0)
+				{
+					ostr << std::endl << "\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << i << std::endl;
+					ostr << szTemp << std::endl;
+					szTemp	= "";
+				}
+
+				szTemp += m_pbData[i] == true ? "true" : "false";
+			}
+			if(bWordWarp == true)
+			{
+				ostr << std::endl << "\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << cols_get() << std::endl;
+			}
+			ostr << szTemp;
+			ostr << " ]" << std::endl;
+		}
+		else 
+		{
+			bool bWordWarp = false;
+			int iLineTag = 5000; //or not Oo
+			string szTemp;
+
+			if(_iLineLen == -1)
+			{
+				bWordWarp = true;
+			}
+
+			ostr << "[ ";
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				if(i != 0)
+				{
+					szTemp += "\x09,";
+				}
+
+				if(bWordWarp == false && (int)(szTemp.size() + strlen(m_pbData[i * rows_get()] == true ? "true" : "false")) >= _iLineLen)
+				{
+					bWordWarp = true;
+					iLineTag	= i;
+					ostr << "elem by line : " << i << std::endl;
+				}
+
+				if(bWordWarp == true && i%iLineTag == 0)
+				{
+					ostr << std::endl << "\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << i << std::endl;
+					ostr << szTemp << std::endl;
+					for(int j = 1 ; j < rows_get() ; j++)
+					{
+						for(int k = (i - 1) / (iLineTag + 1) * iLineTag ; k <= i ; k++)
+						{
+							if(k != (i - 1) / (iLineTag + 1) * iLineTag)
+							{
+								ostr << "\t,";
+							}
+							ostr << (m_pbData[k * cols_get() + j] == true ? "true" : "false");
+						}
+						ostr << " ;" << std::endl;
+					}
+					szTemp	= "";
+				}
+
+				szTemp += m_pbData[i * rows_get()] == true ? "true" : "false";
+			}
+			if(bWordWarp == true)
+			{
+				ostr << std::endl << "\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << cols_get() << std::endl;
+			}
+			ostr << szTemp;
+			ostr << " ]" << std::endl;
+		}
+		return ostr.str();
 	}
 }

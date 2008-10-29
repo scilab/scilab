@@ -95,40 +95,7 @@ namespace symbol
 				if((*it_scope).second->isDouble())
 				{
 					types::Double *pdbl = (*it_scope).second->getAsDouble();
-					int iCols = pdbl->cols_get();
-					int iRows = pdbl->rows_get();
-					if(iRows == 1 && iCols == 1)
-					{
-						ostr << pdbl->real_get(0,0);
-						if(pdbl->isComplex())
-						{
-							ostr << (pdbl->img_get(0,0) < 0 ? " " : " +") << pdbl->img_get(0,0) << "i";
-						}
-
-						ostr << std::endl;
-					}
-					else
-					{
-						ostr << "[ ";
-						for(int r = 0 ; r < iRows ; r++)
-						{
-							for(int c = 0 ; c < iCols ; c++)
-							{
-								ostr << pdbl->real_get(r, c);
-								if(pdbl->isComplex())
-								{
-									ostr << (pdbl->img_get(r, c) < 0 ? " " : " +") << pdbl->img_get(r, c) << "i";
-								}
-
-								if((c + 1) != iCols || (r + 1) != iRows)
-								{
-									ostr << " , ";
-								}
-							}
-							ostr  << std::endl;
-						}
-						ostr << " ]" << std::endl;
-					}				
+					ostr << pdbl->toString(16,100);
 				}
 				else if((*it_scope).second->isInt())
 				{
@@ -200,30 +167,8 @@ namespace symbol
 				else if((*it_scope).second->isBool())
 				{
 					types::Bool *pb = (*it_scope).second->getAsBool();
-					int iCols = pb->cols_get();
-					int iRows = pb->rows_get();
-					if(iRows == 1 && iCols == 1)
-					{
-						ostr << (pb->bool_get(0,0) == true ? "true" : "false");
-						ostr << std::endl;
-					}
-					else
-					{
-						ostr << "[ ";
-						for(int r = 0 ; r < iRows ; r++)
-						{
-							for(int c = 0 ; c < iCols ; c++)
-							{
-								ostr << (pb->bool_get(r, c) == true ? "true" : "false");
-								if((c + 1) != iCols || (r + 1) != iRows)
-								{
-									ostr << " , ";
-								}
-							}
-							ostr  << std::endl;
-						}
-						ostr << " ]" << std::endl;
-					}
+					string szOut = pb->toString(100);
+					ostr << szOut;
 				}
 				else if((*it_scope).second->isFunction())
 				{

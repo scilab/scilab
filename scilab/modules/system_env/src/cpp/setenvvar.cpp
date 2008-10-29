@@ -372,9 +372,6 @@ bool setYASPHOME(void)
 	char USERPATHSCILAB[PATH_MAX];
 
 	getenvc(&ierr,(char*)"SCIHOME",SCIHOME,&buflen,&iflag);
-	cout << "SCIHOME : " << SCIHOME << endl;
-	cout << "ierr : " << ierr << endl;
-
 	if (ierr) /* SCIHOME not define */
 	{
 		#ifdef _MSC_VER
@@ -447,8 +444,6 @@ bool setYASPHOME(void)
 		}
 		#else /* Linux */
 			getenvc(&ierr,(char*)"HOME",USERHOMESYSTEM,&buflen,&iflag);
-			cout << "HOME : " << USERHOMESYSTEM << endl;
-			cout << "ierr : " << ierr << endl;
 			if (ierr) return false;
 		#endif
 
@@ -456,9 +451,6 @@ bool setYASPHOME(void)
 		sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIR_SEPARATOR,BASEDIR);
 		sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIR_SEPARATOR,SCI_VERSION_STRING);
 		sprintf(env,"SCIHOME=%s",SCIHOMEPATH);
-		cout << "USERPATHSCILAB : " << USERPATHSCILAB << endl;
-		cout << "SCIHOMEPATH : " << SCIHOMEPATH << endl;
-		cout << "env : " << env << endl;
 		putenv(env);
 	}
 	else /* SCIHOME already defined */
@@ -524,7 +516,6 @@ bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
 void setYASPpath(char *path)
 {
 	ConfigVariable::getInstance()->set("SCI", path);
-	cout << "SCI : " << path << endl;
 }
 /*--------------------------------------------------------------------------*/
 char *getYASPpath(void)

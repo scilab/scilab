@@ -15,6 +15,8 @@
 
 #include "types.hxx"
 
+using std::string;
+
 namespace types
 {
   class Bool : public GenericType
@@ -43,6 +45,7 @@ namespace types
 		bool					isComplex();
 
     Bool*					getAsBool(void);
+		string				toString(int _iLineLen = -1);
 
   protected :
 		RealType			getType(void);
