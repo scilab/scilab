@@ -14,6 +14,9 @@
 #include <math.h>
 #include "double.hxx"
 
+void GetFormat(double _dblVal, int _iPrecision, int *_piEntNb, int *_piDecNb);
+
+using namespace std;
 namespace types
 {
 	/*------------*/
@@ -384,17 +387,38 @@ namespace types
 		return true;	
 	}
 
-	string Double::toString(int _iPrecison, int _iLineLen)
+	string Double::toString(int _iPrecision, int _iLineLen)
 	{
 		std::ostringstream ostr;
 		std::ostringstream szTemp;
 
-		ostr.precision(_iPrecison);
-		szTemp.precision(_iPrecison);
 		/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
 		if(cols_get() == 1 && rows_get() == 1)
 		{//scalar
-			ostr << m_pdblReal[0] << std::endl;
+			bool bSign	= m_pdblReal[0] < 0;
+			bool bStartByZero = false;
+
+			/*if the value start by zero, we have 1 caracter less for the precision*/
+			if(m_pdblReal[0] < 1 && m_pdblReal[0] > -1)
+				bStartByZero = true;
+
+
+			int iNbEnt = 0, iNbDec = 0;
+			GetFormat(m_pdblReal[0], _iPrecision, &iNbEnt, &iNbDec);
+			cout << "|";
+			cout << (bSign == true ? "- " : "  ");
+
+			//width is the min value between the max size and the needed space.
+			int width = min(_iPrecision, iNbEnt + iNbDec );
+			cout.width(width);
+			//presicion is the min vlaue between needed precision - 1 ( I don't not why Oo ) less NbEnt size ( +1 for the dot ) and iNbDec
+			int prec = _iPrecision - 1 - bStartByZero;
+			cout.precision(prec);
+			cout.fill(' ');
+			cout << left << abs(m_pdblReal[0]);
+			cout.width(0);
+			cout.precision(0);
+			cout << "|" << endl;
 		}
 		else if(cols_get() == 1)
 		{//column vector
@@ -458,34 +482,80 @@ namespace types
 			{
 				for(int j = 0 ; j < rows_get() ; j++)
 				{
-					char szVal[256];
-					sprintf(szVal, "%0.16f", m_pdblReal[i * iRows + j]);
-					int iLen = strlen(szVal);
+					double entier = (int)m_pdblReal[i * iRows + j];
+					double virgule = m_pdblReal[i * iRows + j] - entier;
+					double LogEntier = log10(entier);
+					double LogVirgule = abs(log10(virgule));
+					if(entier == 0)
+						LogEntier = 0;
+
+					if(virgule == 0)
+						LogVirgule = 0;
+
+					int iPres = /*(int)(LogEntier) +*/ (int)(LogVirgule);
+//					if((int)LogEntier != LogEntier)
+//						iPres += 1;
+					if((int)LogVirgule != LogVirgule)
+						iPres += 1;
 					std::ostringstream os;
 					//os.setf(std::ios_base::fixed);
-					double iLog = log10(abs(m_pdblReal[i * iRows + j]));
-					double plop = abs(iLog) + 0.5;
-					int iplop = (int)plop + 1;
-					os.precision(iplop);
+					os.precision(iPres);
 					os << std::fixed << m_pdblReal[i * iRows + j];
 					iSize[i] = (iSize[i] > os.str().size()) ? iSize[i] : os.str().size();
 					//std::cerr.precision(_iPrecison);
 					std::cerr << os.str() << "  " << os.str().size() << std::endl;
 				}
+				std::cerr << std::endl;
 			}
 
-			std::cerr.precision(_iPrecison);
 			for(int i = 0 ; i < cols_get() ; i++)
 			{
-				std::cerr.width(iSize[i] + 4 );
+				//cout << "width : " << iSize[i] + 4 << endl;
+				cout.width(iSize[i] + 4 );
+				//cout.precision(iSize[i]);
+				
+				cout.fill('*');
+
 				for(int j = 0 ; j < rows_get() ; j++)
 				{
-					std::cerr << m_pdblReal[i * rows_get() + j];
+					cout << fixed << left << m_pdblReal[i * rows_get() + j] << " ";
 				}
-				std::cerr << std::endl;
+				cout << endl;
 
 			}
 		}
 		return ostr.str();
+	}
+}
+
+void GetFormat(double _dblVal, int _iPrecision, int *_piEntNb, int *_piDecNb)
+{
+	double dblDec = 0;
+	double dblEnt = 0;
+	double dblAbs = abs(_dblVal);
+	int iNbDigit	= 0;
+	double dblTmp	= 0;
+
+	dblDec				= modf(dblAbs, &dblEnt);
+
+	iNbDigit = ((int)log10(dblEnt + 0.4)) + 1;
+	if(iNbDigit <= _iPrecision - 2)
+	{
+		*_piEntNb	= iNbDigit;
+		iNbDigit	= _iPrecision - *_piEntNb;
+		*_piDecNb	= 0;
+		dblTmp		= dblDec * pow(10.0e+0, iNbDigit + 1);
+		dblDec		= floor(dblTmp / 10.0e+0 + 0.5);
+
+		if(dblDec != 0)
+		{
+			*_piDecNb = iNbDigit;
+			while(fmod(dblDec, 10.0e+0) == 0)
+			{
+				*_piDecNb -= 1;
+				dblDec = dblDec / 10.0e+0;
+			}
+			//*_piEntNb = _iPrecision - *_piDecNb;
+		}
 	}
 }
