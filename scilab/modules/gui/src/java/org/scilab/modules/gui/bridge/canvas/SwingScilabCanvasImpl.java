@@ -18,6 +18,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.MenuComponent;
 import java.awt.MenuContainer;
@@ -33,6 +34,7 @@ import java.awt.event.MouseWheelListener;
 import java.awt.image.ImageObserver;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
+import java.util.Calendar;
 
 import javax.accessibility.Accessible;
 import javax.accessibility.AccessibleContext;
@@ -54,13 +56,29 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     static boolean noGLJPanel = false;
 
     static {
-	GLCanvas tmpCanvas = new GLCanvas();
-	DEBUG("GL_VENDOR="+tmpCanvas.getGL().glGetString(GL.GL_VENDOR));
-	DEBUG("GL_RENDERER="+tmpCanvas.getGL().glGetString(GL.GL_RENDERER));
-	DEBUG("GL_VERSION="+tmpCanvas.getGL().glGetString(GL.GL_VERSION));
+	long lastTime = Calendar.getInstance().getTimeInMillis();
+	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
+	Frame tmpFrame = new Frame();
+	tmpFrame.add(tmpCanvas);
+	tmpFrame.setVisible(true);
+	
+	tmpCanvas.getContext().makeCurrent();
+	GL gl = tmpCanvas.getGL();
+	DEBUG("=======================================");
 	DEBUG("os.name="+System.getProperty("os.name"));
 	DEBUG("os.arch="+System.getProperty("os.arch"));
+	DEBUG("=======================================");
+	DEBUG("GL_VENDOR="+gl.glGetString(GL.GL_VENDOR));
+	DEBUG("GL_RENDERER="+gl.glGetString(GL.GL_RENDERER));
+	DEBUG("GL_VERSION="+gl.glGetString(GL.GL_VERSION));
+	//DEBUG("GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
+	DEBUG("=======================================");
 	//System.getProperties().list(System.err);
+	tmpCanvas.getContext().release();
+	tmpFrame.remove(tmpCanvas);
+	tmpFrame.setVisible(false);
+	tmpFrame.dispose();
+	DEBUG("Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
 	
 	// FIXME : must put this to true when Driver is too stupid
 	noGLJPanel = false;
