@@ -207,7 +207,7 @@ public class ScilabCanvasBridge {
 	 * @param command the name of the Scilab function to call
 	 */
 	public static void setEventHandler(Canvas canvas, String command) {
-		canvas.getAsSimpleCanvas().setEventHandler(command);
+		//canvas.getAsSimpleCanvas().setEventHandler(command);
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class ScilabCanvasBridge {
 	 * @param status is true to set the event handler active
 	 */
 	public static void setEventHandlerEnabled(Canvas canvas, boolean status) {
-		canvas.getAsSimpleCanvas().setEventHandlerEnabled(status);
+		//canvas.getAsSimpleCanvas().setEventHandlerEnabled(status);
 	}
 	
 	/**
