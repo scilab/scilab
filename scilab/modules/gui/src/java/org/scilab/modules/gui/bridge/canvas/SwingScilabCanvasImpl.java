@@ -55,8 +55,10 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
     static {
 	GLCanvas tmpCanvas = new GLCanvas();
-	String vendor = tmpCanvas.getGL().glGetString(GL.GL_VENDOR);
-	DEBUG("GL_VENDOR="+vendor);
+	DEBUG("GL_VENDOR="+tmpCanvas.getGL().glGetString(GL.GL_VENDOR));
+	DEBUG("GL_RENDERER="+tmpCanvas.getGL().glGetString(GL.GL_RENDERER));
+	DEBUG("GL_VERSION="+tmpCanvas.getGL().glGetString(GL.GL_VERSION));
+	System.getProperties().list(System.err);
 	noGLJPanel = true;
     }
     
