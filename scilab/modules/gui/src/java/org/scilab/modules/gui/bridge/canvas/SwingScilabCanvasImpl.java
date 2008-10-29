@@ -61,7 +61,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	DEBUG("os.name="+System.getProperty("os.name"));
 	DEBUG("os.arch="+System.getProperty("os.arch"));
 	//System.getProperties().list(System.err);
-	noGLJPanel = true;
+	
+	// FIXME : must put this to true when Driver is too stupid
+	noGLJPanel = false;
     }
     
     GLCanvas realGLCanvas;
@@ -73,7 +75,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * if no GLJPanel is available, GLCanvas is forced
      */
     public static boolean switchToGLCanvas(boolean onOrOff) {
-        System.out.println("switchToGLCanvas " + onOrOff);
+        DEBUG("switchToGLCanvas " + onOrOff);
 	forceGLCanvas = noGLJPanel || onOrOff;
 	return forceGLCanvas;
     }
@@ -142,9 +144,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GL getGL() {
-	DEBUG("GL_VENDOR="+getAsGL().getGL().glGetString(GL.GL_VENDOR));
-	DEBUG("GL_RENDERER="+getAsGL().getGL().glGetString(GL.GL_RENDERER));
-	DEBUG("GL_VERSION="+getAsGL().getGL().glGetString(GL.GL_VERSION));
+	//DEBUG("GL_VENDOR="+getAsGL().getGL().glGetString(GL.GL_VENDOR));
+	//DEBUG("GL_RENDERER="+getAsGL().getGL().glGetString(GL.GL_RENDERER));
+	//DEBUG("GL_VERSION="+getAsGL().getGL().glGetString(GL.GL_VERSION));
 	return getAsGL().getGL();
     }
 
