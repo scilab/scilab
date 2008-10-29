@@ -114,7 +114,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.setVisible(true);
 
 	}
-
+	
 	/**
      * Repaint it
      */
@@ -890,6 +890,20 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void stopRotationRecording() {
 		contentPane.stopRotationRecording();
+	}
+	
+	/**
+	 * @param figureId the figureId to set
+	 */
+	public void setFigureId(int figureId) {
+		contentPane.setFigureId(figureId);
+	}
+
+	/**
+	 * @return the figureId
+	 */
+	public int getFigureId() {
+		return contentPane.getFigureId();
 	}
 
 }

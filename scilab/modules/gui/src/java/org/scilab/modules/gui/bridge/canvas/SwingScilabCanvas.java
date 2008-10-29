@@ -14,7 +14,6 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -78,11 +77,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		
 		this.figureIndex = figureIndex;
 		
-		// Focusable in order to catch KeyEvents...
-		this.setFocusable(true);
-		// Enable mouse Events sensitivity...
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
-		
+		// for recording of rotations
 		rotationTracker = new AxesRotationTracker(this);
 	}
 

@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 /*
@@ -95,7 +96,7 @@ public class GlobalEventFilter {
      * @param buttonAction the Scilab button code mean PRESSED / RELEASED / CLICKED / DCLICKED.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonAction, boolean isControlDown) {
+    public static void filterMouse(MouseEvent mouseEvent, SwingScilabAxes source, int buttonAction, boolean isControlDown) {
 	if (source != null) {	
 	    synchronized (ClickInfos.getInstance()) {
 		ClickInfos.getInstance().setXCoordinate(mouseEvent.getX() 
@@ -107,7 +108,7 @@ public class GlobalEventFilter {
 		ClickInfos.getInstance().setMouseButtonNumber(
 			SciTranslator.javaButton2Scilab(mouseEvent.getButton(), buttonAction, isControlDown)
 		);
-		ClickInfos.getInstance().setWindowID(source.getFigureIndex());
+		ClickInfos.getInstance().setWindowID(source.getFigureId());
 		ClickInfos.getInstance().notify();
 	    }
 	}

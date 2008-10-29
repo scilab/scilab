@@ -1,5 +1,6 @@
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -49,6 +50,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	/** An axes may contain at most one canvas for now */
 	private SwingScilabCanvas graphicCanvas;
 	
+	private int figureId;
+	
 	/**
 	 * Default constructor
 	 */
@@ -59,10 +62,16 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		
 		eventHandler = null;
 		graphicCanvas = null;
+		figureId = -1;
 		
 		// we use a null layout. It's needed for uicontrol so they don't resize when the canvas
 		// is resized. However, its imply to set the canvas size by hand.
 		setLayout(null);
+		
+		// for event handling
+		this.setFocusable(true);
+		// Enable mouse Events sensitivity...
+		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 		
 		// for rotations
 		rotationTracker = new AxesRotationTracker(this);
@@ -325,6 +334,20 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public void stopRotationRecording() {
 		rotationTracker.cancelRecording();
+	}
+
+	/**
+	 * @param figureId the figureId to set
+	 */
+	public void setFigureId(int figureId) {
+		this.figureId = figureId;
+	}
+
+	/**
+	 * @return the figureId
+	 */
+	public int getFigureId() {
+		return figureId;
 	}
 
 }

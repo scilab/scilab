@@ -14,6 +14,7 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
@@ -498,5 +499,21 @@ public class ScilabTabBridge {
 	  */
 	 public static void stopRotationRecording(Tab tab) {
 		 tab.getAsSimpleTab().stopRotationRecording();
+	 }
+	 
+	 /**
+	  * @param figureId the figureId to set
+	  * @param tab tab to modify
+	  */
+	 public static void setFigureId(Tab tab, int figureId) {
+		 tab.getAsSimpleTab().setFigureId(figureId);
+	 }
+
+	 /**
+	  * @return the figureId
+	  * @param tab tab to modify
+	  */
+	 public static int getFigureId(Tab tab) {
+		 return tab.getAsSimpleTab().getFigureId();
 	 }
 }

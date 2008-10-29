@@ -590,6 +590,20 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 public void stopRotationRecording() {
 		 ScilabBridge.stopRotationRecording(this);
 	 }
+	 
+	 /**
+	  * @param figureId the figureId to set
+	  */
+	 public void setFigureId(int figureId) {
+		 ScilabBridge.setFigureId(this, figureId);
+	 }
+
+	 /**
+	  * @return the figureId
+	  */
+	 public int getFigureId() {
+		 return ScilabBridge.getFigureId(this);
+	 }
 
 }
 
