@@ -247,8 +247,8 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabCanvas member) {
-		this.add(member);
-		return this.getComponentZOrder(member);
+		this.add(member.getAsComponent());
+		return this.getComponentZOrder(member.getAsComponent());
 	}
 	
 	/**
