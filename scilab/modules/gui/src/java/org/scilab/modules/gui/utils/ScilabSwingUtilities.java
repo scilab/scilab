@@ -81,4 +81,32 @@ public final class ScilabSwingUtilities {
 		}
 	}
 	
+	/**
+	 * Add a component to its new parent.
+	 * This method is thread safe.
+	 * @param component component to add
+	 * @param parent parent in which the component will be added
+	 * @param constraints an object expressing layout constraints for the parent
+	 * @param index the position in the container's list at which to insert the component; -1 means insert at the end component 
+	 */
+	public static void addToParent(JComponent component, Container parent, Object constraints, int index) {
+		final JComponent componentF = component;
+		final Container parentF = parent;
+		final Object constraintF = constraints;
+		final int indexF = index;
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					parentF.add(componentF, constraintF, indexF);
+					// repaint to see the changes
+					parentF.repaint();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.getCause().printStackTrace();
+		}
+	}
+	
 }
