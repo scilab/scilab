@@ -14,7 +14,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -66,10 +65,10 @@ import org.scilab.modules.gui.utils.Size;
 /**
  * Swing implementation for Scilab tabs in GUIs
  * This implementation uses FlexDock package
- * @author Jean-Baptiste SILVY
  * @author Bruno JOFRET
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
+ * @author Jean-Baptiste SILVY
  */
 public class SwingScilabTab extends View implements SimpleTab {
 	
@@ -85,8 +84,10 @@ public class SwingScilabTab extends View implements SimpleTab {
 	
 	private TextBox infoBar;
 	
+	/** Contains the canvas and widgets */
 	private SwingScilabAxes contentPane;
 	
+	/** Scroll the axes */
 	private JScrollPane scrolling;
 
 	/**
@@ -102,8 +103,30 @@ public class SwingScilabTab extends View implements SimpleTab {
 		//this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
 		
+		// no need for an axes
+		contentPane = null;
+		scrolling = null;
+	
+		this.setVisible(true);
+
+	}
+	
+	/**
+	 * Create a graphic tab used to display a figure with 3D graphics and/or UIcontrols
+	 * @param name name of the tab
+	 * @param figureId id of the displayed figure
+	 */
+	public SwingScilabTab(String name, int figureId) {
+		super(name, name, name);
+		
+		// This button is "overloaded" when we add a callback
+		//this.addAction(DockingConstants.CLOSE_ACTION);
+		// Removed because make JOGL crash when "Unpin"
+		//this.addAction(DockingConstants.PIN_ACTION);
+		this.addAction(DockingConstants.ACTIVE_WINDOW);
+		
 		// create the panel in which all the uiobjects will lie.
-		contentPane = new SwingScilabAxes();
+		contentPane = new SwingScilabAxes(figureId);
 		
 		// add it inside a JSCrollPane
 		scrolling = new JScrollPane(contentPane);
@@ -112,7 +135,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 		setContentPane(scrolling);
 	
 		this.setVisible(true);
-
 	}
 	
 	/**
@@ -870,7 +892,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 	
 	/**
-	 * @return wether the resize mode is on or off
+	 * @return whether the resize mode is on or off
 	 */
 	public boolean getAutoResizeMode() {
 		return contentPane.getAutoResizeMode();
@@ -890,20 +912,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void stopRotationRecording() {
 		contentPane.stopRotationRecording();
-	}
-	
-	/**
-	 * @param figureId the figureId to set
-	 */
-	public void setFigureId(int figureId) {
-		contentPane.setFigureId(figureId);
-	}
-
-	/**
-	 * @return the figureId
-	 */
-	public int getFigureId() {
-		return contentPane.getFigureId();
 	}
 
 }

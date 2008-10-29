@@ -52,6 +52,16 @@ public class ScilabTabBridge {
 	public static SimpleTab createTab(String name) {
 		return new SwingScilabTab(name);
 	}
+	
+	/**
+	 * Creates a Scilab tab able to display a figure handle
+	 * @param name the name of the tab (used to identify it)
+	 * @param figureId id of the displayed figure
+	 * @return the created tab
+	 */
+	public static SimpleTab createTab(String name, int figureId) {
+		return new SwingScilabTab(name, figureId);
+	}
 
 	/**
 	 * Draws a Scilab tab
@@ -499,21 +509,5 @@ public class ScilabTabBridge {
 	  */
 	 public static void stopRotationRecording(Tab tab) {
 		 tab.getAsSimpleTab().stopRotationRecording();
-	 }
-	 
-	 /**
-	  * @param figureId the figureId to set
-	  * @param tab tab to modify
-	  */
-	 public static void setFigureId(Tab tab, int figureId) {
-		 tab.getAsSimpleTab().setFigureId(figureId);
-	 }
-
-	 /**
-	  * @return the figureId
-	  * @param tab tab to modify
-	  */
-	 public static int getFigureId(Tab tab) {
-		 return tab.getAsSimpleTab().getFigureId();
 	 }
 }
