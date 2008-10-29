@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabEventListener;
 
@@ -75,7 +76,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 		
 		// for rotations
-		rotationTracker = new AxesRotationTracker(this);
+		rotationTracker = null;
 	}
 	
 	/**
@@ -210,6 +211,17 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	
 	/**
 	 * Add a member (dockable element) to container and returns its index
+	 * This function is added here to remove direct dependencies from SwingScilab Tab
+	 * to GLJPanel via SwingScilabCanvas
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(Canvas member) {
+		return this.addCanvas((SwingScilabCanvas) member.getAsSimpleCanvas());
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
 	 * @param canvas the canvas to add
 	 * @return index of member in ArrayList
 	 */
@@ -240,6 +252,16 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		graphicCanvas = canvas;
 		
 		return getComponentZOrder(canvas);
+	}
+	
+	/**
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * This function is added here to remove direct dependencies from SwingScilab Tab
+	 * to GLJPanel via SwingScilabCanvas
+	 * @param member canvas to remove 
+	 */
+	public void removeMember(Canvas member) {
+		this.removeCanvas((SwingScilabCanvas) member.getAsSimpleCanvas());
 	}
 	
 	/**
@@ -327,14 +349,14 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return true if the displacement recording continue, false otherwise
 	 */
 	public boolean getRotationDisplacement(int[] displacement) {
-		return rotationTracker.getDisplacement(displacement);
+		return getRotationTracker().getDisplacement(displacement);
 	}
 	
 	/**
 	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
-		rotationTracker.cancelRecording();
+		getRotationTracker().cancelRecording();
 	}
 
 	/**
@@ -342,6 +364,17 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public int getFigureId() {
 		return figureId;
+	}
+	
+	/**
+	 * Singleton creation for rotation tracker
+	 * @return the instance of the rotation tracker
+	 */
+	private AxesRotationTracker getRotationTracker() {
+		if (rotationTracker == null) {
+			rotationTracker = new AxesRotationTracker(this);
+		}
+		return rotationTracker;
 	}
 
 }

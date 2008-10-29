@@ -64,6 +64,7 @@ public final class ScilabGraphicWindow {
 		
 		TextBox infoBar = ScilabTextBox.createTextBox();
 		
+		// create a tab able to display a figure handle
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex, figureIndex);
 		/* Destroy the graphic figure when the tab is closed */
 		graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, getClosingWindowCommand(figureIndex)));
