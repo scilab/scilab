@@ -64,8 +64,7 @@ public final class ScilabGraphicWindow {
 		
 		TextBox infoBar = ScilabTextBox.createTextBox();
 		
-		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
-		graphicTab.setFigureId(figureIndex);
+		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex, figureIndex);
 		/* Destroy the graphic figure when the tab is closed */
 		graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, getClosingWindowCommand(figureIndex)));
 		graphicTab.addMenuBar(menuBar);

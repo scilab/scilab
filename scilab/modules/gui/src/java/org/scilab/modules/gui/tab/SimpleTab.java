@@ -375,15 +375,5 @@ public interface SimpleTab {
 	  * Asynchronous stop of rotation tracking.
 	  */
 	 void stopRotationRecording();
-	 
-	 /**
-	  * @param figureId the figureId to set
-	  */
-	 void setFigureId(int figureId);
-
-	 /**
-	  * @return the figureId
-	  */
-	 int getFigureId();
 
 }

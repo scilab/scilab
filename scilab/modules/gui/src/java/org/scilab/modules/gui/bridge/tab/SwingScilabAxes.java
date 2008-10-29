@@ -54,15 +54,16 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	
 	/**
 	 * Default constructor
+	 * @param figureId id of the displayed figure
 	 */
-	public SwingScilabAxes() {
+	public SwingScilabAxes(int figureId) {
 		super();
 		// default behaviour
 		autoResizeMode = true;
 		
 		eventHandler = null;
 		graphicCanvas = null;
-		figureId = -1;
+		this.figureId = figureId;
 		
 		// we use a null layout. It's needed for uicontrol so they don't resize when the canvas
 		// is resized. However, its imply to set the canvas size by hand.
@@ -334,13 +335,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public void stopRotationRecording() {
 		rotationTracker.cancelRecording();
-	}
-
-	/**
-	 * @param figureId the figureId to set
-	 */
-	public void setFigureId(int figureId) {
-		this.figureId = figureId;
 	}
 
 	/**

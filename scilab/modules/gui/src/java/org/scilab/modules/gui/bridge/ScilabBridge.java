@@ -549,6 +549,16 @@ public class ScilabBridge {
 	public static SimpleTab createTab(String name) {
 		return ScilabTabBridge.createTab(name);
 	}
+	
+	/**
+	 * Creates a Scilab tab able to create graphics
+	 * @param name the name of the tab (used to identify it)
+	 * @param figureId index of the created figure
+	 * @return the created tab
+	 */
+	public static SimpleTab createTab(String name, int figureId) {
+		return ScilabTabBridge.createTab(name, figureId);
+	}
 
 	/**
 	 * Draws a tab on screen
@@ -981,21 +991,6 @@ public class ScilabBridge {
 		 ScilabTabBridge.setEventHandlerEnabled(tab, status);
 	 }
 	 
-	 /**
-	  * @param figureId the figureId to set
-	  * @param tab tab to modify
-	  */
-	 public static void setFigureId(Tab tab, int figureId) {
-		 ScilabTabBridge.setFigureId(tab, figureId);
-	 }
-
-	 /**
-	  * @return the figureId
-	  * @param tab tab to modify
-	  */
-	 public static int getFigureId(Tab tab) {
-		 return ScilabTabBridge.getFigureId(tab);
-	 }
 	 
 
 	/******************/
