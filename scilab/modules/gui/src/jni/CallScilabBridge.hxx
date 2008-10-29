@@ -44,8 +44,6 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
-#include "GiwsException.hxx"
-
 namespace org_scilab_modules_gui_bridge {
 
 class CallScilabBridge {
@@ -240,6 +238,7 @@ jmethodID jbooleanpageSetupID; // cache method id
 jmethodID voidrequestWidgetFocusjintID; // cache method id
 jmethodID voidrequestFrameFocusjintID; // cache method id
 jmethodID voidraiseWindowjintID; // cache method id
+jmethodID voiduseCanvasForDisplayjbooleanID; // cache method id
 
 
 /**
@@ -650,6 +649,8 @@ static void requestWidgetFocus(JavaVM * jvm_, int objID);
 static void requestFrameFocus(JavaVM * jvm_, int objID);
 
 static void raiseWindow(JavaVM * jvm_, int objID);
+
+static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
 
 
                         /**

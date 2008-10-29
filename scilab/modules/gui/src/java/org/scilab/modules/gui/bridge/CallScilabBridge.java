@@ -46,6 +46,7 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
@@ -2824,6 +2825,14 @@ public class CallScilabBridge {
 	public static boolean isWindowsPlateform() {
 		// get os name
 		return System.getProperty("os.name").toLowerCase().contains("windows");
+	}
+
+	/**
+	 * Change object used for graphic figure (GLCanvas or GLJPanel)
+         * @param onOrOff true to set GLCanvas display
+	 */
+	public static void useCanvasForDisplay(boolean onOrOff) {
+            SwingScilabCanvasImpl.switchToGLCanvas(onOrOff);
 	}
 
 }
