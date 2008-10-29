@@ -41,9 +41,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	
 	private ScilabEventListener eventHandler;
 	
-	/** Needed to be able to change the background */
-	private JPanel backgroundFiller;
-	
 	private AxesRotationTracker rotationTracker;
 	
 	/**
@@ -54,14 +51,11 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		autoResizeMode = true;
 		eventHandler = null;
 		
+		// to be able to set up widget position exactly
 		setLayout(null);
 		
-		// adding an object to fill the background
-		backgroundFiller = new JPanel();
-		add(backgroundFiller);
-		setLayer(backgroundFiller, BACKGROUND_LAYER , BOTTOM_POSITION);
-		
-		rotationTracker = new AxesRotationTracker(backgroundFiller);
+		// for rotations
+		rotationTracker = new AxesRotationTracker(this);
 	}
 	
 	/**
@@ -71,7 +65,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	public void setSize(Dimension newSize) {
 		super.setSize(newSize);
 		super.setPreferredSize(newSize);
-		backgroundFiller.setSize(newSize);
 	}
 	
 	/**
@@ -187,7 +180,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	public void setBackground(double red, double green, double blue) {
 		Color color = new Color((float) red, (float) green, (float) (blue));
 		setBackground(color);
-		backgroundFiller.setBackground(color);
 	}
 	
 	/**
@@ -297,7 +289,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	}
 	
 	/**
-	 * Ansynchrnous stop of rotation tracking.
+	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
 		rotationTracker.cancelRecording();

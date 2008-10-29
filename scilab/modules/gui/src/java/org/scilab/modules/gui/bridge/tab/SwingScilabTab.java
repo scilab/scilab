@@ -61,7 +61,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -209,7 +208,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param newSize new size to set for the axes
 	 */
 	public void setAxesSize(Size newSize) {
-		contentPane.setSize(new Dimension(contentPane.getWidth(), contentPane.getHeight()));
+		contentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
 	}
 
 	/**
