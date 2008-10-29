@@ -1,5 +1,6 @@
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -8,7 +9,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.Scrollable;
 import javax.swing.SwingUtilities;
 
@@ -30,7 +30,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	private static final int SMALL_DISPLACEMENT = 2;
 	private static final int LARGE_DISPLACEMENT = 20;
 	
-	private static final int BACKGROUND_LAYER = 0;
 	private static final int CANVAS_LAYER = 1;
 	private static final int WIDGET_LAYER = 2;
 	
@@ -53,6 +52,10 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		
 		// to be able to set up widget position exactly
 		setLayout(null);
+		
+		// to be able to catch events for xclick & xgetmouse
+		setFocusable(true);
+		enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 		
 		// for rotations
 		rotationTracker = new AxesRotationTracker(this);
@@ -192,8 +195,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
-					add(canvasf);
-					setLayer(canvasf, CANVAS_LAYER, TOP_POSITION);
+					add(canvasf.getAsComponent());
+					setLayer(canvasf.getAsComponent(), CANVAS_LAYER, TOP_POSITION);
 					revalidate();
 				}
 			});
@@ -203,7 +206,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			e.getCause().printStackTrace();
 		}
 		
-		return getComponentZOrder(canvas);
+		return getComponentZOrder(canvas.getAsComponent());
 	}
 	
 	/**
@@ -215,7 +218,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
-					remove(canvasf);
+					remove(canvasf.getAsComponent());
 					revalidate();
 				}
 			});
