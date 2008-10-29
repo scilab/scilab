@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - DIGITEO - Bruno JOFRET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.Color;
@@ -36,28 +48,56 @@ import javax.media.opengl.GLJPanel;
 
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
-    final static boolean enableGLCanvas = false;
+    private static final long serialVersionUID = -3110280842744630282L;
+    
+    static boolean forceGLCanvas = false;
+    static boolean noGLJPanel = false;
+
+    static {
+	GLCanvas tmpCanvas = new GLCanvas();
+	String vendor = tmpCanvas.getGL().glGetString(GL.GL_VENDOR);
+	DEBUG("GL_VENDOR="+vendor);
+	noGLJPanel = true;
+    }
+    
     GLCanvas realGLCanvas;
     GLJPanel realGLJPanel;
-
+    boolean enableGLCanvas = forceGLCanvas || noGLJPanel;
+    
+    /**
+     * Change Global property forceGLCanvas
+     * if no GLJPanel is available, GLCanvas is forced
+     */
+    public static boolean switchToGLCanvas(boolean onOrOff) {
+	forceGLCanvas = noGLJPanel || onOrOff;
+	return forceGLCanvas;
+    }
+    
+    /**
+     * DEBUG function
+     */
+    private static void DEBUG(String msg) {
+	System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
+    }
+    
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
-	    System.err.println("[SwingScilabCanvasImpl] is GLCanvas..");
+	    DEBUG("Using GLCanvas for implementation.");
 	    realGLCanvas = new GLCanvas();
 	}
 	else {
-	    System.err.println("[SwingScilabCanvasImpl] is GLJPanel..");
+	    DEBUG("Using GLJPanel for implementation.");
 	    realGLJPanel= new GLJPanel();
 	}
     }
 
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
-	    System.err.println("[SwingScilabCanvasImpl] is GLCanvas..");
+	    DEBUG("Using GLCanvas for implementation.");
 	    realGLCanvas = new GLCanvas(cap);
 	}
 	else {
-	    System.err.println("[SwingScilabCanvasImpl] is GLJPanel..");
+	    DEBUG("Using GLJPanel for implementation.");
 	    realGLJPanel = new GLJPanel(cap);
 	}
     }
@@ -275,11 +315,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	getAsComponent().setFocusable(arg0);
     }
 
-    public void enableEvents(long arg0) {
-	//realGLCanvas.enableEvents(arg0);
-	//realGLJPanel.enableEvents(arg0);
-    }
-
     public void setSize(Dimension arg0) {
 	getAsComponent().setSize(arg0);
     }
@@ -304,4 +339,8 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	getAsComponent().setCursor(arg0);
     }
 
+    public boolean isVisible() {
+	return getAsComponent().isVisible();
+    }
+    
 }

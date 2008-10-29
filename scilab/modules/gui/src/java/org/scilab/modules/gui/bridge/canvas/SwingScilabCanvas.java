@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,14 +15,17 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
+import javax.swing.SwingUtilities;
 
+import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
@@ -33,9 +37,6 @@ import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 import com.sun.opengl.util.Screenshot;
 
-import javax.swing.SwingUtilities;
-import java.lang.reflect.InvocationTargetException;
-
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
  * JOGL
@@ -43,255 +44,258 @@ import java.lang.reflect.InvocationTargetException;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste silvy
+ * @author Bruno JOFRET
  */
-public class SwingScilabCanvas extends SwingScilabCanvasImpl {
+public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCanvas {
 
-	private static final long serialVersionUID = 6101347094617535625L;
+    private static final long serialVersionUID = 6101347094617535625L;
 
-	/**
-	 * Figure Index
-	 * Used in Scilab to remember who is who.
-	 */
-	private int figureIndex;
-	
-	private GLEventListener renderer;
-	
-	private AxesRotationTracker rotationTracker;
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param cap
-	 *            GLCapabilities associated to the GLJPanel
-	 * @param figureIndex
-	 *            index of the displayed figure
-	 */
-	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
-		super(cap);
-		// TODO to remove, just for testing
-		//this.setLayout(null);
-		renderer = new SciRenderer(figureIndex);
-		this.addGLEventListener(renderer);
-		this.figureIndex = figureIndex;
-		
-		// Focusable in order to catch KeyEvents...
-		this.setFocusable(true);
-		// Enable mouse Events sensitivity...
-		// FIXME !!!
-		//this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
-		
-		rotationTracker = new AxesRotationTracker(this);
+    /**
+     * Figure Index
+     * Used in Scilab to remember who is who.
+     */
+    private int figureIndex;
+
+    private GLEventListener renderer;
+
+    private AxesRotationTracker rotationTracker;
+
+    /**
+     * Constructor
+     * 
+     * @param cap
+     *            GLCapabilities associated to the GLJPanel
+     * @param figureIndex
+     *            index of the displayed figure
+     */
+    public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
+	super(cap);
+	// TODO to remove, just for testing
+	//this.setLayout(null);
+	renderer = new SciRenderer(figureIndex);
+	this.addGLEventListener(renderer);
+	this.figureIndex = figureIndex;
+
+	rotationTracker = new AxesRotationTracker(this.getAsComponent());
+    }
+
+    /**
+     * 	Used to see SwingScilabCanvas as a Component.
+     */
+
+    public Component getAsComponent() {
+	return super.getAsComponent();
+    }
+
+    /**
+     * Create a Scilab Canvas
+     * 
+     * @param figureIndex index of the displayed figure
+     * @return the created canvas
+     */
+    public static SwingScilabCanvas createCanvas(int figureIndex) {
+	GLCapabilities cap = new GLCapabilities();
+
+	SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
+
+	// I do this here and not in the ScilabCanvas because it is JOGL related stuff
+	DrawableFigureGL correspondigFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+	correspondigFigure.setRenderingTarget(newCanvas);
+
+	return newCanvas;
+    }
+
+    /**
+     * Draws a Scilab canvas
+     * 
+     * @see org.scilab.modules.gui.UIElement#draw()
+     */
+    public void draw() {
+	this.setVisible(true);
+	this.doLayout();
+    }
+
+    /**
+     * Gets the dimensions (width and height) of a Scilab Canvas
+     * 
+     * @return the size of the canvas
+     * @see org.scilab.modules.gui.UIElement#getDims()
+     */
+    public Size getDims() {
+	return new Size(this.getWidth(), this.getHeight());
+    }
+
+    /**
+     * Gets the position (X-coordinate and Y-coordinate) of a Scilab canvas
+     * 
+     * @return the position of the canvas
+     * @see org.scilab.modules.gui.UIElement#getPosition()
+     */
+    public Position getPosition() {
+	return new Position(this.getX(), this.getY());
+    }
+
+    /**
+     * Sets the dimensions (width and height) of a Scilab Canvas
+     * 
+     * @param newSize
+     *            the size we want to set to the canvas
+     * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     */
+    public void setDims(Size newSize) {
+	// get the greatest size we can use
+	int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
+
+	// make suze size is not greater than the max size
+	Dimension finalDim = new Dimension(Math.min(newSize.getWidth(), maxSize[0]),
+		Math.min(newSize.getHeight(), maxSize[1]));
+
+	setSize(finalDim);
+
+	// if the size is too large, throw an exception
+	if (newSize.getWidth() > maxSize[0] || newSize.getHeight() > maxSize[1]) {
+	    throw new IllegalArgumentException();
 	}
 
-	/**
-	 * Create a Scilab Canvas
-	 * 
-	 * @param figureIndex index of the displayed figure
-	 * @return the created canvas
-	 */
-	public static SwingScilabCanvas createCanvas(int figureIndex) {
-		GLCapabilities cap = new GLCapabilities();
-		
-		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
-		
-		// I do this here and not in the ScilabCanvas because it is JOGL related stuff
-		DrawableFigureGL correspondigFigure = FigureMapper.getCorrespondingFigure(figureIndex);
-		correspondigFigure.setRenderingTarget(newCanvas);
-		
-		return newCanvas;
-	}
+    }
 
-	/**
-	 * Draws a Scilab canvas
-	 * 
-	 * @see org.scilab.modules.gui.UIElement#draw()
-	 */
-	public void draw() {
-		this.setVisible(true);
-		this.doLayout();
-	}
 
-	/**
-	 * Gets the dimensions (width and height) of a Scilab Canvas
-	 * 
-	 * @return the size of the canvas
-	 * @see org.scilab.modules.gui.UIElement#getDims()
-	 */
-	public Size getDims() {
-		return new Size(this.getWidth(), this.getHeight());
-	}
+    /**
+     * Sets the position (X-coordinate and Y-coordinate) of a Scilab canvas
+     * 
+     * @param newPosition
+     *            the position we want to set to the canvas
+     * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     */
+    public void setPosition(Position newPosition) {
+	this.setLocation(newPosition.getX(), newPosition.getY());
+    }
+    /**
+     * Get the Figuer Index : the Scilab ID of the figure.
+     * 
+     * @return the ID.
+     */
+    public int getFigureIndex() {
+	return figureIndex;
+    }
 
-	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab canvas
-	 * 
-	 * @return the position of the canvas
-	 * @see org.scilab.modules.gui.UIElement#getPosition()
-	 */
-	public Position getPosition() {
-		return new Position(this.getX(), this.getY());
-	}
+    /**
+     * Specify wether the canvas should fit the parent tab size
+     * (and consequently the scrollpane size) or not
+     * However JOGLSwingCanvas is always resized
+     * @param onOrOff true to enable autoresize mode
+     */
+    public void setAutoResizeMode(boolean onOrOff) {
 
-	/**
-	 * Sets the dimensions (width and height) of a Scilab Canvas
-	 * 
-	 * @param newSize
-	 *            the size we want to set to the canvas
-	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
-	 */
-	public void setDims(Size newSize) {
-		// get the greatest size we can use
-		int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
-		
-		// make suze size is not greater than the max size
-		Dimension finalDim = new Dimension(Math.min(newSize.getWidth(), maxSize[0]),
-										   Math.min(newSize.getHeight(), maxSize[1]));
-		
-		setSize(finalDim);
-		
-		// if the size is too large, throw an exception
-		if (newSize.getWidth() > maxSize[0] || newSize.getHeight() > maxSize[1]) {
-			throw new IllegalArgumentException();
+    }
+
+    /**
+     * @return wether the resize mode is on or off
+     * However JOGLSwingCanvas is always resized
+     */
+    public boolean getAutoResizeMode() {
+	return true;
+    }
+
+    /**
+     * Get the part of the canvas which is currently viewed
+     * @return [x,y,w,h] array
+     */
+    public int[] getViewingRegion() {
+	// here all the canvas is visible
+	int[] res = {0, 0, getWidth(), getHeight()};
+	return res;
+    }
+
+    /**
+     * Specify a new viewport for the canvas
+     * For SwingScilabCanvas viewport can not be modified
+     * since it match the parent tab size
+     * @param posX X coordinate of upper left point of the viewport within the canvas
+     * @param posY Y coordinate of upper left point of the viewport within the canvas
+     * @param width width of the viewport
+     * @param height height of the viewport
+     */
+    public void setViewingRegion(int posX, int posY, int width, int height) {
+	// nothing to do
+    }
+
+    /**
+     * Set the background of the Canvas.
+     * @param red red channel
+     * @param green green channel 
+     * @param blue blue channel
+     */
+    public void setBackgroundColor(double red, double green, double blue) {
+	this.setBackground(new Color((float) red, (float) green, (float) blue));
+    }
+
+    /**
+     * Create an interactive selection rectangle and return its pixel coordinates
+     * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+     *                or a sequence of press-release
+     * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
+     * @param initialRect if not null specify the initial rectangle to draw
+     * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
+     * @return Scilab code of the pressed button
+     */
+    public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
+	return ScilabRubberBox.getRectangle(this, isClick, isZoom, initialRect, endRect);
+    }
+
+    /**
+     * Get the displacement in pixel that should be used for rotating axes
+     * @param displacement out parameter, [x,y] array of displacement in pixels
+     * @return true if the diplacement recording continue, false otherwise
+     */
+    public boolean getRotationDisplacement(int[] displacement) {
+	return rotationTracker.getDisplacement(displacement);
+    }
+
+    /**
+     * Ansynchrnous stop of rotation tracking.
+     */
+    public void stopRotationRecording() {
+	rotationTracker.cancelRecording();
+    }
+
+    /**
+     * Disable the canvas befor closing
+     */
+    public void close() {
+	// remove the event listener
+	// so we won't have useless redraw
+
+	removeGLEventListener(renderer);
+	renderer = null;
+
+	try {
+	    SwingUtilities.invokeAndWait(new Runnable() {
+		public void run() {
+		    // context need to be destroyed
+		    // otherwise there are some memory leaks
+		    getContext().destroy();
 		}
-		
-	}
-	
-
-	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab canvas
-	 * 
-	 * @param newPosition
-	 *            the position we want to set to the canvas
-	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
-	 */
-	public void setPosition(Position newPosition) {
-		this.setLocation(newPosition.getX(), newPosition.getY());
-	}
-	/**
-	 * Get the Figuer Index : the Scilab ID of the figure.
-	 * 
-	 * @return the ID.
-	 */
-	public int getFigureIndex() {
-		return figureIndex;
-	}
-	
-	/**
-	 * Specify wether the canvas should fit the parent tab size
-	 * (and consequently the scrollpane size) or not
-	 * However JOGLSwingCanvas is always resized
-	 * @param onOrOff true to enable autoresize mode
-	 */
-	public void setAutoResizeMode(boolean onOrOff) {
-		
-	}
-	
-	/**
-	 * @return wether the resize mode is on or off
-	 * However JOGLSwingCanvas is always resized
-	 */
-	public boolean getAutoResizeMode() {
-		return true;
-	}
-	
-	/**
-	 * Get the part of the canvas which is currently viewed
-	 * @return [x,y,w,h] array
-	 */
-	public int[] getViewingRegion() {
-		// here all the canvas is visible
-		int[] res = {0, 0, getWidth(), getHeight()};
-		return res;
-	}
-	
-	/**
-	 * Specify a new viewport for the canvas
-	 * For SwingScilabCanvas viewport can not be modified
-	 * since it match the parent tab size
-	 * @param posX X coordinate of upper left point of the viewport within the canvas
-	 * @param posY Y coordinate of upper left point of the viewport within the canvas
-	 * @param width width of the viewport
-	 * @param height height of the viewport
-	 */
-	public void setViewingRegion(int posX, int posY, int width, int height) {
-		// nothing to do
-	}
-	
-	/**
-	 * Set the background of the Canvas.
-	 * @param red red channel
-	 * @param green green channel 
-	 * @param blue blue channel
-	 */
-	public void setBackgroundColor(double red, double green, double blue) {
-		this.setBackground(new Color((float) red, (float) green, (float) blue));
+	    });
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	} catch (InvocationTargetException e) {
+	    // context not already created
+	    // do nothing
 	}
 
-	/**
-	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
-	 *                or a sequence of press-release
-	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
-	 * @param initialRect if not null specify the initial rectangle to draw
-	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
-	 * @return Scilab code of the pressed button
-	 */
-	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
-		return ScilabRubberBox.getRectangle(this, isClick, isZoom, initialRect, endRect);
-	}
-	
-	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
-	 */
-	public boolean getRotationDisplacement(int[] displacement) {
-		return rotationTracker.getDisplacement(displacement);
-	}
-	
-	/**
-	 * Ansynchrnous stop of rotation tracking.
-	 */
-	public void stopRotationRecording() {
-		rotationTracker.cancelRecording();
-	}
-	
-	/**
-	 * Disable the canvas befor closing
-	 */
-	public void close() {
-		// remove the event listener
-		// so we won't have useless redraw
-		
-		removeGLEventListener(renderer);
-		renderer = null;
-		
-		try {
-			SwingUtilities.invokeAndWait(new Runnable() {
-				public void run() {
-				// context need to be destroyed
-				// otherwise there are some memory leaks
-					getContext().destroy();
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// context not already created
-			// do nothing
-		}
-		
-		//this.removeAll();
-	}
-	
-	/**
-	 * Take a screenshot of the figure and put it into a BufferedImage
-	 * @return a BufferedImage
-	 */
-	public BufferedImage dumpAsBufferedImage() {			
-		getContext().makeCurrent();		
-		BufferedImage dump = Screenshot.readToBufferedImage(getWidth(), getHeight());		
-		getContext().release();		
+	//this.removeAll();
+    }
 
-		return dump;
-	}	
+    /**
+     * Take a screenshot of the figure and put it into a BufferedImage
+     * @return a BufferedImage
+     */
+    public BufferedImage dumpAsBufferedImage() {			
+	getContext().makeCurrent();		
+	BufferedImage dump = Screenshot.readToBufferedImage(getWidth(), getHeight());		
+	getContext().release();		
+
+	return dump;
+    }
 }	

@@ -134,13 +134,13 @@ public interface SimpleCanvas {
 	  * Set the event handler of the Canvas
 	  * @param command the name of the Scilab function to call
 	  */
-	 void setEventHandler(String command);
+	 //void setEventHandler(String command);
 
 	 /**
 	  * Set the status of the event handler of the Canvas
 	  * @param status is true to set the event handler active
 	  */
-	 void setEventHandlerEnabled(boolean status);
+	 //void setEventHandlerEnabled(boolean status);
 	 
 	 /**
 	  * Create an interactive selection rectangle and return its pixel coordinates
