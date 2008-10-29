@@ -173,46 +173,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		return figureIndex;
 	}
 	
-	/**
-	 * Specify whether the canvas should fit the parent tab size
-	 * (and consequently the scrollpane size) or not
-	 * However JOGLSwingCanvas is always resized
-	 * @param onOrOff true to enable autoresize mode
-	 */
-	public void setAutoResizeMode(boolean onOrOff) {
-		
-	}
-	
-	/**
-	 * @return whether the resize mode is on or off
-	 * However JOGLSwingCanvas is always resized
-	 */
-	public boolean getAutoResizeMode() {
-		return true;
-	}
-	
-	/**
-	 * Get the part of the canvas which is currently viewed
-	 * @return [x,y,w,h] array
-	 */
-	public int[] getViewingRegion() {
-		// here all the canvas is visible
-		int[] res = {0, 0, getWidth(), getHeight()};
-		return res;
-	}
-	
-	/**
-	 * Specify a new viewport for the canvas
-	 * For SwingScilabCanvas viewport can not be modified
-	 * since it match the parent tab size
-	 * @param posX X coordinate of upper left point of the viewport within the canvas
-	 * @param posY Y coordinate of upper left point of the viewport within the canvas
-	 * @param width width of the viewport
-	 * @param height height of the viewport
-	 */
-	public void setViewingRegion(int posX, int posY, int width, int height) {
-		// nothing to do
-	}
 	
 	/**
 	 * Set the background of the Canvas.
@@ -222,23 +182,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public void setBackgroundColor(double red, double green, double blue) {
 		this.setBackground(new Color((float) red, (float) green, (float) blue));
-	}
-	
-
-	/**
-	 * Set the event handler of the Canvas
-	 * @param command the name of the Scilab function to call
-	 */
-	public void setEventHandler(String command) {
-		// TODO Blouno !
-	}
-
-	/**
-	 * Set the status of the event handler of the Canvas
-	 * @param status is true to set the event handler active
-	 */
-	public void setEventHandlerEnabled(boolean status) {
-		// TODO Blouno !
 	}
 	
 	/**
@@ -308,5 +251,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		getContext().release();		
 
 		return dump;
-	}	
+	}
+	
 }	
