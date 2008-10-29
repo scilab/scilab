@@ -980,6 +980,23 @@ public class ScilabBridge {
 	 public static void setEventHandlerEnabled(Tab tab, boolean status) {
 		 ScilabTabBridge.setEventHandlerEnabled(tab, status);
 	 }
+	 
+	 /**
+	  * @param figureId the figureId to set
+	  * @param tab tab to modify
+	  */
+	 public static void setFigureId(Tab tab, int figureId) {
+		 ScilabTabBridge.setFigureId(tab, figureId);
+	 }
+
+	 /**
+	  * @return the figureId
+	  * @param tab tab to modify
+	  */
+	 public static int getFigureId(Tab tab) {
+		 return ScilabTabBridge.getFigureId(tab);
+	 }
+	 
 
 	/******************/
 	/* Console Bridge */

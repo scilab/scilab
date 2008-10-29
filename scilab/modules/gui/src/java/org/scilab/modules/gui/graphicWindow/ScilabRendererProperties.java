@@ -408,7 +408,6 @@ public class ScilabRendererProperties implements RendererProperties {
 	/**
 	 * If the window does not already contains a 3D canvas,
 	 * add one.
-	 * @param figureIndex index of the figure in which the canvas is added
 	 */
 	public void openGraphicCanvas() {
 		if (parentCanvas == null) {
@@ -434,6 +433,22 @@ public class ScilabRendererProperties implements RendererProperties {
 			parentTab.removeMember(parentCanvas);
 		}
 		parentCanvas = null;
+	}
+	
+	/**
+	 * Set the event handler of the figure
+	 * @param command the name of the Scilab function to call
+	 */
+	public void setEventHandler(String command) {
+		parentTab.setEventHandler(command);
+	}
+	
+	/**
+	 * Set the status of the event handler of the figure
+	 * @param status is true to set the event handler active
+	 */
+	public void setEventHandlerEnabled(boolean status) {
+		parentTab.setEventHandlerEnabled(status);
 	}
 
 }

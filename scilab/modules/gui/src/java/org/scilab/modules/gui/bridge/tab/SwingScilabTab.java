@@ -104,7 +104,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 		
 		// create the panel in which all the uiobjects will lie.
 		contentPane = new SwingScilabAxes();
-		contentPane.setLayout(new BorderLayout());
 		
 		// add it inside a JSCrollPane
 		scrolling = new JScrollPane(contentPane);
@@ -115,7 +114,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.setVisible(true);
 
 	}
-
+	
 	/**
      * Repaint it
      */
@@ -361,7 +360,9 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabPushButton member) {
-		return contentPane.addWidget(member);
+		int res = contentPane.addWidget(member);
+		repaint();
+		return res;
 	}
 
 	/**
@@ -889,6 +890,20 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void stopRotationRecording() {
 		contentPane.stopRotationRecording();
+	}
+	
+	/**
+	 * @param figureId the figureId to set
+	 */
+	public void setFigureId(int figureId) {
+		contentPane.setFigureId(figureId);
+	}
+
+	/**
+	 * @return the figureId
+	 */
+	public int getFigureId() {
+		return contentPane.getFigureId();
 	}
 
 }
