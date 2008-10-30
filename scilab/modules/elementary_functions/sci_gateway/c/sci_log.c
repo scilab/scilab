@@ -46,7 +46,9 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 
 	if(iIsComplex(1))
 	{
+		BOOL bAlert = FALSE; // to print only one warning message
 		int iComplex = 1;
+
 		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
 		pdblRealData	= stk(iRealData);
 		pdblImgData		= stk(iImgData);
@@ -58,7 +60,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 		{
-			if(pdblRealData[iIndex] == 0 && pdblImgData[iIndex] == 0)
+			if(bAlert == FALSE && pdblRealData[iIndex] == 0 && pdblImgData[iIndex] == 0)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
@@ -68,6 +70,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 				else if(C2F(errgst).ieee == 1)
 				{
 					Msgs(64,0);
+					bAlert = TRUE;
 				}
 			}
 
@@ -81,6 +84,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 	}
 	else
 	{
+		BOOL bAlert = FALSE; // to print only one warning message
 		int iLessZero	= 0;
 		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 		pdblRealData	= stk(iRealData);
@@ -91,7 +95,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 			{
 				iLessZero = 1;
 			}
-			else if(pdblRealData[iIndex] == 0)
+			else if(bAlert == FALSE && pdblRealData[iIndex] == 0)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
@@ -101,6 +105,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 				else if(C2F(errgst).ieee == 1)
 				{
 					Msgs(64,0);
+					bAlert = TRUE; 
 				}
 			}
 		}
