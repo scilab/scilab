@@ -22,13 +22,13 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLJPanel;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
@@ -49,11 +49,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
-	/**
-	 * Figure Index
-	 * Used in Scilab to remember who is who.
-	 */
-	private int figureIndex;
 	
 	private GLEventListener renderer;
 	
@@ -75,7 +70,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		renderer = new SciRenderer(figureIndex);
 		this.addGLEventListener(renderer);
 		
-		this.figureIndex = figureIndex;
 		
 		// for recording of rotations
 		rotationTracker = null;
@@ -93,8 +87,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
 		
 		// I do this here and not in the ScilabCanvas because it is JOGL related stuff
-		DrawableFigureGL correspondigFigure = FigureMapper.getCorrespondingFigure(figureIndex);
-		correspondigFigure.setRenderingTarget(newCanvas);
+		FigureMapper.getCorrespondingFigure(figureIndex).setRenderingTarget(newCanvas);
 		
 		return newCanvas;
 	}
@@ -170,7 +163,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 * @return the ID.
 	 */
 	public int getFigureIndex() {
-		return figureIndex;
+		// to avoid storing the data everywhere
+		return ((SwingScilabAxes) getParent()).getFigureId();
 	}
 	
 	

@@ -27,7 +27,8 @@ import org.scilab.modules.renderer.figureDrawing.RendererProperties;
 
 
 /**
- * Main class for renderers in Scilab
+ * Main class for renderer in Scilab
+ * @author Jean-Baptiste Silvy
  */
 public class ScilabRendererProperties implements RendererProperties {
 
@@ -36,8 +37,6 @@ public class ScilabRendererProperties implements RendererProperties {
 	/** Enclosing tab */
 	private Tab parentTab;
 	
-	/** Index of the modified figure */
-	private int figureIndex;
 	
 	/**
 	 * Default constructor
@@ -48,7 +47,6 @@ public class ScilabRendererProperties implements RendererProperties {
 	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas, int figureIndex) {
 		this.parentCanvas = parentCanvas;
 		this.parentTab = parentTab;
-		this.figureIndex = figureIndex;
 	}
 	
 	/**
@@ -329,6 +327,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
+	 * @param figureIndex index of the figure on which the rubber box is applied
 	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
@@ -336,10 +335,10 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
 	 * @return Scilab code of the pressed button
 	 */
-	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
+	public int rubberBox(int figureIndex, boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
 		// rubber box needs an OpenGL canvas to display the selection rectangle.
 		if (parentCanvas == null) {
-			openGraphicCanvas();
+			openGraphicCanvas(figureIndex);
 		}
 		return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
 	}
@@ -408,8 +407,9 @@ public class ScilabRendererProperties implements RendererProperties {
 	/**
 	 * If the window does not already contains a 3D canvas,
 	 * add one.
+	 * @param figureIndex of the figure that need a canvas
 	 */
-	public void openGraphicCanvas() {
+	public void openGraphicCanvas(int figureIndex) {
 		if (parentCanvas == null) {
 		
 			// create canvas
