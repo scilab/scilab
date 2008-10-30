@@ -59,7 +59,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	 */
 	public void eventDispatched(AWTEvent mouseEvent) {
 		// DEBUG
-		System.out.println(((MouseEvent) mouseEvent).toString());
+		//System.err.println(("[DEBUG] "+(MouseEvent) mouseEvent).toString());
 
 		/*
 		 * Managing Canvas

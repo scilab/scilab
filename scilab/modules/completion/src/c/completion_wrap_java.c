@@ -9,48 +9,78 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdlib.h>
+#include <string.h>
 #include "completion_wrap_java.h"
 #include "completion.h"
 /*--------------------------------------------------------------------------*/
 char **searchAllDictionaries(char *somechars)
 {
 	int nbrElements = 0;
-	return completion(somechars,&nbrElements);
+	if ( (somechars) && (strcmp(somechars,"")) ) 
+	{
+		return completion(somechars,&nbrElements);
+	}
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 char **searchFunctionsDictionary(char *somechars)
 {
 	int nbrElements = 0;
-	return completionOnFunctions(somechars,&nbrElements);
+	if ( (somechars) && (strcmp(somechars,"")) ) 
+	{
+		return completionOnFunctions(somechars,&nbrElements);
+	}
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 char **searchCommandsDictionary(char *somechars)
 {
 	int nbrElements = 0;
-	return completionOnCommandWords(somechars,&nbrElements);
+	if ( (somechars) && (strcmp(somechars,"")) ) 
+	{
+		return completionOnCommandWords(somechars,&nbrElements);
+	}
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 char **searchMacrosDictionary(char *somechars)
 {
 	int nbrElements = 0;
-	return completionOnMacros(somechars,&nbrElements);
+	if ( (somechars) && (strcmp(somechars,"")) ) 
+	{
+		return completionOnMacros(somechars,&nbrElements);
+	}
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 char **searchVariablesDictionary(char *somechars)
 {
 	int nbrElements = 0;
-	return completionOnVariablesWithoutMacros(somechars,&nbrElements);
+	if ( (somechars) && (strcmp(somechars,"")) ) 
+	{
+		return completionOnVariablesWithoutMacros(somechars,&nbrElements);
+	}
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 char **searchFilesDictionary(char *somechars)
 {
 	int nbrElements = 0;
-	return completionOnFiles(somechars,&nbrElements);
+	if ( (somechars) && (strcmp(somechars,"")) ) 
+	{
+		return completionOnFiles(somechars,&nbrElements);
+	}
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 char **searchHandleGraphicsPropertiesDictionary(char *somechars)
 {
 	int nbrElements = 0;
-	return completionOnHandleGraphicsProperties(somechars,&nbrElements);
+	if ( (somechars) && (strcmp(somechars,"")) ) 
+	{
+		return completionOnHandleGraphicsProperties(somechars,&nbrElements);
+	}
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/

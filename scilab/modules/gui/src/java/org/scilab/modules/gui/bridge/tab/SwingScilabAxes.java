@@ -2,22 +2,20 @@ package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.AWTEvent;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
-import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 import javax.swing.Scrollable;
-import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabEventListener;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Class defining the content pane of the Tab.
@@ -33,10 +31,10 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	private static final int LARGE_DISPLACEMENT = 20;
 
 	// definition of layers from bottom to top
-	//private static final int BACKGROUND_LAYER = 0;
-	private static final Integer CANVAS_LAYER = 1;
-	private static final Integer WIDGET_LAYER = 2;
-
+	//private static final Integer BACKGROUND_LAYER = 0;
+	private static final Integer CANVAS_LAYER = new Integer(1);
+	private static final Integer WIDGET_LAYER = new Integer(2);
+	
 	/** Use to put a component above any other object within its layer */
 	private static final int TOP_POSITION = 0;
 	/** Use to put a component below any other object within its layer */
@@ -231,24 +229,12 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			// should not happen, no need for localization
 			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
 		}
-
-		final SwingScilabCanvas canvasf = canvas;
-		try {
-			SwingUtilities.invokeAndWait(new Runnable() {
-				public void run() {
-					// we use a null layout. It's needed for uicontrol so they should resize when the canvas
-					// is resized. However, its imply to set the canvas size by hand.
-					canvasf.setSize(getSize());
-					add(canvasf.getAsComponent(), CANVAS_LAYER, TOP_POSITION);
-					revalidate();
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.getCause().printStackTrace();
-		}
-
+		canvas.setSize(getSize());
+		
+		// we use a null layout. It's needed for uicontrol so they should resize when the canvas
+		// is resized. However, its imply to set the canvas size by hand.
+		ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
+		
 		graphicCanvas = canvas;
 
 		return getComponentZOrder(canvas.getAsComponent());
@@ -274,21 +260,9 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			// should not happen, no need for localization
 			throw new UnsupportedOperationException("Trying to remove an unknown canvas.");
 		}
-
-		final SwingScilabCanvas canvasf = canvas;
-		try {
-			SwingUtilities.invokeAndWait(new Runnable() {
-				public void run() {
-					remove(canvasf.getAsComponent());
-					revalidate();
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.getCause().printStackTrace();
-		}
-
+		
+		ScilabSwingUtilities.removeFromParent(canvas.getAsComponent());
+		
 		graphicCanvas = null;
 
 	}
@@ -299,8 +273,9 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return index of member in ArrayList
 	 */
 	public int addWidget(JComponent widget) {
-		add(widget, WIDGET_LAYER, TOP_POSITION);
 		// put the newly added object above any other objects
+		ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
+		
 		return getComponentZOrder(widget);
 	}
 
@@ -309,16 +284,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param widget widget to remove
 	 */
 	public void removeWidget(JComponent widget) {
-		Component[] component = getComponentsInLayer(WIDGET_LAYER);
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCountInLayer(WIDGET_LAYER); ++i) {
-	            if (component[i] == widget) {
-	            	remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		ScilabSwingUtilities.removeFromParent(widget);
 	}
 
 	/**
@@ -327,10 +293,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return index of member in ArrayList
 	 */
 	public int addFrame(SwingScilabFrame frame) {
-		add(frame);
-		// put the newly added object above any other objects
-		setLayer(frame, WIDGET_LAYER, BOTTOM_POSITION);
-		revalidate(); // If do not revalidate then the component do not appear
+		ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
+		
 		return getComponentZOrder(frame);
 	}
 
@@ -339,8 +303,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param frame frame to remove
 	 */
 	public void removeFrame(SwingScilabFrame frame) {
-		// for now no difference from removing a widget
-		remove((JComponent) frame);
+		ScilabSwingUtilities.removeFromParent(frame);
 	}
 
 	/**
