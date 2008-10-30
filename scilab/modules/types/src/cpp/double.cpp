@@ -674,7 +674,7 @@ void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bo
 {
 	double dblDec				= 0;
 	double dblEnt				= 0;
-	double dblAbs				= abs(_dblVal);
+	double dblAbs				= fabs(_dblVal);
 	int iNbDigit				= 0;
 	double dblTmp				= 0;
 	int iNbEnt					= 0;
@@ -712,7 +712,7 @@ void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec)
 {
 	*_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
 	Config_Stream(_postr, _iWidth, _iPrec, ' ');
-	*_postr << left << abs(_dblVal);
+	*_postr << left << fabs(_dblVal);
 }
 
 void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
@@ -738,13 +738,13 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//I
 			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
-			if(abs(_dblI) == 1)
+			if(fabs(_dblI) == 1)
 			{//specail case if I == 1 write only i and not 1i
 				ostemp << left << SYMBOL_I;
 			}
 			else
 			{
-				ostemp << left << abs(_dblI) << SYMBOL_I;
+				ostemp << left << fabs(_dblI) << SYMBOL_I;
 			}
 		}
 	}
@@ -756,7 +756,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			ostemp << left << abs(_dblR);
+			ostemp << left << fabs(_dblR);
 		}
 		else
 		{//imaginary part
@@ -764,18 +764,18 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			ostemp << left << abs(_dblR) << SPACE_BETWEEN_REAL_COMPLEX;
+			ostemp << left << fabs(_dblR) << SPACE_BETWEEN_REAL_COMPLEX;
 
 			//I
 			ostemp << (_dblI < 0 ? MINUS_STRING : PLUS_STRING);
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
-			if(abs(_dblI) == 1)
+			if(fabs(_dblI) == 1)
 			{//specail case if I == 1 write only i and not 1i
 				ostemp << left << SYMBOL_I;
 			}
 			else
 			{
-				ostemp << left << abs(_dblI) << SYMBOL_I;
+				ostemp << left << fabs(_dblI) << SYMBOL_I;
 			}
 		}
 	}
