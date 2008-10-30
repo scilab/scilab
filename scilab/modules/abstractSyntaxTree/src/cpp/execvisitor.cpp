@@ -85,7 +85,7 @@ namespace ast
 						/*Allow data*/
 						if(VarType == GenericType::RealDouble)
 						{
-							pData = new Double(iRows, iCols, true);
+							pData = new Double(iRows, iCols, false);
 						}
 						else if(VarType == GenericType::RealBool)
 						{
@@ -117,6 +117,10 @@ namespace ast
 
 					if(VarType == GenericType::RealDouble)
 					{
+						if(((Double*)pData)->isComplex() == false && ((Double*)execMe->result_get())->img_get(0,0) != 0)
+						{
+							((Double*)pData)->complex_set(true);
+						}
 						((Double*)pData)->val_set(iCurRow, iCurCol, ((Double*)execMe->result_get())->real_get(0,0), ((Double*)execMe->result_get())->img_get(0,0));
 					}
 					else if(VarType == GenericType::RealBool)
@@ -512,7 +516,7 @@ namespace ast
 		std::list<Exp *>::const_iterator	i;
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
-			(*i)->accept (*this);
+			(*i)->accept (*execMe);
 		}
 		delete execMe;
 	}
