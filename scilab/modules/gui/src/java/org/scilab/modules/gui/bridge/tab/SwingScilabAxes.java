@@ -229,6 +229,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			// should not happen, no need for localization
 			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
 		}
+		
+		// to be sure to have the same size
 		canvas.setSize(getSize());
 		
 		// we use a null layout. It's needed for uicontrol so they should resize when the canvas

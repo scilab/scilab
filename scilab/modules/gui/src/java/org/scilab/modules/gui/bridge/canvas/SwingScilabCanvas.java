@@ -15,16 +15,17 @@
 package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
-import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -49,10 +50,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
-	
 	private GLEventListener renderer;
 	
-	private AxesRotationTracker rotationTracker;
 	
 	/**
 	 * Constructor
@@ -70,9 +69,9 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		renderer = new SciRenderer(figureIndex);
 		this.addGLEventListener(renderer);
 		
+		// all the actions are done on the axes
+		setFocusable(false);
 		
-		// for recording of rotations
-		rotationTracker = null;
 	}
 
 	/**
@@ -164,7 +163,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public int getFigureIndex() {
 		// to avoid storing the data everywhere
-		return ((SwingScilabAxes) getParent()).getFigureId();
+		return getParentAxes().getFigureId();
 	}
 	
 	
@@ -192,22 +191,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	}
 	
 	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the displacement recording continue, false otherwise
-	 */
-	public boolean getRotationDisplacement(int[] displacement) {
-		return getRotationTracker().getDisplacement(displacement);
-	}
-	
-	/**
-	 * Asynchronous stop of rotation tracking.
-	 */
-	public void stopRotationRecording() {
-		getRotationTracker().cancelRecording();
-	}
-	
-	/**
 	 * Disable the canvas befor closing
 	 */
 	public void close() {
@@ -228,8 +211,12 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// context not already created
-			// do nothing
+			// if the context is not created, the context destruction
+			// will raise a NullPointerException
+			if (!(e.getCause() instanceof NullPointerException)) {
+				// throw again the exception
+				throw (GLException) e.getCause();
+			}
 		}
 		
 		this.removeAll();
@@ -248,14 +235,19 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	}
 	
 	/**
-	 * Singleton creation for rotation tracker
-	 * @return the instance of the rotation tracker
+	 * @return the axes object containing the canvas
 	 */
-	private AxesRotationTracker getRotationTracker() {
-		if (rotationTracker == null) {
-			rotationTracker = new AxesRotationTracker(this);
-		}
-		return rotationTracker;
+	private SwingScilabAxes getParentAxes() {
+		return (SwingScilabAxes) getParent();
+	}
+	
+	/**
+	 * Override set cursor in order to be able to modify the cursor
+	 * on the axes and not on the canvas itself
+	 * @param newCursor cursor to apply on the canvas
+	 */
+	public void setCursor(Cursor newCursor) {
+		getParentAxes().setCursor(newCursor);
 	}
 	
 }	

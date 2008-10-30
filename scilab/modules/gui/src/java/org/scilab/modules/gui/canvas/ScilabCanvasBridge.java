@@ -163,7 +163,7 @@ public class ScilabCanvasBridge {
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
 	 * @param canvas canvas on which the rubber box will be applied
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
@@ -175,25 +175,7 @@ public class ScilabCanvasBridge {
 	}
 	
 	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param canvas canvas on which the displacement is recorded
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
-	 */
-	public static boolean getRotationDisplacement(Canvas canvas, int[] displacement) {
-		return canvas.getAsSimpleCanvas().getRotationDisplacement(displacement);
-	}
-	
-	/**
-	 * Ansynchrnous stop of rotation tracking.
-	 * @param canvas canvas on which the displacement is be recorded
-	 */
-	public static void stopRotationRecording(Canvas canvas) {
-		canvas.getAsSimpleCanvas().stopRotationRecording();
-	}
-	
-	/**
-	  * Disable the canvas befor closing
+	  * Disable the canvas before closing
 	  * @param canvas canvas to close
 	  */
 	public static void close(Canvas canvas) {

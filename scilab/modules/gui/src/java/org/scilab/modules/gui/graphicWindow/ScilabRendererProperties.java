@@ -55,7 +55,6 @@ public class ScilabRendererProperties implements RendererProperties {
 	 */
 	public void forceDisplay() {
 		parentTab.draw();
-		//parentCanvas.display();
 	}
 
 	/**
@@ -142,8 +141,6 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#setCanvasSize(int, int)
 	 */
 	public int setCanvasSize(int width, int height) {
-		
-
 		
 		if (!getAutoResizeMode()) {
 			// autore size off, just resize the canvas
@@ -367,12 +364,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	public boolean getRotationDisplacement(int[] displacement) {
 		// if there is't any canvas opened, we use the parentTab instead
 		// for tracking the displacement
-		if (parentCanvas != null) {
-			return parentCanvas.getRotationDisplacement(displacement);
-		} else {
-			return parentTab.getRotationDisplacement(displacement);
-		}
-		
+		return parentTab.getRotationDisplacement(displacement);
 		
 	}
 
@@ -380,12 +372,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
-		if (parentCanvas != null) {
-			parentCanvas.stopRotationRecording();
-		} else {
-			parentTab.stopRotationRecording();
-		}
-		
+		parentTab.stopRotationRecording();
 	}
 	
 	/**

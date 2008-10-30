@@ -77,18 +77,6 @@ public interface Canvas extends Dockable {
 	 int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect);
 	 
 	 /**
-	  * Get the displacement in pixel that should be used for rotating axes
-	  * @param displacement out parameter, [x,y] array of displacement in pixels
-	  * @return true if the displacement recording continue, false otherwise
-	  */
-	 boolean getRotationDisplacement(int[] displacement);
-
-	 /**
-	  * Asynchronous stop of rotation tracking.
-	  */
-	 void stopRotationRecording();
-	 
-	 /**
 	  * Disable the canvas befor closing
 	  */
 	void close();
