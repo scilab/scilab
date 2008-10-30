@@ -102,7 +102,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	}
 	
 	/**
-	 * @return wether the resize mode is on or off
+	 * @return whether the resize mode is on or off
 	 */
 	public boolean getAutoResizeMode() {
 		return autoResizeMode;
