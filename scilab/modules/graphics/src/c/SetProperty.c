@@ -1910,7 +1910,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
 			}
 			
 			/* newName is a valid string */
-			newNameLength = strlen(newName);
+			newNameLength = (int) strlen(newName);
       
       /* Reallocate name */
       pFIGURE_FEATURE(pobj)->name = MALLOC( (newNameLength + 1) * sizeof(char) );

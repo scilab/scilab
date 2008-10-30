@@ -99,11 +99,6 @@ int scig_toPs( int win_num, int colored, char * bufname, char * driver )
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-void delete_sgwin_entities(int win_num)
-{
-
-}
-/*--------------------------------------------------------------------------*/
 void scig_sel(int win_num)
 {
 
