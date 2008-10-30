@@ -113,19 +113,7 @@ public interface SimpleCanvas {
 	 int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect);
 
 	 /**
-	  * Get the displacement in pixel that should be used for rotating axes
-	  * @param displacement out parameter, [x,y] array of displacement in pixels
-	  * @return true if the diplacement recording continue, false otherwise
-	  */
-	 boolean getRotationDisplacement(int[] displacement);
-
-	 /**
-	  * Ansynchrnous stop of rotation tracking.
-	  */
-	 void stopRotationRecording();
-
-	 /**
-	  * Disable the canvas befor closing
+	  * Disable the canvas before closing
 	  */
 	void close();
 

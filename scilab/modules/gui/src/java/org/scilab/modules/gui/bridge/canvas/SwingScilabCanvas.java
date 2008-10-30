@@ -16,20 +16,21 @@
 package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
-import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
@@ -50,15 +51,8 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
-	/**
-	 * Figure Index
-	 * Used in Scilab to remember who is who.
-	 */
-	private int figureIndex;
-	
 	private GLEventListener renderer;
 	
-	private AxesRotationTracker rotationTracker;
 	
 	/**
 	 * Constructor
@@ -75,10 +69,9 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		renderer = new SciRenderer(figureIndex);
 		this.addGLEventListener(renderer);
 		
-		this.figureIndex = figureIndex;
+		// all the actions are done on the axes
+		setFocusable(false);
 		
-		// for recording of rotations
-		rotationTracker = null;
 	}
 
 	/**
@@ -93,8 +86,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
 		
 		// I do this here and not in the ScilabCanvas because it is JOGL related stuff
-		DrawableFigureGL correspondigFigure = FigureMapper.getCorrespondingFigure(figureIndex);
-		correspondigFigure.setRenderingTarget(newCanvas);
+		FigureMapper.getCorrespondingFigure(figureIndex).setRenderingTarget(newCanvas);
 		
 		return newCanvas;
 	}
@@ -170,7 +162,8 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 * @return the ID.
 	 */
 	public int getFigureIndex() {
-		return figureIndex;
+		// to avoid storing the data everywhere
+		return getParentAxes().getFigureId();
 	}
 	
 	
@@ -198,22 +191,6 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	}
 	
 	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the displacement recording continue, false otherwise
-	 */
-	public boolean getRotationDisplacement(int[] displacement) {
-		return getRotationTracker().getDisplacement(displacement);
-	}
-	
-	/**
-	 * Asynchronous stop of rotation tracking.
-	 */
-	public void stopRotationRecording() {
-		getRotationTracker().cancelRecording();
-	}
-	
-	/**
 	 * Disable the canvas befor closing
 	 */
 	public void close() {
@@ -234,8 +211,12 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// context not already created
-			// do nothing
+			// if the context is not created, the context destruction
+			// will raise a NullPointerException
+			if (!(e.getCause() instanceof NullPointerException)) {
+				// throw again the exception
+				throw (GLException) e.getCause();
+			}
 		}
 	}
 	
@@ -252,14 +233,19 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	}
 	
 	/**
-	 * Singleton creation for rotation tracker
-	 * @return the instance of the rotation tracker
+	 * @return the axes object containing the canvas
 	 */
-	private AxesRotationTracker getRotationTracker() {
-		if (rotationTracker == null) {
-			rotationTracker = new AxesRotationTracker(this.getAsComponent());
-		}
-		return rotationTracker;
+	private SwingScilabAxes getParentAxes() {
+		return (SwingScilabAxes) getAsComponent().getParent();
+	}
+	
+	/**
+	 * Override set cursor in order to be able to modify the cursor
+	 * on the axes and not on the canvas itself
+	 * @param newCursor cursor to apply on the canvas
+	 */
+	public void setCursor(Cursor newCursor) {
+		getParentAxes().setCursor(newCursor);
 	}
 	
 }	
