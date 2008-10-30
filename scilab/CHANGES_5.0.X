@@ -47,6 +47,7 @@ Bug fixes:
 * bug 3602 fixed - format("e",dd) was causing a bug in gettklib (format of the number)
 
 * bug 3604 fixed - Problems with getting Frame uicontrol position (Scilab crash)
+
 * bug 3605 fixed - Could not use javasci in the Linux binary
 
 * bug 3607 fixed - Wrong values in Java configuration was causing the memory issues
