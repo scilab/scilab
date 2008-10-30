@@ -154,7 +154,7 @@ namespace types
 	/*--------------*/
 	void Bool::whoAmI() 
 	{ 
-		std::cout << "types::Bool" << std::endl; 
+		std::cout << "types::Bool"; 
 	}
 
 	/*--------------*/

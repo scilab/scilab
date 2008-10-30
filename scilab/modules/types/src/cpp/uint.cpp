@@ -200,7 +200,7 @@ namespace types
 	/*--------------*/
 	void UInt::whoAmI() 
 	{ 
-		std::cout << "types::UInt" << std::endl; 
+		std::cout << "types::UInt"; 
 	}
 
 	/*--------------*/

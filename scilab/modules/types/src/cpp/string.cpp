@@ -41,7 +41,7 @@ namespace types
 
 	void String::whoAmI()
 	{
-		std::cout << "types::String" << std::endl;
+		std::cout << "types::String";
 	}
 
 	char** String::string_get() const

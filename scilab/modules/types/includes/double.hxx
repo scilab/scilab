@@ -52,6 +52,7 @@ namespace types
 
     Double*				getAsDouble(void);
 		string				toString(int _iPrecison, int _iLineLen);
+		string				DimToString();
 
   protected :
 		RealType			getType(void);

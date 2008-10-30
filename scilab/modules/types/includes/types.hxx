@@ -38,7 +38,7 @@ namespace types
     GenericType() {}
 
   public :
-    void whoAmI(void) { std::cout << "types::GenericType" << std::endl; }
+    void whoAmI(void) { std::cout << "types::GenericType"; }
 
 		/*sub Type management*/
     /* String */

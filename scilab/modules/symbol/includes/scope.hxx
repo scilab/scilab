@@ -95,11 +95,14 @@ namespace symbol
 				if((*it_scope).second->isDouble())
 				{
 					types::Double *pdbl = (*it_scope).second->getAsDouble();
-					ostr << pdbl->toString(16,100);
+					ostr << pdbl->DimToString() << std::endl;
+					ostr << pdbl->toString(16, 100);
+					ostr << std::endl;
 				}
 				else if((*it_scope).second->isInt())
 				{
 					types::Int *pi = (*it_scope).second->getAsInt();
+					ostr << "( " << pi->rows_get() << ", " << pi->cols_get() << " )" << std::endl;
 					int iCols = pi->cols_get();
 					int iRows = pi->rows_get();
 					if(iRows == 1 && iCols == 1)
@@ -138,6 +141,7 @@ namespace symbol
 				else if((*it_scope).second->isString())
 				{
 					types::String *psz = (*it_scope).second->getAsString();
+					ostr << "( " << psz->rows_get() << ", " << psz->cols_get() << " )" << std::endl;
 					int iCols = psz->cols_get();
 					int iRows = psz->rows_get();
 
@@ -167,12 +171,14 @@ namespace symbol
 				else if((*it_scope).second->isBool())
 				{
 					types::Bool *pb = (*it_scope).second->getAsBool();
+					ostr << "( " << pb->rows_get() << ", " << pb->cols_get() << " )" << std::endl;
 					string szOut = pb->toString(100);
 					ostr << szOut;
 				}
 				else if((*it_scope).second->isFunction())
 				{
 					types::Function *pF = (*it_scope).second->getAsFunction();
+					ostr << std::endl;
 					ostr << "Module : " << pF->m_szModule << " Function : " << pF->m_szName << std::endl;
 				}
 			}

@@ -78,7 +78,8 @@ a04 = a03 * -10
 a05 = a04 * 10
 */
 
-dbl01 =  0.123
+
+dbl01 =  12.3456
 dbl02 =  dbl01 * -10
 dbl03 =  dbl02 * -10
 dbl04 =  dbl03 * -10
@@ -90,7 +91,21 @@ dbl09 =  dbl08 * -10
 dbl10 =  dbl09 * -10
 dbl11 =  dbl10 * -10
 dbl12 =  dbl11 * -10
+/*
+Int = [1;22;333;4444;55555;666666;7777777;88888888;999999999;1000000000;11111111111;222222222222]
 
-dbl = [dbl01;dbl02;dbl03;dbl04;dbl05;dbl06;dbl07;dbl08;dbl09;dbl10;dbl11;dbl12]
+*/
+dblCol = [dbl01;dbl02;dbl03;dbl04;dbl05;dbl06;dbl07;dbl08;dbl09;dbl10;dbl11;dbl12]
+dblRow = [dbl01,dbl02,dbl03,dbl04,dbl05,dbl06,dbl07,dbl08,dbl09,dbl10,dbl11,dbl12]
+dblMatrix = [	dbl01,dbl02,dbl03,dbl04,dbl05,dbl06,dbl07,dbl08;
+				dbl09,dbl10,dbl11,dbl12,dbl01,dbl02,dbl03,dbl04;
+				dbl05,dbl06,dbl07,dbl08,dbl09,dbl10,dbl11,dbl12]
 
 
+b01 = dbl01 * %i
+b02 = -dbl02 * %i
+b03	= -dbl03 + dbl04 * %i
+b04 = dbl05 - dbl07 * %i
+
+b05 = [b01;b02;b03;b04]
+b06 = [b01,b02,b03,b04,b01,b02,b03,b04,b01,b02,b03,b04,b01,b02,b03,b04]

@@ -36,7 +36,7 @@ namespace types
 	/*--------------*/
 	void Function::whoAmI() 
 	{ 
-		std::cout << "types::Function" << std::endl; 
+		std::cout << "types::Function"; 
 	}
 
 }

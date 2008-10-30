@@ -38,7 +38,7 @@ namespace types
 			RealFunction
     };
 
-    virtual void whoAmI(void) { std::cout << "types::Inernal" << std::endl; }
+    virtual void whoAmI(void) { std::cout << "types::Inernal"; }
 
 		virtual bool isAssignable(void) { return false; }
 		virtual RealType getType(void) { return RealInternal; }

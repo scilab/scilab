@@ -200,7 +200,7 @@ namespace types
 	/*--------------*/
 	void Float::whoAmI() 
 	{ 
-		std::cout << "types::Float" << std::endl; 
+		std::cout << "types::Float"; 
 	}
 
 	/*--------------*/
