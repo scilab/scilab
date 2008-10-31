@@ -18,12 +18,12 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
-import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
@@ -246,6 +246,22 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 */
 	public void setCursor(Cursor newCursor) {
 		getParentAxes().setCursor(newCursor);
+	}
+	
+	/**
+	 * The canvas is not focusable, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void addFocusListener(FocusListener listener) {
+		getParentAxes().addFocusListener(listener);
+	}
+	
+	/**
+	 * The canvas is not focusable, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void removeFocusListener(FocusListener listener) {
+		getParentAxes().removeFocusListener(listener);
 	}
 	
 }	

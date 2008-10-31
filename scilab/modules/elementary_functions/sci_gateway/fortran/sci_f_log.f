@@ -13,6 +13,7 @@ c
 
       double precision sr,si
       integer iadr,sadr
+      logical allpositive
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -62,7 +63,17 @@ c     argument is passed by reference
       if(mn.eq.0) return
 
       if(it.eq.0) then
+c Argument is a real matrix
+c Loop over the elements of the matrix.
+c Set itr to 1 if one value is negative :
+c that means that x < 0 so that log(x) is a complex number.
+c If all values are >= 0, let itr = 0.
+c The logical allpositive is : true if one value is zero
+c and ieee=1. That allows to display only one error message,
+c even if the matrix contains more than one entry.
+c 
          itr=0
+         allpositive = .true.
          do 10 i=0,mn-1
             if(stk(l+i).lt.0.0d+0) then
                itr=1
@@ -72,7 +83,10 @@ c               goto 20
                   call error(32)
                   return
                elseif(ieee.eq.1) then
-                  call msgs(64)
+                  if (allpositive) then
+                    call msgs(64)
+                    allpositive = .false.
+                  endif
                endif
 c               goto 20
             endif
@@ -81,14 +95,6 @@ c               goto 20
  20      if(itr.eq.0) then
 c     .     argument is a real positive matrix with entries >= 0
             do 193 i=0,mn-1
-               if(stk(l+i).eq.0.0d+0) then
-                  if(ieee.eq.0) then
-                     call error(32)
-                     return
-                  elseif(ieee.eq.1) then
-                     call msgs(64)
-                  endif
-               endif
                stk(lr+i)=log(stk(l+i))
  193        continue
          else
@@ -100,14 +106,6 @@ c     .     argument is a real matrix with  at least one entry < 0
             endif
             lstk(top+1)=lr+2*mn
             do 194 i=0,mn-1
-               if(stk(l+i).eq.0.0d+0) then
-                  if(ieee.eq.0) then
-                     call error(32)
-                     return
-                  elseif(ieee.eq.1) then
-                     call msgs(64)
-                  endif
-               endif
                call wlog(stk(l+i),0.0d+0,stk(lr+i),stk(lr+mn+i))
  194        continue
             istk(ilr+3)=itr

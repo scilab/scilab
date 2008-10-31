@@ -236,16 +236,19 @@ void sciInteractiveZoom(sciPointObj * pObj)
   w = Abs(selectionRectangleCorners[0] - selectionRectangleCorners[2]);
   h = Abs(selectionRectangleCorners[1] - selectionRectangleCorners[3]); 
 
-  /* Zoom using the found pixels */
+  /* Zoom using the found pixels if the selection is not empry */
   startFigureDataWriting(parentFigure);
-  if (sciGetEntityType(pObj) == SCI_FIGURE)
-  {
-    zoomFigure(pObj, x, y, w, h);
-  }
-  else if (sciGetEntityType(pObj) == SCI_SUBWIN)
-  {
-    zoomSubwin(pObj, x, y, w, h);
-  }
+	if (w != 0 && h != 0)
+	{
+		if (sciGetEntityType(pObj) == SCI_FIGURE)
+		{
+			zoomFigure(pObj, x, y, w, h);
+		}
+		else if (sciGetEntityType(pObj) == SCI_SUBWIN)
+		{
+			zoomSubwin(pObj, x, y, w, h);
+		}
+	}
   // restore info message
   sciSetInfoMessage(parentFigure, curInfoMessageCopy);
   endFigureDataWriting(parentFigure);
