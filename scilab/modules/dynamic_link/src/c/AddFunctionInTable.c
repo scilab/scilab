@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -23,18 +22,19 @@ static void Emptyfunc(void) {}
 voidf AddFunctionInTable (char *name, int *rep, FTAB *table)
 {
 	void (*loc)();
-
 	if (name)
 	{
-		char *buf = (char*)MALLOC(sizeof(char)*(strlen(name)+1));
+		int length_name = 0;
+		char *s = name;
+		char *buf = name;
+		while ( *s != ' ' && *s != '\0') { s++;length_name++;};
+
+		buf = (char*)MALLOC(sizeof(char)*(length_name+1));
 		if (buf)
 		{
-			char *s = NULL;
-			strncpy(buf,name,(int)strlen(name));
-			/* remove space */
-			s = buf;
-			while ( *s != ' ' && *s != '\0') { s++;};
-			*s= '\0';
+			strncpy(buf,name,length_name);
+			buf[length_name] = '\0';
+
 			/* search name in functions table */
 			if ( ( SearchComp(table,buf,&loc) == TRUE) || ( SearchInDynLinks(buf,&loc) >= 0 ) )
 			{

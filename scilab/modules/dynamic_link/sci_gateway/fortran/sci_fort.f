@@ -41,7 +41,7 @@ c     get a scilab string the fort function name
       call cvstr(nc,istk(lrc),name,1)
       name(nc+1:nc+1)=char(0)
 C     Check the name in the <<fort>> table 
-      call setinterf(name,irep)
+      call setinterf(name(1:nc),irep)
       if ( irep.eq.1) then 
          buf = name
          call error(50)
