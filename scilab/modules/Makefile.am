@@ -13,6 +13,7 @@ SUBDIRS += \
 output_stream \
 action_binding \
 arnoldi \
+functions_manager \
 elementary_functions \
 string \
 dynamic_link \
@@ -77,8 +78,8 @@ system_env \
 abstractSyntaxTree \
 symbol \
 parse \
-types \
-functions_manager
+types 
+
 # memory_manager 
 
 #umfpack
