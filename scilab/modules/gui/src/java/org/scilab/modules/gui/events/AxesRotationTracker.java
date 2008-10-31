@@ -14,13 +14,12 @@ package org.scilab.modules.gui.events;
 
 import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 
 /**
@@ -28,6 +27,9 @@ import java.awt.event.MouseListener;
  * @author Jean-Baptiste Silvy
  */
 public class AxesRotationTracker extends MouseDisplacementTracker implements MouseListener, FocusListener {
+	
+	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/rotate.png";
+	private static final String CURSOR_ICON_NAME = "zoom-area";
 	
 	private boolean recordStarted;
 	private boolean recordEnded;
@@ -93,8 +95,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		if (!recordStarted) {
 			// first call
 			// change the mouse cursor
-			Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/rotate.png");
-			getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0, 0), "rotate"));
+			getTrackedCanvas().setCursor(ScilabSwingUtilities.createCursorFromIcon(ICON_PATH, CURSOR_ICON_NAME));
 			// wait for initialization with a first click
 			waitForClick(displacement);
 			

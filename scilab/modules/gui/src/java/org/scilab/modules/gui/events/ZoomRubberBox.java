@@ -13,15 +13,15 @@
 package org.scilab.modules.gui.events;
 
 import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
+
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 
+
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.SciTranslator;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Rubber box specialized in zooming.
@@ -32,7 +32,6 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 
 	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/zoom-area-cursor.png";
 	private static final String CURSOR_ICON_NAME = "zoom-area";
-	private static final Point CURSOR_SIZE = new Point(3, 4);
 	
 	/**
 	 * Constructor
@@ -50,9 +49,8 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 */
 	public int getRectangle(int[] initialRect, int[] endRect) {
 		
-		// set zoom cursor
-		Image icon = Toolkit.getDefaultToolkit().getImage(ICON_PATH);
-		getSelectedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, CURSOR_SIZE, CURSOR_ICON_NAME));
+		// set the zooming cursor
+		getSelectedCanvas().setCursor(ScilabSwingUtilities.createCursorFromIcon(ICON_PATH, CURSOR_ICON_NAME));
 		
 		// to be able to know when the canvas is losing focus and then cancel the rubberbox
 		getSelectedCanvas().addFocusListener(this);
