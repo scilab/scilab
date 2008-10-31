@@ -37,7 +37,7 @@ int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int value
   }
   /* disable protection since this function will call Java */
   disableFigureSynchronization(pobj);
-  status = sciSetName( pobj, getStringFromStack( stackPointer ), nbCol * nbRow ) ;
+  status = sciSetName( pobj, getStringFromStack( stackPointer )) ;
   enableFigureSynchronization(pobj);
 
   return status;

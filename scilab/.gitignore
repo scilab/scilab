@@ -32,9 +32,10 @@ names
 lib
 
 #
-# backup file (xxe)
+# backup files
 #
-*.xml~
+*~
+*.bak
 
 #
 # windows files
@@ -65,6 +66,7 @@ setup.iss
 tasks.iss
 types.iss
 uninstalldelete.iss
+
 #
 # VS solution files (windows)
 #
@@ -81,16 +83,22 @@ Debug
 *.u2d
 *.suo
 *.ncb
+VTune
+
+#
+# F2C files (windows)
+#
+modules/*/src/fortran/*.c
+modules/*/sci_gateway/fortran/*.c
+
 #
 # others files (windows)
 #
 *.db
-*.bak
 
 #
 # scilab/ specific files
 #
-
 thirdparty
 Makefile.OBJ
 Makefile.incl
@@ -121,3 +129,9 @@ scilab.pc
 pvm3
 *.class
 *.dia
+
+#
+# Subversion directories
+#
+.svn
+

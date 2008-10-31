@@ -95,7 +95,7 @@ int sci_setdefaultlanguage(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			if ( !setlanguage(newlang,FALSE,FALSE) )
+			if ( !setlanguage(newlang) )
 			{
 				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 				*istk(l1)=(int)(FALSE);

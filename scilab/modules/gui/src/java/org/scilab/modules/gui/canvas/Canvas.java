@@ -58,53 +58,12 @@ public interface Canvas extends Dockable {
 	 void repaint();
 	 
 	 /**
-	  * Specify wether the canvas should fit the parent tab size
-	  * (and consequently the scrollpane size) or not
-	  * @param onOrOff true to enable autoresize mode
-	  */
-	 void setAutoResizeMode(boolean onOrOff);
-
-	 /**
-	  * @return wether the resize mode is on or off
-	  */
-	 boolean getAutoResizeMode();
-	 
-	 /**
-	  * Get the part of the canvas which is currently viewed
-	  * @return [x,y,w,h] array
-	  */
-	 int[] getViewingRegion();
-	 
-	 /**
-	  * Specify a new viewport for the canvas
-	  * For SwingScilabCanvas viewport can not be modified
-	  * since it match the parent tab size
-	  * @param posX X coordinate of upper left point of the viewport within the canvas
-	  * @param posY Y coordinate of upper left point of the viewport within the canvas
-	  * @param width width of the viewport
-	  * @param height height of the viewport
-	  */
-	 void setViewingRegion(int posX, int posY, int width, int height);
-	 
-	 /**
 	  * Set the background of the Canvas.
 	  * @param red red channel
 	  * @param green green channel 
 	  * @param blue blue channel
 	  */
 	 void setBackgroundColor(double red, double green, double blue);
-	 
-	 /**
-	  * Set the event handler of the Canvas
-	  * @param command the name of the Scilab function to call
-	  */
-	 void setEventHandler(String command);
-
-	 /**
-	  * Set the status of the event handler of the Canvas
-	  * @param status is true to set the event handler active
-	  */
-	 void setEventHandlerEnabled(boolean status);
 	 
 	 /**
 	  * Create an interactive selection rectangle and return its pixel coordinates
@@ -116,18 +75,6 @@ public interface Canvas extends Dockable {
 	  * @return Scilab code of the pressed button
 	  */
 	 int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect);
-	 
-	 /**
-	  * Get the displacement in pixel that should be used for rotating axes
-	  * @param displacement out parameter, [x,y] array of displacement in pixels
-	  * @return true if the diplacement recording continue, false otherwise
-	  */
-	 boolean getRotationDisplacement(int[] displacement);
-
-	 /**
-	  * Ansynchrnous stop of rotation tracking.
-	  */
-	 void stopRotationRecording();
 	 
 	 /**
 	  * Disable the canvas befor closing

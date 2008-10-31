@@ -44,6 +44,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 */
 	public SwingScilabPopupMenu() {
 		super();
+		/* Bug 3635 fixed: allow arrow keys to browse items */
+		putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
 	}
 	
 	/**

@@ -29,7 +29,7 @@ public interface RendererProperties {
 	int RESIZE_SUCCESS = 0;
 	/** Resize failed because other docked objects are present */
 	int RESIZE_MULTIPLE_DOCKED_TAB = -1;
-	/** Ressources are not enaough to allocate the new  */
+	/** Not enough resource to allocate the new canvas  */
 	int RESIZE_SIZE_TOO_LARGE = -2;
 	
 	/**
@@ -168,6 +168,7 @@ public interface RendererProperties {
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
+	 * @param figureIndex index of the figure on which the rubber box is applied
 	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
@@ -175,7 +176,7 @@ public interface RendererProperties {
 	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
 	 * @return Scilab code of the pressed button
 	 */
-	int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect);
+	int rubberBox(int figureIndex, boolean isClick, boolean isZoom, int[] initialRect, int[] endRect);
 	
 	/**
 	 * Set the title of the figure
@@ -214,7 +215,7 @@ public interface RendererProperties {
 	/**
 	 * If the window does not already contains a 3D canvas,
 	 * add one.
-	 * @param figureIndex index of the figure in which the canvas is added
+	 * @param figureIndex of the figure that need a canvas
 	 */
 	void openGraphicCanvas(int figureIndex);
 	
@@ -222,5 +223,19 @@ public interface RendererProperties {
 	 * Destroy the canvas if one already exists
 	 */
 	void closeGraphicCanvas();
+	
+	
+	/**
+	 * Set the event handler of the figure
+	 * @param command the name of the Scilab function to call
+	 */
+	void setEventHandler(String command);
+	
+	/**
+	 * Set the status of the event handler of the figure
+	 * @param status is true to set the event handler active
+	 */
+	void setEventHandlerEnabled(boolean status);
+	
 	
 }

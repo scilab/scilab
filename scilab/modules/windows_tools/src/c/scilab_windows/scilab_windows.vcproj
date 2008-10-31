@@ -400,6 +400,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\FocusOnConsole.c"
+				>
+			</File>
+			<File
 				RelativePath=".\forbiddenToUseScilab.c"
 				>
 			</File>
@@ -486,6 +490,10 @@
 			</File>
 			<File
 				RelativePath=".\FindScilab.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\FocusOnConsole.h"
 				>
 			</File>
 			<File

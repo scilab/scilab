@@ -549,6 +549,16 @@ public class ScilabBridge {
 	public static SimpleTab createTab(String name) {
 		return ScilabTabBridge.createTab(name);
 	}
+	
+	/**
+	 * Creates a Scilab tab able to create graphics
+	 * @param name the name of the tab (used to identify it)
+	 * @param figureId index of the created figure
+	 * @return the created tab
+	 */
+	public static SimpleTab createTab(String name, int figureId) {
+		return ScilabTabBridge.createTab(name, figureId);
+	}
 
 	/**
 	 * Draws a tab on screen
@@ -904,6 +914,84 @@ public class ScilabBridge {
 	public static void setBackground(Tab tab, double red, double green, double blue) {
 		ScilabTabBridge.setBackground(tab, red, green, blue);
 	}
+	
+	/**
+	  * Specify whether the canvas should fit the parent tab size
+	  * (and consequently the scrollpane size) or not
+	  * @param tab tab to modify
+	  * @param onOrOff true to enable autoresize mode
+	  */
+	 public static void setAutoResizeMode(Tab tab, boolean onOrOff) {
+		 ScilabTabBridge.setAutoResizeMode(tab, onOrOff);
+	 }
+
+	 /**
+	  * @param tab tab to modify
+	  * @return whether the resize mode is on or off
+	  */
+	 public static boolean getAutoResizeMode(Tab tab) {
+		 return ScilabTabBridge.getAutoResizeMode(tab);
+	 }
+	 
+	 /**
+	  * Get the part of the axes which is currently viewed
+	  * @param tab tab to modify
+	  * @return [x,y,w,h] array
+	  */
+	 public static int[] getViewingRegion(Tab tab) {
+		 return ScilabTabBridge.getViewingRegion(tab);
+	 }
+	 
+	 /**
+	  * Specify a new viewport for the axes
+	  * Only works if autoresize mode is off
+	  * @param tab tab to modify
+	  * @param posX X coordinate of upper left point of the viewport within the canvas
+	  * @param posY Y coordinate of upper left point of the viewport within the canvas
+	  * @param width width of the viewport
+	  * @param height height of the viewport
+	  */
+	 public static void setViewingRegion(Tab tab, int posX, int posY, int width, int height) {
+		 ScilabTabBridge.setViewingRegion(tab, posX, posY, width, height);
+	 }
+	 
+	 
+	 /**
+	  * @param tab tab to modify
+	  * @return size of the axes in pixels
+	  */
+	 public static Size getAxesSize(Tab tab) {
+		 return ScilabTabBridge.getAxesSize(tab);
+	 }
+	 
+	 
+	 /**
+	  * @param tab tab to modify
+	  * @param newSize set a new axes size
+	  */
+	 public static void setAxesSize(Tab tab, Size newSize) {
+		 ScilabTabBridge.setAxesSize(tab, newSize);
+	 }
+	 
+	 /**
+	  * Set the event handler of the Axes
+	  * @param tab tab to modify
+	  * @param command the name of the Scilab function to call
+	  */
+	 public static void setEventHandler(Tab tab, String command) {
+		 ScilabTabBridge.setEventHandler(tab, command);
+	 }
+
+	 /**
+	  * Set the status of the event handler of the Axes
+	  * @param tab tab to modify
+	  * @param status is true to set the event handler active
+	  */
+	 public static void setEventHandlerEnabled(Tab tab, boolean status) {
+		 ScilabTabBridge.setEventHandlerEnabled(tab, status);
+	 }
+	 
+	 
 
 	/******************/
 	/* Console Bridge */
@@ -1311,46 +1399,6 @@ public class ScilabBridge {
 		ScilabCanvasBridge.repaint(canvas);
 	}
 	
-	/**
-	 * Specify wether the canvas should fit the parent tab size
-	 * (and consequently the scrollpane size) or not
-	 * @param onOrOff true to enable autoresize mode
-	 * @param canvas the canvas we want to repaint
-	 */
-	public static void setAutoResizeMode(Canvas canvas, boolean onOrOff) {
-		ScilabCanvasBridge.setAutoResizeMode(canvas, onOrOff);
-	}
-	
-	/**
-	 * @return wether the resize mode is on or off
-	 * @param canvas the canvas we want to repaint
-	 */
-	public static boolean getAutoResizeMode(Canvas canvas) {
-		return ScilabCanvasBridge.getAutoResizeMode(canvas);
-	}
-	
-	/**
-	 * Get the part of the canvas which is currently viewed
-	 * @param canvas the canvas we want to repaint
-	 * @return [x,y,w,h] array
-	 */
-	public static int[] getViewingRegion(Canvas canvas) {
-		return ScilabCanvasBridge.getViewingRegion(canvas);
-	}
-	
-	/**
-	 * Specify a new viewport for the canvas
-	 * For SwingScilabCanvas viewport can not be modified
-	 * since it match the parent tab size
-	 * @param canvas the canvas we want to repaint
-	 * @param posX X coordinate of upper left point of the viewport within the canvas
-	 * @param posY Y coordinate of upper left point of the viewport within the canvas
-	 * @param width width of the viewport
-	 * @param height height of the viewport
-	 */
-	public static void setViewingRegion(Canvas canvas, int posX, int posY, int width, int height) {
-		ScilabCanvasBridge.setViewingRegion(canvas, posX, posY, width, height);
-	}
 	
 	/**
 	 * Set the background of the Canvas.
@@ -1361,24 +1409,6 @@ public class ScilabBridge {
 	 */
 	public static void setBackgroundColor(Canvas canvas, double red, double green, double blue) {
 		ScilabCanvasBridge.setBackgroundColor(canvas, red, green, blue);
-	}
-	
-	/**
-	 * Set the event handler of the Canvas
-	 * @param canvas the Canvas
-	 * @param command the name of the Scilab function to call
-	 */
-	public static void setEventHandler(Canvas canvas, String command) {
-		ScilabCanvasBridge.setEventHandler(canvas, command);
-	}
-
-	/**
-	 * Set the status of the event handler of the Canvas
-	 * @param canvas the Canvas
-	 * @param status is true to set the event handler active
-	 */
-	public static void setEventHandlerEnabled(Canvas canvas, boolean status) {
-		ScilabCanvasBridge.setEventHandlerEnabled(canvas, status);
 	}
 	
 	/**
@@ -1397,24 +1427,24 @@ public class ScilabBridge {
 	
 	/**
 	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param canvas canvas on which the displacement is recorded
+	 * @param tab tab on which the displacement is recorded
 	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
+	 * @return true if the displacement recording continue, false otherwise
 	 */
-	public static boolean getRotationDisplacement(Canvas canvas, int[] displacement) {
-		return ScilabCanvasBridge.getRotationDisplacement(canvas, displacement);
+	public static boolean getRotationDisplacement(Tab tab, int[] displacement) {
+		return ScilabTabBridge.getRotationDisplacement(tab, displacement);
 	}
 	
 	/**
-	 * Ansynchrnous stop of rotation tracking.
-	 * @param canvas canvas on which the displacement is be recorded
+	 * Asynchronous stop of rotation tracking.
+	 * @param tab tab on which the displacement is recorded
 	 */
-	public static void stopRotationRecording(Canvas canvas) {
-		ScilabCanvasBridge.stopRotationRecording(canvas);
+	public static void stopRotationRecording(Tab tab) {
+		ScilabTabBridge.stopRotationRecording(tab);
 	}
 	
 	/**
-	  * Disable the canvas befor closing
+	  * Disable the canvas before closing
 	  * @param canvas canvas to close
 	  */
 	public static void close(Canvas canvas) {

@@ -67,7 +67,7 @@ public:
   virtual int getWindowHeight(void);
   virtual void setWindowSize(int width, int height);
 
-  virtual void setInfoMessage(char * infoMessage);
+  virtual void setInfoMessage(const char * infoMessage);
 
   virtual void setAutoResizeMode(bool onOrOff);
   virtual bool getAutoResizeMode(void);
@@ -79,7 +79,7 @@ public:
 
   virtual void rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton);
 
-  virtual void setTitle(char * title);
+  virtual void setTitle(const char * title);
 
   virtual bool getRotationDisplacement(int displacement[2]);
   virtual void stopRotationRecording(void);

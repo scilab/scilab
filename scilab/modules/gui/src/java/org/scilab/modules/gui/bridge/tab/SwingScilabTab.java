@@ -14,18 +14,19 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.Action;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
-import org.scilab.modules.gui.bridge.canvas.ScrolledSwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
@@ -58,7 +59,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -67,14 +67,13 @@ import org.scilab.modules.gui.utils.Size;
  * @author Bruno JOFRET
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
+ * @author Jean-Baptiste SILVY
  */
 public class SwingScilabTab extends View implements SimpleTab {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final int TOP_LAYER = 0;
-	
-	private static final int BOTTOM_LAYER = 1;
+	private static final int VIEWPORT_SIZE = 4;
 
 	private int parentWindowId;
 	
@@ -83,6 +82,12 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private ToolBar toolBar;
 	
 	private TextBox infoBar;
+	
+	/** Contains the canvas and widgets */
+	private SwingScilabAxes contentPane;
+	
+	/** Scroll the axes */
+	private JScrollPane scrolling;
 
 	/**
 	 * Constructor
@@ -90,15 +95,47 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public SwingScilabTab(String name) {
 		super(name, name, name);
+		
 		// This button is "overloaded" when we add a callback
 		//this.addAction(DockingConstants.CLOSE_ACTION);
 		// Removed because make JOGL crash when "Unpin"
 		//this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
 		
-		this.setLayout(null);
-	}
+		// no need for an axes
+		contentPane = null;
+		scrolling = null;
+	
+		this.setVisible(true);
 
+	}
+	
+	/**
+	 * Create a graphic tab used to display a figure with 3D graphics and/or UIcontrols
+	 * @param name name of the tab
+	 * @param figureId id of the displayed figure
+	 */
+	public SwingScilabTab(String name, int figureId) {
+		super(name, name, name);
+		
+		// This button is "overloaded" when we add a callback
+		//this.addAction(DockingConstants.CLOSE_ACTION);
+		// Removed because make JOGL crash when "Unpin"
+		//this.addAction(DockingConstants.PIN_ACTION);
+		this.addAction(DockingConstants.ACTIVE_WINDOW);
+		
+		// create the panel in which all the uiobjects will lie.
+		contentPane = new SwingScilabAxes(figureId);
+		
+		// add it inside a JSCrollPane
+		scrolling = new JScrollPane(contentPane);
+		
+		// put in in the back of the tab
+		setContentPane(scrolling);
+	
+		this.setVisible(true);
+	}
+	
 	/**
      * Repaint it
      */
@@ -178,6 +215,21 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public Size getDims() {
 		return new Size(this.getSize().width, this.getSize().height);
 	}
+	
+	/**
+	 * Get the size for the axes
+	 * @return size of the axes in pixels
+	 */
+	public Size getAxesSize() {
+		return new Size(contentPane.getWidth(), contentPane.getHeight());
+	}
+	
+	/**
+	 * @param newSize new size to set for the axes
+	 */
+	public void setAxesSize(Size newSize) {
+		contentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+	}
 
 	/**
 	 * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab tab
@@ -212,43 +264,15 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
-		// TODO : Check wether we want a Canvas in a Tab or not.
-		return this.addMember((ScrolledSwingScilabCanvas) member.getAsSimpleCanvas());
+		return contentPane.addMember(member);
 	}
 	
 	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * @param member canvas to remove 
 	 */
-	private int addMember(ScrolledSwingScilabCanvas member) {
-		// TODO : Check wether we want a Canvas in a Tab or not.
-		//this.setContentPane(member);
-		// Canvas should always be in the back
-		//this.setComponentZOrder(member, getComponentCount());
-		
-		this.setLayout(new BorderLayout());
-		if (SwingUtilities.isEventDispatchThread()) {
-			add(member, BorderLayout.CENTER);
-			revalidate();
-			repaint();
-		} else {
-			final ScrolledSwingScilabCanvas memberF = member;
-			try {
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						add(memberF, BorderLayout.CENTER);
-						revalidate();
-						repaint();
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			}
-		}
-		return this.getComponentZOrder(member);
+	public void removeMember(Canvas member) {
+		contentPane.removeMember(member);
 	}
 	
 	/**
@@ -266,6 +290,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabConsole member) {
+		// replace the current content pane
 		this.setContentPane(member);
 		return this.getComponentZOrder(member);
 	}
@@ -285,6 +310,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabHelpBrowser member) {
+		// replace the current content pane
 		this.setContentPane(member);
 		return this.getComponentZOrder(member);
 	}
@@ -304,9 +330,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabFrame member) {
-		this.add(member);
-		setComponentZOrder(member, BOTTOM_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addFrame(member);
 	}
 
 	/**
@@ -322,16 +346,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the Frame to remove
 	 */
 	private void removeMember(SwingScilabFrame member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeFrame(member);
 	}
 
 	/**
@@ -349,10 +364,9 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabPushButton member) {
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		int res = contentPane.addWidget(member);
+		repaint();
+		return res;
 	}
 
 	/**
@@ -368,16 +382,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the PushButton to remove
 	 */
 	private void removeMember(SwingScilabPushButton member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.remove(member);
 	}
 
 	/**
@@ -395,10 +400,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabEditBox member) {
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addWidget(member);
 	}
 
 	/**
@@ -414,16 +416,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the EditBox to remove
 	 */
 	private void removeMember(SwingScilabEditBox member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeWidget(member);
 	}
 
 	/**
@@ -441,10 +434,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabLabel member) {
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addWidget(member);
 	}
 
 	/**
@@ -460,16 +450,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the Label to remove
 	 */
 	private void removeMember(SwingScilabLabel member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeWidget(member);
 	}
 
 	/**
@@ -487,10 +468,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabCheckBox member) {
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addWidget(member);
 	}
 
 	/**
@@ -506,16 +484,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the CheckBox to remove
 	 */
 	private void removeMember(SwingScilabCheckBox member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeWidget(member);
 	}
 
 	/**
@@ -533,10 +502,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabRadioButton member) {
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addWidget(member);
 	}
 
 	/**
@@ -552,16 +518,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the RadioButton to remove
 	 */
 	private void removeMember(SwingScilabRadioButton member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeWidget(member);
 	}
 
 	/**
@@ -579,10 +536,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabSlider member) {
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addWidget(member);
 	}
 
 	/**
@@ -598,16 +552,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the Slider to remove
 	 */
 	private void removeMember(SwingScilabSlider member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeWidget(member);
 	}
 
 	/**
@@ -625,11 +570,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabListBox member) {
-		//this.add(member.getScrollPane());
-		ScilabSwingUtilities.addToParent(member, this);
-		//return this.getComponentZOrder(member.getScrollPane());
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addWidget(member);
 	}
 
 	/**
@@ -645,16 +586,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the ListBox to remove
 	 */
 	private void removeMember(SwingScilabListBox member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeWidget(member);
 	}
 
 	/**
@@ -672,10 +604,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabPopupMenu member) {
-		this.add(member);
-		this.revalidate(); // If do not revalidate then the component do not appear
-		setComponentZOrder(member, TOP_LAYER);
-		return this.getComponentZOrder(member);
+		return contentPane.addWidget(member);
 	}
 
 	/**
@@ -691,16 +620,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the PopupMenu to remove
 	 */
 	private void removeMember(SwingScilabPopupMenu member) {
-		Component[] component = getComponents();
-		synchronized (getTreeLock()) {
-	        for (int i = 0; i < getComponentCount(); ++i) {
-	            if (component[i] == member) {
-	                remove(i);
-	                break;
-	              }
-	          }
-	      }
-		this.revalidate(); // If do not revalidate then the component do not disappear
+		contentPane.removeWidget(member);
 	}
 
 	/**
@@ -711,23 +631,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public int addMember(Dockable member) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-	
-	/**
-	 * We want to be able to remove directly a Canvas from a Tab.
-	 * @param member canvas to remove 
-	 */
-	public void removeMember(Canvas member) {
-		this.removeMember((ScrolledSwingScilabCanvas) member.getAsSimpleCanvas());
-	}
-	
-	/**
-	 * We want to be able to remove directly a Canvas from a Tab.
-	 * @param member canvas to remove 
-	 */
-	public void removeMember(ScrolledSwingScilabCanvas member) {
-		this.remove(member);
-		this.revalidate();
 	}
 
 	/**
@@ -852,7 +755,145 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param blue blue channel
 	 */
 	public void setBackground(double red, double green, double blue) {
-		this.getContentPane().setBackground(new Color((float) red, (float) green, (float) blue));
+		Color newColor = new Color((float) red, (float) green, (float) blue);
+		contentPane.setBackground(red, green, blue);
+		// actually to set the background of a scroll pane, it's needed to set the background
+		// of the viewport
+		scrolling.getViewport().setBackground(newColor);
+		setBackground(newColor);
+	}
+	
+	/**
+	 * Get the part of the axes which is currently viewed
+	 * @return [x,y,w,h] array
+	 */
+	public int[] getViewingRegion() {
+		Rectangle viewport = scrolling.getViewport().getViewRect();
+		int[] res = {(int) viewport.getX(),
+				(int) viewport.getY(),
+				(int) viewport.getWidth(),
+				(int) viewport.getHeight()};
+		return res;
+	}
+	
+	/**
+	 * Specify a new viewport for the axes
+	 * For SwingScilabCanvas viewport can not be modified
+	 * since it match the parent tab size
+	 * @param posX X coordinate of upper left point of the viewport within the axes
+	 * @param posY Y coordinate of upper left point of the viewport within the axes
+	 * @param width width of the viewport
+	 * @param height height of the viewport
+	 */
+	public void setViewingRegion(int posX, int posY, int width, int height) {
+		if (!contentPane.getAutoResizeMode()) {
+			// don't set viewport size here it should always fit parent tab size
+			// It seems that we must check the viewport size and positions
+			// to get coherent values, otherwise the setViewPosition hangs...
+			// there are three checks that must be performed for the two dimensions
+			// - be sure that viewport position is greater than 0.
+			// - if the viewport is larger than the canvas, then it can't be moved
+			// - if the viewport is smaller than the canvas, then it should remains
+			//   inside the canvas
+
+			int canvasWidth = contentPane.getWidth();
+			int canvasHeight = contentPane.getHeight();
+			int[] curViewedRegion = getViewingRegion();
+			int viewportPosX = curViewedRegion[0];
+			int viewPortPosY = curViewedRegion[1];
+			int viewportWidth = curViewedRegion[2];
+			int viewportHeight = curViewedRegion[VIEWPORT_SIZE - 1];
+
+			// use previous values as default ones
+			int realPosX = 0;
+			int realPosY = 0;
+
+
+			if (viewportWidth <= canvasWidth) {
+				// viewport smaller than the canvas
+				// check that the viewport stays in the canvas
+				// the left most position is canvasWidth - viewporwidth
+				realPosX = Math.min(posX, canvasWidth - viewportWidth);
+			} else {
+				// viewport larger than the canvas
+				// get previous position (should be 0)
+				realPosX = viewportPosX;
+			}
+			// last check, greater than 0
+			realPosX = Math.max(0, realPosX);
+
+			if (viewportHeight <= canvasHeight) {
+				realPosY = Math.min(posY, canvasHeight - viewportHeight);
+			} else {
+				realPosY = viewPortPosY;
+			}
+			realPosY = Math.max(0, realPosY);
+
+			// must be called on the Swing thread otherwise some JOGL corruption may appear
+			final Point realPos = new Point(realPosX, realPosY);
+			try {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						scrolling.getViewport().setViewPosition(realPos);
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.getCause().printStackTrace();
+			}
+			
+			
+		}
+	}
+	
+	/**
+	 * Set the event handler of the Canvas
+	 * @param funName the name of the Scilab function to call
+	 */
+	public void setEventHandler(String funName) {
+		contentPane.setEventHandler(funName);
+	}
+
+
+	/**
+	 * Set the status of the event handler of the Canvas
+	 * @param status is true to set the event handler active
+	 */
+	public void setEventHandlerEnabled(boolean status) {
+		contentPane.setEventHandlerEnabled(status);
+	}
+	
+	/**
+	 * Specify wether the canvas should fit the parent tab size
+	 * (and consequently the scrollpane size) or not
+	 * @param onOrOff true to enable autoresize mode
+	 */
+	public void setAutoResizeMode(boolean onOrOff) {
+		contentPane.setAutoResizeMode(onOrOff);
+	}
+	
+	/**
+	 * @return whether the resize mode is on or off
+	 */
+	public boolean getAutoResizeMode() {
+		return contentPane.getAutoResizeMode();
+	}
+	
+	/**
+	 * Get the displacement in pixel that should be used for rotating axes
+	 * @param displacement out parameter, [x,y] array of displacement in pixels
+	 * @return true if the displacement recording continue, false otherwise
+	 */
+	public boolean getRotationDisplacement(int[] displacement) {
+		return contentPane.getRotationDisplacement(displacement);
+	}
+	
+	/**
+	 * Asynchronous stop of rotation tracking.
+	 */
+	public void stopRotationRecording() {
+		contentPane.stopRotationRecording();
 	}
 
 }

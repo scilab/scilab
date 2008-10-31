@@ -125,11 +125,7 @@ void DrawableFigureJoGL::setWindowSize( const int size[2] )
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setInfoMessage( const char * message )
 {
-  // we need to create a not const char
-  char * infoMessage = new char[strlen(message)+1];
-  strcpy(infoMessage, message);
-  getFigureJavaMapper()->setInfoMessage(infoMessage);
-  delete[] infoMessage;
+  getFigureJavaMapper()->setInfoMessage(message);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setAutoResizeMode(bool onOrOff)
@@ -179,11 +175,7 @@ void DrawableFigureJoGL::destroy( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setTitle( const char * title )
 {
-  // we need to create a not const char
-  char * constTitle = new char[strlen(title)+1];
-  strcpy(constTitle, title);
-  getFigureJavaMapper()->setTitle(constTitle);
-  delete[] constTitle;
+  getFigureJavaMapper()->setTitle(title);
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJoGL::getRotationDisplacement(int displacement[2])

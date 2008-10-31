@@ -175,42 +175,6 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 		ScilabBridge.repaint(this);
 	}
 	
-	/**
-	 * Specify wether the canvas should fit the parent tab size
-	 * (and consequently the scrollpane size) or not
-	 * @param onOrOff true to enable autoresize mode
-	 */
-	public void setAutoResizeMode(boolean onOrOff) {
-		ScilabBridge.setAutoResizeMode(this, onOrOff);
-	}
-
-	/**
-	 * @return wether the resize mode is on or off
-	 */
-	public boolean getAutoResizeMode() {
-		return ScilabBridge.getAutoResizeMode(this);
-	}
-	
-	/**
-	 * Get the part of the canvas which is currently viewed
-	 * @return [x,y,w,h] array
-	 */
-	public int[] getViewingRegion() {
-		return ScilabBridge.getViewingRegion(this);
-	}
-	
-	/**
-	 * Specify a new viewport for the canvas
-	 * For SwingScilabCanvas viewport can not be modified
-	 * since it match the parent tab size
-	 * @param posX X coordinate of upper left point of the viewport within the canvas
-	 * @param posY Y coordinate of upper left point of the viewport within the canvas
-	 * @param width width of the viewport
-	 * @param height height of the viewport
-	 */
-	public void setViewingRegion(int posX, int posY, int width, int height) {
-		ScilabBridge.setViewingRegion(this, posX, posY, width, height);
-	}
 	
 	/**
 	 * Set the background of the Canvas.
@@ -223,24 +187,8 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	}
 	
 	/**
-	 * Set the event handler of the Canvas
-	 * @param command the name of the Scilab function to call
-	 */
-	public void setEventHandler(String command) {
-		ScilabBridge.setEventHandler(this, command);
-	}
-
-	/**
-	 * Set the status of the event handler of the Canvas
-	 * @param status is true to set the event handler active
-	 */
-	public void setEventHandlerEnabled(boolean status) {
-		ScilabBridge.setEventHandlerEnabled(this, status);
-	}
-	
-	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
@@ -252,23 +200,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	}
 	
 	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
-	 */
-	public boolean getRotationDisplacement(int[] displacement) {
-		return ScilabBridge.getRotationDisplacement(this, displacement);
-	}
-	
-	/**
-	 * Ansynchrnous stop of rotation tracking.
-	 */
-	public void stopRotationRecording() {
-		ScilabBridge.stopRotationRecording(this);
-	}
-	
-	/**
-	  * Disable the canvas befor closing
+	  * Disable the canvas before closing
 	  */
 	public void close() {
 		ScilabBridge.close(this);

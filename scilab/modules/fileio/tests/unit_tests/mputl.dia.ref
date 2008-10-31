@@ -1,12 +1,16 @@
 // =============================================================================
-// Auhtor : Bruno JOFRET
-//          Scilab Team
-// Copyright INRIA 2007
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Bruno JOFRET <bruno.jofret@inria.fr>
 //
-// Date   : 13/12/2007
-//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// =============================================================================
 // Unitary tests for mputl function
 // =============================================================================
+ierr = execstr('mputl()','errcatch');
+if ierr<>999 then bugmes();quit;end
+ierr = execstr('mputl(1)','errcatch');
+if ierr<>999 then bugmes();quit;end
 // TEST 1 : dummy file
 cd TMPDIR;
 // Deleting an existing file... Just in case...

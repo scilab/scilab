@@ -27,7 +27,8 @@ import org.scilab.modules.renderer.figureDrawing.RendererProperties;
 
 
 /**
- * Main class for renderers in Scilab
+ * Main class for renderer in Scilab
+ * @author Jean-Baptiste Silvy
  */
 public class ScilabRendererProperties implements RendererProperties {
 
@@ -36,12 +37,14 @@ public class ScilabRendererProperties implements RendererProperties {
 	/** Enclosing tab */
 	private Tab parentTab;
 	
+	
 	/**
 	 * Default constructor
 	 * @param parentTab the parent tab of this renderer 
-	 * @param parentCanvas the parent canvas of this renderer
+	 * @param parentCanvas the parent canvas of this renderer or null if none already exists
+	 * @param figureIndex index of the modified figure
 	 */
-	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas) {
+	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas, int figureIndex) {
 		this.parentCanvas = parentCanvas;
 		this.parentTab = parentTab;
 	}
@@ -52,7 +55,6 @@ public class ScilabRendererProperties implements RendererProperties {
 	 */
 	public void forceDisplay() {
 		parentTab.draw();
-		//parentCanvas.display();
 	}
 
 	/**
@@ -61,11 +63,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getCanvasHeight()
 	 */
 	public int getCanvasHeight() {
-		if (parentCanvas != null) {
-			return parentCanvas.getDims().getHeight();
-		} else {
-			return 0;
-		}
+		return parentTab.getAxesSize().getHeight();
 	}
 
 	/**
@@ -74,11 +72,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getCanvasWidth()
 	 */
 	public int getCanvasWidth() {
-		if (parentCanvas != null) {
-			return parentCanvas.getDims().getWidth();
-		} else {
-			return 0;
-		}
+		return parentTab.getAxesSize().getWidth();
 	}
 
 	/**
@@ -148,14 +142,11 @@ public class ScilabRendererProperties implements RendererProperties {
 	 */
 	public int setCanvasSize(int width, int height) {
 		
-		if (parentCanvas == null) {
-			return RESIZE_SUCCESS;
-		}
-		
 		if (!getAutoResizeMode()) {
 			// autore size off, just resize the canvas
 			try {
-				parentCanvas.setDims(new Size(width, height));
+				//parentCanvas.setDims(new Size(width, height));
+				parentTab.setAxesSize(new Size(width, height));
 			} catch (IllegalArgumentException e) {
 				// canvas too large
 				return RESIZE_SIZE_TOO_LARGE;
@@ -170,7 +161,7 @@ public class ScilabRendererProperties implements RendererProperties {
 			parentWindow.updateDimensions();
 
 			
-			Size currentSize = parentCanvas.getDims();
+			Size currentSize = parentTab.getAxesSize();
 			// compute the requested size modifications
 			int deltaX = width - currentSize.getWidth();
 			int deltaY = height - currentSize.getHeight();
@@ -184,7 +175,8 @@ public class ScilabRendererProperties implements RendererProperties {
 			
 			// also apply on canvas otherwise the canvas is resized twice by Swing
 			try {
-				parentCanvas.setDims(new Size(width, height));
+				//parentCanvas.setDims(new Size(width, height));
+				parentTab.setAxesSize(new Size(width, height));
 			} catch (IllegalArgumentException e) {
 				// canvas too large
 				return RESIZE_SIZE_TOO_LARGE;
@@ -286,20 +278,14 @@ public class ScilabRendererProperties implements RendererProperties {
     * @param onOrOff true to enable autoresize mode
     */
    public void setAutoResizeMode(boolean onOrOff) {
-	   if (parentCanvas != null) {
-		   parentCanvas.setAutoResizeMode(onOrOff);
-	   }
+	   parentTab.setAutoResizeMode(onOrOff);
    }
 
    /**
     * @return wether the resize mode is on or off
     */
    public boolean getAutoResizeMode() {
-	   if (parentCanvas != null) {
-		   return parentCanvas.getAutoResizeMode();
-	   } else {
-		   return false;
-	   }
+	   return parentTab.getAutoResizeMode();
    }
    
    /**
@@ -307,12 +293,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @return [x,y,w,h] array
 	 */
    public int[] getViewport() {
-	   if (parentCanvas != null) {
-		   return parentCanvas.getViewingRegion();
-	   } else {
-		   int[] res = {0, 0, 0, 0};
-		   return res;
-	   }
+	   return parentTab.getViewingRegion();
    }
    
    /**
@@ -325,9 +306,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @param height height of the viewport
 	 */
 	public void setViewport(int posX, int posY, int width, int height) {
-		if (parentCanvas != null) {
-			parentCanvas.setViewingRegion(posX, posY, width, height);
-		}
+		parentTab.setViewingRegion(posX, posY, width, height);
 	}
 	
 	/**
@@ -345,6 +324,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
+	 * @param figureIndex index of the figure on which the rubber box is applied
 	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
@@ -352,12 +332,12 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
 	 * @return Scilab code of the pressed button
 	 */
-	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
-		if (parentCanvas != null) {
-			return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
-		} else {
-			return 0;
+	public int rubberBox(int figureIndex, boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
+		// rubber box needs an OpenGL canvas to display the selection rectangle.
+		if (parentCanvas == null) {
+			openGraphicCanvas(figureIndex);
 		}
+		return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
 	}
 	
 	/**
@@ -382,20 +362,17 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @return true if the diplacement recording continue, false otherwise
 	 */
 	public boolean getRotationDisplacement(int[] displacement) {
-		if (parentCanvas != null) {
-			return parentCanvas.getRotationDisplacement(displacement);
-		} else {
-			return false;
-		}
+		// if there is't any canvas opened, we use the parentTab instead
+		// for tracking the displacement
+		return parentTab.getRotationDisplacement(displacement);
+		
 	}
 
 	/**
-	 * Ansynchrnous stop of rotation tracking.
+	 * Asynchronous stop of rotation tracking.
 	 */
 	public void stopRotationRecording() {
-		if (parentCanvas != null) {
-			parentCanvas.stopRotationRecording();
-		}
+		parentTab.stopRotationRecording();
 	}
 	
 	/**
@@ -417,7 +394,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	/**
 	 * If the window does not already contains a 3D canvas,
 	 * add one.
-	 * @param figureIndex index of the figure in which the canvas is added
+	 * @param figureIndex of the figure that need a canvas
 	 */
 	public void openGraphicCanvas(int figureIndex) {
 		if (parentCanvas == null) {
@@ -443,6 +420,22 @@ public class ScilabRendererProperties implements RendererProperties {
 			parentTab.removeMember(parentCanvas);
 		}
 		parentCanvas = null;
+	}
+	
+	/**
+	 * Set the event handler of the figure
+	 * @param command the name of the Scilab function to call
+	 */
+	public void setEventHandler(String command) {
+		parentTab.setEventHandler(command);
+	}
+	
+	/**
+	 * Set the status of the event handler of the figure
+	 * @param status is true to set the event handler active
+	 */
+	public void setEventHandlerEnabled(boolean status) {
+		parentTab.setEventHandlerEnabled(status);
 	}
 
 }

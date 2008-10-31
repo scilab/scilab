@@ -663,6 +663,9 @@
         </method>      
 	<method name="raiseWindow" returnType="void" modifier="static">
           <parameter type="int" name="objID"/>
+        </method>
+	<method name="useCanvasForDisplay" returnType="void" modifier="static">
+          <parameter type="boolean" name="onOrOff"/>
         </method>      
   </object>
 </package>

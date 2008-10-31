@@ -32,7 +32,7 @@ int sci_xname(char *fname,unsigned long fname_len)
   CheckLhs(1,1);
   GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   
-  sciSetName( sciGetCurrentFigure(), cstk(l1), m1 ) ;
+  sciSetName( sciGetCurrentFigure(), cstk(l1) ) ;
 
   LhsVar(1)=0;
   return 0;

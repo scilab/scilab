@@ -330,9 +330,8 @@ typedef struct
   sciGraphicContext graphiccontext; /* the only property used here is background */
   sciPointObj * originalsubwin0011;
   /** specifies the title for this window  */
-  char name[SCI_FIGURE_NAME_LENGTH];	 
-  /** specifies le length of the string name */
-  int namelen;
+  char * name;
+
   /** specifies the number of this window            */
   int number;
 

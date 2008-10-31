@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-24 02:38+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2008-10-27 13:54+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:53+0000\n"
+"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -252,13 +252,13 @@ msgid "Impossible to set system encoding."
 msgstr "不可能设置系统编码。"
 
 msgid "&File"
-msgstr "文件( &F)"
+msgstr "文件(&F)"
 
 msgid "&Tools"
-msgstr "工具( &T)"
+msgstr "工具(&T)"
 
 msgid "&Edit"
-msgstr "编辑( &E)"
+msgstr "编辑(&E)"
 
 msgid "&?"
 msgstr "&?"

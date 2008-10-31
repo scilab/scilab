@@ -77,11 +77,9 @@ void sciClearFigure(sciPointObj * pFigure)
   sciPointObj * newSubWin = NULL;
   destroyGraphicsSons(pFigure);
 
-  if ((newSubWin = ConstructSubWin(pFigure)) != NULL)
-  {
-    sciSetCurrentObj(newSubWin);
-    sciSetOriginalSubWin(pFigure, newSubWin);
-  }
+	/* recreate the subwindow */
+	createFirstSubwin(pFigure);
+
   forceHierarchyRedraw(pFigure);    
 }
 
@@ -566,7 +564,7 @@ BOOL needsDisplay(sciPointObj * pFigure)
 
 	if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 0)
 	{
-		/* No subwindows, return true */
+		/* No subwindows, return false */
 		return FALSE;
 	}
 	else if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 1)

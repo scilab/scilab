@@ -363,7 +363,8 @@ if test -z "$CXX"; then
   AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
 fi
 
-if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
+case "$CXX" in
+	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
 	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++"
@@ -377,7 +378,8 @@ if test "$CXX" = "g++" -o "$CXX" = "ccache g++"; then
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
    CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
-fi
+   ;;
+esac
 
 ##########"
 # not useful under Linux (and was only defined here with scilab 4)
@@ -410,26 +412,26 @@ case "$CC" in
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
-	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
+	    CFLAGS="$CFLAGS -fwritable-strings"
 	;;
 	 x86_64-*-linux-gnu | x86_64-linux-gnu)
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -m64"
+		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
 		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CFLAGS="$CFLAGS  -DNARROWPROTO"
 	;;		
 	 ia64-*-linux-gnu )
-		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CFLAGS="$CFLAGS -DNARROWPROTO"
 		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
-		CFLAGS="$CFLAGS  -mieee-with-inexact -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
 		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
-		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
+		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
 	;;
 	 *-*-solaris*)
         if test "$enable_debug_C" = yes; then
