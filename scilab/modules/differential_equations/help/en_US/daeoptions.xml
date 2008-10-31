@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="daeoptions" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>daeoptions</refname>
+
+    <refpurpose>set options for dae solver</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>daeoptions()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>If it exists in the dae function calling context the variable
+    <literal>%DAEOPTIONS</literal> the dae function use it to sets
+    options.</para>
+
+    <para>This daeoptions function interactively displays a command which
+    should be executed to set various options of the <link
+    linkend="dae">dae</link> solver.</para>
+
+    <para>CAUTION: the <literal>dae</literal> function checks if this variable
+    exists and in this case it uses it. For using default values you should
+    clear this variable. Note that <literal>daeoptions</literal> does not
+    create this variable. To create it you must execute the command line
+    displayed by <literal>daeoptions</literal>.</para>
+
+    <para>The variable <literal>%DAEOPTIONS</literal> is a <link
+    linkend="list">list</link> with the following elements:</para>
+
+    <programlisting>list(tstop,imode,band,maxstep,stepin,nonneg,isest)</programlisting>
+
+    <para>The default value is:</para>
+
+    <programlisting>list([],0,[],[],[],0,0)</programlisting>
+
+    <para>The meaning of the elements is described below.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>tstop</term>
+
+        <listitem>
+          <para>a real scalar or an empty matrix, gives the maximum time for
+          which <literal>g </literal>is allowed to be evaluated. An empty
+          matrix means "no limits" imposed for time.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>imode</term>
+
+        <listitem>
+          <para>if it is 0 dae returns only the user specified time point
+          values if it is 1 dae returns its intermediate computed
+          values.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>band</term>
+
+        <listitem>
+          <para>a two components vector which give the definition
+          <literal>[ml,mu]</literal> of band matrix computed by
+          <literal>jac</literal> ; <literal></literal></para>
+
+          <para><literal>r(i - j + ml + mu + 1,j)</literal> =
+          <literal>dg(i)/dy(j)+cj*dg(i)/dydot(j)</literal> . If
+          <literal>jac</literal> returns a full matrix set
+          <literal>band=[]</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>maxstep</term>
+
+        <listitem>
+          <para>A scalar or an empty matrix, the maximum step size, empty
+          matrix means "no limitation".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stepin</term>
+
+        <listitem>
+          <para>A scalar or an empty matrix, the minimum step size, empty
+          matrix means "not specified".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nonneg</term>
+
+        <listitem>
+          <para>A scalar, must be set to 0 if <literal>the solution is known
+          to be non negative.</literal> In the other case it must be set to
+          1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>isest</term>
+
+        <listitem>
+          <para>A scalar, must be set to 0 is the given initial condition is
+          compatible: <literal>g(t0,x0,xdot0)=0</literal>. 1 an set to 1 if
+          <literal>xdot0</literal> is just an estimation.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="dae">dae</link></member>
+    </simplelist>
+  </refsection>
+</refentry>
