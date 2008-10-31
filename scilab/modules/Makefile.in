@@ -404,7 +404,6 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la
 
-
 # Dev in progress
 
 # Core modules
