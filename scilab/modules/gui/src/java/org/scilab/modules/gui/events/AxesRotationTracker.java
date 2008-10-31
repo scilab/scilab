@@ -98,9 +98,15 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 			// wait for initialization with a first click
 			waitForClick(displacement);
 			
-			// start recording the mouse displacement
-			startRecording(clickPosX, clickPosY);
-			return true;
+			if (clickPosX >= 0) {
+				// start recording the mouse displacement
+				startRecording(clickPosX, clickPosY);
+				return true;
+			} else {
+				// the record has been cancelled
+				reinit();
+				return false;
+			}
 		} else if (!recordEnded) {
 			// inside tracking loop
 			// get mouse displacement since last call
@@ -182,9 +188,17 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		if (isWaitingForClick) {
 			// the first click is occuring
 			// first check if it is a cancel click or a not
-			clickPosX = event.getX();
-			clickPosY = event.getY();
-			isWaitingForClick = false;
+			
+			if (event.getButton() == MouseEvent.BUTTON1) {
+				clickPosX = event.getX();
+				clickPosY = event.getY();
+				isWaitingForClick = false;
+			} else {
+				clickPosX = -1;
+				clickPosY = -1;
+			}
+			
+			
 		
 			// wake the click waiter
 			synchronized (getLock()) {
