@@ -63,4 +63,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="30" primitiveName="exportUI" />
 <PRIMITIVE gatewayId="25" primitiveId="31" primitiveName="printsetupbox" />
 <PRIMITIVE gatewayId="25" primitiveId="32" primitiveName="toprint" />
+<PRIMITIVE gatewayId="25" primitiveId="33" primitiveName="usecanvas" />
 </GATEWAY>

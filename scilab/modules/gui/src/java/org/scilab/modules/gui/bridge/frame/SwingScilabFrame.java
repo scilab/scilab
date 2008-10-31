@@ -15,7 +15,7 @@ package org.scilab.modules.gui.bridge.frame;
 
 import javax.swing.JPanel;
 
-import org.scilab.modules.gui.bridge.canvas.ScrolledSwingScilabCanvas;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
@@ -238,7 +238,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
-		return this.addMember((ScrolledSwingScilabCanvas) member.getAsSimpleCanvas());
+		return this.addMember((SwingScilabCanvas) member.getAsSimpleCanvas());
 	}
 
 	/**
@@ -246,9 +246,9 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	private int addMember(ScrolledSwingScilabCanvas member) {
-		this.add(member);
-		return this.getComponentZOrder(member);
+	private int addMember(SwingScilabCanvas member) {
+		this.add(member.getAsComponent());
+		return this.getComponentZOrder(member.getAsComponent());
 	}
 	
 	/**

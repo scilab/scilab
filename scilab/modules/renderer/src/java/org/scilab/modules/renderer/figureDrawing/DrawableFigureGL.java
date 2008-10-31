@@ -93,7 +93,7 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To know if the rendering is requested by Scilab or not */
 	private boolean renderRequested;
 	
-	/** Coordinate transfomrations used to draw this figure */
+	/** Coordinate transformations used to draw this figure */
 	private CoordinateTransformation transform;
 	
 	/** Number of subwins */
@@ -624,7 +624,7 @@ public class DrawableFigureGL extends ObjectGL {
 		int[] res = {0, 0, 0, 0, 0};
 		
 		// get [x1,y1,x2,y2] in res and button
-		int button = getRendererProperties().rubberBox(isClick, isZoom, realIntialRect, res);
+		int button = getRendererProperties().rubberBox(figureId, isClick, isZoom, realIntialRect, res);
 		res[res.length - 1] = button;
 		return res;
 	}

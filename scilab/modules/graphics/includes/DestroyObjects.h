@@ -61,9 +61,6 @@ extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 
 extern int DestroyLabel (sciPointObj * pthis); /* DESTROY */
 
-/* ADDED */
-
-extern void delete_sgwin_entities(int win_num);
 
 /* free the user_data */
 extern void clearUserData( sciPointObj * pObj ) ;

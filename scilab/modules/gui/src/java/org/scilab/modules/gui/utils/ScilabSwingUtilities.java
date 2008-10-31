@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.lang.reflect.InvocationTargetException;
 
@@ -60,8 +61,8 @@ public final class ScilabSwingUtilities {
 	 * This method is thread safe.
 	 * @param component component to remove
 	 */
-	public static void removeFromParent(JComponent component) {
-		final JComponent componentF = component;
+	public static void removeFromParent(Component component) {
+		final Component componentF = component;
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
@@ -72,6 +73,34 @@ public final class ScilabSwingUtilities {
 						// repaint to see the changes
 						parent.repaint();
 					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.getCause().printStackTrace();
+		}
+	}
+	
+	/**
+	 * Add a component to its new parent.
+	 * This method is thread safe.
+	 * @param component component to add
+	 * @param parent parent in which the component will be added
+	 * @param constraints an object expressing layout constraints for the parent
+	 * @param index the position in the container's list at which to insert the component; -1 means insert at the end component 
+	 */
+	public static void addToParent(Component component, Container parent, Object constraints, int index) {
+		final Component componentF = component;
+		final Container parentF = parent;
+		final Object constraintF = constraints;
+		final int indexF = index;
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					parentF.add(componentF, constraintF, indexF);
+					// repaint to see the changes
+					parentF.repaint();
 				}
 			});
 		} catch (InterruptedException e) {

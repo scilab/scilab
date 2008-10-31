@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.events;
 
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Point;
@@ -21,7 +22,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 
 /**
  * Class used to retrieve displacement that must be used for interactive rotation.
@@ -40,7 +40,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 * default constructor
 	 * @param canvas canvas on which we want to recod mouse displacement
 	 */
-	public AxesRotationTracker(SwingScilabCanvas canvas) {
+	public AxesRotationTracker(Component canvas) {
 		super(canvas);
 		reinit();
 	}
@@ -68,7 +68,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		getTrackedCanvas().addFocusListener(this);
 		synchronized (getLock()) {
 			isWaitingForClick = true;
-			// wait until the click occures
+			// wait until the click occurs
 			try {
 				getLock().wait();
 			} catch (InterruptedException e) {
@@ -83,7 +83,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	
 	/**
 	 * Retrieve the displacement performed since last call to the function.
-	 * First call to the function waits for clivk to initialize
+	 * First call to the function waits for click to initialize
 	 * @param displacement array [dx, dy] displacement in pixels since last call
 	 * @return true if it is still needed to retrieve displacement, false otherwise
 	 */
@@ -92,9 +92,13 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		
 		if (!recordStarted) {
 			// first call
+			// change the mouse cursor
 			Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/rotate.png");
 			getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0, 0), "rotate"));
+			// wait for initialization with a first click
 			waitForClick(displacement);
+			
+			// start recording the mouse displacement
 			startRecording(clickPosX, clickPosY);
 			return true;
 		} else if (!recordEnded) {
@@ -147,10 +151,11 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	}
 	
 	/**
-	 * @param event clieck event
+	 * @param event click event
 	 */
 	public void mouseClicked(MouseEvent event) {
-		// everything si done in mouse pressed
+		// everything is done in mouse pressed
+		// since it is called first
 	}
 
 	/**
@@ -173,17 +178,19 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 * @param event press event
 	 */
 	public void mousePressed(MouseEvent event) {
+		
 		if (isWaitingForClick) {
+			// the first click is occuring
+			// first check if it is a cancel click or a not
 			clickPosX = event.getX();
 			clickPosY = event.getY();
 			isWaitingForClick = false;
-			
+		
 			// wake the click waiter
 			synchronized (getLock()) {
 				getLock().notifyAll();
 			}
 			
-			return;
 		} else if (recordStarted && !recordEnded) {
 			// tracking loop
 			
@@ -209,11 +216,11 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 */
 	public void focusGained(FocusEvent event) {
 		// nothing to do here
-		// canvas must always have focus
+		// canvas must always have focus during the recording
 	}
 
 	/**
-	 * This event occures when the canvas lost focus but
+	 * This event occurs when the canvas lost focus but
 	 * also when the windows is closed. We then need to wake up every one.
 	 * @param event focus lost event
 	 */

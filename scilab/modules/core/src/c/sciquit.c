@@ -77,15 +77,9 @@ void C2F(sciquit)(void)
         */
 		terminateMutexClosingScilab();
 		/* kill process and return 0 */
-<<<<<<< HEAD:scilab/modules/core/src/c/sciquit.c
 		killScilabProcess(0);
 	#else
 		exit(0);
-=======
-		exit(0);
-	#else
-		exit(0);
->>>>>>> refs/heads/5.0:scilab/modules/core/src/c/sciquit.c
 	#endif
 }
 /*--------------------------------------------------------------------------*/

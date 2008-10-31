@@ -634,18 +634,11 @@ static int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
   if ( sciGetEntityType( movedObj ) == SCI_SUBWIN && sciGetIsSelected( movedObj ) )
   {
     sciSelectFirstSubwin( oldParent ) ;
-    if ( sciGetNbTypedObjects( oldParent, SCI_SUBWIN ) == 0 )
-    {
-      /* we need to recreate a subwin */
-      sciPointObj * newSubWin = ConstructSubWin( oldParent ) ;
-      if ( newSubWin == NULL )
-      {
-        return -1 ;
-      }
-      /* we must set the selected subwin */
-      sciSetOriginalSubWin( oldParent, newSubWin ) ;
-      sciInitSelectedSubWin( newSubWin ) ;
-    }
+
+		if (createFirstSubwin(oldParent) == NULL)
+		{
+			return -1;
+		}
   }
 
   // redraw the object and its children

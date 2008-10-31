@@ -45,7 +45,6 @@ public class ZoomRubberBox extends ClickRubberBox {
 		// set zoom cursor
 		Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/zoom-area-cursor.png");
 		getSelectedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(3, 4), "zoom-area"));
-		//selectedCanvas.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		int res = super.getRectangle(initialRect, endRect);
 		
 		// restore default cursor

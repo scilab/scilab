@@ -9,6 +9,12 @@
 // Unitary tests for mputl function
 // =============================================================================
 
+ierr = execstr('mputl()','errcatch');
+if ierr<>999 then pause,end
+
+ierr = execstr('mputl(1)','errcatch');
+if ierr<>999 then pause,end
+
 // TEST 1 : dummy file
 cd TMPDIR;
 // Deleting an existing file... Just in case...

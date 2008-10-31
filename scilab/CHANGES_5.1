@@ -26,8 +26,6 @@ Enhancement:
 
 * Scilab uses Atlas 3.8.2 on Windows
 
-* License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module)
-
 * test_run() now accepts absolute paths as first input argument. It permits toolboxes to use this system.
 
 Bug fixes:
@@ -53,11 +51,7 @@ Bug fixes:
 
 * bug 3530 fixed - Check that X11/Xlib.h is available since the Tk header needs it
 
-* bug 3540 fixed - With the linux binary version, a symbolic link of <SCILAB INSTALL PATH>/bin/scilab in /usr/local/bin (for example) did not work.
-
 * bug 3546 fixed - frmag is broken when called with hn given by a vector of coefficients instead of a polynomial.
-
-* bug 3551 fixed - bvodeS and bvode hang and close Scilab 5.0.1
 
 * bug 3549 fixed - machine.h was including PATH_MAX.h, BOOL.h and PARAMS.h, includes have been cleaned up.
 
@@ -69,35 +63,17 @@ Bug fixes:
 
 * bug 3565 fixed - bad detection of the IBM JDK
 
-* bug 3566, 3567 fixed - sort and gsort didn't sort correctly complex matrix.
-
-* bug 3598 fixed - ls(1) or cd(1) or dir(1) or help(1), scilab crashes
-
 * bug 3624 fixed - Nan returned when multiplying large zero vector by its transpose.
-
-* bug 3602 fixed - format("e",dd) was causing a bug in gettklib (format of the number)
 
 * bug 3628 fixed - Problem with cdouble type arguments in intersci.
 
-* bug 3607 fixed - Wrong values in Java configuration was causing the memory issues
-
 * bug 3630 fixed - functions added by 'addinter' are not visible by 'what'
-
-* bug 3604 fixed - Problems with getting Frame uicontrol position (Scilab crash)
-
-* bug 3647 fixed - 'call' doesn't manage external functions named with more 23 characters
-
-* bug 3663 fixed - getshortpathname & getlongpathname could return '' and not a correct path
-
-* bug 3646 fixed - Scilab GUI doesn't start on some Windows
 
 * bug 3661 fixed - cotg and coth do not work.
 
 * bug 3624, 3640 fixed - Atlas 3.8.0 have a bug causing wrong answer for row-major gemm C=A*A' or A'A 
 
 * bug 3673 fixed - When using Scilab embedded in a Java application through javasci, the first call to javasci API reset the look and feel of the Java application.
-
-* bug 3605 fixed - Could not use javasci in the Linux binary
 
 * bug 3070 fixed - Could not use non-simple character like °, µ, ø ....
 
@@ -109,3 +85,8 @@ Bug fixes:
 
 * bug 2647 fixed - Bad display of some numbers in special cases due to a gfortran bug
 
+* bug 3702 fixed - When I start scilex.exe (Windows) in a windows console, the windows lost the focus.
+
+* bug 3700 fixed - Problem when displaying accents in the help browser using the fr language. (Windows)
+
+* bug 3681 fixed - Disable automatic completion if there are only spaces in a line

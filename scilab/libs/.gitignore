@@ -12,3 +12,9 @@ pcre
 umfpack
 zlib
 *.lib
+
+#
+# F2C conversion
+#
+lapack/*.c
+blas/*.c

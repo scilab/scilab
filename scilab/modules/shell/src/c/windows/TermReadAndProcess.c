@@ -24,7 +24,6 @@ char * TermReadAndProcess(void)
 {
 	static char save_prompt[10];
 	char *returnedline = NULL;
-	char *UTFLine;
 
     if (GetTemporaryPrompt()!=NULL) /* Input function is used */
     {

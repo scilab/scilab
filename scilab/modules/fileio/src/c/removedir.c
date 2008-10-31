@@ -37,7 +37,7 @@ BOOL removedir(char *path)
 	if (isdir(path))
 	{
 		DeleteDirectory(path);
-		if (!isdir(path)) return TRUE; 
+		if (!isdir(path)) return TRUE;
 	}
 	return FALSE;
 }
@@ -118,7 +118,6 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 		{
 			sciprint(_("Warning: Error while opening %s: %s\n"),refcstrRootDirectory, strerror(errno));
 			return -1;
-
 		}
 	while((ent = readdir(dir)) != NULL)
 		{

@@ -14,9 +14,14 @@ Rhs=length(varargin);
 
 if (Rhs == 0) then
   // Create a new graphic window
-  h=scf();
+  h = scf();
+  set(h, "immediate_drawing", "off"); // to avoid canvas creation
   // Set its default background for compatibility with versions < 5.0
   set(h,"background",addcolor([0.8 0.8 0.8]))
+  axes = gca();
+  set(axes, "filled", "off"); // transparent axes so no need to display them
+  set(axes, "background", addcolor([0.8 0.8 0.8])); // same as figure
+  set(h, "immediate_drawing", "on"); // we can draw now
 else
   if (Rhs == 1) then
     
