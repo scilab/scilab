@@ -39,6 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+
 # memory_manager 
 
 #umfpack
@@ -130,19 +131,19 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
-	elementary_functions string dynamic_link history_manager \
-	fileio spreadsheet tclsci renderer shell completion \
-	localization console graphic_export gui jvm graphics \
-	optimization symbolic randlib statistics special_functions \
-	interpolation linear_algebra integer data_structures mexlib \
-	differential_equations cacsd polynomials boolean double pvm io \
-	intersci metanet signal_processing sound time sparse \
-	windows_tools functions overloading maple2scilab m2sci texmacs \
-	scipad scilab2fortran development_tools \
-	compatibility_functions helptools fftw umfpack demo_tools \
-	genetic_algorithms simulated_annealing parameters matio \
-	system_env abstractSyntaxTree symbol parse types \
-	functions_manager scicos_blocks scicos . javasci
+	functions_manager elementary_functions string dynamic_link \
+	history_manager fileio spreadsheet tclsci renderer shell \
+	completion localization console graphic_export gui jvm \
+	graphics optimization symbolic randlib statistics \
+	special_functions interpolation linear_algebra integer \
+	data_structures mexlib differential_equations cacsd \
+	polynomials boolean double pvm io intersci metanet \
+	signal_processing sound time sparse windows_tools functions \
+	overloading maple2scilab m2sci texmacs scipad scilab2fortran \
+	development_tools compatibility_functions helptools fftw \
+	umfpack demo_tools genetic_algorithms simulated_annealing \
+	parameters matio system_env abstractSyntaxTree symbol parse \
+	types scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -345,7 +346,7 @@ yacc_present = @yacc_present@
 
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
-SUBDIRS = core output_stream action_binding arnoldi \
+SUBDIRS = core output_stream action_binding arnoldi functions_manager \
 	elementary_functions string dynamic_link history_manager \
 	fileio spreadsheet tclsci renderer shell completion \
 	localization console graphic_export gui jvm graphics \
@@ -358,8 +359,7 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
 	parameters matio system_env abstractSyntaxTree symbol parse \
-	types functions_manager $(am__append_1) scicos . \
-	$(am__append_2)
+	types $(am__append_1) scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
