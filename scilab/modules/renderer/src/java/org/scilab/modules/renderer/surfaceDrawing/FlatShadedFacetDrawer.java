@@ -75,19 +75,17 @@ public class FlatShadedFacetDrawer extends FacetDrawerGL {
 		// draw one facet with only one color
 		
 		// if the color is 0, it means that the facet should not be drawn
-		if (colors[0] <= 0) { return; }
+		// also check that it is at least a facet
+		if (colors[0] <= 0 || vertices.length < TRIANGLE_NB_EDGE) {
+			return;
+		}
 		
 		double[] frontColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[0]));
 		
 		// for now draw only polygons with 3 or 4 edges
 		if (vertices.length == TRIANGLE_NB_EDGE) {
 			// only a triangle
-			drawFrontTriangle(gl, vertices, frontColor);
-			
-			// draw hidden polygon if needed
-			if (getHiddenColor() != null) {
-				drawBackTriangle(gl, vertices, getHiddenColor());
-			}
+			paintOneTriangle(vertices, frontColor, gl);
 			
 		} else if (vertices.length == QUAD_NB_EDGE) {
 			
@@ -97,17 +95,38 @@ public class FlatShadedFacetDrawer extends FacetDrawerGL {
 			GeomAlgos.decomposeQuad(vertices, triangle1, triangle2);
 			
 			// draw the two decomposed triangles
-			drawFrontTriangle(gl, triangle1, frontColor);
-			drawFrontTriangle(gl, triangle2, frontColor);
-		
-			// draw hidden triangles if needed
-			if (getHiddenColor() != null) {
-				drawBackTriangle(gl, triangle1, getHiddenColor());
-				drawBackTriangle(gl, triangle2, getHiddenColor());
+			paintOneTriangle(triangle1, frontColor, gl);
+			paintOneTriangle(triangle2, frontColor, gl);
+
+		} else if (vertices.length > QUAD_NB_EDGE) {
+			// draw the facet using several triangles
+			// use this method for now. It will work for flat facets
+			// but is not optimal for non flat ones (in comparison with the decomposeQuad function)
+			int nbTriangles = vertices.length - 2;
+			for (int i = 1; i <= nbTriangles; i++) {
+				Vector3D[] triangle = {vertices[0], vertices[i], vertices[i + 1]};
+
+				paintOneTriangle(triangle, frontColor, gl);
 			}
 		}
 		
 
+	}
+	
+	/**
+	 * Paint a single triangle
+	 * @param vertices poisition of the triangle three vertices
+	 * @param triangleColor array containing the 3 channels of the front color
+	 * @param gl current OpenGL pipeline
+	 */
+	private void paintOneTriangle(Vector3D[] vertices, double[] triangleColor, GL gl) {
+		// draw front triangle
+		drawFrontTriangle(gl, vertices, triangleColor);
+		
+		// draw back triangle if needed
+		if (isDisplayingHiddenSurface()) {
+			drawBackTriangle(gl, vertices, getHiddenColor());
+		}
 	}
 
 }
