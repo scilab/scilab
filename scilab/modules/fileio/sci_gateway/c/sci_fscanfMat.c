@@ -17,6 +17,7 @@
 #include "localization.h"
 #include "cluni0.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 /*--------------------------------------------------------------------------*/
@@ -71,7 +72,10 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	// =================================================================
 	
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
-	shortcut_path = cstk(l1);
+
+	/* BUG 3714 */
+	shortcut_path = UTFToLocale(cstk(l1));
+
 	real_path     = (char*)MALLOC(sizeof(char*)*FILENAME_MAX);
 	lout          = FILENAME_MAX;
 	C2F(cluni0)( shortcut_path, real_path, &out_n, (long)strlen(shortcut_path), lout);

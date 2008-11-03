@@ -25,6 +25,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 {
@@ -49,7 +50,8 @@ int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		if ( n1==1 )
 		{
-			path=cstk(l1);
+			/* Bug 3089 */
+			path = UTFToLocale(cstk(l1));
 		}
 		else
 		{

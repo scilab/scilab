@@ -20,6 +20,7 @@
 #include "Scierror.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/
@@ -68,7 +69,8 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			if (GetType(1) == sci_strings)
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path=cstk(l1);
+				/* Bug 3089 */
+				path = UTFToLocale(cstk(l1));
 				needtofreepath = FALSE;
 
 				filespec=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_FILESPEC)+1));
