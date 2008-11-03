@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
+
 // <-- Non-regression test for bug 2085 -->
 //
 // <-- Bugzilla URL -->
