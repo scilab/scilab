@@ -10,71 +10,61 @@
 //==========================================
 // Export Libraries of Scilab for LCC compiler
 //==========================================
-function VCtoLCCLib()
+function bOK = VCtoLCCLib()
   // LCC-Win32 only on Windows
   if (findlcccompiler() == %T) then
+    bOK = [];
 		DirCur = pwd();
-		chdir(WSCI+'\bin');
 		
-		status = mkdir('lcclib');
-		if (status == 1) | (status == 2) then
-		  Exportalibrary('LibScilab');
-		  Exportalibrary('libf2c');
-		  ExportAtlasLibrary();
-		  Exportalibrary('lapack');
-		  Exportalibrary('scicos');
-		  Exportalibrary('intersci');
-		  Exportalibrary('dynamic_link');
-		  Exportalibrary('scioutput_stream');
-		  Exportalibrary('MALLOC');
-		  Exportalibrary('libintl');
+	  bOK = [bOK , ExportAtlasLibrary('blasplus', WSCI+'\bin')];
+		bOK = [bOK , Exportalibrary('LibScilab', WSCI+'\bin')];
+		bOK = [bOK , Exportalibrary('libf2c', WSCI+'\bin')];
+		bOK = [bOK , Exportalibrary('lapack', WSCI+'\bin')];
+		if with_module('scicos') then
+		  bOK = [bOK , Exportalibrary('scicos', WSCI+'\bin')];
+		  bOK = [bOK , Exportalibrary('scicos_f', WSCI+'\bin')];
+		  bOK = [bOK , Exportalibrary('scicos_blocks', WSCI+'\bin')];
+		  bOK = [bOK , Exportalibrary('scicos_blocks_f', WSCI+'\bin')];
 		end
-	
+		bOK = [bOK , Exportalibrary('intersci', WSCI+'\bin')];
+		bOK = [bOK , Exportalibrary('dynamic_link', WSCI+'\bin')];
+		bOK = [bOK , Exportalibrary('scioutput_stream', WSCI+'\bin')];
+	  bOK = [bOK , Exportalibrary('MALLOC', WSCI+'\bin')];
+	  bOK = [bOK , Exportalibrary('libintl', WSCI+'\bin')];
+		
 		chdir(DirCur);
+		
+		if and(bOK == %T) then
+		  bOK = %t;
+		end
+		
+	else
+	  bOK = %f;
 	end
-
+  
 endfunction
 //==========================================
-function bOK = Exportalibrary(libraryname)
-  printf('\nExports from '+libraryname+'.dll\n');
-	unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+filesep()+libraryname+'.lcc');
-	printf('Converting Library');
+function  bOK = ExportAtlasLibrary(libraryname, pathlib)
+
+  destPath = SCIHOME + filesep() + 'lcclib';
+  mkdir(destPath);
+  if chdir(pathlib) == %f then 
+    bOK = %f;
+    return
+  end
+  
+  mprintf('\nExports from '+libraryname+'.dll\n');
+  ierr = unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+filesep()+libraryname+'.lcc');
+  if ierr <> 0 then
+	  bOK=%F;	
+	  return;
+	end
+	
+	mprintf('Converting Library');
 	
 	fw = mopen(TMPDIR+filesep()+libraryname+'.exp',"wt");
 	fr = mopen(TMPDIR+filesep()+libraryname+'.lcc',"rt");
 	
-	if (meof(fr) == 0) then 
-		line = mfscanf(1,fr,"%s");
-		mfprintf(fw,"%s\n",line);
-		printf('.');
-	end
-
-	while ( meof(fr) == 0)
-		line = mfscanf(1,fr,"%s");
-		if (line ~= []) then
-			mfprintf(fw,"_%s\n",line);
-		end
-	end
-
-	mclose(fw);
-	mclose(fr);
-	printf('\n');
-	printf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
-	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+WSCI+'\bin\lcclib\'+libraryname+'.lib""';
-	unix(command);
-	bOK=%T;
-endfunction
-//==========================================
-function ExportAtlasLibrary()
-	
-	printf('\n');
-	printf(gettext('Exports from blasplus.dll\n'));
-	unix('pedump /exp blasplus.dll >'+TMPDIR+'\blasplus.lcc');
-	printf(gettext('Converting Library'));
-	
-	fw = mopen(TMPDIR+'\blaspluslcc.exp',"wt");
-	fr = mopen(TMPDIR+'\blasplus.lcc',"rt");
-
 	if (meof(fr) == 0) then 
 		line = mfscanf(1,fr,"%s");
 		mfprintf(fw,"blasplus.dll\n");
@@ -88,11 +78,76 @@ function ExportAtlasLibrary()
 			i=i+1;
 			end
 	end
-
+		
 	mclose(fw);
 	mclose(fr);
-	printf('\n');
-	printf(gettext('Build %s.lib (Please waiting).\n'),'Atlas');
-	unix('buildLib ""'+TMPDIR+'\Atlaslcc.exp""'+' ""'+WSCI+'\bin\lcclib\'+'blasplus.lib""');
+	
+	mprintf('\n');
+	mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	ierr = unix(command);
+	if ierr <> 0 then
+	  bOK=%F;	
+	  return;
+	end
+	
+	if fileinfo(destPath+filesep()+libraryname+'.lib') <> [] then
+	  bOK=%T;
+	else
+	  bOK=%F;	
+	end
+endfunction
+//==========================================
+function bOK = Exportalibrary(libraryname, pathlib)
+  destPath = SCIHOME + filesep() + 'lcclib';
+  mkdir(destPath);
+
+  if chdir(pathlib) == %f then 
+    bOK = %f;
+    return
+  end
+  
+  mprintf('\nExports from '+libraryname+'.dll\n');
+  ierr = unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+filesep()+libraryname+'.lcc');
+  if ierr <> 0 then
+	  bOK=%F;	
+	  return;
+	end
+	
+	mprintf('Converting Library');
+	
+	fw = mopen(TMPDIR+filesep()+libraryname+'.exp',"wt");
+	fr = mopen(TMPDIR+filesep()+libraryname+'.lcc',"rt");
+	
+	if (meof(fr) == 0) then 
+		line = mfscanf(1,fr,"%s");
+		mfprintf(fw,"%s\n",line);
+	end
+
+	while ( meof(fr) == 0)
+		line = mfscanf(1,fr,"%s");
+		if (line ~= []) then
+			mfprintf(fw,"_%s\n",line);
+		end
+	end
+	
+	mclose(fw);
+	mclose(fr);
+	
+	mprintf('\n');
+	mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	ierr = unix(command);
+	if ierr <> 0 then
+	  bOK=%F;	
+	  return;
+	end
+	
+	if fileinfo(destPath+filesep()+libraryname+'.lib') <> [] then
+	  bOK=%T;
+	else
+	  bOK=%F;	
+	end
+
 endfunction
 //==========================================
