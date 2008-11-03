@@ -1,0 +1,15 @@
+modelicac
+src/modelica_compiler/*.cmi
+src/modelica_compiler/*.cmo
+src/modelica_compiler/*.cmx
+src/modelica_compiler/*.ml
+src/modelica_compiler/*.mll
+src/modelica_compiler/.depend
+src/modelica_compiler/doc
+#
+#generated .def files (windows)
+#
+src/c/noscicos/noscicos.def
+src/c/scicos.def
+src/fortran/scicos_f.def
+src/scicos_sundials/scicos_sundials.def
