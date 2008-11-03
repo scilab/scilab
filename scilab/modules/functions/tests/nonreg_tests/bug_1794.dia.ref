@@ -11,28 +11,12 @@
 //
 // <-- Short Description -->
 //    Problem encountered when redefining builtin function
+funcprot(0);
 beta=5;
-Warning : redefining function: beta                    . Use funcprot(0) to avoid this message
-
-try
-	beta
- ans  =
- 
-    5.  
-catch
-	if %T then bugmes();quit;end
-end
+if execstr("beta","errcatch") <> 0  then bugmes();quit;end
 function y=foo()
   beta;
   y=beta+1
 endfunction
-try
-	foo()
-Warning : redefining function: beta                    . Use funcprot(0) to avoid this message
-
- ans  =
- 
-    6.  
-catch
-	if %T then bugmes();quit;end
-end
+if execstr("foo","errcatch") <> 0  then bugmes();quit;end
+funcprot(1);
