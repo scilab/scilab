@@ -439,7 +439,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	this_check_ref          = %T;
 	this_use_try_catch      = %T;
 	this_use_graphics       = %F;
-	
+	this_english_imposed    = '';
 	
 	// Some definitions
 	fullPath=SCI+"/modules/"+module+"/tests/"+test_type+"/"+test
@@ -518,6 +518,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		this_check_ref = %F;
 	end
 	
+	if grep(txt,"<-- ENGLISH IMPOSED -->") <> [] then
+		this_english_imposed = "-l en_US";
+	end
 	
 	// Do some modification in tst file
 	txt = strsubst(txt,'pause,end' ,'bugmes();quit;end');
@@ -591,9 +594,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	// Build the command to launch
 	if MSDOS then
-		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
