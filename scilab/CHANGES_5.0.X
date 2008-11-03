@@ -54,6 +54,8 @@ Bug fixes:
 
 * bug 3621 fixed - Wrong setting of figure_position in the default figure.
 
+* bug 3634 fixed - plot3d does not paint the surface defined by a polygon with 5 or more points.
+
 * bug 3646 fixed - Scilab GUI doesn't start on some Windows
 
 * bug 3647 fixed - 'call' doesn't manage external functions named with more 23 characters
