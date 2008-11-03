@@ -248,6 +248,7 @@ sub valid
 		}
 		
 		if( (!($_ =~ m/IDREF attribute linkend references an unknown ID/)) &&
+		   (!($_ =~ m/Did not expect element ulink there/)) &&
 		   (!($_ =~ m/element imagedata: Relax-NG validity error :/)) &&
 		   (!( $_ =~ /fails to validate/)) )
 		{
