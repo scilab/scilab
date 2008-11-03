@@ -232,15 +232,24 @@ public abstract class ScilabRubberBox extends RubberBox
 	 */
 	public void hierarchyChanged(HierarchyEvent event) {
 		// we should stop recording here
+		cancelDragging();
+	}
+	
+	/**
+	 * Cancel the recording and set an empty selection
+	 */
+	protected void cancelDragging() {
+		// specify that canvas has been closed
+		setUsedButton(CLOSE_ACTION_BUTTON);
+		setEmptySelection();
+
 		if (isDragging()) {
 			endDragging();
-		}
-		selectedCanvas.removeMouseListener(this);
-		selectedCanvas.removeHierarchyListener(this);
-		/* specify that canvas has been closed*/
-		setUsedButton(CLOSE_ACTION_BUTTON);
-		synchronized (lock) {
-			lock.notifyAll();
+		} else {
+			// wake up calling thread
+			synchronized (lock) {
+				lock.notifyAll();
+			}
 		}
 	}
 

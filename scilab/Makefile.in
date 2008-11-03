@@ -392,6 +392,10 @@ $(top_srcdir)/etc/toolboxes.xml
 
 infofilesdir = $(pkgdatadir)/
 infofiles_DATA = $(top_srcdir)/CHANGES \
+$(top_srcdir)/CHANGES_2.X \
+$(top_srcdir)/CHANGES_3.X \
+$(top_srcdir)/CHANGES_4.X \
+$(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \

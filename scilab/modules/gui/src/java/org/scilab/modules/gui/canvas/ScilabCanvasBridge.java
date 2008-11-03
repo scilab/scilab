@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -117,7 +117,7 @@ public class ScilabCanvasBridge {
 	public static void display(Canvas canvas) {
 		canvas.getAsSimpleCanvas().display();
 	}
-	
+
 	/**
 	 * @param canvas the canvas we want to get the GL object from
 	 * @return GL pipeline of the object
@@ -125,7 +125,7 @@ public class ScilabCanvasBridge {
 	public static GL getGL(Canvas canvas) {
 		return canvas.getAsSimpleCanvas().getGL();
 	}
-	
+
 	/**
 	 * @param canvas the canvas of which we want to set the swap buffer mode.
 	 * @param onOrOff set wether the swap buffer mode is on or off.
@@ -133,7 +133,7 @@ public class ScilabCanvasBridge {
 	public static void setAutoSwapBufferMode(Canvas canvas, boolean onOrOff) {
 		canvas.getAsSimpleCanvas().setAutoSwapBufferMode(onOrOff);
 	}
-	
+
 	/**
 	 * @param canvas the canvas from which we want to retrieve the swap buffer mode.
 	 * @return set wether the swap buffer mode is on or off.
@@ -141,29 +141,29 @@ public class ScilabCanvasBridge {
 	public static boolean getAutoSwapBufferMode(Canvas canvas) {
 		return canvas.getAsSimpleCanvas().getAutoSwapBufferMode();
 	}
-	
+
 	/**
 	 * @param canvas the canvas we want to repaint
 	 */
 	public static void repaint(Canvas canvas) {
 		canvas.getAsSimpleCanvas().repaint();
 	}
-	
+
 	/**
 	 * Set the background of the Canvas.
 	 * @param canvas the canvas we want to modify
 	 * @param red red channel
-	 * @param green green channel 
+	 * @param green green channel
 	 * @param blue blue channel
 	 */
 	public static void setBackgroundColor(Canvas canvas, double red, double green, double blue) {
 		canvas.getAsSimpleCanvas().setBackgroundColor(red, green, blue);
 	}
-	
+
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
 	 * @param canvas canvas on which the rubber box will be applied
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
@@ -173,27 +173,9 @@ public class ScilabCanvasBridge {
 	public static int rubberBox(Canvas canvas, boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
 		return canvas.getAsSimpleCanvas().rubberBox(isClick, isZoom, initialRect, endRect);
 	}
-	
+
 	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param canvas canvas on which the displacement is recorded
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
-	 */
-	public static boolean getRotationDisplacement(Canvas canvas, int[] displacement) {
-		return canvas.getAsSimpleCanvas().getRotationDisplacement(displacement);
-	}
-	
-	/**
-	 * Ansynchrnous stop of rotation tracking.
-	 * @param canvas canvas on which the displacement is be recorded
-	 */
-	public static void stopRotationRecording(Canvas canvas) {
-		canvas.getAsSimpleCanvas().stopRotationRecording();
-	}
-	
-	/**
-	  * Disable the canvas befor closing
+	  * Disable the canvas before closing
 	  * @param canvas canvas to close
 	  */
 	public static void close(Canvas canvas) {

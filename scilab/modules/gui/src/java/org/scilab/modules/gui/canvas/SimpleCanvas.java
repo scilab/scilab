@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -66,41 +66,41 @@ public interface SimpleCanvas {
 	 * Draws an Canvas
 	 */
 	void draw();
-	
+
 	/**
 	 * Force the canvas to render itself immediately.
 	 */
 	void display();
-	 
+
 	/**
 	 * Get the GL pipeline used by the canvas
 	 * @return GL pipeline
 	 */
 	GL getGL();
-	 
+
 	/**
 	 * @param onOrOff set wether the swap buffer mode is on or off.
 	 */
 	void setAutoSwapBufferMode(boolean onOrOff);
-	
+
 	/**
 	 * @return set wether the swap buffer mode is on or off.
 	 */
 	boolean getAutoSwapBufferMode();
-	 
+
 	/**
 	 * Force the canvas to render itself with synchronisation with its OpenGL process.
 	 */
 	void repaint();
-	
+
 	/**
 	 * Set the background of the Canvas.
 	 * @param red red channel
-	 * @param green green channel 
+	 * @param green green channel
 	 * @param blue blue channel
 	 */
 	void setBackgroundColor(double red, double green, double blue);
-	 
+
 	 /**
 	  * Create an interactive selection rectangle and return its pixel coordinates
 	  * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
@@ -111,21 +111,9 @@ public interface SimpleCanvas {
 	  * @return Scilab code of the pressed button
 	  */
 	 int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect);
-	 
-	 /**
-	  * Get the displacement in pixel that should be used for rotating axes
-	  * @param displacement out parameter, [x,y] array of displacement in pixels
-	  * @return true if the diplacement recording continue, false otherwise
-	  */
-	 boolean getRotationDisplacement(int[] displacement);
 
 	 /**
-	  * Ansynchrnous stop of rotation tracking.
-	  */
-	 void stopRotationRecording();
-	 
-	 /**
-	  * Disable the canvas befor closing
+	  * Disable the canvas before closing
 	  */
 	void close();
 

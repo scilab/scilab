@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -45,6 +45,8 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
@@ -106,16 +108,16 @@ import org.scilab.modules.renderer.FigureMapper;
  * @author Vincent COUVERT
  */
 public class CallScilabBridge {
-	
+
 	private static final int NB_COLORS = 3;
-	
+
 	private static final int POSITION_SIZE = 4;
-	
+
 	private static final int X_INDEX = 0;
 	private static final int Y_INDEX = 1;
 	private static final int WIDTH_INDEX = 2;
 	private static final int HEIGHT_INDEX = 3;
-	
+
 	private static final String NORMALFONT = "normal";
 	private static final String OBLIQUEFONT = "oblique";
 	private static final String ITALICFONT = "italic";
@@ -126,32 +128,32 @@ public class CallScilabBridge {
 	private static final double DEFAULT_RED_BACKGROUND = 0.8 * 255;
 	private static final double DEFAULT_GREEN_BACKGROUND = 0.8 * 255;
 	private static final double DEFAULT_BLUE_BACKGROUND = 0.8 * 255;
-	
+
 	private static final double BUTTON_RED_BACKGROUND = 0.6 * 255;
 	private static final double BUTTON_GREEN_BACKGROUND = 0.6 * 255;
 	private static final double BUTTON_BLUE_BACKGROUND = 0.6 * 255;
-	
+
 	private static final double DEFAULT_RED_FOREGROUND = 0;
 	private static final double DEFAULT_GREEN_FOREGROUND = 0;
 	private static final double DEFAULT_BLUE_FOREGROUND = 0;
 
-	
+
 	private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
 	private static String tmpPrinterFile = System.getenv("TMPDIR") + "scilabfigure";
-	
+
 	/**
 	 * Constructor
 	 */
 	protected CallScilabBridge() {
 		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
 	}
-	
+
 	/******************/
-	/*                */  
+	/*                */
 	/* CONSOLE BRIDGE */
-	/*                */  
+	/*                */
 	/******************/
-	
+
 	/**
 	 * Read a line from the Console
 	 * @return the line read
@@ -159,7 +161,7 @@ public class CallScilabBridge {
 	public static String readLine() {
 		return ScilabConsole.getConsole().readLine();
 	}
-	
+
 	/**
 	 * Display a line in the Console
 	 * @param dataToDisplay the line to display
@@ -167,7 +169,7 @@ public class CallScilabBridge {
 	public static void display(String dataToDisplay) {
 		ScilabConsole.getConsole().display(dataToDisplay);
 	}
-	
+
 	/**
 	 * Get the status of the Console
 	 * @return true if the console is at the prompt
@@ -182,14 +184,14 @@ public class CallScilabBridge {
 	public static void scilabLinesUpdate() {
 		ScilabConsole.getConsole().scilabLinesUpdate();
 	}
-	
+
 	/**
 	 * Clear the Console
 	 */
 	public static void clear() {
 		ScilabConsole.getConsole().clear();
 	}
-	
+
 	/**
 	 * Clear some lines in the Console
 	 * @param nbLines the number of lines to clear
@@ -197,7 +199,7 @@ public class CallScilabBridge {
 	public static void clear(int nbLines) {
 		ScilabConsole.getConsole().clear(nbLines);
 	}
-	
+
 	/**
 	 * Get a char to know if the user wants more data to be displayed
 	 * @return the user answer
@@ -205,14 +207,14 @@ public class CallScilabBridge {
 	public static int getCharWithoutOutput() {
 		return ScilabConsole.getConsole().getAsSimpleConsole().getCharWithoutOutput();
 	}
-	
+
 	/**
 	 * Put the prompt on the top left corner
 	 */
 	public static void toHome() {
 		ScilabConsole.getConsole().toHome();
 	}
-	
+
 	/**
 	 * Set the contents of the prompt
 	 * @param prompt the content to set (default is -->)
@@ -220,9 +222,9 @@ public class CallScilabBridge {
 	public static void setPrompt(String prompt) {
 		ScilabConsole.getConsole().setPrompt(prompt);
 	}
-	
+
 	/**
-	 * Clear the commands history 
+	 * Clear the commands history
 	 */
 	public static void clearHistory() {
 		ScilabConsole.getConsole().clearHistory();
@@ -233,7 +235,7 @@ public class CallScilabBridge {
 	/* OBJECT CREATION BRIDGE */
 	/*                        */
 	/**************************/
-	
+
 	/**
 	 * Create a new Window in Scilab GUIs
 	 * @return the ID of the window in the UIElementMapper
@@ -260,7 +262,7 @@ public class CallScilabBridge {
 		MenuItem menuItem = ScilabMenuItem.createMenuItem();
 		return UIElementMapper.add(menuItem);
 	}
-	
+
 	/**
 	 * Create a new ContextMenu in Scilab GUIs
 	 * @return the ID of the ContextMenu in the UIElementMapper
@@ -269,7 +271,7 @@ public class CallScilabBridge {
 		ContextMenu contextMenu = ScilabContextMenu.createContextMenu();
 		return UIElementMapper.add(contextMenu);
 	}
-	
+
 	/**
 	 * Create a new Color Chooser in Scilab GUIs
 	 * @return the ID of the Color Chooser in the UIElementMapper
@@ -286,17 +288,17 @@ public class CallScilabBridge {
 		FileChooser fileChooser = ScilabFileChooser.createFileChooser();
 		return UIElementMapper.add(fileChooser);
 	}
-		
+
 	/**
 	 * Create a new Graphic Export File Chooser in Scilab GUIs
 	 * @param figureId id of the figure to export
 	 * @return the ID of the File Chooser in the UIElementMapper
-	 */	
+	 */
 	public static int newExportFileChooser(int figureId) {
 		FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
 		return UIElementMapper.add(fileChooser);
 	}
-	
+
 	/**
 	 * Create a new Font Chooser in Scilab GUIs
 	 * @return the ID of the Font Chooser in the UIElementMapper
@@ -305,7 +307,7 @@ public class CallScilabBridge {
 		FontChooser fontChooser = ScilabFontChooser.createFontChooser();
 		return UIElementMapper.add(fontChooser);
 	}
-	
+
 	/**
 	 * Create a new MessageBox in Scilab GUIs
 	 * @return the ID of the MessageBox in the UIElementMapper
@@ -314,7 +316,7 @@ public class CallScilabBridge {
 		MessageBox messageBox = ScilabMessageBox.createMessageBox();
 		return UIElementMapper.add(messageBox);
 	}
-	
+
 	/**
 	 * Create a new WaitBar in Scilab GUIs
 	 * @return the ID of the WaitBar in the UIElementMapper
@@ -323,7 +325,7 @@ public class CallScilabBridge {
 		WaitBar waitBar = ScilabWaitBar.createWaitBar();
 		return UIElementMapper.add(waitBar);
 	}
-	
+
 	/**
 	 * Create a new PushButton in Scilab GUIs
 	 * @return the ID of the PushButton in the UIElementMapper
@@ -331,14 +333,14 @@ public class CallScilabBridge {
 	public static int newPushButton() {
 		PushButton pushButton = ScilabPushButton.createPushButton();
 		int id = UIElementMapper.add(pushButton);
-		
+
 		/* Default font */
 		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		
+
 		setWidgetRelief(id, ScilabRelief.RAISED);
-		
+
 		/* Default colors */
 		setWidgetBackgroundColor(id, (int) BUTTON_RED_BACKGROUND, (int) BUTTON_GREEN_BACKGROUND, (int) BUTTON_BLUE_BACKGROUND);
 		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
@@ -352,14 +354,14 @@ public class CallScilabBridge {
 	public static int newEditBox() {
 		EditBox editBox = ScilabEditBox.createEditBox();
 		int id = UIElementMapper.add(editBox);
-		
+
 		/* Default font */
 		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		
+
 		setWidgetRelief(id, ScilabRelief.SUNKEN);
-		
+
 		/* Default colors */
 		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
 		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
@@ -373,14 +375,14 @@ public class CallScilabBridge {
 	public static int newLabel() {
 		Label label = ScilabLabel.createLabel();
 		int id = UIElementMapper.add(label);
-		
+
 		/* Default font */
 		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		
+
 		setWidgetRelief(id, ScilabRelief.FLAT);
-		
+
 		/* Default colors */
 		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
 		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
@@ -394,14 +396,14 @@ public class CallScilabBridge {
 	public static int newCheckBox() {
 		CheckBox checkBox = ScilabCheckBox.createCheckBox();
 		int id = UIElementMapper.add(checkBox);
-		
+
 		/* Default font */
 		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 
 		setWidgetRelief(id, ScilabRelief.FLAT);
-		
+
 		/* Default colors */
 		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
 		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
@@ -422,7 +424,7 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 
 		setWidgetRelief(id, ScilabRelief.FLAT);
-		
+
 		/* Default colors */
 		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
 		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
@@ -443,18 +445,18 @@ public class CallScilabBridge {
 		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		
+
 		setWidgetRelief(id, ScilabRelief.FLAT);
-		
+
 		/* Default colors */
 		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
 		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
-		
+
 		slider.setText(""); /* Because Name property is null at creation */
 		slider.setMinimumValue(0);
 		slider.setMaximumValue(1);
 		slider.setUserValue(0);
-		
+
 		return id;
 	}
 
@@ -470,7 +472,7 @@ public class CallScilabBridge {
 		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		
+
 		setWidgetRelief(id, ScilabRelief.FLAT);
 
 		/* Default colors */
@@ -491,9 +493,9 @@ public class CallScilabBridge {
 		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		
+
 		setWidgetRelief(id, ScilabRelief.FLAT);
-		
+
 		/* Default colors */
 		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
 		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
@@ -512,17 +514,17 @@ public class CallScilabBridge {
 		setFrameFontName(id, DEFAULTFONTNAME);
 		setFrameFontWeight(id, NORMALFONT);
 		setFrameFontSize(id, DEFAULTFONTSIZE);
-		
+
 		setFrameRelief(id, ScilabRelief.RIDGE);
-		
+
 		/* Default colors */
 		setFrameBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
 		setFrameForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
-		
+
 		frame.setText(""); /* Because Name property is null at creation */
 		return id;
 	}
-	
+
 	/**
 	 * Create a new ContextMenu in Scilab GUIs
 	 * and wait for a user answer
@@ -550,7 +552,7 @@ public class CallScilabBridge {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).destroy();
 		UIElementMapper.removeMapping(id);
 	}
-	
+
 	/**
 	 * Create a new window with id figureIndex.
 	 * The created window contains an empty tab.
@@ -566,7 +568,7 @@ public class CallScilabBridge {
 	/* OBJECT DIMENSIONS BRIDGE */
 	/*                          */
 	/****************************/
-	
+
 	/**
 	 * Set the dimensions of an object in Scilab GUIs
 	 * @param objID the ID of the object in the UIElementMapper
@@ -576,13 +578,13 @@ public class CallScilabBridge {
 	public static void setDims(int objID, int width, int height) {
 		UIElementMapper.getCorrespondingUIElement(objID).setDims(new Size(width, height));
 	}
-	
+
 	/**********************/
 	/*                    */
 	/* OBJECT TEXT BRIDGE */
 	/*                    */
 	/**********************/
-	
+
 	/**
 	 * Set the text of a widget in Scilab GUIs
 	 * @param objID the ID of the Widget in the UIElementMapper
@@ -591,7 +593,7 @@ public class CallScilabBridge {
 	public static void setWidgetText(int objID, String text) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
 	}
-	
+
 	/**
 	 * Get the text of a widget in Scilab GUIs
 	 * @param objID the ID of the Widget in the UIElementMapper
@@ -609,7 +611,7 @@ public class CallScilabBridge {
 	public static void setFrameText(int objID, String text) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
 	}
-	
+
 	/**
 	 * Get the text of a Frame in Scilab GUIs
 	 * @param objID the ID of the Frame in the UIElementMapper
@@ -639,23 +641,23 @@ public class CallScilabBridge {
 		} else {
 			// obj is a MenuItem that has to be converted to a Menu
 			MenuItem menuItem = (MenuItem) UIElementMapper.getCorrespondingUIElement(objID);
-			
+
 			Menu menuToAdd = ScilabMenu.createMenu();
 			UIElementMapper.removeMapping(objID);
 			UIElementMapper.addMapping(objID, menuToAdd);
-			
+
 			// Copy all properties from MenuItem to Menu
 			menuToAdd.setText(menuItem.getText());
 			menuToAdd.setCallback(menuItem.getCallback());
 			menuToAdd.setForeground(menuItem.getForeground());
 			menuToAdd.setVisible(menuItem.isVisible());
 			// End of properties copy
-			
+
 			// Add the menu to the tab
 			parentTab.getMenuBar().add(menuToAdd);
 		}
 	}
-	
+
 	/**
 	 * Set a figure as parent for a PushButton
 	 * @param figureID the ID of the figure in the FigureMapper
@@ -865,7 +867,7 @@ public class CallScilabBridge {
 		} else {
 			// obj is a MenuItem that has top be converted to a Menu
 			MenuItem menuItem = (MenuItem) UIElementMapper.getCorrespondingUIElement(objID);
-			
+
 			Menu menuToAdd = ScilabMenu.createMenu();
 			UIElementMapper.removeMapping(objID);
 			UIElementMapper.addMapping(objID, menuToAdd);
@@ -879,7 +881,7 @@ public class CallScilabBridge {
 			ScilabConsole.getConsole().getMenuBar().add(menuToAdd);
 		}
 	}
-	
+
 	/**
 	 * Set an other menu as the parent of the menu
 	 * @param menuID the id of the parent menu
@@ -889,37 +891,37 @@ public class CallScilabBridge {
 
 		if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof Menu) {
 			Menu parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
-			
+
 			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
 				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
-				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));				
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
 			}
 		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof MenuItem) {
 			MenuItem parentMenu = (MenuItem) UIElementMapper.getCorrespondingUIElement(menuID);
-			
+
 			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
 				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
-				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));				
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
 			}
 		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof ContextMenu) {
 			ContextMenu parentMenu = (ContextMenu) UIElementMapper.getCorrespondingUIElement(menuID);
-			
+
 			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
 				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
-				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));				
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
 			}
 		}
 	}
-	
+
 	/*******************/
 	/*                 */
 	/* OBJECT CALLBACK */
 	/*                 */
 	/*******************/
-	
+
 	/**
 	 * Set a callback for a Widget
 	 * @param objID the ID of the object in the UIElementMapper
@@ -930,7 +932,7 @@ public class CallScilabBridge {
 		((Widget) UIElementMapper.getCorrespondingUIElement(objID))
 								.setCallback(CallBack.createCallback(callbackString, callbackType, objID));
 	}
-	
+
 	/**
 	 * Set a callback for a Frame
 	 * @param objID the ID of the object in the UIElementMapper
@@ -940,7 +942,7 @@ public class CallScilabBridge {
 	public static void setFrameCallback(int objID, String callbackString, int callbackType) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CallBack.createCallback(callbackString, callbackType, objID));
 	}
-	
+
 	/************************/
 	/*                      */
 	/* ENABLE/DISABLE MENUS */
@@ -957,9 +959,9 @@ public class CallScilabBridge {
 		if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
 			Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
 					getRendererProperties()).getParentTab();
-		
+
 			MenuBar figureMenuBar = parentTab.getMenuBar();
-		
+
 			figureMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
 		}
 	}
@@ -975,9 +977,9 @@ public class CallScilabBridge {
 		if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
 			Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
 					getRendererProperties()).getParentTab();
-		
+
 			MenuBar figureMenuBar = parentTab.getMenuBar();
-		
+
 			figureMenuBar.getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
 		}
 	}
@@ -992,7 +994,7 @@ public class CallScilabBridge {
 			ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
 		}
 	}
-	
+
 	/**
 	 * Disable a MenuItem of a Scilab root window giving its parent name and position
 	 * @param parentMenuName the name of the parent menu
@@ -1004,7 +1006,7 @@ public class CallScilabBridge {
 			ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
 		}
 	}
-	
+
 	/****************/
 	/*              */
 	/* REMOVE MENUS */
@@ -1020,9 +1022,9 @@ public class CallScilabBridge {
 		if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
 			Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
 					getRendererProperties()).getParentTab();
-		
+
 			MenuBar figureMenuBar = parentTab.getMenuBar();
-		
+
 			figureMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
 		}
 	}
@@ -1036,22 +1038,22 @@ public class CallScilabBridge {
 			ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
 		}
 	}
-	
+
 	/***********************/
 	/*                     */
 	/* FILE CHOOSER BRIDGE */
 	/*                     */
 	/***********************/
-	
+
 	/**
-	 * Set the file chooser title 
+	 * Set the file chooser title
 	 * @param id the id of the fileChooser
 	 * @param title the title of the fileChooser
 	 */
 	public static void setFileChooserTitle(int id, String title) {
 		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setTitle(title);
 	}
-	
+
 	/**
 	 * Set the initial directory used for file search
 	 * @param id the id of the fileChooser
@@ -1071,13 +1073,13 @@ public class CallScilabBridge {
 	}
 
 	/**
-	 * Display this chooser and wait for user selection 
+	 * Display this chooser and wait for user selection
 	 * @param id the id of the fileChooser
 	 */
 	public static void fileChooserDisplayAndWait(int id) {
 		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
-	
+
 	/**
 	 * Get the number of files selected
 	 * @param id the id of the fileChooser
@@ -1086,7 +1088,7 @@ public class CallScilabBridge {
 	public static int getFileChooserSelectionSize(int id) {
 		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectionSize();
 	}
-	
+
 	/**
 	 * Get the names of selected files
 	 * @param id the id of the fileChooser
@@ -1095,7 +1097,7 @@ public class CallScilabBridge {
 	public static String[] getFileChooserSelection(int id) {
 		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelection();
 	}
-	
+
 	/**
 	 * Set the flag indicating that we want only select directories
 	 * @param id the id of the fileChooser
@@ -1111,25 +1113,25 @@ public class CallScilabBridge {
 	public static void setFileChooserFileSelectionOnly(int id) {
 		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setFileSelectionOnly();
 	}
-	
-	
+
+
 	/**********************/
 	/*                    */
 	/* MESSAGE BOX BRIDGE */
 	/*                    */
 	/**********************/
-	
+
 	/**
-	 * Set the MessageBox title 
+	 * Set the MessageBox title
 	 * @param id the id of the messageBox
 	 * @param title the title of the messageBox
 	 */
 	public static void setMessageBoxTitle(int id, String title) {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setTitle(title);
 	}
-	
+
 	/**
-	 * Set the MessageBox message 
+	 * Set the MessageBox message
 	 * @param id the id of the messageBox
 	 * @param message the message of the messageBox
 	 */
@@ -1147,13 +1149,13 @@ public class CallScilabBridge {
 	}
 
 	/**
-	 * Display this chooser and wait for user selection 
+	 * Display this chooser and wait for user selection
 	 * @param id the id of the messageBox
 	 */
 	public static void messageBoxDisplayAndWait(int id) {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
-	
+
 	/**
 	 * Get the index of the selected button
 	 * @param id the id of the messageBox
@@ -1165,7 +1167,7 @@ public class CallScilabBridge {
 
 	/**
 	 * Set the indices of the default selected buttons (x_choices)
-	 * @param id the id of the MessageBox  
+	 * @param id the id of the MessageBox
 	 * @param indices the indices of the default selected buttons
 	 */
 	public static void setMessageBoxDefaultSelectedButtons(int id, int[] indices) {
@@ -1174,7 +1176,7 @@ public class CallScilabBridge {
 
 	/**
 	 * Get the indices of the user selected buttons (x_choices)
-	 * @param id the id of the MessageBox  
+	 * @param id the id of the MessageBox
 	 * @return the indices of the user selected buttons
 	 */
 	public static int[] getMessageBoxUserSelectedButtons(int id) {
@@ -1207,7 +1209,7 @@ public class CallScilabBridge {
 	public static String[] getMessageBoxValue(int id) {
 		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getValue();
 	}
-	
+
 	/**
 	 * Get the size of the value of the editable zone in the MessageBox
 	 * @param id the id of the MessageBox
@@ -1234,7 +1236,7 @@ public class CallScilabBridge {
 	public static int getMessageBoxSelectedItem(int id) {
 		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectedItem();
 	}
-	
+
 	/**
 	 * Set the name of the lines labels in the editable zone in the MessageBox
 	 * @param id the id of the MessageBox
@@ -1243,7 +1245,7 @@ public class CallScilabBridge {
 	public static void setMessageBoxLineLabels(int id, String[] labels) {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setLineLabels(labels);
 	}
-	
+
 	/**
 	 * Set the name of the columns labels in the editable zone in the MessageBox
 	 * @param id the id of the MessageBox
@@ -1252,7 +1254,7 @@ public class CallScilabBridge {
 	public static void setMessageBoxColumnLabels(int id, String[] labels) {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setColumnLabels(labels);
 	}
-	
+
 	/**
 	 * Set the default values of a multi-value editable zone in the MessageBox
 	 * @param id the id of the MessageBox
@@ -1270,7 +1272,7 @@ public class CallScilabBridge {
 	public static void setMessageBoxModal(int id, boolean status) {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setModal(status);
 	}
-	
+
 	/**
 	 * Set the MessageBox icon
 	 * @param id the id of the MessageBox
@@ -1279,13 +1281,13 @@ public class CallScilabBridge {
 	public static void setMessageBoxIcon(int id, String name) {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setIcon(name);
 	}
-	
+
 	/************************/
 	/*                      */
 	/* OBJECT COLORS BRIDGE */
 	/*                      */
 	/************************/
-	
+
 	/**
 	 * Set the background color of a Widget
 	 * @param id the id of the Widget
@@ -1296,9 +1298,9 @@ public class CallScilabBridge {
 	public static void setWidgetBackgroundColor(int id, int red, int green, int blue) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
 	}
-	
+
 	/**
-	 * Get the background color of a widget 
+	 * Get the background color of a widget
 	 * @param id the id of the widget
 	 * @return the color [R, G, B]
 	 */
@@ -1310,7 +1312,7 @@ public class CallScilabBridge {
 		color[2] = tmpColor.getBlue();
 		return color;
 	}
-	
+
 	/**
 	 * Set the foreground color of a Widget
 	 * @param id the id of the Widget
@@ -1321,9 +1323,9 @@ public class CallScilabBridge {
 	public static void setWidgetForegroundColor(int id, int red, int green, int blue) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
 	}
-	
+
 	/**
-	 * Get the foreground color of a Widget 
+	 * Get the foreground color of a Widget
 	 * @param id the id of the Widget
 	 * @return the color [R, G, B]
 	 */
@@ -1346,9 +1348,9 @@ public class CallScilabBridge {
 	public static void setFrameBackgroundColor(int id, int red, int green, int blue) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
 	}
-	
+
 	/**
-	 * Get the background color of a Frame 
+	 * Get the background color of a Frame
 	 * @param id the id of the Frame
 	 * @return the color [R, G, B]
 	 */
@@ -1360,7 +1362,7 @@ public class CallScilabBridge {
 		color[2] = tmpColor.getBlue();
 		return color;
 	}
-	
+
 	/**
 	 * Set the foreground color of a Frame
 	 * @param id the id of the Frame
@@ -1371,9 +1373,9 @@ public class CallScilabBridge {
 	public static void setFrameForegroundColor(int id, int red, int green, int blue) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
 	}
-	
+
 	/**
-	 * Get the foreground color of a Frame 
+	 * Get the foreground color of a Frame
 	 * @param id the id of the Frame
 	 * @return the color [R, G, B]
 	 */
@@ -1436,7 +1438,7 @@ public class CallScilabBridge {
 
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
 	}
-	
+
 	/**
 	 * Set the angle of a Widget font
 	 * @param id the id of the Widget
@@ -1461,7 +1463,7 @@ public class CallScilabBridge {
 
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
 	}
-	
+
 	/**
 	 * Set the size of a Widget font
 	 * @param id the id of the Widget
@@ -1506,7 +1508,7 @@ public class CallScilabBridge {
 
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
 	}
-	
+
 	/**
 	 * Set the angle of a Frame font
 	 * @param id the id of the Frame
@@ -1531,7 +1533,7 @@ public class CallScilabBridge {
 
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
 	}
-	
+
 	/**
 	 * Set the size of a Frame font
 	 * @param id the id of the Frame
@@ -1577,9 +1579,9 @@ public class CallScilabBridge {
 	/* OBJECT POSITION BRIDGE */
 	/*                        */
 	/**************************/
-	
+
 	/**
-	 * Set the position (in Scilab terms) of a Widget 
+	 * Set the position (in Scilab terms) of a Widget
 	 * @param id the id of the Widget
 	 * @param x the X-coordinate for the Widget
 	 * @param y the Y-coordinate for the Widget
@@ -1591,25 +1593,25 @@ public class CallScilabBridge {
 		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
 		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
 	}
-	
+
 	/**
-	 * Get the position (in Scilab terms) of a widget 
+	 * Get the position (in Scilab terms) of a widget
 	 * @param id the id of the widget
 	 * @return the position (X-coordinate, Y-coordinate, width, height) of the button
 	 */
 	public static int[] getWidgetPosition(int id) {
 		int[] position = new int[POSITION_SIZE];
-		
+
 		position[X_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getX();
 		position[Y_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getY();
 		position[WIDTH_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getDims().getWidth();
 		position[HEIGHT_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getDims().getHeight();
-		
+
 		return position;
 	}
-	
+
 	/**
-	 * Set the position (in Scilab terms) of a Frame 
+	 * Set the position (in Scilab terms) of a Frame
 	 * @param id the id of the Frame
 	 * @param x the X-coordinate for the Frame
 	 * @param y the Y-coordinate for the Frame
@@ -1621,23 +1623,23 @@ public class CallScilabBridge {
 		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
 		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
 	}
-	
+
 	/**
-	 * Get the position (in Scilab terms) of a Frame 
+	 * Get the position (in Scilab terms) of a Frame
 	 * @param id the id of the Frame
 	 * @return the position (X-coordinate, Y-coordinate, width, height) of the button
 	 */
 	public static int[] getFramePosition(int id) {
 		int[] position = new int[POSITION_SIZE];
-		
+
 		position[X_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getX();
 		position[Y_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getY();
 		position[WIDTH_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getDims().getWidth();
 		position[HEIGHT_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getDims().getHeight();
-		
+
 		return position;
 	}
-	
+
 	/***************************/
 	/*                         */
 	/* OBJECT ALIGNMENT BRIDGE */
@@ -1661,7 +1663,7 @@ public class CallScilabBridge {
 	public static void setWidgetVerticalAlignment(int id, String alignment) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setVerticalAlignment(alignment);
 	}
-	
+
 	/**********************/
 	/*                    */
 	/* SLIDER STEP BRIDGE */
@@ -1685,7 +1687,7 @@ public class CallScilabBridge {
 	public static void setSliderMajorTickSpacing(int id, int space) {
 		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMajorTickSpacing(space);
 	}
-	
+
 	/*************************/
 	/*                       */
 	/* SLIDER MIN/MAX BRIDGE */
@@ -1709,13 +1711,13 @@ public class CallScilabBridge {
 	public static void setSliderMaxValue(int id, int value) {
 		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMaximumValue(value);
 	}
-	
+
 	/*****************************/
 	/*                           */
 	/* SLIDER ORIENTATION BRIDGE */
 	/*                           */
 	/*****************************/
-	
+
 	/**
 	 * Set the slider orientation to vertical
 	 * @param id the id of the slider
@@ -1827,7 +1829,7 @@ public class CallScilabBridge {
 	public static void setListBoxSelectedIndices(int id, int[] indices) {
 		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setSelectedIndices(indices);
 	}
-	
+
 	/**
 	 * Get the selected indices of the ListBox
 	 * @param id the id of the ListBox
@@ -1854,7 +1856,7 @@ public class CallScilabBridge {
 	public static void setPopupMenuSelectedIndex(int id, int index) {
 		((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).setUserSelectedIndex(index);
 	}
-	
+
 	/**
 	 * Get the selected index of the PopupMenu
 	 * @param id the id of the PopupMenu
@@ -1872,14 +1874,14 @@ public class CallScilabBridge {
 	public static int getSliderValue(int id) {
 		return ((Slider) UIElementMapper.getCorrespondingUIElement(id)).getValue();
 	}
-	
+
 	/**
 	 * Sets the current value of the Slider
 	 * @param id the id of the Slider
 	 * @param value the new value
 	 */
 	public static void setSliderValue(int id, int value) {
-		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setUserValue(value);		
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setUserValue(value);
 	}
 
 	/**
@@ -1890,7 +1892,7 @@ public class CallScilabBridge {
 	public static void setRadioButtonChecked(int id, boolean status) {
 		((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
 	}
-	
+
 	/**
 	 * Get the status of the RadioButton
 	 * @param id the id of the RadioButton
@@ -1908,7 +1910,7 @@ public class CallScilabBridge {
 	public static void setCheckBoxChecked(int id, boolean status) {
 		((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
 	}
-	
+
 	/**
 	 * Get the status of the CheckBox
 	 * @param id the id of the CheckBox
@@ -1917,7 +1919,7 @@ public class CallScilabBridge {
 	public static boolean isCheckBoxChecked(int id) {
 		return ((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
 	}
-	
+
 	/*****************/
 	/*               */
 	/* RELIEF BRIDGE */
@@ -1941,13 +1943,13 @@ public class CallScilabBridge {
 	public static void setFrameRelief(int id, String reliefType) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setRelief(reliefType);
 	}
-	
+
 	/******************/
 	/*                */
 	/* TOOLBAR BRIDGE */
 	/*                */
 	/******************/
-	
+
 	/**
 	 * Set the visibility of a Toolbar
 	 * @param figNum the parentfigure
@@ -1975,13 +1977,13 @@ public class CallScilabBridge {
 					.getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().isVisible();
 		}
 	}
-	
+
 	/***********************/
 	/*                     */
 	/* EVENTHANDLER BRIDGE */
 	/*                     */
 	/***********************/
-	
+
 	/**
 	 * Set the event handler of the figure
 	 * @param figNum the figure
@@ -1990,7 +1992,7 @@ public class CallScilabBridge {
 	public static void setEventHandler(int figNum, String command) {
 		FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandler(command);
 	}
-	
+
 	/**
 	 * Set the status of the event handler of the figure
 	 * @param figNum the figure
@@ -1999,13 +2001,13 @@ public class CallScilabBridge {
 	public static void setEventHandlerEnabled(int figNum, boolean status) {
 		FigureMapper.getCorrespondingFigure(figNum).getRendererProperties().setEventHandlerEnabled(status);
 	}
-	
+
 	/******************/
 	/*                */
 	/* WAITBAR BRIDGE */
 	/*                */
 	/******************/
-	
+
 	/**
 	 * Set the WaitBar message (multi-line)
 	 * @param id the id of the waitBar
@@ -2031,7 +2033,7 @@ public class CallScilabBridge {
 	public static void destroyWaitBar(int id) {
 		((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).close();
 	}
-	
+
 	/**
 	 * Indicates if the total execution time is known
 	 * @param id the id of the WaitBar to destroy
@@ -2040,13 +2042,13 @@ public class CallScilabBridge {
 	public static void setWaitBarIndeterminateMode(int id, boolean status) {
 		((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setIndeterminateMode(status);
 	}
-	
+
 	/**********************/
 	/*                    */
 	/* HELPBROWSER BRIDGE */
 	/*                    */
 	/**********************/
-	
+
 	/**
 	 * Launch Scilab help browser if not already created
 	 * @param helps help chapters and directories
@@ -2055,7 +2057,7 @@ public class CallScilabBridge {
 	public static void launchHelpBrowser(String[] helps, String language) {
 		ScilabHelpBrowser.createHelpBrowser(helps, language);
 	}
-	
+
 	/**
 	 * Search a keyword in Scilab Help Browser
 	 * @param keyword the keyword to search
@@ -2077,54 +2079,54 @@ public class CallScilabBridge {
 	public static void closeHelpBrowser() {
 		ScilabHelpBrowser.getHelpBrowser().close();
 	}
-	
+
 	/************/
 	/*          */
 	/* WEBLINKS */
 	/*          */
 	/************/
-	
+
 	/**
 	 * Open a Browser on Scilab Web Site
 	 */
 	public static void openScilabWebSite() {
 		WebBrowser.openUrl("http://www.scilab.org/");
 	}
-	
+
 	/**
 	 * Open a Browser on Contributions Web Site
 	 */
 	public static void openContributionsWebSite() {
 		WebBrowser.openUrl("http://www.scilab.org/contrib/index_contrib.php?page=howto.html");
 	}
-	
+
 	/**
 	 * Open a Browser on Bugzilla Web Site
 	 */
 	public static void openBugzillaWebSite() {
 		WebBrowser.openUrl("http://bugzilla.scilab.org/index.cgi");
 	}
-	
+
 	/**
 	 * Open a Browser on Newsgroup Web Site
 	 */
 	public static void openNewsgroupWebSite() {
 		WebBrowser.openUrl("http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab");
 	}
-	
+
 	/***************************/
 	/*                         */
 	/* JAVA CALLBACKS FOR GUIS */
 	/*                         */
 	/***************************/
-	
+
 	/**
 	 * Select all the console contents
 	 */
 	public static void selectAllConsoleContents() {
 		ScilabConsole.getConsole().selectAll();
 	}
-	
+
 	/**
 	 * Put the console selected text in the clipboard
 	 */
@@ -2145,7 +2147,7 @@ public class CallScilabBridge {
 	public static void pasteClipboardIntoConsole() {
 		ScilabConsole.getConsole().pasteClipboard();
 	}
-	
+
 	/**
 	 * Make the clipboard contents empty
 	 */
@@ -2153,25 +2155,25 @@ public class CallScilabBridge {
 		Transferable contents = new StringSelection("");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
 	}
-	
+
 	/**
 	 * Opens a dialog to selected a new font for the console
 	 */
 	public static void changeConsoleFont() {
 		FontChooser fontChooser = ScilabFontChooser.createFontChooser(ScilabConsole.getConsole().getFont());
 		fontChooser.displayAndWait();
-		
+
 		Font selectedFont = fontChooser.getSelectedFont();
-		
+
 		if (selectedFont != null) {
 			/* Change console font */
 			ScilabConsole.getConsole().setFont(selectedFont);
-			
+
 			/* Save new settings */
 			ConfigManager.saveFont(selectedFont);
 		}
 	}
-	
+
 	/**
 	 * Save the main Window size and position
 	 */
@@ -2179,10 +2181,10 @@ public class CallScilabBridge {
 		SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
 		SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
 		Window mainWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-		
+
 		ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
 		ConfigManager.saveMainWindowSize(mainWindow.getDims());
-		
+
 	}
 
 	/**
@@ -2198,7 +2200,7 @@ public class CallScilabBridge {
 		if (selectedColor != null) {
 			/* Change console foreground */
 			ScilabConsole.getConsole().setForeground(selectedColor);
-			
+
 			/* Save new settings */
 			ConfigManager.saveConsoleForeground(selectedColor);
 		}
@@ -2211,18 +2213,18 @@ public class CallScilabBridge {
 		ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getBackground());
 		colorChooser.setTitle(Messages.gettext("Console Background..."));
 		colorChooser.displayAndWait();
-		
+
 		Color selectedColor = colorChooser.getSelectedColor();
 
 		if (selectedColor != null) {
 			/* Change console background */
 			ScilabConsole.getConsole().setBackground(selectedColor);
-			
+
 			/* Save new settings */
 			ConfigManager.saveConsoleBackground(selectedColor);
 		}
 	}
-	
+
 	/**
 	 * Display a dialog to print the console text contents
 	 */
@@ -2258,9 +2260,9 @@ public class CallScilabBridge {
 	 * @return execution status
 	 */
 	public static boolean printString(String theString, String pageHeader) {
-		
+
 		/* TODO use pageHeader */
-		
+
 		// Get the PrinterJob object
 		PrinterJob printerJob = PrinterJob.getPrinterJob();
 
@@ -2275,7 +2277,7 @@ public class CallScilabBridge {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Display a dialog to print a file
 	 * @param fileName the name of the file
@@ -2284,11 +2286,11 @@ public class CallScilabBridge {
 	public static boolean printFile(String fileName) {
 		// Get the PrinterJob object
 		PrinterJob printerJob = PrinterJob.getPrinterJob();
-		
+
 		try {
 			/** Read file */
-			FileInputStream psStream = null; 
-			try { 
+			FileInputStream psStream = null;
+			try {
 				psStream = new FileInputStream(fileName);
 			} catch (FileNotFoundException ffne) {
 				ffne.printStackTrace();
@@ -2297,11 +2299,11 @@ public class CallScilabBridge {
 
 			Doc myDoc = new SimpleDoc(psStream, DocFlavor.INPUT_STREAM.TEXT_PLAIN_HOST, null);
 			DocPrintJob job = printerJob.getPrintService().createPrintJob();
-			
+
 			// Remove Orientation option from page setup because already managed in FileExporter
 			PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);
 			aset.add(OrientationRequested.PORTRAIT);
-			
+
 			job.print(myDoc, aset);
 			return true;
 		} catch (PrintException e) {
@@ -2309,7 +2311,7 @@ public class CallScilabBridge {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Display a dialog to print a figure (Called from graphics figures menus)
 	 * @param figID the ID of the figure to print
@@ -2318,7 +2320,7 @@ public class CallScilabBridge {
 	public static boolean printFigure(int figID) {
 		return printFigure(figID, true, true);
 	}
-	
+
 	/**
 	 * Display a dialog to print a figure
 	 * @param figID the ID of the figure to print
@@ -2329,24 +2331,24 @@ public class CallScilabBridge {
 	public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
 		final int figureID = figID;
 		// Get the PrinterJob object
-		PrinterJob printerJob = PrinterJob.getPrinterJob();	
+		PrinterJob printerJob = PrinterJob.getPrinterJob();
 
 		boolean userOK = true;
 		if (displayDialog) {
-			userOK = printerJob.printDialog(scilabPageFormat);		
-		}		
+			userOK = printerJob.printDialog(scilabPageFormat);
+		}
 
 		if (userOK) {
 			//If the OS is Windows
 			if (isWindowsPlateform()) {
-				Canvas canvas;		
+				Canvas canvas;
 				canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
 				ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
 
-				return false;	
+				return false;
 
 			//If the OS is Linux
-			} else {					
+			} else {
 
 				int exportRendererMode = ExportRenderer.PS_EXPORT;
 				DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
@@ -2355,31 +2357,31 @@ public class CallScilabBridge {
 				try {
 					/** Export image to PostScript */
 					if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
-						FileExporter.fileExport(figureID, 
+						FileExporter.fileExport(figureID,
 								tmpPrinterFile + fileExtension,
 								exportRendererMode, 0);
 					} else {
-						FileExporter.fileExport(figureID, 
+						FileExporter.fileExport(figureID,
 								tmpPrinterFile + fileExtension,
 								exportRendererMode, 1);
 					}
 
 					/** Read file */
-					FileInputStream psStream = null; 
+					FileInputStream psStream = null;
 
-					try { 
-						psStream = new FileInputStream(tmpPrinterFile + fileExtension);						
+					try {
+						psStream = new FileInputStream(tmpPrinterFile + fileExtension);
 					} catch (FileNotFoundException ffne) {
 						ffne.printStackTrace();
 						return false;
 					}
 
 					Doc myDoc = new SimpleDoc(psStream, printDocFlavor, null);
-					DocPrintJob job = printerJob.getPrintService().createPrintJob();	
+					DocPrintJob job = printerJob.getPrintService().createPrintJob();
 
 					// Remove Orientation option from page setup because already managed in FileExporter
-					PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);			
-					aset.add(OrientationRequested.PORTRAIT);	
+					PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);
+					aset.add(OrientationRequested.PORTRAIT);
 
 					job.print(myDoc, aset);
 					return true;
@@ -2409,7 +2411,7 @@ public class CallScilabBridge {
 	/* FONT CHOOSER BRIDGE */
 	/*                     */
 	/***********************/
-	
+
 	/**
 	 * Set the default font name for a FileChooser
 	 * @param id the id of the FileChooser
@@ -2418,7 +2420,7 @@ public class CallScilabBridge {
 	public static void setFontChooserFontName(int id, String fontName) {
 		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).setDefaultFontName(fontName);
 	}
-	
+
 	/**
 	 * Set the default font size for a FileChooser
 	 * @param id the id of the FileChooser
@@ -2459,7 +2461,7 @@ public class CallScilabBridge {
 			return "";
 		}
 	}
-	
+
 	/**
 	 * Get the selected font size for a FileChooser
 	 * @param id the id of the FileChooser
@@ -2486,21 +2488,21 @@ public class CallScilabBridge {
 	public static boolean getFontChooserItalic(int id) {
 		return ((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectedFont().isItalic();
 	}
-	
+
 	/**
-	 * Display this chooser and wait for user selection 
+	 * Display this chooser and wait for user selection
 	 * @param id the id of the FontChooser
 	 */
 	public static void fontChooserDisplayAndWait(int id) {
 		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
-	
+
 	/************************/
 	/*                      */
 	/* COLOR CHOOSER BRIDGE */
 	/*                      */
 	/************************/
-	
+
 	/**
 	 * Set the title of a ColorChooser
 	 * @param id the id of the ColorChooser
@@ -2537,23 +2539,23 @@ public class CallScilabBridge {
 			returnedValues[2] = -1;
 		}
 		return returnedValues;
-		
+
 	}
 
 	/**
-	 * Display this chooser and wait for user selection 
+	 * Display this chooser and wait for user selection
 	 * @param id the id of the ColorChooser
 	 */
 	public static void colorChooserDisplayAndWait(int id) {
 		((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
-	
+
 	/******************/
 	/*                */
 	/* WIDGET VISIBLE */
 	/*                */
 	/******************/
-	
+
 	/**
 	 * Set the visibility of the Widget
 	 * @param id the id of the Widget
@@ -2562,7 +2564,7 @@ public class CallScilabBridge {
 	public static void setWidgetVisible(int id, boolean status) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setVisible(status);
 	}
-	
+
 	/**
 	 * Set the visibility of the Frame
 	 * @param id the id of the Frame
@@ -2571,7 +2573,7 @@ public class CallScilabBridge {
 	public static void setFrameVisible(int id, boolean status) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setVisible(status);
 	}
-	
+
 	/**
 	 * Get the visibility of the Widget
 	 * @param id the id of the Widget
@@ -2580,7 +2582,7 @@ public class CallScilabBridge {
 	public static boolean isWidgetVisible(int id) {
 		return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
 	}
-	
+
 	/**
 	 * Get the visibility of the Frame
 	 * @param id the id of the Frame
@@ -2589,13 +2591,13 @@ public class CallScilabBridge {
 	public static boolean isFrameVisible(int id) {
 		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
 	}
-	
+
 	/*****************/
 	/*               */
 	/* WIDGET ENABLE */
 	/*               */
 	/*****************/
-	
+
 	/**
 	 * Set the enable of the Widget
 	 * @param id the id of the Widget
@@ -2604,7 +2606,7 @@ public class CallScilabBridge {
 	public static void setWidgetEnable(int id, boolean status) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setEnabled(status);
 	}
-	
+
 	/**
 	 * Set the enable of the Frame
 	 * @param id the id of the Frame
@@ -2613,7 +2615,7 @@ public class CallScilabBridge {
 	public static void setFrameEnable(int id, boolean status) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setEnabled(status);
 	}
-	
+
 	/**
 	 * Get the enable of the Widget
 	 * @param id the id of the Widget
@@ -2622,7 +2624,7 @@ public class CallScilabBridge {
 	public static boolean isWidgetEnable(int id) {
 		return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).isEnabled();
 	}
-	
+
 	/**
 	 * Get the visibility of the Frame
 	 * @param id the id of the Frame
@@ -2631,13 +2633,13 @@ public class CallScilabBridge {
 	public static boolean isFrameEnable(int id) {
 		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isEnabled();
 	}
-	
+
 	/************************/
 	/*                      */
 	/* CLIPBOARD MANAGEMENT */
 	/*                      */
 	/************************/
-	
+
 	/**
 	 * Get the contents of the clipboard
 	 * @return the string contained in the clipboard or null
@@ -2671,10 +2673,10 @@ public class CallScilabBridge {
 			// Should never be here
 			e1.printStackTrace();
 		}
-		
+
 		return clipboardContents;
 	}
-	
+
 	/**
 	 * Set the contents of the clipboard
 	 * @param text the string to put in the clipboard
@@ -2683,7 +2685,7 @@ public class CallScilabBridge {
 		Transferable contents = new StringSelection(text);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
 	}
-	
+
 	/**
 	 * Copy figure to clipboard
 	 * @param figID the ID of the figure
@@ -2693,21 +2695,21 @@ public class CallScilabBridge {
 		Transferable clipboardImage = new ClipboardImage(figureImage);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(clipboardImage, null);
 	}
-	
+
 	/**
 	 * Class used to store Images in the clipboard
 	 */
 	public static class ClipboardImage implements Transferable {
         private Image image;
-    
+
         /**
          * Default constructor
-         * @param image the image 
+         * @param image the image
          */
         public ClipboardImage(Image image) {
             this.image = image;
         }
-    
+
         /**
          * DataFlavors of this transferable
          * @return the DataFlavors accepeted
@@ -2715,7 +2717,7 @@ public class CallScilabBridge {
         public DataFlavor[] getTransferDataFlavors() {
             return new DataFlavor[]{DataFlavor.imageFlavor};
         }
-    
+
         /**
          * Test supproted DataFlavors
          * @param flavor the flavor to test
@@ -2724,7 +2726,7 @@ public class CallScilabBridge {
         public boolean isDataFlavorSupported(DataFlavor flavor) {
             return DataFlavor.imageFlavor.equals(flavor);
         }
-    
+
         /**
          * Get the contents of this transferable
          * @param flavor the flavor to test
@@ -2738,13 +2740,13 @@ public class CallScilabBridge {
             return image;
         }
 	}
-	
+
 	/********/
 	/*      */
 	/* MISC */
 	/*      */
 	/********/
-	
+
 	/**
 	 * Get the screen resolution
 	 * @return the number of dot per inch
@@ -2752,7 +2754,7 @@ public class CallScilabBridge {
 	public static int getScreenResolution() {
 		return Toolkit.getDefaultToolkit().getScreenResolution();
 	}
-	
+
 	/**
 	 * Get the screen Width in pixels
 	 * @return the screen Width
@@ -2760,7 +2762,7 @@ public class CallScilabBridge {
 	public static double getScreenWidth() {
 		return Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	}
-	
+
 	/**
 	 * Get the screen Height in pixels
 	 * @return the screen Height
@@ -2768,7 +2770,7 @@ public class CallScilabBridge {
 	public static double getScreenHeight() {
 		return Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	}
-	
+
 	/**
 	 * Get the screen Depth
 	 * @return the screen Depth
@@ -2776,7 +2778,7 @@ public class CallScilabBridge {
 	public static int getScreenDepth() {
 		return Toolkit.getDefaultToolkit().getColorModel().getPixelSize();
 	}
-	
+
 	/**
 	 * Give the focus to a Widget
 	 * @param id the id of the Widget
@@ -2784,7 +2786,7 @@ public class CallScilabBridge {
 	public static void requestWidgetFocus(int id) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
 	}
-	
+
 	/**
 	 * Give the focus to a Frame
 	 * @param id the id of the Frame
@@ -2792,7 +2794,7 @@ public class CallScilabBridge {
 	public static void requestFrameFocus(int id) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
 	}
-	
+
 	/**
 	 * Raise the window specified by the user
 	 * @param id the id of the figure
@@ -2800,15 +2802,23 @@ public class CallScilabBridge {
 	public static void raiseWindow(int id) {
 		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
 		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();
-		
+
 	}
-	
+
 	/**
 	 * @return true if the os is windows, false otherwise
 	 */
 	public static boolean isWindowsPlateform() {
 		// get os name
 		return System.getProperty("os.name").toLowerCase().contains("windows");
+	}
+
+	/**
+	 * Change object used for graphic figure (GLCanvas or GLJPanel)
+         * @param onOrOff true to set GLCanvas display
+	 */
+	public static void useCanvasForDisplay(boolean onOrOff) {
+            SwingScilabCanvasImpl.switchToGLCanvas(onOrOff);
 	}
 
 }

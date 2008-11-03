@@ -1,6 +1,9 @@
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
 
+Scilab consortium would like to thank all people who helped us by reporting
+bugs, submiting patches, fixing bugs, testing ...
+
 Compilation:
 ============
 
@@ -18,8 +21,12 @@ Enhancement:
 
 - License changed to Public Domain for most of the examples (especially the toolbox skeleton and the examples in the dynamic link module)
 
+- Localization files updated
+
 Bug fixes:
 ==========
+
+* Path to the default Fedora/Redhab JVM added to the startup script
 
 * rmdir & removedir had problems with the recursive delete under GNU/Linux
 
@@ -29,11 +36,18 @@ Bug fixes:
 
 * bug 3529 fixed - rmdir was trying to change the permission on the file/directory. This behavior has been removed.
 
+* bug 3566 fixed - gsort does not complain when called with a complex array and just ignores the imaginary part
+
+* bug 3567 fixed - sort called with a complex array sort it according to the absolute value of the elements but it is not explained in the help pages...
+
 * bug 3588 fixed - The figure number is missing from the title of graphic windows when Scilab in launched in French.
+
+* bug 3598 fixed - when entering the commands ls(1) or cd(1) or dir(1) or help(1), scilab crashes.
 
 * bug 3602 fixed - format("e",dd) was causing a bug in gettklib (format of the number)
 
 * bug 3604 fixed - Problems with getting Frame uicontrol position (Scilab crash)
+
 * bug 3605 fixed - Could not use javasci in the Linux binary
 
 * bug 3607 fixed - Wrong values in Java configuration was causing the memory issues
@@ -44,7 +58,11 @@ Bug fixes:
 
 * bug 3647 fixed - 'call' doesn't manage external functions named with more 23 characters
 
+* bug 3655 fixed - Bug in GIWS 1.0 was not returning the proper Java exception.
+
 * bug 3663 fixed - getshortpathname & getlongpathname could return '' and not a correct path
+
+* bug 3692 fixed - Problem with the simplified chinese version
 
 
                           Changes Scilab 5.0.1 -> 5.0.2

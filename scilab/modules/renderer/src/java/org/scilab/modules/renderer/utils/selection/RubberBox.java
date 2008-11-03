@@ -64,6 +64,14 @@ public class RubberBox {
 	}
 	
 	/**
+	 * Set the second point with same values as the first point.
+	 * This result in an empty rubber box
+	 */
+	public void setEmptySelection() {
+		this.secondPoint.setValues(firstPoint);
+	}
+	
+	/**
 	 * Set the coordinate of the first corner of the rectangle
 	 * @param xCoord X coordinate of the first point in pixels
 	 * @param yCoord Y coordinate of the first point in pixels

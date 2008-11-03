@@ -107,6 +107,7 @@ src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
+sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = \

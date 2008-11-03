@@ -16,6 +16,8 @@
 
 package org.scilab.modules.jvm;
 
+import javax.swing.JPopupMenu;
+
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -176,6 +178,9 @@ public class Scilab {
 	 */
 	public static void setJOGLFlags() {
 		
+	    // Must give popUpMenu heavy weight
+	    // in case we enable GLCanvas
+	    JPopupMenu.setDefaultLightWeightPopupEnabled(false);
 		// Uneash OpenGL power
 		// Not yet
 		//System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, ENABLE_WITH_DEBUG);
