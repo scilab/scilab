@@ -27,4 +27,4 @@ getrhsvar_
 stack_
 getScilabMode
 iop_
-scigetcwd_
+scigetcwd

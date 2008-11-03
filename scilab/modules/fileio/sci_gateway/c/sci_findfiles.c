@@ -16,7 +16,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
+#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
 #include "Scierror.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
@@ -46,7 +46,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			int ierr=0;
 			int lpath=0;
 
-			C2F(scigetcwd)(&path,&lpath,&ierr);
+			scigetcwd(&path,&lpath,&ierr);
 			needtofreepath = TRUE;
 
 			if (ierr)

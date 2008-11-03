@@ -22,7 +22,7 @@ EXPORTS
  iop_
  GetFile
  getTMPDIR
- scigetcwd_
+ scigetcwd
  vartype_
  callFunctionFromGateway
  freeArrayOfString

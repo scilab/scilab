@@ -118,7 +118,7 @@ int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 						sciprint(_("%s: The file %s not found. current directory returned.\n"),fname,filename);
 					}
 
-					C2F(scigetcwd)(&path,&lpath,&ierr);
+					scigetcwd(&path,&lpath,&ierr);
 					if (ierr) /* Problem to get current directory */
 					{
 						m1=0; n1=0; l1=0; /* returns a empty string */

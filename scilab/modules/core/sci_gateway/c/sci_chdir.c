@@ -43,7 +43,7 @@ int C2F(sci_chdir)(char *fname,unsigned long fname_len)
 		}
 
 		C2F(cluni0)(shortpath,path,&out_n,(long)strlen(shortpath),PATH_MAX);
-		C2F(scichdir)(path,&ierr);
+		scichdir(path,&ierr);
 
 		n1=1;
 		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
