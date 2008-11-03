@@ -26,8 +26,13 @@ function bOK = detectmsifort64tools()
          IFORTPATH = getenv('IFORT_COMPILER9','');
      
      else
-       TXT = gettext('Intel Fortran Comiler 9 or 10 Compiler not found.');
-       warning(TXT);
+       show = displayWarningmsifort();
+       if show then
+         TXT = gettext('Intel Fortran Comiler 9 or 10 Compiler not found.');
+         warning(TXT);
+         clear TXT;
+         disableWarningmsifort();
+       end
        bOK = %F;
        return
      end
@@ -42,4 +47,19 @@ function bOK = detectmsifort64tools()
   
 endfunction
 //==========================================
-
+function show = displayWarningmsifort()
+  settings_filename = '/.settings_warning_msif';
+  settings_file = pathconvert(SCIHOME+settings_filename,%f,%t);
+  w = fileinfo(settings_file);
+  show = %t;
+  if w <> [] then
+	  show = grep(mgetl(settings_file),'displayWarningIFx64=no')==[]
+	end
+endfunction
+//==========================================
+function disableWarningmsifort()
+  settings_filename = '/.settings_warning_msif';
+  settings_file = pathconvert(SCIHOME+settings_filename,%f,%t);
+  mputl('displayWarningIFx64=no',settings_file);
+endfunction
+//==========================================
