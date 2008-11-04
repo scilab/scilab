@@ -730,7 +730,7 @@ msgstr "Les axes par défaut ne peuvent pas être créés.\n"
 
 #, c-format
 msgid "Graphic window number %d"
-msgstr "Figure n %d"
+msgstr "Figure %d"
 
 msgid "This object has not any graphic mode\n"
 msgstr "Cet objet n'a pas de mode graphique\n"

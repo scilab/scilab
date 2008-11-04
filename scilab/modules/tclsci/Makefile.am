@@ -57,9 +57,9 @@ libscitclsci_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_bi
 #### Target ######
 modulename=tclsci
 
-
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
+libscitclsci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
