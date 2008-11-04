@@ -88,6 +88,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" \
 	"$(DESTDIR)$(libscitclsci_la_demostkdir)" \
 	"$(DESTDIR)$(libscitclsci_la_etcdir)" \
+	"$(DESTDIR)$(libscitclsci_la_rootdir)" \
 	"$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscitclsci_la_tcldir)" \
 	"$(DESTDIR)$(libscitclsci_la_includedir)"
@@ -170,10 +171,12 @@ DIST_SOURCES = $(am__libscitclsci_la_SOURCES_DIST)
 libscitclsci_la_demossciGUIDATA_INSTALL = $(INSTALL_DATA)
 libscitclsci_la_demostkDATA_INSTALL = $(INSTALL_DATA)
 libscitclsci_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscitclsci_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscitclsci_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libscitclsci_la_tclDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscitclsci_la_demossciGUI_DATA) \
 	$(libscitclsci_la_demostk_DATA) $(libscitclsci_la_etc_DATA) \
+	$(libscitclsci_la_root_DATA) \
 	$(libscitclsci_la_sci_gateway_DATA) \
 	$(nobase_libscitclsci_la_tcl_DATA)
 am__libscitclsci_la_include_HEADERS_DIST = includes/setenvtcl.h \
@@ -1074,6 +1077,23 @@ uninstall-libscitclsci_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscitclsci_la_etcdir)/$$f"; \
 	done
+install-libscitclsci_la_rootDATA: $(libscitclsci_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscitclsci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_rootdir)"
+	@list='$(libscitclsci_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscitclsci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_rootdir)/$$f'"; \
+	  $(libscitclsci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_rootdir)/$$f"; \
+	done
+
+uninstall-libscitclsci_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscitclsci_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitclsci_la_rootdir)/$$f"; \
+	done
 install-libscitclsci_la_sci_gatewayDATA: $(libscitclsci_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscitclsci_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)"
@@ -1208,7 +1228,7 @@ check: check-am
 @TCLTK_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" "$(DESTDIR)$(libscitclsci_la_demostkdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" "$(DESTDIR)$(libscitclsci_la_demostkdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_rootdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1264,6 +1284,7 @@ install-data-am: install-data-local \
 	install-libscitclsci_la_demostkDATA \
 	install-libscitclsci_la_etcDATA \
 	install-libscitclsci_la_includeHEADERS \
+	install-libscitclsci_la_rootDATA \
 	install-libscitclsci_la_sci_gatewayDATA \
 	install-nobase_libscitclsci_la_tclDATA
 
@@ -1307,6 +1328,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	uninstall-libscitclsci_la_demostkDATA \
 	uninstall-libscitclsci_la_etcDATA \
 	uninstall-libscitclsci_la_includeHEADERS \
+	uninstall-libscitclsci_la_rootDATA \
 	uninstall-libscitclsci_la_sci_gatewayDATA \
 	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1325,6 +1347,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	install-libscitclsci_la_demostkDATA \
 	install-libscitclsci_la_etcDATA \
 	install-libscitclsci_la_includeHEADERS \
+	install-libscitclsci_la_rootDATA \
 	install-libscitclsci_la_sci_gatewayDATA install-man \
 	install-nobase_libscitclsci_la_tclDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -1336,6 +1359,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	uninstall-libscitclsci_la_demostkDATA \
 	uninstall-libscitclsci_la_etcDATA \
 	uninstall-libscitclsci_la_includeHEADERS \
+	uninstall-libscitclsci_la_rootDATA \
 	uninstall-libscitclsci_la_sci_gatewayDATA \
 	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
