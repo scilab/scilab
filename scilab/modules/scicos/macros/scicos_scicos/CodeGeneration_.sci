@@ -1428,13 +1428,9 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
                '""-"" chars will be automatically substituted by ""_"" '])
     end
     rdnom = strsubst(rdnom,'-','_');
-    //**
-    //** same process but done for the the directory folder
-    //** cucu  
-    rpat = strsubst(rpat,' ','_');
-    rpat = strsubst(rpat,'-','_');
 
     dirinfo=fileinfo(rpat)
+
     if dirinfo==[] then
       [pathrp,fnamerp,extensionrp]=fileparts(rpat)
       ok=mkdir(pathrp,fnamerp+extensionrp)
