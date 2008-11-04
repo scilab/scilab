@@ -434,6 +434,7 @@ top_srcdir = @top_srcdir@
 
 #### tclsci : Conf files ####
 @TCLTK_TRUE@libscitclsci_la_rootdir = $(mydatadir)
+@TCLTK_TRUE@libscitclsci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### tclsci : init scripts ####
 @TCLTK_TRUE@libscitclsci_la_etcdir = $(mydatadir)/etc
