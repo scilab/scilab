@@ -23,6 +23,7 @@ int matrix_double(int _iRowsRet, int _iColsRet);
 int matrix_bsparse(int _iRowsRet, int _iColsRet);
 int matrix_sparse(int _iRowsRet, int _iColsRet);
 int matrix_poly(int _iRowsRet, int _iColsRet);
+int	matrix_string(int _iRowsRet, int _iColsRet);
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(intmatrix) (int *id);
@@ -68,6 +69,7 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 		iType != sci_sparse && 
 		iType != sci_boolean_sparse && 
 		iType != sci_poly &&
+		iType != sci_strings &&
 		iType != sci_ints)
 	{
 		OverLoad(1);
@@ -174,6 +176,9 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 		break;
 	case sci_poly:
 		matrix_poly(iRowsRet, iColsRet);
+		break;
+	case sci_strings:
+		matrix_string(iRowsRet, iColsRet);
 		break;
 	default :
 		matrix_double(iRowsRet, iColsRet);
@@ -554,4 +559,18 @@ int matrix_poly(int _iRowsRet, int _iColsRet)
 	return 0;
 }
 
+int	matrix_string(int _iRowsRet, int _iColsRet)
+{
+	int iRows = 0;
+	int iCols = 0;
+	char **cRealData = NULL;
+
+	GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &cRealData);
+
+	CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &_iRowsRet, &_iColsRet, cRealData);
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
+
+	return 0;
+}
 /*--------------------------------------------------------------------------*/
