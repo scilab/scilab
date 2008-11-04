@@ -5,7 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-mode(5)
+mode(5);
+funcprot(0);
+
 //-----------------------
 //-- extractions tests --
 //-----------------------
@@ -113,3 +115,5 @@ l(2)=null();
 if %l_n_l(l,tlist('t','a',[1,2])) then pause,end
 l(1)=null();
 if %l_n_l(l,list('a',[1,2])) then pause,end
+
+funcprot(1);
