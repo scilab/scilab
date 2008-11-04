@@ -420,6 +420,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MutexClosingScilab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\scilab_main.c"
 				>
 			</File>
@@ -502,6 +506,10 @@
 			</File>
 			<File
 				RelativePath=".\killScilabProcess.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\MutexClosingScilab.h"
 				>
 			</File>
 			<File

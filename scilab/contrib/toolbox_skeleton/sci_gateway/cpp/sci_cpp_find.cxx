@@ -1,3 +1,4 @@
+/* This file is released into the public domain */
 #include <string>
 extern "C" 
 {

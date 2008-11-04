@@ -8,7 +8,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function path=cd(path)
-  if argn(2)==1 then 
+  if argn(2)==1 then
+    if type(path) <> 10 then 
+      error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'cd',1));
+    end 
   	path=stripblanks(path)
     if or(path==['PWD' 'SCIHOME']) then path=evstr(path),end
     if MSDOS then 

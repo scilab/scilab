@@ -1,3 +1,10 @@
-licence file
+SCICOS:
+=======
 
-INRIA 2008
+Files: *
+
+Copyright:
+INRIA
+
+License:
+GPL

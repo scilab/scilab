@@ -971,7 +971,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
     }
   else
     {
-      sciSetName(scoGetPointerScopeWindow(pScopeMemory), buf ,nxname);
+      sciSetName(scoGetPointerScopeWindow(pScopeMemory), buf);
     }
   /*End of code for naming window */
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2008-07-02 10:10+0000\n"
-"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"PO-Revision-Date: 2008-10-28 14:45+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-24 19:52+0000\n"
+"X-Launchpad-Export-Date: 2008-10-28 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Error(s) : see help powershell'';''verify your script without scilab."
@@ -23,34 +23,34 @@ msgstr ""
 "скрипт без scilab."
 
 msgid "Only for Microsoft Windows."
-msgstr ""
+msgstr "Только для Microsoft Windows."
 
 msgid "Powershell not found."
 msgstr "Powershell не найден."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
 
 #, c-format
 msgid "Checking: %s\n"
-msgstr ""
+msgstr "Проверка: %s\n"
 
 #, c-format
 msgid "%s: Please check: %s.\n"
-msgstr ""
+msgstr "%s: Пожалуйста, проверьте: %s.\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
-msgstr ""
+msgstr "%s: Файл не существует: %s"
 
 #, c-format
 msgid "%s: Requires Scipad.\n"
-msgstr ""
+msgstr "%s: Требуется Scipad.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество аргументов: Ожидалось как минимум %d.\n"
 
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
@@ -75,6 +75,7 @@ msgstr "%s вызван в строке %s макроса %s"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалась определённая переменная.\n"
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
@@ -114,7 +115,7 @@ msgstr "%s: Файл %s не существует.\n"
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
+msgstr "%s: Неверный аргумент #%d: Ожидался путь к файлу сценария scilab.\n"
 
 msgid "User variables are:"
 msgstr "Пользовательские пременные:"
@@ -135,15 +136,15 @@ msgstr "%s: Неверное количество аргументов: Ожид
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось ''%s'' или ''%s''.\n"
 
 #, c-format
 msgid "Warning: Problems with %s.\n"
-msgstr ""
+msgstr "Внимание: Проблема с %s.\n"
 
 #, c-format
 msgid "%s: Invalid '%s' value.\n"
-msgstr ""
+msgstr "%s: Неверное '%s' значение.\n"
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
@@ -151,38 +152,40 @@ msgstr "%s: некорректное имя функции.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr ""
+msgstr "%s: Неверное значение аргумента #%d: Должно быть %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d or #%d.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента #%d или #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер аргумента #%d: Ожидалась строка.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr ""
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось значение больше 0.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер аргумента #%d: Ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента.\n"
 
 #, c-format
 msgid ""
 "%s: Cannot allocate more memory.\n"
 "Try stacksize('max').\n"
 msgstr ""
+"%s: Невозможно выделить память.\n"
+"Попробуйте stacksize('max').\n"
 
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
@@ -192,23 +195,25 @@ msgstr "%s: Значение за пределами допустимого ди
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидался скаляр, '%s' или '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента #%d: Скаляр, '%s' или '%s' .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Неверное значение аргумента #%d: Ожидалось '%s', '%s', '%s' или '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
+msgstr "%s: Неверное значение аргумента #%d: '%s', '%s', '%s' или '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s: Неверное значение аргумента #%d: Ожидалось '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
@@ -688,10 +693,8 @@ msgid "%s: Wrong type for argument %d : Polygon expected.\n"
 msgstr "%s: Неверный тип аргумента %d : Ожидался многоугольник.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась корректная целочисленная матрица "
-"(Working integer matrix).\n"
 
 #, c-format
 msgid ""
@@ -1056,3 +1059,27 @@ msgstr "GetDataFromName: переменная %s не найдена.\n"
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr "%s: Переменная %s не найдена.\n"
+
+msgid "Startup execution:"
+msgstr "Запуск программы:"
+
+msgid "  loading initial environment"
+msgstr "  загрузка исходного окружения"
+
+msgid "&File"
+msgstr "Файл (&F)"
+
+msgid "&Edit"
+msgstr "Правка (&E)"
+
+msgid "&Preferences"
+msgstr "Настройки (&P)"
+
+msgid "&Control"
+msgstr "Управление (&C)"
+
+msgid "&Applications"
+msgstr "Инструменты (&A)"
+
+msgid "&?"
+msgstr ""

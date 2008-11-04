@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -17,30 +16,47 @@
 #include "dynamic_link.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-#define MAXNAME 32
-static char buf[MAXNAME];
-/*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ());
 static void Emptyfunc(void) {}
 /*--------------------------------------------------------------------------*/
 voidf AddFunctionInTable (char *name, int *rep, FTAB *table)
 {
 	void (*loc)();
-	char *s = NULL;
-
-	strncpy(buf,name,MAXNAME);
-	s=buf;
-	while ( *s != ' ' && *s != '\0') { s++;};
-	*s= '\0';
-
-	if ( ( SearchComp(table,buf,&loc) == TRUE) || ( SearchInDynLinks(buf,&loc) >= 0 ) )
+	if (name)
 	{
-		*rep = 0;
+		int length_name = 0;
+		char *s = name;
+		char *buf = name;
+		while ( *s != ' ' && *s != '\0') { s++;length_name++;};
+
+		buf = (char*)MALLOC(sizeof(char)*(length_name+1));
+		if (buf)
+		{
+			strncpy(buf,name,length_name);
+			buf[length_name] = '\0';
+
+			/* search name in functions table */
+			if ( ( SearchComp(table,buf,&loc) == TRUE) || ( SearchInDynLinks(buf,&loc) >= 0 ) )
+			{
+				*rep = 0;
+			}
+			else
+			{
+				loc = Emptyfunc;
+				*rep = 1;
+			}
+
+			FREE(buf);
+			buf = NULL;
+		}
+		else
+		{
+			*rep = 0;
+		}
 	}
 	else
 	{
-		loc = Emptyfunc;
-		*rep = 1;
+		*rep = 0;
 	}
 	return(loc);
 }

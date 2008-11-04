@@ -203,7 +203,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
     /* Set default figure index */
     sciInitNum(pobj, getUnusedFigureIndex());
   }
-  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
+  
+  sciInitName(pobj, sciGetName(pfiguremdl));
   sciInitResize(pobj,sciGetResize(pfiguremdl));
 
   ppFigure->isiconified = ppModel->isiconified;

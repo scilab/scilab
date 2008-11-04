@@ -2,7 +2,7 @@
 ; Script d'installation Inno Setup (5.2.2) pour scilab
 ; Allan CORNET
 ; Version TRUNK
-; Copyright INRIA 2008
+; This file is released into the public domain
 ;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
 ; toolbox_skeleton

@@ -508,8 +508,8 @@ int InitFigureModel( void )
     /* F.Leray 10.06.04 */
     return -1 ;
   }
-  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, _("Graphic window number %d"), strlen(_("Graphic window number %d"))*sizeof(char) + 4);
-  pFIGURE_FEATURE (pfiguremdl)->namelen = Min ((int)strlen(_("Graphic window number %d"))*sizeof(char) + 4, 24);
+  
+  sciInitName(pfiguremdl, _("Graphic window number %d"));
   pFIGURE_FEATURE (pfiguremdl)->number          = 0   ;
 
   /* Set figure model attributes */
@@ -804,7 +804,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
       return -1;
     }
   /* sciSetNum(pobj, getUnusedFigureIndex()); Number can not be modified */
-  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
+  sciInitName(pobj, sciGetName(pfiguremdl));
   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
   sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
   if (sciSetDimension( pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl) ) != RESIZE_SUCCESS)

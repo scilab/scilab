@@ -1648,8 +1648,8 @@ libscigraphics_la_CFLAGS =  \
 
 
 ### graphics : ged files ###
-@GUI_TRUE@libscigraphics_la_geddir = $(mydatadir)/tcl/ged
-@GUI_TRUE@libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
+@GUI_TRUE@libscigraphics_la_geddir = $(mydatadir)
+@GUI_TRUE@nobase_libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
 @GUI_TRUE@tcl/ged/Axes.tcl \
 @GUI_TRUE@tcl/ged/Axis.tcl \
 @GUI_TRUE@tcl/ged/Champ.tcl \

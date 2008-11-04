@@ -68,7 +68,7 @@ public abstract class FacetDrawerGL {
 	 * @return color array containing the 3 channels of the color
 	 */
 	public double[] getHiddenColor() {
-		if (hiddenColor >= 0 && hiddenColor < colorMap.getSize()) {
+		if (isDisplayingHiddenSurface()) {
 			return colorMap.getColor(hiddenColor);
 		} else {
 			return null;
@@ -80,6 +80,14 @@ public abstract class FacetDrawerGL {
 	 */
 	public int getHiddenColorIndex() {
 		return hiddenColor;
+	}
+	
+	/**
+	 * @return true if the object is displaying the hidden surface with
+	 * a different color
+	 */
+	protected boolean isDisplayingHiddenSurface() {
+		return hiddenColor >= 0 && hiddenColor < colorMap.getSize();
 	}
 
 	/**

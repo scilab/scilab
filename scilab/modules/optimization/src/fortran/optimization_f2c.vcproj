@@ -861,7 +861,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dogleg.f"
+				RelativePath=".\minpack\dogleg.f"
 				>
 			</File>
 			<File
@@ -873,7 +873,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\enorm.f"
+				RelativePath=".\minpack\enorm.f"
 				>
 			</File>
 			<File
@@ -901,11 +901,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac1.f"
+				RelativePath=".\minpack\fdjac1.f"
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac2.f"
+				RelativePath=".\minpack\fdjac2.f"
 				>
 			</File>
 			<File
@@ -981,19 +981,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd.f"
+				RelativePath=".\minpack\hybrd.f"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd1.f"
+				RelativePath=".\minpack\hybrd1.f"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj.f"
+				RelativePath=".\minpack\hybrj.f"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj1.f"
+				RelativePath=".\minpack\hybrj1.f"
 				>
 			</File>
 			<File
@@ -1029,15 +1029,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lmder.f"
+				RelativePath=".\minpack\lmder.f"
 				>
 			</File>
 			<File
-				RelativePath=".\lmdif.f"
+				RelativePath=".\minpack\lmdif.f"
 				>
 			</File>
 			<File
-				RelativePath=".\lmpar.f"
+				RelativePath=".\minpack\lmpar.f"
 				>
 			</File>
 			<File
@@ -1113,7 +1113,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qform.f"
+				RelativePath=".\minpack\qform.f"
 				>
 			</File>
 			<File
@@ -1133,19 +1133,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qrfac.f"
+				RelativePath=".\minpack\qrfac.f"
 				>
 			</File>
 			<File
-				RelativePath=".\qrsolv.f"
+				RelativePath=".\minpack\qrsolv.f"
 				>
 			</File>
 			<File
-				RelativePath=".\r1mpyq.f"
+				RelativePath=".\minpack\r1mpyq.f"
 				>
 			</File>
 			<File
-				RelativePath=".\r1updt.f"
+				RelativePath=".\minpack\r1updt.f"
 				>
 			</File>
 			<File

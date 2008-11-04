@@ -12,6 +12,11 @@
 
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
+#ifndef _MSC_VER
+#include "tcl.h"
+#endif
+#include "tmpdir.h"
+#include "PATH_MAX.h"
 #include "getcommandlineargs.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
@@ -51,7 +56,7 @@ void Initialize(void)
   #endif
 
   
-  char *p1 = (char*)getenv ("SCI");
+  char *sciPath = (char*)getenv ("SCI");
   
   
   #ifdef _MSC_VER
@@ -66,7 +71,7 @@ void Initialize(void)
   #endif
   
   #ifdef _MSC_VER 
-    if ( p1== NULL )
+    if ( sciPath== NULL )
     {
 		/* Detection Scilab path */
 		char modname[PATH_MAX+1];
@@ -92,19 +97,60 @@ void Initialize(void)
     }
     else 
 	{
-		char *pathSCI=(char*)MALLOC((strlen(p1)+1)*sizeof(char));
-		strcpy(pathSCI,p1);
+		char *pathSCI=(char*)MALLOC((strlen(sciPath)+1)*sizeof(char));
+		strcpy(pathSCI,sciPath);
 		SetScilabEnvironmentVariables(pathSCI);
 		if (pathSCI) {FREE(pathSCI);pathSCI=NULL;}
 	}
   #else
-   if (p1==NULL)
+   if (sciPath==NULL)
    {
-   	fprintf(stderr,"Please define SCI environment variable\n");
-   	sprintf (env, "%s=%s", "SCI",SCI);
-	setSCIpath(SCI);
-	putenv (env);
+	   fprintf(stderr,"Please define SCI environment variable\n");
+	   exit(EXIT_FAILURE);
+   }else{
+	   sprintf (env, "%s=%s", "SCI",sciPath);
+	   setSCIpath(SCI);
+	   putenv (env);
    }
+
+
+    /*
+ 	* This stuff is a workaround when the user is using javasci in the Scilab
+ 	* official binary
+ 	* The problem in this case is that the TCL_LIBRARY & TK_LIBRARY are not
+ 	* set correctly and TCL has trouble to find himself.
+ 	* 
+ 	* As we are sure to use the binary, we know where to find 
+ 	* See: http://bugzilla.scilab.org/show_bug.cgi?id=3605
+ 	*/
+ 
+#define BASEPATHTOTHIRDPARTY "/../../thirdparty/"
+#define DIRECTORYOFTCL "tcl"
+#define DIRECTORYOFTK "tk"
+    int commonPart=strlen(sciPath)+strlen(BASEPATHTOTHIRDPARTY)+strlen(".")+strlen(TCL_VERSION)+1;
+    char *pathToTcl=(char*)MALLOC((strlen(DIRECTORYOFTCL)+commonPart)*sizeof(char));
+    sprintf(pathToTcl, "%s%s%s%s", sciPath, BASEPATHTOTHIRDPARTY, DIRECTORYOFTCL, TCL_VERSION);
+ 
+    /* Test if we find the thirdparty directory. If it is the case, it is most 
+ 	* probable that we are working with the binary version of Scilab 
+ 	*/
+    if (isdir(pathToTcl)){
+#define EXPORTTCL "TCL_LIBRARY="
+#define EXPORTTK "TK_LIBRARY="
+ 	   char *pathToTk=(char*)MALLOC((strlen(DIRECTORYOFTK)+commonPart)*sizeof(char));
+ 	   sprintf(pathToTk, "%s%s%s%s", sciPath, BASEPATHTOTHIRDPARTY, DIRECTORYOFTK, TCL_VERSION);
+ 
+ 	   char *exportTcl=(char*)MALLOC((strlen(EXPORTTCL)+strlen(pathToTcl)+1)*sizeof(char));
+ 	   char *exportTk=(char*)MALLOC((strlen(EXPORTTK)+strlen(pathToTk)+1)*sizeof(char));
+ 	   sprintf(exportTcl,"%s%s",EXPORTTCL,pathToTcl);
+ 	   sprintf(exportTk,"%s%s",EXPORTTK,pathToTk);
+ 	   /* Export both TCL_LIBRARY & TK_LIBRARY */
+ 	   putenv(exportTcl);
+ 	   putenv(exportTk);
+    }
+ 
+ 
+ 
   #endif
   /* set TMPDIR */
   C2F(settmpdir)();

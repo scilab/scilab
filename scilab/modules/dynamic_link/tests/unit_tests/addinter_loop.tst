@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
+// <-- ENGLISH IMPOSED -->
 
 // exec SCI/modules/dynamic_link/tests/unit_tests/addinter_loop.tst;
 

@@ -1,454 +1,461 @@
-# Localization of the module randlib
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-10-05 13:01+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-#
-# File: src/c/clcg2.c, line: 83
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
+msgstr ""
+"%s: Mauvais nombre d'argument d'entrée: %d attendu(s) avec l'option '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
+msgstr ""
+"%s: Mauvais nombre d'argument de sortie: %d attendu(s) avec l'option '%s'.\n"
+
+#, c-format
+msgid "The %s option affects only the clcg4 generator\n"
+msgstr "L'option %s affecte seulement le générateur clcg4\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
+msgstr ""
+"%s: Mauvais nombre d'arguments d'entrée: %d attendu(s) avec l'option '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgstr ""
+"%s: Mauvais type pour le second argument d'entrée: Scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for third input argument: Scalar expected.\n"
+msgstr ""
+"%s : Troisième argument d'entrée de mauvais type : scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
+msgstr ""
+"%s: Mauvais type pour le quatrième argument d'entrée: Scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
+msgstr ""
+"%s: Mauvais type pour le cinquième argument d'entrée: Scalaire attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d expected for '%s' with the %s "
+"generator.\n"
+msgstr ""
+"%s: Mauvais nombre d'arguments d'entrée: %d attendus pour '%s' avec le "
+"générateur %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument: Vector of %d or %d values for %s "
+"expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: Un vecteur de %d ou %d valeurs "
+"pour %s attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour le second argument d'entrée: %dx%d attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d or %d expected for '%s' option with "
+"the %s generator.\n"
+msgstr ""
+"%s: Mauvais nombre d'arguments d'entrée: %d ou %d attendus pour l'option "
+"'%s' avec le générateur %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: expected %d for '%s' option with the %s "
+"or %s generator.\n"
+msgstr ""
+"%s: Mauvais nombre d'arguments d'entrée: %d attendus pour l'option '%s' avec "
+"le générateur %s ou %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d expected for '%s' option with the %s "
+"generator.\n"
+msgstr ""
+"%s: Mauvais nombre d'arguments d'entrée: %d attendus pour l'option '%s' avec "
+"le générateur %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
+msgstr ""
+"%s: Mauvais nombre d'argument de sortie: %d attendus avec l'option '%s'.\n"
+
+#, c-format
+msgid "%s: The %s option affects only the %s generator\n"
+msgstr "%s: L'option %s affecte seulement le générateur %s\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour le second argument d'entrée: %d, %d ou %d "
+"attendus.\n"
+
+#, c-format
+msgid "The %s option affects only the %s generator\n"
+msgstr "L'option %s affecte seulement le générateur %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgstr ""
+"%s: Mauvaise valeur du second argument d'entrée: Doit être entre %d et %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgstr ""
+"%s:Mauvaise valeur pour le second argument en entrée: Doit être > %d.\n"
+
+msgid "This information concerns only the clcg4 generator\n"
+msgstr "Cette information concerne seulement le générateur clcg4\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
+"'%s' expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour le second argument d'entrée: '%s', '%s', '%s', "
+"'%s', '%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid "%s Wrong value for first input argument %s.\n"
+msgstr "%s Mauvaise valeur pour le premier argument d'entrée %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgstr "%s : Premier argument d'entrée de mauvais type : scalaire attendu.\n"
+
+msgid "Missing A and B for beta law\n"
+msgstr "A et B manquants pour la loi beta\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Scalar expected for %s.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée: Un scalaire attendu pour "
+"%s.\n"
+
+#, c-format
+msgid "Rand(...,'bet',..): A or B < %f\n"
+msgstr "Rand(...,'bet',..): A ou B < %f\n"
+
+msgid "Missing Dfn and Dfd for F law\n"
+msgstr "Dfn et Dfd manquants pour la loi F\n"
+
+msgid "Degrees of freedom nonpositive\n"
+msgstr "Degrés de liberté non positif\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Must be the number of random "
+"deviate.\n"
+msgstr ""
+
+msgid "Missing N and P for MULtinomial law\n"
+msgstr "N et P manquants pour la loi MULtinomiale\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Column vector expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée: Vecteur colonne attendu.\n"
+
+msgid "N < 0\n"
+msgstr "N < 0\n"
+
+msgid "Ncat <= 1\n"
+msgstr "N < 0\n"
+
+#, c-format
+msgid "P(%d) < 0\n"
+msgstr "P(%d) < 0\n"
+
+#, c-format
+msgid "P(%d) > 1\n"
+msgstr "P(%d) > 1\n"
+
+msgid "Sum of P(i) > 1\n"
+msgstr "Somme de P(i) > 1\n"
+
+msgid "Missing shape and scale for Gamma law\n"
+msgstr "shape et scale manquants pour la loi Gamma\n"
+
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr "grand(..'gam',A,R) : A <= 0.0 ou R <= 0.0\n"
+
+msgid "Missing Av and Sd for Normal law\n"
+msgstr "Av et Sd manquants pour la loi Normale\n"
+
+msgid "SD < 0.0\n"
+msgstr "SD < 0.0\n"
+
+msgid "Missing Low and High for Uniform Real law\n"
+msgstr "Low et High manquants pour la loi réelle Uniforme\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée: Scalaire attendu.\n"
+
+msgid "Low > High\n"
+msgstr "Low > High\n"
+
+msgid "Missing Low and High for Uniform integer law\n"
+msgstr "Low et High manquants pour la loi entière Uniforme\n"
+
+msgid "a and b must integers with (b-a+1) <= 2147483561"
+msgstr "a et b doivent être entiers avec (b-a+1) <= 2147483561"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Number of random simulation expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: Nombre de simulations "
+"aléatoires attendu.\n"
+
+msgid "Missing vect for random permutation\n"
+msgstr "vect manquant pour la permutation aléatoire\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée: Vecteur colonne attendu.\n"
+
+msgid "Missing N and P for Negative Binomial law\n"
+msgstr "N et P manquants pour la loi Binomiale négative\n"
+
+msgid "P is not in [0,1]\n"
+msgstr "P n'est pas dans [0,1]\n"
+
+msgid "Missing N and P for Binomial law\n"
+msgstr "N et P manquants pour la loi Binomiale\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Must be the number of random "
+"simulation.\n"
+msgstr ""
+"%s: Mauvaise valeur pour le premier argument d'entrée: Doit être le nombre "
+"de simulations aléatoires.\n"
+
+msgid "Missing Mean and Cov for Multivariate Normal law\n"
+msgstr "Mean et Cov manquants pour la loi Normale Multivariée\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Square matrix expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée: Matrice carrée attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments: Mean and Cov have incompatible "
+"dimensions\n"
+msgstr ""
+"%s: Mauvais type pour les arguments d'entrée: Mean et Cov ont des dimensions "
+"incompatibles\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
+msgstr ""
+"%s: Mauvaise dimension pour les arguments d'entrée: Mean et Cov sont de "
+"taille nulle.\n"
+
+#, c-format
+msgid "%s: Missing P matrix and X0 for Markov chain\n"
+msgstr "%s: La matrice P et X0 sont manquants pour la chaîne de Markov\n"
+
+#, c-format
+msgid ""
+"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+msgstr ""
+"%s: Mauvais second argument d'entrée: Matrice carrée ou un vecteur ligne "
+"attendu.\n"
+
+msgid "X0 is empty\n"
+msgstr "X0 est vide\n"
+
+#, c-format
+msgid "%s: X0(%d) must be in the range [1,%d]\n"
+msgstr "%s: X0(%d) doit être dans la plage [1,%d]\n"
+
+#, c-format
+msgid "P(%d,%d) < 0\n"
+msgstr "P(%d,%d) < 0\n"
+
+#, c-format
+msgid "P(%d,%d) > 1\n"
+msgstr "P(%d,%d) > 1\n"
+
+#, c-format
+msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
+msgstr "Somme de P(%d,1:%d)=%f ~= 1\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Mauvais nombre d'argument d'entrée.\n"
+
+msgid "Missing Df and Xnonc for non-central chi-square law\n"
+msgstr "Df et Xnonc manquants pour la loi du chi carré non centrée\n"
+
+msgid "DF < 1 or XNONC < 0\n"
+msgstr "DF < 1 ou XNONC < 0\n"
+
+msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
+msgstr "Dfn, Dfd et Xnonc manquants pour la loi F non centrée\n"
+
+msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
+msgstr "DF < 1.0 ou DF <= 0.0 ou Xnonc < 0.0\n"
+
+msgid "Missing Df for chi-square law\n"
+msgstr "Df manquant pour la loi du chi carré\n"
+
+msgid "Rand: DF <= 0\n"
+msgstr "Rand: DF <= 0\n"
+
+msgid "Missing Av for Poisson law\n"
+msgstr "Av manquant pour la loi de Poisson\n"
+
+msgid "Av < 0\n"
+msgstr "Av < 0\n"
+
+msgid "Missing p for Geometric law\n"
+msgstr "p manquant pour la loi Géométrique\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: Doit être entre '%s' et %d.\n"
+
+msgid "Missing Av for exponential law\n"
+msgstr "Av manquant pour la loi Exponentielle\n"
+
+msgid "Av < 0.0\n"
+msgstr "Av < 0.0\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s.\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée %s.\n"
+
+msgid "Random"
+msgstr "Aléatoire"
+
+msgid "Scilab randlib interface not installed.\n"
+msgstr "L'interface Scilab randlib n'est pas installée.\n"
+
+msgid "Bad seed for mt, must be an integer in [0, 2^32-1]\n"
+msgstr ""
+"Mauvaise souche pour mt, doit être un entier dans l'interval [0, 2^32-1]\n"
+
+msgid ""
+"The first component of the mt state mt, must be an integer in [1, 624]\n"
+msgstr ""
+"La première composante de l'état mt doit être un entier dans l'interval [1, "
+"624]\n"
+
+msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
+msgstr ""
+"Mauvaises souches pourr kiss, doit être des entiers compris dans l'interval "
+"[0,2^32-1]\n"
+
+msgid ""
+"\n"
+"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+msgstr ""
+"\n"
+"Mauvaise souche pour fsultra, doit être un entier dans l'interval [0, 2^32-"
+"1]\n"
+
+#, c-format
+msgid ""
+"\n"
+"The first component of the fsultra state, must be an integer in [0, %d]\n"
+msgstr ""
+"\n"
+"La première composante de l'état fsultra doit être un entier dans l'interval "
+"[0, %d]\n"
+
+msgid ""
+"\n"
+"The second component of the fsultra state, must be 0 or 1\n"
+msgstr ""
+"\n"
+"La seconde composante de l'état fsultra doit être 0 ou 1\n"
+
+msgid ""
+"\n"
+"The third component of the fsultra state, must be an integer in [1, 2^32-1]\n"
+msgstr ""
+"\n"
+"La troisième composante de l'état fsultra doit être un entier dans "
+"l'interval [1, 2^32-1]\n"
+
 msgid ""
 "\n"
 "Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
 "                                        and  s2 in [1, 2147483398]\n"
 msgstr ""
+"\n"
+"Mauvaises souches pour clcg2, doit être des entiers avec s1 dans [1, "
+"2147483562]\n"
+"                                                         et s2 dans [1, "
+"2147483398]\n"
 
-#
-# File: src/norandlib/norandlib.c, line: 11
-msgid "Scilab randlib interface not installed.\n"
-msgstr "Interface Scilab randlib non install�e.\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 172
-msgid "The setall option affect only the clcg4 generator !\n"
-msgstr "L'option setall ne concerne que le g�n�rateur clcg !\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 175
-msgid "Input argument (RHS) should be 5 for 'setall' option\n"
-msgstr "L'argument d'entr�e (RHS) doit �tre 5 pour l'option 'setall'\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 179
-# File: sci_gateway/c/sci_grand.c, line: 236
-# File: sci_gateway/c/sci_grand.c, line: 258
-# File: sci_gateway/c/sci_grand.c, line: 283
-# File: sci_gateway/c/sci_grand.c, line: 299
-msgid "Second input argument must be scalar\n"
-msgstr "Le second argument d'entr�e doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 182
-# File: sci_gateway/c/sci_grand.c, line: 239
-# File: sci_gateway/c/sci_grand.c, line: 261
-# File: sci_gateway/c/sci_grand.c, line: 286
-msgid "Third input argument must be scalar\n"
-msgstr "Le troisi�me argument d'entr�e doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 185
-# File: sci_gateway/c/sci_grand.c, line: 264
-msgid "Fourth input argument must be scalar\n"
-msgstr "Le quatri�me argument d'entr�e doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 188
-# File: sci_gateway/c/sci_grand.c, line: 267
-msgid "Fifth input argument must be scalar\n"
-msgstr "Le cinqui�me argument d'entr�e doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 337
-msgid "For initgn option argument must be -1,0 or 1\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 448
-#, c-format
-msgid "%s Wrong first input argument %s\n"
-msgstr "%s mauvais argument d'entr�e %s\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 459
-# File: sci_gateway/c/sci_grand.c, line: 463
-msgid "First input argument must be scalar\n"
-msgstr "Le premier argument d'entr�e doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 478
-msgid "Missing A and B for beta law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 480
-msgid "A must be scalar\n"
-msgstr "A doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 482
-msgid "B must be scalar\n"
-msgstr "B doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 500
-msgid "Missing Dfn and Dfd for F law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 502
-# File: sci_gateway/c/sci_grand.c, line: 932
-msgid "Dfn must be scalar\n"
-msgstr "Dfn doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 504
-# File: sci_gateway/c/sci_grand.c, line: 934
-msgid "Dfd must be scalar\n"
-msgstr "Dfd doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 508
-msgid "Degrees of freedom nonpositive\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 529
-msgid "Missing N and P for MULtinomial law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 531
-# File: sci_gateway/c/sci_grand.c, line: 717
-# File: sci_gateway/c/sci_grand.c, line: 744
-msgid "N must be scalar\n"
-msgstr "B doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 535
-msgid "P must be a column vector\n"
-msgstr "P doit �tre un vecteur colonne\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 542
-# File: sci_gateway/c/sci_grand.c, line: 728
-# File: sci_gateway/c/sci_grand.c, line: 755
-msgid "N < 0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 547
-msgid "Ncat <= 1\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 555
-#, c-format
-msgid "P(%d) < 0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 560
-#, c-format
-msgid "P(%d) > 1\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 567
-msgid "Sum of P(i) > 1\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 585
-msgid "Missing shape and scale for Gamma law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 587
-msgid "shape must be scalar\n"
-msgstr "shape doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 589
-msgid "scale must be scalar\n"
-msgstr "scale doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 593
-msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 610
-msgid "Missing Av and Sd for Normal law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 612
-# File: sci_gateway/c/sci_grand.c, line: 979
-# File: sci_gateway/c/sci_grand.c, line: 1021
-msgid "Av must be scalar\n"
-msgstr "Av doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 614
-msgid "Sd must be scalar\n"
-msgstr "Sd doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 618
-msgid "SD < 0.0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 631
-msgid "Missing Low and High for Uniform Real law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 633
-# File: sci_gateway/c/sci_grand.c, line: 655
-msgid "Low must be scalar\n"
-msgstr "Low doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 635
-# File: sci_gateway/c/sci_grand.c, line: 657
-msgid "High must be scalar\n"
-msgstr "High doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 640
-msgid "Low > High\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 653
-msgid "Missing Low and High for Uniform integer law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 661
-msgid " a and b must integers with (b-a+1) <= 2147483561"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 675
-#, c-format
-msgid "Only %d input arguments required for 'lgi' option"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 690
 msgid ""
-"First input argument for 'prm' option must be the number of random "
-"simulation\n"
+"\n"
+" bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n"
+"                                             s2 in [1, 2147483542]\n"
+"                                             s3 in [1, 2147483422]\n"
+"                                             s4 in [1, 2147483322]"
 msgstr ""
+"\n"
+" mauvaises souches pour clcg4, doit être des entiers avec s1 dans [1, "
+"2147483646]\n"
+"                                                          s2 in [1, "
+"2147483542]\n"
+"                                                          s3 in [1, "
+"2147483422]\n"
+"                                                          s4 in [1, "
+"2147483322]"
 
-#
-# File: sci_gateway/c/sci_grand.c, line: 696
-msgid "Missing vect for random permutation\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 699
-msgid "vect must be column vector\n"
-msgstr "vect doit �tre un vecteur colonne\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 715
-msgid "Missing N and P for Negative Binomial law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 719
-# File: sci_gateway/c/sci_grand.c, line: 746
-msgid "P must be scalar\n"
-msgstr "P doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 723
-# File: sci_gateway/c/sci_grand.c, line: 750
-msgid "P is not in [0,1]\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 742
-msgid "Missing N and P for Binomial law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 771
+#, c-format
 msgid ""
-"First input argument for 'mn' option must be the number of random "
-"simulation\n"
+"\n"
+"=> be aware that you have may lost synchronization\n"
+"    between the virtual gen %d and the others !\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
 msgstr ""
+"\n"
+"=> soyez conscient que la synchronisation a pu être perdue\n"
+"    entre le le gen virtuel %d et les autres !\n"
+"    utilisez grand(\"setall\", s1, s2, s3, s4) si vous voulez retrouver la "
+"synchronisation."
 
-#
-# File: sci_gateway/c/sci_grand.c, line: 775
-msgid "Missing Mean and Cov for Multivariate Normal law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 777
-msgid "Mean must be column vector\n"
-msgstr "Mean doit �tre un vecteur colonne\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 779
-msgid "Cov must be a square matrix\n"
-msgstr "Cov doit �tre une matrice carr�e\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 780
-msgid "Mean and Cov have incompatible dimensions\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 788
-msgid "Mean and Cov are of null size\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 808
 msgid ""
-"First input argument for 'markov' option must be the number of random "
-"simulation\n"
+"\n"
+"Bad seed for urand, must be an integer in [0,  2147483647]\n"
 msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 812
-msgid "Missing P matrix and X0 for Markov chain\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 817
-msgid "P must be a square matrix or a row vector\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 820
-msgid "X0 is empty\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 825
-#, c-format
-msgid "X0(%d) must be in the range [1,%d]\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 840
-#, c-format
-msgid "P(%d,%d) < 0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 845
-#, c-format
-msgid "P(%d,%d) > 1\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 852
-#, c-format
-msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
-msgstr "Somme de P(%d,1:%d)=%f ~= 1\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 892
-msgid "no input argument required for 'def' option\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 906
-msgid "Missing Df and Xnonc for non-central chi-square law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 908
-# File: sci_gateway/c/sci_grand.c, line: 959
-msgid "Df must be scalar\n"
-msgstr "Df doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 910
-# File: sci_gateway/c/sci_grand.c, line: 936
-msgid "Xnonc must be scalar\n"
-msgstr "Xnonc doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 914
-msgid "DF < 1 or XNONC < 0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 929
-msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 940
-msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 955
-msgid "Missing Df for chi-square law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 963
-msgid "Rand: DF <= 0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 976
-msgid "Missing Av for Poisson law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 983
-msgid "Av < 0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 998
-msgid "Missing p for Geometric law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 1001
-msgid "p must be scalar\n"
-msgstr "p doit �tre un scalaire\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 1003
-msgid "p must be in [pmin,1]\n"
-msgstr "p doit �tre dans [pmin,1]\n"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 1018
-msgid "Missing Av for exponential law\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 1025
-msgid "Av < 0.0\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 1039
-#, c-format
-msgid "%s Wrong input argument %s\n"
-msgstr "%s Mauvais argument d'entr�e %s\n"
+"\n"
+"Mauvaise souche pour urand, doit être un entier dans l'interval [0, "
+"2147483647]\n"

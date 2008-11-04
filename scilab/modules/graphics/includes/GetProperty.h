@@ -114,7 +114,6 @@ BOOL sciGetResize (sciPointObj * pobj);  /* GET */
 
 /* Window Functions */
 char *sciGetName (sciPointObj * pobj);  /* GET */
-int sciGetNameLength (sciPointObj * pobj);  /* GET */
 int sciGetNum (sciPointObj * pobj);  /* GET */
 int sciGetWidth (sciPointObj * pobj);   /* GET */
 int sciGetHeight (sciPointObj * pobj);  /* GET */

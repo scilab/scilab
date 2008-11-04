@@ -103,20 +103,15 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 			colors[i] = getColorMap().convertScilabToColorMapIndex(colors[i]);
 		}
 		
-		if (!paintFacet) {
-			// all the colors are 0
+		if (!paintFacet || vertices.length < TRIANGLE_NB_EDGE) {
+			// all the colors are 0 or this is not a facet
 			return;
 		}
 	
 		// for now draw only polygons with 3 or 4 edges
 		if (vertices.length == TRIANGLE_NB_EDGE) {
 			// only a triangle
-			sfd.paintPolygon(vertices, colors, gl, getColorMap());	
-			
-			// draw hidden polygon if needed
-			if (getHiddenColor() != null) {
-				drawBackTriangle(gl, vertices, getHiddenColorIndex());
-			}
+			paintOneTriangle(vertices, colors, getColorMap(), gl);
 			
 		} else if (vertices.length == QUAD_NB_EDGE) {
 			
@@ -128,19 +123,39 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 			GeomAlgos.decomposeQuad(vertices, colors, triangle1, colorT1, triangle2, colorT2);
 			
 			// draw the two decomposed triangles
-			sfd.paintPolygon(triangle1, colorT1, gl, getColorMap());	
-			sfd.paintPolygon(triangle2, colorT2, gl, getColorMap());
-		
+			paintOneTriangle(triangle1, colorT1, getColorMap(), gl);
+			paintOneTriangle(triangle2, colorT2, getColorMap(), gl);
 			
-			
-			// draw hidden triangles if needed
-			if (getHiddenColor() != null) {
-				drawBackTriangle(gl, triangle1, getHiddenColorIndex());
-				drawBackTriangle(gl, triangle2, getHiddenColorIndex());
+		} else {
+			// draw the facet using several triangles
+			// use this method for now. It will work for flat facets
+			// but is not optimal for non flat ones (in comparison with the decomposeQuad function)
+			int nbTriangles = vertices.length - 2;
+			for (int i = 1; i <= nbTriangles; i++) {
+				Vector3D[] triangle = {vertices[0], vertices[i], vertices[i + 1]};
+				int[] triangleColors = {colors[0], colors[i], colors[i + 1]};
+				paintOneTriangle(triangle, triangleColors, getColorMap(), gl);
 			}
-			
 		}
-
 	}
+		
+	/**
+	 * Paint both face of a triangle
+	 * @param vertices 3 vertices of the triangle
+	 * @param colors 3 colors indices, one for each vertex
+	 * @param cmap colorMap
+	 * @param gl current OpenGL pipeline
+	 */
+	private void paintOneTriangle(Vector3D[] vertices, int[] colors, TexturedColorMap cmap, GL gl) {
+		// paint front face
+		sfd.paintPolygon(vertices, colors, gl, cmap);
+		
+		// paint hidden face if needed
+		if (isDisplayingHiddenSurface()) {
+			drawBackTriangle(gl, vertices, getHiddenColorIndex());
+		}
+	}
+
+	
 
 }
