@@ -1429,7 +1429,8 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     end
     rdnom = strsubst(rdnom,'-','_');
     //**
-    //** same process but done for the the directory folder 
+    //** same process but done for the the directory folder
+    //** cucu  
     rpat = strsubst(rpat,' ','_');
     rpat = strsubst(rpat,'-','_');
 
