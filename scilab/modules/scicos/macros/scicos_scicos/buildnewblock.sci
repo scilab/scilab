@@ -226,10 +226,18 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
        //** if this dir exist means that someone has installed a binary version 
        if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
           //** Binary version
-	  cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
+          //** NB you must add "/../../" because the default path is "<scilab>/share/scilab/" so you need
+          //**    to remount two positions :) 
+	      //** disp(".bin");
+          cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"+"  "+..
+                   "-I"+SCI+"/../../include/scilab/dynamic_link/"+"  "+..
+                   "-I"+SCI+"/../../include/scilab/scicos/"; 
        else	  
           //** it is a source version 
-          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
+          //** disp(".source");
+          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"+"  "+..
+                   "-I"+SCI+"/modules/dynamic_link/includes/"+"  "+..
+                   "-I"+SCI+"/modules/scicos/includes/"; 
        end
 
        fflags = ""; //** no additional Fortran flags 
@@ -498,9 +506,11 @@ function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
      "CC_OPTIONS   = $(CC_COMMON)"
      "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + .. 
                      "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" " + cflags
+                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" " + ..
+                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + cflags
      "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + ..
                      "-I"""+WSCI+"\modules\scicos\includes"" " + ..
+                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + ..
                      "-I"""+WSCI+"\modules\scicos_blocks\includes"" "
      ""
      "OBJS         = "+strcat(files+'.obj',' ')]
@@ -721,9 +731,13 @@ function T=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags)
      "CC_OPTIONS   = "+CC_OPTIONS
      "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + .. 
                      "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" " + cflags
+                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" " + ..
+                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + cflags
+                     
+                     
      "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + ..
                      "-I"""+WSCI+"\modules\scicos\includes"" " + ..
+                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + ..
                      "-I"""+WSCI+"\modules\scicos_blocks\includes"" "
      ""
      "OBJS         = "+strcat(files+'.obj',' ')]
