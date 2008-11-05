@@ -64,6 +64,7 @@ Bug fixes:
 
 * bug 3692 fixed - Problem with the simplified chinese version
 
+* bug 3736 fixed - 'getfont' returns an error
 
                           Changes Scilab 5.0.1 -> 5.0.2
                           =============================
