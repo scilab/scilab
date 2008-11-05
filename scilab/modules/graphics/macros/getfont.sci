@@ -81,7 +81,7 @@ function [fontId,fontSize]=getfont(S,v1)
       
       fontId=max(0,min(nf,floor((cy)/H)));
       fontSize=max(0,min(nz,floor((cx-W1)/W)));
-      selected=fontId+(nf+1)*fontSize+1;
+      selected=fontId+nf*fontSize+1;
       t=Hdl(selected);t.foreground=red;
 
       xinfo('You have chosen fontId = '+string(fontId)+' , fontSize =  '+string(fontSize))
@@ -141,7 +141,7 @@ function Hdl=drawchart()
     end
     Hdl=[Hdl;Hdll]
   end
-  
+
   glue(Hdl)
   drawnow()
   
