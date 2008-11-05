@@ -16,7 +16,7 @@
 #include "localization.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-#ifdef USE_DYNAMIC_STACK
+#if defined(USE_DYNAMIC_STACK) || defined(__APPLE__)
 extern int scimem64(int *n, int newsize, BOOL isglobal);
 extern void freemem64(BOOL isglobal);
 #else
@@ -28,7 +28,7 @@ static char *the_gps=NULL;
 /*--------------------------------------------------------------------------*/
 int C2F(scimem)(int *n, int *ptr)
 {
-#ifdef USE_DYNAMIC_STACK
+#if defined(USE_DYNAMIC_STACK) || defined(__APPLE__)
   return scimem64(ptr, *n, FALSE);
 #else
   register char *p1 = NULL;
@@ -60,7 +60,7 @@ int C2F(scimem)(int *n, int *ptr)
 /*--------------------------------------------------------------------------*/
 int C2F(scigmem)(int *n, int *ptr)
 {
-#ifdef USE_DYNAMIC_STACK
+#if defined(USE_DYNAMIC_STACK) || defined(__APPLE__)
   return scimem64(ptr, *n, TRUE);
 #else
   register char *p1=NULL;
@@ -91,7 +91,7 @@ int C2F(scigmem)(int *n, int *ptr)
 /*--------------------------------------------------------------------------*/
 void C2F(freegmem)(void)
 {
-#ifdef USE_DYNAMIC_STACK
+#if defined(USE_DYNAMIC_STACK) || defined(__APPLE__)
   freemem64(TRUE);
 #else
   if (the_gps != NULL) SCISTACKFREE(the_gps);
@@ -100,7 +100,7 @@ void C2F(freegmem)(void)
 /*--------------------------------------------------------------------------*/
 void C2F(freemem)(void)
 {
-#ifdef USE_DYNAMIC_STACK
+#if defined(USE_DYNAMIC_STACK) || defined(__APPLE__)
   freemem64(FALSE);
 #else
   if (the_ps != NULL) SCISTACKFREE(the_ps);
