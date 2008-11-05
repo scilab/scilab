@@ -831,23 +831,26 @@ function ok=gen_ccode42();
     return
   end
 
+//** This copy is indispensable only for stand alone code generation
+//** not supported in Scilab 5 
+
   //** copy source code of machine.h/scicos_block4.h
   //   in target path
-  txt=mgetl(SCI+'/modules/core/includes/machine.h');
-  ierr=execstr('mputl(txt,rpat+''/machine.h'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
-
-  txt=mgetl(SCI+'/modules/scicos_blocks/includes/scicos_block4.h');
-  ierr=execstr('mputl(txt,rpat+''/scicos_block4.h'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
+//   txt=mgetl(SCI+'/modules/core/includes/machine.h');
+//   ierr=execstr('mputl(txt,rpat+''/machine.h'')','errcatch')
+//   if ierr<>0 then
+//     message(lasterror())
+//     ok=%f
+//     return
+//   end
+// 
+//   txt=mgetl(SCI+'/modules/scicos_blocks/includes/scicos_block4.h');
+//   ierr=execstr('mputl(txt,rpat+''/scicos_block4.h'')','errcatch')
+//   if ierr<>0 then
+//     message(lasterror())
+//     ok=%f
+//     return
+//   end
 
   //** Generate _act_sens_events.c
   Code=['#include <stdio.h>'
@@ -2010,9 +2013,9 @@ function Code=make_computational42()
         '#include <stdio.h>'
         '#include <memory.h>'
         '#include <string.h>'
-        '#include '"'+SCI+'/modules/core/includes/machine.h'"'
-        '#include '"'+SCI+'/modules/dynamic_link/includes/dynamic_link.h'"'
-        '#include '"'+SCI+'/modules/scicos/includes/scicos.h'"'
+        '#include ""machine.h"" '
+        '#include ""dynamic_link.h"" '
+        '#include ""scicos.h"" '
         '']
 
   if MSDOS then
