@@ -88,7 +88,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	
 	/** Scroll the axes */
 	private JScrollPane scrolling;
-
+	
 	/**
 	 * Constructor
 	 * @param name the name of the tab (used to identify it)
@@ -132,8 +132,10 @@ public class SwingScilabTab extends View implements SimpleTab {
 		
 		// put in in the back of the tab
 		setContentPane(scrolling);
+		
 	
 		this.setVisible(true);
+		
 	}
 	
 	/**
@@ -183,18 +185,14 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
 	 */
 	public void draw() {
-		
-		// TODO this is a temporary patch
 		if (SwingUtilities.isEventDispatchThread()) {
 			setVisible(true);
-			doLayout();
 			paintImmediately();
 		} else {
 			try {
 				SwingUtilities.invokeAndWait(new Runnable() {
 					public void run() {
 						setVisible(true);
-						doLayout();
 						paintImmediately();
 					}
 				});
@@ -865,7 +863,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 	
 	/**
-	 * Specify wether the canvas should fit the parent tab size
+	 * Specify whether the canvas should fit the parent tab size
 	 * (and consequently the scrollpane size) or not
 	 * @param onOrOff true to enable autoresize mode
 	 */

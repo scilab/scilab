@@ -3,6 +3,7 @@ package org.scilab.modules.gui.bridge.tab;
 import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.security.InvalidParameterException;
 
@@ -340,6 +341,18 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			rotationTracker = new AxesRotationTracker(this);
 		}
 		return rotationTracker;
+	}
+	
+	/**
+	 * Overide repaint so the canvas can be displayed if needed
+	 * @param g graphics
+	 */
+	public void paint(Graphics g) {
+		if (graphicCanvas != null) {
+			graphicCanvas.forcePaint(g);
+		}
+		
+		super.paint(g);
 	}
 
 }

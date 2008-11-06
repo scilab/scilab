@@ -19,6 +19,7 @@ import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MenuComponent;
 import java.awt.MenuContainer;
@@ -367,6 +368,27 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
     public boolean isVisible() {
 	return getAsComponent().isVisible();
+    }
+    
+    public boolean isFocusable() {
+    	return getAsComponent().isFocusable();
+    }
+     
+    
+    public void setEnabled(boolean enable) {
+    	getAsComponent().setEnabled(enable);
+    }
+    
+    /**
+     * Heavyweight component don't draw themselves automatically
+     * So we need to call a function to force the redraw.
+     * @param g graphics
+     */
+    public void forcePaint(Graphics g) {
+    	if (enableGLCanvas) {
+    	    // GLJPanel draw themselves automatically
+    	    realGLCanvas.display();
+    	}
     }
     
 }

@@ -72,7 +72,6 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 * @param event event when the action occurs
 	 */
 	public void mousePressed(MouseEvent event) {
-		
 		if (event.getButton() == MouseEvent.BUTTON1) {
 			// confirmation button do as usual
 			super.mousePressed(event);
