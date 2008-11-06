@@ -380,6 +380,14 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
     
     /**
+     * @return true if this object can be scrolled,
+     * false otherwise
+     */
+    public boolean isScrollable() {
+    	return (!enableGLCanvas);
+    }
+    
+    /**
      * Heavyweight component don't draw themselves automatically
      * So we need to call a function to force the redraw.
      * @param g graphics

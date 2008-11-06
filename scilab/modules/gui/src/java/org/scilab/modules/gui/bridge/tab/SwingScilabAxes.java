@@ -4,11 +4,14 @@ import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
 import javax.swing.Scrollable;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -141,7 +144,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return true if the canvas must match the viewport width
 	 */
 	public boolean getScrollableTracksViewportWidth() {
-		return autoResizeMode;
+		return getScrollableTracksViewportHeight();
 	}
 
 	/**
@@ -229,6 +232,16 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		if (graphicCanvas != null) {
 			// should not happen, no need for localization
 			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
+		}
+		
+		if (!canvas.isScrollable()) {
+			// we disable scrolling in this case, so put the viewport in correct position first
+			// and disable scrollbars
+			JViewport parentViewPort = (JViewport) getParent();
+			JScrollPane parentPane = (JScrollPane) parentViewPort.getParent();
+			parentViewPort.setViewPosition(new Point(0, 0));
+			parentPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+			parentPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		}
 		
 		// to be sure to have the same size
@@ -344,7 +357,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	}
 	
 	/**
-	 * Overide repaint so the canvas can be displayed if needed
+	 * Override repaint so the canvas can be displayed even if heavyweight.
 	 * @param g graphics
 	 */
 	public void paint(Graphics g) {
@@ -353,6 +366,13 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		}
 		
 		super.paint(g);
+	}
+	
+	/**
+	 * @return true if the canvas is scrollable
+	 */
+	public boolean isScrollable() {
+		return graphicCanvas == null || graphicCanvas.isScrollable();
 	}
 
 }

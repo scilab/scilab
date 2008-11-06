@@ -784,7 +784,8 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param height height of the viewport
 	 */
 	public void setViewingRegion(int posX, int posY, int width, int height) {
-		if (!contentPane.getAutoResizeMode()) {
+		// Check that the canvas can be resized
+		if (!contentPane.getAutoResizeMode() && contentPane.isScrollable()) {
 			// don't set viewport size here it should always fit parent tab size
 			// It seems that we must check the viewport size and positions
 			// to get coherent values, otherwise the setViewPosition hangs...
