@@ -38,7 +38,7 @@ __threadSignal	LaunchScilab;
 __threadLock	LaunchScilabLock;
 /*--------------------------------------------------------------------------*/
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   int i;
   int  no_startup_flag=0;
