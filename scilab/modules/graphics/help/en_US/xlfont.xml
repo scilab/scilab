@@ -79,6 +79,21 @@ fonts=xlfont()</synopsis>
           <para>a column vector of font names.</para>
         </listitem>
       </varlistentry>
+      
+      <varlistentry>
+        <term>bold</term>
+        <listitem>
+          <para>a boolean %t if bold</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>italic</term>
+        <listitem>
+          <para>a boolean %t if italic</para>
+        </listitem>
+      </varlistentry>
+      
     </variablelist>
   </refsection>
 
@@ -96,11 +111,11 @@ fonts=xlfont()</synopsis>
     <para>With arguments, <literal>xlfont</literal> is used to load a new font
     at different sizes in the graphics context.</para>
 
-    <para>Default fonts are "Monospaced" (0), "Symbol" (1), "Serif" (2),
-    "Serif Italic" (3), "Serif Bold" (4), "Serif Bold Italic" (5), "SansSerif"
-    (6), "SansSerif Italic" (7), "SansSerif Bold" (8), "SansSerif Bold Italic"
-    (9). These default fonts are automaticaly loaded when needed and so
-    <literal>xlfont</literal> is not really required for them. In fact
+    <para>Default family fonts are "Monospaced" (0), "Symbol" (1), "Serif"
+    (2), "Serif Italic" (3), "Serif Bold" (4), "Serif Bold Italic" (5),
+    "SansSerif" (6), "SansSerif Italic" (7), "SansSerif Bold" (8), "SansSerif
+    Bold Italic" (9). These default fonts are automaticaly loaded when needed
+    and so <literal>xlfont</literal> is not really required for them. In fact
     <literal>xlfont</literal> is essentially useful to load a new font.</para>
   </refsection>
 
@@ -143,6 +158,6 @@ xlfont('reset');
   <refsection>
     <title>Authors</title>
 
-    <para>Allan CORNET.</para>
+    <para>Allan CORNET</para>
   </refsection>
 </refentry>
