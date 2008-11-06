@@ -54,7 +54,7 @@ function [fontId,fontSize]=getfont(S,v1)
   if exists('font','local') then
     fontId=max(0,min(nf,font(1)))
     fontSize=max(0,min(5,font(2)))
-    selected=fontId+(nf+1)*fontSize+1;
+    selected=fontId+nf*fontSize+1;
     t=Hdl(selected); t.foreground=red;
   else
     selected=0
