@@ -3,4 +3,4 @@
 
 EXPORTS
 	UTFToLocale
-	
+	localeToUTF
