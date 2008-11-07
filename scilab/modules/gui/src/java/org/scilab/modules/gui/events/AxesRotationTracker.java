@@ -185,6 +185,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 * @param event press event
 	 */
 	public void mousePressed(MouseEvent event) {
+		
 		if (isWaitingForClick) {
 			// the first click is occuring
 			// first check if it is a cancel click or a not
@@ -240,7 +241,6 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 */
 	public void focusLost(FocusEvent event) {
 		// focus lost so stop recording
-		
 		endRecording();
 		synchronized (getLock()) {
 			getLock().notifyAll();

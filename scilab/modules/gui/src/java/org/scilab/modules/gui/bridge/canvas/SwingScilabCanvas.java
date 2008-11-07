@@ -77,6 +77,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		// to avoid mouse events on canvas
 		setEnabled(false);
 		
+		
 	}
 
 	/**
@@ -184,7 +185,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw

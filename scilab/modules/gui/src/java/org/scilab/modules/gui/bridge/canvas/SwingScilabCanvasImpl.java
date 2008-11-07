@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -29,6 +30,7 @@ import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyListener;
 import java.awt.event.InputMethodListener;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
@@ -48,6 +50,8 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+
 
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
@@ -56,6 +60,28 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
 
+    private class GLGibPanel extends GLCanvas {
+    	public GLGibPanel() {
+    		super();
+    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
+    	}
+    	
+    	public GLGibPanel(GLCapabilities cap) {
+    		super(cap);
+    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
+    	}
+    	
+    	protected void processMouseEvent(MouseEvent e) {
+    		super.processMouseEvent(e);
+    		((SwingScilabAxes) getParent()).processMouseEvent(e);
+    	}
+    	
+    	protected void processMouseMotionEvent(MouseEvent e) {
+    		super.processMouseMotionEvent(e);
+    		((SwingScilabAxes) getParent()).processMouseMotionEvent(e);
+    	}
+    }
+    
     static {
 	long lastTime = Calendar.getInstance().getTimeInMillis();
 	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
@@ -109,7 +135,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLCanvas();
+	    realGLCanvas = new GLGibPanel();
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
@@ -120,7 +146,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLCanvas(cap);
+	    realGLCanvas = new GLGibPanel(cap);
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");

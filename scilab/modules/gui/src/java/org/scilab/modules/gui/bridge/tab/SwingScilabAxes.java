@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
@@ -373,6 +374,15 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public boolean isScrollable() {
 		return graphicCanvas == null || graphicCanvas.isScrollable();
+	}
+	
+	
+	public void processMouseEvent(MouseEvent e) {
+		super.processMouseEvent(e);
+	}
+	
+	public void processMouseMotionEvent(MouseEvent e) {
+		super.processMouseMotionEvent(e);
 	}
 
 }
