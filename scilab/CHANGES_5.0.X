@@ -1,8 +1,19 @@
-                          Changes Scilab 5.0.2 -> 5.0.3
+                          Changes Scilab 5.0.3 -> 5.0.4
                           =============================
 
 Scilab consortium would like to thank all people who helped us by reporting
 bugs, submiting patches, fixing bugs, testing ...
+
+Bug fixes:
+==========
+
+* bug 3749 fixed - Scilab error when building scilab help in HTML
+
+
+
+                          Changes Scilab 5.0.2 -> 5.0.3
+                          =============================
+
 
 Compilation:
 ============
