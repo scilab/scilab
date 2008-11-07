@@ -5,6 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+funcprot(0);
+
 function demo_sliding_pendulum()
 	
 	//
@@ -140,3 +142,4 @@ function  draw_sliding_pendulum (H,state)
   a.title.font_size=3;
 endfunction
 
+funcprot(1);
