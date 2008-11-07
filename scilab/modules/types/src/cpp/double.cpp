@@ -17,10 +17,11 @@
 using namespace std;
 
 #define SIZE_BETWEEN_TWO_VALUES			2
-#define SPACE_BETWEEN_TWO_VALUES		"    "
+#define SPACE_BETWEEN_TWO_VALUES		"  "
 #define SIZE_BETWEEN_REAL_COMPLEX		1
 #define SPACE_BETWEEN_REAL_COMPLEX	" "
-#define NO_SIGN											""
+#define SIGN_LENGTH									2
+#define NO_SIGN											"  "
 #define MINUS_STRING								"- "
 #define PLUS_STRING									"+ "
 #define SYMBOL_I										"i"
@@ -32,7 +33,8 @@ void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bo
 void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec);
 void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
 void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-
+void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, 
+											int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
 namespace types
 {
 	/*------------*/
@@ -132,6 +134,8 @@ namespace types
 		}
 		else
 			m_pdblImg = NULL;
+
+		zero_set();
 	}
 
 	bool Double::isComplex()
@@ -345,10 +349,7 @@ namespace types
 	{
 		if(m_pdblReal != NULL)
 		{
-			for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
-			{
-				m_pdblReal[iIndex] = 0;
-			}
+			memset(m_pdblReal, 0x00, m_iSize * sizeof(double));
 		}
 		else
 			return false;
@@ -357,16 +358,11 @@ namespace types
 		{
 			if(m_pdblImg != NULL)
 			{
-				for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
-				{
-					m_pdblImg[iIndex] = 0;
-				}
+				memset(m_pdblImg, 0x00, m_iSize * sizeof(double));
 			}
 			else
 				return false;
 		}
-		else
-			return false;
 
 		return true;
 	}
@@ -398,8 +394,6 @@ namespace types
 			else
 				return false;
 		}
-		else
-			return false;
 
 		return true;	
 	}
@@ -442,6 +436,9 @@ namespace types
 			{//column vector
 
 				//1 test and two loops or 1 loop and many tests ? good question isn't it ?
+				//First is harder to maintaint but execution is faster ( 1 test and 1 loop )
+				//Second is slower, 1 loop but many tests.
+
 				//1 test and two loops for me ( AE )
 				if(isComplex() == false)
 				{
@@ -489,11 +486,12 @@ namespace types
 						iLen = iWidth + bFP + ostemp.str().size();
 						if(iLen > _iLineLen)
 						{//Max length, new line
-							ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl; 
-							ostr << ostemp.str() << endl;
-							ostemp.str("");
+							cout << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl; 
+							cout << ostemp.str() << endl;
+							ostemp.str("\x00");
 							iLastVal = i;
 						}
+
 						if(ostemp.str().size() != 0)
 						{
 							ostemp << SPACE_BETWEEN_TWO_VALUES;
@@ -570,7 +568,7 @@ namespace types
 				ostemp << endl;
 				ostr << ostemp.str();
 			}
-			else ///matrix
+			else // matrix
 			{
 				ostringstream ostemp;
 				int iLastVal = 0;
@@ -581,92 +579,172 @@ namespace types
 				int *piSize = new int[cols_get()];
 				memset(piSize, 0x00, cols_get() * sizeof(int));
 
-				//compute the row size for padding for each printed bloc.
-				for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+				//1 test and two loops or 1 loop and many tests ? good question isn't it ?
+				//First is harder to maintaint but execution is faster ( 1 test and 1 loop )
+				//Second is slower, 1 loop but many tests.
+
+				//1 test and two loops for me ( AE )
+				if(isComplex() == false)
 				{
-					for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+					//compute the row size for padding for each printed bloc.
+					for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
 					{
-						int iWidth			= 0;
-						int iPrec				= 0;
-						bool bFP				= false; // FloatingPoint
-						int iCurrentLen = 0;
-
-						GetFormat(m_pdblReal[iCols1 * rows_get() + iRows1], _iPrecision, &iWidth, &iPrec, &bFP);
-						iCurrentLen	= iWidth + bFP;
-						if(isComplex() && m_pdblReal[iCols1 * rows_get() + iRows1] != 0)
+						for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
 						{
-							int iWidth2			= 0;
-							int iPrec2			= 0;
-							bool bFP2				= false; // FloatingPoint
-							GetFormat(m_pdblReal[iCols1 * rows_get() + iRows1], _iPrecision, &iWidth2, &iPrec2, &bFP2);
-							iCurrentLen	= iWidth2 + bFP2 + 1; //1 -> space between real and cplx
+							int iWidth			= 0;
+							int iPrec				= 0;
+							bool bFP				= false; // FloatingPoint
+							int iCurrentLen = 0;
+
+							GetFormat(m_pdblReal[iCols1 * rows_get() + iRows1], _iPrecision, &iWidth, &iPrec, &bFP);
+							iCurrentLen	= iWidth + bFP;
+
+							if(iCurrentLen > piSize[iCols1])
+							{
+								piSize[iCols1] = iCurrentLen;
+							}
 						}
 
-						if(iCurrentLen > piSize[iCols1])
-						{
-							piSize[iCols1] = iCurrentLen;
+						if(iLen + piSize[iCols1] > _iLineLen)
+						{//find the limit, print this part
+							for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+							{
+								for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+								{
+									int iWidth			= 0;
+									int iPrec				= 0;
+									bool bFP				= false; // FloatingPoint
+									GetFormat(m_pdblReal[iCols2 * rows_get() + iRows2], _iPrecision, &iWidth, &iPrec, &bFP);
+									Add_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], piSize[iCols2], iPrec);
+									ostemp << SPACE_BETWEEN_TWO_VALUES;
+								}
+								ostemp << endl;
+							}
+							iLen = 0;
+							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;; 
+							ostr << ostemp.str();
+							ostemp.str("");
+							iLastCol = iCols1;
+
 						}
+						iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
 					}
 
-					if(iLen + piSize[iCols1] > _iLineLen)
-					{//find the limit, print this part
-						for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
 						{
+							int iWidth			= 0;
+							int iPrec				= 0;
+							bool bFP				= false; // FloatingPoint
+							GetFormat(m_pdblReal[iCols2 * rows_get() + iRows2], _iPrecision, &iWidth, &iPrec, &bFP);
+							Add_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], piSize[iCols2], iPrec);
+							ostemp << SPACE_BETWEEN_TWO_VALUES;
+						}
+						ostemp << endl;
+					}			
+					if(iLastCol != 0)
+					{
+						ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+					}
+					ostr << ostemp.str();
+				}
+				else //Complex case
+				{
+					//compute the row size for padding for each printed bloc.
+					for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+					{
+						for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+						{
+							int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
+							int iPrecR = 0, iPrecI = 0;
+							bool bFPR = false, bFPI = false; // FloatingPoint
+							int iCurrentLen = 0;
+
+							GetComplexFormat(	m_pdblReal[iCols1 * rows_get() + iRows1], m_pdblImg[iCols1 * rows_get() + iRows1], _iPrecision, 
+								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
+
+							if(iTotalWidth > piSize[iCols1])
+							{
+								piSize[iCols1] = iTotalWidth;
+							}
+						}
+
+						if(iLen + piSize[iCols1] > _iLineLen)
+						{//find the limit, print this part
 							for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 							{
-								int iWidth			= 0;
-								int iPrec				= 0;
-								bool bFP				= false; // FloatingPoint
-								GetFormat(m_pdblReal[iCols2 * rows_get() + iRows2], _iPrecision, &iWidth, &iPrec, &bFP);
-								Add_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], piSize[iCols2], iPrec);
-								ostemp << SPACE_BETWEEN_TWO_VALUES;
+								ostr  << "|%" << piSize[iCols2] << "%|";
+
+								for(int x = 0 ; x < piSize[iCols2]-1 ; x++)
+								{
+									ostr << " ";
+								}
+								ostr << SPACE_BETWEEN_REAL_COMPLEX << SYMBOL_I << "|" << SPACE_BETWEEN_TWO_VALUES;
 							}
-							ostemp << endl;
+
+							for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+							{
+								for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+								{
+									int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
+									int iPrecR = 0, iPrecI = 0;
+									bool bFPR = false, bFPI = false; // FloatingPoint
+									int iCurrentLen = 0;
+
+									GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision, 
+										&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
+
+									Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], 
+										piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
+									ostemp << SPACE_BETWEEN_TWO_VALUES;
+								}
+								ostemp << endl;
+							}
+							iLen = 0;
+							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;; 
+							ostr << ostemp.str();
+							ostemp.str("");
+							iLastCol = iCols1;
+
 						}
-						iLen = 0;
-						ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;; 
-						ostr << ostemp.str();
-						ostemp.str("");
-						iLastCol = iCols1;
-
+						iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
 					}
-					iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
-				}
 
-				for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
-				{
-					for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 					{
-						int iWidth			= 0;
-						int iPrec				= 0;
-						bool bFP				= false; // FloatingPoint
-						GetFormat(m_pdblReal[iCols2 * rows_get() + iRows2], _iPrecision, &iWidth, &iPrec, &bFP);
-						if(isComplex())
+						for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
 						{
-							int iWidth2			= 0;
-							int iPrec2			= 0;
-							bool bFP2				= false; // FloatingPoint
-							GetFormat(m_pdblReal[iCols2 * rows_get() + iRows2], _iPrecision, &iWidth2, &iPrec2, &bFP2);
+							int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
+							int iPrecR = 0, iPrecI = 0;
+							bool bFPR = false, bFPI = false; // FloatingPoint
+							int iCurrentLen = 0;
 
+							GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision, 
+								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
+
+							Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], 
+								piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
+							ostemp << SPACE_BETWEEN_TWO_VALUES;
 						}
-						Add_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], piSize[iCols2], iPrec);
-						ostemp << SPACE_BETWEEN_TWO_VALUES;
+						ostemp << endl;
+					}		
+
+					if(iLastCol != 0)
+					{
+						ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
 					}
-					ostemp << endl;
-				}			
-				if(iLastCol != 0)
-				{
-					ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+					ostr << ostemp.str();
 				}
-				ostr << ostemp.str();
 			}
 		}
-/*
-	else
+		/*
+		else
 		{
-			ostr << "C'est complex ca :'(" << endl;
+		ostr << "C'est complex ca :'(" << endl;
 		}
-*/		return ostr.str();
+		*/	
+		return ostr.str();
 	}
 }
 
@@ -704,14 +782,48 @@ void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bo
 		}
 	}
 
-	*_piWidth = _iPrecNeeded < (iNbEnt + iNbDec) ? _iPrecNeeded : (iNbEnt + iNbDec);
 	*_piPrec	= _iPrecNeeded - 1 - bStartByZero;
+	*_piWidth = (_iPrecNeeded < (iNbEnt + *_piPrec) ? _iPrecNeeded : (iNbEnt + *_piPrec)) + SIGN_LENGTH;
+}
+
+void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI)
+{
+	GetFormat(_dblR, _iPrecNeeded, _piWidthR, _piPrecR, _pbFloatingPointR);
+	GetFormat(_dblI, _iPrecNeeded, _piWidthI, _piPrecI, _pbFloatingPointI);
+
+	*_piTotalWidth = 0;
+	if(_dblI == 0)
+	{
+		if(_dblR == 0)
+		{
+			*_piTotalWidth += 1; //"0"
+		}
+		else
+		{
+			*_piTotalWidth		+= *_piWidthR + *_pbFloatingPointR;
+			*_piWidthI	= 0;
+		}
+	}
+	else
+	{
+		if(_dblR == 0)
+		{
+			*_piTotalWidth		+= *_piWidthI + *_pbFloatingPointI;
+			*_piWidthR	= 0;
+		}
+		else
+		{
+			*_piTotalWidth += *_piWidthR + *_pbFloatingPointR;
+			*_piTotalWidth += SIZE_BETWEEN_REAL_COMPLEX;
+			*_piTotalWidth += *_piWidthI + *_pbFloatingPointI;
+		}
+	}
 }
 
 void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec)
 {
 	*_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
-	Config_Stream(_postr, _iWidth, _iPrec, ' ');
+	Config_Stream(_postr, _iWidth/* + SIZE_BETWEEN_TWO_VALUES*/, _iPrec, ' ');
 	*_postr << left << fabs(_dblVal);
 }
 
@@ -724,6 +836,8 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 	if !R && !C -> 0
 	if(!R aa C	-> Ci
 	*/
+
+	*_postr << "|%" << _iTotalWitdh << "%|";
 	if(_dblR == 0)
 	{//no real part
 		if(_dblI == 0)
@@ -780,7 +894,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 		}
 	}
 
-	Config_Stream(_postr, _iTotalWitdh, _iPrec, ' ');
+	Config_Stream(_postr, _iTotalWitdh  + 2 * SIGN_LENGTH, _iPrec, ' ');
 	*_postr << left << ostemp.str();
 
 }

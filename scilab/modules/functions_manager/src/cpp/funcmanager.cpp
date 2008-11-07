@@ -10,7 +10,10 @@
 *
 */
 
+#ifdef _MSC_VER
 #pragma warning(disable : 4996) //It's not beautifull but that works !
+#endif
+
 
 //#include <iostream>
 #include <fstream>

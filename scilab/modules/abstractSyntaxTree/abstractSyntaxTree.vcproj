@@ -172,6 +172,10 @@
 				Name="exec"
 				>
 				<File
+					RelativePath=".\src\cpp\exec\exec_AssignExp.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\exec\exec_OpExp.cpp"
 					>
 				</File>

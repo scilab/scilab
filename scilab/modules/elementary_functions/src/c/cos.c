@@ -9,7 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+
+#include "cos.h"
+#include "sin.h"
 
 /*cos*/
 double dcoss(double _dblVal)

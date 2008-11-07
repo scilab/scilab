@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+#include "sin.h"
 
 /*sinh*/
 double dsinhs(double _dblVal)

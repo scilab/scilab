@@ -11,10 +11,6 @@
 */
 
 #include "execvisitor.hxx"
-#include "context.hxx"
-#include <time.h>
-#include <string>
-#include <sstream>
 
 using std::string;
 
@@ -329,20 +325,62 @@ namespace ast
 	{
 	}
 
-	void ExecVisitor::visit (const AssignExp  &e)
+	void ExecVisitor::visit(const CallExp &e)
 	{
-		/*Create local exec visitor*/
-		ExecVisitor* execMeR = new ast::ExecVisitor();
-		ExecVisitor* execMeL = new ast::ExecVisitor();
-		try
-		{
-			/*getting what to assign*/
-			e.right_exp_get().accept(*execMeR);
-			e.left_exp_get().accept(*execMeL);
+		ExecVisitor *execVar	= new ast::ExecVisitor();
+		ExecVisitor *execFunc = new ast::ExecVisitor();
+		std::list<Exp *>::const_iterator	i;
 
-			/*get symbol*/
-			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.left_exp_get());
-			
+		e.name_get().accept(*execFunc);
+		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
+		{//function call
+			Function *pF = execFunc->result_get()->getAsFunction();
+			types::typed_list out;
+
+			types::typed_list in;
+			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+			{
+				(*i)->accept (*execVar);
+				in.push_back(execVar->result_get());
+			}
+
+			Function::ReturnValue Ret = pF->m_pFunc(in, 0, out);
+			if(Ret == Function::AllGood)
+			{
+				result_set(out.front()->getAsDouble());
+			}
+		}
+		else if(execFunc->result_get() != NULL)
+		{//a(xxx) with a variable
+
+			//get symbol of variable
+			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
+
+			InternalType *pData = NULL;
+			if(execFunc->result_get()->getType() == InternalType::RealDouble)
+			{
+				pData = execFunc->result_get()->getAsDouble();
+			}
+
+			//visit each args
+			typed_list in;
+			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+			{
+				(*i)->accept (*execVar);
+				in.push_back(execVar->result_get());
+			}
+
+			typed_list::const_iterator	j;
+			for(j = in.begin() ; j != in.end() ; j++)
+			{
+				if((*j)->getType() == InternalType::RealImplicitList)
+				{//ca pue la mort ca !
+					
+				}
+				
+			}
+
+/*
 			InternalType *pVar	=	execMeR->result_get();
 			if(pVar->isList())
 			{
@@ -354,42 +392,13 @@ namespace ast
 			}
 
 			symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pVar));
-		}
-		catch(string sz)
-		{
-			throw sz;
-		}
-		delete execMeR;
-		delete execMeL;
-	}
-
-	void ExecVisitor::visit(const CallExp &e)
-	{
-		ExecVisitor *execVar	= new ast::ExecVisitor();
-		ExecVisitor *execFunc = new ast::ExecVisitor();
-		std::list<Exp *>::const_iterator	i;
-
-		types::typed_list in;
-		for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
-		{
-			(*i)->accept (*execVar);
-			in.push_back(execVar->result_get());
-		}
-
-		e.name_get().accept(*execFunc);
-		if(execFunc->result_get()->getType() == InternalType::RealFunction)
-		{//function call
-			Function *pF = execFunc->result_get()->getAsFunction();
-			types::typed_list out;
-			Function::ReturnValue Ret = pF->m_pFunc(in, 0, out);
-			if(Ret == Function::AllGood)
-			{
-				result_set(out.front()->getAsDouble());
-			}
+*/
 		}
 		else
-		{//array
+		{//result == NULL ,variable doesn't exist :(
 		}
+
+
 		delete execVar;
 		delete execFunc;
 	}

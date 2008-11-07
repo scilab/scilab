@@ -12,10 +12,16 @@
 
 #ifndef __BASIC_FUNCTION__
 #define __BASIC_FUNCTION__
-#include "stack-c.h"
+
 #include <stdlib.h>
 #include <math.h>
-#include "double.h"
+
+#include "stack-c.h"
+//#include "double.h"
+
+#include "abs.h"
+#include "cos.h"
+#include "sin.h"
 
 static double spdblExpmC[41] = {0};
 static double sdblExpmN = 0;
@@ -29,23 +35,9 @@ extern double C2F(dasum)();
 
 double lnp1m1(double _dblVar);
 
-double dabss(double _dblVal);
-double dabsz(double _dblRealVal, double _dblImgVal);
-
-double dcoss(double _dblVal);
-void zcoss(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
-
-double dsins(double _dblVal);
-void zsins(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
 double dtans(double _dblVal);
 void ztans(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
-
-double dacoss(double _dblVal);
-void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
-
-double dasins(double _dblVal);
-void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
 double datans(double _dblVal);
 double datan2s(double _dblValX, double _dblValY);
@@ -53,9 +45,6 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 
 double dexps(double _dblVal);
 void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
-
-double dcoshs(double _dblVal);
-double dsinhs(double _dblVal);
 
 double dsqrts(double _dblVal);
 void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);

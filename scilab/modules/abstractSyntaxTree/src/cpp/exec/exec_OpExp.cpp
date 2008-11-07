@@ -11,7 +11,6 @@
 */
 
 #include "execvisitor.hxx"
-#include <string>
 
 using std::string;
 
@@ -119,7 +118,11 @@ namespace ast
 					}
 					else
 					{
-						return;//inconsistent addition
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
 					}
 					result_set(pResult);
 				}
@@ -197,7 +200,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-//						os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}

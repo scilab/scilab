@@ -750,7 +750,15 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\abs.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\basic_functions.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\cos.h"
 				>
 			</File>
 			<File
@@ -811,6 +819,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_tools.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sin.h"
 				>
 			</File>
 			<File

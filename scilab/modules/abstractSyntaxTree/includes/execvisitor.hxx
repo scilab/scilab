@@ -13,6 +13,8 @@
 #ifndef AST_EXECVISITOR_HXX
 # define AST_EXECVISITOR_HXX
 
+#include <time.h>
+#include <string>
 #include <iostream>
 #include <sstream>
 
@@ -21,6 +23,7 @@
 #include "allvar.hxx"
 #include "alldec.hxx"
 #include "alltypes.hxx"
+#include "context.hxx"
 
 using namespace types;
 

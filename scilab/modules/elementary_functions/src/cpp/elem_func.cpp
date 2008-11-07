@@ -12,8 +12,8 @@
 
 #include "elem_func.hxx"
 #include "context.hxx"
+#include "cos.h"
 
-#include <math.h>
 using namespace types;
 
 Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, types::typed_list &out);
@@ -27,28 +27,48 @@ bool ElemFuncModule::Load()
 
 Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+	double *pDataInR	= NULL;
+	double *pDataInI	= NULL;
+	double *pDataOutR = NULL;
+	double *pDataOutI = NULL;
+	Double *pRetVal		= NULL;
+		
+
 	if(in.size() != 1)
 	{
 		return Function::WrongParamNumber;
 	}
 
-	if(in[0]->getType() != types::GenericType::RealDouble)
+	if(in[0]->getType() != types::InternalType::RealDouble)
 	{
 		return Function::WrongParamType;
 	}
-	double *pDataIn = NULL;
-	double *pDataOut = NULL;
-		
-	Double *pIn	= in[0]->getAsDouble();
-	pDataIn	=	pIn->real_get();
 
-	Double *pRetVal = new Double(pIn->rows_get(), pIn->cols_get(), &pDataOut);
 
-	for(int i = 0 ; i < pIn->size_get() ; i++)
+	Double *pIn				= in[0]->getAsDouble();
+	if(pIn->isComplex())
 	{
-		pDataOut[i] = cos(pDataIn[i]);
+		pDataInR	=	pIn->real_get();
+		pDataInI	=	pIn->img_get();
+
+		pRetVal = new Double(pIn->rows_get(), pIn->cols_get(), &pDataOutR, &pDataOutI);
+
+		for(int i = 0 ; i < pIn->size_get() ; i++)
+		{
+			zcoss(pDataInR[i], pDataInI[i], &pDataOutR[i], &pDataOutI[i]);
+		}
+	}
+	else
+	{
+		pDataInR	=	pIn->real_get();
+		pRetVal = new Double(pIn->rows_get(), pIn->cols_get(), &pDataOutR);
+		for(int i = 0 ; i < pIn->size_get() ; i++)
+		{
+			pDataOutR[i] = dcoss(pDataInR[i]);
+		}
 	}
 
 	out.push_back(pRetVal);
 	return Function::AllGood;
 }
+
