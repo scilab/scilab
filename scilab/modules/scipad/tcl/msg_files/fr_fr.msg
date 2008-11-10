@@ -25,7 +25,7 @@
 #
 
 # Scipad texts in French by Francois Vogel
-# in sync at least with v7.7
+# in sync at least with v7.8
 
 
 # commons
@@ -565,6 +565,7 @@
 
     # menues.tcl - Exec menu
     ::msgcat::mcset fr_fr "&Load into Scilab" "&Charger dans Scilab"
+    ::msgcat::mcset fr_fr "Load &all into Scilab" "Charger &tout dans Scilab"
     ::msgcat::mcset fr_fr "&Evaluate selection" "&Evaluer la sélection"
 
     # menues.tcl - Debug menu
@@ -638,7 +639,9 @@
     ::msgcat::mcset fr_fr "Execution &errors" "E&rreurs d'exécution"
         ::msgcat::mcset fr_fr "In Scilab &shell only" "Dans la fenêtre &Scilab seulement"
         ::msgcat::mcset fr_fr "Copied in a &message box" "Recopiées dans une &boîte de dialogue"
-    ::msgcat::mcset fr_fr "Show closure &X" "&Afficher la commande de fermeture"
+    ::msgcat::mcset fr_fr "E&xit options" "Option&s de fermeture"
+        ::msgcat::mcset fr_fr "Show closure &X" "Afficher le bouton &X de fermeture"
+        ::msgcat::mcset fr_fr "Exit on &last file close" "Quitte si &dernier fichier fermé"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset fr_fr "&Maximize" "&Maximiser"

@@ -100,6 +100,7 @@ sbind $pad <Control-m> {CommentSel}
 sbind $pad <Control-M> {UnCommentSel}
 
 #sbind $pad <Control-l> {execfile}
+#sbind $pad <Control-L> {execallfiles}
 
 sbind $pad <Alt-exclam> {execselection}
 

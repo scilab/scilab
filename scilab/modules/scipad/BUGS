@@ -327,6 +327,10 @@ Debugger wishes:
 
 Other wishes:
 
+- Add command "Toggle comments". When given a selection, this comments the
+  lines in that selection that are not already commented, and uncomments
+  the rest.
+
 - Localize macros such as edit_error.sci with LocalizeForScipad - these are
   part of the Scipad module and should use the Scipad localization
   mechanism - check all Scipad module macros (internal or external)
