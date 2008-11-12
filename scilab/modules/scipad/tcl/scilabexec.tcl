@@ -24,6 +24,26 @@
 # See the file scipad/license.txt
 #
 
+proc execallfiles {} {
+# launch execfile for all opened buffers
+    global listoftextarea
+
+    # order of execution is the order in $listoftextarea,
+    # i.e. it is always the file opening order, regardless
+    # of $windowsmenusorting
+    foreach ta [filteroutpeers $listoftextarea] {
+        set execresult [execfile $ta false]
+        # ignore case of exec'ing an empty file
+        if {$execresult == 3} {
+            set execresult 0
+        }
+        if {$execresult != 0} {
+            # do not exec remaining files if there was a problem
+            break
+        }
+    }
+}
+
 proc execfile {{buf "current"} {getpath false}} {
 # exec a buffer into Scilab
 # if the buffer is modified (not saved), then an attempt is made to save it
@@ -35,6 +55,7 @@ proc execfile {{buf "current"} {getpath false}} {
 #     1 = scilab busy
 #     2 = user selected cancel overwrite (if silent save fails, the user is
 #         asked about overwriting the original file on disk)
+#     3 = attempt to exec an empty file
 #    -1 = exec instruction failed in Scilab
 # however, if getpath is true, then the return value in case of success only
 # is a list:
@@ -57,7 +78,7 @@ proc execfile {{buf "current"} {getpath false}} {
 
     if {[$textarea index end-1c] == 1.0} {
         showinfo [mc "No point in loading an empty file!"]
-        return 2
+        return 3
     }
 
     if {[isscilabbusy 1 $listoffile("$textarea",fullname)]} {return 1}

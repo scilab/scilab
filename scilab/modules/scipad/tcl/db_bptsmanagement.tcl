@@ -371,7 +371,7 @@ proc insertremove_bp {{buf "current"}} {
 # this proc makes sure that the cursor line can receive a breakpoint, i.e.
 # is not a nocode line and is not a function definition line, and there is no
 # same function already breakpointed, perhaps in another buffer
-# the breakpoint is not sent to /removed from Scilab, unless when already
+# the breakpoint is not sent to / removed from Scilab, unless when already
 # in debug mode, and in this case the job is done by proc insertremovedebug_bp
     if {$buf == "current"} {
         set textarea [gettextareacur]

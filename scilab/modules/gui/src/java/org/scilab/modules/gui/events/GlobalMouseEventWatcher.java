@@ -17,6 +17,8 @@ import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 
+import javax.media.opengl.GLCanvas;
+
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.utils.SciTranslator;
 
@@ -68,6 +70,13 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		 * DCLICKED
 		 * MOVED
 		 */
+		
+		// Hack here, under Linux the GLCanvas prevent from clicking on the axes directly
+		if (mouseEvent.getSource() instanceof GLCanvas) {
+			// change the source so everything will appear as if the axes were selected
+			mouseEvent.setSource(((GLCanvas) mouseEvent.getSource()).getParent());
+		}
+		
 		this.lastMouse = (MouseEvent) mouseEvent;
 		if (mouseEvent.getSource() instanceof SwingScilabAxes) {
 			/** ADD COMMENT */

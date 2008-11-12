@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc createmenues {} {
     global pad tcl_platform bgcolors fgcolors
     global sourcedir moduledir msgsdir binddir
@@ -135,6 +136,8 @@ proc createmenues {} {
     eval "$pad.filemenu add cascade [me "E&xecute"] -menu $pad.filemenu.exec "
     eval "$pad.filemenu.exec add command [me "&Load into Scilab"] \
               [ca execfile]"
+    eval "$pad.filemenu.exec add command [me "Load &all into Scilab"] \
+              [ca execallfiles]"
     eval "$pad.filemenu.exec add command [me "&Evaluate selection"] \
               [ca execselection]"
 
@@ -402,9 +405,14 @@ proc createmenues {} {
         eval "$pad.filemenu.options.messageboxes add radiobutton \
             [me "Copied in a &message box"] \
              -value true -variable ScilabErrorMessageBox"
-    eval "$pad.filemenu.options add check [me "Show closure &X"] \
-      -command {toggleclosureXcross}\
-      -offvalue false -onvalue true -variable showclosureXcross"
+    menu $pad.filemenu.options.exitopts -tearoff 0
+    eval "$pad.filemenu.options add cascade [me "E&xit options"] \
+           -menu $pad.filemenu.options.exitopts "
+        eval "$pad.filemenu.options.exitopts add check [me "Show closure &X"] \
+          -command {toggleclosureXcross}\
+          -offvalue false -onvalue true -variable showclosureXcross"
+        eval "$pad.filemenu.options.exitopts add check [me "Exit on &last file close"] \
+          -offvalue false -onvalue true -variable exitwhenlastclosed"
 
     # windows menu
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"]

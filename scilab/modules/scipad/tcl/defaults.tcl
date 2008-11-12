@@ -183,7 +183,7 @@ set listofpref "$colorpref wordWrap \
        tabinserts lang completionbinding showContinuedLines \
        filebackupdepth bindstyle doubleclickscheme colorizeenable \
        windowsmenusorting linenumbersmargins ScilabErrorMessageBox \
-       colorizeuserfuns showclosureXcross"
+       colorizeuserfuns showclosureXcross exitwhenlastclosed"
 set listofpref_list { listofrecent textFont menuFont }
 
 # default options which can be overriden
@@ -219,7 +219,7 @@ set indentspaces 2
 set tabsizeinchars 4
 set usekeywordindent 1  ; # use smart keyword indentation: 0 (no) or 1 (yes)
 set filenamesdisplaytype "pruned"  ;# "pruned" or "full" or "fullifambig"
-set maxrecentfiles 4
+set maxrecentfiles 15
 set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"
 set tabinserts "spaces"    ;# "spaces" or "tabs"
@@ -234,6 +234,7 @@ set linenumbersmargins "right" ; # "hide" (line numbers are not displayed), or "
 set ScilabErrorMessageBox true
 set colorizeuserfuns "yes"
 set showclosureXcross true
+set exitwhenlastclosed false
 
 # End of saved preferences
 #############

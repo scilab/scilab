@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
@@ -61,7 +63,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public SwingScilabAxes(int figureId) {
 		super();
-		// default behaviour
+		// default behavior
 		autoResizeMode = true;
 
 		eventHandler = null;
@@ -373,6 +375,31 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public boolean isScrollable() {
 		return graphicCanvas == null || graphicCanvas.isScrollable();
+	}
+	
+	
+	/**
+	 * Override function to be able to call it from SwingScilabCanvas
+	 * @param e event produced on the canvas
+	 */
+	public void processMouseEvent(MouseEvent e) {
+		super.processMouseEvent(e);
+	}
+	
+	/**
+	 * Override function to be able to call it from SwingScilabCanvas
+	 * @param e event produced on the canvas
+	 */
+	public void processMouseMotionEvent(MouseEvent e) {
+		super.processMouseMotionEvent(e);
+	}
+	
+	/**
+	 * Override function to be able to call it from SwingScilabCanvas
+	 * @param e event produced on the canvas
+	 */
+	public void processKeyEvent(KeyEvent e) {
+		super.processKeyEvent(e);
 	}
 
 }
