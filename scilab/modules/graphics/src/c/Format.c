@@ -1051,157 +1051,185 @@ int sciGetLogExponent( double minBound, double maxBound, double * expMin, double
 /*--------------------------------------------------------------------------*/
 int ComputeC_format(sciPointObj * pobj, char * c_format)
 {
-  int i,j;
-  char pos;
-  char xy_type;
-  double *x = NULL;
-  double *y = NULL;
-  int *nx = NULL;
-  int *ny = NULL;
-  char * format = NULL;
-  sciPointObj * psubwin = sciGetCurrentSubWin();
-  int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
+	int i,j;
+	char pos;
+	char xy_type;
+	double *x = NULL;
+	double *y = NULL;
+	int *nx = NULL;
+	int *ny = NULL;
+	sciPointObj * psubwin = sciGetParentSubwin(pobj);
+	int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
 
 
-  if(sciGetEntityType(pobj) != SCI_AXES){
-    sciprint(_("Error: ComputeFormat must be used with SCI_AXES objects\n"));
-    return -1;
-  }
+	if(sciGetEntityType(pobj) != SCI_AXES){
+		sciprint(_("Error: ComputeFormat must be used with SCI_AXES objects\n"));
+		return -1;
+	}
 
-  pos = pAXES_FEATURE(pobj)->dir;
-  xy_type = pAXES_FEATURE (pobj)->tics;
-  /* Allocating space before re-copying values to not polluate the good values 
-  that will be used inside Axes.c */
-  if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
-	  return -1;
-  }
+	pos = pAXES_FEATURE(pobj)->dir;
+	xy_type = pAXES_FEATURE (pobj)->tics;
+	/* Allocating space before re-copying values to not polluate the good values 
+	that will be used inside Axes.c */
+	if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
+		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		return -1;
+	}
 
-  if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
-	  return -1;
-  }
+	if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
+		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		return -1;
+	}
 
-  if((nx=MALLOC(sizeof(int)))==NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
-	  return -1;
-  }  
+	if((nx=MALLOC(sizeof(int)))==NULL){
+		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		return -1;
+	}  
 
-  if((ny=MALLOC(sizeof(int)))==NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
-	  return -1;
-  }
+	if((ny=MALLOC(sizeof(int)))==NULL){
+		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		return -1;
+	}
 
-  nx[0] = pAXES_FEATURE (pobj)->nx;
-  for(i=0;i<(*nx);i++)  x[i] = pAXES_FEATURE(pobj)->vx[i];  
+	nx[0] = pAXES_FEATURE (pobj)->nx;
+	for(i=0;i<(*nx);i++) { x[i] = pAXES_FEATURE(pobj)->vx[i]; }
 
-  ny[0] = pAXES_FEATURE (pobj)->ny;
-  for(i=0;i<(*ny);i++)  y[i] = pAXES_FEATURE(pobj)->vy[i];
+	ny[0] = pAXES_FEATURE (pobj)->ny;
+	for(i=0;i<(*ny);i++) { y[i] = pAXES_FEATURE(pobj)->vy[i]; }
 
-  format = pAXES_FEATURE (pobj)->format;
+	/* Algo. here */
+	if(xy_type == 'i') {  
+		switch ( pos ) {
+			case 'u' : case 'd' :  
+				if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n')
+				{
+					while (x[3]>10) { x[3]=floor(x[3]/2); }
+				}
+				else
+				{
+					if(x[3] > 12)
+					{ /* F.Leray arbitrary value=12 for the moment */
+						x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
+						for(j=x3-1;j>1;j--)
+						{
+							if(x3%j == 0){
+								x[3]=j; 
+								xpassed = 1;
+							}
+						}
+						if(xpassed != 1) { x[3] = 1; }
+					}
+				}
 
-  /* Algo. here */
-  if(xy_type == 'i') {  
-    switch ( pos ) {
-    case 'u' : case 'd' :  
-      if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n')
-        while (x[3]>10)  x[3]=floor(x[3]/2); 
-      else{
-        if(x[3] > 12){ /* F.Leray arbitrary value=12 for the moment */
-          x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
-          for(j=x3-1;j>1;j--)
-            if(x3%j == 0){
-              x[3]=j; 
-              xpassed = 1;
-            }
-            if(xpassed != 1) x[3] = 1;
-        }
-      }
-
-      break;
-    case 'r' : case 'l' :
-      if(pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
-        while (y[3]>10)  y[3]=floor(y[3]/2);
-      else{
-        if(y[3] > 12){
-          y3=(int)y[3];
-          for(j=y3-1;j>1;j--)
-            if(y3%j == 0){
-              y[3]=j;
-              ypassed = 1;
-            }
-            if(ypassed != 1) y[3] = 1;
-        }
-      }
-    }
-  }
+				break;
+			case 'r' : case 'l' :
+				if(pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+				{
+					while (y[3]>10) { y[3]=floor(y[3]/2); }
+				}
+				else
+				{
+					if(y[3] > 12){
+						y3=(int)y[3];
+						for(j=y3-1;j>1;j--)
+						{
+							if(y3%j == 0){
+								y[3]=j;
+								ypassed = 1;
+							}
+						}
+						if(ypassed != 1) { y[3] = 1; }
+					}
+				}
+				break;
+		}
+	}
 
 
-  /** Real to Pixel values **/
-  switch ( xy_type ) 
-  {
-  case 'v' : Nx= *nx; Ny= *ny; break;
-  case 'r' :
-    switch ( pos ) {
-  case 'u' : case 'd' : Nx = (int) x[2]+1; break;
-  case 'r' : case 'l' : Ny = (int) y[2]+1; break;
-    }
-    break;
-  case 'i' : 
-    switch ( pos ) {
-  case 'u' : case 'd' : Nx = (int) x[3]+1; break; 
-  case 'r' : case 'l' : Ny = (int) y[3]+1; break;
-    }
-    break;
-  default: 
-    sciprint(_("%s: Wrong type argument %s.\n"),"Sci_Axis","xy_type");
-  }
-  switch (pos ) 
-  {
-  case 'u' : 
-  case 'd' :
-    /** Horizontal axes **/
-    /** compute a format **/
-    /*   if (str == NULL && format == NULL )   */
-    if (format == NULL )  
-      switch (xy_type ) {
-  case 'v' : ChoixFormatE1(c_format,x,Nx);break;
-  case 'r' : ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);break;
-  case 'i' : 
-    ChoixFormatE (c_format,
-      (x[0] * exp10(x[2])),
-      (x[1] * exp10(x[2])),
-      ((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]); break; /* Adding F.Leray 06.05.04 */
+	/** Real to Pixel values **/
+	switch ( xy_type ) 
+	{
+	case 'v' :
+		Nx= *nx;
+		Ny= *ny;
+		break;
+	case 'r' :
+		switch ( pos ) {
+			case 'u' : case 'd' :
+				Nx = (int) x[2]+1;
+				break;
+			case 'r' : case 'l' :
+				Ny = (int) y[2]+1;
+				break;
+		}
+		break;
+	case 'i' : 
+		switch ( pos ) {
+			case 'u' : case 'd' :
+				Nx = (int) x[3]+1;
+				break; 
+			case 'r' : case 'l' :
+				Ny = (int) y[3]+1;
+				break;
+		}
+		break;
+	default: 
+		sciprint(_("%s: Wrong type argument %s.\n"),"Sci_Axis","xy_type");
+	}
 
-    }
-    break;
-    /** the horizontal segment **/
-  case 'r' : 
-  case 'l' :
+	switch (pos) 
+	{
+	case 'u' : 
+	case 'd' :
+		/** Horizontal axes **/
+		/** compute a format **/
+		switch (xy_type )
+		{
+		case 'v' :
+			ChoixFormatE1(c_format,x,Nx);
+			break;
+		case 'r' :
+			ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);
+			break;
+		case 'i' : 
+			ChoixFormatE (c_format,
+										(x[0] * exp10(x[2])),
+										(x[1] * exp10(x[2])),
+										((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]);
+			break; /* Adding F.Leray 06.05.04 */
+		}
+		break;
+		/** the horizontal segment **/
+	case 'r' : 
+	case 'l' :
 
-    /** Vertical axes **/
-    if (format == NULL ) 
-      switch (xy_type ) {
-  case 'v' : ChoixFormatE1(c_format,y,Ny);break;
-  case 'r' : ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);break;
-  case 'i' : 
-    ChoixFormatE (c_format,
-      (y[0] * exp10(y[2])),
-      (y[1] * exp10(y[2])),
-      ((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]); break; /* Adding F.Leray 06.05.04 */
-    }
-    /** the vertical segment **/
-    break;
-  }
+		/** Vertical axes **/
+		switch (xy_type ) {
+			case 'v' :
+				ChoixFormatE1(c_format,y,Ny);
+				break;
+			case 'r' : 
+				ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);
+				break;
+			case 'i' : 
+				ChoixFormatE (c_format,
+											(y[0] * exp10(y[2])),
+											(y[1] * exp10(y[2])),
+											((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]);
+				break; /* Adding F.Leray 06.05.04 */
+		}
+		/** the vertical segment **/
+		break;
+	}
 
-  /* c_format should be filled now */
+	/* c_format should be filled now */
 
-  FREE(x); x = NULL;
-  FREE(y); y = NULL;
-  FREE(nx); nx = NULL;
-  FREE(ny); ny = NULL;
+	FREE(x); x = NULL;
+	FREE(y); y = NULL;
+	FREE(nx); nx = NULL;
+	FREE(ny); ny = NULL;
 
-  return 0;
+	return 0;
 
 }
 /*--------------------------------------------------------------------------*/
@@ -1313,7 +1341,8 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
 {
   StringMatrix * ticsLabels = NULL   ;
   int            nbTics     = 0      ;
-  char           c_format[5]         ;
+	char           tempFormat[5]       ;
+  char         * c_format   = NULL   ;
   double       * vector     = NULL   ; /* position of labels */
   char           curLabelBuffer[257] ;
   int            i                   ;
@@ -1321,15 +1350,13 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   if ( pAXES_FEATURE(pobj)->format == NULL )
   {
     /* we need to compute c_format */
-    ComputeC_format( pobj, c_format ) ;
+    ComputeC_format( pobj, tempFormat ) ;
+		c_format = tempFormat;
   }
   else
   {
-    int i2 ;
-    for ( i2 = 0 ; i2 < 5 ; i2++ )
-    {
-      c_format[i2] = pAXES_FEATURE(pobj)->format[i2] ;
-    }
+		/* the format is already specified */
+		c_format = pAXES_FEATURE(pobj)->format;
   }
 
   /* vector is allocated here */
@@ -1338,8 +1365,6 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
     Scierror(999,_("Error: Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
     return 0;
   }
-
-  ComputeC_format( pobj, c_format ) ;
 
   /* create a vector of strings */
   ticsLabels = newMatrix( 1, nbTics ) ;
@@ -1352,9 +1377,9 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
 
   for( i = 0 ; i < nbTics ; i++ )
   {
-    sprintf(curLabelBuffer,c_format,vector[i]) ; /* we can't know for sure the size of the label */
+    sprintf(curLabelBuffer, c_format, vector[i]) ; /* we can't know for sure the size of the label */
                                                  /* That's why it is first stored in a big array */
-    copyStrMatElement( ticsLabels, 0, i, curLabelBuffer ) ;
+    copyStrMatElement(ticsLabels, 0, i, curLabelBuffer) ;
   }
   FREE(vector) ;
   vector = NULL;
