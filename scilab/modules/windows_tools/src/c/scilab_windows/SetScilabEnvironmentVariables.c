@@ -178,7 +178,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 			GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 			slashToAntislash(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",ShortPath);
-
+			SetEnvironmentVariableA("HOME",ShortPath);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 			
 		}
@@ -188,6 +188,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 			/* c:/progra~1/scilab-3.1 */
 			slashToAntislash(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",CopyOfDefaultPath);
+			SetEnvironmentVariableA("HOME",CopyOfDefaultPath);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		}
 	}
@@ -202,6 +203,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 		AntislashToSlash(DefaultPath,CopyOfDefaultPath);
 		GetShortPathName(CopyOfDefaultPath,ShortPath,PATH_MAX);
 		sprintf (env, "HOME=%s",ShortPath);
+		SetEnvironmentVariableA("HOME",ShortPath);
 		
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}

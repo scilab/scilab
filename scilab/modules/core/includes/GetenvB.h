@@ -10,7 +10,9 @@
  *
  */
 
-#include "../../io/includes/getenvc.h"
+#ifndef __GETENVB_H__
+#define __GETENVB_H__
+
 /**
  * getenv + squash trailing white spaces 
  *
@@ -19,3 +21,5 @@
  * @param len   
  */
 void GetenvB(char *name, char *env, int len);
+
+#endif /* __GETENVB_H__ */
