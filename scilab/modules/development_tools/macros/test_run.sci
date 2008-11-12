@@ -538,6 +538,12 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
+	if grep(txt,"<-- REOPENED -->") <> [] then
+		status_msg = "skipped : Bug reopened";
+		status_id  = 10;
+		return;
+	end
+	
 	if grep(txt,"<-- TEST WITH GRAPHIC -->") <> [] then
 		this_use_graphics = %T;
 		if launch_mode=="-nwni" then
