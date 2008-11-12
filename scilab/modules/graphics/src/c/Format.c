@@ -1090,12 +1090,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   if((ny=MALLOC(sizeof(int)))==NULL){
 	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
 	  return -1;
-  } 
-
-  if((format=MALLOC(5*(sizeof(char ))+1))==NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
-	  return -1;
-  } 
+  }
 
   nx[0] = pAXES_FEATURE (pobj)->nx;
   for(i=0;i<(*nx);i++)  x[i] = pAXES_FEATURE(pobj)->vx[i];  
@@ -1208,7 +1203,6 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   FREE(y); y = NULL;
   FREE(nx); nx = NULL;
   FREE(ny); ny = NULL;
-  FREE(format); format = NULL;
 
   return 0;
 
