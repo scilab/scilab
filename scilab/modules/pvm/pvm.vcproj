@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../core/includes;../output_stream/includes"
+				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../core/includes;../output_stream/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PVM_EXPORTS;WIN32;__STDC__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -68,7 +68,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib wsock32.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN32\libpvm3.lib $(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="LIBCMT.lib"
@@ -128,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../core/includes;../output_stream/includes"
+				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../core/includes;../output_stream/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PVM_EXPORTS;WIN32;__STDC__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -152,9 +152,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib wsock32.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN64\libpvm3.lib $(ProjectDir)pvm3\lib\WIN64\libgpvm3.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="LIBCMT.lib"
 				ModuleDefinitionFile="pvm.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -213,7 +214,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../core/includes;../output_stream/includes"
+				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../core/includes;../output_stream/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PVM_EXPORTS;WIN32;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -236,7 +237,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib wsock32.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN32\libpvm3.lib $(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="pvm.def"
@@ -302,7 +303,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../core/includes;../output_stream/includes"
+				AdditionalIncludeDirectories="includes;src/c;&quot;$(ProjectDir)pvm3/include&quot;;&quot;$(ProjectDir)pvm3/src&quot;;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../core/includes;../output_stream/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PVM_EXPORTS;WIN32;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -325,7 +326,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib wsock32.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN64\libpvm3.lib $(ProjectDir)pvm3\lib\WIN64\libgpvm3.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="pvm.def"
@@ -600,14 +601,6 @@
 				</File>
 			</Filter>
 		</Filter>
-		<File
-			RelativePath=".\pvm3\lib\WIN32\libgpvm3.lib"
-			>
-		</File>
-		<File
-			RelativePath=".\pvm3\lib\WIN32\libpvm3.lib"
-			>
-		</File>
 		<File
 			RelativePath=".\Makefile.am"
 			>
