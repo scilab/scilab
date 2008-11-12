@@ -127,7 +127,6 @@ java
 autom4te.cache
 .deps
 locale
-*.dat
 scilab-lib.properties
 scilab-lib-doc.properties
 scilab.pc
