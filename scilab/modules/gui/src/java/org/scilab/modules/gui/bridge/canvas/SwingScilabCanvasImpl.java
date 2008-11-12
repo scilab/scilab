@@ -29,6 +29,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyListener;
 import java.awt.event.InputMethodListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -60,26 +61,65 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
 
-    private class GLGibPanel extends GLCanvas {
-    	public GLGibPanel() {
+    /**
+     * Class used to fix a issue with AWT under Linux.
+     * It is apparently not possible to click on a lightweight (at least)
+     * component which is hidden behind the the canvas.
+     * Consequently to be able to send the mouse events to the axes we need to overide processEvents functions
+     * @author Jean-Baptiste silvy
+     */
+    private class GLEventCanvas extends GLCanvas {
+    	
+    	/** needed */
+		private static final long serialVersionUID = 1164643863862749375L;
+
+		/**
+    	 * Default constructor
+    	 */
+    	public GLEventCanvas() {
     		super();
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
+    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
     	}
     	
-    	public GLGibPanel(GLCapabilities cap) {
+    	/**
+    	 * @param cap cap to use
+    	 */
+    	public GLEventCanvas(GLCapabilities cap) {
     		super(cap);
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
+    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
     	}
     	
+    	/**
+    	 * @return parent axes of the canvas
+    	 */
+    	private SwingScilabAxes getParentAxes() {
+    		return ((SwingScilabAxes) getParent());
+    	}
+    	
+    	/**
+    	 * @param e mouse event to process
+    	 */
     	protected void processMouseEvent(MouseEvent e) {
-    		super.processMouseEvent(e);
-    		((SwingScilabAxes) getParent()).processMouseEvent(e);
+    		e.setSource(getParentAxes());
+    		getParentAxes().processMouseEvent(e);
     	}
     	
+    	/**
+    	 * @param e mouse event to process
+    	 */
     	protected void processMouseMotionEvent(MouseEvent e) {
-    		super.processMouseMotionEvent(e);
-    		((SwingScilabAxes) getParent()).processMouseMotionEvent(e);
+    		e.setSource(getParentAxes());
+    		getParentAxes().processMouseMotionEvent(e);
     	}
+    	
+    	/**
+    	 * @param e key event to process
+    	 */
+    	protected void processKeyEvent(KeyEvent e) {
+    		e.setSource(getParentAxes());
+    		getParentAxes().processKeyEvent(e);
+    	}
+    	
     }
     
     static {
@@ -135,7 +175,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLGibPanel();
+	    realGLCanvas = new GLEventCanvas();
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
@@ -146,7 +186,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLGibPanel(cap);
+	    realGLCanvas = new GLEventCanvas(cap);
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
@@ -402,7 +442,13 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      
     
     public void setEnabled(boolean enable) {
-    	getAsComponent().setEnabled(enable);
+    	//getAsComponent().setEnabled(enable);
+    	// don't disable the GLCanvas
+		// otherwise mouse events will be lost because
+		// they won't reach the axes under Linux
+    	if (!enableGLCanvas) {
+    	    realGLJPanel.setEnabled(false);
+    	}
     }
     
     /**
