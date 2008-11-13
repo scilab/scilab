@@ -7,7 +7,12 @@ bugs, submiting patches, fixing bugs, testing ...
 Bug fixes:
 ==========
 
+* bug 3608 fixed - Scilab freezes when executing a combination of "eventhandler", "xchange" and "plot"
+
 * bug 3749 fixed - Scilab error when building scilab help in HTML
+
+* bug 3749 fixed - drawaxis produces unreadable labels
+
 
 
 
