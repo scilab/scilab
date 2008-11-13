@@ -21,7 +21,7 @@ while expr then instructions,...[,else instructions], end</synopsis>
       <listitem>
         <para>
 	  La seule contrainte est que chaque mot-clé <literal>then</literal> ou
-	  <literal>do</literal> soit sur la même ligne que le <literal>hile</literal>
+	  <literal>do</literal> soit sur la même ligne que le <literal>while</literal>
 	  correspondant.
 	</para>
       </listitem>
