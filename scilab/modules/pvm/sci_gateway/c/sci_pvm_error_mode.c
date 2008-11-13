@@ -17,6 +17,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_pvm.h"
 #include "sci_pvm.h"
+#include "Scierror.h"
 #include "localization.h"
 /******************************************
  * SCILAB function : pvm_error_mode
@@ -49,12 +50,12 @@ int intspvm_error_mode(char *fname,unsigned long fname_len)
       int m;
       if ( pvm_error == 1 ) 
 	  { 
-		m = strlen(stop);
+		m = (int)strlen(stop);
 		CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m,&un,(loc=stop,&loc));
       } 
 	  else 
 	  { 
-		m = strlen(cont);
+		m = (int)strlen(cont);
 		CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m,&un,(loc=cont,&loc));
       }
       LhsVar(1)=Rhs+1;

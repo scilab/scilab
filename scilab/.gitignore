@@ -66,7 +66,12 @@ setup.iss
 tasks.iss
 types.iss
 uninstalldelete.iss
-
+custommessages.iss
+en_US_scilab.isl
+fr_FR_scilab.isl
+ru_RU_scilab.isl
+zh_CN.isl
+zh_CN_scilab.isl
 #
 # VS solution files (windows)
 #
@@ -122,7 +127,6 @@ java
 autom4te.cache
 .deps
 locale
-*.dat
 scilab-lib.properties
 scilab-lib-doc.properties
 scilab.pc

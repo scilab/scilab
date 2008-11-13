@@ -40,7 +40,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	
 	/**
 	 * default constructor
-	 * @param canvas canvas on which we want to recod mouse displacement
+	 * @param canvas canvas on which we want to record mouse displacement
 	 */
 	public AxesRotationTracker(Component canvas) {
 		super(canvas);
@@ -241,9 +241,13 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 */
 	public void focusLost(FocusEvent event) {
 		// focus lost so stop recording
-		endRecording();
-		synchronized (getLock()) {
-			getLock().notifyAll();
+		
+		// dont't stop if focus is given to one of the tracked canvas children
+		if (event.getOppositeComponent().getParent() != getTrackedCanvas()) {
+			endRecording();
+			synchronized (getLock()) {
+				getLock().notifyAll();
+			}
 		}
 	}
 

@@ -99,6 +99,9 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Number of subwins */
 	private int nbSubwins;
 	
+	/** In double buffer mode, it might be needed to emulate single buffer */
+	private boolean isEmultatingSingleBuffer;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -119,6 +122,7 @@ public class DrawableFigureGL extends ObjectGL {
       	transform = new CoordinateTransformation();
       	clipPlaneManager = new ClipPlane3DManager();
       	nbSubwins = 0;
+      	isEmultatingSingleBuffer = false;
     }
 	
 	/**
@@ -362,7 +366,15 @@ public class DrawableFigureGL extends ObjectGL {
   	public void setLogicalOp(int logicOpIndex) {
   		// convert to OpenGL value
   		GL gl = getGL();
+  		
+  		
+  		
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
+		if (LOGICAL_OPS[logicOpIndex] != GL.GL_COPY) {
+			// Here I tried to copy the frotn buffer to the back, but it didn't work
+			// So I use only one buffer for know.
+			useSingleBuffer();
+		}
 		gl.glLogicOp(LOGICAL_OPS[logicOpIndex]);
   	}
   	
@@ -684,6 +696,39 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void closeGraphicCanvas() {
 		getRendererProperties().closeGraphicCanvas();
+	}
+	
+	/**
+	 * Emulate the use of a single buffer if needed
+	 */
+	public void useSingleBuffer() {
+		if (isDoubleBuffered()) {
+			// draw in the front buffer so its like we're having only one buffer
+			getGL().glDrawBuffer(GL.GL_FRONT);
+			isEmultatingSingleBuffer = true;
+		}
+	}
+	
+	/**
+	 * Swap the buffers for this figure if needed.
+	 */
+	public void swapBuffers() {
+		if (isDoubleBuffered() && isEmultatingSingleBuffer) {
+			// to be sure to fill the buffer
+			getGL().glFlush();
+			  // switch back to default buffer
+			getGL().glDrawBuffer(GL.GL_BACK);
+			isEmultatingSingleBuffer = false;
+		} else {
+			getRenderingTarget().swapBuffers();
+		}
+	}
+	
+	/**
+	 * @return true if the canvas is double buffered, false otherwise
+	 */
+	public boolean isDoubleBuffered() {
+		return getRenderingTarget().getChosenGLCapabilities().getDoubleBuffered();
 	}
 	
 }

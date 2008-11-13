@@ -18,6 +18,7 @@
 #include "gw_pvm.h"
 #include "MALLOC.h"
 #include "sci_pvm.h"
+#include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 /******************************************

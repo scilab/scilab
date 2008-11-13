@@ -164,12 +164,20 @@ proc filesetasnew {} {
 ##################################################
 # procs closing buffers
 ##################################################
-proc closecurfile {quittype} {
+proc closecurfile {quittype {forceexit opennewemptyfile}} {
 # close current file, i.e. close the current textarea and also
 # all its peers
 # confirmation for saving is asked only once
+# parameter $forceexit is used to prevent from opening a new empty
+# file when the last one gets closed, thus forcing Scipad to exit
+# most of the time forceexit is not given and defaults then to
+# "opennewemptyfile", i.e. when closing the last buffer an empty
+# new one will be created
+# however, when called from exitapp, forceexit receives "nonewemptyfile"
+# thus preventing from opening a new empty file while closing the last
+# file, and in turn forcing Scipad exit when this last file gets closed
     set peerslist [getpeerlist [gettextareacur]]
-    set wascanceled [closecur $quittype]
+    set wascanceled [closecur $quittype $forceexit]
     if {$wascanceled == "Canceled"} {
         # do nothing
     } else {
@@ -177,7 +185,7 @@ proc closecurfile {quittype} {
         # close peers without asking again for confirmation
         foreach peerta $peerslist {
             showtext $peerta
-            closecur "NoSaveQuestion"
+            closecur "NoSaveQuestion" $forceexit
         }
     }
     # there must be no code here for the Cancel button to work OK
@@ -200,7 +208,7 @@ proc closecurtile {quittype} {
     }
 }
 
-proc closecur { {quittype yesno} } {
+proc closecur { {quittype yesno} {forceexit opennewemptyfile} } {
 # close current textarea
 # if the current textarea is the last one to contain a given file, then
 # the file is closed (as seen from the user, actually the file closure on
@@ -213,12 +221,12 @@ proc closecur { {quittype yesno} } {
     global tileprocalreadyrunning
     if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
-    set outvalue [closefile [gettextareacur] $quittype]
+    set outvalue [closefile [gettextareacur] $quittype $forceexit]
     catch {restoremenuesbinds} ; # catched because otherwise pad is unknown after last buffer close
     return $outvalue
 }
 
-proc closefile {textarea {quittype yesno} } {
+proc closefile {textarea {quittype yesno} {forceexit opennewemptyfile}} {
 # close textarea $textarea
 # possible options for $quittype are yesno, yesnocancel and "NoSaveQuestion"
 # return value can be:
@@ -244,10 +252,10 @@ proc closefile {textarea {quittype yesno} } {
         switch -- $answer {
             yes {
                 filetosave $textarea
-                byebye $textarea
+                byebye $textarea $forceexit
             }
             no {
-                byebye $textarea
+                byebye $textarea $forceexit
             }
             cancel {
                 return "Canceled"
@@ -257,15 +265,23 @@ proc closefile {textarea {quittype yesno} } {
     } else {
         # buffer was not modified, so just close it
         set closeinitialbufferallowed false
-        byebye $textarea
+        byebye $textarea $forceexit
     }
 
     return "Done"
 }
 
-proc byebye {textarea} {
+proc byebye {textarea forceexit} {
     global listoftextarea listoffile
     global pad FirstBufferNameInWindowsMenu pwframe
+    global exitwhenlastclosed
+
+    # if the last buffer will be closed, first open a new empty file (bug 3726)
+    # but do it only if the exitwhenlastclosed preference is not set
+    if {[llength $listoftextarea] == 1 && $forceexit=="opennewemptyfile" && !$exitwhenlastclosed} {
+        filesetasnew
+        showtext $textarea
+    }
 
     # properly removing breakpoints in Scipad is mandatory here
     # otherwise the bptsprops entries are not unset - see details
@@ -276,9 +292,7 @@ proc byebye {textarea} {
 
     removefuns_bp $textarea
 
-    if { [llength $listoftextarea] > 1 } {
-
-        # check on Scilab busy needed to remove breakpoints
+    if {[llength $listoftextarea] > 1} {
 
         focustextarea $textarea
 
@@ -422,7 +436,7 @@ proc exitapp { {quittype yesno} } {
     # close each buffer one after the other
     foreach textarea [shiftlistofta [filteroutpeers $listoftextarea] [gettextareacur]] {
         showtext $textarea
-        set wascanceled [closecurfile $quittype]
+        set wascanceled [closecurfile $quittype nonewemptyfile]
         if {$wascanceled == "Canceled"} {
             break
         }

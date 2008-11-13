@@ -72,7 +72,6 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 * @param event event when the action occurs
 	 */
 	public void mousePressed(MouseEvent event) {
-		
 		if (event.getButton() == MouseEvent.BUTTON1) {
 			// confirmation button do as usual
 			super.mousePressed(event);
@@ -100,7 +99,10 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 */
 	public void focusLost(FocusEvent event) {
 		// focus lost so stop recording
-		cancelDragging();
+		// do only this if the opposite component is not the canvas itself
+		if (event.getOppositeComponent() != getSelectedCanvas().getAsComponent()) {
+			cancelDragging();
+		}
 	}
 	
 }
