@@ -80,7 +80,16 @@ void AxesTicksComputer::getTicksPosition(double positions[], char * labels[], ch
   {
     // we need to rebuild it
     char format[5];
-    ComputeC_format(pAxes, format) ;
+		if (ppAxes->format == NULL)
+		{
+			// no format specified
+			ComputeC_format(pAxes, format) ;
+		}
+		else
+		{
+			// use the specified one
+			strcpy(format, ppAxes->format);
+		}
 
     // 256 taken from old code
     char ** tempLabels = copyFormatedArray( positions, nbTicks, format, 256 ) ;

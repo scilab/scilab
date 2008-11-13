@@ -5,6 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+funcprot(0);
+
 function h=poly3d(x,y,z)
   xpoly(x,y);h=gce();h.data(:,3)=z
 endfunction
@@ -132,3 +134,4 @@ for k=1:step:(size(x1,2)-step)
   
 end
 
+funcprot(1);

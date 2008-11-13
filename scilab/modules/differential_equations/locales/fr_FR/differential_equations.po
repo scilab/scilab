@@ -117,7 +117,7 @@ msgid "Sphere"
 msgstr "Sphère"
 
 msgid "Blackhole"
-msgstr "Trou noire"
+msgstr "Trou noir"
 
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "Simulation d'un système mécanique avec des contraintes holonomes"
