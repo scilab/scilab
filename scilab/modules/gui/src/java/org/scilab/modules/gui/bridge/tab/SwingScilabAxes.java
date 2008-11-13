@@ -364,7 +364,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public void paint(Graphics g) {
 		if (graphicCanvas != null) {
-			graphicCanvas.forcePaint(g);
+		    graphicCanvas.paint(g);
 		}
 		
 		super.paint(g);

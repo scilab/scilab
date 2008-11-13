@@ -175,7 +175,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLEventCanvas();
+	    realGLCanvas = new GLCanvas();
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
@@ -464,11 +464,8 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * So we need to call a function to force the redraw.
      * @param g graphics
      */
-    public void forcePaint(Graphics g) {
-    	if (enableGLCanvas) {
-    	    // GLJPanel draw themselves automatically
-    	    realGLCanvas.display();
-    	}
+     public void paint(Graphics g) {
+	DEBUG("paint"); 
+	getAsComponent().paint(g);
     }
-    
 }
