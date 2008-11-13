@@ -11,7 +11,7 @@ Bug fixes:
 
 * bug 3749 fixed - Scilab error when building scilab help in HTML
 
-* bug 3749 fixed - drawaxis produces unreadable labels
+* bug 3753 fixed - drawaxis produces unreadable labels
 
 
 
