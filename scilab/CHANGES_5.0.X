@@ -7,6 +7,8 @@ bugs, submiting patches, fixing bugs, testing ...
 Bug fixes:
 ==========
 
+* bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was caused by a dead lock in the TCL thread (we were trying to get access to a TCL interpretor which was locked).
+
 * bug 3608 fixed - Scilab freezes when executing a combination of "eventhandler", "xchange" and "plot"
 
 * bug 3749 fixed - Scilab error when building scilab help in HTML
