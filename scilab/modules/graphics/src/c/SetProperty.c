@@ -1267,56 +1267,6 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes )
 }
 
 
-/**sciSetFontName
- * Sets the font name
- * @param sciPointObj * pobj: the pointer to the entity
- * @param  char *fontname
- * @param  int n
- * @return  int 0 if OK, -1 if not
- */
-int
-sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      /*      if (realloc
-	      (	(sciGetFontContext(pobj))->pfontname,
-	      n * sizeof (char)) == NULL)
-	      return -1;
-	      strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname, n);
-	      (sciGetFontContext(pobj))->fontnamelen = n;*/
-      return -1 ;
-      break;
-    case SCI_LEGEND:
-      /*if (realloc
-	(	(sciGetFontContext(pobj))->pfontname,
-	n * sizeof (char)) == NULL)
-	return -1;
-	strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname,
-	n);
-	(sciGetFontContext(pobj))->fontnamelen = n;*/
-      return -1 ;
-      break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      return -1;
-      break;
-    }
-}
-
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
   double position[2]={0.0,0.0};

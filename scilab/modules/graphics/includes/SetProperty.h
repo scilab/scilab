@@ -111,8 +111,6 @@ int sciSetFontForeground (sciPointObj * pobj, int colorindex ) ; /* SET */
 int sciInitFontStyle(sciPointObj * pobj, int iAttributes ) ;
 int sciSetFontStyle (sciPointObj * pobj, int iAttributes ) ; /* SET */
 
-int sciSetFontName (sciPointObj * pobj, char pfontname[], int n); /* SET */
-
 /* Legend */
 int sciInitLegendPlace(sciPointObj * pobj, sciLegendPlace place);
 int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place); /* SET */

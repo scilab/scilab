@@ -355,8 +355,6 @@ sciInitGraphicContext (sciPointObj * pobj)
  */
 int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest )
 {
-  sciGetFontContext( pObjDest )->fontnamelen = 0 ;
-  sciGetFontContext( pObjDest )->pfontname = NULL ;
   return cloneFontContext( pObjSource, pObjDest ) ;
 }
 
@@ -437,16 +435,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->foregroundcolor = 32;
       (sciGetFontContext(pobj))->fontSize = 1.0;
       (sciGetFontContext(pobj))->textorientation = 0.0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       (sciGetFontContext(pobj))->useFractionalMetrics = FALSE;
-
-      if (
-        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-                                                        sizeof (char))) == NULL)
-      {
-        sciprint ("No more Memory for fontname\n");
-        return 0;
-      }
       /* END ADDING F.Leray 08.04.04*/
     }
     else
