@@ -12,7 +12,10 @@
 
 #include "elem_func.hxx"
 #include "context.hxx"
+extern "C"
+{
 #include "cos.h"
+}
 
 using namespace types;
 
