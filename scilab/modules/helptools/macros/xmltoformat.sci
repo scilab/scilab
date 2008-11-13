@@ -457,7 +457,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		end
 		
 		// Define the path of the generated file created by buildDoc
-		if ~is_html then
+		if is_html then
+			buildDoc_file = pathconvert(buildDoc_dir + "index.html",%f,%f);
+		else
 			buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
 		end
 		
@@ -536,7 +538,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				end
 				
 				// Define the path of the generated file created by buildDoc
-				if ~is_html then
+				if is_html then
+					buildDoc_file = pathconvert(buildDoc_dir + "index.html",%f,%f);
+				else
 					buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language_c(k) + "_help." + output_format_ext,%f,%f);
 				end
 				

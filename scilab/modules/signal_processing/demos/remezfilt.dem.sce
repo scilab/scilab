@@ -22,7 +22,7 @@
    title_c=["Minimax FIR filter";
             "low pass  cut-off in [.23,.27]";
             "length 33"];
-   ax=gca();a.margins(3)=0.2;
+   ax=gca();ax.margins(3)=0.2;
    title(title_c);
    halt();
  
