@@ -81,8 +81,6 @@ public:
 
   virtual void setTitle(const char * title);
 
-  virtual bool getRotationDisplacement(int displacement[2]);
-  virtual void stopRotationRecording(void);
   virtual void showWindow(void);
 
   virtual void setNbSubwins(int nbSubwins);
@@ -90,6 +88,8 @@ public:
 	virtual void openGraphicCanvas(void);
 
 	virtual void closeGraphicCanvas(void);
+
+	virtual void interactiveRotation(void);
 
   static bool isAbleToCreateFigure(void);
 

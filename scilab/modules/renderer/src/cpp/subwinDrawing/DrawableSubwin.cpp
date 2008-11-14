@@ -87,6 +87,11 @@ void DrawableSubwin::displaySingleObjs(std::list<sciPointObj *>& singleObjs)
   }
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwin::interactiveRotation(void)
+{
+	getSubwinImp()->interactiveRotation();
+}
+/*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableSubwin::draw( void )
 {
   initializeDrawing() ;

@@ -24,6 +24,10 @@ void redrawFigure(int figureId) ;
 
 void redrawSubwins(int figureId) ;
 
+void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta);
+
+long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord);
+
 #ifdef __cplusplus
 }
 #endif

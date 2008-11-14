@@ -46,6 +46,8 @@ public:
   /*----------------------------------------------------------------------*/
   // specific for subwins
   virtual void setSubwinParameters(int subwinIndex, bool is2d);
+
+	virtual void interactiveRotation(long subwinIndex);
   /*----------------------------------------------------------------------*/
 
 protected:

@@ -18,6 +18,8 @@ package org.scilab.modules.renderer.subwinDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 
 /**
@@ -25,6 +27,8 @@ import org.scilab.modules.renderer.utils.CoordinateTransformation;
  * @author Jean-Baptiste Silvy
  */
 public class DrawableSubwinGL extends DrawableObjectGL {
+	
+	private static final double PIXEL_TO_DEGREE = -0.25;
 	
 	/**
 	 * Default Constructor
@@ -87,6 +91,43 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 		// back to default
 		//getGL().glDepthRange(0.0, 1.0);
 		getParentFigureGL().getCoordinateTransformation().setDepthRange(0.0, 1.0);
+	}
+	
+	/**
+	 * Perform an interactive rotation of the subwin
+	 * @param subwinHandle handle of the subwin
+	 */
+	public void interactiveRotation(long subwinHandle) {
+		
+		// get the first click position
+		int[] displacement = {0, 0};
+		getParentFigureGL().getRendererProperties().getRotationDisplacement(displacement);
+		
+		// track rotation
+		interactiveRotation(subwinHandle, getParentFigureGL());
+	}
+	
+	/**
+	 * Perform an interactive rotation of a subwindow
+	 * @param subwinHandle handle of the subwin to track
+	 * @param trackedCanvas figure on which the displacement is tracked
+	 */
+	public static void interactiveRotation(long subwinHandle, DrawableFigureGL trackedCanvas) {
+		int[] displacement = {0, 0};
+		
+		// track the rotation
+		while (trackedCanvas.getRendererProperties().getRotationDisplacement(displacement)) {
+			double deltaAlpha = PIXEL_TO_DEGREE * displacement[1];
+			double deltaTheta = PIXEL_TO_DEGREE * displacement[0];
+			
+			// modify the subwindow viewing angles
+			FigureScilabCall.rotateSubwin(subwinHandle, deltaAlpha, deltaTheta);
+			
+			// redraw the figure with the new angles
+			trackedCanvas.drawCanvas();
+			
+		}
+		// the displacement has end or has been canceled
 	}
 
 	

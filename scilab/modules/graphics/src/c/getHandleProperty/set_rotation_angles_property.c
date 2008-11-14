@@ -45,7 +45,7 @@ int set_rotation_angles_property( sciPointObj * pobj, size_t stackPointer, int v
     return SET_PROPERTY_ERROR ;
   }
 
-  Obj_RedrawNewAngle( pobj, values[1], values[0] ) ;
+  Obj_RedrawNewAngle( pobj, values[0], values[1] ) ;
 
   return SET_PROPERTY_SUCCEED ;
 
