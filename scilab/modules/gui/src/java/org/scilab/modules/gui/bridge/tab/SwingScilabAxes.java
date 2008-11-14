@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
@@ -20,6 +21,8 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
+import org.scilab.modules.gui.events.GlobalMouseEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
@@ -75,9 +78,9 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		setLayout(null);
 
 		// for event handling
-		this.setFocusable(true);
+		// this.setFocusable(true);
 		// Enable mouse Events sensitivity...
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+		// this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
 
 		// for rotations
 		rotationTracker = null;
@@ -366,7 +369,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		if (graphicCanvas != null) {
 		    graphicCanvas.paint(g);
 		}
-		
 		super.paint(g);
 	}
 	
@@ -377,29 +379,35 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		return graphicCanvas == null || graphicCanvas.isScrollable();
 	}
 	
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processMouseEvent(MouseEvent e) {
-		super.processMouseEvent(e);
-	}
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processMouseMotionEvent(MouseEvent e) {
-		super.processMouseMotionEvent(e);
-	}
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processKeyEvent(KeyEvent e) {
-		super.processKeyEvent(e);
-	}
+//	public void processEvent(AWTEvent e) {
+//	    System.err.println("[SwingScilabAxes] processEvent : "+e.toString());
+//	    super.processEvent(e);
+//	}
+//	
+//	/**
+//	 * Override function to be able to call it from SwingScilabCanvas
+//	 * @param e event produced on the canvas
+//	 */
+//	public void processMouseEvent(MouseEvent e) {
+//	    System.err.println("[SwingScilabAxes] processMouseEvent");
+//	    super.processMouseEvent(e);
+//	}
+//	
+//	/**
+//	 * Override function to be able to call it from SwingScilabCanvas
+//	 * @param e event produced on the canvas
+//	 */
+//	public void processMouseMotionEvent(MouseEvent e) {
+//	    System.err.println("[SwingScilabAxes] processMouseMotionEvent");
+//	    super.processMouseMotionEvent(e);
+//	}
+//	
+//	/**
+//	 * Override function to be able to call it from SwingScilabCanvas
+//	 * @param e event produced on the canvas
+//	 */
+//	public void processKeyEvent(KeyEvent e) {
+//		super.processKeyEvent(e);
+//	}
 
 }
