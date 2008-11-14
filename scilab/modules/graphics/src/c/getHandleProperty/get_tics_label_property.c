@@ -40,10 +40,9 @@ int get_tics_labels_property( sciPointObj * pobj )
   if ( pAXES_FEATURE(pobj)->str == NULL )
   {
     int status = -1 ;
-    StringMatrix * tics_labels = NULL ; /* actually it is vector */
 
     /* tics_labels is allocatred here */
-    tics_labels = computeDefaultTicsLabels( pobj ) ;
+    StringMatrix * tics_labels = computeDefaultTicsLabels( pobj ) ; /* actually it is vector */
 
     if ( tics_labels == NULL )
     {

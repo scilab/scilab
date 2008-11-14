@@ -17,6 +17,7 @@ cc      implicit undefined (a-z)
       character*1   type
       logical getsmat,checkval,cresmat2,bufstore
       logical flag,getscalar ,getmat,getrhsvar,cremat,lcres
+      logical createvar
       integer gettype,sadr,iadr,top2,tops,topl,topk,loc
 
       parameter (fortname=24)
@@ -41,7 +42,7 @@ c     get a scilab string the fort function name
       call cvstr(nc,istk(lrc),name,1)
       name(nc+1:nc+1)=char(0)
 C     Check the name in the <<fort>> table 
-      call setinterf(name(1:nc),irep)
+      call setinterf(name,irep)
       if ( irep.eq.1) then 
          buf = name
          call error(50)
@@ -202,17 +203,29 @@ c     .        we must create a new entry for an output variable
                icre=icre+1
 C     .        bug 2119 fix, create a variable of type "d" in any case
 C     .        to avoid overlaping
-               if (.not.cremat(fname,top+icre,0,m1,n1,lr1,lc1)) return
                if (type.eq.'d') then
+                  if (.not.cremat(fname,top+icre,0,m1,n1,lr1,lc1)) then
+                  return
+                  endif
                   lr2 = lr1
                else if (type.eq.'r'.or. (type.eq.'i')) then 
+                  if (.not.cremat(fname,top+icre,0,m1,n1,lr1,lc1)) then
+                  return
+                  endif
                   lr2=iadr(lr1)
                else if (type.eq.'c') then 
-                  lr2 = 4*lr1-1
+               if (.not.createvar(rhs+icre,type,m1,n1,lr1)) then
+                  return
+                  endif
+c                  lr2 = 4*lr1-1
                endif
                ipos=6*(ie+i-1)
                ibuf(ipos+1) = ipla  
-               ibuf(ipos+2) = lr2
+               if (type.eq.'c') then 
+                 ibuf(ipos+2) = lr1
+               else
+                 ibuf(ipos+2) = lr2
+               endif
                ibuf(ipos+3) = ichar(type)
                ibuf(ipos+4) = m1
                ibuf(ipos+5) = n1 
@@ -221,8 +234,14 @@ C     .        to avoid overlaping
                if(narg.gt.namax) then
                   call error(70)
                   return
-               endif    
-               ladr(ipla) = lr1         
+               endif
+               
+               if (type.eq.'c') then
+               ladr(ipla) = sadr((lr1/4)+1)
+               else
+               ladr(ipla) = lr1
+               endif         
+               
           else
 c           we must check input-output consistency 
                ii=6*(iecor-1)
@@ -265,9 +284,12 @@ C     .   order in the stack and not in the routine calling sequence
                loc=sadr(ibuf(ir1+2))
             elseif(type.eq.'r') then
                loc=sadr((lr1/4)+1)
+            elseif(type.eq.'c') then
+              loc=ibuf(ir1+1)
             else
                loc=ibuf(ir1+2)
             endif
+            
             if ( loc.lt.ibufprec) then 
                lcres=.false.
                goto 106 
@@ -307,6 +329,7 @@ c     overlapping object is necessary
                if (.not.cresmat2(fname,top,m*n,lr1)) return
                l1=ibuf(ir1+2)
                call stackc2i(m*n,l1,lr1)
+               ir1=ir1+6
             endif
  104     continue
          if (.not.lcres) then 

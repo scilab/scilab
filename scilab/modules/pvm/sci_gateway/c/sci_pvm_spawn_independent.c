@@ -40,7 +40,7 @@ int intspvm_spawn_independent(char *fname,unsigned long fname_len)
     if ( m3*n3 != 0 ) 
       where = cstk(l3); 
   }
-  lwhere=strlen(where);
+  lwhere=(int)strlen(where);
   CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,istk(l2),&tids);/* named: tids */
   CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);/* named: res */
   C2F(scipvmspawnindependent)(cstk(l1),&mn1,istk(l2),where,&lwhere,istk(tids),istk(res));

@@ -25,9 +25,9 @@
  *---------------------------------------------------------------*/ 
 
 #include <stdio.h>
-#include "stack-c.h"
-#include "sci_pvm.h"
 
+#include "sci_pvm.h"
+#include "stack-c.h"
 /* Table of constant values */
 
 

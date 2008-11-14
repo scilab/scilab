@@ -169,3 +169,5 @@ sciisTextEmpty
 sciGetIsFilled
 sciGetRealVisibility
 needsDisplay
+deleteMatrix
+computeDefaultTicsLabels

@@ -249,7 +249,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					else 
 					{
                         outStr  = UTFToLocale(UTFChar);
-                        retval += strlen(outStr);
+                        retval += (int)strlen(outStr);
 					}
 					(*xxprintf) ((VPTR) target, "%s",outStr);	
 					break;

@@ -82,9 +82,6 @@ int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
 int sciGetMarkForegroundToDisplay (sciPointObj * pobj); /* GET */
 
 int sciGetFontStyle (sciPointObj * pobj); /* GET */
-char *sciGetFontName (sciPointObj * pobj); /* GET */
-unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
-
 
 /* Legend */
 sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);

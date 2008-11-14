@@ -19,6 +19,10 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
+#ifdef _MSC_VER
+#pragma comment(lib,"../../../../bin/libintl.lib")
+#endif
+/*--------------------------------------------------------------------------*/ 
 int gw_pvm(void)
 {
 	Scierror(999,_("Scilab PVM module not installed.\n"));
