@@ -9,6 +9,8 @@ Bug fixes:
 
 * Some bashims in the starting script were causing startup issues.
 
+* bug 2357 fixed - The vertex-order of the plot3d2 and plor3d3 functions is different from the one given in the manual
+
 * bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was caused by a dead lock in the TCL thread (we were trying to get access to a TCL interpretor which was locked).
 
 * bug 3608 fixed - Scilab freezes when executing a combination of "eventhandler", "xchange" and "plot"
