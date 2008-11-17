@@ -79,9 +79,9 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		setLayout(null);
 
 		// for event handling
-		// this.setFocusable(true);
+		this.setFocusable(true);
 		// Enable mouse Events sensitivity...
-		// this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
+		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
 
 		// for rotations
 		rotationTracker = null;
