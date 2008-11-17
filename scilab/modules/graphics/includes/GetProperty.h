@@ -179,7 +179,7 @@ void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zSty
 
 void sciGetViewport( sciPointObj * pObj, int viewport[4] );
 
-char * sciGetInfoMessage( sciPointObj * pObj ) ;
+void sciGetInfoMessage( sciPointObj * pObj, char * infoMessage ) ;
 
 int sciGetInfoMessageLength( sciPointObj * pObj ) ;
 

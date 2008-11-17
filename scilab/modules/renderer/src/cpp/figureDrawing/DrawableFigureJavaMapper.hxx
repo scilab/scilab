@@ -68,6 +68,8 @@ public:
   virtual void setWindowSize(int width, int height);
 
   virtual void setInfoMessage(const char * infoMessage);
+	virtual void getInfoMessage(char * infoMessage);
+	virtual int getInfoMessageLength(void);
 
   virtual void setAutoResizeMode(bool onOrOff);
   virtual bool getAutoResizeMode(void);

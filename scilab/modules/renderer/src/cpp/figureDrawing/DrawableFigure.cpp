@@ -225,6 +225,16 @@ void DrawableFigure::setInfoMessage( const char * infoMessage )
   getFigureImp()->setInfoMessage(infoMessage) ;
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::getInfoMessage(char * message)
+{
+	getFigureImp()->getInfoMessage(message);
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigure::getInfoMessageLength(void)
+{
+	return getFigureImp()->getInfoMessageLength();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFigure::setFigureParameters( void )
 {
   getFigureImp()->setFigureParameters() ;

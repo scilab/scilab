@@ -128,6 +128,16 @@ void DrawableFigureJoGL::setInfoMessage( const char * message )
   getFigureJavaMapper()->setInfoMessage(message);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::getInfoMessage(char * message)
+{
+	getFigureJavaMapper()->getInfoMessage(message);
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigureJoGL::getInfoMessageLength(void)
+{
+	return getFigureJavaMapper()->getInfoMessageLength();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setAutoResizeMode(bool onOrOff)
 {
   getFigureJavaMapper()->setAutoResizeMode(onOrOff);

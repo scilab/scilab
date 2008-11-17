@@ -14,6 +14,7 @@
 
 #include "DrawableFigureJavaMapper.hxx"
 #include "RenderingChecker.hxx"
+#include <string.h>
 
 extern "C"
 {
@@ -151,6 +152,21 @@ void DrawableFigureJavaMapper::setWindowSize(int width, int height)
 void DrawableFigureJavaMapper::setInfoMessage(const char * infoMessage)
 {
   m_pJavaObject->setInfoMessage((char *) infoMessage);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::getInfoMessage(char * infoMessage)
+{
+	char * javaMessage = m_pJavaObject->getInfoMessage();
+	strcpy(infoMessage, javaMessage);
+	delete[] javaMessage;
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigureJavaMapper::getInfoMessageLength(void)
+{
+	char * javaMessage = m_pJavaObject->getInfoMessage();
+	int res = (int) strlen(javaMessage);
+	delete[] javaMessage;
+	return res;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setAutoResizeMode(bool onOrOff)

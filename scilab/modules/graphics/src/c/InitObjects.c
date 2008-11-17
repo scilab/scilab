@@ -498,10 +498,8 @@ int InitFigureModel( void )
   pFIGURE_FEATURE (pfiguremdl)->size_of_user_data = 0; /* pour completude */
 
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0;
-  //sciInitPixmapMode(pfiguremdl, FALSE);
-  pFIGURE_FEATURE (pfiguremdl)->pixmapMode = FALSE ;
-  //sciSetInfoMessage( pfiguremdl, "" ) ;
-  pFIGURE_FEATURE(pfiguremdl)->infoMessage = strdup("");
+  sciInitPixmapMode(pfiguremdl, FALSE);
+  sciInitInfoMessage( pfiguremdl, "") ;
 
   /*
   ** Must set Event Handler before making it enable
@@ -961,6 +959,7 @@ FigureModelData * newFigureModelData( void )
   modelData->viewport[1] = 0;
   modelData->viewport[2] = 610;
   modelData->viewport[3] = 461;
+	modelData->infoMessage = NULL;
 
   return modelData ;
 }
@@ -972,8 +971,18 @@ void destroyFigureModelData( FigureModelData * data )
 {
   if ( data != NULL )
   {
-    FREE(data->colorMap);
-    data->colorMap = NULL;
+		if (data->colorMap != NULL)
+		{
+			FREE(data->colorMap);
+			data->colorMap = NULL;
+		}
+
+		if (data->infoMessage != NULL)
+		{
+			FREE(data->infoMessage);
+			data->infoMessage = NULL;
+		}
+
     FREE( data ) ;
     data = NULL ;
   }

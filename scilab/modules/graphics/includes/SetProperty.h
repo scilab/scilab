@@ -218,6 +218,7 @@ int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; 
 
 int sciSetViewport(  sciPointObj * pObj, const int viewport[4] ) ; /* SET */
 
+int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage);
 int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
 
 int sciInitEventHandler( sciPointObj * pObj, char * name ) ;

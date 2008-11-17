@@ -100,6 +100,18 @@ public:
     */
    void setInfoMessage( const char * infoMessage ) ;
 
+	/**
+	 * Get the info message of the figure.
+	 * @param[out] message string filled with the message. Should have a minimum size
+	 *                     given by getInfoMessageLength.
+	 */
+	void getInfoMessage(char * message);
+
+	/**
+	 * @return size of the info message to be used in combination with getInfoMessage.
+	 */
+	int getInfoMessageLength(void);
+
    /**
     * Set the auto_resize status (on or off).
     */

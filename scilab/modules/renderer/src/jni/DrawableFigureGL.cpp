@@ -122,6 +122,7 @@ jintgetWindowWidthID=NULL;
 jintgetWindowHeightID=NULL; 
 voidsetWindowSizejintjintID=NULL; 
 voidsetInfoMessagejstringID=NULL; 
+jstringgetInfoMessageID=NULL; 
 voidsetAutoResizeModejbooleanID=NULL; 
 jbooleangetAutoResizeModeID=NULL; 
 jintArraygetViewportID=NULL; 
@@ -179,6 +180,7 @@ jintgetWindowWidthID=NULL;
 jintgetWindowHeightID=NULL; 
 voidsetWindowSizejintjintID=NULL; 
 voidsetInfoMessagejstringID=NULL; 
+jstringgetInfoMessageID=NULL; 
 voidsetAutoResizeModejbooleanID=NULL; 
 jbooleangetAutoResizeModeID=NULL; 
 jintArraygetViewportID=NULL; 
@@ -604,6 +606,32 @@ jstring infoMessage_ = curEnv->NewStringUTF( infoMessage );
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+char * DrawableFigureGL::getInfoMessage (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jstringgetInfoMessageID==NULL) { /* Use the cache Luke */ jstringgetInfoMessageID = curEnv->GetMethodID(this->instanceClass, "getInfoMessage", "()Ljava/lang/String;" ) ;
+if (jstringgetInfoMessageID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getInfoMessage");
+}
+}
+                        jstring res =  (jstring) curEnv->CallObjectMethod( this->instance, jstringgetInfoMessageID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
+
 }
 
 void DrawableFigureGL::setAutoResizeMode (bool onOrOff){

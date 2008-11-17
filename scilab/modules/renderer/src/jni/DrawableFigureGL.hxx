@@ -77,6 +77,7 @@ jmethodID jintgetWindowWidthID; // cache method id
 jmethodID jintgetWindowHeightID; // cache method id
 jmethodID voidsetWindowSizejintjintID; // cache method id
 jmethodID voidsetInfoMessagejstringID; // cache method id
+jmethodID jstringgetInfoMessageID; // cache method id
 jmethodID voidsetAutoResizeModejbooleanID; // cache method id
 jmethodID jbooleangetAutoResizeModeID; // cache method id
 jmethodID jintArraygetViewportID; // cache method id
@@ -175,6 +176,8 @@ int getWindowHeight();
 void setWindowSize(int width, int height);
 
 void setInfoMessage(char * infoMessage);
+
+char * getInfoMessage();
 
 void setAutoResizeMode(bool onOrOff);
 
