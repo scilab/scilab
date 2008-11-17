@@ -10707,7 +10707,7 @@ _ACEOF
 
 fi
 
- if test "$IS_64_BITS_CPU" = true; then
+ if test $IS_64_BITS_CPU = true; then
   IS_64_BITS_CPU_TRUE=
   IS_64_BITS_CPU_FALSE='#'
 else
@@ -10715,7 +10715,7 @@ else
   IS_64_BITS_CPU_FALSE=
 fi
 
- if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
+ if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
   USE_DYNAMIC_STACK_TRUE=
   USE_DYNAMIC_STACK_FALSE='#'
 else

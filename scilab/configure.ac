@@ -527,8 +527,8 @@ if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    AC_DEFINE([USE_DYNAMIC_STACK], [], [If we are building a 64 bits version])
 fi
 
-AM_CONDITIONAL(IS_64_BITS_CPU, test "$IS_64_BITS_CPU" = true)
-AM_CONDITIONAL(USE_DYNAMIC_STACK, test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1")
+AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
+AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1")
 
 #######################
 ## test for underscores (name mangling issues between C and fortran)
