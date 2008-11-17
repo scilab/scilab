@@ -15,13 +15,7 @@ Rhs=length(varargin);
 if (Rhs == 0) then
   // Create a new graphic window
   h = scf();
-  set(h, "immediate_drawing", "off"); // to avoid canvas creation
-  // Set its default background for compatibility with versions < 5.0
-  set(h,"background",addcolor([0.8 0.8 0.8]))
-  axes = gca();
-  set(axes, "filled", "off"); // transparent axes so no need to display them
-  set(axes, "background", addcolor([0.8 0.8 0.8])); // same as figure
-  set(h, "immediate_drawing", "on"); // we can draw now
+  setNewFigDefaultProperties(%f);
 else
   if (Rhs == 1) then
     
@@ -85,12 +79,8 @@ else
   h=scf(numOrHandle);
 end
 
-if ~alreadyExists
-  // Set the default background if figure has just been created (compatibility with versions < 5.0)
-  set(h,"background",addcolor([0.8 0.8 0.8]))
-end
-// Hide the current axis
-set(gca(),"visible","off");
+setNewFigDefaultProperties(alreadyExists);
+
 endfunction
 // -----------------------------------------------------------
 
@@ -122,4 +112,31 @@ else
   sciPropertyValue = tkPropertyValue;
 end
 endfunction
+// -----------------------------------------------------------
+
+// -----------------------------------------------------------
+function setNewFigDefaultProperties(alreadyExists)
+// Jean-Baptiste SILVY - Digiteo 2008
+// Set default properties for the lastly created figure.
+// These properties ensure that the 3D canvas won't be created
+// argument already exists is false if the figure has just been created.
+
+defaultColor = [0.8 0.8 0.8];
+curFig = gcf();
+axes = gca();
+
+set(curFig, "immediate_drawing", "off"); // to avoid canvas creation
+
+if ~alreadyExists
+  // Set the default background if figure has just been created (compatibility with versions < 5.0)
+  set(curFig,"background", addcolor(defaultColor));
+  set(axes, "background", addcolor(defaultColor)); // same as figure
+end
+
+set(axes,"visible","off");
+set(axes, "filled", "off"); // transparent axes so no need to display them
+
+set(curFig, "immediate_drawing", "on"); // we can draw now
+
+endfucntion
 // -----------------------------------------------------------
