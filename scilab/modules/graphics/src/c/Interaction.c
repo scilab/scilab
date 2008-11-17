@@ -654,37 +654,13 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
 /*---------------------------------------------------------------------------------*/
 void interactiveRotation(sciPointObj * pFigure)
 {
-  char * currentInfoMessage = sciGetInfoMessage(pFigure);
-  char * curInfoMessageCopy = NULL;
-
-  /* copy the info message to be able to reset it after zooming */
-  curInfoMessageCopy = MALLOC((strlen(currentInfoMessage) + 1) * sizeof(char));
-
-  if (curInfoMessageCopy == NULL)
-  {
-    sciprint(_("%s: No more memory.\n"), "Interactive rotation");
-  }
-  strcpy(curInfoMessageCopy, currentInfoMessage);
-  startFigureDataWriting(pFigure);
-  sciSetInfoMessage(pFigure, _("Click on an Axes object to start rotation. Click again to terminate."));
-  endFigureDataWriting(pFigure);
-
 	interactiveJavaRotation(pFigure);
-
-  /* restore previous info message */
-  startFigureDataWriting(pFigure);
-  sciSetInfoMessage(pFigure,curInfoMessageCopy);
-  endFigureDataWriting(pFigure);
-
-  FREE(curInfoMessageCopy);
-
 }
 /*---------------------------------------------------------------------------------*/
 void interactiveSubwinRotation(sciPointObj * pSubwin)
 {
   /* get coordinates of first mouse click */
   interactiveJavaSubwinRotation(pSubwin);
-
 }
 /*---------------------------------------------------------------------------------*/
 void showWindow(sciPointObj * pFigure)
@@ -705,6 +681,9 @@ void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaT
 	newTheta += deltaTheta;
 
 	Obj_RedrawNewAngle(pSubwin, newAlpha, newTheta);
+
+	/* Update info message */
+	setInfoMessageWithRotationAngles(sciGetParentFigure(pSubwin), newAlpha, newTheta);
 }
 /*---------------------------------------------------------------------------------*/
 

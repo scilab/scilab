@@ -113,6 +113,11 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	 * @param trackedCanvas figure on which the displacement is tracked
 	 */
 	public static void interactiveRotation(long subwinHandle, DrawableFigureGL trackedCanvas) {
+		
+		// rotateSubwin function will modify the info message
+		// so save it in order to restore it at the end.
+		String curInfoMessage = trackedCanvas.getInfoMessage();
+		
 		int[] displacement = {0, 0};
 		
 		// track the rotation
@@ -128,6 +133,7 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 			
 		}
 		// the displacement has end or has been canceled
+		trackedCanvas.setInfoMessage(curInfoMessage);
 	}
 
 	

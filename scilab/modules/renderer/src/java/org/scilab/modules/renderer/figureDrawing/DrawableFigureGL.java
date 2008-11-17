@@ -21,6 +21,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
@@ -644,17 +645,38 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
+	 * eegeg
+	 */
+	public void interactiveRotation() {
+		Thread rotationThread = new Thread(new Runnable() {
+			public void run() {
+				interactiveRotationThread();
+			}
+		});
+		rotationThread.start();
+		
+	}
+	
+	/**
 	 * Perform an interactive rotation of a subwindow inside the figure.
 	 * First the user select a subwin contained in the canvas by a click.
 	 * Then the user rotate the subwin with mouse movements.
 	 */
-	public void interactiveRotation() {
+	public void interactiveRotationThread() {
+		
+		// get the current info message
+		String curInfoMessage = getInfoMessage();
+		
+		// set a new one
+		setInfoMessage(Messages.gettext("Click on an Axes object to start rotation. Click again to terminate."));
+		
 		// first get the clicked subwin
 		int[] clickPos = {0, 0};
 		boolean keepOnRecording = getRendererProperties().getRotationDisplacement(clickPos);
 		
 		if (!keepOnRecording) {
 			// recording has been canceled
+			setInfoMessage(curInfoMessage);
 			return;
 		}
 		
@@ -664,10 +686,13 @@ public class DrawableFigureGL extends ObjectGL {
 		if (subwinHandle == 0) {
 			// no subwindow has been founds
 			getRendererProperties().stopRotationRecording();
+			setInfoMessage(curInfoMessage);
 			return;
 		}
 		
 		DrawableSubwinGL.interactiveRotation(subwinHandle, this);
+		
+		setInfoMessage(curInfoMessage);
 		
 		
 	}
