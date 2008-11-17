@@ -25,8 +25,10 @@ import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
+import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
+import org.scilab.modules.renderer.subwinDrawing.DrawableSubwinGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.glTools.ClipPlane3DManager;
@@ -642,31 +644,32 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
-	 * Get current displacement in the graphic window, to be used for axes rotation.
-	 * @return array [dx, dy, stop] where [dx, dy] is the mouse displacement in pixels
-	 *         or the position of the mouse with the first call. And stop is 0 if the
-	 *         tracking is finished, 1 otherwise.
+	 * Perform an interactive rotation of a subwindow inside the figure.
+	 * First the user select a subwin contained in the canvas by a click.
+	 * Then the user rotate the subwin with mouse movements.
 	 */
-	public int[] getRotationDisplacement() {
-		int[] res = new int[2 + 1];
+	public void interactiveRotation() {
+		// first get the clicked subwin
+		int[] clickPos = {0, 0};
+		boolean keepOnRecording = getRendererProperties().getRotationDisplacement(clickPos);
 		
-		// get [dx, dy] displacement
-		boolean stop = getRendererProperties().getRotationDisplacement(res);
-		
-		if (stop) {
-			res[2] = 1;
-		} else {
-			res[2] = 0;
+		if (!keepOnRecording) {
+			// recording has been canceled
+			return;
 		}
 		
-		return res;
-	}
-	
-	/**
-	 * If a rotation displacement is recording, cancel it.
-	 */
-	public void stopRotationRecording() {
-		getRendererProperties().stopRotationRecording();
+		// get the clicked subwin handle or 0 if no handle has been clicked
+		long subwinHandle = FigureScilabCall.getClickedSubwinHandle(figureId, clickPos[0], clickPos[1]);
+		
+		if (subwinHandle == 0) {
+			// no subwindow has been founds
+			getRendererProperties().stopRotationRecording();
+			return;
+		}
+		
+		DrawableSubwinGL.interactiveRotation(subwinHandle, this);
+		
+		
 	}
 	
 	/**

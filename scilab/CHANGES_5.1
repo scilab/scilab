@@ -17,6 +17,8 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
 * interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
 
+* cc and cc-* are not longer consider as GNU C compiler when detecting the compiler (use gcc & gcc-*) because it was causing some issues under Solaris
+
 Enhancement:
 ============
 
@@ -108,3 +110,4 @@ Bug fixes:
 * bug 3635 fixed - popupmenu objects created using uicontrol does not work as expected (it is not possible to use the arrow keys on the keyboard to browse through the various options)
 
 * bug 3561 fixed - 'call' crashs when we want to return a 'c' variable type.
+

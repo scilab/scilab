@@ -119,10 +119,10 @@ int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha )
 /* Modify the viewing angles of a subwindow and the one of its brothers id necessary  */
 /*---------------------------------------------------------------------------*/
 
-void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
+void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta)
 {
   /* check if all the axis must be turned */
-  sciPointObj * pParentFigure = sciGetParentFigure( pSubWin ) ;
+  sciPointObj * pParentFigure = sciGetParentFigure( pSubwin ) ;
   if ( pFIGURE_FEATURE(pParentFigure)->rotstyle == 1 )
   {
     /* every axes has the same angles */
@@ -143,8 +143,8 @@ void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
   else
   {
     /* modify angles only for this axes */
-    setSubWinAngles( pSubWin, theta, alpha ) ;
-    forceRedraw(pSubWin);
+    setSubWinAngles( pSubwin, theta, alpha ) ;
+    forceRedraw(pSubwin);
   }
 }
 

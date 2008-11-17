@@ -85,13 +85,18 @@ void interactiveRotation(sciPointObj * pFigure);
 /**
  * Interactive rotation of a subwindow
  */
-void interactiveSubwinRotation(sciPointObj * pSubiwn);
+void interactiveSubwinRotation(sciPointObj * pSubwin);
 
 /**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */
 void showWindow(sciPointObj * pFigure);
+
+/**
+ * Modify a subwin viewing angles by a certain amount.
+ */
+void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta);
 
 
 #endif /* __SCI_INTERACTION__ */
