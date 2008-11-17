@@ -59,6 +59,11 @@ public:
 	 */
 	void interactiveRotation(void);
 
+	/**
+	 * Interactive zoom of a subwindow
+	 */
+	void interactiveZoom(void);
+
   /**
    * Compute real data bounds from the user ones.
    * ie fills Frect.

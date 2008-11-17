@@ -92,6 +92,11 @@ void DrawableSubwin::interactiveRotation(void)
 	getSubwinImp()->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwin::interactiveZoom(void)
+{
+	getSubwinImp()->interactiveZoom();
+}
+/*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableSubwin::draw( void )
 {
   initializeDrawing() ;

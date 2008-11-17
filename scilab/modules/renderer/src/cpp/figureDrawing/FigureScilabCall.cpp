@@ -25,6 +25,7 @@ extern "C"
 #include "GetProperty.h"
 #include "Interaction.h"
 #include "Axes.h"
+#include "axesScale.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -120,5 +121,24 @@ long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord)
 	// Will return 0 if clicked subwin is null or the handle otherwise
 	return sciGetHandle(clickedSubwin);
 
+}
+/*--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2)
+{
+	startGraphicDataReading();
+	sciPointObj * pObj = sciGetPointerFromHandle((long) objectHandle) ;
+	sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  endGraphicDataReading();
+
+  if ( pObj == NULL || parentFigure == NULL )
+  {
+    return ;
+  }
+
+  startFigureDataWriting(parentFigure);
+	sciZoomObject(pObj, x1, y1, x2, y2);
+  endFigureDataWriting(parentFigure);
 }
 /*--------------------------------------------------------------------------*/

@@ -73,4 +73,9 @@ void DrawableSubwinJavaMapper::interactiveRotation(long subwinIndex)
 	m_pJavaObject->interactiveRotation(subwinIndex);
 }
 /*--------------------------------------------------------------------------*/
+void DrawableSubwinJavaMapper::interactiveZoom(long subwinIndex)
+{
+	m_pJavaObject->interactiveZoom(subwinIndex);
+}
+/*--------------------------------------------------------------------------*/
 }

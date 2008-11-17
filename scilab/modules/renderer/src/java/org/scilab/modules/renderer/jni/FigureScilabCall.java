@@ -73,4 +73,17 @@ public static long getClickedSubwinHandle(int figureId, int clickXCoord, int cli
     return FigureScilabCallJNI.getClickedSubwinHandle(figureId, clickXCoord, clickYCoord);
   }
 
+  
+ /**
+  * Zoom a figure or an axis handle using a selection area.
+  * @param objectHandle handle of the figure o subwin to modify
+  * @param x1 X coordinate of a corner of the selection
+  * @param y1 Y coordinate of a corner of the selection
+  * @param x2 X coordinate of the oppoiste corner of the selection
+  * @param y2 Y coordinate of the opposite corner of the selection
+  */
+public static void zoomObject(long objectHandle, int x1, int y1, int x2, int y2) {
+    FigureScilabCallJNI.zoomObject(objectHandle, x1, y1, x2, y2);
+  }
+
 }

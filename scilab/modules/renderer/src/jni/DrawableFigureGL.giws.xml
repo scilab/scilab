@@ -75,8 +75,10 @@
     </method>
     <method name="rubberBox" returnType="int[]">
       <param type="boolean" name="isClick" />
-      <param type="boolean" name="isZoom" />
       <param type="int[]" name="initialRect" />
+    </method>
+    <method name="interactiveZoom" returnType="void">
+      <param type="long" name="objectHandle" />
     </method>
     <method name="setTitle" returnType="void">
       <param type="String" name="title" />

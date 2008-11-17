@@ -600,13 +600,13 @@ int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
 }
 
 /*---------------------------------------------------------------------------------*/
-void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom,
+void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
                     const int initialRect[4], int endRect[4], int * usedButton)
 {
-  javaRubberBox(pFigure, isClick, isZoom, initialRect, endRect, usedButton);
+  javaRubberBox(pFigure, isClick, initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
-void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
+void rubberBox(sciPointObj * pSubwin, BOOL isClick,
                const double initialRect[4], double endRect[4], int * usedButton)
 {
   int endPixelRect[4];
@@ -632,11 +632,11 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
     sciGet2dViewPixelCoordinates(pSubwin, firstCorner, initialPixelRect);
     sciGet2dViewPixelCoordinates(pSubwin, secondCorner, initialPixelRect + 2);
 
-    javaRubberBox(sciGetParentFigure(pSubwin), isClick, isZoom, initialPixelRect, endPixelRect, usedButton);
+    pixelRubberBox(sciGetParentFigure(pSubwin), isClick, initialPixelRect, endPixelRect, usedButton);
   }
   else
   {
-    javaRubberBox(sciGetParentFigure(pSubwin), isClick, isZoom, NULL, endPixelRect, usedButton);
+    pixelRubberBox(sciGetParentFigure(pSubwin), isClick, NULL, endPixelRect, usedButton);
   }
 
   /* here we get the two opposite points of the rectangle in pixels */
@@ -650,6 +650,18 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
   endRect[2] = Abs(endFirstCorner[0] - endSecondCorner[0]);
   endRect[3] = Abs(endFirstCorner[1] - endSecondCorner[1]);
 
+}
+/*---------------------------------------------------------------------------------*/
+void interactiveZoom(sciPointObj * pObj)
+{
+	if (sciGetEntityType(pObj) == SCI_FIGURE)
+	{
+		interactiveJavaZoom(pObj);
+	}
+	else if (sciGetEntityType(pObj) == SCI_SUBWIN)
+	{
+		interactiveJavaSubwinZoom(pObj);
+	}
 }
 /*---------------------------------------------------------------------------------*/
 void interactiveRotation(sciPointObj * pFigure)

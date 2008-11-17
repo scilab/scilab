@@ -40,4 +40,5 @@ public class FigureScilabCallJNI {
   public final static native void redrawSubwins(int jarg1);
   public final static native void rotateSubwin(long jarg1, double jarg2, double jarg3);
   public final static native long getClickedSubwinHandle(int jarg1, int jarg2, int jarg3);
+  public final static native void zoomObject(long jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
 }

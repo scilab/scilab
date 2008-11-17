@@ -109,3 +109,16 @@ void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta);
   */
 public";
 long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord);
+
+/* JavaDoc */
+%javamethodmodifiers zoomObject(long long objectHandle, int x1, int y1, int x2, int y2) "
+ /**
+  * Zoom a figure or an axis handle using a selection area.
+  * @param objectHandle handle of the figure o subwin to modify
+  * @param x1 X coordinate of a corner of the selection
+  * @param y1 Y coordinate of a corner of the selection
+  * @param x2 X coordinate of the oppoiste corner of the selection
+  * @param y2 Y coordinate of the opposite corner of the selection
+  */
+public";
+void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2);
