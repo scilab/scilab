@@ -645,12 +645,12 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
-	 * eegeg
+	 * Perform an interactive rotation of the figure from an other thread
 	 */
 	public void interactiveRotation() {
 		Thread rotationThread = new Thread(new Runnable() {
 			public void run() {
-				interactiveRotationThread();
+				interactiveRotationThreaded();
 			}
 		});
 		rotationThread.start();
@@ -662,7 +662,7 @@ public class DrawableFigureGL extends ObjectGL {
 	 * First the user select a subwin contained in the canvas by a click.
 	 * Then the user rotate the subwin with mouse movements.
 	 */
-	public void interactiveRotationThread() {
+	private void interactiveRotationThreaded() {
 		
 		// get the current info message
 		String curInfoMessage = getInfoMessage();

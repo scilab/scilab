@@ -94,10 +94,24 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Perform an interactive rotation of the subwin
+	 * Perform an interactive rotation of the subwin from an other thread.
 	 * @param subwinHandle handle of the subwin
 	 */
 	public void interactiveRotation(long subwinHandle) {
+		final long subwinHandleF = subwinHandle;
+		Thread rotationThread = new Thread(new Runnable() {
+			public void run() {
+				interactiveRotationThreaded(subwinHandleF);
+			}
+		});
+		rotationThread.start();
+	}
+	
+	/**
+	 * Perform an interactive rotation of the subwin
+	 * @param subwinHandle handle of the subwin
+	 */
+	private void interactiveRotationThreaded(long subwinHandle) {
 		
 		// get the first click position
 		int[] displacement = {0, 0};
