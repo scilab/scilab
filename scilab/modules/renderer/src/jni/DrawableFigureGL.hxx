@@ -83,8 +83,7 @@ jmethodID jintArraygetViewportID; // cache method id
 jmethodID voidsetViewportjintjintjintjintID; // cache method id
 jmethodID jintArrayrubberBoxjbooleanjbooleanjintArrayID; // cache method id
 jmethodID voidsetTitlejstringID; // cache method id
-jmethodID jintArraygetRotationDisplacementID; // cache method id
-jmethodID voidstopRotationRecordingID; // cache method id
+jmethodID voidinteractiveRotationID; // cache method id
 jmethodID voidshowWindowID; // cache method id
 jmethodID voidsetNbSubwinsjintID; // cache method id
 jmethodID voidopenGraphicCanvasID; // cache method id
@@ -188,9 +187,7 @@ int * rubberBox(bool isClick, bool isZoom, int * initialRect, int initialRectSiz
 
 void setTitle(char * title);
 
-int * getRotationDisplacement();
-
-void stopRotationRecording();
+void interactiveRotation();
 
 void showWindow();
 

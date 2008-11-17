@@ -178,14 +178,9 @@ void DrawableFigureJoGL::setTitle( const char * title )
   getFigureJavaMapper()->setTitle(title);
 }
 /*---------------------------------------------------------------------------------*/
-bool DrawableFigureJoGL::getRotationDisplacement(int displacement[2])
+void DrawableFigureJoGL::interactiveRotation(void)
 {
-  return getFigureJavaMapper()->getRotationDisplacement(displacement);
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::stopRotationRecording(void)
-{
-  getFigureJavaMapper()->stopRotationRecording();
+	getFigureJavaMapper()->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::showWindow(void)

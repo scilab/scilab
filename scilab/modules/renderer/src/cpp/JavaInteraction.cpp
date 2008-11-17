@@ -22,21 +22,14 @@ void javaRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom, const int i
   getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), (isZoom == TRUE), initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
-BOOL getJavaRotationDisplacement(sciPointObj * pFigure, int displacement[2])
+void interactiveJavaRotation(sciPointObj * pFigure)
 {
-  if (getFigureDrawer(pFigure)->getRotationDisplacement(displacement))
-  {
-    return TRUE;
-  }
-  else
-  {
-    return FALSE;
-  }
+  getFigureDrawer(pFigure)->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
-void stopJavaRotationRecording(sciPointObj * pFigure)
+void interactiveJavaSubwinRotation(sciPointObj * pSubwin)
 {
-  getFigureDrawer(pFigure)->stopRotationRecording();
+  getSubwinDrawer(pSubwin)->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 void javaShowWindow(sciPointObj * pFigure)

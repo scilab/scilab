@@ -106,6 +106,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetSubwinParametersjintjbooleanID=NULL; 
+voidinteractiveRotationjlongID=NULL; 
 
 
 }
@@ -135,6 +136,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetSubwinParametersjintjbooleanID=NULL; 
+voidinteractiveRotationjlongID=NULL; 
 
 
 }
@@ -261,6 +263,21 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "setSubwinParameters");
 jboolean is2d_ = ((bool) is2d ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallVoidMethod( this->instance, voidsetSubwinParametersjintjbooleanID ,index, is2d_);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void DrawableSubwinGL::interactiveRotation (long long subwinHandle){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidinteractiveRotationjlongID==NULL) { /* Use the cache Luke */ voidinteractiveRotationjlongID = curEnv->GetMethodID(this->instanceClass, "interactiveRotation", "(J)V" ) ;
+if (voidinteractiveRotationjlongID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "interactiveRotation");
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidinteractiveRotationjlongID ,subwinHandle);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

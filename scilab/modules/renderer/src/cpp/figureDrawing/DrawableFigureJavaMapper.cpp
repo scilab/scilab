@@ -210,25 +210,6 @@ void DrawableFigureJavaMapper::setTitle(const char * title)
   m_pJavaObject->setTitle((char *) title);
 }
 /*---------------------------------------------------------------------------------*/
-bool DrawableFigureJavaMapper::getRotationDisplacement(int displacement[2])
-{
-  int * javaRes = m_pJavaObject->getRotationDisplacement();
-
-  displacement[0] = javaRes[0];
-  displacement[1] = javaRes[1];
-
-  bool res = (javaRes[2] != 0);
-
-  delete[] javaRes;
-
-  return res;
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::stopRotationRecording(void)
-{
-  m_pJavaObject->stopRotationRecording();
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::showWindow(void)
 {
   m_pJavaObject->showWindow();
@@ -247,6 +228,11 @@ void DrawableFigureJavaMapper::openGraphicCanvas(void)
 void DrawableFigureJavaMapper::closeGraphicCanvas(void)
 {
 	m_pJavaObject->closeGraphicCanvas();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::interactiveRotation(void)
+{
+	m_pJavaObject->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::isAbleToCreateFigure(void)

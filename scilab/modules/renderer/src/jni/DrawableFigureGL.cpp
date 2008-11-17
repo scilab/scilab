@@ -128,8 +128,7 @@ jintArraygetViewportID=NULL;
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
 voidsetTitlejstringID=NULL; 
-jintArraygetRotationDisplacementID=NULL; 
-voidstopRotationRecordingID=NULL; 
+voidinteractiveRotationID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
@@ -185,8 +184,7 @@ jintArraygetViewportID=NULL;
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
 voidsetTitlejstringID=NULL; 
-jintArraygetRotationDisplacementID=NULL; 
-voidstopRotationRecordingID=NULL; 
+voidinteractiveRotationID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
@@ -750,47 +748,16 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-int * DrawableFigureGL::getRotationDisplacement (){
+void DrawableFigureGL::interactiveRotation (){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (jintArraygetRotationDisplacementID==NULL) { /* Use the cache Luke */ jintArraygetRotationDisplacementID = curEnv->GetMethodID(this->instanceClass, "getRotationDisplacement", "()[I" ) ;
-if (jintArraygetRotationDisplacementID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getRotationDisplacement");
+if (voidinteractiveRotationID==NULL) { /* Use the cache Luke */ voidinteractiveRotationID = curEnv->GetMethodID(this->instanceClass, "interactiveRotation", "()V" ) ;
+if (voidinteractiveRotationID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "interactiveRotation");
 }
 }
-                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetRotationDisplacementID );
-                        
-jsize len = curEnv->GetArrayLength(res);
-jboolean isCopy = JNI_FALSE;
-
-/* faster than getXXXArrayElements */
-jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
-int * myArray= new int[len];
-
-for (jsize i = 0; i < len; i++){
-myArray[i]=resultsArray[i];
-}
-curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
-
-                        curEnv->DeleteLocalRef(res);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-return myArray;
-
-}
-
-void DrawableFigureGL::stopRotationRecording (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidstopRotationRecordingID==NULL) { /* Use the cache Luke */ voidstopRotationRecordingID = curEnv->GetMethodID(this->instanceClass, "stopRotationRecording", "()V" ) ;
-if (voidstopRotationRecordingID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "stopRotationRecording");
-}
-}
-                         curEnv->CallVoidMethod( this->instance, voidstopRotationRecordingID );
+                         curEnv->CallVoidMethod( this->instance, voidinteractiveRotationID );
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

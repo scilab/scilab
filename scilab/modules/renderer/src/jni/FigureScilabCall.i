@@ -1,3 +1,4 @@
+
 /* Swig file: FigureScilabCallGuiManagement.i */
 /*  swig -java -package org.scilab.modules.renderer.jni -outdir ../java/org/scilab/modules/renderer/jni/ FigureScilabCall.i */
 %module FigureScilabCall
@@ -85,3 +86,26 @@ void redrawFigure(int figureId);
   */
 public";
 void redrawSubwins(int figureId);
+
+/* JavaDoc */
+%javamethodmodifiers rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta) "
+ /**
+  * Modify a subwin viewing angles by a certain amount.
+  * @param subwinHandle handle of the subwin to modify
+  * @param deltaAlpha modify the alpha angle with this value
+  * @param deltaTheta modify the theta angle with this value
+  */
+public";
+void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta);
+
+/* JavaDoc */
+%javamethodmodifiers getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord) "
+ /**
+  * Modify a subwin viewing angles by a certain amount.
+  * @param figureId index of the figure to check
+  * @param clickXCoord x coordinate of the mouse click
+  * @param clickYCoord y coordinate of the mouse click
+  * @return handle of the clicked subwin or 0 if no subwin was clicked
+  */
+public";
+long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord);

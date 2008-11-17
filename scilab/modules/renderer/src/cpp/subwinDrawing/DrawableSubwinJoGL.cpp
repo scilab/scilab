@@ -46,6 +46,11 @@ void DrawableSubwinJoGL::initializeDrawing( void )
                                              sciGetIs3d(pSubwin) == FALSE);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwinJoGL::interactiveRotation(void)
+{
+	getSubwinJavaMapper()->interactiveRotation(sciGetHandle(getSubwinDrawer()->getDrawedObject()));
+}
+/*---------------------------------------------------------------------------------*/
 DrawableSubwin * DrawableSubwinJoGL::getSubwinDrawer( void )
 {
   return dynamic_cast<DrawableSubwin *>(getDrawer()) ;
