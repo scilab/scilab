@@ -173,7 +173,15 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
      * @param event exiting event
      */
     public void mouseExited(MouseEvent event) {
-	endRecording();
+	if (recordStarted) {
+		endRecording();	    
+	}
+	else {
+	    cancelRecording();
+	}
+	synchronized (getLock()) {
+		getLock().notifyAll();
+	}
     }
 
     /**
