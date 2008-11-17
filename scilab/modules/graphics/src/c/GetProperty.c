@@ -2953,17 +2953,24 @@ void sciGetViewport( sciPointObj * pObj, int viewport[4] )
   }
 }
 /*----------------------------------------------------------------------------------*/
-char * sciGetInfoMessage( sciPointObj * pObj )
+void sciGetInfoMessage( sciPointObj * pObj, char * infoMessage )
 {
   switch ( sciGetEntityType(pObj) )
   {
   case SCI_FIGURE:
-    return pFIGURE_FEATURE(pObj)->infoMessage ;
+		if (isFigureModel(pObj))
+		{
+			strcpy(infoMessage, pFIGURE_FEATURE(pObj)->pModelData->infoMessage);
+		}
+		else
+		{
+			sciGetJavaInfoMessage(pObj, infoMessage);
+		}
+		break;
   default:
     printSetGetErrorMessage("info_message");
-    return NULL ;
+    break;
   }
-  return NULL ;
 }
 /*----------------------------------------------------------------------------------*/
 int sciGetInfoMessageLength( sciPointObj * pObj )
@@ -2971,7 +2978,14 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
   switch ( sciGetEntityType(pObj) )
   {
   case SCI_FIGURE:
-    return  (int)strlen( pFIGURE_FEATURE(pObj)->infoMessage ) ;
+		if (isFigureModel(pObj))
+		{
+			return (int) strlen( pFIGURE_FEATURE(pObj)->pModelData->infoMessage ) ;
+		}
+		else
+		{
+			return sciGetJavaInfoMessageLength(pObj);
+		}
   default:
     printSetGetErrorMessage("info_message");
     return -1 ;

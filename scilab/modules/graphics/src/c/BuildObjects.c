@@ -181,8 +181,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciInitScreenPosition( pobj, x[0], x[1] );
 
-  ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
-  sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
+	sciInitInfoMessage( pobj, ppModel->pModelData->infoMessage ) ;
 
   ppFigure->tag = NULL;
 

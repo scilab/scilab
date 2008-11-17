@@ -38,6 +38,11 @@ public:
 	 */
 	virtual void interactiveRotation(void) = 0;
 
+	/**
+	 * Interactive zoom of a subwindow
+	 */
+	virtual void interactiveZoom(void) = 0;
+
 protected:
 
   /**

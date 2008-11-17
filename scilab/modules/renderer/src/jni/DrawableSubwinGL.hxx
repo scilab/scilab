@@ -62,6 +62,7 @@ jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetSubwinParametersjintjbooleanID; // cache method id
 jmethodID voidinteractiveRotationjlongID; // cache method id
+jmethodID voidinteractiveZoomjlongID; // cache method id
 
 
 /**
@@ -118,6 +119,8 @@ void setFigureIndex(int figureIndex);
 void setSubwinParameters(int index, bool is2d);
 
 void interactiveRotation(long long subwinHandle);
+
+void interactiveZoom(long long subwinHandle);
 
 
                         /**

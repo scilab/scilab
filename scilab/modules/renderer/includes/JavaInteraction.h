@@ -31,13 +31,24 @@ extern "C" {
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
- * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
  * @param intialRect if not null, specify the initial rectangle to use
  * @param[out] endRect array containing the coordinates of two opposite corners of
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void javaRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom, const int initialRect[4], int endRect[4], int * usedButton);
+void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+/**
+ * Perform an interactive zoom of the figure using a rectangular selection.
+ * @param pFigure figure to zoom.
+ */
+void interactiveJavaZoom(sciPointObj * pFigure);
+
+/**
+ * Perform an interactive zoom of the subwin using a rectangular selection.
+ * @param pSubwin subwin to zoom.
+ */
+void interactiveJavaSubwinZoom(sciPointObj * pSubwin);
 
 /**
  * Perform an interactive rotation of a subwin contained in the figure.

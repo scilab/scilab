@@ -346,10 +346,14 @@ case "$host" in
 	mips-sgi-irix*)
 	  MIPS_SGI_IRIX=1
 	;;
+	 *-*-solaris*)
+	 SOLARIS=1
+	 ;;
 esac
 
 AM_CONDITIONAL(IS_HPUX, test -n "$HPUX")
 AM_CONDITIONAL(IS_SPARC, test -n "$SPARC")
+AM_CONDITIONAL(IS_SOLARIS, test -n "$SOLARIS")
 AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 
 

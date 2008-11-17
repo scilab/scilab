@@ -174,3 +174,4 @@ computeDefaultTicsLabels
 updateViewingAngles
 getClickedSubwin
 sciGetHandle
+sciZoomObject

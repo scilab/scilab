@@ -313,6 +313,7 @@ typedef struct
   double * colorMap ;
   int numColors ;
   BOOL autoResizeMode;
+	char * infoMessage; /**< String displayed in the info bar of the graphic window */
 }
 FigureModelData ;
 
@@ -347,7 +348,6 @@ typedef struct
   BOOL allredraw;
   
   sciFont fontcontext; /* F.Leray 08.04.04 */
-  char * infoMessage ; /**< String displayed in the info bar of the graphic window */
 
   char * eventHandler         ; /**< Name of the EventHandler function */
   BOOL   isEventHandlerEnable ; /**< flag enabling or disabling eventhandler */
