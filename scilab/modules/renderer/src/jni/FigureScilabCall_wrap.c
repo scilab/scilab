@@ -253,6 +253,24 @@ SWIGEXPORT jlong JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJN
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI_zoomObject(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jint jarg3, jint jarg4, jint jarg5) {
+  long long arg1 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (long long)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
+  arg5 = (int)jarg5; 
+  zoomObject(arg1,arg2,arg3,arg4,arg5);
+}
+
+
 #ifdef __cplusplus
 }
 #endif

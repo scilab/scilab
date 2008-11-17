@@ -98,6 +98,8 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	 * @param subwinHandle handle of the subwin
 	 */
 	public void interactiveRotation(long subwinHandle) {
+		// Make the Scilab thread and the rotation independent
+		// by creating a new thread
 		final long subwinHandleF = subwinHandle;
 		Thread rotationThread = new Thread(new Runnable() {
 			public void run() {
@@ -119,6 +121,14 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 		
 		// track rotation
 		interactiveRotation(subwinHandle, getParentFigureGL());
+	}
+	
+	/**
+	 * Perform an interactive zoom of a single subwindow
+	 * @param subwinHandle handle of the subwindow
+	 */
+	public void interactiveZoom(long subwinHandle) {
+		getParentFigureGL().interactiveZoom(subwinHandle);
 	}
 	
 	/**

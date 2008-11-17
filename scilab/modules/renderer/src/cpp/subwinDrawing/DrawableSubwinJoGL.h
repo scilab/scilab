@@ -42,6 +42,11 @@ namespace sciGraphics
 		 */
 		virtual void interactiveRotation(void);
 
+		/**
+		 * Interactive zoom of a subwindow
+		 */
+		virtual void interactiveZoom(void);
+
     /**
      * Return the drawn object
      */
