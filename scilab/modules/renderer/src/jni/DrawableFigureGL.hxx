@@ -81,10 +81,10 @@ jmethodID voidsetAutoResizeModejbooleanID; // cache method id
 jmethodID jbooleangetAutoResizeModeID; // cache method id
 jmethodID jintArraygetViewportID; // cache method id
 jmethodID voidsetViewportjintjintjintjintID; // cache method id
-jmethodID jintArrayrubberBoxjbooleanjbooleanjintArrayID; // cache method id
+jmethodID jintArrayrubberBoxjbooleanjintArrayID; // cache method id
+jmethodID voidinteractiveZoomjlongID; // cache method id
 jmethodID voidsetTitlejstringID; // cache method id
-jmethodID jintArraygetRotationDisplacementID; // cache method id
-jmethodID voidstopRotationRecordingID; // cache method id
+jmethodID voidinteractiveRotationID; // cache method id
 jmethodID voidshowWindowID; // cache method id
 jmethodID voidsetNbSubwinsjintID; // cache method id
 jmethodID voidopenGraphicCanvasID; // cache method id
@@ -184,13 +184,13 @@ int * getViewport();
 
 void setViewport(int posX, int posY, int width, int height);
 
-int * rubberBox(bool isClick, bool isZoom, int * initialRect, int initialRectSize);
+int * rubberBox(bool isClick, int * initialRect, int initialRectSize);
+
+void interactiveZoom(long long objectHandle);
 
 void setTitle(char * title);
 
-int * getRotationDisplacement();
-
-void stopRotationRecording();
+void interactiveRotation();
 
 void showWindow();
 

@@ -77,12 +77,12 @@ public:
 
   virtual void setBackgroundColor(int colorIndex);
 
-  virtual void rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton);
+  virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+	virtual void interactiveZoom(long objectHandle);
 
   virtual void setTitle(const char * title);
 
-  virtual bool getRotationDisplacement(int displacement[2]);
-  virtual void stopRotationRecording(void);
   virtual void showWindow(void);
 
   virtual void setNbSubwins(int nbSubwins);
@@ -90,6 +90,8 @@ public:
 	virtual void openGraphicCanvas(void);
 
 	virtual void closeGraphicCanvas(void);
+
+	virtual void interactiveRotation(void);
 
   static bool isAbleToCreateFigure(void);
 

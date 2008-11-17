@@ -265,9 +265,14 @@ void DrawableFigure::setBackgroundColor(int backColor)
 	getFigureImp()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
+void DrawableFigure::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureImp()->rubberBox(isClick, isZoom, initialRect, endRect, usedButton);
+  getFigureImp()->rubberBox(isClick, initialRect, endRect, usedButton);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::interactiveZoom(void)
+{
+	getFigureImp()->interactiveZoom();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::setTitle( const char * title )
@@ -275,14 +280,9 @@ void DrawableFigure::setTitle( const char * title )
   getFigureImp()->setTitle(title) ;
 }
 /*---------------------------------------------------------------------------------*/
-bool DrawableFigure::getRotationDisplacement(int displacement[2])
+void DrawableFigure::interactiveRotation(void)
 {
-  return getFigureImp()->getRotationDisplacement(displacement);
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableFigure::stopRotationRecording(void)
-{
-  return getFigureImp()->stopRotationRecording();
+  return getFigureImp()->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::showWindow(void)

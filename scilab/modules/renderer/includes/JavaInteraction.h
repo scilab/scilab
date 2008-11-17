@@ -31,28 +31,36 @@ extern "C" {
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
- * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
  * @param intialRect if not null, specify the initial rectangle to use
  * @param[out] endRect array containing the coordinates of two opposite corners of
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void javaRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom, const int initialRect[4], int endRect[4], int * usedButton);
+void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
 
 /**
- * Get current displacement in the graphic window, to be used for axes rotation.
- * @param pFigure figure corresponding to the window
- * @param displacement [dx, dy] is the mouse displacement in pixels
- *         or the position of the mouse with the first call.
- * @return FALSE if the displacement tracking has ended, TRUE otherwise.
+ * Perform an interactive zoom of the figure using a rectangular selection.
+ * @param pFigure figure to zoom.
  */
-BOOL getJavaRotationDisplacement(sciPointObj * pFigure, int displacement[2]);
+void interactiveJavaZoom(sciPointObj * pFigure);
 
 /**
- * If a rotation displacement is recording, cancel it.
- * @param pFigure figure corresponding to the window
+ * Perform an interactive zoom of the subwin using a rectangular selection.
+ * @param pSubwin subwin to zoom.
  */
-void stopJavaRotationRecording(sciPointObj * pFigure);
+void interactiveJavaSubwinZoom(sciPointObj * pSubwin);
+
+/**
+ * Perform an interactive rotation of a subwin contained in the figure.
+ * @param pFigure figure corresponding to the canvas
+ */
+void interactiveJavaRotation(sciPointObj * pFigure);
+
+/**
+ * Perform an interactive rotation of a subwin with the mouse.
+ * @param pSubwin subwin to rotate
+ */
+void interactiveJavaSubwinRotation(sciPointObj * pSubwin);
 
 /**
  * Put the figure in top of other windows.

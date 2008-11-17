@@ -17,26 +17,29 @@
 using namespace sciGraphics ;
 
 /*---------------------------------------------------------------------------------*/
-void javaRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom, const int initialRect[4], int endRect[4], int * usedButton)
+void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), (isZoom == TRUE), initialRect, endRect, usedButton);
+  getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
-BOOL getJavaRotationDisplacement(sciPointObj * pFigure, int displacement[2])
+void interactiveJavaZoom(sciPointObj * pFigure)
 {
-  if (getFigureDrawer(pFigure)->getRotationDisplacement(displacement))
-  {
-    return TRUE;
-  }
-  else
-  {
-    return FALSE;
-  }
+	getFigureDrawer(pFigure)->interactiveZoom();
 }
 /*---------------------------------------------------------------------------------*/
-void stopJavaRotationRecording(sciPointObj * pFigure)
+void interactiveJavaSubwinZoom(sciPointObj * pSubwin)
 {
-  getFigureDrawer(pFigure)->stopRotationRecording();
+	getSubwinDrawer(pSubwin)->interactiveZoom();
+}
+/*---------------------------------------------------------------------------------*/
+void interactiveJavaRotation(sciPointObj * pFigure)
+{
+  getFigureDrawer(pFigure)->interactiveRotation();
+}
+/*---------------------------------------------------------------------------------*/
+void interactiveJavaSubwinRotation(sciPointObj * pSubwin)
+{
+  getSubwinDrawer(pSubwin)->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 void javaShowWindow(sciPointObj * pFigure)

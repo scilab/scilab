@@ -21,14 +21,18 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
+import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
+import org.scilab.modules.renderer.subwinDrawing.DrawableSubwinGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.ClipPlane3DManager;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
 import org.scilab.modules.renderer.utils.textRendering.JOGLTextRendererFactory;
@@ -616,13 +620,12 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Create an interactive selection rectangle and return its pixel coordinates
 	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
-	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
 	 * @return array of size 5 [x1, y1, x2, y2, button] where (x1,y1) is one of the rectangle corners
-	 *         (x2,y2) the coordinates of the opposite rectangle in pixel anf button the Scilab code
+	 *         (x2,y2) the coordinates of the opposite rectangle in pixel and button the Scilab code
 	 *         of the mouse button.
 	 */
-	public int[] rubberBox(boolean isClick, boolean isZoom, int[] initialRect) {
+	public int[] rubberBox(boolean isClick, int[] initialRect) {
 		
 		// giws is unable to pass null pointers
 		// we found a 0 sized array instead
@@ -636,37 +639,105 @@ public class DrawableFigureGL extends ObjectGL {
 		int[] res = {0, 0, 0, 0, 0};
 		
 		// get [x1,y1,x2,y2] in res and button
-		int button = getRendererProperties().rubberBox(figureId, isClick, isZoom, realIntialRect, res);
+		int button = getRendererProperties().rubberBox(figureId, isClick, false, realIntialRect, res);
 		res[res.length - 1] = button;
 		return res;
 	}
 	
 	/**
-	 * Get current displacement in the graphic window, to be used for axes rotation.
-	 * @return array [dx, dy, stop] where [dx, dy] is the mouse displacement in pixels
-	 *         or the position of the mouse with the first call. And stop is 0 if the
-	 *         tracking is finished, 1 otherwise.
+	 * Perform an interactive zoom on a figure
+	 * @param objectHandle handle of the object to zoom
 	 */
-	public int[] getRotationDisplacement() {
-		int[] res = new int[2 + 1];
-		
-		// get [dx, dy] displacement
-		boolean stop = getRendererProperties().getRotationDisplacement(res);
-		
-		if (stop) {
-			res[2] = 1;
-		} else {
-			res[2] = 0;
-		}
-		
-		return res;
+	public void interactiveZoom(long objectHandle) {
+		// Make the Scilab thread and the zoom independent
+		// by creating a new thread
+		final long objectHandleF = objectHandle;
+		Thread rotationThread = new Thread(new Runnable() {
+			public void run() {
+				interactiveZoomThreaded(objectHandleF);
+			}
+		});
+		rotationThread.start();
 	}
 	
 	/**
-	 * If a rotation displacement is recording, cancel it.
+	 * Perform a zoom on a figure or subwin handle.
+	 * This zoom uses a rubberBox for selecting the zoom area.
+	 * @param objectHandle handle on the object to zoom
 	 */
-	public void stopRotationRecording() {
-		getRendererProperties().stopRotationRecording();
+	private void interactiveZoomThreaded(long objectHandle) {
+		
+		// set a new info message
+		String curInfoMessage = getInfoMessage();
+		setInfoMessage(Messages.gettext("Click on the figure to select zooming area. Click again to stop."));
+		
+		int[] area = {0, 0, 0, 0};
+		// get the zooming area
+		getRendererProperties().rubberBox(figureId, true, true, null, area);
+		
+		// zoom
+		FigureScilabCall.zoomObject(objectHandle, area[0], area[1], area[2], area[Vector3D.DIMENSION]);
+		
+		// redraw the figure to see the changes
+		drawCanvas();
+		
+		// reset the infoMessage
+		setInfoMessage(curInfoMessage);
+	}
+	
+	/**
+	 * Perform an interactive rotation of the figure from an other thread
+	 */
+	public void interactiveRotation() {
+		// Make the Scilab thread and the rotation independent
+		// by creating a new thread
+		Thread rotationThread = new Thread(new Runnable() {
+			public void run() {
+				interactiveRotationThreaded();
+			}
+		});
+		rotationThread.start();
+		
+	}
+	
+	/**
+	 * Perform an interactive rotation of a subwindow inside the figure.
+	 * First the user select a subwin contained in the canvas by a click.
+	 * Then the user rotate the subwin with mouse movements.
+	 */
+	private void interactiveRotationThreaded() {
+		
+		// get the current info message
+		String curInfoMessage = getInfoMessage();
+		
+		// set a new one
+		setInfoMessage(Messages.gettext("Click on an Axes object to start rotation. Click again to terminate."));
+		
+		// first get the clicked subwin
+		int[] clickPos = {0, 0};
+		boolean keepOnRecording = getRendererProperties().getRotationDisplacement(clickPos);
+		
+		if (!keepOnRecording) {
+			// recording has been canceled
+			setInfoMessage(curInfoMessage);
+			return;
+		}
+		
+		// get the clicked subwin handle or 0 if no handle has been clicked
+		long subwinHandle = FigureScilabCall.getClickedSubwinHandle(figureId, clickPos[0], clickPos[1]);
+		
+		if (subwinHandle == 0) {
+			// no subwindow has been founds
+			getRendererProperties().stopRotationRecording();
+			setInfoMessage(curInfoMessage);
+			return;
+		}
+		
+		DrawableSubwinGL.interactiveRotation(subwinHandle, this);
+		
+		setInfoMessage(curInfoMessage);
+		
+		
 	}
 	
 	/**

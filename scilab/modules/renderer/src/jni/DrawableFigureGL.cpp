@@ -126,10 +126,10 @@ voidsetAutoResizeModejbooleanID=NULL;
 jbooleangetAutoResizeModeID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
-jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
+jintArrayrubberBoxjbooleanjintArrayID=NULL; 
+voidinteractiveZoomjlongID=NULL; 
 voidsetTitlejstringID=NULL; 
-jintArraygetRotationDisplacementID=NULL; 
-voidstopRotationRecordingID=NULL; 
+voidinteractiveRotationID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
@@ -183,10 +183,10 @@ voidsetAutoResizeModejbooleanID=NULL;
 jbooleangetAutoResizeModeID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
-jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
+jintArrayrubberBoxjbooleanjintArrayID=NULL; 
+voidinteractiveZoomjlongID=NULL; 
 voidsetTitlejstringID=NULL; 
-jintArraygetRotationDisplacementID=NULL; 
-voidstopRotationRecordingID=NULL; 
+voidinteractiveRotationID=NULL; 
 voidshowWindowID=NULL; 
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
@@ -686,18 +686,16 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-int * DrawableFigureGL::rubberBox (bool isClick, bool isZoom, int * initialRect, int initialRectSize){
+int * DrawableFigureGL::rubberBox (bool isClick, int * initialRect, int initialRectSize){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (jintArrayrubberBoxjbooleanjbooleanjintArrayID==NULL) { /* Use the cache Luke */ jintArrayrubberBoxjbooleanjbooleanjintArrayID = curEnv->GetMethodID(this->instanceClass, "rubberBox", "(ZZ[I)[I" ) ;
-if (jintArrayrubberBoxjbooleanjbooleanjintArrayID == NULL) {
+if (jintArrayrubberBoxjbooleanjintArrayID==NULL) { /* Use the cache Luke */ jintArrayrubberBoxjbooleanjintArrayID = curEnv->GetMethodID(this->instanceClass, "rubberBox", "(Z[I)[I" ) ;
+if (jintArrayrubberBoxjbooleanjintArrayID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "rubberBox");
 }
 }
 jboolean isClick_ = ((bool) isClick ? JNI_TRUE : JNI_FALSE);
-
-jboolean isZoom_ = ((bool) isZoom ? JNI_TRUE : JNI_FALSE);
 
 jintArray initialRect_ = curEnv->NewIntArray( initialRectSize ) ;
 
@@ -710,7 +708,7 @@ throw GiwsException::JniBadAllocException(curEnv);
 curEnv->SetIntArrayRegion( initialRect_, 0, initialRectSize, (jint*) initialRect ) ;
 
 
-                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArrayrubberBoxjbooleanjbooleanjintArrayID ,isClick_, isZoom_, initialRect_);
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArrayrubberBoxjbooleanjintArrayID ,isClick_, initialRect_);
                         
 jsize len = curEnv->GetArrayLength(res);
 jboolean isCopy = JNI_FALSE;
@@ -733,6 +731,21 @@ return myArray;
 
 }
 
+void DrawableFigureGL::interactiveZoom (long long objectHandle){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidinteractiveZoomjlongID==NULL) { /* Use the cache Luke */ voidinteractiveZoomjlongID = curEnv->GetMethodID(this->instanceClass, "interactiveZoom", "(J)V" ) ;
+if (voidinteractiveZoomjlongID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "interactiveZoom");
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidinteractiveZoomjlongID ,objectHandle);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
 void DrawableFigureGL::setTitle (char * title){
 
 JNIEnv * curEnv = getCurrentEnv();
@@ -750,47 +763,16 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-int * DrawableFigureGL::getRotationDisplacement (){
+void DrawableFigureGL::interactiveRotation (){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (jintArraygetRotationDisplacementID==NULL) { /* Use the cache Luke */ jintArraygetRotationDisplacementID = curEnv->GetMethodID(this->instanceClass, "getRotationDisplacement", "()[I" ) ;
-if (jintArraygetRotationDisplacementID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getRotationDisplacement");
+if (voidinteractiveRotationID==NULL) { /* Use the cache Luke */ voidinteractiveRotationID = curEnv->GetMethodID(this->instanceClass, "interactiveRotation", "()V" ) ;
+if (voidinteractiveRotationID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "interactiveRotation");
 }
 }
-                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetRotationDisplacementID );
-                        
-jsize len = curEnv->GetArrayLength(res);
-jboolean isCopy = JNI_FALSE;
-
-/* faster than getXXXArrayElements */
-jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
-int * myArray= new int[len];
-
-for (jsize i = 0; i < len; i++){
-myArray[i]=resultsArray[i];
-}
-curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
-
-                        curEnv->DeleteLocalRef(res);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-return myArray;
-
-}
-
-void DrawableFigureGL::stopRotationRecording (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidstopRotationRecordingID==NULL) { /* Use the cache Luke */ voidstopRotationRecordingID = curEnv->GetMethodID(this->instanceClass, "stopRotationRecording", "()V" ) ;
-if (voidstopRotationRecordingID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "stopRotationRecording");
-}
-}
-                         curEnv->CallVoidMethod( this->instance, voidstopRotationRecordingID );
+                         curEnv->CallVoidMethod( this->instance, voidinteractiveRotationID );
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

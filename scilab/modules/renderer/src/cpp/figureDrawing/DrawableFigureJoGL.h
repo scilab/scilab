@@ -136,31 +136,27 @@ public:
    * Call rubber box on the figure
    * @param isClick specify whether the rubber box is selected by mouse click
    *        or a sequence of press/release.
-   * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
    * @param intialRect if not null, specify the initial rectangle to use
    * @param[out] endRect array containing the coordinates of two opposite corners of
    *                     the rubber box
    * @param[out] usedButton Scilab code of the button used to terminate the rubber box
    */
-  virtual void rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton);
+  virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+	/**
+	 * Perfomr an interactive zoom of the figure using a rectangular selection.
+	 */
+	virtual void interactiveZoom(void);
 
   /**
    * Set the title of the figure.
    */
   virtual void setTitle( const char * title ) ;
 
-  /**
-  * Get current displacement in the graphic window, to be used for axes rotation.
-  * @param displacement [dx, dy] is the mouse displacement in pixels
-  *         or the position of the mouse with the first call.
-  * @return false if the displacement tracking has ended, true otherwise.
-  */
-  virtual bool getRotationDisplacement(int displacement[2]);
-
-  /**
-   * If a rotation displacement is recording, cancel it.
-   */
-  virtual void stopRotationRecording(void);
+	/**
+	 * Perform an interactive rotation of a subwin contained in the figure.
+	 */
+	virtual void interactiveRotation(void);
 
   /**
    * Put the figure in top of other windows.

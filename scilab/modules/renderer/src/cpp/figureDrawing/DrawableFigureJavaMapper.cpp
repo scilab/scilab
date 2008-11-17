@@ -184,14 +184,14 @@ void DrawableFigureJavaMapper::setBackgroundColor(int colorIndex)
   m_pJavaObject->setBackgroundColor(colorIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
+void DrawableFigureJavaMapper::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
 {
   int sizeJavaInitialRect = 0;
   if (initialRect != NULL)
   {
     sizeJavaInitialRect = 4;
   }
-  int * javaRes = m_pJavaObject->rubberBox(isClick, isZoom, (int *)initialRect, sizeJavaInitialRect);
+  int * javaRes = m_pJavaObject->rubberBox(isClick, (int *)initialRect, sizeJavaInitialRect);
 
   // javaRes = [x1,y1,x2,y2,button];
   for (int i = 0; i < 4; i++)
@@ -205,28 +205,14 @@ void DrawableFigureJavaMapper::rubberBox(bool isClick, bool isZoom, const int in
 
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::interactiveZoom(long objectHandle)
+{
+	m_pJavaObject->interactiveZoom((long long) objectHandle);
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setTitle(const char * title)
 {
   m_pJavaObject->setTitle((char *) title);
-}
-/*---------------------------------------------------------------------------------*/
-bool DrawableFigureJavaMapper::getRotationDisplacement(int displacement[2])
-{
-  int * javaRes = m_pJavaObject->getRotationDisplacement();
-
-  displacement[0] = javaRes[0];
-  displacement[1] = javaRes[1];
-
-  bool res = (javaRes[2] != 0);
-
-  delete[] javaRes;
-
-  return res;
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::stopRotationRecording(void)
-{
-  m_pJavaObject->stopRotationRecording();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::showWindow(void)
@@ -247,6 +233,11 @@ void DrawableFigureJavaMapper::openGraphicCanvas(void)
 void DrawableFigureJavaMapper::closeGraphicCanvas(void)
 {
 	m_pJavaObject->closeGraphicCanvas();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::interactiveRotation(void)
+{
+	m_pJavaObject->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::isAbleToCreateFigure(void)

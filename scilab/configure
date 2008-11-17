@@ -10545,7 +10545,7 @@ esac
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 IS_64_BITS_CPU=false
 case "$CC" in
-	 gcc-* | gcc | cc | cc-* | ccache*gcc | ccache*gcc-* )
+	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
@@ -26258,7 +26258,7 @@ echo $ECHO_N "checking jeuclid-core... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
 // #line 26260 "configure"
-import net.sourceforge.jeuclid.ant.MathMLConverter;
+import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -26298,8 +26298,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (at least version 3.1.X) (looking for package net.sourceforge.jeuclid.ant.MathMLConverter)" >&5
-echo "$as_me: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (at least version 3.1.X) (looking for package net.sourceforge.jeuclid.ant.MathMLConverter)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (at least version 3.1.X) (looking for package net.sourceforge.jeuclid.LayoutContext)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (at least version 3.1.X) (looking for package net.sourceforge.jeuclid.LayoutContext)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 

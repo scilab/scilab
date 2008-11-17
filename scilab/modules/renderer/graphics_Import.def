@@ -171,3 +171,7 @@ sciGetRealVisibility
 needsDisplay
 deleteMatrix
 computeDefaultTicsLabels
+updateViewingAngles
+getClickedSubwin
+sciGetHandle
+sciZoomObject

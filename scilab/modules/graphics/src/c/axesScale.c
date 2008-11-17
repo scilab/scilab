@@ -194,6 +194,30 @@ static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int
   }
 }
 /*------------------------------------------------------------------------------*/
+void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
+{
+	/* convert found data to [x,y,w,h] */
+  int x = Min(x1, x2);
+  int y = Min(y1, y2);
+  int w = Abs(x1 - x2);
+  int h = Abs(y1 - y2);
+
+	if (w == 0 || h == 0)
+	{
+		/* Zoom is not possible */
+		return;
+	}
+
+	if (sciGetEntityType(pObj) == SCI_FIGURE)
+	{
+		zoomFigure(pObj, x, y, w, h);
+	}
+	else if (sciGetEntityType(pObj) == SCI_SUBWIN)
+	{
+		zoomSubwin(pObj, x, y, w, h);
+	}
+}
+/*------------------------------------------------------------------------------*/
 /**
  * Perform an interactive zoom (rectangular selection +  zoom)
  * @param pObj object on which the zoom will be applied.
@@ -202,61 +226,7 @@ static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int
  */
 void sciInteractiveZoom(sciPointObj * pObj)
 {
-  int selectionRectangleCorners[4];
-  int x;
-  int y;
-  int w;
-  int h;
-  int button;
-
-  sciPointObj * parentFigure = sciGetParentFigure(pObj);
-  char * currentInfoMessage = sciGetInfoMessage(parentFigure);
-  char * curInfoMessageCopy = NULL;
-
-  /* copy the info message to be able to reset it after zooming */
-  curInfoMessageCopy = MALLOC((strlen(currentInfoMessage) + 1) * sizeof(char));
-
-  if (curInfoMessageCopy == NULL)
-  {
-    sciprint(_("%s: No more memory.\n"), "Interactive zoom");
-  }
-  strcpy(curInfoMessageCopy, currentInfoMessage);
-
-  startFigureDataWriting(parentFigure);
-  /* display how to use zoom in the info bar */
-  sciSetInfoMessage(parentFigure, _("Click on the figure to select zooming area. Click again to stop."));
-  endFigureDataWriting(parentFigure);
-
-  /* create a rubber box to select a rectangular area */
-  pixelRubberBox(parentFigure, TRUE, TRUE, NULL, selectionRectangleCorners, &button);
-
-  /* convert found data to [x,y,w,h] */
-  x = Min(selectionRectangleCorners[0], selectionRectangleCorners[2]);
-  y = Min(selectionRectangleCorners[1], selectionRectangleCorners[3]);
-  w = Abs(selectionRectangleCorners[0] - selectionRectangleCorners[2]);
-  h = Abs(selectionRectangleCorners[1] - selectionRectangleCorners[3]); 
-
-  /* Zoom using the found pixels if the selection is not empry */
-  startFigureDataWriting(parentFigure);
-	if (w != 0 && h != 0)
-	{
-		if (sciGetEntityType(pObj) == SCI_FIGURE)
-		{
-			zoomFigure(pObj, x, y, w, h);
-		}
-		else if (sciGetEntityType(pObj) == SCI_SUBWIN)
-		{
-			zoomSubwin(pObj, x, y, w, h);
-		}
-	}
-  // restore info message
-  sciSetInfoMessage(parentFigure, curInfoMessageCopy);
-  endFigureDataWriting(parentFigure);
-
-  FREE(curInfoMessageCopy);
-
-  /* redraw */
-  sciDrawObj(parentFigure);
+	interactiveZoom(pObj);
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -272,7 +242,7 @@ void sciDefaultInteractiveZoom(void)
 
  
   /* zoom current figure */
-  sciInteractiveZoom(curFigure);
+  interactiveZoom(curFigure);
 }
 /*------------------------------------------------------------------------------*/
 /**
