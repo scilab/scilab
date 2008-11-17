@@ -24,6 +24,7 @@ import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.GlobalMouseEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
+import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
@@ -366,48 +367,23 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param g graphics
 	 */
 	public void paint(Graphics g) {
-		if (graphicCanvas != null) {
-		    graphicCanvas.paint(g);
-		}
-		super.paint(g);
+	    Debug.DEBUG(this.getClass().getSimpleName(), "paint");  
+	    super.paint(g);
+	    if (graphicCanvas != null) {
+		graphicCanvas.repaint();
+	    }
 	}
-	
+
+	public void repaint() {
+	    Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+	    super.repaint();
+	}	
+
 	/**
 	 * @return true if the canvas is scrollable
 	 */
 	public boolean isScrollable() {
 		return graphicCanvas == null || graphicCanvas.isScrollable();
 	}
-	
-//	public void processEvent(AWTEvent e) {
-//	    System.err.println("[SwingScilabAxes] processEvent : "+e.toString());
-//	    super.processEvent(e);
-//	}
-//	
-//	/**
-//	 * Override function to be able to call it from SwingScilabCanvas
-//	 * @param e event produced on the canvas
-//	 */
-//	public void processMouseEvent(MouseEvent e) {
-//	    System.err.println("[SwingScilabAxes] processMouseEvent");
-//	    super.processMouseEvent(e);
-//	}
-//	
-//	/**
-//	 * Override function to be able to call it from SwingScilabCanvas
-//	 * @param e event produced on the canvas
-//	 */
-//	public void processMouseMotionEvent(MouseEvent e) {
-//	    System.err.println("[SwingScilabAxes] processMouseMotionEvent");
-//	    super.processMouseMotionEvent(e);
-//	}
-//	
-//	/**
-//	 * Override function to be able to call it from SwingScilabCanvas
-//	 * @param e event produced on the canvas
-//	 */
-//	public void processKeyEvent(KeyEvent e) {
-//		super.processKeyEvent(e);
-//	}
 
 }

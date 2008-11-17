@@ -12,7 +12,6 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -29,7 +28,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyListener;
 import java.awt.event.InputMethodListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -51,7 +49,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+import org.scilab.modules.gui.utils.Debug;
 
 
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
@@ -75,41 +73,41 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	private void init() {
 	    this.addMouseMotionListener(new MouseMotionListener() {
 		public void mouseDragged(MouseEvent arg0) {
-		    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " MouseMotionListener : mouseDragged"); 
+		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged"); 
 		    getParent().dispatchEvent(arg0);
 		}
 		public void mouseMoved(MouseEvent arg0) {
-		    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " MouseMotionListener : mouseMoved"); 
+		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved"); 
 		    getParent().dispatchEvent(arg0);
 		}
 	    });
 	    this.addMouseListener(new MouseListener() {
 		public void mouseClicked(MouseEvent arg0) {
-		    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " MouseListener : mouseClicked"); 
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked"); 
 		    getParent().dispatchEvent(arg0);
 		}
 
 		public void mouseEntered(MouseEvent arg0) {
-		    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " MouseListener : mouseEntered"); 
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered"); 
 		    getParent().dispatchEvent(arg0);
 		}
 
 		public void mouseExited(MouseEvent arg0) {
-		    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " MouseListener : mouseExited"); 
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseExited"); 
 		    getParent().dispatchEvent(arg0);
 		}
 
 		public void mousePressed(MouseEvent arg0) {
-		    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " MouseListener : mousePressed"); 
+		    Debug.DEBUG("GLCanvas", "MouseListener : mousePressed"); 
 		    getParent().dispatchEvent(arg0);
 		}
 
 		public void mouseReleased(MouseEvent arg0) {
-		    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " MouseListener : mouseMoved"); 
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved"); 
 		    getParent().dispatchEvent(arg0);
-		    
+
 		}
-		
+
 	    });
 	}
 
@@ -119,66 +117,66 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	// {
 	//
 	public void paint(Graphics g) {
-	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " paint"); 
+	    Debug.DEBUG("GLCanvas", "paint"); 
 	    super.paint(g);
 	}
 
 	public void display() {
-	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " display");
+	    Debug.DEBUG("GLCanvas", " display");
 	    super.display();
 	}
 
 	public void repaint() {
-	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + "repaint");
+	    Debug.DEBUG("GLCanvas", "repaint");
 	    super.repaint();
 	}
 
 	public void update(Graphics g) {
-	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " update"); 
+	    Debug.DEBUG("GLCanvas", " update"); 
 	    super.update(g);
 	}
 	public void validate() {
-	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " validate");
+	    Debug.DEBUG("GLCanvas", " validate");
 	    super.validate();
 	}	
 
 	public void invalidate() {
-	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " invalidate");
+	    Debug.DEBUG("GLCanvas", " invalidate");
 	    super.invalidate();
 	}
 
 	public void revalidate() {
-	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " revalidate --> !!! WARNING !!!");
+	    Debug.DEBUG("GLCanvas", " revalidate --> !!! WARNING !!!");
 	}
 	//
 	// }
 	//	
 //	/**
-//	 * @param e mouse event to process
-//	 */
+//	* @param e mouse event to process
+//	*/
 //	protected void processMouseEvent(MouseEvent e) {
-//	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " processMouseEvent");
-//	    e.setSource(getParent());
-//	    ((SwingScilabAxes) getParent()).processMouseEvent(e);
+//	Debug.DEBUG("GLCanvas", " processMouseEvent");
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processMouseEvent(e);
 //	}
-//
+
 //	/**
-//	 * @param e mouse event to process
-//	 */
+//	* @param e mouse event to process
+//	*/
 //	protected void processMouseMotionEvent(MouseEvent e) {
-//	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " processMouseMotionEvent ");
-//	    Thread.currentThread().dumpStack();
-//	    e.setSource(getParent());
-//	    ((SwingScilabAxes) getParent()).processMouseEvent(e);
+//	Debug.DEBUG("GLCanvas", " processMouseMotionEvent ");
+//	Thread.currentThread().dumpStack();
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processMouseEvent(e);
 //	}
-//
+
 //	/**
-//	 * @param e key event to process
-//	 */
+//	* @param e key event to process
+//	*/
 //	protected void processKeyEvent(KeyEvent e) {
-//	    DEBUG("__GLCanvas__ " + Thread.currentThread().toString() + " processKeyEvent");
-//	    e.setSource(getParent());
-//	    ((SwingScilabAxes) getParent()).processKeyEvent(e);
+//	Debug.DEBUG("GLCanvas", " processKeyEvent");
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processKeyEvent(e);
 //	}
 
     }
@@ -198,37 +196,37 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	// {
 	//
 	public void paint(Graphics g) {
-	    DEBUG("__GLJPanel__ " + Thread.currentThread().toString() + " paint"); 
+	    Debug.DEBUG("GLJPanel", "paint"); 
 	    super.paint(g);
 	}
 
 	public void display() {
-	    DEBUG("__GLJPanel__ " + Thread.currentThread().toString() + " display");
+	    Debug.DEBUG("GLJPanel", "display");
 	    super.display();
 	}
 
 	public void repaint() {
-	    DEBUG("__GLJPanel__ " + Thread.currentThread().toString() + "repaint");
+	    Debug.DEBUG("GLJPanel", "repaint");
 	    super.repaint();
 	}
 
 	public void update(Graphics g) {
-	    DEBUG("__GLJPanel__ " + Thread.currentThread().toString() + " update"); 
+	    Debug.DEBUG("GLJPanel", "update"); 
 	    super.update(g);
 	}
 
 	public void validate() {
-	    DEBUG("__GLJPanel__ " + Thread.currentThread().toString() + " validate");
+	    Debug.DEBUG("GLJPanel", "validate");
 	    super.validate();
 	}	
 
 	public void invalidate() {
-	    DEBUG("__GLJPanel__ " + Thread.currentThread().toString() + " invalidate");
+	    Debug.DEBUG("GLJPanel", "invalidate");
 	    super.invalidate();
 	}
 
 	public void revalidate() {
-	    DEBUG("__GLJPanel__ " + Thread.currentThread().toString() + " revalidate");
+	    Debug.DEBUG("GLJPanel", "revalidate");
 	    super.revalidate();
 	}
 
@@ -246,21 +244,21 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	tmpCanvas.getContext().makeCurrent();
 	GL gl = tmpCanvas.getGL();
-	DEBUG("=======================================");
-	DEBUG("os.name="+System.getProperty("os.name"));
-	DEBUG("os.arch="+System.getProperty("os.arch"));
-	DEBUG("=======================================");
-	DEBUG("GL_VENDOR="+gl.glGetString(GL.GL_VENDOR));
-	DEBUG("GL_RENDERER="+gl.glGetString(GL.GL_RENDERER));
-	DEBUG("GL_VERSION="+gl.glGetString(GL.GL_VERSION));
-	//DEBUG("GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
-	DEBUG("=======================================");
+	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	Debug.DEBUG("SwingScilabCanvasImpl", "os.name="+System.getProperty("os.name"));
+	Debug.DEBUG("SwingScilabCanvasImpl", "os.arch="+System.getProperty("os.arch"));
+	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	Debug.DEBUG("SwingScilabCanvasImpl", "GL_VENDOR="+gl.glGetString(GL.GL_VENDOR));
+	Debug.DEBUG("SwingScilabCanvasImpl", "GL_RENDERER="+gl.glGetString(GL.GL_RENDERER));
+	Debug.DEBUG("SwingScilabCanvasImpl", "GL_VERSION="+gl.glGetString(GL.GL_VERSION));
+	//Debug.DEBUG("SwingScilabCanvasImpl", "GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
+	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
 	//System.getProperties().list(System.err);
 	tmpCanvas.getContext().release();
 	tmpFrame.remove(tmpCanvas);
 	tmpFrame.setVisible(false);
 	tmpFrame.dispose();
-	DEBUG("Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
+	Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
 
 	// FIXME : must put this to true when Driver is too stupid
 	noGLJPanel = false;
@@ -275,36 +273,29 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * if no GLJPanel is available, GLCanvas is forced
      */
     public static boolean switchToGLCanvas(boolean onOrOff) {
-	DEBUG("switchToGLCanvas " + onOrOff);
+	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
 	forceGLCanvas = noGLJPanel || onOrOff;
 	return forceGLCanvas;
     }
 
-    /**
-     * DEBUG function
-     */
-    private static void DEBUG(String msg) {
-	System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
-    }
-
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for OpenGL implementation.");
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
 	    realGLCanvas = new GLDebugCanvas();
 	}
 	else {
-	    DEBUG("Using GLJPanel for OpenGL implementation.");
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
 	    realGLJPanel= new GLDebugJPanel();
 	}
     }
 
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for OpenGL implementation.");
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
 	    realGLCanvas = new GLDebugCanvas(cap);
 	}
 	else {
-	    DEBUG("Using GLJPanel for OpenGL implementation.");
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
 	    realGLJPanel = new GLDebugJPanel(cap);
 	}
     }
@@ -483,7 +474,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public boolean postEvent(Event arg0) {
-	DEBUG("postEvent(Event arg0)");
+	Debug.DEBUG(this.getClass().getSimpleName(), "postEvent(Event arg0)");
 	return getAsComponent().postEvent(arg0);
     }
 
@@ -496,12 +487,12 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void setVisible(boolean arg0) {
-	DEBUG(Thread.currentThread().toString() + " setVisible : "+arg0);
+	Debug.DEBUG(this.getClass().getSimpleName(), "setVisible : "+arg0);
 	getAsComponent().setVisible(arg0);
     }
 
     public void doLayout() {
-	DEBUG(Thread.currentThread().toString() + " doLayout");
+	Debug.DEBUG(this.getClass().getSimpleName(), "doLayout");
 	getAsComponent().doLayout();
     }
 
@@ -551,7 +542,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 
     public void setEnabled(boolean enable) {
-	DEBUG(Thread.currentThread().toString()+" setEnable : "+enable);
+	Debug.DEBUG(this.getClass().getSimpleName(), "setEnable : "+enable);
 	getAsComponent().setEnabled(enable);
 	// don't disable the GLCanvas
 	// otherwise mouse events will be lost because
@@ -583,22 +574,23 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * @param g graphics
      */
     public void paint(Graphics g) {
-	DEBUG(Thread.currentThread().toString() + " paint"); 
+	Debug.DEBUG(this.getClass().getSimpleName(), "paint"); 
 	getAsComponent().paint(g);
     }
 
     public void display() {
-	DEBUG(Thread.currentThread().toString() + " display");
+	Debug.DEBUG(this.getClass().getSimpleName(), "display");
 	getAsGL().display();
     }
 
     public void repaint() {
-	DEBUG(Thread.currentThread().toString() + "repaint");
+	Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
 	getAsGL().repaint();
+	getAsComponent().repaint();
     }
 
     public void update(Graphics g) {
-	DEBUG(Thread.currentThread().toString() + " update"); 
+	Debug.DEBUG(this.getClass().getSimpleName(), "update"); 
 	getAsComponent().update(g);
     }
     //
