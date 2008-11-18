@@ -23,16 +23,35 @@
 #include "returnProperty.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
 int get_info_message_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
+	char * infoMessage = NULL;
+	int infoMessageLength;
+	int res = -1;
+
+	if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     sciprint(_("%s property does not exist for this handle.\n"),"info_message") ;
     return -1;
   }
-  return sciReturnString( sciGetInfoMessage( pobj ) ) ;
+  
+	infoMessageLength = sciGetInfoMessageLength(pobj);
+	infoMessage = MALLOC((infoMessageLength + 1) * sizeof(char));
+	if (infoMessage == NULL)
+	{
+		return sciReturnString("");
+	}
 
+	sciGetInfoMessage(pobj, infoMessage);
+	
+	
+	res = sciReturnString( infoMessage ) ;
+
+	FREE(infoMessage);
+
+	return res;
 }
 /*------------------------------------------------------------------------*/

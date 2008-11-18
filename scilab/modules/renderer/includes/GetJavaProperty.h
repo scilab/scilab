@@ -47,6 +47,19 @@ void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] ) ;
 void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] ) ;
 
 /**
+ * Get the info message of the figure.
+ * @param pFigure figure from which we want the infoMessage
+ * @param[out] infoMessage string filled with the message. Should have a minimum size
+ *                         given by getInfoMessageLength.
+ */
+void sciGetJavaInfoMessage(sciPointObj * pFigure, char * infoMessage);
+
+/**
+ * @return size of the info message to be used in combination with getInfoMessage.
+ */
+int sciGetJavaInfoMessageLength(sciPointObj * pFigure);
+
+/**
  * Convert user Coordinate to pixel coordinates.
  */
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);

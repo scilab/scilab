@@ -11,7 +11,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "math.h"
+#include <stdlib.h>
+#include "core_math.h"
 #include "version.h"
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */

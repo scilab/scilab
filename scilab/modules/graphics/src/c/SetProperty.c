@@ -1850,7 +1850,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
 			/* first case newName is NULL */
 			if (newName == NULL)
 			{
-				/* Just set tan empty title for the phisical window if needed */
+				/* Just set an empty title for the physical window if needed */
 				if (!isFigureModel(pobj))
 				{
 					sciSetJavaTitle(pobj, "");
@@ -3234,43 +3234,63 @@ int sciSetViewport( sciPointObj * pObj, const int viewport[4] )
 
 }
 /*-----------------------------------------------------------------------------------*/
+int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage)
+{
+	if ( sciGetEntityType( pObj ) == SCI_FIGURE)
+	{
+
+		/* first case newName is NULL */
+		if (newMessage == NULL)
+		{
+			/* Just set an empty title for the physical window if needed */
+			if(isFigureModel(pObj))
+			{
+				pFIGURE_FEATURE(pObj)->pModelData->infoMessage = NULL;
+			}
+			else
+			{
+				sciSetJavaInfoMessage(pObj, "");
+			}
+				
+			return 0;
+		}
+
+		if (isFigureModel(pObj))
+		{
+			/* Copy the message into the special data */
+			int newMessageLength = (int) strlen(newMessage);
+			pFIGURE_FEATURE(pObj)->pModelData->infoMessage = MALLOC((newMessageLength + 1) * sizeof(char));
+			if (pFIGURE_FEATURE(pObj)->pModelData->infoMessage != NULL)
+			{
+				strcpy(pFIGURE_FEATURE(pObj)->pModelData->infoMessage, newMessage);
+			}
+		}
+		else
+		{
+			/* Copy in the Java data */
+			sciSetJavaInfoMessage(pObj, newMessage);
+		}
+
+		return 0 ;
+	}
+	else
+	{
+		printSetGetErrorMessage("info_message");
+		return -1;
+	}
+}
+/*-----------------------------------------------------------------------------------*/
 /**
  * Modify the string in the info bar of the graphic window
  */
 int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
 {
-  if ( sciGetEntityType( pObj ) == SCI_FIGURE)
-    {
-      sciFigure * ppFigure = pFIGURE_FEATURE(pObj) ;
-
-      /* We keep a copy of the message for convenience */
-      if ( newMessage == NULL )
+  if (isFigureModel(pObj) && pFIGURE_FEATURE(pObj)->pModelData->infoMessage != NULL)
 	{
-	  FREE( ppFigure->infoMessage ) ;
-	  ppFigure->infoMessage = NULL ;
+		FREE(pFIGURE_FEATURE(pObj)->pModelData->infoMessage);
+		pFIGURE_FEATURE(pObj)->pModelData->infoMessage = NULL;
 	}
-      else
-	{
-	  if ( ppFigure->infoMessage != NULL )
-	    {
-	      FREE(ppFigure->infoMessage);
-	    }
-	  ppFigure->infoMessage = strdup( newMessage ) ;
-	}
-
-      /* set the java message */
-      if ( pObj != getFigureModel() )
-	{
-	  sciSetJavaInfoMessage(pObj, newMessage);
-	}
-
-      return 0 ;
-    }
-  else
-    {
-      printSetGetErrorMessage("info_message");
-      return -1;
-    }
+	return sciInitInfoMessage(pObj, newMessage);
 }
 /*-----------------------------------------------------------------------------------*/
 int sciInitEventHandler( sciPointObj * pObj, char * name )

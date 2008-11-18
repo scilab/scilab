@@ -19,6 +19,9 @@ function bOK = detectmsifort64tools()
    if ifortcomp <> 'unknown' then
      select ifortcomp,
      
+       case  'ifort11' then          
+         IFORTPATH = getenv('IFORT_COMPILER11','');
+         
        case  'ifort10' then          
          IFORTPATH = getenv('IFORT_COMPILER10','');
      
@@ -28,7 +31,7 @@ function bOK = detectmsifort64tools()
      else
        show = displayWarningmsifort();
        if show then
-         TXT = gettext('Intel Fortran Comiler 9 or 10 Compiler not found.');
+         TXT = gettext('Intel Fortran Comiler 9, 10 or 11 Compiler not found.');
          warning(TXT);
          clear TXT;
          disableWarningmsifort();
@@ -38,7 +41,11 @@ function bOK = detectmsifort64tools()
      end
    end
    
-   IFORTSPATHEMT64 = IFORTPATH + 'em64t';
+   if (ifortcomp == 'ifort11') then
+     IFORTSPATHEMT64 = IFORTPATH + 'lib\intel64';
+   else
+     IFORTSPATHEMT64 = IFORTPATH + 'em64t';
+   end
    
    if isdir(IFORTSPATHEMT64) then
      bOK = %T;

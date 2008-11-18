@@ -94,10 +94,26 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Perform an interactive rotation of the subwin
+	 * Perform an interactive rotation of the subwin from an other thread.
 	 * @param subwinHandle handle of the subwin
 	 */
 	public void interactiveRotation(long subwinHandle) {
+		// Make the Scilab thread and the rotation independent
+		// by creating a new thread
+		final long subwinHandleF = subwinHandle;
+		Thread rotationThread = new Thread(new Runnable() {
+			public void run() {
+				interactiveRotationThreaded(subwinHandleF);
+			}
+		});
+		rotationThread.start();
+	}
+	
+	/**
+	 * Perform an interactive rotation of the subwin
+	 * @param subwinHandle handle of the subwin
+	 */
+	private void interactiveRotationThreaded(long subwinHandle) {
 		
 		// get the first click position
 		int[] displacement = {0, 0};
@@ -108,11 +124,24 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * Perform an interactive zoom of a single subwindow
+	 * @param subwinHandle handle of the subwindow
+	 */
+	public void interactiveZoom(long subwinHandle) {
+		getParentFigureGL().interactiveZoom(subwinHandle);
+	}
+	
+	/**
 	 * Perform an interactive rotation of a subwindow
 	 * @param subwinHandle handle of the subwin to track
 	 * @param trackedCanvas figure on which the displacement is tracked
 	 */
 	public static void interactiveRotation(long subwinHandle, DrawableFigureGL trackedCanvas) {
+		
+		// rotateSubwin function will modify the info message
+		// so save it in order to restore it at the end.
+		String curInfoMessage = trackedCanvas.getInfoMessage();
+		
 		int[] displacement = {0, 0};
 		
 		// track the rotation
@@ -128,6 +157,7 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 			
 		}
 		// the displacement has end or has been canceled
+		trackedCanvas.setInfoMessage(curInfoMessage);
 	}
 
 	

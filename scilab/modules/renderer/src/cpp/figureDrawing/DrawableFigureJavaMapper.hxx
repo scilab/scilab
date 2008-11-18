@@ -68,6 +68,8 @@ public:
   virtual void setWindowSize(int width, int height);
 
   virtual void setInfoMessage(const char * infoMessage);
+	virtual void getInfoMessage(char * infoMessage);
+	virtual int getInfoMessageLength(void);
 
   virtual void setAutoResizeMode(bool onOrOff);
   virtual bool getAutoResizeMode(void);
@@ -77,7 +79,9 @@ public:
 
   virtual void setBackgroundColor(int colorIndex);
 
-  virtual void rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton);
+  virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+	virtual void interactiveZoom(long objectHandle);
 
   virtual void setTitle(const char * title);
 

@@ -19,7 +19,6 @@
 #include <Windows.h>
 #endif
 
-#include "stack-c.h"
 #include "version.h"
 
 /** 

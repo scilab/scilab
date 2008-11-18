@@ -28,6 +28,8 @@ void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta);
 
 long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord);
 
+void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2);
+
 #ifdef __cplusplus
 }
 #endif

@@ -14,11 +14,15 @@ function ifortCompiler = findmsifortcompiler()
   ifortCompiler='unknown'; // unknown
 
   if MSDOS then
-    if getenv('IFORT_COMPILER10','NOK') <> 'NOK' then
-      ifortCompiler='ifort10';
+    if getenv('IFORT_COMPILER11','NOK') <> 'NOK' then
+      ifortCompiler='ifort11';
     else
-      if getenv('IFORT_COMPILER9','NOK') <> 'NOK' then
-        ifortCompiler='ifort9';
+      if getenv('IFORT_COMPILER10','NOK') <> 'NOK' then
+        ifortCompiler='ifort10';
+      else
+        if getenv('IFORT_COMPILER9','NOK') <> 'NOK' then
+          ifortCompiler='ifort9';
+        end
       end
     end
   else // NOT MSDOS
