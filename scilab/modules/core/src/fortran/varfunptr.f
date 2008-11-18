@@ -40,11 +40,10 @@ c     compilation  [27]
 
       subroutine isafunptr(k,id,ffun,ffin)
       include 'stack.h'
-      integer iadr,sadr
+      integer iadr
       integer id(*),ffun,ffin
 
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 
       ffun=0
       ffin=0

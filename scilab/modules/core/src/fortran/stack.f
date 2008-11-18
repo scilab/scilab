@@ -86,11 +86,10 @@ c ====================================================================
       include 'stack.h'
       integer offset
       integer l
-      integer iadr,sadr
+      integer iadr
       logical eqid
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
       
       offset=offset+1
       call unsfdcopy(l,stk(lstk(isiz+2)),1,stk(offset),1)

@@ -13,13 +13,12 @@ c
       integer flag,top2,tops
       integer mode(2)
       logical opened,eptover
-      integer iadr,sadr
+      integer iadr
 c
       save opened,lunit
 c     
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
       if(rhs.le.1) then
          call error(42)

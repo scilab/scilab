@@ -33,9 +33,7 @@ c
       data minus/46/,plus/45/
       data num/0/,name/1/,cmt/2/
       data cconc/1/,extrac/3/,rconc/4/
-c     
-      iadr(l)=l+l-1
-c     
+      
       r = rstk(pt)
 c     
       if (ddt .eq. 4) then

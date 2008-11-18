@@ -750,10 +750,9 @@ C *** Last line of LINMEQ ***
       include 'stack.h'
       integer pos
 c
-      integer iadr,sadr
+      integer iadr
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
       il=iadr(lstk(pos + top - rhs))
       if (istk(il).lt.0)  il=iadr(istk(il+2))

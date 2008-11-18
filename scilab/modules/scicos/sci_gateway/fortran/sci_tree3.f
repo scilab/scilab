@@ -26,10 +26,9 @@ c
       logical createvar,getrhsvar
       
       character*(*) fname
-      integer iadr,sadr
+      integer iadr
       
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
       
       if(.not.checklhs(fname,2,2)) return
       if(.not.checkrhs(fname,7,7)) return

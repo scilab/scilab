@@ -19,10 +19,9 @@ c     sz : memory size used by the variable (in stk words)
 c     on return top is incremented
       integer il,sz
 c
-      integer iadr,sadr
+      integer sadr
 c
 c
-      iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
       top=top+1
