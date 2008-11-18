@@ -15,7 +15,7 @@ Rhs=length(varargin);
 if (Rhs == 0) then
   // Create a new graphic window
   h = scf();
-  setNewFigDefaultProperties(%f);
+  setFigDefaultProperties(%f);
 else
   if (Rhs == 1) then
     
@@ -79,7 +79,7 @@ else
   h=scf(numOrHandle);
 end
 
-setNewFigDefaultProperties(alreadyExists);
+setFigDefaultProperties(alreadyExists);
 
 endfunction
 // -----------------------------------------------------------
@@ -115,7 +115,7 @@ endfunction
 // -----------------------------------------------------------
 
 // -----------------------------------------------------------
-function setNewFigDefaultProperties(alreadyExists)
+function setFigDefaultProperties(alreadyExists)
 // Jean-Baptiste SILVY - Digiteo 2008
 // Set default properties for the lastly created figure.
 // These properties ensure that the 3D canvas won't be created
@@ -138,5 +138,5 @@ set(axes, "filled", "off"); // transparent axes so no need to display them
 
 set(curFig, "immediate_drawing", "on"); // we can draw now
 
-endfucntion
+endfunction
 // -----------------------------------------------------------
