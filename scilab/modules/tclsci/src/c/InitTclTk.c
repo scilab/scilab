@@ -130,7 +130,10 @@ static void *DaemonOpenTCLsci(void* in)
 			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),getTclInterp()->result);
 		}
 		releaseTclInterp();
-		if (getenv("SCI_DISABLE_TK")==NULL) {
+		if (getenv("SCI_DISABLE_TK")==NULL) { 
+			/* When SCI_DISABLE_TK is set in the env disable the TK init 
+			 * process. It is causing issues when Scilab is 
+			 * used through ssh.  */
 		  if ( Tk_Init(getTclInterp()) == TCL_ERROR)
 		    {
 		      releaseTclInterp();
