@@ -25,6 +25,7 @@ Bug fixes:
 
 * bug 3753 fixed - drawaxis produces unreadable labels
 
+* bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent.)
 
 
 
