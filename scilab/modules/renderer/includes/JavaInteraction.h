@@ -63,6 +63,12 @@ void interactiveJavaRotation(sciPointObj * pFigure);
 void interactiveJavaSubwinRotation(sciPointObj * pSubwin);
 
 /**
+ * Unzoom a subwindow
+ * @param pSubwin subwin to unzoom
+ */
+void javaUnzoomSubwin(sciPointObj * pSubwin);
+
+/**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */

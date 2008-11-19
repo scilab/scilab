@@ -86,4 +86,13 @@ public static void zoomObject(long objectHandle, int x1, int y1, int x2, int y2)
     FigureScilabCallJNI.zoomObject(objectHandle, x1, y1, x2, y2);
   }
 
+  
+ /**
+  * Reset zoom of a subwindow.
+  * @param subwinHandle handle of the subwin to modify
+  */
+public static void unzoomSubwinHandle(long subwinHandle) {
+    FigureScilabCallJNI.unzoomSubwinHandle(subwinHandle);
+  }
+
 }

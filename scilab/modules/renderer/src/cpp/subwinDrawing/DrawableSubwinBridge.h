@@ -43,6 +43,11 @@ public:
 	 */
 	virtual void interactiveZoom(void) = 0;
 
+	/**
+	 * Unzoom a subwindow
+	 */
+	virtual void unzoom(void) = 0;
+
 protected:
 
   /**

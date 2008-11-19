@@ -54,6 +54,11 @@ void updateTextBounds(sciPointObj * pText);
  * @param y2 Y coordinate of the opposite corner of the selection
  */
 void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2);
+
+/**
+ * Unzoom a subwindow
+ */
+void unzoomSubwin(sciPointObj * pSubwin);
 /*------------------------------------------------------------------------------*/
 BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax);

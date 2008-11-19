@@ -64,6 +64,11 @@ public:
 	 */
 	void interactiveZoom(void);
 
+	/**
+	 * Unzoom a subwindow
+	 */
+	void unzoom(void);
+
   /**
    * Compute real data bounds from the user ones.
    * ie fills Frect.
