@@ -21,7 +21,9 @@ function []=velo4p()
   curaxe.isoview         = 'on';
   curAxe.data_bounds     = [xmin ymin zmin;xmax ymax zmax];
   curAxe.rotation_angles = [t p];
-  curAxe.title.text      = _("bike simulation, unstable trajectory")
+  curAxe.title.text      = _("bike simulation, unstable trajectory");
+  curAxe.title.font_size = 3;
+  
   // The floor
   xfpoly([xmin xmax xmax xmin xmin],[ymin ymin ymax ymax ymin])
   e=gce();

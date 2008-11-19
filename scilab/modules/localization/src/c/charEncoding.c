@@ -80,10 +80,10 @@ char* localeToUTF(char* buffer) {
 	char *inPtr = buffer;
 	char *outPtr = ENCODE_BUF;
 
+	if(unicodeSubset) return buffer; /*no need to convert for unicode subset encoding*/
+
 	if (buffer == NULL) return NULL;
 	inbytesleft = strlen(buffer);
-
-	if(unicodeSubset) return buffer; /*no need to convert for unicode subset encoding*/
 
 
 	if (iconv (localeToUTFConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft) == (size_t)(-1))
@@ -185,11 +185,6 @@ void closeCharEncodingConverter(void)
 //
 // getScilabMode()  =  SCILAB_API) || SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) 
 //
-
-static char *_GETTEXT(const char* msgid)
-{
-	   return localeToUTF(gettext(msgid));
-}
 
 char * UTFToConsole(char* line)
 {

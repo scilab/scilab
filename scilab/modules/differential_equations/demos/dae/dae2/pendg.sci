@@ -5,6 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+funcprot(0);
+
 function [res,ires]=pendg(t,y,ydot)
 	x          = y(1:3);
 	u          = y(4:6);
@@ -86,3 +88,5 @@ function  draw_sliding_pendulum (H,state)
 	a.title.text='sliding pendulum, parabola';
 	a.title.font_size=3;
 endfunction
+
+funcprot(1);

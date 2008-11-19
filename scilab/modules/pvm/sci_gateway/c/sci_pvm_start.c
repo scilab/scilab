@@ -35,7 +35,7 @@ int intspvm_start(char *fname,unsigned long fname_len)
   } else {
 	  /* Don't have any argument, then load the default host */
     host = hostdefault;
-    mn1= strlen(hostdefault);
+    mn1= (int)strlen(hostdefault);
   }
   CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);
   C2F(scipvmstart)(istk(res),host,&mn1);

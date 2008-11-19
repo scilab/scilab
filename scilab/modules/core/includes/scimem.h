@@ -13,6 +13,7 @@
 #ifndef __SCIMEM_H__
 #define __SCIMEM_H__
 
+#include "machine.h" /* C2F */
 
 int C2F(scimem)(int *n, int *ptr);
 int C2F(scigmem)(int *n, int *ptr);

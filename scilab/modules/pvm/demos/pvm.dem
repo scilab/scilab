@@ -7,6 +7,7 @@ if ~with_pvm() then
 end
 
 if MSDOS then
+
 	mes=x_message(['This demo recquires rsh or ssh client/server on Windows.' ..
 	'Click on Cancel, if you aren''t sure to have it.' ..
 	'' ..
@@ -18,7 +19,12 @@ if MSDOS then
   '' ..  
   'This should show the directory listing of the local host.' ..
   'Piping to ""more"" additionally checks for buffered std{io,err}.'],['Ok','Cancel'])
-	if mes==2 then return, end
+	if mes == 2 then return, end
+	
+	if getenv('PVM_RSH','') == '' then
+	  // PVM_RSH not defined then no demos
+	  return
+	end
 end
 
 demos_name=[

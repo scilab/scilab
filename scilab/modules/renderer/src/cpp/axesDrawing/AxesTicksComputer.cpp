@@ -79,21 +79,18 @@ void AxesTicksComputer::getTicksPosition(double positions[], char * labels[], ch
   if (ppAxes->str == NULL)
   {
     // we need to rebuild it
-    char format[5];
-    ComputeC_format(pAxes, format) ;
-
-    // 256 taken from old code
-    char ** tempLabels = copyFormatedArray( positions, nbTicks, format, 256 ) ;
+		StringMatrix * defaultLabels = computeDefaultTicsLabels(pAxes);
 
     for (int i = 0; i < nbTicks; i++)
     {
-      labels[i] = new char[strlen(tempLabels[i]) + 1];
-      strcpy(labels[i], tempLabels[i]);
+			// it is a row matrix
+			char * curLabel = getStrMatElement(defaultLabels, 0, i);
+      labels[i] = new char[strlen(curLabel) + 1];
+      strcpy(labels[i], curLabel);
     }
 
-    // free strings with FREE
-    destroyGraphicStringArray(tempLabels, nbTicks);
-
+		// delete the labels
+    deleteMatrix(defaultLabels);
 
   }
   else

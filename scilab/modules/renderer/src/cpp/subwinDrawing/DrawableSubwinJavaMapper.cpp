@@ -68,4 +68,19 @@ void DrawableSubwinJavaMapper::setSubwinParameters(int subwinIndex, bool is2d)
   m_pJavaObject->setSubwinParameters(subwinIndex, is2d);
 }
 /*--------------------------------------------------------------------------*/
+void DrawableSubwinJavaMapper::interactiveRotation(long subwinIndex)
+{
+	m_pJavaObject->interactiveRotation(subwinIndex);
+}
+/*--------------------------------------------------------------------------*/
+void DrawableSubwinJavaMapper::interactiveZoom(long subwinIndex)
+{
+	m_pJavaObject->interactiveZoom(subwinIndex);
+}
+/*--------------------------------------------------------------------------*/
+void DrawableSubwinJavaMapper::unzoom(long subwinHandle)
+{
+	m_pJavaObject->unzoom((long long) subwinHandle);
+}
+/*--------------------------------------------------------------------------*/
 }

@@ -12,8 +12,6 @@ exec(thispath+"macros/velod.sci");
 exec(thispath+"macros/velodp.sci");
 exec(thispath+"macros/velo2.sci");
 
-disp(thispath+"macros/show.sci");
-
 x = read(thispath+"data/x1.dat",46,368,"(e10.4)");
 
 my_handle = scf(100001);

@@ -13,21 +13,17 @@
 // <-- Short Description -->
 //    Problem encountered when redefining builtin function
 
+funcprot(0);
+
 beta=5;
 
-try
-	beta
-catch
-	if %T then pause,end
-end
+if execstr("beta","errcatch") <> 0  then pause,end
 
 function y=foo()
   beta;
   y=beta+1
 endfunction
 
-try
-	foo()
-catch
-	if %T then pause,end
-end
+if execstr("foo","errcatch") <> 0  then pause,end
+
+funcprot(1);

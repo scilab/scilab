@@ -346,10 +346,14 @@ case "$host" in
 	mips-sgi-irix*)
 	  MIPS_SGI_IRIX=1
 	;;
+	 *-*-solaris*)
+	 SOLARIS=1
+	 ;;
 esac
 
 AM_CONDITIONAL(IS_HPUX, test -n "$HPUX")
 AM_CONDITIONAL(IS_SPARC, test -n "$SPARC")
+AM_CONDITIONAL(IS_SOLARIS, test -n "$SOLARIS")
 AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 
 
@@ -389,7 +393,7 @@ esac
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 IS_64_BITS_CPU=false
 case "$CC" in
-	 gcc-* | gcc | cc | cc-* | ccache*gcc | ccache*gcc-* )
+	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"

@@ -302,11 +302,12 @@ function ilib_link_gen_Make_lcc(names, ..
   mfprintf(fd,"# ------------------------------------------------------------\n\n");
   mfprintf(fd,"SCIDIR = %s\n",SCI);
   mfprintf(fd,"SCIDIR1 = %s\n",pathconvert(SCI,%f,%f,'w'));
+  mfprintf(fd,"LCCLIBDIR =%s\n",getshortpathname(SCIHOME+filesep()+'lcclib'));
   mfprintf(fd,"DUMPEXTS = ""$(SCIDIR1)\\bin\\dumpexts""\n");
-  mfprintf(fd,"SCIIMPLIB = $(SCIDIR1)\\bin\\lcclib\\LibScilab.lib $(SCIDIR1)\\bin\\lcclib\\blasplus.lib $(SCIDIR1)\\bin\\lcclib\\libf2c.lib $(SCIDIR1)\\bin\\lcclib\\intersci.lib $(SCIDIR1)\\bin\\lapack.lib $(SCIDIR1)\\bin\\scicos.lib\n\n");
+  mfprintf(fd,"SCIIMPLIB=$(LCCLIBDIR)\\LibScilab.lib $(LCCLIBDIR)\\blasplus.lib $(LCCLIBDIR)\\libf2c.lib $(LCCLIBDIR)\\intersci.lib $(LCCLIBDIR)\\lapack.lib $(LCCLIBDIR)\\scicos.lib\n\n");
   mfprintf(fd,"CC = lcc\n");
   mfprintf(fd,"LINKER = lcclnk\n");
-  mfprintf(fd,"CFLAGS = -I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/libs/f2c"" -I""$(SCIDIR)/modules/mexlib/includes"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ -DHAVE_EXP10 "+ cflags +" \n"); 
+  mfprintf(fd,"CFLAGS= -ansic msvcrt.lib -I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/modules/output_stream/includes"" -I""$(SCIDIR)/libs/f2c"" -I""$(SCIDIR)/modules/mexlib/includes"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__  -DHAVE_EXP10"+ cflags +" \n"); 
   mfprintf(fd,"LINKER_FLAGS = -dll -nounderscores\n");
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
   mfprintf(fd,"O=.obj\n");
@@ -345,27 +346,27 @@ function ilib_link_gen_Make_lcc(names, ..
   
   mfprintf(fd,"\nall :: $(LIBRARY).dll\n");
   mfprintf(fd,"\n$(LIBRARY).dll: $(OBJS)\n");
-  mfprintf(fd,"	$(DUMPEXTS) -o ""$(LIBRARY).def"" ""$*"" $(OBJS)\n");
-  mfprintf(fd,"	$(LINKER) $(LINKER_FLAGS) $(OBJS) $(OTHERLIBS) $(SCIIMPLIB) $(EXTRA_LDFLAGS) $*.def -o $(LIBRARY).dll\n\n");
+  mfprintf(fd,"\t"+"$(DUMPEXTS) -o ""$(LIBRARY).def"" ""$*"" $(OBJS)\n");
+  mfprintf(fd,"\t"+"$(LINKER) $(LINKER_FLAGS) $(OBJS) $(OTHERLIBS) $(SCIIMPLIB) $(EXTRA_LDFLAGS) $*.def -o $(LIBRARY).dll\n\n");
  
   for x = files(:)' 
     [ptmp,ftmp,fext] = fileparts(x);
     x = ptmp + ftmp;
   	mfprintf(fd,"%s$(O):\n",x);
   	if (flag =='c') then
-  		mfprintf(fd,"	$(CC) $(CFLAGS) $*.c\n\n");
+  		mfprintf(fd,"\t"+"$(CC) $(CFLAGS) $*.c\n\n");
   	else
-  		mfprintf(fd,"	@$(SCIDIR1)\\bin\\f2c.exe $*.f \n");
-		  mfprintf(fd,"	@$(CC) $(CFLAGS) $*.c \n");
-		  mfprintf(fd,"	del $*.c \n");
+  		mfprintf(fd,"\t"+"@$(SCIDIR1)\\bin\\f2c.exe $*.f \n");
+		  mfprintf(fd,"\t"+"@$(CC) $(CFLAGS) $*.c \n");
+		  mfprintf(fd,"\t"+"del $*.c \n");
 	  end
   end
 	
   mfprintf(fd,"clean:\n");
-  mfprintf(fd,"	del *.obj\n");
-  mfprintf(fd,"	del *.dll\n");
-  mfprintf(fd,"	del *.lib\n");
-  mfprintf(fd,"	del *.def\n");
+  mfprintf(fd,"\t"+"del *.obj\n");
+  mfprintf(fd,"\t"+"del *.dll\n");
+  mfprintf(fd,"\t"+"del *.lib\n");
+  mfprintf(fd,"\t"+"del *.def\n");
  
   mclose(fd);
 endfunction

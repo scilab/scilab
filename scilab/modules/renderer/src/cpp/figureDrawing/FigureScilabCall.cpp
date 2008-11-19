@@ -22,6 +22,10 @@
 extern "C"
 {
 #include "WindowList.h"
+#include "GetProperty.h"
+#include "Interaction.h"
+#include "Axes.h"
+#include "axesScale.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -76,5 +80,82 @@ void redrawSubwins(int figureId)
   startFigureDataDisplaying(curFig);
   (sciGraphics::getFigureDrawer(curFig))->redrawSubwins() ;
   endFigureDataDisplaying(curFig);
+}
+/*--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta)
+{
+	startGraphicDataReading();
+	sciPointObj * pSubwin = sciGetPointerFromHandle((long) subwinHandle) ;
+	sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
+  endGraphicDataReading();
+
+  if ( pSubwin == NULL || parentFigure == NULL )
+  {
+    return ;
+  }
+
+  startFigureDataWriting(parentFigure);
+	updateViewingAngles(pSubwin, deltaAlpha, deltaTheta);
+  endFigureDataWriting(parentFigure);
+}
+/*--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord)
+{
+	startGraphicDataReading();
+	sciPointObj * curFig = getFigureFromIndex(figureId) ;
+  endGraphicDataReading();
+
+  if ( curFig == NULL )
+  {
+    return 0;
+  }
+
+  startFigureDataReading(curFig);
+	sciPointObj * clickedSubwin = getClickedSubwin(curFig, clickXCoord, clickYCoord);
+  endFigureDataReading(curFig);
+
+	// Will return 0 if clicked subwin is null or the handle otherwise
+	return sciGetHandle(clickedSubwin);
+
+}
+/*--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2)
+{
+	startGraphicDataReading();
+	sciPointObj * pObj = sciGetPointerFromHandle((long) objectHandle) ;
+	sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  endGraphicDataReading();
+
+  if ( pObj == NULL || parentFigure == NULL )
+  {
+    return ;
+  }
+
+  startFigureDataWriting(parentFigure);
+	sciZoomObject(pObj, x1, y1, x2, y2);
+  endFigureDataWriting(parentFigure);
+}
+/*--------------------------------------------------------------------------*/
+void unzoomSubwinHandle(long long subwinHandle)
+{
+	startGraphicDataReading();
+	sciPointObj * pSubwin = sciGetPointerFromHandle((long) subwinHandle) ;
+	sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
+  endGraphicDataReading();
+
+	if ( pSubwin == NULL || parentFigure == NULL )
+  {
+    return ;
+  }
+
+  startFigureDataWriting(parentFigure);
+	unzoomSubwin(pSubwin);
+  endFigureDataWriting(parentFigure);
 }
 /*--------------------------------------------------------------------------*/

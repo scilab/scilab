@@ -17,24 +17,35 @@
 #include "MALLOC.h"
 #include "prompt.h"
 #include "readline_nw.h"
+#include "strdup_Windows.h"
 /*--------------------------------------------------------------------------*/
-#define strdup _strdup
+static char *returnedline = NULL;
 /*--------------------------------------------------------------------------*/
 char * TermReadAndProcess(void)
 {
 	static char save_prompt[10];
-	char *returnedline = NULL;
+	char* OEMChars = NULL;
+
+	/* free previous line */
+	if (returnedline) {FREE(returnedline);returnedline = NULL;}
 
     if (GetTemporaryPrompt()!=NULL) /* Input function is used */
     {
-		returnedline = readline_nw(GetTemporaryPrompt());
+		OEMChars = readline_nw(GetTemporaryPrompt());
         ClearTemporaryPrompt();
 	}
 	else
 	{
 		GetCurrentPrompt(save_prompt);
-		returnedline = readline_nw (save_prompt);
+		OEMChars = readline_nw (save_prompt);
 	}
+
+	/* NW windows term uses OEM characters */
+	/* We need to convert to ANSI characters with OEMToChar */
+	/* http://msdn.microsoft.com/en-us/library/ms647493(VS.85).aspx */
+	returnedline = strdup(OEMChars);
+	OemToChar(OEMChars, returnedline);
+	if (OEMChars) {FREE(OEMChars); OEMChars = NULL;}
 
 	strcpy(save_prompt,"");
 	return returnedline;

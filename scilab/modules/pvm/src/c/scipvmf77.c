@@ -46,9 +46,8 @@
  *------------------------------------------------------------------------*/
 
 #include <stdio.h>
-#include "stack-c.h"
 #include "sci_pvm.h"
-
+#include "stack-c.h"
 
 static void swap (double*, double*, int);
 static void sci_to_f77 (double*, int*);

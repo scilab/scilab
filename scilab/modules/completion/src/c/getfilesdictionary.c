@@ -13,7 +13,7 @@
 #include <stdio.h> /* sprintf */
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
-#include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
+#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"
 #include "cluni0.h"
@@ -46,7 +46,7 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 			int lpath = 0;
 			char *currentpath = NULL;
 
-			C2F(scigetcwd)(&currentpath,&lpath,&ierr);
+			scigetcwd(&currentpath,&lpath,&ierr);
 			if (currentpath) {strcpy(path,currentpath);}
 		}
 		else

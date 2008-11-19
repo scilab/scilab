@@ -60,6 +60,8 @@
     <method name="setInfoMessage" returnType="void">
       <param type="String" name="infoMessage" />
     </method>
+    <method name="getInfoMessage" returnType="String">
+    </method>
     <method name="setAutoResizeMode" returnType="void">
       <param type="boolean" name="onOrOff" />
     </method>
@@ -75,15 +77,15 @@
     </method>
     <method name="rubberBox" returnType="int[]">
       <param type="boolean" name="isClick" />
-      <param type="boolean" name="isZoom" />
       <param type="int[]" name="initialRect" />
+    </method>
+    <method name="interactiveZoom" returnType="void">
+      <param type="long" name="objectHandle" />
     </method>
     <method name="setTitle" returnType="void">
       <param type="String" name="title" />
     </method>
-    <method name="getRotationDisplacement" returnType="int[]">
-    </method>
-    <method name="stopRotationRecording" returnType="void">
+    <method name="interactiveRotation" returnType="void">
     </method>
     <method name="showWindow" returnType="void">
     </method>

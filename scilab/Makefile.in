@@ -363,7 +363,6 @@ bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 scilab_bin_LDFLAGS = 
 scilab_bin_CFLAGS = 
-# --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -373,9 +372,6 @@ $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/localization/libscilocalization.la
 
-#	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
-#else
-#	scilab_bin_LDADD +=	$(X_EXTRA_LIBS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
@@ -392,6 +388,10 @@ $(top_srcdir)/etc/toolboxes.xml
 
 infofilesdir = $(pkgdatadir)/
 infofiles_DATA = $(top_srcdir)/CHANGES \
+$(top_srcdir)/CHANGES_2.X \
+$(top_srcdir)/CHANGES_3.X \
+$(top_srcdir)/CHANGES_4.X \
+$(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \
@@ -1078,6 +1078,9 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 
 
 @NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
+
+# The binary itself needs this dep
+@IS_SOLARIS_TRUE@	scilab_bin_LDADD += $(BLAS_LIBS)
 
 all-local: $(TARGETS_ALL)
 

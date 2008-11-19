@@ -245,9 +245,6 @@ int DestroyFigure (sciPointObj * pthis)
   {
     FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
   }
-  FREE ((sciGetFontContext(pthis))->pfontname);
-
-  FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   
 	destroyUiobjectTag(pthis);
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
@@ -295,7 +292,6 @@ DestroySubWin (sciPointObj * pthis)
     FREE(sciGetCallback(pthis));
 	}
 
-  FREE ((sciGetFontContext(pthis))->pfontname);
 	return sciStandardDestroyOperations(pthis) ;
 
 }
@@ -315,7 +311,6 @@ int deallocateText( sciPointObj * pthis )
   pTEXT_FEATURE (pthis)->size_of_user_data = 0;
   destroyHandleDrawer(pthis);
 
-  FREE (sciGetFontContext(pthis)->pfontname);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
 
@@ -329,7 +324,6 @@ int deallocateText( sciPointObj * pthis )
 int DestroyText (sciPointObj * pthis)
 {
   deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
-  FREE ((sciGetFontContext(pthis))->pfontname);
   return sciStandardDestroyOperations(pthis) ;
 }
 
@@ -345,7 +339,6 @@ DestroyLegend (sciPointObj * pthis)
   FREE ( ppLegend->tabofhandles );
   deleteMatrix( ppLegend->text.pStrings ) ;
 
-  FREE ((sciGetFontContext(pthis))->pfontname);
   return sciStandardDestroyOperations(pthis) ;
   /* on peut alors destroyer le parent */
 }

@@ -44,6 +44,21 @@ void updateSubwinScale(sciPointObj * pSubwin);
  * Update text bounds if needed
  */
 void updateTextBounds(sciPointObj * pText);
+
+/**
+ * Zoom an object using a rectangular selection given in pixels.
+ * @param pObj must be a figure or subwin handle
+ * @param x1 X coordinate of a corner of the selection
+ * @param y1 Y coordinate of a corner of the selection
+ * @param x2 X coordinate of the oppoiste corner of the selection
+ * @param y2 Y coordinate of the opposite corner of the selection
+ */
+void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2);
+
+/**
+ * Unzoom a subwindow
+ */
+void unzoomSubwin(sciPointObj * pSubwin);
 /*------------------------------------------------------------------------------*/
 BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax);

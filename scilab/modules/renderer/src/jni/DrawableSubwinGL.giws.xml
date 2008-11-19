@@ -20,5 +20,14 @@
       <param type="int" name="index" />
       <param type="boolean" name="is2d" />
     </method>
+    <method name="interactiveRotation" returnType="void">
+      <param type="long" name="subwinHandle" />
+    </method>
+    <method name="interactiveZoom" returnType="void">
+      <param type="long" name="subwinHandle" />
+    </method>
+    <method name="unzoom" returnType="void">
+      <param type="long" name="subwinHandle" />
+    </method>
   </object>
 </package>

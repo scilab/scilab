@@ -42,14 +42,14 @@ int intspvm_spawn (char *fname,unsigned long fname_len)
     if ( m3*n3 != 0 && strcmp(cstk(l3),"nw")==0) 
       nw = cstk(l3); 
   }
-  lnw= strlen(nw);
+  lnw= (int)strlen(nw);
   where = def_where; 
   if ( Rhs >= 4 ) { 
     GetRhsVar(4,STRING_DATATYPE,&m4,&n4,&l4); 
     if ( m4*n4 != 0 ) 
       where = cstk(l4); 
   }
-  lwhere=strlen(where);
+  lwhere=(int)strlen(where);
   CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,istk(l2),&StackTaskId);/* named: StackTaskId */
   CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&StackRes);/* named: Stackres */
   C2F(scipvmspawn)(cstk(l1),&mn1,nw,&lnw,where,&lwhere,istk(l2),istk(StackTaskId),istk(StackRes));

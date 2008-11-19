@@ -58,9 +58,29 @@ c     traitement du coeff (l,k)
 c     .        non zero real part
                typ=1
                if(mode.eq.1) call fmt(abs(ar),maxc,typ,n1,n2)
-               ifmt=typ
-               if(typ.eq.2) ifmt=n2+32*n1
-               call formatnumber(ar,ifmt,maxc,cw(l1:),fl)
+
+               if(typ.eq.1) then
+                  fl=maxc
+                  write(cw(l1:l1+fl-1),form(1)) ar
+               elseif(typ.eq.-1) then
+                  if(ar.gt.0) then
+                     fl=3
+                     cw(l1:l1+fl-1)='Inf'
+                  else
+                     fl=4
+                     cw(l1:l1+fl-1)='-Inf'
+                  endif
+                  n2=1
+               elseif(typ.eq.-2) then
+                  fl=3
+                  cw(l1:l1+fl-1)='Nan'
+                  n2=1
+               else
+                  fl=n1
+                  if(ar.lt.0.0d0) fl=fl+1
+                  write(form(2),120) fl,n2
+                  write(cw(l1:l1+fl-1),form(2)) ar
+               endif
                if (cw(l1:l1).eq.' ') then
                   cw(l1:l1+fl-2)=cw(l1+1:l1+fl-1)
                   cw(l1+fl-1:l1+fl-1)=' '
@@ -77,9 +97,22 @@ c     .           non zero imaginary part
                   l1=l1+4
                   typ=1
                   if(mode.eq.1) call fmt(abs(ai),maxc,typ,n1,n2)
-                  ifmt=typ
-                  if(typ.eq.2) ifmt=n2+32*n1
-                  call formatnumber(ai,ifmt,maxc,cw(l1:),fl)
+                  if(typ.eq.1) then
+                     fl=maxc
+                     write(cw(l1:l1+fl-1),form(1)) ai
+                  elseif(typ.eq.-1) then
+                     fl=3
+                     cw(l1:l1+fl-1)='Inf'
+                     n2=1
+                  elseif(typ.eq.-2) then
+                     fl=3
+                     cw(l1:l1+fl-1)='Nan'
+                     n2=1
+                  else
+                     fl=n1
+                     write(form(2),120) fl,n2
+                     write(cw(l1:l1+fl-1),form(2)) ai
+                  endif
                   l11=l1
                   if (cw(l1:l1).eq.' ') then
                      cw(l1:l1+fl-2)=cw(l1+1:l1+fl-1)

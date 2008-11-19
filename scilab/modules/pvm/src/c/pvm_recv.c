@@ -24,12 +24,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "stack-c.h"
 #include "sci_tools.h"
-
-
 #include "sci_pvm.h"
-
+#include "stack-c.h"
 #include "MALLOC.h"
 
 void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,

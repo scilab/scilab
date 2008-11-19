@@ -85,8 +85,31 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	 */
 	public void endDrawing() {
 		// back to default
-		//getGL().glDepthRange(0.0, 1.0);
 		getParentFigureGL().getCoordinateTransformation().setDepthRange(0.0, 1.0);
+	}
+	
+	/**
+	 * Perform an interactive rotation of the subwin from an other thread.
+	 * @param subwinHandle handle of the subwin
+	 */
+	public void interactiveRotation(long subwinHandle) {
+		getParentFigureGL().getEventManager().launchSubwinRotationEvent(getParentFigureGL(), subwinHandle);
+	}
+	
+	/**
+	 * Perform an interactive zoom of a single subwindow
+	 * @param subwinHandle handle of the subwindow
+	 */
+	public void interactiveZoom(long subwinHandle) {
+		getParentFigureGL().interactiveZoom(subwinHandle);
+	}
+	
+	/**
+	 * Unzoom the subwin
+	 * @param subwinHandle handle of this subwin
+	 */
+	public void unzoom(long subwinHandle) {
+		getParentFigureGL().getEventManager().launchSubwinUnzoomEvent(subwinHandle);
 	}
 
 	

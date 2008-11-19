@@ -14,12 +14,11 @@ c
       integer mode(2)
       integer nocomp,profile
       logical opened,eptover,cremat
-      integer iadr,sadr
+      integer iadr
 c
       data nocomp/23/,profile/25/
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
       if (rstk(pt).eq.904) goto 57
 c

@@ -15,14 +15,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       logical checkrhs,checklhs,cremat,getsmat,checkval,crebmat
       integer flag
       integer local,nolocal
-      integer iadr,sadr
+      integer iadr
 c
       data local/21/
       data nolocal/23/
       data all/10/
 c    
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       topk=top
 

@@ -17,6 +17,8 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
 * interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
 
+* cc and cc-* are not longer consider as GNU C compiler when detecting the compiler (use gcc & gcc-*) because it was causing some issues under Solaris
+
 Enhancement:
 ============
 
@@ -28,12 +30,18 @@ Enhancement:
 
 * test_run() now accepts absolute paths as first input argument. It permits toolboxes to use this system.
 
+* New function dae (for Differential Algebraic Equations) added.
+This function is providing the same features as dassl with ode (ordinary differential equations) profile.
+For more information, see SEP #2.
+
 Bug fixes:
 ==========
 
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
+
+* bug 3080 fixed - When we click many times on a button of the Graphic window the instruction will be done as much times we have clicked.
 
 * bug 3500 fixed - [pcre] match position but no character = no match
 
@@ -90,3 +98,24 @@ Bug fixes:
 * bug 3700 fixed - Problem when displaying accents in the help browser using the fr language. (Windows)
 
 * bug 3681 fixed - Disable automatic completion if there are only spaces in a line
+
+* bug 3571 fixed - Only one message displayed when log(0) is computed with ieee(1) mode.
+
+* bug 2273 fixed - chdir didn't manage UNC path on Windows.
+
+* bug 3626 fixed - lcc-win32 library (.lib) not correctly generated.
+
+* bug 3089 fixed - chdir seems to have problems with directory names containing nordic characters like æ ø and å.
+
+* bug 3714 fixed - fprintfMat and fscanfMat cannot cope with directories with accented characters
+
+* bug 3635 fixed - popupmenu objects created using uicontrol does not work as expected (it is not possible to use the arrow keys on the keyboard to browse through the various options)
+
+* bug 3561 fixed - 'call' crashs when we want to return a 'c' variable type.
+
+* bug 3769 fixed - Dynamic link doesn't detect intel fortran compiler version 11 on Windows
+
+* bug 3775 fixed - get_absolute_file_path(input_file) returns a error if input_file is not opened in scilab.
+
+* bug 1926 fixed - wavwrite doesn't manage single channel mode.
+

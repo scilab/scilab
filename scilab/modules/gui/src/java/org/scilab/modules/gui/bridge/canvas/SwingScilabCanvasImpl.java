@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -19,6 +20,7 @@ import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MenuComponent;
 import java.awt.MenuContainer;
@@ -27,7 +29,9 @@ import java.awt.event.FocusListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyListener;
 import java.awt.event.InputMethodListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
@@ -47,6 +51,8 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+
 
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
@@ -55,6 +61,67 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
 
+    /**
+     * Class used to fix a issue with AWT under Linux.
+     * It is apparently not possible to click on a lightweight (at least)
+     * component which is hidden behind the the canvas.
+     * Consequently to be able to send the mouse events to the axes we need to overide processEvents functions
+     * @author Jean-Baptiste silvy
+     */
+    private class GLEventCanvas extends GLCanvas {
+    	
+    	/** needed */
+		private static final long serialVersionUID = 1164643863862749375L;
+
+		/**
+    	 * Default constructor
+    	 */
+    	public GLEventCanvas() {
+    		super();
+    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
+    	}
+    	
+    	/**
+    	 * @param cap cap to use
+    	 */
+    	public GLEventCanvas(GLCapabilities cap) {
+    		super(cap);
+    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
+    	}
+    	
+    	/**
+    	 * @return parent axes of the canvas
+    	 */
+    	private SwingScilabAxes getParentAxes() {
+    		return ((SwingScilabAxes) getParent());
+    	}
+    	
+    	/**
+    	 * @param e mouse event to process
+    	 */
+    	protected void processMouseEvent(MouseEvent e) {
+    		e.setSource(getParentAxes());
+    		getParentAxes().processMouseEvent(e);
+    	}
+    	
+    	/**
+    	 * @param e mouse event to process
+    	 */
+    	protected void processMouseMotionEvent(MouseEvent e) {
+    		e.setSource(getParentAxes());
+    		getParentAxes().processMouseMotionEvent(e);
+    	}
+    	
+    	/**
+    	 * @param e key event to process
+    	 */
+    	protected void processKeyEvent(KeyEvent e) {
+    		e.setSource(getParentAxes());
+    		getParentAxes().processKeyEvent(e);
+    	}
+    	
+    }
+    
     static {
 	long lastTime = Calendar.getInstance().getTimeInMillis();
 	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
@@ -102,13 +169,13 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * DEBUG function
      */
     private static void DEBUG(String msg) {
-	//System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
+	 System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
     }
     
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLCanvas();
+	    realGLCanvas = new GLEventCanvas();
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
@@ -119,7 +186,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLCanvas(cap);
+	    realGLCanvas = new GLEventCanvas(cap);
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
@@ -367,6 +434,41 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
     public boolean isVisible() {
 	return getAsComponent().isVisible();
+    }
+    
+    public boolean isFocusable() {
+    	return getAsComponent().isFocusable();
+    }
+     
+    
+    public void setEnabled(boolean enable) {
+    	//getAsComponent().setEnabled(enable);
+    	// don't disable the GLCanvas
+		// otherwise mouse events will be lost because
+		// they won't reach the axes under Linux
+    	if (!enableGLCanvas) {
+    	    realGLJPanel.setEnabled(false);
+    	}
+    }
+    
+    /**
+     * @return true if this object can be scrolled,
+     * false otherwise
+     */
+    public boolean isScrollable() {
+    	return (!enableGLCanvas);
+    }
+    
+    /**
+     * Heavyweight component don't draw themselves automatically
+     * So we need to call a function to force the redraw.
+     * @param g graphics
+     */
+    public void forcePaint(Graphics g) {
+    	if (enableGLCanvas) {
+    	    // GLJPanel draw themselves automatically
+    	    realGLCanvas.display();
+    	}
     }
     
 }

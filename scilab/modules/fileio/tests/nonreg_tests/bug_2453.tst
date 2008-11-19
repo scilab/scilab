@@ -14,8 +14,10 @@
 //    mfscanf and probably the other variants msscanf mscanf may crash Scilab when
 //    first argument is -1 (any number of lines)
 
+// <-- REOPENED -->
+
 fd = mopen(SCI+'/modules/fileio/tests/nonreg_tests/bug_2453.dat','r');
 Lx = mfscanf(-1,fd,'%g %g\n');
 mclose(fd);
 
-if size(Lx,1)<>40000 then pause,end
+if size(Lx,1)<>999 then pause,end
