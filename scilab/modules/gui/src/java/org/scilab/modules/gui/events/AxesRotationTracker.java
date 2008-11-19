@@ -26,7 +26,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  * Class used to retrieve displacement that must be used for interactive rotation.
  * @author Jean-Baptiste Silvy
  */
-public class AxesRotationTracker extends MouseDisplacementTracker implements MouseListener {
+public class AxesRotationTracker extends MouseDisplacementTracker implements MouseListener, FocusListener {
 	
 	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/rotate.png";
 	private static final String CURSOR_ICON_NAME = "zoom-area";
@@ -67,6 +67,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 */
 	public void waitForClick(int[] clickPosition) {
 		getTrackedCanvas().addMouseListener(this);
+		getTrackedCanvas().addFocusListener(this);
 		synchronized (getLock()) {
 			isWaitingForClick = true;
 			// wait until the click occurs
@@ -79,6 +80,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 			clickPosition[1] = clickPosY;
 		}
 		getTrackedCanvas().removeMouseListener(this);
+		getTrackedCanvas().removeFocusListener(this);
 	}
 	
 	/**
@@ -149,6 +151,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		activateTracking(initX, initY);
 		// for final click
 		getTrackedCanvas().addMouseListener(this);
+		getTrackedCanvas().addFocusListener(this);
 		recordStarted = true;
 	}
 	
@@ -160,6 +163,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 			desactivateTracking();
 		}
 		getTrackedCanvas().removeMouseListener(this);
+		getTrackedCanvas().removeFocusListener(this);
 		recordEnded = true;
 		recordStarted = true;
 	}
@@ -184,7 +188,8 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 * @param event exiting event
 	 */
 	public void mouseExited(MouseEvent event) {
-	    cancelRecording();
+		// not used
+
 	}
 
 	/**
@@ -231,6 +236,28 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	public void mouseReleased(MouseEvent event) {
 		// nothing to do
 
+	}
+	
+	/**
+	 * @param event focus gained event
+	 */
+	public void focusGained(FocusEvent event) {
+		// nothing to do here
+		// canvas must always have focus during the recording
+	}
+
+	/**
+	 * This event occurs when the canvas lost focus but
+	 * also when the windows is closed. We then need to wake up every one.
+	 * @param event focus lost event
+	 */
+	public void focusLost(FocusEvent event) {
+		// focus lost so stop recording
+		
+		// dont't stop if focus is given to one of the tracked canvas children
+		if (event.getOppositeComponent() == null || event.getOppositeComponent().getParent() != getTrackedCanvas()) {
+			cancelRecording();
+		}
 	}
 
 }

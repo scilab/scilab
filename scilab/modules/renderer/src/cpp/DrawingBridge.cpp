@@ -119,7 +119,7 @@ void forceHierarchyRedraw( sciPointObj * pObj )
 /*---------------------------------------------------------------------------------*/
 void forceRedraw(sciPointObj * pObj)
 {
-  //std::cerr << "[DEBUG] forceRedraw" << std::endl;
+  std::cerr << "[DEBUG] forceRedraw" << std::endl;
   sciPointObj * parentFigure = sciGetParentFigure(pObj);
   startFigureDataWriting(parentFigure);
   getHandleDrawer(pObj)->hasChanged();

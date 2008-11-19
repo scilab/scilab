@@ -226,8 +226,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	public void revalidate() {
 	    Debug.DEBUG("GLJPanel", "revalidate");
-	    //Thread.dumpStack();
-	    //System.exit(51);
 	    super.revalidate();
 	}
 

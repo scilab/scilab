@@ -136,8 +136,8 @@ void initSubWinBounds( sciPointObj * pSubWin )
 /* return TRUE if the window has been redrawn */
 BOOL checkRedrawing( void )
 {
-  //  nbCheckRedraw++;
-  //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
+  nbCheckRedraw++;
+  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
   sciPointObj * pSubWin = sciGetCurrentSubWin() ;
   if ( !sciGetAddPlot( pSubWin ) )
   {
