@@ -1092,7 +1092,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@				-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphic_export/includes/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/elementary_functions/includes/
+@GUI_TRUE@				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+@GUI_TRUE@				-I$(top_srcdir)/modules/gui/src/jni/
 
 @GUI_TRUE@libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 
