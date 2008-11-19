@@ -42,6 +42,11 @@ void interactiveJavaSubwinRotation(sciPointObj * pSubwin)
   getSubwinDrawer(pSubwin)->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
+void javaUnzoomSubwin(sciPointObj * pSubwin)
+{
+	getSubwinDrawer(pSubwin)->unzoom();
+}
+/*---------------------------------------------------------------------------------*/
 void javaShowWindow(sciPointObj * pFigure)
 {
   getFigureDrawer(pFigure)->showWindow();

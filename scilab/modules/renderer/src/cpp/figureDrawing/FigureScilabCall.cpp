@@ -142,3 +142,20 @@ void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2)
   endFigureDataWriting(parentFigure);
 }
 /*--------------------------------------------------------------------------*/
+void unzoomSubwinHandle(long long subwinHandle)
+{
+	startGraphicDataReading();
+	sciPointObj * pSubwin = sciGetPointerFromHandle((long) subwinHandle) ;
+	sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
+  endGraphicDataReading();
+
+	if ( pSubwin == NULL || parentFigure == NULL )
+  {
+    return ;
+  }
+
+  startFigureDataWriting(parentFigure);
+	unzoomSubwin(pSubwin);
+  endFigureDataWriting(parentFigure);
+}
+/*--------------------------------------------------------------------------*/

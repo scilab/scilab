@@ -18,8 +18,6 @@ package org.scilab.modules.renderer.subwinDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 
 /**
@@ -27,8 +25,6 @@ import org.scilab.modules.renderer.utils.CoordinateTransformation;
  * @author Jean-Baptiste Silvy
  */
 public class DrawableSubwinGL extends DrawableObjectGL {
-	
-	private static final double PIXEL_TO_DEGREE = -0.25;
 	
 	/**
 	 * Default Constructor
@@ -89,7 +85,6 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	 */
 	public void endDrawing() {
 		// back to default
-		//getGL().glDepthRange(0.0, 1.0);
 		getParentFigureGL().getCoordinateTransformation().setDepthRange(0.0, 1.0);
 	}
 	
@@ -98,29 +93,7 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	 * @param subwinHandle handle of the subwin
 	 */
 	public void interactiveRotation(long subwinHandle) {
-		// Make the Scilab thread and the rotation independent
-		// by creating a new thread
-		final long subwinHandleF = subwinHandle;
-		Thread rotationThread = new Thread(new Runnable() {
-			public void run() {
-				interactiveRotationThreaded(subwinHandleF);
-			}
-		});
-		rotationThread.start();
-	}
-	
-	/**
-	 * Perform an interactive rotation of the subwin
-	 * @param subwinHandle handle of the subwin
-	 */
-	private void interactiveRotationThreaded(long subwinHandle) {
-		
-		// get the first click position
-		int[] displacement = {0, 0};
-		getParentFigureGL().getRendererProperties().getRotationDisplacement(displacement);
-		
-		// track rotation
-		interactiveRotation(subwinHandle, getParentFigureGL());
+		getParentFigureGL().getEventManager().launchSubwinRotationEvent(getParentFigureGL(), subwinHandle);
 	}
 	
 	/**
@@ -132,32 +105,11 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Perform an interactive rotation of a subwindow
-	 * @param subwinHandle handle of the subwin to track
-	 * @param trackedCanvas figure on which the displacement is tracked
+	 * Unzoom the subwin
+	 * @param subwinHandle handle of this subwin
 	 */
-	public static void interactiveRotation(long subwinHandle, DrawableFigureGL trackedCanvas) {
-		
-		// rotateSubwin function will modify the info message
-		// so save it in order to restore it at the end.
-		String curInfoMessage = trackedCanvas.getInfoMessage();
-		
-		int[] displacement = {0, 0};
-		
-		// track the rotation
-		while (trackedCanvas.getRendererProperties().getRotationDisplacement(displacement)) {
-			double deltaAlpha = PIXEL_TO_DEGREE * displacement[1];
-			double deltaTheta = PIXEL_TO_DEGREE * displacement[0];
-			
-			// modify the subwindow viewing angles
-			FigureScilabCall.rotateSubwin(subwinHandle, deltaAlpha, deltaTheta);
-			
-			// redraw the figure with the new angles
-			trackedCanvas.drawCanvas();
-			
-		}
-		// the displacement has end or has been canceled
-		trackedCanvas.setInfoMessage(curInfoMessage);
+	public void unzoom(long subwinHandle) {
+		getParentFigureGL().getEventManager().launchSubwinUnzoomEvent(subwinHandle);
 	}
 
 	

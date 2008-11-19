@@ -19,6 +19,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
 
 /**
@@ -45,10 +46,10 @@ public abstract class ScilabRubberBox extends RubberBox
 	 * @param selectedCanvas Canvas on which the rubberbox will be added
 	 */
 	public ScilabRubberBox(SwingScilabCanvas selectedCanvas) {
-		super();
+		super(FigureMapper.getCorrespondingFigure(selectedCanvas.getFigureIndex()));
 		drawingMode = false;
 		this.selectedCanvas = selectedCanvas;
-		terminateButton = 0;
+		setUsedButton(0);
 	}
 	
 	/**
@@ -70,14 +71,14 @@ public abstract class ScilabRubberBox extends RubberBox
 	 * the rubber box
 	 * @param buttonCode Scilab code of the button
 	 */
-	protected void setUsedButton(int buttonCode) {
+	protected synchronized void setUsedButton(int buttonCode) {
 		terminateButton = buttonCode;
 	}
 	
 	/**
 	 * @return Scilab code of the button used to terminate the rubber box
 	 */
-	protected int getUsedButton() {
+	protected synchronized int getUsedButton() {
 		return terminateButton;
 	}
 	
@@ -106,7 +107,6 @@ public abstract class ScilabRubberBox extends RubberBox
 			}
 		}
 		
-		
 		return rubberBox.getRectangle(initialRect, endRect);
 	}
 	
@@ -131,7 +131,11 @@ public abstract class ScilabRubberBox extends RubberBox
 		// wait until rubber box if finished
 		synchronized (lock) {
 			try {
-				lock.wait();
+				// check if rubberBox has not been canceled already
+				if (getUsedButton() != CLOSE_ACTION_BUTTON) {
+					// Ok, it's not already canceled
+					lock.wait();
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -144,6 +148,7 @@ public abstract class ScilabRubberBox extends RubberBox
 		endRect[1] = getFirstPointY();
 		endRect[2] = getSecondPointX();
 		endRect[INITIAL_RECT_SIZE - 1] = getSecondPointY();
+		
 
 		return getUsedButton();
 		
@@ -200,7 +205,7 @@ public abstract class ScilabRubberBox extends RubberBox
 		setSecondPoint(secondPointX, secondPointY);
 		
 		// activate the canvas
-		activate(selectedCanvas.getFigureIndex());
+		activate();
 		
 		// now track mouse motion event to update the rectangle position
 		selectedCanvas.addMouseMotionListener(this);
@@ -213,8 +218,8 @@ public abstract class ScilabRubberBox extends RubberBox
 	 * End the display of the dragging rectangle
 	 */
 	protected void endDragging() {
-		// desactivate drawing of rectangle
-		desactivate();
+		// disable drawing of rectangle
+		deactivate();
 		
 		// remove listener from the canvas
 		selectedCanvas.removeMouseMotionListener(this);
@@ -232,24 +237,22 @@ public abstract class ScilabRubberBox extends RubberBox
 	 */
 	public void hierarchyChanged(HierarchyEvent event) {
 		// we should stop recording here
-		cancelDragging();
+		cancelRubberbox();
 	}
 	
 	/**
 	 * Cancel the recording and set an empty selection
 	 */
-	protected void cancelDragging() {
-		// specify that canvas has been closed
-		setUsedButton(CLOSE_ACTION_BUTTON);
-		setEmptySelection();
-
-		if (isDragging()) {
-			endDragging();
-		} else {
-			// wake up calling thread
-			synchronized (lock) {
-				lock.notifyAll();
+	public void cancelRubberbox() {
+		
+		synchronized (lock) {
+			super.cancelRubberbox();
+			// specify that canvas has been closed
+			setUsedButton(CLOSE_ACTION_BUTTON);
+			if (isDragging()) {
+				selectedCanvas.removeMouseMotionListener(this);
 			}
+			lock.notifyAll();
 		}
 	}
 
