@@ -53,7 +53,6 @@ import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 
-
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
     private static final long serialVersionUID = -3110280842744630282L;
@@ -61,67 +60,184 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
 
-    /**
-     * Class used to fix a issue with AWT under Linux.
-     * It is apparently not possible to click on a lightweight (at least)
-     * component which is hidden behind the the canvas.
-     * Consequently to be able to send the mouse events to the axes we need to overide processEvents functions
-     * @author Jean-Baptiste silvy
-     */
-    private class GLEventCanvas extends GLCanvas {
-    	
-    	/** needed */
-		private static final long serialVersionUID = 1164643863862749375L;
+    private class GLDebugCanvas extends GLCanvas {
+	public GLDebugCanvas(GLCapabilities cap) {
+	    super(cap);
+	    init();
+	}
 
-		/**
-    	 * Default constructor
-    	 */
-    	public GLEventCanvas() {
-    		super();
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
-    	}
-    	
-    	/**
-    	 * @param cap cap to use
-    	 */
-    	public GLEventCanvas(GLCapabilities cap) {
-    		super(cap);
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
-    	}
-    	
-    	/**
-    	 * @return parent axes of the canvas
-    	 */
-    	private SwingScilabAxes getParentAxes() {
-    		return ((SwingScilabAxes) getParent());
-    	}
-    	
-    	/**
-    	 * @param e mouse event to process
-    	 */
-    	protected void processMouseEvent(MouseEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processMouseEvent(e);
-    	}
-    	
-    	/**
-    	 * @param e mouse event to process
-    	 */
-    	protected void processMouseMotionEvent(MouseEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processMouseMotionEvent(e);
-    	}
-    	
-    	/**
-    	 * @param e key event to process
-    	 */
-    	protected void processKeyEvent(KeyEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processKeyEvent(e);
-    	}
-    	
+	public GLDebugCanvas() {
+	    super();
+	    init();
+	}
+
+	private void init() {
+	    this.addMouseMotionListener(new MouseMotionListener() {
+		public void mouseDragged(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged"); 
+		    getParent().dispatchEvent(arg0);
+		}
+		public void mouseMoved(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved"); 
+		    getParent().dispatchEvent(arg0);
+		}
+	    });
+	    this.addMouseListener(new MouseListener() {
+		public void mouseClicked(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseEntered(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseExited(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseExited"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mousePressed(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mousePressed"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseReleased(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved"); 
+		    getParent().dispatchEvent(arg0);
+
+		}
+
+	    });
+	}
+
+	//
+	// PAINT SECTION
+	//
+	// {
+	//
+	public void paint(Graphics g) {
+	    Debug.DEBUG("GLCanvas", "paint"); 
+	    super.paint(g);
+	}
+
+	public void display() {
+	    Debug.DEBUG("GLCanvas", " display");
+	    super.display();
+	}
+
+	public void repaint() {
+	    Debug.DEBUG("GLCanvas", "repaint");
+	    super.repaint();
+	}
+
+	public void update(Graphics g) {
+	    Debug.DEBUG("GLCanvas", " update"); 
+	    super.update(g);
+	}
+	public void validate() {
+	    Debug.DEBUG("GLCanvas", " validate");
+	    super.validate();
+	}	
+
+	public void invalidate() {
+	    Debug.DEBUG("GLCanvas", " invalidate");
+	    super.invalidate();
+	}
+
+	public void revalidate() {
+	    Debug.DEBUG("GLCanvas", " revalidate --> !!! WARNING !!!");
+	}
+	//
+	// }
+	//	
+//	/**
+//	* @param e mouse event to process
+//	*/
+//	protected void processMouseEvent(MouseEvent e) {
+//	Debug.DEBUG("GLCanvas", " processMouseEvent");
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processMouseEvent(e);
+//	}
+
+//	/**
+//	* @param e mouse event to process
+//	*/
+//	protected void processMouseMotionEvent(MouseEvent e) {
+//	Debug.DEBUG("GLCanvas", " processMouseMotionEvent ");
+//	Thread.currentThread().dumpStack();
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processMouseEvent(e);
+//	}
+
+//	/**
+//	* @param e key event to process
+//	*/
+//	protected void processKeyEvent(KeyEvent e) {
+//	Debug.DEBUG("GLCanvas", " processKeyEvent");
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processKeyEvent(e);
+//	}
+
     }
-    
+
+    private class GLDebugJPanel extends GLJPanel {
+	public GLDebugJPanel(GLCapabilities cap) {
+	    super(cap);
+	}
+
+	public GLDebugJPanel() {
+	    super();
+	}
+
+	//
+	// PAINT SECTION
+	//
+	// {
+	//
+	public void paint(Graphics g) {
+	    Debug.DEBUG("GLJPanel", "paint"); 
+	    super.paint(g);
+	}
+
+	public void display() {
+	    Debug.DEBUG("GLJPanel", "display");
+	    super.display();
+	}
+
+	public void repaint() {
+	    Debug.DEBUG("GLJPanel", "repaint");
+	    super.repaint();
+	}
+
+	public void update(Graphics g) {
+	    Debug.DEBUG("GLJPanel", "update"); 
+	    super.update(g);
+	}
+
+	public void validate() {
+	    Debug.DEBUG("GLJPanel", "validate");
+	    super.validate();
+	}	
+
+	public void invalidate() {
+	    Debug.DEBUG("GLJPanel", "invalidate");
+	    super.invalidate();
+	}
+
+	public void revalidate() {
+	    Debug.DEBUG("GLJPanel", "revalidate");
+	    //Thread.dumpStack();
+	    //System.exit(51);
+	    super.revalidate();
+	}
+
+	//
+	// }
+	//	
+    }
+
     static {
 	long lastTime = Calendar.getInstance().getTimeInMillis();
 	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
@@ -175,22 +291,22 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLEventCanvas();
+	    realGLCanvas = new GLDebugCanvas();
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
-	    realGLJPanel= new GLJPanel();
+	    realGLJPanel= new GLDebugJPanel();
 	}
     }
 
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLEventCanvas(cap);
+	    realGLCanvas = new GLDebugCanvas(cap);
 	}
 	else {
 	    DEBUG("Using GLJPanel for OpenGL implementation.");
-	    realGLJPanel = new GLJPanel(cap);
+	    realGLJPanel = new GLDebugJPanel(cap);
 	}
     }
 
@@ -216,10 +332,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	getAsGL().addGLEventListener(arg0);
     }
 
-    public void display() {
-	getAsGL().display();
-    }
-
     public boolean getAutoSwapBufferMode() {
 	return getAsGL().getAutoSwapBufferMode();
     }
@@ -229,15 +341,12 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GL getGL() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "getGL");
 	return getAsGL().getGL();
     }
 
     public void removeGLEventListener(GLEventListener arg0) {
 	getAsGL().removeGLEventListener(arg0);
-    }
-
-    public void repaint() {
-	getAsGL().repaint();
     }
 
     public void setAutoSwapBufferMode(boolean arg0) {
@@ -464,11 +573,25 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * So we need to call a function to force the redraw.
      * @param g graphics
      */
-    public void forcePaint(Graphics g) {
-    	if (enableGLCanvas) {
-    	    // GLJPanel draw themselves automatically
-    	    realGLCanvas.display();
-    	}
+    public void paint(Graphics g) {
+	Debug.DEBUG(this.getClass().getSimpleName(), "paint"); 
+	getAsComponent().paint(g);
+    }
+
+    public void display() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "display");
+	getAsGL().display();
+    }
+
+    public void repaint() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+	getAsGL().repaint();
+	//getAsComponent().repaint();
+    }
+
+    public void update(Graphics g) {
+	Debug.DEBUG(this.getClass().getSimpleName(), "update"); 
+	getAsComponent().update(g);
     }
     
 }

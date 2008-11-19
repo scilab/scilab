@@ -24,7 +24,7 @@ import org.scilab.modules.renderer.utils.TexturedColorMap;
  * Object which can be rendered in a GL pipeline
  * @author Jean-Baptiste Silvy
  */
-public abstract class ObjectGL {
+public class ObjectGL {
 
 //	public static int nbObjectsCount = 0;
 	

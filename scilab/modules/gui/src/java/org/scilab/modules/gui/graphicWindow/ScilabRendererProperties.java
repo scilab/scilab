@@ -20,6 +20,7 @@ import javax.media.opengl.GL;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.Window;
@@ -48,13 +49,19 @@ public class ScilabRendererProperties implements RendererProperties {
 		this.parentCanvas = parentCanvas;
 		this.parentTab = parentTab;
 	}
-	
+
+	private static int nbForce = 0;
 	/**
 	 * Force the parent Canvas to bve displayed
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#forceDisplay()
 	 */
 	public void forceDisplay() {
+	    nbForce++;
+		Debug.DEBUG(this.getClass().getSimpleName(), "forceDisplay : "+nbForce);
+		if (nbForce > 38)
+		{
 		parentTab.draw();
+		}
 	}
 
 	/**

@@ -251,7 +251,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		
 		// we use a null layout. It's needed for uicontrol so they should resize when the canvas
 		// is resized. However, its imply to set the canvas size by hand.
-		ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
+		//ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
+		this.add(canvas.getAsComponent(), CANVAS_LAYER, TOP_POSITION);
 		
 		graphicCanvas = canvas;
 
@@ -292,8 +293,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public int addWidget(JComponent widget) {
 		// put the newly added object above any other objects
-		ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
-		
+		//ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
+		this.add(widget, WIDGET_LAYER, TOP_POSITION);
 		return getComponentZOrder(widget);
 	}
 
@@ -311,8 +312,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return index of member in ArrayList
 	 */
 	public int addFrame(SwingScilabFrame frame) {
-		ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
-		
+		//ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
+		this.add(frame, WIDGET_LAYER, TOP_POSITION);
 		return getComponentZOrder(frame);
 	}
 
@@ -363,11 +364,11 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param g graphics
 	 */
 	public void paint(Graphics g) {
-		if (graphicCanvas != null) {
-			graphicCanvas.forcePaint(g);
-		}
-		
-		super.paint(g);
+	    Debug.DEBUG(this.getClass().getSimpleName(), "paint");  
+	    super.paint(g);
+//	    if (graphicCanvas != null) {
+//		graphicCanvas.repaint();
+//	    }
 	}
 	
 	/**

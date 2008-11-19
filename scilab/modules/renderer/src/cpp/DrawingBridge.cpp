@@ -2,16 +2,17 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Functions to create and access a drawer of graphic handles
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include <list>
+#include <iostream>
 
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
@@ -67,7 +68,7 @@ void sciMoveObj(sciPointObj * pObj, const double translation[3])
 /*---------------------------------------------------------------------------------*/
 void sciDrawSingleObj( sciPointObj * pObj )
 {
- sciDrawSetOfObj(&pObj, 1); 
+ sciDrawSetOfObj(&pObj, 1);
 }
 /*---------------------------------------------------------------------------------*/
 void sciDrawSetOfObj(sciPointObj * pObjs[], int nbObjs )
@@ -91,7 +92,7 @@ void sciDrawSetOfObj(sciPointObj * pObjs[], int nbObjs )
     // then draw them
     getFigureDrawer(curFigure)->drawSingleObjs(childrens);
   }
-  
+
 }
 /*---------------------------------------------------------------------------------*/
 void displayChildren( sciPointObj * pObj )
@@ -118,6 +119,7 @@ void forceHierarchyRedraw( sciPointObj * pObj )
 /*---------------------------------------------------------------------------------*/
 void forceRedraw(sciPointObj * pObj)
 {
+  std::cerr << "[DEBUG] forceRedraw" << std::endl;
   sciPointObj * parentFigure = sciGetParentFigure(pObj);
   startFigureDataWriting(parentFigure);
   getHandleDrawer(pObj)->hasChanged();

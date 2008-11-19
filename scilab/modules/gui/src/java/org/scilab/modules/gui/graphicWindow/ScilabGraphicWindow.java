@@ -41,13 +41,6 @@ public final class ScilabGraphicWindow {
 	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 	
 	/**
-	 * Constructor
-	 */
-	private ScilabGraphicWindow() {
-		super();
-	}
-	
-	/**
 	 * Create a new window with id figureIndex.
 	 * The created window contains an empty tab.
 	 * @param figureIndex index of the figure to create
