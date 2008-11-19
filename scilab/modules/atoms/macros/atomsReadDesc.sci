@@ -51,7 +51,7 @@ function desc = atomsReadDesc(nom)
         tab = atomsReadFile("TOOLBOXES")
         // We delete the temporary file created
         if ~removeFile("TOOLBOXES")
-	      disp("Please delete the file TOOLBOXES of your courant repertory")
+	      disp(_("Please delete the file TOOLBOXES of your current directory"))
 	    end
         // We fill the array with the different toolboxes
         desc = hashTable2(desc, tab)
@@ -75,9 +75,9 @@ function result = dlFile(web, fileWeb)
 	[rep,stat,err] = unix_g("wget " + web + "/TOOLBOXES" + " -O " + fileWeb)
 	// If the file is not present
 	if stat <> 0
-	  atomsDisplayMessage("Please check the validity of the repository")
+	  atomsDisplayMessage(_("Please check the validity of the repository."))
 	  if ~removeFile(fileWeb)
-	    disp("Please delete the file " + fileWeb + "in your courant repertory ")
+	    disp(sprintf(_("Please delete the file %s in your current repertory."),fileWeb))
 	  end
 	  result = %f
 	  return result

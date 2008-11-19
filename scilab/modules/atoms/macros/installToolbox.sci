@@ -36,14 +36,14 @@ function result = installToolbox(nom, checkVersionScilab, version)
   // If there is an empty line, it is because a dependencie is missing
   if find(listTool == "") <> []
     if conflictLocal == 1
-      atomsDisplayMessage("The Toolbox version " + nomconflictLocal + " locally present doesn''t match. Update it.")
+      atomsDisplayMessage(sprintf(_("The Toolbox version %s locally present doesn''t match. Update it.\n"),nomconflictLocal))
     elseif listTool <> ""
-      atomsDisplayMessage("Impossible to install all the dependancies")
+      atomsDisplayMessage(_("Impossible to install all the dependencies.\n"))
     end
     result =  %f
     return result
   elseif conflictVersion == 1
-    atomsDisplayMessage("Conflit of version for " + nomconflictLocal)
+    atomsDisplayMessage(sprintf(_("Conflit of version for %s"),nomconflictLocal))
     result =  %f
     return result
   end
@@ -58,9 +58,9 @@ function result = installToolbox(nom, checkVersionScilab, version)
     if find(listLocal == nom) <> []
       continue
     else
-      atomsDisplayMessage("Is going to be install : " + nom)
+      atomsDisplayMessage(_("Is going to be install: ") + nom)
       if ~atomsDlInstall(nom, version)
-        disp("Error during the installation")
+        disp(_("Error during the installation"))
         result = %f
         return result
       end

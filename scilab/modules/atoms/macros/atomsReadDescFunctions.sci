@@ -38,7 +38,7 @@ function descFunct = atomsReadDescFunctions(nom)
       end
     end
   else
-    atomsDisplayMessage("The DESCRIPTION-FUNCTIONS file of the toolbox " + nom + " is missing")
+    atomsDisplayMessage(sprintf(_("The DESCRIPTION-FUNCTIONS file of the toolbox %s is missing"),nom))
     descFunct = ""
   end
   return descFunct

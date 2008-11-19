@@ -17,40 +17,40 @@ function result = checkToolbox(nom)
   d = rep + nom
   // If the repertory doesn't exist
   if ~(isdir(d))
-    atomsDisplayMessage("The toolbox directory" + nom + " doesn''t exist or the name is false")
+    atomsDisplayMessage(sprintf(_("The toolbox directory %s doesn''t exist or the name is false"),nom))
     result = %f
     return result
   end
   cd (d)
   if ~checkDescription()
-    atomsDisplayMessage("The DESCRIPTION file isn''t valid")
+    atomsDisplayMessage(_("The DESCRIPTION file isn''t valid"))
     result = %f
     return result
   end
-    if ~checkDescriptionFunctions()
-    atomsDisplayMessage("The DESCRIPTION-FUNCTIONS file isn''t valid")
+    if ~checkDescriptionFunc()
+    atomsDisplayMessage(_("The DESCRIPTION-FUNCTIONS file isn''t valid"))
     result = %f
     return result
   end
   if ~checkLoader()
-    atomsDisplayMessage("The loader.sce file isn''t present")
+    atomsDisplayMessage(_("The loader.sce file isn''t present"))
     result = %f
     return result
   end
   if ~checkTest()
-    atomsDisplayMessage("It would be interesting that tests are available")
+    atomsDisplayMessage(_("It would be interesting to have tests available."))
   end
   if ~checkHelp()
-    atomsDisplayMessage("It would be interesting that a help is available")
+    atomsDisplayMessage(_("It would be interesting to have help available."))
   end
   if ~checkDemo()
-    atomsDisplayMessage("It would be interesting that a demonstration is available")
+    atomsDisplayMessage(_("It would be interesting to have demonstrations available."))
   end
   if ~checkReadme()
-    atomsDisplayMessage("It would be interesting that the readme file is present")
+    atomsDisplayMessage(_("It would be interesting to have a README file."))
   end
   if ~checkLicense()
-    atomsDisplayMessage("It would be interesting that the license file is present")
+    atomsDisplayMessage(_("It would be interesting to have a license file."))
   end
   result = %t
   return result
@@ -68,7 +68,7 @@ function result = checkDescription()
       for i=1:n
         ind = strindex(tab(i),':')
         if (part([tab(i)],[ind+1]) <> " " | part([tab(i)],[ind+2])== " ")
-          atomsDisplayMessage("The field "  + tab(i) + " should have one and only one whitespace after the :")
+          atomsDisplayMessage(sprintf(_("The field %s should have one and only one whitespace after the :"),tab(i)))
           result = %f
           return result
         end
@@ -79,27 +79,27 @@ function result = checkDescription()
     [listeObl, listeOpt] = atomsConstant()
     for i=1:7
       if desc(listeObl(i)) == []
-        atomsDisplayMessage("The field " + listeObl(i) + " is missing in the DESCRIPTION file")
+        atomsDisplayMessage(sprintf(_("The field %s is missing in the DESCRIPTION file"),listeObl(i)))
         result = %f
         return result
       end
     end
     // Check if the name correspond
     if desc("Toolbox") <> nom
-      atomsDisplayMessage("The toolbox name present in the DESCRIPTION file is false")
+      atomsDisplayMessage(_("The toolbox name present in the DESCRIPTION file is false"))
       result = %f
       return result
     end
     // Check if the version has a good format
     v = desc("Version")
     if regexp(v, '/[0-9]+\.[0-9]+\.?[0-9]*$/') <> 1
-      disp("The version is a sequence of at least two (and usually three) non-negative integers separated by single ''.'' characters.")
+      disp(_("The version is a sequence of at least two (and usually three) non-negative integers separated by single ''.'' characters."))
       result = %f
       return result
     end
   // If the DESCRIPTION file doesn't exist 
   else
-    atomsDisplayMessage("The DESCRIPTION file doesn''t exist or isn''t at the good place")
+    atomsDisplayMessage(_("The DESCRIPTION file doesn''t exist or isn''t at the right place"))
     result = %f
     return result
   end
@@ -107,9 +107,9 @@ function result = checkDescription()
   return result
 endfunction
 
-function result = checkDescriptionFunctions()
+function result = checkDescriptionFunc()
   result = %t
-  // If the DESCRIPTION-FUNCTIONS file is présent
+  // If the DESCRIPTION-FUNCTIONS file is present
   if ls("DESCRIPTION-FUNCTIONS") <> []
     // Reading of the description file which we stock in an array
     tab = atomsReadFile("DESCRIPTION-FUNCTIONS")
@@ -138,13 +138,13 @@ function result = checkDescriptionFunctions()
       funct = strsubst(funct, " ", "")
       // We search the name of the function in the Scilab functions list
       if strindex(scilabFunction, " " + funct + " ") <> []
-        atomsDisplayMessage("The function " + funct + " already exist in Scilab. Thanks to change the name.")
+        atomsDisplayMessage(sprintf(_("The function %s already exist in Scilab. Please change the name."),funct))
         result = %f
       end
     end
   // If the DESCRIPTION-FUNCTIONS file doesn't exist
   else
-    atomsDisplayMessage("The file DESCRIPTION-FUNCTIONS doesn''t exist or isn''t at the good place")
+    atomsDisplayMessage(_("The file DESCRIPTION-FUNCTIONS doesn''t exist or isn''t at the good place."))
     result = %f
   end
   return result

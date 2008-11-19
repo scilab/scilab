@@ -9,44 +9,42 @@
 
 // Remove of a toolbox
 
-function result = removeToolbox(nom)
+function result = removeToolbox(name)
   rep = atomsToolboxDirectory()
-  // If nom = "all" we delete all the Toolboxes
-  if nom == "all"  
+  // If name = "all" we delete all the Toolboxes
+  if name == "all"  
     rmdir(rep, "s")
     mkdir(rep)
   else
     // we verify the existence of the toolbox
-    d = rep + nom
+    d = rep + name
     if ~isdir(d)
-      atomsDisplayMessage("The toolbox " + nom + " is not installed")
+      atomsDisplayMessage(sprintf(_("The toolbox %s is not installed.\n"),name))
       result = %f
       return result
     end
     cd (rep)
-    // We verify if the toolbox is not a dependancie of another toolbox
+    // We check if the toolbox is not a dependency of another toolboxes
     listLocal = ls()
     [n, m] = size(listLocal)
     for i=1:n
-      if listLocal(i) <> ".svn"
         desc = atomsReadDesc(listLocal(i))
         depends = atomsExtractValue("Depends", desc, 1)
         depends = atomsSplitValue(depends, ",")
         [n, m] = size(depends)
         for j=1:n
           [depend, version] = atomsSeparateVersionDep(depends(j))
-          if find(depend == nom) <> []
-            repQuestion = atomsButtonYesNo("The Toolbox " + nom + " is a dependancie of " + listLocal(i) + ". Continue?")
+          if find(depend == name) <> []
+            repQuestion = atomsButtonYesNo("The Toolbox " + name + " is a dependancie of " + listLocal(i) + ". Continue?")
             if (repQuestion == "2")
               result = %f
               return result
             end
           end
-        end
       end
     end
-    rmdir(rep + nom, "s")
-    atomsDisplayMessage(nom + " delete")
+    rmdir(rep + name, "s")
+    atomsDisplayMessage(name + " delete")
     result = %t
     return result
   end

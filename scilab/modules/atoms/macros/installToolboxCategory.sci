@@ -30,7 +30,7 @@ function result = installToolboxCategory(cat, sscat, checkVersionScilab)
   end
   // If we have installed nothing
   if ~result
-    atomsDisplayMessage ("None of the Toolboxes correspond in this category/sub-category for your version")
+    atomsDisplayMessage(_("None of the toolboxes match in this category/sub-category for your version"))
   end
   return result
 endfunction

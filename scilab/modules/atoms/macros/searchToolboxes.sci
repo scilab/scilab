@@ -87,7 +87,7 @@ function result = searchToolboxes(keyword, typeSearch)
         end
       end 
     else
-      atomsDisplayMessage("The research field " + typeSearch + " doesn''t exist")
+      atomsDisplayMessage(sprintf(_("The research field %s doesn''t exist"),typeSearch))
       return result
     end
     // If we found the words
@@ -103,15 +103,15 @@ function result = searchToolboxes(keyword, typeSearch)
     end
   end
   if ~result
-    disp("No toolbox matches the research")
+    disp(_("No toolbox matches the research"))
   else
     listTool = unique(listTool)
     [n, m] = size(listTool)
     if n == 1
-      disp("The following toolbox matches the research:")
+      disp(_("The following toolbox matches the research:"))
       disp(listTool)
     else
-      disp("The following toolboxes match the research:")
+      disp(_("The following toolboxes match the research:"))
       for i=1:n
         disp("- " + listTool(i))
       end

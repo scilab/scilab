@@ -25,12 +25,12 @@ function infoToolbox(nom)
   if (isdir(d) & ls(directory) <> [])
     desc = atomsReadDesc(nom)
     functionTool = desc("Function")
-    disp("The Toolbox is present in local")
+    disp(_("This toolbox is present locally."))
     disp(desc)
     disp(functionTool)
   // Else we search in the net
   else
-    disp("Toolbox versions present in the web")
+    disp(_("Toolbox versions available in the web"))
     listDesc = atomsReadDesc("")
     versions = ""
     [n, m] = size(listDesc("Toolbox"))
