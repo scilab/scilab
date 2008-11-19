@@ -35,7 +35,7 @@
 #include "CurrentObjectsManagement.h"
 #include "Interaction.h"
 #include "DoublyLinkedList.h"
-#include "javaInteraction.h"
+#include "JavaInteraction.h"
 
 /*------------------------------------------------------------------------------*/
 static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);
