@@ -16,7 +16,6 @@
 #include "DrawableFigureBridge.h"
 #include "DrawableFigureJoGL.h"
 #include "GraphicSynchronizerInterface.h"
-#include "ScilabGraphicWindow.hxx"
 #include "CallScilabBridge.hxx"
 
 extern "C"
