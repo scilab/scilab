@@ -415,12 +415,10 @@ c     Copyright INRIA
       include 'stack.h'
 c
       integer fd,id(nsiz),vol
-      integer iadr
       logical cremat
       character*3 fmti,fmtd
 c
 c
-      iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
 
@@ -1443,11 +1441,7 @@ c     Save a pointer on sparse lu factorization
 c
       integer fd
       character*3 fmti,fmtd
-      integer sadr
-c
-c      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-c
+c      
       fmti='il'//char(0)
       fmtd='dl'//char(0)
 c
@@ -1455,12 +1449,6 @@ c
 c      call error(997)
       ierr=997
       return
-c     write  header type excluded
-c      call mputnc (fd,istk(il+1),3,fmti,ierr)
-c      if(ierr.ne.0) return
-c     write pointer
-c      call mputnc(fd,stk(sadr(il+4)),1,fmtd,ierr)
-c      return
       end
 
       subroutine loadptr(fd,il,n,ierr)
@@ -1540,11 +1528,7 @@ c     Save a pointer on sparse lu factorization
 c
       integer fd
       character*3 fmti,fmtd
-      integer sadr
-c
-c      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-c
+
       fmti='il'//char(0)
       fmtd='dl'//char(0)
 c
@@ -1580,7 +1564,6 @@ c     Save a pointer on sparse lu factorization
       character*3 fmti,fmtd
       integer sadr
 c
-c      iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
       fmti='il'//char(0)

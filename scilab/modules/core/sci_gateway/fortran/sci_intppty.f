@@ -13,11 +13,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       parameter (mxbyptr=40)
       integer byptr(mxbyptr),nbyptr
       common /ippty/ byptr,nbyptr
-      integer iadr,sadr
+      integer iadr
 c
 c    
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       rhs=max(0,rhs)
       if(.not.checkrhs('intppty',0,1)) return

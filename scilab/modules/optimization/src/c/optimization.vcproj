@@ -384,10 +384,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intqld.c"
-				>
-			</File>
-			<File
 				RelativePath=".\lsqrsolvtable.c"
 				>
 			</File>
@@ -430,10 +426,6 @@
 			>
 			<File
 				RelativePath="..\..\includes\gw_optim.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intqld.h"
 				>
 			</File>
 			<File

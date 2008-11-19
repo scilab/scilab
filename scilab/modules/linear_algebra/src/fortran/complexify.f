@@ -11,10 +11,9 @@ c$
 c     transforms the real matrix at position n into complex
       include 'stack.h'
 c
-      integer iadr,sadr
+      integer iadr
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       complexify=.false.
       nn=top-rhs+n

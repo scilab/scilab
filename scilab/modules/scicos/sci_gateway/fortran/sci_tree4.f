@@ -24,10 +24,9 @@ c
       include 'stack.h'
       logical createvar,getrhsvar
       character*(*) fname
-      integer iadr,sadr
+      integer iadr
       
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       if(.not.getrhsvar(1,'i',nvec,mvec,ipvec)) return
       if(.not.getrhsvar(2,'i',noin,moin,ipoin)) return

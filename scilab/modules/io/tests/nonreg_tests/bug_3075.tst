@@ -16,10 +16,6 @@
 //
 
 a=mopen(TMPDIR+'test.sce','wt');
-warning('off');
-if get_absolute_file_path('fhsjdfhjdshkfq') <> pwd()+filesep() then pause,end
-warning('on');
-
 if get_absolute_file_path('test.sce') <> TMPDIR then pause,end 
 mclose(a);
 
