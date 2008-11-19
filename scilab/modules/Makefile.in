@@ -139,7 +139,7 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	scipad scilab2fortran development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
-	genetic_algorithms simulated_annealing parameters matio \
+	genetic_algorithms simulated_annealing parameters matio atoms \
 	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -349,7 +349,8 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio $(am__append_1) scicos . $(am__append_2)
+	parameters matio atoms $(am__append_1) scicos . \
+	$(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -403,6 +404,7 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la
+
 
 # Dev in progress
 
