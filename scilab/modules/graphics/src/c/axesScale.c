@@ -35,6 +35,7 @@
 #include "CurrentObjectsManagement.h"
 #include "Interaction.h"
 #include "DoublyLinkedList.h"
+#include "JavaInteraction.h"
 
 /*------------------------------------------------------------------------------*/
 static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);
@@ -291,19 +292,18 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
  */
 void sciUnzoomSubwin(sciPointObj * subwin)
 {
-  int currentStatus;
-  sciPointObj * parentFig = sciGetParentFigure(subwin);
-  startFigureDataWriting(parentFig);
-  currentStatus = sciSetZooming(subwin, FALSE);
-
+  javaUnzoomSubwin(subwin);
+}
+/*------------------------------------------------------------------------------*/
+void unzoomSubwin(sciPointObj * pSubwin)
+{
+	int currentStatus;
+  currentStatus = sciSetZooming(pSubwin, FALSE);
   if (currentStatus == 0)
   {
     /* redraw only if needed */
-    forceRedraw(subwin);
+    forceRedraw(pSubwin);
   }
-
-  endFigureDataWriting(parentFig);
-
 }
 /*------------------------------------------------------------------------------*/
 /**

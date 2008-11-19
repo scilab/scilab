@@ -26,5 +26,8 @@
     <method name="interactiveZoom" returnType="void">
       <param type="long" name="subwinHandle" />
     </method>
+    <method name="unzoom" returnType="void">
+      <param type="long" name="subwinHandle" />
+    </method>
   </object>
 </package>

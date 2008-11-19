@@ -97,6 +97,11 @@ void DrawableSubwin::interactiveZoom(void)
 	getSubwinImp()->interactiveZoom();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwin::unzoom(void)
+{
+	getSubwinImp()->unzoom();
+}
+/*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableSubwin::draw( void )
 {
   initializeDrawing() ;

@@ -21,19 +21,16 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
-import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
-import org.scilab.modules.renderer.subwinDrawing.DrawableSubwinGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
-import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.ClipPlane3DManager;
+import org.scilab.modules.renderer.utils.graphicEvents.GraphicEventManager;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
 import org.scilab.modules.renderer.utils.textRendering.JOGLTextRendererFactory;
 import org.scilab.modules.renderer.utils.textRendering.TextRendererFactory;
@@ -106,6 +103,8 @@ public class DrawableFigureGL extends ObjectGL {
 	/** In double buffer mode, it might be needed to emulate single buffer */
 	private boolean isEmultatingSingleBuffer;
 	
+	private GraphicEventManager eventManager;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -127,6 +126,7 @@ public class DrawableFigureGL extends ObjectGL {
       	clipPlaneManager = new ClipPlane3DManager();
       	nbSubwins = 0;
       	isEmultatingSingleBuffer = false;
+      	eventManager = new GraphicEventManager();
     }
 	
 	/**
@@ -162,6 +162,13 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public ClipPlane3DManager getClipPlaneManager() {
 		return clipPlaneManager;
+	}
+	
+	/**
+	 * @return the eventManager
+	 */
+	public GraphicEventManager getEventManager() {
+		return eventManager;
 	}
 	
 	/**
@@ -386,7 +393,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Called when the object is destroyed from C code.
 	 * @param parentFigureIndex index of parent figure
 	 */
-  	@Override
 	public void destroy(int parentFigureIndex) {
   		getRendererProperties().disableCanvas();
   		setRenderingRequested(false);
@@ -394,7 +400,7 @@ public class DrawableFigureGL extends ObjectGL {
 		destroyedObjects = null;
   		FigureMapper.removeMapping(figureId);
   	
-  		// blocking call. So graphic synchrnonization must be desactivated here.
+  		// blocking call. So graphic synchronization must be disable here.
   		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
@@ -595,7 +601,7 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
-	 * Desactivate rubber box mode
+	 * Disable rubber box mode
 	 */
 	public synchronized void removeRubberBox() {
 		this.rubberBox = null;
@@ -610,15 +616,15 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
-	 * @return Wether the rubber box mod eis on
+	 * @return Whether the rubber box mode is on
 	 */
 	public synchronized boolean isRubberBoxModeOn() {
-		return this.rubberBox != null;
+		return (rubberBox != null && rubberBox.isActive());
 	}
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param initialRect if not null specify the initial rectangle to draw
 	 * @return array of size 5 [x1, y1, x2, y2, button] where (x1,y1) is one of the rectangle corners
@@ -649,94 +655,14 @@ public class DrawableFigureGL extends ObjectGL {
 	 * @param objectHandle handle of the object to zoom
 	 */
 	public void interactiveZoom(long objectHandle) {
-		// Make the Scilab thread and the zoom independent
-		// by creating a new thread
-		final long objectHandleF = objectHandle;
-		Thread rotationThread = new Thread(new Runnable() {
-			public void run() {
-				interactiveZoomThreaded(objectHandleF);
-			}
-		});
-		rotationThread.start();
-	}
-	
-	/**
-	 * Perform a zoom on a figure or subwin handle.
-	 * This zoom uses a rubberBox for selecting the zoom area.
-	 * @param objectHandle handle on the object to zoom
-	 */
-	private void interactiveZoomThreaded(long objectHandle) {
-		
-		// set a new info message
-		String curInfoMessage = getInfoMessage();
-		setInfoMessage(Messages.gettext("Click on the figure to select zooming area. Click again to stop."));
-		
-		int[] area = {0, 0, 0, 0};
-		// get the zooming area
-		getRendererProperties().rubberBox(figureId, true, true, null, area);
-		
-		// zoom
-		FigureScilabCall.zoomObject(objectHandle, area[0], area[1], area[2], area[Vector3D.DIMENSION]);
-		
-		// redraw the figure to see the changes
-		drawCanvas();
-		
-		// reset the infoMessage
-		setInfoMessage(curInfoMessage);
+		eventManager.launchZoomEvent(this, objectHandle);
 	}
 	
 	/**
 	 * Perform an interactive rotation of the figure from an other thread
 	 */
 	public void interactiveRotation() {
-		// Make the Scilab thread and the rotation independent
-		// by creating a new thread
-		Thread rotationThread = new Thread(new Runnable() {
-			public void run() {
-				interactiveRotationThreaded();
-			}
-		});
-		rotationThread.start();
-		
-	}
-	
-	/**
-	 * Perform an interactive rotation of a subwindow inside the figure.
-	 * First the user select a subwin contained in the canvas by a click.
-	 * Then the user rotate the subwin with mouse movements.
-	 */
-	private void interactiveRotationThreaded() {
-		
-		// get the current info message
-		String curInfoMessage = getInfoMessage();
-		
-		// set a new one
-		setInfoMessage(Messages.gettext("Click on an Axes object to start rotation. Click again to terminate."));
-		
-		// first get the clicked subwin
-		int[] clickPos = {0, 0};
-		boolean keepOnRecording = getRendererProperties().getRotationDisplacement(clickPos);
-		
-		if (!keepOnRecording) {
-			// recording has been canceled
-			setInfoMessage(curInfoMessage);
-			return;
-		}
-		
-		// get the clicked subwin handle or 0 if no handle has been clicked
-		long subwinHandle = FigureScilabCall.getClickedSubwinHandle(figureId, clickPos[0], clickPos[1]);
-		
-		if (subwinHandle == 0) {
-			// no subwindow has been founds
-			getRendererProperties().stopRotationRecording();
-			setInfoMessage(curInfoMessage);
-			return;
-		}
-		
-		DrawableSubwinGL.interactiveRotation(subwinHandle, this);
-		
-		setInfoMessage(curInfoMessage);
-		
+		eventManager.launchRotationEvent(this);
 		
 	}
 	

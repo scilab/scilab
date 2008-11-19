@@ -50,6 +50,8 @@ public:
 	virtual void interactiveRotation(long subwinIndex);
 
 	virtual void interactiveZoom(long subwinIndex);
+
+	virtual void unzoom(long subwinHandle);
   /*----------------------------------------------------------------------*/
 
 protected:

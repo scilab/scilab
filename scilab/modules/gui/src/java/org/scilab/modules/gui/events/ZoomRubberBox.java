@@ -101,7 +101,7 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 		// focus lost so stop recording
 		// do only this if the opposite component is not the canvas itself
 		if (event.getOppositeComponent() != getSelectedCanvas().getAsComponent()) {
-			cancelDragging();
+			cancelRubberbox();
 		}
 	}
 	

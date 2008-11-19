@@ -122,3 +122,12 @@ long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord)
   */
 public";
 void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2);
+
+/* JavaDoc */
+%javamethodmodifiers unzoomSubwinHandle(long long subwinHandle) "
+ /**
+  * Reset zoom of a subwindow.
+  * @param subwinHandle handle of the subwin to modify
+  */
+public";
+void unzoomSubwinHandle(long long subwinHandle);
