@@ -275,7 +275,8 @@ libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+				-I$(srcdir)/modules/gui/src/jni/
 
 libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
 
