@@ -72,7 +72,8 @@ demo_tools \
 genetic_algorithms \
 simulated_annealing \
 parameters \
-matio
+matio \
+atoms
 
 #umfpack
 
