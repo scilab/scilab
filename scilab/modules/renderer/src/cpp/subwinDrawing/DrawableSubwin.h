@@ -54,6 +54,21 @@ public:
    */
   void displaySingleObjs(std::list<sciPointObj *>& singleObjs);
 
+	/**
+	 * Interactive rotation of the subwindow
+	 */
+	void interactiveRotation(void);
+
+	/**
+	 * Interactive zoom of a subwindow
+	 */
+	void interactiveZoom(void);
+
+	/**
+	 * Unzoom a subwindow
+	 */
+	void unzoom(void);
+
   /**
    * Compute real data bounds from the user ones.
    * ie fills Frect.
@@ -207,7 +222,6 @@ protected:
    * Return the real type of implementation object
    */
   DrawableSubwinBridge * getSubwinImp( void ) ;
-
 
   /*-----------------------------------------------------------------------------*/
   /** Camera used to visualize this axes */

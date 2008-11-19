@@ -44,7 +44,6 @@
 
 /*-------------------------------------------------------------------------------------*/
 static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize);
-static void trackSubwinRotation(sciPointObj * pSubwin);
 /*-------------------------------------------------------------------------------------*/
 
 /**sciAddCallback
@@ -601,13 +600,13 @@ int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
 }
 
 /*---------------------------------------------------------------------------------*/
-void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom,
+void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
                     const int initialRect[4], int endRect[4], int * usedButton)
 {
-  javaRubberBox(pFigure, isClick, isZoom, initialRect, endRect, usedButton);
+  javaRubberBox(pFigure, isClick, initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
-void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
+void rubberBox(sciPointObj * pSubwin, BOOL isClick,
                const double initialRect[4], double endRect[4], int * usedButton)
 {
   int endPixelRect[4];
@@ -633,11 +632,11 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
     sciGet2dViewPixelCoordinates(pSubwin, firstCorner, initialPixelRect);
     sciGet2dViewPixelCoordinates(pSubwin, secondCorner, initialPixelRect + 2);
 
-    javaRubberBox(sciGetParentFigure(pSubwin), isClick, isZoom, initialPixelRect, endPixelRect, usedButton);
+    pixelRubberBox(sciGetParentFigure(pSubwin), isClick, initialPixelRect, endPixelRect, usedButton);
   }
   else
   {
-    javaRubberBox(sciGetParentFigure(pSubwin), isClick, isZoom, NULL, endPixelRect, usedButton);
+    pixelRubberBox(sciGetParentFigure(pSubwin), isClick, NULL, endPixelRect, usedButton);
   }
 
   /* here we get the two opposite points of the rectangle in pixels */
@@ -653,94 +652,27 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
 
 }
 /*---------------------------------------------------------------------------------*/
+void interactiveZoom(sciPointObj * pObj)
+{
+	if (sciGetEntityType(pObj) == SCI_FIGURE)
+	{
+		interactiveJavaZoom(pObj);
+	}
+	else if (sciGetEntityType(pObj) == SCI_SUBWIN)
+	{
+		interactiveJavaSubwinZoom(pObj);
+	}
+}
+/*---------------------------------------------------------------------------------*/
 void interactiveRotation(sciPointObj * pFigure)
 {
-  /* get coordinates of first mouse click */
-  int clickCoordinates[2];
-  sciPointObj * clickedSubwin;
-  char * currentInfoMessage = sciGetInfoMessage(pFigure);
-  char * curInfoMessageCopy = NULL;
-
-  /* copy the info message to be able to reset it after zooming */
-  curInfoMessageCopy = MALLOC((strlen(currentInfoMessage) + 1) * sizeof(char));
-
-  if (curInfoMessageCopy == NULL)
-  {
-    sciprint(_("%s: No more memory.\n"), "Interactive rotation");
-  }
-  strcpy(curInfoMessageCopy, currentInfoMessage);
-  startFigureDataWriting(pFigure);
-  sciSetInfoMessage(pFigure, _("Click on an Axes object to start rotation. Click again to terminate."));
-  endFigureDataWriting(pFigure);
-
-  getJavaRotationDisplacement(pFigure, clickCoordinates);
-
-  /* find the subwin which is under the click if any */
-  clickedSubwin = getClickedSubwin(pFigure, clickCoordinates[0], clickCoordinates[1]);
-  if (clickedSubwin == NULL)
-  {
-    // no subwin found return
-    stopJavaRotationRecording(pFigure);
-    /* restore previous info message */
-    startFigureDataWriting(pFigure);
-    sciSetInfoMessage(pFigure,curInfoMessageCopy);
-    endFigureDataWriting(pFigure);
-    return;
-  }
-
-  trackSubwinRotation(clickedSubwin);
-
-  /* restore previous info message */
-  startFigureDataWriting(pFigure);
-  sciSetInfoMessage(pFigure,curInfoMessageCopy);
-  endFigureDataWriting(pFigure);
-
-  FREE(curInfoMessageCopy);
-
+	interactiveJavaRotation(pFigure);
 }
 /*---------------------------------------------------------------------------------*/
-void interactiveSubwinRotation(sciPointObj * pSubiwn)
+void interactiveSubwinRotation(sciPointObj * pSubwin)
 {
   /* get coordinates of first mouse click */
-  sciPointObj * parentFigure = sciGetParentFigure(pSubiwn);
-  int clickCoordinates[2];
-  getJavaRotationDisplacement(parentFigure, clickCoordinates);
-
-  trackSubwinRotation(pSubiwn);
-
-}
-/*---------------------------------------------------------------------------------*/
-/**
- * Interactive rotation of a subwindow from initial mouse coordinates
- */
-void trackSubwinRotation(sciPointObj * pSubwin)
-{
-  int mouseDisplacement[2];
-  double alpha;
-  double theta;
-  sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
-
-
-  /* get current viewing angles */
-  sciGetViewingAngles(pSubwin, &alpha, &theta);
-  while (getJavaRotationDisplacement(parentFigure, mouseDisplacement))
-  {
-    /* rotate axes accordingly */
-    alpha -= mouseDisplacement[1] / 4.0;
-    theta -= mouseDisplacement[0] / 4.0;
-
-    /* redraw */
-    startFigureDataWriting(parentFigure);
-    Obj_RedrawNewAngle(pSubwin, theta, alpha);
-    setInfoMessageWithRotationAngles(parentFigure, alpha, theta);
-    endFigureDataWriting(parentFigure);
-
-    /* several subwins may have been rotated */
-    sciDrawObj(parentFigure);
-  }
-
-  /* Perhaps we should think of restoring figure info message after the call */
-
+  interactiveJavaSubwinRotation(pSubwin);
 }
 /*---------------------------------------------------------------------------------*/
 void showWindow(sciPointObj * pFigure)
@@ -748,3 +680,22 @@ void showWindow(sciPointObj * pFigure)
   javaShowWindow(pFigure);
 }
 /*---------------------------------------------------------------------------------*/
+void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta)
+{
+	double newAlpha;
+	double newTheta;
+
+	/* Get current angles */
+	sciGetViewingAngles(pSubwin, &newAlpha, &newTheta);
+
+	/* update them */
+	newAlpha += deltaAlpha;
+	newTheta += deltaTheta;
+
+	Obj_RedrawNewAngle(pSubwin, newAlpha, newTheta);
+
+	/* Update info message */
+	setInfoMessageWithRotationAngles(sciGetParentFigure(pSubwin), newAlpha, newTheta);
+}
+/*---------------------------------------------------------------------------------*/
+

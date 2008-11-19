@@ -12,12 +12,11 @@ c     operations sur les types secondaires (macros librairies...)
 c     =============================================================
       include 'stack.h'
 c     
-      integer iadr,sadr,op,rhs1,r
+      integer iadr,op,rhs1,r
       integer equal,less,great,insert,extrac
       data equal/50/,less/59/,great/60/,insert/2/,extrac/3/
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
       r=0
       if(pt.gt.0) r=rstk(pt)

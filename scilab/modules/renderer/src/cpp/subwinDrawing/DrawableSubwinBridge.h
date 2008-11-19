@@ -33,6 +33,21 @@ public:
 
   virtual ~DrawableSubwinBridge( void ) {}
 
+	/**
+	 * Interactive rotation of the subwindow
+	 */
+	virtual void interactiveRotation(void) = 0;
+
+	/**
+	 * Interactive zoom of a subwindow
+	 */
+	virtual void interactiveZoom(void) = 0;
+
+	/**
+	 * Unzoom a subwindow
+	 */
+	virtual void unzoom(void) = 0;
+
 protected:
 
   /**

@@ -11,10 +11,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       INCLUDE 'stack.h'
       integer vol,topk,volk
       logical ref
-      integer iadr,sadr
+      integer iadr
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
 
       if(rhs.le.0.or.top.lt.rhs) return

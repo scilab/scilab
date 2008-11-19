@@ -37,6 +37,21 @@ namespace sciGraphics
      */
     virtual void initializeDrawing( void ) ;
 
+		/**
+		 * Interactive rotation of the subwindow
+		 */
+		virtual void interactiveRotation(void);
+
+		/**
+		 * Interactive zoom of a subwindow
+		 */
+		virtual void interactiveZoom(void);
+
+		/**
+		 * Unzoom a subwindow
+		 */
+		virtual void unzoom(void);
+
     /**
      * Return the drawn object
      */

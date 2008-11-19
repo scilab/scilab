@@ -128,6 +128,16 @@ void DrawableFigureJoGL::setInfoMessage( const char * message )
   getFigureJavaMapper()->setInfoMessage(message);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::getInfoMessage(char * message)
+{
+	getFigureJavaMapper()->getInfoMessage(message);
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigureJoGL::getInfoMessageLength(void)
+{
+	return getFigureJavaMapper()->getInfoMessageLength();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setAutoResizeMode(bool onOrOff)
 {
   getFigureJavaMapper()->setAutoResizeMode(onOrOff);
@@ -153,9 +163,14 @@ void DrawableFigureJoGL::setBackgroundColor(int backColor)
   getFigureJavaMapper()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
+void DrawableFigureJoGL::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureJavaMapper()->rubberBox(isClick, isZoom, initialRect, endRect, usedButton);
+  getFigureJavaMapper()->rubberBox(isClick, initialRect, endRect, usedButton);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::interactiveZoom(void)
+{
+	getFigureJavaMapper()->interactiveZoom(sciGetHandle(getFigureDrawer()->getDrawedObject()));
 }
 /*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
@@ -178,14 +193,9 @@ void DrawableFigureJoGL::setTitle( const char * title )
   getFigureJavaMapper()->setTitle(title);
 }
 /*---------------------------------------------------------------------------------*/
-bool DrawableFigureJoGL::getRotationDisplacement(int displacement[2])
+void DrawableFigureJoGL::interactiveRotation(void)
 {
-  return getFigureJavaMapper()->getRotationDisplacement(displacement);
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::stopRotationRecording(void)
-{
-  getFigureJavaMapper()->stopRotationRecording();
+	getFigureJavaMapper()->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::showWindow(void)

@@ -69,7 +69,10 @@
     <para>"get_absolute_file_path" seek, in the internal list of the files of
     scilab currently opened, " filename" and it gives his path.</para>
 
-    <para>if file not opened , it will return current directory path.</para>
+    <para>if file not opened , it will return a error.</para>
+
+    <para>WARNING : in previous version (scilab 5.0.x) current directory was
+    returned if file was not found.</para>
 
     <para>This function can be used to find from where (path) is executed a
     scilab script.</para>

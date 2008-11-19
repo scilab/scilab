@@ -245,8 +245,6 @@ int DestroyFigure (sciPointObj * pthis)
   {
     FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
   }
-
-  FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   
 	destroyUiobjectTag(pthis);
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;

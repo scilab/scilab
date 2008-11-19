@@ -102,8 +102,7 @@ libscioptimization_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_1) $(am__append_2)
-am__objects_1 = libscioptimization_la-intqld.lo \
-	libscioptimization_la-sp.lo \
+am__objects_1 = libscioptimization_la-sp.lo \
 	libscioptimization_la-fsolvetable.lo \
 	libscioptimization_la-lsqrsolvtable.lo \
 	libscioptimization_la-optimtable.lo
@@ -364,8 +363,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-OPTIMIZATION_C_SOURCES = src/c/intqld.c \
-src/c/sp.c \
+OPTIMIZATION_C_SOURCES = src/c/sp.c \
 src/c/fsolvetable.c \
 src/c/lsqrsolvtable.c \
 src/c/optimtable.c
@@ -661,7 +659,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-fsolvetable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-gw_optimization.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-intqld.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-lsqrsolvtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-optimtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_fsolv.Plo@am__quote@
@@ -692,13 +689,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscioptimization_la-intqld.lo: src/c/intqld.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-intqld.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-intqld.Tpo -c -o libscioptimization_la-intqld.lo `test -f 'src/c/intqld.c' || echo '$(srcdir)/'`src/c/intqld.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioptimization_la-intqld.Tpo $(DEPDIR)/libscioptimization_la-intqld.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/intqld.c' object='libscioptimization_la-intqld.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-intqld.lo `test -f 'src/c/intqld.c' || echo '$(srcdir)/'`src/c/intqld.c
 
 libscioptimization_la-sp.lo: src/c/sp.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-sp.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sp.Tpo -c -o libscioptimization_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c

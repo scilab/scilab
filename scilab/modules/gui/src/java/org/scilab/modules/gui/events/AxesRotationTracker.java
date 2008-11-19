@@ -98,21 +98,27 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 			getTrackedCanvas().setCursor(ScilabSwingUtilities.createCursorFromIcon(ICON_PATH, CURSOR_ICON_NAME));
 			// wait for initialization with a first click
 			waitForClick(displacement);
-			
-			if (clickPosX >= 0) {
+			if (recordEnded) {
+				// the record has been canceled
+				reinit();
+				return false;
+			} else {
 				// start recording the mouse displacement
 				startRecording(clickPosX, clickPosY);
 				return true;
-			} else {
-				// the record has been cancelled
-				reinit();
-				return false;
 			}
 		} else if (!recordEnded) {
 			// inside tracking loop
 			// get mouse displacement since last call
 			getMouseDisplacement(displacement);
-			return true;
+			
+			if (recordEnded) {
+				// record might have been canceled asynchronously
+				reinit();
+				return false;
+			} else {
+				return true;
+			}
 		} else {
 			// last call get current displacement and return
 			getImmediateMouseDisplacement(displacement);
@@ -125,15 +131,19 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	}
 	
 	/**
-	 * Manual disactivation of recording
+	 * Manual disabling of recording
 	 */
 	public void cancelRecording() {
 		endRecording();
-		reinit();
+		
+		// wake everyone if needed
+		synchronized (getLock()) {
+			getLock().notifyAll();
+		}
 	}
 	
 	/**
-	 * Start mouse tarcking.
+	 * Start mouse tracking.
 	 * @param initX initial X coordinate
 	 * @param initY initial Y coordinate
 	 */
@@ -155,6 +165,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		getTrackedCanvas().removeMouseListener(this);
 		getTrackedCanvas().removeFocusListener(this);
 		recordEnded = true;
+		recordStarted = true;
 	}
 	
 	/**
@@ -197,6 +208,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 			} else {
 				clickPosX = -1;
 				clickPosY = -1;
+				recordEnded = true;
 			}
 			
 			
@@ -243,11 +255,8 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		// focus lost so stop recording
 		
 		// dont't stop if focus is given to one of the tracked canvas children
-		if (event.getOppositeComponent().getParent() != getTrackedCanvas()) {
-			endRecording();
-			synchronized (getLock()) {
-				getLock().notifyAll();
-			}
+		if (event.getOppositeComponent() == null || event.getOppositeComponent().getParent() != getTrackedCanvas()) {
+			cancelRecording();
 		}
 	}
 

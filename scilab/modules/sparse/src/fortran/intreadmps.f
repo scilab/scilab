@@ -11,7 +11,7 @@ c SCILAB function : readmps, fin = 1
 c     
       include 'stack.h'
 c     
-      integer iadr, sadr, cadr
+      integer iadr, sadr
       integer topk,rhsk,topl, topf,mode(2)
       logical checkrhs,checklhs,getsmat,checkval,getvect
       logical cremat,cresmat,cresmat2,bufstore,listcremat
@@ -25,7 +25,6 @@ c
       character*2 typrow
       character*8 fname
 c     
-      cadr(l)=l+l+l+l-3
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c

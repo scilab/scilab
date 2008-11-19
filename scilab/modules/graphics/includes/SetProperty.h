@@ -35,7 +35,7 @@
 
 #include "BOOL.h"
 
-void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha); /* SET  */
+void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta); /* SET  */
 
 int sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */
 int sciSetColormap (sciPointObj * pobj, double *rgbmat,
@@ -218,6 +218,7 @@ int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; 
 
 int sciSetViewport(  sciPointObj * pObj, const int viewport[4] ) ; /* SET */
 
+int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage);
 int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
 
 int sciInitEventHandler( sciPointObj * pObj, char * name ) ;

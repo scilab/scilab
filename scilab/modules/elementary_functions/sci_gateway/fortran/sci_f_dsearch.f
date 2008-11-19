@@ -43,9 +43,8 @@ c     LOCAL VAR
       character*9 fname
 
 c     STATEMENT FUNC
-      integer l, iadr,sadr
+      integer l, iadr
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 
 c     TEXT
       fname = 'dsearch'

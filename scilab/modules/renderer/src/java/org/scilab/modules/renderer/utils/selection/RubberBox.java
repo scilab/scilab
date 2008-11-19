@@ -15,7 +15,6 @@ package org.scilab.modules.renderer.utils.selection;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
@@ -33,18 +32,23 @@ public class RubberBox {
 	private Vector3D secondPoint;
 	
 	private Vector3D previousFirstPoint;
-	private Vector3D previousSeconPoint;
+	private Vector3D previousSecondPoint;
+	
+	private boolean isActive;
 	
 	/**
 	 * Default constructor
+	 * @param parentFigure figure on which the rubberBox will be draw
 	 */
-	public RubberBox() {
+	public RubberBox(DrawableFigureGL parentFigure) {
 		super();
 		firstPoint = new Vector3D();
 		secondPoint = new Vector3D();
 		previousFirstPoint = null;
-		previousSeconPoint = null;
-		parentFigure = null;
+		previousSecondPoint = null;
+		isActive = false;
+		this.parentFigure = parentFigure;
+		parentFigure.setRubberBox(this);
 	}
 
 	/**
@@ -118,12 +122,10 @@ public class RubberBox {
 	}
 	
 	/**
-	 * Activate rubber box daring on a specific figure
-	 * @param parentFigureIndex index of parent figure
+	 * Activate rubber box drawing
 	 */
-	public void activate(int parentFigureIndex) {
-		this.parentFigure = FigureMapper.getCorrespondingFigure(parentFigureIndex);
-		parentFigure.setRubberBox(this);
+	public void activate() {
+		isActive = true;
 	}
 	
 	/**
@@ -131,22 +133,25 @@ public class RubberBox {
 	 */
 	public void draw() {
 		// chack if the rubber box has been activated
-		if (parentFigure != null) {
+		if (parentFigure != null && isActive) {
 			parentFigure.drawCanvas();
 		}
 	}
 	
 	/**
-	 * Desactivate the drawing of the rubberbox
+	 * Disable the drawing of the rubberbox
 	 */
-	public void desactivate() {
+	public void deactivate() {
 		if (parentFigure != null) {
 			parentFigure.removeRubberBox();
 			
 			// redraw the figure to get rid of the rubberbox
 			// improvement. We may just need to erase the rubber box
-			parentFigure.drawCanvas();
+			if (isActive) {
+				parentFigure.drawCanvas();
+			}
 			parentFigure = null;
+			isActive = false;
 		}
 	}
 	
@@ -179,7 +184,7 @@ public class RubberBox {
 	    drawNewBox(gl);
 	    
 	    previousFirstPoint = new Vector3D(firstPoint);
-	    previousSeconPoint = new Vector3D(secondPoint);
+	    previousSecondPoint = new Vector3D(secondPoint);
 	    
 	    GLTools.endPixelCoordinates(gl, parentFigure);
 	}
@@ -190,7 +195,7 @@ public class RubberBox {
 	 */
 	public void doNotErase() {
 		previousFirstPoint = null;
-		previousSeconPoint = null;
+		previousSecondPoint = null;
 	}
 	
 	/**
@@ -202,12 +207,12 @@ public class RubberBox {
 	private void erasePreviousBox(GL gl) {
 		// we need to invert y coordinate
     	double previousFirstY = parentFigure.getCanvasHeight() - previousFirstPoint.getY();
-    	double previousSecondY = parentFigure.getCanvasHeight() - previousSeconPoint.getY();
+    	double previousSecondY = parentFigure.getCanvasHeight() - previousSecondPoint.getY();
 	    gl.glBegin(GL.GL_LINE_LOOP);
 	    gl.glVertex3d(previousFirstPoint.getX(), previousFirstY, previousFirstPoint.getZ());
 	    gl.glVertex3d(previousFirstPoint.getX(), previousSecondY, previousFirstPoint.getZ());
-	    gl.glVertex3d(previousSeconPoint.getX(), previousSecondY, previousFirstPoint.getZ());
-	    gl.glVertex3d(previousSeconPoint.getX(), previousFirstY, previousFirstPoint.getZ());
+	    gl.glVertex3d(previousSecondPoint.getX(), previousSecondY, previousFirstPoint.getZ());
+	    gl.glVertex3d(previousSecondPoint.getX(), previousFirstY, previousFirstPoint.getZ());
 	    gl.glEnd();
 	}
 	
@@ -228,6 +233,19 @@ public class RubberBox {
 	    gl.glEnd();
 	}
 	
+	/**
+	 * Cancel the rubberbox
+	 */
+	public void cancelRubberbox() {
+		deactivate();
+		setEmptySelection();
+	}
 	
+	/**
+	 * @return true if the rubberBox is currently being drawn
+	 */
+	public boolean isActive() {
+		return isActive;
+	}
 	
 }

@@ -139,3 +139,7 @@ pvm3
 #
 .svn
 
+#
+# pvm configuration file
+#
+.pvmd.conf

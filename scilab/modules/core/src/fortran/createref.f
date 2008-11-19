@@ -10,10 +10,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine createref1(topk)
       include 'stack.h'
       integer topk,sz
-      integer iadr,sadr
+      integer iadr
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       call createref(iadr(lstk(topk)),topk,lstk(topk+1)-lstk(topk))
       end

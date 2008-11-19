@@ -44,6 +44,16 @@ void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] )
   getFigureDrawer(pFigure)->getWindowPosition(pos) ;
 }
 /*---------------------------------------------------------------------------------*/
+void sciGetJavaInfoMessage(sciPointObj * pFigure, char * infoMessage)
+{
+	getFigureDrawer(pFigure)->getInfoMessage(infoMessage);
+}
+/*---------------------------------------------------------------------------------*/
+int sciGetJavaInfoMessageLength(sciPointObj * pFigure)
+{
+	return getFigureDrawer(pFigure)->getInfoMessageLength();
+}
+/*---------------------------------------------------------------------------------*/
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
   getSubwinDrawer(pSubwin)->getCamera()->getPixelCoordinates(userCoord, pixCoord);

@@ -46,6 +46,21 @@ void DrawableSubwinJoGL::initializeDrawing( void )
                                              sciGetIs3d(pSubwin) == FALSE);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwinJoGL::interactiveRotation(void)
+{
+	getSubwinJavaMapper()->interactiveRotation(sciGetHandle(getSubwinDrawer()->getDrawedObject()));
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSubwinJoGL::interactiveZoom(void)
+{
+	getSubwinJavaMapper()->interactiveZoom(sciGetHandle(getSubwinDrawer()->getDrawedObject()));
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSubwinJoGL::unzoom(void)
+{
+	getSubwinJavaMapper()->unzoom(sciGetHandle(getSubwinDrawer()->getDrawedObject()));
+}
+/*---------------------------------------------------------------------------------*/
 DrawableSubwin * DrawableSubwinJoGL::getSubwinDrawer( void )
 {
   return dynamic_cast<DrawableSubwin *>(getDrawer()) ;
