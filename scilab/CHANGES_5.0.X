@@ -4,6 +4,12 @@
 Scilab consortium would like to thank all people who helped us by reporting
 bugs, submiting patches, fixing bugs, testing ...
 
+Compilation:
+============
+
+* Do not init TK when building the doc ("make doc")... in order to be able to 
+build Scilab through ssh
+
 Bug fixes:
 ==========
 

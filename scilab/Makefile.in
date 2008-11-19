@@ -1094,10 +1094,10 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
 @BUILD_HELP_TRUE@		echo "$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e \"xmltojar();exit;\"";\
-@BUILD_HELP_TRUE@		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
 @BUILD_HELP_TRUE@		echo "$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e \"xmltojar();exit;\""; \
-@BUILD_HELP_TRUE@		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e "xmltojar();exit;"; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e "xmltojar();exit;"; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab binary"; \
 @BUILD_HELP_TRUE@	fi
