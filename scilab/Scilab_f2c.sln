@@ -767,6 +767,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer", "modules\rendere
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer-Ant", "modules\renderer\src\java\renderer-JAVA.vcproj", "{4235A847-ED0E-43A3-B62B-E59CB857EDE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console-Ant", "modules\console\src\java\console-JAVA.vcproj", "{251D7C8F-9B69-4CE9-959E-57F343DDC883}"
 	ProjectSection(ProjectDependencies) = postProject
