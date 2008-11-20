@@ -12,18 +12,19 @@ c     -------------------------------
 c     Interface for rand function
       INCLUDE 'stack.h'
       character*(*) fname
-      double precision s,sr,si,r
+      double precision sr,si,r
       save             si, r
-      integer id(nsiz),tops,topk,name(nlgh)
+      integer id(nsiz),tops,topk
       double precision urand
-      logical checkrhs,checklhs,getsmat,getscalar,cremat,getmat
+      logical checkrhs,checklhs,getsmat,getscalar,cremat
       logical cresmat2
       integer gettype
       character*(20) randtype
       logical phase
+      integer iadr
       save    phase
       data    phase /.true./
-      integer iadr
+      
 c
       iadr(l)=l+l-1
 c
