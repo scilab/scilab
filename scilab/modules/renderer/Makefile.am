@@ -80,7 +80,6 @@ src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-src/jni/ScilabGraphicWindow.cpp \
 src/jni/DrawableFigureGL.cpp \
 src/jni/DrawableSubwinGL.cpp \
 src/jni/DrawablePolylineGL.cpp \
@@ -275,7 +274,8 @@ libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+				-I$(top_srcdir)/modules/gui/src/jni/
 
 libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
 
@@ -326,7 +326,6 @@ src/jni/PolylineMarkdrawerGL.giws.xml \
 src/jni/RectangleFillDrawerGL.giws.xml \
 src/jni/RectangleLineDrawerGL.giws.xml \
 src/jni/RectangleMarkDrawerGL.giws.xml \
-src/jni/ScilabGraphicWindow.giws.xml \
 src/jni/SegsArrowDrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
 src/jni/SegsMarkDrawerGL.giws.xml \

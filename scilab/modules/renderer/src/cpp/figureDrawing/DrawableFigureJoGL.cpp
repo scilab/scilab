@@ -16,7 +16,7 @@
 #include "DrawableFigureBridge.h"
 #include "DrawableFigureJoGL.h"
 #include "GraphicSynchronizerInterface.h"
-#include "ScilabGraphicWindow.hxx"
+#include "CallScilabBridge.hxx"
 
 extern "C"
 {
@@ -55,7 +55,8 @@ void DrawableFigureJoGL::createVisualFigure( int figureIndex )
 	getFigureJavaMapper()->setFigureIndex(figureIndex);
 
 	// create the window
-	org_scilab_modules_gui_graphicWindow::ScilabGraphicWindow::newWindow(getScilabJavaVM(), figureIndex);
+	org_scilab_modules_gui_bridge::CallScilabBridge::newWindow(getScilabJavaVM(), figureIndex);
+	//org_scilab_modules_gui_graphicWindow::ScilabGraphicWindow::newWindow(getScilabJavaVM(), figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeVisualFigure( void )
