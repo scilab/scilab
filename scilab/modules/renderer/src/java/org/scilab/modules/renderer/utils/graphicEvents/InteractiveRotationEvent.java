@@ -80,6 +80,9 @@ public class InteractiveRotationEvent extends GraphicEvent {
 		if (subwinHandle == 0) {
 			// no subwindow has been founds
 			cancel();
+			
+			// to be sure clean everything
+			trackedCanvas.getRendererProperties().getRotationDisplacement(clickPos);
 			return false;
 		}
 		
