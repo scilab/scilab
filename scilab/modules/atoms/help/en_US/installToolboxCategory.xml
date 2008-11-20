@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>installToolboxCategory</refname>
-    <refpurpose>download all the Toolbox about a category in the operating system</refpurpose>
+    <refpurpose>Download and install all the toolboxes of a category</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -41,7 +41,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function download Toolboxes that have cat and sscat parametre</para>
+    <para>This function downloads and installs toolboxes from a specified category.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>searchToolboxes</refname>
-    <refpurpose>search a Toolbox</refpurpose>
+    <refpurpose>Search a toolbox</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -41,7 +41,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function search Toolboxes that have keyWord in their Description</para>
+    <para>This function search toolboxes which have keyword in their description.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

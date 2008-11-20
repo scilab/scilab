@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>checkToolbox</refname>
 
-    <refpurpose>Verify the good construction of a Toolbox</refpurpose>
+    <refpurpose>Check a Scilab toolbox</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -51,7 +51,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>This function check if all the needed informations are present.</para>
+    <para>This function checks if all the mandatory information are present.</para>
   </refsection>
 
   <refsection>

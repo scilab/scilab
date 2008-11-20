@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>infoToolbox</refname>
 
-    <refpurpose>give information about a Toolbox</refpurpose>
+    <refpurpose>Give information about a toolbox</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -51,8 +51,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>This function give information (version, description, functions,
-    etc) about a Toolbox.</para>
+    <para>This function gives information (version, description, functions,
+    etc) about a toolbox.</para>
   </refsection>
 
   <refsection>

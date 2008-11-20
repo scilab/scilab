@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>installToolbox</refname>
-    <refpurpose>download the Toolbox on the operating system</refpurpose>
+    <refpurpose>Download & install the toolbox</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -35,7 +35,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function download the Toolbox with the dependencies.</para>
+    <para>This function downloads the toolbox with the dependencies.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

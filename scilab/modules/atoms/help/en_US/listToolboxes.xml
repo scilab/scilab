@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>listToolboxes</refname>
-    <refpurpose>give all the toolboxes installed in the system</refpurpose>
+    <refpurpose>Give all the installed toolboxes</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -24,7 +24,7 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>This function give all the toolboxes installed in the system</para>
+    <para>This function gives all the installed toolboxes</para>
   </refsection>
   <refsection>
     <title>Examples</title>

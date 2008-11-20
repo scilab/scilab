@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>updateToolbox</refname>
-    <refpurpose>update a Toolbox</refpurpose>
+    <refpurpose>Update a toolbox</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -35,7 +35,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function update the version of a Toolbox</para>
+    <para>This function updates a toolbox</para>
   </refsection>
   <refsection>
     <title>Examples</title>
