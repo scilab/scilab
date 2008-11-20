@@ -13,7 +13,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer iadr
       integer id(nsiz)
 c
-      logical eqid,new
+      logical eqid
       integer v,vk
 c
       iadr(l)=l+l-1   

@@ -24,13 +24,13 @@
 
       implicit none
       integer ka, A_it, A_mnel, A_icol(*), kc, C_it, C_mnel, C_icol(*),
-     $        j(*), p(*), nj, it, ib, nelmax, ierr, B_m, B_it
+     $        j(*), p(*), nj, ib, nelmax, ierr, B_m, B_it
       logical B_is_scalar
       double precision A_R(*), A_i(*), C_R(*), C_I(*),
      $                 B_R(B_m,*), B_I(B_m,*)
 
 *     local vars
-      integer i, j1, j2, jp, k, kamax
+      integer j1, j2, jp, k, kamax
       double precision Bij_R, Bij_I
 *     external functions and subroutines
       external insert_j1j2
@@ -120,7 +120,7 @@
       implicit none
       integer i1, i2, ka, A_it, A_mnel(*), A_icol(*),
      $                kc, C_it, C_mnel(*), C_icol(*),
-     $        it, nelmax, ierr
+     $        nelmax, ierr
       double precision A_R(*), A_I(*), C_R(*), C_I(*)
 
 *     local vars
@@ -460,11 +460,11 @@
       integer ka, A_it, A_mnel, A_icol(*), 
      $        kb, B_it, B_mnel, B_icol(*),
      $        kc, C_it, C_mnel, C_icol(*),
-     $        j(*), p(*), nj, it, ib, nelmax, ierr
+     $        j(*), p(*), nj, nelmax, ierr
       double precision A_R(*), A_i(*), B_R(*), B_I(*), C_R(*), C_I(*)
 
 *     local vars
-      integer i, j1, j2, jp, k, kamax, num
+      integer j1, j2, jp, k, kamax, num
 *     external functions and subroutines
       external dicho_search
       integer dicho_search

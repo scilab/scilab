@@ -13,8 +13,7 @@ c
       character*(*) fname
       include 'stack.h'
 c     
-      integer topk,rhsk,topl
-      logical checkrhs,checklhs,getmat,getscalar,cremat
+      logical checkrhs,checklhs,getmat
       double precision psi
 c
       rhs = max(0,rhs)

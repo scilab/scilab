@@ -140,8 +140,8 @@ C     .. Local Scalars ..
 C     .. Local Arrays ..
       LOGICAL          BWORK( 1 )
 C     .. External Functions ..
-      LOGICAL          LSAME, SELECT1
-      EXTERNAL         LSAME, SELECT1
+      LOGICAL          SELECT1
+      EXTERNAL         SELECT1
 C     .. External Subroutines ..
       EXTERNAL         DCOPY, DGEES, DGEMM, DGEMV, DLACPY, XERBLA
 C     .. Intrinsic Functions ..

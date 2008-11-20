@@ -10,7 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
        subroutine i_mget(fname)
 c
        character*(*) fname
-       integer topk,rhsk,topl,fd
+       integer topk,rhsk,fd
        logical checkrhs,checklhs,getscalar,getsmat,checkval
        character*4 ityp
        include 'stack.h'

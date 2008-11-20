@@ -11,12 +11,11 @@ c     =======================================
 c      
       include 'stack.h'
       character*(*) fname
-      double precision adelp,adels,fact,zzi(16),zzr(16),zpi(16),zpr(16)
       double precision alpha,beta,u,y,eps,eps1,v
       double precision kappa,lambda,mu,nu
-      integer ordre,lw,lt,li,lr,lo,lf,lg
-      integer i,top2
-      logical vect,arma
+      integer ordre,lt,lf,lg
+      integer top2
+      logical arma
       integer iadr,sadr
       
       iadr(l)=l+l-1

@@ -10,9 +10,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intprint
       INCLUDE 'stack.h'
 c     
-      integer flag,top2,tops
+      integer top2,tops
       integer mode(2)
-      logical opened,eptover
+      logical opened
       integer iadr
 c
       save opened,lunit

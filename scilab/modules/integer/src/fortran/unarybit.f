@@ -11,7 +11,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     addition
       include 'stack.h'
       common /mtlbc/ mmode
-      character*8 fct
       integer op
       external memused
       integer memused

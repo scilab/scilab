@@ -62,7 +62,7 @@ c     w : working array of size 2*na (used only if nz>0 and alpha contains negat
 C         values
       double precision x(nx),alpha(na),y(*),w(*)
       integer kode,nx,na,ier
-      double precision e,dlamch,eps
+      double precision dlamch,eps
       eps=dlamch('p')
       ierr=0
       if (na.lt.0) then

@@ -10,8 +10,6 @@ c
     	subroutine intexpm(id)
       INCLUDE 'stack.h'
       integer id(nsiz)
-
-      double precision sr,si
       integer iadr,sadr
 c
       iadr(l)=l+l-1

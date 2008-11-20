@@ -141,7 +141,7 @@ c     compute besseli function for x and alpha given by vectors
 c     w : working array of size 3*na (used only if nz>0 and alpha contains negative
 C         values
       double precision xr(nx),xi(nx),alpha(na),yr(*),yi(*),wr(*),wi(*)
-      double precision e,dlamch,eps
+      double precision dlamch,eps
       integer kode,nx,na,ier
       ierr=0
       eps=dlamch('p')

@@ -13,14 +13,13 @@ c     interface of exec function
       INCLUDE 'stack.h'
 c     
       integer flag,semi,typ
-      integer mode(2),retu(6)
+      integer mode(2)
       logical opened
       integer iadr,sadr
 c
       save opened,lunit
 c     
       data semi/43/
-      data retu/27,14,29,30,27,23/
 
 c     
       iadr(l)=l+l-1

@@ -9,7 +9,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intlib
       INCLUDE 'stack.h'
       integer percen,mode(2),id(nlgh)
-      logical opened,eptover
       integer iadr,sadr
 c
       data percen/56/

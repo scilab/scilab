@@ -15,7 +15,7 @@ c     extends cbesi for the case where alpha is negative
       integer kode,n,nz,ierr
 c     
       double precision a,pi,inf,xr, xi,a1
-      integer ier1,ier2
+      integer ier2
       double precision dlamch
 
       data pi /3.14159265358979324D0/
@@ -133,7 +133,7 @@ c     w : working array of size 2*na (used only if nz>0 and alpha
 C     contains negative
 C     values
       double precision xr(nx),xi(nx),alpha(na),yr(*),yi(*),wr(*),wi(*)
-      double precision e,dlamch,eps
+      double precision dlamch,eps
       integer kode,nx,na,ier
       ierr=0
       eps=dlamch('p')

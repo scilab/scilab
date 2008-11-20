@@ -7,11 +7,11 @@ c     Copyright INRIA
       integer op
 c     
       integer star,dstar,slash,bslash,dot,colon,quote
-      integer less,great,equal,et,ou,non
+      integer less,equal,et,ou,non
 c
       data star/47/,dstar/62/,slash/48/
       data bslash/49/,dot/51/,colon/44/,quote/53/
-      data less/59/,great/60/,equal/50/
+      data less/59/,equal/50/
       data ou/57/,et/58/,non/61/
 c     
       op=fin

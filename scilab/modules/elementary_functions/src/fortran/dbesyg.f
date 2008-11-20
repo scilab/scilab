@@ -15,7 +15,7 @@ c     x is assumed to be >0 (if negative bessely(alpha,x) is complex)
       integer n,nz,ierr
 c
       double precision a,b,pi,inf,x,a1,eps
-      integer ier1,ier2
+      integer ier2
       double precision dlamch
       data pi /3.14159265358979324D0/
 
@@ -113,7 +113,7 @@ c     w : working array of size 2*na (used only if nz>0 and alpha contains negat
 C         values
       double precision x(nx),alpha(na),y(*),w(*)
       integer kode, nx,na,ier
-      double precision e,dlamch,w1,eps
+      double precision dlamch,w1,eps
       eps=dlamch('p')
       ierr=0
       if (na.lt.0) then

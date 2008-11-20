@@ -15,17 +15,15 @@ c     -------------------------------
 c     Interface for maxi and mini 
       INCLUDE 'stack.h'
       integer id(nsiz)
-      double precision s,sr,si
-      logical checkrhs,checklhs,getscalar,cremat,getmat
-      logical cresmat2,getrmat,test
+      logical checklhs,cremat
+      logical getrmat,test
       logical getilist,getlistmat,checkval
       integer gettype,itype,topk,isanan
       integer sel, mtlbsel
-      integer iadr,sadr
+      integer iadr
       double precision x1
 c
       iadr(l)=l+l-1
-c      sadr(l)=(l/2)+1
 c
 
       topk=top

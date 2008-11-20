@@ -76,13 +76,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer opt
       double precision syv
       integer namecd(nlgh), chcnt, io 
-      integer blank, dot, percen, slash, comma,eol
+      integer blank, dot, percen, slash
       integer name, num, cmt
 
 *     STATEMENTS FUNCTIONS
       integer c
       logical isDigit, isAlphaNum, isBlank
-      data    blank/40/,dot/51/,percen/56/,slash/48/,comma/52/,eol/99/
+      data    blank/40/,dot/51/,percen/56/,slash/48/
       data    name/1/, num/0/, cmt/2/
 
  
