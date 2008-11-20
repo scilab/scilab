@@ -138,10 +138,10 @@ static void *DaemonOpenTCLsci(void* in)
 		    {
 		      releaseTclInterp();
 		      Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init): %s\n"),getTclInterp()->result);
-			  releaseTclInterp();
 		    }else{
 				tkStarted=TRUE;
 			}
+		  releaseTclInterp();
 		}
 
 
