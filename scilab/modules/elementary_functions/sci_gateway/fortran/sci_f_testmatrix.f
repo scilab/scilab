@@ -14,7 +14,6 @@ c
       integer tops,top2
       integer magi,frk,hilb
       integer iadr,sadr
-      logical ref
       data magi/22/,frk/15/,hilb/17/
 c
       iadr(l)=l+l-1

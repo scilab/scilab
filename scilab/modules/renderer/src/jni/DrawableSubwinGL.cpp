@@ -108,6 +108,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetSubwinParametersjintjbooleanID=NULL; 
 voidinteractiveRotationjlongID=NULL; 
 voidinteractiveZoomjlongID=NULL; 
+voidunzoomjlongID=NULL; 
 
 
 }
@@ -139,6 +140,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetSubwinParametersjintjbooleanID=NULL; 
 voidinteractiveRotationjlongID=NULL; 
 voidinteractiveZoomjlongID=NULL; 
+voidunzoomjlongID=NULL; 
 
 
 }
@@ -295,6 +297,21 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "interactiveZoom");
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidinteractiveZoomjlongID ,subwinHandle);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void DrawableSubwinGL::unzoom (long long subwinHandle){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidunzoomjlongID==NULL) { /* Use the cache Luke */ voidunzoomjlongID = curEnv->GetMethodID(this->instanceClass, "unzoom", "(J)V" ) ;
+if (voidunzoomjlongID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "unzoom");
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidunzoomjlongID ,subwinHandle);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

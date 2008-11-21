@@ -11,10 +11,9 @@ c
       INCLUDE 'stack.h'
       integer id(nsiz)
 
-      integer iadr,sadr
+      integer iadr
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
       
       fun=-1
       il=iadr(lstk(top-rhs+1))

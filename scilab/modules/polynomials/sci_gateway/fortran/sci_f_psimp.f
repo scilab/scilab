@@ -11,7 +11,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer iadr, sadr
       integer id(nsiz)
       integer vola,volb
-      logical chkvar,vcopyobj
+      logical chkvar
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

@@ -138,10 +138,6 @@ c     entries
 c
       integer ivt(*),l
       character*(*) job
-      integer iadr,sadr
-c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       if(job.eq.'size') then
 c        size of the data structure

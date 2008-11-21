@@ -12,7 +12,7 @@ c     ======================================================================
 c     gestion des structures de controle
 c     ======================================================================
       include 'stack.h'
-      integer while(nsiz),iff(nsiz),else(nsiz),ennd(nsiz)
+      integer while(nsiz),else(nsiz),ennd(nsiz)
       integer do(nsiz),thenn(nsiz),cas(nsiz),sel(nsiz)
       integer elsif(nsiz)
       integer semi,equal,eol,blank,comma,name,cmt
@@ -26,7 +26,6 @@ c     ======================================================================
       data lparen/41/,rparen/42/
       data do/673716237,nz1*673720360/, else/236721422,nz1*673720360/
       data ennd/671946510,nz1*673720360/
-      data iff/673713938,nz1*673720360/
       data thenn/386797853,nz1*673720360/
       data while/353505568,673720334,nz2*673720360/
       data cas/236718604,nz1*673720360/

@@ -78,4 +78,9 @@ void DrawableSubwinJavaMapper::interactiveZoom(long subwinIndex)
 	m_pJavaObject->interactiveZoom(subwinIndex);
 }
 /*--------------------------------------------------------------------------*/
+void DrawableSubwinJavaMapper::unzoom(long subwinHandle)
+{
+	m_pJavaObject->unzoom((long long) subwinHandle);
+}
+/*--------------------------------------------------------------------------*/
 }

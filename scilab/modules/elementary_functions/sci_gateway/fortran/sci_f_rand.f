@@ -9,24 +9,24 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txtc     ----------------
 c
       subroutine intrand(fname,id)
 c     -------------------------------
-      character*(*) fname
 c     Interface for rand function
       INCLUDE 'stack.h'
-      double precision s,sr,si,r
+      character*(*) fname
+      double precision sr,si,r
       save             si, r
-      integer id(nsiz),tops,topk,name(nlgh)
+      integer id(nsiz),tops,topk
       double precision urand
-      logical checkrhs,checklhs,getsmat,getscalar,cremat,getmat
+      logical checkrhs,checklhs,getsmat,getscalar,cremat
       logical cresmat2
       integer gettype
       character*(20) randtype
       logical phase
+      integer iadr
       save    phase
-      integer iadr,sadr
       data    phase /.true./
+      
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       rhs=max(0,rhs)
       if (.not.checklhs(fname,1,1)) return

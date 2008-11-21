@@ -16,8 +16,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer name(10)
       integer iadr
 c
-      data local/21/
-c    
       iadr(l)=l+l-1
       pause ='pause    '
       cont  ='continue '

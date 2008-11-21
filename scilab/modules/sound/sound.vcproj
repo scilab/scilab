@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="&#x0D;&#x0A;"
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
@@ -381,35 +382,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\libs\libst\misc.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\raw.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_beep.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_loadwave.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_PlaySound.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_savewave.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\sox.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\wav.c"
 				>
 			</File>
 		</Filter>
@@ -424,26 +401,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\sizes.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\sox.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\st.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\styles.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\wav.h"
 				>
 			</File>
 		</Filter>

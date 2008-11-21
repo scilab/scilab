@@ -3,13 +3,8 @@
 # 
 # This file is distributed under the same license as the Scilab package.
 
-SOUND_C_SOURCES = src/c/raw.c \
-src/c/sox.c \
-src/c/wav.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_savewave.c \
-sci_gateway/c/sci_loadwave.c \
-sci_gateway/c/gw_sound.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_sound.c \
 sci_gateway/c/sci_beep.c \
 sci_gateway/c/sci_PlaySound.c
 
@@ -22,14 +17,13 @@ pkglib_LTLIBRARIES = libscisound.la
 
 libscisound_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscisound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscisound_la_SOURCES = $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libscisound_la_SOURCES)
 INCLUDE_FLAGS = $(libscisound_la_CFLAGS)
 
-libscisound_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
-
+libscisound_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### Target ######

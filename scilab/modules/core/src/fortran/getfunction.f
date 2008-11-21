@@ -48,13 +48,13 @@ C     by the getfun routine.
       integer cblock,rblock,fcount
       parameter (rblock=30,cblock=rblock*50)
       integer quote,eol,equal,lparen,rparen,comma,semi,left,right,dot
-      integer blank,slash
+      integer blank
       integer psym,qcount,strcnt,pchar
       integer func(nsiz),endfunc(nsiz),iadr,sadr
       logical cresmat,eqid,last,eof
       integer name,num,cmt
       data quote/53/,eol/99/,name/1/,num/0/,cmt/2/
-      data equal/50/,lparen/41/,rparen/42/,slash/48/
+      data equal/50/,lparen/41/,rparen/42/
       data comma/52/,semi/43/,left/54/,right/55/,dot/51/,blank/40/
 
 

@@ -11,11 +11,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       INCLUDE 'stack.h'
       integer topk,id(nlgh)
-      integer iadr,sadr
+      integer iadr
       logical eptover
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
 
       if(rstk(pt).eq.908 ) goto 203

@@ -33,12 +33,12 @@ c     EXTERNAL FUNCTIONS
       external         dlamch
 
 c     EXTERNAL API FUNCTIONS
-      logical  checkrhs, checklhs, getsmat, getrmat, cremat, crebmat
-      external checkrhs, checklhs, getsmat, getrmat, cremat, crebmat
+      logical  checkrhs, checklhs, getsmat, cremat, crebmat
+      external checkrhs, checklhs, getsmat, cremat, crebmat
 
 c     LOCAL VAR
       integer topk
-      integer n, m, idxmat, mt, nt, lstr, nlstr, lm, lr, lc, i
+      integer mt, nt, lstr, nlstr, lm, lr, lc, i
       integer   lmax
       parameter(lmax = 10)
       character*(lmax) inputstring

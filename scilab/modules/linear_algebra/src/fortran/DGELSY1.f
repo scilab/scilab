@@ -155,7 +155,7 @@ c     ===
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEQP3, DLABAD, DLAIC1, DLASCL, DLASET,
-     $     DORMQR, DORMRZ, DTRSM, DTZRZF, XERBLA
+     $     DORMQR, DTRSM, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          ABS, DBLE, MAX, MIN
@@ -532,7 +532,7 @@ c     *     workspace: 2*MN+NRHS.
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DLABAD, XERBLA, ZCOPY, ZGEQP3, ZLAIC1, ZLASCL,
-     $                   ZLASET, ZTRSM, ZTZRZF, ZUNMQR, ZUNMRZ
+     $                   ZLASET, ZTRSM, ZUNMQR 
 *     ..
 *     .. External Functions ..
       INTEGER            ILAENV

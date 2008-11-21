@@ -10,16 +10,15 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intprint
       INCLUDE 'stack.h'
 c     
-      integer flag,top2,tops
+      integer top2,tops
       integer mode(2)
-      logical opened,eptover
-      integer iadr,sadr
+      logical opened
+      integer iadr
 c
       save opened,lunit
 c     
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
       if(rhs.le.1) then
          call error(42)

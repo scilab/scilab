@@ -13,10 +13,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       parameter (iif=1,iwhile=2,iselect=3)
       integer pt0,count,r
       integer semi,comma,eol
-      integer resume(nsiz),sel(nsiz)
+      integer resume(nsiz)
 c
       data resume/505155099,673713686,nz2*673720360/
-      data sel/236260892,673717516,nz2*673720360/
       data eol/99/,semi/43/
       data comma/52/
 c

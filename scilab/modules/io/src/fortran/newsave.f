@@ -10,7 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intsave
       include 'stack.h'
       logical opened,ptover,cremat
-      integer fd,vol,top0,srhs,bl(nsiz)
+      integer fd,vol,top0,bl(nsiz)
       double precision res
       logical eqid
       integer iadr,sadr
@@ -138,7 +138,7 @@ c     (id1(1).ne.blank) and if this variable if loaded k1 ist set to its
 c     index in the stack
 c
       include 'stack.h'
-      integer id1(nsiz),k1,vol
+      integer id1(nsiz),k1
       logical opened,cremat,ptover,eqid
       integer fd,id(nsiz),semi,blank,top0,endian,getendian,it,ssym
       double precision res,offset
@@ -347,7 +347,6 @@ c     Copyright INRIA
 c
       integer fd,id(nsiz),vol
       integer iadr
-      logical cremat
       character*3 fmti,fmtd
 c
 c
@@ -414,13 +413,10 @@ c     .  call an external function
 c     Copyright INRIA
       include 'stack.h'
 c
-      integer fd,id(nsiz),vol
-      integer iadr
-      logical cremat
+      integer fd,id(nsiz)
       character*3 fmti,fmtd
 c
 c
-      iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
 
@@ -481,7 +477,7 @@ c     Save a matrix of numbers
       include 'stack.h'
 c
       integer fd
-      logical ptover,cremat
+      logical ptover
       integer iadr,sadr
       character*3 fmti,fmtd
 c
@@ -592,7 +588,7 @@ c     Save a matrix of numbers
       include 'stack.h'
 c
       integer fd
-      logical ptover,cremat
+      logical ptover
       integer iadr,sadr
       character*3 fmti,fmtd
 c
@@ -894,7 +890,7 @@ c     Copyright INRIA
 c     Load a matrix of strings
       include 'stack.h'
       integer fd
-      character*2 fmti,fmtd
+      character*2 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -938,7 +934,7 @@ c     Save a matrix of boolean
       include 'stack.h'
 c
       integer fd
-      character*2 fmti,fmtd
+      character*2 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -959,7 +955,7 @@ c     Copyright INRIA
 c     Load a matrix of boolean
       include 'stack.h'
       integer fd
-      character*2 fmti,fmtd
+      character*2 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -995,7 +991,7 @@ c     Save  a function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti,fmtd
+      character*2 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -1020,7 +1016,7 @@ c     Load a function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti,fmtd
+      character*2 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -1077,7 +1073,7 @@ c     Save a compiled function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti,fmtd
+      character*2 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -1103,7 +1099,7 @@ c     Load a compiled function
 c
       integer fd
       integer sadr
-      character*2 fmti,fmtd
+      character*2 fmti
 c
 c      iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -1443,11 +1439,7 @@ c     Save a pointer on sparse lu factorization
 c
       integer fd
       character*3 fmti,fmtd
-      integer sadr
-c
-c      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-c
+c      
       fmti='il'//char(0)
       fmtd='dl'//char(0)
 c
@@ -1455,12 +1447,6 @@ c
 c      call error(997)
       ierr=997
       return
-c     write  header type excluded
-c      call mputnc (fd,istk(il+1),3,fmti,ierr)
-c      if(ierr.ne.0) return
-c     write pointer
-c      call mputnc(fd,stk(sadr(il+4)),1,fmtd,ierr)
-c      return
       end
 
       subroutine loadptr(fd,il,n,ierr)
@@ -1492,6 +1478,7 @@ c     read pointer
 c      n=4+2*1
       return
       end
+      
       subroutine savefptr(fd,il,ierr)
 c     Copyright INRIA
 c     Save a pointer on  a primitive
@@ -1499,7 +1486,6 @@ c     Save a pointer on  a primitive
 c
       integer fd
       character*3 fmti,fmtd
-      integer sadr
 c
       fmti='il'//char(0)
       fmtd='dl'//char(0)
@@ -1540,11 +1526,7 @@ c     Save a pointer on sparse lu factorization
 c
       integer fd
       character*3 fmti,fmtd
-      integer sadr
-c
-c      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-c
+
       fmti='il'//char(0)
       fmtd='dl'//char(0)
 c
@@ -1580,7 +1562,6 @@ c     Save a pointer on sparse lu factorization
       character*3 fmti,fmtd
       integer sadr
 c
-c      iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
       fmti='il'//char(0)

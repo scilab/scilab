@@ -32,7 +32,7 @@ c
       include 'stack.h'
 c
       integer job, menusflag
-      integer lrecl,eol,slash,dot,blank,comma,tab
+      integer lrecl,eol,slash,dot,blank,tab
       integer retu(6)
       integer r,quit(4),lnblnk, ncont
       logical isinstring,eof,continued,incomment
@@ -40,7 +40,7 @@ c
       external isinstring,lnblnk, getfastcode
       integer getfastcode
 
-      data eol/99/,dot/51/,blank/40/,comma/52/,tab/-40/
+      data eol/99/,dot/51/,blank/40/,tab/-40/
       data retu/27,14,29,30,27,23/
       data slash/48/,lrecl/512/
       data quit/26,30,18,29/

@@ -271,6 +271,16 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI_unzoomSubwinHandle(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  long long arg1 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (long long)jarg1; 
+  unzoomSubwinHandle(arg1);
+}
+
+
 #ifdef __cplusplus
 }
 #endif

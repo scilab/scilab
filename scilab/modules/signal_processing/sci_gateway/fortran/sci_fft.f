@@ -11,12 +11,9 @@ c     =======================================
 c     implicit undefined (a-z)
       include 'stack.h'
       character*(*) fname
-      double precision adelp,adels,fact,zzi(16),zzr(16),zpi(16),zpr(16)
-      double precision alpha,beta,u,y,eps,eps1,v
-      double precision kappa,lambda,mu,nu
-      integer ordre,lw,lt,li,lr,lo,lf,lg
+      integer lw,li,lr
       integer i,top2
-      logical vect,arma
+      logical vect
       integer iadr,sadr
       
       iadr(l)=l+l-1

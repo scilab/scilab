@@ -47,6 +47,11 @@ namespace sciGraphics
 		 */
 		virtual void interactiveZoom(void);
 
+		/**
+		 * Unzoom a subwindow
+		 */
+		virtual void unzoom(void);
+
     /**
      * Return the drawn object
      */

@@ -11,7 +11,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     addition
       include 'stack.h'
       common /mtlbc/ mmode
-      integer is1,top0,op
+      integer is1,op
       external memused
       integer memused
       integer iadr,sadr

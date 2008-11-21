@@ -12,7 +12,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       integer tops,top2
       integer iadr,sadr
-      logical ref
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

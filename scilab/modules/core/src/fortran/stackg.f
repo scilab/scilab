@@ -37,7 +37,7 @@ c     =============================================================
 c
       INCLUDE 'stack.h'
       logical compil,vcopyobj
-      integer id(nsiz),fun1,vol,vk
+      integer id(nsiz),vol,vk
       integer cbot
 c     
       logical eqid,local

@@ -7,7 +7,7 @@ C       PARAMETERS.
 C       -----------
 C
          INTEGER    IWSIZ,NEQNS,NNZA, NSUPER,iflag
-         INTEGER    I,I0,nnzb,nnzc,nnzl,nsub
+         INTEGER    I,I0,nnzc,nnzl,nsub
 C
          INTEGER ADJNCY(NNZA), COLCNT(NEQNS)   ,SNODE(NEQNS)
          INTEGER INVP(NEQNS) , IWORK(7*NEQNS+3),PERM(NEQNS) 

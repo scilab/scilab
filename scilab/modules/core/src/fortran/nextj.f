@@ -22,11 +22,7 @@ c
       logical eqid
       logical getmat,cremat,smatj,lmatj,getsmat,getilist,getpoly,pmatj
 c
-      integer iadr,sadr
       data semi/43/
-c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') j
