@@ -17,8 +17,8 @@
 using std::string;
 
 double GetMaxValue(double *_pdblData, int _iSize);
-std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List);
-int GetMaxDim(std::vector<std::vector<int>> *_List, unsigned int iOrder);
+std::vector<std::vector<int> > ExpandList(std::vector<std::vector<int> > *_List);
+int GetMaxDim(std::vector<std::vector<int> > *_List, unsigned int iOrder);
 
 namespace ast
 {
@@ -48,7 +48,7 @@ namespace ast
 				}
 
 				//Create list of indexes
-				std::vector<std::vector<int>> IndexList;
+				std::vector<std::vector<int> > IndexList;
 
 				std::list<Exp *>::const_iterator	i;
 				std::vector<int> MaxDim;
@@ -72,7 +72,7 @@ namespace ast
 					IndexList.push_back(SubList);
 				}
 
-				std::vector<std::vector<int>> IndexSeq;
+				std::vector<std::vector<int> > IndexSeq;
 				IndexSeq = ExpandList(&IndexList);
 
 				/*I have, the indexlist expanded and the max index*/
@@ -348,7 +348,7 @@ double GetMaxValue(double *_pdblData, int _iSize)
 	return dblMax;
 }
 
-int GetMaxDim(std::vector<std::vector<int>> *_List, unsigned int iOrder)
+int GetMaxDim(std::vector<std::vector<int> > *_List, unsigned int iOrder)
 {
 	int iRef = 0;
 	for(unsigned int i = 0 ; i < _List->size() ; i++)
@@ -366,9 +366,9 @@ int GetMaxDim(std::vector<std::vector<int>> *_List, unsigned int iOrder)
 	return iRef;
 }
 
-std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List)
+std::vector<std::vector<int> > ExpandList(std::vector<std::vector<int> > *_List)
 {
-	std::vector<std::vector<int>> ReturnList;
+	std::vector<std::vector<int> > ReturnList;
 	if(_List->size() == 1)
 	{
 		for(unsigned int i = 0 ; i< (*_List)[0].size() ; i++)
@@ -381,7 +381,7 @@ std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List)
 	else
 	{
 		std::vector<int> SubList;
-		std::vector<std::vector<int>> TempList;
+		std::vector<std::vector<int> > TempList;
 		SubList = *(_List->begin());
 		_List->erase(_List->begin());
 		TempList = ExpandList(_List);
