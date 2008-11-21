@@ -72,6 +72,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	}
 
 	private void init() {
+	    Animator animator = new Animator(this);
+	    animator.setRunAsFastAsPossible(false);
+	    animator.start();
 	    this.addMouseMotionListener(new MouseMotionListener() {
 		public void mouseDragged(MouseEvent arg0) {
 		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged"); 
@@ -192,6 +195,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	public GLDebugJPanel() {
 	    super();
+	    Animator animator = new Animator(this);
+	    animator.setRunAsFastAsPossible(false);
+	    animator.start();
 	}
 
 	//
