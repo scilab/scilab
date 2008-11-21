@@ -58,7 +58,7 @@ public class ScilabRendererProperties implements RendererProperties {
     public void forceDisplay() {
 	nbForce++;
 	Debug.DEBUG(this.getClass().getSimpleName(), "forceDisplay : "+nbForce);
-	parentTab.draw();
+	//parentTab.draw();
     }
 
     /**

@@ -51,6 +51,8 @@ import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.utils.Debug;
 
+import com.sun.opengl.util.Animator;
+
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
     private static final long serialVersionUID = -3110280842744630282L;
@@ -183,6 +185,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     private class GLDebugJPanel extends GLJPanel {
 	public GLDebugJPanel(GLCapabilities cap) {
 	    super(cap);
+	    Animator animator = new Animator(this);
+	    animator.setRunAsFastAsPossible(false);
+	    animator.start();
 	}
 
 	public GLDebugJPanel() {
@@ -293,7 +298,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLDebugCanvas(cap);
+	    realGLCanvas = new GLDebugCanvas();
 	}
 	else {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
@@ -588,7 +593,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public void repaint() {
 	Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
 	getAsGL().repaint();
-	//getAsComponent().repaint();
+	getAsComponent().repaint();
     }
 
     public void update(Graphics g) {
