@@ -358,6 +358,9 @@ http://wiki.tcl.tk/15443
      - Understand that Ttk is not a drop-in replacement for Tk widgets,
        i.e. just forget about trying to replace the current Tk widgets
        by Ttk widgets
+ See also TIP #319 http://www.tcl.tk/cgi-bin/tct/tip/319.html (but this is
+ very likely to be never implemented in Tk since popular thought, and in
+ particular TCT's thought is that TIP #319 a bad idea)
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
@@ -385,6 +388,8 @@ http://wiki.tcl.tk/15443
  of the transpose case
 
 -'Matlab' colorization scheme for .m files
+
+-'Modelica' colorization scheme
 
 -"auto smart wrap on": lines exceeding a margin could be truncated at
  word boundaries with .. dots and \n

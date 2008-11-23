@@ -337,7 +337,14 @@ if {[catch {package require msgcat}] == 0} {
 # the common definition can anyway be overridden by a definition in the
 # $msgsdir/$lang.msg file
     source [file join "$msgsdir" "localenames.tcl"]
-    ::msgcat::mcload $msgsdir
+    if {[::msgcat::mcload $msgsdir] == 0} {
+        # no msg file found for the current locale (bug 3781)
+        set lang "en_us"
+        ::msgcat::mclocale "$lang"
+        ::msgcat::mcload $msgsdir
+    } else {
+        # nothing to do, mcload succeeded at the first place
+    }
 } else {
     # package is not present, define default fallbacks
     namespace eval msgcat {
