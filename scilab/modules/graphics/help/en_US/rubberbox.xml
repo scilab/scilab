@@ -20,9 +20,11 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[final_rect,btn]=rubberbox(initial_rect)
-[final_rect,btn]=rubberbox()
-[final_rect,btn]=rubberbox(edition_mode)</synopsis>
+    <synopsis>[final_rect,btn]=rubberbox()
+[final_rect,btn]=rubberbox(initial_rect)
+[final_rect,btn]=rubberbox(edition_mode)
+[final_rect,btn]=rubberbox(initial_rect, edition_mode)
+</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -31,30 +33,30 @@
         <term>initial_rect</term>
         <listitem>
           <para>vector with two or four entries. With four entries it gives the
-  initial rectangle  defined by [x_left, y_top, width, height], with
+  initial rectangle defined by [x_left, y_top, width, height], with
   two entries width and height are supposed to be 0.
-  coordinates of the upper-left corner of</para>
+  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>edition_mode</term>
         <listitem>
-          <para>:a boolean, if edition_mode==%t; button press selects the first corner, release
-	    selects the opposite corner.if edition_mode==%f, button press or
+          <para>a boolean, if edition_mode is <literal>%t</literal> button press selects the first corner, release
+	    selects the opposite corner. If edition_mode is <literal>%f</literal>, a button press or
 	    click selects the first corner, a click is requested to select the
-	    opposite corner. The default value is  edition_mode=%f </para>
+	    opposite corner. The default value is %f.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>final_rect</term>
         <listitem>
-          <para>:a rectangle defined by [x_left, y_top, width, height]</para>
+          <para>a rectangle defined by [x_left, y_top, width, height]</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>btn</term>
         <listitem>
-          <para>:an integer, the number of the mouse button clicked</para>
+          <para>an integer, the number of the mouse button clicked</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,8 +65,8 @@
     <title>Description</title>
     <para><literal>rubberbox(initial_rect)</literal>  tracks a rubberband box in
     the current graphic window, following the mouse. When a button is clicked <literal>rubberbox</literal> returns the final
-    rectangles definition  in <literal>final_Rect</literal>. If the argument
-    <literal>initial_rect</literal> user has to click to fix the initial
+    rectangles definition in <literal>final_Rect</literal>. If the argument
+    <literal>initial_rect</literal> is not specified, a click is needed to fix the initial
     corner position.</para>
   </refsection>
   <refsection>
