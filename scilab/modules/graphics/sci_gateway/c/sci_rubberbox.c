@@ -25,7 +25,7 @@
 
 /*--------------------------------------------------------------------------*/
 static int getInitialRectangle(double initRect[4]);
-static BOOL getEditionMode(void);
+static int getEditionMode(int rhsPos);
 static int returnRectAndButton(const double selectedRect[4], int button);
 /*--------------------------------------------------------------------------*/
 static int getInitialRectangle(double initRect[4])
@@ -33,57 +33,61 @@ static int getInitialRectangle(double initRect[4])
   int rectNbRow = 0;
   int rectNbCol = 0;
   int rectStackPointer = 0;
+	int i;
+	int nbDims;
+	double * rect;
 
-  /* Rhs is 0 or 1 */
-  if (Rhs == 1 && GetType(1) == sci_matrix)
+	/* Initial rect is always in first position */
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&rectNbRow,&rectNbCol,&rectStackPointer);
+
+	/* We have found a matrix of double within the parameters check its dims */
+  nbDims = rectNbCol * rectNbRow;
+  if (nbDims != 2 && nbDims != 4)
   {
-    /* intial rect specified, not edition mode */
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&rectNbRow,&rectNbCol,&rectStackPointer);
+    return -1;
+  }
+    
+
+  /* pointer on the stack */
+  rect = getDoubleMatrixFromStack(rectStackPointer);
+
+	/* intialize to 0 */
+  for (i = 0; i < 4; i++)
+  {
+    initRect[i] = 0.0;
   }
 
-  if (rectStackPointer != 0)
+  /* Set specified values */
+  for (i = 0; i < nbDims; i++)
   {
-    /* intial rect has been found */
-    int i;
-
-    /* pointer on the stack */
-    double * rect = getDoubleMatrixFromStack(rectStackPointer);
-
-    /* We have found a matrix of double within the parameters check its dims */
-    int nbDims = rectNbCol * rectNbRow;
-    if (nbDims != 2 && nbDims != 4)
-    {
-      sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), "rubberbox", 1, 2, 4);
-      return -1;
-    }
-
-    /* intialize to 0 */
-    for (i = 0; i < 4; i++)
-    {
-      initRect[i] = 0.0;
-    }
-
-    /* Set specified values */
-    for (i = 0; i < nbDims; i++)
-    {
-      initRect[i] = rect[i];
-    }
-
-    /* initial rect was specified */
-    return 1;
+    initRect[i] = rect[i];
   }
-
-  /* initial rect was not specified */
-  return 0;
+	return 1;
 }
 /*--------------------------------------------------------------------------*/
-static BOOL getEditionMode(void)
+static int getEditionMode(int rhsPos)
 {
-  if (Rhs == 1 && GetType(1) == sci_boolean)
-  {
-    return TRUE;
-  }
-  return FALSE;
+	int stackPointer = 0;
+	int nbRow = 0;
+	int nbCol = 0;
+	BOOL isEditionModeOn;
+	GetRhsVar(rhsPos,MATRIX_OF_BOOLEAN_DATATYPE,&nbRow,&nbCol,&stackPointer);
+
+	if (nbRow * nbCol != 1)
+	{
+    return -1;
+	}
+
+	isEditionModeOn = *istk(stackPointer);
+	if (isEditionModeOn)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+
 }
 /*--------------------------------------------------------------------------*/
 static int returnRectAndButton(const double selectedRect[4], int button)
@@ -118,51 +122,111 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 {
   
   /* [final_rect, btn] = rubberbox([edition_mode, initial_rect]) */
-
-
-  /* Default values, intial rect and edition mode to false */
-  double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
-  int initialRectSpecified = 0;
+  
   int button = 0;
   double selectedRect[4];
 
-  CheckRhs(0,1);
+  CheckRhs(0,2);
   CheckLhs(1,2);
 
-  /* Get intial rect if one */
-  initialRectSpecified = getInitialRectangle(initialRect);
-  if (initialRectSpecified == 1 )
-  {
-    /* edition mode is false if initial rect is specified */
-    rubberBox(sciGetCurrentSubWin(), TRUE, initialRect, selectedRect, &button);
-  }
-  else if (initialRectSpecified == 0)
-  {
-    /* no intial rect */
-    if (getEditionMode())
-    {
-      rubberBox(sciGetCurrentSubWin(), FALSE, NULL, selectedRect, &button);
-    }
-    else
-    {
-      /* no initial rect and no edition mode */
-      if (Rhs == 0)
-      {
-        /* ok no parameter at all */
-        rubberBox(sciGetCurrentSubWin(), TRUE, NULL, selectedRect, &button);
-      }
-      else
-      {
-        /* Wrong parameter specified, neither edition mode nor intial rect */
-        sciprint(_("%s: Wrong type for input argument: Matrix or boolean expected.\n"), "fname");
-      }
-    }
-  }
-  else if (initialRectSpecified == -1)
-  {
-    /* error in initial rect */
-    return 0;
-  }
+	if (Rhs == 0)
+	{
+		/* rubberbox() */
+    rubberBox(sciGetCurrentSubWin(), TRUE, NULL, selectedRect, &button);
+	}
+	else if (Rhs == 1)
+	{
+		/* rubberbox(initial_rect) or rubberbox(edition_mode) */
+		if (GetType(1) == sci_matrix)
+		{
+			/* rubberbox(initial_rect) */
+			/* Default values, intial rect and edition mode to false */
+			double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
+			
+			if (getInitialRectangle(initialRect) == 1)
+			{
+				rubberBox(sciGetCurrentSubWin(), TRUE, initialRect, selectedRect, &button);
+			}
+			else
+			{
+				sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), fname, 1, 2, 4);
+				return 0;
+			}
+		}
+		else if (GetType(1) == sci_boolean)
+		{
+			/* rubberbox(editionMode) */
+			int editionModeStatus = getEditionMode(1);
+			if (editionModeStatus == 1)
+			{
+				/* rubberbox(%t) */
+				rubberBox(sciGetCurrentSubWin(), FALSE, NULL, selectedRect, &button);
+			}
+			else if (editionModeStatus == 0)
+			{
+				/* rubberbox(%f) */
+				rubberBox(sciGetCurrentSubWin(), TRUE, NULL, selectedRect, &button);
+			}
+			else
+			{
+				sciprint(_("%s: Wrong size for input argument #%d: A boolean expected\n."), fname, 1);
+				return 0;
+			}
+		}
+		else
+		{
+			/* Wrong parameter specified, neither edition mode nor intial rect */
+			sciprint(_("%s: Wrong type for input argument #%d: Real row vector or a boolean expected.\n"), fname, 1);
+			return 0;
+		}
+	}
+	else if (Rhs == 2)
+	{
+		/* rubberbox(initial_rect, edition_mode) */
+
+		/* Default values, intial rect and edition mode to false */
+		double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
+		int editionModeStatus;
+		
+		if (GetType(1) != sci_matrix)
+		{
+			sciprint(_("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 1);
+			return 0;
+		}
+
+		if (GetType(2) != sci_boolean)
+		{
+			sciprint(_("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
+			return 0;
+		}
+
+		/* Getting initial rect */
+		if(getInitialRectangle(initialRect) != 1)
+		{
+			sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), fname, 1, 2, 4);
+			return 0;
+		}
+
+		/* Getting edition mode */
+		editionModeStatus = getEditionMode(2);
+
+		if (editionModeStatus == 1)
+		{
+			/* rubberbox(initial_rect, %t) */
+			rubberBox(sciGetCurrentSubWin(), FALSE, initialRect, selectedRect, &button);
+		}
+		else if (editionModeStatus == 0)
+		{
+			/* rubberbox(initial_rect, %f) */
+			rubberBox(sciGetCurrentSubWin(), TRUE, initialRect, selectedRect, &button);
+		}
+		else
+		{
+			sciprint(_("%s: Wrong size for input argument #%d: A boolean expected\n."), fname, 2);
+			return 0;
+		}
+		
+	}
 
   /* Put values into the stack and return */
   return returnRectAndButton(selectedRect, button);
