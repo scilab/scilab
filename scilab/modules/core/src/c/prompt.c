@@ -54,7 +54,8 @@ void GetCurrentPrompt(char *CurrentPrompt)
 /*------------------------------------------------------------------------*/
 void SetTemporaryPrompt(char *tempPrompt)
 {
-  temporaryPrompt = strdup(tempPrompt);
+	if (temporaryPrompt) {FREE(temporaryPrompt);temporaryPrompt = NULL;}
+	temporaryPrompt = strdup(tempPrompt);
 }
 /*------------------------------------------------------------------------*/
 char *GetTemporaryPrompt(void)
