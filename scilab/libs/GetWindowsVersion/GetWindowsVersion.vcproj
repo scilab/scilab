@@ -6,7 +6,7 @@
 	ProjectGUID="{982BF37F-42C4-4D37-8D14-60521B141503}"
 	RootNamespace="GetWindowsVersion"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -202,7 +202,7 @@
 				WholeProgramOptimization="false"
 				PreprocessorDefinitions="EXPORT_GETWINDOWSVERSION_DLL"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"

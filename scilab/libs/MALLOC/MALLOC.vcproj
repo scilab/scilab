@@ -6,7 +6,7 @@
 	ProjectGUID="{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}"
 	RootNamespace="MALLOC"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -209,7 +209,7 @@
 				AdditionalIncludeDirectories="includes"
 				PreprocessorDefinitions="EXPORT_MALLOC_DLL"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
