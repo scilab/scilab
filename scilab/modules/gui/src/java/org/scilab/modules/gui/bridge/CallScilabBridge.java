@@ -2216,28 +2216,21 @@ public class CallScilabBridge {
 	 * Display a dialog to print the console text contents
 	 */
 	public static void printConsoleContents() {
-		// Get the PrinterJob object
-		PrinterJob printerJob = PrinterJob.getPrinterJob();
 
-		if (printerJob.printDialog(scilabPageFormat)) {
-			SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-			StyledDocument doc = scilabConsole.getConfiguration().getOutputViewStyledDocument();
-			String textToPrint = null;
+		SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+		StyledDocument doc = scilabConsole.getConfiguration().getOutputViewStyledDocument();
+		String textToPrint = null;
+			
 			try {
 				textToPrint = doc.getText(0, doc.getLength());
+				if (isWindowsPlateform()) {
+					/* Windows need line feed */
+					textToPrint = textToPrint.replaceAll("\n","\n\r");
+				}
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
-
-			Doc myDoc = new SimpleDoc(textToPrint, DocFlavor.STRING.TEXT_PLAIN, null);
-			DocPrintJob job = printerJob.getPrintService().createPrintJob();
-
-			try {
-				job.print(myDoc, scilabPageFormat);
-			} catch (PrintException e) {
-				e.printStackTrace();
-			}
-		}
+			printString(textToPrint, new String("Console"));
 	}
 
 	/**
@@ -2247,13 +2240,21 @@ public class CallScilabBridge {
 	 * @return execution status
 	 */
 	public static boolean printString(String theString, String pageHeader) {
-		
+
 		/* TODO use pageHeader */
-		
+
 		// Get the PrinterJob object
 		PrinterJob printerJob = PrinterJob.getPrinterJob();
+		Doc myDoc = null;
 
-		Doc myDoc = new SimpleDoc(theString, DocFlavor.STRING.TEXT_PLAIN, null);
+  	if (isWindowsPlateform()) {
+			/* Windows need line feed */
+		  theString = theString.replaceAll("\n","\n\r");
+		  myDoc = new SimpleDoc(theString.getBytes(), DocFlavor.BYTE_ARRAY.AUTOSENSE , null);
+		} else {
+			myDoc = new SimpleDoc(theString, DocFlavor.STRING.TEXT_PLAIN, null);
+		}
+
 		DocPrintJob job = printerJob.getPrintService().createPrintJob();
 
 		try {
@@ -2264,7 +2265,7 @@ public class CallScilabBridge {
 		}
 		return true;
 	}
-	
+		
 	/**
 	 * Display a dialog to print a file
 	 * @param fileName the name of the file
@@ -2273,24 +2274,31 @@ public class CallScilabBridge {
 	public static boolean printFile(String fileName) {
 		// Get the PrinterJob object
 		PrinterJob printerJob = PrinterJob.getPrinterJob();
-		
+
 		try {
 			/** Read file */
-			FileInputStream psStream = null; 
-			try { 
+			FileInputStream psStream = null;
+			try {
 				psStream = new FileInputStream(fileName);
 			} catch (FileNotFoundException ffne) {
 				ffne.printStackTrace();
 				return false;
 			}
 
-			Doc myDoc = new SimpleDoc(psStream, DocFlavor.INPUT_STREAM.TEXT_PLAIN_HOST, null);
-			DocPrintJob job = printerJob.getPrintService().createPrintJob();
+			Doc myDoc = null;
 			
+			if (isWindowsPlateform()) {
+				myDoc = new SimpleDoc(psStream, DocFlavor.INPUT_STREAM.AUTOSENSE  , null);
+			} else {
+				myDoc = new SimpleDoc(psStream, DocFlavor.STRING.TEXT_PLAIN, null);
+			}
+			
+			DocPrintJob job = printerJob.getPrintService().createPrintJob();
+
 			// Remove Orientation option from page setup because already managed in FileExporter
 			PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);
 			aset.add(OrientationRequested.PORTRAIT);
-			
+
 			job.print(myDoc, aset);
 			return true;
 		} catch (PrintException e) {
@@ -2298,7 +2306,7 @@ public class CallScilabBridge {
 			return false;
 		}
 	}
-	
+		
 	/**
 	 * Display a dialog to print a figure (Called from graphics figures menus)
 	 * @param figID the ID of the figure to print
