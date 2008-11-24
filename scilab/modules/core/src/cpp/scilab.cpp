@@ -63,6 +63,7 @@ int	get_option (const int argc, char *argv[])
 	int	i = 0;
 	int	good = 0;
 
+
 #ifdef DEBUG
 	std::cerr << "-*- Getting Options -*-"<< std::endl;
 #endif
@@ -186,14 +187,16 @@ int	main (int argc, char *argv[])
 	*/
 	if (execAst == true)
 	{
+
+		SetScilabEnvironment();
+		FuncManager *pFM = new FuncManager();
+
+		Add_pi();
+		Add_i();
+		ast::ExecVisitor *execMe = new ast::ExecVisitor();
+
 		if (timed) { _timer.start(); }
 		{
-			SetScilabEnvironment();
-			FuncManager *pFM = new FuncManager();
-
-			Add_pi();
-			Add_i();
-			ast::ExecVisitor *execMe = new ast::ExecVisitor();
 			try
 			{
 				Parser::getInstance()->getTree()->accept(*execMe);

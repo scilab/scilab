@@ -11,7 +11,7 @@
 */
 
 #include "execvisitor.hxx"
-
+#include "timer.hxx"
 using std::string;
 
 namespace ast
@@ -511,22 +511,13 @@ namespace ast
 	void ExecVisitor::visit (const SeqExp  &e)
 	{
 		ExecVisitor *execMe = new ast::ExecVisitor();
-/*		std::list<Exp *>::const_iterator	i;
-
-		std::list<Exp *> pList	= e.exps_get();
-		while(pList.size())
-		{
-			i = pList.begin();
-			(*i)->accept (*execMe);
-			//delete (*i);
-			//pList.erase(i);
-		}
-*/
 		std::list<Exp *>::const_iterator	i;
+
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
 			(*i)->accept (*execMe);
 		}
+
 		delete execMe;
 	}
 

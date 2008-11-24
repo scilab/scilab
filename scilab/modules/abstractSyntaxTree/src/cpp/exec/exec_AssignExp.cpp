@@ -16,9 +16,8 @@
 
 using std::string;
 
-double GetMaxValue(double *_pdblData, int _iSize);
-std::vector<std::vector<int> > ExpandList(std::vector<std::vector<int> > *_List);
-int GetMaxDim(std::vector<std::vector<int> > *_List, unsigned int iOrder);
+//std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List);
+void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 
 namespace ast
 {
@@ -38,7 +37,8 @@ namespace ast
 				bool bNew = false;
 				ExecVisitor* execMeArg = new ast::ExecVisitor();
 				CallExp *CallVar = (CallExp *)(&e.left_exp_get());
-				Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
+				Var = (SimpleVar*)&CallVar->name_get();
+				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
 				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
 				bool bSeeAsVector	= CallVar->args_get().size() == 1;
 
@@ -48,34 +48,52 @@ namespace ast
 				}
 
 				//Create list of indexes
-				std::vector<std::vector<int> > IndexList;
+				//std::vector<std::vector<int>> IndexList;
+				int *piTabSize = new int[CallVar->args_get().size()];
+				int *piMaxDim = new int[CallVar->args_get().size()];
+				int **piIndexList = NULL;
+				int iTotalCombi		= 1;
 
+				piIndexList = new int*[CallVar->args_get().size()];
+
+
+				int k = 0;
 				std::list<Exp *>::const_iterator	i;
-				std::vector<int> MaxDim;
-				for(i = CallVar->args_get().begin() ; i != CallVar->args_get().end() ; i++)
+				for(i = CallVar->args_get().begin() ; i != CallVar->args_get().end() ; i++,k++)
 				{
 					(*i)->accept(*execMeArg);
-					Double *pDbl	= execMeArg->result_get()->getAsDouble();
-					//indexed are matrix ou vector ?
-					double *pData = pDbl->real_get();
-					std::vector<int> SubList;
-					MaxDim.push_back((int)pData[0]);
-					for(int j = 0 ; j < pDbl->size_get() ; j++)
-					{
-						if((int)pData[j] > MaxDim[MaxDim.size()-1])
-						{
-							MaxDim[MaxDim.size()-1] = (int)pData[j];
-						}
-						SubList.push_back((int)pData[j]);
-					}
 
-					IndexList.push_back(SubList);
+					Double *pDbl	= execMeArg->result_get()->getAsDouble();
+					double *pData = pDbl->real_get();
+
+//					std::vector<int> SubList;
+					piTabSize[k] = pDbl->size_get();
+					piIndexList[k] = new int[piTabSize[k]];
+
+					piMaxDim[k] = (int)pData[0];
+					int iSize = pDbl->size_get();
+					for(int j = 0 ; j < iSize ; j++)
+					{
+						if((int)pData[j] > piMaxDim[k])
+						{
+							piMaxDim[k] = (int)pData[j];
+						}
+						//SubList.push_back((int)pData[j]);
+						piIndexList[k][j] = (int)pData[j];
+
+					}
+					iTotalCombi *= iSize;
+					//IndexList.push_back(SubList);
 				}
 
-				std::vector<std::vector<int> > IndexSeq;
-				IndexSeq = ExpandList(&IndexList);
+				int iTabSize = iTotalCombi * CallVar->args_get().size();
+				//std::vector<std::vector<int>> IndexSeq;
+//				IndexSeq = ExpandList(&IndexList);
+				int *piIndexSeq		= new int[iTabSize];
+				int iProductElem	= CallVar->args_get().size();
+				ExpandList(piIndexList, piTabSize, CallVar->args_get().size(), piIndexSeq);
 
-				/*I have, the indexlist expanded and the max index*/
+				/*I have  the indexlist expanded and the max index*/
 
 				if(execMeR->result_get()->getType() == InternalType::RealDouble)
 				{
@@ -89,9 +107,9 @@ namespace ast
 					{
 						//pOld can be null but only if bNew == true, in this case pOld->xxx was never evaluate
 						//if Index is a vector, we can enalge Out only if it's a vector
-						if(bNew || pOld->rows_get() < MaxDim[0] || pOld->cols_get() < MaxDim[1])
+						if(bNew || pOld->rows_get() < piMaxDim[0] || pOld->cols_get() < piMaxDim[1])
 						{//new or smaller
-							pOut = new Double(MaxDim[0], MaxDim[1], pIn->isComplex());
+							pOut = new Double(piMaxDim[0], piMaxDim[1], pIn->isComplex());
 
 							if(bNew == false)
 							{//copy old values
@@ -104,28 +122,31 @@ namespace ast
 
 								double *pOldR = pOld->real_get();
 								double *pOutR	= pOut->real_get();
+								int iRowOut		= pOut->rows_get();
+								int iRowOld		= pOld->rows_get();
+								int iColOld		= pOld->cols_get();
 
 								if(pOut->isComplex())
 								{
 									double *pOldI = pOld->img_get();
 									double *pOutI	= pOut->img_get();
 
-									for(int i = 0 ; i < pOld->rows_get() ; i++)
+									for(int i = 0 ; i < iRowOld ; i++)
 									{
-										for(int j = 0 ; j < pOld->cols_get() ; j++)
+										for(int j = 0 ; j < iColOld ; j++)
 										{
-											pOutR[j * pOut->rows_get() + i] = pOldR[j * pOld->rows_get() + i];
-											pOutI[j * pOut->rows_get() + i] = pOldI[j * pOld->rows_get() + i];
+											pOutR[j * iRowOut + i] = pOldR[j * iRowOld + i];
+											pOutI[j * iRowOut + i] = pOldI[j * iRowOld + i];
 										}
 									}
 								}
 								else
 								{
-									for(int i = 0 ; i < pOld->rows_get() ; i++)
+									for(int i = 0 ; i < iRowOld ; i++)
 									{
-										for(int j = 0 ; j < pOld->cols_get() ; j++)
+										for(int j = 0 ; j < iColOld ; j++)
 										{
-											pOutR[j * pOut->rows_get() + i] = pOldR[j * pOld->rows_get() + i];
+											pOutR[j * iRowOut + i] = pOldR[j * iRowOld + i];
 										}
 									}
 								}
@@ -142,11 +163,11 @@ namespace ast
 						{
 							if(pIn->cols_get() == 1)
 							{
-								pOut = new Double(MaxDim[0], 1, pIn->isComplex());
+								pOut = new Double(piMaxDim[0], 1, pIn->isComplex());
 							}
 							else if(pIn->rows_get() == 1)
 							{
-								pOut = new Double(1, MaxDim[0], pIn->isComplex());
+								pOut = new Double(1, piMaxDim[0], pIn->isComplex());
 							}
 							else
 							{
@@ -159,7 +180,7 @@ namespace ast
 						}
 						else
 						{//Out already exist
-							if(pIn->size_get() != 1 && pIn->cols_get() != 1 && pIn->rows_get() != 1 && pIn->size_get() == IndexSeq.size())
+							if(pIn->size_get() != 1 && pIn->cols_get() != 1 && pIn->rows_get() != 1 && pIn->size_get() == iTotalCombi)
 							{//bad size
 								std::ostringstream os;
 								os << "inconsistent row/column dimensions";
@@ -168,7 +189,7 @@ namespace ast
 								throw szErr;
 							}
 
-							if(pOld->size_get() >= MaxDim[0])
+							if(pOld->size_get() >= piMaxDim[0])
 							{//pOut bigger than pIn
 								pOut = pIT->getAsDouble();
 							}
@@ -177,11 +198,11 @@ namespace ast
 								bNew = true;
 								if(pOld->cols_get() == 1)
 								{
-									pOut = new Double(MaxDim[0], 1, pIn->isComplex());
+									pOut = new Double(piMaxDim[0], 1, pIn->isComplex());
 								}
 								else if(pOld->rows_get() == 1)
 								{
-									pOut = new Double(1, MaxDim[0], pIn->isComplex());
+									pOut = new Double(1, piMaxDim[0], pIn->isComplex());
 								}
 
 								double *pOldR = pOld->real_get();
@@ -216,7 +237,7 @@ namespace ast
 
 					//check if the size of In is compatible with the size of Out
 					if(pIn->rows_get() <= pOut->rows_get() && pIn->cols_get() <= pOut->cols_get() && 
-						(pIn->size_get() == 1 || pIn->size_get() == IndexSeq.size()))
+						(pIn->size_get() == 1 || pIn->size_get() == iTotalCombi))
 					{
 						//Copy values in pOut at indexed
 						double *pInR	= pIn->real_get();
@@ -228,29 +249,28 @@ namespace ast
 							{//a([]) = C
 								pOut->complex_set(true);
 								double *pInI	= pIn->img_get();
-								for(unsigned int i = 0 ; i < IndexSeq.size() ; i ++)
+								for(int i = 0 ; i < iTotalCombi ; i ++)
 								{
-									std::vector<int> SubList = IndexList[i];
-
 								}
 							}
 							else
 							{
 								if(bSeeAsVector == true)
 								{//a([]) = R
-									std::vector<int> SubList = IndexSeq[0];
-									for(unsigned int j = 0 ; j < SubList.size() ; j++)
+									for(int j = 0 ; j < iTotalCombi ; j++)
 									{
-										int iPos = SubList[j] - 1;
+										int iPos = piIndexSeq[j] - 1;
 										pOutR[iPos] = pInR[0];
 									}
 								}
 								else
 								{//a([],[]) = R
-									for(unsigned int i = 0 ; i < IndexSeq.size() ; i ++)
+									int iRowOut		= pOut->rows_get();
+									for(int i = 0 ; i < iTotalCombi ; i ++)
 									{
-										std::vector<int> SubList = IndexSeq[i];
-										int iPos = (SubList[0] - 1) + (SubList[1] - 1) * pOut->rows_get();
+										int iRow		= piIndexSeq[i * iProductElem] - 1;
+										int iCol		= piIndexSeq[i * iProductElem + 1] - 1;
+										int iPos		= iRow + iCol * iRowOut;
 										pOutR[iPos] = pInR[0];
 									}
 								}
@@ -262,29 +282,38 @@ namespace ast
 							{//a(?) = [C]
 								pOut->complex_set(true);
 								double *pInI	= pIn->img_get();
-								for(unsigned int i = 0 ; i < IndexSeq.size() ; i ++)
+								for(int i = 0 ; i < iTotalCombi ; i ++)
 								{
-									std::vector<int> SubList = IndexSeq[i];
 								}
 							}
 							else
 							{
 								if(bSeeAsVector)
 								{//a([]) = [R]
-									for(unsigned int i = 0 ; i < IndexSeq.size() ; i ++)
+									for(int i = 0 ; i < iTotalCombi ; i ++)
 									{
-										std::vector<int> SubList = IndexSeq[i];
-										int iPos = SubList[0] - 1;
+										int iPos = piIndexSeq[i * iProductElem] - 1;
 										pOutR[iPos] = pInR[i];
 									}
 								}
 								else
 								{//a([][]) = [R]
-									for(unsigned int i = 0 ; i < IndexSeq.size() ; i ++)
+									int iRowOut		= pOut->rows_get();
+									int iRowIn		= pIn->rows_get();
+									int iColIn		= pIn->cols_get();
+
+									for(int i = 0 ; i < iTotalCombi ; i ++)
 									{
-										std::vector<int> SubList = IndexSeq[i];
-										int iPos = (SubList[0] - 1) + (SubList[1] - 1) * pOut->rows_get();
-										pOutR[iPos] = pInR[i];
+										int iRow		= piIndexSeq[i * iProductElem] - 1;
+										int iCol		= piIndexSeq[i * iProductElem + 1] - 1;
+										int iPos		= iRow + iCol * iRowOut;
+
+										//try to "linearise pInR Oo
+										int iTempR = i / iColIn;
+										int iTempC = i % iColIn;
+										int iNew_i = iTempR + iTempC * iRowIn;
+
+										pOutR[iPos] = pInR[iNew_i];
 									}
 								}
 							}
@@ -331,42 +360,8 @@ namespace ast
 	}
 }
 
-
-double GetMaxValue(double *_pdblData, int _iSize)
-{
-	if(_pdblData == NULL || _iSize <= 0)
-	{
-		return 0;
-	}
-
-	double dblMax = _pdblData[0];
-	for(int i = 1 ; i < _iSize ; i++)
-	{
-		if(_pdblData[i] > dblMax)
-			dblMax = _pdblData[i];
-	}
-	return dblMax;
-}
-
-int GetMaxDim(std::vector<std::vector<int> > *_List, unsigned int iOrder)
-{
-	int iRef = 0;
-	for(unsigned int i = 0 ; i < _List->size() ; i++)
-	{
-		std::vector<int> SubList = (*_List)[i];
-		if(SubList.size() < iOrder)
-			return 0;
-
-		int iVal = (*_List)[i][iOrder];
-		if(iVal > iRef)
-		{
-			iRef = iVal;
-		}
-	}
-	return iRef;
-}
-
-std::vector<std::vector<int> > ExpandList(std::vector<std::vector<int> > *_List)
+/*
+std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List)
 {
 	std::vector<std::vector<int> > ReturnList;
 	if(_List->size() == 1)
@@ -400,4 +395,45 @@ std::vector<std::vector<int> > ExpandList(std::vector<std::vector<int> > *_List)
 		}
 	}
 	return ReturnList;
+}
+*/
+
+void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
+{
+	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
+	{
+		int iPreOcc = 1;
+		int iPostOcc = 1;
+		for(int k = 0 ; k < i ; k++)
+		{
+			if(k != i)
+			{
+				iPreOcc *= _piListSize[k];
+			}
+		}
+
+		for(int k = i + 1 ; k < _iListSizeSize ; k++)
+		{
+			if(k != i)
+			{
+				iPostOcc *= _piListSize[k];
+			}
+		}
+
+		int iSize = _piListSize[i];
+		for(int m = iSize - 1 ; m >= 0  ; m--)
+		{
+			for(int j1 = iPreOcc - 1 ; j1 >= 0 ; j1--)
+			{
+				for(int j2 = iPostOcc - 1 ; j2 >= 0 ; j2--)
+				{
+					//Bloc Offset				-> j1 * ( iPostOcc * iSize) * _iListSizeSize
+					//Offset in Bloc		-> m * iPostOcc * _iListSizeSize
+					//Offset in SubBloc -> j2 * _iListSizeSize + i
+					int iPos = j1 * ( iPostOcc * iSize) * _iListSizeSize + m * iPostOcc * _iListSizeSize + j2 * _iListSizeSize + i;
+					_piResultList[iPos] = _piList[i][m];
+				}
+			}
+		}
+	}
 }

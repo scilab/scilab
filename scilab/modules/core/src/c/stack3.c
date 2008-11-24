@@ -27,6 +27,7 @@
 #include "code2str.h"
 extern int C2F(dmcopy)(double *a, int *na, double *b, int *nb, int *m, int *n);
 extern int C2F(stackp)(int *id, int *macmod);
+extern int C2F(dcopy)();
 
 /*------------------------------------------------------*/
 void *Name2ptr(char *namex);
@@ -1791,11 +1792,20 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 
 	if(_pdblReal != NULL && _pdblImg != NULL)
 	{
+		int iTwo	= 2;
+		int iOne	= 1;
+		double *pImg = &poComplex[0].i;
+		double *pReal = &poComplex[0].r;
+
+		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+/*
 		for(iIndex = 0; iIndex < _iSize ; iIndex++)
 		{
 			poComplex[iIndex].r = _pdblReal[iIndex];
 			poComplex[iIndex].i = _pdblImg[iIndex];
 		}
+*/
 	}
 	else if(_pdblReal != NULL && _pdblImg == NULL)
 	{

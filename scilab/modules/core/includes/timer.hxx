@@ -45,7 +45,7 @@ public:
   // "short" time periods (less than an hour), the actual cpu time
   // used is reported instead of the elapsed time.
 
-  inline double elapsed_time()
+  inline double elapsed_time(bool _bRestart = false)
   {
     // FIXME : Tonio
 #ifndef _MSC_VER
@@ -54,7 +54,7 @@ public:
     struct tm *tm;
     gettimeofday(&tv, &tz);
     tm=localtime(&tv.tv_sec);
-    return ( 3600000.0 * (tm->tm_hour - start_hour) +
+    double dblTime = ( 3600000.0 * (tm->tm_hour - start_hour) +
 	     60000.0 * (tm->tm_min - start_min) +
 	     1000.0 * (tm->tm_sec - start_sec) +
 	     (1.0 * (tv.tv_usec - start_usec)) / 1000.0
@@ -62,8 +62,13 @@ public:
 #else
 		QueryPerformanceCounter(&iEnd);
 		double dblTime	=((iEnd.QuadPart - iStart.QuadPart) * 1000.0) / iFreq.QuadPart;
-		return dblTime;
 #endif
+
+		if(_bRestart == true)
+		{
+			start();
+		}
+		return dblTime;
   } // timer::elapsed_time
 public:
 	timer()
@@ -112,7 +117,7 @@ public:
   //===========================================================================
   // Print out an optional message followed by the current timer timing.
 
-  inline void check(const char* msg)
+  inline void check(const char* msg, bool _bRestart = false)
   {
     // Print an optional message, something like "Checking timer t";
     if (msg) std::cerr << "[" << msg << "]" << " : ";
@@ -121,6 +126,11 @@ public:
 	      << std::setprecision(3)
 	      << elapsed_time() << "] milliseconds"
 	      << std::endl;
+
+		if(_bRestart == true)
+		{
+			start();
+		}
   } // timer::check
 
 };
