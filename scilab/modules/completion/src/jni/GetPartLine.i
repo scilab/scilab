@@ -14,7 +14,7 @@
 %module GetPartLine
 
 %{
-#include "GetPartLine.h"
+#include "getPartLine.h"
 #include "MALLOC.h"
 %}
 

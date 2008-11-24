@@ -23,8 +23,8 @@ tclsci \
 localization \
 renderer \
 shell \
-completion \
 console \
+completion \
 graphic_export \
 gui \
 jvm \
