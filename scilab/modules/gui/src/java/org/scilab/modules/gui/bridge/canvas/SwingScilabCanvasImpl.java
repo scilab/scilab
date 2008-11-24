@@ -12,7 +12,6 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -29,7 +28,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyListener;
 import java.awt.event.InputMethodListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -51,146 +49,255 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
-
+import org.scilab.modules.gui.utils.Debug;
 
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
     private static final long serialVersionUID = -3110280842744630282L;
-    
+
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
 
-    /**
-     * Class used to fix a issue with AWT under Linux.
-     * It is apparently not possible to click on a lightweight (at least)
-     * component which is hidden behind the the canvas.
-     * Consequently to be able to send the mouse events to the axes we need to overide processEvents functions
-     * @author Jean-Baptiste silvy
-     */
-    private class GLEventCanvas extends GLCanvas {
-    	
-    	/** needed */
-		private static final long serialVersionUID = 1164643863862749375L;
+    private class GLDebugCanvas extends GLCanvas {
+	public GLDebugCanvas(GLCapabilities cap) {
+	    super(cap);
+	    init();
+	}
 
-		/**
-    	 * Default constructor
-    	 */
-    	public GLEventCanvas() {
-    		super();
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
-    	}
-    	
-    	/**
-    	 * @param cap cap to use
-    	 */
-    	public GLEventCanvas(GLCapabilities cap) {
-    		super(cap);
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
-    	}
-    	
-    	/**
-    	 * @return parent axes of the canvas
-    	 */
-    	private SwingScilabAxes getParentAxes() {
-    		return ((SwingScilabAxes) getParent());
-    	}
-    	
-    	/**
-    	 * @param e mouse event to process
-    	 */
-    	protected void processMouseEvent(MouseEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processMouseEvent(e);
-    	}
-    	
-    	/**
-    	 * @param e mouse event to process
-    	 */
-    	protected void processMouseMotionEvent(MouseEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processMouseMotionEvent(e);
-    	}
-    	
-    	/**
-    	 * @param e key event to process
-    	 */
-    	protected void processKeyEvent(KeyEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processKeyEvent(e);
-    	}
-    	
+	public GLDebugCanvas() {
+	    super();
+	    init();
+	}
+
+	private void init() {
+	    this.addMouseMotionListener(new MouseMotionListener() {
+		public void mouseDragged(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged"); 
+		    getParent().dispatchEvent(arg0);
+		}
+		public void mouseMoved(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved"); 
+		    getParent().dispatchEvent(arg0);
+		}
+	    });
+	    this.addMouseListener(new MouseListener() {
+		public void mouseClicked(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseEntered(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseExited(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseExited"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mousePressed(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mousePressed"); 
+		    getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseReleased(MouseEvent arg0) {
+		    Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved"); 
+		    getParent().dispatchEvent(arg0);
+
+		}
+
+	    });
+	}
+
+	//
+	// PAINT SECTION
+	//
+	// {
+	//
+	public void paint(Graphics g) {
+	    Debug.DEBUG("GLCanvas", "paint"); 
+	    super.paint(g);
+	}
+
+	public void display() {
+	    Debug.DEBUG("GLCanvas", " display");
+	    super.display();
+	}
+
+	public void repaint() {
+	    Debug.DEBUG("GLCanvas", "repaint");
+	    super.repaint();
+	}
+
+	public void update(Graphics g) {
+	    Debug.DEBUG("GLCanvas", " update"); 
+	    super.update(g);
+	}
+	public void validate() {
+	    Debug.DEBUG("GLCanvas", " validate");
+	    super.validate();
+	}	
+
+	public void invalidate() {
+	    Debug.DEBUG("GLCanvas", " invalidate");
+	    super.invalidate();
+	}
+
+	public void revalidate() {
+	    Debug.DEBUG("GLCanvas", " revalidate --> !!! WARNING !!!");
+	}
+	//
+	// }
+	//	
+//	/**
+//	* @param e mouse event to process
+//	*/
+//	protected void processMouseEvent(MouseEvent e) {
+//	Debug.DEBUG("GLCanvas", " processMouseEvent");
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processMouseEvent(e);
+//	}
+
+//	/**
+//	* @param e mouse event to process
+//	*/
+//	protected void processMouseMotionEvent(MouseEvent e) {
+//	Debug.DEBUG("GLCanvas", " processMouseMotionEvent ");
+//	Thread.currentThread().dumpStack();
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processMouseEvent(e);
+//	}
+
+//	/**
+//	* @param e key event to process
+//	*/
+//	protected void processKeyEvent(KeyEvent e) {
+//	Debug.DEBUG("GLCanvas", " processKeyEvent");
+//	e.setSource(getParent());
+//	((SwingScilabAxes) getParent()).processKeyEvent(e);
+//	}
+
     }
-    
+
+    private class GLDebugJPanel extends GLJPanel {
+	public GLDebugJPanel(GLCapabilities cap) {
+	    super(cap);
+	}
+
+	public GLDebugJPanel() {
+	    super();
+	}
+
+	//
+	// PAINT SECTION
+	//
+	// {
+	//
+	public void paint(Graphics g) {
+	    Debug.DEBUG("GLJPanel", "paint"); 
+	    super.paint(g);
+	}
+
+	public void display() {
+	    Debug.DEBUG("GLJPanel", "display");
+	    super.display();
+	}
+
+	public void repaint() {
+	    Debug.DEBUG("GLJPanel", "repaint");
+	    super.repaint();
+	}
+
+	public void update(Graphics g) {
+	    Debug.DEBUG("GLJPanel", "update"); 
+	    super.update(g);
+	}
+
+	public void validate() {
+	    Debug.DEBUG("GLJPanel", "validate");
+	    super.validate();
+	}	
+
+	public void invalidate() {
+	    Debug.DEBUG("GLJPanel", "invalidate");
+	    super.invalidate();
+	}
+
+	public void revalidate() {
+	    Debug.DEBUG("GLJPanel", "revalidate");
+	    //Thread.dumpStack();
+	    //System.exit(51);
+	    super.revalidate();
+	}
+
+	//
+	// }
+	//	
+    }
+
     static {
 	long lastTime = Calendar.getInstance().getTimeInMillis();
 	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
 	Frame tmpFrame = new Frame();
 	tmpFrame.add(tmpCanvas);
 	tmpFrame.setVisible(true);
-	
+
 	tmpCanvas.getContext().makeCurrent();
 	GL gl = tmpCanvas.getGL();
-	DEBUG("=======================================");
-	DEBUG("os.name="+System.getProperty("os.name"));
-	DEBUG("os.arch="+System.getProperty("os.arch"));
-	DEBUG("=======================================");
-	DEBUG("GL_VENDOR="+gl.glGetString(GL.GL_VENDOR));
-	DEBUG("GL_RENDERER="+gl.glGetString(GL.GL_RENDERER));
-	DEBUG("GL_VERSION="+gl.glGetString(GL.GL_VERSION));
-	//DEBUG("GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
-	DEBUG("=======================================");
+	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	Debug.DEBUG("SwingScilabCanvasImpl", "os.name="+System.getProperty("os.name"));
+	Debug.DEBUG("SwingScilabCanvasImpl", "os.arch="+System.getProperty("os.arch"));
+	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	Debug.DEBUG("SwingScilabCanvasImpl", "GL_VENDOR="+gl.glGetString(GL.GL_VENDOR));
+	Debug.DEBUG("SwingScilabCanvasImpl", "GL_RENDERER="+gl.glGetString(GL.GL_RENDERER));
+	Debug.DEBUG("SwingScilabCanvasImpl", "GL_VERSION="+gl.glGetString(GL.GL_VERSION));
+	//Debug.DEBUG("SwingScilabCanvasImpl", "GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
+	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
 	//System.getProperties().list(System.err);
 	tmpCanvas.getContext().release();
 	tmpFrame.remove(tmpCanvas);
 	tmpFrame.setVisible(false);
 	tmpFrame.dispose();
-	DEBUG("Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
-	
+	Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
+
 	// FIXME : must put this to true when Driver is too stupid
 	noGLJPanel = false;
     }
-    
+
     GLCanvas realGLCanvas;
     GLJPanel realGLJPanel;
     boolean enableGLCanvas = forceGLCanvas || noGLJPanel;
-    
+
     /**
      * Change Global property forceGLCanvas
      * if no GLJPanel is available, GLCanvas is forced
      */
     public static boolean switchToGLCanvas(boolean onOrOff) {
-        DEBUG("switchToGLCanvas " + onOrOff);
+	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
 	forceGLCanvas = noGLJPanel || onOrOff;
 	return forceGLCanvas;
     }
-    
-    /**
-     * DEBUG function
-     */
-    private static void DEBUG(String msg) {
-	 System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
-    }
-    
+
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLEventCanvas();
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
+	    realGLCanvas = new GLDebugCanvas();
 	}
 	else {
-	    DEBUG("Using GLJPanel for OpenGL implementation.");
-	    realGLJPanel= new GLJPanel();
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
+	    realGLJPanel= new GLDebugJPanel();
 	}
     }
 
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLEventCanvas(cap);
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
+	    realGLCanvas = new GLDebugCanvas(cap);
 	}
 	else {
-	    DEBUG("Using GLJPanel for OpenGL implementation.");
-	    realGLJPanel = new GLJPanel(cap);
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
+	    realGLJPanel = new GLDebugJPanel(cap);
 	}
     }
 
@@ -216,10 +323,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	getAsGL().addGLEventListener(arg0);
     }
 
-    public void display() {
-	getAsGL().display();
-    }
-
     public boolean getAutoSwapBufferMode() {
 	return getAsGL().getAutoSwapBufferMode();
     }
@@ -229,15 +332,12 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GL getGL() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "getGL");
 	return getAsGL().getGL();
     }
 
     public void removeGLEventListener(GLEventListener arg0) {
 	getAsGL().removeGLEventListener(arg0);
-    }
-
-    public void repaint() {
-	getAsGL().repaint();
     }
 
     public void setAutoSwapBufferMode(boolean arg0) {
@@ -376,7 +476,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public boolean postEvent(Event arg0) {
-	DEBUG("postEvent(Event arg0)");
+	Debug.DEBUG(this.getClass().getSimpleName(), "postEvent(Event arg0)");
 	return getAsComponent().postEvent(arg0);
     }
 
@@ -389,10 +489,12 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void setVisible(boolean arg0) {
+	Debug.DEBUG(this.getClass().getSimpleName(), "setVisible : "+arg0);
 	getAsComponent().setVisible(arg0);
     }
 
     public void doLayout() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "doLayout");
 	getAsComponent().doLayout();
     }
 
@@ -435,40 +537,65 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public boolean isVisible() {
 	return getAsComponent().isVisible();
     }
-    
+
     public boolean isFocusable() {
-    	return getAsComponent().isFocusable();
+	return getAsComponent().isFocusable();
     }
-     
-    
+
+
     public void setEnabled(boolean enable) {
-    	//getAsComponent().setEnabled(enable);
-    	// don't disable the GLCanvas
-		// otherwise mouse events will be lost because
-		// they won't reach the axes under Linux
-    	if (!enableGLCanvas) {
-    	    realGLJPanel.setEnabled(false);
-    	}
+	Debug.DEBUG(this.getClass().getSimpleName(), "setEnable : "+enable);
+	getAsComponent().setEnabled(enable);
+	// don't disable the GLCanvas
+	// otherwise mouse events will be lost because
+	// they won't reach the axes under Linux
+	/*
+	if (!enableGLCanvas) {
+	    realGLJPanel.setEnabled(false);
+	}
+	 */
     }
-    
+
     /**
      * @return true if this object can be scrolled,
      * false otherwise
      */
     public boolean isScrollable() {
-    	return (!enableGLCanvas);
+	return (!enableGLCanvas);
     }
-    
+
+    //
+    // PAINT SECTION
+    //
+    // {
+    //
+
     /**
      * Heavyweight component don't draw themselves automatically
      * So we need to call a function to force the redraw.
      * @param g graphics
      */
-    public void forcePaint(Graphics g) {
-    	if (enableGLCanvas) {
-    	    // GLJPanel draw themselves automatically
-    	    realGLCanvas.display();
-    	}
+    public void paint(Graphics g) {
+	Debug.DEBUG(this.getClass().getSimpleName(), "paint"); 
+	getAsComponent().paint(g);
     }
-    
+
+    public void display() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "display");
+	getAsGL().display();
+    }
+
+    public void repaint() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+	getAsGL().repaint();
+	//getAsComponent().repaint();
+    }
+
+    public void update(Graphics g) {
+	Debug.DEBUG(this.getClass().getSimpleName(), "update"); 
+	getAsComponent().update(g);
+    }
+    //
+    // }
+    //
 }

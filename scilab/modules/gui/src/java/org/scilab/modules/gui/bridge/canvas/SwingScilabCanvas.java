@@ -75,7 +75,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		setFocusable(false);
 		
 		// to avoid mouse events on canvas
-		setEnabled(false);
+		//setEnabled(false);
 		
 		
 	}

@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
@@ -20,7 +21,10 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
+import org.scilab.modules.gui.events.GlobalMouseEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
+import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
@@ -77,7 +81,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		// for event handling
 		this.setFocusable(true);
 		// Enable mouse Events sensitivity...
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
 
 		// for rotations
 		rotationTracker = null;
@@ -251,7 +255,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		
 		// we use a null layout. It's needed for uicontrol so they should resize when the canvas
 		// is resized. However, its imply to set the canvas size by hand.
-		ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
+		//ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
+		this.add(canvas.getAsComponent(), CANVAS_LAYER, TOP_POSITION);
 		
 		graphicCanvas = canvas;
 
@@ -292,8 +297,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public int addWidget(JComponent widget) {
 		// put the newly added object above any other objects
-		ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
-		
+		//ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
+		this.add(widget, WIDGET_LAYER, TOP_POSITION);
 		return getComponentZOrder(widget);
 	}
 
@@ -311,8 +316,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return index of member in ArrayList
 	 */
 	public int addFrame(SwingScilabFrame frame) {
-		ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
-		
+		//ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
+		this.add(frame, WIDGET_LAYER, TOP_POSITION);
 		return getComponentZOrder(frame);
 	}
 
@@ -363,43 +368,23 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param g graphics
 	 */
 	public void paint(Graphics g) {
-		if (graphicCanvas != null) {
-			graphicCanvas.forcePaint(g);
-		}
-		
-		super.paint(g);
+	    Debug.DEBUG(this.getClass().getSimpleName(), "paint");  
+	    super.paint(g);
+	    if (graphicCanvas != null) {
+		graphicCanvas.repaint();
+	    }
 	}
-	
+
+	public void repaint() {
+	    Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+	    super.repaint();
+	}	
+
 	/**
 	 * @return true if the canvas is scrollable
 	 */
 	public boolean isScrollable() {
 		return graphicCanvas == null || graphicCanvas.isScrollable();
-	}
-	
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processMouseEvent(MouseEvent e) {
-		super.processMouseEvent(e);
-	}
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processMouseMotionEvent(MouseEvent e) {
-		super.processMouseMotionEvent(e);
-	}
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processKeyEvent(KeyEvent e) {
-		super.processKeyEvent(e);
 	}
 
 }

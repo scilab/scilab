@@ -28,6 +28,8 @@ function [scs_m] = do_move(%pt, scs_m)
 
 //** 20 June 2008 : finally, the green light for a brand new revision 
 
+//** 24 Nov 2008 : Scilab 5 "graphics" update: no more "draw()" instruction
+
 //** Acquire the current window and axes handles 
   gh_curwin = scf(%win) ;
   gh_axes = gca(); 
@@ -312,15 +314,14 @@ function scs_m = moveblock(scs_m,k,xc,yc)
    
     //** --------> perverted links <----------------------------------
     //** the 'perverted' links are handled as full link
-    full_move = connected(find(ii==0))
+    full_move = connected(find(ii==0)) ;
     for i=full_move
 	oi = scs_m.objs(i);
 	//** xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1));
-	xpoly( oi.xx+(xc-xmin), oi.yy+(yc-ymin) ) ;
-	gh_poly_perlink(i) = gce()                ;
-	gh_poly_perlink(i).foreground = oi.ct(1)  ;
-	draw(gh_poly_perlink(i)) ;//** draw the poly (erase all the link   )
-	gh_interactive_move = [gh_interactive_move gh_poly_perlink(i)] ;
+	xpoly( oi.xx+(xc-xmin), oi.yy+(yc-ymin) ) ; //** create the polyline
+	gh_poly_perlink(i) = gce()                ; //** get the handle
+	gh_poly_perlink(i).foreground = oi.ct(1)  ; //** modify the color
+	gh_interactive_move = [gh_interactive_move gh_poly_perlink(i)] ; //** add the handle at the list
     end
 
     //** normal "InGoing" and "Outgoing" links 
@@ -332,7 +333,6 @@ function scs_m = moveblock(scs_m,k,xc,yc)
        xpoly( ngx, ngy ) ; //** create the polyline
        gh_poly_stdlink(i) = gce() ; //** get the handle
        gh_poly_stdlink(i).foreground = clr_nrm(i) ; //** modify the color
-       draw(gh_poly_stdlink(i)); //** draw the poly (erase the moving part of the link  )
        gh_interactive_move = [gh_interactive_move gh_poly_stdlink(i)] ; //** add the handle at the list
     end
 

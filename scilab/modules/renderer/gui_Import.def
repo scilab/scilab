@@ -1,0 +1,9 @@
+LIBRARY    scigui.dll
+
+
+EXPORTS
+;--------------------------
+; elementary_functions
+;--------------------------
+newFigure
+
