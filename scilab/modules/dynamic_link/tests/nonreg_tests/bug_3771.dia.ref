@@ -1,0 +1,22 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 3647 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3771
+//
+// <-- Short Description -->
+// Manage absolute path names in ilib_gen_loader
+name = "skeleton";
+tables = [..
+'c_sum','sci_csum';..
+'c_sub','sci_csub';..
+'c_abs','sci_abs2';..
+'c_spec','sci_eig2'..
+];
+libs = ['../../src/c/libmbtoolbox_c',SCI+"/bin/linear_algebra_f",SCI+"/bin/linear_algebra"];
+ilib_gen_loader(name,tables,libs);

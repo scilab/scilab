@@ -11,6 +11,9 @@
  */
 
 
+#include "stack-c.h"
+#include "finite.h"
+
 #if !(defined HAVE_FINITE) && (defined hppa)
 
 #include <math.h>
@@ -44,5 +47,12 @@ int finite(double x)
   hx = gh_u.parts.msw;
   return  (int)((__uint32_t)((hx&0x7fffffff)-0x7ff00000)>>31);
 }
+
+
 #endif
 #endif
+
+int finiteComplex(doublecomplex x)
+{
+  return (finite(x.r)&&finite(x.i));
+}
