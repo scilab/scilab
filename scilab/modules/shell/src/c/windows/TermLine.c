@@ -12,6 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
+#include <wincon.h>
 #include <string.h>
 #include "TermLine.h"
 #include "HistoryManager.h"
@@ -19,6 +20,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "strdup_windows.h"
+#include "../../../windows_tools/src/c/scilab_windows/console.h"
 /*--------------------------------------------------------------------------*/
 /* TODO : remove static array */
 static char cur_line[4096];	/* current contents of the line */	
@@ -263,7 +265,20 @@ void clearCurrentLine(void)
 /*--------------------------------------------------------------------------*/
 static void backSpace(void)
 {
-	TerminalPutc(VK_BACK);
+	COORD pt;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	pt.X = csbi.dwCursorPosition.X;
+	pt.Y = csbi.dwCursorPosition.Y;
+
+	if ( (pt.X - 1) < 0 )
+	{
+		pt.X = getXConsoleScreenSize();
+		pt.Y = pt.Y - 1;
+		SetConsoleCursorPosition (GetStdHandle(STD_OUTPUT_HANDLE), pt);
+	}
+	else TerminalPutc(VK_BACK);
 }
 /*--------------------------------------------------------------------------*/
 static char *getCurrentPrompt(void)
