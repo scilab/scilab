@@ -1303,6 +1303,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\SciHandleTab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\sciMatrix.c"
 				>
 			</File>
@@ -2282,6 +2286,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sciCall.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\SciHandleTab.h"
 				>
 			</File>
 			<File
