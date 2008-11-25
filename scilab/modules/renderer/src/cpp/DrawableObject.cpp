@@ -91,17 +91,20 @@ void DrawableObject::familyHasChanged( void )
 void DrawableObject::parentSubwinChanged( void )
 {
   // just call the function on children
-  m_bNeedRedraw = true;
-  sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
-  while ( curSon != NULL )
-  {
-    if (   sciGetEntityType(curSon->pointobj) != SCI_UICONTROL
-        && sciGetEntityType(curSon->pointobj) != SCI_UIMENU)
-    {
-      getHandleDrawer( curSon->pointobj )->parentSubwinChanged();
-    }
-    curSon = curSon->pprev ;
-  }
+	if (!m_bNeedRedraw)
+	{
+		m_bNeedRedraw = true;
+		sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
+		while ( curSon != NULL )
+		{
+			if (   sciGetEntityType(curSon->pointobj) != SCI_UICONTROL
+					&& sciGetEntityType(curSon->pointobj) != SCI_UIMENU)
+			{
+				getHandleDrawer( curSon->pointobj )->parentSubwinChanged();
+			}
+			curSon = curSon->pprev ;
+		}
+	}
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::displayChildren( void )
