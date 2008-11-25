@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 c SCILAB function blkslvi
       subroutine intblkslvi(id)
-      logical getrhsvar, createvar, putlhsvar            
+      logical getrhsvar, putlhsvar            
       include 'stack.h'
 c
        nbvars=0

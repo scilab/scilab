@@ -11,7 +11,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       INCLUDE 'stack.h'
       integer iadr, sadr
       integer id(nsiz)
-      integer vol,v2,blank,ipb(6)
+      integer vol,blank,ipb(6)
       double precision er
 
       logical refa,refb

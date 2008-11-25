@@ -20,7 +20,6 @@ c     [al,be] = gspec(A,B)
       character fname*(*)
       character JOBVL, JOBVR
       double precision DZERO
-      complex*16 complex
       parameter ( DZERO=0.0D0 )
 
       minrhs=2

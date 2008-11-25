@@ -8,7 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt 
       subroutine intmode
       include 'stack.h'
-      integer cmode,topk
+
       logical checkrhs,checklhs,getscalar,cremat
 c
       rhs=max(rhs,0)

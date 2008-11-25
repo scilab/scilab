@@ -17,8 +17,6 @@
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]={
-	{ sci_savewave, "savewave"},
-	{ sci_loadwave, "loadwave"},
 	{ sci_Playsound,"PlaySound"},
 	{ sci_Beep,"beep"}
 };

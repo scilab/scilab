@@ -10,10 +10,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine i_r_i
 c     division a droite
       include 'stack.h'
-      integer iadr,sadr
+      integer iadr
 c     
       iadr(l)=l+l-1
-c      sadr(l)=(l/2)+1
 c     
       il2=iadr(lstk(top))
       if(istk(il2).lt.0) il2=iadr(istk(il2+1))

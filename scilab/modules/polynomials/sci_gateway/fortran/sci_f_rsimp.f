@@ -11,9 +11,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer iadr, sadr
       integer id(nsiz)
       integer vola,volb,vol
-      double precision er
       logical refr,chkvar,israt,ok
-      data blank/40/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

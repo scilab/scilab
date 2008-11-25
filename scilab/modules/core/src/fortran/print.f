@@ -17,7 +17,7 @@ c
       common / ptkeep / lwk
       integer itype,itypel,gettype
       integer fl,mode,m,n,it,lr,lc,nlr,lkeep,topk,lname,siz,vol,tops
-      integer namef(nlgh),percent,under,pchar
+      integer namef(nlgh),under,pchar
       logical getmat,ilog,getpoly,typer,clsave,getsimat,gethmat
       logical crewimat ,islss,getilist,getbmat,eptover
       character*4 name

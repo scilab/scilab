@@ -6,7 +6,7 @@
 	ProjectGUID="{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}"
 	RootNamespace="libjvm"
 	Keyword="Win32Proj"
-
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -221,7 +221,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"

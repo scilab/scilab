@@ -8,8 +8,8 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intcomp
       include 'stack.h'
-      integer cmode,topk,p
-      logical checkrhs,checklhs,getscalar,cremat
+      integer cmode,topk
+      logical checkrhs,checklhs,getscalar
       integer iadr,sadr
       integer semi
       data semi/43/

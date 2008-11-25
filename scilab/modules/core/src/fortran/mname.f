@@ -13,14 +13,13 @@ c     searches a macro name for overloaded  operations
 c     ================================================
       include 'stack.h'
       integer gettype
-      logical ilog,getilist,getsmat,first
+      logical first
 c
       parameter (nops=33)
       integer op,id(nsiz),name(nlgh),blank,percen,under,id1(nsiz)
       integer ops(nops),code(nops),top1,rhs1,codop
-      integer compat
       integer iadr
-      data compat/1/
+
       data blank/40/,percen/56/,under/36/
       data ops /53,45,46,47,48,49,62, 1, 2, 3,4,98,99,100,200,201,202,
      &          44,149,150,151,50,119,57,58,113,61,104,59,60,109,110,5/

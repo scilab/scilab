@@ -11,7 +11,7 @@ c     --------------------------
       character*(*) fname
       logical checkrhs,checklhs
       include 'stack.h'
-      logical cremat, getscalar
+      logical getscalar
 c     following common defines the initial database of type names
       integer maxtyp,nmmax,ptmax
       parameter (maxtyp=50,nmmax=200)

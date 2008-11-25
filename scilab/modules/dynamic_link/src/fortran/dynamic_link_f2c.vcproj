@@ -248,7 +248,7 @@
 				AdditionalIncludeDirectories="../../../../libs/f2c"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"

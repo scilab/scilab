@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intmtlbmode
       include 'stack.h'
-      integer offset
+
       logical checkrhs,checklhs,crebmat,getbmat,checkval
       common /mtlbc/ mmode
 c

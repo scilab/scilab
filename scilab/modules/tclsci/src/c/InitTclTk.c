@@ -52,7 +52,7 @@ static void *DaemonOpenTCLsci(void* in)
 	char *SciPath=NULL;
 	char TkScriptpath[PATH_MAX];
 	char MyCommand[2048];
-	BOOL tkStarted=TRUE;
+	BOOL tkStarted=FALSE;
 
 #ifndef _MSC_VER
 	DIR *tmpdir=NULL;
@@ -131,15 +131,21 @@ static void *DaemonOpenTCLsci(void* in)
 			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),getTclInterp()->result);
 		}
 		releaseTclInterp();
-
-		if ( Tk_Init(getTclInterp()) == TCL_ERROR)
-		{
-			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init): %s\n"),getTclInterp()->result);
-			tkStarted=FALSE;
+		if (getenv("SCI_DISABLE_TK")==NULL) { 
+			/* When SCI_DISABLE_TK is set in the env disable the TK init 
+			 * process. It is causing issues when Scilab is 
+			 * used through ssh.  */
+		  if ( Tk_Init(getTclInterp()) == TCL_ERROR)
+		    {
+		      releaseTclInterp();
+		      Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init): %s\n"),getTclInterp()->result);
+		    }else{
+				tkStarted=TRUE;
+			}
+		  releaseTclInterp();
 		}
 
-		releaseTclInterp();
+
 		sprintf(MyCommand, "set SciPath \"%s\";",SciPath);
 
 		if ( Tcl_Eval(getTclInterp(),MyCommand) == TCL_ERROR  )

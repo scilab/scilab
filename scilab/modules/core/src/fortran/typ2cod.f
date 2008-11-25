@@ -15,7 +15,7 @@ c     variable that began in istk(il)
       integer nmax
       parameter (nmax=8)
 c     following common defines the initial database of type names
-      integer maxtyp,nmmax,maxtypf,nmmaxf
+      integer maxtyp,nmmax
       parameter (maxtyp=50,nmmax=200)
       integer tp(maxtyp),ptr(maxtyp),ln(maxtyp),namrec(nmmax),ptmax
       common /typnams/ tp,ptr,ln,namrec,ptmax
@@ -66,7 +66,7 @@ c     initialize hard coded type names
 c     Copyright INRIA
       INCLUDE 'stack.h'
 c     following common defines the initial database of type names
-      integer maxtyp,nmmax,maxtypf,nmmaxf
+      integer maxtyp,nmmax
       parameter (maxtyp=50,nmmax=200)
       integer tp(maxtyp),ptr(maxtyp),ln(maxtyp),namrec(nmmax),ptmax
       common /typnams/ tp,ptr,ln,namrec,ptmax
@@ -154,7 +154,7 @@ c     type 130 : fptr
 c
 c     Copyright INRIA
 c     following common defines the initial database of type names
-      integer maxtyp,nmmax,maxtypf,nmmaxf
+      integer maxtyp,nmmax
       parameter (maxtyp=50,nmmax=200)
       integer tp(maxtyp),ptr(maxtyp),ln(maxtyp),namrec(nmmax),ptmax
       common /typnams/ tp,ptr,ln,namrec,ptmax

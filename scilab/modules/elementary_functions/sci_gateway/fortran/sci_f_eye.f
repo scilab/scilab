@@ -11,10 +11,9 @@ c
       INCLUDE 'stack.h'
       integer id(nsiz)
 
-      integer tops,speye(nsiz)
+      integer tops
       double precision s
       integer iadr,sadr
-      data speye/571349276,673720334,4*673720360/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

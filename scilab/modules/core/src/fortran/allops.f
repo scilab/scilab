@@ -12,11 +12,10 @@ c ======================================================================
 c     Calling function according to arguments type
 c ======================================================================
       include 'stack.h'
-      integer ogettype, vt,vt1,id(nsiz),r,op,extrac,bl(nsiz)
+      integer ogettype, vt,vt1,id(nsiz),r,op,bl(nsiz)
       logical compil,ptover
       integer iadr
 
-      data extrac/3/,bl/nsiz*673720360/
 c
       iadr(l)=l+l-1
 

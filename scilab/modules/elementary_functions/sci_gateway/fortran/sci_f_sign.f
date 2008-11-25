@@ -11,7 +11,7 @@ c
       INCLUDE 'stack.h'
       integer id(nsiz)
 
-      double precision sr,si,dlapy2
+      double precision sr,dlapy2
       integer iadr,sadr
 c
       iadr(l)=l+l-1
