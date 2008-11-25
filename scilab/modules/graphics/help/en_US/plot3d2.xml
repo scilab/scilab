@@ -234,9 +234,14 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
     <title>Description</title>
     <para><literal>plot3d2</literal> plots a surface defined by rectangular facets.
     (X,Y,Z) are three matrices which describe a surface. The surface is
-    composed of four sided polygons. The X-coordinates of a facet are given by
-    X(i,j),X(i+1,j),X(i,j+1),X(i+1,j+1). And similarly Y and Z are Y and Z
-    coordinates. The <literal>vect</literal> vector is used when multiple surfaces
+    composed of four sided polygons.
+	</para>
+	<para>
+	The X-coordinates of a facet are given by
+    X(i,j), X(i+1,j), X(i+1,j+1) and X(i,j+1). Similarly Y and Z matrices contain Y and Z-coordinates.
+    </para>
+	<para>
+	The <literal>vect</literal> vector is used when multiple surfaces
     are coded in the same (X,Y,Z) matrices. <literal>vect(j)</literal> gives the
     line at which the coding of the jth surface begins. Like in
     <literal>plot3d</literal>, the same properties are editable (see

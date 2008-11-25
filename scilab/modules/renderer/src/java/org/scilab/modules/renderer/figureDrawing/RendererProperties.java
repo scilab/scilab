@@ -193,7 +193,7 @@ public interface RendererProperties {
 	/**
 	 * Get the displacement in pixel that should be used for rotating axes
 	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the diplacement recording continue, false otherwise
+	 * @return true if the displacement recording continue, false otherwise
 	 */
 	boolean getRotationDisplacement(int[] displacement);
 

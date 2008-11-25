@@ -12,7 +12,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer id(nsiz)
 
       character*(*) fct
-      integer name(nlgh),name1(nlgh)
+      integer name(nlgh)
       integer percen,under
       data percen/56/,under/36/
       name(1)=percen
@@ -43,7 +43,7 @@ c     Copyright INRIA
       INCLUDE 'stack.h'
       integer id(nsiz)
       character*(*) fct
-      integer name(nlgh),name1(nlgh)
+      integer name(nlgh)
 
       n1=min(nf,24)
       call cvstr(n1,name,fct,0)

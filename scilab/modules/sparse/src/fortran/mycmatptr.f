@@ -26,7 +26,6 @@ C      implicit undefined (a-z)
       include 'stack.h'
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       il=iadr(lstk(lw))
 C     test particulier decouvert ds logic.f

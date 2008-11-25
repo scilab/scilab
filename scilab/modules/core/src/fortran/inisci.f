@@ -22,8 +22,6 @@ c====================================================================
       include 'stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2)
 c     
-c      integer         nunit,unit(50)
-c      common /units / nunit,unit
 c
 c     common for scicos debug mode
 
@@ -50,7 +48,7 @@ c     ippty: interfaces properties
 c     integer graphicsmodels
       logical first
       double precision dlamch
-      integer i,k,l,nc,mode(2),vsizg,stacksize
+      integer k,l,mode(2),vsizg,stacksize
       integer eps(nsiz),im(nsiz),exp(nsiz),pi(nsiz),bl(nsiz),io(nsiz)
       integer true(nsiz),false(nsiz),dollar(nsiz)
       integer idloc(nsiz)
@@ -72,7 +70,7 @@ c
       data dollar/673720359,nz1*673720360/
       data first/.true./
       data true/673717560,nz1*673720360/,false/673713976,nz1*673720360/
-      data nunit/50/
+      
 c     
       save /basbrk/,/mprot/
 c      save /units/
@@ -101,7 +99,6 @@ c     .  ------------------------------
 c     
 c     .  standard i/o initialization
 c     .  ----------------------------
-c      call iset(nunit,0,unit,1)
 c     .  rte = unit number for terminal input
       err=0
       if(ini1.ne.-3) then

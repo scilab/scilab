@@ -11,7 +11,7 @@ c
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE 'stack.h'
       integer id(nsiz)
-      double precision t,t1
+
       logical ref
       integer iadr,sadr
 c     

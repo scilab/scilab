@@ -11,7 +11,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "math.h"
+#include <stdlib.h>
+#include "core_math.h"
 #include "version.h"
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
@@ -38,7 +39,7 @@ __threadSignal	LaunchScilab;
 __threadLock	LaunchScilabLock;
 /*--------------------------------------------------------------------------*/
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   int i;
   int  no_startup_flag=0;

@@ -13,14 +13,10 @@ c
       character*(*) fname
       include 'stack.h'
 c     
-      integer iadr, sadr
-      integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
       double precision alpha,inf,un
       data un/1.0d0/
 c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
       rhs = max(0,rhs)
 c     
       inf=un/(1.0d0-un)

@@ -80,8 +80,8 @@ static int xlfont_one_rhs(char * fname)
 			int nbElements = 0;
 			char **fontsname = getAvailableFontsName(&nbElements);
 
-			m1 = 1;
-			n1 = nbElements;
+			m1 = nbElements;
+			n1 = 1;
 			CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, fontsname );
 
 			freeArrayOfString(fontsname,nbElements);

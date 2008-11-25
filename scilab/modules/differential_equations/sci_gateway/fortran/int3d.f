@@ -18,9 +18,9 @@ c      implicit undefined (a-z)
       integer iero 
       common/ierajf/iero
       external bint3d,fint3d
-      double precision epsabs,epsrel,result,abserr
+      double precision epsabs,epsrel
       logical getexternal,getrmat,type ,cremat,checkval,getscalar
-      integer topk,lr,katop,kydot,top2,lra,lrb,lc,gettype,top0
+      integer topk,lr,top2,lc,gettype,top0
 c
       integer iadr,sadr
       external setfint3d

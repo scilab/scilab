@@ -24,7 +24,7 @@
 #include <libintl.h>
 #include "charEncoding.h"
 
-#define _(String)   gettext(String)/** for console message*/
+#define _(String)  localeToUTF(gettext(String))/** for console message*/
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 
 #else

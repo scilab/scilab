@@ -11,10 +11,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer typs,topk
       logical eptover
 c
-      integer iadr,sadr
+      integer iadr
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       if (rhs .ne. 3) then
          call error(39)

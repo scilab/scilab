@@ -8,12 +8,8 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt 
       subroutine intmode
       include 'stack.h'
-      integer cmode,topk
+
       logical checkrhs,checklhs,getscalar,cremat
-      integer iadr,sadr
-c    
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c
       rhs=max(rhs,0)
       if(.not.checklhs('mode',1,1)) return

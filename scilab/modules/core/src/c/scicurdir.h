@@ -18,7 +18,7 @@
  * @param path : the path where Scilab should go
  * @param[out] err : the error code
  */
-int C2F(scichdir)(char *path,int *err);
+int scichdir(char *path,int *err);
 
 /**
  * Get scilab current directory 
@@ -26,7 +26,7 @@ int C2F(scichdir)(char *path,int *err);
  * @param[out] lpath : the length of the char * path
  * @param[out] err : the error code
  */
-int C2F(scigetcwd)(char **path,int *lpath,int *err);
+int scigetcwd(char **path,int *lpath,int *err);
 
 #endif /* __SCICURDIR_H__ */
 /*--------------------------------------------------------------------------*/

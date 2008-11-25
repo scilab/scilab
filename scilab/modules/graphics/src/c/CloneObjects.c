@@ -96,9 +96,6 @@ CloneText (sciPointObj * pthis)
   if (sciSetFontStyle(pobj,sciGetFontStyle (pthis)) == -1)
     return (sciPointObj *)NULL;
   
-  if (sciSetFontName(pobj, sciGetFontName (pthis), sciGetFontNameLength(pthis)) == -1)
-    return (sciPointObj *)NULL;
-  
   /* get the pointer on features */
   ppThisText = pTEXT_FEATURE( pthis ) ;
   ppCopyText = pTEXT_FEATURE( pobj  ) ;
@@ -400,24 +397,6 @@ int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
   sciFont * sourceFC = sciGetFontContext( pObjSource ) ;
   sciFont * destFC   = sciGetFontContext( pObjDest   ) ;
 
-  if ( destFC->fontnamelen != 0 )
-  {
-    FREE( destFC->pfontname ) ;
-    destFC->pfontname = NULL ;
-  }
-  
-  /* copy the font name */
-  if ( sourceFC->fontnamelen != 0 )
-  {
-    destFC->pfontname = MALLOC( sourceFC->fontnamelen * sizeof( char ) ) ;
-    if ( destFC->pfontname == NULL )
-    {
-      return -1 ;
-    }
-    strcpy( destFC->pfontname, sourceFC->pfontname ) ;
-  }
-  
-  destFC->fontnamelen          = sourceFC->fontnamelen         ;
   destFC->backgroundcolor      = sourceFC->backgroundcolor     ;
   destFC->foregroundcolor      = sourceFC->foregroundcolor     ;
   destFC->fonttype             = sourceFC->fonttype            ;

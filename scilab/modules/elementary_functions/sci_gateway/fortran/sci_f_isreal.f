@@ -11,7 +11,6 @@ c
       INCLUDE 'stack.h'
       integer id(nsiz)
       double precision eps,mx
-      integer tops,top2
       integer iadr,sadr
 c     
       iadr(l)=l+l-1

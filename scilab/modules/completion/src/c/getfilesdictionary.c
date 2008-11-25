@@ -13,14 +13,16 @@
 #include <stdio.h> /* sprintf */
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
-#include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
+#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"
 #include "cluni0.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/ 
 static void splitpath(char *composite,  char *path,  char *fname);
+static char **addPath(char **dictionary, int sizearray, char *path);
 /*--------------------------------------------------------------------------*/ 
-char **getfilesdictionary(char *somechars,int *sizearray)
+char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 {
 	char **dictionary = NULL;
 
@@ -46,8 +48,12 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 			int lpath = 0;
 			char *currentpath = NULL;
 
-			C2F(scigetcwd)(&currentpath,&lpath,&ierr);
-			if (currentpath) {strcpy(path,currentpath);}
+			scigetcwd(&currentpath,&lpath,&ierr);
+			if (currentpath) 
+			{
+				strcpy(path, currentpath);
+				strcat(path, DIR_SEPARATOR);
+			}
 		}
 		else
 		{
@@ -67,7 +73,12 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 		}
 
 		C2F(cluni0)(path,pathextended,&out_n,(long)strlen(path),PATH_MAX);
-		dictionary = findfiles(pathextended,filespec,&sizeListReturned);
+		dictionary = findfiles(pathextended, filespec, &sizeListReturned);
+		if (fullpath)
+		{
+			dictionary = addPath(dictionary, sizeListReturned, path);
+		}
+		
 		*sizearray = sizeListReturned;
 
         /* Add a NULL element at the end (to get number of items from JNI) */
@@ -116,5 +127,21 @@ static void splitpath(char *composite,  char *path,  char *fname)
 			strcpy(fname, composite);
 		}
 	}
+}
+/*--------------------------------------------------------------------------*/
+static char **addPath(char **dictionary, int sizearray, char *path)
+{
+	int i = 0;
+	for (i = 0;i < sizearray;i++)
+	{
+		char *newPath = NULL;
+		int newlength = strlen(dictionary[i]) + strlen(path) + 1;
+		newPath = (char *)MALLOC(sizeof(char)*(newlength));
+		sprintf(newPath,"%s%s",path,dictionary[i]);
+		FREE(dictionary[i]);
+		dictionary[i] = newPath;
+		
+	}
+	return dictionary;
 }
 /*--------------------------------------------------------------------------*/

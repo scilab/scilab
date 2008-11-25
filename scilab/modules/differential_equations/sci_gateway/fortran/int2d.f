@@ -20,7 +20,7 @@ c      implicit undefined (a-z)
       external bint2d,fint2d
       double precision tol,result,erro
       logical getexternal,getrmat,type ,cremat,checkval
-      integer topk,lr,katop,kydot,top2,lra,lrb,lc
+      integer topk,lr,top2,lc
 c
       integer iadr,sadr
       external setfint2d

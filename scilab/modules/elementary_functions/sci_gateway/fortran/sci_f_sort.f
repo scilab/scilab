@@ -14,8 +14,8 @@ c =========================================
 
       integer tops,sel
       integer iadr,sadr
-      integer modtest,rptest
-      external modtest,rptest
+      integer modtest
+      external modtest
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -167,7 +167,6 @@ c =========================================
       INCLUDE 'stack.h'
 c
       integer id(nsiz),tops,vol,sel
-      logical ref
       external strord
       integer strord
       integer iadr,sadr

@@ -16,7 +16,6 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 
 /**
  * Class used to retrieve synchronous mouse displacements

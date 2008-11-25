@@ -14,13 +14,12 @@ package org.scilab.modules.gui.events;
 
 import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 
 /**
@@ -28,6 +27,9 @@ import java.awt.event.MouseListener;
  * @author Jean-Baptiste Silvy
  */
 public class AxesRotationTracker extends MouseDisplacementTracker implements MouseListener, FocusListener {
+	
+	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/rotate.png";
+	private static final String CURSOR_ICON_NAME = "zoom-area";
 	
 	private boolean recordStarted;
 	private boolean recordEnded;
@@ -38,7 +40,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	
 	/**
 	 * default constructor
-	 * @param canvas canvas on which we want to recod mouse displacement
+	 * @param canvas canvas on which we want to record mouse displacement
 	 */
 	public AxesRotationTracker(Component canvas) {
 		super(canvas);
@@ -93,19 +95,30 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		if (!recordStarted) {
 			// first call
 			// change the mouse cursor
-			Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/rotate.png");
-			getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0, 0), "rotate"));
+			getTrackedCanvas().setCursor(ScilabSwingUtilities.createCursorFromIcon(ICON_PATH, CURSOR_ICON_NAME));
 			// wait for initialization with a first click
 			waitForClick(displacement);
-			
-			// start recording the mouse displacement
-			startRecording(clickPosX, clickPosY);
-			return true;
+			if (recordEnded) {
+				// the record has been canceled
+				reinit();
+				return false;
+			} else {
+				// start recording the mouse displacement
+				startRecording(clickPosX, clickPosY);
+				return true;
+			}
 		} else if (!recordEnded) {
 			// inside tracking loop
 			// get mouse displacement since last call
 			getMouseDisplacement(displacement);
-			return true;
+			
+			if (recordEnded) {
+				// record might have been canceled asynchronously
+				reinit();
+				return false;
+			} else {
+				return true;
+			}
 		} else {
 			// last call get current displacement and return
 			getImmediateMouseDisplacement(displacement);
@@ -118,15 +131,19 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	}
 	
 	/**
-	 * Manual disactivation of recording
+	 * Manual disabling of recording
 	 */
 	public void cancelRecording() {
 		endRecording();
-		reinit();
+		
+		// wake everyone if needed
+		synchronized (getLock()) {
+			getLock().notifyAll();
+		}
 	}
 	
 	/**
-	 * Start mouse tarcking.
+	 * Start mouse tracking.
 	 * @param initX initial X coordinate
 	 * @param initY initial Y coordinate
 	 */
@@ -148,6 +165,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		getTrackedCanvas().removeMouseListener(this);
 		getTrackedCanvas().removeFocusListener(this);
 		recordEnded = true;
+		recordStarted = true;
 	}
 	
 	/**
@@ -182,9 +200,18 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		if (isWaitingForClick) {
 			// the first click is occuring
 			// first check if it is a cancel click or a not
-			clickPosX = event.getX();
-			clickPosY = event.getY();
-			isWaitingForClick = false;
+			
+			if (event.getButton() == MouseEvent.BUTTON1) {
+				clickPosX = event.getX();
+				clickPosY = event.getY();
+				isWaitingForClick = false;
+			} else {
+				clickPosX = -1;
+				clickPosY = -1;
+				recordEnded = true;
+			}
+			
+			
 		
 			// wake the click waiter
 			synchronized (getLock()) {
@@ -226,9 +253,10 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 */
 	public void focusLost(FocusEvent event) {
 		// focus lost so stop recording
-		endRecording();
-		synchronized (getLock()) {
-			getLock().notifyAll();
+		
+		// dont't stop if focus is given to one of the tracked canvas children
+		if (event.getOppositeComponent() == null || event.getOppositeComponent().getParent() != getTrackedCanvas()) {
+			cancelRecording();
 		}
 	}
 

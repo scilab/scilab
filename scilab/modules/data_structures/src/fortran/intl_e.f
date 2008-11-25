@@ -16,12 +16,11 @@ c     Copyright INRIA
 c
 c
       integer rhs1,vol1,vol2,vol
-      integer op,top1,top2
+      integer top1,top2
 
       integer strpos
       external strpos
       logical ptover
-      integer id(nsiz)
       integer iadr,sadr
 c
 c

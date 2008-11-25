@@ -18,12 +18,14 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
-import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
@@ -69,8 +71,12 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		renderer = new SciRenderer(figureIndex);
 		this.addGLEventListener(renderer);
 		
-		// all the actions are done on the axes
+		// to avoid focusing on canvas
 		setFocusable(false);
+		
+		// to avoid mouse events on canvas
+		setEnabled(false);
+		
 		
 	}
 
@@ -179,7 +185,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
 	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
@@ -248,4 +254,54 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		getParentAxes().setCursor(newCursor);
 	}
 	
+	/**
+	 * The canvas is not focusable, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void addFocusListener(FocusListener listener) {
+		getParentAxes().addFocusListener(listener);
+	}
+	
+	/**
+	 * The canvas is not focusable, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void removeFocusListener(FocusListener listener) {
+		getParentAxes().removeFocusListener(listener);
+	}
+	
+	/**
+	 * The canvas is not enabled, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void addMouseListener(MouseListener listener) {
+		getParentAxes().addMouseListener(listener);
+	}
+	
+	/**
+	 * The canvas is not enabled, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void removeMouseListener(MouseListener listener) {
+		getParentAxes().removeMouseListener(listener);
+	}
+	
+	/**
+	 * The canvas is not enabled, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void addMouseMotionListener(MouseMotionListener listener) {
+		getParentAxes().addMouseMotionListener(listener);
+	}
+	
+	/**
+	 * The canvas is not enabled, so add the listener to the parent instead
+	 * @param listener listener to add
+	 */
+	public void removeMouseMotionListener(MouseMotionListener listener) {
+		getParentAxes().removeMouseMotionListener(listener);
+	}
+	
+	
+
 }	

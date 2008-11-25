@@ -41,21 +41,20 @@ int sci_xchange( char * fname, unsigned long fname_len )
   CheckRhs(3,3);
   CheckLhs(1,3);
 
-  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-  CheckSameDims(1,2,m1,n1,m2,n2);
+  
 
   /* Convert coordinates */
   if ( strcmp(cstk(l3),"i2f") == 0) 
   {
     GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
+		CheckSameDims(1,2,m1,n1,m2,n2);
 
-    CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);
-    CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);
+    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);
     /* Get rectangle */
-    CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE,&one,&four,&l5);
+    CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&one,&four,&l5);
 
     xPixCoords = istk(l1);
     yPixCoords = istk(l2);
@@ -69,10 +68,14 @@ int sci_xchange( char * fname, unsigned long fname_len )
   }
   else 
   {
-    CreateVar(Rhs+3,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l3);
-    CreateVar(Rhs+4,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l4);
+		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+		GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
+		CheckSameDims(1,2,m1,n1,m2,n2);
+
+    CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l3);
+    CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l4);
     /* Get rectangle */
-    CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE,&one,&four,&l5);
+    CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&one,&four,&l5);
  
     xCoords = stk(l1);
     yCoords = stk(l2);
@@ -89,9 +92,9 @@ int sci_xchange( char * fname, unsigned long fname_len )
   *stk(l5 + 2) = viewingRect[2];
   *stk(l5 + 3) = viewingRect[3];
 
-  LhsVar(1)=Rhs+3;
-  LhsVar(2)=Rhs+4;
-  LhsVar(3)=Rhs+5;
+  LhsVar(1)=Rhs+1;
+  LhsVar(2)=Rhs+2;
+  LhsVar(3)=Rhs+3;
   return 0;
 }
 /*--------------------------------------------------------------------------*/

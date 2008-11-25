@@ -12,7 +12,7 @@ c     -------------------------------
 c     max interface 
 c     -------------------------------
       INCLUDE 'stack.h'
-      logical checkrhs,checklhs
+      logical checklhs
       integer gettype,itype,topk,sel
       integer iadr,sadr
       external memused,uppertype, mtlbsel

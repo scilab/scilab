@@ -27,7 +27,7 @@ c     on the sign of the unique input (if input>0 then  else )
 c
 c     Copyright INRIA
       double precision rpar(*),u(*)
-      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer flag,nevprt,ntvec,nrpar,ipar(*)
       integer nipar,nu
 
 c

@@ -37,8 +37,13 @@ function bOK = detectmsvc64tools()
                 'Software\Microsoft\VCExpress\9.0\Setup\VS', ..
                 'ProductDir');
      else
-       TXT = gettext('Microsoft Visual Studio C 2008 Compiler not found.');
-       warning(TXT);
+       show = displayWarningMsVC();
+		   if show then
+		     TXT = gettext('Microsoft Visual Studio C 2008 Compiler not found.');
+         warning(TXT);
+         clear TXT;
+         disableWarningMsVC();
+       end
        bOK = %F;
        return
      end
@@ -47,8 +52,13 @@ function bOK = detectmsvc64tools()
      if fileinfo(MSVCBIN64PATH) <> [] then
        bOK = %T;
      else
-       TXT = gettext('Microsoft Visual Studio C 2008 x64 Compiler not installed.');
-       warning(TXT);
+       show = displayWarningMsVC();
+       if show then
+         TXT = gettext('Microsoft Visual Studio C 2008 x64 Compiler not installed.');
+         warning(TXT);
+         clear TXT;
+         disableWarningMsVC();
+       end
        bOK = %F;
      end
      
@@ -57,4 +67,19 @@ function bOK = detectmsvc64tools()
   
 endfunction
 //==========================================
-
+function show = displayWarningMsVC()
+  settings_filename = '/.settings_warning_msvc';
+  settings_file = pathconvert(SCIHOME+settings_filename,%f,%t);
+  w = fileinfo(settings_file);
+  show = %t;
+  if w <> [] then
+	  show = grep(mgetl(settings_file),'displayWarningMSVCx64=no')==[]
+	end
+endfunction
+//==========================================
+function disableWarningMsVC()
+  settings_filename = '/.settings_warning_msvc';
+  settings_file = pathconvert(SCIHOME+settings_filename,%f,%t);
+  mputl('displayWarningMSVCx64=no',settings_file);
+endfunction
+//==========================================

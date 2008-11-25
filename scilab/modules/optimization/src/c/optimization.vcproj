@@ -218,7 +218,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -384,10 +384,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intqld.c"
-				>
-			</File>
-			<File
 				RelativePath=".\lsqrsolvtable.c"
 				>
 			</File>
@@ -430,10 +426,6 @@
 			>
 			<File
 				RelativePath="..\..\includes\gw_optim.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intqld.h"
 				>
 			</File>
 			<File

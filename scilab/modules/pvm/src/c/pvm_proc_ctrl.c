@@ -178,6 +178,8 @@
 
 #include "sci_pvm.h"
 #include "setgetSCIpath.h"
+#include "GetenvB.h"
+#include "PATH_MAX.h"
 #include "sciprint.h"
 #include "sciprint_nd.h"
 #include "localization.h"
@@ -232,8 +234,13 @@ char *scipvm_error_msg(int err)
     case PvmNotFound:    return _("PVM not found");     break;
     case PvmExists:      return _("PVM exists");     break;
 #else
+#ifdef PvmNoEntry
     case PvmNoEntry:     return _("No such (group,instance)");     break;
+#endif
+
+#ifdef PvmDupEntry
     case PvmDupEntry:    return _("(group,instance) already exists");     break;
+#endif
 #endif
     default:             return _("Unknown Error"); break;
     }
@@ -258,78 +265,94 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 	argv[0] = "";
 	argv[1] = (char*)0;
 	if (!strcmp(hostfile, "null")) 
+	{
+		/* If hostfile is not specified, we try
+		 * $HOME/.pvmd.conf, then
+		 * $SCI/.pvmd.conf 
+	     * if both files are not found, let pvmd does his work
+		 */ 
+		static char HOME[PATH_MAX];
+		int nc = PATH_MAX;
+		GetenvB("HOME"  , HOME,nc);
+
+		if (!argc && (nc))
 		{
-			/* If hostfile is not specified, we try
-			 * $HOME/.pvmd.conf, then
-			 * $SCI/.pvmd.conf 
-			 * if both files are not found, let pvmd does his work
-			 */ 
-			if (!argc && (rd = getenv("HOME"))){
-				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
-					(void) fprintf(stderr, _("Error MALLOC in pvm_error\n"));
-					*res = PvmNoMem;
-					return;
-				}
-				strcpy(path, rd);
-				strcat(path, PVM_CONFIG_FILE); 
-				if (stat(path, &buf) == 0){
-					argc = 1;
-					argv[0] = path;
-					sciprint_nd(_("The configuration file %s is used.\n"), path);
-				} else {
-                                  ro = getenv("PVM_ROOT");
-                                  if (ro != NULL)
-                                    {
+			if ((path = (char *) MALLOC( (nc+strlen(PVM_CONFIG_FILE)+1) *sizeof(char))) == NULL) 
+			{
+				(void) fprintf(stderr, _("Error MALLOC in pvm_error\n"));
+				*res = PvmNoMem;
+				return;
+			}
+			strcpy(path, HOME);
+			strcat(path, PVM_CONFIG_FILE); 
+			if (stat(path, &buf) == 0)
+			{
+				argc = 1;
+				argv[0] = path;
+				sciprint_nd(_("The configuration file %s is used.\n"), path);
+			} 
+			else 
+			{
+				ro = getenv("PVM_ROOT");
+				if (ro != NULL)
+				{
 					sciprint_nd(_("Warning: PVM_ROOT is set to %s\n"),ro);
 					sciprint_nd(_("but there exists no configuration file:\n"));
 					sciprint_nd("%s\n", path);
 					FREE(path);
-                                    }
-                                  else
-                                    {
+				}
+				else
+				{
 					sciprint_nd(_("Warning: PVM_ROOT is not set.\n"),ro);
-                                    }
 				}
-			} /* PVM_ROOT + HOME */
-			if (!argc && (rd = getSCIpath())){
-				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_MODULE)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
-					(void) fprintf(stderr, _("%s: No more memory.\n"),"pvm_start");
-					*res = PvmNoMem;
-					return;
-				}
-				strcpy(path, rd);
-				strcat(path, PVM_MODULE); 
-				strcat(path, PVM_CONFIG_FILE); 
-				if (stat(path, &buf) == 0)
-                                  {
-                                    sciprint_nd(_("The standard configuration file $SCI%s will be used.\nWith SCI=%s\nSCI will have to be set on remote hosts\nin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
-                                    /* Standard Scilab configuration file needs env variables PVM_ROOT, SCI, PVM_ARCH */
-                                    /* If they are not set then return */
-                                    if (getenv("PVM_ROOT") == NULL || getenv("PVM_ARCH") == NULL || getenv("SCI"))
-                                      {
-                                        sciprint_nd(_("The standard configuration file $SCI%s%s needs the environment variables %s, %s, %s to be set. PVM can not be started.\n"),PVM_MODULE, PVM_CONFIG_FILE, "PVM_ROOT", "PVM_ARCH", "SCI");
-                                        *res = -1;
-                                        return;
-                                      }
-                                    argc = 1;
-                                    argv[0] = path;
-                                  } 
-                                else
-                                  {
-                                    FREE(path);
-                                    sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\nWe supposed that PVM and scilab are in standard place on your net\n (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
-				}
-			} /* SCI */
-		} else {
-			if (stat(hostfile, &buf) == -1){
-				sciprint(_("%s: No such file or directory.\n"), hostfile);
-			} else {
-				argv[0] = hostfile;
-				argc = 1;
 			}
 		}
+		/* PVM_ROOT + HOME */
+		if (!argc && (rd = getSCIpath()))
+		{
+			if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_MODULE)+strlen(PVM_CONFIG_FILE)+1)) == NULL) 
+			{
+				(void) fprintf(stderr, _("%s: No more memory.\n"),"pvm_start");
+				*res = PvmNoMem;
+				return;
+			}
+			strcpy(path, rd);
+			strcat(path, PVM_MODULE); 
+			strcat(path, PVM_CONFIG_FILE); 
+			if (stat(path, &buf) == 0)
+			{
+				sciprint_nd(_("The standard configuration file $SCI%s will be used.\nWith SCI=%s\nSCI will have to be set on remote hosts\nin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
+				/* Standard Scilab configuration file needs env variables PVM_ROOT, SCI, PVM_ARCH */
+				/* If they are not set then return */
+				if (getenv("PVM_ROOT") == NULL || getenv("PVM_ARCH") == NULL || getenv("SCI"))
+				{
+					sciprint_nd(_("The standard configuration file $SCI%s%s needs the environment variables %s, %s, %s to be set. PVM can not be started.\n"),PVM_MODULE, PVM_CONFIG_FILE, "PVM_ROOT", "PVM_ARCH", "SCI");
+					*res = -1;
+					return;
+				}
+				argc = 1;
+				argv[0] = path;
+			} 
+			else
+			{
+				FREE(path);
+				sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\nWe supposed that PVM and scilab are in standard place on your net\n (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
+			}
+		} /* SCI */
+	}
+	else 
+	{
+		if (stat(hostfile, &buf) == -1)
+		{
+			sciprint(_("%s: No such file or directory.\n"), hostfile);
+		} 
+		else 
+		{
+			argv[0] = hostfile;
+			argc = 1;
+		}
+	}
 	*res = pvm_start_pvmd(argc, argv, block);
-
 } 
 
 

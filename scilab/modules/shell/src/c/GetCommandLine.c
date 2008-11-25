@@ -85,10 +85,6 @@ static void getCommandLine(void)
     {
       /* Call Term Management for NW and NWNI to get a string */
       __CommandLine = localeToUTF(TermReadAndProcess());
-      #ifdef _MSC_VER
-       appendLineToScilabHistory(__CommandLine);
-     #endif
-
     }
 }
 

@@ -3,8 +3,7 @@
 ### INRIA - Scilab 2006
 ##########
 
-OPTIMIZATION_C_SOURCES = src/c/intqld.c \
-src/c/sp.c \
+OPTIMIZATION_C_SOURCES = src/c/sp.c \
 src/c/fsolvetable.c \
 src/c/lsqrsolvtable.c \
 src/c/optimtable.c

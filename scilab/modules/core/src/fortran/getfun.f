@@ -23,7 +23,7 @@ c
       integer ssym,schar,slpt(6)
       integer first,ierr
       integer iadr,sadr
-      logical maj,isinstring,incomment,isopened
+      logical isinstring,incomment,isopened
 
       external getfastcode
       integer  getfastcode

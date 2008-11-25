@@ -20,7 +20,7 @@ C     NZA   : number of nonzeros of the LP constraint matrix.
 
 C
 C *** LOCAL VARIABLES
-      INTEGER*4I,J,COLLEN
+      INTEGER*4 COLLEN
       DOUBLE PRECISION SMALLA,VAL1,VAL2
       CHARACTER*8 NAME0,NAMRW1,NAMRW2,NAMCLN
       CHARACTER*8 NAMMPS

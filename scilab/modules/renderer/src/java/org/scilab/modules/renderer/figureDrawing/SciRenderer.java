@@ -14,6 +14,7 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
+
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
@@ -21,6 +22,8 @@ import javax.media.opengl.GL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
+
+
 
 
 
@@ -33,7 +36,6 @@ public class SciRenderer
 	
 	/** index of the figure to render */ 
 	private int renderedFigure;
-	
 	
 	
 	/**
@@ -58,36 +60,55 @@ public class SciRenderer
 		// nothing to render
 		return;
 	}
+	
 	GL gl = gLDrawable.getGL();
 	
-	if (!curFigure.getRenderingRequested()) {
+	/* To know if we are in double buffer mode (GLCanvas) or single buffer (GLJPanel) */
+	boolean isDoubleBuffered = curFigure.isDoubleBuffered();
+	
+	
+	if (!curFigure.getRenderingRequested() && !isDoubleBuffered) {
 		// figure rendering not requested by Scilab
 		// This is a swing event so just keep the buffer
 		// keep previous buffer
+		// However it does not work in double buffer mode
+		// because the front buffer is not always totally filled.
+		// If some part of the canvas are hidden by other windows it won't be filled.
+		// There is then an issue if the canvas need to be fully displayed since not
+		// all the buffer is drawn
+		// In this case we need a total redraw
+
+		// only one buffer, just keep it
 		gl.glLogicOp(GL.GL_NOOP);
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP);
+
 	} else {
-		// the requested display has been done, next one won't chnage display unless
+		// the requested display has been done, next one won't change display unless
 		// it is also requested
 		curFigure.setRenderingRequested(false);
 		if (curFigure.isRubberBoxModeOn()) {
+			// draw the rubber box above the lastly displayed canvas
+			curFigure.useSingleBuffer();
+			
+			// draw the rubberbox
 			curFigure.getRubberBox().drawInContext();
+			
+			curFigure.swapBuffers();
+			
 		} else {
-			// draw the hierarchy
+			
 			
 			// to enable anti_aliasing
 			//gl.glEnable(GL.GL_MULTISAMPLE);
 			
+			// draw the hierarchy
 			FigureScilabCall.displayFigure(renderedFigure);
+			
+			// end by swapping buffer
+			curFigure.swapBuffers();
 			//gl.glDisable(GL.GL_MULTISAMPLE);
 		}
-	}
-	
-	// seems that buffers will be swaped any way with GLJPanel
-//	if (!gLDrawable.getAutoSwapBufferMode()) {
-//		gLDrawable.swapBuffers();
-//	}
-          
+	}     
 
   }
     
@@ -106,6 +127,9 @@ public class SciRenderer
    */
   public void init(GLAutoDrawable gLDrawable) {
 	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
+	  
+	  // handle buffer swapping manually for better control.
+	  gLDrawable.setAutoSwapBufferMode(false);
 	  
 	  if (curFigure == null) {
 		  // figure has been destroyed
@@ -126,8 +150,9 @@ public class SciRenderer
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
+      
       // Color of texture will not be 
-		// mixed with the color of the polygon
+      // mixed with the color of the polygon
       gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_DECAL);
 
       gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
@@ -153,7 +178,7 @@ public class SciRenderer
    * this method.
    * @param gLDrawable The GLDrawable object.
    * @param x The X Coordinate of the viewport rectangle.
-   * @param y The Y coordinate of the viewport rectanble.
+   * @param y The Y coordinate of the viewport rectangle.
    * @param width The new width of the window.
    * @param height The new height of the window.
    */
@@ -163,9 +188,14 @@ public class SciRenderer
 	  if (curFigure == null) {
 		  return;
 	  }
+	  
+	  
+	  //System.err.println("Resizing figure " + renderedFigure);
+	  
 	  // if autoresize mode is off we don't actually need to do something
 	  // the reshape is not effective
-	  if (curFigure.getAutoResizeMode()) {
+	  if (curFigure.getAutoResizeMode() || curFigure.isDoubleBuffered()) {
+		  
 		  // Axes ticks may change with new shape so redraw all subwins
 		  FigureScilabCall.redrawSubwins(renderedFigure);
 	  

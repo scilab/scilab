@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 #bindings
 bind all <Alt-F> {}
 bind all <Alt-E> {}

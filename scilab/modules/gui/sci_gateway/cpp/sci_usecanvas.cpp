@@ -19,6 +19,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "gw_gui.h"
+#include "BOOL.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
@@ -26,7 +27,6 @@ using namespace org_scilab_modules_gui_bridge;
 int sci_usecanvas( char * fname, unsigned long fname_len )
 {
   int m1 = 0, n1 = 0, l1 = 0;
-
   CheckLhs(1,1);
 
   if (VarType(1) != sci_boolean)
@@ -43,7 +43,7 @@ int sci_usecanvas( char * fname, unsigned long fname_len )
       return FALSE;
     }
 
-  CallScilabBridge::useCanvasForDisplay(getScilabJavaVM(), *istk(l1));
+  CallScilabBridge::useCanvasForDisplay(getScilabJavaVM(), BOOLtobool(*istk(l1)));
 
   LhsVar(1)=0;
   PutLhsVar();

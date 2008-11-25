@@ -25,26 +25,17 @@ C
       parameter (nz1 = nsiz-1, nz2 = nsiz-2, nz3 = nsiz-3)
       parameter (iif=1,iwhile=2,iselect=3)
 C     
-      integer cmd(nsiz,cmdl),a,blank,name
-      integer id(nsiz),ennd(nsiz),sel(nsiz),while(nsiz),for(nsiz)
-      integer iff(nsiz),func(nsiz),endfunc(nsiz)
-      integer semi,comma,eol,percen,lparen,slash
+      integer cmd(nsiz,cmdl),blank
+      integer id(nsiz)
+      integer func(nsiz)
+      integer semi,comma,eol,lparen,slash
       integer count,equal,nchar,pchar
       logical eqid,cremat
       integer iadr
-      common/cmds/cmd
-      save cmds
 C     
-      data a/10/
       data eol/99/,semi/43/,comma/52/,lparen/41/,equal/50/,slash/48/
-      data blank/40/,name/1/,percen/56/
-      data ennd/671946510,nz1*673720360/
-      data sel/236260892,673717516,nz2*673720360/
-      data while/353505568,673720334,nz2*673720360/
-      data iff/673713938,nz1*673720360/
-      data for/672864271,nz1*673720360/
+      data blank/40/
       data func/202841615,387453469,nz2*673720360/
-      data endfunc/252516110,487331614,672602130,nz3*673720360/ 
    
 C     if, else, for, while, end, select, case, quit, return
       data ((cmd(i,j), i = 1,nsiz), j = 1,10)/
