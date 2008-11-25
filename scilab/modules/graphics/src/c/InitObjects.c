@@ -112,8 +112,6 @@ BOOL isAxesModel(sciPointObj * pObj)
 /* DJ.A 08/01/04 */
 int C2F(graphicsmodels) (void)
 {
-  sciHandleTab * newhd1 ;
-  sciHandleTab * newhd2 ;
   sciSubWindow * ppaxesmdl = NULL ;
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -129,17 +127,7 @@ int C2F(graphicsmodels) (void)
       return 0;
     }
 
-  if ((newhd1 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
-    {
-      FREE(pfiguremdl->pfeatures);
-      FREE(pfiguremdl);
-      strcpy(error_message,_("Default figure cannot be create.\n"));
-      return 0;
-    }
-  newhd1->pnext = (sciHandleTab *) NULL;
-  newhd1->pprev = (sciHandleTab *) NULL;
-  newhd1->index = (long)pfiguremdl;
-  (sciGetRelationship (pfiguremdl))->phandle = newhd1;
+	(sciGetRelationship (pfiguremdl))->handleIndex = generateNewHandle(pfiguremdl);
 
   if (!(sciAddThisToItsParent(pfiguremdl, (sciPointObj *)NULL)))
     {
@@ -181,17 +169,7 @@ int C2F(graphicsmodels) (void)
       strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
-  if ((newhd2 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
-    {
-      FREE(paxesmdl->pfeatures);
-      FREE(paxesmdl);
-      strcpy(error_message,_("Default axes cannot be create.\n"));
-      return 0;
-    }
-  newhd2->pnext = (sciHandleTab *) NULL;
-  newhd2->pprev = (sciHandleTab *) NULL;
-  newhd2->index = (long)paxesmdl;
-  (sciGetRelationship (paxesmdl))->phandle = newhd2;
+	(sciGetRelationship (paxesmdl))->handleIndex = generateNewHandle(paxesmdl);
 
   if (!(sciAddThisToItsParent (paxesmdl, pfiguremdl)))
     {

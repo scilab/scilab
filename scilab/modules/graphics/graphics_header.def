@@ -3,9 +3,3 @@ LIBRARY    graphics.dll
 
 EXPORTS
 
-sciHasFigures
-TerminateGraphics
-loadGraphicModule
-getDictionarySetProperties
-getDictionaryGetProperties
-

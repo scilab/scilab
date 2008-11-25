@@ -23,68 +23,67 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-static char filename[PATH_MAX];
-static int out_n;
-static long int lout;
-/*--------------------------------------------------------------------------*/
-int C2F(playsound)(char *fname,char *command,unsigned long fname_len);
+static int playsound(char *filename,char *command);
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : PlaySound */
 /*--------------------------------------------------------------------------*/
 int sci_Playsound (char *fname,unsigned long fname_len)
 {
-  char *command=NULL;
-  int m1,n1,l1,un=1,rep,m2,n2,l2;
-  CheckRhs(1,2);
-  CheckLhs(0,1);
-  /*  checking variable file */
-  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-  if ( Rhs == 2 )
-  {
-      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-      command = cstk(l2);
-  }
-  /*** first call to get the size **/
-  lout=PATH_MAX;
-  C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
-  rep = C2F(playsound)(filename,command,(int)strlen(filename));
-  if ( Lhs == 1 )
-  {
-      CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&l2);
-      *stk(l2)= rep;
-      LhsVar(1)=Rhs+2;
-  }
-  else
-  {
-    if ( rep == -1 )
+	char filename[PATH_MAX];
+	int out_n;
+	long int lout;
+	char *command=NULL;
+	int m1,n1,l1,un=1,rep,m2,n2,l2;
+	CheckRhs(1,2);
+	CheckLhs(0,1);
+	/*  checking variable file */
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+	if ( Rhs == 2 )
 	{
-		Scierror(999,_("%s: An error occurred: %s\n"),fname,_("Cannot play file.") );
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+		command = cstk(l2);
 	}
-    LhsVar(1)=0;
-  }
-  PutLhsVar();
-  return 0;
+	/*** first call to get the size **/
+	lout=PATH_MAX;
+	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
+
+	rep = playsound(filename,command);
+
+	if ( Lhs == 1 )
+	{
+		CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&l2);
+		*stk(l2) = rep;
+		LhsVar(1) = Rhs+2;
+	}
+	else
+	{
+		if ( rep == -1 )
+		{
+			Scierror(999,_("%s: An error occurred: %s\n"),fname,_("Cannot play file.") );
+			return 0;
+		}
+		LhsVar(1) = 0;
+	}
+	C2F(putlhsvar)();
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(playsound)(char *fname,char *command,unsigned long fname_len)
+static int playsound(char *filename, char *command)
 {
-
 #ifdef _MSC_VER
-  /* Stop Playing*/
-  PlaySound(NULL,NULL,SND_PURGE);
-  /* Play Wav file	*/
-  PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
-  return 0;
+	/* Stop Playing*/
+	PlaySound(NULL,NULL,SND_PURGE);
+	/* Play Wav file	*/
+	PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
+	return 0;
 #else
-  /* linux : a player should be detected by configure ?
-   */
-  /* !!!! This code MUST be rewrited !!! It is not at all the way of playing
-	 sound with Linux */
-  char system_cmd[PATH_MAX+10];
-  int rep ;
-  sprintf(system_cmd,"%s  %s > /dev/null 2>&1",(command == NULL) ? "play": command, filename);
-  rep = system(system_cmd);
-  return rep;
+	/* linux : a player should be detected by configure ? */
+	/* !!!! This code MUST be rewrited !!! It is not at all the way of playing sound with Linux */
+	char system_cmd[PATH_MAX+10];
+	int rep =0;
+	sprintf(system_cmd,"%s  %s > /dev/null 2>&1",(command == NULL) ? "play": command, filename);
+	rep = system(system_cmd);
+	return rep;
 #endif
 }
 /*--------------------------------------------------------------------------*/

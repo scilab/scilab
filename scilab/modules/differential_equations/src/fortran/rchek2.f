@@ -13,7 +13,7 @@ clll. optimize
       double precision rownd, rowns,
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround
       double precision rownr3, t0, tlast, toutc
-      double precision hming, t1, temp1, temp2, x
+      double precision hming, t1, x
       logical zroot, Mroot
       common /ls0001/ rownd, rowns(209),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,

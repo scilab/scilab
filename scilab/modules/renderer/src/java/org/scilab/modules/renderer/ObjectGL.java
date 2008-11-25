@@ -45,16 +45,6 @@ public class ObjectGL {
 	}
 	
 	/**
-	 * Specify index of parent figure to get all interesting data.
-	 * @param parentFigureIndex index of parentFigure
-	 */
-	public void setFigureIndex(int parentFigureIndex) {
-		// get the context from the drawing canvas
-		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
-		updateColorMap();
-	}
-	
-	/**
 	 * Called when the object is destroyed from C code
 	 * @param parentFigureIndex index of parent figure
 	 */

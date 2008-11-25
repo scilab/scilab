@@ -13,7 +13,6 @@ c     ==================================================
 c     find of a full standard or boolean matrix
       include 'stack.h'
 
-      double precision tv
 c
       logical ref
       integer nmax

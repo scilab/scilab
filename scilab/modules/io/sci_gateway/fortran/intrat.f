@@ -13,7 +13,6 @@ c
       integer tops
       double precision eps,xxx
       integer iadr,sadr
-      character bu1*(bsiz),bu2*(bsiz)
 c
 c     
       iadr(l)=l+l-1

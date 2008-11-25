@@ -13,7 +13,6 @@ c
 c
 c     interface for the arcsin function
 c
-      double precision sr,si
       integer iadr,sadr
 c
       iadr(l)=l+l-1

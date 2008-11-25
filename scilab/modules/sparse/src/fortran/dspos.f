@@ -178,7 +178,7 @@ c     no more place for c
      $            C_nelmax, C_mnel(*), C_icol(*), ierr
       double precision A_R(*), s
 
-      integer kA, kAf, kC, i, jA, k
+      integer kA, kAf, kC, i, k
 
       kAf = 0
       kC = 0

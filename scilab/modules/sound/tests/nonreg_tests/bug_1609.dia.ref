@@ -13,15 +13,5 @@
 // <-- Short Description -->
 // I can't freely choose "fs" parameter in the following example with 'sound'
 y=loadwave("SCI/modules/sound/demos/chimes.wav");
-Reading Wave file: Microsoft PCM format, 2 channels, 22050 samp/sec
-        88200 byte/sec, 4 block align, 16 bits/samp, 55684 data bytes
-Input file: using sample rate 22050
-	size shorts, style signed (2's complement), 2 channels
 sound(y,44100);
-Writing Wave file: Microsoft PCM format, 2 channels, 44100 samp/sec
-        176400 byte/sec, 4 block align, 16 bits/samp
-Finished writing Wave file, 55684 data bytes
 sound(y,22500);
-Writing Wave file: Microsoft PCM format, 2 channels, 22500 samp/sec
-        90000 byte/sec, 4 block align, 16 bits/samp
-Finished writing Wave file, 55684 data bytes

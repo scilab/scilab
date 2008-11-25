@@ -13,7 +13,7 @@ c     issue prompt with optional pause
 
       include 'stack.h'
       integer pause,escape,menusflag
-      character *20,linfo
+
       logical iflag,interruptible
       common /basbrk/ iflag,interruptible
 

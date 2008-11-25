@@ -23,7 +23,7 @@
 disp("activate your sound card, and run this file");
 disp("if you hear something, that means the playsnd & PlaySnd work");
 
-y=wavread("SCI/demos/signal/sound/chimes.wav");
+y=wavread('SCI/modules/sound/demos/chimes.wav');
 playsnd(y);
 
-PlaySound("SCI/demos/signal/sound/chimes.wav");
+PlaySound('SCI/modules/sound/demos/chimes.wav');

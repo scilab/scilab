@@ -218,7 +218,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PVM_EXPORTS;WIN32;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"

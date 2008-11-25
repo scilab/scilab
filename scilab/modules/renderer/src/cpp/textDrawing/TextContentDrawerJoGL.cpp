@@ -227,7 +227,7 @@ void TextContentDrawerJoGL::getUserSizePix(double & boxWidthPix, double & boxHei
 void TextContentDrawerJoGL::getPixelBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
   // just update parent figure to avoid problems with OpenGL
-  getTextContentDrawerJavaMapper()->setFigureIndex(sciGetNum(sciGetParentFigure(m_pDrawed->getDrawedObject())));
+	getTextContentDrawerJavaMapper()->initializeDrawing(sciGetNum(sciGetParentFigure(m_pDrawed->getDrawedObject())));
 
   try
   {

@@ -53,10 +53,6 @@ C     ..
 C     .. Local Arrays ..
       INTEGER shift(0:4),values(5)
 C     ..
-C     .. External Functions ..
-      INTEGER lennob
-      EXTERNAL lennob
-C     ..
 C     .. Intrinsic Functions ..
       INTRINSIC index,mod
 C     ..

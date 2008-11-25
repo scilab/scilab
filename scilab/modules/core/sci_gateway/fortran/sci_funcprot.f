@@ -10,7 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intfuncprot
       include 'stack.h'
       logical checkrhs,checklhs,cremat,getscalar
-      integer topk
+
       common /mprot/ macprt
 c
       rhs=max(rhs,0)

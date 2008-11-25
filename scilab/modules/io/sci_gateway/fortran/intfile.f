@@ -22,7 +22,7 @@ c
       data old/857368/,new/2100759/,scratc/1707037/,unknow/1316638/
       data sequen/1707548/,direct/1774093/,forma1/1775631/
       data unform/988958/
-      data clo/12/,ope/24/,rew/27/,bak/11/,last/21/,nclas/29/
+      data clo/12/,ope/24/,rew/27/,bak/11/,last/21/
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

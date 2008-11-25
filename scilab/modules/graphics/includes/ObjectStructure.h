@@ -145,23 +145,6 @@ typedef struct
 }/** */
 sciPointObj;  
 
-
-/**@name sciHandleTab
- * Used to determine handles associated with the entity
- */
-typedef struct tagHandleTab
-{/** point to the structure that uses this handle */
-  sciPointObj *pointobj;	
-  /** */
-  long index;
-  /** */
-  struct tagHandleTab *pprev;
-  /** */
-  struct tagHandleTab *pnext;
-}/** */
-sciHandleTab; 
-
-
 /**@name Sons
  * Used to determine the hierarchy
  sciPointObj *pointobj;
@@ -186,7 +169,7 @@ sciSons;
 typedef struct
 {
   /** is the scilab handle of THIS */
-  sciHandleTab * phandle;       
+  long handleIndex;       
   /** points to the parent structures */
   sciPointObj * pparent;	       
   /** points to the sons structures */

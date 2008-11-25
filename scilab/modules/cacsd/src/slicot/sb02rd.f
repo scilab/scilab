@@ -561,8 +561,8 @@ C     .. Local Scalars ..
      $                  WRKOPT
 C     .. External Functions ..
       LOGICAL           LSAME, SB02MR, SB02MS, SB02MV, SB02MW
-      DOUBLE PRECISION  DLAMCH, DLANGE, DLANSY
-      EXTERNAL          DLAMCH, DLANGE, DLANSY, LSAME, SB02MR, SB02MS, 
+      DOUBLE PRECISION  DLANSY
+      EXTERNAL          DLANSY, LSAME, SB02MR, SB02MS, 
      $                  SB02MV, SB02MW
 C     .. External Subroutines ..
       EXTERNAL          DAXPY, DCOPY, DGEES, DGESV, DLACPY, DLASCL,

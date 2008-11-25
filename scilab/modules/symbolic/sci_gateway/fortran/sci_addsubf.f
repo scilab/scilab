@@ -12,11 +12,11 @@ c     ----------------------------
       character*(*) fname
       include 'stack.h'
       
-      logical iseye,isnum
-      integer lparen,rparen,star,plus,minus,blanc,slash,bslash,symb
+      logical isnum
+      integer plus,minus
       integer iadr,sadr
-      data lparen/41/,rparen/42/,star/47/,plus/45/,minus/46/,blanc/40/
-      data slash/48/  ,bslash/49/
+      data plus/45/,minus/46/
+
       
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

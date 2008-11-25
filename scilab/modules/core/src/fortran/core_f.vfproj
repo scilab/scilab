@@ -19,7 +19,7 @@ copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/core_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
@@ -166,7 +166,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_errcatch.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_errclear.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_exists.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_format.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_funcprot.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_global.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_ieee.f"/>

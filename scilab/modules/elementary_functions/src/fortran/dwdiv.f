@@ -29,7 +29,7 @@ c     Serge Steer INRIA
 c
       double precision ar,br,bi,cr,ci
 c     c = a/b
-      double precision s,d,ars,brs,bis,dlamch
+      double precision s,d,ars,brs,bis
 c
       ierr=0
       if(bi.eq.0.0d0) then

@@ -131,9 +131,11 @@ void CreateScilabConsole(int ShowBanner)
 		printf(line);
 		wsprintf(line,"                         %s\n\n",SCI_VERSION_STRING);
 		printf(line);
-		strcpy(line,"                  Copyright (c) 1989-2008          \n");
+		strcpy(line,"                 Consortium Scilab (DIGITEO)\n");
 		printf(line);
-		strcpy(line,"              Consortium Scilab (INRIA, ENPC)      \n");
+		strcpy(line,"               Copyright (c) 1989-2008 (INRIA)\n");
+		printf(line);
+		strcpy(line,"               Copyright (c) 1989-2007 (ENPC)\n");
 		printf(line);
 		strcpy(line,"        ___________________________________________\n\n");
 		printf(line);

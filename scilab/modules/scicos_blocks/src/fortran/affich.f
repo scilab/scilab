@@ -22,7 +22,6 @@ c     z(6)=height
 c     z(7)=text_handle
 
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
-      double precision g(6)
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
       integer nipar,nu,ny
 
@@ -74,10 +73,6 @@ c     ---------------------------------------------------------------
 
       subroutine setblockwin(win,cur)
       integer win,cur
-      integer v,verb
-      double precision dv
-      data verb/0/
-
       return
       end
 
@@ -85,7 +80,6 @@ c     -------- Build the string and draw it inside the box  --------
       subroutine affdraw(form, val, winnum, textind)
       integer textind 
       integer form(2)
-      double precision g(6)
       double precision winnum
       double precision val
       character*40 fmt,value
@@ -110,7 +104,7 @@ c ------------------------------------------------------------------------------
       subroutine getgeom(g)
       include "stack.h"
       double precision g(*)
-      integer scicstring,ret
+      integer ret
       integer sadr,iadr
       iadr(l) = l + l - 1
       sadr(l)=(l/2)+1

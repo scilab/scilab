@@ -11,7 +11,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE 'stack.h'
       integer id(nsiz)
-      double precision pythag
       logical ref
       external memused
       integer memused
