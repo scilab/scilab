@@ -31,12 +31,12 @@
     <title>Calling Sequence</title>
 
     <synopsis>evals=spec(A)
-[X,diagevals]=spec(A)
+[R,diagevals]=spec(A)
 
-evals=spec(A,E)
-[al,be]=spec(A,E)
-[al,be,Z]=spec(A,E)
-[al,be,Q,Z]=spec(A,E)
+evals=spec(A,B)
+[alpha,beta]=spec(A,B)
+[alpha,beta,Z]=spec(A,B)
+[alpha,beta,Q,Z]=spec(A,B)
 </synopsis>
   </refsynopsisdiv>
 
@@ -53,7 +53,7 @@ evals=spec(A,E)
       </varlistentry>
 
       <varlistentry>
-        <term>E</term>
+        <term>B</term>
 
         <listitem>
           <para>real or complex square matrix with same dimensions as
@@ -79,7 +79,7 @@ evals=spec(A,E)
       </varlistentry>
 
       <varlistentry>
-        <term>al</term>
+        <term>alpha</term>
 
         <listitem>
           <para>real or complex vector, al./be gives the eigenvalues</para>
@@ -87,7 +87,7 @@ evals=spec(A,E)
       </varlistentry>
 
       <varlistentry>
-        <term>be</term>
+        <term>beta</term>
 
         <listitem>
           <para>real vector, al./be gives the eigenvalues</para>
@@ -95,16 +95,16 @@ evals=spec(A,E)
       </varlistentry>
 
       <varlistentry>
-        <term>X</term>
+        <term>R</term>
 
         <listitem>
-          <para>real or complex invertible square matrix, matrix
+          <para>real or complex invertible square matrix, matrix right
           eigenvectors.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Q</term>
+        <term>L</term>
 
         <listitem>
           <para>real or complex invertible square matrix, pencil left
@@ -113,7 +113,7 @@ evals=spec(A,E)
       </varlistentry>
 
       <varlistentry>
-        <term>Z</term>
+        <term>R</term>
 
         <listitem>
           <para>real or complex invertible square matrix, pencil right
@@ -128,41 +128,66 @@ evals=spec(A,E)
 
     <variablelist>
       <varlistentry>
-        <term>spec(A)</term>
+        <term>evals=spec(A)</term>
 
         <listitem>
-          <para>: <literal> evals=spec(A)</literal> returns in vector
-          <literal>evals</literal> the eigenvalues of
-          <literal>A</literal>.</para>
-
-          <para><literal> [evals,X] =spec(A)</literal> returns in addition the
-          eigenvectors <literal>A</literal> (if they exist). See also
-          <literal>bdiag</literal></para>
+          <para>returns in vector <literal>evals</literal> the
+          eigenvalues.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>spec(A,B)</term>
+        <term>[R,diagevals] =spec(A)</term>
 
         <listitem>
-          <para>: <literal>evals=spec(A,E)</literal> returns the spectrum of
-          the matrix pencil s E - A, i.e. the roots of the polynomial matrix s
-          E - A.</para>
+          <para>returns in the diagonal matrix <literal>evals</literal> the
+          eigenvalues and in <literal>R</literal> the right
+          eigenvectors.</para>
+        </listitem>
+      </varlistentry>
 
-          <para><literal>[al,be] = spec(A,E)</literal> returns the spectrum of
-          the matrix pencil s E - A, i.e. the roots of the polynomial matrix s
-          E - A. The eigenvalues are given by <literal>al./be</literal> and if
-          <literal>be(i) = 0</literal> the ith eigenvalue is at infinity. (For
-          <literal>E = eye(A), al./be</literal> is
-          <literal>spec(A)</literal>).</para>
+      <varlistentry>
+        <term>evals=spec(A,B)</term>
 
-          <para><literal> [al,be,Z] = spec(A,E)</literal> returns in addition
-          the matrix <literal>Z</literal> of generalized right eigenvectors of
+        <listitem>
+          <para>returns the spectrum of the matrix pencil A - s B, i.e. the
+          roots of the polynomial matrix s B - A.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[alpha,beta] = spec(A,B)</term>
+
+        <listitem>
+          <para>returns the spectrum of the matrix pencil <literal>A - s
+          B</literal>, i.e. the roots of the polynomial matrix <literal>A - s
+          B</literal>. Generalized eigenvalues alpha and beta are so that the
+          matrix <literal>A - alpha./beta B</literal> is a singular matrix.
+          The eigenvalues are given by <literal>al./be</literal> and if
+          <literal>beta(i) = 0</literal> the ith eigenvalue is at infinity.
+          (For <literal>B = eye(A), alpha./beta</literal> is
+          <literal>spec(A)</literal>). It is usually represented as the pair
+          (alpha,beta), as there is a reasonable interpretation for beta=0,
+          and even for both being zero.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[alpha,beta,R] = spec(A,B)</term>
+
+        <listitem>
+          <para>returns in addition the matrix <literal>R</literal> of
+          generalized right eigenvectors of the pencil.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[al,be,L,R] = spec(A,B)</term>
+
+        <listitem>
+          <para>returns in addition the matrix <literal>L</literal> and
+          <literal>R</literal> of generalized left and right eigenvectors of
           the pencil.</para>
-
-          <para><literal> [al,be,Q,Z] = spec(A,E)</literal> returns in
-          addition the matrix <literal>Q</literal> and <literal>Z</literal> of
-          generalized left and right eigenvectors of the pencil.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -171,20 +196,83 @@ evals=spec(A,E)
   <refsection>
     <title>References</title>
 
-    <para>Matrix eigeinvalues computations are based on the Lapack routines
-    DGEEV and ZGEEV.</para>
+    <para>Matrix eigenvalues computations are based on the Lapack
+    routines</para>
 
-    <para>Pencil eigeinvalues computations are based on the Lapack routines
+    <itemizedlist>
+      <listitem>
+        <para>DGEEV and ZGEEV when the matrix are not symmetric,</para>
+      </listitem>
+
+      <listitem>
+        <para>DSYEV and ZHEEV when the matrix are symmetric.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>A complex symetric matrix has conjugate offdiagonal terms and real
+    diagonal terms.</para>
+
+    <para>Pencil eigenvalues computations are based on the Lapack routines
     DGGEV and ZGGEV.</para>
+  </refsection>
+
+  <refsection>
+    <title>Real and complex matrices</title>
+
+    <para>It must be noticed that the type of the output variables, such as
+    evals or R for example, is not necessarily the same as the type of the
+    input matrices A and B. In the following paragraph, we analyse the type of
+    the output variables in the case where one computes the eigenvalues and
+    eigenvectors of one single matrix A.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Real A matrix</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Symetric</para>
+
+            <para>The eigenvalues and the eigenvectors are real.</para>
+          </listitem>
+
+          <listitem>
+            <para>Not symetric</para>
+
+            <para>The eigenvalues and eigenvectors are complex.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Complex A matrix</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Symetric</para>
+
+            <para>The eigenvalues are real but the eigenvectors are
+            complex.</para>
+          </listitem>
+
+          <listitem>
+            <para>Not symetric</para>
+
+            <para>The eigenvalues and the eigenvectors are complex.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
     <programlisting role="example">
-
 // MATRIX EIGENVALUES
-A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
+A=diag([1,2,3]);
+X=rand(3,3);
+A=inv(X)*A*X;
 spec(A)
 //
 x=poly(0,'x');
@@ -196,13 +284,13 @@ clean(inv(X)*A*X)
 
 // PENCIL EIGENVALUES
 A=rand(3,3);
-[al,be,Z] = spec(A,eye(A));al./be
-clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
-A=A+%i*rand(A);E=rand(A);
-roots(det(%s*E-A))   //complex case
+[al,be,R] = spec(A,eye(A));
+al./be
+clean(inv(R)*A*R)  //displaying the eigenvalues (generic matrix)
+A=A+%i*rand(A);
+E=rand(A);
+roots(det(A-%s*E))   //complex case
 
-
- 
   </programlisting>
   </refsection>
 
