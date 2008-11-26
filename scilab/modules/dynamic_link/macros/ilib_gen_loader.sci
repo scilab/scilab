@@ -61,7 +61,7 @@ function ilib_gen_loader(name,tables,libs)
     // direct call to addinter 
     table = tables(1);
     
-    mfprintf(fd,"list_functions = [ \n");
+    mfprintf(fd,"list_functions = [ ");
     for x = table(1:$,1)' 
       mfprintf(fd,"            ''%s'';\n",x);
     end
