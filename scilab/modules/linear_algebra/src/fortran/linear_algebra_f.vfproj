@@ -81,7 +81,6 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intdgecon.f"/>
 		<File RelativePath=".\intdgees0.f"/>
 		<File RelativePath=".\intdgees1.f"/>
-		<File RelativePath=".\intdgeev.f"/>
 		<File RelativePath=".\intdgehrd.f"/>
 		<File RelativePath=".\intdgelsy.f"/>
 		<File RelativePath=".\intdgeqpf3.f"/>
@@ -94,10 +93,8 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intdgetri.f"/>
 		<File RelativePath=".\intdggbal.f"/>
 		<File RelativePath=".\intdgges.f"/>
-		<File RelativePath=".\intdggev.f"/>
 		<File RelativePath=".\intdoldsvd.f"/>
 		<File RelativePath=".\intdpotrf.f"/>
-		<File RelativePath=".\intdsyev.f"/>
 		<File RelativePath=".\intfschur.f"/>
 		<File RelativePath=".\intgschur.f"/>
 		<File RelativePath=".\intogschur.f"/>
@@ -109,7 +106,6 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intzgecon.f"/>
 		<File RelativePath=".\intzgees0.f"/>
 		<File RelativePath=".\intzgees1.f"/>
-		<File RelativePath=".\intzgeev.f"/>
 		<File RelativePath=".\intzgehrd.f"/>
 		<File RelativePath=".\intzgelsy.f"/>
 		<File RelativePath=".\intzgeqpf3.f"/>
@@ -122,9 +118,7 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intzgetri.f"/>
 		<File RelativePath=".\intzggbal.f"/>
 		<File RelativePath=".\intzgges.f"/>
-		<File RelativePath=".\intzggev.f"/>
 		<File RelativePath=".\intzgschur.f"/>
-		<File RelativePath=".\intzheev.f"/>
 		<File RelativePath=".\intzoldsvd.f"/>
 		<File RelativePath=".\intzpotrf.f"/>
 		<File RelativePath=".\intzschur.f"/>
