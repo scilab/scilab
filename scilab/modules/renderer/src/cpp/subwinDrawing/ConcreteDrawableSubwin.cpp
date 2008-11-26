@@ -231,6 +231,9 @@ void ConcreteDrawableSubwin::updateScale(void)
     return;
   }
 
+	// to be sure that the inner structure is up to date.
+	update();
+
   sciPointObj * parentFigure = sciGetParentFigure(m_pDrawed);
   BOOL visible = sciGetVisibility(m_pDrawed);
   int pixelMode = sciGetXorMode(parentFigure);
@@ -247,6 +250,9 @@ void ConcreteDrawableSubwin::updateScale(void)
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::getNbXTicks(void)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pXTicksDrawer != NULL)
   {
     return m_pXTicksDrawer->getInitNbTicks();
@@ -259,6 +265,9 @@ int ConcreteDrawableSubwin::getNbXTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::getXTicksPos(double ticksPositions[], char ** ticksLabels)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pXTicksDrawer != NULL)
   {
     m_pXTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
@@ -270,6 +279,9 @@ void ConcreteDrawableSubwin::getXTicksPos(double ticksPositions[], char ** ticks
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::getNbYTicks(void)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pYTicksDrawer != NULL)
   {
     return m_pYTicksDrawer->getInitNbTicks();
@@ -282,6 +294,9 @@ int ConcreteDrawableSubwin::getNbYTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::getYTicksPos(double ticksPositions[], char ** ticksLabels)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pYTicksDrawer != NULL)
   {
     m_pYTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
@@ -293,6 +308,9 @@ void ConcreteDrawableSubwin::getYTicksPos(double ticksPositions[], char ** ticks
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::getNbZTicks(void)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pZTicksDrawer != NULL)
   {
     return m_pZTicksDrawer->getInitNbTicks();
@@ -305,6 +323,9 @@ int ConcreteDrawableSubwin::getNbZTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticksLabels)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pZTicksDrawer != NULL)
   {
     m_pZTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
@@ -316,6 +337,7 @@ void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticks
 /*------------------------------------------------------------------------------------------*/
 bool ConcreteDrawableSubwin::getXAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3])
 {
+
   if (m_pXTicksDrawer != NULL)
   {
     m_pXTicksDrawer->getAxisPosition(axisStart, axisEnd, ticksDirection);

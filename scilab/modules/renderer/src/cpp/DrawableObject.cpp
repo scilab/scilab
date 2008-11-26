@@ -27,8 +27,9 @@ namespace sciGraphics
 DrawableObject::DrawableObject( sciPointObj * drawed )
 {
   m_pDrawed     = drawed ;
-  m_bNeedDraw = true   ; // a first call to draw is necessary
-  m_bNeedRedraw = false  ;
+  m_bNeedDraw = true; // a first call to draw is necessary
+  m_bNeedRedraw = false;
+	m_bNeedUpdate = false; // the object is created with all the requested data
   m_pImp = NULL ;
   reinitMove();
 }
@@ -40,6 +41,8 @@ DrawableObject::~DrawableObject( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::display( void )
 {
+	// to be sure that the inner data are OK.
+	update();
   if ( m_bNeedDraw )
   {
     if ( draw() == SUCCESS)
@@ -64,10 +67,8 @@ void DrawableObject::display( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::hasChanged( void )
 {
-  DrawableObjectFactory updater ;
-  updater.setGraphicObj( m_pDrawed ) ;
-  updater.update() ;
   m_bNeedDraw = true ;
+	m_bNeedUpdate = true;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::familyHasChanged( void )
@@ -247,6 +248,17 @@ void DrawableObject::initializeDrawing( void )
 void DrawableObject::endDrawing( void )
 {
   getDrawableImp()->endDrawing() ;
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableObject::update(void)
+{
+	if (m_bNeedUpdate)
+	{
+		DrawableObjectFactory updater ;
+		updater.setGraphicObj( m_pDrawed ) ;
+		updater.update() ;
+		m_bNeedUpdate = false;
+	}
 }
 /*---------------------------------------------------------------------------------*/
 }
