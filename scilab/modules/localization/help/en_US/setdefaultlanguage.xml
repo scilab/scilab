@@ -57,6 +57,9 @@
     <para>You need to restart scilab, if you want to use menus.</para>
 
     <para>setdefaultlanguage('') resets language to the system value.</para>
+
+    <para>setdefaultlanguage is used only Windows. On others operating systems
+    , it returns always %f. </para>
   </refsection>
 
   <refsection>
