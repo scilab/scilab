@@ -1000,11 +1000,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -1129,10 +1129,6 @@
 			</File>
 			<File
 				RelativePath=".\msgstxt.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File
