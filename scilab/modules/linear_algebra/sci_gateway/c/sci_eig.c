@@ -22,21 +22,22 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(complexify)(int *num);
 
-extern int C2F(intdgeev)(char *fname, unsigned long fname_len);
-extern int C2F(intdsyev)(char *fname, unsigned long fname_len);
-extern int C2F(intzgeev)(char *fname, unsigned long fname_len);
-extern int C2F(intzheev)(char *fname, unsigned long fname_len);
-extern int C2F(intdggev)(char *fname, unsigned long fname_len);
-extern int C2F(intzggev)(char *fname, unsigned long fname_len);
+extern int intdsyev(char *fname, unsigned long fname_len);
+extern int intdgeev(char *fname, unsigned long fname_len);
+extern int intzgeev(char *fname, unsigned long fname_len);
+extern int intzheev(char *fname, unsigned long fname_len);
+extern int intdggev(char *fname, unsigned long fname_len);
+extern int intzggev(char *fname, unsigned long fname_len);
 
-/*--------------------------------------------------------------------------*/
-int C2F(inteig)(char *fname,unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 int C2F(inteig)(char *fname,unsigned long fname_len)
 {
   int *header1, *header2;
   int CmplxA, CmplxB;
-  int ret;int Symmetric;int X;
+  int ret;
+  int Symmetric;
+  int X;
 
   switch (Rhs) 
   {
@@ -48,17 +49,18 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 		}
 		header1 = (int *) GetData(1);
 		CmplxA=header1[3];
-		Symmetric = C2F(issymmetric)((X=1,&X));
+		X = 1;
+		Symmetric = C2F(issymmetric)(&X);
 		switch (CmplxA) 
 		{
 			case REAL:
 				switch (Symmetric) 
 				{
 					case NO :
-						ret = C2F(intdgeev)("spec",4L);
+						ret = intdgeev("spec",4L);
 					break;
 					case YES :
-						ret = C2F(intdsyev)("spec",4L);
+						ret = intdsyev("spec",4L);
 					break;
 				}
 			break;
@@ -67,10 +69,10 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 				switch (Symmetric) 
 				{
 					case NO :
-						ret = C2F(intzgeev)("spec",4L);
+						ret = intzgeev("spec",4L);
 					break;
 					case YES:
-						ret = C2F(intzheev)("spec",4L);
+						ret = intzheev("spec",4L);
 					break;
 				}
 			break;
@@ -104,12 +106,13 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 				{
 					case REAL :
 					/* A real, Breal */
-						ret = C2F(intdggev)("gspec",5L);
+						ret = intdggev("gspec",5L);
 					break;
 					case COMPLEX :
 					/* A real, B complex : complexify A */
-						C2F(complexify)((X=1,&X));
-						ret = C2F(intzggev)("gspec",5L);
+						X=1;
+						C2F(complexify)(&X);
+						ret = intzggev("gspec",5L);
 					break;
 					default:
 						Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
@@ -122,12 +125,13 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 				{
 					case REAL :
 					/* A complex, B real : complexify B */
-						C2F(complexify)((X=2,&X));
-						ret = C2F(intzggev)("gspec",5L);
+						X=2;
+						C2F(complexify)(&X);
+						ret = intzggev("gspec",5L);
 					break;
 					case COMPLEX :
 					/* A complex, B complex */
-						ret = C2F(intzggev)("gspec",5L);
+						ret = intzggev("gspec",5L);
 					break;
 					default:
 							Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),

@@ -923,6 +923,14 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+                        <File
+                                RelativePath="..\..\includes\doublecomplex.h"
+                                >
+                        </File>
+                        <File
+                                RelativePath="..\..\includes\scisparse.h"
+                                >
+                        </File>
 			<File
 				RelativePath=".\banier.h"
 				>

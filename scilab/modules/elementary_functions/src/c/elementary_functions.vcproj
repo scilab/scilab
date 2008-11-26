@@ -717,6 +717,14 @@
 				RelativePath="..\..\includes\xerhlt.h"
 				>
 			</File>
+                        <File
+                                RelativePath="..\..\includes\finite.h"
+                                >
+                        </File>
+                        <File
+                                RelativePath="..\..\includes\vfinite.h"
+                                >
+                        </File>
 		</Filter>
 		<Filter
 			Name="localization"

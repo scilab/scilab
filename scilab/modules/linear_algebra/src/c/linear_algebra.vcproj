@@ -451,6 +451,34 @@
 				RelativePath="..\..\sci_gateway\c\sci_svd.c"
 				>
 			</File>
+                        <File
+                                RelativePath=".\assembleEigenvectors.c"
+                                >
+                        </File>
+                        <File
+                                RelativePath=".\intdgeev.c"
+                                >
+                        </File>
+                        <File
+                                RelativePath=".\intdggev.c"
+                                >
+                        </File>
+                        <File
+                                RelativePath=".\intdsyev.c"
+                                >
+                        </File>
+                        <File
+                                RelativePath=".\intzgeev.c"
+                                >
+                        </File>
+                        <File
+                                RelativePath=".\intzggev.c"
+                                >
+                        </File>
+                        <File
+                                RelativePath=".\intzheev.c"
+                                >
+                        </File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -476,6 +504,10 @@
 				RelativePath=".\schur.h"
 				>
 			</File>
+                        <File
+                                RelativePath=".\assembleEigenvectors.h"
+                                >
+                        </File>
 		</Filter>
 		<Filter
 			Name="localization"
@@ -501,6 +533,14 @@
 				</File>
 			</Filter>
 		</Filter>
+                <File
+                        RelativePath="..\..\..\..\bin\blasplus.lib"
+                        >
+                </File>
+                <File
+                        RelativePath="..\..\..\..\bin\lapack.lib"
+                        >
+                </File>
 		<File
 			RelativePath="..\..\linear_algebra.iss"
 			>
