@@ -26,7 +26,10 @@
 #define OS_WIN32_WINDOWS_VISTA_64			12
 #define OS_WIN32_WINDOWS_SERVER_2008		13
 #define OS_WIN32_WINDOWS_SERVER_2008_64		14
-
+#define OS_WIN32_WINDOWS_SEVEN				15
+#define OS_WIN32_WINDOWS_SEVEN_64			16
+#define OS_WIN32_WINDOWS_SEVEN_SERVER		17
+#define OS_WIN32_WINDOWS_SEVEN_SERVER_64	18
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void);
 IMPORT_EXPORT_GETWINDOWSVERSION_DLL BOOL IsWow64(void);
