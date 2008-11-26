@@ -39,8 +39,6 @@ public:
   virtual void show(int figureIndex);
 
   virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for segs mark drawer
   virtual void setMarkParameters(int background, int foreground, int markSizeUnit,

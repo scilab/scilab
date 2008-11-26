@@ -39,8 +39,6 @@ public:
 
   virtual void destroy(int figureIndex);
 
-  virtual void setFigureIndex(int figureIndex);
-
   virtual void translate(const double translation[3]);
 
   virtual void endTranslate(void);

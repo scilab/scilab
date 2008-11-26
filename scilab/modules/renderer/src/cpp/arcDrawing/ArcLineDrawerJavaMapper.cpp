@@ -58,11 +58,6 @@ void ArcLineDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex); 
 }
 /*---------------------------------------------------------------------------------*/
-void ArcLineDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void ArcLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, int lineStyle)
 {
   m_pJavaObject->setLineParameters(lineColor, thickness, lineStyle);

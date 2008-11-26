@@ -58,11 +58,6 @@ void RectangleFillDrawerJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex);
 }
-/*--------------------------------------------------------------------------*/
-void RectangleFillDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void RectangleFillDrawerJavaMapper::setBackColor(int color)
 {

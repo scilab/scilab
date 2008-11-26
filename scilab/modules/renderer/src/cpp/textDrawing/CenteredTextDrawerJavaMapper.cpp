@@ -57,11 +57,6 @@ void CenteredTextDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void CenteredTextDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void CenteredTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle,
                                                      double fontSize, double rotationAngle, bool useFractionalMetrics)
 {

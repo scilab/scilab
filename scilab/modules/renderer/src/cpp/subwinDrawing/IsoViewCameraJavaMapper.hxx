@@ -38,8 +38,6 @@ public:
   virtual void show(int figureIndex);
 
   virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for cameras
   virtual void setViewingArea(double transX, double transY, double scaleX, double scaleY);

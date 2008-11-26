@@ -13,9 +13,6 @@
     <method name="destroy" returnType="void">
       <param type="int" name="parentFigureIndex" />
     </method>
-    <method name="setFigureIndex" returnType="void">
-      <param type="int" name="figureIndex" />
-    </method>
     <method name="setBarParameters" returnType="void">
       <param type="int" name="background" />
       <param type="int" name="foreground" />
