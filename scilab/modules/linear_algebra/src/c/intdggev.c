@@ -156,7 +156,7 @@ int intdggev(char *fname)
 		iAllocMatrixOfDoubleComplex(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
 	}
 
-	iWorkSize = max(1,8*iColsA);
+	iWorkSize = Max(1,8*iColsA);
 	pdblWork = (double*)MALLOC(iWorkSize * sizeof(double));
 
 

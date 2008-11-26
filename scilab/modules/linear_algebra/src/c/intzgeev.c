@@ -112,7 +112,7 @@ int intzgeev(char *fname)
 
 	pdblEigenValues = (doublecomplex*)MALLOC(sizeof(doublecomplex) * iCols);
 
-	iWorkSize = max(1,2*iCols);
+	iWorkSize = Max(1,2*iCols);
 	pdblWork = (doublecomplex*)MALLOC(sizeof(doublecomplex) * iWorkSize);
 	pdblRWork = (doublecomplex*)MALLOC(sizeof(doublecomplex) * 2*iCols);
 

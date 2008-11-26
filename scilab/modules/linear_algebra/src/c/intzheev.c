@@ -104,9 +104,9 @@ int intzheev(char *fname)
 
 	pdblEigenValues = (double*)MALLOC(sizeof(double) * iCols);
 
-	iWorkSize = max(1,2*iCols-1);
+	iWorkSize = Max(1,2*iCols-1);
 	pdblWork = (doublecomplex*)MALLOC(sizeof(doublecomplex) * iWorkSize);
-	iRWorkSize = max(1,3*iCols-2);
+	iRWorkSize = Max(1,3*iCols-2);
 	pdblRWork = (double*)MALLOC(sizeof(double) * iRWorkSize);
 
 	if (Lhs==1)

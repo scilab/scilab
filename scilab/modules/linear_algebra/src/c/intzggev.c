@@ -178,9 +178,9 @@ int intzggev_complex(char *fname)
 		pdblLeftvectors = (doublecomplex*)MALLOC(totalsize * sizeof(doublecomplex));
 	}
 
-	iWorkSize = max(1,2*iColsA);
+	iWorkSize = Max(1,2*iColsA);
 	pdblWork = (doublecomplex*)MALLOC(iWorkSize * sizeof(doublecomplex));
-	iRWorkSize = max(1,8*iColsA);
+	iRWorkSize = Max(1,8*iColsA);
 	pdblRWork = (double*)MALLOC(sizeof(double) * iRWorkSize);
 
 	if (Lhs==1 || Lhs==2)
@@ -418,7 +418,7 @@ int intzggev_real(char *fname)
 		iAllocMatrixOfDoubleComplex(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
 	}
 
-	iWorkSize = max(1,8*iColsA);
+	iWorkSize = Max(1,8*iColsA);
 	pdblWork = (double*)MALLOC(iWorkSize * sizeof(double));
 
 	if (Lhs==1 || Lhs==2)

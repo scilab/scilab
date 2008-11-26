@@ -96,7 +96,7 @@ int intdsyev(char *fname)
 
 	iAllocMatrixOfDouble(3, iCols, ONE, &pdblEigenValues);
 
-	iWorkSize = max(1,3*iCols - 1);
+	iWorkSize = Max(1,3*iCols - 1);
 	pdblWork = (double*)MALLOC(iWorkSize * sizeof(double));
 
 	if (Lhs==1)
