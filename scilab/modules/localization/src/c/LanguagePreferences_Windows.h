@@ -11,16 +11,30 @@
 */
 
 /*--------------------------------------------------------------------------*/ 
+#ifndef __LANGUAGEPREFERENCES_WINDOWS_H__
+#define __LANGUAGEPREFERENCES_WINDOWS_H__
 
-#ifndef __LOADLANGUAGEPREF_H__
-#define __LOADLANGUAGEPREF_H__
+#include "BOOL.h"
 
 /**
-* load language from preference file (SCIHOME/.language)
-* @returns LC_MESSAGES value
+* Get default language saved in registry
+* @return language
 */
-char *loadLanguagePref(void);
+char *getLanguagePreferences(void);
 
-#endif /*  __LOADLANGUAGEPREF_H__ */
+/**
+* Set default language saved in registry
+* @return TRUE or FALSE
+*/
+BOOL setLanguagePreferences(void);
 
+/**
+* check if it is valid language format
+* xx_XX
+* @param[in] language string
+* @return TRUE or FALSE
+*/
+BOOL isValidLanguage(char *lang);
+
+#endif /* __LANGUAGEPREFERENCES_WINDOWS_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -24,6 +24,7 @@ int C2F(sci_getlanguage)(char *fname,unsigned long fname_len);
 int C2F(sci_getdefaultlanguage)(char *fname,unsigned long fname_len);
 int C2F(sci_gettext)(char *fname,unsigned long fname_len);
 int C2F(sci_dgettext)(char *fname,unsigned long fname_len);
+int C2F(sci_setdefaultlanguage)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_LOCALIZATION__ */
 /*--------------------------------------------------------------------------*/

@@ -95,6 +95,18 @@ int C2F(sci_getos)(char *fname,unsigned long fname_len)
 	case OS_WIN32_WINDOWS_SERVER_2008_64 :
 		strcpy(Release,"Server 2008 x64");
 		break;
+	case OS_WIN32_WINDOWS_SEVEN :
+		strcpy(Release,"Seven");
+		break;
+	case OS_WIN32_WINDOWS_SEVEN_64 :
+		strcpy(Release,"Seven x64");
+		break;
+	case OS_WIN32_WINDOWS_SEVEN_SERVER :
+		strcpy(Release,"Seven Server");
+		break;
+	case OS_WIN32_WINDOWS_SEVEN_SERVER_64 :
+		strcpy(Release,"Seven Server x64");
+		break;
 
 	}
 #else
