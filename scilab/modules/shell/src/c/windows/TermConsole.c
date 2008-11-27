@@ -250,6 +250,9 @@ static unsigned char TerminalGetchar(void)
 								case VK_F1: case VK_HELP:
 									F1_Command();
 								break;
+								case VK_F2:
+									F2_Command();
+									break;
 								case VK_LEFT:
 									moveBackSingleChar();
 									break;

@@ -30,6 +30,12 @@ void ControlX_Command(void);
 void F1_Command(void);
 
 /**
+* Do action F2 in scilab
+* launch help
+*/ 
+void F2_Command(void);
+
+/**
 * Do action ALT-F4 in scilab
 * Close Scilab (standard Windows)
 */ 
