@@ -74,7 +74,7 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 				//Am1 = 0.5d0*((y**2)/(R+(x+1.d0))+(S+(x-1.d0)))
 				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + (dblS + (dblAbsReal - 1)));
 			//ai = logp1(Am1 + sqrt(Am1*(A+1.d0)))
-			dblTemp = dblImg1 + sqrt(dblImg1 * dblA + 1);
+			dblTemp = dblImg1 + sqrt(dblImg1 * (dblA + 1));
 			*_pdblImg = F2C(logp1)(&dblTemp);
 		}
 		else
