@@ -162,7 +162,7 @@ BOOL setLanguagePreferences(void)
 				return FALSE;
 			}
 
-			if ( RegSetValueEx(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, strlen(LANGUAGE)+1) != ERROR_SUCCESS)
+			if ( RegSetValueEx(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE)+1)) != ERROR_SUCCESS)
 			{
 				RegCloseKey(hKey);
 				if (keyString) { FREE(keyString); keyString = NULL;}

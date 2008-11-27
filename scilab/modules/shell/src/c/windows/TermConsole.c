@@ -107,7 +107,7 @@ int TerminalPrintf(char *buffer)
 	{
 		if (buffer[0] != 0)
 		{
-			int len = strlen (buffer);
+			int len = (int)strlen (buffer);
 			/* UTF-8 coded on 2 chars */
 			char *OEM_string = (char*)MALLOC(sizeof(char)*(2*len)); 
 			if (OEM_string)
