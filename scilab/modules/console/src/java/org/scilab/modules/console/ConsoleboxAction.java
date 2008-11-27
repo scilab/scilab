@@ -37,7 +37,7 @@ public class ConsoleboxAction extends AbstractConsoleAction {
 	 * @return true if windows
 	 */
 	private static boolean isWindows() {
-		return osname.indexOf("windows") != -1;
+		return OSNAME.indexOf("windows") != -1;
 	}
 	
 	/**
