@@ -5,6 +5,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 790 -->
 //
 // <-- Bugzilla URL -->
@@ -15,4 +16,6 @@
 //    I know that it is not usefull but, the bug exists.
 if execstr('findobj() == []','errcatch') <> 4 then bugmes();quit;end
 if execstr('findobj(''test'') == []','errcatch') <> 0 then bugmes();quit;end
+Unknown property: test.
 if execstr('findobj(''Param1'',''Param2'') == []','errcatch') <> 0 then bugmes();quit;end
+Unknown property: param1.

@@ -135,7 +135,7 @@ static char **addPath(char **dictionary, int sizearray, char *path)
 	for (i = 0;i < sizearray;i++)
 	{
 		char *newPath = NULL;
-		int newlength = strlen(dictionary[i]) + strlen(path) + 1;
+		int newlength = (int)(strlen(dictionary[i]) + strlen(path) + 1);
 		newPath = (char *)MALLOC(sizeof(char)*(newlength));
 		sprintf(newPath,"%s%s",path,dictionary[i]);
 		FREE(dictionary[i]);
