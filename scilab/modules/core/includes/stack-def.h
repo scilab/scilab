@@ -379,6 +379,12 @@ typedef union {
 
 IMPORT SCIZGSCH_union C2F(scizgsch);
 
+typedef struct {
+	int iflag; /* interruption flag CTRL-C */
+	int interruptible; /* */
+} BASBRK_struct;
+
+IMPORT BASBRK_struct C2F(basbrk);
 
 #endif /** STACK_DEF  **/
 

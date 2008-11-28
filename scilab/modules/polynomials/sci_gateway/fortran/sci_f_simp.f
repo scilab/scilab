@@ -10,8 +10,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       INCLUDE 'stack.h'
 
       integer id(nsiz)
-      integer vol,v2,blank
-      double precision er
       integer simpmd
       common/csimp/ simpmd
 c

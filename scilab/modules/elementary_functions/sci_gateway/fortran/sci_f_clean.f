@@ -11,7 +11,7 @@ c
       INCLUDE 'stack.h'
       integer id(nsiz)
 
-      double precision sr,si,dlapy2,epsa,epsr,norm,eps
+      double precision epsa,epsr,norm,eps
       double precision dasum,wasum
       integer iadr,sadr
 c

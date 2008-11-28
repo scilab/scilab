@@ -20,7 +20,7 @@ c
       integer id(nsiz),op,fun1
       integer star,dstar,semi,eol,blank,percen
       integer comma,lparen,rparen,hat,dot,equal
-      integer quote,left,right,colon,slash,not
+      integer quote,left,right,colon,not
       integer num,name,cmt
       integer cconc,extrac,rconc
       logical recurs,compil,dotsep,nullarg,ok
@@ -29,7 +29,7 @@ c
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
       data comma/52/,lparen/41/,rparen/42/, hat/62/,dot/51/,equal/50/
-      data quote/53/,left/54/,right/55/,colon/44/,slash/48/,not/61/
+      data quote/53/,left/54/,right/55/,colon/44/,not/61/
       data minus/46/,plus/45/
       data num/0/,name/1/,cmt/2/
       data cconc/1/,extrac/3/,rconc/4/

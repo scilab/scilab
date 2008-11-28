@@ -5,9 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
-// <-- NOT FIXED -->
-
 // <-- Non-regression test for bug 1926 -->
 //
 // <-- Bugzilla URL -->
@@ -40,7 +37,7 @@ r = wavread("SCI/modules/sound/tests/nonreg_tests/bug_1926.wav","size");
 if r <> [2 11026] then pause,end
 
 [yref,FsRef,bitsRef]= wavread("SCI/modules/sound/tests/nonreg_tests/bug_1926.wav");
-wavwrite(y,Fs,TMPDIR+'bug_1926.wav');
+wavwrite(yref,FsRef,TMPDIR+'bug_1926.wav');
 
 r = wavread(TMPDIR+'bug_1926.wav',"size");
 if r <> [2 11026] then pause,end

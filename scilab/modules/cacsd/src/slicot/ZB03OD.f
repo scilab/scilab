@@ -161,7 +161,7 @@ C
 *     ..
 *     .. Local Scalars ..
       LOGICAL            LJOBQR,  LQUERY
-      INTEGER            I, ISMAX, ISMIN, J, LWKOPT, MN,
+      INTEGER            I, ISMAX, ISMIN, LWKOPT, MN,
      $                   NB, NB1, NB2
       DOUBLE PRECISION   SMAX, SMAXPR, SMIN, SMINPR
       COMPLEX*16         C1, C2, S1, S2

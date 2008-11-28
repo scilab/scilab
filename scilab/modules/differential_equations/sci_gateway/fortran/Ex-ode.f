@@ -103,8 +103,8 @@ c     *******************************
 c     -------------------------------------------
 c     same example with call to matptr
 c     param must be defined as a scilab variable
-      double precision t, y, ydot, param
-      dimension y(3), ydot(3), param(3)
+      double precision t, y, ydot
+      dimension y(3), ydot(3)
 
       include 'stack.h'
       call matptr('param'//char(0),m,n,lp)

@@ -6,7 +6,7 @@
 	ProjectGUID="{ED02137F-0A4F-4EF0-AC58-97ACE37FA89D}"
 	RootNamespace="doublylinkedlist"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -211,7 +211,7 @@
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;../MALLOC/includes"
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"

@@ -4,6 +4,14 @@
 Scilab consortium would like to thank all people who helped us by reporting
 bugs, submiting patches, fixing bugs, testing ...
 
+Compilation:
+============
+
+* Do not init TK when building the doc ("make doc")... in order to be able to 
+build Scilab through ssh
+
+* Force the build for the french documentation.
+
 Bug fixes:
 ==========
 
@@ -20,6 +28,8 @@ Bug fixes:
 * bug 3753 fixed - drawaxis produces unreadable labels
 
 * bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent.)
+
+* bug 3755 fixed - print files on some Windows.
 
 
 
