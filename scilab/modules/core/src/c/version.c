@@ -29,8 +29,8 @@ void disp_scilab_version(void)
 		#ifdef _MSC_VER
 		{
 			char msg[1024];
-			wsprintf(msg,_("Scilab version \"%d.%d.%d.%d\"\n%s\n"),SCI_VERSION_MAJOR,SCI_VERSION_MINOR,SCI_VERSION_MAINTENANCE,SCI_VERSION_TIMESTAMP,SCI_VERSION_STRING);
-			MessageBox(NULL,msg,_("Scilab Version Info."),MB_ICONINFORMATION);
+			wsprintf(msg,gettext("Scilab version \"%d.%d.%d.%d\"\n%s\n"),SCI_VERSION_MAJOR,SCI_VERSION_MINOR,SCI_VERSION_MAINTENANCE,SCI_VERSION_TIMESTAMP,SCI_VERSION_STRING);
+			MessageBox(NULL,msg,gettext("Scilab Version Info."),MB_ICONINFORMATION);
 		}
 		#else
 		printf(_("Scilab version \"%d.%d.%d.%d\"\n"),SCI_VERSION_MAJOR,SCI_VERSION_MINOR,SCI_VERSION_MAINTENANCE,SCI_VERSION_TIMESTAMP);
