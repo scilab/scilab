@@ -169,7 +169,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * DEBUG function
      */
     private static void DEBUG(String msg) {
-	 System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
+	 //System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
     }
     
     public SwingScilabCanvasImpl() {
