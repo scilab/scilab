@@ -75,4 +75,9 @@ void destroyGraphicPointer(void * pointer);
 
 void destroyGraphicStringArray(char ** strArray, int nbStrings);
 
+/**
+ * Destroy the relationShip used by an object
+ */
+void destroyRelationShip(sciPointObj * pObj);
+
 #endif /* __SCI_DESTROY__ */

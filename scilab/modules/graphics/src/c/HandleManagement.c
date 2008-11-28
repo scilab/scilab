@@ -59,10 +59,10 @@ static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex);
  */
 void sciSetHandle (sciPointObj * pobj, long value)
 {
-  if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
-  {
+  /*if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
+  {*/
     sciGetRelationship(pobj)->handleIndex = value ; /** put the new index handle */
-  }
+  /*}*/
 }
 
 
@@ -119,18 +119,7 @@ long sciGetHandle (sciPointObj * pobj)
  */
 sciPointObj * sciGetPointerFromHandle(long handle)
 {
-	if (handle == sciGetHandle(getFigureModel()))
-	{
-		return getFigureModel();
-	}
-	else if (handle == sciGetHandle(getAxesModel()))
-	{
-		return getAxesModel();
-	}
-	else
-	{
 		return sciGetObjectFromHandle(handle);
-	}
 }
 
 /**sciGetPointerFromJavaIndex
@@ -214,70 +203,7 @@ static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex)
 sciRelationShip *
 sciGetRelationship (sciPointObj * pobj)
 {
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return &(pFIGURE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SUBWIN:
-      return  &(pSUBWIN_FEATURE (pobj)->relationship);
-      break;
-    case SCI_TEXT:
-      return  &(pTEXT_FEATURE (pobj)->relationship);
-      break;
-    case SCI_LEGEND:
-      return  &(pLEGEND_FEATURE (pobj)->text.relationship);
-      break;
-    case SCI_ARC:
-      return  &(pARC_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SEGS: 
-      return  &(pSEGS_FEATURE (pobj)->relationship);
-      break; 
-    case SCI_FEC:  
-      return  &(pFEC_FEATURE (pobj)->relationship);
-      break;
-    case SCI_GRAYPLOT:
-      return  &(pGRAYPLOT_FEATURE (pobj)->relationship);
-      break;
-    case SCI_POLYLINE:
-      return  &(pPOLYLINE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_RECTANGLE:
-      return  &(pRECTANGLE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SURFACE:
-      return  &(pSURFACE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_AXES:
-      return  &(pAXES_FEATURE (pobj)->relationship);
-      break;
-    case SCI_UICONTEXTMENU:
-      return  &(pUICONTEXTMENU_FEATURE (pobj)->relationship);
-      break;
-    case SCI_AGREG:
-      return  &(pAGREG_FEATURE (pobj)->relationship);
-      break; 
-    case SCI_LABEL: /* F.Leray 27.05.04 */
-      return  sciGetRelationship( pLABEL_FEATURE (pobj)->text ) ;
-      break;
-    case SCI_UIMENU: 
-      return  &(pUIMENU_FEATURE (pobj)->relationship);
-      break;
-    case SCI_UICONTROL: 
-      return  &(pUICONTROL_FEATURE (pobj)->relationship);
-      break;
-    case SCI_WAITBAR:
-      return  &(pWAITBAR_FEATURE (pobj)->relationship);
-      break;
-    case SCI_PROGRESSIONBAR:
-      return  &(pPROGRESSIONBAR_FEATURE (pobj)->relationship);
-      break;
-    default:
-      return (sciRelationShip *) NULL;
-      break;
-    }
+	return pobj->relationShip;
 }
 
 

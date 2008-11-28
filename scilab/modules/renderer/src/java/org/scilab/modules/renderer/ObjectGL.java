@@ -14,6 +14,7 @@
 package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.Threading;
 import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
@@ -55,7 +56,13 @@ public class ObjectGL {
 		// for example) objects won't use OGL resources since not displayed and won't
 		// be stacked for ever.
 		if (isUsingOGLResources()) {
-			getParentFigureGL().getObjectCleaner().addObjectToDestroy(this);
+			if (Threading.isOpenGLThread()) {
+				// we can release openGL resources now
+				clean(parentFigureIndex);
+			} else {
+				// schedule destroy on the OpenGL thread
+				getParentFigureGL().getObjectCleaner().addObjectToDestroy(this);
+			}
 		}
 	}
 	
