@@ -38,8 +38,6 @@ public:
   virtual void show(int figureIndex);
 
   virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for surface facet drawer
   virtual void setDefaultColors(int defaultColor, int hiddenColor);

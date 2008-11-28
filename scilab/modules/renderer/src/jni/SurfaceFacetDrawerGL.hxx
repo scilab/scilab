@@ -59,7 +59,6 @@ jmethodID voidinitializeDrawingjintID; // cache method id
 jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
-jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetDefaultColorsjintjintID; // cache method id
 jmethodID voidsetSurfaceTypejintjintID; // cache method id
 jmethodID voiddrawSurfacejdoubleArrayjdoubleArrayjdoubleArrayjintID; // cache method id
@@ -114,8 +113,6 @@ void endDrawing();
 void show(int figureIndex);
 
 void destroy(int parentFigureIndex);
-
-void setFigureIndex(int figureIndex);
 
 void setDefaultColors(int defaultColor, int hiddenColor);
 

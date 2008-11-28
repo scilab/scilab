@@ -127,7 +127,13 @@ int C2F(graphicsmodels) (void)
       return 0;
     }
 
-	(sciGetRelationship (pfiguremdl))->handleIndex = generateNewHandle(pfiguremdl);
+	createDefaultRelationShip(pfiguremdl);
+
+	/* add the handle in the handle list */
+  if ( sciAddNewHandle(pfiguremdl) == -1 )
+  {
+    return NULL ;
+  }
 
   if (!(sciAddThisToItsParent(pfiguremdl, (sciPointObj *)NULL)))
     {
@@ -139,9 +145,6 @@ int C2F(graphicsmodels) (void)
     }
 
   sciInitSelectedSons( pfiguremdl ) ;
-
-  pFIGURE_FEATURE (pfiguremdl)->relationship.psons = (sciSons *) NULL;
-  pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
 
   /* set default properties */
   if ( InitFigureModel() < 0 )
@@ -169,7 +172,13 @@ int C2F(graphicsmodels) (void)
       strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
-	(sciGetRelationship (paxesmdl))->handleIndex = generateNewHandle(paxesmdl);
+	createDefaultRelationShip(paxesmdl);
+
+	/* add the handle in the handle list */
+  if ( sciAddNewHandle(paxesmdl) == -1 )
+  {
+    return NULL ;
+  }
 
   if (!(sciAddThisToItsParent (paxesmdl, pfiguremdl)))
     {
@@ -182,9 +191,9 @@ int C2F(graphicsmodels) (void)
 
   ppaxesmdl =  pSUBWIN_FEATURE (paxesmdl);
 
-  sciInitSelectedSons( paxesmdl ) ;
+  /*sciInitSelectedSons( paxesmdl ) ;
   ppaxesmdl->relationship.psons = (sciSons *) NULL;
-  ppaxesmdl->relationship.plastsons = (sciSons *) NULL;
+  ppaxesmdl->relationship.plastsons = (sciSons *) NULL;*/
 
   if ( InitAxesModel() < 0 )
   {
@@ -845,12 +854,16 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
     return NULL ;
   }
 
+
   ppLabel = pLABEL_FEATURE( newLabel ) ;
 
   /* we must first construct the text object inside the label */
   ppLabel->text = allocateText( pParentObj, &emptyString, 1, 1,
                                 0.0, 0.0, TRUE, NULL, FALSE, NULL, NULL,
                                 FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
+
+	/* RelationShip is actually stored in the text object */
+	newLabel->relationShip = ppLabel->text->relationShip;
 
   if ( ppLabel->text == NULL )
   {
@@ -874,8 +887,6 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
     FREE( newLabel  );
     return NULL ;
   }
-
-  sciInitSelectedSons( newLabel ) ;
 
   ppLabel->auto_position = TRUE;
   ppLabel->auto_rotation = TRUE;
@@ -909,7 +920,7 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
 /*---------------------------------------------------------------------------------*/
 void destroyDefaultObjects( void )
 {
-  // will destroy the figure and its children (so the axes).
+  /* will destroy the figure and its children (so the axes). */
   destroyGraphicHierarchy( pfiguremdl ) ;
   pfiguremdl = NULL ;
   paxesmdl = NULL;

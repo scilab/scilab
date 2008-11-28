@@ -58,11 +58,6 @@ void FullBoxDrawerJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void FullBoxDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 void FullBoxDrawerJavaMapper::setBoxParameters(int hiddenAxisColor,
                                                int lineColor, int lineStyle,
                                                float thickness)

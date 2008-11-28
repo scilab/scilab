@@ -246,7 +246,7 @@ void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 				{
 					*f = 0;
 				}
-#if defined(_MSC_VER) && ( defined(_X86_) || defined(_WIN64) )
+#if defined(_MSC_VER) && ( defined(_X86_) )
 				if (symbol[0] == '_') 
 				{
 					s = &symbol[1];

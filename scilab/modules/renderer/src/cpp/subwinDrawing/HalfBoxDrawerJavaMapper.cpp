@@ -58,11 +58,6 @@ void HalfBoxDrawerJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void HalfBoxDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 void HalfBoxDrawerJavaMapper::setBoxParameters(int hiddenAxisColor,
                                                int lineColor, int lineStyle,
                                                float thickness)

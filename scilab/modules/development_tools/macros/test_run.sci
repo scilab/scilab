@@ -32,6 +32,9 @@
 //     <-- NO CHECK ERROR OUTPUT -->
 //     <-- NO CHECK REF -->
 //       The .dia and the .dia.ref files are not compared.
+//     <-- ENGLISH IMPOSED -->
+//       This test will be executed with the -l en_US option.
+//
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
 //   created an unstable environment. It also enables the tests to be 

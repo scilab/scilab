@@ -57,11 +57,6 @@ void FecLineDrawerJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex); 
 }
-/*--------------------------------------------------------------------------*/
-void FecLineDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void FecLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, int lineStyle)
 {

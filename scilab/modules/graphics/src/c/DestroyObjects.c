@@ -311,6 +311,7 @@ int deallocateText( sciPointObj * pthis )
   pTEXT_FEATURE (pthis)->size_of_user_data = 0;
   destroyHandleDrawer(pthis);
 
+	destroyRelationShip(pthis);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
 
@@ -356,6 +357,7 @@ int deallocatePolyline (sciPointObj * pthis)
   pPOLYLINE_FEATURE (pthis)->size_of_user_data = 0;
   destroyHandleDrawer(pthis);
 
+	destroyRelationShip(pthis);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   return 0;
@@ -598,6 +600,7 @@ int DestroyLabel (sciPointObj * pthis)
     return textStatus ;
   }
   ppLabel->text = NULL ;
+	destroyRelationShip(pthis);
   FREE(ppLabel) ;
   FREE(pthis) ;
   return 0 ;
@@ -686,6 +689,7 @@ int sciStandardDestroyOperations( sciPointObj * pThis )
   sciUnselectSons( pThis ) ;
   sciDelThisToItsParent( pThis, sciGetParent(pThis) ) ;
   if ( sciDelHandle(pThis) == -1 ) { res = -1 ; }
+	destroyRelationShip(pThis);
   FREE( pThis->pfeatures ) ;
   FREE( pThis ) ;
   return res ;
@@ -714,5 +718,14 @@ void destroyGraphicStringArray(char ** strArray, int nbStrings)
     FREE(strArray[i]);
   }
   FREE(strArray);
+}
+/*--------------------------------------------------------------------------------*/
+void destroyRelationShip(sciPointObj * pObj)
+{
+	if (pObj->relationShip != NULL && sciGetEntityType(pObj) != SCI_LABEL)
+	{
+		FREE(pObj->relationShip);
+		pObj->relationShip = NULL;
+	}
 }
 /*--------------------------------------------------------------------------------*/

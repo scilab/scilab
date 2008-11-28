@@ -57,11 +57,6 @@ void FecFacetDrawerJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex); 
 }
-/*--------------------------------------------------------------------------*/
-void FecFacetDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void FecFacetDrawerJavaMapper::setFacetParameters(double zMin, double zMax, int colMin,
                                                   int colMax, int colOutLow, int colOutUp)

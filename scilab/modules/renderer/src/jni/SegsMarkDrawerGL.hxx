@@ -59,7 +59,6 @@ jmethodID voidinitializeDrawingjintID; // cache method id
 jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
-jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetMarkParametersjintjintjintjintjintID; // cache method id
 jmethodID voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
 jmethodID voiddrawSegsID; // cache method id
@@ -113,8 +112,6 @@ void endDrawing();
 void show(int figureIndex);
 
 void destroy(int parentFigureIndex);
-
-void setFigureIndex(int figureIndex);
 
 void setMarkParameters(int background, int foreground, int markSizeUnit, int markSize, int markStyleIndex);
 

@@ -104,7 +104,7 @@ modules/*/sci_gateway/fortran/*.c
 #
 # scilab/ specific files
 #
-thirdparty
+/thirdparty
 Makefile.OBJ
 Makefile.incl
 Makemex
@@ -122,11 +122,11 @@ tclminor
 .libs
 mainsci.o
 *.log
-java
+/java
 .metadata
 autom4te.cache
 .deps
-locale
+/locale
 scilab-lib.properties
 scilab-lib-doc.properties
 scilab.pc

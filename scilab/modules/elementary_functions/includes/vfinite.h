@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) INRIA
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,14 +10,12 @@
  *
  */
 
-#ifndef __LOADSAVELANGUAGE_H__
-#define __LOADSAVELANGUAGE_H__
+#ifndef __VFINITE__
+#define __VFINITE__
 
-#include "BOOL.h"
+#include "doublecomplex.h" 
 
-BOOL loadlanguagepref(void);
-BOOL savelanguagepref(void);
+int C2F(vfinite)(int *n, double *v);
+int C2F(vfiniteComplex)(int *n, doublecomplex *v);
 
-#endif /* __LOADSAVELANGUAGE_H__ */
-/*--------------------------------------------------------------------------*/ 
-
+#endif /* !__VFINITE__ */
