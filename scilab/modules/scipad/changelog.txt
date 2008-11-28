@@ -1,3 +1,7 @@
+Francois VOGEL, 28/11/08
+ * Fixed bug 3793 (localization issue in Scilab with Tcl/Tk)
+ * version --> 7.10
+
 Francois VOGEL, 23/11/08
  * Fixed bug 3782 (bug correction courtesy of Enrico) about an old Tk bug
    that has been fixed in Tcl/Tk 8.4.2
