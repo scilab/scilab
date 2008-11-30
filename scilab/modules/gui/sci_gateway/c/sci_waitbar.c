@@ -71,7 +71,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
       if (fractionAdr !=0)
         {
-          setWaitBarValue(waitbarID, (int)(getDoubleFromStack((size_t)messageAdr) * 100));
+          setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
         }
       else if (messageAdr != 0)
         {
@@ -90,6 +90,8 @@ int sci_waitbar(char *fname,unsigned long fname_len)
             }
           GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRowMessage, &nbColMessage, &messageAdr);
 
+          pObj = InitWaitBar();
+          GraphicHandle=sciGetHandle(pObj);
           waitbarID = createWaitBar();
           pWAITBAR_FEATURE(pObj)->hashMapIndex = waitbarID;
           setWaitBarIndeterminateMode(waitbarID, FALSE);
