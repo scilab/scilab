@@ -95,6 +95,7 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.gui.utils.PrinterHelper;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
 import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
@@ -2238,7 +2239,7 @@ public class CallScilabBridge {
 				textToPrint = doc.getText(0, doc.getLength());
 				if (isWindowsPlateform()) {
 					/* Windows need line feed */
-					textToPrint = textToPrint.replaceAll("\n","\n\r");
+					//textToPrint = textToPrint.replaceAll("\n","\n\r");
 				}
 			} catch (BadLocationException e) {
 				e.printStackTrace();
@@ -2253,30 +2254,8 @@ public class CallScilabBridge {
 	 * @return execution status
 	 */
 	public static boolean printString(String theString, String pageHeader) {
-
 		/* TODO use pageHeader */
-
-		// Get the PrinterJob object
-		PrinterJob printerJob = PrinterJob.getPrinterJob();
-		Doc myDoc = null;
-
-  	if (isWindowsPlateform()) {
-			/* Windows need line feed */
-		  theString = theString.replaceAll("\n","\n\r");
-		  myDoc = new SimpleDoc(theString.getBytes(), DocFlavor.BYTE_ARRAY.AUTOSENSE , null);
-		} else {
-			myDoc = new SimpleDoc(theString, DocFlavor.STRING.TEXT_PLAIN, null);
-		}
-
-		DocPrintJob job = printerJob.getPrintService().createPrintJob();
-
-		try {
-			job.print(myDoc, scilabPageFormat);
-		} catch (PrintException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+		return PrinterHelper.printString(theString);
 	}
 	
 	/**
@@ -2285,39 +2264,7 @@ public class CallScilabBridge {
 	 * @return execution status
 	 */
 	public static boolean printFile(String fileName) {
-		// Get the PrinterJob object
-		PrinterJob printerJob = PrinterJob.getPrinterJob();
-
-		try {
-			/** Read file */
-			FileInputStream psStream = null;
-			try {
-				psStream = new FileInputStream(fileName);
-			} catch (FileNotFoundException ffne) {
-				ffne.printStackTrace();
-				return false;
-			}
-
-			Doc myDoc = null;
-			
-			if (isWindowsPlateform()) {
-				myDoc = new SimpleDoc(psStream, DocFlavor.INPUT_STREAM.AUTOSENSE  , null);
-			} else {
-				myDoc = new SimpleDoc(psStream, DocFlavor.STRING.TEXT_PLAIN, null);
-			}
-			
-			DocPrintJob job = printerJob.getPrintService().createPrintJob();
-
-			// Remove Orientation option from page setup because already managed in FileExporter
-			PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);
-			aset.add(OrientationRequested.PORTRAIT);
-
-			job.print(myDoc, aset);
-			return true;
-		} catch (PrintException e) {
-			e.printStackTrace();
-			return false;
-		}
+		return PrinterHelper.printFile(fileName);
 	}
 
 	/**
