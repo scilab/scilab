@@ -72,9 +72,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	}
 
 	private void init() {
-	    Animator animator = new Animator(this);
-	    animator.setRunAsFastAsPossible(false);
-	    animator.start();
 	    this.addMouseMotionListener(new MouseMotionListener() {
 		public void mouseDragged(MouseEvent arg0) {
 		    Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged"); 
@@ -188,16 +185,10 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     private class GLDebugJPanel extends GLJPanel {
 	public GLDebugJPanel(GLCapabilities cap) {
 	    super(cap);
-	    Animator animator = new Animator(this);
-	    animator.setRunAsFastAsPossible(false);
-	    animator.start();
 	}
 
 	public GLDebugJPanel() {
 	    super();
-	    Animator animator = new Animator(this);
-	    animator.setRunAsFastAsPossible(false);
-	    animator.start();
 	}
 
 	//
@@ -272,8 +263,17 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	tmpFrame.dispose();
 	Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
 
-	// FIXME : must put this to true when Driver is too stupid
-	noGLJPanel = false;
+	// If we are running on a Linux with Intel video card and with DRI activated
+	// GLJPanel will not be supported, so we force switch to GLCanvas.
+	if (System.getProperty("os.name").contains("Linux")
+		&& gl.glGetString(GL.GL_RENDERER).contains("Intel")
+		&& gl.glGetString(GL.GL_RENDERER).contains("DRI"))
+	{
+	    noGLJPanel = true; 
+	}
+	else {
+	    noGLJPanel = false;
+	}
     }
 
     GLCanvas realGLCanvas;
