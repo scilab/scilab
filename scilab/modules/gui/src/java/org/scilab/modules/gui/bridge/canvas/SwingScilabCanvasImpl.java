@@ -51,8 +51,6 @@ import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.utils.Debug;
 
-import com.sun.opengl.util.Animator;
-
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
     private static final long serialVersionUID = -3110280842744630282L;
@@ -228,8 +226,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	public void revalidate() {
 	    Debug.DEBUG("GLJPanel", "revalidate");
-	    //Thread.dumpStack();
-	    //System.exit(51);
 	    super.revalidate();
 	}
 
