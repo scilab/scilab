@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -57,7 +57,7 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
     private static final long serialVersionUID = -3110280842744630282L;
-    
+
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
 
@@ -69,7 +69,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * @author Jean-Baptiste silvy
      */
     private class GLEventCanvas extends GLCanvas {
-    	
+
     	/** needed */
 		private static final long serialVersionUID = 1164643863862749375L;
 
@@ -80,7 +80,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     		super();
     		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
     	}
-    	
+
     	/**
     	 * @param cap cap to use
     	 */
@@ -88,14 +88,14 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     		super(cap);
     		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
     	}
-    	
+
     	/**
     	 * @return parent axes of the canvas
     	 */
     	private SwingScilabAxes getParentAxes() {
     		return ((SwingScilabAxes) getParent());
     	}
-    	
+
     	/**
     	 * @param e mouse event to process
     	 */
@@ -103,7 +103,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     		e.setSource(getParentAxes());
     		getParentAxes().processMouseEvent(e);
     	}
-    	
+
     	/**
     	 * @param e mouse event to process
     	 */
@@ -111,7 +111,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     		e.setSource(getParentAxes());
     		getParentAxes().processMouseMotionEvent(e);
     	}
-    	
+
     	/**
     	 * @param e key event to process
     	 */
@@ -119,16 +119,16 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     		e.setSource(getParentAxes());
     		getParentAxes().processKeyEvent(e);
     	}
-    	
+
     }
-    
+
     static {
 	long lastTime = Calendar.getInstance().getTimeInMillis();
 	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
 	Frame tmpFrame = new Frame();
 	tmpFrame.add(tmpCanvas);
 	tmpFrame.setVisible(true);
-	
+
 	tmpCanvas.getContext().makeCurrent();
 	GL gl = tmpCanvas.getGL();
 	DEBUG("=======================================");
@@ -146,15 +146,24 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	tmpFrame.setVisible(false);
 	tmpFrame.dispose();
 	DEBUG("Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
-	
-	// FIXME : must put this to true when Driver is too stupid
-	noGLJPanel = false;
+
+	// If we are running on a Linux with Intel video card and with DRI activated
+	// GLJPanel will not be supported, so we force switch to GLCanvas.
+	if (System.getProperty("os.name").contains("Linux")
+		&& gl.glGetString(GL.GL_RENDERER).contains("Intel")
+		&& gl.glGetString(GL.GL_RENDERER).contains("DRI"))
+	{
+	    noGLJPanel = true;
+	}
+	else {
+	    noGLJPanel = false;
+	}
     }
-    
+
     GLCanvas realGLCanvas;
     GLJPanel realGLJPanel;
     boolean enableGLCanvas = forceGLCanvas || noGLJPanel;
-    
+
     /**
      * Change Global property forceGLCanvas
      * if no GLJPanel is available, GLCanvas is forced
@@ -164,14 +173,14 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	forceGLCanvas = noGLJPanel || onOrOff;
 	return forceGLCanvas;
     }
-    
+
     /**
      * DEBUG function
      */
     private static void DEBUG(String msg) {
 	 //System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
     }
-    
+
     public SwingScilabCanvasImpl() {
 	if (enableGLCanvas) {
 	    DEBUG("Using GLCanvas for OpenGL implementation.");
@@ -435,12 +444,12 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public boolean isVisible() {
 	return getAsComponent().isVisible();
     }
-    
+
     public boolean isFocusable() {
     	return getAsComponent().isFocusable();
     }
-     
-    
+
+
     public void setEnabled(boolean enable) {
     	//getAsComponent().setEnabled(enable);
     	// don't disable the GLCanvas
@@ -450,7 +459,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     	    realGLJPanel.setEnabled(false);
     	}
     }
-    
+
     /**
      * @return true if this object can be scrolled,
      * false otherwise
@@ -458,7 +467,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public boolean isScrollable() {
     	return (!enableGLCanvas);
     }
-    
+
     /**
      * Heavyweight component don't draw themselves automatically
      * So we need to call a function to force the redraw.
@@ -470,5 +479,5 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     	    realGLCanvas.display();
     	}
     }
-    
+
 }
