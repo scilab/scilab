@@ -132,12 +132,17 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	tmpCanvas.getContext().makeCurrent();
 	GL gl = tmpCanvas.getGL();
 	DEBUG("=======================================");
-	DEBUG("os.name="+System.getProperty("os.name"));
-	DEBUG("os.arch="+System.getProperty("os.arch"));
+	String OS_NAME = System.getProperty("os.name");
+	DEBUG("os.name="+OS_NAME);
+	String OS_ARCH = System.getProperty("os.arch");
+	DEBUG("os.arch="+OS_ARCH);
 	DEBUG("=======================================");
-	DEBUG("GL_VENDOR="+gl.glGetString(GL.GL_VENDOR));
-	DEBUG("GL_RENDERER="+gl.glGetString(GL.GL_RENDERER));
-	DEBUG("GL_VERSION="+gl.glGetString(GL.GL_VERSION));
+	String GL_VENDOR = gl.glGetString(GL.GL_VENDOR);
+	DEBUG("GL_VENDOR="+GL_VENDOR);
+	String GL_RENDERER = gl.glGetString(GL.GL_RENDERER);
+	DEBUG("GL_RENDERER="+GL_RENDERER);
+	String GL_VERSION = gl.glGetString(GL.GL_VERSION);
+	DEBUG("GL_VERSION="+GL.GL_VERSION);
 	//DEBUG("GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
 	DEBUG("=======================================");
 	//System.getProperties().list(System.err);
@@ -149,9 +154,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	// If we are running on a Linux with Intel video card and with DRI activated
 	// GLJPanel will not be supported, so we force switch to GLCanvas.
-	if (System.getProperty("os.name").contains("Linux")
-		&& gl.glGetString(GL.GL_RENDERER).contains("Intel")
-		&& gl.glGetString(GL.GL_RENDERER).contains("DRI"))
+	if (OS_NAME.contains("Linux")
+		&& GL_RENDERER.contains("Intel")
+		&& GL_RENDERER.contains("DRI"))
 	{
 	    noGLJPanel = true;
 	}
