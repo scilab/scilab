@@ -14,6 +14,8 @@ package org.scilab.modules.gui.events;
 
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -26,7 +28,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  * Class used to retrieve displacement that must be used for interactive rotation.
  * @author Jean-Baptiste Silvy
  */
-public class AxesRotationTracker implements MouseListener, MouseMotionListener {
+public class AxesRotationTracker implements MouseListener, MouseMotionListener, KeyListener {
 
     private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/rotate.png";
     private static final String CURSOR_ICON_NAME = "zoom-area";
@@ -65,7 +67,7 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
     /**
      * Reinit mouse tracking
      */
-    protected void reinit() {
+    private void reinit() {
 	this.recordStarted = false;
 	this.recordEnded = false;
 	this.isWaitingForClick = false;
@@ -85,8 +87,9 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * @param clickPosition position of the click in pixel
      */
     public void waitForClick(int[] clickPosition) {
-	Debug.DEBUG(this.getClass().getSimpleName(), "waitForClick");
 	canvas.addMouseListener(this);
+	canvas.addKeyListener(this);
+	
 	synchronized (lock) {
 	    isWaitingForClick = true;
 	    // wait until the click occurs
@@ -98,7 +101,6 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
 	    clickPosition[0] = clickPosX;
 	    clickPosition[1] = clickPosY;
 	}
-	canvas.removeMouseListener(this);
     }
 
     /**
@@ -106,8 +108,7 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * If no displacement has been notified then wait until one occures.
      * @param displacement array [dx, dy] displacement in pixels
      */
-    public void getMouseDisplacement(int[] displacement) {
-
+    private void getMouseDisplacement(int[] displacement) {
 	synchronized (lock) {
 	    if (!coordinatesUpdated) {
 		// no new displacement, wait for one
@@ -137,51 +138,35 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * @return true if it is still needed to retrieve displacement, false otherwise
      */
     public boolean getDisplacement(int[] displacement) {
-	// Change cursor
-
-	if (!recordStarted) {
-	    // first call
-	    // change the mouse cursor
+	if (!recordStarted && !recordEnded) {
+	 // change the mouse cursor
 	    canvas.setCursor(ScilabSwingUtilities.createCursorFromIcon(ICON_PATH, CURSOR_ICON_NAME));
 	    // wait for initialization with a first click
 	    waitForClick(displacement);
-	    if (recordEnded) {
-		// the record has been canceled
-		reinit();
-		return false;
-	    } else {
-		// start recording the mouse displacement
-		startRecording(clickPosX, clickPosY);
-		return true;
-	    }
-	} else if (!recordEnded) {
+	    // start recording the mouse displacement
+	    startRecording(clickPosX, clickPosY);
+	    Debug.DEBUG("return true");
+	    return true;
+	}
+	
+	if (!recordEnded) {
 	    // inside tracking loop
 	    // get mouse displacement since last call
 	    getMouseDisplacement(displacement);
-
-	    if (recordEnded) {
-		// record might have been canceled asynchronously
-		reinit();
-		return false;
-	    } else {
-		return true;
-	    }
-	} else {
-	    // last call get current displacement and return
-	    getImmediateMouseDisplacement(displacement);
-
-	    // reinit for a next call
-	    reinit();
-
-	    return false;
+	    return true;
 	}
+	 
+	 getImmediateMouseDisplacement(displacement);
+	 // reinit for a next call
+	 reinit();
+	 return false;
     }
 
     /**
      * Just get the current displacement but does not perform any update
      * @param displacement array [dx, dy] displacement in pixels
      */
-    protected void getImmediateMouseDisplacement(int[] displacement) {
+    private void getImmediateMouseDisplacement(int[] displacement) {
 	synchronized (lock) {
 	    // get displacement
 	    displacement[0] = currentX - previousX;
@@ -193,13 +178,12 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * Manual disabling of recording
      */
     public void cancelRecording() {
+	// reset Position to the starting one.
+	previousX = currentX;
+	previousY = currentY;
+	currentX = clickPosX;
+	currentY = clickPosY;
 	endRecording();
-
-	// wake everyone if needed
-	synchronized (lock) {
-	    lock.notifyAll();
-	}
-	reinit();
     }
 
     /**
@@ -207,7 +191,7 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * @param initX initial X coordinate
      * @param initY initial Y coordinate
      */
-    protected void startRecording(int initX, int initY) {
+    private void startRecording(int initX, int initY) {
 	previousX = initX;
 	previousY = initY;
 	// for final click
@@ -218,13 +202,16 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
     /**
      * End mouse tracking.
      */
-    protected void endRecording() {
-	if (recordStarted) {
-	   canvas.removeMouseMotionListener(this);
-	}
+    private void endRecording() {
+	canvas.removeMouseMotionListener(this);
 	canvas.removeMouseListener(this);
+	canvas.removeKeyListener(this);
 	recordEnded = true;
 	recordStarted = true;
+	// wake everyone if needed
+	synchronized (lock) {
+	    lock.notifyAll();
+	}
     }
 
     /**
@@ -240,7 +227,6 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      */
     public void mouseEntered(MouseEvent event) {
 	// not used
-
     }
 
     /**
@@ -254,7 +240,6 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * @param event press event
      */
     public void mousePressed(MouseEvent event) {
-	Debug.DEBUG(this.getClass().getSimpleName(), "mousePressed");
 	if (isWaitingForClick) {
 	    // the first click is occuring
 	    // first check if it is a cancel click or a not
@@ -293,7 +278,6 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      */
     public void mouseReleased(MouseEvent event) {
 	// nothing to do
-
     }
 
     /**
@@ -308,7 +292,6 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * @param event move event
      */
     public void mouseMoved(MouseEvent event) {
-	Debug.DEBUG(getClass().getSimpleName(), "mouseMoved");
 	updateDisplacement(event.getX(), event.getY());
     }
 
@@ -317,7 +300,7 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
      * @param xPos X coordinate of the mouse
      * @param yPos Y coordinate of the mouse
      */
-    protected void updateDisplacement(int xPos, int yPos) {
+    private void updateDisplacement(int xPos, int yPos) {
 	synchronized (lock) {
 	    // record new position
 	    currentX = xPos;
@@ -330,5 +313,39 @@ public class AxesRotationTracker implements MouseListener, MouseMotionListener {
 	    lock.notifyAll();
 	}
     }
+
+    /**
+     * Key Listener
+     * {
+     */
+    
+    /**
+     * keyPressed
+     * @param arg0 : the key event.
+     * If ESC is pressed, just cancel rotation.
+     */
+    public void keyPressed(KeyEvent arg0) {
+	if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
+	    cancelRecording();
+	}
+    }
+    
+    /**
+     * keyReleased
+     * @param arg0 : the key event.
+     * DO NOTHING.
+     */
+    public void keyReleased(KeyEvent arg0) { }
+    
+    /**
+     * keyTyped
+     * @param arg0 : the key event.
+     * DO NOTHING.
+     */
+    public void keyTyped(KeyEvent arg0) { }
+   
+    /**
+     * }
+     */
 
 }
