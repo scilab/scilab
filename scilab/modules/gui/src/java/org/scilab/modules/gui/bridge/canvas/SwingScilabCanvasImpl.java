@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -94,7 +94,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 		&& GL_RENDERER.contains("Intel")
 		&& GL_RENDERER.contains("DRI"))
 	{
-	    noGLJPanel = true; 
+	    noGLJPanel = true;
 	}
 	else {
 	    noGLJPanel = false;
@@ -121,37 +121,37 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	    realGLCanvas = new GLCanvas();
 	    realGLCanvas.addMouseMotionListener(new MouseMotionListener() {
 		    public void mouseDragged(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged"); 
+			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged");
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 		    public void mouseMoved(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved"); 
+			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved");
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 		});
 	    realGLCanvas.addMouseListener(new MouseListener() {
 		    public void mouseClicked(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked"); 
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked");
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mouseEntered(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered"); 
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered");
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mouseExited(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseExited"); 
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseExited");
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mousePressed(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mousePressed"); 
+			Debug.DEBUG("GLCanvas", "MouseListener : mousePressed");
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mouseReleased(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved"); 
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved");
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 		});
@@ -165,7 +165,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLCanvas();
+	    realGLCanvas = new GLCanvas(cap);
 	}
 	else {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
@@ -440,7 +440,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * @param g graphics
      */
     public void paint(Graphics g) {
-	Debug.DEBUG(this.getClass().getSimpleName(), "paint"); 
+	Debug.DEBUG(this.getClass().getSimpleName(), "paint");
 	getAsComponent().paint(g);
     }
 
@@ -456,7 +456,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void update(Graphics g) {
-	Debug.DEBUG(this.getClass().getSimpleName(), "update"); 
+	Debug.DEBUG(this.getClass().getSimpleName(), "update");
 	getAsComponent().update(g);
     }
     //
