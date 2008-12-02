@@ -166,6 +166,42 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	if (enableGLCanvas) {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
 	    realGLCanvas = new GLCanvas(cap);
+	    realGLCanvas.addMouseMotionListener(new MouseMotionListener() {
+		    public void mouseDragged(MouseEvent arg0) {
+			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged");
+			realGLCanvas.getParent().dispatchEvent(arg0);
+		    }
+		    public void mouseMoved(MouseEvent arg0) {
+			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved");
+			realGLCanvas.getParent().dispatchEvent(arg0);
+		    }
+		});
+	    realGLCanvas.addMouseListener(new MouseListener() {
+		    public void mouseClicked(MouseEvent arg0) {
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked");
+			realGLCanvas.getParent().dispatchEvent(arg0);
+		    }
+
+		    public void mouseEntered(MouseEvent arg0) {
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered");
+			realGLCanvas.getParent().dispatchEvent(arg0);
+		    }
+
+		    public void mouseExited(MouseEvent arg0) {
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseExited");
+			realGLCanvas.getParent().dispatchEvent(arg0);
+		    }
+
+		    public void mousePressed(MouseEvent arg0) {
+			Debug.DEBUG("GLCanvas", "MouseListener : mousePressed");
+			realGLCanvas.getParent().dispatchEvent(arg0);
+		    }
+
+		    public void mouseReleased(MouseEvent arg0) {
+			Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved");
+			realGLCanvas.getParent().dispatchEvent(arg0);
+		    }
+		});
 	}
 	else {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
