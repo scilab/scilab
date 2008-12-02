@@ -891,7 +891,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * Redefine paint children to be sure that AWT components are well painted.
 	 */
 	public void paintChildren(Graphics g) {
-		if (!scrolling.isLightweight()) {
+		if (scrolling != null && !scrolling.isLightweight()) {
 			// heavyweight children are not included
 			scrolling.paintAll(g);
 		}
