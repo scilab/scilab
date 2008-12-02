@@ -38,6 +38,8 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
+import javax.swing.JTextPane;
+
 
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
@@ -2234,17 +2236,24 @@ public class CallScilabBridge {
 		SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
 		StyledDocument doc = scilabConsole.getConfiguration().getOutputViewStyledDocument();
 		String textToPrint = null;
+		
+		/* Text selected in the input */
+		String strInputSelected = ((JTextPane) scilabConsole.getConfiguration().getInputCommandView()).getSelectedText();
+		/* Text selected in the output */
+		String strOutputSelected = ((JTextPane) scilabConsole.getConfiguration().getOutputView()).getSelectedText();
 			
-			try {
-				textToPrint = doc.getText(0, doc.getLength());
-				if (isWindowsPlateform()) {
-					/* Windows need line feed */
-					//textToPrint = textToPrint.replaceAll("\n","\n\r");
-				}
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
+		try {
+			textToPrint = doc.getText(0, doc.getLength());
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+		if (strInputSelected != null) {
+			printString(strInputSelected, new String("Console"));
+		} else if (strOutputSelected != null) {
+			printString(strOutputSelected, new String("Console"));
+		} else {
 			printString(textToPrint, new String("Console"));
+		}
 	}
 	
 	/**
