@@ -3,6 +3,9 @@
 
 EXPORTS
 ;core
+  LaunchScilab
+  LaunchScilabLock
+;
 getScilabMode
 callFunctionFromGateway
 com_
