@@ -33,6 +33,11 @@ void F1_Command(void)
 	StoreCommand("help");
 }
 /*--------------------------------------------------------------------------*/
+void F2_Command(void)
+{
+	StoreCommand("clc");
+}
+/*--------------------------------------------------------------------------*/
 void ALTF4_Command(void)
 {
 	StoreCommand("quit");

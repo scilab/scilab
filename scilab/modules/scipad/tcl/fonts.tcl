@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc choosefonts {} {
 # pop up the font chooser dialog
     global pad textFont menuFont
@@ -370,7 +371,7 @@ proc setdefaultfonts {} {
 proc settabsize {} {
 # update the tab size in all the existing text widgets
     global textfontsize tabsizeinchars listoftextarea
-    set tabsizeinpix [expr {$textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars}]
+    set tabsizeinpix [expr {round( $textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars )}]
     # this must be done for all textareas, including peers
     foreach textarea $listoftextarea {
         $textarea configure -tabs $tabsizeinpix

@@ -65,7 +65,7 @@ JNIEnv *getScilabJNIEnv(void)
 		if(res == JNI_ERR) 
 		{
 		#ifdef _MSC_VER
-			MessageBox(NULL,_("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+			MessageBox(NULL,gettext("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"),gettext("Error"),MB_ICONEXCLAMATION|MB_OK);
 		#else
 			fprintf(stderr,_("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"));
 		#endif
@@ -80,7 +80,7 @@ JNIEnv *getScilabJNIEnv(void)
 	else
 	{
 #ifdef _MSC_VER
-		MessageBox(NULL,_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+		MessageBox(NULL,gettext("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),gettext("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
 		fprintf(stderr,_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
 #endif
@@ -143,7 +143,7 @@ BOOL startJVM(char *SCI_PATH)
 					if (msg)
 					{
 						sprintf(msg,_(FORMAT_MSG),jvm_options_filename);
-						MessageBox(NULL,msg,_("Error"),MB_ICONEXCLAMATION|MB_OK);
+						MessageBox(NULL,msg,gettext("Error"),MB_ICONEXCLAMATION|MB_OK);
 						FREE(msg);
 						msg = NULL;
 					}
@@ -177,9 +177,9 @@ BOOL startJVM(char *SCI_PATH)
 				vm_args.version = JNI_VERSION_1_4;
 				#else
 				#ifdef _MSC_VER
-				MessageBox(NULL,_("\nIncorrect version JNI (needs at least JDK 1.4).\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+				MessageBox(NULL,gettext("\nIncorrect version JNI (needs at least JDK 1.4).\n"),gettext("Error"),MB_ICONEXCLAMATION|MB_OK);
 				#else
-				fprintf(stderr,_("\nIncorrect version JNI (needs at least JDK 1.4).\n"));
+				fprintf(stderr,gettext("\nIncorrect version JNI (needs at least JDK 1.4).\n"));
 				#endif
 				exit(1);
 				#endif
@@ -204,9 +204,9 @@ BOOL startJVM(char *SCI_PATH)
 	if (res != 0)
 	{
 #ifdef _MSC_VER
-		MessageBox(NULL,_("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+		MessageBox(NULL,gettext("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"),gettext("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		fprintf(stderr,_("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"));
+		fprintf(stderr,gettext("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"));
 #endif
 		FreeDynLibJVM();
 		freeJavaVMOption();

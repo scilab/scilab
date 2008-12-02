@@ -23,3 +23,7 @@ scizgsch_
   ls0001_
 ;
 ierode_
+;
+; Interruption CTRL-C
+;
+basbrk_

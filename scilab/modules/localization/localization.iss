@@ -11,6 +11,7 @@
 #define LOCALIZATION "localization"
 ;
 Source: bin\scilocalization.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\scilocalization.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\jar\org.scilab.modules.localization.jar;DestDir: {app}\modules\{#LOCALIZATION}\jar; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\VERSION.xml; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}

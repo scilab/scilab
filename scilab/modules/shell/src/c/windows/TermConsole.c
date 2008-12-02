@@ -107,7 +107,7 @@ int TerminalPrintf(char *buffer)
 	{
 		if (buffer[0] != 0)
 		{
-			int len = strlen (buffer);
+			int len = (int)strlen (buffer);
 			/* UTF-8 coded on 2 chars */
 			char *OEM_string = (char*)MALLOC(sizeof(char)*(2*len)); 
 			if (OEM_string)
@@ -250,6 +250,9 @@ static unsigned char TerminalGetchar(void)
 								case VK_F1: case VK_HELP:
 									F1_Command();
 								break;
+								case VK_F2:
+									F2_Command();
+									break;
 								case VK_LEFT:
 									moveBackSingleChar();
 									break;

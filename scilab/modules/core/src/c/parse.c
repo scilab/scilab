@@ -25,13 +25,11 @@
 #include "cvstr.h"
 #include "msgs.h"
 #include "scilabmode.h"
+#include "stack-def.h" /* C2F(basbrk) */
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
 /*--------------------------------------------------------------------------*/
-IMPORT struct {
-  int iflag, interruptible;
-} C2F(basbrk);
 
 /* Table of constant values */
 

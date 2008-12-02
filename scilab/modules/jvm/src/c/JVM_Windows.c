@@ -91,11 +91,23 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 	DWORD size  = PATH_MAX;
 	int   result;
 
-#ifdef _WIN64 /* if Win64 search only 64 bits JRE version */
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, JRE_HKEY, 0, KEY_READ | KEY_WOW64_64KEY, &regKey)) != ERROR_SUCCESS)
+	DWORD OpensKeyOptions = 0;
+
+/* if Win64 search only 64 bits JRE version */
+#ifdef _WIN64 /* Scilab x64 on x64 windows */
+	OpensKeyOptions = KEY_READ | KEY_WOW64_64KEY;
 #else
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, JRE_HKEY, 0, KEY_READ | KEY_WOW64_32KEY, &regKey)) != ERROR_SUCCESS)
+	if (IsWow64()) /* Scilab 32 bits on x64 windows */
+	{
+		OpensKeyOptions = KEY_READ | KEY_WOW64_32KEY;
+	}
+	else /* Scilab 32 bits on windows 32 bits */
+	{
+		OpensKeyOptions = KEY_READ;
+	}
 #endif
+
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, JRE_HKEY, 0, OpensKeyOptions, &regKey)) != ERROR_SUCCESS)
 	{
 		return NULL;
 	}
@@ -114,11 +126,8 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 	strcat(newKey, "\\");
 	strcat(newKey, value);
 
-#ifdef _WIN64
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, KEY_READ | KEY_WOW64_64KEY, &regKey)) != ERROR_SUCCESS)
-#else
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, KEY_READ | KEY_WOW64_32KEY, &regKey)) != ERROR_SUCCESS)
-#endif
+
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, OpensKeyOptions, &regKey)) != ERROR_SUCCESS)
 	{
 		return NULL;
 	}

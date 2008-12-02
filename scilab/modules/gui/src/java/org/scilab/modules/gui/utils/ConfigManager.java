@@ -87,7 +87,8 @@ public final class ConfigManager {
 	 * Create a copy of Scilab configuration file in the user directory
 	 */
 	public static void createUserCopy() {
-		if (!new File(USER_CONFIG_FILE).exists()) {
+		File fileConfig = new File(USER_CONFIG_FILE);
+		if ( !fileConfig.exists() || (fileConfig.length() == 0) ) {
 			/* Create a local copy of the configuration file */
 			copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
 		}

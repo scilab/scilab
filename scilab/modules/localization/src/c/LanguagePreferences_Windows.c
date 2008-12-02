@@ -86,15 +86,15 @@ static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
 		int length = LENGTH_LANGUAGE_REGISTRY;
 		wsprintf(keyString, keyStringFormat, SCI_VERSION_STRING);
 #ifdef _WIN64 /* Scilab x64 on x64 windows */
-		OpensKeyOptions = KEY_QUERY_VALUE | KEY_WOW64_64KEY;
+		OpensKeyOptions = KEY_READ | KEY_WOW64_64KEY;
 #else
 		if (IsWow64()) /* Scilab 32 bits on x64 windows */
 		{
-			OpensKeyOptions = KEY_ALL_ACCESS | KEY_WOW64_32KEY;
+			OpensKeyOptions = KEY_READ | KEY_WOW64_32KEY;
 		}
 		else /* Scilab 32 bits on windows 32 bits */
 		{
-			OpensKeyOptions = KEY_ALL_ACCESS;
+			OpensKeyOptions = KEY_READ;
 		}
 #endif
 		if ( RegOpenKeyEx(hKeyRoot, keyString, 0, OpensKeyOptions, &hKey) != ERROR_SUCCESS )
@@ -162,7 +162,7 @@ BOOL setLanguagePreferences(void)
 				return FALSE;
 			}
 
-			if ( RegSetValueEx(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, strlen(LANGUAGE)+1) != ERROR_SUCCESS)
+			if ( RegSetValueEx(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE)+1)) != ERROR_SUCCESS)
 			{
 				RegCloseKey(hKey);
 				if (keyString) { FREE(keyString); keyString = NULL;}
