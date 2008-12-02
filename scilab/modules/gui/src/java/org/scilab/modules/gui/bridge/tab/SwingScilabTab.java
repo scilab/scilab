@@ -894,7 +894,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void paintChildren(Graphics g) {
 		Component[] children = getComponents();
-		for (int i = 0; i < children.length; i++) {*
+		for (int i = 0; i < children.length; i++) {
 			// AWT children don't draw themselves automatically
 			// so force their draw
 			if (!children[i].isLightweight()) {

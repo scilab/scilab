@@ -15,9 +15,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.Container;
-import java.awt.Graphics;
-
 /**
  * Define a scrollPane that can be used wih Scilab
  * @author Jean-Baptiste Silvy
@@ -44,15 +41,5 @@ public interface ScilabScrollPane {
 	 * @param yPos the y position to scroll to
 	 */
 	void setViewPosition(int xPos, int yPos);
-	
-	/**
-	 * @return to know if we are actually dealing with a lightweight or a heavyweight component.
-	 */
-	boolean isLightweight();
-	
-	/**
-	 * To be able to call paint on the component
-	 */
-	void paintAll(Graphics g);
 	
 }
