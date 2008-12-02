@@ -17,12 +17,11 @@ package org.scilab.modules.gui.bridge.tab;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.Action;
-import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
@@ -87,7 +86,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private SwingScilabAxes contentPane;
 	
 	/** Scroll the axes */
-	private JScrollPane scrolling;
+	private ScilabScrollPane scrolling;
 	
 	/**
 	 * Constructor
@@ -128,10 +127,10 @@ public class SwingScilabTab extends View implements SimpleTab {
 		contentPane = new SwingScilabAxes(figureId);
 		
 		// add it inside a JSCrollPane
-		scrolling = new JScrollPane(contentPane);
+		scrolling = new SwingScilabScrollPane(contentPane);
 		
 		// put in in the back of the tab
-		setContentPane(scrolling);
+		setContentPane((Container) scrolling);
 		
 	
 		this.setVisible(true);
@@ -755,9 +754,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public void setBackground(double red, double green, double blue) {
 		Color newColor = new Color((float) red, (float) green, (float) blue);
 		contentPane.setBackground(red, green, blue);
-		// actually to set the background of a scroll pane, it's needed to set the background
-		// of the viewport
-		scrolling.getViewport().setBackground(newColor);
+		scrolling.setBackground(red, green, blue);
 		setBackground(newColor);
 	}
 	
@@ -766,12 +763,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return [x,y,w,h] array
 	 */
 	public int[] getViewingRegion() {
-		Rectangle viewport = scrolling.getViewport().getViewRect();
-		int[] res = {(int) viewport.getX(),
-				(int) viewport.getY(),
-				(int) viewport.getWidth(),
-				(int) viewport.getHeight()};
-		return res;
+		return scrolling.getViewingRegion();
 	}
 	
 	/**
@@ -785,7 +777,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void setViewingRegion(int posX, int posY, int width, int height) {
 		// Check that the canvas can be resized
-		if (!contentPane.getAutoResizeMode() && contentPane.isScrollable()) {
+		if (!contentPane.getAutoResizeMode()) {
 			// don't set viewport size here it should always fit parent tab size
 			// It seems that we must check the viewport size and positions
 			// to get coherent values, otherwise the setViewPosition hangs...
@@ -833,7 +825,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 			try {
 				SwingUtilities.invokeAndWait(new Runnable() {
 					public void run() {
-						scrolling.getViewport().setViewPosition(realPos);
+						scrolling.setViewPosition(realPos.x, realPos.y);
 					}
 				});
 			} catch (InterruptedException e) {
@@ -893,6 +885,17 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void stopRotationRecording() {
 		contentPane.stopRotationRecording();
+	}
+	
+	/**
+	 * Redefine paint children to be sure that AWT components are well painted.
+	 */
+	public void paintChildren(Graphics g) {
+		if (!scrolling.isLightweight()) {
+			// heavyweight children are not included
+			scrolling.paintAll(g);
+		}
+		super.paintChildren(g);
 	}
 
 }

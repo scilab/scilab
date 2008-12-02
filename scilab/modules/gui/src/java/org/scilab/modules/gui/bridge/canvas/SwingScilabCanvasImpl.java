@@ -456,14 +456,6 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	getAsComponent().setEnabled(enable);
     }
 
-    /**
-     * @return true if this object can be scrolled,
-     * false otherwise
-     */
-    public boolean isScrollable() {
-	return (!enableGLCanvas);
-    }
-
     //
     // PAINT SECTION
     //

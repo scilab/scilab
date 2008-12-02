@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.ScrollPane;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -240,16 +241,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
 		}
 		
-		if (!canvas.isScrollable()) {
-			// we disable scrolling in this case, so put the viewport in correct position first
-			// and disable scrollbars
-			JViewport parentViewPort = (JViewport) getParent();
-			JScrollPane parentPane = (JScrollPane) parentViewPort.getParent();
-			parentViewPort.setViewPosition(new Point(0, 0));
-			parentPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-			parentPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		}
-		
 		// to be sure to have the same size
 		canvas.setSize(getSize());
 		
@@ -362,29 +353,13 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		}
 		return rotationTracker;
 	}
-	
-	/**
-	 * Override repaint so the canvas can be displayed even if heavyweight.
-	 * @param g graphics
-	 */
-	public void paint(Graphics g) {
-	    Debug.DEBUG(this.getClass().getSimpleName(), "paint");  
-	    super.paint(g);
-	    if (graphicCanvas != null) {
-		graphicCanvas.repaint();
-	    }
-	}
 
+	/**
+	 * BLOUNO
+	 */
 	public void repaint() {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
 	    super.repaint();
 	}	
-
-	/**
-	 * @return true if the canvas is scrollable
-	 */
-	public boolean isScrollable() {
-		return graphicCanvas == null || graphicCanvas.isScrollable();
-	}
 
 }
