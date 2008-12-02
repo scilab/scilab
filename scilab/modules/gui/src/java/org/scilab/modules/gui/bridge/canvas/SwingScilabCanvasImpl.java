@@ -115,90 +115,43 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	return forceGLCanvas;
     }
 
-    public SwingScilabCanvasImpl() {
-	if (enableGLCanvas) {
-	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLCanvas();
-	    realGLCanvas.addMouseMotionListener(new MouseMotionListener() {
-		    public void mouseDragged(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged");
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-		    public void mouseMoved(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved");
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-		});
-	    realGLCanvas.addMouseListener(new MouseListener() {
-		    public void mouseClicked(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked");
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-
-		    public void mouseEntered(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered");
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-
-		    public void mouseExited(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseExited");
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-
-		    public void mousePressed(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mousePressed");
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-
-		    public void mouseReleased(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved");
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-		});
-	}
-	else {
-	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
-	    realGLJPanel= new GLJPanel();
-	}
-    }
-
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
 	    realGLCanvas = new GLCanvas(cap);
 	    realGLCanvas.addMouseMotionListener(new MouseMotionListener() {
 		    public void mouseDragged(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseDragged");
+			arg0.setSource(realGLCanvas.getParent());
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 		    public void mouseMoved(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseMotionListener : mouseMoved");
+			arg0.setSource(realGLCanvas.getParent());
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 		});
 	    realGLCanvas.addMouseListener(new MouseListener() {
 		    public void mouseClicked(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseClicked");
+			arg0.setSource(realGLCanvas.getParent());
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mouseEntered(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseEntered");
+			arg0.setSource(realGLCanvas.getParent());
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mouseExited(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseExited");
+			arg0.setSource(realGLCanvas.getParent());
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mousePressed(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mousePressed");
+			arg0.setSource(realGLCanvas.getParent());
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 
 		    public void mouseReleased(MouseEvent arg0) {
-			Debug.DEBUG("GLCanvas", "MouseListener : mouseMoved");
+			arg0.setSource(realGLCanvas.getParent());
 			realGLCanvas.getParent().dispatchEvent(arg0);
 		    }
 		});
@@ -240,7 +193,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GL getGL() {
-	Debug.DEBUG(this.getClass().getSimpleName(), "getGL");
+	//Debug.DEBUG(this.getClass().getSimpleName(), "getGL");
 	return getAsGL().getGL();
     }
 
@@ -476,23 +429,23 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * @param g graphics
      */
     public void paint(Graphics g) {
-	Debug.DEBUG(this.getClass().getSimpleName(), "paint");
+	//Debug.DEBUG(this.getClass().getSimpleName(), "paint");
 	getAsComponent().paint(g);
     }
 
     public void display() {
-	Debug.DEBUG(this.getClass().getSimpleName(), "display");
+	//Debug.DEBUG(this.getClass().getSimpleName(), "display");
 	getAsGL().display();
     }
 
     public void repaint() {
-	Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+	//Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
 	getAsGL().repaint();
 	getAsComponent().repaint();
     }
 
     public void update(Graphics g) {
-	Debug.DEBUG(this.getClass().getSimpleName(), "update");
+	//Debug.DEBUG(this.getClass().getSimpleName(), "update");
 	getAsComponent().update(g);
     }
     //
