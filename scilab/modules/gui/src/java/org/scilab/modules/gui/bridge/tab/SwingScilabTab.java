@@ -15,10 +15,12 @@
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ComponentListener;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.Action;
@@ -891,9 +893,13 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * Redefine paint children to be sure that AWT components are well painted.
 	 */
 	public void paintChildren(Graphics g) {
-		if (scrolling != null && !scrolling.isLightweight()) {
-			// heavyweight children are not included
-			scrolling.paintAll(g);
+		Component[] children = getComponents();
+		for (int i = 0; i < children.length; i++) {*
+			// AWT children don't draw themselves automatically
+			// so force their draw
+			if (!children[i].isLightweight()) {
+				children[i].paint(g);
+			}
 		}
 		super.paintChildren(g);
 	}

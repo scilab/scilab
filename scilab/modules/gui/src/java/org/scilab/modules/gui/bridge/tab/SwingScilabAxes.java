@@ -2,28 +2,20 @@ package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.AWTEvent;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.ScrollPane;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.Scrollable;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
-import org.scilab.modules.gui.events.GlobalEventWatcher;
-import org.scilab.modules.gui.events.GlobalMouseEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -360,6 +352,21 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	public void repaint() {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
 	    super.repaint();
-	}	
+	}
+	
+	/**
+	 * Redefine paint children to be sure that AWT components are well painted.
+	 */
+	public void paintChildren(Graphics g) {
+		Component[] children = getComponents();
+		for (int i = 0; i < children.length; i++) {
+			// AWT children don't draw themselves automatically
+			// so force their draw
+			if (!children[i].isLightweight()) {
+				children[i].paint(g);
+			}
+		}
+		super.paintChildren(g);
+	}
 
 }
