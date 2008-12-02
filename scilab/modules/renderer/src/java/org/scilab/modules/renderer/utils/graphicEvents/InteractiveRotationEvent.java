@@ -33,7 +33,7 @@ public class InteractiveRotationEvent extends GraphicEvent {
 	 */
 	public InteractiveRotationEvent(DrawableFigureGL trackedCanvas) {
 		this.trackedCanvas = trackedCanvas;
-		this.subwinHandle = 0;
+		setRotatedSubwinHandle(0);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class InteractiveRotationEvent extends GraphicEvent {
 		curInfoMessage = trackedCanvas.getInfoMessage();
 		
 		if (getFirstClick()) {
-			interactiveRotation(subwinHandle);
+			interactiveRotation(getRotatedSubwinHandle());
 		}
 		
 		trackedCanvas.setInfoMessage(curInfoMessage);
@@ -75,9 +75,9 @@ public class InteractiveRotationEvent extends GraphicEvent {
 		}
 		
 		// get the clicked subwin handle or 0 if no handle has been clicked
-		subwinHandle = FigureScilabCall.getClickedSubwinHandle(trackedCanvas.getFigureId(), clickPos[0], clickPos[1]);
+		long clickedSubwinHandle = FigureScilabCall.getClickedSubwinHandle(trackedCanvas.getFigureId(), clickPos[0], clickPos[1]);
 		
-		if (subwinHandle == 0) {
+		if (clickedSubwinHandle == 0) {
 			// no subwindow has been founds
 			cancel();
 			
@@ -85,6 +85,8 @@ public class InteractiveRotationEvent extends GraphicEvent {
 			trackedCanvas.getRendererProperties().getRotationDisplacement(clickPos);
 			return false;
 		}
+		
+		setRotatedSubwinHandle(clickedSubwinHandle);
 		
 		return true;
 	}
@@ -116,6 +118,20 @@ public class InteractiveRotationEvent extends GraphicEvent {
 	 */
 	protected DrawableFigureGL getTrackedCanvas() {
 		return trackedCanvas;
+	}
+	
+	/**
+	 * @return handle of the rotated subwindow
+	 */
+	protected long getRotatedSubwinHandle() {
+		return subwinHandle;
+	}
+	
+	/**
+	 * @param subwinHandle handle of the subwindow to rotate
+	 */
+	protected void setRotatedSubwinHandle(long subwinHandle) {
+		this.subwinHandle = subwinHandle;
 	}
 
 }
