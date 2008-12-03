@@ -18,9 +18,11 @@
 #include "MALLOC.h"
 #include "cluni0.h"
 #include "machine.h"
+#include "isdir.h"
 /*--------------------------------------------------------------------------*/ 
 static void splitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);
+static char **addDirSeparator(char **dictionary, int sizearray, char *path);
 /*--------------------------------------------------------------------------*/ 
 char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 {
@@ -78,7 +80,9 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		{
 			dictionary = addPath(dictionary, sizeListReturned, path);
 		}
-		
+
+		dictionary = addDirSeparator(dictionary, sizeListReturned, path);
+
 		*sizearray = sizeListReturned;
 
         /* Add a NULL element at the end (to get number of items from JNI) */
@@ -140,7 +144,34 @@ static char **addPath(char **dictionary, int sizearray, char *path)
 		sprintf(newPath,"%s%s",path,dictionary[i]);
 		FREE(dictionary[i]);
 		dictionary[i] = newPath;
-		
+	}
+	return dictionary;
+}
+/*--------------------------------------------------------------------------*/
+static char **addDirSeparator(char **dictionary, int sizearray, char *path)
+{
+	int i = 0;
+	for (i = 0;i < sizearray;i++)
+	{
+		int out_n = 0;
+
+		char pathextended[PATH_MAX];
+		char fullpath[PATH_MAX * 2];
+
+		C2F(cluni0)(path, pathextended, &out_n,( long)strlen(path), PATH_MAX);
+
+		strcpy(fullpath, pathextended);
+		strcat(fullpath, dictionary[i]);
+
+		if ( isdir(fullpath) && (dictionary[i][strlen(dictionary[i])-1] != DIR_SEPARATOR[0]) )
+		{
+			char *newPath = NULL;
+			int newlength = (int)(strlen(dictionary[i]) + strlen(DIR_SEPARATOR) + 1);
+			newPath = (char *)MALLOC(sizeof(char)*(newlength));
+			sprintf(newPath,"%s%s",dictionary[i],DIR_SEPARATOR);
+			FREE(dictionary[i]);
+			dictionary[i] = newPath;
+		}
 	}
 	return dictionary;
 }
