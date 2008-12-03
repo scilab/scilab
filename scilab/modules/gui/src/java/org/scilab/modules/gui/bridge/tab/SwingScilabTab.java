@@ -128,7 +128,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		contentPane = new SwingScilabAxes(figureId);
 		
 		// add it inside a JSCrollPane
-		scrolling = new AwtScilabScrollPane(contentPane);
+		scrolling = new SwingScilabScrollPane(contentPane);
 		
 		// put in in the back of the tab
 		setContentPane((Container) scrolling);
