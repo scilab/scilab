@@ -118,6 +118,12 @@
         </tr>
 
         <tr>
+          <td>Ctrl + S</td>
+
+          <td>select all.</td>
+        </tr>
+
+        <tr>
           <td>Ctrl + U</td>
 
           <td>delete the whole command line.</td>
