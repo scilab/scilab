@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,12 +9,16 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function [v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16,..
-v17,v18,v19,v20,v21,v22,v23,v24,v25,v26,v27,v28,v29,v30]=sscanf(buf,frmt)
+function varargout = sscanf(buf,frmt)
 	
 	// sscanf - Emulator of C language sscanf
 	
-	[lhs,rhs]  = argn(0)
+	[lhs,rhs]  = argn(0);
+	MAXLHS = 50;
+	if lhs > MAXLHS then
+	  error(999, msprintf(gettext("%s: Wrong number of output argument(s).\n"),"sscanf"));
+	end
+	
 	hexdigits  = [string(0:9),'a','b','c','d','e','f','A','B','C','D','E','F']
 	hexvalues  = [0:15,10,11,12,13,14,15];
 	kbuf       = 1;
@@ -21,12 +26,20 @@ v17,v18,v19,v20,v21,v22,v23,v24,v25,v26,v27,v28,v29,v30]=sscanf(buf,frmt)
 	sbuf       = length(buf);
 	nv         = lhs;
 	
+	if type(buf)<>10 then
+		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"sscanf",1));
+	end
+	
+	if size(buf,"*")<>1 then
+		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"sscanf",1);
+	end
+	
 	if type(frmt)<>10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"sscanf",2));
+		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"sscanf",2));
 	end
 	
 	if size(frmt,"*")<>1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"sscanf",2);
+		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"sscanf",2);
 	end
 	
 	lb          = 1;
@@ -70,6 +83,10 @@ v17,v18,v19,v20,v21,v22,v23,v24,v25,v26,v27,v28,v29,v30]=sscanf(buf,frmt)
 		execstr("v"+string(k)+"=[]");
 	end
 	
+	v = 'v';
+	args = strcat( v(ones(count,1)) + string(1:count)',',');
+	execstr('varargout = list(' + args + ');');
+		
 endfunction
 
 
