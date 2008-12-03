@@ -15,6 +15,6 @@
 //load("SCI/modules/console/macros/lib");
 // ====================================================================
 //add help chapter
-//add_module_help_chapter("console");
-//clear add_module_help_chapter;
+add_module_help_chapter("Console");
+clear add_module_help_chapter;
 // ====================================================================
