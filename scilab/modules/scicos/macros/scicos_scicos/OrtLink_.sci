@@ -19,25 +19,30 @@
 // See the file ../license.txt
 //
 
-function Link_()
+function OrtLink_()
+//** 28 Nov 2008 : First attempt to implement a menu option switch 
+//**               for SL mode editor 
 
-//** 28 Nov 2008 : begin with the "Simulink like" (SL) mode 
-  
-  //** "0" standard scicos oblique link ; "1" SL orthogonanal links 
-  global SL_mode ; 
+  Cmenu = [] ;
 
-  //** use a global variable in oder to switch 
-  //** from/to the two operating modes 
-  if SL_mode==0 then 
-    //** This is the original Scicos routine
-    [scs_m, needcompile] = getlink(%pt, scs_m, needcompile); 
+  //** TODO : we will use the "scs_m.props.options" later
+  //** [edited,options] = do_options(scs_m.props.options,'OrtLink')
+  //** scs_m.props.options = options ;
+
+  global SL_mode ; //** "0" standard scicos oblique link ; "1" SL orthogonanal links 
+
+  if SL_mode==1 then 
+    tt = "Yes"
   else
-  //** This is the new mode "getlink_qd"
-    [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile);
-  end 
+    tt = "No"
+  end
 
-  Cmenu = []; 
-  %pt = []; 
-  Select = [] ;
+  rep1 = message(["Use orthogonal links?" ; "current choice is " + tt], ["Yes" ; "No"])
+
+  if rep1==1 then
+     SL_mode = 1;
+  else
+     SL_mode = 0;
+  end 
 
 endfunction

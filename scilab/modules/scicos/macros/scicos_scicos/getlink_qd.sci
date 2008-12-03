@@ -21,14 +21,16 @@
 // See the file ../license.txt
 //
 
-function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
+function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 //** Edition of a link from an output block to an input  block
+//** using "Simulink like" orthogonal links only 
+//** oblique links are not accepted ! 
 
 //** 28/11/08: Preparation of the "SL" operation
 //** 24/07/07: Al@n's patch for rotation of blocks
 
 //** N.B : Please set %scicos_debug_gr="%t" to activate the debug mode 
-//** BEWARE: "d9" state is not yet tested after Replot removal
+  %scicos_debug_gr = %t; 
 
   outin = ['out','in']
   //----------- get link origin --------------------------------------
@@ -58,6 +60,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
   if typeof(o1)=="Link" then  //** add a split block
     //** ------------------- start from a LINK ------------------------------
+    //** TODO : complete the horizontal/vertical type 
     pt = [xc1;yc1] ; 
     [xx,yy,ct,from,to] = (o1.xx,o1.yy,o1.ct,o1.from,o1.to);
     if (-wh==size(xx,'*')) then
@@ -143,8 +146,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     //** Check if the new requested link creation is compatible with the diagram 
     // Check if selected port is already connected and get port type ('in' or 'out')
 
-    if typo==1  then // regular output port
+    if typo==1  then //** Regular output port
       port_number = k ;
+      link_dir = "h" ; //** output port starts horizontal link
       if op(port_number)<>0 then
           hilite_obj(kfrom)
            message(["Selected port is already connected.";..
@@ -154,8 +158,10 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         return
       end
       typpfrom='out'
-    elseif (typo==2 & k<=size(op,'*')) then // implicit  output port
-      port_number = k ; 
+    elseif (typo==2 & k<=size(op,'*')) then //** Implicit output port (Modelica)
+      port_number = k ;
+      //** TODO : in case of Modelica port the choice is not yet clear :(  
+      link_dir = "h" ; //** use the default 
       if op(port_number)<>0 then
           hilite_obj(kfrom);
           message(["Selected port is already connected.";..
@@ -165,10 +171,12 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         return
       end
       typpfrom='out'
-    elseif (typo==2 & k>size(op,'*')+size(cop,'*')) then // implicit  input port
+    elseif (typo==2 & k>size(op,'*')+size(cop,'*')) then //** Implicit  input port
       typpfrom = 'in' ; 
       k = k-size(op,'*')-size(cop,'*'); 
       port_number = i_ImplIndx(k)
+      //** TODO : in case of Modelica port the choice is not yet clear :(  
+      link_dir = "h" ; //** use the default
       if impi(port_number)<>0 then
           hilite_obj(kfrom) ; 
           message(["Selected port is already connected.";..
@@ -178,8 +186,11 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         return
       end
       typpfrom='in'
-    else // event output port
+    else //** Event output port
       port_number = k - size(op,'*') ;
+      //** In case of Event port the direction is strictly vertical  
+      link_dir = "v" ; //** 
+
       if cop(port_number)<>0 then
           hilite_obj(kfrom);
           message(["Selected port is already connected.";..
@@ -193,9 +204,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     fromsplit = %f ; 
     clr = default_color(typo) ;
 
-    // get port size
-    szout=getportsiz(o1,port_number,typpfrom)
-    // get port data type
+    //** get port size
+    szout = getportsiz(o1,port_number,typpfrom)
+    //** get port data type
     if typpfrom=='out'|typpfrom=='in' then
       szouttyp = getporttyp(o1,port_number,typpfrom); 
     end
@@ -223,6 +234,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   //** the outher loop control the sequence of segment 
   //**   the inner loop handle the interactive operation on the single link segment
 
+  //**------------------- OUTHER LOOP -----------------------------------------------------------
   while %t do // loop on link segments
     xe = xo; ye = yo ; //** o > origin ---- e > end
     //** the first step is the the creation of a dummy graphic object (a link of ZERO leght)
@@ -230,6 +242,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     xpoly([xo;xe] , [yo;ye], 'lines') ; //** create the first 'dummy' object
     gh_link = gh_axes.children(1) ; //** the last object is the above link :)
 
+    //**----------------------------- INNER LOOP -------------------------------------------
     rep(3) = -1; //** initialization (as Claudio Macchiavelli has teached me :) )
     while %t do //** infinite loop
       drawlater() ;
@@ -266,13 +279,24 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
           return; //** -----> Exit from the function
       end //**
 
-      //plot new position of last link segment
+      //** plot new link polyline 
       xe = rep(1); ye = rep(2) ;
-      gh_link.data =  [xo yo ; xe ye ] ;   //** put the coordinate here
-      gh_link.foreground = clr             //** put the color here ( 5 = red )
+
+      //** Now there are two cases (at least); split link and Modelica are not handled ....
+      if link_dir=="h" then
+        //** horizontal orthogonal link 
+        hdx = xo + (xe-xo)/2 ;
+        gh_link.data =  [xo yo ; hdx yo ; hdx ye ; xe ye ]; 
+      elseif link_dir=="v" then
+        //** vertical orthogonal link 
+        vdy = yo + (ye-yo)/2 ; 
+        gh_link.data =  [xo yo ; xo vdy ; xe vdy ; xe ye ];
+      end
+
+      gh_link.foreground = clr;   //** put the color here ( 5 = red )
       drawnow(); //** update the buffer
     end
-    //** ----------------- end of last segment while loop ------------------------------
+    //** ------------------------------- INNER LOOP END  ------------------------------
 
     if %scicos_debug_gr then
       disp("-->"); //** debug only
@@ -521,31 +545,31 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       if %scicos_debug_gr then
         disp("|->>")
       end
-
-      break; //** this break the outher loop 
+  
+      //** update the link data vector for the phinal phase       
+        cmx = gh_link.data; //** recover the coordinates
+        //** add the coordinate at the vectors for the final link 
+        xl = [xl; cmx(2:4,1) ]; //** "x" colum, excluding the first element 
+        yl = [yl; cmx(2:4,2) ]; //** "y" colum,     "      "    "     " 
+      
+      break; //** this BREAK the outher loop and go at the final phase 
 
     else // (kto==[]) new point ends current line segment: you remain in the outher loop 
 
+      if %scicos_debug_gr then
+          disp("d8"); //** Debug
+      end
+
       if xe<>xo|ye<>yo then // to avoid null length segments
-        xc2 = xe; yc2 = ye ; 
 
-        if abs(xo-xc2)<abs(yo-yc2) then
-          xc2 = xo ;
-        else
-          yc2 = yo ; 
-        end
+        cmx = gh_link.data; //** recover the coordinates
+        //** add the coordinate at the vectors for the final link 
+        xl = [xl; cmx(2:4,1) ]; //** "x" colum, excluding the first element 
+        yl = [yl; cmx(2:4,2) ]; //** "y" colum,     "      "    "     " 
 
-        gh_link.data =  [xo yo ; xc2 yc2 ] ; //** temp
-        gh_link.foreground = clr           ; //** put the color here
-
-        drawnow();      
-        
-        if %scicos_debug_gr then
-          disp("d8");//** Debug
-        end
-
-        xl = [xl;xc2]; yl = [yl;yc2] ;
-        xo = xc2     ; yo = yc2    ;
+        //** new "zero" coordinate for the next "poly"
+        xo = cmx(4,1) ; //** "xe" the final point is the new starting point 
+        yo = cmx(4,2) ; //** "ye"  "    "      "   "  "   "      "      "
       end
 
     end
@@ -559,7 +583,6 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       [%win,Cmenu] = resume(curwin,'Quit')
   end
 
-  // make last segment horizontal or vertical
   typ = typo
   to = [kto,port_number,bool2s(typpto=='in'|typpto=='evtin')]
   nx = prod(size(xl))
@@ -588,68 +611,68 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   //** from here the data strucures are update BUT not draw !  
   drawlater(); //** DO NOT UPDATE THE CANVAS ! 
  
-  if nx==1 then // 1 segment link
+//   if nx==1 then // 1 segment link
+// 
+//     if fromsplit&(xl<>xc2|yl<>yc2) then
+//       // try to move split point
+//       if xx(wh)==xx(wh+1) then // split is on a vertical link
+//         if (yy(wh)-yc2)*(yy(wh+1)-yc2)<0 then
+//           yl = yc2 ;
+//           gh_link.data =  [xl yl ; xc2 yc2] ; //** put the coordinate here
+//         end
+//       elseif yy(wh)==yy(wh+1) then //split is on a horizontal link
+//         if (xx(wh)-xc2)*(xx(wh+1)-xc2)<0 then
+//           xl = xc2 ;
+//           gh_link.data = [xl yl ; xc2 yc2 ] ; //** put the coordinate here
+//         end
+//       end
+//       d = [xl,yl]
+//       //** Alan's fix, 17/10/07
+//       //** create a point in the middle of the link
+//       //** in the case of a direct link between two port
+//       //** of the same block
+//     elseif kto==kfrom then
+//       xl = [xl;(xl+xc2)/2]
+//       yl = [yl;(yl+yc2)/2]
+//     end
+//     //form link datas
+//     xl = [xl;xc2];yl=[yl;yc2]
+//   else
+//     if xl(nx)==xl(nx-1) then
+//       // previous segment is vertical
+//       nx = prod(size(xl)) ;
+//       gh_link_del = gh_axes.children(1) ;
+//       delete( gh_link_del );
+//       gh_link_del = gh_axes.children(1) ;
+//       delete( gh_link_del );
+//       xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
+//       gh_link = gh_axes.children(1) ;
+//       gh_link.foreground = clr
+//       // form link datas
+//       xl = [xl;xc2]; yl = [yl(1:nx-1);yc2;yc2]
+// 
+//     //** ---- Previous segment is horizontal
+//     elseif yl(nx)==yl(nx-1) then
+//       // previous segment is horizontal
+//       nx = prod(size(xl)) ;
+//       gh_link_del = gh_axes.children(1) ;
+//       delete( gh_link_del );
+//       gh_link_del = gh_axes.children(1) ;
+//       delete( gh_link_del );
+//       xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
+//       gh_link = gh_axes.children(1) ;
+//       gh_link.foreground = clr
+// 
+//       // form link datas
+//       xl = [xl(1:nx-1);xc2;xc2]; yl = [yl;yc2]
+//     else 
+//       // previous segment is oblique
+//       // nothing particular is done
+//       xl = [xl;xc2]; yl = [yl;yc2]
+//     end
+//   end
 
-    if fromsplit&(xl<>xc2|yl<>yc2) then
-      // try to move split point
-      if xx(wh)==xx(wh+1) then // split is on a vertical link
-        if (yy(wh)-yc2)*(yy(wh+1)-yc2)<0 then
-          yl = yc2 ;
-          gh_link.data =  [xl yl ; xc2 yc2] ; //** put the coordinate here
-        end
-      elseif yy(wh)==yy(wh+1) then //split is on a horizontal link
-        if (xx(wh)-xc2)*(xx(wh+1)-xc2)<0 then
-          xl = xc2 ;
-          gh_link.data = [xl yl ; xc2 yc2 ] ; //** put the coordinate here
-        end
-      end
-      d = [xl,yl]
-      //** Alan's fix, 17/10/07
-      //** create a point in the middle of the link
-      //** in the case of a direct link between two port
-      //** of the same block
-    elseif kto==kfrom then
-      xl = [xl;(xl+xc2)/2]
-      yl = [yl;(yl+yc2)/2]
-    end
-    //form link datas
-    xl = [xl;xc2];yl=[yl;yc2]
-  else
-    if xl(nx)==xl(nx-1) then
-      // previous segment is vertical
-      nx = prod(size(xl)) ;
-      gh_link_del = gh_axes.children(1) ;
-      delete( gh_link_del );
-      gh_link_del = gh_axes.children(1) ;
-      delete( gh_link_del );
-      xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
-      gh_link = gh_axes.children(1) ;
-      gh_link.foreground = clr
-      // form link datas
-      xl = [xl;xc2]; yl = [yl(1:nx-1);yc2;yc2]
-
-    //** ---- Previous segment is horizontal
-    elseif yl(nx)==yl(nx-1) then
-      // previous segment is horizontal
-      nx = prod(size(xl)) ;
-      gh_link_del = gh_axes.children(1) ;
-      delete( gh_link_del );
-      gh_link_del = gh_axes.children(1) ;
-      delete( gh_link_del );
-      xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
-      gh_link = gh_axes.children(1) ;
-      gh_link.foreground = clr
-
-      // form link datas
-      xl = [xl(1:nx-1);xc2;xc2]; yl = [yl;yc2]
-    else 
-      // previous segment is oblique
-      // nothing particular is done
-      xl = [xl;xc2]; yl = [yl;yc2]
-    end
-  end
-
-  lk = scicos_link(xx=xl,yy=yl,ct=[clr,typ],from=from,to=to)
+  lk = scicos_link(xx=xl, yy=yl, ct=[clr,typ], from=from, to=to) ; 
 
   //**---- Mr. Clean :) -----------------------------------------------------------------------
   p_size = size(gh_axes.children) ; //** p_size(1) is the number of compound object
