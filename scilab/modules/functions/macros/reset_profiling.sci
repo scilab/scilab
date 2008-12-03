@@ -9,7 +9,7 @@
 function reset_profiling(funname)
 //reset profiling data in bytecode
   nsiz=6
-  execstr('code=bytecode()')
+  execstr('code=bytecode('+funname+')')
   lc=1
   lc = lc + nsiz*double(code(lc)) + 1
   lc = lc + nsiz*double(code(lc)) + 1
