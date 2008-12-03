@@ -92,6 +92,10 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
+
+	/* Create the default relationShip */
+	createDefaultRelationShip(pobj);
+
   /* add a number in the HandelTable  reallocation de la table + 1 puis affectation de l'indice    */
 
   ppFigure = pFIGURE_FEATURE(pobj) ;
@@ -100,12 +104,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   /* until we add it to the lists */
 
   /* Don't call standard build operation since it add the figure to the handle list */
-  sciInitSelectedSons( pobj ) ;
-
-  sciGetRelationship(pobj)->psons        = NULL ;
-  sciGetRelationship(pobj)->plastsons    = NULL ;
-  sciGetRelationship(pobj)->pSelectedSon = NULL ;
-  sciGetRelationship(pobj)->pparent = NULL ;
 
   sciInitVisibility( pobj, TRUE ) ;
 
@@ -575,13 +573,14 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
     return NULL;
   }
 
+	/* Create the default relationShip */
+	createDefaultRelationShip(pObj);
+
   ppText = pTEXT_FEATURE( pObj ) ;
 
   ppText->user_data = (int *) NULL;
   ppText->size_of_user_data = 0;
-  sciInitSelectedSons( pObj ) ;
-  ppText->relationship.psons = NULL;
-  ppText->relationship.plastsons = NULL;
+  
 
   /* it must be specified for some functions */
   sciSetParent( pObj, pparentsubwin ) ;
@@ -610,7 +609,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   ppText->y = y;
   ppText->z = 0.0; /**DJ.Abdemouche 2003**/
 
-  // initialize to a not too weird value
+  /* initialize to a not too weird value */
   for (i = 0; i < 4; i++)
   {
     ppText->corners[i][0] = ppText->x;
@@ -761,6 +760,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
       /* get the pointer on the features */
       ppLegend = pLEGEND_FEATURE( pobj );
 
@@ -771,8 +771,6 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
         return NULL ;
       }
 
-      ppLegend->text.relationship.psons = (sciSons *) NULL;
-      ppLegend->text.relationship.plastsons = (sciSons *) NULL;
       ppLegend->text.callback = (char *)NULL;
       ppLegend->text.callbacklen = 0;
       ppLegend->text.callbackevent = 100;
@@ -885,6 +883,9 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
     FREE(pobj);
     return (sciPointObj *) NULL;
   }
+
+	/* Create the default relationShip */
+	createDefaultRelationShip(pobj);
 
   sciSetParent( pobj, pparentsubwin ) ;
 
@@ -1190,6 +1191,8 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
+
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         FREE( pobj->pfeatures ) ;
@@ -1299,6 +1302,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
       /*debug F.Leray*/
       psurf = pSURFACE_FEATURE (pobj);
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
@@ -1555,6 +1559,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         FREE( pobj->pfeatures ) ;
@@ -1669,6 +1674,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	    FREE(pobj);
 	    return (sciPointObj *) NULL;
 	  }
+
     if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
     {
       FREE( pobj->pfeatures ) ;
@@ -1810,116 +1816,117 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	      double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax,
 	      int *colout, BOOL with_mesh)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciFec *pfec = (sciFec *) NULL;
-  int i = 0;
+	sciPointObj *pobj = (sciPointObj *) NULL;
+	sciFec *pfec = (sciFec *) NULL;
+	int i = 0;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_FEC);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciFec)))) == NULL)
+	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
 	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+			return (sciPointObj *) NULL;
+		sciSetEntityType (pobj, SCI_FEC);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciFec)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
 
-      pFEC_FEATURE (pobj)->callback = (char *)NULL;
-      pFEC_FEATURE (pobj)->callbacklen = 0;
-      pFEC_FEATURE (pobj)->callbackevent = 100;
+		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			return NULL ;
+		}
 
-      pFEC_FEATURE (pobj)->isselected = TRUE;
-      pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+		pFEC_FEATURE (pobj)->callback = (char *)NULL;
+		pFEC_FEATURE (pobj)->callbacklen = 0;
+		pFEC_FEATURE (pobj)->callbackevent = 100;
 
-      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
-      sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+		pFEC_FEATURE (pobj)->isselected = TRUE;
+		pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      pfec = pFEC_FEATURE (pobj);
+		sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
+		sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+
+		pfec = pFEC_FEATURE (pobj);
 
 
-      if ((pfec->pvecx = MALLOC (Nnode * sizeof (double))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((pfec->pvecy = MALLOC (Nnode * sizeof (double))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((pfec->pnoeud = MALLOC ((5*Ntr) * sizeof (double))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((pfec->pfun = MALLOC (Nnode * sizeof (double))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  FREE(pFEC_FEATURE (pobj)->pnoeud);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+		if ((pfec->pvecx = MALLOC (Nnode * sizeof (double))) == NULL)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((pfec->pvecy = MALLOC (Nnode * sizeof (double))) == NULL)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((pfec->pnoeud = MALLOC ((5*Ntr) * sizeof (double))) == NULL)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			FREE(pFEC_FEATURE (pobj)->pvecy);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((pfec->pfun = MALLOC (Nnode * sizeof (double))) == NULL)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			FREE(pFEC_FEATURE (pobj)->pvecy);
+			FREE(pFEC_FEATURE (pobj)->pnoeud);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
 
-      for (i = 0; i < Nnode; i++)
-	{
-	  pfec->pvecx[i] = pvecx[i];
-	  pfec->pvecy[i] = pvecy[i];
-	  pfec->pfun[i] = pfun[i];
+		for (i = 0; i < Nnode; i++)
+		{
+			pfec->pvecx[i] = pvecx[i];
+			pfec->pvecy[i] = pvecy[i];
+			pfec->pfun[i] = pfun[i];
+		}
+		for (i = 0; i < (5*Ntr); i++)
+		{
+			pfec->pnoeud[i] = pnoeud[i];
+		}
+		for (i = 0; i < 2; i++)
+		{
+			pfec->zminmax[i] = zminmax[i];
+			pfec->colminmax[i] = colminmax[i];
+			pfec->colout[i] = colout[i];
+		}
+		pfec->with_mesh = with_mesh;
+		pfec->Nnode = Nnode;
+		pfec->Ntr = Ntr;
+		if (sciInitGraphicContext (pobj) == -1)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			FREE(pFEC_FEATURE (pobj)->pvecy);
+			FREE(pFEC_FEATURE (pobj)->pnoeud);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		return pobj;
 	}
-      for (i = 0; i < (5*Ntr); i++)
+	else
 	{
-	  pfec->pnoeud[i] = pnoeud[i];
+		sciprint(_("The parent has to be a SUBWIN\n"));
+		return (sciPointObj *) NULL;
 	}
-      for (i = 0; i < 2; i++)
-	{
-	  pfec->zminmax[i] = zminmax[i];
-	  pfec->colminmax[i] = colminmax[i];
-	  pfec->colout[i] = colout[i];
-	}
-      pfec->with_mesh = with_mesh;
-      pfec->Nnode = Nnode;
-      pfec->Ntr = Ntr;
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  FREE(pFEC_FEATURE (pobj)->pnoeud);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      return pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
 }
 
 
@@ -1935,173 +1942,174 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
                int Nbr1,int Nbr2, double *vfx, double *vfy, int flag,
 	       int *style, double arsize, int colored, double arfact, int typeofchamp)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciSegs * ppSegs = (sciSegs *) NULL;
-  int i;
+	sciPointObj *pobj = (sciPointObj *) NULL;
+	sciSegs * ppSegs = (sciSegs *) NULL;
+	int i;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_SEGS);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciSegs)))) == NULL)
+	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
 	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+			return (sciPointObj *) NULL;
+		sciSetEntityType (pobj, SCI_SEGS);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciSegs)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			return NULL ;
+		}
+
+		ppSegs = pSEGS_FEATURE(pobj) ;
+
+		ppSegs->callback = (char *)NULL;
+		ppSegs->callbacklen = 0;
+		ppSegs->callbackevent = 100;
+
+		ppSegs->isselected = TRUE;
+		ppSegs->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+
+		/* this must be done prior to the call of sciSetClipping to know */
+		/* if the clip_state has been set */
+		ppSegs->clip_region_set = 0;
+		sciInitIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
+		sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+
+
+		ppSegs = pSEGS_FEATURE (pobj);
+		ppSegs->ptype = type;
+
+		ppSegs->pstyle = NULL ;
+
+		if ((ppSegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppSegs);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((ppSegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
+		{
+			FREE(ppSegs->vx);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppSegs);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		for (i = 0; i < Nbr1; i++)
+		{
+			ppSegs->vx[i] = vx[i];
+		}
+		for (i = 0; i < Nbr2; i++)
+		{
+			ppSegs->vy[i] = vy[i];
+		}
+		pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
+		ppSegs->ptype = type;
+
+		/* F.Leray Test imprortant sur type ici*/
+		if (type == 0) /* attention ici type = 0 donc...*/
+		{
+			ppSegs->typeofchamp = -1; /* useless property in the case type == 0 */
+			ppSegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
+			if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (int) )) == NULL)
+			{
+				FREE(ppSegs->vx);
+				FREE(ppSegs->vy);
+				sciDelThisToItsParent (pobj, sciGetParent (pobj));
+				sciDelHandle (pobj);
+				FREE(ppSegs);
+				FREE(pobj);
+				return (sciPointObj *) NULL;
+			}
+			if (flag == 1)
+			{
+				for (i = 0; i < Nbr1; i++)
+				{
+					ppSegs->pstyle[i] = style[i];
+				}
+			}
+			else
+			{
+				for (i = 0; i < Nbr1; i++)
+				{
+					ppSegs->pstyle[i] = style[0];
+				}
+			}
+
+			ppSegs->iflag = flag;
+			ppSegs->Nbr1 = Nbr1;
+		}
+		else /* Warning here type = 1 so... building comes from champg */
+		{
+			/* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
+			ppSegs->arrowsize = arsize /* * 100 */;
+			ppSegs->Nbr1 = Nbr1;
+			ppSegs->Nbr2 = Nbr2;
+			sciInitForeground(pobj,sciGetForeground(sciGetCurrentSubWin())); /* set sciGetForeground(psubwin) as the current foreground */
+			ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
+			if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+			{
+				FREE(ppSegs->vx);
+				FREE(ppSegs->vy);
+				sciDelThisToItsParent (pobj, sciGetParent (pobj));
+				sciDelHandle (pobj);
+				FREE(ppSegs);
+				FREE(pobj);
+				return (sciPointObj *) NULL;
+			}
+			if ((ppSegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+			{
+				FREE(ppSegs->vx);
+				FREE(ppSegs->vy);
+				FREE(ppSegs->vfx);
+				sciDelThisToItsParent (pobj, sciGetParent (pobj));
+				sciDelHandle (pobj);
+				FREE(ppSegs);
+				FREE(pobj);
+				return (sciPointObj *) NULL;
+			}
+
+			for (i = 0; i < (Nbr1*Nbr2); i++)
+			{
+				ppSegs->vfx[i] = vfx[i];
+				ppSegs->vfy[i] = vfy[i];
+			}
+			pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdemouche 2003**/
+		}
+		if (sciInitGraphicContext (pobj) == -1)
+		{
+			FREE(ppSegs->vx);
+			FREE(ppSegs->vy);
+			if (type ==0)
+			{
+				FREE(ppSegs->pstyle);
+			}
+			else
+			{
+				FREE(ppSegs->vfx);
+				FREE(ppSegs->vfy);
+			}
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppSegs);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		return pobj;
 	}
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
-
-      ppSegs = pSEGS_FEATURE(pobj) ;
-
-      ppSegs->callback = (char *)NULL;
-      ppSegs->callbacklen = 0;
-      ppSegs->callbackevent = 100;
-
-      ppSegs->isselected = TRUE;
-      ppSegs->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-
-      /* this must be done prior to the call of sciSetClipping to know */
-      /* if the clip_state has been set */
-      ppSegs->clip_region_set = 0;
-      sciInitIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-
-
-      ppSegs = pSEGS_FEATURE (pobj);
-      ppSegs->ptype = type;
-
-      ppSegs->pstyle = NULL ;
-
-      if ((ppSegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
+	else
 	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppSegs);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+		sciprint(_("The parent has to be a SUBWIN\n"));
+		return (sciPointObj *) NULL;
 	}
-      if ((ppSegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
-	{
-	  FREE(ppSegs->vx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppSegs);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      for (i = 0; i < Nbr1; i++)
-	{
-	  ppSegs->vx[i] = vx[i];
-	}
-      for (i = 0; i < Nbr2; i++)
-	{
-	  ppSegs->vy[i] = vy[i];
-	}
-      pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
-      ppSegs->ptype = type;
-
-      /* F.Leray Test imprortant sur type ici*/
-      if (type == 0) /* attention ici type = 0 donc...*/
-	{
-	  ppSegs->typeofchamp = -1; /* useless property in the case type == 0 */
-	  ppSegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
-	  if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (int) )) == NULL)
-	    {
-	      FREE(ppSegs->vx);
-	      FREE(ppSegs->vy);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(ppSegs);
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    }
-	  if (flag == 1)
-	    {
-	      for (i = 0; i < Nbr1; i++)
-              {
-		ppSegs->pstyle[i] = style[i];
-              }
-	    }
-	  else
-          {
-	    for (i = 0; i < Nbr1; i++)
-            {
-	      ppSegs->pstyle[i] = style[0];
-            }
-	  }
-
-	  ppSegs->iflag = flag;
-	  ppSegs->Nbr1 = Nbr1;
-	}
-      else /* Warning here type = 1 so... building comes from champg */
-	{
-	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
-	  ppSegs->arrowsize = arsize /* * 100 */;
-	  ppSegs->Nbr1 = Nbr1;
-	  ppSegs->Nbr2 = Nbr2;
-	  sciInitForeground(pobj,sciGetForeground(sciGetCurrentSubWin())); /* set sciGetForeground(psubwin) as the current foreground */
-	  ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
-	  if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
-	    {
-	      FREE(ppSegs->vx);
-	      FREE(ppSegs->vy);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(ppSegs);
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    }
-	  if ((ppSegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
-	    {
-	      FREE(ppSegs->vx);
-	      FREE(ppSegs->vy);
-	      FREE(ppSegs->vfx);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(ppSegs);
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    }
-
-	  for (i = 0; i < (Nbr1*Nbr2); i++)
-	    {
-	      ppSegs->vfx[i] = vfx[i];
-	      ppSegs->vfy[i] = vfy[i];
-	    }
-	  pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdemouche 2003**/
-	}
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  FREE(ppSegs->vx);
-	  FREE(ppSegs->vy);
-          if (type ==0)
-            {
-	      FREE(ppSegs->pstyle);
-            }
-          else
-	    {
-	      FREE(ppSegs->vfx);
-	      FREE(ppSegs->vfy);
-            }
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppSegs);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      return pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
 }
 
 
@@ -2203,18 +2211,18 @@ ConstructCompoundSeq (int number)
 
   ppagr = pAGREG_FEATURE(pobj) ;
 
+	if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
+  {
+    FREE( pobj->pfeatures ) ;
+    FREE( pobj ) ;
+    return NULL ;
+  }
+
   if (sciAddNewHandle (pobj) == -1)
   {
     sciprint(_("No handle to allocate\n"));
     FREE(pobj->pfeatures);FREE(pobj);
     return (sciPointObj *) NULL;
-  }
-
-  if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
-  {
-    FREE( pobj->pfeatures ) ;
-    FREE( pobj ) ;
-    return NULL ;
   }
 
   /* Remove the created objects after the compound and add them */
@@ -2276,11 +2284,14 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       return (sciPointObj *) NULL;
     }
 
-    ppLabel =  pLABEL_FEATURE( pobj ) ;
+    ppLabel = pLABEL_FEATURE( pobj ) ;
 
     ppLabel->text = allocateText( pparentsubwin, &emptyString, 1, 1,
                                   0.0, 0.0, TRUE, NULL, FALSE, &defaultColor, &defaultColor,
                                   FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
+
+		/* RelationShip is actually stored in the text object */
+		pobj->relationShip = ppLabel->text->relationShip;
 
     sciStandardBuildOperations(pobj, pparentsubwin);
 
@@ -2324,11 +2335,15 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
   int ** userData = NULL ;
   int *  udSize   = NULL ;
 
+	/* Allocate relationShip */
+	createDefaultRelationShip(pObj);
+
   /* add the handle in the handle list */
   if ( sciAddNewHandle(pObj) == -1 )
   {
     return NULL ;
   }
+
 
   /* connect the object under its parent in the hierarchy */
   if ( !sciAddThisToItsParent( pObj, parent) )
@@ -2336,13 +2351,6 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
     sciDelHandle(pObj) ;
     return NULL ;
   }
-
-  /* no sons for now */
-  sciInitSelectedSons( pObj ) ;
-
-  sciGetRelationship(pObj)->psons        = NULL ;
-  sciGetRelationship(pObj)->plastsons    = NULL ;
-  sciGetRelationship(pObj)->pSelectedSon = NULL ;
 
   sciInitVisibility( pObj, TRUE ) ;
 
@@ -2453,5 +2461,26 @@ sciPointObj * createFirstSubwin(sciPointObj * pFigure)
 	}
 }
 /*----------------------------------------------------------------------------*/
+void createDefaultRelationShip(sciPointObj * pObj)
+{
+	/* Create a new relationship structure */
+	sciRelationShip * relationShip = MALLOC(sizeof(sciRelationShip));
+	if (relationShip == NULL || sciGetEntityType(pObj) == SCI_LABEL)
+	{
+		/* labels have their relationShip stored in their text objects */
+		return;
+	}
 
+	/* Set default values */
+	relationShip->handleIndex = 0;
+	relationShip->plastsons = NULL;
+	relationShip->psons = NULL;
+	relationShip->pparent = NULL;
+	relationShip->pSelectedSon = DoublyLinkedList_new();
+
+	/* Add it to the object */
+	pObj->relationShip = relationShip;
+
+}
+/*----------------------------------------------------------------------------*/
 

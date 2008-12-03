@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="gui-Ant"
 	ProjectGUID="{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}"
 	RootNamespace="gui-Ant"
 	Keyword="MakeFileProj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -816,6 +816,18 @@
 					>
 				</File>
 				<File
+					RelativePath=".\org\scilab\modules\gui\utils\ConfigManager.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\ImageExporter.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\ImageExportRenderer.java"
+					>
+				</File>
+				<File
 					RelativePath=".\org\scilab\modules\gui\utils\Layout.java"
 					>
 				</File>
@@ -836,6 +848,18 @@
 					>
 				</File>
 				<File
+					RelativePath=".\org\scilab\modules\gui\utils\PositionConverter.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\PrinterHelper.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\PrinterWriter.java"
+					>
+				</File>
+				<File
 					RelativePath=".\org\scilab\modules\gui\utils\SciActionListener.java"
 					>
 				</File>
@@ -848,7 +872,31 @@
 					>
 				</File>
 				<File
+					RelativePath=".\org\scilab\modules\gui\utils\ScilabAlignment.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\ScilabPrint.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\ScilabRelief.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\ScilabSwingUtilities.java"
+					>
+				</File>
+				<File
 					RelativePath=".\org\scilab\modules\gui\utils\ScilabWidgetBorder.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\SciTranslator.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\SciUndockingAction.java"
 					>
 				</File>
 				<File
@@ -865,6 +913,10 @@
 				</File>
 				<File
 					RelativePath=".\org\scilab\modules\gui\utils\UIElementMapper.java"
+					>
+				</File>
+				<File
+					RelativePath=".\org\scilab\modules\gui\utils\WebBrowser.java"
 					>
 				</File>
 			</Filter>

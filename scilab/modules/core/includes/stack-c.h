@@ -29,6 +29,12 @@
 #include "error.h"
 
 #include "BOOL.h"
+#include "doublecomplex.h" /* define doublecomplex type */
+#include "scisparse.h"  /* define SciSparse type */
+#include "stack1.h"
+#include "stack2.h"
+#include "stack3.h"
+
 
 /*-------------------------------------------------
  * types
@@ -52,21 +58,6 @@ typedef enum {
   sci_mlist = 17,
   sci_lufact_pointer = 128 /* lufact pointer */
 } sci_types;
-
-
-/**
- * Structure used for sparse matrix
- */
-typedef struct scisparse {
-	int m;
-	int n;
-	int it;
-	int nel; /**< number of non nul elements */
-	int *mnel;/**< mnel[i]: number of non nul elements of row i, size m */
-	int *icol; /**< icol[j]: column of the j-th non nul element, size nel */
-	double *R; /**< R[j]: real value of the j-th non nul element, size nel */
-	double *I ; /**< I[j]: imag value of the j-th non nul element, size nel */
-} SciSparse ;
 
 /*-------------------------------------------------
  * structure used for int matrix
@@ -119,10 +110,6 @@ typedef struct sciintmat {
 } SciIntMat ;
 
 
-#include "stack1.h"
-#include "stack2.h"
-#include "stack3.h"
-
 
 /*-------------------------------------------------
  * set of defines for interface simplication
@@ -167,7 +154,7 @@ static void initial_c1_local(void)
 #define istk(x) (((int *) C2F(stack).Stk) + x-1 )
 #define sstk(x) (((float *) C2F(stack).Stk) + x-1 )
 #define cstk(x) (((char *) C2F(stack).Stk) + x-1 )
-typedef struct { double r, i; } doublecomplex;
+
 #define zstk(x) (((doublecomplex *) C2F(stack).Stk) + x-1 )
 
 

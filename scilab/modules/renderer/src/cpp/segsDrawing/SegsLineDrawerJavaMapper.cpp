@@ -57,11 +57,6 @@ void SegsLineDrawerJavaMapper::destroy(int parentFigureIndex)
 {
  m_pJavaObject->destroy(parentFigureIndex); 
 }
-/*--------------------------------------------------------------------------*/
-void SegsLineDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void SegsLineDrawerJavaMapper::setLineParameters(float thickness, int lineStyle)
 {

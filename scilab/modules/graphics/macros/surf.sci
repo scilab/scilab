@@ -84,11 +84,6 @@ current_figure=gcf();
 cur_draw_mode = current_figure.immediate_drawing;
 current_figure.immediate_drawing = 'off';
 
-
-// set some defaults here
-// current_figure=gcf(); // already init. before
-// current_figure.color_map=jetcolormap(64); // bad choice -> init must be done somewhere else.
-
 colormap_size = size(current_figure.color_map,1);
 
 if given_data == 1 //surf(Z) with Z giving us data + color info.
@@ -143,8 +138,14 @@ elseif given_data == 3 //surf(X,Y,Z) with Z giving us data + color info.
   X = ListArg(1)
   Y = ListArg(2);
   Z = ListArg(3);
+		  
+  // check if the call is OK
+  err = execstr('[XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)','errcatch','n');
   
-  [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode);
+  if (err <> 0) then
+    // reset data
+    processSurfError(current_figure, cur_draw_mode);
+  end
   
 elseif given_data == 4 //surf(X,Y,Z,COLOR)
   // ---------------------------------------------------------- //
@@ -160,7 +161,12 @@ elseif given_data == 4 //surf(X,Y,Z,COLOR)
   Z = ListArg(3);
   C = ListArg(4);
   
-  [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode);
+  // check if the call is OK
+  err = execstr('[XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode)','errcatch','n');
+  if (err <> 0) then
+    // reset data
+    processSurfError(current_figure, cur_draw_mode);
+  end
 end
 
 
@@ -604,4 +610,25 @@ if type(cur_figure == 9)
   end
 end
 
+endfunction
+
+// If an error occurs in the surf code, we need to catch it
+// order to reset some default values
+function processSurfError(cur_figure, cur_draw_mode)
+  // reset data
+    ResetFigureDDM(current_figure, cur_draw_mode);
+
+    // get the error
+    [err_message, err_number, err_line, err_func] = lasterror(%t);
+		
+	// rethrow it
+	
+	// for now error can only have a single string as input.
+	// If there are several lines we need to concatane them.
+	err_message_nbLines = size(err_message, '*');
+	if (err_message_nbLines > 1) then
+	  // put a \n betwee, each string
+	  err_message(1) = strcat(err_message, "\n");
+	end
+	error(err_message(1), err_number);
 endfunction

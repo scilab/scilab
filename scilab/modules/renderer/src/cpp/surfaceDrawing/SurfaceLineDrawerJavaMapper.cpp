@@ -57,11 +57,6 @@ void SurfaceLineDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void SurfaceLineDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void SurfaceLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, int lineStyle)
 {
   m_pJavaObject->setLineParameters(lineColor, thickness, lineStyle);

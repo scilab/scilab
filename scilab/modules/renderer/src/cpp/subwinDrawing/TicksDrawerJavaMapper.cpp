@@ -59,11 +59,6 @@ void TicksDrawerJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void TicksDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 double TicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                         int nbTicks, const double subticksPositions[], int nbSubticks,
                                         double axisSegmentStart[3], double axisSegmentEnd[3], double ticksDirection[3])

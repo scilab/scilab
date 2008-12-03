@@ -90,6 +90,10 @@ void ConcreteDrawableText::updateTextBox(void)
     return;
   }
   // just update, no need to draw
+
+	// update the inner structure if needed
+	update();
+
   sciText * ppText = pTEXT_FEATURE(m_pDrawed);
   getBoundingRectangle(ppText->corners[0], ppText->corners[1],
                        ppText->corners[2], ppText->corners[3]);

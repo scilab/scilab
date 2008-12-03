@@ -58,11 +58,6 @@ void PolylineBarDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void PolylineBarDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void PolylineBarDrawerJavaMapper::setBarParameters(int background, int foreground, float thickness,
                                                    int lineStyle)
 {

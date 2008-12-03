@@ -3065,11 +3065,8 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
      {
        pSUBWIN_FEATURE (pObj)->is3d = TRUE ;
        Obj_RedrawNewAngle( pObj,
-                           pSUBWIN_FEATURE (pObj)->theta_kp,
-                           pSUBWIN_FEATURE (pObj)->alpha_kp ) ;
-       setInfoMessageWithRotationAngles(sciGetParentFigure(pObj),
-                                        pSUBWIN_FEATURE (pObj)->alpha_kp,
-                                        pSUBWIN_FEATURE (pObj)->theta_kp ) ;
+                           pSUBWIN_FEATURE (pObj)->alpha_kp,
+                           pSUBWIN_FEATURE (pObj)->theta_kp ) ;
      }
      else
      {
@@ -3079,11 +3076,11 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
          pSUBWIN_FEATURE (pObj)->is3d = FALSE;
          pSUBWIN_FEATURE (pObj)->project[2]= 0;
        }
-       pSUBWIN_FEATURE (pObj)->theta_kp=pSUBWIN_FEATURE (pObj)->theta;
-       pSUBWIN_FEATURE (pObj)->alpha_kp=pSUBWIN_FEATURE (pObj)->alpha;
-       pSUBWIN_FEATURE (pObj)->alpha  = 0.0;
-       pSUBWIN_FEATURE (pObj)->theta  = 270.0;
-       pSUBWIN_FEATURE(pObj)->is3d = FALSE; /*...and here */
+       pSUBWIN_FEATURE (pObj)->theta_kp = pSUBWIN_FEATURE (pObj)->theta;
+       pSUBWIN_FEATURE (pObj)->alpha_kp = pSUBWIN_FEATURE (pObj)->alpha;
+       pSUBWIN_FEATURE (pObj)->alpha = 0.0;
+       pSUBWIN_FEATURE (pObj)->theta = 270.0;
+       pSUBWIN_FEATURE(pObj)->is3d = FALSE;
        return 0 ;
      }
      return 0 ;

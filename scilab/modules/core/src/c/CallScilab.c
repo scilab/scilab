@@ -47,7 +47,7 @@ static void SetSciEnv(void)
 
   if (ScilabDirectory == NULL)
   {
-	MessageBox (NULL, _("Error"), "getScilabDirectory()", MB_ICONSTOP | MB_OK);
+	MessageBox (NULL, "getScilabDirectory()", gettext("Error") , MB_ICONSTOP | MB_OK);
 	exit(1);
   }
   SetScilabEnvironmentVariables(ScilabDirectory);

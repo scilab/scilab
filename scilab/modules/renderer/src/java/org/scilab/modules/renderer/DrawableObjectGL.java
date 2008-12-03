@@ -47,7 +47,6 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	public void clean(int parentFigureIndex) {
 		super.clean(parentFigureIndex);
-		setFigureIndex(parentFigureIndex);
 		updateGLContext();
 		clearDisplayList();
 	}

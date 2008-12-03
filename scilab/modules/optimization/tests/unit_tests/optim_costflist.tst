@@ -54,7 +54,6 @@ function [fpen,gpen,ind]=sipn(x,ind,sip1,ne,nc,cpen)
     end
   end;
 endfunction
-comp(sipn);
 [f,x,g]=optim(list(sipn,sip2,ne,nc,cpen),...
               'b',bi,bs,[1 1],'ar',20,20,1.e-15);
 if norm(x-[0.5 0.5]) + norm(g) > 0.1 then pause,end

@@ -8,6 +8,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function ilib_gen_loader(name,tables,libs)
 
+  [lhs,rhs]=argn(0);
+
   if rhs < 3 then 
     libs = [];
   end 
@@ -17,9 +19,11 @@ function ilib_gen_loader(name,tables,libs)
   end
   
   L = length(tables); 
-
   for it = 1:L 
     [mt,nt] = size(tables(it));
+    if ((mt == 0) & (nt == 0)) then
+       break;
+    end
     if ( (nt <> 3) & ( nt <> 2) ) then 
       error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"ilib_gen_loader",2));
     end 
@@ -40,15 +44,25 @@ function ilib_gen_loader(name,tables,libs)
 
   nl = size(libs,'*');
   for i=1:nl 
-    mfprintf(fd,"link(%s_path+''/%s%s'');\n",name_path,libs(i),getdynlibext());
+    // Add the relative path only if the lib has a relative path
+    isabspath = is_absolute_path(libs(i));
+    ext = getdynlibext();
+    libfile = libs(i);
+    if isabspath then
+      data = "link(''%s%s'');\n";
+      mfprintf(fd,data,libfile,ext);
+    else
+      data = "link(%s_path+''/%s%s'');\n";
+      mfprintf(fd,data,name_path,libfile,ext);
+    end
   end 
 
   if L == 1 then 
     // direct call to addinter 
     table = tables(1);
     
-    mfprintf(fd,"list_functions = [ ''%s'';\n",table(1,1));
-    for x = table(2:$,1)' 
+    mfprintf(fd,"list_functions = [ ");
+    for x = table(1:$,1)' 
       mfprintf(fd,"            ''%s'';\n",x);
     end
     mfprintf(fd,"];\n");

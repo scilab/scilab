@@ -21,7 +21,6 @@ extern "C"
 #include "SetProperty.h"
 #include "pixel_mode.h"
 #include "DrawingBridge.h"
-#include "elementary_functions.h"
 }
 
 using namespace std;
@@ -231,6 +230,9 @@ void ConcreteDrawableSubwin::updateScale(void)
     return;
   }
 
+	// to be sure that the inner structure is up to date.
+	update();
+
   sciPointObj * parentFigure = sciGetParentFigure(m_pDrawed);
   BOOL visible = sciGetVisibility(m_pDrawed);
   int pixelMode = sciGetXorMode(parentFigure);
@@ -247,6 +249,9 @@ void ConcreteDrawableSubwin::updateScale(void)
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::getNbXTicks(void)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pXTicksDrawer != NULL)
   {
     return m_pXTicksDrawer->getInitNbTicks();
@@ -259,6 +264,9 @@ int ConcreteDrawableSubwin::getNbXTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::getXTicksPos(double ticksPositions[], char ** ticksLabels)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pXTicksDrawer != NULL)
   {
     m_pXTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
@@ -270,6 +278,9 @@ void ConcreteDrawableSubwin::getXTicksPos(double ticksPositions[], char ** ticks
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::getNbYTicks(void)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pYTicksDrawer != NULL)
   {
     return m_pYTicksDrawer->getInitNbTicks();
@@ -282,6 +293,9 @@ int ConcreteDrawableSubwin::getNbYTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::getYTicksPos(double ticksPositions[], char ** ticksLabels)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pYTicksDrawer != NULL)
   {
     m_pYTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
@@ -293,6 +307,9 @@ void ConcreteDrawableSubwin::getYTicksPos(double ticksPositions[], char ** ticks
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::getNbZTicks(void)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pZTicksDrawer != NULL)
   {
     return m_pZTicksDrawer->getInitNbTicks();
@@ -305,6 +322,9 @@ int ConcreteDrawableSubwin::getNbZTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticksLabels)
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   if (m_pZTicksDrawer != NULL)
   {
     m_pZTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
@@ -316,6 +336,7 @@ void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticks
 /*------------------------------------------------------------------------------------------*/
 bool ConcreteDrawableSubwin::getXAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3])
 {
+
   if (m_pXTicksDrawer != NULL)
   {
     m_pXTicksDrawer->getAxisPosition(axisStart, axisEnd, ticksDirection);
@@ -355,13 +376,13 @@ bool ConcreteDrawableSubwin::getZAxisPosition(double axisStart[3], double axisEn
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::addTextToDraw(sciPointObj * text)
 {
-  m_oDisplayedTexts.push_back(text);
-  m_bTextListChanged = true;
+	m_oDisplayedTexts.push_back(text);
+	textChanged();
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::removeTextToDraw(sciPointObj * text)
 {
-  BasicAlgos::vectorRemove(m_oDisplayedTexts, text);
+	m_oDisplayedTexts.remove(text);
   textChanged();
 }
 /*------------------------------------------------------------------------------------------*/
@@ -475,7 +496,7 @@ void ConcreteDrawableSubwin::displayTexts(void)
 
   // display all the text registered in the list
   // The list should be sorted
-  vector<sciPointObj *>::iterator it = m_oDisplayedTexts.begin();
+	list<sciPointObj *>::iterator it = m_oDisplayedTexts.begin();
   for ( ; it != m_oDisplayedTexts.end(); it++)
   {
     // HACK here. This patch is to force disepearance
@@ -489,54 +510,8 @@ void ConcreteDrawableSubwin::displayTexts(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::sortDisplayedTexts(void)
 {
-  int nbDisplayedTexts = (int)m_oDisplayedTexts.size();
-
-  double * textsDepth;
-  try
-  {
-    textsDepth = new double[nbDisplayedTexts];
-  }
-  catch (const std::exception & e)
-  {
-    // allocation failed
-    // just don't sort the text objects
-    return;
-  }
-
-  // first compute depth of each text objects
-  computeEyeDistances(textsDepth, nbDisplayedTexts);
-
-  
-  // sort textDepth and store the order
-  // warning depthOrder refer to fortran index
-  // so -1 should be added to get C index
-  int * depthOrder;
-  try
-  {
-    depthOrder = new int[nbDisplayedTexts];
-  }
-  catch (const std::exception & e)
-  {
-    // allocation failed
-    // just don't sort the text objects
-    delete[] textsDepth;
-    return;
-  }
-  
-  C2F(dsort)(textsDepth, &nbDisplayedTexts, depthOrder);
-  delete[] textsDepth;
-
-  // Rearange texts list to sort it from back to front
-  // The objects must be sorted from back to front.
-  // However dsort sort the array in decreasing order, that's what we wants.
-  vector<sciPointObj *> copyTexts(m_oDisplayedTexts);
-  for (int i = 0; i < nbDisplayedTexts; i++)
-  {
-    m_oDisplayedTexts[i] = copyTexts[depthOrder[i] - 1];
-  }
-
-  delete[] depthOrder;
-
+	// sort the text from back to front
+	m_oDisplayedTexts.sort(getTextOrder);
 
   // text has been sorted successfully
   m_bTextListChanged = false;
@@ -604,27 +579,25 @@ int ConcreteDrawableSubwin::computeConcealedCornerIndex(void)
   return farthestCornerIndex;
 
 }
-/*------------------------------------------------------------------------------------------*/
-void ConcreteDrawableSubwin::computeEyeDistances(double dists[], int nbTexts)
-{
-  for (int i = 0; i < nbTexts; i++)
-  {
-    dists[i] = getEyeDistance(m_oDisplayedTexts[i]);
-  }
-}
 /*---------------------------------------------------------------------------------*/
-double ConcreteDrawableSubwin::getEyeDistance(sciPointObj * pText)
+double ConcreteDrawableSubwin::getEyeDistance(Camera * cam, sciPointObj * pText)
 {
-  // text is drawn flat so any point of the text has the same distance
+	// text is drawn flat so any point of the text has the same distance
   // with the viewpoint. So let choose the text center.
   double textPos[3];
   sciGetTextPos(pText, textPos);
 
   // convert it to pixel coordinate. Z value correspond to the depth.
-  getCamera()->getPixelCoordinates(textPos, textPos);
+  cam->getPixelCoordinates(textPos, textPos);
 
   return textPos[2];
 }
 /*---------------------------------------------------------------------------------*/
-
+bool ConcreteDrawableSubwin::getTextOrder(sciPointObj * pText1, sciPointObj * pText2)
+{
+	Camera * cam = getSubwinDrawer(sciGetParentSubwin(pText1))->getCamera();
+	// find the deepest one
+	return (getEyeDistance(cam, pText1) > getEyeDistance(cam, pText2));
+}
+/*---------------------------------------------------------------------------------*/
 }

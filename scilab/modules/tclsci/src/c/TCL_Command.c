@@ -334,6 +334,7 @@ int sendTclCommandToSlave(char* command, char* slave)
 		}
 		evaluateTclCommand();
 	}
+	return TCL_OK;
 }
 
 

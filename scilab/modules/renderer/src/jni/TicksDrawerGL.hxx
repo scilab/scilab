@@ -59,7 +59,6 @@ jmethodID voidinitializeDrawingjintID; // cache method id
 jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
-jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID jdoubledrawTicksjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjobjectArrayID; // cache method id
 jclass stringArrayClass;
 jmethodID jdoubledrawTicksjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjobjectArrayjobjectArrayID; // cache method id
@@ -118,8 +117,6 @@ void endDrawing();
 void show(int figureIndex);
 
 void destroy(int figureIndex);
-
-void setFigureIndex(int figureIndex);
 
 double drawTicks(double * axisSegmentStart, int axisSegmentStartSize, double * axisSegmentEnd, int axisSegmentEndSize, double * ticksDir, int ticksDirSize, double * relativeTicksPos, int relativeTicksPosSize, double * relativeSubticksPos, int relativeSubticksPosSize, char ** ticksLabels, int ticksLabelsSize);
 

@@ -14,6 +14,7 @@
 package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.Threading;
 import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
@@ -45,16 +46,6 @@ public class ObjectGL {
 	}
 	
 	/**
-	 * Specify index of parent figure to get all interesting data.
-	 * @param parentFigureIndex index of parentFigure
-	 */
-	public void setFigureIndex(int parentFigureIndex) {
-		// get the context from the drawing canvas
-		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
-		updateColorMap();
-	}
-	
-	/**
 	 * Called when the object is destroyed from C code
 	 * @param parentFigureIndex index of parent figure
 	 */
@@ -65,7 +56,13 @@ public class ObjectGL {
 		// for example) objects won't use OGL resources since not displayed and won't
 		// be stacked for ever.
 		if (isUsingOGLResources()) {
-			getParentFigureGL().getObjectCleaner().addObjectToDestroy(this);
+			if (Threading.isOpenGLThread()) {
+				// we can release openGL resources now
+				clean(parentFigureIndex);
+			} else {
+				// schedule destroy on the OpenGL thread
+				getParentFigureGL().getObjectCleaner().addObjectToDestroy(this);
+			}
 		}
 	}
 	

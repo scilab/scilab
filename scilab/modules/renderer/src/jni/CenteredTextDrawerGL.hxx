@@ -59,7 +59,6 @@ jmethodID voidinitializeDrawingjintID; // cache method id
 jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
-jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetTextParametersjintjintjintjdoublejdoublejbooleanID; // cache method id
 jmethodID voidsetBoxDrawingParametersjbooleanjbooleanjintjintID; // cache method id
 jmethodID voidsetTextContentjobjectArrayjintjintID; // cache method id
@@ -119,8 +118,6 @@ void endDrawing();
 void show(int figureIndex);
 
 void destroy(int parentFigureIndex);
-
-void setFigureIndex(int figureIndex);
 
 void setTextParameters(int textAlignment, int color, int fontStyle, double fontSize, double rotationAngle, bool useFractionalMetrics);
 

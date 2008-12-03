@@ -11,7 +11,6 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/loadsavelanguage.c \
 src/c/charEncoding.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
@@ -19,12 +18,8 @@ sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_dgettext.c \
 sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getdefaultlanguage.c \
-sci_gateway/c/sci_getlanguage.c
-
-#sci_gateway/c/sci_getlanguagealias.c \
-#sci_gateway/c/sci_getlanguagestable.c \
-#sci_gateway/c/sci_addtext.c \
-#sci_gateway/c/sci_removetext.c
+sci_gateway/c/sci_getlanguage.c \
+sci_gateway/c/sci_setdefaultlanguage.c
 
 libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
