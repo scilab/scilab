@@ -21,6 +21,8 @@ import java.awt.Point;
 import java.awt.ScrollPane;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.Component;
+import java.awt.Graphics;
 
 /**
  * Scroll pane based on AWT technology
@@ -65,6 +67,8 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	public void setBackground(double red, double green, double blue) {
 		Color newColor = new Color((float) red, (float) green, (float) blue);
 		setBackground(newColor);
+		// change the background of the underlying panel
+		getComponent(0).setBackground(newColor);
 	}
 
 	/**
@@ -109,5 +113,16 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	 * @param event generated event
 	 */
 	public void componentShown(ComponentEvent event) { }
+	
+	/**
+	 * Redefine paint children to be sure that AWT components are well painted.
+	 */
+	public void paint(Graphics g) {
+		if (axes != null) {
+		  // axes won't be displayed automatically
+		  axes.paint(g);
+		}
+		super.paint(g);
+	}
 
 }
