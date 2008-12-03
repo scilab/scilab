@@ -20,7 +20,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.event.ComponentListener;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.Action;
@@ -129,7 +128,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		contentPane = new SwingScilabAxes(figureId);
 		
 		// add it inside a JSCrollPane
-		scrolling = new SwingScilabScrollPane(contentPane);
+		scrolling = new AwtScilabScrollPane(contentPane);
 		
 		// put in in the back of the tab
 		setContentPane((Container) scrolling);
@@ -898,7 +897,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 			// AWT children don't draw themselves automatically
 			// so force their draw
 			if (!children[i].isLightweight()) {
-				children[i].paint(g);
+				children[i].paintAll(g);
 			}
 		}
 		super.paintChildren(g);
