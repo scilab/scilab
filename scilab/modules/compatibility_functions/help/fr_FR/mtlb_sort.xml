@@ -58,7 +58,7 @@ P = mtlb_sort(X,dim[,mode])</synopsis>
     <itemizedlist>
       <listitem>
         <para>Si <literal>X</literal> est un vecteur alors l'appel de la fonction
-            <literal>sort(X) </literal>de Matlab est équivalent ï¿½ï¿½ l'appel de la
+            <literal>sort(X) </literal>de Matlab est équivalent à l'appel de la
             fonction <literal>sort(X,'g','i')</literal> de Scilab. </para>
       </listitem>
       <listitem>
