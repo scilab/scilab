@@ -132,8 +132,13 @@ int iGetOrient(int _iVal);
 
 /* Reserve space in stack for a matrix of double. */
 int iAllocMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData);
-int	iAllocComplexMatrixOfDouble(int _iNewVal, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
-int	iAllocComplexMatrixOfDoubleToAddress(int* _piAddr, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+/* Reserve space in stack for a matrix of complex. */
+int iAllocMatrixOfDoubleComplex(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+
+#define iAllocComplexMatrixOfDouble(_iNewVal, _iComplex, _iRows, _iCols, _pdblRealData, _pdblImgData) \
+iAllocMatrixOfDoubleComplex(_iNewVal, _iRows, _iCols, _pdblRealData, _pdblImgData)
+
+int iAllocComplexMatrixOfDoubleToAddress(int* _piAddr, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
 
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
@@ -225,8 +230,6 @@ int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalE
 int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow);
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
-
-typedef struct { double r, i; } doublecomplex;
 
 /*Tools to convert memory matrix storage from C to Z and Z to C*/
 // vGetPointerFromDoubleComplex : set the real and imaginary part of an target array from a source doublecomplex array
