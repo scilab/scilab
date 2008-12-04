@@ -59,10 +59,7 @@ static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex);
  */
 void sciSetHandle (sciPointObj * pobj, long value)
 {
-  /*if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
-  {*/
-    sciGetRelationship(pobj)->handleIndex = value ; /** put the new index handle */
-  /*}*/
+  sciGetRelationship(pobj)->handleIndex = value ; /** put the new index handle */
 }
 
 
