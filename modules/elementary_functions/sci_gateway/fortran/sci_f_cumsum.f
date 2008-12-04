@@ -11,7 +11,6 @@ c
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE 'stack.h'
       integer id(nsiz)
-      logical ref
       integer mtlbsel
       integer sel,tops
       integer iadr,sadr

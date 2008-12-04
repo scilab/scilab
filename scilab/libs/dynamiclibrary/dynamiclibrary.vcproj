@@ -6,7 +6,7 @@
 	ProjectGUID="{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
 	RootNamespace="dynamiclibrary"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -209,7 +209,7 @@
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;"
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"

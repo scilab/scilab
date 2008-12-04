@@ -11,28 +11,11 @@
 */
 
 /*--------------------------------------------------------------------------*/
-#include <stdio.h>
-#include <Windows.h>
 #include "TermPrintf.h"
-#include "MALLOC.h"
+#include "TermConsole.h"
 /*--------------------------------------------------------------------------*/
 void TermPrintf_Windows(char *buffer)
 {
-	if (buffer)
-	{
-		char *OEM_string = (char*)MALLOC(sizeof(char)*(strlen(buffer)+1));
-
-		/* converts standard chars to OEM string */
-		/* windows term output */
-		fflush(NULL);
-		if (OEM_string)
-		{
-			CharToOem(buffer,OEM_string);
-			printf("%s",OEM_string);
-		
-		}
-		else printf("%s",buffer); 
-		fflush(NULL);
-	}
+	TerminalPrintf(buffer);
 }
 /*--------------------------------------------------------------------------*/

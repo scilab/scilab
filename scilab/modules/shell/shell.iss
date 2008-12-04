@@ -1,6 +1,6 @@
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) 2007 - INRIA - Allan CORNET
-; 
+;
 ; This file is distributed under the same license as the Scilab package.
 ;
 ;##############################################################################################################
@@ -42,6 +42,6 @@ Source: modules\{#SHELL}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SHELL}
 ;
 ;Source: modules\{#SHELL}\demos\*.*; DestDir: {app}\modules\{#SHELL}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#SHELL}\tests\*.*; DestDir: {app}\modules\{#SHELL}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#SHELL}\tests\*.*; DestDir: {app}\modules\{#SHELL}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

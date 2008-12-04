@@ -994,94 +994,6 @@ sciGetFontStyle (sciPointObj * pobj)
 }
 
 
-/**sciGetFontName
- * Gets the font name
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  char array of string font name if ok, NULL if not
- */
-char *
-sciGetFontName (sciPointObj * pobj)
-{
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return 	(sciGetFontContext(pobj))->pfontname;
-      break;
-    case SCI_LEGEND:
-      return 	(sciGetFontContext(pobj))->pfontname;
-      break;
-    case SCI_SUBWIN: /* F.Leray 08.04.04 */
-      return 	(sciGetFontContext(pobj))->pfontname;
-      break;
-    case SCI_FIGURE: /* F.Leray 08.04.04 */
-      return 	(sciGetFontContext(pobj))->pfontname;
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      return 	(sciGetFontContext(pobj))->pfontname;
-      break;
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-      return (char *) NULL;
-      break;
-    }
-}
-
-
-
-/**sciGetFontNameLength
- * Sets size of Text in TEXT, TITLE or LEGEND
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int > 0 if OK, 0 if not
- */
-unsigned int
-sciGetFontNameLength (sciPointObj * pobj)
-{
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return 	(sciGetFontContext(pobj))->fontnamelen;
-      break;
-    case SCI_LEGEND:
-      return 	(sciGetFontContext(pobj))->fontnamelen;
-      break;
-    case SCI_SUBWIN: /* F.Leray 08.04.04 */
-      return 	(sciGetFontContext(pobj))->fontnamelen;
-      break;
-    case SCI_FIGURE: /* F.Leray 08.04.04 */
-      return 	(sciGetFontContext(pobj))->fontnamelen;
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      return 	(sciGetFontContext(pobj))->fontnamelen;
-      break;
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-      printSetGetErrorMessage("text");
-      return 0;
-      break;
-    }
-}
-
-
 /**sciGetLegendPlace
  * Returns the Title place with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
  * @param sciPointObj * pobj: the pointer to the entity
@@ -3041,17 +2953,24 @@ void sciGetViewport( sciPointObj * pObj, int viewport[4] )
   }
 }
 /*----------------------------------------------------------------------------------*/
-char * sciGetInfoMessage( sciPointObj * pObj )
+void sciGetInfoMessage( sciPointObj * pObj, char * infoMessage )
 {
   switch ( sciGetEntityType(pObj) )
   {
   case SCI_FIGURE:
-    return pFIGURE_FEATURE(pObj)->infoMessage ;
+		if (isFigureModel(pObj))
+		{
+			strcpy(infoMessage, pFIGURE_FEATURE(pObj)->pModelData->infoMessage);
+		}
+		else
+		{
+			sciGetJavaInfoMessage(pObj, infoMessage);
+		}
+		break;
   default:
     printSetGetErrorMessage("info_message");
-    return NULL ;
+    break;
   }
-  return NULL ;
 }
 /*----------------------------------------------------------------------------------*/
 int sciGetInfoMessageLength( sciPointObj * pObj )
@@ -3059,7 +2978,14 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
   switch ( sciGetEntityType(pObj) )
   {
   case SCI_FIGURE:
-    return  (int)strlen( pFIGURE_FEATURE(pObj)->infoMessage ) ;
+		if (isFigureModel(pObj))
+		{
+			return (int) strlen( pFIGURE_FEATURE(pObj)->pModelData->infoMessage ) ;
+		}
+		else
+		{
+			return sciGetJavaInfoMessageLength(pObj);
+		}
   default:
     printSetGetErrorMessage("info_message");
     return -1 ;

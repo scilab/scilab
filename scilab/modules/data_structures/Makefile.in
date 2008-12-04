@@ -90,8 +90,17 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidata_structures_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscidata_structures_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscidata_structures_la_DEPENDENCIES =  \
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libdummy_data_structures_la_LIBADD =
+am_libdummy_data_structures_la_OBJECTS =  \
+	libdummy_data_structures_la-intl_e.lo
+libdummy_data_structures_la_OBJECTS =  \
+	$(am_libdummy_data_structures_la_OBJECTS)
+libdummy_data_structures_la_LINK = $(LIBTOOL) --tag=F77 \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
+	$(libdummy_data_structures_la_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+libscidata_structures_la_DEPENDENCIES = libdummy-data_structures.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -102,7 +111,7 @@ am__objects_1 = libscidata_structures_la-stcreate.lo \
 	libscidata_structures_la-hmops.lo
 am__objects_2 = extractfields.lo forcerhs.lo intl_i.lo lsstyp.lo \
 	udptr.lo followpath.lo rattyp.lo lstops.lo gratyp.lo mlist.lo \
-	insertfield.lo intl_e.lo
+	insertfield.lo
 am__objects_3 = libscidata_structures_la-sci_lsslist.lo \
 	libscidata_structures_la-sci_glist.lo \
 	libscidata_structures_la-sci_mlist.lo \
@@ -145,8 +154,10 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscidata_structures_la_SOURCES)
-DIST_SOURCES = $(libscidata_structures_la_SOURCES)
+SOURCES = $(libdummy_data_structures_la_SOURCES) \
+	$(libscidata_structures_la_SOURCES)
+DIST_SOURCES = $(libdummy_data_structures_la_SOURCES) \
+	$(libscidata_structures_la_SOURCES)
 libscidata_structures_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscidata_structures_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscidata_structures_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -369,8 +380,7 @@ src/fortran/rattyp.f \
 src/fortran/lstops.f \
 src/fortran/gratyp.f \
 src/fortran/mlist.f \
-src/fortran/insertfield.f \
-src/fortran/intl_e.f
+src/fortran/insertfield.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
@@ -396,8 +406,13 @@ sci_gateway/fortran/sci_list.f
 libscidata_structures_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
-                    -I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/string/includes
 
+
+# Disable optimisation of the file intl_e.f
+noinst_LTLIBRARIES = libdummy-data_structures.la
+libdummy_data_structures_la_SOURCES = src/fortran/intl_e.f
+libdummy_data_structures_la_FFLAGS = $(FFLAGS:-O%=)
 pkglib_LTLIBRARIES = libscidata_structures.la
 libscidata_structures_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscidata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -407,7 +422,7 @@ CHECK_SRC = $(DATA_STRUCTURES_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
 
 # cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la 
-libscidata_structures_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidata_structures_la_LIBADD = libdummy-data_structures.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = data_structures
@@ -515,6 +530,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -542,6 +566,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libdummy-data_structures.la: $(libdummy_data_structures_la_OBJECTS) $(libdummy_data_structures_la_DEPENDENCIES) 
+	$(libdummy_data_structures_la_LINK)  $(libdummy_data_structures_la_OBJECTS) $(libdummy_data_structures_la_LIBADD) $(LIBS)
 libscidata_structures.la: $(libscidata_structures_la_OBJECTS) $(libscidata_structures_la_DEPENDENCIES) 
 	$(libscidata_structures_la_LINK) -rpath $(pkglibdir) $(libscidata_structures_la_OBJECTS) $(libscidata_structures_la_LIBADD) $(LIBS)
 
@@ -734,9 +760,6 @@ mlist.lo: src/fortran/mlist.f
 
 insertfield.lo: src/fortran/insertfield.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o insertfield.lo `test -f 'src/fortran/insertfield.f' || echo '$(srcdir)/'`src/fortran/insertfield.f
-
-intl_e.lo: src/fortran/intl_e.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intl_e.lo `test -f 'src/fortran/intl_e.f' || echo '$(srcdir)/'`src/fortran/intl_e.f
 
 sci_definedfields.lo: sci_gateway/fortran/sci_definedfields.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_definedfields.lo `test -f 'sci_gateway/fortran/sci_definedfields.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_definedfields.f
@@ -938,7 +961,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1008,13 +1031,14 @@ uninstall-am: uninstall-libscidata_structures_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscidata_structures_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-tags distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscidata_structures_la_etcDATA \
 	install-libscidata_structures_la_includeHEADERS \
 	install-libscidata_structures_la_rootDATA \
 	install-libscidata_structures_la_sci_gatewayDATA install-man \
@@ -1030,6 +1054,9 @@ uninstall-am: uninstall-libscidata_structures_la_etcDATA \
 	uninstall-libscidata_structures_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+
+libdummy_data_structures_la-intl_e.lo: src/fortran/intl_e.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_data_structures_la_FFLAGS) -c -o libdummy_data_structures_la-intl_e.lo `test -f 'src/fortran/intl_e.f' || echo '$(srcdir)/'`src/fortran/intl_e.f
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin

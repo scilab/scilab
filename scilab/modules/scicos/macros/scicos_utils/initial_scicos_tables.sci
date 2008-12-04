@@ -28,6 +28,8 @@
 //**
 //** 23 May 2008 : final porting on Scilab 5  
 //**
+//** 04 Nov 2008 : the "Grid" function is temporally disabled 
+//**
 //** N.B. : This function is called from "SCI/modules/scicos/etc/scicos.start" 
 //**        at Scilab's startup IF the "scicos" module is active in
 //**        "SCI/etc/modules.xml" file :)
@@ -117,8 +119,8 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Zoom out',..
               'Fit diagram to figure',..
   	      'Default window parameters',..
-              'Available Parameters',..
-              'Grid'];
+              'Available Parameters'];
+//**              'Grid'];
 
   Simulate = ['Simulate',..
               'Setup',..
@@ -128,7 +130,6 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Run'];
 
   Format   = ['Format',..
-              'Set grid',..
    	      'Add color',..
 	      'Default link colors',..
 	      'Color',..
@@ -139,6 +140,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'ID fonts',..
 	      'Icon',..
 	      'Icon Editor'];
+//**              'Set grid',..
 
   Tools    = ['Tools',..
               'Create Mask',..
@@ -255,9 +257,10 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 		 '-','Zoom out';
 		 '+','Zoom in';
 		 '=','Fit diagram to figure';
-		 'g','Grid';
 		 'h','Help']
 
+//** 		 'g','Grid'; //** it will be reactivated later 
+            
   //Scicos Modelica librabry path definitions==============================
   modelica_libs='SCI/modules/scicos_blocks/macros/'+['Electrical','Hydraulics'];
 

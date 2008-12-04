@@ -49,6 +49,7 @@
 #include "GraphicSynchronizerInterface.h"
 #include "SetUiobjectTag.h"
 #include "get_ticks_utils.h"
+#include "BuildObjects.h"
 
 #include "../../../tclsci/includes/GedManagement.h"
 
@@ -190,23 +191,22 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_TEXT:
     case SCI_LABEL:
     case SCI_FIGURE:
-      destroyGraphicHierarchy (pthis);
+			destroyGraphicHierarchy (pthis);
       return 0;
-      break;
-    case SCI_SUBWIN:
-      if (sciGetAxes (sciGetParent(pthis),pthis) == (sciPointObj *) NULL)
-      	sciXbasc();
-      else
-        destroyGraphicHierarchy (pthis);
-      return 0;
-      break;
+		case SCI_SUBWIN:
+			{
+				/* Special case here since for now there should be always one subwindow */
+				/* Inside a figure */
+				sciPointObj * parentFigure = sciGetParentFigure(pthis);
+				destroyGraphicHierarchy (pthis);
+				
+				createFirstSubwin(parentFigure);
+				return 0;
+			}
     default:
       sciprint(_("This object cannot be deleted.\n"));
       return -1;
-      break;
     }
-
-  return 0;
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -245,9 +245,6 @@ int DestroyFigure (sciPointObj * pthis)
   {
     FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
   }
-  FREE ((sciGetFontContext(pthis))->pfontname);
-
-  FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   
 	destroyUiobjectTag(pthis);
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
@@ -259,7 +256,7 @@ int DestroyFigure (sciPointObj * pthis)
 
 
 /**DestroySubWin
- * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
+ * @memo This function destroies the Subwindow (the Axes) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int
@@ -268,7 +265,6 @@ DestroySubWin (sciPointObj * pthis)
   /* Add. grads arrays */ /* F.Leray 11.10.04 */
   /* specific user arrays */
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pthis);
-
 
   FREE( ppsubwin->axes.u_xgrads); ppsubwin->axes.u_xgrads = (double *) NULL;
   FREE( ppsubwin->axes.u_ygrads); ppsubwin->axes.u_ygrads = (double *) NULL;
@@ -292,10 +288,12 @@ DestroySubWin (sciPointObj * pthis)
   ppsubwin->axes.nzgrads = 0;
   
   if ( sciGetCallback(pthis) != (char *)NULL)
+	{
     FREE(sciGetCallback(pthis));
+	}
 
-  FREE ((sciGetFontContext(pthis))->pfontname);
-  return sciStandardDestroyOperations(pthis) ;
+	return sciStandardDestroyOperations(pthis) ;
+
 }
 
 
@@ -313,7 +311,6 @@ int deallocateText( sciPointObj * pthis )
   pTEXT_FEATURE (pthis)->size_of_user_data = 0;
   destroyHandleDrawer(pthis);
 
-  FREE (sciGetFontContext(pthis)->pfontname);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
 
@@ -327,7 +324,6 @@ int deallocateText( sciPointObj * pthis )
 int DestroyText (sciPointObj * pthis)
 {
   deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
-  FREE ((sciGetFontContext(pthis))->pfontname);
   return sciStandardDestroyOperations(pthis) ;
 }
 
@@ -343,7 +339,6 @@ DestroyLegend (sciPointObj * pthis)
   FREE ( ppLegend->tabofhandles );
   deleteMatrix( ppLegend->text.pStrings ) ;
 
-  FREE ((sciGetFontContext(pthis))->pfontname);
   return sciStandardDestroyOperations(pthis) ;
   /* on peut alors destroyer le parent */
 }
@@ -606,33 +601,6 @@ int DestroyLabel (sciPointObj * pthis)
   FREE(ppLabel) ;
   FREE(pthis) ;
   return 0 ;
-}
-
-/**delete_sgwin_entities(int win_num)
- * @memo This function is to be called after window deletion 
- */
-void delete_sgwin_entities( int win_num )
-{
-  
-  /* Need to reset the new current figure returned by sciGetCurrentFigure */
-  sciHandleTab *hdl = NULL;
-  sciPointObj  *pobj= NULL;
-
-  hdl = sciGetpendofhandletab();
-
-  while (hdl != NULL)
-  {
-    pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-    if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == sciGetNum(sciGetCurrentFigure()) ) /* Adding F.Leray 19.04.04 */
-    {
-      sciSetCurrentFigure(pobj);
-      sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
-      break;
-
-    }
-    hdl = hdl->pprev;
-  }
-
 }
 
 /*---------------------------------------------------------------------------*/

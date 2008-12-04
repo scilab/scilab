@@ -12,14 +12,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     
       integer id(nsiz),mode(2),h(nsiz)
       integer top2,job,semi
-      logical opened,eptover
-      integer iadr,sadr
+      logical opened
+      integer iadr
 c
       data blank/40/,semi/43/
 
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
       lw=lstk(top+1)
       il=iadr(lstk(top))
@@ -92,15 +91,11 @@ c     Copyright INRIA/ENPC
       INCLUDE 'stack.h'
 c     
       integer id(nsiz),mode(2)
-      integer top2,job,semi
-      logical opened,eptover
-      integer iadr,sadr
+      integer top2
+      logical opened
+      integer iadr
 c
-      data blank/40/,semi/43/
-
-c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
 
       lw=lstk(top+1)

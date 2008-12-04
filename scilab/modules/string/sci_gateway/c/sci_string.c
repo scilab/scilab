@@ -31,7 +31,23 @@ int C2F(sci_string)(char *fname,unsigned long fname_len)
 		{
 			if (Lhs == 1)
 			{
-				C2F(intstring)();
+				int relativePosition = Top - Rhs + 1;
+				int address = *Lstk(relativePosition);
+				int intAddress = iadr(address);
+				int m = getNumberOfLines(intAddress);
+				int n = getNumberOfColumns(intAddress);
+
+				/* case string(A) returns '' */
+				/* with A has special dimensions (-1,-1) */
+				/* bug 3747 */
+				if ( (m == -1) && (n == -1) ) 
+				{
+					int m1 = 0, n1 = 0, l1 = 0;
+					CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
+					LhsVar(1)=Rhs+1;
+					C2F(putlhsvar)();
+				}
+				else C2F(intstring)();
 			}
 			else Error(39);
 		}

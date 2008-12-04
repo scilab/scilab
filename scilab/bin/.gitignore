@@ -26,10 +26,7 @@ test.bin
 test_macro_exec
 libintertest.c
 fftw
-libgluegen-rt.so
-libjogl.so
-libjogl_cg.so
-libjogl_awt.so
+*.so.*
+*.so
 *.exe
-libmatio.a
-libmatio.so*
+libmatio*

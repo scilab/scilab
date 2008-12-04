@@ -182,6 +182,12 @@ void DrawableFigure::forceDisplay( void )
  
   //clock_gettime(0, &t_t1);
   drawCanvas() ;
+
+	if (!needsDisplay(m_pDrawed))
+	{
+		closeGraphicCanvas();
+	}
+
   //clock_gettime(0, &t_t4);
 
 //   double aa = (double) (t_t4.tv_sec - t_t1.tv_sec)
@@ -217,6 +223,16 @@ void DrawableFigure::drawCanvas( void )
 void DrawableFigure::setInfoMessage( const char * infoMessage )
 {
   getFigureImp()->setInfoMessage(infoMessage) ;
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::getInfoMessage(char * message)
+{
+	getFigureImp()->getInfoMessage(message);
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigure::getInfoMessageLength(void)
+{
+	return getFigureImp()->getInfoMessageLength();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::setFigureParameters( void )
@@ -256,12 +272,17 @@ void DrawableFigure::setViewport(const int viewport[4])
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::setBackgroundColor(int backColor)
 {
-  getFigureImp()->setBackgroundColor(backColor);
+	getFigureImp()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
+void DrawableFigure::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureImp()->rubberBox(isClick, isZoom, initialRect, endRect, usedButton);
+  getFigureImp()->rubberBox(isClick, initialRect, endRect, usedButton);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::interactiveZoom(void)
+{
+	getFigureImp()->interactiveZoom();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::setTitle( const char * title )
@@ -269,14 +290,9 @@ void DrawableFigure::setTitle( const char * title )
   getFigureImp()->setTitle(title) ;
 }
 /*---------------------------------------------------------------------------------*/
-bool DrawableFigure::getRotationDisplacement(int displacement[2])
+void DrawableFigure::interactiveRotation(void)
 {
-  return getFigureImp()->getRotationDisplacement(displacement);
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableFigure::stopRotationRecording(void)
-{
-  return getFigureImp()->stopRotationRecording();
+  return getFigureImp()->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::showWindow(void)

@@ -30,6 +30,7 @@ import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.glTools.ClipPlane3DManager;
+import org.scilab.modules.renderer.utils.graphicEvents.GraphicEventManager;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
 import org.scilab.modules.renderer.utils.textRendering.JOGLTextRendererFactory;
 import org.scilab.modules.renderer.utils.textRendering.TextRendererFactory;
@@ -93,11 +94,16 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To know if the rendering is requested by Scilab or not */
 	private boolean renderRequested;
 	
-	/** Coordinate transfomrations used to draw this figure */
+	/** Coordinate transformations used to draw this figure */
 	private CoordinateTransformation transform;
 	
 	/** Number of subwins */
 	private int nbSubwins;
+	
+	/** In double buffer mode, it might be needed to emulate single buffer */
+	private boolean isEmultatingSingleBuffer;
+	
+	private GraphicEventManager eventManager;
 	
 	/**
 	 * Default Constructor
@@ -119,6 +125,8 @@ public class DrawableFigureGL extends ObjectGL {
       	transform = new CoordinateTransformation();
       	clipPlaneManager = new ClipPlane3DManager();
       	nbSubwins = 0;
+      	isEmultatingSingleBuffer = false;
+      	eventManager = new GraphicEventManager();
     }
 	
 	/**
@@ -154,6 +162,13 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public ClipPlane3DManager getClipPlaneManager() {
 		return clipPlaneManager;
+	}
+	
+	/**
+	 * @return the eventManager
+	 */
+	public GraphicEventManager getEventManager() {
+		return eventManager;
 	}
 	
 	/**
@@ -362,7 +377,15 @@ public class DrawableFigureGL extends ObjectGL {
   	public void setLogicalOp(int logicOpIndex) {
   		// convert to OpenGL value
   		GL gl = getGL();
+  		
+  		
+  		
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
+		if (LOGICAL_OPS[logicOpIndex] != GL.GL_COPY) {
+			// Here I tried to copy the frotn buffer to the back, but it didn't work
+			// So I use only one buffer for know.
+			useSingleBuffer();
+		}
 		gl.glLogicOp(LOGICAL_OPS[logicOpIndex]);
   	}
   	
@@ -370,7 +393,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Called when the object is destroyed from C code.
 	 * @param parentFigureIndex index of parent figure
 	 */
-  	@Override
 	public void destroy(int parentFigureIndex) {
   		getRendererProperties().disableCanvas();
   		setRenderingRequested(false);
@@ -378,7 +400,7 @@ public class DrawableFigureGL extends ObjectGL {
 		destroyedObjects = null;
   		FigureMapper.removeMapping(figureId);
   	
-  		// blocking call. So graphic synchrnonization must be desactivated here.
+  		// blocking call. So graphic synchronization must be disable here.
   		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
@@ -579,7 +601,7 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
-	 * Desactivate rubber box mode
+	 * Disable rubber box mode
 	 */
 	public synchronized void removeRubberBox() {
 		this.rubberBox = null;
@@ -594,23 +616,22 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
-	 * @return Wether the rubber box mod eis on
+	 * @return Whether the rubber box mode is on
 	 */
 	public synchronized boolean isRubberBoxModeOn() {
-		return this.rubberBox != null;
+		return (rubberBox != null && rubberBox.isActive());
 	}
 	
 	/**
 	 * Create an interactive selection rectangle and return its pixel coordinates
-	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 * @param isClick specify whether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
-	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
 	 * @return array of size 5 [x1, y1, x2, y2, button] where (x1,y1) is one of the rectangle corners
-	 *         (x2,y2) the coordinates of the opposite rectangle in pixel anf button the Scilab code
+	 *         (x2,y2) the coordinates of the opposite rectangle in pixel and button the Scilab code
 	 *         of the mouse button.
 	 */
-	public int[] rubberBox(boolean isClick, boolean isZoom, int[] initialRect) {
+	public int[] rubberBox(boolean isClick, int[] initialRect) {
 		
 		// giws is unable to pass null pointers
 		// we found a 0 sized array instead
@@ -624,37 +645,25 @@ public class DrawableFigureGL extends ObjectGL {
 		int[] res = {0, 0, 0, 0, 0};
 		
 		// get [x1,y1,x2,y2] in res and button
-		int button = getRendererProperties().rubberBox(isClick, isZoom, realIntialRect, res);
+		int button = getRendererProperties().rubberBox(figureId, isClick, false, realIntialRect, res);
 		res[res.length - 1] = button;
 		return res;
 	}
 	
 	/**
-	 * Get current displacement in the graphic window, to be used for axes rotation.
-	 * @return array [dx, dy, stop] where [dx, dy] is the mouse displacement in pixels
-	 *         or the position of the mouse with the first call. And stop is 0 if the
-	 *         tracking is finished, 1 otherwise.
+	 * Perform an interactive zoom on a figure
+	 * @param objectHandle handle of the object to zoom
 	 */
-	public int[] getRotationDisplacement() {
-		int[] res = new int[2 + 1];
-		
-		// get [dx, dy] displacement
-		boolean stop = getRendererProperties().getRotationDisplacement(res);
-		
-		if (stop) {
-			res[2] = 1;
-		} else {
-			res[2] = 0;
-		}
-		
-		return res;
+	public void interactiveZoom(long objectHandle) {
+		eventManager.launchZoomEvent(this, objectHandle);
 	}
 	
 	/**
-	 * If a rotation displacement is recording, cancel it.
+	 * Perform an interactive rotation of the figure from an other thread
 	 */
-	public void stopRotationRecording() {
-		getRendererProperties().stopRotationRecording();
+	public void interactiveRotation() {
+		eventManager.launchRotationEvent(this);
+		
 	}
 	
 	/**
@@ -684,6 +693,39 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void closeGraphicCanvas() {
 		getRendererProperties().closeGraphicCanvas();
+	}
+	
+	/**
+	 * Emulate the use of a single buffer if needed
+	 */
+	public void useSingleBuffer() {
+		if (isDoubleBuffered()) {
+			// draw in the front buffer so its like we're having only one buffer
+			getGL().glDrawBuffer(GL.GL_FRONT);
+			isEmultatingSingleBuffer = true;
+		}
+	}
+	
+	/**
+	 * Swap the buffers for this figure if needed.
+	 */
+	public void swapBuffers() {
+		if (isDoubleBuffered() && isEmultatingSingleBuffer) {
+			// to be sure to fill the buffer
+			getGL().glFlush();
+			  // switch back to default buffer
+			getGL().glDrawBuffer(GL.GL_BACK);
+			isEmultatingSingleBuffer = false;
+		} else {
+			getRenderingTarget().swapBuffers();
+		}
+	}
+	
+	/**
+	 * @return true if the canvas is double buffered, false otherwise
+	 */
+	public boolean isDoubleBuffered() {
+		return getRenderingTarget().getChosenGLCapabilities().getDoubleBuffered();
 	}
 	
 }

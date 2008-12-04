@@ -104,7 +104,7 @@ function h=trfmod(h,job)
   end
   while id==[] then
     t=x_dialog(tit,txt)
-    id=find(t==_("Denominator : "))
+    id=find(t==_("Denominator :"))
   end
   txt=t;
   

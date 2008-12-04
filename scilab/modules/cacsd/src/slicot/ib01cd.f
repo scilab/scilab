@@ -505,8 +505,8 @@ C     .. Local Arrays ..
 C     .. External Functions ..
       LOGICAL            LSAME
       INTEGER            ILAENV
-      DOUBLE PRECISION   DLAMCH, DLAPY2
-      EXTERNAL           DLAMCH, DLAPY2, ILAENV, LSAME
+      DOUBLE PRECISION   DLAPY2
+      EXTERNAL           DLAPY2, ILAENV, LSAME
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEMM, DGEMV, DLACPY, IB01QD, IB01RD, 
      $                   TB01WD, XERBLA

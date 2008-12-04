@@ -110,4 +110,6 @@ void SciWin(void);
 
 sciPointObj * createFullFigure(int * winNum);
 
+sciPointObj * createFirstSubwin(sciPointObj * pFigure);
+
 #endif /* __SCI_BUILD__ */

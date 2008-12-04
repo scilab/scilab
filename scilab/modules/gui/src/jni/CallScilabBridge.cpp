@@ -126,7 +126,6 @@ jintnewContextMenuID=NULL;
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 jintnewWindowjintID=NULL; 
-jintnewGraphicCanvasjintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -295,6 +294,7 @@ jbooleanpageSetupID=NULL;
 voidrequestWidgetFocusjintID=NULL; 
 voidrequestFrameFocusjintID=NULL; 
 voidraiseWindowjintID=NULL; 
+voiduseCanvasForDisplayjbooleanID=NULL; 
 
 
 }
@@ -340,7 +340,6 @@ jintnewContextMenuID=NULL;
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 jintnewWindowjintID=NULL; 
-jintnewGraphicCanvasjintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -509,6 +508,7 @@ jbooleanpageSetupID=NULL;
 voidrequestWidgetFocusjintID=NULL; 
 voidrequestFrameFocusjintID=NULL; 
 voidraiseWindowjintID=NULL; 
+voiduseCanvasForDisplayjbooleanID=NULL; 
 
 
 }
@@ -948,29 +948,6 @@ exit(EXIT_FAILURE);
 }
 
                         jint res =  (jint) curEnv->CallIntMethod(cls, jintnewWindowjintID ,figureIndex);
-
-if (curEnv->ExceptionCheck()) {
-curEnv->ExceptionDescribe() ;
-}
-
-return res;
-
-}
-
-int CallScilabBridge::newGraphicCanvas (JavaVM * jvm_, int parentFigureIndex){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread((void **) &curEnv, NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID jintnewGraphicCanvasjintID = curEnv->GetStaticMethodID(cls, "newGraphicCanvas", "(I)I" ) ;
-if (jintnewGraphicCanvasjintID == NULL) {
-std::cerr << "Could not access to the method " << "newGraphicCanvas" << std::endl;
-curEnv->ExceptionDescribe();
-exit(EXIT_FAILURE);
-}
-
-                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewGraphicCanvasjintID ,parentFigureIndex);
 
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;
@@ -5328,6 +5305,29 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidraiseWindowjintID ,objID);
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+}
+
+void CallScilabBridge::useCanvasForDisplay (JavaVM * jvm_, bool onOrOff){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiduseCanvasForDisplayjbooleanID = curEnv->GetStaticMethodID(cls, "useCanvasForDisplay", "(Z)V" ) ;
+if (voiduseCanvasForDisplayjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "useCanvasForDisplay" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+jboolean onOrOff_ = ((bool) onOrOff ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voiduseCanvasForDisplayjbooleanID ,onOrOff_);
 
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;

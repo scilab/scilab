@@ -13,11 +13,7 @@
 #ifndef SCI_PVM 
 #define SCI_PVM 
 
-#ifdef _MSC_VER
-#include "pvm3/include/pvm3.h"
-#else
 #include "pvm3.h"
-#endif
 #include "stack-c.h"
 
 #define PVM_CONFIG_FILE "/.pvmd.conf"

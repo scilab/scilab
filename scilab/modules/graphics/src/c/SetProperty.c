@@ -119,10 +119,10 @@ int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha )
 /* Modify the viewing angles of a subwindow and the one of its brothers id necessary  */
 /*---------------------------------------------------------------------------*/
 
-void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
+void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta)
 {
   /* check if all the axis must be turned */
-  sciPointObj * pParentFigure = sciGetParentFigure( pSubWin ) ;
+  sciPointObj * pParentFigure = sciGetParentFigure( pSubwin ) ;
   if ( pFIGURE_FEATURE(pParentFigure)->rotstyle == 1 )
   {
     /* every axes has the same angles */
@@ -143,8 +143,8 @@ void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
   else
   {
     /* modify angles only for this axes */
-    setSubWinAngles( pSubWin, theta, alpha ) ;
-    forceRedraw(pSubWin);
+    setSubWinAngles( pSubwin, theta, alpha ) ;
+    forceRedraw(pSubwin);
   }
 }
 
@@ -1267,56 +1267,6 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes )
 }
 
 
-/**sciSetFontName
- * Sets the font name
- * @param sciPointObj * pobj: the pointer to the entity
- * @param  char *fontname
- * @param  int n
- * @return  int 0 if OK, -1 if not
- */
-int
-sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      /*      if (realloc
-	      (	(sciGetFontContext(pobj))->pfontname,
-	      n * sizeof (char)) == NULL)
-	      return -1;
-	      strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname, n);
-	      (sciGetFontContext(pobj))->fontnamelen = n;*/
-      return -1 ;
-      break;
-    case SCI_LEGEND:
-      /*if (realloc
-	(	(sciGetFontContext(pobj))->pfontname,
-	n * sizeof (char)) == NULL)
-	return -1;
-	strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname,
-	n);
-	(sciGetFontContext(pobj))->fontnamelen = n;*/
-      return -1 ;
-      break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      return -1;
-      break;
-    }
-}
-
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
   double position[2]={0.0,0.0};
@@ -1900,7 +1850,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
 			/* first case newName is NULL */
 			if (newName == NULL)
 			{
-				/* Just set tan empty title for the phisical window if needed */
+				/* Just set an empty title for the physical window if needed */
 				if (!isFigureModel(pobj))
 				{
 					sciSetJavaTitle(pobj, "");
@@ -1910,7 +1860,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
 			}
 			
 			/* newName is a valid string */
-			newNameLength = strlen(newName);
+			newNameLength = (int) strlen(newName);
       
       /* Reallocate name */
       pFIGURE_FEATURE(pobj)->name = MALLOC( (newNameLength + 1) * sizeof(char) );
@@ -3115,11 +3065,8 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
      {
        pSUBWIN_FEATURE (pObj)->is3d = TRUE ;
        Obj_RedrawNewAngle( pObj,
-                           pSUBWIN_FEATURE (pObj)->theta_kp,
-                           pSUBWIN_FEATURE (pObj)->alpha_kp ) ;
-       setInfoMessageWithRotationAngles(sciGetParentFigure(pObj),
-                                        pSUBWIN_FEATURE (pObj)->alpha_kp,
-                                        pSUBWIN_FEATURE (pObj)->theta_kp ) ;
+                           pSUBWIN_FEATURE (pObj)->alpha_kp,
+                           pSUBWIN_FEATURE (pObj)->theta_kp ) ;
      }
      else
      {
@@ -3129,11 +3076,11 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
          pSUBWIN_FEATURE (pObj)->is3d = FALSE;
          pSUBWIN_FEATURE (pObj)->project[2]= 0;
        }
-       pSUBWIN_FEATURE (pObj)->theta_kp=pSUBWIN_FEATURE (pObj)->theta;
-       pSUBWIN_FEATURE (pObj)->alpha_kp=pSUBWIN_FEATURE (pObj)->alpha;
-       pSUBWIN_FEATURE (pObj)->alpha  = 0.0;
-       pSUBWIN_FEATURE (pObj)->theta  = 270.0;
-       pSUBWIN_FEATURE(pObj)->is3d = FALSE; /*...and here */
+       pSUBWIN_FEATURE (pObj)->theta_kp = pSUBWIN_FEATURE (pObj)->theta;
+       pSUBWIN_FEATURE (pObj)->alpha_kp = pSUBWIN_FEATURE (pObj)->alpha;
+       pSUBWIN_FEATURE (pObj)->alpha = 0.0;
+       pSUBWIN_FEATURE (pObj)->theta = 270.0;
+       pSUBWIN_FEATURE(pObj)->is3d = FALSE;
        return 0 ;
      }
      return 0 ;
@@ -3284,43 +3231,63 @@ int sciSetViewport( sciPointObj * pObj, const int viewport[4] )
 
 }
 /*-----------------------------------------------------------------------------------*/
+int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage)
+{
+	if ( sciGetEntityType( pObj ) == SCI_FIGURE)
+	{
+
+		/* first case newName is NULL */
+		if (newMessage == NULL)
+		{
+			/* Just set an empty title for the physical window if needed */
+			if(isFigureModel(pObj))
+			{
+				pFIGURE_FEATURE(pObj)->pModelData->infoMessage = NULL;
+			}
+			else
+			{
+				sciSetJavaInfoMessage(pObj, "");
+			}
+				
+			return 0;
+		}
+
+		if (isFigureModel(pObj))
+		{
+			/* Copy the message into the special data */
+			int newMessageLength = (int) strlen(newMessage);
+			pFIGURE_FEATURE(pObj)->pModelData->infoMessage = MALLOC((newMessageLength + 1) * sizeof(char));
+			if (pFIGURE_FEATURE(pObj)->pModelData->infoMessage != NULL)
+			{
+				strcpy(pFIGURE_FEATURE(pObj)->pModelData->infoMessage, newMessage);
+			}
+		}
+		else
+		{
+			/* Copy in the Java data */
+			sciSetJavaInfoMessage(pObj, newMessage);
+		}
+
+		return 0 ;
+	}
+	else
+	{
+		printSetGetErrorMessage("info_message");
+		return -1;
+	}
+}
+/*-----------------------------------------------------------------------------------*/
 /**
  * Modify the string in the info bar of the graphic window
  */
 int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
 {
-  if ( sciGetEntityType( pObj ) == SCI_FIGURE)
-    {
-      sciFigure * ppFigure = pFIGURE_FEATURE(pObj) ;
-
-      /* We keep a copy of the message for convenience */
-      if ( newMessage == NULL )
+  if (isFigureModel(pObj) && pFIGURE_FEATURE(pObj)->pModelData->infoMessage != NULL)
 	{
-	  FREE( ppFigure->infoMessage ) ;
-	  ppFigure->infoMessage = NULL ;
+		FREE(pFIGURE_FEATURE(pObj)->pModelData->infoMessage);
+		pFIGURE_FEATURE(pObj)->pModelData->infoMessage = NULL;
 	}
-      else
-	{
-	  if ( ppFigure->infoMessage != NULL )
-	    {
-	      FREE(ppFigure->infoMessage);
-	    }
-	  ppFigure->infoMessage = strdup( newMessage ) ;
-	}
-
-      /* set the java message */
-      if ( pObj != getFigureModel() )
-	{
-	  sciSetJavaInfoMessage(pObj, newMessage);
-	}
-
-      return 0 ;
-    }
-  else
-    {
-      printSetGetErrorMessage("info_message");
-      return -1;
-    }
+	return sciInitInfoMessage(pObj, newMessage);
 }
 /*-----------------------------------------------------------------------------------*/
 int sciInitEventHandler( sciPointObj * pObj, char * name )

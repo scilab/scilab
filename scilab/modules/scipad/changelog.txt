@@ -1,3 +1,20 @@
+Francois VOGEL, 28/11/08
+ * Fixed bug 3793 (localization issue in Scilab with Tcl/Tk)
+ * version --> 7.10
+
+Francois VOGEL, 23/11/08
+ * Fixed bug 3782 (bug correction courtesy of Enrico) about an old Tk bug
+   that has been fixed in Tcl/Tk 8.4.2
+ * Fixed bug 3781 about unlocalized labels when upgrading with a backported
+   Scipad version
+ * version --> 7.9
+
+Francois VOGEL, 10/11/08
+ * Implemented request in bug 3726 (do not exit when the last file gets
+   closed), with a saved preference for selecting the behaviour
+ * Added new command "Load all into Scilab"
+ * version --> 7.8
+
 Francois VOGEL, 20/10/08
  * Fixed wrong title bar update when saving while focused in peer <x> (x>1),
    the last peer in the list (instead of the focused peer) did win the title

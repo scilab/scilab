@@ -16,6 +16,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "readline.h"
 #include "filesmanagement.h"
 #include "charEncoding.h"
@@ -105,7 +106,7 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
   *cnt=count;
   /** Convert from system locale encoding to UTF encoding */
   tmpChar = localeToUTF(buf);
-  *cnt=strlen(tmpChar)+1;
+  *cnt = (int)strlen(tmpChar)+1;
   strcpy(buf,tmpChar);
   return(info);
 }

@@ -4,20 +4,24 @@
 ##########
 
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
-src/c/issymmetric.c
+src/c/issymmetric.c \
+src/c/assembleEigenvectors.c \
+src/c/intdgeev.c \
+src/c/intdggev.c \
+src/c/intdsyev.c \
+src/c/intzgeev.c \
+src/c/intzggev.c \
+src/c/intzheev.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
-src/fortran/intzheev.f \
 src/fortran/intzgehrd.f \
 src/fortran/intzgesvd1.f \
 src/fortran/intzfschur.f \
 src/fortran/intzgesvd2.f \
 src/fortran/intdgges.f \
-src/fortran/intdgeev.f \
 src/fortran/intgschur.f \
 src/fortran/intdgesv3.f \
-src/fortran/intdggev.f \
 src/fortran/intdgesv4.f \
 src/fortran/DGELSY1.f \
 src/fortran/intozgschur.f \
@@ -36,10 +40,8 @@ src/fortran/intdgees1.f \
 src/fortran/intogschur.f \
 src/fortran/intzgges.f \
 src/fortran/intddet.f \
-src/fortran/intzgeev.f \
 src/fortran/intzgesv3.f \
 src/fortran/intzgesv4.f \
-src/fortran/intzggev.f \
 src/fortran/intzpotrf.f \
 src/fortran/intzgecon.f \
 src/fortran/intzgschur.f \
@@ -47,7 +49,6 @@ src/fortran/intzoldsvd.f \
 src/fortran/intdgelsy.f \
 src/fortran/intdgeqpf3.f \
 src/fortran/intfschur.f \
-src/fortran/intdsyev.f \
 src/fortran/intdgeqpf4.f \
 src/fortran/intdgesvd1.f \
 src/fortran/intdgehrd.f \
@@ -93,7 +94,8 @@ GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 
 libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 

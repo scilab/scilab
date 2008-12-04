@@ -21,13 +21,13 @@
 ierr = execstr('mgetl(''SCI/etc/scilab.start'',''r'');','errcatch');
 if ierr <> 999 then pause,end
 err_msg = lasterror();
-ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: An integer scalar expected.\n"),'mgetl',2);
+ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: An int scalar expected.\n"),'mgetl',2);
 
 if err_msg <> ref_msg then pause,end
 
 ierr = execstr('mgetl(''SCI/etc/scilab.start'',[5 5]);','errcatch');
 if ierr <> 999 then pause,end
 err_msg = lasterror();
-ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: An integer scalar expected.\n"),'mgetl',2);
+ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: An int scalar expected.\n"),'mgetl',2);
 
 if err_msg <> ref_msg then pause,end

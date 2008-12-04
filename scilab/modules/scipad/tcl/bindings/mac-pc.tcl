@@ -80,6 +80,7 @@ sbind $pad <Control-m> {CommentSel}
 sbind $pad <Control-M> {UnCommentSel}
 
 sbind $pad <Control-l> {execfile}
+sbind $pad <Control-L> {execallfiles}
 sbind $pad <Control-y> {execselection}
 
 sbind Text <Button-3> {showpopup2}

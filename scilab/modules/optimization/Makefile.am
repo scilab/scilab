@@ -3,8 +3,7 @@
 ### INRIA - Scilab 2006
 ##########
 
-OPTIMIZATION_C_SOURCES = src/c/intqld.c \
-src/c/sp.c \
+OPTIMIZATION_C_SOURCES = src/c/sp.c \
 src/c/fsolvetable.c \
 src/c/lsqrsolvtable.c \
 src/c/optimtable.c
@@ -128,10 +127,6 @@ pkglib_LTLIBRARIES = libscioptimization.la
 libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
-
-# For the code check (splint)
-CHECK_SRC= $(OPTIMIZATION_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscioptimization_la_CFLAGS)
 
 libscioptimization_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 

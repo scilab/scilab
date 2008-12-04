@@ -30,9 +30,8 @@ c     are not scratched and then from n-1 to p
 c     ===============================
       include 'stack.h'
       integer n,il1,dl1 
-      integer iadr,sadr
+      integer iadr
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
       if((il1+n-1).ge.iadr(dl1+n-1)) then
          call int2db(n,istk(il1),1,stk(dl1),1)
       elseif(il1.le.iadr(dl1)) then

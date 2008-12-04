@@ -15,9 +15,10 @@ function r=Err(x)
 endfunction
 rand('normal')
 
-//==========================================================================
-//==============================     spec     ============================== 
-//==========================================================================
+//
+// spec.tst --
+//   Test spec with 1 RHS and one or several LHS.
+//
 
 function r=Checktestmat1(a,n)
    A=testmat1(a,n);S=spec(A);
@@ -40,28 +41,50 @@ endfunction
 
 
 
-//Empty matrix
+// Empty matrix
 A=[];
+B=[];
+// 1. One RHS, one LHS
 S=spec(A);
 if S<>[] then pause,end
-//Matrix with Inf or Nan (test de la detection d'erreur
+// 2. One RHS, two LHS
+[al,be]=spec(A);
+if al<>[] then pause,end
+if be<>[] then pause,end
+
+//Matrix with Inf or Nan (test de la detection d'erreur)
+// 1. Real
+// 1.1 Not symetric
 if execstr('spec([%inf 1;2 3])','errcatch')==0 then pause,end
 if execstr('spec([1 %nan;2 3])','errcatch')==0 then pause,end
-
+// 1.2 Symetric
+if execstr('spec([%inf 1;1 3])','errcatch')==0 then pause,end
+// 2. Complex
+// 2.1 Not symetric
 if execstr('spec([%inf %i;2 3])','errcatch')==0 then pause,end
 if execstr('spec([%i %i;%nan 3])','errcatch')==0 then pause,end
+// 2.2 Symetric
+if execstr('spec([%inf %i;-%i 3])','errcatch')==0 then pause,end
 
 //Small dimension
 //---------------
 //Real Case
-//Unsymetric
+//Unsymetric, 2 LHS
 if Checktestmat1(3,5)>200*%eps then pause,end
 [U,S]=spec(testmat1(3,5));
 if Err(U*S/U-testmat1(3,5))>200*%eps then pause,end 
-//Symmetric
+//Symmetric, 2 LHS
 if Checktestmat2(3,5)>200*%eps then pause,end
 [U,S]=spec(testmat2(3,5));
 if Err(U*S/U-testmat2(3,5))>200*%eps then pause,end 
+//Unsymetric, 1 LHS
+Scomputed = spec([2,1;3,4]);
+Sexpected = [1;5];
+if Err(Scomputed - Sexpected)>200*%eps then pause,end 
+//Symmetric, 1 LHS
+Scomputed=spec([2,1;1,2]);
+Sexpected = [1;3];
+if Err(Scomputed - Sexpected)>200*%eps then pause,end 
 
 //Complex Case
 //Unsymetric
@@ -73,6 +96,16 @@ if Err(U*S/U-testmat1(3+2*%i,5))>200*%eps then pause,end
 if Checktestmat2(3+2*%i,5)>200*%eps then pause,end
 [U,S]=spec(testmat2(3+2*%i,5));
 if Err(U*S/U-testmat2(3+2*%i,5))>200*%eps then pause,end 
+
+//Unsymetric, 1 LHS
+Scomputed = spec([2*%i,1*%i;3*%i,4*%i]);
+Sexpected = [%i;5*%i];
+if Err(Scomputed - Sexpected)>200*%eps then pause,end 
+//Symmetric, 1 LHS
+Scomputed=spec([2,%i;-%i,2]);
+Sexpected = [1;3];
+if Err(Scomputed - Sexpected)>200*%eps then pause,end 
+
 
 //Large dimension
 //---------------

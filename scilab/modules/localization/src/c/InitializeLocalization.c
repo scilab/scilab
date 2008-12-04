@@ -37,7 +37,7 @@
 #include "isdir.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
-#include "loadLanguagePref.h"
+#include "LanguagePreferences_Windows.h"
 #endif
 
 /*--------------------------------------------------------------------------*/ 
@@ -92,10 +92,10 @@ BOOL InitializeLocalization(void)
 	 * first. If it doesn't work, we switch back to default (English) */
 	setlanguage("");
 #else
-	/* We look if a file language.ini exists in SCIHOME */
+	/* We look if registry value LANGUAGE exists */
 	/* If not exists the "" means that we will try to use the language of the system.*/
 	{
-		char *loadLanguage = loadLanguagePref();
+		char *loadLanguage = getLanguagePreferences();
 		setlanguage(loadLanguage);
 		if (loadLanguage) {FREE(loadLanguage); loadLanguage = NULL;}
 	}

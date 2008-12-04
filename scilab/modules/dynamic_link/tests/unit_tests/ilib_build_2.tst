@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-
+// <-- ENGLISH IMPOSED -->
 
 if MSDOS then
   TMP_OS_DIR = getenv('TMP','err');

@@ -7,7 +7,7 @@ C       -----------
 C       PARAMETERS.
 C       -----------
 C
-        INTEGER         NEQNS, NSUPER, NSUB, NZL
+        INTEGER         NEQNS, NSUPER, NSUB
 c
         INTEGER         XLINDX(nsuper+1), XLNZ(neqns+1)
         INTEGER         LINDX(nsub)     , ADJNCY(nnz)

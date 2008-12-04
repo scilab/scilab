@@ -16,9 +16,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import javax.swing.JPanel;
-
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 
 /**
  * Class used to convert Scilab position to/from Java position
@@ -46,15 +44,20 @@ public final class PositionConverter {
 			return scilabPosition;
 		}
 		
-		SwingScilabTab parentTab = (SwingScilabTab) parent;
-		JPanel canvas = (JPanel) parentTab.getContentPane();
+//		SwingScilabTab parentTab = (SwingScilabTab) parent;
+//		JPanel canvas = (JPanel) parentTab.getContentPane();
+//		
+//		int xOffset = (parentTab.getDims().getWidth() - canvas.getWidth()) / 2; /* Border Width */
+//		int yOffset = parentTab.getTitlebar().getHeight();
+//		
+//		int xCoord = scilabPosition.getX() + xOffset;
+//		int yCoord = canvas.getHeight() - scilabPosition.getY() - objectSize.getHeight() + yOffset + xOffset;
+//
+//		return new Position(xCoord, yCoord);
+		SwingScilabAxes parentAxes = (SwingScilabAxes) parent;
+		int xCoord = scilabPosition.getX();
+		int yCoord = parentAxes.getHeight() - scilabPosition.getY() - objectSize.getHeight();
 		
-		int xOffset = (parentTab.getDims().getWidth() - canvas.getWidth()) / 2; /* Border Width */
-		int yOffset = parentTab.getTitlebar().getHeight();
-		
-		int xCoord = scilabPosition.getX() + xOffset;
-		int yCoord = canvas.getHeight() - scilabPosition.getY() - objectSize.getHeight() + yOffset + xOffset;
-
 		return new Position(xCoord, yCoord);
 	}
 
@@ -71,15 +74,21 @@ public final class PositionConverter {
 			return new Position(javaPosition.x, javaPosition.y);
 		}
 		
-		SwingScilabTab parentTab = (SwingScilabTab) parent;
-		JPanel canvas = (JPanel) parentTab.getContentPane();
+//		SwingScilabTab parentTab = (SwingScilabTab) parent;
+//		JPanel canvas = (JPanel) parentTab.getContentPane();
+//		
+//		int xOffset = (parentTab.getDims().getWidth() - canvas.getWidth()) / 2; /* Border Width */
+//		int yOffset = parentTab.getTitlebar().getHeight();
+//		
+//		int xCoord = javaPosition.x - xOffset;
+//		int yCoord = canvas.getHeight() - javaPosition.y - objectSize.height + yOffset + xOffset;
+//
+//		return new Position(xCoord, yCoord);
 		
-		int xOffset = (parentTab.getDims().getWidth() - canvas.getWidth()) / 2; /* Border Width */
-		int yOffset = parentTab.getTitlebar().getHeight();
+		SwingScilabAxes parentAxes = (SwingScilabAxes) parent;
+		int xCoord = javaPosition.x;
+		int yCoord = parentAxes.getHeight() - javaPosition.y - objectSize.height;
 		
-		int xCoord = javaPosition.x - xOffset;
-		int yCoord = canvas.getHeight() - javaPosition.y - objectSize.height + yOffset + xOffset;
-
 		return new Position(xCoord, yCoord);
 	}
 }

@@ -1,3 +1,24 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- ENGLISH IMPOSED -->
+
+// <-- Non-regression test for bug 2119 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2119
+//
+// <-- Short Description -->
+// There is problem in the scilab fortran interface provided by
+//  the "call" function. The bug have been found by Mark (coding a "call"
+//  interface for the lapack routine dgesv) and exposed in the 
+//  newsgroup. See the newsgroup thread for some details, I write
+//  here only a (complicated) way to get the bug.
+
 //create fortran code a copy of the lapack dgesv routine
 curdir=pwd();
 mputl(['      subroutine dgesvtst( n,nrhs,a,lda,ipiv,b,ldb,info )'
@@ -40,7 +61,3 @@ n=44;
 A=eye(n,n);B=(1:n)';
 [X, LU, IPIV, INFO] = msolve(A,B); 
 if norm(A*X-B)>1d-15 then pause,end
-
- 
-
-

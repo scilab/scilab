@@ -30,9 +30,6 @@
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
-
-<PRIMITIVE gatewayId="49" primitiveId="1" primitiveName="savewave" />
-<PRIMITIVE gatewayId="49" primitiveId="2" primitiveName="loadwave" />
-<PRIMITIVE gatewayId="49" primitiveId="3" primitiveName="PlaySound" />
-<PRIMITIVE gatewayId="49" primitiveId="4" primitiveName="beep" />
+<PRIMITIVE gatewayId="49" primitiveId="1" primitiveName="PlaySound" />
+<PRIMITIVE gatewayId="49" primitiveId="2" primitiveName="beep" />
 </GATEWAY>

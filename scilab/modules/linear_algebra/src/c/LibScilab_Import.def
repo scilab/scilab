@@ -37,6 +37,13 @@ CheckVarUsed
 Msgs
 
 callFunctionFromGateway
+iAllocMatrixOfDoubleComplex
+GetRhsVarMatrixDouble
+iAllocMatrixOfDouble
+vGetPointerFromDoubleComplex
+vfiniteComplex_
+oGetDoubleComplexFromPointer
+GetRhsVarMatrixComplex
 ;
 ;core_f
 ;
@@ -48,3 +55,5 @@ find_
 wbdiag_
 bdiag_
 vfinite_
+dset_
+wwrdiv_

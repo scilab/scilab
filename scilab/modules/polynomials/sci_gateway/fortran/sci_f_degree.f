@@ -11,7 +11,6 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       INCLUDE 'stack.h'
       integer iadr, sadr
       integer id(nsiz)
-      integer volr,vol
       logical ref
 c
       iadr(l)=l+l-1

@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc findtextdialog {typ} {
 # display the find or replace dialog box
     global find pad textFont menuFont
@@ -1931,11 +1932,11 @@ proc tagsforfind {onlyselected} {
 # if $onlyselected == "onlyselected", then only tags selected in
 #    the find dialog listbox are returned
 # otherwise all tags are returned
-    global find
+    global find searchintagged
     set tags [list ]
     set i 0
     foreach {tag tagname} [tagsandtagnamesforfind] {
-        if {$onlyselected == "onlyselected"} {
+        if {$onlyselected == "onlyselected" & $searchintagged} {
             if {[$find.l.f4.f1.f2.f1.lb selection includes $i]} {
                 lappend tags $tag
             }

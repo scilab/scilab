@@ -14,6 +14,7 @@
 #ifdef _MSC_VER 
 	#include <windows.h>
 	#include <direct.h>
+	#include <errno.h>
 #else 
 	#include <unistd.h>
 	#define GETCWD(x,y) getcwd(x,y)
@@ -26,10 +27,7 @@
 #include "PATH_MAX.h"
 static char cur_dir[PATH_MAX];
 /*--------------------------------------------------------------------------*/
-/* checks if it is a UNC path */
-static BOOL isUNCpath(char *path);
-/*--------------------------------------------------------------------------*/
-int C2F(scichdir)(char *path,int *err)
+int scichdir(char *path,int *err)
 {
 	*err=0;
 	if (path == (char*) NULL) 
@@ -38,26 +36,33 @@ int C2F(scichdir)(char *path,int *err)
 		return (0);
 	}
 
-	 if (isUNCpath(path))
-	 {
-	    if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path); 
-		*err = 1;
-		return (0);
-	 }
-
 #ifndef _MSC_VER
 	if (chdir(path) == -1) 
-#else
-	if (SetCurrentDirectory(path) == 0)
-#endif
 	{
 		if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path); 
-	    *err=1;
+		*err=1;
 	} 
+#else
+	if ( _chdir(path) )
+	{
+		switch (errno)
+		{
+		case ENOENT:
+			if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path); 
+			break;
+		case EINVAL:
+			if ( getWarningMode() ) sciprint(_("Invalid buffer.\n")); 
+			break;
+		default:
+			if ( getWarningMode() ) sciprint(_("Unknown error.\n")); 
+		}
+		*err = 1;
+	}
+#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(scigetcwd)(char **path,int *lpath,int *err)
+int scigetcwd(char **path,int *lpath,int *err)
 {
 #ifndef _MSC_VER
 	if (GETCWD(cur_dir, PATH_MAX) == (char*) 0)
@@ -78,14 +83,5 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 		*err=0;
 	}
     return 0;
-}
-/*--------------------------------------------------------------------------*/
-static BOOL isUNCpath(char *path)
-{
-	if ( (path) && (strncmp(path,"\\\\",2) == 0) )
-	{
-		return TRUE;
-	}
-	return FALSE;
 }
 /*--------------------------------------------------------------------------*/

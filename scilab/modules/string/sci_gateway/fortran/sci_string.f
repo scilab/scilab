@@ -37,6 +37,7 @@ c     conversion d'une matrice de scalaires
 c     -------------------------------------
          m=istk(il+1)
          n=istk(il+2)
+         
          if(m*n.eq.0) then
             if (ref) then
                istk(ilr)=1

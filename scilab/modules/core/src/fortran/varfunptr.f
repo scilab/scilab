@@ -13,7 +13,7 @@ c     creates a variable with is a pointer on a primitive function
 C     ---------------------------------
       include 'stack.h'
 
-      logical compil,cremat
+      logical compil
       integer bl(nsiz),id(*),ffun,ffin,iadr,sadr
       data bl/nsiz*673720360/
       iadr(l)=l+l-1
@@ -40,11 +40,10 @@ c     compilation  [27]
 
       subroutine isafunptr(k,id,ffun,ffin)
       include 'stack.h'
-      integer iadr,sadr
+      integer iadr
       integer id(*),ffun,ffin
 
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 
       ffun=0
       ffin=0

@@ -125,6 +125,95 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Build Dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="f2c rule"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../../../libs/f2c"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_F2C_EXPORTS;FORDLL"
+				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="0"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				Description="Build linear_algebra_f.def"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def linear_algebra_f.def &gt;nul&#x0D;&#x0A;copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="Libscilab.lib linear_algebra.lib"
+				OutputFile="$(SolutionDir)bin\linear_algebra_f.dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="linear_algebra_f.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
@@ -188,95 +277,6 @@
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="17"
-				CLRUnmanagedCodeCheck="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="f2c rule"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_F2C_EXPORTS;FORDLL"
-				RuntimeLibrary="2"
-				EnableEnhancedInstructionSet="1"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				Description="Build linear_algebra_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def linear_algebra_f.def &gt;nul&#x0D;&#x0A;copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib linear_algebra.lib"
-				OutputFile="$(SolutionDir)bin\linear_algebra_f.dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="linear_algebra_f.def"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				LinkTimeCodeGeneration="0"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -437,10 +437,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intdgeev.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intdgehrd.c"
 				>
 			</File>
@@ -489,19 +485,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intdggev.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intdoldsvd.c"
 				>
 			</File>
 			<File
 				RelativePath=".\intdpotrf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intdsyev.c"
 				>
 			</File>
 			<File
@@ -546,10 +534,6 @@
 			</File>
 			<File
 				RelativePath=".\intzgees1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intzgeev.c"
 				>
 			</File>
 			<File
@@ -601,15 +585,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intzggev.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intzgschur.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intzheev.c"
 				>
 			</File>
 			<File
@@ -664,15 +640,7 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -680,7 +648,15 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -688,7 +664,7 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
 			</File>
@@ -722,10 +698,6 @@
 			</File>
 			<File
 				RelativePath=".\intdgees1.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intdgeev.f"
 				>
 			</File>
 			<File
@@ -777,19 +749,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intdggev.f"
-				>
-			</File>
-			<File
 				RelativePath=".\intdoldsvd.f"
 				>
 			</File>
 			<File
 				RelativePath=".\intdpotrf.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intdsyev.f"
 				>
 			</File>
 			<File
@@ -834,10 +798,6 @@
 			</File>
 			<File
 				RelativePath=".\intzgees1.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intzgeev.f"
 				>
 			</File>
 			<File
@@ -889,15 +849,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intzggev.f"
-				>
-			</File>
-			<File
 				RelativePath=".\intzgschur.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intzheev.f"
 				>
 			</File>
 			<File

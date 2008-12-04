@@ -181,7 +181,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp \
 	src/cpp/CallClipboard.cpp src/cpp/exportUserInterface.cpp \
 	src/jni/LookAndFeelManager.cpp \
-	sci_gateway/cpp/sci_raise_window.cpp src/jni/GiwsException.cpp
+	sci_gateway/cpp/sci_raise_window.cpp \
+	sci_gateway/cpp/sci_usecanvas.cpp src/jni/GiwsException.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-TerminateGui.lo \
 @GUI_TRUE@	libscigui_la-buildMainWindowTitle.lo \
@@ -306,6 +307,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-exportUserInterface.lo \
 @GUI_TRUE@	libscigui_la-LookAndFeelManager.lo \
 @GUI_TRUE@	libscigui_la-sci_raise_window.lo \
+@GUI_TRUE@	libscigui_la-sci_usecanvas.lo \
 @GUI_TRUE@	libscigui_la-GiwsException.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
@@ -700,6 +702,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@src/cpp/exportUserInterface.cpp \
 @GUI_TRUE@src/jni/LookAndFeelManager.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_raise_window.cpp \
+@GUI_TRUE@sci_gateway/cpp/sci_usecanvas.cpp \
 @GUI_TRUE@src/jni/GiwsException.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
@@ -1147,6 +1150,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_usecanvas.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_waitbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose.Plo@am__quote@
@@ -2107,6 +2111,13 @@ libscigui_la-sci_raise_window.lo: sci_gateway/cpp/sci_raise_window.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_raise_window.cpp' object='libscigui_la-sci_raise_window.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/cpp/sci_raise_window.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_raise_window.cpp
+
+libscigui_la-sci_usecanvas.lo: sci_gateway/cpp/sci_usecanvas.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_usecanvas.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_usecanvas.Tpo -c -o libscigui_la-sci_usecanvas.lo `test -f 'sci_gateway/cpp/sci_usecanvas.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_usecanvas.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_usecanvas.Tpo $(DEPDIR)/libscigui_la-sci_usecanvas.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_usecanvas.cpp' object='libscigui_la-sci_usecanvas.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_usecanvas.lo `test -f 'sci_gateway/cpp/sci_usecanvas.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_usecanvas.cpp
 
 libscigui_la-GiwsException.lo: src/jni/GiwsException.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GiwsException.Tpo -c -o libscigui_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp

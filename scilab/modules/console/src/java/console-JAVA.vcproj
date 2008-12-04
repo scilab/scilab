@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="console-Ant"
 	ProjectGUID="{251D7C8F-9B69-4CE9-959E-57F343DDC883}"
 	RootNamespace="console-Ant"
 	Keyword="MakeFileProj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -108,6 +109,18 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\org\scilab\modules\console\ClearConsoleAction.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\CompletionAction.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\ConsoleboxAction.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\console\DelEndOfLine.java"
 				>
 			</File>
@@ -140,6 +153,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\console\FocusMouseListener.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\console\GuiManagement.java"
 				>
 			</File>
@@ -148,11 +165,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\console\HelpAction.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\console\InterpreterManagement.java"
 				>
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\console\InterpreterManagementJNI.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\InterruptScilabWorkOrCopy.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\InterruptScilabWorkOrCut.java"
 				>
 			</File>
 			<File
@@ -184,6 +213,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\console\SciCompletionManager.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\SciCompletionWindow.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\console\SciConsole.java"
 				>
 			</File>
@@ -197,6 +234,10 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\console\SciInputCommandView.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\SciInputParsingManager.java"
 				>
 			</File>
 			<File

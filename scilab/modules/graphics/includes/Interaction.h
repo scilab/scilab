@@ -53,13 +53,12 @@ int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
- * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
  * @param intialRect if not null, specify the initial rectangle to use
  * @param[out] endRect array containing the coordinates of two opposite corners of
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom,
+void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
                     const int initialRect[4], int endRect[4], int * usedButton);
 
 /**
@@ -67,15 +66,18 @@ void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom,
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
- * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
- * 
  * @param intialRect if not null, specify the initial rectangle [x,y,w,h] to use
  * @param[out] endRect array containing the [x,y,w,h] of the selected rectangle
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
+void rubberBox(sciPointObj * pSubwin, BOOL isClick,
                const double initialRect[4], double endRect[4], int * usedButton);
 
+
+/**
+ * Perform an interative zoom on a subwin or figure handle;
+ */
+void interactiveZoom(sciPointObj * pObj);
 
 /**
  * Interactive rotation of a subwin within the figure.
@@ -85,13 +87,18 @@ void interactiveRotation(sciPointObj * pFigure);
 /**
  * Interactive rotation of a subwindow
  */
-void interactiveSubwinRotation(sciPointObj * pSubiwn);
+void interactiveSubwinRotation(sciPointObj * pSubwin);
 
 /**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */
 void showWindow(sciPointObj * pFigure);
+
+/**
+ * Modify a subwin viewing angles by a certain amount.
+ */
+void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta);
 
 
 #endif /* __SCI_INTERACTION__ */

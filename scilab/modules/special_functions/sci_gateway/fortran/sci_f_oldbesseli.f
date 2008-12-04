@@ -13,15 +13,10 @@ c
       character*(*) fname
       include 'stack.h'
 c     
-      integer iadr, sadr
-      integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
       double precision infinity
-      double precision alpha,EXPARG
-      data EXPARG/709.0D0/
+      double precision alpha
 c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
       rhs = max(0,rhs)
 c     
       if(.not.checkrhs(fname,2,3)) return

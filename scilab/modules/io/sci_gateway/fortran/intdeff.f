@@ -15,7 +15,7 @@ c
       integer nocomp,profile
 
       logical cremat
-      integer iadr,sadr
+      integer iadr
       character *8 caller
 
       save icomp
@@ -23,7 +23,6 @@ c
       data nocomp/23/,profile/25/
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c      
       icomp=1
       caller='deff'

@@ -28,8 +28,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "stack-c.h" 
 #include "sci_pvm.h"
+#include "stack-c.h" 
+#include "Scierror.h"
 #include "localization.h"
 
 #include "MALLOC.h"

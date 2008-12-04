@@ -13,13 +13,9 @@ c
       character*(*) fname
       include 'stack.h'
 c     
-      integer iadr, sadr
-      integer topk,rhsk,topl
-      logical checkrhs,checklhs,getmat,getscalar,cremat
+      logical checkrhs,checklhs,getmat
       double precision dgammacody
 c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
       rhs = max(0,rhs)
 c     
       if(.not.checkrhs(fname,1,1)) return

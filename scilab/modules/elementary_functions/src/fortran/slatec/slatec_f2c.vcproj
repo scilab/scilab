@@ -246,7 +246,7 @@
 				AdditionalIncludeDirectories="../../../../../libs/f2c"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SLATEC_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -944,7 +944,7 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -952,7 +952,7 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -960,7 +960,7 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -968,7 +968,7 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
 					/>
 				</FileConfiguration>
 			</File>

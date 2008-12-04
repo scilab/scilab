@@ -1,17 +1,18 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef STACK3_H 
-#define STACK3_H 
+#ifndef STACK3_H
+#define STACK3_H
 #include "machine.h"
+#include "doublecomplex.h"
 
 /*Constants*/
 #define ROW_LETTER		'r'
@@ -25,24 +26,24 @@
 #define	BY_MTLB			-1
 
 /**
- * Read a matrix in scilab's internal stack 
- * calling sequence 
+ * Read a matrix in scilab's internal stack
+ * calling sequence
  *     logic=creadmat('matrixname',m,n,scimat)
  * @example
- *    Amat is a real 2 x 3 scilab matrix 
- *    your subroutine should be as follows: 
- *    subroutine mysubr(...) 
- *    ... 
+ *    Amat is a real 2 x 3 scilab matrix
+ *    your subroutine should be as follows:
+ *    subroutine mysubr(...)
+ *    ...
  * @code
- *    call readmat('Amat',m,n,scimat) 
- *    => m=3 , n=2, and scimat(1)=Amat(1,1) 
- *                      scimat(2)=Amat(2,1) 
- *                      scimat(3)=Amat(3,1) 
- *                      scimat(4)=Amat(1,2) ... 
- *                      scimat(5)=Amat(3,2) 
- *                      scimat(6)=Amat(3,2) 
+ *    call readmat('Amat',m,n,scimat)
+ *    => m=3 , n=2, and scimat(1)=Amat(1,1)
+ *                      scimat(2)=Amat(2,1)
+ *                      scimat(3)=Amat(3,1)
+ *                      scimat(4)=Amat(1,2) ...
+ *                      scimat(5)=Amat(3,2)
+ *                      scimat(6)=Amat(3,2)
  * @endcode
- * @param name__ character string; name of the scilab variable. 
+ * @param name__ character string; name of the scilab variable.
  * @param m number of rows
  * @param n number of columns
  * @param scimat  matrix entries stored columnwise
@@ -59,9 +60,9 @@ int C2F(creadsmat)  (char *name__, int *m, int *n, double *scimat, unsigned long
 /**
  * cwritemat writes vector/matrix in scilab's internal stack
  * logic=cwritemat('matrixname'//char(0),m,n,mat)
- * @param name__ character string; name of the scilab variable ( null terMinated) 
- * @param m number of rows 
- * @param n number of columns 
+ * @param name__ character string; name of the scilab variable ( null terMinated)
+ * @param m number of rows
+ * @param n number of columns
  * @param mat matrix entries stored columnwise in Scilab object
  * @param name_len strlen of name__ (Fortran needs it)
  * @return if the operation successed (true) or not (false)
@@ -77,7 +78,7 @@ int C2F(cmatptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len
 int C2F(cmatcptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
 int C2F(cmatsptr)  (char *name__, int *m, int *n, int *ix, int *j, int *lp, int *nlr, unsigned long name_len);
 
-/** 
+/**
 read a boolean matrix in scilab stack
 */
 int C2F(creadbmat)(char *namex, int *m, int *n, int *scimat, unsigned long name_len);
@@ -88,7 +89,7 @@ write a boolean matrix in scilab stack
 int C2F(cwritebmat)(char *namex, int *m, int *n, int *mat, unsigned long name_len);
 
 /**
-get pointer on a named boolean matrix 
+get pointer on a named boolean matrix
 */
 int C2F(cmatbptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len);
 
@@ -104,7 +105,7 @@ int C2F(putvar) (int *number, char *namex, unsigned long name_len );
  * in C getlengthchain("str") returns 26
  * @param namex
  * @return  -1 if error
-*/ 
+*/
 int getlengthchain(char *namex);
 int iIsComplex(int _iVar);
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal);
@@ -129,10 +130,10 @@ void CheckAllVarUsed(int _iStart, int _iEnd);
 void GetVarDimension(int _iVarNum, int* _piRows, int* _piCols);
 int iGetOrient(int _iVal);
 
+/* Reserve space in stack for a matrix of double. */
 int iAllocMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData);
 int	iAllocComplexMatrixOfDouble(int _iNewVal, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
 int	iAllocComplexMatrixOfDoubleToAddress(int* _piAddr, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
-
 
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
@@ -184,7 +185,7 @@ int* iListAllocListCommon(int _iVar, int* _piParentList, int _iItemPos, int _iIt
 //Add HyperMatrix to ParentList
 int* iListAllocHyperMatrix(int _iVar, int* _piParentList, int _iItemPos, int _iDims);
 
-//Add MList to ParentList 
+//Add MList to ParentList
 int* iListAllocMList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
 
 //Add TList to ParentList
@@ -228,8 +229,13 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 typedef struct { double r, i; } doublecomplex;
 
 /*Tools to convert memory matrix storage from C to Z and Z to C*/
-doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
+// vGetPointerFromDoubleComplex : set the real and imaginary part of an target array from a source doublecomplex array
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
-void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
+// oGetDoubleComplexFromPointer : returns a target doublecomplex constructed from the source real and imaginary parts.
+doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
 
-#endif 
+// GetRhsVarMatrixOfDouble : Returns a pointer on the data of a matrix of double.
+int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
+// GetRhsVarMatrixComplex : Returns a pointer on the data of a matrix of double.
+int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
+#endif

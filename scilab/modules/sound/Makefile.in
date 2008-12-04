@@ -16,7 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -94,14 +94,10 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisound_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/libst/libscilibst.la
-am__objects_1 = libscisound_la-raw.lo libscisound_la-sox.lo \
-	libscisound_la-wav.lo
-am__objects_2 = libscisound_la-sci_savewave.lo \
-	libscisound_la-sci_loadwave.lo libscisound_la-gw_sound.lo \
-	libscisound_la-sci_beep.lo libscisound_la-sci_PlaySound.lo
-am_libscisound_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+am__objects_1 = libscisound_la-gw_sound.lo libscisound_la-sci_beep.lo \
+	libscisound_la-sci_PlaySound.lo
+am_libscisound_la_OBJECTS = $(am__objects_1)
 libscisound_la_OBJECTS = $(am_libscisound_la_OBJECTS)
 libscisound_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscisound_la_CFLAGS) \
@@ -346,12 +342,12 @@ libscisound_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscisound.la
 libscisound_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscisound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscisound_la_SOURCES = $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(libscisound_la_SOURCES)
 INCLUDE_FLAGS = $(libscisound_la_CFLAGS)
-libscisound_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
+libscisound_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = sound
@@ -394,7 +390,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -427,7 +423,7 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 all: all-am
@@ -490,7 +486,7 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscisound.la: $(libscisound_la_OBJECTS) $(libscisound_la_DEPENDENCIES) 
+libscisound.la: $(libscisound_la_OBJECTS) $(libscisound_la_DEPENDENCIES)
 	$(libscisound_la_LINK) -rpath $(pkglibdir) $(libscisound_la_OBJECTS) $(libscisound_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
@@ -500,13 +496,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-gw_sound.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-raw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_PlaySound.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_beep.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_loadwave.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_savewave.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sox.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-wav.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -528,41 +519,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscisound_la-raw.lo: src/c/raw.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-raw.lo -MD -MP -MF $(DEPDIR)/libscisound_la-raw.Tpo -c -o libscisound_la-raw.lo `test -f 'src/c/raw.c' || echo '$(srcdir)/'`src/c/raw.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-raw.Tpo $(DEPDIR)/libscisound_la-raw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/raw.c' object='libscisound_la-raw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-raw.lo `test -f 'src/c/raw.c' || echo '$(srcdir)/'`src/c/raw.c
-
-libscisound_la-sox.lo: src/c/sox.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sox.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sox.Tpo -c -o libscisound_la-sox.lo `test -f 'src/c/sox.c' || echo '$(srcdir)/'`src/c/sox.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sox.Tpo $(DEPDIR)/libscisound_la-sox.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sox.c' object='libscisound_la-sox.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sox.lo `test -f 'src/c/sox.c' || echo '$(srcdir)/'`src/c/sox.c
-
-libscisound_la-wav.lo: src/c/wav.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-wav.lo -MD -MP -MF $(DEPDIR)/libscisound_la-wav.Tpo -c -o libscisound_la-wav.lo `test -f 'src/c/wav.c' || echo '$(srcdir)/'`src/c/wav.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-wav.Tpo $(DEPDIR)/libscisound_la-wav.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/wav.c' object='libscisound_la-wav.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-wav.lo `test -f 'src/c/wav.c' || echo '$(srcdir)/'`src/c/wav.c
-
-libscisound_la-sci_savewave.lo: sci_gateway/c/sci_savewave.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sci_savewave.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sci_savewave.Tpo -c -o libscisound_la-sci_savewave.lo `test -f 'sci_gateway/c/sci_savewave.c' || echo '$(srcdir)/'`sci_gateway/c/sci_savewave.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sci_savewave.Tpo $(DEPDIR)/libscisound_la-sci_savewave.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_savewave.c' object='libscisound_la-sci_savewave.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sci_savewave.lo `test -f 'sci_gateway/c/sci_savewave.c' || echo '$(srcdir)/'`sci_gateway/c/sci_savewave.c
-
-libscisound_la-sci_loadwave.lo: sci_gateway/c/sci_loadwave.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sci_loadwave.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sci_loadwave.Tpo -c -o libscisound_la-sci_loadwave.lo `test -f 'sci_gateway/c/sci_loadwave.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadwave.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sci_loadwave.Tpo $(DEPDIR)/libscisound_la-sci_loadwave.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_loadwave.c' object='libscisound_la-sci_loadwave.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sci_loadwave.lo `test -f 'sci_gateway/c/sci_loadwave.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadwave.c
 
 libscisound_la-gw_sound.lo: sci_gateway/c/gw_sound.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-gw_sound.lo -MD -MP -MF $(DEPDIR)/libscisound_la-gw_sound.Tpo -c -o libscisound_la-gw_sound.lo `test -f 'sci_gateway/c/gw_sound.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sound.c
@@ -905,7 +861,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -918,7 +874,7 @@ check-code:
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -985,7 +941,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \

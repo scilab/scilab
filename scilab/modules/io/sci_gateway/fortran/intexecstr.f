@@ -12,12 +12,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     Bug 1054 corrected by Francois VOGEL, October 2004
       INCLUDE 'stack.h'
 c     
-      integer retu(6),comma,eol,topk,mode(2)
-      logical eptover,getsmat,checklhs,checkrhs,checkval
+      integer retu(6),comma,eol,topk
+      logical getsmat,checklhs,checkrhs,checkval
       integer iadr,sadr
-      logical first,pflag
 c
-      save opened,lunit,job,icomp
 c     
       data retu/27,14,29,30,27,23/,comma/52/,eol/99/
 c     

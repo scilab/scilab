@@ -27,7 +27,7 @@ int C2F(sci_getcwd)(char *fname,unsigned long fname_len)
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	C2F(scigetcwd)(&path,&lpath,&ierr);
+	scigetcwd(&path,&lpath,&ierr);
 
 	if (ierr)
 	{

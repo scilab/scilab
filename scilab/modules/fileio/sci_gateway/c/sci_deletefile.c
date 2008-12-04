@@ -17,6 +17,7 @@
 #include "Scierror.h"
 #include "deleteafile.h"
 #include "localization.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_deletefile)(char *fname,unsigned long fname_len)
 {
@@ -29,7 +30,8 @@ int C2F(sci_deletefile)(char *fname,unsigned long fname_len)
 		char *VarName=NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		VarName=cstk(l1);
+		/* Bug 3089 */
+		VarName = UTFToLocale(cstk(l1));
 
 		n1=1;
 		if ( deleteafile(VarName) )

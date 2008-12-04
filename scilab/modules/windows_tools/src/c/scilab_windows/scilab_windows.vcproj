@@ -218,7 +218,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -400,6 +400,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\FocusOnConsole.c"
+				>
+			</File>
+			<File
 				RelativePath=".\forbiddenToUseScilab.c"
 				>
 			</File>
@@ -486,6 +490,10 @@
 			</File>
 			<File
 				RelativePath=".\FindScilab.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\FocusOnConsole.h"
 				>
 			</File>
 			<File

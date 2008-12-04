@@ -21,10 +21,10 @@ history_manager \
 fileio \
 spreadsheet \
 tclsci \
+localization \
 renderer \
 shell \
 completion \
-localization \
 console \
 graphic_export \
 gui \

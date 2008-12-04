@@ -147,9 +147,9 @@ C .. Local variables and constant dimension arrays ..
 C
 C .. External functions ..
       logical lsame, createvar, checkrhs, checklhs, getrhsvar
-      logical getscalar, getrmat, iscomplex
+      logical iscomplex
       external lsame , createvar, checkrhs, checklhs, getrhsvar
-      external getscalar, getrmat
+      
 C
 C .. External subroutines ..
       external dlacpy ,dlaset ,dswap ,dtrsyl ,sb03md ,sb03od ,sb04md ,
@@ -750,10 +750,9 @@ C *** Last line of LINMEQ ***
       include 'stack.h'
       integer pos
 c
-      integer iadr,sadr
+      integer iadr
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 c     
       il=iadr(lstk(pos + top - rhs))
       if (istk(il).lt.0)  il=iadr(istk(il+2))

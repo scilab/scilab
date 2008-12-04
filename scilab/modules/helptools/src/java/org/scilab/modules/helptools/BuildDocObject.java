@@ -296,10 +296,10 @@ public class BuildDocObject extends StyleSheet {
 		try {
 			BuildDocObject d = new BuildDocObject();
 			d.setOutputDirectory("/tmp/");
-			d.setExportFormat(PDF_FORMAT);
+			d.setExportFormat(JH_FORMAT);
 			d.setDocbookPath("/usr/share/xml/docbook/stylesheet/nwalsh/");
-			d.process("/home/sylvestre/dev/scilab5/modules/helptools/master_en_US_help.xml",
-					"/home/sylvestre/dev/scilab5/modules/helptools/css/javahelp.css");
+			d.process(SCI+"/modules/helptools/master_en_US_help.xml",
+					SCI+"/modules/helptools/css/javahelp.css");
 		} catch (FileNotFoundException e) {
 			System.err.println("Exception catched: " + e.getMessage());
 		}

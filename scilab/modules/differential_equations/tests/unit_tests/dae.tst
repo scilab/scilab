@@ -1,0 +1,304 @@
+// ===========================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Sabinere Gauzere
+//
+//  This file is distributed under the same license as the Scilab package.
+// ===========================================================================
+//DASSL
+// PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM
+//
+//X1DOT + 10.0*X1 = 0
+//X1 + X2 = 1
+//X1(0) = 1.0, X2(0) = 0.0
+//
+t=1:10;t0=0;y0=[1;0];y0d=[-10;0];
+info=list([],0,[],[],[],0,0);
+//    Calling Scilab functions
+deff('[r,ires]=dres1(t,y,ydot)','r=[ydot(1)+10*y(1);y(2)+y(1)-1];ires=0')
+deff('pd=djac1(t,y,ydot,cj)','pd=[cj+10,0;1,1]')
+//   scilab function, without jacobian
+yy0=dae([y0,y0d],t0,t,dres1);
+//   scilab functions, with jacobian
+yy1=dae([y0,y0d],t0,t,dres1,djac1);
+// fortran routine, without jocabian
+yy2=dae([y0,y0d],t0,t,'dres1');   //=yy0
+if norm(yy2-yy0,1)>1E-5 then pause,end
+// fortran routines, with jacobian
+yy3=dae([y0,y0d],t0,t,'dres1','djac1');  //=yy1
+if norm(yy3-yy1,1)>1E-5 then pause,end
+yy3bis=dae([y0,y0d],t0,t,'dres1',djac1);
+// call fortran dres1 and scilab's djac1
+yy3ter=dae([y0,y0d],t0,t,dres1,'djac1');
+//
+// with specific atol and rtol parameters
+atol=1.d-6;rtol=0;
+yy4=dae([y0,y0d],t0,t,rtol,atol,dres1);
+yy5=dae([y0,y0d],t0,t,rtol,atol,'dres1'); //=yy4
+if norm(yy5-yy4,1)>1E-9 then pause,end
+yy6=dae([y0,y0d],t0,t,rtol,atol,dres1,djac1);
+yy7=dae([y0,y0d],t0,t,rtol,atol,'dres1','djac1'); //==yy6
+if norm(yy7-yy6,1)>1E-12 then pause,end
+//
+//   Testing E xdot - A x=0
+//   x(0)=x0;   xdot(0)=xd0
+rand('seed',0);
+nx=5;
+E=rand(nx,1)*rand(1,nx);
+A=rand(nx,nx);
+//         Index 1
+[Si,Pi,Di,o]=penlaur(E,A);
+pp=Si*E;
+[q,m]=fullrf(pp);
+x0=q(:,1);
+x0d=pinv(E)*A*x0;
+deff('[r,ires]=g(t,x,xdot)','r=E*xdot-A*x;ires=0');
+t=[1,2,3];t0=0;
+%DAEOPTIONS=list([],0,[],[],[],0,0);
+x=dae([x0,x0d],t0,t,g);
+x=[t;x];
+x1=x(2:nx+1,:);
+if norm(pp*x1-x1,1)>1.d-5 then pause,end //bug car on a plus la première ligne 
+//x(4) goes through 1 at  t=1.5409711;
+%DAEOPTIONS=list([],0,[],[],[],0,0);
+t=1.5409711;
+ww=dae([x0,x0d],t0,t,g);
+ww=[t;ww];
+if abs(ww(5)-1)>0.001 then pause,end
+deff('[rt]=surface(t,y,yd)','rt=y(4)-1');
+nbsurf=1;
+[yyy,nnn]=dae("root",[x0,x0d],t0,t,g,nbsurf,surface);
+deff('pd=j(t,y,ydot,cj)','pd=cj*E-A');
+x=dae([x0,x0d],t0,t,g,j);
+x=[t;x];
+x2=x(2:nx+1,1);
+if norm(x2-ww(2:nx+1,1),1)>0.0001 then pause,end
+[yyy1,nnn]=dae("root",[x0,x0d],t0,t,g,j,nbsurf,surface);
+//x0d is not known:
+x0d=ones(x0);
+%DAEOPTIONS=list([],0,[],[],[],0,1);
+x=dae([x0,x0d],t0,t,g);
+xn=dae([x0,x0d],t0,t,g,j);
+if norm(x-xn,1)>0.00001 then pause,end
+//PROBLEM 2..
+DAEOPTIONS=list([],0,[],[],[],0,0);
+y0=zeros(25,1);y0(1)=1;
+delta=0*y0;
+//link('dres2.o','dres2');
+//y0d=call('dres2',0,1,'d',y0,2,'d',delta,3,'d',0,5,'i',0,6,'d',0,7,'d','out',[25,1],4,'d');
+y0d=zeros(y0);y0d(1)=-2;y0d(2)=1;y0d(6)=1;
+t0=0;t=[0.01,0.1,1,10,100];
+rtol=0;atol=1.d-6;
+y=dae([y0,y0d],t0,t,rtol,atol,'dres2');
+
+//                 Root finder
+//
+//-----------------------------------------------------------------------
+// First problem.
+// The initial value problem is..
+//   DY/DT = ((2*LOG(Y) + 8)/T - 5)*Y,  Y(1) = 1,  1 .LE. T .LE. 6
+// The solution is  Y(T) = EXP(-T**2 + 5*T - 4), YPRIME(1) = 3
+// The two root functions are..
+//   G1 = ((2*LOG(Y)+8)/T - 5)*Y (= DY/DT)  (with root at T = 2.5),
+//   G2 = LOG(Y) - 2.2491  (with roots at T = 2.47 and 2.53)
+//-----------------------------------------------------------------------
+y0=1;t=2:6;t0=1;y0d=3;
+%DAEOPTIONS=list([],0,[],[],[],0,0);
+atol=1.d-6;rtol=0;ng=2;
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res1',ng,'gr1');
+if abs(nn(1)-2.47)>0.001 then pause,end
+y0=yy(1,2);y0d=yy(2,2);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res1',ng,'gr1');
+if abs(nn(1)-2.5)>0.001 then pause,end
+y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res1',ng,'gr1');
+if abs(nn(1)-2.53)>0.001 then pause,end
+deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
+deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+y0=1;t=2:6;t0=1;y0d=3;
+%DAEOPTIONS=list([],0,[],[],[],0,0);
+atol=1.d-6;rtol=0;ng=2;
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res1,ng,gr1);
+if abs(nn(1)-2.47)>0.001 then pause,end
+y0=yy(1,2);y0d=yy(2,2);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res1,ng,gr1);
+if abs(nn(1)-2.5)>0.001 then pause,end
+y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res1,ng,gr1);
+if abs(nn(1)-2.53)>0.001 then pause,end
+//
+//-----------------------------------------------------------------------
+// Second problem (Van Der Pol oscillator).
+// The initial value problem is..
+//   DY1/DT = Y2,  DY2/DT = 100*(1 - Y1**2)*Y2 - Y1,
+//   Y1(0) = 2,  Y2(0) = 0,  0 .LE. T .LE. 200
+//   Y1PRIME(0) = 0, Y2PRIME(0) = -2
+// The root function is  G = Y1.
+// An analytic solution is not known, but the zeros of Y1 are known
+// to 15 figures for purposes of checking the accuracy.
+//-----------------------------------------------------------------------
+rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+%DAEOPTIONS=list([],0,[],[],[],0,0);
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res2','jac2',ng,'gr2');
+if abs(nn(1)-81.163512)>0.001 then pause,end
+deff('[delta,ires]=res2(t,y,ydot)',...
+'ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]')
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,'jac2',ng,'gr2');
+deff('J=jac2(t,y,ydot,c)','y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]')
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,'gr2');
+deff('s=gr2(t,y,yd)','s=y(1)')
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,gr2);
+//           Hot Restart
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,t,rtol,atol,'res2','jac2',ng,'gr2');
+t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(1:2,qq);y0d1=yy(2:3,qq);
+%DAEOPTIONS=list([],0,[],[],[],0,0);deff('s=gr2(t,y,yd)','s=y(1)')
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,rtol,atol,'res2','jac2',ng,'gr2',hotd);
+if abs(nn(1)-162.57763)>0.004 then pause,end
+
+//same with C code
+code=['#include <math.h>'
+      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
+      '{pd[0]=*cj - 0.0;'
+      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2]=    - 1.0;'
+      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}'];
+mputl(code,TMPDIR+'/t22.c') ;
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+exec(TMPDIR+'/t22loader.sce');
+
+rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+%DAEOPTIONS =list([],0,[],[],[],0,0);
+ //hot restart
+t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+
+
+
+rtol=[1.d-6;1.d-6];
+atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+%DAEOPTIONS =list([],0,[],[],[],0,0);
+ [yy,nn]=dae("root",[y0,y0d],t0,t,atol,rtol,'res22','jac22',ng,'gr22');
+//hot restart
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,t,atol,rtol,'res22','jac22',ng,'gr22');
+t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+
+
+//banded systems
+
+A=[-17,6,3,0,0,0,0,0,0,0;
+   8,-12,9,4,0,0,0,0,0,0;
+   0,7,-17,3,8,0,0,0,0,0;
+   0,0,3,-13,2,2,0,0,0,0;
+   0,0,0,4,-18,6,4,0,0,0;
+   0,0,0,0,7,-13,7,0,0,0;
+   0,0,0,0,0,7,-16,7,9,0;
+   0,0,0,0,0,0,5,-17,8,1;
+   0,0,0,0,0,0,0,4,-14,8;
+   0,0,0,0,0,0,0,0,10,-10];
+n=size(A,1);
+//Full jacobian case for reference
+function [r,ires]=res(t,y,yd)
+  r=yd-A*y; ires=0
+endfunction
+function pd=jac(x,y,yd,cj)
+  pd=A+cj*eye()
+endfunction
+
+y0=ones(n,1);yd0=0*y0;
+y=dae([y0,yd0],0,0:0.1:10,res,jac);
+
+//banded estimated jacobian
+y1=dae([y0,yd0],0,0:0.1:10,res);
+
+ml=1;mu=2;
+%DAEOPTIONS=list([],0,[ml,mu],[],[],0,0);
+yb1=dae([y0,yd0],0,0:0.1:10,res);
+norm(y1-yb1);
+
+//banded  jacobian, C code
+//Residuals computation code
+ccode=['#include <math.h>'
+       'void myres(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+       '{'
+       '  *ires =0;'
+       '  res[0]=yd[0]+17.0*y[0]- 6.0*y[1]- 3.0*y[2];'
+       '  res[1]=yd[1]-8.0*y[0]+12.0*y[1]- 9.0*y[2]- 4.0*y[3];'
+       '  res[2]=yd[2]          -7.0*y[1]+17.0*y[2]- 3.0*y[3]- 8.0*y[4];'
+       '  res[3]=yd[3]                    -3.0*y[2]+13.0*y[3]- 2.0*y[4]- 2.0*y[5];'
+       '  res[4]=yd[4]                              -4.0*y[3]+18.0*y[4]- 6.0*y[5]- 4.0*y[6];'
+       '  res[5]=yd[5]                                        -7.0*y[4]+13.0*y[5]- 7.0*y[6]- 0.0*y[7];'
+       '  res[6]=yd[6]                                                  -7.0*y[5]+16.0*y[6]- 7.0*y[7]- 9.0*y[8];'
+       '  res[7]=yd[7]                                                            -5.0*y[6]+17.0*y[7]- 8.0*y[8]- 1.0*y[9];'
+       '  res[8]=yd[8]                                                                      -4.0*y[7]+14.0*y[8]- 8.0*y[9];'
+       '  res[9]=yd[9]                                                                               -10.0*y[8]+10.0*y[9];'
+       '}'
+       'void myjac(double *t,double *y,double *yd,double *res,double *cj,double *rpar,int *ipar)'
+       '{'
+       '  res[0]=0.0;'
+       '  res[1]=0.0;'
+       '  res[2]=0.0;'
+       '  res[3]=-17.0+*cj;'
+       '  res[4]=8.0;'
+       '  res[5]=0.0;'
+       '  res[6]=0.0;'
+       '  res[7]=6.0;'
+       '  res[8]=-12.0+*cj;'
+       '  res[9]=7.0;'
+       '  res[10]=0.0;'
+       '  res[11]=3.0;'
+       '  res[12]=9.0;'
+       '  res[13]=-17.0+*cj;'
+       '  res[14]=3.0;'
+       '  res[15]=0.0;'
+       '  res[16]=4.0;'
+       '  res[17]=3.0;'
+       '  res[18]=-13.0+*cj;'
+       '  res[19]=4.0;'
+       '  res[20]=0.0;'
+       '  res[21]=8.0;'
+       '  res[22]=2.0;'
+       '  res[23]=-18.0+*cj;'
+       '  res[24]=7.0;'
+       '  res[25]=0.0;'
+       '  res[26]=2.0;'
+       '  res[27]=6.0;'
+       '  res[28]=-13.0+*cj;'
+       '  res[29]=7.0;'
+       '  res[30]=0.0;'
+       '  res[31]=4.0;'
+       '  res[32]=7.0;'
+       '  res[33]=-16.0+*cj;'
+       '  res[34]=5.0;'
+       '  res[35]=0.0;'
+       '  res[36]=0.0;'
+       '  res[37]=7.0;'
+       '  res[38]=-17.0+*cj;'
+       '  res[39]=4.0;'
+       '  res[40]=0.0;'
+       '  res[41]=9.0;'
+       '  res[42]=8.0;'
+       '  res[43]=-14.0+*cj;'
+       '  res[44]=10.0;'
+       '  res[45]=0.0;'
+       '  res[46]=1.0;'
+       '  res[47]=8.0;'
+       '  res[48]=-10.0+*cj;'
+       '  res[49]=0.0;'                                              
+       '}'];
+mputl(ccode,TMPDIR+'/band.c'); //create the C file of myjac
+
+ilib_for_link(['myres','myjac'],'band.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/bandloader.sce');//compile
+exec(TMPDIR+'/bandloader.sce'); //incremental linking
+y0=ones(n,1);yd0=0*y0;
+yb=dae([y0,yd0],0,0:0.1:10,'myres','myjac');
+norm(y-yb)

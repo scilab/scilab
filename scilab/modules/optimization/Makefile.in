@@ -102,8 +102,7 @@ libscioptimization_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_1) $(am__append_2)
-am__objects_1 = libscioptimization_la-intqld.lo \
-	libscioptimization_la-sp.lo \
+am__objects_1 = libscioptimization_la-sp.lo \
 	libscioptimization_la-fsolvetable.lo \
 	libscioptimization_la-lsqrsolvtable.lo \
 	libscioptimization_la-optimtable.lo
@@ -370,8 +369,7 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-OPTIMIZATION_C_SOURCES = src/c/intqld.c \
-src/c/sp.c \
+OPTIMIZATION_C_SOURCES = src/c/sp.c \
 src/c/fsolvetable.c \
 src/c/lsqrsolvtable.c \
 src/c/optimtable.c
@@ -492,10 +490,6 @@ libscioptimization_la_CFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libscioptimization.la
 libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
-
-# For the code check (splint)
-CHECK_SRC = $(OPTIMIZATION_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscioptimization_la_CFLAGS)
 libscioptimization_la_LIBADD =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -564,7 +558,7 @@ TARGETS_ALL = $(am__append_3)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -597,7 +591,7 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 all: all-am
@@ -660,7 +654,7 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscioptimization.la: $(libscioptimization_la_OBJECTS) $(libscioptimization_la_DEPENDENCIES) 
+libscioptimization.la: $(libscioptimization_la_OBJECTS) $(libscioptimization_la_DEPENDENCIES)
 	$(libscioptimization_la_LINK) -rpath $(pkglibdir) $(libscioptimization_la_OBJECTS) $(libscioptimization_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
@@ -671,7 +665,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-fsolvetable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-gw_optimization.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-intqld.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-lsqrsolvtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-optimtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_fsolv.Plo@am__quote@
@@ -702,13 +695,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscioptimization_la-intqld.lo: src/c/intqld.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-intqld.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-intqld.Tpo -c -o libscioptimization_la-intqld.lo `test -f 'src/c/intqld.c' || echo '$(srcdir)/'`src/c/intqld.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioptimization_la-intqld.Tpo $(DEPDIR)/libscioptimization_la-intqld.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/intqld.c' object='libscioptimization_la-intqld.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-intqld.lo `test -f 'src/c/intqld.c' || echo '$(srcdir)/'`src/c/intqld.c
 
 libscioptimization_la-sp.lo: src/c/sp.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-sp.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sp.Tpo -c -o libscioptimization_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c
@@ -1413,7 +1399,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1426,7 +1412,7 @@ check-code:
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1493,7 +1479,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \

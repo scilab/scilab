@@ -33,13 +33,10 @@
 #include "localization.h"
 #include "core_math.h"
 #include "scilabmode.h"
+#include "stack-def.h" /* C2F(basbrk) */
 
 #undef Lstk
 #undef Infstk
-
-IMPORT struct {
-  int iflag, interruptible;
-} C2F(basbrk);
 
 
 /* Table of constant values */

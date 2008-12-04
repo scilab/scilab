@@ -43,7 +43,6 @@ C     .. Scalar Arguments ..
 C     ..
 C     .. Local Scalars ..
       DOUBLE PRECISION xden,xnum
-      LOGICAL qcond
 C     ..
 C     .. External Functions ..
 C     JJV changed the code to call SGAMMA and SNORM directly

@@ -20,6 +20,7 @@
 #include "MALLOC.h"
 #include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 #define bufferformat "%s\n"
 /*--------------------------------------------------------------------------*/ 
@@ -73,8 +74,8 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
-		buffer=UTFToLocale(string); /** convert string to system locale encoding for file output*/
-        nbcharacters=strlen(buffer);
+		buffer = UTFToLocale(string); /** convert string to system locale encoding for file output*/
+        nbcharacters = (long int)strlen(buffer);
 		/* Output to a file */
 		if (*lunit == C2F(iop).wio) 
 		{

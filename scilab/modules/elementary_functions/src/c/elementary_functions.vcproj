@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -122,12 +122,12 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -766,6 +766,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\finite.h"
+				>
+			</File>
+			<File
 				RelativePath=".\gsort.h"
 				>
 			</File>
@@ -827,6 +831,10 @@
 			</File>
 			<File
 				RelativePath=".\sortTemplate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\vfinite.h"
 				>
 			</File>
 			<File

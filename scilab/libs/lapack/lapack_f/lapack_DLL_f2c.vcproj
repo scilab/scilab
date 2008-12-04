@@ -6,7 +6,7 @@
 	ProjectGUID="{69296D00-0DE1-4F4B-B0CE-FE4F3CB43923}"
 	RootNamespace="lapack_f2c_DLL"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -244,7 +244,7 @@
 				AdditionalIncludeDirectories="../../f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"

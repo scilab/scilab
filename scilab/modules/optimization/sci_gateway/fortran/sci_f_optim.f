@@ -26,9 +26,6 @@ c     --------------------------
 c     
       character*(nlgh+1) namef,namej
       common/csolve/namef,namej
-c     for semidef
-      double precision abstol,reltol,nu,tv
-      integer sz,upsz
 c
       integer impn(nsiz)
       logical eqid, getscalar

@@ -12,32 +12,32 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "HistoryManager.h"
 #include "TermReadAndProcess.h"
 #include "MALLOC.h"
 #include "prompt.h"
-#include "readline_nw.h"
+#include "TermConsole.h"
 /*--------------------------------------------------------------------------*/
-#define strdup _strdup
+static char *returnedline = NULL;
 /*--------------------------------------------------------------------------*/
 char * TermReadAndProcess(void)
 {
 	static char save_prompt[10];
-	char *returnedline = NULL;
-	char *UTFLine;
 
-    if (GetTemporaryPrompt()!=NULL) /* Input function is used */
+	/* free previous line */
+	if (returnedline) {FREE(returnedline);returnedline = NULL;}
+
+    if (GetTemporaryPrompt() != NULL) /* Input function is used */
     {
-		returnedline = readline_nw(GetTemporaryPrompt());
+		returnedline = TerminalGetString(GetTemporaryPrompt());
         ClearTemporaryPrompt();
 	}
 	else
 	{
 		GetCurrentPrompt(save_prompt);
-		returnedline = readline_nw (save_prompt);
+		returnedline = TerminalGetString(save_prompt);
 	}
-
 	strcpy(save_prompt,"");
+
 	return returnedline;
 }
 /*--------------------------------------------------------------------------*/

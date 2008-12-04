@@ -23,6 +23,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_createdir)(char *fname,unsigned long l)
 {
@@ -38,7 +39,9 @@ int C2F(sci_createdir)(char *fname,unsigned long l)
 		char *VarName = NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		VarName=cstk(l1);
+
+		/* Bug 3089 */
+		VarName = UTFToLocale(cstk(l1));
 
 		C2F(cluni0)(VarName,expandedpath, &out_n,(int)strlen(VarName),PATH_MAX);
 

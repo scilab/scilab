@@ -75,13 +75,15 @@ char *getEncoding(char *lang)
 
 
 char* localeToUTF(char* buffer) {
-	size_t inbytesleft=strlen(buffer);
-	size_t outbytesleft=ENCODE_BUF_SIZE;
+	size_t inbytesleft = 0;
+	size_t outbytesleft = ENCODE_BUF_SIZE;
 	char *inPtr = buffer;
-	char *outPtr= ENCODE_BUF;
-
+	char *outPtr = ENCODE_BUF;
 
 	if(unicodeSubset) return buffer; /*no need to convert for unicode subset encoding*/
+
+	if (buffer == NULL) return NULL;
+	inbytesleft = strlen(buffer);
 
 
 	if (iconv (localeToUTFConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft) == (size_t)(-1))
@@ -97,11 +99,13 @@ char* localeToUTF(char* buffer) {
 
 char* UTFToLocale(char* buffer) 
 {
-	size_t inbytesleft=strlen(buffer);
-	size_t outbytesleft=ENCODE_BUF_SIZE;
+	size_t inbytesleft = 0;
+	size_t outbytesleft = ENCODE_BUF_SIZE;
 	char *inPtr = buffer;
 	char *outPtr= ENCODE_BUF;
 
+	if (buffer == NULL) return NULL;
+	inbytesleft = strlen(buffer);
 
 	if(unicodeSubset) return buffer; /*no need to convert for unicode subset encoding*/
 
@@ -181,11 +185,6 @@ void closeCharEncodingConverter(void)
 //
 // getScilabMode()  =  SCILAB_API) || SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) 
 //
-
-static char *_GETTEXT(const char* msgid)
-{
-	   return localeToUTF(gettext(msgid));
-}
 
 char * UTFToConsole(char* line)
 {

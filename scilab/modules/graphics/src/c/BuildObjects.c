@@ -181,8 +181,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciInitScreenPosition( pobj, x[0], x[1] );
 
-  ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
-  sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
+	sciInitInfoMessage( pobj, ppModel->pModelData->infoMessage ) ;
 
   ppFigure->tag = NULL;
 
@@ -2407,16 +2406,12 @@ sciPointObj * createFullFigure(int * winNum)
   sciSetCurrentFigure(newFig);
 
   /* Add a subwindow inside the figure */
-  newSubwin = ConstructSubWin (newFig);
-  if (newSubwin == NULL)
+  if (createFirstSubwin(newFig) == NULL)
   {
     DestroyFigure(newFig);
     endFigureDataWriting(newFig);
     return NULL;
   }
-
-  sciSetOriginalSubWin(newFig, newSubwin);
-  sciSetCurrentObj(newSubwin);
 
   endFigureDataWriting(newFig);
 
@@ -2429,4 +2424,34 @@ sciPointObj * createFullFigure(int * winNum)
   return newFig;
 }
 /*----------------------------------------------------------------------------*/
+/**
+ * Get the first subwin object within a figure.
+ * If not exists, create one withj default value.
+ * @return the first subwin or NULL if an error occured during subwin creation
+ */
+sciPointObj * createFirstSubwin(sciPointObj * pFigure)
+{
+	if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) > 0)
+	{
+		/* return the first object */
+		return sciGetFirstTypedSelectedSon(pFigure, SCI_SUBWIN);
+	}
+	else
+	{
+		/* No subwins, create the default one */
+		sciPointObj * newSubwin = ConstructSubWin(pFigure);
+		if (newSubwin != NULL)
+		{
+			sciSetCurrentObj(newSubwin);
+			sciSetOriginalSubWin(pFigure, newSubwin);
+			return newSubwin;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+}
+/*----------------------------------------------------------------------------*/
+
 

@@ -25,9 +25,10 @@
 #include <curses.h>
 #include <term.h>
 
-#include "preparsecompletion_nw.h"
+
 #include "MALLOC.h"
 #include "completion.h"
+#include "getPartLine.h"
 #include "localization.h"
 #include "scilabmode.h"
 #include "sciprint.h"
@@ -299,12 +300,12 @@ char *TermReadAndProcess(void)
     {
       if(tmpPrompt!=NULL)
         {
-          printf(tmpPrompt);
+          printf("%s",tmpPrompt);
           ClearTemporaryPrompt();
         }
       else
         {
-          printf(Sci_Prompt);/* write prompt */
+          printf("%s",Sci_Prompt);/* write prompt */
         }
     }
 
@@ -393,7 +394,7 @@ char *TermReadAndProcess(void)
 	      break;
 	    case TAB:
 
-	      doCompletion(&wk_buf, &cursor, &cursor_max);
+	      doCompletion(wk_buf, &cursor, &cursor_max);
 
 	      break;
 	    case INS: /* toggle insert/overwrite flag */
@@ -674,119 +675,180 @@ static void display_string(char *string)
 /***********************************************************************
  * doCompletion - manages Scilab Completion
  **********************************************************************/
-static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
+static void displayPrompt(char *wk_buf)
 {
-	char **completionResults = NULL;
-	const char *wordToFind = NULL;
-        int wordToFindLength = 0;
 	char msg[WK_BUF_SIZE]="";
-	int sizecompletionResults = 0;
-	#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
-
-	wordToFind = preparse_line_for_completion_nw((char*)wk_buf);
-        
-	if (wordToFind==NULL) 
-	  { /* This case occurs when we copy/paste in some cases */
-	    wordToFindLength=0;
-	  }
-	else
-	  {
-	    wordToFindLength = strlen(wordToFind); /* Save length of the word to restore line beginning after completion result display) */
-	  }
-
-	if (wordToFind)
+	if (tmpPrompt!=NULL)
 	{
-		completionResults = completion((char*)wordToFind, &sizecompletionResults);
-		if (sizecompletionResults==1)
-		{
-			/* Only one result. Display it */
-			if (strcmp((char*)wordToFind,completionResults[0])!=0)
-			{
-                          /* No the same as previously displayed */
-                          char *texttoadd = NULL;
-                          if (wordToFind[0] == '/') // Path completion (completion results do not contain '/' )
-                            {
-                              texttoadd = &completionResults[0][strlen(wordToFind) - 1];
-                            }
-                          else
-                            {
-                              texttoadd = &completionResults[0][strlen(wordToFind)];
-                            }
-                          CopyLineAtPrompt(wk_buf,strcat(wk_buf, texttoadd),cursor,cursor_max);
-			}
-			FREE(completionResults[0]);
-		}
-		else
-		{
-			int j=0;
-			int nbCharLine=0;
-			int newElementSize=0;
+		sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
+		ClearTemporaryPrompt();
+	}
+	else
+	{
+		sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
+	}
+	display_string(msg);
+}
 
-			display_string("\r\n");
+static void displayCompletionDictionary(char **dictionary,int sizedictionary, char *namedictionary)
+{
+	#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
+	if (dictionary)
+	{
+		int i = 0;
+		int lenCurrentLine = 0;
 
-			/* More than one result. Display them */
-			for (j=0; j<sizecompletionResults; j++)
+		display_string("\r\n");
+		display_string(namedictionary);
+		display_string(":");
+		display_string("\r\n");
+
+		for(i = 0;i < sizedictionary;i++)
+		{
+			int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
+			if ( (lenCurrentLine + newlenLine) > MAX_LINE_SIZE )
 			{
-				newElementSize=strlen(completionResults[j])+strlen(" ");
-				if ((nbCharLine + newElementSize) > MAX_LINE_SIZE)
-				{
-					/* New line or not ?*/
-					display_string(msg); /* Display the message itself */
-					display_string("\r\n"); /* \r is to avoid align pb */
-					strcpy(msg,"");
-					nbCharLine=0;
-				}
-				nbCharLine+=newElementSize;
-				sprintf(msg,"%s %s", msg, completionResults[j]);
-			}
-			if (tmpPrompt!=NULL)
-			{
-				sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
-				ClearTemporaryPrompt();
+				display_string("\r\n");
+				lenCurrentLine = 0;
 			}
 			else
 			{
-				sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
+				lenCurrentLine = newlenLine;
 			}
-			display_string(msg);
+			display_string(dictionary[i]);
+			display_string(" ");
+		}
+		display_string("\r\n");
+	}
+}
 
-			if (completionResults)
+static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
+{
+	char *CurrentLine = (char*)wk_buf;
+	char *fileSearchedPattern = getFilePartLevel(CurrentLine);
+	char *SearchedPattern = getPartLevel(CurrentLine);
+	char **completionDictionaryFiles = NULL;
+	int sizecompletionDictionaryFiles = 0;
+
+	completionDictionaryFiles = completionOnFiles(fileSearchedPattern, &sizecompletionDictionaryFiles);
+	if (completionDictionaryFiles)
+	{
+		if (sizecompletionDictionaryFiles == 1)
+		{
+			char *result = completionDictionaryFiles[0];
+			char *partResult = &result[strlen(SearchedPattern)];
+
+			CopyLineAtPrompt(wk_buf, strcat(wk_buf, partResult), cursor, cursor_max);
+		}
+		else
+		{
+			displayCompletionDictionary(completionDictionaryFiles,sizecompletionDictionaryFiles, (char *)_("File or Directory"));
+			display_string("\r\n");
+			displayPrompt(wk_buf);
+			CopyLineAtPrompt(wk_buf, CurrentLine, cursor, cursor_max);
+		}
+		FREE(fileSearchedPattern);
+		FREE(SearchedPattern);
+		freeArrayOfString(completionDictionaryFiles,sizecompletionDictionaryFiles);
+		return;
+	}
+	else
+	{
+		int numberWordFound = 0;
+
+		char **completionDictionaryFunctions = NULL;
+		int sizecompletionDictionaryFunctions = 0;
+
+		char **completionDictionaryCommandWords = NULL;
+		int sizecompletionDictionaryCommandWords = 0;
+
+		char **completionDictionaryMacros = NULL;
+		int sizecompletionDictionaryMacros = 0;
+
+		char **completionDictionaryVariables = NULL;
+		int sizecompletionDictionaryVariables = 0;
+
+		char **completionDictionaryFiles = NULL;
+		int sizecompletionDictionaryFiles = 0;
+
+		char **completionDictionaryHandleGraphicsProperties = NULL;
+		int sizecompletionDictionaryHandleGraphicsProperties = 0;
+
+		if ( SearchedPattern && strcmp(SearchedPattern,"") )
+		{
+
+		completionDictionaryFunctions = completionOnFunctions(SearchedPattern, 
+			&sizecompletionDictionaryFunctions);
+
+		completionDictionaryCommandWords = completionOnCommandWords(SearchedPattern, 
+			&sizecompletionDictionaryCommandWords);
+
+		completionDictionaryMacros = completionOnMacros(SearchedPattern, 
+			&sizecompletionDictionaryMacros);
+
+		completionDictionaryVariables = completionOnVariablesWithoutMacros(SearchedPattern, 
+			&sizecompletionDictionaryVariables);
+
+		completionDictionaryFiles = completionOnFiles(SearchedPattern, 
+			&sizecompletionDictionaryFiles);
+
+		completionDictionaryHandleGraphicsProperties = completionOnHandleGraphicsProperties(SearchedPattern, 
+			&sizecompletionDictionaryHandleGraphicsProperties);
+		}
+
+		numberWordFound = sizecompletionDictionaryFunctions + sizecompletionDictionaryCommandWords +
+			sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
+			sizecompletionDictionaryHandleGraphicsProperties;
+
+		if (numberWordFound)
+		{
+			if (numberWordFound == 1)
 			{
-				int i = 0;
-				char *pieceOfWord = NULL;
-				
-				for (i = 0; i < sizecompletionResults; i++)
-				{
-					 if ( strncmp(completionResults[0],completionResults[i],strlen(completionResults[0])) == 0)
-					 {
-						 if (pieceOfWord) {FREE(pieceOfWord); pieceOfWord = NULL;}
-						 pieceOfWord = strdup(completionResults[0]);
-					 }
-					 else
-					 {
-						 if (pieceOfWord) {FREE(pieceOfWord); pieceOfWord = NULL;}
-						 pieceOfWord = strdup(wordToFind);
-						 break;
-					 }
-				}
+				char **completionDictionary = NULL;
+				char *result = NULL;
+				char *partResult = NULL;
 
-                                /* Have to write first part of the line (not used for completion) */
-                                char *wk_buf_beg = strdup(wk_buf);
-                                wk_buf_beg[strlen(wk_buf) - wordToFindLength] = '\0';
-				if (pieceOfWord)
-				{
-                                        CopyLineAtPrompt(wk_buf,strcat(wk_buf_beg, pieceOfWord),cursor,cursor_max);
-					FREE(pieceOfWord); pieceOfWord = NULL;
-				}
-				else
-				{
-					CopyLineAtPrompt(wk_buf,strcat(wk_buf_beg, (char*)wordToFind),cursor,cursor_max);
-				}
-				freeArrayOfString(completionResults,sizecompletionResults);
-                                FREE(wk_buf_beg);
+				if (completionDictionaryFunctions) completionDictionary = completionDictionaryFunctions;
+				if (completionDictionaryCommandWords) completionDictionary = completionDictionaryCommandWords;
+				if (completionDictionaryMacros) completionDictionary = completionDictionaryMacros;
+				if (completionDictionaryVariables) completionDictionary = completionDictionaryVariables;
+				if (completionDictionaryHandleGraphicsProperties) completionDictionary = completionDictionaryHandleGraphicsProperties;
+
+				result = completionDictionary[0];
+				partResult = &result[strlen(SearchedPattern)];
+
+				CopyLineAtPrompt(wk_buf,strcat(wk_buf, partResult),cursor,cursor_max);
+
 			}
+			else
+			{
+				displayCompletionDictionary(completionDictionaryFunctions,sizecompletionDictionaryFunctions, (char *)_("Scilab Function"));
+				displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords, (char *)_("Scilab Command"));
+				displayCompletionDictionary(completionDictionaryMacros,sizecompletionDictionaryMacros, (char *)_("Scilab Macro"));
+				displayCompletionDictionary(completionDictionaryVariables,sizecompletionDictionaryVariables, (char *)_("Scilab Variable"));
+				displayCompletionDictionary(completionDictionaryHandleGraphicsProperties,sizecompletionDictionaryHandleGraphicsProperties, (char *)_("Graphics handle field"));
+
+				display_string("\r\n");
+				displayPrompt(wk_buf);
+				CopyLineAtPrompt(wk_buf, CurrentLine, cursor, cursor_max);
+			}
+			freeArrayOfString(completionDictionaryFunctions,sizecompletionDictionaryFunctions);
+			freeArrayOfString(completionDictionaryCommandWords,sizecompletionDictionaryCommandWords);
+			freeArrayOfString(completionDictionaryMacros,sizecompletionDictionaryMacros);
+			freeArrayOfString(completionDictionaryVariables,sizecompletionDictionaryVariables);
+			freeArrayOfString(completionDictionaryFiles,sizecompletionDictionaryFiles);
+			freeArrayOfString(completionDictionaryHandleGraphicsProperties,sizecompletionDictionaryHandleGraphicsProperties);
+			FREE(fileSearchedPattern);
+			FREE(SearchedPattern);
+		}
+		else
+		{
+			FREE(fileSearchedPattern);
+			FREE(SearchedPattern);
 		}
 	}
+
+
 }
 /***********************************************************************
  * backspace - move cursor n char to the left

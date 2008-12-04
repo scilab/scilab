@@ -29,7 +29,7 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /cosdebugcounter/
 cDEC$ ENDIF      
       
       common /cosdebugcounter/ counter
-      logical getrhsvar, createvar,checklhs,checkrhs
+      logical createvar,checklhs,checkrhs
       integer counter
       character*(*) fname
 c

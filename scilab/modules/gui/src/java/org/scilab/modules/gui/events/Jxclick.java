@@ -1,10 +1,3 @@
-package org.scilab.modules.gui.events;
-
-import java.awt.AWTEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Bruno Jofret
@@ -16,6 +9,13 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+package org.scilab.modules.gui.events;
+
+import java.awt.AWTEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 /**
@@ -52,8 +52,8 @@ public final class Jxclick {
 		 */		
 		GlobalEventWatcher.enable(new GlobalMouseEventWatcher(AWTEvent.MOUSE_EVENT_MASK) {
 			public void mouseEventFilter(MouseEvent mouseEvent,
-					SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {
-				mouseActionFilter(mouseEvent, canvas, scilabMouseAction, isControlDown);	
+					SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown) {
+				mouseActionFilter(mouseEvent, axes, scilabMouseAction, isControlDown);	
 			}
 		});
 		synchronized (ClickInfos.getInstance()) {
@@ -121,9 +121,9 @@ public final class Jxclick {
 			}
 		} 
 		else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
-			if (keyEvent.getSource() instanceof SwingScilabCanvas) {
+			if (keyEvent.getSource() instanceof SwingScilabAxes) {
 				if (GlobalEventWatcher.isActivated()) {
-					GlobalEventFilter.filterKey(keyChar, ((SwingScilabCanvas)keyEvent.getSource()).getFigureIndex(),((KeyEvent) keyEvent).isControlDown());
+					GlobalEventFilter.filterKey(keyChar, ((SwingScilabAxes)keyEvent.getSource()).getFigureId(),((KeyEvent) keyEvent).isControlDown());
 				}
 			}
 		} 
@@ -133,14 +133,14 @@ public final class Jxclick {
 	 * 
 	 * @param mouseEvent : the Mouse Event caught
 	 * @param scilabMouseAction : the integer scilab code for mouse action.
-	 * @param canvas : the canvas where action occurs.
+	 * @param axes : the axes where action occurs.
 	 * @param isControlDown true if the CTRL key has been pressed
 	 */
-	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {	
+	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown) {	
 		if (scilabMouseAction == SciTranslator.PRESSED
 				|| scilabMouseAction == SciTranslator.CLICKED
 				|| scilabMouseAction == SciTranslator.DCLICKED) {
-			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction, isControlDown);
+			GlobalEventFilter.filterMouse(mouseEvent, axes, scilabMouseAction, isControlDown);
 		}
 	}	
 }

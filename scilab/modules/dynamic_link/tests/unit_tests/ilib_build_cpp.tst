@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
 
 //Here with give a complete example on adding new primitive to Scilab
 //create the procedure filese

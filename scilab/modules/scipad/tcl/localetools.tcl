@@ -169,7 +169,7 @@ proc setdefaultScipadlangvar {} {
 # set default lang variable
     global Scilab5 lang
     if {$Scilab5} {
-        set lang "en_US"
+        set lang "en_us"
     } else {
         set lang "eng"
     }

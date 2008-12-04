@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txtc     ----------------
 c
       subroutine intones(id)
       INCLUDE 'stack.h'
-      integer id(nsiz),name(nlgh)
+      integer id(nsiz)
 
       integer tops
       double precision s

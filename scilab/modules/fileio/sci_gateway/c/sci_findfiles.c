@@ -16,10 +16,11 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
+#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
 #include "Scierror.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/
@@ -46,7 +47,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			int ierr=0;
 			int lpath=0;
 
-			C2F(scigetcwd)(&path,&lpath,&ierr);
+			scigetcwd(&path,&lpath,&ierr);
 			needtofreepath = TRUE;
 
 			if (ierr)
@@ -68,7 +69,8 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			if (GetType(1) == sci_strings)
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path=cstk(l1);
+				/* Bug 3089 */
+				path = UTFToLocale(cstk(l1));
 				needtofreepath = FALSE;
 
 				filespec=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_FILESPEC)+1));

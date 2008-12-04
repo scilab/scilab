@@ -85,10 +85,6 @@ static void getCommandLine(void)
     {
       /* Call Term Management for NW and NWNI to get a string */
       __CommandLine = localeToUTF(TermReadAndProcess());
-      #ifdef _MSC_VER
-       appendLineToScilabHistory(__CommandLine);
-     #endif
-
     }
 }
 
@@ -184,8 +180,16 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   ** do not change reference to buffer
   ** or fortran will be lost !!!!
   */
-  strcpy(buffer, __CommandLine);
+  if (__CommandLine)
+  {
+	strcpy(buffer, __CommandLine);
+  }
+  else
+  {
+	  strcpy(buffer,"");
+  }
   *len_line = (int)strlen(buffer);
+
   *eof = FALSE;
 }
 

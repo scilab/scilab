@@ -246,11 +246,7 @@ typedef struct
   /** pointe sur un ID de la table des couleur Scilab */
   int backgroundcolor;		
   /** pointe sur un ID de la table des couleur Scilab */
-  int foregroundcolor;		
-  /** pointe sur le nom de la fonte  */
-  char *pfontname;		 
-  /** renvoi la longueur de fontname */
-  unsigned int fontnamelen;	
+  int foregroundcolor;
   /** type of the font */
   int fonttype; /* scilab font index 0 to 9 */
   /** specify if the font size must be stucks to Scilab font sizes 0:6 or might be any double */
@@ -317,6 +313,7 @@ typedef struct
   double * colorMap ;
   int numColors ;
   BOOL autoResizeMode;
+	char * infoMessage; /**< String displayed in the info bar of the graphic window */
 }
 FigureModelData ;
 
@@ -351,7 +348,6 @@ typedef struct
   BOOL allredraw;
   
   sciFont fontcontext; /* F.Leray 08.04.04 */
-  char * infoMessage ; /**< String displayed in the info bar of the graphic window */
 
   char * eventHandler         ; /**< Name of the EventHandler function */
   BOOL   isEventHandlerEnable ; /**< flag enabling or disabling eventhandler */

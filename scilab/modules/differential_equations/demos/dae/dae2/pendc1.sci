@@ -5,6 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+funcprot(0);
+
 // f(x,y)=y-x^2
 
 function res=fx(x,y)
@@ -14,3 +16,5 @@ endfunction
 function res=fy(x,y)
   res=1;
 endfunction
+
+funcprot(1);

@@ -427,7 +427,6 @@ libscielementary_functions_la_LIBADD = 	libdummy-elementary_functions.la \
 libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
 
-
 libdummy_elementary_functions_la-comqr3.lo: src/fortran/comqr3.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
 
@@ -441,7 +440,6 @@ libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
 
 libdummy_elementary_functions_la-icopy.lo: src/fortran/linpack/icopy.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/linpack/icopy.f' || echo '$(srcdir)/'`src/fortran/linpack/icopy.f
-
 
 
 #### Target ######
