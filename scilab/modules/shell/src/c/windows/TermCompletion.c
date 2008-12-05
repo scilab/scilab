@@ -54,7 +54,6 @@ void TermCompletion(void)
 		else
 		{
 			displayCompletionDictionary(completionDictionaryFiles,sizecompletionDictionaryFiles,gettext("File or Directory"));
-			TerminalPrintf("\n");
 			displayPrompt();
 			newLine();
 			copyLine(CurrentLine);
@@ -149,7 +148,6 @@ void TermCompletion(void)
 				displayCompletionDictionary(completionDictionaryVariables,sizecompletionDictionaryVariables,gettext("Scilab Variable"));
 				displayCompletionDictionary(completionDictionaryHandleGraphicsProperties,sizecompletionDictionaryHandleGraphicsProperties,gettext("Graphics handle field"));
 
-				TerminalPrintf("\n");
 				displayPrompt();
 				newLine();
 				copyLine(CurrentLine);

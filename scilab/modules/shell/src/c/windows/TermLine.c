@@ -248,7 +248,6 @@ void redrawLine(void)
 	int i =0;
 	char *line = getCurrentLine();
 
-	TerminalPutc('\n');
 	displayPrompt();
 	for (i = max_pos; i > cur_pos; i--)  backSpace ();
 	if (line)
@@ -365,6 +364,12 @@ void setCurrentPrompt(char *prompt)
 /*--------------------------------------------------------------------------*/
 void displayPrompt(void)
 {
+	CONSOLE_SCREEN_BUFFER_INFO csbi; 
+
+	/* check position */
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	if (csbi.dwCursorPosition.X) TerminalPrintf("\n");
+
 	TerminalPrintf(getCurrentPrompt());
 }
 /*--------------------------------------------------------------------------*/
