@@ -558,7 +558,7 @@ TARGETS_ALL = $(am__append_3)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -591,7 +591,7 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-# Chapter file
+# Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 all: all-am
@@ -654,7 +654,7 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscioptimization.la: $(libscioptimization_la_OBJECTS) $(libscioptimization_la_DEPENDENCIES)
+libscioptimization.la: $(libscioptimization_la_OBJECTS) $(libscioptimization_la_DEPENDENCIES) 
 	$(libscioptimization_la_LINK) -rpath $(pkglibdir) $(libscioptimization_la_OBJECTS) $(libscioptimization_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
@@ -1399,7 +1399,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1412,7 +1412,7 @@ check-code:
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1479,7 +1479,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done
+	done 
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
