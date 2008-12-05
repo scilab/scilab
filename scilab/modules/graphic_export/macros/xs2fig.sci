@@ -50,18 +50,18 @@ function xs2fig(figureNumber, fileName, orientation)
 	msgErr2 = "http://www.ghostscript.com/awki";
 	msg = char(msgErr1,msgErr2);
 	
-	try
-		winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
-	catch
-		if MSDOS then
+	if MSDOS then
+		try
+			winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
+		catch
 			if win64() then
 				messagebox(msg, "Scilab error", "error")
 			else
 				messagebox(msg, "Scilab error", "error")
-			end	
-		end		
-		return;
-	end
+			end		
+			return;
+		end
+	end	
 	
 	
 	
