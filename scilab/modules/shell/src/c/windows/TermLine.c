@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "strdup_windows.h"
+#include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = 4096;
@@ -334,20 +335,15 @@ void clearCurrentLine(void)
 /*--------------------------------------------------------------------------*/
 static void backSpace(void)
 {
-	COORD pt;
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-
+	int X = 0, Y = 0;
 	reallocLineBuffer();
 
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-	pt.X = csbi.dwCursorPosition.X;
-	pt.Y = csbi.dwCursorPosition.Y;
-
-	if ( (pt.X - 1) < 0 )
+	TermGetPosition(&X, &Y);
+	if ( (X - 1) < 0 )
 	{
-		pt.X = getXConsoleScreenSize();
-		pt.Y = pt.Y - 1;
-		SetConsoleCursorPosition (GetStdHandle(STD_OUTPUT_HANDLE), pt);
+		X = getXConsoleScreenSize();
+		Y = Y - 1;
+		TermSetPosition(X, Y);
 	}
 	else TerminalPutc(VK_BACK);
 }
@@ -364,11 +360,11 @@ void setCurrentPrompt(char *prompt)
 /*--------------------------------------------------------------------------*/
 void displayPrompt(void)
 {
-	CONSOLE_SCREEN_BUFFER_INFO csbi; 
+	int X = 0, Y = 0;
 
 	/* check position */
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-	if (csbi.dwCursorPosition.X) TerminalPrintf("\n");
+	TermGetPosition(&X, &Y);
+	if (X) TerminalPrintf("\n");
 
 	TerminalPrintf(getCurrentPrompt());
 }

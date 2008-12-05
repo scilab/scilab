@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <Windows.h>
 #include "clrscr_nw.h"
-#include "gotoxy_nw.h"
+#include "TermPosition.h"
 /*--------------------------------------------------------------------------*/
 void clrscr_nw(void)
 {
@@ -22,7 +22,9 @@ void clrscr_nw(void)
 	coord.X = 0;
 	coord.Y = 0;
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
-	FillConsoleOutputCharacter (GetStdHandle(STD_OUTPUT_HANDLE), ' ', info.dwSize.X * info.dwSize.Y, coord, &written);
-	gotoxy_nw(1, 1);
+	FillConsoleOutputCharacter (GetStdHandle(STD_OUTPUT_HANDLE), ' ',
+		info.dwSize.X * info.dwSize.Y, coord, &written);
+
+	TermSetPosition(0, 0);
 }
 /*--------------------------------------------------------------------------*/

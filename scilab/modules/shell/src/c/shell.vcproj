@@ -404,10 +404,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\windows\gotoxy_nw.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\gw_shell.c"
 				>
 			</File>
@@ -464,6 +460,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\windows\TermPosition.c"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\TermPrintf.c"
 				>
 			</File>
@@ -490,10 +490,6 @@
 			</File>
 			<File
 				RelativePath=".\windows\clrscrPart_nw.h"
-				>
-			</File>
-			<File
-				RelativePath=".\windows\gotoxy_nw.h"
 				>
 			</File>
 			<File
@@ -526,6 +522,10 @@
 			</File>
 			<File
 				RelativePath=".\windows\TermLine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\TermPosition.h"
 				>
 			</File>
 			<File
