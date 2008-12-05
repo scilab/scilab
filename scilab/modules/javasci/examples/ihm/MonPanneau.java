@@ -45,7 +45,7 @@ public class MonPanneau extends Panel
 	int i=0;
 	nbrDeClic++;
 	lab.setText("le nbr de clic egale "+nbrDeClic);
-	Scilab.Exec("plot2d();");
+	Scilab.Exec("plot2d();quit");
 	System.out.println("Avant Scilab.HaveAGraph = " + Scilab.HaveAGraph());
    
 	do
