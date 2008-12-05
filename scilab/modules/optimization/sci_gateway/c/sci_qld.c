@@ -36,7 +36,7 @@ int C2F(sci_qld)(char *fname,unsigned long fname_len)
 	static int x = 0, lambda = 0, inform = 0, ifail = 0;
 	int next = 0;
 
-	static int war = 0, lwar = 0, iwar = 0, iout = 0, C_mmax = 0, b_mmax = 0, k = 0, l = 0;
+	static int war = 0, lwar = 0, iwar = 0, iout = 0, k = 0, l = 0;
 	static double eps1 = 0;
 
 	/*   Check rhs and lhs   */
