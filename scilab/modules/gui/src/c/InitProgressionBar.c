@@ -29,6 +29,9 @@ sciPointObj *InitProgressionBar(void)
       return (sciPointObj *) NULL;
     }
 
+	/* Allocate relationShip */
+	createDefaultRelationShip(pObj);
+
   pPROGRESSIONBAR_FEATURE(pObj)->hashMapIndex = 0;
   sciAddNewHandle(pObj);
   return (sciPointObj *) pObj;

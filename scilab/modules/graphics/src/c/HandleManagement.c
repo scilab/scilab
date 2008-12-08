@@ -816,7 +816,10 @@ sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int position)
 /*--------------------------------------------------------------------------*/
 long generateNewHandle(sciPointObj * pObj)
 {
-	/* For new use the adress of the handle */
-	return (long) pObj;
+	static long handleValue = 0;
+	/* Start with 1, 0 stands for invalid index */
+	handleValue++;
+
+	return handleValue;
 }
 /*--------------------------------------------------------------------------*/
