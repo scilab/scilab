@@ -162,19 +162,19 @@ int intzggev_complex(char *fname)
 		SciError(264);
 		return 0;
 	}
-	iAllocMatrixOfDoubleComplex(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
-	iAllocMatrixOfDoubleComplex(4, iColsA, ONE, &pdblFinalBetaReal, &pdblFinalBetaImg);
+	iAllocComplexMatrixOfDouble(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
+	iAllocComplexMatrixOfDouble(4, iColsA, ONE, &pdblFinalBetaReal, &pdblFinalBetaImg);
 	pdblAlpha = (doublecomplex*)MALLOC(iColsA * sizeof(doublecomplex));
 	pdblBeta = (doublecomplex*)MALLOC(iColsA * sizeof(doublecomplex));
 
 	if (Lhs==3 || Lhs==4)
 	{
-		iAllocMatrixOfDoubleComplex(5, iColsA, iColsA, &pdblFinalRReal, &pdblFinalRImg);
+		iAllocComplexMatrixOfDouble(5, iColsA, iColsA, &pdblFinalRReal, &pdblFinalRImg);
 		pdblRightvectors = (doublecomplex*)MALLOC(totalsize * sizeof(doublecomplex));
 	}
 	if (Lhs==4)
 	{
-		iAllocMatrixOfDoubleComplex(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
+		iAllocComplexMatrixOfDouble(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
 		pdblLeftvectors = (doublecomplex*)MALLOC(totalsize * sizeof(doublecomplex));
 	}
 
@@ -406,16 +406,16 @@ int intzggev_real(char *fname)
 		SciError(264);
 		return 0;
 	}
-	iAllocMatrixOfDoubleComplex(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
+	iAllocComplexMatrixOfDouble(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
 	iAllocMatrixOfDouble(4, iColsA, ONE, &pdblFinalBeta);
 
 	if (Lhs==3 || Lhs==4)
 	{
-		iAllocMatrixOfDoubleComplex(5, iColsA, iColsA, &pdblFinalRReal, &pdblFinalRImg);
+		iAllocComplexMatrixOfDouble(5, iColsA, iColsA, &pdblFinalRReal, &pdblFinalRImg);
 	}
 	if (Lhs==4)
 	{
-		iAllocMatrixOfDoubleComplex(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
+		iAllocComplexMatrixOfDouble(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
 	}
 
 	iWorkSize = Max(1,8*iColsA);

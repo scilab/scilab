@@ -83,7 +83,7 @@ int sum_sparse()
 		pdblReal	= stk(iRealData);
 		pdblImg		= stk(iImgData);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, 1, 1, &pReturnRealData, &pReturnImgData);
+		iAllocComplexMatrixOfDouble(Rhs + 1, 1, 1, &pReturnRealData, &pReturnImgData);
 		zdmsums(BY_ALL, pdblReal, pdblImg, iTotalElem, 1, pReturnRealData, pReturnImgData);
 	}
 	else
@@ -175,7 +175,7 @@ int sum_matrix(int _iMode)
 
 	if(iIsComplex(1))
 	{
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iReturnRows, iReturnCols, &pReturnRealData, &pReturnImgData);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData, &pReturnImgData);
 		zdmsums(_iMode, pdblReal, pdblImg, iRows, iCols, pReturnRealData, pReturnImgData);
 	}
 	else

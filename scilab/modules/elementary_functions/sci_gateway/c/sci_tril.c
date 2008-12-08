@@ -96,7 +96,7 @@ int tril_matrix(int _iOffset)
 		pReal			= stk(iRealData);
 		pImg			= stk(iImgData);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnReal, &pReturnImg);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal, &pReturnImg);
 		memcpy(pReturnReal	, pReal	, sizeof(double) * iRows * iCols);
 		memcpy(pReturnImg	, pImg	, sizeof(double) * iRows * iCols);
 

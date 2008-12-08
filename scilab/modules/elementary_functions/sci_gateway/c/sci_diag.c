@@ -107,7 +107,7 @@ int C2F(sci_diag) (char *fname,unsigned long fname_len)
 				int iIncIn	= iRows + 1;
 				int iIncOut = 1;
 				if(iComplex)
-					iAllocComplexMatrixOfDouble(Rhs + 1, 1, iMatrixSize, 1, &pReturnRealData, &pReturnImgData);
+					iAllocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pReturnRealData, &pReturnImgData);
 				else
 					iAllocMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pReturnRealData);
 
@@ -165,7 +165,7 @@ int C2F(sci_diag) (char *fname,unsigned long fname_len)
 			//memset(pReturnRealData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
 			if(iComplex)
 			{
-				iAllocComplexMatrixOfDouble(Rhs + 1, iComplex, iMatrixSize, iMatrixSize, &pReturnRealData, &pReturnImgData);
+				iAllocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pReturnRealData, &pReturnImgData);
 				//pReturnImgData = (double*)malloc(iMatrixSize * iMatrixSize * sizeof(double));
 				memset(pReturnImgData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
 			}

@@ -57,7 +57,7 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 			pdblRealData	= stk(iRealData1);
 			pdblImgData		= stk(iImgData1);
 
-			iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows1, iCols1, &pReturnRealData, &pReturnImgData);
+			iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnRealData, &pReturnImgData);
 			//pReturnRealData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
 			//pReturnImgData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
 

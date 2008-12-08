@@ -147,7 +147,7 @@ int C2F(sci_expm) (char *fname,unsigned long fname_len)
 		//wexpm1 need a workspace array provide by callers Oo
 		// pdblWS	: work space array of size: n*(4*ia+4*n+7)
 		// piWS		: integer work space array of size 2*n
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnReal, &pReturnImg);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal, &pReturnImg);
 /*		piWS = (int*)malloc(iRows * iCols * sizeof(int));
 		pdblWS = (double*)malloc(sizeof(double) * (iCols * (8 * iCols + 7)));
 		C2F(wexpm1)(&iCols, pReal, pImg, &iCols, pReturnReal, pReturnImg, &iCols, pdblWS, piWS, &iErr);

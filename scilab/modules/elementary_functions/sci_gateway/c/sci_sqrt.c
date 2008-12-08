@@ -80,7 +80,7 @@ int C2F(sci_sqrt) (char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgdata);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgdata);
 		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
 		//pReturnImgdata	= (double*)malloc(sizeof(double) * iRows * iCols);
 

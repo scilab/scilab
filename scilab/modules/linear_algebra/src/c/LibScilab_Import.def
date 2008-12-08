@@ -37,7 +37,7 @@ CheckVarUsed
 Msgs
 
 callFunctionFromGateway
-iAllocMatrixOfDoubleComplex
+iAllocComplexMatrixOfDouble
 GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
 vGetPointerFromDoubleComplex

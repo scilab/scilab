@@ -97,7 +97,7 @@ int triu_matrix(int _iOffset)
 		pReal			= stk(iRealData);
 		pImg			= stk(iImgData);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnReal, &pReturnImg);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal, &pReturnImg);
 		memset(pReturnReal	, 0x00	, sizeof(double) * iRows * iCols);
 		memset(pReturnImg	, 0x00	, sizeof(double) * iRows * iCols);
 

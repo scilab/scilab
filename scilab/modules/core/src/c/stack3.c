@@ -1335,9 +1335,6 @@ Arguments
 */
 int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData)
 {
-	if(_iPos + 1 > Bot)
-		return 10;//Too many names
-
 	return _iAllocMatrixDoubleOrComplex(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
 }
 
@@ -1351,7 +1348,7 @@ Arguments
   _pdblRealData : pointer to the block of data for real values
   _pdblImgData : pointer to the block of data for complex values
 */
-int	iAllocMatrixOfDoubleComplex(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+int	iAllocComplexMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
 {
 	return _iAllocMatrixDoubleOrComplex(_iPos, 1, _iRows,  _iCols, _pdblRealData, _pdblImgData);
 }

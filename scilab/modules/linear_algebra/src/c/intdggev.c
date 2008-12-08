@@ -145,15 +145,15 @@ int intdggev(char *fname)
 		return 0;
 	}
 
-	iAllocMatrixOfDoubleComplex(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
+	iAllocComplexMatrixOfDouble(3, iColsA, ONE, &pdblFinalAlphaReal, &pdblFinalAlphaImg);
 	iAllocMatrixOfDouble(4, iColsA, ONE, &pdblFinalBeta);
 	if (Lhs==3 || Lhs==4)
 	{
-		iAllocMatrixOfDoubleComplex(5, iColsA, iColsA, &pdblFinalRReal, &pdblFinalRImg);
+		iAllocComplexMatrixOfDouble(5, iColsA, iColsA, &pdblFinalRReal, &pdblFinalRImg);
 	}
 	if (Lhs==4)
 	{
-		iAllocMatrixOfDoubleComplex(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
+		iAllocComplexMatrixOfDouble(6, iColsA, iColsA, &pdblFinalLReal, &pdblFinalLImg);
 	}
 
 	iWorkSize = Max(1,8*iColsA);

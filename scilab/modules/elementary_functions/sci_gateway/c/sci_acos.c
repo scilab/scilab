@@ -48,7 +48,7 @@ int C2F(sci_acos) (char *fname,unsigned long fname_len)
 		pdblRealData	= stk(iRealData);
 		pdblImgData		= stk(iImgData);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
 		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
 		//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
@@ -93,7 +93,7 @@ int C2F(sci_acos) (char *fname,unsigned long fname_len)
 		{// Values outside [-1,1]
 			int iComplex = 1;
 			//return complex double matrix.
-			iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+			iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
 			//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 			for(iIndex = 0 ; (iIndex < iRows * iCols) ; iIndex++)

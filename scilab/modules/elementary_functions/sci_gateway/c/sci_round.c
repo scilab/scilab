@@ -77,7 +77,7 @@ int round_double(void)
 		pRealData	= stk(iRealData);
 		pImgData	= stk(iImgData);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
 
 		for(iIndex = 0 ; iIndex < iRows * iCols; iIndex++)
 		{

@@ -120,7 +120,7 @@ int C2F(sci_kron) (char *fname,unsigned long fname_len)
 	{//A complex and B real
 		int iReturnRows = iRows1 * iRows2;
 		int iReturnCols = iCols1 * iCols2;
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
 		//pReturnRealData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		//pReturnImgData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		/*Real part*/
@@ -141,7 +141,7 @@ int C2F(sci_kron) (char *fname,unsigned long fname_len)
 	{//A real and B complex
 		int iReturnRows = iRows1 * iRows2;
 		int iReturnCols = iCols1 * iCols2;
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
 		//pReturnRealData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		//pReturnImgData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		/*Real part*/
@@ -162,7 +162,7 @@ int C2F(sci_kron) (char *fname,unsigned long fname_len)
 	{//A complex and B complex
 		int iReturnRows = iRows1 * iRows2;
 		int iReturnCols = iCols1 * iCols2;
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
 		//pReturnRealData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		//pReturnImgData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		/*Real part*/

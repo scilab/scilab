@@ -26,7 +26,7 @@ extern int C2F(dfft2)();
 /*--------------------------------------------------------------------------*/
 int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 {
-	int iWay				= -1; //Default is revert mode
+/*	int iWay				= -1; //Default is revert mode
 	int iErr				= 0;
 	int iOne				= 1;
 	int iType				= 0;
@@ -66,7 +66,7 @@ int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 		Error(39);
 
 	iType = getType(1);
-	if(iType != sci_matrix && iType != sci_mlist /*hypermatrix*/)
+	if(iType != sci_matrix && iType != sci_mlist)
 	{
 		OverLoad(1);
 		return 0;
@@ -93,16 +93,6 @@ int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 	}
 	else
 	{//hypermatrix
-/*		if(iIsComplex(1))
-		{
-		}
-		else
-		{
-			GetRhsHyperMatrixVar(1, &iDims, &iReal1);
-
-		}
-
-*/
 	}
 	if(iRows1 == 1 || iCols1 == 1)
 		iVect1 = 1;
@@ -274,6 +264,6 @@ int C2F(sci_fftnew)(char *fname,unsigned long fname_len)
 	if(iComplex == 0)
 		free(pdblImg1);
 
-	return 0;
+*/	return 0;
 }
 /*--------------------------------------------------------------------------*/

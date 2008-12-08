@@ -135,7 +135,7 @@ int C2F(sci_clean) (char *fname,unsigned long fname_len)
 		dblNorm			=
 		dblNorm			= wasums(iRows1 * iCols1, pdblRealData, pdblImgData);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows1, iCols1, &pReturnRealData, &pReturnImgData);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnRealData, &pReturnImgData);
 		//pReturnRealData = (double*)malloc(iRows1 * iCols1 * sizeof(double));
 		//pReturnImgData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
 

@@ -50,7 +50,7 @@ int C2F(sci_asin) (char *fname,unsigned long fname_len)
 		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
 		//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			wasin(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
 
@@ -91,7 +91,7 @@ int C2F(sci_asin) (char *fname,unsigned long fname_len)
 		{// Values outside [-1,1]
 			int	iComplex = 1;
 			//return complex double matrix.
-			iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+			iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
 			//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 			for(iIndex = 0 ; (iIndex < iRows * iCols) ; iIndex++)

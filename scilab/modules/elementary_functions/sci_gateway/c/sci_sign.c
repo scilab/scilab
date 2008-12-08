@@ -50,7 +50,7 @@ int C2F(sci_sign) (char *fname,unsigned long fname_len)
 		pRealData		= stk(iRealData);
 		pImgData		= stk(iImgData);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 		{
 			double dblTemp = dpythags(pRealData[iIndex], pImgData[iIndex]);

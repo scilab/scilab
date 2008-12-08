@@ -172,7 +172,7 @@ int matrdiv()
 			}
 			else
 			{/* A real, B complex : complexify A */
-				iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows1, iRows2, &pReturnReal, &pReturnImg);
+				iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iRows2, &pReturnReal, &pReturnImg);
 				iRet = iRightDivisionOfComplexMatrix(
 					pReal1, pImg1, iRows1, iCols1, 
 					pReal2, pImg2, iRows2, iCols2, 
@@ -221,7 +221,10 @@ int matrdiv()
 			}
 
 			iResultSize	= iResultRows * iResultCols;
-			iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iResultRows, iResultCols, &pReturnReal, &pReturnImg);
+			if(iGlobalComplex == 1)
+				iAllocComplexMatrixOfDouble(Rhs + 1, iResultRows, iResultCols, &pReturnReal, &pReturnImg);
+			else
+				iAllocMatrixOfDouble(Rhs + 1, iResultRows, iResultCols, &pReturnReal);
 
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// Real1 \ Real2 -> Real2 / Real1
