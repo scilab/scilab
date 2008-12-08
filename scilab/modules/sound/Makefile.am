@@ -47,10 +47,4 @@ libscisound_la_sci_gateway_DATA = sci_gateway/sound_gateway.xml
 libscisound_la_includedir=$(pkgincludedir)/sound
 libscisound_la_include_HEADERS = includes/gw_sound.h
 
-
-####�sound : demos files ####
-libscisound_la_demosdir=$(mydatadir)/demos/
-libscisound_la_demos_DATA = demos/chimes.wav \
-demos/sound.dem.sce
-
 include $(top_srcdir)/Makefile.incl.am

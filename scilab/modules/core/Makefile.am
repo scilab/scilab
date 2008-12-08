@@ -434,15 +434,4 @@ includes/Thread_Wrapper.h \
 includes/setPrecisionFPU.h \
 includes/LaunchScilabSignal.h
 
-#### core : demos files ####
-libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
-libscicore_la_demosintro_DATA = demos/intro/extf.sce \
-demos/intro/Makefile.mak \
-demos/intro/MakeC.mak \
-demos/intro/MakeF.mak \
-demos/intro/dem01.dem \
-demos/intro/extc.sce \
-demos/intro/Makefile \
-demos/intro/dem01_gateway.sce
-
 include $(top_srcdir)/Makefile.incl.am

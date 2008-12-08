@@ -130,8 +130,4 @@ includes/mseek.h \
 includes/deleteafile.h \
 includes/readline.h
 
-#### fileio : demos files ####
-libscifileio_la_demosdir=$(mydatadir)
-nobase_libscifileio_la_demos_DATA =
-
 include $(top_srcdir)/Makefile.incl.am

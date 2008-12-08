@@ -148,32 +148,6 @@ doc/html/images/callouts/9.png
 libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
 libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
 
-
-#### helptools : example files ####
-libscihelptools_la_examplesdir=$(mydatadir)
-nobase_libscihelptools_la_examples_DATA = examples/example_1/help/fr_FR/example_1_function_1.xml \
-examples/example_1/help/fr_FR/example_1_function_2.xml \
-examples/example_1/help/fr_FR/example_1_function_3.xml \
-examples/example_1/help/en_US/example_1_function_1.xml \
-examples/example_1/help/en_US/example_1_function_2.xml \
-examples/example_1/help/en_US/example_1_function_3.xml \
-examples/example_2/help/fr_FR/example_2_function_1.xml \
-examples/example_2/help/fr_FR/example_2_function_3.xml \
-examples/example_2/help/en_US/example_2_function_1.xml \
-examples/example_2/help/en_US/example_2_function_2.xml \
-examples/example_2/help/en_US/example_2_function_3.xml \
-examples/example_2/help/en_US/example_2_function_4.xml \
-examples/example_3/help/fr_FR/example_1_function_1.xml \
-examples/example_3/help/fr_FR/example_1_function_2.xml \
-examples/example_3/help/fr_FR/example_1_function_3.xml \
-examples/example_3/help/fr_FR/example_1_function_4.xml \
-examples/example_3/help/en_US/example_1_function_1.xml \
-examples/example_3/help/en_US/example_1_function_2.xml \
-examples/example_1/help/zh_TW/example_1_function_1.xml \
-examples/example_1/help/zh_TW/example_1_function_2.xml \
-examples/example_1/help/zh_TW/example_1_function_3.xml
-
-
 include $(top_srcdir)/Makefile.incl.am
 
 if BUILD_HELP
