@@ -176,6 +176,8 @@ TESTS_DIR=tests/benchmarks tests/nonreg_tests tests/unit_tests
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
 DEMOS_DIR=demos
+# List of the standard directory for examples
+EXAMPLES_DIR=examples
 # Where to export JAVA archives (.jar)
 JARDIR=jar/
 # JAR files mask
@@ -211,9 +213,9 @@ install-data-local:
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
 	done
-# Install the demos
-	@echo "-------- Install demos (if any) --------"; \
-	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) ; do \
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
