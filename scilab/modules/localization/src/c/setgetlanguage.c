@@ -108,9 +108,6 @@ BOOL setlanguage(char *lang)
 				setlanguagecode(CURRENTLANGUAGESTRING);
 				#endif
 
-				/* Force all the numerical value to remain to the english one */
-				setlocale(LC_NUMERIC, "C");
-
 				exportLocaleToSystem(CURRENTLANGUAGESTRING);
 
 				openCharEncodingConverter(getEncoding(ret));/*open a localeToUTF converter if needed*/
