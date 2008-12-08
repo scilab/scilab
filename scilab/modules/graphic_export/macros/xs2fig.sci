@@ -56,8 +56,6 @@ function xs2fig(figureNumber, fileName, orientation)
 		catch
 			if win64() then
 				messagebox(msg, "Scilab error", "error")
-			else
-				messagebox(msg, "Scilab error", "error")
 			end		
 			return;
 		end
