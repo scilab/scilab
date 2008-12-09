@@ -56,6 +56,7 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
   status = sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
   enableFigureSynchronization(pobj);
 
-  return status;
+  /* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus(status);
 }
 /*------------------------------------------------------------------------*/

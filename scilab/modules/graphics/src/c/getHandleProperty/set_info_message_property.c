@@ -41,14 +41,7 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
   status = sciSetInfoMessage( pobj, getStringFromStack( stackPointer ) ) ;
   enableFigureSynchronization(pobj);
 
-  if (status >= 0)
-	{
-		/* return set property unchanged since repaint is not really needed */
-		return SET_PROPERTY_UNCHANGED;
-	}
-	else
-	{
-		return status;
-	}
+	/* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus(status);
 }
 /*------------------------------------------------------------------------*/

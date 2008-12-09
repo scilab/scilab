@@ -63,6 +63,7 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   status = sciSetViewport(pobj, values);
   enableFigureSynchronization(pobj);
 
-  return status;
+  /* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus(status);
 }
 /*------------------------------------------------------------------------*/

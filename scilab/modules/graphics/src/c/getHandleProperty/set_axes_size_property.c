@@ -63,7 +63,7 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   case RESIZE_UNCHANGED:
     return SET_PROPERTY_UNCHANGED;
   default:
-    return SET_PROPERTY_SUCCEED;
+    return SET_PROPERTY_UNCHANGED;
   };
 }
 /*------------------------------------------------------------------------*/
