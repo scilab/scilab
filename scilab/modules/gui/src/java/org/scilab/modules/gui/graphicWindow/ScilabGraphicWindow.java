@@ -54,7 +54,14 @@ public final class ScilabGraphicWindow {
 	 * @return id of the window
 	 */
 	public static int newWindow(int figureIndex) {
-		Window newWindow = ScilabWindow.createWindow();
+		Window newWindow = null;
+		try {
+			newWindow = ScilabWindow.createWindow();
+		}
+		catch (java.awt.HeadlessException exception){
+			System.err.println("Error during the initialization of the window: "  + exception.getLocalizedMessage());
+			return 1;
+		}
 		
 		newWindow.setTitle(FIGURE_TITLE + figureIndex);
 		/* MENUBAR */
@@ -78,7 +85,7 @@ public final class ScilabGraphicWindow {
 		//associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
 		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
 		// don't draw now, figure will show itself when all its parameters will be set
-		
+
 		return 0;
 	}
 	
