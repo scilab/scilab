@@ -55,23 +55,24 @@ int C2F(sci_setdefaultlanguage)(char *fname,unsigned long fname_len)
 			GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
 			newlang = getLanguageFromAlias( cstk(l1) );
 
-			 if ( !isValidLanguage(newlang) )
-			 {
-				 if ( getWarningMode() )
-				 {
-					 sciprint(_("Unsupported language '%s'.\n"),newlang);
-				 }
-				 m1 = 1; n1 = 1;
-				 CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-				 *istk(l1) = (int)(FALSE);
-				 LhsVar(1) = Rhs+1;
-				 C2F(putlhsvar)();
-				 if (newlang) { FREE(newlang); newlang = NULL; }
-				 return 0;
-			 }
-			 else
-			 {
-				if ( strcmp(newlang, getlanguage()) == 0 )
+			if ( !isValidLanguage(newlang) )
+			{
+				if ( getWarningMode() )
+				{
+					sciprint(_("Unsupported language '%s'.\n"),newlang);
+				}
+				m1 = 1; n1 = 1;
+				CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+				*istk(l1) = (int)(FALSE);
+				LhsVar(1) = Rhs+1;
+				C2F(putlhsvar)();
+				if (newlang) { FREE(newlang); newlang = NULL; }
+				return 0;
+			}
+			else
+			{
+				char *savedLanguage = getLanguagePreferences();
+				if ( strcmp(newlang, savedLanguage) == 0 )
 				{
 					/* do nothing */
 					m1 = 1; n1 = 1;
@@ -80,10 +81,12 @@ int C2F(sci_setdefaultlanguage)(char *fname,unsigned long fname_len)
 					LhsVar(1) = Rhs+1;
 					C2F(putlhsvar)();
 					if (newlang) { FREE(newlang); newlang = NULL; }
+					if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
 					return 0;
 				}
 				else
 				{
+					if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
 					if ( !setlanguage(newlang) ) /* */
 					{
 						m1 = 1; n1 = 1;
