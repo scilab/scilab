@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 20072008 - INRIA - Vincent Couvert
- * Copyright (C) 2007 - INRIA - Bruno JOFRET
- * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2008 - 2008 Digiteo Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,16 +10,14 @@
  *
  */
 
-
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * Scroll pane based on Swing technology
@@ -32,6 +28,8 @@ public class SwingScilabScrollPane extends JScrollPane implements
 
 	/** Needed */
 	private static final long serialVersionUID = -4262585651413643814L;
+	
+	private SwingScilabAxes axes;
 
 	/**
 	 * Create a new Scroll pane around an axes.
@@ -39,6 +37,7 @@ public class SwingScilabScrollPane extends JScrollPane implements
 	 */
 	public SwingScilabScrollPane(SwingScilabAxes axes) {
 		super(axes);
+		this.axes = axes;
 	}
 	
 	/**
@@ -72,6 +71,34 @@ public class SwingScilabScrollPane extends JScrollPane implements
 	 */
 	public void setViewPosition(int xPos, int yPos) {
 		getViewport().setViewPosition(new Point(xPos, yPos));
+	}
+	
+	/**
+	 * Enable or disable auto resize mode
+	 * @param autoResizeMode true if autoresize is on
+	 */
+	public void setAutoResizeMode(boolean autoResizeMode) {
+		axes.setAutoResizeMode(autoResizeMode);
+		if (autoResizeMode) {
+			// hide scroll bars
+			setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+			// axes size may change
+			axes.setSize(getSize());
+		} else {
+			// restore them
+			setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		}
+		
+	}
+	
+	/**
+	 * Enable or disable auto resize mode
+	 * @return true if autoresize is on
+	 */
+	public boolean getAutoResizeMode() {
+		return axes.getAutoResizeMode();
 	}
 
 }

@@ -778,7 +778,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void setViewingRegion(int posX, int posY, int width, int height) {
 		// Check that the canvas can be resized
-		if (!contentPane.getAutoResizeMode()) {
+		if (!scrolling.getAutoResizeMode()) {
 			// don't set viewport size here it should always fit parent tab size
 			// It seems that we must check the viewport size and positions
 			// to get coherent values, otherwise the setViewPosition hangs...
@@ -862,14 +862,14 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param onOrOff true to enable autoresize mode
 	 */
 	public void setAutoResizeMode(boolean onOrOff) {
-		contentPane.setAutoResizeMode(onOrOff);
+		scrolling.setAutoResizeMode(onOrOff);
 	}
 	
 	/**
 	 * @return whether the resize mode is on or off
 	 */
 	public boolean getAutoResizeMode() {
-		return contentPane.getAutoResizeMode();
+		return scrolling.getAutoResizeMode();
 	}
 	
 	/**
