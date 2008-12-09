@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="setdefaultlanguage"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-08-02 13:09:22 +0200 (sam., 02 aoÃ»t 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>setdefaultlanguage</refname>
+
+    <refpurpose>sets and saves the internal LANGUAGE value.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>setdefaultlanguage(language)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>language</term>
+
+        <listitem>
+          <para>with language='fr', 'en', 'ru_RU', 'zh_TW', ...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>setdefaultlanguage(language)</literal> changes current
+    language and save this value in scilab.</para>
+
+    <para>You need to restart scilab, if you want to use menus.</para>
+
+    <para>setdefaultlanguage('') resets language to the system value.</para>
+
+    <para>setdefaultlanguage is used only Windows. On others operating systems
+    , it returns always %f. </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+setdefaultlanguage('en_US')
+// restart scilab
+getlanguage()
+setdefaultlanguage('fr_FR')
+// restart scilab
+getlanguage()
+setdefaultlanguage('')
+// restart scilab
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getlanguage">getlanguage</link></member>
+
+      <member><link linkend="setlanguage">setlanguage</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>A.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

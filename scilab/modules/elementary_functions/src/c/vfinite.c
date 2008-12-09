@@ -13,15 +13,23 @@
 
 /* checks if all entries of a vector are finite */
 #include "machine.h"
+#include "stack-c.h" 
+#include "vfinite.h"
+#include "finite.h"
 
-extern int finite(double v);
-
-int C2F(vfinite)(int *n, double *v);
 
 int C2F(vfinite)(int *n, double *v)
 {
   int i;
   for (i=0; i < *n; i++) 
     if (finite(v[i])==0) return 0;
+  return 1;
+}
+
+int C2F(vfiniteComplex)(int *n, doublecomplex *v)
+{
+  int i;
+  for (i=0; i < *n; i++) 
+    if (finiteComplex(v[i])==0) return 0;
   return 1;
 }

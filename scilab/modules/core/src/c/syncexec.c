@@ -15,12 +15,9 @@
 #include "stack-c.h"
 #include "core_math.h"
 #include "parse.h"
+#include "stack-def.h" /* C2F(basbrk) */
 /*--------------------------------------------------------------------------*/
 #define Pt (C2F(recu).pt)
-/*--------------------------------------------------------------------------*/
-IMPORT struct {
-	int iflag, interruptible;
-} C2F(basbrk);
 /*--------------------------------------------------------------------------*/
 int syncexec(char *str, int *ns, int *ierr, int *seq, long int str_len)
 {

@@ -5,7 +5,7 @@
 	Name="LibScilab_f2c"
 	ProjectGUID="{64BC155E-292F-484F-9404-76EE6AE67A43}"
 	RootNamespace="LibScilab"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -278,7 +278,7 @@
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"

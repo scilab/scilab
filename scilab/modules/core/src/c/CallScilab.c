@@ -31,6 +31,7 @@
 #include "strdup_windows.h"
 #endif
 #include "localization.h"
+#include "LaunchScilabSignal.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
@@ -47,7 +48,7 @@ static void SetSciEnv(void)
 
   if (ScilabDirectory == NULL)
   {
-	MessageBox (NULL, _("Error"), "getScilabDirectory()", MB_ICONSTOP | MB_OK);
+	MessageBox (NULL, "getScilabDirectory()", gettext("Error") , MB_ICONSTOP | MB_OK);
 	exit(1);
   }
   SetScilabEnvironmentVariables(ScilabDirectory);
@@ -75,6 +76,8 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	if (StartScilabIsOK) return FALSE;
 
 	SetFromCToON();
+
+	InitializeLaunchScilabSignal();
 
 	if (SCIpath == NULL)
 	{

@@ -89,7 +89,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libsciinterpolation_la_demosdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_etcdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_rootdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" \
@@ -147,12 +146,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciinterpolation_la_SOURCES)
 DIST_SOURCES = $(libsciinterpolation_la_SOURCES)
-libsciinterpolation_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libsciinterpolation_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libsciinterpolation_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsciinterpolation_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsciinterpolation_la_demos_DATA) \
-	$(libsciinterpolation_la_etc_DATA) \
+DATA = $(libsciinterpolation_la_etc_DATA) \
 	$(libsciinterpolation_la_root_DATA) \
 	$(libsciinterpolation_la_sci_gateway_DATA)
 libsciinterpolation_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -350,6 +347,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SLATEC_SOURCES = src/fortran/slatec/dtensbs.f \
@@ -414,10 +412,6 @@ libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 libsciinterpolation_la_includedir = $(pkgincludedir)/interpolation
 libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h 
 
-####�interpolation : demos files ####
-libsciinterpolation_la_demosdir = $(mydatadir)/demos/
-libsciinterpolation_la_demos_DATA = demos/interp_demo.sci
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -450,7 +444,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -461,11 +455,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -702,23 +702,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsciinterpolation_la_demosDATA: $(libsciinterpolation_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciinterpolation_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciinterpolation_la_demosdir)"
-	@list='$(libsciinterpolation_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsciinterpolation_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f'"; \
-	  $(libsciinterpolation_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f"; \
-	done
-
-uninstall-libsciinterpolation_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciinterpolation_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f"; \
-	done
 install-libsciinterpolation_la_etcDATA: $(libsciinterpolation_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciinterpolation_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciinterpolation_la_etcdir)"
@@ -866,7 +849,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciinterpolation_la_demosdir)" "$(DESTDIR)$(libsciinterpolation_la_etcdir)" "$(DESTDIR)$(libsciinterpolation_la_rootdir)" "$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" "$(DESTDIR)$(libsciinterpolation_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciinterpolation_la_etcdir)" "$(DESTDIR)$(libsciinterpolation_la_rootdir)" "$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" "$(DESTDIR)$(libsciinterpolation_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -915,7 +898,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
-	install-libsciinterpolation_la_demosDATA \
 	install-libsciinterpolation_la_etcDATA \
 	install-libsciinterpolation_la_includeHEADERS \
 	install-libsciinterpolation_la_rootDATA \
@@ -957,8 +939,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciinterpolation_la_demosDATA \
-	uninstall-libsciinterpolation_la_etcDATA \
+uninstall-am: uninstall-libsciinterpolation_la_etcDATA \
 	uninstall-libsciinterpolation_la_includeHEADERS \
 	uninstall-libsciinterpolation_la_rootDATA \
 	uninstall-libsciinterpolation_la_sci_gatewayDATA \
@@ -974,8 +955,7 @@ uninstall-am: uninstall-libsciinterpolation_la_demosDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libsciinterpolation_la_demosDATA \
-	install-libsciinterpolation_la_etcDATA \
+	install-info-am install-libsciinterpolation_la_etcDATA \
 	install-libsciinterpolation_la_includeHEADERS \
 	install-libsciinterpolation_la_rootDATA \
 	install-libsciinterpolation_la_sci_gatewayDATA install-man \
@@ -985,7 +965,6 @@ uninstall-am: uninstall-libsciinterpolation_la_demosDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-	uninstall-libsciinterpolation_la_demosDATA \
 	uninstall-libsciinterpolation_la_etcDATA \
 	uninstall-libsciinterpolation_la_includeHEADERS \
 	uninstall-libsciinterpolation_la_rootDATA \
@@ -1089,7 +1068,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1099,7 +1078,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -1110,6 +1089,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \

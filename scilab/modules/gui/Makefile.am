@@ -343,18 +343,6 @@ includes/Widget.h \
 includes/sci_exportUI.h \
 includes/exportUserInterface.hxx
 
-#### gui : demos files ####
-libscigui_la_demosdir=$(mydatadir)/demos/
-libscigui_la_demos_DATA = demos/cb_uicontrol_plot3d.dem.sci \
-demos/dialog.dem.sce \
-demos/gui.dem.gateway.sce \
-demos/uicontrol.dem.sce \
-demos/uicontrol_plot3d.dem.sce \
-demos/background.png \
-demos/test.png \
-demos/uicontrol.test.dem.sce \
-demos/uicontrol_plot3d.dem.html
-
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \

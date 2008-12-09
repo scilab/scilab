@@ -290,7 +290,7 @@ char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 	char **dictionary = NULL;
 	int sizedictionary = 0;
 
-	dictionary = getfilesdictionary(somechars,&sizedictionary);
+	dictionary = getfilesdictionary(somechars,&sizedictionary,FALSE);
 
 	if (dictionary)
 	{

@@ -103,7 +103,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphics_la_etcdir)" \
 	"$(DESTDIR)$(libscigraphics_la_rootdir)" \
 	"$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscigraphics_la_demosdir)" \
 	"$(DESTDIR)$(libscigraphics_la_geddir)" \
 	"$(DESTDIR)$(libscigraphics_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
@@ -827,11 +826,9 @@ DIST_SOURCES = $(am__libscigraphics_la_SOURCES_DIST)
 libscigraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscigraphics_la_demosDATA_INSTALL = $(install_sh_DATA)
 nobase_libscigraphics_la_gedDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_root_DATA) \
 	$(libscigraphics_la_sci_gateway_DATA) \
-	$(nobase_libscigraphics_la_demos_DATA) \
 	$(nobase_libscigraphics_la_ged_DATA)
 am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_winsid.h includes/sci_addcb.h \
@@ -1080,6 +1077,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
@@ -1648,149 +1646,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@tcl/ged/images/segs.gif \
 @GUI_TRUE@tcl/ged/images/text.gif
 
-
-####�graphics : demos files ####
-@GUI_TRUE@libscigraphics_la_demosdir = $(mydatadir)
-@GUI_TRUE@nobase_libscigraphics_la_demos_DATA = demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
-@GUI_TRUE@demos/2d_3d_plots/abaque.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/champ.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour_3d_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour_3d_3.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour_3d_4.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contourf.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/errbar.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fac3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fac3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fchamp.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fcontour.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fgrayplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot2d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/grayplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/histplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/param3d_1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/param3d_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d1_1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d1_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d3.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/subplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/xgeom.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/zgrid.dem.sce \
-@GUI_TRUE@demos/anim/anim.dem.gateway.sce \
-@GUI_TRUE@demos/anim/anim1/anim1.sce \
-@GUI_TRUE@demos/anim/anim1/anim1_gateway.sce \
-@GUI_TRUE@demos/anim/anim2/anim2.sce \
-@GUI_TRUE@demos/anim/anim2/anim2_gateway.sce \
-@GUI_TRUE@demos/anim/anim3/anim3.sce \
-@GUI_TRUE@demos/anim/anim3/anim3_gateway.sce \
-@GUI_TRUE@demos/anim/anim4/anim4.sce \
-@GUI_TRUE@demos/anim/anim4/anim4_gateway.sce \
-@GUI_TRUE@demos/anim/anim5/anim5.sce \
-@GUI_TRUE@demos/anim/anim5/anim5_gateway.sce \
-@GUI_TRUE@demos/anim/anim6/anim6.sce \
-@GUI_TRUE@demos/anim/anim6/anim6.sci \
-@GUI_TRUE@demos/anim/anim6/anim6_gateway.sce \
-@GUI_TRUE@demos/anim/anim6/yt.wrt \
-@GUI_TRUE@demos/anim/anim7/anim7.sce \
-@GUI_TRUE@demos/anim/anim7/anim7_gateway.sce \
-@GUI_TRUE@demos/anim/anim8/anim8.sci \
-@GUI_TRUE@demos/anim/anim8/anim8_gateway.sce \
-@GUI_TRUE@demos/bar/bar.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions.dem.gateway.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_1.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_2.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_3.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_4.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_5.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_6.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_7.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_8.dem.sce \
-@GUI_TRUE@demos/bezier/bezier.dem.gateway.sce \
-@GUI_TRUE@demos/bezier/bezier3dtest.sce \
-@GUI_TRUE@demos/bezier/beziersurftest.sce \
-@GUI_TRUE@demos/bezier/beziertest.sce \
-@GUI_TRUE@demos/bezier/c1test.sce \
-@GUI_TRUE@demos/bezier/cltest.sce \
-@GUI_TRUE@demos/bezier/gammatest.sce \
-@GUI_TRUE@demos/bezier/Macros.sci \
-@GUI_TRUE@demos/bike.dem \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc.sce \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc.sci \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc_dial.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_acos.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_acosh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_asin.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_asinh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_atan.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_atanh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_cos.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_cosh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_custom.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_exp.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_log.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_sin.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_sinh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_tan.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_tanh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/MacCmplx.sci \
-@GUI_TRUE@demos/cmplxfunc/warning.png \
-@GUI_TRUE@demos/colormap.dem.sce \
-@GUI_TRUE@demos/colormap.dem.sci \
-@GUI_TRUE@demos/contourf.dem \
-@GUI_TRUE@demos/fec/fec.dem.gateway.sce \
-@GUI_TRUE@demos/fec/fec.ex1 \
-@GUI_TRUE@demos/fec/fec.ex2 \
-@GUI_TRUE@demos/fec/fec.ex2.dem.sce \
-@GUI_TRUE@demos/fec/fec.ex3 \
-@GUI_TRUE@demos/fec/fec.ex3.dem.sce \
-@GUI_TRUE@demos/fec/fec.ex4 \
-@GUI_TRUE@demos/fec/fec.ex4.dem.sce \
-@GUI_TRUE@demos/fec/fec.info \
-@GUI_TRUE@demos/fec/fec_demo.sci \
-@GUI_TRUE@demos/fec/MESH \
-@GUI_TRUE@demos/fec/MESH.VAL \
-@GUI_TRUE@demos/graphics.dem.gateway.sce \
-@GUI_TRUE@demos/misc/misc.dem \
-@GUI_TRUE@demos/misc/misc.dem.sce \
-@GUI_TRUE@demos/misc/misc.dem.sci \
-@GUI_TRUE@demos/misc/numerique.dem \
-@GUI_TRUE@demos/misc/oscil.dem \
-@GUI_TRUE@demos/misc/oscil.sci \
-@GUI_TRUE@demos/misc/point.dem \
-@GUI_TRUE@demos/misc.dem.sci \
-@GUI_TRUE@demos/misc_new/misc.dem.gateway.sce \
-@GUI_TRUE@demos/misc_new/misc.sce \
-@GUI_TRUE@demos/misc_new/numerique.dem \
-@GUI_TRUE@demos/misc_new/oscil.dem \
-@GUI_TRUE@demos/misc_new/oscil.sci \
-@GUI_TRUE@demos/misc_new/point.dem \
-@GUI_TRUE@demos/peaks.sci \
-@GUI_TRUE@demos/portrait.dem \
-@GUI_TRUE@demos/sd.sav \
-@GUI_TRUE@demos/surface/bh.sce \
-@GUI_TRUE@demos/surface/cplxroot.sce \
-@GUI_TRUE@demos/surface/hole3d.sce \
-@GUI_TRUE@demos/surface/hole3d1.sce \
-@GUI_TRUE@demos/surface/Macros.sci \
-@GUI_TRUE@demos/surface/moebius.sce \
-@GUI_TRUE@demos/surface/rings.sce \
-@GUI_TRUE@demos/surface/shell.sce \
-@GUI_TRUE@demos/surface/sphere.sce \
-@GUI_TRUE@demos/surface/spiral.sce \
-@GUI_TRUE@demos/surface/surfaces.dem \
-@GUI_TRUE@demos/surface/surfaces.dem.gateway.sce \
-@GUI_TRUE@demos/surface/surfaces.sci \
-@GUI_TRUE@demos/surface/torus.sce \
-@GUI_TRUE@demos/surface/torus1.sce \
-@GUI_TRUE@demos/surface/tube.sce \
-@GUI_TRUE@demos/xsetechfig.sce
-
 @GUI_TRUE@USEANT = 1
 pkglib_LTLIBRARIES = libscigraphics.la
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
@@ -1828,7 +1683,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -1839,11 +1694,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -4939,25 +4800,6 @@ uninstall-libscigraphics_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)/$$f"; \
 	done
-install-nobase_libscigraphics_la_demosDATA: $(nobase_libscigraphics_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigraphics_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_demosdir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscigraphics_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscigraphics_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigraphics_la_demosdir)/$$f'"; \
-	  $(nobase_libscigraphics_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigraphics_la_demosdir)/$$f"; \
-	done
-
-uninstall-nobase_libscigraphics_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscigraphics_la_demos_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscigraphics_la_demosdir)/$$f"; \
-	done
 install-nobase_libscigraphics_la_gedDATA: $(nobase_libscigraphics_la_ged_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscigraphics_la_geddir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_geddir)"
@@ -5073,7 +4915,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_demosdir)" "$(DESTDIR)$(libscigraphics_la_geddir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_geddir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -5125,7 +4967,6 @@ install-data-am: install-data-local install-libscigraphics_la_etcDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA \
-	install-nobase_libscigraphics_la_demosDATA \
 	install-nobase_libscigraphics_la_gedDATA
 
 install-dvi: install-dvi-am
@@ -5168,7 +5009,6 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \
-	uninstall-nobase_libscigraphics_la_demosDATA \
 	uninstall-nobase_libscigraphics_la_gedDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -5186,7 +5026,6 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA install-man \
-	install-nobase_libscigraphics_la_demosDATA \
 	install-nobase_libscigraphics_la_gedDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -5197,7 +5036,6 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \
-	uninstall-nobase_libscigraphics_la_demosDATA \
 	uninstall-nobase_libscigraphics_la_gedDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -5298,7 +5136,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -5308,7 +5146,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -5319,6 +5157,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \

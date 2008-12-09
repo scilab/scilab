@@ -32,6 +32,11 @@
 //     <-- NO CHECK ERROR OUTPUT -->
 //     <-- NO CHECK REF -->
 //       The .dia and the .dia.ref files are not compared.
+//     <-- ENGLISH IMPOSED -->
+//       This test will be executed with the -l en_US option.
+//     <-- FRENCH IMPOSED -->
+//       This test will be executed with the -l fr_FR option.
+//
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
 //   created an unstable environment. It also enables the tests to be 
@@ -567,6 +572,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	if grep(txt,"<-- ENGLISH IMPOSED -->") <> [] then
 		this_english_imposed = "-l en_US";
+	end
+
+	if grep(txt,"<-- FRENCH IMPOSED -->") <> [] then
+		this_english_imposed = "-l fr_FR";
 	end
 	
 	// Do some modification in tst file

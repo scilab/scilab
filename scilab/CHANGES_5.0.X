@@ -29,6 +29,8 @@ Bug fixes:
 
 * bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent.)
 
+* bug 3755 fixed - print files on some Windows.
+
 
 
                           Changes Scilab 5.0.2 -> 5.0.3
