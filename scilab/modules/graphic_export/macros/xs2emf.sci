@@ -54,9 +54,7 @@ function xs2emf(figureNumber, fileName, orientation)
 		try
 			winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
 		catch		
-			if win64() then
-				messagebox(msg, "Scilab error", "error")
-			end				
+			messagebox(msg, "Scilab error", "error")
 			return;
 		end
 	end
