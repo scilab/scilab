@@ -15,13 +15,17 @@ package org.scilab.modules.console;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.Iterator;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.interfaces.core.CompletionItem;
 
+import org.scilab.modules.completion.GetCommonPart;
+
 /**
  * Class used when Scilab user asks for completion on the current edited line
  * @author Vincent COUVERT
+ * @author Allan CORNET 
  */
 public class CompletionAction extends AbstractConsoleAction {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +52,18 @@ public class CompletionAction extends AbstractConsoleAction {
 			configuration.getInputParsingManager().writeCompletionPart(configuration.getCompletionWindow().getCompletionResult());
 			((SciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
 		} else if (completionItems != null && completionItems.size() != 0) {
+			String [] completionArray = new String [completionItems.size()];
+			int i = 0;
+			Iterator < CompletionItem >  it = completionItems.iterator(); 
+			while  (it.hasNext()) {  
+				CompletionItem currentItem = it.next();  
+				completionArray[i] = currentItem.getReturnValue();
+				i++;
+			}
+	    
+			java.util.Arrays.sort(completionArray);
+			configuration.getInputParsingManager().writeCompletionPart(
+					GetCommonPart.getCommonPart(completionArray, completionItems.size()));
 			configuration.getCompletionWindow().show(completionItems, location);
 		}
 	}
