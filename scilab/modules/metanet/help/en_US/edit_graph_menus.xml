@@ -121,7 +121,7 @@
       <varlistentry>
         <term>Information: </term>
         <listitem>
-          <para>This menu  outputs  graph informations, like number of nodes,
+          <para>This menu  outputs  graph information, like number of nodes,
     number of arcs, nodes properties ans arc properties.</para>
         </listitem>
       </varlistentry>

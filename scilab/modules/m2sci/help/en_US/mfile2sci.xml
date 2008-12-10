@@ -131,7 +131,7 @@
     infer dimensions it replaces these function call by a call to an
     emulation function named mtlb_&lt;function_name&gt;. For efficiency these
     functions may be replaced by the proper scilab equivalent instructions.
-    To get informations about replacement, enter:
+    To get information about replacement, enter:
     help mtlb_&lt;function_name&gt; in Scilab command window
   </para>
     <para>
