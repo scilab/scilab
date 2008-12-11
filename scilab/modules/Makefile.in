@@ -40,7 +40,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 
-# memory_manager
+# memory_manager 
 
 #umfpack
 
@@ -132,8 +132,8 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	functions_manager elementary_functions string dynamic_link \
-	history_manager fileio spreadsheet tclsci renderer shell \
-	completion localization console graphic_export gui jvm \
+	history_manager fileio spreadsheet tclsci localization \
+	renderer shell completion console graphic_export gui jvm \
 	graphics optimization symbolic randlib statistics \
 	special_functions interpolation linear_algebra integer \
 	data_structures mexlib differential_equations cacsd \
@@ -366,7 +366,7 @@ libscilab_la_rootdir = $(mydatadir)
 
 #
 pkglib_LTLIBRARIES = libscilab.la
-libscilab_la_SOURCES =
+libscilab_la_SOURCES = 
 libscilab_la_LDFLAGS = $(am__append_3) $(am__append_4)
 ALL_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 $(top_builddir)/modules/mexlib/libmex.la \
@@ -500,7 +500,7 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES)
+libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) 
 	$(libscilab_la_LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
