@@ -11,6 +11,7 @@
  */
 #include <string.h> /* strcmp */
 #include <stdio.h> /* sprintf */
+#include <stdlib.h> /* qsort */
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
 #include "../../../core/src/c/scicurdir.h" /* scigetcwd */
@@ -23,6 +24,11 @@
 static void splitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);
 static char **addDirSeparator(char **dictionary, int sizearray, char *path);
+/*--------------------------------------------------------------------------*/ 
+static int cmpfiles( const void *a ,const void *b)
+{
+	return strcmp(*(const char **)a, *(const char **)b );
+}
 /*--------------------------------------------------------------------------*/ 
 char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 {
@@ -90,6 +96,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
         {
 			dictionary = (char**)REALLOC(dictionary,sizeof(char*)*(sizeListReturned+1));
 			dictionary[sizeListReturned] = NULL;
+			qsort(dictionary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmpfiles);
 		}
 	}
 	else
