@@ -21,7 +21,8 @@ src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
-src/c/messageboxoptions.c
+src/c/messageboxoptions.c \
+src/c/sci_uigetfile.cpp
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -109,7 +110,8 @@ src/jni/LookAndFeelManager.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp \
-src/jni/Juigetfile.cpp
+src/jni/Juigetfile.cpp \
+src/c/CallJuigetfile.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -344,10 +346,9 @@ includes/CallClipboard.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
 includes/exportUserInterface.hxx \
-includes/CallJuigetfile.h \
-includes/CallJuigetfile.hxx \
-includes/Juigetfile.hxx \
-includes/sci_uigetfile.h 
+src/c/CallJuigetfile.hxx \
+src/jni/Juigetfile.hxx \
+src/c/sci_uigetfile.h 
 
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
