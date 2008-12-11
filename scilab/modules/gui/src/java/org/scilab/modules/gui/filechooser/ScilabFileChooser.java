@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,19 +14,16 @@
 package org.scilab.modules.gui.filechooser;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.uielement.ScilabUIElement;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * Interface for file chooser used by Scilab function such as uigetfile 
  * @author Vincent COUVERT
+ * @author Sylvestre KOUMAR
  */
-public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
+public class ScilabFileChooser implements FileChooser {
 
 	private SimpleFileChooser component;
-	
+		
 	/**
 	 * Constructor
 	 * @param isExportFileChooser if is an graphic export file chooser
@@ -37,9 +35,6 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 		} else {
 			component = ScilabBridge.createFileChooser();
 		}
-		component.setElementId(UIElementMapper.add(this));
-		
-		//setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**
@@ -80,7 +75,7 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	 * Set the mask for files to choose
 	 * @param mask the mask to set
 	 */
-	public void setMask(String mask) {
+	public void setMask(String[] mask) {
 		ScilabBridge.setMask(this, mask);
 	}
 	
@@ -128,60 +123,28 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	public void setFileSelectionOnly() {
 		ScilabBridge.setFileSelectionOnly(this);
 	}
-
+	
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * set the multiple file selection on the directory for the filechooser
+	 * @param multipleSelection for file(s)
 	 */
-	public void draw() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#getDims()
-	 * @return nothing
-	 */
-	public Size getDims() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
-	 */
-	public Position getPosition() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
-	 */
-	public boolean isVisible() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newSize is never used
-	 */
-	public void setDims(Size newSize) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newPosition is never used
-	 */
-	public void setPosition(Position newPosition) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newVisibleState is never used
-	 */
-	public void setVisible(boolean newVisibleState) {
-		throw new UnsupportedOperationException();
+	public void setMultipleSelection(boolean multipleSelection) {
+		ScilabBridge.setMultipleSelection(this, multipleSelection);		
 	}
 	
+	/**
+	 * Get the path of selected files
+	 * @return the path of selected files
+	 */
+	public String getSelectionPathName() {
+		return ScilabBridge.getSelectionPathName(this);
+	}
+	
+	/**
+	 * Get the filter index
+	 * @return the filter index
+	 */
+	public int getFilterIndex() {
+		return ScilabBridge.getFilterIndex(this);
+	}
 }

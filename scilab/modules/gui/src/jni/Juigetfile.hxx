@@ -36,8 +36,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_GUI_FILECHOOSER_FILECHOOSER__
-#define __ORG_SCILAB_MODULES_GUI_FILECHOOSER_FILECHOOSER__
+#ifndef __ORG_SCILAB_MODULES_GUI_FILECHOOSER_JUIGETFILE__
+#define __ORG_SCILAB_MODULES_GUI_FILECHOOSER_JUIGETFILE__
 #include <iostream>
 #include <string>
 #include <string.h>
@@ -46,16 +46,28 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 namespace org_scilab_modules_gui_filechooser {
 
-class FileChooser {
+class Juigetfile {
 private:
 JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
-jmethodID voidsetTitlejstringID; // cache method id
-jmethodID voidsetInitialDirectoryjstringID; // cache method id
-jmethodID voidsetMaskjstringID; // cache method id
-jmethodID voidsetMultipleSelectionjbooleanID; // cache method id
+jmethodID voiduigetfileID; // cache method id
+jmethodID voiduigetfilejobjectArrayjobjectArrayID; // cache method id
+jclass stringArrayClass;
+jmethodID voiduigetfilejobjectArrayjobjectArrayjstringID; // cache method id
+jmethodID voiduigetfilejobjectArrayjobjectArrayjstringjstringID; // cache method id
+jmethodID voiduigetfilejobjectArrayjobjectArrayjstringjstringjbooleanID; // cache method id
+jmethodID jstringgetTitleBoxID; // cache method id
+jmethodID jobjectArraygetMaskID; // cache method id
+jmethodID jobjectArraygetMaskDescriptionID; // cache method id
+jmethodID jstringgetInitialDirectoryID; // cache method id
+jmethodID jintgetSelectionSizeID; // cache method id
+jmethodID jobjectArraygetSelectionID; // cache method id
+jmethodID jbooleanisMultipleSelectionID; // cache method id
+jmethodID jstringgetSelectionPathNameID; // cache method id
+jmethodID jintgetFilterIndexID; // cache method id
+jmethodID jstringgetMenuCallbackID; // cache method id
 
 
 /**
@@ -70,17 +82,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-FileChooser(JavaVM * jvm_);
+Juigetfile(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-FileChooser(JavaVM * jvm_, jobject JObj);
+Juigetfile(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~FileChooser();
+~Juigetfile();
 
 // Generic method
 // Synchronization methods
@@ -97,13 +109,35 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-void setTitle(char * title);
+static void uigetfile(JavaVM * jvm_);
 
-void setInitialDirectory(char * path);
+static void uigetfile(JavaVM * jvm_, char ** mask, int maskSize, char ** description, int descriptionSize);
 
-void setMask(char * mask);
+static void uigetfile(JavaVM * jvm_, char ** mask, int maskSize, char ** description, int descriptionSize, char * initialDirectory);
 
-void setMultipleSelection(bool multipleSelection);
+static void uigetfile(JavaVM * jvm_, char ** mask, int maskSize, char ** description, int descriptionSize, char * initialDirectory, char * boxtTitle);
+
+static void uigetfile(JavaVM * jvm_, char ** mask, int maskSize, char ** description, int descriptionSize, char * initialDirectory, char * boxtTitle, bool multipleSelection);
+
+static char * getTitleBox(JavaVM * jvm_);
+
+static char ** getMask(JavaVM * jvm_);
+
+static char ** getMaskDescription(JavaVM * jvm_);
+
+static char * getInitialDirectory(JavaVM * jvm_);
+
+static int getSelectionSize(JavaVM * jvm_);
+
+static char ** getSelection(JavaVM * jvm_);
+
+static bool isMultipleSelection(JavaVM * jvm_);
+
+static char * getSelectionPathName(JavaVM * jvm_);
+
+static int getFilterIndex(JavaVM * jvm_);
+
+static char * getMenuCallback(JavaVM * jvm_);
 
 
                         /**
@@ -113,7 +147,7 @@ void setMultipleSelection(bool multipleSelection);
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/gui/filechooser/FileChooser";
+                return "org/scilab/modules/gui/filechooser/Juigetfile";
                 }
                 
 };
