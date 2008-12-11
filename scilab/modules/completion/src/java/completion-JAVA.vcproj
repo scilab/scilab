@@ -116,14 +116,6 @@
 				RelativePath=".\org\scilab\modules\completion\CompletionJNI.java"
 				>
 			</File>
-			<File
-				RelativePath=".\org\scilab\modules\completion\GetPartLine.java"
-				>
-			</File>
-			<File
-				RelativePath=".\org\scilab\modules\completion\GetPartLineJNI.java"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\..\build.xml"

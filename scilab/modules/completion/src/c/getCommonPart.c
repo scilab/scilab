@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "getCommonPart.h"
+#include "core_math.h"
 #include "MALLOC.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -50,6 +51,8 @@ static int cmpPos(char *str1,char *str2)
 		{
 			if ( s1[i] != s2[i] ) return i;
 		}
+
+		return Min(lenstr1,lenstr2);
 	}
 	return -1;
 }
@@ -68,10 +71,10 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 		int i = 0;
 		int r = 0;
 		char *currentstr = dictionary[0];
-		qsort(dictionnary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmp);
+		qsort(dictionary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmp);
 
-		r = cmpPos(currentstr, dictionnary[1]);
-		for (i = 1; i < sizeDictionnary - 1; i++)
+		r = cmpPos(currentstr, dictionary[1]);
+		for (i = 1; i < sizeDictionary - 1; i++)
 		{
 			int current_r = cmpPos(currentstr, dictionary[i+1]);
 			if (r > current_r  )
@@ -82,7 +85,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 		}
 		
 		commonpart = strdup(currentstr);
-		commonpart[r] = '\0';
+		if (r>0) commonpart[r] = '\0';
 	}
 	return commonpart;
 }

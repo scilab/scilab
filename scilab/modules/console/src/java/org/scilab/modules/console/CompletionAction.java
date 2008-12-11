@@ -20,7 +20,7 @@ import java.util.Iterator;
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.interfaces.core.CompletionItem;
 
-import org.scilab.modules.completion.GetCommonPart;
+import org.scilab.modules.completion.Completion;
 
 /**
  * Class used when Scilab user asks for completion on the current edited line
@@ -53,6 +53,7 @@ public class CompletionAction extends AbstractConsoleAction {
 			((SciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
 		} else if (completionItems != null && completionItems.size() != 0) {
 			String [] completionArray = new String [completionItems.size()];
+			
 			int i = 0;
 			Iterator < CompletionItem >  it = completionItems.iterator(); 
 			while  (it.hasNext()) {  
@@ -62,9 +63,17 @@ public class CompletionAction extends AbstractConsoleAction {
 			}
 	    
 			java.util.Arrays.sort(completionArray);
-			configuration.getInputParsingManager().writeCompletionPart(
-					GetCommonPart.getCommonPart(completionArray, completionItems.size()));
+			String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size() );
+
+			if (commonPartOfWord.length()!= 0) {
+				if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
+					configuration.getInputParsingManager().append(commonPartOfWord.substring(configuration.getInputParsingManager().getPartLevel(0).length()) );
+				}
+			}
 			configuration.getCompletionWindow().show(completionItems, location);
+			
 		}
+
 	}
+	
 }

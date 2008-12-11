@@ -396,10 +396,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\getCommonPart_wrap.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getfilesdictionary.c"
 				>
 			</File>
@@ -413,10 +409,6 @@
 			</File>
 			<File
 				RelativePath=".\getPartLine.c"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\GetPartLine_wrap.c"
 				>
 			</File>
 			<File
@@ -494,10 +486,6 @@
 			>
 			<File
 				RelativePath="..\jni\Completion.i"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\GetPartLine.i"
 				>
 			</File>
 		</Filter>
