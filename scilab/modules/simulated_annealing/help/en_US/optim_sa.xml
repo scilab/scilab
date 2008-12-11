@@ -65,7 +65,7 @@
       <varlistentry>
         <term>Log</term>
         <listitem>
-          <para>if %T, some informations will be displayed during the run of the simulated annealing
+          <para>if %T, some information will be displayed during the run of the simulated annealing
        </para>
         </listitem>
       </varlistentry>

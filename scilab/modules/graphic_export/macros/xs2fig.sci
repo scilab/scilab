@@ -53,10 +53,8 @@ function xs2fig(figureNumber, fileName, orientation)
 	if MSDOS then
 		try
 			winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
-		catch
-			if win64() then
-				messagebox(msg, "Scilab error", "error")
-			end		
+		catch			
+			messagebox(msg, "Scilab error", "error")	
 			return;
 		end
 	end	

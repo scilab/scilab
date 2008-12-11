@@ -51,7 +51,7 @@ static void *DaemonOpenTCLsci(void* in)
 {
 	char *SciPath=NULL;
 	char TkScriptpath[PATH_MAX];
-	char MyCommand[2048];
+	char MyCommand[2048]; /* @TODO: Check for buffer overflow */
 	BOOL tkStarted=FALSE;
 
 #ifndef _MSC_VER

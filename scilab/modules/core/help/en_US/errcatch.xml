@@ -48,7 +48,7 @@ errcatch()</synopsis>
         <term>"pause"</term>
         <listitem>
           <para>a pause is executed when trapping the error. This option is
-             useful for debugging purposes. Use <literal>whereami()</literal> to get informations
+             useful for debugging purposes. Use <literal>whereami()</literal> to get information
              on the current context.</para>
         </listitem>
       </varlistentry>

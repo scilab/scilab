@@ -101,14 +101,13 @@ libscicompletion_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscicompletion_la_SOURCES_DIST = src/jni/Completion_wrap.c \
-	src/jni/GetPartLine_wrap.c src/c/completion.c \
-	src/c/completion_generic.c src/c/getfilesdictionary.c \
-	src/c/getfulldictionary.c src/c/getmacrosdictionary.c \
-	src/c/toolsdictionary.c src/c/completion_wrap_java.c \
-	src/c/getPartLine.c sci_gateway/c/sci_completion.c \
+	src/c/completion.c src/c/completion_generic.c \
+	src/c/getfilesdictionary.c src/c/getfulldictionary.c \
+	src/c/getmacrosdictionary.c src/c/toolsdictionary.c \
+	src/c/completion_wrap_java.c src/c/getPartLine.c \
+	src/c/getCommonPart.c sci_gateway/c/sci_completion.c \
 	sci_gateway/c/gw_completion.c
-@GUI_TRUE@am__objects_1 = libscicompletion_la-Completion_wrap.lo \
-@GUI_TRUE@	libscicompletion_la-GetPartLine_wrap.lo
+@GUI_TRUE@am__objects_1 = libscicompletion_la-Completion_wrap.lo
 am__objects_2 = libscicompletion_la-completion.lo \
 	libscicompletion_la-completion_generic.lo \
 	libscicompletion_la-getfilesdictionary.lo \
@@ -116,7 +115,8 @@ am__objects_2 = libscicompletion_la-completion.lo \
 	libscicompletion_la-getmacrosdictionary.lo \
 	libscicompletion_la-toolsdictionary.lo \
 	libscicompletion_la-completion_wrap_java.lo \
-	libscicompletion_la-getPartLine.lo
+	libscicompletion_la-getPartLine.lo \
+	libscicompletion_la-getCommonPart.lo
 am__objects_3 = libscicompletion_la-sci_completion.lo \
 	libscicompletion_la-gw_completion.lo
 am_libscicompletion_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -341,14 +341,11 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #List of the c files
-@GUI_TRUE@COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c \
-@GUI_TRUE@src/jni/GetPartLine_wrap.c
-
+@GUI_TRUE@COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c 
 @GUI_TRUE@USEANT = 1
 
 # List of the c files
@@ -359,7 +356,8 @@ src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
 src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
-src/c/getPartLine.c
+src/c/getPartLine.c \
+src/c/getCommonPart.c
 
 
 # List of the gateway c files
@@ -412,9 +410,7 @@ includes/completion.h
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Completion.i \
-src/jni/GetPartLine.i
-
+SWIG_WRAPPERS = src/jni/Completion.i 
 @SWIG_TRUE@BUILT_SOURCES = swig
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -546,10 +542,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-Completion_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-GetPartLine_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-completion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-completion_generic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-completion_wrap_java.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getCommonPart.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getPartLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getfilesdictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getfulldictionary.Plo@am__quote@
@@ -585,13 +581,6 @@ libscicompletion_la-Completion_wrap.lo: src/jni/Completion_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/Completion_wrap.c' object='libscicompletion_la-Completion_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-Completion_wrap.lo `test -f 'src/jni/Completion_wrap.c' || echo '$(srcdir)/'`src/jni/Completion_wrap.c
-
-libscicompletion_la-GetPartLine_wrap.lo: src/jni/GetPartLine_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-GetPartLine_wrap.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-GetPartLine_wrap.Tpo -c -o libscicompletion_la-GetPartLine_wrap.lo `test -f 'src/jni/GetPartLine_wrap.c' || echo '$(srcdir)/'`src/jni/GetPartLine_wrap.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompletion_la-GetPartLine_wrap.Tpo $(DEPDIR)/libscicompletion_la-GetPartLine_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/GetPartLine_wrap.c' object='libscicompletion_la-GetPartLine_wrap.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-GetPartLine_wrap.lo `test -f 'src/jni/GetPartLine_wrap.c' || echo '$(srcdir)/'`src/jni/GetPartLine_wrap.c
 
 libscicompletion_la-completion.lo: src/c/completion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-completion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-completion.Tpo -c -o libscicompletion_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c
@@ -648,6 +637,13 @@ libscicompletion_la-getPartLine.lo: src/c/getPartLine.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getPartLine.c' object='libscicompletion_la-getPartLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-getPartLine.lo `test -f 'src/c/getPartLine.c' || echo '$(srcdir)/'`src/c/getPartLine.c
+
+libscicompletion_la-getCommonPart.lo: src/c/getCommonPart.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-getCommonPart.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-getCommonPart.Tpo -c -o libscicompletion_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompletion_la-getCommonPart.Tpo $(DEPDIR)/libscicompletion_la-getCommonPart.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getCommonPart.c' object='libscicompletion_la-getCommonPart.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
 
 libscicompletion_la-sci_completion.lo: sci_gateway/c/sci_completion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-sci_completion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-sci_completion.Tpo -c -o libscicompletion_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c

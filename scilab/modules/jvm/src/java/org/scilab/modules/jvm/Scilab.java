@@ -118,6 +118,10 @@ public class Scilab {
 						+ "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
+			} 
+			catch (java.awt.HeadlessException exception){
+				System.err.println("Error during the initialization of the window: "  + exception.getLocalizedMessage());
+				System.exit(-1);
 			}
 			
 			mainView.setPosition(ConfigManager.getMainWindowPosition());
