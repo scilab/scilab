@@ -228,8 +228,9 @@ int	main (int argc, char *argv[])
 	/*
 	** }
 	*/
-
-	std::cout << "To end program press [ENTER]" << std::endl;
+#ifdef DEBUG
+	std::cerr << "To end program press [ENTER]" << std::endl;
+#endif
 	return WELL_DONE;
 }
 
