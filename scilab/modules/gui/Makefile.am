@@ -108,7 +108,8 @@ src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
-src/jni/GiwsException.cpp
+src/jni/GiwsException.cpp \
+src/jni/Juigetfile.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -117,7 +118,8 @@ src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \
 src/jni/SwingScilabMenu.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
-src/jni/UIElementMapper.giws.xml
+src/jni/UIElementMapper.giws.xml \
+src/jni/Juigetfile.giws.xml
 
 
 if GIWS
@@ -341,7 +343,11 @@ includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
-includes/exportUserInterface.hxx
+includes/exportUserInterface.hxx \
+includes/CallJuigetfile.h \
+includes/CallJuigetfile.hxx \
+includes/Juigetfile.hxx \
+includes/sci_uigetfile.h 
 
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
