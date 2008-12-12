@@ -346,7 +346,7 @@ includes/CallClipboard.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
 includes/exportUserInterface.hxx \
-src/cpp/CallJuigetfile.hxx \
+includes/CallJuigetfile.hxx \
 src/jni/Juigetfile.hxx \
 includes/sci_uigetfile.h 
 
