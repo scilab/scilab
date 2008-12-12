@@ -18,7 +18,7 @@
 
 #include "SetHashTable.h"
 #include "setHandleProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
@@ -241,7 +241,7 @@ int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int
   setPropertyFunc accessor = searchSetHashtable( setHashTable, propertyName ) ;
   if ( accessor == NULL )
   {
-    sciprint(_("Unknown property: %s.\n"), propertyName ) ;
+    Scierror(999,_("Unknown property: %s.\n"), propertyName ) ;
     return -1 ;
   }
   return accessor( pObj, stackPointer, valueType, nbRow, nbCol ) ;

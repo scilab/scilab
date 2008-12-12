@@ -3770,6 +3770,20 @@ int sciGetSubwinIndex(sciPointObj * pSubwin)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * @return TRUE if the object is automatically redraw and does not
+ *         need to be explicitely drawn (using sciDrawObj).
+ */
+BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
+{
+	sciEntityType entityType = sciGetEntityType(pObj);
+	return (entityType == SCI_UICONTROL)
+		|| (entityType == SCI_UIMENU)
+		|| (entityType == SCI_UICONTEXTMENU)
+		|| (entityType == SCI_WAITBAR)
+		|| (entityType == SCI_PROGRESSIONBAR);
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)
@@ -3777,3 +3791,4 @@ void printSetGetErrorMessage(const char * propertyName)
   sciprint(_("This object has no %s property.\n"), propertyName );
 }
 /*----------------------------------------------------------------------------------*/
+

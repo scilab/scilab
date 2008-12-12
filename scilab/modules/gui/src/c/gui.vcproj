@@ -404,6 +404,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CallJuigetfile.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallJxclick.cpp"
 				>
 			</File>
@@ -612,6 +616,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\Juigetfile.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\Jxclick.cpp"
 				>
 			</File>
@@ -729,6 +737,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_uigetdir.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_uigetfile.cpp"
 				>
 			</File>
 			<File
@@ -962,6 +974,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallHelpBrowser.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\CallJuigetfile.hxx"
 				>
 			</File>
 			<File

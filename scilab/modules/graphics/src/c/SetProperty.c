@@ -223,9 +223,8 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
   if((sciGetEntityType(pobj) != SCI_TEXT)        &&
      (sciGetEntityType(pobj) != SCI_LEGEND)      &&
      (sciGetEntityType(pobj) != SCI_AXES)        &&
-     (sciGetEntityType(pobj) != SCI_UICONTROL)   &&
-     (sciGetEntityType(pobj) != SCI_LABEL)      &&
-     (sciGetEntityType(pobj) != SCI_UIMENU) )
+     (sciGetEntityType(pobj) != SCI_LABEL)       &&
+		 !sciIsAutomaticallyRedrawn(pobj))
     {
       if(old_m +1 == sciGetForeground(pobj)) {   /* 0 => deals with Foreground */
 	sciSetNumColors (pobj,m);
