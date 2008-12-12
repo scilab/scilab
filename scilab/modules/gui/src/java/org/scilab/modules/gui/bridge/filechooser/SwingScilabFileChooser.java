@@ -168,7 +168,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 			//they are stocked into FileChooserInfos
 			FileChooserInfos.getInstance().setSelection(selection);
 			FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
-			FileChooserInfos.getInstance().setSelectionSize(selectionSize);				
+			FileChooserInfos.getInstance().setSelectionSize(selectionSize);			
+			FileChooserInfos.getInstance().setFilterIndex(filterIndex);			
 		}				
 		
 	
