@@ -346,9 +346,9 @@ includes/CallClipboard.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
 includes/exportUserInterface.hxx \
-src/c/CallJuigetfile.hxx \
+src/cpp/CallJuigetfile.hxx \
 src/jni/Juigetfile.hxx \
-src/c/sci_uigetfile.h 
+includes/sci_uigetfile.h 
 
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
