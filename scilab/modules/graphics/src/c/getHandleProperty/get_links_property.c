@@ -19,7 +19,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
@@ -31,12 +31,12 @@ int get_links_property( sciPointObj * pobj )
   int status;
   if (sciGetEntityType(pobj) != SCI_LEGEND)
   {
-    sciprint(_("%s property does not exist for this handle.\n"), "links") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"links") ;
     return -1 ;
   }
   handles=(long *)MALLOC(nblegends*sizeof(long));
   if (handles==NULL) {
-    sciprint(_("%s: No more memory.\n"),"get_links_property");
+    Scierror(999, _("%s: No more memory.\n"),"get_links_property");
     return -1 ;
   }
   for (i=0; i<nblegends; i++) {

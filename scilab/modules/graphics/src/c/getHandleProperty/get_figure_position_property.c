@@ -22,7 +22,7 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
 
@@ -35,7 +35,7 @@ int get_figure_position_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s undefined for this object.\n"), "figure_position") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"figure_position") ;
     return -1;
   }
 

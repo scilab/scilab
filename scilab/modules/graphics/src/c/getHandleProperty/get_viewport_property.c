@@ -19,7 +19,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -29,7 +29,7 @@ int get_viewport_property( sciPointObj * pobj )
 
   if( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s property does not exist for this handle.\n"), "viewport") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"), "viewport") ;
     return -1 ;
   }
 

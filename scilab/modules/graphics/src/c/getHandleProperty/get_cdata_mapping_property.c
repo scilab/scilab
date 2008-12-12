@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -29,12 +29,12 @@ int get_cdata_mapping_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) != SCI_SURFACE  )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"cdata_mapping");
+    Scierror(999, _("%s property does not exist for this handle.\n"),"cdata_mapping");
     return -1;
   }
   if ( pSURFACE_FEATURE (pobj)->typeof3d != SCI_FAC3D )
   {
-    sciprint(_("%s property only exists for %s surfaces.\n"),"cdata_mapping","Fac3d");
+    Scierror(999, _("%s property only exists for %s surfaces.\n"),"cdata_mapping","Fac3d");
     return -1;
   }
 

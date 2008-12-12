@@ -24,11 +24,20 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "CurrentObjectsManagement.h"
+#include "Scierror.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int get_current_figure_property( sciPointObj * pobj )
 {
   
+	if (pobj != NULL)
+	{
+		/* This property should not be called on an handle */
+		Scierror(999, _("%s property does not exist for this handle.\n"), "current_figure");
+		return -1;
+	}
+
   /* return handle on the current figure */
   return sciReturnHandle( sciGetHandle( sciGetCurrentFigure() ) ) ;
 

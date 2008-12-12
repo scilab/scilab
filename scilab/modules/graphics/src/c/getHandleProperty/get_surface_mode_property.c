@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -42,7 +42,7 @@ int get_surface_mode_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint(_("%s value can not be accessed with this object, use %s.\n"),"Surface_mode","line_mode");
+		Scierror(999, _("%s property does not exist for this handle.\n"),"surface_mode") ;
     return -1;
   }
 }

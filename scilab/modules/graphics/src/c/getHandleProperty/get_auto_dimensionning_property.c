@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -38,7 +38,7 @@ int get_auto_dimensionning_property( sciPointObj * pobj )
       return sciReturnString( "off" ) ;
     }
   }
-  sciprint(_("%s property does not exist for this handle.\n"),"auto_dimensionning") ;
+  Scierror(999, _("%s property does not exist for this handle.\n"),"auto_dimensionning") ;
   return -1 ;
 }
 /*------------------------------------------------------------------------*/
