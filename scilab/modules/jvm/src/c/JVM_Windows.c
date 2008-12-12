@@ -16,10 +16,11 @@
 #include "JVM_functions.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "PATH_MAX.h"
-#include "../../fileio/includes/FileExist.h"
+#include "FileExist.h"
+#include "GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/ 
 #ifdef _WIN64
-/* Sun doesn't distribuate "client" version of jvm with jre for x64 version */
+/* Sun doesn't distribute "client" version of jvm with jre for x64 version */
 #define JVM_TYPE "server"
 #else
 #define JVM_TYPE "client"

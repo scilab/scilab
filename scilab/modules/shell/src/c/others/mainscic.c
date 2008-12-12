@@ -20,7 +20,7 @@
 #include "getcommandlineargs.h"
 #include "texmacs.h"
 #include "x_main.h"
-#include "Thread_Wrapper.h"
+#include "LaunchScilabSignal.h"
 
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
@@ -33,10 +33,6 @@ char *ProgramName;
 /*--------------------------------------------------------------------------*/
 int  sci_show_banner=1;
 /*--------------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------*/
-__threadSignal	LaunchScilab;
-__threadLock	LaunchScilabLock;
 /*--------------------------------------------------------------------------*/
 
 int main(int argc, char **argv)
@@ -51,8 +47,8 @@ int main(int argc, char **argv)
 #if defined(linux) && defined(__i386__)
   setFPUToDouble();
 #endif
-  __InitSignal(&LaunchScilab);
-  __InitLock(&LaunchScilabLock);
+
+  InitializeLaunchScilabSignal();
 
   #if (defined __GNUC__  )
 		putenv ("COMPILER=gcc");

@@ -28,6 +28,7 @@
 //
 //    Gaubert on Linux PPC version 2.2.13 distribution  with  X/kde as window manager
 //    France  February 10, 2001 at 11:55:40
+// <-- ENGLISH IMPOSED -->
 
 N = 30;
 A = rand(N,N);

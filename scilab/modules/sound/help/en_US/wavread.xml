@@ -93,7 +93,7 @@ y=wavread(wavfile,ext)
     audio data contained in the file in place of the actual audio data,
     returning the vector as [channels samples].</para>
 
-    <para><literal>wavread(wavfile,'info')</literal> returns informations
+    <para><literal>wavread(wavfile,'info')</literal> returns information
     about the audio data contained in the file in place of the actual audio
     data, returning the vector as [data format, number of channels, samples
     per second per channel, estimate of bytes per second needed, byte

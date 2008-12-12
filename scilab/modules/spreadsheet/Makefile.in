@@ -85,8 +85,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscispreadsheet_la_demosdir)" \
-	"$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_etcdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_rootdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" \
@@ -128,14 +126,10 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscispreadsheet_la_SOURCES)
 DIST_SOURCES = $(libscispreadsheet_la_SOURCES)
-libscispreadsheet_la_demosDATA_INSTALL = $(INSTALL_DATA)
-libscispreadsheet_la_demosxlsDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscispreadsheet_la_demos_DATA) \
-	$(libscispreadsheet_la_demosxls_DATA) \
-	$(libscispreadsheet_la_etc_DATA) \
+DATA = $(libscispreadsheet_la_etc_DATA) \
 	$(libscispreadsheet_la_root_DATA) \
 	$(libscispreadsheet_la_sci_gateway_DATA)
 libscispreadsheet_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -381,21 +375,6 @@ libscispreadsheet_la_sci_gateway_DATA = sci_gateway/spreadsheet_gateway.xml
 libscispreadsheet_la_includedir = $(pkgincludedir)/spreadsheet
 libscispreadsheet_la_include_HEADERS = includes/gw_spreadsheet.h
 
-####�core : demos files ####
-libscispreadsheet_la_demosdir = $(mydatadir)/demos/
-libscispreadsheet_la_demos_DATA = demos/spreadsheet.dem.sce
-
-####�spreadsheet : demos files ####
-libscispreadsheet_la_demosxlsdir = $(mydatadir)/demos/xls/
-libscispreadsheet_la_demosxls_DATA = demos/xls/Testo1.xls \
-demos/xls/o1.xls \
-demos/xls/Test1.xls \
-demos/xls/Testobig.xls \
-demos/xls/Testbig.xls \
-demos/xls/t1.xls \
-demos/xls/README
-
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -428,7 +407,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -439,11 +418,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -632,40 +617,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscispreadsheet_la_demosDATA: $(libscispreadsheet_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscispreadsheet_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_demosdir)"
-	@list='$(libscispreadsheet_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscispreadsheet_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f'"; \
-	  $(libscispreadsheet_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f"; \
-	done
-
-uninstall-libscispreadsheet_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscispreadsheet_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f"; \
-	done
-install-libscispreadsheet_la_demosxlsDATA: $(libscispreadsheet_la_demosxls_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscispreadsheet_la_demosxlsdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)"
-	@list='$(libscispreadsheet_la_demosxls_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscispreadsheet_la_demosxlsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f'"; \
-	  $(libscispreadsheet_la_demosxlsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f"; \
-	done
-
-uninstall-libscispreadsheet_la_demosxlsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscispreadsheet_la_demosxls_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f"; \
-	done
 install-libscispreadsheet_la_etcDATA: $(libscispreadsheet_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscispreadsheet_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_etcdir)"
@@ -813,7 +764,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispreadsheet_la_demosdir)" "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)" "$(DESTDIR)$(libscispreadsheet_la_etcdir)" "$(DESTDIR)$(libscispreadsheet_la_rootdir)" "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" "$(DESTDIR)$(libscispreadsheet_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispreadsheet_la_etcdir)" "$(DESTDIR)$(libscispreadsheet_la_rootdir)" "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" "$(DESTDIR)$(libscispreadsheet_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -862,8 +813,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
-	install-libscispreadsheet_la_demosDATA \
-	install-libscispreadsheet_la_demosxlsDATA \
 	install-libscispreadsheet_la_etcDATA \
 	install-libscispreadsheet_la_includeHEADERS \
 	install-libscispreadsheet_la_rootDATA \
@@ -905,9 +854,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscispreadsheet_la_demosDATA \
-	uninstall-libscispreadsheet_la_demosxlsDATA \
-	uninstall-libscispreadsheet_la_etcDATA \
+uninstall-am: uninstall-libscispreadsheet_la_etcDATA \
 	uninstall-libscispreadsheet_la_includeHEADERS \
 	uninstall-libscispreadsheet_la_rootDATA \
 	uninstall-libscispreadsheet_la_sci_gatewayDATA \
@@ -923,9 +870,7 @@ uninstall-am: uninstall-libscispreadsheet_la_demosDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscispreadsheet_la_demosDATA \
-	install-libscispreadsheet_la_demosxlsDATA \
-	install-libscispreadsheet_la_etcDATA \
+	install-info-am install-libscispreadsheet_la_etcDATA \
 	install-libscispreadsheet_la_includeHEADERS \
 	install-libscispreadsheet_la_rootDATA \
 	install-libscispreadsheet_la_sci_gatewayDATA install-man \
@@ -935,8 +880,6 @@ uninstall-am: uninstall-libscispreadsheet_la_demosDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-	uninstall-libscispreadsheet_la_demosDATA \
-	uninstall-libscispreadsheet_la_demosxlsDATA \
 	uninstall-libscispreadsheet_la_etcDATA \
 	uninstall-libscispreadsheet_la_includeHEADERS \
 	uninstall-libscispreadsheet_la_rootDATA \
@@ -1040,7 +983,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1050,7 +993,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -1061,6 +1004,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \

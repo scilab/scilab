@@ -18,20 +18,4 @@ libsimulated_annealing_la_root_DATA = changelog.txt license.txt readme.txt versi
 libsimulated_annealing_la_etcdir = $(mydatadir)/etc
 libsimulated_annealing_la_etc_DATA = etc/simulated_annealing.quit etc/simulated_annealing.start
 
-#### simulated_annealing : examples files ####
-libsimulated_annealing_la_examplesdir = $(mydatadir)/examples
-libsimulated_annealing_la_examples_DATA = \
-examples/neigh_func_ising2d.sci \
-examples/SAdemo.sce \
-examples/SAIsing2ddemo.sce
-
-#### simulated_annealing : examples/Ising files ####
-libsimulated_annealing_la_examplesisingdir = $(mydatadir)/examples/Ising
-libsimulated_annealing_la_examplesising_DATA = \
-examples/Ising/init_ising2d.sci \
-examples/Ising/init_potts2d.sci \
-examples/Ising/ising2d.sci \
-examples/Ising/plot_ising2d.sci \
-examples/Ising/plot_potts2d.sci
-
 include $(top_srcdir)/Makefile.incl.am

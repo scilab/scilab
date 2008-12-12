@@ -86,17 +86,4 @@ includes/clcg4.h \
 includes/others_generators.h \
 includes/gw_randlib.h
 
-#### randlib : demos files ####
-libscirandlib_la_demosdir=$(mydatadir)/demos/
-libscirandlib_la_demos_DATA = demos/binomial.dem.sce \
-demos/discrete.dem.sce \
-demos/discrete_uni.dem.sce \
-demos/erlang.dem.sce \
-demos/exp.dem.sce \
-demos/geometric.dem.sce \
-demos/hypergeom.dem.sce \
-demos/poisson.dem.sce \
-demos/random.dem.gateway.sce \
-demos/weibull.dem.sce
-
 include $(top_srcdir)/Makefile.incl.am

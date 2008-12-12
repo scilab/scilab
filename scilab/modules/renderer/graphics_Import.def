@@ -176,3 +176,4 @@ getClickedSubwin
 sciGetHandle
 sciZoomObject
 unzoomSubwin
+sciIsAutomaticallyRedrawn

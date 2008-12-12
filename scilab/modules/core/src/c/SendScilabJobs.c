@@ -162,7 +162,7 @@ int SendScilabJobs(char **jobs,int numberjobs)
 					else
 					{
 						CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
-						fprintf(stderr,"Error : SendScilabJobs (1) 'LOCALJOBS[i] MALLOC'.\n",i);	
+						fprintf(stderr,"Error : SendScilabJobs (1) 'LOCALJOBS[%d] MALLOC'.\n",i);	
 						return retcode;
 					}
 				}

@@ -15,6 +15,8 @@
 
 %{
 #include "../c/completion_wrap_java.h"
+#include "getCommonPart.h"
+#include "getPartLine.h"
 #include "MALLOC.h"
 %}
 
@@ -139,3 +141,33 @@ char **searchFilesDictionary(char *somechars);
 public";
 char **searchHandleGraphicsPropertiesDictionary(char *somechars);
 
+/* JavaDoc */
+%javamethodmodifiers getPartLevel(char *line) "
+/**
+* pre parsing current line to search with completion
+* @param[in] current line
+* @return word to find with completion
+*/
+public";
+char *getPartLevel(char *line);
+
+/* JavaDoc */
+%javamethodmodifiers getFilePartLevel(char *line) "
+/**
+* pre parsing current line to search with completion (file)
+* @param[in] current line
+* @return word to find with completion
+*/
+public";
+char *getFilePartLevel(char *line);
+
+/* JavaDoc */
+%javamethodmodifiers getCommonPart(char **dictionnary, int sizeDictionnary) "
+/**
+* Get common part to a array
+* @param[in] string array
+* @param[in] size of string array
+* @return common part
+*/
+public";
+char *getCommonPart(char **dictionnary, int sizeDictionnary);

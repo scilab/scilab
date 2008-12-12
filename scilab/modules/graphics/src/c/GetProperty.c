@@ -33,7 +33,7 @@
 #include "BuildObjects.h"
 #include "SetProperty.h"
 #include "WindowList.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "PloEch.h"
 #include "InitObjects.h"
 #include "../../gui/includes/GraphicWindow.h"
@@ -1008,7 +1008,7 @@ sciGetLegendPlace (sciPointObj * pobj)
   }
   else
   {
-    sciprint (_("You are not using a legend object.\n"));
+    Scierror(999, _("You are not using a legend object.\n"));
     return SCI_LEGEND_OUT_LOWER_LEFT;
   }
   return SCI_LEGEND_OUT_LOWER_LEFT;
@@ -1033,7 +1033,7 @@ void sciGetLegendPos (sciPointObj * pobj, double position[2])
     {
       position[0] = -1;
       position[1] = -1;
-      sciprint (_("You are not using a legend object.\n"));
+      Scierror(999, _("You are not using a legend object.\n"));
       return;
     }
 }
@@ -2069,7 +2069,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         /**numcol = ( pSEGS_FEATURE (pthis)->vz != NULL ? 3 : 2 ) ;*/
 	if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
         {
-          sciprint(_("%s: No more memory."), "sciGetPoint") ;
           *numrow = -1;
           *numcol = -1;
 	  return NULL;
@@ -2093,7 +2092,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         }
       }
       else {
-	sciprint(_("Impossible case happened in %s.\n"), "sciGetPoint");
         *numrow = -1;
         *numcol = -1;
 	return (double *) NULL;
@@ -2102,7 +2100,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       break;
     case SCI_SURFACE:
       /* F.Leray 17.03.04*/
-      sciprint(_("Impossible case happened in %s.\n"), "sciGetPoint" );
       *numrow = -1;
       *numcol = -1;
       return (double*) NULL;
@@ -3292,7 +3289,7 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
     sciGetJavaPixelCoordinates(pObj, userCoord, pixCoord);
     break;
   default:
-    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
+    Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
     pixCoord[0] = -1;
     pixCoord[1] = -1;
     break;
@@ -3313,7 +3310,7 @@ void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], do
     sciGetJava2dViewCoordinates(pObj, userCoords3D, userCoords2D);
     break;
   default:
-    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
+    Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
     userCoords2D[0] = 0.0;
     userCoords2D[1] = 0.0;
     break;
@@ -3334,7 +3331,7 @@ void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], do
     sciGetJava2dViewCoordFromPixel(pObj, pixelCoords, userCoords2D);
     break;
   default:
-    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
+    Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
     userCoords2D[0] = 0.0;
     userCoords2D[1] = 0.0;
     break;
@@ -3359,7 +3356,7 @@ void sciGet2dViewPixelCoordinates(sciPointObj * pObj, const double userCoords2D[
     }
     break;
   default:
-    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
+    Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
     pixelCoords[0] = -1;
     pixelCoords[1] = -1;
     break;
@@ -3586,7 +3583,7 @@ void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, 
     *yPos = -1;
     *width = -1;
     *height = -1;
-    sciprint(_("Only axes handles have a viewing area."));
+    Scierror(999, _("Only axes handles have a viewing area."));
     break;
   }
 }
@@ -3621,7 +3618,7 @@ void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6])
     sciGetAABoundingBox(pLABEL_FEATURE(pObj)->text, bounds);
     break;
   default:
-    sciprint(_("Unable to compute data bounds for this kind of object."));
+    Scierror(999, _("Unable to compute data bounds for this kind of object."));
     break;
   }
 }
@@ -3638,7 +3635,7 @@ char sciGetxLocation(sciPointObj * pObj)
     return pSUBWIN_FEATURE(pObj)->axes.xdir;
     break;
   default:
-    sciprint(_("Unable to compute x_location for this kind of object."));
+    Scierror(999, _("Unable to compute x_location for this kind of object."));
     break;
   }
   return NULL;
@@ -3652,7 +3649,7 @@ char sciGetyLocation(sciPointObj * pObj)
     return pSUBWIN_FEATURE(pObj)->axes.ydir;
     break;
   default:
-    sciprint(_("Unable to compute x_location for this kind of object."));
+    Scierror(999, _("Unable to compute y_location for this kind of object."));
     break;
   }
   return NULL;
@@ -3770,10 +3767,25 @@ int sciGetSubwinIndex(sciPointObj * pSubwin)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * @return TRUE if the object is automatically redraw and does not
+ *         need to be explicitely drawn (using sciDrawObj).
+ */
+BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
+{
+	sciEntityType entityType = sciGetEntityType(pObj);
+	return (entityType == SCI_UICONTROL)
+		|| (entityType == SCI_UIMENU)
+		|| (entityType == SCI_UICONTEXTMENU)
+		|| (entityType == SCI_WAITBAR)
+		|| (entityType == SCI_PROGRESSIONBAR);
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)
 {
-  sciprint(_("This object has no %s property.\n"), propertyName );
+  Scierror(999, _("This object has no %s property.\n"), propertyName );
 }
 /*----------------------------------------------------------------------------------*/
+

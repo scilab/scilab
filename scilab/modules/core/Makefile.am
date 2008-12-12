@@ -83,7 +83,8 @@ src/c/gw_dynamic_generic.c \
 src/c/dynamic_gateways.c \
 src/c/readGateway.c \
 src/c/comparehandles.c \
-src/c/setPrecisionFPU.c
+src/c/setPrecisionFPU.c \
+src/c/LaunchScilabSignal.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -430,17 +431,7 @@ includes/warningmode.h \
 includes/x_main.h \
 includes/xscion.h \
 includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h
-
-#### core : demos files ####
-libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
-libscicore_la_demosintro_DATA = demos/intro/extf.sce \
-demos/intro/Makefile.mak \
-demos/intro/MakeC.mak \
-demos/intro/MakeF.mak \
-demos/intro/dem01.dem \
-demos/intro/extc.sce \
-demos/intro/Makefile \
-demos/intro/dem01_gateway.sce
+includes/setPrecisionFPU.h \
+includes/LaunchScilabSignal.h
 
 include $(top_srcdir)/Makefile.incl.am

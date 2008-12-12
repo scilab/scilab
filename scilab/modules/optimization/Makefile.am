@@ -159,27 +159,4 @@ libscioptimization_la_includedir=$(pkgincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
 
-
-####�optimization : demos files ####
-libscioptimization_la_demosdir=$(mydatadir)
-nobase_libscioptimization_la_demos_DATA = demos/datafit/datafit.dem.sce \
-demos/datafit/demo_datafit.sci \
-demos/datafit/demo_datafit_fr.htm \
-demos/icse/icob.sci \
-demos/icse/icot.sci \
-demos/icse/icse.contexte \
-demos/icse/icse.sci \
-demos/icse/icsegen.sci \
-demos/icse/icseinit.sce \
-demos/icse/icsu.sci \
-demos/icse/icsua.sci \
-demos/icse/icsuq.sci \
-demos/icse/icsvisu.sci \
-demos/icse/lqv.sce \
-demos/icse/navet.sce \
-demos/icse/README \
-demos/icse/sero.mes \
-demos/icse/seros.sce \
-demos/optimization.dem.gateway.sce
-
 include $(top_srcdir)/Makefile.incl.am

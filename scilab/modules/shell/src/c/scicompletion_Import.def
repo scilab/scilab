@@ -10,3 +10,4 @@ completionOnCommandWords
 completionOnFunctions
 getPartLevel
 getFilePartLevel
+getCommonPart

@@ -70,7 +70,7 @@
       given file to extract the Excel stream which is included in. After
       that the Excel stream is saved in the <literal>TMDIR</literal> directory
       and opened. The <literal>fd</literal> logical unit points to this temporary
-      file. Then the  first sheet in this stream is read to get the global informations
+      file. Then the  first sheet in this stream is read to get the global information
       like number of sheets, sheet names <literal>Sheetnames</literal>, sheet
       adresses within the stream <literal>Sheetpos</literal> and the
       <literal>SST</literal> which contains all the strings used in the following

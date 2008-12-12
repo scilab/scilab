@@ -392,6 +392,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getCommonPart.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getfilesdictionary.c"
 				>
 			</File>
@@ -405,10 +409,6 @@
 			</File>
 			<File
 				RelativePath=".\getPartLine.c"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\GetPartLine_wrap.c"
 				>
 			</File>
 			<File
@@ -438,6 +438,10 @@
 			</File>
 			<File
 				RelativePath=".\completion_wrap_java.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getCommonPart.h"
 				>
 			</File>
 			<File
@@ -482,10 +486,6 @@
 			>
 			<File
 				RelativePath="..\jni\Completion.i"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\GetPartLine.i"
 				>
 			</File>
 		</Filter>
