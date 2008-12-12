@@ -52,6 +52,7 @@ sciPointObj * getFigureModel( void ) ;
 sciPointObj * getAxesModel( void ) ;
 BOOL isFigureModel(sciPointObj * pObj);
 BOOL isAxesModel(sciPointObj * pObj);
+BOOL isModelObject(sciPointObj * pObj);
 
 void destroyDefaultObjects( void ) ;
 

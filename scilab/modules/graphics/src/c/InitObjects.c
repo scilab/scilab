@@ -1006,4 +1006,16 @@ void sciSetDefaultColorMap(sciPointObj * pFigure)
   FREE(colorMap);
 }
 /*---------------------------------------------------------------------------------*/
-
+/**
+ * @return TRUE if pObj is one of the model objects, FALSE otherwise
+ */
+BOOL isModelObject(sciPointObj * pObj)
+{
+	return pObj == pfiguremdl
+		|| pObj == paxesmdl
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_title
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+}
+/*---------------------------------------------------------------------------------*/
