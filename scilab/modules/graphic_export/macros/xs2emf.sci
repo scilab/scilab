@@ -50,17 +50,14 @@ function xs2emf(figureNumber, fileName, orientation)
 	msgErr2 = "http://www.ghostscript.com/awki";
 	msg = char(msgErr1,msgErr2);
 	
-	try
-		winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
-	catch
-	    if win64() then
+	if MSDOS then
+		try
+			winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
+		catch		
 			messagebox(msg, "Scilab error", "error")
-		else
-			messagebox(msg, "Scilab error", "error")
-		end		
-		return;
+			return;
+		end
 	end
-	
 	
 	if ~MSDOS then
 	  // os is a unix one

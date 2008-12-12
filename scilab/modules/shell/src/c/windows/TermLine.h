@@ -13,6 +13,8 @@
 #ifndef __TERMLINE_H__
 #define __TERMLINE_H__
 
+#include "BOOL.h"
+
 /**
 * returns current line
 * @return current line

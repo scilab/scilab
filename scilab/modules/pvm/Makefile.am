@@ -83,11 +83,6 @@ libscipvm_la_includedir=$(pkgincludedir)/pvm
 libscipvm_la_include_HEADERS = includes/gw_pvm.h \
 includes/with_pvm.h
 
-#### pvm : demos files ####
-libscipvm_la_demosdir=$(mydatadir)/demos/
-libscipvm_la_demos_DATA = demos/pvm.dem \
-demos/pvm1.sce \
-demos/script.sce
 
 include $(top_srcdir)/Makefile.incl.am
 

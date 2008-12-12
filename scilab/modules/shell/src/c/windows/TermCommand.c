@@ -15,6 +15,8 @@
 #include "machine.h" /* C2F */
 #include "sigbas.h" /* C2F (sigbas) */
 #include "dynamic_menus.h" /* StoreCommand */
+#include "clrscr_nw.h"
+#include "TermLine.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 void ControlC_Command(void)
@@ -35,7 +37,8 @@ void F1_Command(void)
 /*--------------------------------------------------------------------------*/
 void F2_Command(void)
 {
-	StoreCommand("clc");
+	clrscr_nw();
+	displayPrompt();
 }
 /*--------------------------------------------------------------------------*/
 void ALTF4_Command(void)

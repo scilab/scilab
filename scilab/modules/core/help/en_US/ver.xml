@@ -36,7 +36,7 @@
   <refsection>
     <title>Description</title>
     <para>Version information for Scilab.</para>
-    <para>returns a matrix of string with informations about Scilab.</para>
+    <para>returns a matrix of string with information about Scilab.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

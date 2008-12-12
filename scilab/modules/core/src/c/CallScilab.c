@@ -31,6 +31,7 @@
 #include "strdup_windows.h"
 #endif
 #include "localization.h"
+#include "LaunchScilabSignal.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
@@ -75,6 +76,8 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	if (StartScilabIsOK) return FALSE;
 
 	SetFromCToON();
+
+	InitializeLaunchScilabSignal();
 
 	if (SCIpath == NULL)
 	{

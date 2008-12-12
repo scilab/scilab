@@ -18,24 +18,4 @@ libgenetic_algorithms_la_root_DATA = changelog.txt license.txt readme.txt versio
 libgenetic_algorithms_la_etcdir = $(mydatadir)/etc
 libgenetic_algorithms_la_etc_DATA = etc/genetic_algorithms.quit etc/genetic_algorithms.start
 
-#### genetic_algorithms : examples files ####
-libgenetic_algorithms_la_examplesdir = $(mydatadir)/examples
-libgenetic_algorithms_la_examples_DATA = \
-examples/crossover_ga_ising2d.sci \
-examples/GAdemo.sce \
-examples/GAIsing2ddemo.sce \
-examples/init_ga_ising2d.sci \
-examples/MOGAdemo.sce \
-examples/mutation_ga_ising2d.sci \
-examples/NSGA2demo.sce \
-examples/NSGAdemo.sce
-
-libgenetic_algorithms_la_examplesisingdir = $(mydatadir)/examples/Ising
-libgenetic_algorithms_la_examplesising_DATA = \
-examples/Ising/init_ising2d.sci \
-examples/Ising/init_potts2d.sci \
-examples/Ising/ising2d.sci \
-examples/Ising/plot_ising2d.sci \
-examples/Ising/plot_potts2d.sci
-
 include $(top_srcdir)/Makefile.incl.am

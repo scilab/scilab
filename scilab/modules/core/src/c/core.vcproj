@@ -527,6 +527,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\LaunchScilabSignal.c"
+				>
+			</File>
+			<File
 				RelativePath=".\librarieslist.c"
 				>
 			</File>
@@ -923,14 +927,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-                        <File
-                                RelativePath="..\..\includes\doublecomplex.h"
-                                >
-                        </File>
-                        <File
-                                RelativePath="..\..\includes\scisparse.h"
-                                >
-                        </File>
 			<File
 				RelativePath=".\banier.h"
 				>
@@ -980,6 +976,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\doublecomplex.h"
+				>
+			</File>
+			<File
 				RelativePath=".\dynamic_gateways.h"
 				>
 			</File>
@@ -1008,11 +1008,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -1113,6 +1113,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\islittleendian.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\LaunchScilabSignal.h"
 				>
 			</File>
 			<File
@@ -1217,6 +1221,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\scirun.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\scisparse.h"
 				>
 			</File>
 			<File
