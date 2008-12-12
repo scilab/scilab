@@ -110,7 +110,7 @@ sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
-src/c/CallJuigetfile.cpp
+src/cpp/CallJuigetfile.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
