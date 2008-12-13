@@ -50,7 +50,7 @@ int sci_printfigure(char *fname,unsigned long fname_len);
 #include "sci_exportUI.h"
 int sci_printsetupbox(char *fname,unsigned long l);
 int sci_toprint(char *fname,unsigned long l);
-int sci_usecanvas(char *fname,unsigned long l);
+int sci_uigetfile( char * fname, unsigned long fname_len ) ;
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

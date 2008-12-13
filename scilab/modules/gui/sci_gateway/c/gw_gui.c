@@ -51,12 +51,12 @@ static gw_generic_table Tab[]=
 	{sci_helpbrowser,"helpbrowser"},
 	{sci_uigetfont,"uigetfont"},
 	{sci_uigetcolor,"uigetcolor"},
-        {sci_getcallbackobject, "getcallbackobject"},
-        {sci_printfigure, "printfigure"},
-        {sci_exportUI, "exportUI"},
-        {sci_printsetupbox,"printsetupbox"},
-        {sci_toprint,"toprint"},
-        {sci_usecanvas,"usecanvas"}
+    {sci_getcallbackobject, "getcallbackobject"},
+    {sci_printfigure, "printfigure"},
+    {sci_exportUI, "exportUI"},
+    {sci_printsetupbox,"printsetupbox"},
+    {sci_toprint,"toprint"},
+	{sci_uigetfile,"uigetfile"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

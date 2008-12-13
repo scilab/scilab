@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -29,7 +29,7 @@ int get_isoview_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"isoview");
+    Scierror(999, _("%s property does not exist for this handle.\n"),"isoview");
     return -1;
   }
   if ( pSUBWIN_FEATURE(pobj)->isoview )

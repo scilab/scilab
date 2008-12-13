@@ -21,7 +21,7 @@ src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
-src/c/messageboxoptions.c
+src/c/messageboxoptions.c 
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -108,7 +108,9 @@ src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
-src/jni/GiwsException.cpp
+src/jni/GiwsException.cpp \
+src/jni/Juigetfile.cpp \
+src/cpp/CallJuigetfile.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -117,7 +119,8 @@ src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \
 src/jni/SwingScilabMenu.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
-src/jni/UIElementMapper.giws.xml
+src/jni/UIElementMapper.giws.xml \
+src/jni/Juigetfile.giws.xml
 
 
 if GIWS
@@ -158,7 +161,8 @@ sci_gateway/cpp/sci_toprint.cpp \
 sci_gateway/cpp/sci_printfigure.cpp \
 sci_gateway/cpp/sci_setlookandfeel.cpp \
 sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
-sci_gateway/cpp/sci_getlookandfeel.cpp
+sci_gateway/cpp/sci_getlookandfeel.cpp \
+sci_gateway/cpp/sci_uigetfile.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \
@@ -341,7 +345,10 @@ includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
-includes/exportUserInterface.hxx
+includes/exportUserInterface.hxx \
+includes/CallJuigetfile.hxx \
+src/jni/Juigetfile.hxx \
+includes/sci_uigetfile.h 
 
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/

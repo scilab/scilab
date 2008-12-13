@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1251"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -59,7 +59,8 @@
         <term>endstr</term>
 
         <listitem>
-          <para>A character string or matrix of character strings</para>
+          <para>A character string or matrix of character strings (next
+          character in str after the numerical value).</para>
         </listitem>
       </varlistentry>
     </variablelist>

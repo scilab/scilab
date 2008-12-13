@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
 
@@ -34,7 +34,7 @@ int get_info_message_property( sciPointObj * pobj )
 
 	if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"info_message") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"info_message") ;
     return -1;
   }
   
