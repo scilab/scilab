@@ -176,6 +176,7 @@
 ::msgcat::mcset es_es "The contents of " "Los contenidos de"
 ::msgcat::mcset es_es "has changed on disk, save it anyway?"\
                    "Ha cambiado en el disco, Guardar de todas maneras?"
+::msgcat::mcset es_es "The contents and/or properties of " "Los contenidos y/o propiedades de"
 ::msgcat::mcset es_es "has been modified outside of Scipad. Do you want to\
                     reload it?"\
                    "han sido cambiados fuera de Scipad. Desea recargarlo?"

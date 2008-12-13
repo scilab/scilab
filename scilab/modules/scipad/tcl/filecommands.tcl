@@ -248,7 +248,7 @@ proc closefile {textarea {quittype yesno} {forceexit opennewemptyfile}} {
         set answer [tk_messageBox -message [ concat [mc "The contents of"] \
            $listoffile("$textarea",fullname) \
            [mc "may have changed, do you wish to save your changes?"] ] \
-             -title [mc "Save Confirm?"] -type $quittype -icon question]
+             -title [mc "Save Confirm?"] -type $quittype -icon question -parent $pad]
         switch -- $answer {
             yes {
                 filetosave $textarea
@@ -747,7 +747,7 @@ proc openfileifexists {file} {
              return [openfile $file]
         } else {
              set answer \
-                [tk_messageBox -type yesno -icon question \
+                [tk_messageBox -type yesno -icon question -parent $pad \
                  -title [mc "File not found"] -message "[mc "The file"]\
                   $file [mc "does not exist anymore. Do you want to create an\
                   empty file with the same name?"]"]
@@ -889,9 +889,10 @@ proc newfilebind {} {
 
 proc fileisopen {file} {
 # file is already opened
+    global pad
     tk_messageBox -type ok -title [concat [mc "Open file"] $file] -message [concat \
       [mc "The file"] $file [mc "is already opened! Save the current opened\
-      file to another name and reopen it from disk!"] ]
+      file to another name and reopen it from disk!"] ] -parent $pad
 }
 
 proc openfileondisk {textarea thefile tiledisplay} {
@@ -944,7 +945,7 @@ proc filetosave {textarea} {
 # Scipad performs this check each time it gets focus - it is kept
 # to deal with the perverse case where some external process modifies
 # the file while Scipad keeps focus
-    global listoffile
+    global listoffile pad
     if {[fileexistsondisk $textarea]} {
         if {[filetimeondiskisdifferent $textarea]} {
             set msgChanged [concat [mc "The contents of "] \
@@ -952,7 +953,7 @@ proc filetosave {textarea} {
                                    [mc "has changed on disk, save it anyway?"] ]
             set msgTitle [mc "File has changed!"]
             set answer [tk_messageBox -message $msgChanged -title $msgTitle \
-                            -type yesnocancel -icon question]
+                            -type yesnocancel -icon question -parent $pad]
             switch -- $answer {
                 yes {
                       if {![writesave $textarea $listoffile("$textarea",fullname)]} {
@@ -1095,7 +1096,7 @@ proc writesave {textarea nametosave} {
 # return value:
 #    1  file was successfully written
 #    0  otherwise
-    global listoffile
+    global listoffile pad
     # if the file exists, check if the file is writable 
     # if it doesn't, check if the directory is writable
     # (case of Save as...) (non existent files return 0 to writable)
@@ -1122,12 +1123,12 @@ proc writesave {textarea nametosave} {
             return 1
         } else {
             set msgWait [concat $nametosave [mc "cannot be written!"]]
-            tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]
+            tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"] -parent $pad
             return 0
         }
     } else {
         set msgWait [concat $nametosave [mc "cannot be written!"]]
-        tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]
+        tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"] -parent $pad
         return 0
     }
 }
@@ -1253,7 +1254,7 @@ proc backupfile { fname { levels 10 } } {
 # revert to saved version of current buffer
 ##################################################
 proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
-    global listoffile
+    global listoffile pad
     set thefile $listoffile("$textarea",fullname) 
     if [file exists $thefile] {
         # check for the perverse case that someone changed the file to unreadable
@@ -1262,7 +1263,8 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
         if {$ConfirmFlag == "ConfirmNeeded"} {
             set answer [tk_messageBox \
                 -message [concat [mc "Revert"] $thefile [mc "to saved?"] ] \
-                -type yesno -icon question -title [mc "Revert Confirm?"] ]
+                -type yesno -icon question -title [mc "Revert Confirm?"] \
+                -parent $pad ]
         } else {
             set answer "yes"
         }
@@ -1273,6 +1275,7 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
                 $textarea insert end [read -nonewline $oldfile ] 
             }
             close $oldfile
+            set listoffile("$textarea",readonly) [fileunwritable $thefile]
             resetmodified $textarea "clearundoredostacks"
             foreach ta [getfullpeerset $textarea] {
                 set listoffile("$ta",thetime) [file mtime $thefile]
@@ -1287,22 +1290,24 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
 proc checkiffilechangedondisk {textarea} {
 # check if file on disk has changed (i.e. did another application modify
 # the file on disk?) since last loading in Scipad
-    global listoffile
-    set msgChanged [concat [mc "The contents of "] \
+    global listoffile pad
+    set msgChanged [concat [mc "The contents and/or properties of "] \
                            $listoffile("$textarea",fullname) \
                            [mc "has been modified outside of Scipad. Do you want to reload it?"] ]
     set msgTitle [mc "File has changed!"]
     if {[filehaschangedondisk $textarea]} {
-        # note: if thetime is not updated first, we may enter a recursion:
+        # note: if thetime and the readonly flags would not be updated first,
+        # we would enter a recursion:
         # if revertsaved pops up the "unreadable file" warning, there is once
         # more a change of focus, which triggers this proc recursively.
         # An a posteriori rationale: the decision whether to keep the version
         # on disk or the one in memory is itself the most recent editing action.
         foreach ta [getfullpeerset $textarea] {
             set listoffile("$ta",thetime) [file mtime $listoffile("$textarea",fullname)]
+            set listoffile("$ta",readonly) [fileunwritable $listoffile("$textarea",fullname)]
         }
         set answer [tk_messageBox -message $msgChanged \
-                        -title $msgTitle -type yesno -icon question]
+                        -title $msgTitle -type yesno -icon question -parent $pad]
         switch -- $answer {
             yes {revertsaved $textarea NoConfirm}
             no  {}
@@ -1437,6 +1442,8 @@ proc fileunreadable {file} {
 # (but there would be such races anyway with file readable) but is
 # believed to be better than to wait for the above bugs be possibly fixed
 
+    global pad
+
     if {![file exists $file]}  {
         return 0
     } else {
@@ -1449,7 +1456,7 @@ proc fileunreadable {file} {
             tk_messageBox -title [mc "Unreadable file"] \
                 -message [concat [mc "The file"] $file \
                          [mc "exists but is not readable!"]] \
-                -icon warning -type ok
+                -icon warning -type ok -parent $pad
             return 1
         }
     }
@@ -1510,15 +1517,20 @@ proc fileunwritable {file} {
 
 proc filehaschangedondisk {ta} {
 # return value:
-#   1  the file opened in $ta exists on disk, is not a new file, and its last
-#      saving time is different from the modify date retrieved from the file
-#      on disk
+#   1  the file opened in $ta exists on disk, is not a new file, and:
+#        its last saving time is different from the modify date retrieved
+#        from the file on disk
+#      or
+#        its readonly flag changed
 #   0  otherwise
     global listoffile
     if {[fileexistsondisk $ta]} {
         if {[filetimeondiskisdifferent $ta]} {
             return 1
         }
+        if {$listoffile("$ta",readonly) != [fileunwritable $listoffile("$ta",fullname)]} {
+            return 1
+        } 
     }
     return 0
 }
@@ -1604,6 +1616,8 @@ proc fileiswindowsshortcut {filename} {
 #   0  otherwise (includes the case when $filename does not exist, as well
 #      as anything else)
 
+    global pad
+
     # catched to allow to call this proc even if $filename does not exist
     # for instance
     if {[catch {iswindowsshortcut $filename} isashortcut] != 0} {
@@ -1614,7 +1628,7 @@ proc fileiswindowsshortcut {filename} {
         tk_messageBox -title [mc "Windows shortcut file"] \
             -message [concat [mc "The file"] $filename \
                      [mc "is a Windows shortcut and will not be opened!"]] \
-            -icon warning -type ok
+            -icon warning -type ok -parent $pad
         return 1
     } else {
         return 0

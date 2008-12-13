@@ -25,7 +25,7 @@
 #
 
 # Scipad texts in French by Francois Vogel
-# in sync at least with v7.8
+# in sync at least with v7.11
 
 
 # commons
@@ -319,6 +319,7 @@
 ::msgcat::mcset fr_fr "cannot be written!" "est en lecture seule !"
 ::msgcat::mcset fr_fr "The contents of " "Le contenu de"
     ::msgcat::mcset fr_fr "has changed on disk, save it anyway?" "a changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
+::msgcat::mcset fr_fr "The contents and/or properties of " "Le contenu ou les propriétés de"
     ::msgcat::mcset fr_fr "has been modified outside of Scipad. Do you want to reload it?" \
                        "a été modifié hors de Scipad. Voulez-vous le recharger à partir du disque ?"
 ::msgcat::mcset fr_fr "File has changed!" "Le fichier a changé"
