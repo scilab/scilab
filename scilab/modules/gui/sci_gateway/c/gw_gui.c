@@ -78,7 +78,9 @@ int gw_gui(void)
          * **** TODO create Scilab figures without a canvas inside and remove this crappy test. ****
          *
          */
-        if (!loadedDep && (strcmp(Tab[Fin-1].name, "uicontrol")==0 || strcmp(Tab[Fin-1].name, "uimenu")==0))
+        if (!loadedDep && (strcmp(Tab[Fin-1].name, "uicontrol")==0
+			   || strcmp(Tab[Fin-1].name, "uimenu")==0
+			   || strcmp(Tab[Fin-1].name, "usecanvas")==0))
           {
             loadOnUseClassPath("graphics");
             loadedDep = TRUE;
