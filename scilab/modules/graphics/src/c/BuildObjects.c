@@ -2210,13 +2210,6 @@ ConstructCompoundSeq (int number)
 
   ppagr = pAGREG_FEATURE(pobj) ;
 
-  if (sciAddNewHandle (pobj) == -1)
-  {
-    Scierror(999, _("No handle to allocate\n"));
-    FREE(pobj->pfeatures);FREE(pobj);
-    return (sciPointObj *) NULL;
-  }
-
   if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
   {
     FREE( pobj->pfeatures ) ;
