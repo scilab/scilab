@@ -97,12 +97,15 @@ public class SciInputParsingManager implements InputParsingManager {
 	 * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getPartLevel(int)
 	 */
 	public String getPartLevel(int level) {
+		String returnLine = null;
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
 
 		String lineToParse = wholeLine.substring(0, caretPos);
-
-		return Completion.getPartLevel(lineToParse);
+		if ( lineToParse.length() > 0 ) {
+			returnLine = Completion.getPartLevel(lineToParse);
+		}
+		return returnLine;
 	}
 
 	/**
@@ -112,11 +115,15 @@ public class SciInputParsingManager implements InputParsingManager {
 	 * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getPartLevel(int)
 	 */
 	public String getFilePartLevel(int level) {
+		String returnLine = null;
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
-
+		
 		String lineToParse = wholeLine.substring(0, caretPos);
-		return Completion.getFilePartLevel(lineToParse);
+		if ( lineToParse.length() > 0 ) {
+			returnLine = Completion.getFilePartLevel(lineToParse);
+		}
+		return returnLine;
 	}
 
 	/**
