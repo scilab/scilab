@@ -21,32 +21,29 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_callback_type_property( sciPointObj * pobj )
 {
-  int type = 0;
+	int type = 0;
 
-  if (sciGetEntityType (pobj) == SCI_UIMENU || sciGetEntityType (pobj) == SCI_UICONTROL)
-    {
-      if(sciGetEntityType (pobj) == SCI_UIMENU)
-        {
-          type = pUIMENU_FEATURE(pobj)->callbackType;
-        }
-      else
-        {
-          type = pUICONTROL_FEATURE(pobj)->callbackType;
-        }
-      
-      return sciReturnDouble(type);
-    }
-  else
-    {
-      sciprint(_("%s property does not exist for this handle.\n"),"callback_type");
-      return -1;
-    }
+	if(sciGetEntityType (pobj) == SCI_UIMENU)
+	{
+		type = pUIMENU_FEATURE(pobj)->callbackType;
+	}
+	else if (sciGetEntityType (pobj) == SCI_UICONTROL)
+	{
+		type = pUICONTROL_FEATURE(pobj)->callbackType;
+	}
+	else
+	{
+		Scierror(999, _("%s property does not exist for this handle.\n"),"callback_type");
+		return -1;
+		}
+
+		return sciReturnDouble(type);
   
 }
 /*------------------------------------------------------------------------*/

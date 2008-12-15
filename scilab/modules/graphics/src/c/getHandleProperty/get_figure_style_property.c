@@ -23,10 +23,18 @@
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "InitObjects.h"
+#include "Scierror.h"
+#include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_style_property( sciPointObj * pobj )
 {
+	if ( sciGetEntityType (pobj) != SCI_FIGURE )
+  {
+    Scierror(999, _("%s property undefined for this object.\n"), "figure_style") ;
+    return -1;
+  }
+
   /* no more old style */
   sciReturnString("new") ;
   return 0 ;

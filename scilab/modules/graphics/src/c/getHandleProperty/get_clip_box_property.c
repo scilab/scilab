@@ -21,17 +21,28 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "Scierror.h"
+#include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_clip_box_property( sciPointObj * pobj )
 {
-  if ( sciGetIsClipping ( pobj ) > 0 )
+	int clipState = sciGetIsClipping ( pobj );
+  if (clipState > 0)
   {
+		/* clip state on */
     return sciReturnRowVector( sciGetClipping( pobj ), 4 ) ;
   }
-  else
-  { 
+  else if (clipState == 0 || clipState == -1)
+	{
+		/* clip state off or clipgrf */
     return sciReturnEmptyMatrix() ;
+	}
+	else
+  { 
+		/* error in retriveing clipping */
+		Scierror(999, _("%s property does not exist for this handle.\n"),"clip_box");
+		return -1;
   }
 }
 /*------------------------------------------------------------------------*/

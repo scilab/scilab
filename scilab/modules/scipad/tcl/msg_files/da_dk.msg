@@ -156,6 +156,7 @@
 ::msgcat::mcset da_dk "cannot be written!" "kan ikke skrives!"
 ::msgcat::mcset da_dk "The contents of " "Indholdet af"
     ::msgcat::mcset da_dk "has changed on disk, save it anyway?" "er ændret på disken, gem den alligevel?"
+::msgcat::mcset da_dk "The contents and/or properties of " "Indholdet af"
     ::msgcat::mcset da_dk "has been modified outside of Scipad. Do you want to reload it?" \
                        "er blevet ændret uden for Scipad. Vil du genindlæse den?"
 ::msgcat::mcset da_dk "File has changed!" "Filen er ændret"

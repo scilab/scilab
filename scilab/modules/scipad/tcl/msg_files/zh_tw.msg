@@ -327,6 +327,7 @@
 ::msgcat::mcset zh_tw "The contents of " "磁碟內之檔案內容"
 ::msgcat::mcset zh_tw "has changed on disk, save it anyway?"\
                       "已經變更, 繼續進行儲存?"
+::msgcat::mcset zh_tw "The contents and/or properties of " "磁碟內之檔案內容"
 ::msgcat::mcset zh_tw "has been modified outside of Scipad. Do you want to\
                        reload it?"\
                       "已再 Scipad\

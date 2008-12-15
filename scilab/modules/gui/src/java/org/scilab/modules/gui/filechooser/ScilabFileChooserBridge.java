@@ -118,7 +118,8 @@ public class ScilabFileChooserBridge {
 
 	/**
 	 * Set the flag indicating that we can select multiple files
-	 * @param fileChooser
+	 * @param fileChooser the file chooser we want to set the flag of 
+	 * @param multipleSelection enable multiple selection
 	 */
 	public static void setMultipleSelection(FileChooser fileChooser, boolean multipleSelection) {
 		fileChooser.getAsSimpleFileChooser().setMultipleSelection(multipleSelection);		

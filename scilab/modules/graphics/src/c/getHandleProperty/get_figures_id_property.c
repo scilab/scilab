@@ -21,7 +21,7 @@
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "MALLOC.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "WindowList.h"
 
@@ -31,14 +31,20 @@ int get_figures_id_property( sciPointObj * pobj )
   int   nbFig  = 0    ;
   int * ids    = NULL ;
   int   status = -1   ;
-  
+
+	if (pobj != NULL)
+	{
+		/* This property should not be called on an handle */
+		Scierror(999, _("%s property does not exist for this handle.\n"), "figures_id");
+		return -1;
+	}
 
   nbFig = sciGetNbFigure() ; /* get the number of opened windows */
   
   ids = MALLOC( nbFig * sizeof(int) ) ;
   if ( ids == NULL )
   { 
-	  sciprint(_("%s: No more memory.\n"),"get_figures_id_property");
+	  Scierror(999, _("%s: No more memory.\n"),"get_figures_id_property");
 	  return -1 ;
   }
 

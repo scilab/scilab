@@ -180,6 +180,7 @@
 ::msgcat::mcset pl "The contents of " "Zawarto\u015B\u0107 pliku"
 ::msgcat::mcset pl "has changed on disk, save it anyway?"\
                    "uleg\u0142a zmianie na dysku. Czy mimo to zapisa\u0107?"
+::msgcat::mcset pl "The contents and/or properties of " "Zawarto\u015B\u0107 pliku"
 ::msgcat::mcset pl "has been modified outside of Scipad.\
                    Do you want to reload it?"\
                    "uleg\u0142a zmianie poza programem Scipad.\

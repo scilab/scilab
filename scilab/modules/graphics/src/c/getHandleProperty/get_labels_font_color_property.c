@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -33,7 +33,7 @@ int get_labels_font_color_property( sciPointObj * pobj )
   {
     return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ; /* F.Leray 08.04.04 */
   }
-  sciprint(_("%s does not exist for this handle.\n"), "labels_font_color property") ;
+  Scierror(999, _("%s does not exist for this handle.\n"), "labels_font_color property") ;
   return -1 ;
 }
 /*------------------------------------------------------------------------*/

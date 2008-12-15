@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
 
@@ -34,7 +34,7 @@ int get_segs_color_property( sciPointObj * pobj )
   int status = -1 ;
   if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"segs_color") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"segs_color") ;
     return -1 ;
   }
 
@@ -43,7 +43,7 @@ int get_segs_color_property( sciPointObj * pobj )
   colors = MALLOC( nbSegs * sizeof(double) ) ;
   if ( colors == NULL )
   {
-	  sciprint(_("%s: No more memory.\n"),"get_segs_color_property");
+	  Scierror(999, _("%s: No more memory.\n"),"get_segs_color_property");
 	  return -1 ;
   }
 

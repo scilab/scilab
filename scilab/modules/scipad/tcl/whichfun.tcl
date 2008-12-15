@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc whichfun {indexin {buf "current"}} {
 # This proc checks whether the text position $indexin provided in buffer $buf
 # is in a function or not.
@@ -392,16 +393,17 @@ proc getrealendofcontline {w ind} {
 }
 
 proc showwhichfun {} {
+    global pad
     set textarea [gettextareacur]
     set infun [whichfun [$textarea index insert]]
     if {$infun !={} } {
         set funname [lindex $infun 0]
         set lineinfun [lindex $infun 1]
         tk_messageBox -message [concat [mc "Function"] $funname [mc "line"] $lineinfun] \
-                      -title [mc "Which function?"]
+                      -title [mc "Which function?"] -parent $pad
     } else {
         tk_messageBox -message [mc "The cursor is not currently inside a function body."] \
-                      -title [mc "Which function?"]
+                      -title [mc "Which function?"] -parent $pad
     }
 }
 

@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ int get_margins_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"margins") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"margins") ;
     return -1 ;
   }
 

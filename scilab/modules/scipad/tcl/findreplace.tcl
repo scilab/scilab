@@ -38,7 +38,7 @@ proc findtextdialog {typ} {
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
 
     if {$findreplaceboxalreadyopen} {
-        tk_messageBox -message [mc "Dialog box already open!"] -icon warning
+        tk_messageBox -message [mc "Dialog box already open!"] -icon warning -parent $find
         return
     }
     set findreplaceboxalreadyopen true
