@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -33,7 +33,7 @@ int set_callback_type_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if ( !isParameterDoubleMatrix(valueType) || nbRow !=1 || nbCol != 1 )
   {
-    sciprint(_("Incompatible value for property %s: Must be %d, %d, %d or %d.\n"),"callback_type",-1,0,1,2) ;
+    Scierror(999, _("Incompatible value for property %s: Must be %d, %d, %d or %d.\n"),"callback_type",-1,0,1,2) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -41,7 +41,7 @@ int set_callback_type_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if (cbType < -1 || cbType > 2)
     {
-      sciprint(_("Incompatible value for property %s: Must be %d, %d, %d or %d.\n"),"callback_type",-1,0,1,2) ;
+      Scierror(999, _("Incompatible value for property %s: Must be %d, %d, %d or %d.\n"),"callback_type",-1,0,1,2) ;
       return SET_PROPERTY_ERROR ;
     }
 
@@ -55,7 +55,7 @@ int set_callback_type_property( sciPointObj * pobj, size_t stackPointer, int val
     }
   else
     {
-      sciprint(_("%s property does not exist for this handle.\n"),"callback_type");
+      Scierror(999, _("%s property does not exist for this handle.\n"),"callback_type");
       return SET_PROPERTY_ERROR ;
     }
 

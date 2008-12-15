@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -33,13 +33,13 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"rotation_style") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"rotation_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE ) 
   {
-    sciprint(_("%s undefined for this object.\n"), "rotation_style") ;
+    Scierror(999, _("%s undefined for this object.\n"), "rotation_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -55,7 +55,7 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
-    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"unary","multiple");
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"unary","multiple");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

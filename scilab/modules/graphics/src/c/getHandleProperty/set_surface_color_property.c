@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
@@ -35,13 +35,13 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"surface_color") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"surface_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_SURFACE)
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"surface_color") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"surface_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -49,7 +49,7 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
   {
     if (pSURFACE_FEATURE (pobj)->dimzy != nbRow * nbCol )
     {
-      sciprint( _("Argument #%d must have %d elements.\n"), 2, pSURFACE_FEATURE (pobj)->dimzy);
+      Scierror(999, _("Argument #%d must have %d elements.\n"), 2, pSURFACE_FEATURE (pobj)->dimzy);
       return SET_PROPERTY_ERROR ;
     }
     copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE(pobj)->zcol, pSURFACE_FEATURE (pobj)->dimzy ) ;
@@ -67,14 +67,14 @@ int set_surface_color_property( sciPointObj * pobj, size_t stackPointer, int val
     }
     if ( nbRow * nbCol != N)
     {
-      sciprint(_("Argument #%d must have %d elements.\n"),2,N) ;
+      Scierror(999, _("Argument #%d must have %d elements.\n"),2,N) ;
       return SET_PROPERTY_ERROR ;
     }
     copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE (pobj)->zcol, N ) ;
   }
   else
   {
-    sciprint(_("%s cannot be set in this case.\n"),"surface_color") ;
+    Scierror(999, _("%s cannot be set in this case.\n"),"surface_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

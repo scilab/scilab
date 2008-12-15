@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -31,7 +31,7 @@ int set_text_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"text") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"text") ;
     return SET_PROPERTY_ERROR ;
   }
 

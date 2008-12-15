@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "PloEch.h"
@@ -33,13 +33,13 @@ int set_zoom_state_property( sciPointObj * pobj, size_t stackPointer, int valueT
   
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"zoom_state") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"zoom_state") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"zoom_state") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"zoom_state") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -47,12 +47,12 @@ int set_zoom_state_property( sciPointObj * pobj, size_t stackPointer, int valueT
   { 
     if ( ! sciGetZooming(pobj) )
     {
-      sciprint("Object is already zoomed.\n") ;
+      Scierror(999, "Object is already zoomed.\n") ;
       return SET_PROPERTY_ERROR ;
     }
     else
     {
-      sciprint("set zoom box ( set('zoom_box',[xmin ymin xmax ymax])).\n") ;
+      Scierror(999, "set zoom box ( set('zoom_box',[xmin ymin xmax ymax])).\n") ;
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -63,7 +63,7 @@ int set_zoom_state_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   {
-    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_zoom_state_property","on","off");
+    Scierror(999, _("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_zoom_state_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

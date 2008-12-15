@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,7 +32,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"box") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"box") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -56,11 +56,11 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      sciprint(_("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property",2,"on","off","hidden_axis","back_half") ;
+      Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property",2,"on","off","hidden_axis","back_half") ;
       return SET_PROPERTY_ERROR ;
     }
   }
-  else
+  else if (sciGetEntityType( pobj ) == SCI_TEXT)
   {
     if ( isStringParamEqual( stackPointer, "on" ) )
     {
@@ -72,11 +72,13 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      sciprint(_("%s: Wrong input argument #%d: '%s' or '%s' expected."),"set_box_property",2,"on","off") ;
+      Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected."),"set_box_property",2,"on","off") ;
       return SET_PROPERTY_SUCCEED ;
     }
   }
+	
 
+	Scierror(999, _("%s property does not exist for this handle.\n"),"box") ;
   return SET_PROPERTY_ERROR ;
 
 }

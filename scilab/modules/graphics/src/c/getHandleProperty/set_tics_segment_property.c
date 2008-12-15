@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,13 +32,13 @@ int set_tics_segment_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"tics_segment") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"tics_segment") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"tics_segment") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"tics_segment") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -52,7 +52,7 @@ int set_tics_segment_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint(_("Wrong value for argument: %s or %s expected.\n"),"on","off");
+    Scierror(999, _("Wrong value for argument: %s or %s expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
 

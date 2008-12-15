@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -32,7 +32,7 @@ int set_surface_mode_property( sciPointObj * pobj, size_t stackPointer, int valu
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"surface_mode") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"surface_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -40,7 +40,7 @@ int set_surface_mode_property( sciPointObj * pobj, size_t stackPointer, int valu
        sciGetEntityType(pobj) != SCI_FAC3D  &&
        sciGetEntityType(pobj) != SCI_SURFACE   )
   {
-    sciprint(_("Surface_mode can not be set with this object, use %s.\n"),"line_mode") ;
+    Scierror(999, _("Surface_mode can not be set with this object, use %s.\n"),"line_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_surface_mode_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint(_("Wrong value for input argument: '%s' or '%s' expected.\n"),"on","off") ;
+    Scierror(999, _("Wrong value for input argument: '%s' or '%s' expected.\n"),"on","off") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

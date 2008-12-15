@@ -121,34 +121,9 @@ int sci_get(char *fname,unsigned long fname_len)
 	case sci_strings:/* string argument (string) */
 		CheckRhs(1,1);
 		GetRhsVar(1,STRING_DATATYPE,&numrow2,&numcol2,&l2);
-		if (strcmp(cstk(l2),"default_figure") != 0 && strcmp(cstk(l2),"default_axes") != 0)
-		{
-			if (strcmp(cstk(l2),"old_style") == 0 || strcmp(cstk(l2),"current_figure") == 0) {
-				hdl = 0;
-			}
-			else
-			{
 
-				/* Test debug F.Leray 13.04.04 */
-				if ((strcmp(cstk(l2),"children") != 0) &&  
-					(strcmp(cstk(l2),"zoom_") !=0) && 
-					(strcmp(cstk(l2),"clip_box") !=0) && 
-					(strcmp(cstk(l2),"auto_") !=0)) 
-				{
-					SciWin();
-					hdl = sciGetHandle(sciGetCurrentObj());
-				}
-				else
-				{
-					hdl = sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
-				}
-
-			}/* DJ.A 08/01/04 */
-		}
-		else
-		{
-			hdl = 0;
-		}
+		/* no handle there */
+		hdl = 0;
 
 		break;
 	default:
@@ -161,6 +136,7 @@ int sci_get(char *fname,unsigned long fname_len)
 	CheckLhs(0,1);
 
 	if (hdl == 0) {
+		/* No handle specified */
 		if (sciGet(NULL, cstk(l2)) != 0) {
 			/* An error has occured */
 			return 0;
@@ -183,7 +159,7 @@ int sci_get(char *fname,unsigned long fname_len)
 			Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
 		}
 	}
-	LhsVar(1 )= Rhs + 1;
+	LhsVar(1) = Rhs + 1;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
