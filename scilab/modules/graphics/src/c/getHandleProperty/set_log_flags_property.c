@@ -161,11 +161,6 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
                                                &ppSubWin->axes.u_nxgrads, 
                                                ppSubWin->axes.u_xlabels   );
 
-	if (ppSubWin->axes.u_xlabels == NULL)
-	{
-		/* Somehting wrong occured */
-		return SET_PROPERTY_ERROR;
-	}
 
   curLogFlags[0] = flags[0];
 
