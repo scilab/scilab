@@ -49,7 +49,6 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
     return ; //** EXIT if no valid output is found 
   end
 
- 
   scs_m_save = scs_m;
   nc_save    = needcompile; 
 
@@ -60,7 +59,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 
   if typeof(o1)=="Link" then  //** add a split block
     //** ------------------- start from a LINK ------------------------------
-    //** TODO : complete the horizontal/vertical type 
+
     pt = [xc1;yc1] ; 
     [xx,yy,ct,from,to] = (o1.xx,o1.yy,o1.ct,o1.from,o1.to);
     if (-wh==size(xx,'*')) then
@@ -90,11 +89,34 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
     //** get initial split position
     wh = wh(1)
     if wh>0 then
-      d = projaff(xx(wh:wh+1), yy(wh:wh+1),pt)
-    else //** a corner
+      //** this function is used to compute the projection of the point
+      //** on the link segment 
+      d = projaff(xx(wh:wh+1), yy(wh:wh+1),pt); //** module/graphics/macro/
+      
+      //** orthogonal link logic 
+      if xx(wh)==xx(wh+1) //** this is a vertical link  
+        link_dir = "h" ; //** go horizontal from the split
+      elseif yy(wh)==yy(wh+1) //** this is an horizontal link 
+        link_dir = "v" ; //** go vertical from the split
+      else //** this is an oblique link 
+        if typo==-1 then //** old link comes from an event output port
+          link_dir = "v" ; //** go vertical for event link 
+        else //** old link comes from an regular output or input (implicit) port
+          link_dir = "h"; //** go horizontal for "normal" link 
+        end
+      end 
+
+    else //** the split is on a corner
       wh = -wh ;
       d  = [xx(wh);yy(wh)] ;
+        //** ortogonal link logic    
+        if typo==-1 then //** old link comes from an event output port
+          link_dir = "v" ; //** go vertical for event link 
+        else //** old link comes from an regular output or input (implicit) port
+         link_dir = "h"; //** go horizontal for "normal" link 
+        end
     end
+
     // Note : creation of the split block and modifications of links are
     //        done later, the sequel assumes that the split block is added
     //        at the end of scs_m
@@ -108,7 +130,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
     from = [kfrom,port_number,0] 
     xo = d(1);yo=d(2)
     xl = d(1);yl=d(2)
-
+    //** --------------------- "Link" case end here -------------------------- 
   else // connection comes from a block
     //** ------------------- start from a BLOCK ------------------------------
     graphics1 = o1.graphics
