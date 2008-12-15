@@ -613,7 +613,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
       return 0;
     }
   }
-  printSetGetErrorMessage("line_width");
+  printSetGetErrorMessage("thickness");
   return -1;
 }
 
