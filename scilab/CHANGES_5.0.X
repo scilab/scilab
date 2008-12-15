@@ -31,6 +31,10 @@ Bug fixes:
 
 * bug 3755 fixed - print files on some Windows.
 
+* bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without heading .3 in the lib name). Thanks to Andrea Florio for providing the patch
+
+
+
 
 
                           Changes Scilab 5.0.2 -> 5.0.3
