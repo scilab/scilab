@@ -18,7 +18,6 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 #include "localization.h"
-#include "sciprint.h"
 #include "getHandleProperty.h"
 #include "stack-c.h"
 #include "GetProperty.h"

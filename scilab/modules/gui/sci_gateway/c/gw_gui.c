@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "loadOnUseClassPath.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
@@ -31,7 +31,6 @@ static gw_generic_table Tab[]=
 	{sci_delmenu,"delmenu"},
 	{sci_setmenu,"setmenu"},
 	{sci_unsetmenu,"unsetmenu"},
-	{C2F(sci_xgetfile),"xgetfile"},
  	{C2F(sci_raise_window),"raise_window"},
 	{sci_getlookandfeel,"getlookandfeel"},
 	{sci_getinstalledlookandfeels,"getinstalledlookandfeels"},
@@ -51,16 +50,17 @@ static gw_generic_table Tab[]=
 	{sci_helpbrowser,"helpbrowser"},
 	{sci_uigetfont,"uigetfont"},
 	{sci_uigetcolor,"uigetcolor"},
-    {sci_getcallbackobject, "getcallbackobject"},
-    {sci_printfigure, "printfigure"},
-    {sci_exportUI, "exportUI"},
-    {sci_printsetupbox,"printsetupbox"},
-    {sci_toprint,"toprint"},
-	{sci_uigetfile,"uigetfile"}
+	{sci_getcallbackobject, "getcallbackobject"},
+	{sci_printfigure, "printfigure"},
+	{sci_exportUI, "exportUI"},
+	{sci_printsetupbox,"printsetupbox"},
+	{sci_toprint,"toprint"},
+	{sci_uigetfile,"uigetfile"},
+	{sci_usecanvas,"usecanvas"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
-{  
+{
 	Rhs = Max(0, Rhs);
 
 	if ( getScilabMode() == SCILAB_NWNI)
@@ -70,7 +70,7 @@ int gw_gui(void)
 	}
 
         /**
-         * We have to load the 'graphic' jars for 
+         * We have to load the 'graphic' jars for
          * - uicontrol
          * - uimenu
          * because these functions need to create a figure to put the created object inside.
@@ -78,12 +78,14 @@ int gw_gui(void)
          * **** TODO create Scilab figures without a canvas inside and remove this crappy test. ****
          *
          */
-        if (!loadedDep && (strcmp(Tab[Fin-1].name, "uicontrol")==0 || strcmp(Tab[Fin-1].name, "uimenu")==0)) 
+        if (!loadedDep && (strcmp(Tab[Fin-1].name, "uicontrol")==0
+			   || strcmp(Tab[Fin-1].name, "uimenu")==0
+			   || strcmp(Tab[Fin-1].name, "usecanvas")==0))
           {
             loadOnUseClassPath("graphics");
             loadedDep = TRUE;
           }
-        
+
 
 	callFunctionFromGateway(Tab);
 

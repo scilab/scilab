@@ -15,7 +15,6 @@
  *    Graphic library
  --------------------------------------------------------------------------*/
 
-#include <math.h>
 #include <stdio.h>
 #include <string.h>
 #include "math_graphics.h"
@@ -29,13 +28,13 @@
 #include "BuildObjects.h"
 #include "Axes.h"
 #include "Champ.h"
-#include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "Plot2d.h"
+#include "Scierror.h"
 
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -83,7 +82,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
   /* F.Leray Allocation de style[dim = Nbr1] */
   if ((style = MALLOC ((*n1) * sizeof (int) )) == NULL)
   {
-    sciprint(_("%s: No more memory.\n"),"champg");
+    Scierror(999, _("%s: No more memory.\n"),"champg");
     return;
   }
 

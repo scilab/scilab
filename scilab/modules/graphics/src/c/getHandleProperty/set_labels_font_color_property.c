@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,7 +32,7 @@ int set_labels_font_color_property( sciPointObj * pobj, size_t stackPointer, int
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"labels_font_color") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"labels_font_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -44,7 +44,7 @@ int set_labels_font_color_property( sciPointObj * pobj, size_t stackPointer, int
   } /* F.Leray 08.04.04 */
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"labels_font_color") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"labels_font_color") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

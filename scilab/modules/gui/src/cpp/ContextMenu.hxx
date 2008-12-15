@@ -22,7 +22,7 @@ extern "C"{
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __CONTEXTMENU_HXX__ */

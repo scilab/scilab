@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,13 +32,13 @@ int set_y_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"y_location") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"y_location") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"y_location") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"y_location") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -57,7 +57,7 @@ int set_y_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else  
   {
-    sciprint(_("%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"), "set_y_location_property",2, "left","right","origin") ;
+    Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"), "set_y_location_property",2, "left","right","origin") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

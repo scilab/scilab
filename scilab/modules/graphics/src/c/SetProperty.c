@@ -613,7 +613,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
       return 0;
     }
   }
-  printSetGetErrorMessage("line_width");
+  printSetGetErrorMessage("thickness");
   return -1;
 }
 
@@ -1509,7 +1509,7 @@ int sciInitAddPlot( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("addplot");
+      printSetGetErrorMessage("auto_clear");
       return -1 ;
       break;
     }
@@ -1560,7 +1560,7 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("autoscale");
+      printSetGetErrorMessage("autos_cale");
       return -1 ;
       break;
     }
@@ -2600,7 +2600,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("points");
+      printSetGetErrorMessage("data");
       return -1;
       break;
     }

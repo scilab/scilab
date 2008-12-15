@@ -22,24 +22,26 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
 int set_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int value = (int) getDoubleFromStack( stackPointer ) ;
+  int value;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"font_style") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"font_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
+	value = (int) getDoubleFromStack( stackPointer ) ;
+
   if ( value > 10 || value < 0 )
   {
-    sciprint(_("Wrong value: In [%d %d] expected.\n"),0,10) ;
+    Scierror(999, _("Wrong value: In [%d %d] expected.\n"),0,10) ;
     return SET_PROPERTY_ERROR ;
   }
   

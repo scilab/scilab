@@ -21,7 +21,7 @@ extern "C"
 #include "localization.h"
 #include "UicontrolStyleToString.h"
 #include "GetUicontrolPosition.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __GET_UICONTROL_POSITION_HXX__ */

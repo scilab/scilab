@@ -26,7 +26,7 @@ extern "C"
 #include "returnProperty.h"
 #include "GetScreenProperty.h"
 #include "localization.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* !__GETSCREENPROPERTY_HXX__ */

@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -30,13 +30,15 @@
 int set_font_color_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
-  int value = (int) getDoubleFromStack( stackPointer ) ;
+  int value ;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"font_color") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"font_color") ;
     return SET_PROPERTY_ERROR ;
   }
+
+	value = (int) getDoubleFromStack( stackPointer ) ;
 
   if (   sciGetEntityType(pobj) == SCI_SUBWIN
            || sciGetEntityType(pobj) == SCI_FIGURE
@@ -47,8 +49,8 @@ int set_font_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
   } /* F.Leray 08.04.04 */
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"font_color") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"font_color") ;
   }
-  return -1 ;
+	return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

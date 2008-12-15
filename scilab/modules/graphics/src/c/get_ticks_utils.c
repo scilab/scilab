@@ -22,7 +22,7 @@
 #include "returnPropertyList.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "Format.h"
 
 /*--------------------------------------------------------------------------------*/
@@ -154,13 +154,13 @@ static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u
   
   if(u_xlabels != NULL)
     {
-      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xlabels");
+      Scierror(999, _("Impossible: %s must be freed before re-allocating"),"u_xlabels");
       return (char **) NULL;
     }
   
 
   if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-	  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabels");
+	  Scierror(999, _("%s: No more memory.\n"), "AllocAndSetUserLabels");
 	  return (char **) NULL;
   }
 
@@ -173,7 +173,7 @@ static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u
       sprintf(foo,c_format, u_xgrads[i]);
       
       if((u_xlabels[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
-		  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabels");
+		  Scierror(999, _("%s: No more memory.\n"), "AllocAndSetUserLabels");
 		  return (char **) NULL;
       }
       
@@ -193,12 +193,12 @@ char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, i
   
   if(u_xlabels != NULL)
     {
-      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xlabels");
+      Scierror(999, _("Impossible: %s must be freed before re-allocating"),"u_xlabels");
       return (char **) NULL;
     }
   
   if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-	  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
+	  Scierror(999, _("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
 	  return (char **) NULL;
   }
 
@@ -206,7 +206,7 @@ char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, i
   for(i=0;i<nbtics;i++)
     {  
 		if((u_xlabels[i]=(char *)MALLOC((strlen(u_xlabels_MDL[i])+1)*sizeof(char )))==NULL){
-			sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
+			Scierror(999, _("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
 			return (char **) NULL;
       }
       
@@ -240,12 +240,12 @@ double * AllocUserGrads(double * u_xgrads, int nb)
   
   if(u_xgrads != NULL)
     {
-      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xgrads");
+      Scierror(999, _("Impossible: %s must be freed before re-allocating"),"u_xgrads");
       return (double *) NULL;
     }
   
   if((u_xgrads=(double *)MALLOC(nb*sizeof(double)))==NULL){
-	  sciprint(_("%s: No more memory.\n"),"AllocUserGrads");
+	  Scierror(999, _("%s: No more memory.\n"),"AllocUserGrads");
 	  return (double *) NULL;
   }
     

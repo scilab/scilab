@@ -45,7 +45,7 @@ int GetUiobjectCallback(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Callback");
+      Scierror(999, _("No '%s' property for this object.\n"), "Callback");
       return FALSE;
     }
 }

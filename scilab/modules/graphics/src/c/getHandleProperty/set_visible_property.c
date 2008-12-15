@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "SetUiobjectVisible.h"
@@ -30,11 +30,10 @@
 /*------------------------------------------------------------------------*/
 int set_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  getStringFromStack( stackPointer ) ;
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"visible") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"visible") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -53,7 +52,7 @@ int set_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType
   }
   else
   {
-    sciprint(_("Wrong value: '%s' or '%s' expected.\n"),"on","off") ;
+    Scierror(999, _("Wrong value: '%s' or '%s' expected.\n"),"on","off") ;
     return SET_PROPERTY_ERROR ;
   }
 }

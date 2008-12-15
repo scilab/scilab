@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -35,9 +35,17 @@ int set_current_axes_property( sciPointObj * pobj, size_t stackPointer, int valu
   int status1 = 1 ;
   int status2 = 1 ;
   
+
+	if (pobj != NULL)
+	{
+		/* This property should not be called on an handle */
+		Scierror(999, _("%s property does not exist for this handle.\n"), "current_axes");
+		return -1;
+	}
+
   if ( !isParameterHandle( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"current_axes") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"current_axes") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -45,12 +53,12 @@ int set_current_axes_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( curAxes == NULL)
   {
-    sciprint("Object is not valid.\n") ;
+    Scierror(999, "Object is not valid.\n") ;
     return -1 ;
   }
   if ( sciGetEntityType( curAxes ) != SCI_SUBWIN )
   {
-    sciprint("Object is not an Axes Entity.\n") ;
+    Scierror(999, "Object is not an Axes Entity.\n") ;
     return -1 ;
   }
 
