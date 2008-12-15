@@ -11,7 +11,7 @@
 // ====================================================================
 // data_structures module initialisation file
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/data_structures/macros/lib');
 // ====================================================================
 //add help chapter
