@@ -40,7 +40,7 @@ int set_surface_mode_property( sciPointObj * pobj, size_t stackPointer, int valu
        sciGetEntityType(pobj) != SCI_FAC3D  &&
        sciGetEntityType(pobj) != SCI_SURFACE   )
   {
-    Scierror(999, _("Surface_mode can not be set with this object, use %s.\n"),"line_mode") ;
+    Scierror(999, _("%s does not exist for this handle.\n"), "surface_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
