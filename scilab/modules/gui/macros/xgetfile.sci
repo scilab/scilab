@@ -35,6 +35,7 @@ function myFile=xgetfile(fileMask, initialDir, boxTitle)
 		return;
 	end
 	
+	warnobsolete('uigetfile','5.2');
 	
 	myFile = uigetfile(fileMask, initialDir, boxTitle);
 	
