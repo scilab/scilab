@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ int get_tics_segment_property( sciPointObj * pobj )
 
   if ( sciGetEntityType( pobj ) != SCI_AXES )
   {
-    sciprint(_("%s property does not exist for this handle.\n"), "tics_segment property") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"), "tics_segment") ;
     return -1 ;
   }
 

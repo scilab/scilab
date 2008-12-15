@@ -544,6 +544,7 @@ proc Obtainall_bp {} {
     # it means that the current buffer is indeed a Scipad ancillary file
     if {[llength $funsinfo] == 0} {
         tk_messageBox -icon warning -type ok -title [mc "Scipad ancillary file"] \
+                -parent $conf \
                 -message [append messagestring \
                     [mc "The current file contains only Scipad ancillaries that cannot be debugged in Scipad."] "\n\n" \
                     [mc "Reserved function names are:\n"] \
@@ -772,7 +773,7 @@ proc checkforduplicateorunterminatedfuns {} {
 # functions without an endfunction keyword
 # otherwise (no duplicate found), return false
 
-    global listoffile
+    global listoffile pad
 
     set allfuns [getallfunsinalltextareas]
 
@@ -807,7 +808,7 @@ proc checkforduplicateorunterminatedfuns {} {
                             when \"Colorize \'strings\'\" is unchecked in the Options menu."] "\n " \
                             [mc "This known bug can be worked around simply by checking \"Colorize \'&strings\'\"."]
                     set tit [mc "Unterminated function definition found"]
-                    tk_messageBox -message $mes -icon warning -title $tit
+                    tk_messageBox -message $mes -icon warning -title $tit -parent $pad
                     return true
                 }
                 lappend listoffunnames $funnam "$listoffile(\"$textarea\",fullname)\n"
@@ -840,7 +841,7 @@ proc checkforduplicateorunterminatedfuns {} {
                  The debugger cannot cope with multiple copies of functions.\n \
                  The following duplicates were detected:\n"] $dupfunfilesstr
         set tit [mc "Duplicate function definitions found"]
-        tk_messageBox -message $mes -icon warning -title $tit
+        tk_messageBox -message $mes -icon warning -title $tit -parent $pad
         return true
     } else {
         return false

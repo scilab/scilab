@@ -31,9 +31,11 @@ public class SciFileFilter extends FileFilter {
 
 	/**
 	 * Constructor
-	 * @param fileMask the file maks to apply
+	 * @param fileMask the file mask to apply
+	 * @param maskdescription description of each mask
+	 * @param filterIndex index the mask from the mask matrix
 	 */
-	public SciFileFilter(String fileMask, String maskdescription, int filterIndex/*, int lastFilterIndex*/) {
+	public SciFileFilter(String fileMask, String maskdescription, int filterIndex) {
 		
 		if (maskdescription == null) {
 

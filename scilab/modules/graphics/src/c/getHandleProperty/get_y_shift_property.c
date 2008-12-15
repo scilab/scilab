@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -42,7 +42,7 @@ int get_y_shift_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"y_shift") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"y_shift") ;
     return -1 ;
   }
 }

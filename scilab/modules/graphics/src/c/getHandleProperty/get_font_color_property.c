@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,11 +32,11 @@ int get_font_color_property( sciPointObj * pobj )
       || sciGetEntityType(pobj) == SCI_LEGEND
       || sciGetEntityType(pobj) == SCI_AXES)
   {
-    return sciReturnDouble(  sciGetFontForegroundToDisplay(pobj) ) ;
+    return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ;
   }
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"Font_color") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"Font_color") ;
     return -1 ;
   }
 }

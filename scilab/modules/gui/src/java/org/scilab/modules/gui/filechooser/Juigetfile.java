@@ -39,18 +39,33 @@ public class Juigetfile {
 	 */
 	private Juigetfile() { }
 	
-	//uigetfile called with 1 arg (mask)
+	/**
+	 * uigetfile called with 1 arg (mask)
+	 * @param mask of the file chooser
+	 * @param description for each mask
+	 */
 	public static void uigetfile(String[] mask, String[] description) {		
 		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE, DEFAULT_MULTIPLE_SELECTION);
 	}
 	
-	//uigetfile called with 2 args (mask, initial directory)
+	/**
+	 * uigetfile called with 2 args (mask, initial directory)
+	 * @param mask of the file chooser
+	 * @param description for each mask
+	 * @param initialDirectory of the opened file chooser
+	 */
 	public static void uigetfile(String[] mask, String[] description, String initialDirectory) {
 		//System.out.println("entering java call");
 		uigetfile(mask, description, initialDirectory, DEFAULT_BOX_TITLE, DEFAULT_MULTIPLE_SELECTION);
 	}
 	
-	//uigetfile called with 3 args (mask, initial directory, filechooser box title)
+	/**
+	 * uigetfile called with 3 args (mask, initial directory, filechooser box title)
+	 * @param mask of the file chooser
+	 * @param description for each mask
+	 * @param initialDirectory of the opened file chooser
+	 * @param boxtTitle title of the opened file chooser
+	 */
 	public static void uigetfile(String[] mask, String[] description, String initialDirectory, String boxtTitle) {
 		uigetfile(mask, description, initialDirectory, boxtTitle, DEFAULT_MULTIPLE_SELECTION);
 	}

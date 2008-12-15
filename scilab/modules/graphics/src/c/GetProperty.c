@@ -495,7 +495,7 @@ sciGetLineWidth (sciPointObj * pobj)
   {
     return sciGetGraphicContext(pobj)->linewidth;
   }
-  printSetGetErrorMessage("line_width");
+  printSetGetErrorMessage("thickness");
   return -1;
 }
 
@@ -525,7 +525,7 @@ sciGetIsMark (sciPointObj * pobj)
   {
     return sciGetGraphicContext(pobj)->ismark;
   }
-
+	printSetGetErrorMessage("mark_mode");
   return FALSE;
 }
 
@@ -594,8 +594,11 @@ sciGetIsLine (sciPointObj * pobj)
   {
     return sciGetGraphicContext(pobj)->isline;
   }
-
-  return FALSE;
+	else
+	{
+		printSetGetErrorMessage("line_mode");
+		return FALSE;
+	}
 }
 
 /**sciGetIsFilled
@@ -613,8 +616,12 @@ sciGetIsFilled (sciPointObj * pobj)
     {
       return sciGetGraphicContext(pobj)->isfilled;
     }
+		else
+		{
+			printSetGetErrorMessage("fill_mode");
+			return FALSE;
+		}
   }
-  return FALSE;
 }
 
 
@@ -693,8 +700,8 @@ sciGetFontOrientation (sciPointObj * pobj)
   {
     return (sciGetFontContext(pobj))->textorientation;
   }
-  printSetGetErrorMessage("font_orientation");
-  return 0;
+  printSetGetErrorMessage("font_angle");
+  return 0.0;
 
 }
 
@@ -2161,9 +2168,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("points");
-      *numrow = -1;
-      *numcol = -1;
+      *numrow = -2;
+      *numcol = -2;
       return (double*)NULL;
       break;
     }

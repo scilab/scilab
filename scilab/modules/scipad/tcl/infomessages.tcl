@@ -268,6 +268,7 @@ proc pleaseuseabetterscilabversion {bugnumber {furtherrefs {}}} {
 # Many thanks to the Operational Team of the Scilab Consortium
 # Scilab 5 definitely rocks
     global ScilabBugzillaURL latestbackportedscipadversionURL
+    global pad
     set bugzillabugURL {}
     append bugzillabugURL $ScilabBugzillaURL "/show_bug.cgi?id=$bugnumber"
     set mes {}
@@ -283,7 +284,7 @@ proc pleaseuseabetterscilabversion {bugnumber {furtherrefs {}}} {
     append mes [mc "Note: Scilab 4.x and Scilab-gtk are offering this feature."] "\n" \
                [mc "A solution is to use a backported version of Scipad inside one of these environments, for instance:"] "\n" $latestbackportedscipadversionURL
     set tit [mc "Feature missing from Scilab 5"]
-    tk_messageBox -message $mes -icon error -title $tit
+    tk_messageBox -message $mes -icon error -title $tit -parent $pad
 }
 
 proc setscipadicon {toplevelname} {

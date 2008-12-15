@@ -26,7 +26,6 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sciprint.h"
 /*------------------------------------------------------------------------*/
 
 int get_pixel_drawing_mode_property( sciPointObj * pobj )
@@ -37,7 +36,7 @@ int get_pixel_drawing_mode_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
+    Scierror(999, _("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
     return -1 ;
   }
 

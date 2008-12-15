@@ -23,7 +23,7 @@
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "returnPropertyList.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "SetPropertyStatus.h"
@@ -181,13 +181,17 @@ int get_data_property( sciPointObj * pobj )
       sciReturnEmptyMatrix();
       status = SET_PROPERTY_SUCCEED;
     }
-    else if (data == NULL)
+    else if (data == NULL && nbRow == -1 && nbCol == -1)
     {
       /* data allocation failed */
-      sciprint(_("%s: No more memory."), "get_data_property") ;
-      sciReturnEmptyMatrix();
+      Scierror(999, _("%s: No more memory."), "get_data_property") ;
       status = SET_PROPERTY_ERROR;
     }
+		else if (data == NULL)
+		{
+			Scierror(999, _("%s property does not exist for this handle.\n"),"data");
+			return -1;
+		}
     else
     {
       status = sciReturnMatrix( data, nbRow, nbCol ) ;

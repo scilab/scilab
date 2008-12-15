@@ -417,6 +417,7 @@
 ::msgcat::mcset it_it "The contents of " "Il contenuto di"
 ::msgcat::mcset it_it "has changed on disk, save it anyway?"\
                       "è cambiato sul disco, salvare comunque?"
+::msgcat::mcset it_it "The contents and/or properties of " "Il contenuto e/o proprietà di"
 ::msgcat::mcset it_it "has been modified outside of Scipad. Do you want to\
                        reload it?"\
                       "è stato cambiato fuori da Scipad. Ricaricarlo dal\
