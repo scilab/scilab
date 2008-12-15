@@ -62,7 +62,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	/**
 	 * Set the mask & the mask description for the filechooser
 	 * @param mask the mask to set
-	 * @param maskDescription the maskDescription to set
+	 * @param fileMaskDescription the maskDescription to set
 	 */
 	public void addMask(String[] mask, String[] fileMaskDescription) {	
 		

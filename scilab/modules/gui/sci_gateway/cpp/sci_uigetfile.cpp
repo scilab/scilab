@@ -97,7 +97,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		{
 			Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"),fname, 1);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}		
 		GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &mask);
 
@@ -117,7 +117,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		{
 			Scierror(999, _("%s: Wrong size for input argument #%d: A string matrix expected.\n"),fname, 1);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}
 
 	}
@@ -131,7 +131,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		{ 
 			Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 2);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}
 
 		GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow2, &nbCol2, &initialDirectory);
@@ -139,7 +139,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		{
 			Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"),fname, 2);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}
 	}
 
@@ -152,14 +152,14 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		{ 
 			Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 3);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}		
 		GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRow3, &nbCol3, &titleBox);
 		if (nbCol3 != 1 || nbRow3 != 1) 
 		{
 			Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"),fname, 3);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}
 	}
 
@@ -172,14 +172,14 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		{ 
 			Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 4);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}				
 		GetRhsVar(4, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow4, &nbCol4, &multipleSelectionAdr);
 		if (nbCol4 != 1 || nbRow4 != 1) 
 		{
 			Scierror(999, _("%s: Wrong size for input argument #%d: A boolean matrix expected.\n"),fname, 4);
 			FREE(optName);
-			return false;
+			return FALSE;
 		}			
 		multipleSelection = istk(multipleSelectionAdr)[0];
 	}
@@ -251,7 +251,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 
 
 	//uigetfile with single file selection
-	if (multipleSelection == false) 
+	if (multipleSelection == FALSE) 
 	{
 		if (Lhs != 1)
 		{

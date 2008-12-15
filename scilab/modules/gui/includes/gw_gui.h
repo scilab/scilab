@@ -25,7 +25,6 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len);
 int sci_delmenu(char *fname,unsigned long fname_len);
 int sci_setmenu(char *fname,unsigned long fname_len);
 int sci_unsetmenu(char *fname,unsigned long fname_len);
-int C2F(sci_xgetfile)(char *fname,unsigned long fname_len);
 int sci_uigetdir(char *fname,unsigned long l);
 #include "sci_raise_window.h"
 int sci_getlookandfeel( char * fname, unsigned long fname_len ) ;

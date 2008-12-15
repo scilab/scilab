@@ -31,7 +31,6 @@ static gw_generic_table Tab[]=
 	{sci_delmenu,"delmenu"},
 	{sci_setmenu,"setmenu"},
 	{sci_unsetmenu,"unsetmenu"},
-	{C2F(sci_xgetfile),"xgetfile"},
  	{C2F(sci_raise_window),"raise_window"},
 	{sci_getlookandfeel,"getlookandfeel"},
 	{sci_getinstalledlookandfeels,"getinstalledlookandfeels"},
