@@ -95,7 +95,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscicore_la_demosintrodir)" \
 	"$(DESTDIR)$(libscicore_la_etcdir)" \
 	"$(DESTDIR)$(libscicore_la_rootdir)" \
 	"$(DESTDIR)$(libscicore_la_sci_gatewaydir)" \
@@ -132,7 +131,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
 	src/c/comparehandles.c src/c/setPrecisionFPU.c \
-	src/c/scimem64.c src/fortran/algebre.f src/fortran/clunit.f \
+	src/c/LaunchScilabSignal.c src/c/scimem64.c \
+	src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
 	src/fortran/nextj.f src/fortran/functionsforbasout.f \
@@ -279,7 +279,8 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-gw_dynamic_generic.lo \
 	libscicore_la-dynamic_gateways.lo libscicore_la-readGateway.lo \
 	libscicore_la-comparehandles.lo \
-	libscicore_la-setPrecisionFPU.lo $(am__objects_1)
+	libscicore_la-setPrecisionFPU.lo \
+	libscicore_la-LaunchScilabSignal.lo $(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
 	isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
@@ -371,14 +372,12 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscicore_la_SOURCES)
 DIST_SOURCES = $(am__libscicore_la_SOURCES_DIST)
-libscicore_la_demosintroDATA_INSTALL = $(INSTALL_DATA)
 libscicore_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicore_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicore_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 libscicore_la_xmlDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscicore_la_demosintro_DATA) $(libscicore_la_etc_DATA) \
-	$(libscicore_la_root_DATA) $(libscicore_la_sci_gateway_DATA) \
-	$(libscicore_la_xml_DATA)
+DATA = $(libscicore_la_etc_DATA) $(libscicore_la_root_DATA) \
+	$(libscicore_la_sci_gateway_DATA) $(libscicore_la_xml_DATA)
 libscicore_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscicore_la_include_HEADERS)
 ETAGS = etags
@@ -603,7 +602,8 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
 	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
-	src/c/comparehandles.c src/c/setPrecisionFPU.c $(am__append_1)
+	src/c/comparehandles.c src/c/setPrecisionFPU.c \
+	src/c/LaunchScilabSignal.c $(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
@@ -860,19 +860,8 @@ includes/warningmode.h \
 includes/x_main.h \
 includes/xscion.h \
 includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h
-
-
-#### core : demos files ####
-libscicore_la_demosintrodir = $(mydatadir)/demos/intro/
-libscicore_la_demosintro_DATA = demos/intro/extf.sce \
-demos/intro/Makefile.mak \
-demos/intro/MakeC.mak \
-demos/intro/MakeF.mak \
-demos/intro/dem01.dem \
-demos/intro/extc.sce \
-demos/intro/Makefile \
-demos/intro/dem01_gateway.sce
+includes/setPrecisionFPU.h \
+includes/LaunchScilabSignal.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -907,7 +896,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -918,11 +907,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -1003,6 +998,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-InitScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-InitializeCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-IsAScalar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-LaunchScilabSignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-LoadFunctionsTab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SCIHOME.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SendScilabJobs.Plo@am__quote@
@@ -1681,6 +1677,13 @@ libscicore_la-setPrecisionFPU.lo: src/c/setPrecisionFPU.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setPrecisionFPU.c' object='libscicore_la-setPrecisionFPU.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-setPrecisionFPU.lo `test -f 'src/c/setPrecisionFPU.c' || echo '$(srcdir)/'`src/c/setPrecisionFPU.c
+
+libscicore_la-LaunchScilabSignal.lo: src/c/LaunchScilabSignal.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-LaunchScilabSignal.lo -MD -MP -MF $(DEPDIR)/libscicore_la-LaunchScilabSignal.Tpo -c -o libscicore_la-LaunchScilabSignal.lo `test -f 'src/c/LaunchScilabSignal.c' || echo '$(srcdir)/'`src/c/LaunchScilabSignal.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-LaunchScilabSignal.Tpo $(DEPDIR)/libscicore_la-LaunchScilabSignal.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/LaunchScilabSignal.c' object='libscicore_la-LaunchScilabSignal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-LaunchScilabSignal.lo `test -f 'src/c/LaunchScilabSignal.c' || echo '$(srcdir)/'`src/c/LaunchScilabSignal.c
 
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
@@ -2561,23 +2564,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscicore_la_demosintroDATA: $(libscicore_la_demosintro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscicore_la_demosintrodir)" || $(MKDIR_P) "$(DESTDIR)$(libscicore_la_demosintrodir)"
-	@list='$(libscicore_la_demosintro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscicore_la_demosintroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicore_la_demosintrodir)/$$f'"; \
-	  $(libscicore_la_demosintroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicore_la_demosintrodir)/$$f"; \
-	done
-
-uninstall-libscicore_la_demosintroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscicore_la_demosintro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscicore_la_demosintrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscicore_la_demosintrodir)/$$f"; \
-	done
 install-libscicore_la_etcDATA: $(libscicore_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicore_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicore_la_etcdir)"
@@ -2742,7 +2728,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicore_la_demosintrodir)" "$(DESTDIR)$(libscicore_la_etcdir)" "$(DESTDIR)$(libscicore_la_rootdir)" "$(DESTDIR)$(libscicore_la_sci_gatewaydir)" "$(DESTDIR)$(libscicore_la_xmldir)" "$(DESTDIR)$(libscicore_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicore_la_etcdir)" "$(DESTDIR)$(libscicore_la_rootdir)" "$(DESTDIR)$(libscicore_la_sci_gatewaydir)" "$(DESTDIR)$(libscicore_la_xmldir)" "$(DESTDIR)$(libscicore_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2790,9 +2776,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local \
-	install-libscicore_la_demosintroDATA \
-	install-libscicore_la_etcDATA \
+install-data-am: install-data-local install-libscicore_la_etcDATA \
 	install-libscicore_la_includeHEADERS \
 	install-libscicore_la_rootDATA \
 	install-libscicore_la_sci_gatewayDATA \
@@ -2834,8 +2818,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscicore_la_demosintroDATA \
-	uninstall-libscicore_la_etcDATA \
+uninstall-am: uninstall-libscicore_la_etcDATA \
 	uninstall-libscicore_la_includeHEADERS \
 	uninstall-libscicore_la_rootDATA \
 	uninstall-libscicore_la_sci_gatewayDATA \
@@ -2851,8 +2834,7 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscicore_la_demosintroDATA \
-	install-libscicore_la_etcDATA \
+	install-info-am install-libscicore_la_etcDATA \
 	install-libscicore_la_includeHEADERS \
 	install-libscicore_la_rootDATA \
 	install-libscicore_la_sci_gatewayDATA \
@@ -2862,8 +2844,7 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscicore_la_demosintroDATA \
-	uninstall-libscicore_la_etcDATA \
+	uninstall-am uninstall-libscicore_la_etcDATA \
 	uninstall-libscicore_la_includeHEADERS \
 	uninstall-libscicore_la_rootDATA \
 	uninstall-libscicore_la_sci_gatewayDATA \
@@ -2966,7 +2947,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -2976,7 +2957,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -2987,6 +2968,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \

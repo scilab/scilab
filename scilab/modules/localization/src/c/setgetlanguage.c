@@ -41,8 +41,6 @@
 #include "MALLOC.h"
 #include "tableslanguages.h"
 #include "defaultlanguage.h"
-
-
 #include "scilabDefaults.h"
 #include "../../../io/includes/setenvc.h"
 
@@ -275,6 +273,7 @@ BOOL exportLocaleToSystem(char *locale){
 		fprintf(stderr,"Localization: Failed to declare the system variable %s\n", EXPORTENVLOCALE);
 		return FALSE;
 	}
+
 #ifdef _MSC_VER
 #ifdef USE_SAFE_GETTEXT_DLL
 	{
@@ -286,6 +285,10 @@ BOOL exportLocaleToSystem(char *locale){
 		gettext_putenv(env);
 	}
 #endif
+#else
+	/* Export LC_NUMERIC to the system to make sure that the rest of system
+	   is using the english notation (Java, Tcl ...) */
+	setenvc("LC_NUMERIC",LCNUMERICVALUE);
 #endif
 	
 	return TRUE;

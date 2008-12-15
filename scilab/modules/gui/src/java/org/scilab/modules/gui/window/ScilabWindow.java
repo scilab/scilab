@@ -48,7 +48,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * Creates a Scilab window object
 	 * @return the created window
 	 */
-	public static Window createWindow() {
+	public static Window createWindow() throws java.awt.HeadlessException{
 		return new ScilabWindow();
 	}
 

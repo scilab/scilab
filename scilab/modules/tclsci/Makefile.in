@@ -85,8 +85,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" \
-	"$(DESTDIR)$(libscitclsci_la_demostkdir)" \
 	"$(DESTDIR)$(libscitclsci_la_etcdir)" \
 	"$(DESTDIR)$(libscitclsci_la_rootdir)" \
 	"$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" \
@@ -168,15 +166,11 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscitclsci_la_SOURCES)
 DIST_SOURCES = $(am__libscitclsci_la_SOURCES_DIST)
-libscitclsci_la_demossciGUIDATA_INSTALL = $(INSTALL_DATA)
-libscitclsci_la_demostkDATA_INSTALL = $(INSTALL_DATA)
 libscitclsci_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscitclsci_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscitclsci_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libscitclsci_la_tclDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libscitclsci_la_demossciGUI_DATA) \
-	$(libscitclsci_la_demostk_DATA) $(libscitclsci_la_etc_DATA) \
-	$(libscitclsci_la_root_DATA) \
+DATA = $(libscitclsci_la_etc_DATA) $(libscitclsci_la_root_DATA) \
 	$(libscitclsci_la_sci_gateway_DATA) \
 	$(nobase_libscitclsci_la_tcl_DATA)
 am__libscitclsci_la_include_HEADERS_DIST = includes/setenvtcl.h \
@@ -625,35 +619,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@includes/withtk.h
 
 
-#### tclsci : demos files sciGUI ####
-@TCLTK_TRUE@libscitclsci_la_demossciGUIdir = $(mydatadir)/demos/sciGUI/
-@TCLTK_TRUE@libscitclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
-@TCLTK_TRUE@demos/sciGUI/test_demoplay.dpf \
-@TCLTK_TRUE@demos/sciGUI/scilab01.gif \
-@TCLTK_TRUE@demos/sciGUI/logo01.gif
-
-
-#### tclsci : demos files tk ####
-@TCLTK_TRUE@libscitclsci_la_demostkdir = $(mydatadir)/demos/tk/
-@TCLTK_TRUE@libscitclsci_la_demostk_DATA = demos/tk/timer \
-@TCLTK_TRUE@demos/tk/tcltk.dem.gateway.sce \
-@TCLTK_TRUE@demos/tk/rolodex.sce \
-@TCLTK_TRUE@demos/tk/demredraw.sci \
-@TCLTK_TRUE@demos/tk/rgb.txt \
-@TCLTK_TRUE@demos/tk/timer.sce \
-@TCLTK_TRUE@demos/tk/puzzle \
-@TCLTK_TRUE@demos/tk/scale.dem.sce \
-@TCLTK_TRUE@demos/tk/cscroll \
-@TCLTK_TRUE@demos/tk/tcolor \
-@TCLTK_TRUE@demos/tk/puzzle.dem.sce \
-@TCLTK_TRUE@demos/tk/scroll.dem.sce \
-@TCLTK_TRUE@demos/tk/color.dem.sce \
-@TCLTK_TRUE@demos/tk/rolodex \
-@TCLTK_TRUE@demos/tk/uicontrol.sci \
-@TCLTK_TRUE@ demos/tk/uicontrol1.sce \
-@TCLTK_TRUE@demos/tk/vscale
-
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -686,7 +651,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 @TCLTK_TRUE@pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -697,11 +662,17 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 @TCLTK_TRUE@MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 @TCLTK_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+@TCLTK_TRUE@pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+@TCLTK_TRUE@DEMOS_DIR = demos
+# List of the standard directory for examples
+@TCLTK_TRUE@EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 @TCLTK_TRUE@JARDIR = jar/
-# JAR files
+# JAR files mask
 @TCLTK_TRUE@JARMASK = *.jar
 # Chapter file 
 @TCLTK_TRUE@HELP_CHAPTERDIR = help/
@@ -1034,40 +1005,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscitclsci_la_demossciGUIDATA: $(libscitclsci_la_demossciGUI_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscitclsci_la_demossciGUIdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)"
-	@list='$(libscitclsci_la_demossciGUI_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscitclsci_la_demossciGUIDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f'"; \
-	  $(libscitclsci_la_demossciGUIDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f"; \
-	done
-
-uninstall-libscitclsci_la_demossciGUIDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscitclsci_la_demossciGUI_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f"; \
-	done
-install-libscitclsci_la_demostkDATA: $(libscitclsci_la_demostk_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscitclsci_la_demostkdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_demostkdir)"
-	@list='$(libscitclsci_la_demostk_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscitclsci_la_demostkDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f'"; \
-	  $(libscitclsci_la_demostkDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f"; \
-	done
-
-uninstall-libscitclsci_la_demostkDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscitclsci_la_demostk_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f"; \
-	done
 install-libscitclsci_la_etcDATA: $(libscitclsci_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscitclsci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_etcdir)"
@@ -1236,7 +1173,7 @@ check: check-am
 @TCLTK_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" "$(DESTDIR)$(libscitclsci_la_demostkdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_rootdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_rootdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1287,10 +1224,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local \
-	install-libscitclsci_la_demossciGUIDATA \
-	install-libscitclsci_la_demostkDATA \
-	install-libscitclsci_la_etcDATA \
+install-data-am: install-data-local install-libscitclsci_la_etcDATA \
 	install-libscitclsci_la_includeHEADERS \
 	install-libscitclsci_la_rootDATA \
 	install-libscitclsci_la_sci_gatewayDATA \
@@ -1332,9 +1266,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
-	uninstall-libscitclsci_la_demostkDATA \
-	uninstall-libscitclsci_la_etcDATA \
+uninstall-am: uninstall-libscitclsci_la_etcDATA \
 	uninstall-libscitclsci_la_includeHEADERS \
 	uninstall-libscitclsci_la_rootDATA \
 	uninstall-libscitclsci_la_sci_gatewayDATA \
@@ -1351,9 +1283,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscitclsci_la_demossciGUIDATA \
-	install-libscitclsci_la_demostkDATA \
-	install-libscitclsci_la_etcDATA \
+	install-info-am install-libscitclsci_la_etcDATA \
 	install-libscitclsci_la_includeHEADERS \
 	install-libscitclsci_la_rootDATA \
 	install-libscitclsci_la_sci_gatewayDATA install-man \
@@ -1363,9 +1293,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscitclsci_la_demossciGUIDATA \
-	uninstall-libscitclsci_la_demostkDATA \
-	uninstall-libscitclsci_la_etcDATA \
+	uninstall-am uninstall-libscitclsci_la_etcDATA \
 	uninstall-libscitclsci_la_includeHEADERS \
 	uninstall-libscitclsci_la_rootDATA \
 	uninstall-libscitclsci_la_sci_gatewayDATA \
@@ -1469,7 +1397,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @TCLTK_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @TCLTK_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@TCLTK_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@TCLTK_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @TCLTK_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @TCLTK_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @TCLTK_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1479,7 +1407,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		    fi \
 @TCLTK_TRUE@		  done; \
 @TCLTK_TRUE@	  fi; \
-@TCLTK_TRUE@	done 
+@TCLTK_TRUE@	done
 # Install the help chapter
 @TCLTK_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
 @TCLTK_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1490,6 +1418,22 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	done
+# Install the demos & examples
+@TCLTK_TRUE@	@echo "-------- Install demos & examples (if any) --------"; \
+@TCLTK_TRUE@	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+@TCLTK_TRUE@	  if test -d $(srcdir)/$$dir/; then \
+@TCLTK_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@TCLTK_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
+@TCLTK_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+@TCLTK_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+@TCLTK_TRUE@		    else \
+@TCLTK_TRUE@		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@TCLTK_TRUE@	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@TCLTK_TRUE@		    fi \
+@TCLTK_TRUE@		  done; \
+@TCLTK_TRUE@	  fi; \
 @TCLTK_TRUE@	done
 # Install the macros
 @TCLTK_TRUE@	@echo "-------- Install macros (if any) --------"; \

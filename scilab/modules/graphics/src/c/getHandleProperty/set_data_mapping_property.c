@@ -25,7 +25,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -34,13 +34,13 @@ int set_data_mapping_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"data_mapping") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"data_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_GRAYPLOT )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"data_mapping") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"data_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -51,7 +51,7 @@ int set_data_mapping_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"scaled","direct");
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"scaled","direct");
     return SET_PROPERTY_ERROR ;
   }
 

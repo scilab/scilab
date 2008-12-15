@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -32,13 +32,13 @@ int set_bar_width_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"bar_width") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"bar_width") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_POLYLINE )
   {
-    sciprint("Object has no bar shift.\n") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"bar_width") ;
     return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE (pobj)->bar_width = getDoubleFromStack( stackPointer ) ;

@@ -23,7 +23,6 @@
 
 #include <stdio.h> 
 #include <string.h>
-#include <math.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <time.h>
@@ -32,12 +31,11 @@
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
-#include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
-
+#include "Scierror.h"
 
 
 /**CloneText
@@ -109,7 +107,7 @@ CloneText (sciPointObj * pthis)
     int size = ppThisText->size_of_user_data;
     
     if((ppCopyText->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-      sciprint(_("Can not allocate user_data for cloned object.\n"));
+      Scierror(999, _("Can not allocate user_data for cloned object.\n"));
       ppCopyText->user_data = (int *) NULL;
       ppCopyText->size_of_user_data = 0;
     }
@@ -156,7 +154,7 @@ sciCloneObj (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint (_("This object cannot be cloned.\n"));
+      Scierror (999, _("This object cannot be cloned.\n"));
       return (sciPointObj *)NULL;
       break;
     }
@@ -205,7 +203,7 @@ CloneRectangle (sciPointObj * pthis)
       int size = pRECTANGLE_FEATURE (pthis)->size_of_user_data;
       
       if((pRECTANGLE_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-		  sciprint(_("%s: No more memory.\n"),"CloneRectangle");
+		  Scierror(999, _("%s: No more memory.\n"),"CloneRectangle");
 		  pRECTANGLE_FEATURE (pobj)->user_data = (int *) NULL;
 		  pRECTANGLE_FEATURE (pobj)->size_of_user_data = 0;
       }
@@ -265,7 +263,7 @@ ClonePolyline (sciPointObj * pthis)
       int size = pPOLYLINE_FEATURE (pthis)->size_of_user_data;
       
       if((pPOLYLINE_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-		  sciprint(_("%s: No more memory.\n"),"ClonePolyline");
+		  Scierror(999, _("%s: No more memory.\n"),"ClonePolyline");
 		  pPOLYLINE_FEATURE (pobj)->user_data = (int *) NULL;
 		  pPOLYLINE_FEATURE (pobj)->size_of_user_data = 0;
       }
@@ -322,7 +320,7 @@ CloneArc (sciPointObj * pthis)
       int size = pARC_FEATURE (pthis)->size_of_user_data;
       
       if((pARC_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-		  sciprint(_("%s: No more memory.\n"),"CloneArc");
+		  Scierror(999, _("%s: No more memory.\n"),"CloneArc");
 		  pARC_FEATURE (pobj)->user_data = (int *) NULL;
 		  pARC_FEATURE (pobj)->size_of_user_data = 0;
       }
@@ -373,7 +371,7 @@ int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest )
     *dstUserData = MALLOC( *srcSize * sizeof(int) ) ;
     if ( *dstUserData == NULL )
     {
-		  sciprint(_("%s: No more memory.\n"),"CloneUserData");
+		  Scierror(999, _("%s: No more memory.\n"),"CloneUserData");
 		  *dstSize     = 0 ;
 		  *srcUserData = NULL ;
 		  return -1 ;

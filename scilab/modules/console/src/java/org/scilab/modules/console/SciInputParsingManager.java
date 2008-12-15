@@ -21,7 +21,7 @@ import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.util.StringConstants;
 
-import org.scilab.modules.completion.GetPartLine;
+import org.scilab.modules.completion.Completion;
 
 /**
  * @author Vincent COUVERT
@@ -97,12 +97,15 @@ public class SciInputParsingManager implements InputParsingManager {
 	 * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getPartLevel(int)
 	 */
 	public String getPartLevel(int level) {
+		String returnLine = null;
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
 
 		String lineToParse = wholeLine.substring(0, caretPos);
-
-		return GetPartLine.getPartLevel(lineToParse);
+		if ( lineToParse.length() > 0 ) {
+			returnLine = Completion.getPartLevel(lineToParse);
+		}
+		return returnLine;
 	}
 
 	/**
@@ -112,11 +115,15 @@ public class SciInputParsingManager implements InputParsingManager {
 	 * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getPartLevel(int)
 	 */
 	public String getFilePartLevel(int level) {
+		String returnLine = null;
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
-
+		
 		String lineToParse = wholeLine.substring(0, caretPos);
-		return GetPartLine.getFilePartLevel(lineToParse);
+		if ( lineToParse.length() > 0 ) {
+			returnLine = Completion.getFilePartLevel(lineToParse);
+		}
+		return returnLine;
 	}
 
 	/**

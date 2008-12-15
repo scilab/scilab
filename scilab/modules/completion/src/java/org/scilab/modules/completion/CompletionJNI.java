@@ -41,4 +41,7 @@ public class CompletionJNI {
   public final static native String[] searchVariablesDictionary(String jarg1);
   public final static native String[] searchFilesDictionary(String jarg1);
   public final static native String[] searchHandleGraphicsPropertiesDictionary(String jarg1);
+  public final static native String getPartLevel(String jarg1);
+  public final static native String getFilePartLevel(String jarg1);
+  public final static native String getCommonPart(String[] jarg1, int jarg2);
 }

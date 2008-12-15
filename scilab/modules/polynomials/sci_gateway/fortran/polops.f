@@ -838,6 +838,8 @@ c     get arg2
       if(.not.chkvar(var2,var3)) then
          fin=-fin
          top=top+1
+         call error(278)
+         return
       endif
 c     get arg1
       top=top-1

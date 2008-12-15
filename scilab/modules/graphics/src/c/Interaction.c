@@ -31,7 +31,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "DrawObjects.h"
@@ -60,7 +60,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_SUBWIN:
       if ((pSUBWIN_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
+	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -73,7 +73,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_ARC:
       if ((pARC_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
+	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -87,7 +87,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_RECTANGLE:
       if ((pRECTANGLE_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
+	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -101,7 +101,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_SEGS:  
       if ((pSEGS_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
+	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -115,7 +115,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_FEC:  
       if ((pFEC_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
+	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -129,7 +129,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_GRAYPLOT: 
       if ((pGRAYPLOT_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
+	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -143,7 +143,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_POLYLINE:
       if ((pPOLYLINE_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
+	  Scierror(9999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -166,7 +166,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_LABEL: /* F.Leray 28.05.04 */
 	
     default:
-      sciprint(_("No Callback is associated with this Entity.\n"));
+      Scierror(999, _("No Callback is associated with this Entity.\n"));
       return -1;
       break;
     }
@@ -224,7 +224,7 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint(_("No Callback is associated with this Entity.\n"));
+      Scierror(999, _("No Callback is associated with this Entity.\n"));
       return (char *)NULL;
       break;
     }
@@ -274,7 +274,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint (_("No Callback is associated with this Entity.\n"));
+      Scierror(999, _("No Callback is associated with this Entity.\n"));
       return 100;
       break;
     }
@@ -324,7 +324,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint (_("No Callback is associated with this Entity.\n"));
+      Scierror (999, _("No Callback is associated with this Entity.\n"));
       return 100;
       break;
     }
@@ -392,7 +392,7 @@ sciDelCallback (sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint(_("No Callback is associated with this Entity.\n"));
+      Scierror(999, _("No Callback is associated with this Entity.\n"));
       return -1;
       break;
     }
@@ -511,7 +511,7 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
     }
     else
     {
-      sciprint(_("This object can not be moved.\n"));
+      Scierror(999, _("This object can not be moved.\n"));
       return -1;
     }
     
@@ -572,7 +572,7 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
   case SCI_LEGEND:
   case SCI_UIMENU:
   default:
-    sciprint(_("This object can not be moved.\n"));
+    Scierror(999, _("This object can not be moved.\n"));
     return -1;
     break;
   }    
@@ -586,6 +586,12 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
 int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
 {   
   int status = moveObj(pobj, d, m);
+
+	if (status < 0)
+	{
+		return status;
+	}
+
   if (opt)
   {
     /* should be sci draw single obj */

@@ -74,9 +74,4 @@ libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 libsciinterpolation_la_includedir=$(pkgincludedir)/interpolation
 libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h 
 
-
-####�interpolation : demos files ####
-libsciinterpolation_la_demosdir=$(mydatadir)/demos/
-libsciinterpolation_la_demos_DATA = demos/interp_demo.sci
-
 include $(top_srcdir)/Makefile.incl.am

@@ -9,8 +9,7 @@
 
 if GUI
 #List of the c files
-COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c \
-src/jni/GetPartLine_wrap.c
+COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c 
 USEANT=1
 
 endif
@@ -23,7 +22,8 @@ src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
 src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
-src/c/getPartLine.c
+src/c/getPartLine.c \
+src/c/getCommonPart.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -76,8 +76,7 @@ libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Completion.i \
-src/jni/GetPartLine.i
+SWIG_WRAPPERS = src/jni/Completion.i 
 
 if SWIG
 BUILT_SOURCES=swig

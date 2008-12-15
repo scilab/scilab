@@ -1,3 +1,23 @@
+Francois VOGEL, 13/12/08
+ * Fixed bug 3806 (drag and drop fails because package tkdnd is not found)
+ * File/Revert did not update the readonly flag. Reverting to the saved state
+   of a buffer while the readonly flag of the file on disk has changed since
+   last read therefore ended up in wrong [ReadOnly] information in the title
+   bar
+ * Scipad automatically detects properties changes such as modification of the
+   readonly flag outside of Scipad
+ * Added -parent option to tk_messageBox to make it modal everywhere an
+   acknowledgement or an answer is requested from the user. Without this,
+   it was possible to let the message box open while continuing fiddling with
+   Scipad, and this was contrary to assumptions in most procs. Also it was
+   possible to produce Tcl errors. Example: open two files, modify one of
+   them, File/Revert, don't click the confirmation box, go back into Scipad,
+   close the modified file (don't save) and now click the confirmation box
+   This change was required for Windows because the message box is not modal
+   on this platform - On Linux it does not harm and as a bonus it centers
+   the dialog inside its parent
+ * version --> 7.11
+
 Francois VOGEL, 28/11/08
  * Fixed bug 3793 (localization issue in Scilab with Tcl/Tk)
  * version --> 7.10

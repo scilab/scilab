@@ -327,6 +327,13 @@ if {[lsearch $menuFont "-size"] != -1} {
 #############
 # Additional packages
 
+# add path for finding the additional packages in Scilab binary versions
+# (bug 3806) - the paths organization is not the same in binary versions
+# and in the development tree
+# for tkdnd:   $env(SCIINSTALLPATH)/modules/tclsci/tcl
+# for msgcat:  currently no longer distributed with Scilab (bug 3805) <TODO> fix this!
+lappend ::auto_path $env(SCIINSTALLPATH)/modules/tclsci/tcl
+
 # message files and localization to avoid ifs on $lang
 if {[catch {package require msgcat}] == 0} {
     # package is present and loaded

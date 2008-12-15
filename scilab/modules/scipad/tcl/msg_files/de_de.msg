@@ -355,6 +355,7 @@
 ::msgcat::mcset de_de "has changed on disk, save it anyway?"\
                    "auf der Festplatte hat sich ver\u00E4ndert. M\u00F6chten Sie\
                     trotzdem abspeichern?"
+::msgcat::mcset de_de "The contents and/or properties of " "Der Inhalt und/oder die Eigenschaften von"
 ::msgcat::mcset de_de "has been modified outside of Scipad. Do you want to\
                     reload it?"\
                    "wurde au\u00DFerhalb von Scipad ver\u00E4ndert.  M\u00F6chten Sie sie\

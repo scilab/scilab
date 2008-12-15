@@ -91,4 +91,35 @@ public static String[] searchHandleGraphicsPropertiesDictionary(String somechars
     return CompletionJNI.searchHandleGraphicsPropertiesDictionary(somechars);
   }
 
+  
+/**
+* pre parsing current line to search with completion
+* @param[in] current line
+* @return word to find with completion
+*/
+public static String getPartLevel(String line) {
+    return CompletionJNI.getPartLevel(line);
+  }
+
+  
+/**
+* pre parsing current line to search with completion (file)
+* @param[in] current line
+* @return word to find with completion
+*/
+public static String getFilePartLevel(String line) {
+    return CompletionJNI.getFilePartLevel(line);
+  }
+
+  
+/**
+* Get common part to a array
+* @param[in] string array
+* @param[in] size of string array
+* @return common part
+*/
+public static String getCommonPart(String[] dictionnary, int sizeDictionnary) {
+    return CompletionJNI.getCommonPart(dictionnary, sizeDictionnary);
+  }
+
 }

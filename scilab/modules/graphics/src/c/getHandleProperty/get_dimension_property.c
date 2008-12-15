@@ -21,13 +21,20 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_dimension_property( sciPointObj * pobj )
 {
   int size[2] ;
+
+	if (sciGetEntityType(pobj) != SCI_FIGURE)
+	{
+		Scierror(999, _("%s property does not exist for this handle.\n"),"dimension");
+		return -1;
+	}
+
   size[0] = sciGetWidth(  pobj ) ;
   size[1] = sciGetHeight( pobj ) ;
   return sciReturnRowVectorFromInt( size, 2 ) ;

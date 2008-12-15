@@ -179,6 +179,8 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 
 #include "../c/completion_wrap_java.h"
+#include "getCommonPart.h"
+#include "getPartLine.h"
 #include "MALLOC.h"
 
 
@@ -469,6 +471,102 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_completion_CompletionJNI_getPartLevel(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jstring jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (char *)getPartLevel(arg1);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_completion_CompletionJNI_getFilePartLevel(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jstring jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (char *)getFilePartLevel(arg1);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_completion_CompletionJNI_getCommonPart(JNIEnv *jenv, jclass jcls, jobjectArray jarg1, jint jarg2) {
+  jstring jresult = 0 ;
+  char **arg1 = (char **) 0 ;
+  int arg2 ;
+  char *result = 0 ;
+  jint size1 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    int i = 0;
+    size1 = (*jenv)->GetArrayLength(jenv, jarg1);
+    arg1 = (char **) MALLOC((size1+1)*sizeof(char *));
+    /* make a copy of each string */
+    for (i = 0; i<size1; i++) {
+      jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg1, i);
+      const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
+      arg1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
+      strcpy(arg1[i], c_string);
+      (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
+      (*jenv)->DeleteLocalRef(jenv, j_string);
+    }
+    arg1[i] = 0;
+  }
+  arg2 = (int)jarg2; 
+  result = (char *)getCommonPart(arg1,arg2);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
+  {
+    int i;
+    for (i=0; i<size1-1; i++)
+    FREE(arg1[i]);
+    FREE(arg1);
+  }
   return jresult;
 }
 

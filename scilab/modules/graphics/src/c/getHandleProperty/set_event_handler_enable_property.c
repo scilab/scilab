@@ -21,7 +21,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -30,13 +30,13 @@ int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, 
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"event_handler") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"event_handler_enable") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType( pobj ) != SCI_FIGURE )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"event_handler");
+    Scierror(999, _("%s property does not exist for this handle.\n"),"event_handler_enable");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -48,7 +48,7 @@ int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, 
   {
     return sciSetIsEventHandlerEnable( pobj, FALSE ) ;
   }
-  sciprint(_("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_event_handler_enable_property",2,"on","off");
+  Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_event_handler_enable_property",2,"on","off");
   return SET_PROPERTY_ERROR ;
 
 }

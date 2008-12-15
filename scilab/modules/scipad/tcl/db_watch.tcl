@@ -1130,6 +1130,7 @@ proc createsetinscishellcomm {setofvars} {
 #   . Scipad does not transform globals into locals, which would otherwise mess
 #     up the visibility assumptions in the debugged function
     global watchvars watchvarsprops unklabel
+    global pad
     set fullcomm ""
     set varset ""
     set retcomm ""
@@ -1174,7 +1175,7 @@ proc createsetinscishellcomm {setofvars} {
                 tk_messageBox -message [concat \
                     [mc "Undefined elements are not legal in variable"] $var \
                     [mc ".\nThis variable will not be updated in Scilab."] ]\
-                    -icon warning -type ok \
+                    -icon warning -type ok  -parent $pad \
                     -title [mc "Illegal undefined element found"]
                 continue
             }

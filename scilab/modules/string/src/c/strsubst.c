@@ -81,17 +81,19 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 	{
 		count = 0;
 		len = (int)strlen (string_to_search);
-		occurrence_str = input_string;
-		while(occurrence_str != NULL && *occurrence_str != '\0') 
+		if (len)
 		{
-			occurrence_str = strstr (occurrence_str, string_to_search);
-			if (occurrence_str != NULL) 
+			occurrence_str = input_string;
+			while(occurrence_str != NULL && *occurrence_str != '\0') 
 			{
-				occurrence_str += len;
-				count++;
+				occurrence_str = strstr (occurrence_str, string_to_search);
+				if (occurrence_str != NULL) 
+				{
+					occurrence_str += len;
+					count++;
+				}
 			}
 		}
-
 		len = count * ((int)strlen(replacement_string) - (int)strlen(string_to_search)) + (int)strlen(input_string);
 	}
 	else len = (int)strlen(input_string);

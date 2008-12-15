@@ -13,39 +13,58 @@
 package org.scilab.modules.gui.utils;
 
 import java.io.File;
-
 import javax.swing.filechooser.FileFilter;
+
+import org.scilab.modules.gui.filechooser.FileChooserInfos;
 
 /**
  * Generic file filter used for Scilab file selection GUIs
  * @author Vincent COUVERT
+ * @author Sylvestre KOUMAR
  */
 public class SciFileFilter extends FileFilter {
-	
+
 	private String mask;
 	private String description;
+	private int filterIndex;
+	//private int lastFilterIndex;
 
 	/**
 	 * Constructor
-	 * @param fileMask the file maks to apply
+	 * @param fileMask the file mask to apply
+	 * @param maskdescription description of each mask
+	 * @param filterIndex index the mask from the mask matrix
 	 */
-	public SciFileFilter(String fileMask) {
-		if (fileMask.equals("*.sci")) {
-			description = "Scilab SCI files";
-		} else if (fileMask.equals("*.sce")) {
-			description = "Scilab SCE files";
-		} else if (fileMask.equals("*.bin")) {
-			description = "Scilab binary files";
-		} else if (fileMask.equals("*.sc*")) {
-			description = "All Scilab files";
-		} else if (fileMask.equals("*.cos*")) {
-			description = "Scicos files";
+	public SciFileFilter(String fileMask, String maskdescription, int filterIndex) {
+		
+		if (maskdescription == null) {
+
+			if (fileMask.equals("*.sci")) {
+				description = "Scilab SCI files";
+			} else if (fileMask.equals("*.sce")) {
+				description = "Scilab SCE files";
+			} else if (fileMask.equals("*.bin")) {
+				description = "Scilab binary files";
+			} else if (fileMask.equals("*.sc*")) {
+				description = "All Scilab files";
+			} else if (fileMask.equals("*.cos*")) {
+				description = "Scicos files";
+			} else {
+				description = "All " + fileMask + " files";
+			}
+
 		} else {
-			description = "All " + fileMask + " files";
+			//If the mask description is filled
+			//we use those descriptions given by the user
+			this.description = maskdescription;
 		}
+
 		// Create a regexp
 		mask = fileMask.replaceAll("\\.", "\\\\."); // Point is a special regexp character
 		mask = mask.replaceAll("\\*", ".\\*");
+		
+		this.filterIndex = filterIndex;
+		//this.lastFilterIndex = lastFilterIndex;
 	}
 
 	/**
@@ -57,10 +76,15 @@ public class SciFileFilter extends FileFilter {
 	public boolean accept(File pathname) {
 		if (pathname.isDirectory()) {
 			return true;
-		}
+		}		
+		
 		if (mask.equals("")) { // Bug 2861: have to return true for all files if no mask given
 			return true;
-		} else {
+		} else {			
+			
+			int selectedIndex = this.filterIndex + 1;
+			FileChooserInfos.getInstance().setFilterIndex(selectedIndex);
+			//System.out.println("JAVA this.filterIndex: "+selectedIndex);			
 			return pathname.getAbsolutePath().matches(mask);
 		}
 	}
@@ -74,5 +98,4 @@ public class SciFileFilter extends FileFilter {
 		// TODO Auto-generated method stub
 		return description;
 	}
-	
 }

@@ -4408,7 +4408,7 @@ public class ScilabBridge {
 	 * @param fileChooser the file chooser we want to set the mask of
 	 * @param mask the mask to set
 	 */
-	public static void setMask(FileChooser fileChooser, String mask) {
+	public static void setMask(FileChooser fileChooser, String[] mask) {
 		ScilabFileChooserBridge.setMask(fileChooser, mask);
 	}
 	
@@ -4470,6 +4470,33 @@ public class ScilabBridge {
 	public static void exportCustomFileChooser() {
 		ScilabFileChooserBridge.createFileChooser();
 	}	
+	
+	/**
+	 * Enable the multiple selection
+	 * @param scilabFileChooser the file chooser we want to get the  muliple selection 
+	 * @param multipleSelection boolean for the multiple selection 
+	 */
+	public static void setMultipleSelection(FileChooser fileChooser, boolean multipleSelection) {
+		ScilabFileChooserBridge.setMultipleSelection(fileChooser, multipleSelection);
+	}
+
+	/**
+	 * Get the path name of selected files
+	 * @param fileChooser the file chooser we want to get the path of selectd files 
+	 * @return the path of selected files
+	 */
+	public static String getSelectionPathName(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getSelectionPathName(fileChooser);
+	}
+	
+	/**
+	 * Get the filter index
+	 * @param scilabFileChooser the file chooser we want to get the filter indexs
+	 * @return the filter index
+	 */
+	public static int getFilterIndex(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getFilterIndex(fileChooser);
+	}
 
 	/*********************/
 	/* MessageBox Bridge */

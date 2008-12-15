@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -29,7 +29,7 @@ int get_legend_location_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_LEGEND)
   {
-    sciprint(_("%s property undefined for this handle.\n"), "legend_location") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"legend_location") ;	
     return -1 ;
   }
 
@@ -70,7 +70,7 @@ int get_legend_location_property( sciPointObj * pobj )
     break;
 
   default : 
-    sciprint(_("%s is not correctly defined.\n"), "legend_location") ;
+    Scierror(999, _("%s is not correctly defined.\n"), "legend_location") ;
     break;
   }
   return -1 ;

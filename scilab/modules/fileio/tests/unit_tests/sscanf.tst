@@ -1,9 +1,61 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+n = 50;
+nstr = strcat(string(1:n),' ');
+fstr = strcat(strsubst(string(ones(1,n)),'1','%d'), ' ');
+
+ierr = execstr("sscanf(1,''%d'')", "errcatch");
+if ierr <> 999 then pause,end
+
+[A1, A2, A3, A4, A5, A6, A7, A8] = sscanf(nstr, fstr);
+ref = 1:8 ;
+if or([A1, A2, A3, A4, A5, A6, A7, A8] <> ref) then pause,end
+
+v = 'v';
+args = strcat( v(ones(n,1)) + string(1:n)',',');
+ierr = execstr('[' + args + '] = sscanf(nstr, fstr);','errcatch');
+ref = 1:n ;
+ierr = execstr('r = or([' + args + '] <> ref)','errcatch');
+if ierr <> 0 then pause,end
+if r <> %f then pause,end
+
+n = 500;
+nstr = strcat(string(1:n),' ');
+fstr = strcat(strsubst(string(ones(1,n)),'1','%d'), ' ');
+v = 'v';
+args = strcat( v(ones(n,1)) + string(1:n)',',');
+ierr = execstr('[' + args + '] = sscanf(nstr, fstr);','errcatch');
+if ierr <> 999 then pause,end
+
+n = 50;
+nstr = strcat(string(1:n),' ');
+fstr = strcat(strsubst(string(ones(1,n)),'1','%d'), ' ');
+
+mputl(nstr,TMPDIR+'/fscanf.txt');
+[A1, A2, A3, A4, A5, A6, A7, A8] = fscanf(TMPDIR+'/fscanf.txt',fstr);
+ref = 1:8 ;
+if or([A1, A2, A3, A4, A5, A6, A7, A8] <> ref) then pause,end
+
+v = 'v';
+args = strcat( v(ones(n,1)) + string(1:n)',',');
+ierr = execstr('[' + args + '] = fscanf(TMPDIR+''/fscanf.txt'', fstr);','errcatch');
+ref = 1:n ;
+ierr = execstr('r = or([' + args + '] <> ref)','errcatch');
+if ierr <> 0 then pause,end
+if r <> %f then pause,end
+
+n = 500;
+nstr = strcat(string(1:n),' ');
+fstr = strcat(strsubst(string(ones(1,n)),'1','%d'), ' ');
+v = 'v';
+args = strcat( v(ones(n,1)) + string(1:n)',',');
+ierr = execstr('[' + args + '] = fscanf(TMPDIR+''/fscanf.txt'', fstr);','errcatch');
+if ierr <> 999 then pause,end
 
 //test format %i %d
 if sscanf('123','%i')<>123 then pause,end

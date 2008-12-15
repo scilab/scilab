@@ -21,21 +21,21 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
 
 /*--------------------------------------------------------------------------*/
 int get_default_axes_property( sciPointObj * pobj )
 {
-  if ( getAxesModel() != NULL ) 
-  {
-    return sciReturnHandle( sciGetHandle( getAxesModel() ) ) ;
-  }
-  else
-  {
-    sciprint("Default axes do not exist.");
-    return -1;
-  }
+
+	if (pobj != NULL)
+	{
+		/* This property should not be called on an handle */
+		Scierror(999, _("%s property does not exist for this handle.\n"), "default_axes");
+		return -1;
+	}
+
+  return sciReturnHandle( sciGetHandle( getAxesModel() ) ) ;
 }
 /*--------------------------------------------------------------------------*/

@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -30,7 +30,7 @@ int set_mark_size_unit_property( sciPointObj * pobj, size_t stackPointer, int va
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"mark_size_unit") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"mark_size_unit") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -44,7 +44,7 @@ int set_mark_size_unit_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
-     sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"point","tabulated");
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"point","tabulated");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

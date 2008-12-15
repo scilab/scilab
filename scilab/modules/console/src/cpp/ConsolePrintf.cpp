@@ -16,11 +16,21 @@
 #include "ConsolePrintf.hxx"
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
-using namespace  org_scilab_modules_gui_bridge;
+extern "C" {
+#include "getScilabJavaVM.h"
+#include "charEncoding.h"
+}
 
+using namespace  org_scilab_modules_gui_bridge;
 
 int ConsolePrintf(char *line)
 {
-  CallScilabBridge::display(getScilabJavaVM(), line);
-  return 0;
+	JavaVM *vm = getScilabJavaVM();
+	if (vm == NULL) { /* Java not yet or badly initialized */
+		printf("%s",UTFToLocale(line));
+	}else{
+		CallScilabBridge::display(vm, line);
+	}
+
+	return 0;
 }

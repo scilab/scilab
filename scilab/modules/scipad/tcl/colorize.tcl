@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 #####################################################################
 #
 # There are two relevant arrays used for colorization and keyword
@@ -627,13 +628,13 @@ proc colorizationinprogress {} {
 # certain actions (those that make use of the colorization result such as the
 # rem2 or textquoted tag) cannot be executed during colorization
 
-    global nbfilescurrentlycolorized
+    global nbfilescurrentlycolorized pad
 
     if {$nbfilescurrentlycolorized > 0} {
         set mes [mc "You can't do that while colorization is in progress.\
                  Please try again when finished."]
         set tit [mc "Command forbidden during colorization"]
-        tk_messageBox -message $mes -icon warning -title $tit
+        tk_messageBox -message $mes -icon warning -title $tit -parent $pad
         return true
     } else {
         return false
@@ -644,11 +645,11 @@ proc colorizationinprogress {} {
 proc iscurrentbufnotcolorized {} {
 # return true if current buffer is not colorized
 # certain debugger commands cannot be executed if colorization is disabled
-    global ColorizeIt
+    global ColorizeIt pad
     if {!$ColorizeIt} {
         set mes [mc "You must enable colorization to be able to launch the debugger!"]
         set tit [mc "The debugger needs colorization"]
-        tk_messageBox -message $mes -icon error -title $tit
+        tk_messageBox -message $mes -icon error -title $tit -parent $pad
         return true
     } else {
         return false

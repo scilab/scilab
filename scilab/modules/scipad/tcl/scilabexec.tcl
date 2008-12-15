@@ -90,7 +90,7 @@ proc execfile {{buf "current"} {getpath false}} {
         set nametosave [file join $tmpdir [file tail $listoffile("$textarea",fullname)]]
         if {[catch {writefileondisk $textarea $nametosave 0}] != 0} {
             set answer [tk_messageBox -title [mc "Silent file save failed"] \
-                    -icon question -type yesnocancel \
+                    -icon question -type yesnocancel -parent $pad \
                     -message [mc "File could not be saved in a temporary location.\nOverwrite original file?"] ]
             switch -- $answer {
                 yes    { filetosave $textarea; set f $listoffile("$textarea",fullname); set doexec 1 }
@@ -257,13 +257,13 @@ proc importmatlab {} {
 }
 
 proc failmatlabimp {} {
-    global ScilabBugzillaURL
+    global ScilabBugzillaURL pad
     tk_messageBox -title [mc "Matlab file import"]  \
       -message [concat [mc "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
                     offending Matlab file to"] \
                     $ScilabBugzillaURL] \
-      -icon error
+      -icon error -parent $pad
 }
 
 proc createhelpfile {whatkind} {
@@ -365,6 +365,8 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
     global sciprompt
 
     global tmpdir
+    global pad
+
     set bsiz_1  4095   ;# Must be consistent with bsiz defined in stack.h
     set lsiz_1 65535   ;# Must be consistent with lsiz defined in stack.h
     set commlength [string length $comm]
@@ -396,7 +398,8 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
             ScilabEval "exec(\"$fname\");" $opt1 $opt2
         }] != 0} {
             tk_messageBox  -title [mc "ScilabEval command cannot be passed to Scilab!"] -icon warning -type ok \
-                           -message [concat [mc impossibleScilabEval_message] "ScilabEval" $comm $opt1 $opt2]
+                           -message [concat [mc impossibleScilabEval_message] "ScilabEval" $comm $opt1 $opt2] \
+                           -parent $pad
         }
     } else {
         # Command is definitely too long to be passed to Scilab, even if exec'ed in a file
@@ -404,7 +407,8 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
         # Even tk_messageBox does not accept too large -message content
         set comm [concat "[string range $comm 0 4000]..." [mc "(end of command skipped)"] ]
         tk_messageBox  -title [mc "ScilabEval command cannot be passed to Scilab!"] -icon warning -type ok \
-                       -message [concat [mc impossibleScilabEval_message2] "ScilabEval" $comm $opt1 $opt2]
+                       -message [concat [mc impossibleScilabEval_message2] "ScilabEval" $comm $opt1 $opt2] \
+                       -parent $pad
     }
 }
 
@@ -423,6 +427,7 @@ proc isscilabbusy {{messagenumber "nomessage"} args} {
 # if $messagenumber is not given, then no message will be displayed and the
 # test on Scilab idleness is silent
     global sciprompt
+    global pad
     if {[string compare $sciprompt -1] == 0} {
         if {$messagenumber == "nomessage"} {
             return true
@@ -451,7 +456,7 @@ proc isscilabbusy {{messagenumber "nomessage"} args} {
                 "Unexpected message number in proc isscilabbusy - Please report."
             }
         }
-        tk_messageBox -message $mes -title [mc "Scilab working"] -type ok -icon info
+        tk_messageBox -message $mes -title [mc "Scilab working"] -type ok -icon info -parent $pad
         return true
     } else {
         return false
@@ -465,6 +470,7 @@ proc scilaberror {funnameargs} {
     # Tcl global interp is not supported by Scilab 5
     # See http://wiki.scilab.org/Tcl_Thread
     global Scilab5
+    global pad
     if {$ScilabErrorMessageBox} {
         if {$Scilab5} {
             # Let Scilab Display the message so that there is no more locking process
@@ -481,7 +487,7 @@ proc scilaberror {funnameargs} {
             set winTitle [string map {' ''} [mc "Scilab execution error"]]
             ScilabEval_lt "messagebox(\[\"$shellError\"+msprintf(\" %d\",db_n); \
                                         db_str; \
-                                        \"$lineError\"+msprintf(\" %d\",db_l)+\"$funcError\"+db_func\], \"$winTitle\", \"error\")" \
+                                        \"$lineError\"+msprintf(\" %d\",db_l)+\"$funcError\"+db_func\], \"$winTitle\", \"error\", \"modal\" )" \
                           "sync" "seq"
         } else {
             ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
@@ -500,7 +506,7 @@ proc scilaberror {funnameargs} {
                                                               ,\"\[\",\"\\\[\") \
                                                               ,\"\]\",\"\\\]\") \
                                            , \"scipad\" )" "sync" "seq"
-            tk_messageBox -title [mc "Scilab execution error"] \
+            tk_messageBox -title [mc "Scilab execution error"] -parent $pad \
                 -message [append dummyvar [mc "The shell reported an error while trying to execute "]\
                               $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
                               $errline [mc " of "] $errfunc]

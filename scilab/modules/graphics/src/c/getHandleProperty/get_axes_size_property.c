@@ -22,7 +22,7 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
 
@@ -33,7 +33,7 @@ int get_axes_size_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s undefined for this object.\n"), "axes_size") ;
+    Scierror(999, _("%s undefined for this object.\n"), "axes_size") ;
     return -1;
   }
   
