@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "axesScale.h"
@@ -33,13 +33,13 @@ int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"zoom_box") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"zoom_box") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"zoom_box") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"zoom_box") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -58,7 +58,7 @@ int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   }
   else
   {
-    sciprint(_("Argument must be a vector of size %d (or %d in 2d).\n"),6,4);
+    Scierror(999, _("Argument must be a vector of size %d (or %d in 2d).\n"),6,4);
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

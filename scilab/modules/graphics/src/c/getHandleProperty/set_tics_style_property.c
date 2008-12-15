@@ -25,6 +25,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "Format.h"
@@ -39,13 +40,13 @@ int set_tics_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"tics_style") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"tics_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"tics_style") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"tics_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -53,7 +54,7 @@ int set_tics_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
        && !isStringParamEqual( stackPointer, "r" )
        && !isStringParamEqual( stackPointer, "i" ) )
   {
-    sciprint(_("Wrong value for %s: '%s' or '%s' or '%s' expected.\n"),"tics","v","r","i") ;
+    Scierror(999, _("Wrong value for %s: '%s' or '%s' or '%s' expected.\n"),"tics","v","r","i") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -64,12 +65,12 @@ int set_tics_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
   {
     if( ComputeXIntervals(pobj,xy_type,&vector,&N,1) != 0 )
     {
-      sciprint(_("Error: Bad size in %s ; you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
+      Scierror(999, _("Error: Bad size in %s ; you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
       return SET_PROPERTY_ERROR ;
     }
     if( pAXES_FEATURE(pobj)->nb_tics_labels < N )
     {
-		sciprint(_("Warning: %s has been set by user ; you must first increase the size of the %s string vector before switching to the new %s mode.\n"),"tics_labels","tics_labels","tics_style");
+			sciprint(_("Warning: %s has been set by user ; you must first increase the size of the %s string vector before switching to the new %s mode.\n"),"tics_labels","tics_labels","tics_style");
       return SET_PROPERTY_ERROR;
     }
   }

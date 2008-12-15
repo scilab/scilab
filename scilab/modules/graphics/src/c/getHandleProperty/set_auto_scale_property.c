@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -32,7 +32,13 @@ int set_auto_scale_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"aut_scale") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"auto_scale") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+	if (sciGetEntityType(pobj) != SCI_FIGURE && sciGetEntityType(pobj) != SCI_SUBWIN)
+  {
+    Scierror(999, _("%s undefined for this object.\n"), "auto_scale") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -46,7 +52,7 @@ int set_auto_scale_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   {
-    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_auto_scale_property","on","off");
+    Scierror(999, _("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_auto_scale_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

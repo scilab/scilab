@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -31,13 +31,13 @@ int set_format_n_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"format_n") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"format_n") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"format_n") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"format_n") ;
     return SET_PROPERTY_ERROR ;
   }
   pAXES_FEATURE(pobj)->format[0] = getStringFromStack(stackPointer)[0] ;

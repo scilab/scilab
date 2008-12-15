@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
@@ -35,19 +35,19 @@ int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"triangles") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"triangles") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_FEC )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"triangles") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"triangles") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbCol != 5 )
   {
-    sciprint(_("Argument #%d must have %d columns.\n"),2,5) ;
+    Scierror(999, _("Argument #%d must have %d columns.\n"),2,5) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -62,7 +62,7 @@ int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
     if ( pnoeud == NULL )
     {
-      sciprint(_("%s: No more memory.\n"),"set_triangles_property");
+      Scierror(999, _("%s: No more memory.\n"),"set_triangles_property");
       return SET_PROPERTY_ERROR ;
     }
 

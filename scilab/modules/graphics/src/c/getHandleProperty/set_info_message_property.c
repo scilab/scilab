@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
@@ -32,7 +32,7 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
   int status;
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"info_message") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"info_message") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -24,7 +24,7 @@
 #include "Interaction.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -34,11 +34,11 @@ int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, 
   int i;
   if ( sciGetEntityType(pobj) != SCI_LEGEND )
   {
-    sciprint(_("%s property undefined for this object.\n"), "Legend") ;
+    Scierror(999, _("%s property undefined for this object.\n"), "Legend") ;
     return SET_PROPERTY_ERROR ;
   }
   if (nbRow*nbCol != nblegends) {
-    sciprint(_("%s Invalid dimension of the assigned handle, expected dimension is %d.\n"), "links",nblegends) ;
+    Scierror(999, _("%s Invalid dimension of the assigned handle, expected dimension is %d.\n"), "links",nblegends) ;
     return SET_PROPERTY_ERROR ;
   }
 

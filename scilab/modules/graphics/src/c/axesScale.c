@@ -25,7 +25,7 @@
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "PloEch.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
@@ -262,7 +262,7 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
        || !finite(yMin) || !finite(yMax)
        || !finite(zMin) || !finite(zMax) )
   {
-    sciprint("Error : data bounds values must be finite.");
+    Scierror(999, "Error : data bounds values must be finite.");
     return FALSE ;
   }
 
@@ -271,7 +271,7 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
   /* allows equality with bounds since it is working */
   if ( xMin > xMax || yMin > yMax || zMin > zMax )
   {
-    sciprint("Error : Min and Max values for one axis do not verify Min <= Max.\n");
+    Scierror(999, "Error : Min and Max values for one axis do not verify Min <= Max.\n");
     return FALSE ;
   }
 
@@ -280,7 +280,7 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
       || ( logFlags[1] == 'l' && yMin <= 0.0 )
       || ( logFlags[2] == 'l' && zMin <= 0.0 ) )
   {
-    sciprint("Error: Bounds on axis must be strictly positive to use logarithmic mode.\n" ) ;
+    Scierror(999, "Error: Bounds on axis must be strictly positive to use logarithmic mode.\n" ) ;
     return FALSE ;
   }
 

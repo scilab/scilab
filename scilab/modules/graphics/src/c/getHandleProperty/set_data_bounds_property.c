@@ -25,7 +25,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "axesScale.h"
 /*------------------------------------------------------------------------*/
@@ -70,7 +70,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
+      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -94,7 +94,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
+      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -109,7 +109,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
+      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -125,12 +125,12 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
+      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
       return SET_PROPERTY_ERROR ;
     }
     break ;
   default:
-    sciprint(_("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
+    Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;
@@ -141,7 +141,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"data_bounds") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"data_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -200,7 +200,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
   {
     if ( nbRow * nbCol != 6 )
     {
-      sciprint(_("Argument #%d must have %d elements.\n"),2,6) ;
+      Scierror(999, _("Argument #%d must have %d elements.\n"),2,6) ;
       return SET_PROPERTY_ERROR ;
     }
     sciSetDataBounds(pobj, getDoubleMatrixFromStack(stackPointer) ) ;
@@ -209,7 +209,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
   }
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"data_bounds") ; 
+    Scierror(999, _("%s property does not exist for this handle.\n"),"data_bounds") ; 
     return SET_PROPERTY_ERROR ;
   }
 

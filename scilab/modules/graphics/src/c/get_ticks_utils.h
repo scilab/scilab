@@ -22,7 +22,6 @@
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "returnPropertyList.h"
-#include "sciprint.h"
 
 int buildTListForTicks( const double * locations, char * labels[], int nbTics ) ;
 

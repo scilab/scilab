@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -32,13 +32,13 @@ int set_bar_layout_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"bar_layout") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"bar_layout") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"bar_layout") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"bar_layout") ;
     return SET_PROPERTY_ERROR ;
   }
   
@@ -52,7 +52,7 @@ int set_bar_layout_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   {
-    sciprint(_("%s must be set to '%s' or '%s'.\n"),"bar_layout","grouped","stacked") ;
+    Scierror(999, _("%s must be set to '%s' or '%s'.\n"),"bar_layout","grouped","stacked") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -163,58 +163,12 @@ int sci_set(char *fname, unsigned long fname_len)
 			}
 			break;
 
-		case sci_strings:/* first is a string argument so it's a gset("command",[param]) */ 
+		case sci_strings:/* first is a string argument so it's a set("command",[param]) */ 
 			CheckRhs(2,2);
 			GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
-			if (strcmp(cstk(l2),"default_figure") !=0 && strcmp(cstk(l2),"default_axes") !=0 )
-			{
-				if ((strcmp(cstk(l2),"old_style") ==0) || (strcmp(cstk(l2),"current_figure") ==0)) 
-				{
-					hdl = 0;
-					pobj = NULL;
-				}
-				else
-				{
-					if ((strcmp(cstk(l2),"zoom_") !=0) && 
-						(strcmp(cstk(l2),"auto_") !=0) && 
-						(strcmp(cstk(l2),"clip_box") !=0) )   
-					{
-						hdl = sciGetHandle(sciGetCurrentObj ()) ;
-					}
-					else
-					{
-						hdl = sciGetHandle(sciGetCurrentSubWin());
-					}
-
-					if (hdl == 0 )
-					{
-						pobj = NULL;
-					}
-					else
-					{
-						pobj = sciGetPointerFromHandle(hdl);
-					}
-				}
-			}
-			else
-			{
-				hdl = 0;
-				pobj = NULL;
-			}
+			hdl = 0;
+			pobj = NULL;
 			valueType = VarType(2) ;
-			t2=sciType(cstk(l2),pobj);
-			if (t2<0) 
-			{
-				Scierror(999,_("%s: Unknown property name '%s'.\n"),fname,cstk(l2));
-				return 0;
-			} 
-			if ( valueType != t2 && strcmp(cstk(l2),"current_figure") != 0 && VarType(2) != sci_matrix )
-			{  
-				/* F.Leray : special unique case here set("current_figure", HANDLE);*/
-				/* HANDLE type is 9 */
-				Scierror(999,_("%s: Uncompatible values for property type '%s'.\n"),fname,cstk(l2));
-				return 0;
-			}
 
 			if (valueType == sci_matrix )
 			{
@@ -226,17 +180,17 @@ int sci_set(char *fname, unsigned long fname_len)
 			}
 			else if ( valueType == sci_strings )
 			{
-				if (strcmp( cstk(l2), "tics_labels"  ) != 0
-					&& strcmp( cstk(l2), "auto_ticks"   ) != 0
-					&& strcmp( cstk(l2), "axes_visible" ) != 0
-					&& strcmp( cstk(l2), "axes_reverse" ) != 0
-					&& strcmp( cstk(l2), "text"      ) != 0 )
+				if (strcmp( cstk(l2), "tics_labels"  ) == 0
+					|| strcmp( cstk(l2), "auto_ticks"   ) == 0
+					|| strcmp( cstk(l2), "axes_visible" ) == 0
+					|| strcmp( cstk(l2), "axes_reverse" ) == 0
+					|| strcmp( cstk(l2), "text"      ) == 0 )
 				{
-					GetRhsVar(2,STRING_DATATYPE,&numrow3,&numcol3,&l3);
+					GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				} 
 				else
 				{
-					GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&numrow3,&numcol3,&l3);
+					GetRhsVar(2,STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				}
 			}
 			break;
@@ -275,6 +229,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
 			if ( setStatus < 0 )
 		 {
+			 /* An error occured */
 			 LhsVar(1)=0;
 			 return 0 ;
 		 }
@@ -282,13 +237,11 @@ int sci_set(char *fname, unsigned long fname_len)
 			if ( !( vis_save == 0 && sciGetVisibility(pobj)== 0) && setStatus == 0 ) 
 		 {
 			 /* do not redraw figure if object remains invisible */
-			 if ((strcmp(cstk(l2),"figure_style") !=0) &&
-				 (strcmp(cstk(l2),"old_style") !=0 ) && 
-				 (strcmp(cstk(l2),"current_axes") !=0) &&
-				 (strcmp(cstk(l2),"default_figure") !=0) && 
-				 (strcmp(cstk(l2),"default_axes") !=0) &&
-				 !isModelObject(pobj) &&
-				 !sciIsAutomaticallyRedrawn(pobj))
+			 /* and if its not a model object and if it's not a gui object */
+			 if (   setStatus == SET_PROPERTY_SUCCEED
+				   && (vis_save || sciGetVisibility(pobj))
+					 && !isModelObject(pobj)
+					 && !sciIsAutomaticallyRedrawn(pobj))
 			 { 
 				 sciDrawObj(pobj) ;
 			 }
@@ -296,6 +249,7 @@ int sci_set(char *fname, unsigned long fname_len)
 		}
 		else
 		{
+			/* No object specified */
 			sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
 		}
 		LhsVar(1)=0;
