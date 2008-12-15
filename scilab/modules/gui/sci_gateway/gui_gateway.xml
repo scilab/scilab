@@ -8,11 +8,11 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Scilab
@@ -62,5 +62,6 @@
 <PRIMITIVE gatewayId="25" primitiveId="29" primitiveName="exportUI" />
 <PRIMITIVE gatewayId="25" primitiveId="30" primitiveName="printsetupbox" />
 <PRIMITIVE gatewayId="25" primitiveId="31" primitiveName="toprint" />
-<PRIMITIVE gatewayId="25" primitiveId="32" primitiveName="uigetfile" />  
+<PRIMITIVE gatewayId="25" primitiveId="32" primitiveName="uigetfile" />
+<PRIMITIVE gatewayId="25" primitiveId="33" primitiveName="usecanvas" />
 </GATEWAY>
