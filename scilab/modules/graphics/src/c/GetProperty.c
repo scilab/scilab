@@ -1399,7 +1399,7 @@ sciGetAddPlot (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("addplot");
+      printSetGetErrorMessage("auto_clear");
       return FALSE;
       break;
     } 
@@ -1435,7 +1435,7 @@ sciGetAutoScale (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("autoscale");
+      printSetGetErrorMessage("auto_scale");
       return FALSE;
       break;
     }

@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
@@ -41,7 +41,7 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
     }
   else
     {
-		sciprint(_("Parent property can not be modified directly.\n"));
+			Scierror(999, _("Parent property can not be modified directly.\n"));
       return SET_PROPERTY_ERROR ;
     }
 }

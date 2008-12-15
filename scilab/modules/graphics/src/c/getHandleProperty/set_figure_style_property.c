@@ -22,12 +22,8 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
-#include "InitObjects.h"
-#include "DrawObjects.h"
-#include "DestroyObjects.h"
-#include "BuildObjects.h"
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
@@ -36,13 +32,13 @@ int set_figure_style_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"figure_style") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"figure_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( isStringParamEqual( stackPointer, "old" ) )
   {
-    sciprint(_("Old graphic mode is no longer available. Please refer to the set help page.\n")) ;
+    Scierror(999, _("Old graphic mode is no longer available. Please refer to the set help page.\n")) ;
     return SET_PROPERTY_ERROR ;
   }
   else if ( isStringParamEqual( stackPointer, "new" ) )
@@ -53,7 +49,7 @@ int set_figure_style_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"old","new");
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"old","new");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

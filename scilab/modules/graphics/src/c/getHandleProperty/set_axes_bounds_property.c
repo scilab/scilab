@@ -25,7 +25,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "PloEch.h"
 
@@ -34,18 +34,18 @@ int set_axes_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"axes_bounds") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"axes_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"axes_bounds") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"axes_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
   if ( nbRow * nbCol != 4 )
   {
-    sciprint(_("Wrong size for argument #%d: %d elements expected.\n"),2,4);
+    Scierror(999, _("Wrong size for argument #%d: %d elements expected.\n"),2,4);
     return SET_PROPERTY_ERROR ;
   }
   

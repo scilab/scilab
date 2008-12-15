@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 
@@ -32,9 +32,17 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
   int figNum = -1 ;
   int res = -1 ;
 
+
+	if (pobj != NULL)
+	{
+		/* This property should not be called on an handle */
+		Scierror(999, _("%s property does not exist for this handle.\n"), "current_figure");
+		return -1;
+	}
+
   if (nbRow * nbCol != 1)
   {
-    sciprint(_("Wrong size for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
+    Scierror(999, _("Wrong size for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
     return -1 ;
   }
   
@@ -45,13 +53,13 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
     
     if ( curFig == NULL )
     {
-      sciprint(_("'%s' handle does not or no longer exists.\n"),"Figure");
+      Scierror(999, _("'%s' handle does not or no longer exists.\n"),"Figure");
       return -1 ;
     }
 
     if ( sciGetEntityType( curFig ) != SCI_FIGURE )
     {
-      sciprint(_("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
+      Scierror(999, _("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
       return -1;
     }
     startGraphicDataReading();
@@ -64,7 +72,7 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
-    sciprint(_("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
+    Scierror(999, _("Wrong type for input argument #%d: A real or a '%s' handle expected.\n"), 1,"Figure") ;
     return -1 ;
   }
 
@@ -72,7 +80,7 @@ int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int va
   res = sciSetUsedWindow( figNum ) ;
   if ( res < 0 )
   {
-    sciprint(_("Unable to create requested figure: No more memory.\n"));
+    Scierror(999, _("Unable to create requested figure: No more memory.\n"));
   }
   return res ;
 

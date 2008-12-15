@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
@@ -36,13 +36,13 @@ int set_cdata_mapping_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"cdata_mapping") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"cdata_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SURFACE || pSURFACE_FEATURE(pobj)->typeof3d != SCI_FAC3D )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"cdata_mapping") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"cdata_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -70,7 +70,7 @@ int set_cdata_mapping_property( sciPointObj * pobj, size_t stackPointer, int val
       {
         if ((ppSurf->color = MALLOC (nc * sizeof (double))) == NULL)
         {
-			sciprint(_("%s: No more memory.\n"),"set_cdata_mapping_property");
+					Scierror(999, _("%s: No more memory.\n"),"set_cdata_mapping_property");
           return SET_PROPERTY_ERROR ;
         }
       }
@@ -83,7 +83,7 @@ int set_cdata_mapping_property( sciPointObj * pobj, size_t stackPointer, int val
   }
   else
   {
-    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"scaled","direct");
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"scaled","direct");
     return SET_PROPERTY_ERROR ;
   }
 

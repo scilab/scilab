@@ -42,7 +42,7 @@
 #include "SetProperty.h"
 #include "CloneObjects.h"
 #include "StringMatrix.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
@@ -149,7 +149,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
     /* Set default figure index */
     sciInitNum(pobj, getUnusedFigureIndex());
   }
-  
+
   sciInitName(pobj, sciGetName(pfiguremdl));
   sciInitResize(pobj,sciGetResize(pfiguremdl));
 
@@ -529,8 +529,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint(_("The parent has to be a FIGURE\n"));
-      return (sciPointObj *) NULL;
+      Scierror(999, _("The parent has to be a FIGURE\n"));
+      return NULL;
     }
 }
 
@@ -580,7 +580,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
 
   ppText->user_data = (int *) NULL;
   ppText->size_of_user_data = 0;
-  
+
 
   /* it must be specified for some functions */
   sciSetParent( pObj, pparentsubwin ) ;
@@ -717,7 +717,7 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 
   }
 
-  sciprint(_("The parent has to be a SUBWIN\n"));
+  Scierror(999, _("The parent has to be a SUBWIN\n"));
   return NULL;
 }
 
@@ -783,7 +783,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
       /* Allocation de la structure sciText */
       if ( ppLegend->text.pStrings == NULL)
       {
-        sciprint(_("No more place to allocates text string, try a shorter string.\n"));
+        Scierror(999, _("No more place to allocates text string, try a shorter string.\n"));
         sciDelThisToItsParent (pobj, sciGetParent (pobj));
         sciDelHandle (pobj);
         FREE(ppLegend);
@@ -796,7 +796,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
       if ((ppLegend->tabofhandles =
 	   MALLOC(nblegends*sizeof(long long))) == NULL)
 	{
-	  sciprint(_("%s: No more memory.\n"),"ConstructLegend");
+	  Scierror(999, _("%s: No more memory.\n"),"ConstructLegend");
 	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -834,7 +834,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 
       if (sciInitFontContext (pobj) == -1)
 	{
-	  sciprint(_("Problem with sciInitFontContext\n"));
+	  Scierror(999, _("Problem with sciInitFontContext\n"));
 	  FREE(ppLegend->tabofhandles);
 	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -848,7 +848,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -869,7 +869,7 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   int i = 0;
   if (sciGetEntityType (pparentsubwin) != SCI_SUBWIN)
   {
-    sciprint(_("The parent has to be a SUBWIN\n"));
+    Scierror(999, _("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
 
@@ -1136,7 +1136,6 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	  sciDelHandle (pobj);
 	  FREE(ppArc);
 	  FREE(pobj);
-	  sciprint(_("No context"));
 	  return (sciPointObj *) NULL;
 	}
 
@@ -1158,7 +1157,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1240,7 +1239,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1532,7 +1531,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1640,7 +1639,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1735,7 +1734,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     if(str != (char **) NULL)
 	  {
 	    if(pAXES_FEATURE (pobj)->nb_tics_labels == -1){
-	      sciprint(_("Impossible case when building axis\n"));
+	      Scierror(999, _("Impossible case when building axis\n"));
 	      return (sciPointObj *) NULL;
 	    }
 
@@ -1798,7 +1797,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
   }
   else
   {
-    sciprint(_("The parent has to be a SUBWIN\n"));
+    Scierror(999, _("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
 }
@@ -1920,13 +1919,13 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 			FREE(pobj);
 			return (sciPointObj *) NULL;
 		}
-		return pobj;
-	}
-	else
-	{
-		sciprint(_("The parent has to be a SUBWIN\n"));
-		return (sciPointObj *) NULL;
-	}
+      return pobj;
+    }
+  else
+    {
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
+      return (sciPointObj *) NULL;
+    }
 }
 
 
@@ -2103,13 +2102,13 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 			FREE(pobj);
 			return (sciPointObj *) NULL;
 		}
-		return pobj;
-	}
-	else
-	{
-		sciprint(_("The parent has to be a SUBWIN\n"));
-		return (sciPointObj *) NULL;
-	}
+      return pobj;
+    }
+  else
+    {
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
+      return (sciPointObj *) NULL;
+    }
 }
 
 
@@ -2211,7 +2210,14 @@ ConstructCompoundSeq (int number)
 
   ppagr = pAGREG_FEATURE(pobj) ;
 
-	if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
+  if (sciAddNewHandle (pobj) == -1)
+  {
+    Scierror(999, _("No handle to allocate\n"));
+    FREE(pobj->pfeatures);FREE(pobj);
+    return (sciPointObj *) NULL;
+  }
+
+  if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
   {
     FREE( pobj->pfeatures ) ;
     FREE( pobj ) ;
@@ -2312,7 +2318,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
   }
   else
   {
-    sciprint(_("The parent has to be a SUBWIN\n"));
+    Scierror(999, _("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
 }

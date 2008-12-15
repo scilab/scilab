@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
@@ -32,9 +32,16 @@ int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int value
   int status;
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"figure_name") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"figure_name") ;
     return SET_PROPERTY_ERROR ;
   }
+
+	if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  {
+    Scierror(999, _("%s property undefined for this object.\n"), "figure_name") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   /* disable protection since this function will call Java */
   disableFigureSynchronization(pobj);
   status = sciSetName( pobj, getStringFromStack( stackPointer )) ;

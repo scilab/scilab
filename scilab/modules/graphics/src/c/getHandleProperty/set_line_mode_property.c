@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -30,7 +30,7 @@ int set_line_mode_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"line_mode") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"line_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -44,7 +44,7 @@ int set_line_mode_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   }
   else
   {
-    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_line_mode_property","on","off");
+    Scierror(999, _("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_line_mode_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

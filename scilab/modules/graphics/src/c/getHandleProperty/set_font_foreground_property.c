@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -31,7 +31,7 @@ int set_font_foreground_property( sciPointObj * pobj, size_t stackPointer, int v
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"font_foreground") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"font_foreground") ;
     return SET_PROPERTY_ERROR ;
   }
 

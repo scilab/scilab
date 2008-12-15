@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "CurrentObjectsManagement.h"
@@ -31,9 +31,16 @@ int set_current_entity_property( sciPointObj * pobj, size_t stackPointer, int va
 {
   sciPointObj * curEntity = NULL ;
   
+	if (pobj != NULL)
+	{
+		/* This property should not be called on an handle */
+		Scierror(999, _("%s property does not exist for this handle.\n"), "current_entity");
+		return -1;
+	}
+
   if ( !isParameterHandle( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"current_entity") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"current_entity") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -41,7 +48,7 @@ int set_current_entity_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( curEntity == NULL )
   {
-    sciprint("Object is not valid.\n") ;
+    Scierror(999, "Object is not valid.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   sciSetCurrentObj( curEntity ) ;

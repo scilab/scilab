@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
@@ -37,19 +37,19 @@ int set_z_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"z_bounds") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"z_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"z_bounds") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"z_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint(_("Argument #%d must have %d elements.\n"),2,2) ;
+    Scierror(999, _("Argument #%d must have %d elements.\n"),2,2) ;
     return SET_PROPERTY_ERROR ;
   }
   ppFec = pFEC_FEATURE(pobj);

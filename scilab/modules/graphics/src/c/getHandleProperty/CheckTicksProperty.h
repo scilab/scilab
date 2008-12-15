@@ -24,7 +24,6 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
 
 /**
  * create a new assigne dlist which allow to easily retrieve the ticks
