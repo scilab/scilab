@@ -21,7 +21,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 
@@ -33,19 +33,19 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"viewport") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"viewport") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "viewport") ;
+    Scierror(999, _("%s does not exist for this handle.\n"), "viewport") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint(_("Argument must be a vector of size %d.\n"),4);
+    Scierror(999, _("Argument must be a vector of size %d.\n"),4);
     return SET_PROPERTY_ERROR ;
   }
 

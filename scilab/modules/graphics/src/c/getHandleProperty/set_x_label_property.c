@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -31,12 +31,12 @@ int set_x_label_property( sciPointObj * pobj, size_t stackPointer, int valueType
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property undefined for this object.\n"), "x_label") ;
+    Scierror(999, _("%s property undefined for this object.\n"), "x_label") ;
     return SET_PROPERTY_ERROR ;
   }
   else
   {
-    sciprint(_("Can not set directly a label object.\n")) ;
+    Scierror(999, _("Can not set directly a label object.\n")) ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

@@ -20,7 +20,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -30,13 +30,13 @@ int set_arc_drawing_method_property( sciPointObj * pobj, size_t stackPointer, in
 
   if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"drawing_method") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"drawing_method") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s: Single character string expected.\n"), "drawing_method") ;
+    Scierror(999, _("Incompatible type for property %s: Single character string expected.\n"), "drawing_method") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -50,7 +50,7 @@ int set_arc_drawing_method_property( sciPointObj * pobj, size_t stackPointer, in
   }
   else
   {
-    sciprint(_("Wrong value for property %s: value must be '%s' or '%s'.\n"), "drawing_method","nurbs","lines") ;
+    Scierror(999, _("Wrong value for property %s: value must be '%s' or '%s'.\n"), "drawing_method","nurbs","lines") ;
     return SET_PROPERTY_ERROR ;
   }
 

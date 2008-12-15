@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -31,13 +31,13 @@ int set_arrow_size_factor_property( sciPointObj * pobj, size_t stackPointer, int
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"arrow_size_factor") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"arrow_size_factor") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint(_("%s property undefined for this handle.\n"), "arrow_size_factor") ;
+    Scierror(999, _("%s property undefined for this handle.\n"), "arrow_size_factor") ;
     return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE(pobj)->arsize_factor = getDoubleFromStack( stackPointer ) ;

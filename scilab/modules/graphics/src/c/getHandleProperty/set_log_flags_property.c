@@ -23,6 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
@@ -56,14 +57,15 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
   if(cmpteur != nbtics)
   {
     if((ticklabel=(char **)MALLOC(cmpteur*sizeof(char *)))==NULL){
-      sciprint(_("%s: No more memory.\n"),"CaseLogflagN");
+      Scierror(999, _("%s: No more memory.\n"),"CaseLogflagN");
+			return NULL;
     }
 
     cmpteur2 = 0;
     offset = nbtics - cmpteur;
     for(i=0;i<cmpteur;i++){
       if((ticklabel[cmpteur2]=(char *)MALLOC((strlen(u_xlabels[i+offset])+1)*sizeof(char )))==NULL){
-      sciprint(_("%s: No more memory.\n"),"CaseLogflagN");
+				Scierror(999, _("%s: No more memory.\n"),"CaseLogflagN");
       }
       strcpy(ticklabel[cmpteur2],u_xlabels[i+offset]);
       cmpteur2++;
@@ -118,19 +120,19 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"log_flags") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"log_flags") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"log_flags") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"log_flags") ;
     return SET_PROPERTY_ERROR ;
   }
   
   if ( nbRow * nbCol != 2 && nbRow * nbCol != 3 )
   {
-    sciprint(_("%s: Wrong size for argument: %d or %d expected.\n"),"log_flags",2,3) ;
+    Scierror(999, _("%s: Wrong size for argument: %d or %d expected.\n"),"log_flags",2,3) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -138,7 +140,7 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   if (   (flags[0] != 'n' && flags[0] != 'l')
       || (flags[1] != 'n' && flags[1] != 'l') )
   {
-    sciprint(_("%s: Wrong value for argument: '%s' or '%s' expected.\n"),"flags","n","l");
+    Scierror(999, _("%s: Wrong value for argument: '%s' or '%s' expected.\n"),"flags","n","l");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -151,19 +153,26 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   /* X axes */
   if( ( ppSubWin->SRect[0] <= 0. || ppSubWin->SRect[1] <= 0.) && flags[0] == 'l' )
   {
-    sciprint(_("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"x");
+    Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"x");
     return SET_PROPERTY_ERROR ;
   }
   ppSubWin->axes.u_xlabels = ReBuildUserTicks( curLogFlags[0], flags[0],
                                                ppSubWin->axes.u_xgrads, 
                                                &ppSubWin->axes.u_nxgrads, 
                                                ppSubWin->axes.u_xlabels   );
+
+	if (ppSubWin->axes.u_xlabels == NULL)
+	{
+		/* Somehting wrong occured */
+		return SET_PROPERTY_ERROR;
+	}
+
   curLogFlags[0] = flags[0];
 
   /* Y axes */
   if( ( ppSubWin->SRect[2] <= 0. || ppSubWin->SRect[3] <= 0. ) && flags[1] == 'l' )
   { 
-      sciprint(_("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"y");
+      Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"y");
       return SET_PROPERTY_ERROR ;
   }
   ppSubWin->axes.u_ylabels = ReBuildUserTicks( curLogFlags[1], flags[1],  
@@ -178,13 +187,13 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   {
     if ( flags[2] != 'n' && flags[2] != 'l' )
     {
-      sciprint("flags must be 'n' or 'l'.\n") ;
+      Scierror(999, "flags must be 'n' or 'l'.\n") ;
       return SET_PROPERTY_ERROR ;
     }
 
     if ( ( ppSubWin->SRect[4] <= 0. || ppSubWin->SRect[5] <= 0. ) && flags[2] == 'l' )
     {
-      sciprint(_("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"z");
+      Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"z");
       return SET_PROPERTY_ERROR ;
     }
 

@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,7 +32,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"sub_tics") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"sub_tics") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -47,7 +47,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
     if ( (nbCol != 3 ) && (nbCol != 2) )
     {
-      sciprint(_("Value must have %d elements (%d if in 3D).\n"),2,3) ;
+      Scierror(999, _("Value must have %d elements (%d if in 3D).\n"),2,3) ;
       return  SET_PROPERTY_ERROR ;
     }
     ppSubWin->flagNax = TRUE;
@@ -68,7 +68,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   }
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"sub_ticks") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"sub_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

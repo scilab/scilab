@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetUicontrolPosition.h"
 /*------------------------------------------------------------------------*/
@@ -38,7 +38,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"position") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"position") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -66,7 +66,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     }
   else
   {
-    sciprint(_("%s does not exist for this handle.\n"), "position") ;
+    Scierror(999, _("%s does not exist for this handle.\n"), "position") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

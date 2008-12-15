@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -33,20 +33,20 @@ int set_polyline_style_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"polyline_style") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"polyline_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_POLYLINE)
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"polyline_style") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"polyline_style") ;
     return SET_PROPERTY_ERROR ;
   }
     
   value = (int) getDoubleFromStack( stackPointer ) ;
   if ( value < 1 || value > 7 )
   {
-    sciprint(_("Wrong value for %s property: Must be between %d and %d.\n"),"Style",1,7);
+    Scierror(999, _("Wrong value for %s property: Must be between %d and %d.\n"),"Style",1,7);
     return SET_PROPERTY_ERROR ;
   }
 
