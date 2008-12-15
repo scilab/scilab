@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
 # Create the add argument dialog
 # This dialog can be called from the watch window or from the configure dialog
@@ -62,7 +63,8 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
                     [concat [mc "This variable can be watched but cannot be edited!"]\
                             [mc "A new watch variable will be created."] ] \
                     -icon warning -type ok \
-                    -title [mc "Non editable variable"]
+                    -title [mc "Non editable variable"] \
+                    -parent $w
                 # run the add variable dialog again after having cleared the selection,
                 # which is a special case in proc Addarg_bp: listbox is not empty but
                 # has no currently selected item

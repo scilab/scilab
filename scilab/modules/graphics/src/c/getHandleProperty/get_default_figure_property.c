@@ -21,21 +21,19 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
 
 /*--------------------------------------------------------------------------*/
 int get_default_figure_property( sciPointObj * pobj )
 {
-  if ( getFigureModel() !=  NULL )
-  {
-    return sciReturnHandle( sciGetHandle(getFigureModel()) ) ;
-  }
-  else
-  {
-    sciprint("Default figure does not exist.\n");
-    return -1;
-  }
+	if (pobj != NULL)
+	{
+		/* This property should not be called on an handle */
+		Scierror(999, _("%s property does not exist for this handle.\n"), "default_figure");
+		return -1;
+	}
+  return sciReturnHandle( sciGetHandle(getFigureModel()) ) ;
 }
 /*--------------------------------------------------------------------------*/

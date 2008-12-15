@@ -317,6 +317,7 @@
 ::msgcat::mcset zh_cn "The contents of " "硬盘上文件"
 ::msgcat::mcset zh_cn "has changed on disk, save it anyway?"\
                       "的内容已被更改, 依然要保存么？"
+::msgcat::mcset zh_cn "The contents and/or properties of " "硬盘上文件"
 ::msgcat::mcset zh_cn "has been modified outside of Scipad. Do you want to\
                        reload it?"\
                       "已在 Scipad\

@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -32,13 +32,13 @@ int set_interp_color_mode_property( sciPointObj * pobj, size_t stackPointer, int
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"interp_color_mode") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"interp_color_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint(_("%s can only be set on %s objects.\n"),"interp_color_mode","Polyline") ;
+    Scierror(999, _("%s can only be set on %s objects.\n"),"interp_color_mode","Polyline") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -46,7 +46,7 @@ int set_interp_color_mode_property( sciPointObj * pobj, size_t stackPointer, int
   {
     if ( sciGetInterpVector(pobj) == NULL )
     {
-      sciprint(_("You must first specify an %s for this object.\n"),"interp_color_vector");
+      Scierror(999, _("You must first specify an %s for this object.\n"),"interp_color_vector");
       return SET_PROPERTY_ERROR ;
     }
     else
@@ -60,7 +60,7 @@ int set_interp_color_mode_property( sciPointObj * pobj, size_t stackPointer, int
   }
   else
   {
-    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

@@ -329,6 +329,7 @@
 ::msgcat::mcset no "The contents of " "Innholdet i"
 ::msgcat::mcset no "has changed on disk, save it anyway?"\
                    "er endret på disken, lagre den uansett?"
+::msgcat::mcset no "The contents and/or properties of " "Innholdet i"
 ::msgcat::mcset no "has been modified outside of Scipad. Do you want to\
                     reload it?"\
                    "har blitt modifisert utenfor Scipad. Ønsker du å lese\

@@ -530,3 +530,11 @@ This is patch 1477426, with already a number of implementation proposals.
 Might be far better to make use of the Tcl-designed selection font, keeping mine
 as a default fallback whenever the user has an old Tk version.
 See also TIP #213 and TIP #324, and discussions on them on [TCLCORE].
+
+
+Misc notes:
+
+- Could find a use in the Scipad code (all are Tcl/Tk 8.5 features):
+  font actual $font $char (to know whether $char is included in $font)
+  text count
+  text search -all

@@ -404,7 +404,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\CallJuigetfile.cpp"
+				RelativePath="..\cpp\CallJuigetfile.cpp"
 				>
 			</File>
 			<File
@@ -740,7 +740,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_uigetfile.cpp"
+				RelativePath="..\..\sci_gateway\cpp\sci_uigetfile.cpp"
 				>
 			</File>
 			<File
