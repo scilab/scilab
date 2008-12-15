@@ -34,13 +34,13 @@ int GetUicontrolRelief(sciPointObj* sciObj)
         case SUNKEN_RELIEF:
           return sciReturnString("sunken");
         default:
-          sciprint(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
           return FALSE;
         }
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Relief");
+      Scierror(999, _("No '%s' property for this object.\n"), "Relief");
       return FALSE;
     }
 }

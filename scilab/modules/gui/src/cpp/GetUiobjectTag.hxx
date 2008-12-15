@@ -20,7 +20,7 @@ extern "C"{
 #include "localization.h"
 #include "UicontrolStyleToString.h"
 #include "GetUiobjectTag.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "returnProperty.h"
 }
 

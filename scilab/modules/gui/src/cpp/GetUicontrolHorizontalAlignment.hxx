@@ -20,7 +20,7 @@ extern "C"{
 #include "localization.h"
 #include "UicontrolStyleToString.h"
 #include "GetUicontrolHorizontalAlignment.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __GET_UICONTROL_HORIZONTALALIGNMENT_HXX__ */

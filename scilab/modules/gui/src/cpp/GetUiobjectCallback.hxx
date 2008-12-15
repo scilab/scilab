@@ -21,7 +21,7 @@ extern "C"
 #include "GetProperty.h"
 #include "localization.h"
 #include "GetUiobjectCallback.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __GET_UIOBJECT_CALLBACK_HXX__ */
