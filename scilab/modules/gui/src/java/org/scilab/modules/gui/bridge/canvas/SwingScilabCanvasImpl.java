@@ -115,6 +115,10 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	return forceGLCanvas;
     }
 
+    public static boolean isGLCanvasEnabled() {
+	return forceGLCanvas || noGLJPanel;
+    }
+    
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
