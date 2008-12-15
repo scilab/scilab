@@ -480,10 +480,6 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
           end //** of if
          //**------------------------------------------------------
 
-      //** draw(gh_curwin.children);
-      //** drawnow();
-      //** show_pixmap() ; //** not useful on Scilab 5
-
     end //**----------------------------------------
 
     drawnow(); //** in all cases, at the end of the operation, the scicos window must be in

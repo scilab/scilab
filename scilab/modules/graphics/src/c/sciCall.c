@@ -730,9 +730,9 @@ void Objplot3d ( char    * fname ,
    * Redraw Figure
    * ================================================= */
   // subwin has been modified
-  //forceRedraw(psubwin);
+  forceRedraw(psubwin);
   endFigureDataWriting(parentFigure);
-  //sciDrawObj(sciGetCurrentFigure ());
+  sciDrawObj(sciGetCurrentFigure ());
 
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
 
