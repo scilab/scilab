@@ -56,7 +56,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 
 					if (newline)
 					{
-						int l = strlen(currentline)- strlen(ptr_strrchar2);
+						int l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
 						if (l < 0) l = 0 - l;
 
 						strncpy(newline,currentline, l);
@@ -101,7 +101,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 
 					if (newline)
 					{
-						int l = strlen(currentline)- strlen(ptr_strrchar2);
+						int l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
 						if (l < 0) l = 0 - l;
 
 						strncpy(newline,currentline, l);

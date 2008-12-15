@@ -269,7 +269,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	{
 		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
 		
-		nbColOutPath = strlen(selectionPathName);
+		nbColOutPath = (int)strlen(selectionPathName);
 		CreateVarFromPtr(Rhs+2, STRING_DATATYPE, &nbColOutPath,&nbRowOutPath, &selectionPathName);
 
 		if (Lhs > 2)
