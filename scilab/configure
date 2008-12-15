@@ -11371,7 +11371,7 @@ echo "$as_me: error: Could not locate Java's jni.h include file" >&2;}
 
     { echo "$as_me:$LINENO: checking if jni.h can be included" >&5
 echo $ECHO_N "checking if jni.h can be included... $ECHO_C" >&6; }
-if test "${ac_java_jvm_jni_working+set}" = set; then
+if test "${ac_cv_java_jvm_jni_working+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
 
@@ -11417,7 +11417,7 @@ eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
 	 test -z "$ac_c_werror_flag" ||
 	 test ! -s conftest.err
        } && test -s conftest.$ac_objext; then
-  ac_java_jvm_jni_working=yes
+  ac_cv_java_jvm_jni_working=yes
 else
   echo "$as_me: failed program was:" >&5
 sed 's/^/| /' conftest.$ac_ext >&5
@@ -11437,8 +11437,8 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
         CFLAGS=$ac_saved_cflags
 
 fi
-{ echo "$as_me:$LINENO: result: $ac_java_jvm_jni_working" >&5
-echo "${ECHO_T}$ac_java_jvm_jni_working" >&6; }
+{ echo "$as_me:$LINENO: result: $ac_cv_java_jvm_jni_working" >&5
+echo "${ECHO_T}$ac_cv_java_jvm_jni_working" >&6; }
 
     # FIXME: should we look for or require a include/native_threads dir?
 
@@ -11648,7 +11648,7 @@ echo "$as_me: error: Could not detect the location of the Java
 
     { echo "$as_me:$LINENO: checking to see if we can link a JNI application" >&5
 echo $ECHO_N "checking to see if we can link a JNI application... $ECHO_C" >&6; }
-if test "${ac_java_jvm_working_jni_link+set}" = set; then
+if test "${ac_cv_java_jvm_working_jni_link+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
 
@@ -11697,12 +11697,12 @@ eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
 	 test ! -s conftest.err
        } && test -s conftest$ac_exeext &&
        $as_test_x conftest$ac_exeext; then
-  ac_java_jvm_working_jni_link=yes
+  ac_cv_java_jvm_working_jni_link=yes
 else
   echo "$as_me: failed program was:" >&5
 sed 's/^/| /' conftest.$ac_ext >&5
 
-	ac_java_jvm_working_jni_link=no
+	ac_cv_java_jvm_working_jni_link=no
 fi
 
 rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
@@ -11717,13 +11717,13 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
         LIBS=$ac_saved_libs
 
 fi
-{ echo "$as_me:$LINENO: result: $ac_java_jvm_working_jni_link" >&5
-echo "${ECHO_T}$ac_java_jvm_working_jni_link" >&6; }
+{ echo "$as_me:$LINENO: result: $ac_cv_java_jvm_working_jni_link" >&5
+echo "${ECHO_T}$ac_cv_java_jvm_working_jni_link" >&6; }
 
     # gcc can't link with some JDK .lib files under Win32.
     # Work around this problem by linking with win/libjvm.dll.a
 
-    if test "$ac_java_jvm_working_jni_link" != "yes" &&
+    if test "$ac_cv_java_jvm_working_jni_link" != "yes" &&
       test "$ac_cv_tcl_win32" = "yes"; then
         ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -11770,12 +11770,12 @@ eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
 	 test ! -s conftest.err
        } && test -s conftest$ac_exeext &&
        $as_test_x conftest$ac_exeext; then
-  ac_java_jvm_working_jni_link=yes
+  ac_cv_java_jvm_working_jni_link=yes
 else
   echo "$as_me: failed program was:" >&5
 sed 's/^/| /' conftest.$ac_ext >&5
 
-	ac_java_jvm_working_jni_link=no
+	ac_cv_java_jvm_working_jni_link=no
 fi
 
 rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
@@ -11789,7 +11789,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
         CFLAGS=$ac_saved_cflags
         LIBS=$ac_saved_libs
 
-        if test "$ac_java_jvm_working_jni_link" = "yes"; then
+        if test "$ac_cv_java_jvm_working_jni_link" = "yes"; then
 
     echo Using custom JNI link lib >&5
     echo Using custom JNI link lib
@@ -11798,7 +11798,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
         fi
     fi
 
-    if test "$ac_java_jvm_working_jni_link" != "yes"; then
+    if test "$ac_cv_java_jvm_working_jni_link" != "yes"; then
         { { echo "$as_me:$LINENO: error: could not link file that includes jni.h
         Either the configure script does not know how to deal with
         this JVM configuration or the JVM install is broken or corrupted." >&5

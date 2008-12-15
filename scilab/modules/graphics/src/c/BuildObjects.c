@@ -2218,13 +2218,6 @@ ConstructCompoundSeq (int number)
     return NULL ;
   }
 
-  if (sciAddNewHandle (pobj) == -1)
-  {
-    sciprint(_("No handle to allocate\n"));
-    FREE(pobj->pfeatures);FREE(pobj);
-    return (sciPointObj *) NULL;
-  }
-
   /* Remove the created objects after the compound and add them */
   /* Under the compound in the same order */
   for ( i = 0 ; i < number ; i++ )

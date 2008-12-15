@@ -155,11 +155,4 @@ libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 libscipolynomials_la_includedir=$(pkgincludedir)/polynomials
 libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
-
-#### polynomials : demos files ####
-libscipolynomials_la_demosdir=$(mydatadir)
-nobase_libscipolynomials_la_demos_DATA = demos/polynomials.dem.gateway.sce \
-demos/rootsdemo.sci \
-demos/intro/poly.intro.dem.sce
-
 include $(top_srcdir)/Makefile.incl.am

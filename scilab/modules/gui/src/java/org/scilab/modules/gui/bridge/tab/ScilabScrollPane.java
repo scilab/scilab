@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 20072008 - INRIA - Vincent Couvert
- * Copyright (C) 2007 - INRIA - Bruno JOFRET
- * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2008 - 2008 Digiteo Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -41,5 +39,17 @@ public interface ScilabScrollPane {
 	 * @param yPos the y position to scroll to
 	 */
 	void setViewPosition(int xPos, int yPos);
+	
+	/**
+	 * Enable or disable auto resize mode
+	 * @param autoResizeMode true if autoresize is on
+	 */
+	void setAutoResizeMode(boolean autoResizeMode);
+	
+	/**
+	 * Enable or disable auto resize mode
+	 * @return true if autoresize is on
+	 */
+	boolean getAutoResizeMode();
 	
 }

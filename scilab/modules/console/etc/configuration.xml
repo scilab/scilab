@@ -63,6 +63,7 @@
 			<Key name="VK_K" mask="CTRL_MASK" action="DEL_END_OF_LINE"/>
 			<Key name="VK_N" mask="CTRL_MASK" action="NEXT_HISTORY_LINE"/>
 			<Key name="VK_P" mask="CTRL_MASK" action="PREVIOUS_HISTORY_LINE"/>
+			<Key name="VK_S" mask="CTRL_MASK" action="SELECTALL"/>
 			<Key name="VK_U" mask="CTRL_MASK" action="DEL_WHOLE_LINE"/>
 			<Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
 			<Key name="VK_X" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_CUT"/>
@@ -71,6 +72,7 @@
 		<!-- Key mapping -->
 		<!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
 		<ActionMapping>
+			<Action name="SELECTALL" className="org.scilab.modules.console.SelectAllAction"/>			
 			<Action name="CLEARCONSOLE" className="org.scilab.modules.console.ClearConsoleAction"/>			
 			<Action name="CONSOLEBOX" className="org.scilab.modules.console.ConsoleboxAction"/>			
 			<Action name="HELP" className="org.scilab.modules.console.HelpAction"/>

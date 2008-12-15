@@ -98,7 +98,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)" \
-	"$(DESTDIR)$(libscihelptools_la_examplesdir)" \
 	"$(DESTDIR)$(libscihelptools_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -154,7 +153,6 @@ libscihelptools_la_schemaDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_convertDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_xsl_foDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscihelptools_la_examplesDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_doc_DATA) \
 	$(libscihelptools_la_doc_html_DATA) \
@@ -165,8 +163,7 @@ DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_schema_DATA) \
 	$(libscihelptools_la_sci_gateway_DATA) \
 	$(libscihelptools_la_xsl_convert_DATA) \
-	$(libscihelptools_la_xsl_fo_DATA) \
-	$(nobase_libscihelptools_la_examples_DATA)
+	$(libscihelptools_la_xsl_fo_DATA)
 libscihelptools_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscihelptools_la_include_HEADERS)
 ETAGS = etags
@@ -488,31 +485,6 @@ doc/html/images/callouts/9.png
 libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
 libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
 
-#### helptools : example files ####
-libscihelptools_la_examplesdir = $(mydatadir)
-nobase_libscihelptools_la_examples_DATA = examples/example_1/help/fr_FR/example_1_function_1.xml \
-examples/example_1/help/fr_FR/example_1_function_2.xml \
-examples/example_1/help/fr_FR/example_1_function_3.xml \
-examples/example_1/help/en_US/example_1_function_1.xml \
-examples/example_1/help/en_US/example_1_function_2.xml \
-examples/example_1/help/en_US/example_1_function_3.xml \
-examples/example_2/help/fr_FR/example_2_function_1.xml \
-examples/example_2/help/fr_FR/example_2_function_3.xml \
-examples/example_2/help/en_US/example_2_function_1.xml \
-examples/example_2/help/en_US/example_2_function_2.xml \
-examples/example_2/help/en_US/example_2_function_3.xml \
-examples/example_2/help/en_US/example_2_function_4.xml \
-examples/example_3/help/fr_FR/example_1_function_1.xml \
-examples/example_3/help/fr_FR/example_1_function_2.xml \
-examples/example_3/help/fr_FR/example_1_function_3.xml \
-examples/example_3/help/fr_FR/example_1_function_4.xml \
-examples/example_3/help/en_US/example_1_function_1.xml \
-examples/example_3/help/en_US/example_1_function_2.xml \
-examples/example_1/help/zh_TW/example_1_function_1.xml \
-examples/example_1/help/zh_TW/example_1_function_2.xml \
-examples/example_1/help/zh_TW/example_1_function_3.xml
-
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -545,7 +517,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -556,11 +528,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -945,25 +923,6 @@ uninstall-libscihelptools_la_xsl_foDATA:
 	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f"; \
 	done
-install-nobase_libscihelptools_la_examplesDATA: $(nobase_libscihelptools_la_examples_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_examplesdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_examplesdir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscihelptools_la_examples_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscihelptools_la_examplesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f'"; \
-	  $(nobase_libscihelptools_la_examplesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f"; \
-	done
-
-uninstall-nobase_libscihelptools_la_examplesDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscihelptools_la_examples_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_examplesdir)/$$f"; \
-	done
 install-libscihelptools_la_includeHEADERS: $(libscihelptools_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_includedir)"
@@ -1061,7 +1020,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)" "$(DESTDIR)$(libscihelptools_la_examplesdir)" "$(DESTDIR)$(libscihelptools_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)" "$(DESTDIR)$(libscihelptools_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1124,8 +1083,7 @@ install-data-am: install-data-local install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_schemaDATA \
 	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
-	install-libscihelptools_la_xsl_foDATA \
-	install-nobase_libscihelptools_la_examplesDATA
+	install-libscihelptools_la_xsl_foDATA
 
 install-dvi: install-dvi-am
 
@@ -1177,7 +1135,6 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
-	uninstall-nobase_libscihelptools_la_examplesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1203,8 +1160,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	install-libscihelptools_la_schemaDATA \
 	install-libscihelptools_la_sci_gatewayDATA \
 	install-libscihelptools_la_xsl_convertDATA \
-	install-libscihelptools_la_xsl_foDATA install-man \
-	install-nobase_libscihelptools_la_examplesDATA install-pdf \
+	install-libscihelptools_la_xsl_foDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1224,7 +1180,6 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_sci_gatewayDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
-	uninstall-nobase_libscihelptools_la_examplesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
@@ -1324,7 +1279,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1334,7 +1289,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -1345,6 +1300,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \

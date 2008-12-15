@@ -76,6 +76,9 @@
 #endif
 #define EXPORTENVLOCALESTR "LC_MESSAGES"
 
+/* The portable locale. Should be english for numerical values */
+#define LCNUMERICVALUE "C"
+
 /* Name of the main localization domain */
 #define NAMELOCALIZATIONDOMAIN "scilab"
 

@@ -5,5 +5,5 @@ EXPORTS
 ;--------------------------
 ; elementary_functions
 ;--------------------------
+callFunctionFromGateway
 
-EXPORTS

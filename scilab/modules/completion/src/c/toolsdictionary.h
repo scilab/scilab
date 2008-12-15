@@ -28,7 +28,7 @@ BOOL appendDictionary(char ***dictionary,int *i,char ***datas,int *sizedatas);
 /**
 * sort dictionary
 * @param strings wto sort
-* @param  size of new dictionnary
+* @param  size of new dictionary
 * @return result
 */
 char **SortDictionary(char **Strings,int SizeStrings);
@@ -36,7 +36,7 @@ char **SortDictionary(char **Strings,int SizeStrings);
 /**
 * Remove duplicate words in a dictionary
 * @param strings where to search
-* @param[out] size of new dictionnary
+* @param[out] size of new dictionary
 * @return result
 */
 char ** RemoveDuplicateDictionary(char **Strings,int *SizeStrings);

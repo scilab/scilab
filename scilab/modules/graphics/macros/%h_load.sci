@@ -50,7 +50,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 //  mprintf('----------------------------- %s ----------------------\n',typ)
   select typ
   case "Figure"
-    
     if xload_mode then
       h=gcf()
       visible=toggle(mget(1,'c',fd)); // visible
@@ -91,14 +90,18 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h=scf(figure_id);
        h.visible=visible;  // can be set now as we act on immediate_drawing everywhere else F.Leray 18.02.05
       h.figure_position=figure_position
-      h.figure_size=figure_size
-      h.axes_size=axes_size
+	  // set auto_resize first otherwise viewport modification may not have any effect.
+	  h.auto_resize = auto_resize;
+	  h.figure_size = figure_size;
+	  // set axes_size last because it's more important than figure_size
+	  h.axes_size = axes_size;
+      
       if ( is_higher_than([4 1 2 0]) ) then
-        h.viewport = viewport // should be set before auto_resize
+        h.viewport = viewport;
         h.info_message = info_message ;
         h.tag = tag ;
       end
-      h.auto_resize=auto_resize
+	  
       h.figure_name=figure_name
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,'c',fd)); // pixmap
@@ -107,7 +110,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.immediate_drawing = 'off'; // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd); // background
       h.rotation_style = ascii(mget(mget(1,'c',fd),'c',fd)) ; // rotation_style
-      
     end
     
     if ( is_higher_than([4 1 2 0]) ) then

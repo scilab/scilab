@@ -367,7 +367,6 @@ function save_graphichandle(h,fd)
       save_graphichandle(children(k),fd)
     end
     mput( bool2s( h.visible=='on'), 'c', fd ) ; // visible
-    //disp(mtell(fd));
     user_data=h.user_data;save(fd,user_data) // user_data
     
   case "Rectangle"

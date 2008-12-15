@@ -38,10 +38,12 @@ extern int C2F(dr)(char x0[],char x1[],int *x2,int *x3,int *x4,int *x5,int *x6,
 */
 static void block_draw_rect_1(double r[],double percent)
 {
+/*
   int verbose=0;
   static int in=6;
   double w = r[2]*percent;
   double x = r[0];
+*/
   /* disabled */
   /* TO DO : new graphics version */
 
@@ -54,11 +56,12 @@ static void block_draw_rect_1(double r[],double percent)
 
 static void block_draw_rect_2(double r[],double percent)
 {
-  int verbose=0;
+/*
+  int verbose=0;*/
   /* int flag =0;  double ang=0.0;  char foo[24]; */
-  static int in=6;
+/*static int in=6;
   double x = r[0]+ r[2]*percent-2;
-  double w = 4;
+  double w = 4;*/
   /* disabled */
   /* TO DO : new graphics version */
   /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -76,11 +79,13 @@ static void block_draw_rect_2(double r[],double percent)
 
 static void block_draw_rect_3(double r[],double percent)
 {
+	/*
   int verbose=0;
   int flag =0;  double ang=0.0;
   static int in=6;
   double x = r[0] + (1.0/10)*r[2];
   double y = r[1] - r[3] + 2 ;
+  */
   /* disabled */
   /* TO DO : new graphics version */
   /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -123,7 +128,7 @@ static int scig_driverX11(char *old)
 
 static int set_block_win( int win)
 {
-  static int verbose = 0, cur=0,narg;
+  static int cur = 0;
   /* TO DO : rewrite with new graphics functions */
   /*
   C2F(dr)("xget","window",&verbose,&cur,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

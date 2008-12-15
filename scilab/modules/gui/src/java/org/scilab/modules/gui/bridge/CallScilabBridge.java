@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -295,24 +296,6 @@ public class CallScilabBridge {
 	public static int newColorChooser() {
 		ColorChooser colorChooser = ScilabColorChooser.createColorChooser();
 		return UIElementMapper.add(colorChooser);
-	}
-	/**
-	 * Create a new File Chooser in Scilab GUIs
-	 * @return the ID of the File Chooser in the UIElementMapper
-	 */
-	public static int newFileChooser() {
-		FileChooser fileChooser = ScilabFileChooser.createFileChooser();
-		return UIElementMapper.add(fileChooser);
-	}
-
-	/**
-	 * Create a new Graphic Export File Chooser in Scilab GUIs
-	 * @param figureId id of the figure to export
-	 * @return the ID of the File Chooser in the UIElementMapper
-	 */
-	public static int newExportFileChooser(int figureId) {
-		FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
-		return UIElementMapper.add(fileChooser);
 	}
 
 	/**
@@ -1102,74 +1085,7 @@ public class CallScilabBridge {
 	/*                     */
 	/***********************/
 
-	/**
-	 * Set the file chooser title
-	 * @param id the id of the fileChooser
-	 * @param title the title of the fileChooser
-	 */
-	public static void setFileChooserTitle(int id, String title) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setTitle(title);
-	}
 
-	/**
-	 * Set the initial directory used for file search
-	 * @param id the id of the fileChooser
-	 * @param path the default path
-	 */
-	public static void setFileChooserInitialDirectory(int id, String path) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setInitialDirectory(path);
-	}
-
-	/**
-	 * Set the mask for files that can be selected
-	 * @param id the id of the fileChooser
-	 * @param mask the mask to apply
-	 */
-	public static void setFileChooserMask(int id, String mask) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setMask(mask);
-	}
-
-	/**
-	 * Display this chooser and wait for user selection
-	 * @param id the id of the fileChooser
-	 */
-	public static void fileChooserDisplayAndWait(int id) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
-	}
-
-	/**
-	 * Get the number of files selected
-	 * @param id the id of the fileChooser
-	 * @return the number of files selected
-	 */
-	public static int getFileChooserSelectionSize(int id) {
-		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectionSize();
-	}
-
-	/**
-	 * Get the names of selected files
-	 * @param id the id of the fileChooser
-	 * @return the names of selected files
-	 */
-	public static String[] getFileChooserSelection(int id) {
-		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelection();
-	}
-
-	/**
-	 * Set the flag indicating that we want only select directories
-	 * @param id the id of the fileChooser
-	 */
-	public static void setFileChooserDirectorySelectionOnly(int id) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setDirectorySelectionOnly();
-	}
-
-	/**
-	 * Set the flag indicating that we want only select files
-	 * @param id the id of the fileChooser
-	 */
-	public static void setFileChooserFileSelectionOnly(int id) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setFileSelectionOnly();
-	}
 
 
 	/**********************/

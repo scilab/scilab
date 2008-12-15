@@ -26,13 +26,17 @@ Enhancement:
 
 * Update of the example in the dynamic_link modules and in the toolbox skeleton (use the actual filename instead of the .o)
 
-* Scilab uses Atlas 3.8.2 on Windows
+* Scilab uses Atlas 3.9.4 on Windows
 
 * test_run() now accepts absolute paths as first input argument. It permits toolboxes to use this system.
+
+* Directive FRENCH IMPOSED added to test_run() to force the test in french
 
 * New function dae (for Differential Algebraic Equations) added.
 This function is providing the same features as dassl with ode (ordinary differential equations) profile.
 For more information, see SEP #2.
+
+* Request 564 : completion add '\' or '/' at the end of a directory
 
 Bug fixes:
 ==========
@@ -115,6 +119,8 @@ Bug fixes:
 
 * bug 3769 fixed - Dynamic link doesn't detect intel fortran compiler version 11 on Windows
 
+* bug 3745 fixed - "make install" now install all <module>/demos/ and <module>/examples
+
 * bug 3775 fixed - get_absolute_file_path(input_file) returns a error if input_file is not opened in scilab.
 
 * bug 1926 fixed - wavwrite doesn't manage single channel mode.
@@ -127,4 +133,13 @@ Bug fixes:
 
 * bug 2959 fixed - functions on F1, F2, F12 keys are not mapped as scilab 4.x
 
+* bug 3652 fixed - wrong computation of generalized eigenvalues
+
+* bug 2453, 3731, 3759, 3784, 3801 & 3802 fixed -  Force all the numerical value to remain to the english notation.
+
+* bug 3767, 3827 fixed (windows) - Atlas 3.8.2 crashs scilab
+
 * bug 3800 fixed - After using surf to plot giving a stacksize error, it is no longer possible to plot in the same window.
+
+* bug 3822 fixed - When a figure handle is saved and reloaded the figure_size as well as the viewport properties are not saved nor restored.
+

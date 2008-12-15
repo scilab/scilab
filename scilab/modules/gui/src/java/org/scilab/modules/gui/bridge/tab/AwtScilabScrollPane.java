@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 20072008 - INRIA - Vincent Couvert
- * Copyright (C) 2007 - INRIA - Bruno JOFRET
- * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2008 - 2008 Digiteo Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,13 +13,10 @@
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.ScrollPane;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.Component;
 import java.awt.Graphics;
 
 /**
@@ -66,7 +61,6 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	 */
 	public void setBackground(double red, double green, double blue) {
 		Color newColor = new Color((float) red, (float) green, (float) blue);
-		setBackground(newColor);
 		// change the background of the underlying panel
 		getComponent(0).setBackground(newColor);
 	}
@@ -102,8 +96,7 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 		if (axes.getAutoResizeMode()) {
 			// in auto resize mode the viewport axes
 			// fill the tab and then the view
-			Dimension axesSize = this.getViewportSize();
-			axes.setSize(axesSize);
+			axes.setSize(getViewportSize());
 		}
 		
 	}
@@ -123,6 +116,27 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 		  axes.paint(g);
 		}
 		super.paint(g);
+	}
+	
+	/**
+	 * Enable or disable auto resize mode
+	 * @param autoResizeMode true if autoresize is on
+	 */
+	public void setAutoResizeMode(boolean autoResizeMode) {
+		axes.setAutoResizeMode(autoResizeMode);
+		if (autoResizeMode) {
+			axes.setSize(getViewportSize());
+		}
+		// revalidate to update scollbars
+		validate();
+	}
+	
+	/**
+	 * Enable or disable auto resize mode
+	 * @return true if autoresize is on
+	 */
+	public boolean getAutoResizeMode() {
+		return axes.getAutoResizeMode();
 	}
 
 }
