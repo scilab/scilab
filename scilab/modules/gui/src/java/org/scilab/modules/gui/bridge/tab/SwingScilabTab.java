@@ -734,6 +734,9 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.setTitlebar(null);
 		this.removeAll();
 		
+		scrolling = null;
+		contentPane = null;
+		
 		// without this children canvas are not released.
 		Container dummyContainer = new Container();
 		this.setContentPane(dummyContainer);
