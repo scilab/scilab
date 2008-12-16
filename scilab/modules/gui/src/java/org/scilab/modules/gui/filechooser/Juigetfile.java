@@ -23,6 +23,7 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
  */
 public class Juigetfile {
 	
+	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.sci", "*.sc*", "*.cos*"};
 	public static final String DEFAULT_INITIAL_DIRECTORY = "C:\\";
 	public static final String DEFAULT_BOX_TITLE = "uigetfile";
 	public static final boolean DEFAULT_MULTIPLE_SELECTION = true;
@@ -38,6 +39,17 @@ public class Juigetfile {
 	 * We do not want a JScilabFileChooser object.
 	 */
 	private Juigetfile() { }
+	
+	/**
+	 * uigetfile called with 0 arg 
+	 */
+	public static void uigetfile() {	
+		String[] mask = new String[DEFAULT_MASK.length];
+		String[] description = new String[0];
+		mask = DEFAULT_MASK;		
+		
+		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE, DEFAULT_MULTIPLE_SELECTION);
+	}
 	
 	/**
 	 * uigetfile called with 1 arg (mask)

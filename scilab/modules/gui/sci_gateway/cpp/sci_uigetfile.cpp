@@ -38,8 +38,6 @@ using namespace org_scilab_modules_gui_filechooser;
 
 int sci_uigetfile(char *fname,unsigned long fname_len) 
 {
-	//std::cerr << "[CALL] uigetfile" << std::endl;
-	//std::cout << "[CALL] uigetfile" << std::endl;
 	int nbRow = 0, nbCol = 0;
 	int nbRow2 = 0, nbCol2 = 0;
 	int nbRow3 = 0, nbCol3 = 0;
@@ -68,7 +66,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 
 	char *menuCallback;
 
-	CheckRhs(1,4);
+	CheckRhs(0,4);
 	CheckLhs(1,3);
 
 	if ((optName = (char*)MALLOC(sizeof(char*)*(strlen("title")+1))) == NULL)
@@ -77,17 +75,15 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		return FALSE;
 	}
 
-	//std::cerr << "Malloc test pass" << std::endl;
 
 	/* Wrong number of arg */
-	if ((Rhs < 1) || (Rhs > 4))
+	if ((Rhs < 0) || (Rhs > 4))
 	{
 		Scierror(999, _("%s: Wrong number of input argument(s).\n"));
 		FREE(optName);
 		return FALSE;
 	}
 
-	//std::cerr << "Wrong nb arg test pass" << std::endl;
 
 	//inputs checking
 	/* call uigetfile with 1 arg */
@@ -122,7 +118,6 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 
 	}
 
-	//std::cerr << "1 arg test pass" << std::endl;
 
 	/* call uigetfile with 2 arg */
 	if (Rhs >= 2){
@@ -143,7 +138,6 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		}
 	}
 
-	//std::cerr << "2 arg test pass" << std::endl;
 
 	/* call uigetfile with 3 arg */
 	if (Rhs >= 3){
@@ -163,7 +157,6 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		}
 	}
 
-	//std::cerr << "3 arg test pass" << std::endl;
 
 	/* call uigetfile with 4 arg */
 	if (Rhs == 4){
@@ -184,35 +177,32 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 		multipleSelection = istk(multipleSelectionAdr)[0];
 	}
 
-	//std::cerr << "4 arg test pass" << std::endl;
 
 	/* Call Java */
+	if (Rhs == 0)
+	{		
+		CallJuigetfileWithoutInput();
+	}
+
 	if (Rhs == 1)
 	{		
-		//std::cerr << "calling java with 1 arg" << std::endl;
 		CallJuigetfileOnlyWithMask(mask, description, nbRow);
 	}
 
 	if (Rhs == 2)
 	{
-		//std::cerr << "calling java with 2 arg" << std::endl;
 		CallJuigetfileWithMaskAndInitialdirectory(mask, description, nbRow, initialDirectory[0]);
-		//std::cerr << "after calling java with 2 arg" << std::endl;
 	}
 
 	if (Rhs == 3)
 	{
-		//std::cerr << "calling java with 3 arg" << std::endl;
 		CallJuigetfileWithoutMultipleSelection(mask, description, nbRow, initialDirectory[0], titleBox[0]);
 	}
 
 	if (Rhs == 4)
 	{
-		//std::cerr << "calling java with 4 arg" << std::endl;
 		CallJuigetfile(mask, description, nbRow, initialDirectory[0], titleBox[0], BOOLtobool(multipleSelection));
 	} 
-
-	//std::cerr << "After Java call ..." << std::endl;
 
 
 	// Get return values
@@ -223,16 +213,6 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	filterIndex = getJuigetfileFilterIndex();
 	menuCallback = getJuigetfileMenuCallback();
 
-
-	//printf("\n");
-	//printf(("selectionRempli: %s \n"),selection);
-	/*for (int __i = 0 ; __i < selectionSize ; ++__i) {
-		std::cerr << "selectionRempli ["<< __i << "] "<< selection[__i] << std::endl; 
-	}*/
-	//printf(("selectionPathNameRempli: %s \n"),selectionPathName);
-	//printf(("selectionSize: %d \n"),selectionSize);
-	//printf(("multipleSelection: %d \n"),multipleSelection);
-	//printf(("C++ filterIndex: %d \n"),filterIndex);
 
 	// nbColOutSelection
 	nbColOutSelection = selectionSize;
@@ -248,7 +228,6 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	{
 		return 0;
 	}
-
 
 	//uigetfile with single file selection
 	if (multipleSelection == FALSE) 
@@ -269,7 +248,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	{
 		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
 		
-		nbColOutPath = (int)strlen(selectionPathName);
+		nbColOutPath = strlen(selectionPathName);
 		CreateVarFromPtr(Rhs+2, STRING_DATATYPE, &nbColOutPath,&nbRowOutPath, &selectionPathName);
 
 		if (Lhs > 2)

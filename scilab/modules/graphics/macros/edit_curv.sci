@@ -335,7 +335,7 @@ endfunction
 
 
 function [x,y]=readxy()
-  fn=xgetfile('*.xy')
+  fn=uigetfile('*.xy')
   if fn<>emptystr() then 
     if execstr('load(fn)','errcatch')<>0 then
       xy=read(fn,-1,2)
@@ -351,7 +351,7 @@ function [x,y]=readxy()
 endfunction
 
 function savexy(x,y)
-  fn=xgetfile('*.xy')
+  fn=uigetfile('*.xy')
   if fn<>emptystr()  then 
     xy=[x y];
     fil=fn+'.xy'

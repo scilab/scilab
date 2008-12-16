@@ -73,6 +73,7 @@ public interface FileChooser {
 	
 	/**
 	 * Set the flag indicating that we want only select files
+	 * @param multipleSelection enable the multiple selection
 	 */
 	void setMultipleSelection(boolean multipleSelection);
 	
