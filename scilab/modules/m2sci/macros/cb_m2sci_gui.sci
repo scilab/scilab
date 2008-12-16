@@ -66,7 +66,7 @@ elseif get(gcbo,"tag")=="dirbtn" then
 //
 elseif get(gcbo,"tag")=="filebtn" then
   
-  filename = xgetfile("*.m", getcwd(), gettext("Select the file to convert"));
+  filename = uigetfile("*.m", getcwd(), gettext("Select the file to convert"));
   set(findobj("tag", "fileedit"), "string", filename);
   
 //

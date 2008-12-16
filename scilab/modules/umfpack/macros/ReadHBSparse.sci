@@ -40,7 +40,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    //     filename   : (optional) a string given the filename 
    //                  (eventually preceeding by the path), if 
    //                  filename is not given then the function 
-   //                  use xgetfile to get filename
+   //                  use uigetfile to get filename
    //     A          : the sparse matrix
    //     description: a string given some information about the
    //                  matrix
@@ -74,7 +74,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    [lhs, rhs] = argn()
 
    if rhs == 0 then
-      filename = xgetfile("*.[rc][shzu]a", title=[gettext("Choose a sparse matrix"); ...
+      filename = uigetfile("*.[rc][shzu]a", title=[gettext("Choose a sparse matrix"); ...
 		                                  gettext("   then click on OK   ")])
    elseif rhs == 1 then
       if typeof(filename) ~= "string" then

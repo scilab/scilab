@@ -32,7 +32,7 @@
         <listitem>
           <para>(optional) a string given the filename (eventually preceeding
           by the path), if filename is not given then the function use <link
-          linkend="xgetfile">xgetfile</link> to get filename
+          linkend="uigetfile">uigetfile</link> to get filename
           interactively</para>
         </listitem>
       </varlistentry>

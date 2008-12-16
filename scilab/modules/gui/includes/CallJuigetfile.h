@@ -15,6 +15,8 @@
 
 void CallJuigetfile(char **mask, char **description, int maskSize, char *initialDirectory, char *titleBox, bool multipleSelection);
 
+void CallJuigetfileWithoutInput();
+
 void CallJuigetfileOnlyWithMask(char **mask, char **description, int maskSize);
 
 void CallJuigetfileWithMaskAndInitialdirectory(char **mask, char **description, int maskSize, char *initialDirectory);
