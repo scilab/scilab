@@ -1396,6 +1396,9 @@ int sciInitIsClipping( sciPointObj * pobj, int value )
       if(value>0) pGRAYPLOT_FEATURE (pobj)->clip_region_set=1;
       break;
     case SCI_LEGEND:
+			pLEGEND_FEATURE(pobj)->isclip = value;
+			if(value>0) { pLEGEND_FEATURE (pobj)->clip_region_set=1;}
+      break;
     case SCI_AGREG:
     case SCI_FIGURE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
