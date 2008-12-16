@@ -31,10 +31,13 @@ function myFile=xgetfile(fileMask, initialDir, boxTitle)
 	// 1 input : filemask OR title
 	if rhs == 1 then
 		if (exists('fileMask') == 1) then
-			if (type(fileMask) == 10 & fileMask <> "") then
+			if (type(fileMask) == 10) then
 				myFileMask = fileMask;
 				myInitialDir = "";
 				myBoxTitle = "Uigetfile";	
+			else
+				error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",1));
+				return;
 			end
 		elseif (exists('title', 'local')) then
 				myFileMask = "";
@@ -42,43 +45,56 @@ function myFile=xgetfile(fileMask, initialDir, boxTitle)
 				myBoxTitle = string(title);	
 		else
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",1));
+			return;
 		return;
 		end
 	end
 	
 	// 2 inputs : filemask, initial directory OR filemask, title
 	if rhs == 2 then
-		if (type(fileMask) == 10 & fileMask <> "" & exists('initialDir') == 1) then
+		if (type(fileMask) == 10 & exists('initialDir') == 1) then
 			if type(initialDir) == 10 then
 				myFileMask = fileMask;
 				myInitialDir = initialDir;
 				myBoxTitle = "Uigetfile";	
+			else
+				error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",2));
+				return;
 			end
 		elseif (exists('title', 'local')) then
 				myFileMask = fileMask;
 				myInitialDir = "";
 				myBoxTitle = string(title);	
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",2));
-		return;
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",1));
+			return;
 		end
 	end
 	
 	// 3 inputs : filemask, initial directory, box title OR filemask, initial directory, title
 	if rhs == 3 then
-		if (type(fileMask) == 10 & fileMask <> "" & exists('initialDir') == 1 & exists('boxTitle') == 1) then
-			if type(initialDir) == 10 & type(boxTitle) == 10 then
-				myFileMask = fileMask;
+		if (type(fileMask) == 10 & exists('initialDir') == 1 & exists('boxTitle') == 1) then
+			myFileMask = fileMask;
+			
+			if type(initialDir) == 10 then
 				myInitialDir = initialDir;
-				myBoxTitle = boxTitle;
+			else
+				error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",2));
 			end
+			
+			if type(boxTitle) == 10 then
+				myBoxTitle = boxTitle;
+			else
+				error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",3));
+			end
+			
 		elseif (exists('title', 'local')) then
 				myFileMask = fileMask;
 				myInitialDir = initialDir;
 				myBoxTitle = string(title);	
 		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",3));
-		return;
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetfile",1));
+			return;
 		end
 	end
 

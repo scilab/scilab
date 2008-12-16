@@ -109,9 +109,8 @@ public class Juigetfile {
 		}
 		
 		SwingScilabFileChooser ssfc = new SwingScilabFileChooser();				
-		
-		ssfc.addMask(Juigetfile.mask, Juigetfile.description);
 		ssfc.setAcceptAllFileFilterUsed(true);
+		ssfc.addMask(Juigetfile.mask, Juigetfile.description);		
 		ssfc.setInitialDirectory(Juigetfile.initialDirectory);
 		ssfc.setTitle(Juigetfile.boxtTitle);
 		ssfc.setMultipleSelection(Juigetfile.multipleSelection);		
