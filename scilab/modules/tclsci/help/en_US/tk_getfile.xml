@@ -92,7 +92,7 @@ tk_getfile(multip="1")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xgetfile">xgetfile</link>
+        <link linkend="uigetfile">uigetfile</link>
       </member>
       <member>
         <link linkend="tk_getdir">tk_getdir</link>
