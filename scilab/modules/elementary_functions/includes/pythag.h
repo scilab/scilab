@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Antoine ELIAS
+ * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,12 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "common.h"
+#ifndef __PYTHAG_H__
+#define __PYTHAG_H__
 
-/*sinh*/
-double dsinhs(double _dblVal)
-{
-	return sinh(_dblVal);
-}
+double dpythags(double _dblVal1, double _dblVal2);
 
-
+#endif /* __PYTHAG_H__ */

@@ -10,12 +10,14 @@
 *
 */
 
-#ifndef __ABS_H__
-#define __ABS_H__
+#ifndef __TAN_H__
+#define __TAN_H__
 
-#include "common.h"
+double dtans(double _dblVal);
+void ztans(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
-double dabss(double _dblVal);
-double dabsz(double _dblRealVal, double _dblImgVal);
+double datans(double _dblVal);
+double datan2s(double _dblValX, double _dblValY);
+void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
-#endif /* __ABS_H__ */
+#endif /* __TAN_H__ */

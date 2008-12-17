@@ -9,7 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+
+#include "common.h"
 
 
 /*sqrt*/
@@ -21,8 +22,8 @@ double dsqrts(double _dblVal)
 /*sqrt complex*/
 void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut)
 {
-	double dblRMax		= F2C(dlamch)("o",1L);
-	double dblBRMin		= 2 * F2C(dlamch)("U",1L);
+	double dblRMax		= getOverflowThreshold();
+	double dblBRMin		= 2 * getUnderflowThreshold();
 
 	if(_dblRealIn == 0)
 	{//pure imaginary case

@@ -10,12 +10,13 @@
 *
 */
 
-#ifndef __ABS_H__
-#define __ABS_H__
+#ifndef __LOG_H__
+#define __LOG_H__
 
-#include "common.h"
+double dlogs(double _dblVal);
+void wlog(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+double dlog1ps(double _dblVal);
+double lnp1m1(double _dblVar);
 
-double dabss(double _dblVal);
-double dabsz(double _dblRealVal, double _dblImgVal);
 
-#endif /* __ABS_H__ */
+#endif /* __LOG_H__ */

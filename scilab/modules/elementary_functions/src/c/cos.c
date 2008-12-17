@@ -10,8 +10,7 @@
  *
  */
 
-#include "cos.h"
-#include "sin.h"
+#include "common.h"
 
 /*cos*/
 double dcoss(double _dblVal)

@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+#include "common.h"
 
 /*
 *     PURPOSE
@@ -40,7 +40,7 @@ double dpythags(double _dblVal1, double _dblVal2)
 	double dblSqrt2		= 1.41421356237309504;
 	double dblSqrt2p1	= 2.41421356237309504;
 	double dblEsp		= 1.25371671790502177E-16;
-	double dblRMax		= F2C(dlamch)("o",1L);
+	double dblRMax		= getOverflowThreshold();
 
 	double dblAbs1 = 0;
 	double dblAbs2 = 0;

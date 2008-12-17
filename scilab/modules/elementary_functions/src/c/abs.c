@@ -9,7 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+#include <math.h>
+
+#include "common.h"
 
 /*abs*/
 double dabss(double _dblVal)

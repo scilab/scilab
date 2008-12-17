@@ -22,6 +22,13 @@
 #include "abs.h"
 #include "cos.h"
 #include "sin.h"
+#include "log.h"
+#include "tan.h"
+#include "exp.h"
+#include "pythag.h"
+#include "sqrt.h"
+#include "sign.h"
+
 
 static double spdblExpmC[41] = {0};
 static double sdblExpmN = 0;
@@ -32,29 +39,6 @@ extern double C2F(logp1) (double *x);
 extern int C2F(dgemm)();
 extern int C2F(dswap)();
 extern double C2F(dasum)();
-
-double lnp1m1(double _dblVar);
-
-
-double dtans(double _dblVal);
-void ztans(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
-
-double datans(double _dblVal);
-double datan2s(double _dblValX, double _dblValY);
-void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
-
-double dexps(double _dblVal);
-void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
-
-double dsqrts(double _dblVal);
-void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);
-
-double dlogs(double _dblVal);
-void wlog(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
-double dlog1ps(double _dblVal);
-
-double dsigns(double _dblRef, double _dblVal);
-double dsignsEx(double _dblVal);
 
 double dceilsEx(double _dblVal, int _iPrecision);
 double dceils(double _dblVal);
@@ -72,7 +56,6 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 double dfloors(double _dblVal);
 double dfrexps(double _dblVal, double *_pdblExp);
-double dpythags(double _dblVal1, double _dblVal2);
 double dblNearFloat(double _dblVal, double _dblMode);
 
 void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut, int _iInc);

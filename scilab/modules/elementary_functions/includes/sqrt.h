@@ -9,13 +9,10 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+#ifndef __SQRT_H__
+#define __SQRT_H__
 
-#ifndef __ABS_H__
-#define __ABS_H__
+double dsqrts(double _dblVal);
+void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);
 
-#include "common.h"
-
-double dabss(double _dblVal);
-double dabsz(double _dblRealVal, double _dblImgVal);
-
-#endif /* __ABS_H__ */
+#endif

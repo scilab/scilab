@@ -10,12 +10,10 @@
 *
 */
 
-#ifndef __ABS_H__
-#define __ABS_H__
+#ifndef __EXP_H__
+#define __EXP_H__
 
-#include "common.h"
+double dexps(double _dblVal);
+void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
 
-double dabss(double _dblVal);
-double dabsz(double _dblRealVal, double _dblImgVal);
-
-#endif /* __ABS_H__ */
+#endif /* __EXP_H__ */

@@ -9,7 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+
+#include "common.h"
 
 
 /*atan*/
@@ -165,7 +166,7 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 	static double sdblTol		= 0.3;
 	static double sdblLn2		= 0.6931471805599453094172321;
 
-	double dblRMax				= F2C(dlamch)("O",1L);
+	double dblRMax				= getOverflowThreshold();
 	double dblPi_2				= 2.0 * datans(1);
 
 

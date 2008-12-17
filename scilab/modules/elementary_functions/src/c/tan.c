@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+#include "common.h"
 
 /*tan*/
 double dtans(double _dblVal)
@@ -87,7 +87,7 @@ TRANSLATE TO C
 void ztans(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pdblImgOut)
 {
 	double dblTemp = 0;
-	double dblLim = 1 + dlogs(2.0 / dsqrts(F2C(dlamch)("e",1L)));
+	double dblLim = 1 + dlogs(2.0 / dsqrts(getRelativeMachinePrecision()));
 
 	dblTemp			= pow(dcoss(_dblRealIn), 2) + pow(dsinhs(_dblImgIn), 2);
 	*_pdblRealOut	= 0.5 * dsins(2 * _dblRealIn) / dblTemp;

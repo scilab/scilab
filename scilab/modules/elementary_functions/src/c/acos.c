@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+#include "common.h"
 
 /*acos*/
 double dacoss(double _dblVal)
@@ -34,9 +34,9 @@ void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 	static double sdblAcross	= 1.5;
 	static double sdblBcross	= 0.6417;
 
-	double dblLsup = sqrt(F2C(dlamch)("o",1L))/8.0;
-	double dblLinf = 4 * sqrt(F2C(dlamch)("u",1L));
-	double dblEpsm = sqrt(F2C(dlamch)("e",1L));
+	double dblLsup = sqrt(getOverflowThreshold())/8.0;
+	double dblLinf = 4 * sqrt(getUnderflowThreshold());
+	double dblEpsm = sqrt(getRelativeMachinePrecision());
 
 	double dblAbsReal	= fabs(_dblReal);
 	double dblAbsImg	= fabs(_dblImg);

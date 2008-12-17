@@ -10,12 +10,10 @@
 *
 */
 
-#ifndef __ABS_H__
-#define __ABS_H__
+#ifndef __SIGN_H__
+#define __SIGN_H__
 
-#include "common.h"
+double dsigns(double _dblRef, double _dblVal);
+double dsignsEx(double _dblVal);
 
-double dabss(double _dblVal);
-double dabsz(double _dblRealVal, double _dblImgVal);
-
-#endif /* __ABS_H__ */
+#endif /* __SIGN_H__ */

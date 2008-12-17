@@ -9,7 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
+
+#include "common.h"
 
 double dexps(double _dblVal)
 {

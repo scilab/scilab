@@ -10,6 +10,9 @@
 *
 */
 
+#ifndef __COS_H__
+#define __COS_H__
+
 #include <math.h>
 
 double dcoss(double _dblVal);
@@ -19,3 +22,5 @@ double dacoss(double _dblVal);
 void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
 double dcoshs(double _dblVal);
+
+#endif /* __COS_H__ */

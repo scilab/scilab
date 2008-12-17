@@ -9,8 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "basic_functions.h"
-
+#include "common.h"
 
 /*log*/
 double dlogs(double _dblVal)
@@ -45,8 +44,8 @@ void wlog(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pd
 {
 	static double sdblR2	= 1.41421356237309504;
 
-	double dblRMax = F2C(dlamch)("O",1L);
-	double dblLInf = sqrt(F2C(dlamch)("U",1L));
+	double dblRMax = getOverflowThreshold();
+	double dblLInf = sqrt(getUnderflowThreshold());
 	double dblLSup = sqrt(0.5 * dblRMax);
 
 	double dblAbsReal	= fabs(_dblRealIn);

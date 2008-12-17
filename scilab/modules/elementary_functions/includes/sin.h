@@ -10,6 +10,9 @@
 *
 */
 
+#ifndef __SIN_H__
+#define __SIN_H__
+
 #include <math.h>
 
 double dsins(double _dblVal);
@@ -18,3 +21,5 @@ void zsins(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _db
 double dasins(double _dblVal);
 void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 double dsinhs(double _dblVal);
+
+#endif /* __SIN_H__ */

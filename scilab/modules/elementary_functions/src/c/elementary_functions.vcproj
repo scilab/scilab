@@ -766,6 +766,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\exp.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\finite.h"
 				>
 			</File>
@@ -791,6 +795,14 @@
 			</File>
 			<File
 				RelativePath=".\IsEqualVar.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\log.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\pythag.h"
 				>
 			</File>
 			<File
@@ -826,11 +838,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\sign.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\sin.h"
 				>
 			</File>
 			<File
 				RelativePath=".\sortTemplate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sqrt.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\tan.h"
 				>
 			</File>
 			<File
