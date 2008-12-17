@@ -36,7 +36,6 @@
 #include "BuildObjects.h"
 #include "WindowList.h"
 #include "DoublyLinkedList.h"
-#include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
@@ -156,7 +155,6 @@ extern int sciDelHandle
     case 5:/* in prevision */
     case 7:/* in prevision */
     default:
-      sciprint(_("No handle to delete.\n"));
       return -1;
       break;
     }
@@ -190,7 +188,6 @@ sciGetPointerFromHandle (long handle)
       
       if (phandletab == NULL)
 	{
-	  /* sciprint ("this is not or no more a valid handle !!\n");  F.Leray Adding 'or no more' */
 	  return (sciPointObj *) NULL;
 	}  
       return (sciPointObj *) phandletab->pointobj;
@@ -201,7 +198,6 @@ sciGetPointerFromHandle (long handle)
     return (sciPointObj *) getAxesModel();
   else
     {
-      /* sciprint ("this is not or no more a valid handle !!\n");  F.Leray Adding 'or no more' */
       return (sciPointObj *) NULL;
     }
     
@@ -537,7 +533,6 @@ BOOL sciDelSonFromItsParent(sciSons * son, sciPointObj * parent)
     case 5:
     case 7:
     default :
-      sciprint(_("There is no Son in this Parent.\n"));
       return FALSE;
       break;
     }

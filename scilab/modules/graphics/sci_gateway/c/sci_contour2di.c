@@ -66,7 +66,11 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   for (i =0 ; i < ix4 ; ++i) *istk(l5 + i ) = i+1;
   if (nz == 1) *istk(l5 +1) = 1;
 
-  C2F(contourif)(stk(l1),stk(l2),stk(l3),&m3,&n3,&flagx,&nz,znz,istk(l5));
+  if (C2F(contourif)(stk(l1),stk(l2),stk(l3),&m3,&n3,&flagx,&nz,znz,istk(l5)) != 0)
+	{
+		/* Something wrong happened */
+		return -1;	
+	}
   C2F(getconts)(&hl1, &hl2, &m1, &n1);
   if (n1 == 0)
   {

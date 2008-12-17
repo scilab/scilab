@@ -29,7 +29,7 @@
 #include "math_graphics.h"
 #include "PloEch.h"
 #include "Axes.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "Fec.h"
 #include "GrayPlot.h"
 #include "CurrentObjectsManagement.h"
@@ -422,7 +422,7 @@ void Objplot3d ( char    * fname ,
     /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
     loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
     if ( loc == NULL) {
-		sciprint(_("%s: No more memory.\n"),"Objplot3d");
+		Scierror(999, _("%s: No more memory.\n"),"Objplot3d");
 	}
   
     strcpy(loc,legend);
@@ -618,7 +618,7 @@ void Objplot3d ( char    * fname ,
       if ( monotony == 0 )
       {
         endFigureDataWriting(parentFigure);
-        sciprint(_("%s: x vector is not monotonous.\n"),"Objplot3d");
+        Scierror(999, _("%s: x vector is not monotonous.\n"),"Objplot3d");
         return;
       }
 
@@ -650,7 +650,7 @@ void Objplot3d ( char    * fname ,
       if ( monotony == 0 )
       {
         endFigureDataWriting(parentFigure);
-        sciprint(_("%s: x vector is not monotonous.\n"),"Objplot3d");
+        Scierror(999, _("%s: x vector is not monotonous.\n"),"Objplot3d");
         return ;
       }
 

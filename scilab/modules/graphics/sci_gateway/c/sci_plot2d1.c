@@ -26,7 +26,6 @@
 #include "DefaultCommandArg.h"
 #include "GetProperty.h"
 #include "sciCall.h"
-#include "sciprint.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"

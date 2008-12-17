@@ -24,6 +24,7 @@ for entities handling
 #include "DrawObjects.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "Scierror.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "localization.h"
@@ -169,7 +170,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   if (pFec == NULL)
   {
     // error in allocation
-    sciprint(_("%s: No more memory.\n"), "fec");
+    Scierror(999, _("%s: No more memory.\n"), "fec");
     return -1;
   }
 

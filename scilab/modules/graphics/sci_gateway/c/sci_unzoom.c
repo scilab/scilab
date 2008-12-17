@@ -26,7 +26,7 @@
 #include "axesScale.h"
 #include "localization.h"
 #include "CurrentObjectsManagement.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
@@ -50,9 +50,9 @@ int sci_unzoom(char *fname,unsigned long fname_len)
     zoomedObjects = MALLOC(nbUnzoomedObjects * sizeof(sciPointObj *));
     if (zoomedObjects == NULL)
     {
-      sciprint(_("%s: No more memory.\n"),fname);
+      Scierror(999, _("%s: No more memory.\n"),fname);
       LhsVar(1)=0; 
-      return 0;
+      return -1;
     }
 
     /* first pass, check that all the handles are subwindows or figures */
@@ -63,9 +63,9 @@ int sci_unzoom(char *fname,unsigned long fname_len)
       if (sciGetEntityType(zoomedObjects[i]) != SCI_SUBWIN && sciGetEntityType(zoomedObjects[i]) != SCI_FIGURE)
       {
         FREE(zoomedObjects);
-        sciprint(_("%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"),fname);
+        Scierror(999, _("%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"),fname);
         LhsVar(1)=0; 
-        return 0;
+        return -1;
       }
     }
 

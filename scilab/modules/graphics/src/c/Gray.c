@@ -27,6 +27,7 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "GrayPlot.h"
@@ -125,7 +126,8 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
       CreatePrettyGradsFromNax(psubwin,aaint);
     }
     else{
-      sciprint(_("Warning: Nax does not work with logarithmic scaling\n"));}
+      sciprint(_("Warning: Nax does not work with logarithmic scaling\n"));
+		}
   }
 
   if( bounds_changed || axes_properties_changed )
@@ -256,7 +258,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
   if (pGrayplot == NULL)
   {
     // allocation error
-    sciprint(_("%s: No more memory.\n"), "grayplot");
+    Scierror(999, _("%s: No more memory.\n"), "grayplot");
     return -1;
   }
 

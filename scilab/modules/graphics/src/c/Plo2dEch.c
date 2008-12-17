@@ -31,7 +31,6 @@
 #include "DrawObjects.h"
 #include "PloEch.h"
 #include "axesScale.h"
-#include "sciprint.h"
 #include "Format.h"
 #include "scirun.h"
 #include "CurrentObjectsManagement.h"
