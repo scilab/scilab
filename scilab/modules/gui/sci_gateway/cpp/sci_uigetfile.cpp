@@ -224,8 +224,13 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 
 
 	//if cancel is selected on the filechooser
-	if (selection[0] == "")
+	if (strcmp(selection[0],"") == 0)
 	{
+		nbRowOutSelection = 1; 
+		nbColOutSelection = 1;
+		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
+		LhsVar(1) = Rhs + 1 ;
+		C2F(putlhsvar)();
 		return 0;
 	}
 

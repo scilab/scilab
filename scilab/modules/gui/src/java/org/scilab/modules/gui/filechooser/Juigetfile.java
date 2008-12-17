@@ -26,7 +26,7 @@ public class Juigetfile {
 	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.sci", "*.sc*", "*.cos*"};
 	public static final String DEFAULT_INITIAL_DIRECTORY = "C:\\";
 	public static final String DEFAULT_BOX_TITLE = "uigetfile";
-	public static final boolean DEFAULT_MULTIPLE_SELECTION = true;
+	public static final boolean DEFAULT_MULTIPLE_SELECTION = false;
 	
 	private static String[] mask;
 	private static String[] description;
