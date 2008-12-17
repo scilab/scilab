@@ -29,6 +29,11 @@ void CallJuigetfile(char ** mask, char ** description, int maskSize, char * init
 	}
 }
 
+void CallJuigetfileWithoutInput()
+{
+	Juigetfile::uigetfile(getScilabJavaVM());
+}
+
 void CallJuigetfileOnlyWithMask(char ** mask, char ** description, int maskSize)
 {
 	if (description == NULL)

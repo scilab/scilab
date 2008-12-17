@@ -23,7 +23,7 @@ int GetUicontrolMax(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Max");
+      Scierror(999, _("No '%s' property for this object.\n"), "Max");
       return FALSE;
     }
 }

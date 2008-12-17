@@ -24,7 +24,7 @@ int GetUimenuLabel(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Label");
+      Scierror(999, _("No '%s' property for this object.\n"), "Label");
       return FALSE;
     }
 }

@@ -37,6 +37,6 @@ void DestroyJavaUiobject(sciPointObj * sciObj)
     }
   else
     {
-      sciprint(_("Could not destroy this object.\n"));
+      sciprint(_("%s: Could not destroy this object.\n"), "DestroyJavaUiobject");
     }
 }

@@ -8,7 +8,7 @@
         <submenu label="&amp;Execute...">
             <callback
             instruction='
-              %fileToExec = xgetfile("*.sc*", getcwd(), gettext("Select a file to execute"));
+              %fileToExec = uigetfile("*.sc*", getcwd(), gettext("Select a file to execute"));
               if ~isempty(%fileToExec) then
                 exec(%fileToExec);
                 disp(msprintf(gettext("Execution done.\n")));
@@ -20,7 +20,7 @@
         <submenu label="&amp;Open a file...">
             <callback
             instruction='
-              %fileToOpen = xgetfile("*.sc*", getcwd(), gettext("Select a file to open with Scipad"));
+              %fileToOpen = uigetfile("*.sc*", getcwd(), gettext("Select a file to open with Scipad"));
               if ~isempty(%fileToOpen) then
                 scipad(%fileToOpen);
               end
@@ -30,7 +30,7 @@
         <submenu label="&amp;Load environment...">
             <callback
             instruction='
-              %fileToLoad = xgetfile("*.sav", getcwd(), gettext("Select a file to load"));
+              %fileToLoad = uigetfile("*.sav", getcwd(), gettext("Select a file to load"));
               if ~isempty(%fileToLoad) then
                 load(%fileToLoad);
                 disp(msprintf(gettext("Environment loaded.\n")));
@@ -41,7 +41,7 @@
         <submenu label="&amp;Save environment...">
             <callback
             instruction='
-              %fileToSave = xgetfile("*.sav", getcwd(), gettext("Select a file to write"));
+              %fileToSave = uigetfile("*.sav", getcwd(), gettext("Select a file to write"));
               if ~isempty(%fileToSave) then
                 if isempty(fileparts(%fileToSave, "extension")) then
                   %fileToSave = %fileToSave + ".sav";

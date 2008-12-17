@@ -93,7 +93,7 @@ int GetUicontrolValue(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Value");
+      Scierror(999, _("No '%s' property for this object.\n"), "Value");
       return FALSE;
     }
 }

@@ -18,7 +18,7 @@ extern "C"{
 #include "getScilabJavaVM.h"
 #include "GetProperty.h"
 #include "localization.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "GetUicontrolString.h"
 #include "UicontrolStyleToString.h"
 }

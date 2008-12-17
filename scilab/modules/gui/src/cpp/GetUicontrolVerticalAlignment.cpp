@@ -28,13 +28,13 @@ int GetUicontrolVerticalAlignment(sciPointObj* sciObj)
         case BOTTOM_ALIGNMENT:
           return sciReturnString("bottom");
         default:
-          sciprint(_("Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"), "VerticalAlignment", "top", "middle", "bottom");
+          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"), "VerticalAlignment", "top", "middle", "bottom");
           return FALSE;
         }
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "VerticalAlignment");
+      Scierror(999, _("No '%s' property for this object.\n"), "VerticalAlignment");
       return FALSE;
     }
 }

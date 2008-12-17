@@ -22,7 +22,7 @@ extern "C"
 #include "GetProperty.h"
 #include "localization.h"
 #include "UicontrolStyleToString.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __GET_UICONTROL_STYLE_HXX__ */

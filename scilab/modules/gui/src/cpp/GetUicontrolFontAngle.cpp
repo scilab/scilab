@@ -29,13 +29,13 @@ int GetUicontrolFontAngle(sciPointObj* sciObj)
         case OBLIQUE_FONT:
           return sciReturnString("oblique");
         default:
-          sciprint(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"), "FontAngle", "normal", "italic", "oblique");
+          Scierror(999, _("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"), "FontAngle", "normal", "italic", "oblique");
           return FALSE;
         }
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "FontAngle");
+      Scierror(999, _("No '%s' property for this object.\n"), "FontAngle");
       return FALSE;
     }
 }
