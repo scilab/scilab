@@ -68,7 +68,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN32\libpvm3.lib $(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib&quot;"
+				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN32\libpvm3.lib&quot; &quot;$(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib&quot;"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="LIBCMT.lib"
@@ -237,7 +237,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN32\libpvm3.lib $(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib&quot;"
+				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN32\libpvm3.lib&quot; &quot;$(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib&quot;"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="pvm.def"
