@@ -154,6 +154,22 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\c\abs.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\c\acos.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\c\asin.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\c\atan.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\c\cos.c"
 				>
 				<FileConfiguration
@@ -198,6 +214,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\c\exp.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\c\log.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\c\pythag.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\c\sign.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\c\sin.c"
 				>
 				<FileConfiguration
@@ -237,12 +269,28 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath="..\..\c\sqrt.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\c\tan.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\..\..\includes\abs.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\common.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\..\includes\cos.h"
 				>
@@ -252,7 +300,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\exp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\log.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\pythag.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\sign.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\sin.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\sqrt.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\tan.h"
 				>
 			</File>
 		</Filter>

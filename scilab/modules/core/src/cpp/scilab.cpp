@@ -43,7 +43,12 @@ using std::string;
 
 void Add_i(void);
 void Add_pi(void);
-void Add_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
+void Add_s(void);
+void Add_z(void);
+void Add_All_Variables(void);
+
+void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
+void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdblReal);
 
 
 void usage ()
@@ -112,6 +117,18 @@ int	get_option (const int argc, char *argv[])
 
 int	main (int argc, char *argv[])
 {
+/*
+	//TEST TONIO
+
+	std::cout.width(16);
+	std::cout.precision(14);
+	std::cout << 112345678.9012345678901234;
+	std::cout << std::endl;
+
+
+	return 0;
+	//TEST TONIO
+*/
 	int	i;
 	timer _timer;
 	prog_name = argv[0];
@@ -191,8 +208,7 @@ int	main (int argc, char *argv[])
 		SetScilabEnvironment();
 		FuncManager *pFM = new FuncManager();
 
-		Add_pi();
-		Add_i();
+		Add_All_Variables();
 		ast::ExecVisitor *execMe = new ast::ExecVisitor();
 
 		if (timed) { _timer.start(); }
@@ -234,18 +250,55 @@ int	main (int argc, char *argv[])
 	return WELL_DONE;
 }
 
+void Add_All_Variables(void)
+{
+	Add_pi();
+	Add_i();
+	Add_s();
+	Add_z();
+}
 
 void Add_pi(void)
 {
-	Add_Constant("%pi", 3.1415926535897931159980, 0, false);
+	Add_Double_Constant("%pi", 3.1415926535897931159980, 0, false);
 }
 
 void Add_i(void)
 {
-	Add_Constant("%i", 0, 1, true);
+	Add_Double_Constant("%i", 0, 1, true);
 }
 
-void Add_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex)
+void Add_s(void)
+{
+	Double dblCoef(1,2);
+	dblCoef.val_set(0, 0, 0);
+	dblCoef.val_set(0, 1, 1);
+
+	Add_Poly_Constant("%s","s", 2, &dblCoef);
+}
+
+void Add_z(void)
+{
+	Double dblCoef(1,2);
+	dblCoef.val_set(0, 0, 0);
+	dblCoef.val_set(0, 1, 1);
+
+	Add_Poly_Constant("%z","z", 2, &dblCoef);
+}
+
+void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdbl)
+{
+	types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
+	Poly *poPoly = pVar->poly_get(0,0);
+	poPoly->coef_set(_pdbl);
+	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVar);
+
+/*	pVal->val_set(0,0,_dblReal,_dblImg);
+	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
+*/
+}
+
+void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
 	types::Double* pVal = new types::Double(1,1,_bComplex);
 	pVal->val_set(0,0,_dblReal,_dblImg);

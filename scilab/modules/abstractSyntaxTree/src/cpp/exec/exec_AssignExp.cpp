@@ -18,6 +18,7 @@ using std::string;
 
 //std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List);
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
+int GetVarMaxDim(InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
 
 namespace ast
 {
@@ -62,24 +63,86 @@ namespace ast
 				for(i = CallVar->args_get().begin() ; i != CallVar->args_get().end() ; i++,k++)
 				{
 					(*i)->accept(*execMeArg);
+					InternalType *pIn = NULL;
+					Double *pDbl = NULL;
 
-					Double *pDbl	= execMeArg->result_get()->getAsDouble();
+					if(execMeArg->result_get()->getType() == InternalType::RealImplicitList)
+					{//a:b:c
+						int iMaxDim = 0;
+						if(pIT != NULL)
+						{
+							iMaxDim = GetVarMaxDim(pIT, k, CallVar->args_get().size());
+						}
+
+						Double dbl(iMaxDim); // $
+						ImplicitList *pIL = execMeArg->result_get()->getAsList();
+						if(pIL->computable() == false)
+						{
+							if(pIL->start_type_get() == InternalType::RealPoly)
+							{
+								MatrixPoly *poPoly	= pIL->start_poly_get();
+								pIL->start_set(poPoly->evaluate(&dbl)->real_get(0,0));
+							}
+							if(pIL->step_type_get() == InternalType::RealPoly)
+							{
+								MatrixPoly *poPoly	= pIL->step_poly_get();
+								pIL->step_set(poPoly->evaluate(&dbl)->real_get(0,0));
+							}
+							if(pIL->end_type_get() == InternalType::RealPoly)
+							{
+								MatrixPoly *poPoly	= pIL->end_poly_get();
+								pIL->end_set(poPoly->evaluate(&dbl)->real_get(0,0));
+							}
+						}
+
+						double *pDblData = NULL;
+						pDbl = new Double(1, pIL->size_get(), &pDblData);
+						pIL->extract_matrix(pDblData);
+					}
+					else
+					{
+						pIn = execMeArg->result_get();
+
+						if(pIn->getType() == InternalType::RealPoly)
+						{//manage $
+							MatrixPoly *pPoly = pIn->getAsPoly();
+
+							if(pIT != NULL)
+							{
+								int iMaxDim = GetVarMaxDim(pIT, k, CallVar->args_get().size());
+								Double dbl(iMaxDim); // $
+								pDbl = pPoly->evaluate(&dbl);
+							}
+							else
+							{//houston we have a problem ...
+								//Allow empty matrix
+							}
+						}
+						else if(pIn->getType() == InternalType::RealDouble)
+						{
+							pDbl	= pIn->getAsDouble();
+						}
+						else
+						{//Heu ... ?
+						}
+					}
+
 					double *pData = pDbl->real_get();
 
 //					std::vector<int> SubList;
 					piTabSize[k] = pDbl->size_get();
 					piIndexList[k] = new int[piTabSize[k]];
 
-					piMaxDim[k] = (int)pData[0];
+					piMaxDim[k] = (int)(pData[0] + 0.5);
 					int iSize = pDbl->size_get();
 					for(int j = 0 ; j < iSize ; j++)
 					{
-						if((int)pData[j] > piMaxDim[k])
+						if((int)(pData[j] + 0.5) > piMaxDim[k])
 						{
-							piMaxDim[k] = (int)pData[j];
+							piMaxDim[k] = (int)(pData[j] + 0.5);
 						}
 						//SubList.push_back((int)pData[j]);
-						piIndexList[k][j] = (int)pData[j];
+						piIndexList[k][j] = (int)(pData[j] + 0.5);
 
 					}
 					iTotalCombi *= iSize;
@@ -333,8 +396,9 @@ namespace ast
 						throw szErr;
 					}
 				}
-				else
+				else if(execMeR->result_get()->getType() == InternalType::RealPoly)
 				{//other tpyes
+					getchar();
 				}
 			}
 			else
@@ -435,5 +499,28 @@ void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piRe
 				}
 			}
 		}
+	}
+}
+
+int GetVarMaxDim(InternalType *_pIT, int _iCurrentDim, int _iMaxDim)
+{
+	if(_iCurrentDim == 0)
+	{
+		if(_iMaxDim != 1)
+		{
+			return ((GenericType*)_pIT)->rows_get();
+		}
+		else
+		{
+			return ((GenericType*)_pIT)->size_get();
+		}
+	}
+	else if(_iCurrentDim == 1)
+	{
+		return ((GenericType*)_pIT)->cols_get();
+	}
+	else
+	{//more than 2 dimansions ? :(
+		return ((GenericType*)_pIT)->size_get();
 	}
 }

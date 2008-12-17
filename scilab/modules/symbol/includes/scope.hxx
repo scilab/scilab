@@ -19,7 +19,7 @@
 #include "symbol.hxx"
 #include "alltypes.hxx"
 
-using types::InternalType;
+using namespace types;
 
 namespace symbol
 {
@@ -94,14 +94,14 @@ namespace symbol
 				(*it_scope).second->whoAmI();
 				if((*it_scope).second->isDouble())
 				{
-					types::Double *pdbl = (*it_scope).second->getAsDouble();
+					Double *pdbl = (*it_scope).second->getAsDouble();
 					ostr << pdbl->DimToString() << std::endl;
-					ostr << pdbl->toString(16, 100);
+					ostr << pdbl->toString(18, 100);
 					ostr << std::endl;
 				}
 				else if((*it_scope).second->isInt())
 				{
-					types::Int *pi = (*it_scope).second->getAsInt();
+					Int *pi = (*it_scope).second->getAsInt();
 					ostr << "( " << pi->rows_get() << ", " << pi->cols_get() << " )" << std::endl;
 					int iCols = pi->cols_get();
 					int iRows = pi->rows_get();
@@ -140,7 +140,7 @@ namespace symbol
 				}
 				else if((*it_scope).second->isString())
 				{
-					types::String *psz = (*it_scope).second->getAsString();
+					String *psz = (*it_scope).second->getAsString();
 					ostr << "( " << psz->rows_get() << ", " << psz->cols_get() << " )" << std::endl;
 					int iCols = psz->cols_get();
 					int iRows = psz->rows_get();
@@ -170,16 +170,90 @@ namespace symbol
 				}
 				else if((*it_scope).second->isBool())
 				{
-					types::Bool *pb = (*it_scope).second->getAsBool();
+					Bool *pb = (*it_scope).second->getAsBool();
 					ostr << "( " << pb->rows_get() << ", " << pb->cols_get() << " )" << std::endl;
-					string szOut = pb->toString(100);
-					ostr << szOut;
+
+					//string szOut = pb->toString(100);
+					//ostr << szOut;
+
+					for(int i = 0 ; i < pb->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pb->cols_get() ; j++)
+						{
+							ostr << pb->bool_get(i,j) == false ? "F " : "T ";
+						}
+						ostr << std::endl;
+					}
 				}
 				else if((*it_scope).second->isFunction())
 				{
-					types::Function *pF = (*it_scope).second->getAsFunction();
+					Function *pF = (*it_scope).second->getAsFunction();
 					ostr << std::endl;
 					ostr << "Module : " << pF->m_szModule << " Function : " << pF->m_szName << std::endl;
+				}
+				else if((*it_scope).second->isPoly())
+				{
+					MatrixPoly *pMP = (*it_scope).second->getAsPoly();
+					ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << std::endl;
+					for(int i = 0 ; i < pMP->rows_get(); i++)
+					{
+						for(int j = 0 ; j < pMP->cols_get(); j++)
+						{
+							ostr << "| ";
+							Poly *poPoly	= pMP->poly_get(i,j);
+							Double *pdbl	= poPoly->coef_get();
+							double *pR		= pdbl->real_get();
+							double *pI		= pdbl->img_get();
+
+							for(int k = poPoly->rank_get() - 1 ; k >= 0 ; k--)
+							{
+								if(k != poPoly->rank_get() - 1)
+								{
+									ostr << " + ";
+								}
+
+								ostr << "(";
+								if(pR[k] != 0 || pI == NULL || pI[k] == 0)
+								{
+									ostr << pR[k];
+								}
+
+ 								if((pI != NULL && pI[k] != 0))
+								{
+									if(pR[k] != 0 && pI[k] > 0)
+									{
+										ostr << "+";
+									}
+
+									if(pI[k] == 1)
+									{
+										ostr << "i";
+									}
+									else if(pI[k] == -1)
+									{
+										ostr << "-i";
+									}
+									else
+									{
+										ostr << pI[k] << "i";
+									}
+								}
+								ostr << ")";
+
+								if(k != 0)
+								{
+									ostr << " * " << pMP->var_get();
+									if(k != 1)
+									{
+										ostr << "^" << k;
+									}
+								}
+							}
+							ostr << " |";
+						}
+						ostr << std::endl;
+					}
+					ostr << std::endl << std::endl;
 				}
 			}
 		}

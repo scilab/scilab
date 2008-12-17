@@ -24,6 +24,7 @@ namespace types
   public :
 		~Double();
 		Double(double _dblReal);
+		Double(double _dblReal, double _dblImg);
     Double(int _iRows, int _iCols, bool _bComplex = false);
     Double(int _iRows, int _iCols, double **_pdblReal);
     Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);

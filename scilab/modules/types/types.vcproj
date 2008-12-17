@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -106,7 +106,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -181,6 +181,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\matrixpoly.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\poly.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\string.cpp"
 				>
 			</File>
@@ -232,6 +240,14 @@
 			</File>
 			<File
 				RelativePath=".\includes\internal.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\matrixpoly.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\poly.hxx"
 				>
 			</File>
 			<File

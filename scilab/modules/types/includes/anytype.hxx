@@ -25,6 +25,9 @@ namespace types
 	class GenericType;
 	class ImplicitList;
 	class Function;
+	class Dollar;
+	class Poly;
+	class MatrixPoly;
 }
 
 #endif /* !__ANY_TYPES_HH__ */

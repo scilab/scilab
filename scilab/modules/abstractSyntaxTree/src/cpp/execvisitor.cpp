@@ -14,6 +14,18 @@
 #include "timer.hxx"
 using std::string;
 
+bool bConditionState(ast::ExecVisitor *exec);
+
+void vTransposeRealMatrix(
+			double *_pdblRealIn, 
+			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealOut);
+
+void vTransposeComplexMatrix(
+			double *_pdblRealIn,	double *_pdblImgIn, 
+			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealOut,	double *_pdblImgOut, bool _bConjugate);
+
 namespace ast
 {
 	static int level = -1;
@@ -41,228 +53,26 @@ namespace ast
 		std::cerr << str << std::endl;
 	}
 
-
-	void ExecVisitor::visit (const MatrixExp &e)
-	{
-		try
-		{
-			int iRows = e.lines_get().size();
-			int iCols	= -1;
-			int iCurRow = 0;
-			int iCurCol = 0;
-			InternalType::RealType VarType = GenericType::RealDouble;
-			InternalType *First	= NULL;
-			InternalType *pData = NULL;
-
-			std::list<MatrixLineExp *>::const_iterator	row;
-			for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
-			{
-				std::list<Exp *>::const_iterator	col;
-
-				if(iCols != -1 && iCols != (*row)->columns_get().size())
-				{
-					std::ostringstream os;
-					os << "inconsistent row/column dimensions";
-					os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
-					string szErr(os.str());
-					throw szErr;
-				}
-
-				for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
-				{
-					ExecVisitor* execMe = new ast::ExecVisitor();
-					(*col)->accept (*execMe);
-
-					if(row == e.lines_get().begin() && col == (*row)->columns_get().begin()) //first occurence
-					{
-						First = execMe->result_get();
-						VarType = ((GenericType*)First)->getType();
-						iCols = (*row)->columns_get().size();
-						/*Allow data*/
-						if(VarType == GenericType::RealDouble)
-						{
-							pData = new Double(iRows, iCols, false);
-						}
-						else if(VarType == GenericType::RealBool)
-						{
-							pData = new Bool(iRows, iCols);
-						}
-						else if(VarType == GenericType::RealUInt)
-						{
-							pData = new UInt(iRows, iCols);
-						}
-						else if(VarType == GenericType::RealInt)
-						{
-							pData = new Int(iRows, iCols);
-						}
-						else if(VarType == GenericType::RealString)
-						{
-							pData = new String(iRows, iCols);
-						}
-					}
-
-					if(VarType != ((GenericType*)execMe->result_get())->getType())
-					{
-						std::ostringstream os;
-						Location loc = (*col)->location_get();
-						os << "Incompatible types ";
-						os << loc.location_string_get() << std::endl;
-						string szErr(os.str());
-						throw szErr;
-					}
-
-					if(VarType == GenericType::RealDouble)
-					{
-						if(((Double*)pData)->isComplex() == false && ((Double*)execMe->result_get())->img_get(0,0) != 0)
-						{
-							((Double*)pData)->complex_set(true);
-						}
-						((Double*)pData)->val_set(iCurRow, iCurCol, ((Double*)execMe->result_get())->real_get(0,0), ((Double*)execMe->result_get())->img_get(0,0));
-					}
-					else if(VarType == GenericType::RealBool)
-					{
-						((Bool*)pData)->bool_set(iCurRow, iCurCol, ((Bool*)execMe->result_get())->bool_get(0,0));
-					}
-					else if(VarType == GenericType::RealUInt)
-					{
-						//((Double*)pData)->val_set(iCurRow, iCurCol, ((Double*)execMe.result_get())->real_get(0,0), ((Double*)execMe.result_get())->img_get(0,0));
-					}
-					else if(VarType == GenericType::RealInt)
-					{
-						//((Double*)pData)->val_set(iCurRow, iCurCol, ((Double*)execMe.result_get())->real_get(0,0), ((Double*)execMe.result_get())->img_get(0,0));
-					}
-					else if(VarType == GenericType::RealString)
-					{
-						((String*)pData)->string_set(iCurRow, iCurCol, ((String*)execMe->result_get())->string_get(0,0));
-					}
-					iCurCol++;
-					delete execMe;
-				}
-				iCurCol = 0;
-				iCurRow++;
-			}
-			result_set(pData);
-		}
-		catch(string sz)
-		{
-			throw sz;
-		}
-
-	}
-
 	void ExecVisitor::visit (const MatrixLineExp &e)
 	{
+	/*
+		All processes are done in MatrixExp
+	*/
 	}
-	/** \} */
 
 	void ExecVisitor::visit (const CellExp &e)
 	{
-	  // FIXME : Must be a container for all Types.
-		try
-		{
-			int iRows = e.lines_get().size();
-			int iCols	= -1;
-			int iCurRow = 0;
-			int iCurCol = 0;
-			GenericType::RealType VarType = GenericType::RealDouble;
-			GenericType *First	= NULL;
-			GenericType *pData = NULL;
-
-			std::list<CellLineExp *>::const_iterator	row;
-			for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
-			{
-				std::list<Exp *>::const_iterator	col;
-
-				if(iCols != -1 && iCols != (*row)->columns_get().size())
-				{
-					std::ostringstream os;
-					os << "inconsistent row/column dimensions";
-					os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
-					string szErr(os.str());
-					throw szErr;
-				}
-
-				for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
-				{
-					ExecVisitor execMe = *new ast::ExecVisitor();
-					(*col)->accept (execMe);
-
-					if(row == e.lines_get().begin() && col == (*row)->columns_get().begin()) //first occurence
-					{
-						First = (GenericType*)execMe.result_get();
-						VarType = First->getType();
-						iCols = (*row)->columns_get().size();
-						/*Allow data*/
-						if(VarType == GenericType::RealDouble)
-						{
-							pData = new Double(iRows, iCols, true);
-						}
-						else if(VarType == GenericType::RealBool)
-						{
-							pData = new Bool(iRows, iCols);
-						}
-						else if(VarType == GenericType::RealUInt)
-						{
-							pData = new UInt(iRows, iCols);
-						}
-						else if(VarType == GenericType::RealInt)
-						{
-							pData = new Int(iRows, iCols);
-						}
-						else if(VarType == GenericType::RealString)
-						{
-							pData = new String(iRows, iCols);
-						}
-					}
-
-					if(VarType != execMe.result_get()->getType())
-					{
-						std::ostringstream os;
-						Location loc = (*col)->location_get();
-						os << "Incompatible types ";
-						os << loc.location_string_get() << std::endl;
-						string szErr(os.str());
-						throw szErr;
-					}
-
-					if(VarType == GenericType::RealDouble)
-					{
-						((Double*)pData)->val_set(iCurRow, iCurCol, ((Double*)execMe.result_get())->real_get(0,0), ((Double*)execMe.result_get())->img_get(0,0));
-					}
-					else if(VarType == GenericType::RealBool)
-					{
-						((Bool*)pData)->bool_set(iCurRow, iCurCol, ((Bool*)execMe.result_get())->bool_get(0,0));
-					}
-					else if(VarType == GenericType::RealUInt)
-					{
-						//((Double*)pData)->val_set(iCurRow, iCurCol, ((Double*)execMe.result_get())->real_get(0,0), ((Double*)execMe.result_get())->img_get(0,0));
-					}
-					else if(VarType == GenericType::RealInt)
-					{
-						//((Double*)pData)->val_set(iCurRow, iCurCol, ((Double*)execMe.result_get())->real_get(0,0), ((Double*)execMe.result_get())->img_get(0,0));
-					}
-					else if(VarType == GenericType::RealString)
-					{
-						((String*)pData)->string_set(iCurRow, iCurCol, ((String*)execMe.result_get())->string_get(0,0));
-					}
-					iCurCol++;
-				}
-				iCurCol = 0;
-				iCurRow++;
-			}
-			result_set(pData);
-		}
-		catch(string sz)
-		{
-			throw sz;
-		}
-
+		/*
+			FIXME : container type
+		*/
 	}
 
 	void ExecVisitor::visit (const CellLineExp &e)
 	{
+		/*
+		All processes are done in CellExp
+		*/
 	}
-	/** \} */
 
 
 
@@ -276,16 +86,23 @@ namespace ast
 
 	void ExecVisitor::visit (const CommentExp &e)
 	{
+		/*
+		Nothing to do
+		*/
 	}
 
 	void ExecVisitor::visit (const IntExp  &e)
 	{
+		/*
+		Int does not exist, Int8 - 16 - 32 - 64 functions
+		*/
 	}
 
 	void ExecVisitor::visit (const FloatExp  &e)
 	{
-		std::ostringstream stream;
-		stream << e.value_get();
+		/*
+		Float does not exist, float function
+		*/
 	}
 
 	void ExecVisitor::visit (const DoubleExp  &e)
@@ -302,6 +119,9 @@ namespace ast
 
 	void ExecVisitor::visit (const NilExp &e)
 	{
+		/*
+		FIXME : 
+		*/
 	}
 
 	void ExecVisitor::visit (const SimpleVar &e)
@@ -311,18 +131,36 @@ namespace ast
 
 	void ExecVisitor::visit (const ColonVar &e)
 	{
+		/*
+		: = 1:$
+		*/
 	}
 
 	void ExecVisitor::visit (const DollarVar &e)
 	{
+		int pRank[1] = {2};
+		Double dblCoef(1,2);
+		dblCoef.val_set(0, 0, 0);
+		dblCoef.val_set(0, 1, 1);
+
+		MatrixPoly *pVar	= new MatrixPoly("$", 1, 1, pRank);
+		Poly *poPoly			= pVar->poly_get(0,0);
+		poPoly->coef_set(&dblCoef);
+		result_set(pVar);
 	}
 
 	void ExecVisitor::visit (const ArrayListVar &e)
 	{
+		/*
+			
+		*/
 	}
 
 	void ExecVisitor::visit (const FieldExp &e)
 	{
+		/*
+		a.b
+		*/
 	}
 
 	void ExecVisitor::visit(const CallExp &e)
@@ -379,20 +217,6 @@ namespace ast
 				}
 				
 			}
-
-/*
-			InternalType *pVar	=	execMeR->result_get();
-			if(pVar->isList())
-			{
-				double *pData = NULL;
-				Double *pTemp = new Double(((ImplicitList*)pVar)->size_get(),1, &pData);
-				((ImplicitList*)pVar)->extract_matrix(pData);
-				delete pVar;
-				pVar = pTemp;
-			}
-
-			symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pVar));
-*/
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
@@ -412,58 +236,15 @@ namespace ast
 
 			//condition
 			e.test_get().accept(*execMeTest);
-			if(((GenericType*)execMeTest->result_get())->isDouble() && ((Double*)execMeTest->result_get())->isComplex() == false)
-			{
-				bTestStatus		= true; // default value in this case
-				Double *pR		= (Double*)execMeTest->result_get();
-				double *pReal	= pR->real_get();
 
-				for(int i = 0 ; i < pR->size_get() ; i++)
-				{
-					if(pReal[i] == 0)
-					{
-						bTestStatus = false;
-						break;
-					}
-				}
-			}
-			else if(((GenericType*)execMeTest->result_get())->isBool())
-			{
-				bTestStatus		= true; // default value in this case
-				Bool *pB		= (Bool*)execMeTest->result_get();
-				bool *pData		= pB->bool_get();
-
-				for(int i = 0 ; i < pB->size_get() ; i++)
-				{
-					if(pData[i] == false)
-					{
-						bTestStatus = false;
-						break;
-					}
-				}
-			}
-			else if(((GenericType*)execMeTest->result_get())->isUInt())
-			{
-			}
-			else if(((GenericType*)execMeTest->result_get())->isInt())
-			{
-			}
-			else
-			{
-					std::ostringstream os;
-					os << "first argument is incorrect";
-					os << " (" << e.test_get().location_get().first_line << "," << e.test_get().location_get().first_column << ")" << std::endl;
-					string szErr(os.str());
-					throw szErr;
-			}
-
+			bTestStatus = bConditionState(execMeTest);
 			if(bTestStatus == true)
 			{//condition == true
-				e.then_get().accept(*execMeTest);
+				e.then_get().accept(*execMeAction);
 			}
 			else
 			{//condition == false
-				e.else_get().accept(*execMeTest);
+				e.else_get().accept(*execMeAction);
 			}
 		delete execMeAction;
 		delete execMeTest;
@@ -475,6 +256,17 @@ namespace ast
 
 	void ExecVisitor::visit (const WhileExp  &e)
 	{
+			ExecVisitor *execMeTest		= new ast::ExecVisitor();
+			ExecVisitor *execMeAction = new ast::ExecVisitor();
+			bool bTestStatus					= false;
+
+			//condition
+			e.test_get().accept(*execMeTest);
+			while(bConditionState(execMeTest))
+			{
+				e.body_get().accept(*execMeAction);
+				e.test_get().accept(*execMeTest);
+			}
 	}
 
 	void ExecVisitor::visit (const ForExp  &e)
@@ -494,7 +286,8 @@ namespace ast
 			}
 		}
 		else
-		{
+		{//Matrix i = [1,3,2,6] or other type
+
 		}
 
 		delete execMe;
@@ -530,10 +323,89 @@ namespace ast
 	** \{ */
 	void ExecVisitor::visit (const NotExp &e)
 	{
+		/*
+		@ or ~= !
+		*/
+		ExecVisitor* execMe = new ast::ExecVisitor();
+		e.exp_get().accept(*execMe);
+
+		if(execMe->result_get()->isDouble())
+		{
+			Double *pdbl	= execMe->result_get()->getAsDouble();
+			Bool *pReturn	= new Bool(pdbl->rows_get(), pdbl->cols_get());
+			double *pR		= pdbl->real_get();
+			bool *pB			= pReturn->bool_get();
+			for(int i = 0 ; i < pdbl->size_get() ; i++)
+			{
+				if(pR[i] != 0)
+				{
+					pB[i] = true;
+				}
+				else
+				{
+					pB[i] = false;
+				}
+			}
+			result_set(pReturn);
+		}
+		else if(execMe->result_get()->isBool())
+		{
+			Bool *pb			= execMe->result_get()->getAsBool();
+			Bool *pReturn	= new Bool(pb->rows_get(), pb->cols_get());
+			bool *pR			= pb->bool_get();
+			bool *pB			= pReturn->bool_get();
+
+			for(int i = 0 ; i < pb->size_get() ; i++)
+			{
+				pB[i] = pR[i];
+			}
+			result_set(pReturn);
+		}
+		delete execMe;
 	}
 
 	void ExecVisitor::visit (const TransposeExp &e)
 	{
+		/*
+		'
+		*/
+		ExecVisitor* execMe = new ast::ExecVisitor();
+		e.exp_get().accept(*execMe);
+
+		bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
+
+		if(execMe->result_get()->isDouble())
+		{
+			Double *pdbl		= execMe->result_get()->getAsDouble();
+			Double *pReturn	= NULL;
+
+			if(pdbl->isComplex())
+			{
+				pReturn				= new Double(pdbl->cols_get(), pdbl->rows_get(), true);
+				double *pInR	=	pdbl->real_get();
+				double *pInI	=	pdbl->img_get();
+				double *pOutR	=	pReturn->real_get();
+				double *pOutI	=	pReturn->img_get();
+
+				vTransposeComplexMatrix(pInR, pInI, pdbl->rows_get(), pdbl->cols_get(), pOutR, pOutI, bConjug);
+			}
+			else
+			{
+				pReturn				= new Double(pdbl->cols_get(), pdbl->rows_get(), false);
+				double *pInR	=	pdbl->real_get();
+				double *pOutR	=	pReturn->real_get();
+
+				vTransposeRealMatrix(pInR, pdbl->rows_get(), pdbl->cols_get(), pOutR);
+			}
+			result_set(pReturn);
+		}
+		else
+		{
+		}
+
+
+
+		delete execMe;
 	}
 	/** \} */
 
@@ -559,6 +431,11 @@ namespace ast
 
 	void ExecVisitor::visit (const FunctionDec  &e)
 	{
+		/*
+		function foo
+		endfunction
+		*/
+
 	}
 	/** \} */
 
@@ -566,20 +443,57 @@ namespace ast
 	** \{ */
 	void ExecVisitor::visit(const ListExp &e)
 	{
-			ExecVisitor*	execMe = new ast::ExecVisitor();
+			double dblStart = -1;
+			double dblStep = -1;
+			double dblEnd = -1;
 
-			e.start_get().accept(*execMe);
-			Double *pStart	= (Double*)execMe->result_get();
+			ExecVisitor*	execMeStart = new ast::ExecVisitor();
+			ExecVisitor*	execMeStep	= new ast::ExecVisitor();
+			ExecVisitor*	execMeEnd		= new ast::ExecVisitor();
 
-			e.step_get().accept(*execMe);
-			Double *pStep		= (Double*)execMe->result_get();
 
-			e.end_get().accept(*execMe);
-			Double *pEnd		= (Double*)execMe->result_get();
+			e.start_get().accept(*execMeStart);
+/*			if(execMeStart->result_get()->isDouble())
+			{
+				pIL->start_set(((Double*)execMeStart->result_get())->real_get(0,0));
+			}
+			else if(execMeStart->result_get()->isPoly())
+			{
+				pIL->start_set(((Poly*)execMeStart->result_get()));
+			}
+*/
 
-			ImplicitList *pIL	= new ImplicitList(pStart->real_get(0,0), pStep->real_get(0,0), pEnd->real_get(0,0));
+			e.step_get().accept(*execMeStep);
+/*			if(execMeStep->result_get()->isDouble())
+			{
+				pIL->step_set(((Double*)execMeStep->result_get())->real_get(0,0));
+			}
+			else if(execMeStep->result_get()->isPoly())
+			{
+				pIL->step_set(((Poly*)execMeStep->result_get()));
+			}
+*/
+
+			e.end_get().accept(*execMeEnd);
+/*			if(execMeEnd->result_get()->isDouble())
+			{
+				pIL->end_set(((Double*)execMeEnd->result_get())->real_get(0,0));
+			}
+			else if(execMeEnd->result_get()->isPoly())
+			{
+				pIL->end_set(((Poly*)execMeEnd->result_get()));
+			}
+*/
+
+			ImplicitList *pIL	= new ImplicitList(
+				execMeStart->result_get(),
+				execMeStep->result_get(),
+				execMeEnd->result_get());
+
 			result_set(pIL);
-			delete execMe;
+			delete execMeStart;
+			delete execMeStep;
+			delete execMeEnd;
 	}
 	/** \} */
 
@@ -593,4 +507,91 @@ namespace ast
 		_result = (InternalType *)e;
 	}
 
+}
+
+bool bConditionState(ast::ExecVisitor *exec)
+{
+	if(((GenericType*)exec->result_get())->isDouble() && ((Double*)exec->result_get())->isComplex() == false)
+	{
+		Double *pR		= (Double*)exec->result_get();
+		double *pReal	= pR->real_get();
+
+		for(int i = 0 ; i < pR->size_get() ; i++)
+		{
+			if(pReal[i] == 0)
+			{
+				return false;
+			}
+		}
+	}
+	else if(((GenericType*)exec->result_get())->isBool())
+	{
+		Bool *pB		= (Bool*)exec->result_get();
+		bool *pData		= pB->bool_get();
+
+		for(int i = 0 ; i < pB->size_get() ; i++)
+		{
+			if(pData[i] == false)
+			{
+				return false;
+				break;
+			}
+		}
+	}
+	else if(((GenericType*)exec->result_get())->isUInt())
+	{
+	}
+	else if(((GenericType*)exec->result_get())->isInt())
+	{
+	}
+	else
+	{
+		return false;
+
+/*
+		std::ostringstream os;
+		os << "first argument is incorrect";
+		os << " (" << e.test_get().location_get().first_line << "," << e.test_get().location_get().first_column << ")" << std::endl;
+		string szErr(os.str());
+		throw szErr;
+*/	
+	}
+	return true;
+}
+
+void vTransposeRealMatrix(double *_pdblRealIn, int _iRowsIn, int _iColsIn, double *_pdblRealOut)
+{
+	int iIndex = 0;
+	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
+	{
+		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
+		_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
+	}
+}
+
+void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRowsIn, int _iColsIn, double *_pdblRealOut, double *_pdblImgOut, bool _bConjugate)
+{
+	int iIndex = 0;
+
+	if(_bConjugate == false)
+	{
+		for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
+		{
+			int iNewCoord	= iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
+
+			_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
+			_pdblImgOut[iNewCoord]	= _pdblImgIn[iIndex];
+		}
+	}
+	else
+	{
+		for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
+		{
+			int iNewCoord	= iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
+
+			_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
+			//Conjugate
+			_pdblImgOut[iNewCoord]	= -_pdblImgIn[iIndex];
+		}
+	}
 }

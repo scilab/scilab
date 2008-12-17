@@ -22,5 +22,8 @@
 #include "uint.hxx"
 #include "bool.hxx"
 #include "function.hxx"
+#include "poly.hxx"
+#include "matrixpoly.hxx"
+
 
 #endif /* !ALL_TYPES_HH */

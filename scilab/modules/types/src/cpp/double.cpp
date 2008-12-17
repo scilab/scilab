@@ -79,6 +79,21 @@ namespace types
 	}
 
 	/*--------------------*/
+	/*				Double			*/
+	/*	Real constructor	*/
+	/*--------------------*/
+	Double::Double(double _dblReal, double _dblImg)
+	{
+		double *pdblR;
+		double *pdblI;
+		CreateDouble(1, 1, &pdblR, &pdblI);
+		pdblR[0] = _dblReal;
+		pdblI[0] = _dblImg;
+		m_bComplex = true;
+		return;
+	}
+
+	/*--------------------*/
 	/*		 	 Double				*/
 	/*	Real constructor	*/
 	/*--------------------*/
@@ -150,6 +165,7 @@ namespace types
 			if(isComplex() == true)
 			{
 				img_delete(!_bComplex);
+				m_bComplex = false;
 			}
 		}
 		else // _bComplex == true
@@ -674,7 +690,7 @@ namespace types
 						{//find the limit, print this part
 							for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 							{
-								ostr  << "|%" << piSize[iCols2] << "%|";
+//								ostr  << "|%" << piSize[iCols2] << "%|";
 
 								for(int x = 0 ; x < piSize[iCols2]-1 ; x++)
 								{
@@ -750,6 +766,7 @@ namespace types
 
 void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint)
 {
+
 	double dblDec				= 0;
 	double dblEnt				= 0;
 	double dblAbs				= fabs(_dblVal);
@@ -762,11 +779,12 @@ void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bo
 	dblDec				= modf(dblAbs, &dblEnt);
 	*_pbFloatingPoint	= dblDec == 0 ? false : true;
 
-	iNbDigit = ((int)log10(dblEnt + 0.4)) + 1;
-	if(iNbDigit <= _iPrecNeeded - 2)
+	double dblTemp = log10(dblEnt + 0.4);
+	iNbDigit = ((int)dblTemp) + 1;
+	if(iNbDigit <= _iPrecNeeded)
 	{
 		iNbEnt		= iNbDigit;
-		iNbDigit	= _iPrecNeeded - iNbEnt;
+		iNbDigit	= _iPrecNeeded - iNbEnt - 2;
 		iNbDec		= 0;
 		dblTmp		= dblDec * pow(10.0e+0, iNbDigit + 1);
 		dblDec		= floor(dblTmp / 10.0e+0 + 0.5);
@@ -782,8 +800,9 @@ void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bo
 		}
 	}
 
-	*_piPrec	= _iPrecNeeded - 1 - bStartByZero;
-	*_piWidth = (_iPrecNeeded < (iNbEnt + *_piPrec) ? _iPrecNeeded : (iNbEnt + *_piPrec)) + SIGN_LENGTH;
+	*_piPrec	= iNbDec + iNbEnt;
+	*_piWidth	= *_piPrec > _iPrecNeeded ? _iPrecNeeded : *_piPrec;// + *_pbFloatingPoint;
+
 }
 
 void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI)
@@ -814,7 +833,8 @@ void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTota
 		else
 		{
 			*_piTotalWidth += *_piWidthR + *_pbFloatingPointR;
-			*_piTotalWidth += SIZE_BETWEEN_REAL_COMPLEX;
+			//*_piTotalWidth += SIZE_BETWEEN_REAL_COMPLEX;
+			*_piTotalWidth += SIGN_LENGTH;
 			*_piTotalWidth += *_piWidthI + *_pbFloatingPointI;
 		}
 	}
@@ -837,7 +857,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 	if(!R aa C	-> Ci
 	*/
 
-	*_postr << "|%" << _iTotalWitdh << "%|";
+//	*_postr << "|%" << _iTotalWitdh << "%|";
 	if(_dblR == 0)
 	{//no real part
 		if(_dblI == 0)

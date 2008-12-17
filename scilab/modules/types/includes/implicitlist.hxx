@@ -24,12 +24,22 @@ namespace types
 	class ImplicitList : public InternalType
 	{
 	private :
-		double		m_dblStart;
-		double		m_dblStep;
-		double		m_dblEnd;
-		int				m_iSize;
+		double					m_dblStart;
+		double					m_dblStep;
+		double					m_dblEnd;
+		MatrixPoly*			m_poStart;
+		MatrixPoly*			m_poStep;
+		MatrixPoly*			m_poEnd;
+		int							m_iSize;
 
-		int				m_iElement;
+		int							m_iElement;
+
+		InternalType::RealType		
+										m_eStartType;
+		InternalType::RealType		
+										m_eStepType;
+		InternalType::RealType		
+										m_eEndType;
 
 		void CreateImplicitList(double _dblStart, double _dblStep, double _dblEnd);
 
@@ -37,21 +47,42 @@ namespace types
 		ImplicitList();
 		ImplicitList(double _dblStart, double _dblStep, double _dblEnd);
 		ImplicitList(double _dblStart, double _dblEnd);
-	
+		ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
+
 		ImplicitList* getAsList(void) { return this; }
-		virtual RealType getType(void) { return RealImplicitList; }
+		virtual				RealType getType(void) { return RealImplicitList; }
 
-		double	start_get();
-		void		start_set(double _dblStart);
-		double	step_get();
-		void		step_set(double _dblStep);
-		double	end_get();
-		void		end_set(double _dblEnd);
+		double				start_get();
+		MatrixPoly*		start_poly_get();
+		void					start_set(double _dblStart);
+		void					start_set(MatrixPoly*	_poPoly);
 
-		void		extract_matrix(double *_pData);
-		double	extract_value(int _iOccur);
+		double				step_get();
+		MatrixPoly*		step_poly_get();
+		void					step_set(double _dblStep);
+		void					step_set(MatrixPoly* _poPoly);
 
-		int		size_get();
+		double				end_get();
+		MatrixPoly*		end_poly_get();
+		void					end_set(double _dblEnd);
+		void					end_set(MatrixPoly *_poPoly);
+
+		void					extract_matrix(double *_pData);
+		double				extract_value(int _iOccur);
+		void					compute();
+		bool					computable();
+
+
+
+		InternalType::RealType 
+									start_type_get();
+		InternalType::RealType 
+									step_type_get();
+		InternalType::RealType 
+									end_type_get();
+
+		int						size_get();
+
 	};
 }
 

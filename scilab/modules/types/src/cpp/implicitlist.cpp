@@ -24,6 +24,46 @@ namespace types
 		CreateImplicitList(_iStart, _iStep, _iEnd);
 	}
 
+	ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd)
+	{
+		if(_poStart->isDouble() && _poStep->isDouble() && _poEnd->isDouble())
+		{
+			CreateImplicitList(
+						_poStart->getAsDouble()->real_get(0,0),
+						_poStep->getAsDouble()->real_get(0,0),
+						_poEnd->getAsDouble()->real_get(0,0));
+		}
+		else
+		{
+			if(_poStart->isDouble())
+			{
+				start_set(_poStart->getAsDouble()->real_get(0,0));
+			}
+			else if(_poStart->isPoly())
+			{
+				start_set((MatrixPoly*)_poStart);
+			}
+
+			if(_poStep->isDouble())
+			{
+				step_set(_poStep->getAsDouble()->real_get(0,0));
+			}
+			else if(_poStep->isPoly())
+			{
+				step_set((MatrixPoly*)_poStep);
+			}
+
+			if(_poEnd->isDouble())
+			{
+				end_set(_poEnd->getAsDouble()->real_get(0,0));
+			}
+			else if(_poEnd->isPoly())
+			{
+				end_set((MatrixPoly*)_poEnd);
+			}
+		}
+	}
+
 	ImplicitList::ImplicitList(double _iStart, double _iEnd)
 	{
 		CreateImplicitList(_iStart, 1, _iEnd);
@@ -35,9 +75,7 @@ namespace types
 		m_dblStep		= _dblStep;
 		m_dblEnd		= _dblEnd;
 		m_iSize		= 0;
-		m_iSize		= (int)(((m_dblEnd - m_dblStart) / m_dblStep) + 1.5);
-		//for bad case
-		m_iSize		= m_iSize < 0 ? 0 : m_iSize;
+		compute();
 	}
 
 	double ImplicitList::start_get()
@@ -45,9 +83,26 @@ namespace types
 		return m_dblStart;
 	}
 
+	MatrixPoly* ImplicitList::start_poly_get()
+	{
+		if(start_type_get() == InternalType::RealPoly)
+		{
+			return m_poStart;
+		}
+		return NULL;
+	}
+
 	void ImplicitList::start_set(double _dblStart)
 	{
-		m_dblStart = _dblStart;
+		m_dblStart		= _dblStart;
+		m_eStartType	= InternalType::RealDouble; 
+		compute();
+	}
+
+	void ImplicitList::start_set(MatrixPoly *_poPoly)
+	{
+		m_poStart			= _poPoly;
+		m_eStartType	= InternalType::RealPoly; 
 	}
 
 	double ImplicitList::step_get()
@@ -55,9 +110,26 @@ namespace types
 		return m_dblStep;
 	}
 
+	MatrixPoly* ImplicitList::step_poly_get()
+	{
+		if(step_type_get() == InternalType::RealPoly)
+		{
+			return m_poStep;
+		}
+		return NULL;
+	}
+
 	void ImplicitList::step_set(double _dblStep)
 	{
 		m_dblStep = _dblStep;
+		m_eStepType	= InternalType::RealDouble; 
+		compute();
+	}
+
+	void ImplicitList::step_set(MatrixPoly *_poPoly)
+	{
+		m_poEnd = _poPoly;
+		m_eStepType	= InternalType::RealPoly; 
 	}
 
 	double ImplicitList::end_get()
@@ -65,9 +137,26 @@ namespace types
 		return m_dblEnd;
 	}
 
+	MatrixPoly* ImplicitList::end_poly_get()
+	{
+		if(end_type_get() == InternalType::RealPoly)
+		{
+			return m_poEnd;
+		}
+		return NULL;
+	}
+
 	void ImplicitList::end_set(double _dblEnd)
 	{
 		m_dblEnd = _dblEnd;
+		m_eEndType	= InternalType::RealDouble; 
+		compute();
+	}
+
+	void ImplicitList::end_set(MatrixPoly *_poPoly)
+	{
+		m_poEnd = _poPoly;
+		m_eEndType	= InternalType::RealPoly; 
 	}
 
 	int ImplicitList::size_get()
@@ -75,6 +164,7 @@ namespace types
 		//compute size of the result matrix
 		return m_iSize;
 	}
+
 	void ImplicitList::extract_matrix(double *_pData)
 	{
 		if(_pData != NULL)
@@ -91,4 +181,42 @@ namespace types
 		return (m_dblStart + _iOccur * m_dblStep);
 	}
 
+	void ImplicitList::compute()
+	{
+		if(computable() == true)
+		{
+			m_iSize		= (int)(((m_dblEnd - m_dblStart) / m_dblStep) + 1.5);
+			//for bad case
+			m_iSize		= m_iSize < 0 ? 0 : m_iSize;
+		}
+	}
+
+	InternalType::RealType ImplicitList::start_type_get()
+	{
+		return m_eStartType;
+	}
+
+	InternalType::RealType ImplicitList::step_type_get()
+	{
+		return m_eStartType;
+	}
+
+	InternalType::RealType ImplicitList::end_type_get()
+	{
+		return m_eEndType;
+	}
+
+	bool ImplicitList::computable()
+	{
+		if(	m_eStartType == InternalType::RealDouble &&
+				m_eStepType == InternalType::RealDouble &&
+				m_eEndType == InternalType::RealDouble)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

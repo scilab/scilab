@@ -15,7 +15,12 @@
 
 extern "C"
 {
-#include "cos.h"
+	#include "abs.h"
+	#include "cos.h"
+	#include "log.h"
+	#include "sin.h"
+	#include "tan.h"
+	#include "exp.h"
 }
 
 using namespace types;
