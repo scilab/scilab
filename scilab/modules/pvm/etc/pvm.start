@@ -12,7 +12,7 @@
 // pvm module initialisation file 
 // ====================================================================
 if %pvm then
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/pvm/macros/lib');
 // ====================================================================
 //add help chapter
