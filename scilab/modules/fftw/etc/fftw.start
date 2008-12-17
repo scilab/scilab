@@ -16,7 +16,7 @@ if %fftw then
 
 	if ( loadfftwlibrary(librarynamefftw) ) then
 	
-		//Load  functions librarie
+		//Load  functions libraries
 		//load('SCI/modules/fftw/macros/lib');
 		// ====================================================================
 		// replace scilab fft function by fftw

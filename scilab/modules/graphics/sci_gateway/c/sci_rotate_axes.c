@@ -18,7 +18,7 @@
 
 #include "sci_rotate_axes.h"
 #include "stack-c.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "Interaction.h"
 #include "localization.h"
 #include "HandleManagement.h"
@@ -54,18 +54,18 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
     /* Get figure or subwin handle */
     if (GetType(1) != sci_handles)
     {
-      sciprint(_("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
+      Scierror(999, _("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
       LhsVar(1) = 0;
-      return 0;
+      return -1;
     }
 
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
 
     if (nbRow * nbCol != 1)
     {
-      sciprint(_("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
+      Scierror(999, _("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
       LhsVar(1) = 0;
-      return 0;
+      return -1;
     }
 
     rotatedObject = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
@@ -80,9 +80,9 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
     }
     else
     {
-      sciprint(_("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
+      Scierror(999, _("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
       LhsVar(1) = 0;
-      return 0;
+      return -1;
     }
   }
 

@@ -11,7 +11,7 @@
 
 
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 if (getscilabmode()<>'NWNI') then
   load('SCI/modules/jvm/macros/lib');
 end  

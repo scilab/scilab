@@ -12,7 +12,7 @@
 // maple module initialisation file
 // ====================================================================
 
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/maple2scilab/macros/lib');
 
 //add help chapter
