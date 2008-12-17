@@ -49,7 +49,7 @@
         <term>x</term>
 
         <listitem>
-          <para>an integer vector of size 6 containing information or an empty
+          <para>an integer vector of size 13 containing information or an empty
           matrix if file does not exist.</para>
         </listitem>
       </varlistentry>
@@ -98,7 +98,7 @@
         <term>x(4)</term>
 
         <listitem>
-          <para>the group id</para>
+          <para>The group id</para>
         </listitem>
       </varlistentry>
 
