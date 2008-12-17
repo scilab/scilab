@@ -191,7 +191,7 @@
     permissions for the user who owns the file: read (4), write (2), and
     execute (1); the third selects permissions for other users in the file's
     group, with the same values; and the fourth for other users not in the
-    file's group, with the same values. </para>
+    file's group, with the same values.</para>
   </refsection>
 
   <refsection>
@@ -213,7 +213,7 @@ S_IEXEC = 64; // mask exec permission
 S_IREAD = 256; // mask read permission
 S_IFCHR = 8192; // mask directory permission
 
-if ( bitand( w(2), S_IWRITE ) <> 0) then
+if ( bitand( w(2), S_IWRITE ) &lt;&gt; 0) then
  disp('WRITE PERMISSION on this file.');
 else
  disp('NO WRITE PERMISSION on this file.');
@@ -244,6 +244,6 @@ end
 
     <para>S. Steer INRIA</para>
 
-    <para>A.C </para>
+    <para>A.C</para>
   </refsection>
 </refentry>
