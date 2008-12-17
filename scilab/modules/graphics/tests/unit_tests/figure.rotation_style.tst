@@ -18,7 +18,7 @@ if my_figure.rotation_style <> "unary" then pause, end
 my_figure.rotation_style = "multiple";
 if my_figure.rotation_style <> "multiple" then pause, end
 
-my_figure.rotation_style = "badvalue";
+execstr("my_figure.rotation_style = ''badvalue''",'errcatch','n');
 if my_figure.rotation_style <> "multiple" then pause, end
 
 my_figure.rotation_style = "unary";

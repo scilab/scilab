@@ -30,7 +30,8 @@ data.x = data.x(1:100);
 data.y = data.y(1:100);
 data.z = data.z(1:100);
 
-// Should not crash Scilab
-surface.data = data;
+// Should produce an error but not crash Scilab
+execstr("surface.data = data;",'errcatch','n');
+
 
 

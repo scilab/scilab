@@ -741,22 +741,6 @@ public class SwingScilabTab extends View implements SimpleTab {
     }
 
     /**
-     * Close the tab and disable it.
-     */
-    public void close() {
-	this.getContentPane().removeAll();
-	this.setMenuBar(null);
-	this.setToolBar(null);
-	this.setInfoBar(null);
-	this.setTitlebar(null);
-	this.removeAll();
-
-	// without this children canvas are not released.
-	Container dummyContainer = new Container();
-	this.setContentPane(dummyContainer);
-    }
-
-    /**
      * Set this tab as the current tab of its parent Window
      */
     public void setCurrent() {
@@ -897,6 +881,25 @@ public class SwingScilabTab extends View implements SimpleTab {
     public boolean getRotationDisplacement(int[] displacement) {
 	return contentPane.getRotationDisplacement(displacement);
     }
+	
+	/**
+	 * Close the tab and disable it.
+	 */
+	public void close() {
+		this.getContentPane().removeAll();
+		this.setMenuBar(null);
+		this.setToolBar(null);
+		this.setInfoBar(null);
+		this.setTitlebar(null);
+		this.removeAll();
+		
+		scrolling = null;
+		contentPane = null;
+		
+		// without this children canvas are not released.
+		Container dummyContainer = new Container();
+		this.setContentPane(dummyContainer);
+	}
 
     /**
      * Asynchronous stop of rotation tracking.

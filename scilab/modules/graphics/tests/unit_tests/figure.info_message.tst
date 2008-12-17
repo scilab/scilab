@@ -19,7 +19,8 @@ if my_figure.info_message <> '' then pause, end
 my_figure.info_message = "TEST INFO MESSAGE";
 if my_figure.info_message <> "TEST INFO MESSAGE" then pause, end
 
-my_figure.info_message = 12312;
+// try an invalid info message
+execstr("my_figure.info_message = 12312",'errcatch','n');
 if my_figure.info_message <> "TEST INFO MESSAGE" then pause, end
 
 // Delete

@@ -16,7 +16,7 @@
 extern "C"
 {
 #include "BuildObjects.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "UicontrolStyleToString.h"
 #include "SetUicontrolParent.h"
 #include "GetProperty.h"

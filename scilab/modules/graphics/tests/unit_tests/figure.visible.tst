@@ -19,7 +19,7 @@ if my_figure.visible <> "on" then pause, end
 my_figure.visible = "off";
 if my_figure.visible <> "off" then pause, end
 
-my_figure.visible = "badvalue";
+execstr("my_figure.visible = ''badvalue''",'errcatch','n');
 if my_figure.visible <> "off" then pause, end
 
 my_figure.visible = "on";

@@ -29,7 +29,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
 
   if (nbRow*nbCol != 1)
     {
-      sciprint(_("Wrong size for '%s' property: A graphic handle expected.\n"), "Parent");
+      Scierror(999, _("Wrong size for '%s' property: A graphic handle expected.\n"), "Parent");
       return SET_PROPERTY_ERROR;
     }
   
@@ -116,7 +116,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
                   CallScilabBridge::removeFrameFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
                   break;
                 default:
-                  sciprint(_("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+                  Scierror(999, _("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
 				  delete [] returnValues;
                   return SET_PROPERTY_ERROR;
                 }
@@ -158,7 +158,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
               CallScilabBridge::setFrameParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               break;
             default:
-              sciprint(_("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+              Scierror(999, _("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
 			  delete [] returnValues;
               return SET_PROPERTY_ERROR;
             }
@@ -189,7 +189,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
         {
 		  delete [] returnValues;
           // Parent is not a figure
-          sciprint(_("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+          Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
           return SET_PROPERTY_ERROR;
         }
     }
@@ -197,7 +197,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
     {
 	  delete [] returnValues;
       // Do not know how to set the parent
-      sciprint(_("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+      Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
       return SET_PROPERTY_ERROR;
     }
 }
