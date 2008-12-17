@@ -22,7 +22,7 @@ my $original_stderr = null;
 ## OPTION Management
 ##-------------------
 my $long_compare_old_scilab_option = "--compare-old-scilab";
-    my $short_compare_old_scilab_option = "-C";
+my $short_compare_old_scilab_option = "-C";
 my $long_display_tree_option = "--display-tree";
 my $short_display_tree_option = "-D";
 my $long_quiet_option = "--quiet";
@@ -55,7 +55,9 @@ if( dirname($0) =~ m/^\// )
 
 # modules dir path
 my $Yasp_Path = $directory;
-$Yasp_Path =~ s/\/test//g;
+$Yasp_Path =~ s/\/test/\//g;
+
+my $Yasp_Bin = "bin/scilab6";
 
 if(@ARGV < 1)
 {
@@ -274,7 +276,7 @@ sub good()
 	    }
 	    else
 	    {
-		$RetVal = system($Yasp_Path . "/YetAnotherScilabParser " . $nextname);
+		$RetVal = system($Yasp_Path . $Yasp_Bin . " -f " . $nextname);
 		if($RetVal == 0)
 		{
 		    GoodMsg("Test Passed\n\n");
@@ -285,7 +287,7 @@ sub good()
 		    BadMsg("Test Failed\n\n");
 		    if($progress == 1)
 		    {
-			$RetVal = system($Yasp_Path . "/YetAnotherScilabParser " . "--parse-trace " . $nextname);
+			$RetVal = system($Yasp_Path . $Yasp_Bin . " --parse-trace -f " . $nextname);
 			exit;
 		    }
 		}
@@ -311,7 +313,7 @@ sub control()
 	}
 	else
 	{
-	    $RetVal = system($Yasp_Path . "/YetAnotherScilabParser " . $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -f " . $nextname);
 	    if($RetVal == 0)
 	    {
 		GoodMsg("Test Passed\n\n");
@@ -322,7 +324,7 @@ sub control()
 		BadMsg("Test Failed\n\n");
 		if($progress == 1)
 		{
-		    $RetVal = system($Yasp_Path . "/YetAnotherScilabParser " . "--parse-trace " . $nextname);
+		    $RetVal = system($Yasp_Path .  $Yasp_Bin . " --parse-trace -f " . $nextname);
 		    exit;
 		}
 	    }
@@ -349,7 +351,7 @@ sub cira()
 	}
 	else
 	{
-	    $RetVal = system($Yasp_Path . "/YetAnotherScilabParser " . $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -f " . $nextname);
 	    if($RetVal == 0)
 	    {
 		GoodMsg("Test Passed\n\n");
@@ -360,7 +362,7 @@ sub cira()
 		BadMsg("Test Failed\n\n");
 		if($progress == 1)
 		{
-		    $RetVal = system($Yasp_Path . "/YetAnotherScilabParser " . "--parse-trace " . $nextname);
+		    $RetVal = system($Yasp_Path . $Yasp_Bin . " --parse-trace -f " . $nextname);
 		}
 	    }
 	}
@@ -380,11 +382,11 @@ sub syntax()
 	InfoMsg("\n[ ----==== Running Test $nextname ====---- ]\n");
 	if($quiet == 0)
 	{
-	    $RetVal = system("../YetAnotherScilabParser", $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -f " . $nextname);
 	}
 	else
 	{
-	    $RetVal = system("../YetAnotherScilabParser", $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -f " . $nextname);
 	}
 	if($RetVal != 0)
 	{
@@ -540,7 +542,7 @@ sub display_tree()
 {
     $sci_file = $_[0];
     $output_file = $_[1];
-    $RetVal = system($Yasp_Path . "/YetAnotherScilabParser --display-tree " . $sci_file . " > " . $output_file);
+    $RetVal = system($Yasp_Path . $Yasp_Bin . " --display-tree -f " . $sci_file . " > " . $output_file);
 }
 ####################################
 ##              }                 ##
