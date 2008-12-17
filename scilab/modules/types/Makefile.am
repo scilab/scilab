@@ -18,6 +18,8 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/float.cpp \
 			src/cpp/uint.cpp \
 			src/cpp/implicitlist.cpp \
+			src/cpp/poly.cpp \
+			src/cpp/matrixpoly.cpp \
 			src/cpp/function.cpp
 
 pkglib_LTLIBRARIES 	= libscitypes.la
@@ -25,6 +27,7 @@ pkglib_LTLIBRARIES 	= libscitypes.la
 libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES)
 
 libscitypes_la_CXXFLAGS	=	-Iincludes/ \
+				-I../elementary_functions/includes \
 				-Isrc/cpp
 
 libscitypes_la_includedir=$(pkgincludedir)/Types

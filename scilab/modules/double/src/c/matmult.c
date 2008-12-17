@@ -72,7 +72,16 @@ int matmult()
 		if(iRows1 < 0)
 		{//eye*cst
 			if(iSize2 == 1)
-				iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows1, iCols1, &pReturnReal, &pReturnImg);
+			{
+				if(iGlobalComplex)
+				{
+					iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnReal, &pReturnImg);
+				}
+				else
+				{
+					iAllocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnReal);
+				}
+			}
 			else
 			{
 				Error(14);
@@ -80,7 +89,16 @@ int matmult()
 			}
 		}
 		else
-			iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows2, iCols2, &pReturnReal, &pReturnImg);
+		{
+			if(iGlobalComplex)
+			{
+				iAllocComplexMatrixOfDouble(Rhs + 1, iRows2, iCols2, &pReturnReal, &pReturnImg);
+			}
+			else
+			{
+				iAllocMatrixOfDouble(Rhs + 1, iRows2, iCols2, &pReturnReal);
+			}
+		}
 
 		if(iComplex1 == 0 && iComplex2 == 0)
 		{//Matrix and scalar are real
@@ -119,7 +137,14 @@ int matmult()
 			return 0;
 		}
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows1, iCols1, &pReturnReal, &pReturnImg);
+		if(iGlobalComplex)
+		{
+			iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnReal, &pReturnImg);
+		}
+		else
+		{
+			iAllocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnReal);
+		}
 		if(iComplex1 == 0 && iComplex2 == 0)
 		{//Matrix and scalar are real
 			iMultiRealScalarByRealMatrix(
@@ -157,7 +182,15 @@ int matmult()
 			return 0;
 		}
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows1, iCols2, &pReturnReal, &pReturnImg);
+		if(iGlobalComplex)
+		{
+			iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols2, &pReturnReal, &pReturnImg);
+		}
+		else
+		{
+			iAllocMatrixOfDouble(Rhs + 1, iRows1, iCols2, &pReturnReal);
+		}
+	
 		if(iComplex1 == 1 && iComplex2 == 1)
 		{//Both matrix are complex
 

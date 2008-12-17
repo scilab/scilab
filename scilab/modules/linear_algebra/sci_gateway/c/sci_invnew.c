@@ -99,7 +99,7 @@ int C2F(invnew)(char *fname,unsigned long fname_len)
 	//Alloc output data in scilab stack
 	if(iComplex)
 	{
-		iAllocComplexMatrixOfDouble(Rhs + 1, iComplex, iRows, iCols, &pReturnReal, &pReturnImg);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal, &pReturnImg);
 		iInverseComplexMatrix(pdblReal, pdblImg, iRows, pReturnReal, pReturnImg);
 	}
 	else

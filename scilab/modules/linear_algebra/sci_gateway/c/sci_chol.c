@@ -80,7 +80,7 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 		poData = oGetDoubleComplexFromPointer(pdblReal, pdblImg, iRows * iCols);
 		iComplexCholProduct(poData, iRows);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
+		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
 
 		vGetPointerFromDoubleComplex(poData, iRows * iCols, pdblReturnReal, pdblReturnImg);
 		vFreeDoubleComplexFromPointer(poData);

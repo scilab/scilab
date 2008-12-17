@@ -71,6 +71,7 @@ am__objects_1 = libscitypes_la-types.lo libscitypes_la-int.lo \
 	libscitypes_la-string.lo libscitypes_la-double.lo \
 	libscitypes_la-bool.lo libscitypes_la-float.lo \
 	libscitypes_la-uint.lo libscitypes_la-implicitlist.lo \
+	libscitypes_la-poly.lo libscitypes_la-matrixpoly.lo \
 	libscitypes_la-function.lo
 am_libscitypes_la_OBJECTS = $(am__objects_1)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
@@ -309,11 +310,14 @@ TYPES_CPP_SOURCES = src/cpp/types.cpp \
 			src/cpp/float.cpp \
 			src/cpp/uint.cpp \
 			src/cpp/implicitlist.cpp \
+			src/cpp/poly.cpp \
+			src/cpp/matrixpoly.cpp \
 			src/cpp/function.cpp
 
 pkglib_LTLIBRARIES = libscitypes.la
 libscitypes_la_SOURCES = $(TYPES_CPP_SOURCES)
 libscitypes_la_CXXFLAGS = -Iincludes/ \
+				-I../elementary_functions/includes \
 				-Isrc/cpp
 
 libscitypes_la_includedir = $(pkgincludedir)/Types
@@ -412,6 +416,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-function.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-implicitlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-int.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-matrixpoly.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-poly.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-types.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-uint.Plo@am__quote@
@@ -493,6 +499,20 @@ libscitypes_la-implicitlist.lo: src/cpp/implicitlist.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/implicitlist.cpp' object='libscitypes_la-implicitlist.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-implicitlist.lo `test -f 'src/cpp/implicitlist.cpp' || echo '$(srcdir)/'`src/cpp/implicitlist.cpp
+
+libscitypes_la-poly.lo: src/cpp/poly.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-poly.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-poly.Tpo -c -o libscitypes_la-poly.lo `test -f 'src/cpp/poly.cpp' || echo '$(srcdir)/'`src/cpp/poly.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscitypes_la-poly.Tpo $(DEPDIR)/libscitypes_la-poly.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/poly.cpp' object='libscitypes_la-poly.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-poly.lo `test -f 'src/cpp/poly.cpp' || echo '$(srcdir)/'`src/cpp/poly.cpp
+
+libscitypes_la-matrixpoly.lo: src/cpp/matrixpoly.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-matrixpoly.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-matrixpoly.Tpo -c -o libscitypes_la-matrixpoly.lo `test -f 'src/cpp/matrixpoly.cpp' || echo '$(srcdir)/'`src/cpp/matrixpoly.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscitypes_la-matrixpoly.Tpo $(DEPDIR)/libscitypes_la-matrixpoly.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/matrixpoly.cpp' object='libscitypes_la-matrixpoly.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-matrixpoly.lo `test -f 'src/cpp/matrixpoly.cpp' || echo '$(srcdir)/'`src/cpp/matrixpoly.cpp
 
 libscitypes_la-function.lo: src/cpp/function.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-function.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-function.Tpo -c -o libscitypes_la-function.lo `test -f 'src/cpp/function.cpp' || echo '$(srcdir)/'`src/cpp/function.cpp

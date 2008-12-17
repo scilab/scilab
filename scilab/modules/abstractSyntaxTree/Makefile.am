@@ -18,6 +18,7 @@ libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
 				src/cpp/debugvisitor.cpp \
 				src/cpp/execvisitor.cpp \
 				src/cpp/exec/exec_OpExp.cpp \
+				src/cpp/exec/exec_MatrixExp.cpp \
 				src/cpp/exec/exec_AssignExp.cpp
 
 libsciabstractSyntaxTree_la_CXXFLAGS 	= -I$(top_srcdir)/modules/symbol/includes \
