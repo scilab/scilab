@@ -52,7 +52,8 @@ Bug fixes:
 * bug 3870 fixed - In the binaries, we incorporate checkstyle in thirdparty/checkstyle/
                    which are causing some issues with the LSB (btw, it is useless in the binary)
                    
-                   
+* bug 3874 fixed - When building the macros, only replaces the extension (.sci => .bin)
+
                    
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
