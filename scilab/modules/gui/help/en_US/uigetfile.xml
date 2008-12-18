@@ -38,7 +38,7 @@ PathFileName=uigetfile([file_mask[,dir[,boxTitle[,multiple]]]])
 	  <varlistentry>
         <term>multipleSelection</term>
         <listitem>
-          <para>a boolean which allows to load only one file if it is at '%f' (false) or multiple files if it is at '%t" (true). By default uigetfile's multiple file selection is enable.</para>
+          <para>a boolean which allows to load only one file if it is at '%f' (false) or multiple files if it is at '%t" (true). By default uigetfile's multiple file selection is not enable.</para>
         </listitem>
       </varlistentry>	  
 	</variablelist>

@@ -19,7 +19,6 @@
 
 #include "getPropertyAssignedValue.h"
 #include "stack-c.h"
-#include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "BasicAlgos.h"
@@ -180,7 +179,6 @@ AssignedList * createAssignedList( int paramNum, int nbElement )
   /* check the size */
   if ( nbRow != newList->nbElement || nbCol != 1 )
   {
-    sciprint(_("Wrong size for tlist.\n"));
     return NULL ;
   }
   return newList ;

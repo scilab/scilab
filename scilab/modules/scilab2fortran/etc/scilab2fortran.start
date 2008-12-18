@@ -11,7 +11,7 @@
 // scilab2fortran module initialisation file
 // ====================================================================
 
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/scilab2fortran/macros/lib');
 
 //add help chapter

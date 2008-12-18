@@ -19,7 +19,7 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"
 #include "CurrentObjectsManagement.h"
@@ -44,8 +44,8 @@ int sci_is_handle_valid(char *fname,unsigned long fname_len)
   /* Get handles matrix */
   if (VarType(1) != sci_handles)
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname,1);
-    return 0;
+    Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname,1);
+    return  -1;
   }
 
   GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleStackPointer);

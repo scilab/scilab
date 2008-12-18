@@ -29,7 +29,6 @@
 #include "DestroyObjects.h"
 #include "MALLOC.h"
 #include "sciCall.h"
-#include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -68,10 +67,9 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 4) {
-    sciprint(_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
+    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
       fname,1, 4);
-    Error(999); 
-    return(0);
+    return -1;
   }
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);

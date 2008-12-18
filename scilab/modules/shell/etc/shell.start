@@ -10,7 +10,7 @@
 // ====================================================================
 // shell module initialisation file 
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 //load('SCI/modules/shell/macros/lib');
 // ====================================================================
 //add help chapter

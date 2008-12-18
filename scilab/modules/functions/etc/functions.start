@@ -12,7 +12,7 @@
 // functions module initialisation file
 // ====================================================================
 
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/functions/macros/lib');
 
 //add help chapter

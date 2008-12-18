@@ -33,6 +33,7 @@
 #include "Axes.h"
 #include "BasicAlgos.h"
 #include "sciprint.h"
+#include "Scierror.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
@@ -211,15 +212,15 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
 	  if ((hdltab = MALLOC ((*n1+1) * sizeof (long))) == NULL) {
-		  sciprint(_("%s: No more memory.\n"),"plot2d");
-		  return 0;
+		  Scierror(999, _("%s: No more memory.\n"),"plot2d");
+		  return -1;
     }
     if (with_leg) {
       /* tabofhandles allocated for legends */
       if ((tabofhandles = MALLOC((*n1)*sizeof(long long))) == NULL) {
-        sciprint(_("%s: No more memory.\n"),"plot2d");
+        Scierror(999, _("%s: No more memory.\n"),"plot2d");
         FREE(hdltab);
-        return 0;
+        return -1;
       }
     }
 
@@ -246,7 +247,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       if (pobj == NULL)
       {
         // skip
-        sciprint(_("%s: No more memory.\n"), "plot2d");
+        Scierror(999, _("%s: No more memory.\n"), "plot2d");
       }
       else
       {
@@ -278,18 +279,10 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       if (scitokenize(legend, &Str, &nleg)) {
 	FREE(tabofhandles);
 	FREE(hdltab);
-	sciprint(_("%s: No more memory.\n"),"plot2d");
+	Scierror(999, _("%s: No more memory.\n"),"plot2d");
         endFigureDataWriting(curFigure);
 	return 0;
       }
-
-      /* if (nleg < cmpt) {
-	FREE(tabofhandles);
-        for (jj = 0; jj < nleg; jj++) { FREE(Str[jj]); }
-	FREE(Str);
-	sciprint(_("%s: Invalid legend ignored.\n"),"plot2d");
-      }
-      else {*/
       Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,Min(nleg,cmpt));
 	if (Leg != NULL)
 	  {
