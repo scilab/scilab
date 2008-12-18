@@ -1057,10 +1057,11 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 #############################
 
 AC_ARG_ENABLE(build-help,
-		AC_HELP_STRING([--enable-build-help],[Enable the help build])
+		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
 HELP_ENABLE=no
-if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
+
+if test "$enable_build_help" != no; then
     AC_DOCBOOK()
 	HELP_ENABLE=yes
 
