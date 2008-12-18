@@ -88,15 +88,21 @@ int StoreCommandWithFlag (char *command,int flag)
 	  }
 	strcpy (p->command, command);
 	p->next = NULL;
-	if (!commandQueue) commandQueue = p;
+	__Lock(&commandQueueSingleAccess);
+	if (commandQueue == NULL)
+	{
+		commandQueue = p;
+	}
 	else
-	  {
-	    __Lock(&commandQueueSingleAccess);
+	{
 	    q = commandQueue;
-	    while ((r = q->next))	q = r;
+	    while ((r = q->next) != NULL)
+			{
+				q = r;
+			}
 	    q->next = p;
-	    __UnLock(&commandQueueSingleAccess);
-	  }
+	}
+	__UnLock(&commandQueueSingleAccess);
 	//**
 	//** We have something to do, awake Scilab !!!!!!
 	//**
@@ -112,36 +118,47 @@ int StoreCommandWithFlag (char *command,int flag)
 /*--------------------------------------------------------------------------*/
 int GetCommand ( char *str)
 {
-  int flag = 0;
-  if (commandQueue != NULL)
-    {
+	int flag = 0;
+	__Lock(&commandQueueSingleAccess);
+	if (commandQueue != NULL)
+	{
 
-      CommandRec *p;
+		CommandRec *p;
 
-      __Lock(&commandQueueSingleAccess);
-      p = commandQueue;
-      strcpy (str, p->command);
-      flag=p->flag;
 
-      commandQueue = p->next;
-         FREE (p->command);
-      FREE (p);
-      if (C2F(iop).ddt==-1) {
-        if (flag==0) { sciprint_full(_("Unqueuing %s - No option.\n"),str); }
-        else         { sciprint_full(_("Unqueuing %s - seq.\n"),str); }
-      }
-      __UnLock(&commandQueueSingleAccess);
-    }
- return flag;
+		p = commandQueue;
+		strcpy (str, p->command);
+		flag=p->flag;
+
+		commandQueue = p->next;
+		FREE (p->command);
+		FREE (p);
+		if (C2F(iop).ddt==-1) {
+			if (flag==0) { sciprint_full(_("Unqueuing %s - No option.\n"),str); }
+			else         { sciprint_full(_("Unqueuing %s - seq.\n"),str); }
+		}
+
+	}
+	__UnLock(&commandQueueSingleAccess);
+
+	return flag;
 }
 
 int ismenu(void)
 {
   /* Do not manage commands while compiling scilab function */
-  if ( (commandQueue == NULL) || (C2F(com).comp[0] != 0))
+	BOOL commandQueueEmpty;
+	__Lock(&commandQueueSingleAccess);
+	commandQueueEmpty = (commandQueue == NULL);
+	__UnLock(&commandQueueSingleAccess);
+  if ( commandQueueEmpty || (C2F(com).comp[0] != 0))
+	{
     return(0) ;
+	}
   else
+	{
     return(1);
+	}
 }
 
 /*--------------------------------------------------------------------------*/
