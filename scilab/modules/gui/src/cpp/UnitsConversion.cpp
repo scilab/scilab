@@ -15,6 +15,26 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
+double pixelTomm(double dvalue)
+{
+	return (double) (pixelTocm(dvalue) * 10.0);
+}
+
+double pixelTocm(double dvalue)
+{
+	return (double) (pixelToinch(dvalue) * CM_PER_INCH);
+}
+
+double pixelToinch(double dvalue)
+{
+	return (double) (dvalue * (1.0 / POINT_PER_INCH));
+}
+
+int pixelTopt(double dvalue)
+{
+	return (int)(dvalue * POINT_PER_INCH / CallScilabBridge::getScreenResolution(getScilabJavaVM()));
+}
+
 double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthAsRef)
 {
   int *position = NULL;
