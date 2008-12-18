@@ -1041,7 +1041,8 @@ public class CallScilabBridge {
 
 	public static int newExportFileChooser(int figureId) {
 		FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
-		return 0;//UIElementMapper.add(fileChooser);
+		return 0;
+		//return UIElementMapper.add(fileChooser);
 	}
 
 
