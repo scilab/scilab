@@ -57,6 +57,9 @@ c
       double precision ar,ai,ear,eai,alpha,w
       dimension ar(ia,n),ai(ia,n),ear(iea,n),eai(iea,n),w(*),ipvt(*)
 c
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /dcoeff/
+cDEC$ ENDIF
       common /dcoeff/ c, ndng
 c internal variables
       integer i,j,k,m,ndng,maxc,n2
