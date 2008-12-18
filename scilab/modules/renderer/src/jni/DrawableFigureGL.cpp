@@ -135,6 +135,7 @@ voidshowWindowID=NULL;
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
 voidcloseGraphicCanvasID=NULL; 
+voidsetUseSingleBufferjbooleanID=NULL; 
 
 
 }
@@ -193,6 +194,7 @@ voidshowWindowID=NULL;
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
 voidcloseGraphicCanvasID=NULL; 
+voidsetUseSingleBufferjbooleanID=NULL; 
 
 
 }
@@ -861,6 +863,23 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "closeGraphicCanvas");
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidcloseGraphicCanvasID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void DrawableFigureGL::setUseSingleBuffer (bool useSingleBuffer){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetUseSingleBufferjbooleanID==NULL) { /* Use the cache Luke */ voidsetUseSingleBufferjbooleanID = curEnv->GetMethodID(this->instanceClass, "setUseSingleBuffer", "(Z)V" ) ;
+if (voidsetUseSingleBufferjbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUseSingleBuffer");
+}
+}
+jboolean useSingleBuffer_ = ((bool) useSingleBuffer ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetUseSingleBufferjbooleanID ,useSingleBuffer_);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
