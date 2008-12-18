@@ -439,19 +439,12 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       //** scicos is active in graphical mode
       prot = funcprot();
       funcprot(0);
-
-      // DO NOT OVERLOAD GETCOLOR AND KEEP THE ONE DEFINED IN SCILAB
-      // GETCOLOR is 100% compatible with TK_GETCOLOR and looks much better
-      // //** Replace old TK_GETCOLOR with UIGETCOLOR
-      // //** XGETCOLOR is a wrapper around UIGETCOLOR that mimics behavior of TK_GETCOLOR
-      // getcolor = xgetcolor; // tk_getcolor;
-
-      //** --------- Popup OS dependent definition -----------------
-      getfile  = xgetfile; //** using Java most of these aliases 
-      savefile = getfile;  //** are _obsolete_
       
-      mpopup = createpopup;
-      mdialog = x_mdialog;
+      getfile  = uigetfile ; //** brand new aliases  
+      savefile = uigetfile ; 
+
+      mpopup = createpopup ;
+      mdialog = x_mdialog  ;
       
       //** In Scilab 4.1.2 "getvalue  = tk_getvalue ;"
       //** In scilab 5 we use "modules/scicos/macros/scicos_util/getvalue.sci"
@@ -469,10 +462,12 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       
     else
       //** Scicos works in "text mode"
-      deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
-      savefile = getfile;
-      deff('Cmenu=mpopup(x)','Cmenu=[]')
-      deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
+      disp("Scicos in text mode is not supported"); 
+      //** RAMINE : TEXT MODE is not supported ! 
+      // deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
+      // savefile = getfile;
+      // deff('Cmenu=mpopup(x)','Cmenu=[]')
+      // deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
     end //** of %scicos_gui_mode
 
     //
