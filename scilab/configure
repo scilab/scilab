@@ -10936,7 +10936,7 @@ fi
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes; then
+if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -13389,7 +13389,7 @@ chmod +x $GIWS_BIN
 	fi
 fi
 
- if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes; then
+ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
   NEED_JAVA_TRUE=
   NEED_JAVA_FALSE='#'
 else
@@ -26021,7 +26021,7 @@ if test "${enable_build_help+set}" = set; then
 fi
 
 HELP_ENABLE=no
-echo $enable_build_help
+
 if test "$enable_build_help" != no; then
 
 
