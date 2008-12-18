@@ -19,7 +19,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "Interaction.h"
 #include "CurrentObjectsManagement.h"
 
@@ -53,7 +53,7 @@ static int getInitialRectangle(double initRect[4])
     int nbDims = rectNbCol * rectNbRow;
     if (nbDims != 2 && nbDims != 4)
     {
-      sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), "rubberbox", 1, 2, 4);
+      Scierror(999, _("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), "rubberbox", 1, 2, 4);
       return -1;
     }
 
@@ -154,7 +154,8 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
       else
       {
         /* Wrong parameter specified, neither edition mode nor intial rect */
-        sciprint(_("%s: Wrong type for input argument: Matrix or boolean expected.\n"), "fname");
+        Scierror(999, _("%s: Wrong type for input argument: Matrix or boolean expected.\n"), "fname");
+				return -1;
       }
     }
   }

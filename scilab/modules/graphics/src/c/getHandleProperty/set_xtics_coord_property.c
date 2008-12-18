@@ -76,8 +76,19 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
   pAXES_FEATURE(pobj)->vx = createCopyDoubleVectorFromStack( stackPointer, nbCol ) ;
 
 
-  ComputeXIntervals( pobj, pAXES_FEATURE(pobj)->tics, &vector, &N, 0 ) ;
-  ComputeC_format( pobj, c_format ) ;
+  if (ComputeXIntervals( pobj, pAXES_FEATURE(pobj)->tics, &vector, &N, 0 ) != 0)
+	{
+		/* Somthing wrong happened */
+		FREE( vector ) ;
+		return -1;
+	}
+
+  if (ComputeC_format( pobj, c_format ) != 0)
+	{
+		/* Somthing wrong happened */
+		FREE( vector ) ;
+		return -1;
+	}
 
   if( pAXES_FEATURE(pobj)->str != NULL )
   {
@@ -92,7 +103,7 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( pAXES_FEATURE(pobj)->str == NULL )
   {
-    Scierror(999, "error allocating vector.\n");
+    /* Somthign wrong occured */
     return SET_PROPERTY_ERROR ;
   }
 

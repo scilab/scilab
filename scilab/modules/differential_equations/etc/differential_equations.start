@@ -3,7 +3,7 @@
 // Copyright INRIA 2006
 // ====================================================================
 
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/differential_equations/macros/lib');
 // ====================================================================
 //add help chapter

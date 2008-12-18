@@ -20,7 +20,7 @@
 #include "getHandleProperty/getPropertyAssignedValue.h"
 #include "HandleManagement.h"
 #include "stack-c.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
@@ -51,7 +51,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
 
       if ( nbRow * nbCol != 1 )
       {
-        sciprint(_("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
+        Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
         return -1 ;
       }
 
@@ -59,7 +59,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
 
       if (sciGetEntityType(shownFigure) != SCI_FIGURE)
       {
-        sciprint(_("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
         return -1 ;
       }
 
@@ -71,7 +71,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
       GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
       if ( nbRow * nbCol != 1 )
       {
-        sciprint(_("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
+        Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
         return -1 ;
       }
       winNum = (int) getDoubleFromStack(stackPointer);
@@ -82,14 +82,16 @@ int sci_show_window( char *fname,unsigned long fname_len )
         /* No window with this number, create one */
         if(sciSetUsedWindow(winNum) < 0)
         {
-          sciprint(_("%s: Unable to create requested figure: No more memory.\n"), fname);
+          Scierror(999, _("%s: Unable to create requested figure: No more memory.\n"), fname);
+					return -1;
         }
         shownFigure = sciGetCurrentFigure();
       }
     }
     else
     {
-      sciprint(_("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname,1, "Figure");
+      Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname,1, "Figure");
+			return -1;
     }
 
   }
@@ -103,7 +105,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
   /* Check that the requested figure really exists */
   if ( shownFigure == NULL )
   {
-    sciprint(_("%s: '%s' handle does not or no longer exists.\n"),fname,"Figure");
+    Scierror(999, _("%s: '%s' handle does not or no longer exists.\n"),fname,"Figure");
     return -1 ;
   }
 

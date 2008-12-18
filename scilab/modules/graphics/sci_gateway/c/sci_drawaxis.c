@@ -176,7 +176,6 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
 
   if ( val != 0) 
   {
-    /** sciprint("nombre de tics %d\n",ntics); **/
     CheckLength( opts[8].position, opts[8].m*opts[8].n,ntics);
     nb_tics_labels = opts[8].m*opts[8].n;
   }

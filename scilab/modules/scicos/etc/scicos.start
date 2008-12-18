@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 clear  scicos_pal // explicitly clear %helps scicos_pal variables
-//Load  functions librarie
+//Load functions libraries
 load('SCI/modules/scicos/macros/scicos_auto/lib')
 load('SCI/modules/scicos/macros/scicos_utils/lib')
 load('SCI/modules/scicos/macros/scicos_menus/lib')

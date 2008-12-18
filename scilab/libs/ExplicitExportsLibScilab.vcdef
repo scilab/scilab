@@ -33,3 +33,8 @@ basbrk_
 LaunchScilab
 LaunchScilabLock
 ;
+;
+; defined for expm (elementary functions)
+;
+dcoeff_
+;

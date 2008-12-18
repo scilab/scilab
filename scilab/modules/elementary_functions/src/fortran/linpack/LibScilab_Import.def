@@ -11,6 +11,7 @@ dmcopy_
 wmmul_
 wclmat_
 wcerr_
+dcoeff_
 coef_
 ;
 ;cacsd_f
