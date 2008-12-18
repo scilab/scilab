@@ -1031,6 +1031,19 @@ public class CallScilabBridge {
 	/*                     */
 	/***********************/
 
+	
+	
+	/**
+	 * Create a new Graphic Export File Chooser in Scilab GUIs
+	 * @param figureId id of the figure to export
+	 * @return the ID of the File Chooser in the UIElementMapper
+	 */
+
+	public static int newExportFileChooser(int figureId) {
+		FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
+		return 0;
+		//return UIElementMapper.add(fileChooser);
+	}
 
 
 

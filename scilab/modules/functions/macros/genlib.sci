@@ -81,7 +81,7 @@ function genlib(nam,path,force,verbose,names)
     names = basename(files,%f);
   else
     files = path+names
-    names=strsubst(names,'.sci','')
+	names=strsubst(names, "/\.sci$/",'','r') 
   end
   
   names_changed = %t;
@@ -105,7 +105,7 @@ function genlib(nam,path,force,verbose,names)
   else
     for i=1:size(files,'*')  // loop on .sci files
       scif      = files(i);
-      binf      = strsubst(scif,'.sci','.bin')
+	  binf      = strsubst(names, "/\.sci$/",'.bin','r')
       binf_info = fileinfo(binf);
       recompile = %f;
       
@@ -186,7 +186,7 @@ function result = getsave(fl)
     new = new(1:(size(new,'*')-nold-1))
     
     // create output file name
-    fl  = strsubst(fl,'.sci','.bin')
+	fl  = strsubst(fl, "/\.sci$/",'.bin','r')
     // save all functions in the output file
     [u,ierr]=mopen(fl,'wb')
     if ierr<>0 then
