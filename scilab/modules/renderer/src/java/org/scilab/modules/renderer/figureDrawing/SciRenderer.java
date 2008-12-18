@@ -60,10 +60,7 @@ implements GLEventListener {
 
 		GL gl = gLDrawable.getGL();
 
-		/* To know if we are in double buffer mode (GLCanvas) or single buffer (GLJPanel) */
-		boolean isDoubleBuffered = curFigure.isDoubleBuffered();
-
-		if (!curFigure.getRenderingRequested() && !isDoubleBuffered) {
+		if (!curFigure.getRenderingRequested() && !curFigure.isDoubleBuffered()) {
 			// figure rendering not requested by Scilab
 			// This is a swing event so just keep the buffer
 			// keep previous buffer
@@ -95,7 +92,7 @@ implements GLEventListener {
 
 				// to enable anti_aliasing
 				//gl.glEnable(GL.GL_MULTISAMPLE);
-
+				
 				// draw the hierarchy
 				FigureScilabCall.displayFigure(renderedFigure);
 
@@ -197,6 +194,7 @@ implements GLEventListener {
 			// we need to redraw the figure so request one
 
 			curFigure.setRenderingRequested(true);
+			
 		}
 	}
 

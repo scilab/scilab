@@ -214,6 +214,11 @@ void DrawableFigureJoGL::closeGraphicCanvas(void)
 	getFigureJavaMapper()->closeGraphicCanvas();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setUseSingleBuffer(bool useSingleBuffer)
+{
+	getFigureJavaMapper()->setUseSingleBuffer(useSingleBuffer);
+}
+/*---------------------------------------------------------------------------------*/
 bool DrawableFigureJoGL::isAbleToCreateFigure(void)
 {
   return DrawableFigureJavaMapper::isAbleToCreateFigure();
