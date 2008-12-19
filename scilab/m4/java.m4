@@ -712,7 +712,8 @@ AC_DEFUN([AC_JAVA_ANT], [
 # Arguments:
 #	1. name of the package
 #   2. name of the class to test
-#   3. used by
+#   3. used by (Comment)
+#   4. Do not stop on error
 # VARIABLES SET:
 #	
 #
@@ -750,7 +751,11 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
     done
     if test "$found_jar" = "no"; then
       AC_MSG_RESULT([no])
-	AC_MSG_ERROR([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
+	  if test "$4" == "yes"; then
+ 		AC_MSG_WARN([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
+	  else
+		  AC_MSG_ERROR([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
+	  fi
     fi
 ])
 

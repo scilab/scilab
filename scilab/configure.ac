@@ -571,8 +571,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 				AC_SUBST(JOGL)
 
 				# Jhall
-				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser])
+				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
 				JHALL=$PACKAGE_JAR_FILE
+
+				# Named differently under Mandriva
+				if test -z "$JHALL"; then
+					AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
+					JHALL=$PACKAGE_JAR_FILE
+				fi
 				AC_SUBST(JHALL)
 
 				# JoGL Native <=> Java connector
