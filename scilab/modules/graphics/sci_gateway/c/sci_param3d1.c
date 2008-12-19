@@ -25,7 +25,6 @@
 #include "GetProperty.h"
 #include "sciCall.h"
 #include "MALLOC.h"
-#include "sciprint.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"

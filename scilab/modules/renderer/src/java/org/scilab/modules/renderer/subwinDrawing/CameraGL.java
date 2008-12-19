@@ -314,7 +314,7 @@ public abstract class CameraGL extends ObjectGL {
 		double ratio = viewWidth / viewHeight;
 		
 		// reduction need to be performed on the center of the screen
-		// use ration to take normalisation into account
+		// use ration to take normalization into account
 		if (ratio < 1.0) {
 			gl.glScaled(1.0 / (normalizeScale.getX() * ratio),
 						1.0 / (normalizeScale.getY()),

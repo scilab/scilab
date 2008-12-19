@@ -22,7 +22,6 @@
 #include "sci_demo.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
-#include "sciprint.h"
 
 int geom3d(double *x, double *y, double *z, int n) ;
 

@@ -43,7 +43,6 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) $(am__EXEEXT_1)
 
 #-static
 @ENABLE_STATIC_TRUE@am__append_1 = scilab-static-bin
-# doc
 
 #  The user wants to compile the localization files
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_2 = localization

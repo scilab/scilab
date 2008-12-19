@@ -44,7 +44,7 @@ int get_tics_labels_property( sciPointObj * pobj )
 
     if ( tics_labels == NULL )
     {
-      Scierror(999, _("An error occured when allocating temporary tics.\n")) ;
+      Scierror(999, _("%s: No more memory.\n"), "get_tics_labels_property") ;
       return -1 ;
     }
 

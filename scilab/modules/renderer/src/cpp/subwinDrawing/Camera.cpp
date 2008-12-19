@@ -81,14 +81,14 @@ void Camera::setSubwinBox( double bounds[6] )
   
   getCameraImp()->setAxesNormalizationScale(scale) ;
 
-  if (sciGetIsCubeScaled(m_pDrawed))
+	if (sciGetIsCubeScaled(m_pDrawed))
   {
     getCameraImp()->setAxesFittingScale(scale);
   }
   else
   {
     // preserve isometry by applying same scale
-    double minScale = Min(scale[0], Min(scale[1], scale[2]));
+		double minScale = 1.0;
     double fittingScale[3] = {minScale, minScale, minScale};
     getCameraImp()->setAxesFittingScale(fittingScale);
   }

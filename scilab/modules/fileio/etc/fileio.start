@@ -3,7 +3,7 @@
 // Copyright INRIA 2006
 // ====================================================================
 clear pathconvert
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/fileio/macros/lib');
 // ====================================================================
 //add help chapter

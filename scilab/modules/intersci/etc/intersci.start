@@ -11,7 +11,7 @@
 // ====================================================================
 // intersci module initialisation file
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 //load('SCI/modules/intersci/macros/lib');
 // ====================================================================
 //add help chapter
