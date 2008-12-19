@@ -36,7 +36,6 @@
 #include "BuildObjects.h"
 #include "WindowList.h"
 #include "DoublyLinkedList.h"
-#include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
@@ -429,7 +428,6 @@ BOOL sciDelSonFromItsParent(sciSons * son, sciPointObj * parent)
     case 5:
     case 7:
     default :
-      sciprint(_("There is no Son in this Parent.\n"));
       return FALSE;
       break;
     }

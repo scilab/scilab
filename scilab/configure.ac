@@ -534,7 +534,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes; then
+if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -631,7 +631,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 	fi
 fi
 
-AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes)
+AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
@@ -1057,10 +1057,11 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 #############################
 
 AC_ARG_ENABLE(build-help,
-		AC_HELP_STRING([--enable-build-help],[Enable the help build])
+		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
 HELP_ENABLE=no
-if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
+
+if test "$enable_build_help" != no; then
     AC_DOCBOOK()
 	HELP_ENABLE=yes
 

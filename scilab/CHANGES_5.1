@@ -15,6 +15,8 @@ Compilation:
 * More warnings in C/C++/Fortran during the compilation process.
 See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
+* --enable-build-help is now the default behaviour (--disable-build-help removes the check of the dependencies)
+
 * interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
 
 * cc and cc-* are not longer consider as GNU C compiler when detecting the compiler (use gcc & gcc-*) because it was causing some issues under Solaris
@@ -144,4 +146,8 @@ Bug fixes:
 * bug 3800 fixed - After using surf to plot giving a stacksize error, it is no longer possible to plot in the same window.
 
 * bug 3822 fixed - When a figure handle is saved and reloaded the figure_size as well as the viewport properties are not saved nor restored.
+
+* bug 3844 fixed - Axes with a very high y-bounds/x-bounds ratio do not appear.
+
+* bug 3873 fixed - While editing ticks'label on Axes, mouse click outside box or double clicks or using Tab key, program terminates.
 

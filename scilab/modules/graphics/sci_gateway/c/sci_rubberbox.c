@@ -19,7 +19,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "Interaction.h"
 #include "CurrentObjectsManagement.h"
 
@@ -149,8 +149,8 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 			}
 			else
 			{
-				sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), fname, 1, 2, 4);
-				return 0;
+				Scierror(999, _("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), fname, 1, 2, 4);
+				return -1;
 			}
 		}
 		else if (GetType(1) == sci_boolean)
@@ -169,15 +169,15 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 			}
 			else
 			{
-				sciprint(_("%s: Wrong size for input argument #%d: A boolean expected\n."), fname, 1);
-				return 0;
+				Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected\n."), fname, 1);
+				return -1;
 			}
 		}
 		else
 		{
 			/* Wrong parameter specified, neither edition mode nor intial rect */
-			sciprint(_("%s: Wrong type for input argument #%d: Real row vector or a boolean expected.\n"), fname, 1);
-			return 0;
+			Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector or a boolean expected.\n"), fname, 1);
+			return -1;
 		}
 	}
 	else if (Rhs == 2)
@@ -190,21 +190,21 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 		
 		if (GetType(1) != sci_matrix)
 		{
-			sciprint(_("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 1);
-			return 0;
+			Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 1);
+			return -1;
 		}
 
 		if (GetType(2) != sci_boolean)
 		{
-			sciprint(_("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
-			return 0;
+			Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
+			return -1;
 		}
 
 		/* Getting initial rect */
 		if(getInitialRectangle(initialRect) != 1)
 		{
-			sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), fname, 1, 2, 4);
-			return 0;
+			Scierror(999, _("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), fname, 1, 2, 4);
+			return -1;
 		}
 
 		/* Getting edition mode */
@@ -222,11 +222,12 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 		}
 		else
 		{
-			sciprint(_("%s: Wrong size for input argument #%d: A boolean expected\n."), fname, 2);
-			return 0;
+			Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected\n."), fname, 2);
+			return -1;
 		}
 		
 	}
+
 
   /* Put values into the stack and return */
   return returnRectAndButton(selectedRect, button);

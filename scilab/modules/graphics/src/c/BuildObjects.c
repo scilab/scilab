@@ -728,129 +728,138 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 sciPointObj *
 ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandles[], int nblegends)
 {
-  sciPointObj * pobj = (sciPointObj *) NULL;
-  sciLegend   * ppLegend ;
+	sciPointObj * pobj = (sciPointObj *) NULL;
+	sciLegend   * ppLegend ;
 
-  /*
-   * verifier qu'il n'y a pas d'objet existant !!!!
-   * si oui alors le detruire puis le reconstruire.
-   * car il ne peut y avoir qu'une legende
-   */
-  sciSons *psonstmp;
-  int i=0;
+	/*
+	* verifier qu'il n'y a pas d'objet existant !!!!
+	* si oui alors le detruire puis le reconstruire.
+	* car il ne peut y avoir qu'une legende
+	*/
+	sciSons *psonstmp;
+	int i=0;
 
-  psonstmp = sciGetSons (pparentsubwin);
-  /* init */
-  if (psonstmp != (sciSons *) NULL)	/* on peut commencer sur le next */
-    /* tant que le fils n'est pas une legende */
-    while ((psonstmp->pnext != (sciSons *) NULL)
-	   && sciGetEntityType (psonstmp->pointobj) != SCI_LEGEND)
-      psonstmp = psonstmp->pnext;
-
-  if (sciGetEntityType (psonstmp->pointobj) == SCI_LEGEND)
-    DestroyLegend (psonstmp->pointobj);
-
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_LEGEND);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciLegend)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+	psonstmp = sciGetSons (pparentsubwin);
+	/* init */
+	if (psonstmp != NULL)
+	{/* on peut commencer sur le next */
+		/* tant que le fils n'est pas une legende */
+		while ((psonstmp->pnext != NULL) && sciGetEntityType (psonstmp->pointobj) != SCI_LEGEND)
+		{
+			psonstmp = psonstmp->pnext;
+		}
 	}
 
-      /* get the pointer on the features */
-      ppLegend = pLEGEND_FEATURE( pobj );
-
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
-
-      ppLegend->text.callback = (char *)NULL;
-      ppLegend->text.callbacklen = 0;
-      ppLegend->text.callbackevent = 100;
-      ppLegend->text.isboxed = FALSE ;
-
-      ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-
-      ppLegend->text.pStrings = newFullStringMatrix( text,nblegends,1 ) ;
-
-      /* Allocation de la structure sciText */
-      if ( ppLegend->text.pStrings == NULL)
-      {
-        Scierror(999, _("No more place to allocates text string, try a shorter string.\n"));
-        sciDelThisToItsParent (pobj, sciGetParent (pobj));
-        sciDelHandle (pobj);
-        FREE(ppLegend);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-      }
-      /* on copie le texte du titre dans le champs specifique de l'objet */
-      ppLegend->nblegends = nblegends;
-
-      if ((ppLegend->tabofhandles =
-	   MALLOC(nblegends*sizeof(long long))) == NULL)
+	if (sciGetEntityType (psonstmp->pointobj) == SCI_LEGEND)
 	{
-	  Scierror(999, _("%s: No more memory.\n"),"ConstructLegend");
-	  deleteMatrix( ppLegend->text.pStrings ) ;
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+		DestroyLegend (psonstmp->pointobj);
 	}
 
-
-      for (i=0; i < nblegends; i++)
+	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
 	{
-	  ppLegend->tabofhandles[i] = tabofhandles[i];
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+		{
+			return NULL;
+		}
+		sciSetEntityType (pobj, SCI_LEGEND);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciLegend)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		/* get the pointer on the features */
+		ppLegend = pLEGEND_FEATURE( pobj );
+
+
+		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			return NULL ;
+		}
+
+		ppLegend->text.callback = (char *)NULL;
+		ppLegend->text.callbacklen = 0;
+		ppLegend->text.callbackevent = 100;
+		ppLegend->text.isboxed = FALSE ;
+
+		ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+
+		ppLegend->text.pStrings = newFullStringMatrix( text,nblegends,1 ) ;
+
+		/* Allocation de la structure sciText */
+		if ( ppLegend->text.pStrings == NULL)
+		{
+			Scierror(999, _("No more place to allocates text string, try a shorter string.\n"));
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppLegend);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		/* on copie le texte du titre dans le champs specifique de l'objet */
+		ppLegend->nblegends = nblegends;
+
+		if ((ppLegend->tabofhandles =
+			MALLOC(nblegends*sizeof(long long))) == NULL)
+		{
+			Scierror(999, _("%s: No more memory.\n"),"ConstructLegend");
+			deleteMatrix( ppLegend->text.pStrings ) ;
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppLegend);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+
+		for (i=0; i < nblegends; i++)
+		{
+			ppLegend->tabofhandles[i] = tabofhandles[i];
+		}
+
+		ppLegend->text.fontcontext.textorientation = 0.0;
+		ppLegend->pos.x = 0;
+		ppLegend->pos.y = 0;
+		ppLegend->width = 0;
+		ppLegend->height = 0;
+		ppLegend->place = SCI_LEGEND_LOWER_CAPTION;
+		ppLegend->isselected = TRUE;
+		ppLegend->issurround = FALSE;
+
+		/* no clipping by default */
+		ppLegend->clip_region_set = 0 ;
+		sciInitIsClipping( pobj, -1 ) ;
+		sciSetClipping( pobj, sciGetClipping(pparentsubwin) );
+
+		if (sciInitGraphicContext (pobj) == -1) /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		if (sciInitFontContext (pobj) == -1)
+		{
+			Scierror(999, _("Problem with sciInitFontContext\n"));
+			FREE(ppLegend->tabofhandles);
+			deleteMatrix( ppLegend->text.pStrings ) ;
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppLegend);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		return pobj;
 	}
-
-      ppLegend->text.fontcontext.textorientation = 0.0;
-      ppLegend->pos.x = 0;
-      ppLegend->pos.y = 0;
-      ppLegend->width = 0;
-      ppLegend->height = 0;
-      ppLegend->place = SCI_LEGEND_LOWER_CAPTION;
-      ppLegend->isselected = TRUE;
-      ppLegend->issurround = FALSE;
-
-      ppLegend->clip_region_set = -1; /* no clipping by default */
-      sciSetClipping(pobj, sciGetClipping(pparentsubwin));
-
-      if (sciInitGraphicContext (pobj) == -1) /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
+	else
 	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+		Scierror(999, _("The parent has to be a SUBWIN\n"));
+		return (sciPointObj *) NULL;
 	}
-
-      if (sciInitFontContext (pobj) == -1)
-	{
-	  Scierror(999, _("Problem with sciInitFontContext\n"));
-	  FREE(ppLegend->tabofhandles);
-	  deleteMatrix( ppLegend->text.pStrings ) ;
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      return pobj;
-    }
-  else
-    {
-      Scierror(999, _("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
 }
 /*---------------------------------------------------------------------------------*/
 /**

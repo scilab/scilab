@@ -11,7 +11,7 @@ rem http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 set SCILAB_ROOT=../../../..
 set PATH=%SCILAB_ROOT%/bin;%PATH%
 set JAVA="%SCILAB_ROOT%/java/jre/bin/java.exe"
-if NOT EXIST %JAVA% set %JAVA%=java.exe
+if NOT EXIST %JAVA% set JAVA=java.exe
 set CLASSPATH=%SCILAB_ROOT%/modules/javasci/jar/javasci.jar;%SCILAB_ROOT%/modules/javasci/examples/others/build/classes;%CLASSPATH%
 echo ------------------------------------------------------------------------
 echo Example 1

@@ -51,6 +51,9 @@ c internal variables
       double precision rcond,c,efact,two,zero,norm,one
       dimension c(41)
 c
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /dcoeff/
+cDEC$ ENDIF
       common /dcoeff/ c, ndng
 c
       data zero, one, two, maxc /0.0d+0,1.0d+0,2.0d+0,10/
