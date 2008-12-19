@@ -10,6 +10,8 @@ Compilation:
 * Do not init TK when building the doc ("make doc")... in order to be able to 
 build Scilab through ssh
 
+* Giws has lost it .py extension
+
 * Force the build for the french documentation.
 
 Enhancement:
