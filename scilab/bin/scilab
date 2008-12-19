@@ -438,7 +438,7 @@ cd "$OLDPWD"
 #fi
 #export PVM_ARCH
 
-LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 if test $SCIVERBOSE -ne 0; then
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
