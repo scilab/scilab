@@ -778,8 +778,6 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 			return NULL ;
 		}
 
-		ppLegend->text.relationship.psons = (sciSons *) NULL;
-		ppLegend->text.relationship.plastsons = (sciSons *) NULL;
 		ppLegend->text.callback = (char *)NULL;
 		ppLegend->text.callbacklen = 0;
 		ppLegend->text.callbackevent = 100;
