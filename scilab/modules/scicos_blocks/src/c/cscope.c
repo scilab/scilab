@@ -34,6 +34,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "setJavaProperty.h"
 
 /** \fn cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
@@ -106,6 +107,9 @@ void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
       /* scoAddPolylineLineStyle(*pScopeMemory,colors); */
     }
   scicos_free(colors);
+	/* use only single buffering to be sure to draw on the screen */
+	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+
 }
 
 /** \fn void cscope(scicos_block * block,int flag)
@@ -136,7 +140,7 @@ void cscope(scicos_block * block,int flag)
           d_current_real_time = scoGetRealTime();
           pScopeMemory->d_last_scope_update_time = d_current_real_time ; //** update the ds for the next step
           //** printf("Init:Start! \n\n"); //** DEBUG ONLY ! 
-
+					
 	break;
       }
     
@@ -186,6 +190,8 @@ void cscope(scicos_block * block,int flag)
 	    pShortDraw = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
 	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
+			/* restore double buffering */
+			sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
 	    scoDelCoupleOfPolylines(pScopeMemory);
 	  }
 	scoFreeScopeMemory(block->work, &pScopeMemory);

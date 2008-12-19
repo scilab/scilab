@@ -1460,6 +1460,15 @@ public class ScilabBridge {
 		return ScilabCanvasBridge.dumpAsBufferedImage(scilabCanvas);
 	}
 	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 * @param canvas canvas to modify
+	 */
+	public static void setSingleBuffered(Canvas canvas, boolean useSingleBuffer) {
+		ScilabCanvasBridge.setSingleBuffered(canvas, useSingleBuffer);
+	}
+	
 	/*****************/
 	/* MenuBar Bridge */
 	/*****************/
