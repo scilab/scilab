@@ -57,6 +57,8 @@ Bug fixes:
 * bug 3877 half-fixed - Workaround to compile against Tcl/Tk 8.6
 
 * bug 3878 fixed - Under mandriva, the javahelp package is not called jhall but javahelp2.
+
+* bug 3879 fixed - Under mandriva, the batik package is not called batik but batik-all.
                    
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
