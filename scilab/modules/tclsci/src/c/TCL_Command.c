@@ -9,6 +9,12 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+/* Workaround for Tcl 8.6.
+ * See bug #3877
+ */
+#define USE_INTERP_RESULT
+
 #include <stdlib.h>
 
 #ifdef _MSC_VER
