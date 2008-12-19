@@ -12,7 +12,9 @@
 #ifndef __SQRT_H__
 #define __SQRT_H__
 
-double dsqrts(double _dblVal);
-void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);
+#include "export_ef.h"
+
+EXTERN_EF double dsqrts(double _dblVal);
+EXTERN_EF void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);
 
 #endif

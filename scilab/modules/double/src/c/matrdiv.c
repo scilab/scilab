@@ -156,38 +156,65 @@ int matrdiv()
 
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// A and B are both real
+				double dblRcond = 0;
 				iAllocMatrixOfDouble(Rhs + 1,  iRows1, iRows2, &pReturnReal);
-				iRet = iRightDivisionOfRealMatrix(pReal1, iRows1, iCols1, pReal2, iRows2, iCols2, pReturnReal, iRows2, iRows1);
+				iRet = iRightDivisionOfRealMatrix(pReal1, iRows1, iCols1, pReal2, iRows2, iCols2, pReturnReal, iRows2, iRows1, &dblRcond);
 
-				if(iRet != 0)
+				if(iRet > 0)
 				{
 					Error(iRet);
 					return 0;
 				}
-				else
+				else if(iRet < 0)
 				{
-					LhsVar(1) = Rhs + 1;
-					PutLhsVar();
+					switch(iRet)
+					{
+					case -1 :
+						sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
+						Msgs(5,1);
+						break;
+					case -2 :
+						Msgs(9, (int)dblRcond);
+						break;
+					default :
+							break;
+					}
 				}
+
+				LhsVar(1) = Rhs + 1;
+				PutLhsVar();
 			}
 			else
 			{/* A real, B complex : complexify A */
+				double dblRcond = 0;
 				iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iRows2, &pReturnReal, &pReturnImg);
 				iRet = iRightDivisionOfComplexMatrix(
 					pReal1, pImg1, iRows1, iCols1, 
 					pReal2, pImg2, iRows2, iCols2, 
-					pReturnReal, pReturnImg, iRows1, iRows2);
+					pReturnReal, pReturnImg, iRows1, iRows2, &dblRcond);
 
-				if(iRet != 0)
+				if(iRet > 0)
 				{
 					Error(iRet);
 					return 0;
 				}
-				else
+				else if(iRet < 0)
 				{
-					LhsVar(1) = Rhs + 1;
-					PutLhsVar();
+					switch(iRet)
+					{
+					case -1 :
+						sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
+						Msgs(5,1);
+						break;
+					case -2 :
+						Msgs(9, (int)dblRcond);
+						break;
+					default :
+						break;
+					}
 				}
+				LhsVar(1) = Rhs + 1;
+				PutLhsVar();
 			}
 		}
 		else

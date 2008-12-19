@@ -13,11 +13,13 @@
 #ifndef __TAN_H__
 #define __TAN_H__
 
-double dtans(double _dblVal);
-void ztans(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+#include "export_ef.h"
 
-double datans(double _dblVal);
-double datan2s(double _dblValX, double _dblValY);
-void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
+EXTERN_EF double dtans(double _dblVal);
+EXTERN_EF void ztans(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+
+EXTERN_EF double datans(double _dblVal);
+EXTERN_EF double datan2s(double _dblValX, double _dblValY);
+EXTERN_EF void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
 #endif /* __TAN_H__ */

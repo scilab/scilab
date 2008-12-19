@@ -10,7 +10,7 @@
  *
  */
 
-#include "common.h"
+#include "elem_common.h"
 
 double dexps(double _dblVal)
 {

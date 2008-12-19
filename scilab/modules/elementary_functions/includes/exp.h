@@ -13,7 +13,9 @@
 #ifndef __EXP_H__
 #define __EXP_H__
 
-double dexps(double _dblVal);
-void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
+#include "export_ef.h"
+
+EXTERN_EF double dexps(double _dblVal);
+EXTERN_EF void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
 
 #endif /* __EXP_H__ */

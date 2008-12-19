@@ -13,18 +13,30 @@
 #include "execvisitor.hxx"
 #include "core_math.h"
 
+extern "C"
+{
+#include "matrix_multiplication.h"
+}
+
 using std::string;
 
+//+
 Double * AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2);
 MatrixPoly* AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
 MatrixPoly* AddPolyToPoly(MatrixPoly* pPoly1, MatrixPoly* _pPoly2);
-
 String* AddStringToString(String *_pString1, String *_pString2);
 
+// -
 Double* SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2);
 MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly);
 MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
 MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2);
+
+// *
+Double* MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2);
+MatrixPoly* MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly);
+MatrixPoly* MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble);
+MatrixPoly* MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2);
 
 namespace ast
 {
@@ -243,55 +255,16 @@ namespace ast
 					Double *pR			= execMeR.result_get()->getAsDouble();
 					Double *pResult = NULL;
 
-					if(pL->size_get() == 1)
-					{//add pL with each element of pR
-						double *pReal			= NULL;
-						double *pImg			= NULL;
-
-						double *pdblRealR	= pR->real_get();
-						double *pdblImgR	= pR->img_get();
-						double pdblRealL	= pL->real_get() == NULL ? 0 : pL->real_get()[0];
-						double pdblImgL		= pL->img_get() == NULL ? 0 : pL->img_get()[0];
-
-						pResult						= new Double(pR->rows_get(), pR->cols_get(), &pReal, &pImg);
-
-						for(int i = 0 ; i < pR->size_get() ; i++)
-						{
-							pReal[i]	= pdblRealL * (pdblRealR == NULL ? 0 : pdblRealR[i])	-  pdblImgL	* (pdblImgR == NULL ? 0 : pdblImgR[i]);
-							pImg[i]		= pdblRealL	* (pdblImgR == NULL ? 0 : pdblImgR[i])		+  pdblImgL	* (pdblRealR == NULL ? 0 : pdblRealR[i]);
-						}
-
-						if(pL->isComplex() == false && pR->isComplex() == false)
-						{
-							pResult->complex_set(false);
-						}
-					}
-					else if(pR->size_get() == 1)
+					pResult = MultiplyDoubleByDouble(pL, pR);
+					if(pResult == NULL)
 					{
-						double *pReal			= NULL;
-						double *pImg			= NULL;
-
-						double *pdblRealL	= pL->real_get();
-						double *pdblImgL	= pL->img_get();
-						double pdblRealR	= pR->real_get() == NULL ? 0 : pR->real_get()[0];
-						double pdblImgR		= pR->img_get() == NULL ? 0 : pR->img_get()[0];
-
-						pResult						= new Double(pL->rows_get(), pL->cols_get(), &pReal, &pImg);
-
-						for(int i = 0 ; i < pL->size_get() ; i++)
-						{
-							pReal[i]	= (pdblRealL == NULL ? 0 : pdblRealL[i])	* pdblRealR		- (pdblImgL == NULL ? 0 : pdblImgL[i])		* pdblImgR;
-							pImg[i]		= (pdblRealL == NULL ? 0 : pdblRealL[i])	* pdblImgR		+	(pdblImgL == NULL ? 0 : pdblImgL[i])		* pdblRealR;
-						}
-
-						if(pL->isComplex() == false && pR->isComplex() == false)
-						{
-							pResult->complex_set(false);
-						}
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
 					}
-					else
-					{//matrix * matrix call atlas :(
-					}
+
 					result_set(pResult);
 				}
 				else if(TypeL == InternalType::RealDouble && TypeL == InternalType::RealPoly)
@@ -307,7 +280,7 @@ namespace ast
 			}
 		case OpExp::divide:
 			{
-				if(TypeR == GenericType::RealDouble)
+				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
@@ -577,7 +550,7 @@ namespace ast
 			}
 		case OpExp::gt :
 			{
-				if(TypeR == GenericType::RealDouble)
+				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
@@ -630,7 +603,7 @@ namespace ast
 			}		
 		case OpExp::ge :
 			{
-				if(TypeR == GenericType::RealDouble)
+				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
@@ -1667,3 +1640,122 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 	//if pResult == NULL -> incompatible dimensions
 	return pResult;
 }
+
+Double* MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2)
+{
+	bool bComplex1		= _pDouble1->isComplex();
+	bool bComplex2		= _pDouble2->isComplex();
+	bool bScalar1			= _pDouble1->rows_get() == 1 && _pDouble1->cols_get() == 1;
+	bool bScalar2			= _pDouble2->rows_get() == 1 && _pDouble2->cols_get() == 1;
+
+
+	//Output variables
+	Double *pResult		= NULL;
+	int iRowsOut			= 0;
+	int iColsOut			= 0;
+	bool bComplexOut	= bComplex1 || bComplex2;
+	double *pReal			= NULL;
+	double *pImg			= NULL;
+
+	if(bScalar1)
+	{//cst*b
+		iRowsOut			= _pDouble2->rows_get();
+		iColsOut			= _pDouble2->cols_get();
+		if(bComplexOut)
+		{
+			pResult = new Double(iRowsOut, iColsOut, &pReal, &pImg);
+		}
+		else
+		{
+			pResult = new Double(iRowsOut, iColsOut, &pReal);
+		}
+
+		if(bComplex1 == false && bComplex2 == false)
+		{
+			iMultiRealScalarByRealMatrix(_pDouble1->real_get(0,0), _pDouble2->real_get(), iRowsOut, iColsOut, pReal);
+		}
+		else if(bComplex1 == false && bComplex2 == true)
+		{
+			iMultiRealScalarByComplexMatrix(_pDouble1->real_get(0,0), _pDouble2->real_get(), _pDouble2->img_get(), iRowsOut, iColsOut, pReal, pImg);
+		}
+		else if(bComplex1 == true && bComplex2 == false)
+		{
+			iMultiComplexScalarByRealMatrix(_pDouble1->real_get(0,0), _pDouble1->img_get(0,0), _pDouble2->real_get(), iRowsOut, iColsOut, pReal, pImg);
+		}
+		else if(bComplex1 == true && bComplex2 == true)
+		{
+			iMultiComplexScalarByComplexMatrix(_pDouble1->real_get(0,0), _pDouble1->img_get(0,0), _pDouble2->real_get(), _pDouble2->img_get(), iRowsOut, iColsOut, pReal, pImg);
+		}
+	}
+
+	return pResult;
+/*
+	Double *pResult = NULL;
+	if(_pDouble1->size_get() == 1)
+	{//add pL with each element of pR
+		double *pReal			= NULL;
+		double *pImg			= NULL;
+
+		double *pdblRealR	= _pDouble2->real_get();
+		double *pdblImgR	= _pDouble2->img_get();
+		double pdblRealL	= _pDouble1->real_get() == NULL ? 0 : _pDouble1->real_get()[0];
+		double pdblImgL		= _pDouble1->img_get() == NULL ? 0 : _pDouble1->img_get()[0];
+
+		pResult						= new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
+
+		if(_pDouble1->isComplex() || _pDouble2->isComplex())
+		{
+			pResult->complex_set(true);
+			pImg = pResult->img_get();
+
+			for(int i = 0 ; i < _pDouble2->size_get() ; i++)
+			{
+				pReal[i]	= pdblRealL * pdblRealR[i]	-  pdblImgL	* (pdblImgR == NULL ? 0 : pdblImgR[i]);
+				pImg[i]		= pdblRealL	* (pdblImgR == NULL ? 0 : pdblImgR[i]) + pdblImgL * pdblRealR[i];
+			}
+		}
+		else
+		{
+			for(int i = 0 ; i < _pDouble2->size_get() ; i++)
+			{
+				pReal[i]	= pdblRealL * pdblRealR[i];
+			}
+		}
+	}
+	else if(_pDouble2->size_get() == 1)
+	{
+		double *pReal			= NULL;
+		double *pImg			= NULL;
+
+		double *pdblRealL	= _pDouble1->real_get();
+		double *pdblImgL	= _pDouble1->img_get();
+		double pdblRealR	= _pDouble2->real_get() == NULL ? 0 : _pDouble2->real_get()[0];
+		double pdblImgR		= _pDouble2->img_get() == NULL ? 0 : _pDouble2->img_get()[0];
+
+		pResult						= new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
+
+		if(_pDouble1->isComplex() || _pDouble2->isComplex())
+		{
+			pResult->complex_set(true);
+			pImg = pResult->img_get();
+
+			for(int i = 0 ; i < _pDouble1->size_get() ; i++)
+			{
+				pReal[i]	= pdblRealL[i] * pdblRealR - (pdblImgL == NULL ? 0 : pdblImgL[i]) * pdblImgR;
+				pImg[i]		= pdblRealL[i] * pdblImgR +	(pdblImgL == NULL ? 0 : pdblImgL[i]) * pdblRealR;
+			}
+		}
+		else
+		{
+			for(int i = 0 ; i < _pDouble1->size_get() ; i++)
+			{
+				pReal[i]	= pdblRealL[i] * pdblRealR;
+			}
+		}
+	}
+	else
+	{//matrix * matrix call atlas :(
+
+	}
+	return pResult;
+*/}

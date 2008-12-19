@@ -228,12 +228,6 @@ int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _p
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
 
-/*Tools to convert memory matrix storage from C to Z and Z to C*/
-// vGetPointerFromDoubleComplex : set the real and imaginary part of an target array from a source doublecomplex array
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
-// oGetDoubleComplexFromPointer : returns a target doublecomplex constructed from the source real and imaginary parts.
-doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
-
 // GetRhsVarMatrixOfDouble : Returns a pointer on the data of a matrix of double.
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
 // GetRhsVarMatrixComplex : Returns a pointer on the data of a matrix of double.

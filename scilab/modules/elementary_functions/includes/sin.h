@@ -15,11 +15,13 @@
 
 #include <math.h>
 
-double dsins(double _dblVal);
-void zsins(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+#include "export_ef.h"
 
-double dasins(double _dblVal);
-void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
-double dsinhs(double _dblVal);
+EXTERN_EF double dsins(double _dblVal);
+EXTERN_EF void zsins(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+
+EXTERN_EF double dasins(double _dblVal);
+EXTERN_EF void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
+EXTERN_EF double dsinhs(double _dblVal);
 
 #endif /* __SIN_H__ */

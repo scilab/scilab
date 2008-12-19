@@ -10,7 +10,7 @@
  *
  */
 
-#include "common.h"
+#include "elem_common.h"
 
 /*asin*/
 double dasins(double _dblVal)

@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -41,8 +41,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\core\includes"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes"
+				PreprocessorDefinitions="WIN32;_DEBUG;__ELEM_FUNC__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,11 +61,14 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\$(ProjectName).lib"
+				Name="VCLinkerTool"
+				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -77,6 +80,9 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -84,7 +90,7 @@
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -107,13 +113,13 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\core\includes"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes"
+				PreprocessorDefinitions="WIN32;NDEBUG;__ELEM_FUNC__"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				DebugInformationFormat="3"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -125,11 +131,14 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\$(ProjectName).lib"
+				Name="VCLinkerTool"
+				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -139,6 +148,9 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -210,12 +222,16 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\elem_func.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\c\exp.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\c\log.c"
@@ -288,19 +304,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\common.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\includes\cos.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\elem_func.hxx"
+				RelativePath="..\..\..\includes\elem_common.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\includes\exp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\export_ef.h"
 				>
 			</File>
 			<File

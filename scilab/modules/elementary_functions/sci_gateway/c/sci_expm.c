@@ -2569,12 +2569,14 @@ int dexpms2(double *_pdblReal, double *_pdblReturnReal, int _iLeadDim)
 
 int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double *_pdblReturnImg, int _iLeadDim)
 {
-	int iIndex1		= 0;
-	int iMax		= 0;
-	int iFlag		= 0;
-	int iLoop1		= 0;
-	int iSquare		= 0;
-	int iOne		= 1;
+	double dblRcond = 0;
+	int iRet				= 0;
+	int iIndex1			= 0;
+	int iMax				= 0;
+	int iFlag				= 0;
+	int iLoop1			= 0;
+	int iSquare			= 0;
+	int iOne				= 1;
 
 	int iComplex = 0;
 
@@ -2765,23 +2767,44 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 	//Temp = E
 	C2F(dcopy)(&iSquare, _pdblReturnReal, &iOne, pdblMatrixRealTemp, &iOne);
 	if(iComplex)
+	{
 		C2F(dcopy)(&iSquare, _pdblReturnImg, &iOne, pdblMatrixImgTemp, &iOne);
 /*	for(iIndex1 = 0 ; iIndex1 < iSquare ; iIndex1++)
 		pdblMatrixRealTemp[iIndex1]	= _pdblReturnReal[iIndex1];
 */
+	}
 
 	//E = D\E
 	if(iComplex)
-		iLeftDivisionOfComplexMatrix(
+	{
+		iRet = iLeftDivisionOfComplexMatrix(
 			pdblMatrixRealD,	pdblMatrixImgD,		_iLeadDim, _iLeadDim,
 			pdblMatrixRealTemp,	pdblMatrixImgTemp,	_iLeadDim, _iLeadDim,
-			_pdblReturnReal,	_pdblReturnImg,		_iLeadDim, _iLeadDim);
+			_pdblReturnReal,	_pdblReturnImg,		_iLeadDim, _iLeadDim, &dblRcond);
+	}
 	else
-		iLeftDivisionOfRealMatrix(
+	{
+		iRet = iLeftDivisionOfRealMatrix(
 			pdblMatrixRealD,	_iLeadDim, _iLeadDim,
 			pdblMatrixRealTemp,	_iLeadDim, _iLeadDim,
-			_pdblReturnReal,	_iLeadDim, _iLeadDim);
+			_pdblReturnReal,	_iLeadDim, _iLeadDim, &dblRcond);
+	}
 
+	if(iRet < 0)
+	{
+		switch(iRet)
+		{
+		case -1 :
+			sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
+			Msgs(5,1);
+			break;
+		case -2 :
+			Msgs(9, (int)dblRcond);
+			break;
+		default :
+			break;
+		}
+	}
 	// Undo scaling by repeated squaring
 	for(iLoop1 = 0 ; iLoop1 < dblS ; iLoop1++)
 	{

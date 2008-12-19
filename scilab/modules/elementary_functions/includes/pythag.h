@@ -12,6 +12,8 @@
 #ifndef __PYTHAG_H__
 #define __PYTHAG_H__
 
-double dpythags(double _dblVal1, double _dblVal2);
+#include "export_ef.h"
+
+EXTERN_EF double dpythags(double _dblVal1, double _dblVal2);
 
 #endif /* __PYTHAG_H__ */

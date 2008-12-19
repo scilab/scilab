@@ -17,7 +17,7 @@
 #include <math.h>
 
 #include "stack-c.h"
-//#include "double.h"
+#include "elem_common.h"
 
 #include "abs.h"
 #include "cos.h"
@@ -33,12 +33,6 @@
 static double spdblExpmC[41] = {0};
 static double sdblExpmN = 0;
 
-
-extern double C2F(dlamch)  (char *CMACH, unsigned long int);
-extern double C2F(logp1) (double *x);
-extern int C2F(dgemm)();
-extern int C2F(dswap)();
-extern double C2F(dasum)();
 
 double dceilsEx(double _dblVal, int _iPrecision);
 double dceils(double _dblVal);

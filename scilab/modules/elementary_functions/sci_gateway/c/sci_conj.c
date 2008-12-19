@@ -47,8 +47,8 @@ int C2F(sci_conj) (char *fname,unsigned long fname_len)
 	{
 		if(iIsComplex(1))
 		{
-			int iOne		= 1;
-			int iSize		= 0;
+			int iOne				= 1;
+			int iSize				= 0;
 			double dblCoef	= -1;
 			GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
 			pdblRealData	= stk(iRealData);
@@ -60,8 +60,9 @@ int C2F(sci_conj) (char *fname,unsigned long fname_len)
 			//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 			memcpy(pReturnRealData, pdblRealData, iSize * sizeof(double));
+			memcpy(pReturnImgData, pdblImgData, iSize * sizeof(double));
 
-			C2F(dscal)(&iSize, &dblCoef, pdblImgData, pReturnImgData);
+			C2F(dscal)(&iSize, &dblCoef, pReturnImgData, &iOne);
 
 			//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
 			LhsVar(1) = Rhs + 1;

@@ -13,10 +13,12 @@
 #ifndef __LOG_H__
 #define __LOG_H__
 
-double dlogs(double _dblVal);
-void wlog(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
-double dlog1ps(double _dblVal);
-double lnp1m1(double _dblVar);
+#include "export_ef.h"
+
+EXTERN_EF double dlogs(double _dblVal);
+EXTERN_EF void wlog(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+EXTERN_EF double dlog1ps(double _dblVal);
+EXTERN_EF double lnp1m1(double _dblVar);
 
 
 #endif /* __LOG_H__ */

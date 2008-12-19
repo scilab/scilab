@@ -177,10 +177,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\internal.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\matrixpoly.cpp"
 				>
 			</File>

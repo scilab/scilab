@@ -13,9 +13,9 @@
 #ifndef __ABS_H__
 #define __ABS_H__
 
-#include "common.h"
+#include "export_ef.h"
 
-double dabss(double _dblVal);
-double dabsz(double _dblRealVal, double _dblImgVal);
+EXTERN_EF double dabss(double _dblVal);
+EXTERN_EF double dabsz(double _dblRealVal, double _dblImgVal);
 
 #endif /* __ABS_H__ */

@@ -10,7 +10,7 @@
  *
  */
 
-#include "common.h"
+#include "elem_common.h"
 
 /*cos*/
 double dcoss(double _dblVal)

@@ -14,13 +14,14 @@
 #define __COS_H__
 
 #include <math.h>
+#include "export_ef.h"
 
-double dcoss(double _dblVal);
-void zcoss(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+EXTERN_EF double dcoss(double _dblVal);
+EXTERN_EF void zcoss(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
-double dacoss(double _dblVal);
-void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
+EXTERN_EF double dacoss(double _dblVal);
+EXTERN_EF void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
-double dcoshs(double _dblVal);
+EXTERN_EF double dcoshs(double _dblVal);
 
 #endif /* __COS_H__ */

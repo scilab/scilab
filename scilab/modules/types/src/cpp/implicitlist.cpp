@@ -75,6 +75,10 @@ namespace types
 		m_dblStep		= _dblStep;
 		m_dblEnd		= _dblEnd;
 		m_iSize		= 0;
+
+		m_eStartType = InternalType::RealDouble;
+		m_eStepType = InternalType::RealDouble;
+		m_eEndType = InternalType::RealDouble;
 		compute();
 	}
 

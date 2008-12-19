@@ -13,7 +13,9 @@
 #ifndef __SIGN_H__
 #define __SIGN_H__
 
-double dsigns(double _dblRef, double _dblVal);
-double dsignsEx(double _dblVal);
+#include "export_ef.h"
+
+EXTERN_EF double dsigns(double _dblRef, double _dblVal);
+EXTERN_EF double dsignsEx(double _dblVal);
 
 #endif /* __SIGN_H__ */

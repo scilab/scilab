@@ -11,8 +11,7 @@
  */
 #include <math.h>
 
-#include "common.h"
-
+#include "elem_common.h"
 /*abs*/
 double dabss(double _dblVal)
 {

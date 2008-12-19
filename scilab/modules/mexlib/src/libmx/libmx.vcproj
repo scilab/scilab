@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -78,6 +78,91 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(ConfigurationName)/libmx.pdb"
 				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/libmx.lib"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
+				RuntimeLibrary="0"
+				EnableEnhancedInstructionSet="0"
+				UsePrecompiledHeader="0"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+				CompileAs="1"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmxtemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmx.def &gt;nul&#x0D;&#x0A;del libmxtemp.def &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="../../../../bin/libintl.lib"
+				OutputFile="../../../../bin/libmx.dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="libmx.def"
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				ImportLibrary="../../../../bin/libmx.lib"
@@ -170,91 +255,6 @@
 				DataExecutionPrevention="0"
 				ImportLibrary="../../../../bin/libmx.lib"
 				TargetMachine="17"
-				CLRUnmanagedCodeCheck="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
-				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
-				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="0"
-				UsePrecompiledHeader="0"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-				CompileAs="1"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmxtemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmx.def &gt;nul&#x0D;&#x0A;del libmxtemp.def &gt;nul&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../bin/libintl.lib"
-				OutputFile="../../../../bin/libmx.dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="libmx.def"
-				GenerateDebugInformation="false"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				OptimizeForWindows98="0"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/libmx.lib"
-				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool

@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes;../../../operations/includes"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -122,7 +122,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes;../../../operations/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -335,23 +335,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\abs.c"
-				>
-			</File>
-			<File
-				RelativePath=".\acos.c"
-				>
-			</File>
-			<File
 				RelativePath=".\add_vector.c"
-				>
-			</File>
-			<File
-				RelativePath=".\asin.c"
-				>
-			</File>
-			<File
-				RelativePath=".\atan.c"
 				>
 			</File>
 			<File
@@ -367,14 +351,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cos.c"
-				>
-			</File>
-			<File
-				RelativePath=".\cosh.c"
-				>
-			</File>
-			<File
 				RelativePath=".\cupro.c"
 				>
 			</File>
@@ -384,10 +360,6 @@
 			</File>
 			<File
 				RelativePath=".\dsearch.c"
-				>
-			</File>
-			<File
-				RelativePath=".\exp.c"
 				>
 			</File>
 			<File
@@ -431,19 +403,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\log.c"
-				>
-			</File>
-			<File
 				RelativePath=".\matrix_generation.c"
 				>
 			</File>
 			<File
 				RelativePath=".\mprod.c"
-				>
-			</File>
-			<File
-				RelativePath=".\pythag.c"
 				>
 			</File>
 			<File
@@ -671,31 +635,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sign.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sin.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sinh.c"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\sortTemplate.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\sqrt.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sub_vector.c"
-				>
-			</File>
-			<File
-				RelativePath=".\tan.c"
 				>
 			</File>
 			<File
@@ -750,23 +694,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\abs.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\basic_functions.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\cos.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\elementary_functions.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\exp.h"
 				>
 			</File>
 			<File
@@ -795,14 +727,6 @@
 			</File>
 			<File
 				RelativePath=".\IsEqualVar.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\log.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\pythag.h"
 				>
 			</File>
 			<File
@@ -838,23 +762,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\sign.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\sin.h"
-				>
-			</File>
-			<File
 				RelativePath=".\sortTemplate.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\sqrt.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\tan.h"
 				>
 			</File>
 			<File

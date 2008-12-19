@@ -302,6 +302,6 @@ void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _
 {
 	types::Double* pVal = new types::Double(1,1,_bComplex);
 	pVal->val_set(0,0,_dblReal,_dblImg);
-	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
+	symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
 }
 

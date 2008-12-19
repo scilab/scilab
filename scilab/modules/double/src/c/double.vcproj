@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes;../../../operations/includes"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -121,7 +121,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes;../../../operations/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -349,14 +349,6 @@
 			</File>
 			<File
 				RelativePath=".\matrdiv.c"
-				>
-			</File>
-			<File
-				RelativePath=".\matrix_division.c"
-				>
-			</File>
-			<File
-				RelativePath=".\matrix_multiplication.c"
 				>
 			</File>
 		</Filter>

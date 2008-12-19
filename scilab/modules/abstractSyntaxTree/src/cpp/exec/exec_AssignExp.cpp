@@ -65,6 +65,7 @@ namespace ast
 					(*i)->accept(*execMeArg);
 					InternalType *pIn = NULL;
 					Double *pDbl = NULL;
+					bool bDeleteDbl = false;
 
 					if(execMeArg->result_get()->getType() == InternalType::RealImplicitList)
 					{//a:b:c
@@ -98,6 +99,7 @@ namespace ast
 						double *pDblData = NULL;
 						pDbl = new Double(1, pIL->size_get(), &pDblData);
 						pIL->extract_matrix(pDblData);
+						bDeleteDbl = true;
 					}
 					else
 					{
@@ -147,6 +149,11 @@ namespace ast
 					}
 					iTotalCombi *= iSize;
 					//IndexList.push_back(SubList);
+
+					if(bDeleteDbl == true)
+					{
+						delete pDbl;
+					}
 				}
 
 				int iTabSize = iTotalCombi * CallVar->args_get().size();
@@ -400,6 +407,15 @@ namespace ast
 				{//other tpyes
 					getchar();
 				}
+
+				delete piTabSize;
+				delete piMaxDim;
+				for(int i = 0 ; i < (int)CallVar->args_get().size() ; i++)
+				{
+					delete piIndexList[i];
+				}
+				delete piIndexList;
+				delete execMeArg;
 			}
 			else
 			{//Var == NULL
