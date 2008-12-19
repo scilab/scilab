@@ -10,6 +10,8 @@ Compilation:
 * Do not init TK when building the doc ("make doc")... in order to be able to 
 build Scilab through ssh
 
+* Giws has lost it .py extension
+
 * Force the build for the french documentation.
 
 Enhancement:
@@ -54,6 +56,11 @@ Bug fixes:
                    
 * bug 3874 fixed - When building the macros, only replaces the extension (.sci => .bin)
 
+* bug 3877 half-fixed - Workaround to compile against Tcl/Tk 8.6
+
+* bug 3878 fixed - Under mandriva, the javahelp package is not called jhall but javahelp2.
+
+* bug 3879 fixed - Under mandriva, the batik package is not called batik but batik-all.
                    
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
