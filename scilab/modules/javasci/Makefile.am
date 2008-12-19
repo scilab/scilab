@@ -41,6 +41,7 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 			$(TK_INC_PATH) \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 libjavasci_la_LIBADD = \

@@ -37,6 +37,7 @@ libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la

@@ -22,6 +22,7 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/fileio/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/operations/includes \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/includes/
 

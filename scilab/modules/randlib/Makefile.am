@@ -45,7 +45,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
 
 libscirandlib_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscirandlib.la
 

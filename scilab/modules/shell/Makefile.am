@@ -43,6 +43,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/completion/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/fileio/src/c/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

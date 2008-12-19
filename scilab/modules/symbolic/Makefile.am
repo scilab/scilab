@@ -20,7 +20,8 @@ sci_gateway/fortran/sci_ldivf.f \
 sci_gateway/fortran/sci_rdivf.f
 
 libscisymbolic_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/operations/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
 

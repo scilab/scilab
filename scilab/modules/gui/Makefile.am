@@ -176,12 +176,14 @@ libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/hashtable \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(srcdir)/src/cpp/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/string/includes/
 
 libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -200,6 +202,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/string/includes/
 
 else

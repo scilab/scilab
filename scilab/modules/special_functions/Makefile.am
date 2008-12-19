@@ -38,6 +38,7 @@ includes/gw_special_functions2.h
 
 libscispecial_functions_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscispecial_functions.la

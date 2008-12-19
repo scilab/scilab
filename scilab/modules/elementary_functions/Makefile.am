@@ -397,6 +397,7 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_builddir)/modules/functions_manager/includes \
 	-I$(top_builddir)/modules/types/includes \
+	-I$(top_builddir)/modules/operations/includes \
 	-I$(top_builddir)/modules/symbol/includes
 
 

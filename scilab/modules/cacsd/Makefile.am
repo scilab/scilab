@@ -212,7 +212,8 @@ sci_gateway/fortran/sci_f_rankqr.f
 
 libscicacsd_la_FFLAGS= -I$(srcdir)/includes/
 libscicacsd_la_CFLAGS= 	-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/
 
 pkglib_LTLIBRARIES = libscicacsd.la
 

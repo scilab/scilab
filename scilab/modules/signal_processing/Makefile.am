@@ -98,6 +98,7 @@ libscisignal_processing_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes \
+-I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/double/includes
 
 

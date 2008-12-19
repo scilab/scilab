@@ -11,6 +11,7 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/string/includes/
 
 if GUI

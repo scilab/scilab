@@ -216,6 +216,7 @@ demos/wheel/x.wrt
 
 libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la

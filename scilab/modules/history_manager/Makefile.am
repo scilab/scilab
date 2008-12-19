@@ -50,6 +50,7 @@ libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

@@ -49,6 +49,7 @@ libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/localization/includes
 
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)

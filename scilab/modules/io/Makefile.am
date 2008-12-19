@@ -76,6 +76,7 @@ libsciio_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libsciio.la

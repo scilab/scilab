@@ -312,6 +312,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 						-I$(top_srcdir)/modules/elementary_functions/includes \
 						-I$(top_srcdir)/modules/string/includes \
 						-I$(top_srcdir)/modules/fileio/includes \
+						-I$(top_srcdir)/modules/operations/includes \
 						$(XML_FLAGS)
 
 
