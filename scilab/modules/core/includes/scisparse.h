@@ -27,4 +27,6 @@ typedef struct scisparse {
 	double *I ; /**< I[j]: imag value of the j-th non nul element, size nel */
 } SciSparse ;
 
+extern SciSparse* NewSparse(int *it,int *m,int *n,int*nel);
+extern void FreeSparse(SciSparse *x);
 #endif /* __SCISPARSE_H__ */
