@@ -98,30 +98,27 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
     frame $adda.f.f1
     if {!$calledfromwatch_exps} {
         set firstentrylabelname "Variable:"
-        set bestwidth [mcmaxra $firstentrylabelname \
-                               "Value:"]
     } else {
         set firstentrylabelname "Expression:"
-        set bestwidth [mcmaxra $firstentrylabelname]
     }
     set tl [mc $firstentrylabelname]
-    label $adda.f.f1.label -text $tl -width $bestwidth -font $menuFont
+    label $adda.f.f1.label -text $tl -font $menuFont
     entry $adda.f.f1.entry -textvariable argname -width 0 -font $textFont
-    pack $adda.f.f1.label $adda.f.f1.entry -side left
-    pack $adda.f.f1.entry -expand 1 -fill x
+    grid $adda.f.f1.label -row 0 -column 0 -sticky we
+    grid $adda.f.f1.entry -row 0 -column 1 -sticky we
+    grid columnconfigure $adda.f.f1 1 -weight 1
     $adda.f.f1.entry selection range 0 end
+
+    set tl [mc "Value:"]
+    label $adda.f.f1.label2 -text $tl -font $menuFont
+    entry $adda.f.f1.entry2 -textvariable argvalue -width 0 -font $textFont
+    $adda.f.f1.entry2 selection range 0 end
+    if {!$calledfromwatch_exps} {
+        grid $adda.f.f1.label2 -row 1 -column 0 -sticky we
+        grid $adda.f.f1.entry2 -row 1 -column 1 -sticky we
+    }
     pack $adda.f.f1 -expand 1 -fill x
 
-    frame $adda.f.f2
-    set tl [mc "Value:"]
-    label $adda.f.f2.label -text $tl -width $bestwidth -font $menuFont
-    entry $adda.f.f2.entry -textvariable argvalue -width 0 -font $textFont
-    pack $adda.f.f2.label $adda.f.f2.entry -side left
-    pack $adda.f.f2.entry -expand 1 -fill x
-    $adda.f.f2.entry selection range 0 end
-    if {!$calledfromwatch_exps} {
-        pack $adda.f.f2 -expand 1 -fill x
-    }
     if {$calledfromwatch_vars} {
         # This checkbutton is only displayed when the dialog is used with the variables area
         # of the watch window only
@@ -134,15 +131,16 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
     }
 
     frame $adda.f.f9
-    set bestwidth [mcmaxra "OK" \
-                           "Cance&l"]
     button $adda.f.f9.buttonOK -text "OK" \
            -command "OKadda_bp $selecteditem $leftwin $rightwin ; destroy $adda"\
-           -width $bestwidth -font $menuFont
+           -font $menuFont
     eval "button $adda.f.f9.buttonCancel [bl "Cance&l"] \
            -command \"Canceladda_bp $adda $selecteditem $leftwin\"\
-           -width $bestwidth -font \[list $menuFont\] "
-    pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
+           -font \[list $menuFont\] "
+    grid $adda.f.f9.buttonOK     -row 0 -column 0 -sticky we -padx 10
+    grid $adda.f.f9.buttonCancel -row 0 -column 1 -sticky we -padx 10
+    grid columnconfigure $adda.f.f9 0 -uniform 1
+    grid columnconfigure $adda.f.f9 1 -uniform 1
     pack $adda.f.f9 -pady 4
     pack $adda.f -expand 1 -fill x
 
@@ -153,7 +151,7 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
     bind $adda <Alt-[fb $adda.f.f9.buttonCancel]> "$adda.f.f9.buttonCancel invoke"
 
     if {$selecteditem != -1 && !$calledfromwatch_exps} {
-        focus $adda.f.f2.entry
+        focus $adda.f.f1.entry2
     } else {
         focus $adda.f.f1.entry
     }
@@ -420,11 +418,11 @@ proc togglegetvaluefromscilab {} {
 # Toggle the get from Scilab checkbox of the add argument dialog
     global adda getvaluefromscilab
     if {$getvaluefromscilab == 1} {
-        $adda.f.f2.entry configure -state disabled
+        $adda.f.f1.entry2 configure -state disabled
         focus $adda.f.f1.entry
     } else {
-        $adda.f.f2.entry configure -state normal
-        focus $adda.f.f2.entry
+        $adda.f.f1.entry2 configure -state normal
+        focus $adda.f.f1.entry2
     }
 }
 

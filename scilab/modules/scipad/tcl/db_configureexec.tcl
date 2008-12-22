@@ -97,19 +97,18 @@ proc configurefoo_bp {} {
     pack $conf.f.f1
 
     frame $conf.f.f2
-    set bestwidth [mcmaxra "Input arguments:" \
-                           "Add/Chan&ge" \
-                           "&Remove"]
     frame $conf.f.f2.f2l
     set tl [mc "Input arguments:"]
     label $conf.f.f2.f2l.label -text $tl -font $menuFont
     set buttonAddc $conf.f.f2.f2l.buttonAdd
     eval "button $buttonAddc [bl "Add/Chan&ge"] \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
     set buttonRemove $conf.f.f2.f2l.buttonRemove
     eval "button $buttonRemove [bl "&Remove"] \
-            -width $bestwidth -font \[list $menuFont\] "
-    pack $conf.f.f2.f2l.label $buttonAddc $buttonRemove -pady 4
+            -font \[list $menuFont\] "
+    grid $conf.f.f2.f2l.label -row 0 -column 0 -sticky we -pady 4
+    grid $buttonAddc          -row 1 -column 0 -sticky we -pady 4
+    grid $buttonRemove        -row 2 -column 0 -sticky we -pady 4
     frame $conf.f.f2.f2r
     set listboxinput $conf.f.f2.f2r.listboxinput
     set listboxinputval $conf.f.f2.f2r.listboxinputval
@@ -137,15 +136,15 @@ proc configurefoo_bp {} {
     pack $conf.f.f2 -pady 4
 
     frame $conf.f.f9
-    set bestwidth [mcmaxra "OK" \
-                           "Cancel"]
     button $conf.f.f9.buttonOK -text "OK" -command "OKconf_bp $conf"\
-           -width $bestwidth -font $menuFont
+           -font $menuFont
 #    set bl [mc "Cancel"]
 #    button $conf.f.f9.buttonCancel -text $bl -command "Cancelconf_bp $conf"\
-#           -width $bestwidth -font $menuFont
-#    pack $conf.f.f9.buttonOK $conf.f.f9.buttonCancel -side left -padx 10
-    pack $conf.f.f9.buttonOK
+#           -font $menuFont
+    grid $conf.f.f9.buttonOK     -row 0 -column 0 -sticky we -padx 10
+#    grid $conf.f.f9.buttonCancel -row 0 -column 1 -sticky we -padx 10
+    grid columnconfigure $conf.f.f9 0 -uniform 1
+#    grid columnconfigure $conf.f.f9 1 -uniform 1
     pack $conf.f.f9 -pady 4
 
     pack $conf.f
@@ -514,6 +513,7 @@ proc checkarglist {funname} {
 
 #proc Cancelconf_bp {w} {
 # Better always close the window with OK button. Saves variables management.
+# <TODO> what's happening if the user closes the configure dialog with the upper-right red cross? It's not forbidden!
 #    destroy $w
 #}
 
