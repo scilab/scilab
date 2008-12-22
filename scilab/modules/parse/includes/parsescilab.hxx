@@ -232,6 +232,8 @@ typedef union YYSTYPE
   std::list<ast::MatrixLineExp *>* \
 			t_list_mline;
 
+  ast::CellExp*		t_cell_exp;
+
   ast::FunctionDec*	t_function_dec;
   ast::ArrayListExp*	t_arraylist_exp;
   ast::ArrayListVar*	t_arraylist_var;

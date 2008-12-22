@@ -76,6 +76,8 @@
   std::list<ast::MatrixLineExp *>* \
 			t_list_mline;
 
+  ast::CellExp*		t_cell_exp;
+
   ast::FunctionDec*	t_function_dec;
   ast::ArrayListExp*	t_arraylist_exp;
   ast::ArrayListVar*	t_arraylist_var;
@@ -228,11 +230,13 @@
 %type <t_implicit_list> listableEnd
 %type <t_exp>		listableBegin
 
- // Matrix
-%type<t_matrix_exp>		matrix
-%type<t_list_exp>	matrixColumns
-%type<t_matrixline_exp>	matrixLine
-%type<t_list_mline>	matrixLines
+ // Matrix & Cell
+%type<t_matrix_exp>	matrix
+%type<t_cell_exp>	cell
+%type<t_list_exp>	matrixOrCellColumns
+%type<t_matrixline_exp>	matrixOrCellLine
+%type<t_list_mline>	matrixOrCellLines
+
 
 %nonassoc TOPLEVEL
 %nonassoc HIGHLEVEL
@@ -724,6 +728,7 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | matrix						{ $$ = $1; }
+| cell							{ $$ = $1; }
 | operation						{ $$ = $1; }
 | ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
 | VARINT				%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
@@ -782,126 +787,133 @@ variableFields COMMA variable		{
 ;
 
 /*
+** -*- CELL -*-
+*/
+cell :
+LBRACE matrixOrCellLines RBRACE					{ $$ = new ast::CellExp(@$, *$2); }
+| LBRACE lineEnd matrixOrCellLines RBRACE				{ $$ = new ast::CellExp(@$, *$3); }
+| LBRACE matrixOrCellLines matrixOrCellColumns RBRACE			{
+								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
+								  $$ = new ast::CellExp(@$, *$2);
+								}
+| LBRACE lineEnd matrixOrCellLines matrixOrCellColumns RBRACE		{
+								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
+								  $$ = new ast::CellExp(@$, *$3);
+								}
+| LBRACE matrixOrCellColumns RBRACE					{
+								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
+								  tmp->push_front(new ast::MatrixLineExp(@2, *$2));
+								  $$ = new ast::CellExp(@$, *tmp);
+								}
+| LBRACE lineEnd matrixOrCellColumns RBRACE				{
+								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
+								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
+								  $$ = new ast::CellExp(@$, *tmp);
+}
+| LBRACE RBRACE							{ $$ = new ast::CellExp(@$, *new std::list<ast::MatrixLineExp *>); }
+;
+
+
+/*
 ** -*- MATRIX -*-
 */
 /* How Matrix are written */
 matrix :
-LBRACK matrixLines RBRACK					{ $$ = new ast::MatrixExp(@$, *$2); }
-| LBRACE matrixLines RBRACE					{ $$ = new ast::MatrixExp(@$, *$2); }
-| LBRACK lineEnd matrixLines RBRACK				{ $$ = new ast::MatrixExp(@$, *$3); }
-| LBRACE lineEnd matrixLines RBRACE				{ $$ = new ast::MatrixExp(@$, *$3); }
-| LBRACK matrixLines matrixColumns RBRACK			{
+LBRACK matrixOrCellLines RBRACK					{ $$ = new ast::MatrixExp(@$, *$2); }
+| LBRACK lineEnd matrixOrCellLines RBRACK				{ $$ = new ast::MatrixExp(@$, *$3); }
+| LBRACK matrixOrCellLines matrixOrCellColumns RBRACK			{
 								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::MatrixExp(@$, *$2);
 								}
-| LBRACE matrixLines matrixColumns RBRACE			{
-								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
-								  $$ = new ast::MatrixExp(@$, *$2);
-								}
-| LBRACK lineEnd matrixLines matrixColumns RBRACK		{
+| LBRACK lineEnd matrixOrCellLines matrixOrCellColumns RBRACK		{
 								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
 								  $$ = new ast::MatrixExp(@$, *$3);
 								}
-| LBRACE lineEnd matrixLines matrixColumns RBRACE		{
-								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
-								  $$ = new ast::MatrixExp(@$, *$3);
-								}
-| LBRACK matrixColumns RBRACK					{
+| LBRACK matrixOrCellColumns RBRACK					{
 								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
 								  tmp->push_front(new ast::MatrixLineExp(@2, *$2));
 								  $$ = new ast::MatrixExp(@$, *tmp);
 								}
-| LBRACE matrixColumns RBRACE					{
-								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
-								  tmp->push_front(new ast::MatrixLineExp(@2, *$2));
-								  $$ = new ast::MatrixExp(@$, *tmp);
-								}
-| LBRACK lineEnd matrixColumns RBRACK				{
+| LBRACK lineEnd matrixOrCellColumns RBRACK				{
 								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
 								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::MatrixExp(@$, *tmp);
 								}
-| LBRACE lineEnd matrixColumns RBRACE				{
-								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
-								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
-								  $$ = new ast::MatrixExp(@$, *tmp);
-}
 | LBRACK RBRACK							{ $$ = new ast::MatrixExp(@$, *new std::list<ast::MatrixLineExp *>); }
-| LBRACE RBRACE							{ $$ = new ast::MatrixExp(@$, *new std::list<ast::MatrixLineExp *>); }
 ;
 
 /*
-** -*- MATRIX LINES -*-
+** -*- MATRIX ORC ELL LINES -*-
 */
-/* Matrix Lines : matrixLine (matrixline)* */
-matrixLines :
-matrixLines matrixLine			{
+/* Matrix or Cell Lines : matrixOrCellLine (matrixOrCellline)* */
+matrixOrCellLines :
+matrixOrCellLines matrixOrCellLine	{
 					  $1->push_back($2);
 					  $$ = $1;
 					}
-| matrixLine				{
+| matrixOrCellLine			{
 					  $$ = new std::list<ast::MatrixLineExp *>;
 					  $$->push_front($1);
 					}
 ;
 
 /*
-** -*- MATRIX LINE BREAK -*-
+** -*- MATRIX OR CELL LINE BREAK -*-
 */
-/* Fake Rule : How can we be sure this is a line ending in a Matrix */
-matrixLineBreak :
+/* Fake Rule : How can we be sure this is a line ending in a Matrix/Cell */
+matrixOrCellLineBreak :
 SEMI							{ /* !! Do Nothing !! */ }
 | EOL							{ /* !! Do Nothing !! */ }
 | SEMI EOL						{ /* !! Do Nothing !! */ }
 ;
 
 /*
-** -*- MATRIX LINE -*-
+** -*- MATRIX OR CELL LINE -*-
 */
-/* Some matrix columns with a special matrix line break at the end */
-matrixLine :
-matrixColumns matrixLineBreak				{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixColumns COMMENT EOL				{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixColumns SEMI COMMENT EOL			{ $$ = new ast::MatrixLineExp(@$, *$1); }
+/* Some matrix/cell columns with a special matrix/cell line break at the end */
+matrixOrCellLine :
+matrixOrCellColumns matrixOrCellLineBreak		{ $$ = new ast::MatrixLineExp(@$, *$1); }
+| matrixOrCellColumns COMMENT EOL			{ $$ = new ast::MatrixLineExp(@$, *$1); }
+| matrixOrCellColumns SEMI COMMENT EOL			{ $$ = new ast::MatrixLineExp(@$, *$1); }
 ;
 
 /*
-** -*- MATRIX COLUMNS -*-
+** -*- MATRIX OR CELL COLUMNS -*-
 */
-/* Matrix Columns : [variable|functinoCall] ([,|][variable|functionCall])* */
-matrixColumns :
-matrixColumns matrixColumnsBreak variable	%prec HIGHLEVEL {
+/* Matrix or Cell Columns : [variable|functinoCall] ([,|][variable|functionCall])* */
+matrixOrCellColumns :
+matrixOrCellColumns matrixOrCellColumnsBreak variable		%prec HIGHLEVEL {
 								  $1->push_back($3);
 								  $$ = $1;
 								}
-| matrixColumns matrixColumnsBreak functionCall	%prec HIGHLEVEL {
+| matrixOrCellColumns matrixOrCellColumnsBreak functionCall	%prec HIGHLEVEL {
 								  $1->push_back($3);
 								  $$ = $1;
 								}
-| matrixColumns variable			%prec HIGHLEVEL {
+| matrixOrCellColumns variable					%prec HIGHLEVEL {
 								  $1->push_back($2);
 								  $$ = $1;
 								}
-| matrixColumns functionCall			%prec HIGHLEVEL {
+| matrixOrCellColumns functionCall				%prec HIGHLEVEL {
 								  $1->push_back($2);
 								  $$ = $1;
 								}
-| variable					%prec HIGHLEVEL {
+| variable							%prec HIGHLEVEL {
 								  $$ = new ast::exps_t;
 								  $$->push_front($1);
 								}
-| functionCall					%prec HIGHLEVEL {
+| functionCall							%prec HIGHLEVEL {
 								  $$ = new ast::exps_t;
 								  $$->push_front($1);
 								}
 ;
 
 /*
-** -*- MATRIX COLUMNS BREAK -*-
+** -*- MATRIX OR CELL COLUMNS BREAK -*-
 */
 /* How to tell the column is now ended. */
-matrixColumnsBreak :
-matrixColumnsBreak COMMA					{ /* !! Do Nothing !! */ }
+matrixOrCellColumnsBreak :
+matrixOrCellColumnsBreak COMMA					{ /* !! Do Nothing !! */ }
 | COMMA								{ /* !! Do Nothing !! */ }
 ;
 
