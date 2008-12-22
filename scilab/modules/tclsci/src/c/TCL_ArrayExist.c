@@ -11,11 +11,6 @@
  */
 
 
-/* Workaround for Tcl 8.6.
- * See bug #3877
- */
-#define USE_INTERP_RESULT
-
 #include "TCL_ArrayExist.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -35,7 +30,7 @@ BOOL TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,_("Tcl Error : %s\n"),TCLinterpreter->result);
+			Scierror(999,_("Tcl Error : %s\n"),Tcl_GetStringResult(TCLinterpreter));
 			return FALSE;
 		}
 

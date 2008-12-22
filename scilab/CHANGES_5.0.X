@@ -56,7 +56,7 @@ Bug fixes:
                    
 * bug 3874 fixed - When building the macros, only replaces the extension (.sci => .bin)
 
-* bug 3877 half-fixed - Workaround to compile against Tcl/Tk 8.6
+* bug 3877 fixed - No use of interp->result any more in the Tcl interface - Compatible with Tcl/Tk 8.6
 
 * bug 3878 fixed - Under mandriva, the javahelp package is not called jhall but javahelp2.
 

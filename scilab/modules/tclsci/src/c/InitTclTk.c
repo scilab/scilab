@@ -12,11 +12,6 @@
 */
 
 
-/* Workaround for Tcl 8.6.
- * See bug #3877
- */
-#define USE_INTERP_RESULT
-
 #include <string.h>
 #ifndef _MSC_VER
 #include <dirent.h>
@@ -134,7 +129,7 @@ static void *DaemonOpenTCLsci(void* in)
 		if ( Tcl_Init(getTclInterp()) == TCL_ERROR)
 		{
 			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),getTclInterp()->result);
+			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),Tcl_GetStringResult(getTclInterp()));
 		}
 		releaseTclInterp();
 		if (getenv("SCI_DISABLE_TK")==NULL) { 
@@ -144,7 +139,7 @@ static void *DaemonOpenTCLsci(void* in)
 		  if ( Tk_Init(getTclInterp()) == TCL_ERROR)
 		    {
 		      releaseTclInterp();
-		      Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init): %s\n"),getTclInterp()->result);
+		      Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init): %s\n"),Tcl_GetStringResult(getTclInterp()));
 		    }else{
 				tkStarted=TRUE;
 			}
@@ -157,7 +152,7 @@ static void *DaemonOpenTCLsci(void* in)
 		if ( Tcl_Eval(getTclInterp(),MyCommand) == TCL_ERROR  )
 		{
 			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),getTclInterp()->result);
+			Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),Tcl_GetStringResult(getTclInterp()));
 		}
 
 		releaseTclInterp();
@@ -173,7 +168,7 @@ static void *DaemonOpenTCLsci(void* in)
 		if ( Tcl_EvalFile(getTclInterp(),TkScriptpath) == TCL_ERROR  )
 		{
 			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath, getTclInterp()->result);
+			Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath,Tcl_GetStringResult(getTclInterp()));
 		}
 		releaseTclInterp();
 	}
