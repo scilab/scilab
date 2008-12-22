@@ -210,10 +210,6 @@ namespace ast {
       case OpExp::power:
 	*ostr << SCI_POWER; break;
 	// Element Ways.
-      case OpExp::dotplus:
-	*ostr << SCI_DOTPLUS; break;
-      case OpExp::dotminus:
-	*ostr << SCI_DOTMINUS; break;
       case OpExp::dottimes:
 	*ostr << SCI_DOTTIMES; break;
       case OpExp::dotdivide:
