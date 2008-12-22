@@ -12,7 +12,7 @@ function y = asind(x)
     error(msprintf(_('%s :Argument should be real.'),'asind'))
   end
   if min(x)<-1|max(x)>1 then
-    error(msprintf(_('%s Incorrect value: argument should be in [%s %s].'),'acosd','-1','1'));
+    error(msprintf(_('%s Incorrect value: argument should be in [%s %s].'),'asind','-1','1'));
   end
   y = 180/%pi*asin(x);
 endfunction
