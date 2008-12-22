@@ -10,6 +10,11 @@
  *
  */
 
+/* Workaround for Tcl 8.6.
+ * See bug #3877
+ */
+#define USE_INTERP_RESULT
+
 #include <stdio.h>
 #include <string.h>
 #include "TCL_ArraySize.h"

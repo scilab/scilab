@@ -10,6 +10,12 @@
  *
  */
 
+
+/* Workaround for Tcl 8.6.
+ * See bug #3877
+ */
+#define USE_INTERP_RESULT
+
 #include "TCL_ArrayExist.h"
 #include "Scierror.h"
 #include "localization.h"

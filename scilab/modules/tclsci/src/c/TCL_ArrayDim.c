@@ -11,6 +11,12 @@
  *
  */
 
+
+/* Workaround for Tcl 8.6.
+ * See bug #3877
+ */
+#define USE_INTERP_RESULT
+
 #include <string.h>
 #include "MALLOC.h"
 #include "TCL_ArrayDim.h"
