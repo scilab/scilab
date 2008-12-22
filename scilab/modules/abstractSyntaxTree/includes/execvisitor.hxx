@@ -34,7 +34,7 @@ namespace ast
   public:
     ExecVisitor()
     {
-			_result = new Double(0);
+      _result = new Double(0);
     }
 
     /** \name Visit Matrix Expressions nodes.
@@ -48,7 +48,6 @@ namespace ast
      ** \{ */
   public :
     virtual void visit (const CellExp &e);
-    virtual void visit (const CellLineExp &e);
     /** \} */
 
     /** \name Visit Constant Expressions nodes.
@@ -113,7 +112,7 @@ namespace ast
       | Attributes.  |
       `-------------*/
   protected:
-		types::InternalType*		_result;
+    types::InternalType*		_result;
 
   };
 }

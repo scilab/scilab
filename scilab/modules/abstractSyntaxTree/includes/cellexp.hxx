@@ -18,8 +18,8 @@
 #ifndef AST_CELLEXP_HXX
 # define AST_CELLEXP_HXX
 
-# include "mathexp.hxx"
-# include "celllineexp.hxx"
+# include "matrixexp.hxx"
+# include "matrixlineexp.hxx"
 
 namespace ast
 {
@@ -27,7 +27,7 @@ namespace ast
   /** \brief Abstract an Array List of Expression node.
    **
    ** \b Example: foo(a), foo(b) */
-  class CellExp : public MathExp
+  class CellExp : public MatrixExp
   {
     /** \name Ctor & dtor.
      ** \{ */
@@ -37,15 +37,9 @@ namespace ast
      ** \param body EXP LIST intruction
      */
     CellExp (const Location& location,
-	    std::list<CellLineExp *>& lines) :
-      MathExp (location),
-      _lines (&lines)
+	    std::list<MatrixLineExp *>& lines) :
+      MatrixExp (location, lines)
     {
-    }
-
-    virtual ~CellExp ()
-    {
-      delete _lines;
     }
 
     /** \name Visitors entry point.
@@ -63,24 +57,6 @@ namespace ast
     }
     /** \} */
 
-
-    /** \name Accessors.
-     ** \{ */
-  public:
-    const std::list<CellLineExp *>&	lines_get() const
-    {
-      return *_lines;
-    }
-
-    std::list<CellLineExp *>&	lines_get()
-    {
-      return *_lines;
-    }
-    /** \} */
-
-
-  protected:
-    std::list<CellLineExp *>* _lines;
   };
 
 } // namespace ast

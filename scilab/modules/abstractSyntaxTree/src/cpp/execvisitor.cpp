@@ -17,13 +17,13 @@ using std::string;
 bool bConditionState(ast::ExecVisitor *exec);
 
 void vTransposeRealMatrix(
-			double *_pdblRealIn, 
-			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealIn,
+			int _iRowsIn,			int _iColsIn,
 			double *_pdblRealOut);
 
 void vTransposeComplexMatrix(
-			double *_pdblRealIn,	double *_pdblImgIn, 
-			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealIn,	double *_pdblImgIn,
+			int _iRowsIn,			int _iColsIn,
 			double *_pdblRealOut,	double *_pdblImgOut, bool _bConjugate);
 
 namespace ast
@@ -66,15 +66,6 @@ namespace ast
 			FIXME : container type
 		*/
 	}
-
-	void ExecVisitor::visit (const CellLineExp &e)
-	{
-		/*
-		All processes are done in CellExp
-		*/
-	}
-
-
 
 	/** \name Visit Constant Expressions nodes.
 	** \{ */
@@ -120,7 +111,7 @@ namespace ast
 	void ExecVisitor::visit (const NilExp &e)
 	{
 		/*
-		FIXME : 
+		FIXME :
 		*/
 	}
 
@@ -152,7 +143,7 @@ namespace ast
 	void ExecVisitor::visit (const ArrayListVar &e)
 	{
 		/*
-			
+
 		*/
 	}
 
@@ -213,9 +204,9 @@ namespace ast
 			{
 				if((*j)->getType() == InternalType::RealImplicitList)
 				{//ca pue la mort ca !
-					
+
 				}
-				
+
 			}
 		}
 		else
@@ -554,7 +545,7 @@ bool bConditionState(ast::ExecVisitor *exec)
 		os << " (" << e.test_get().location_get().first_line << "," << e.test_get().location_get().first_column << ")" << std::endl;
 		string szErr(os.str());
 		throw szErr;
-*/	
+*/
 	}
 	return true;
 }

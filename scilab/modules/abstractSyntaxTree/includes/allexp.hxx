@@ -64,7 +64,6 @@
 #include "matrixlineexp.hxx"
 // Cell Expressions
 #include "cellexp.hxx"
-#include "celllineexp.hxx"
 /*
 ** \}
 */

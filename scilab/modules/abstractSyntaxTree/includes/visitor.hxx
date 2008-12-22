@@ -137,7 +137,6 @@ namespace ast
      ** \{ */
   public:
     virtual void visit (typename select_const<K, CellExp>::t & e) = 0;
-    virtual void visit (typename select_const<K, CellLineExp>::t & e) = 0;
     /** \} */
 
    /** \name Visit List of Expressions related nodes.

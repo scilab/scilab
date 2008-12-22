@@ -69,7 +69,6 @@ namespace ast
 
   // Cell expression
   class CellExp;
-  class CellLineExp;
 
   // Decs
   class VarDec;

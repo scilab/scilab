@@ -39,7 +39,6 @@ namespace ast
      ** \{ */
   public :
     virtual void visit (const CellExp &e);
-    virtual void visit (const CellLineExp &e);
     /** \} */
 
     /** \name Visit Constant Expressions nodes.

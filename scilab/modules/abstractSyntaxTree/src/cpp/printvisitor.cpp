@@ -52,7 +52,7 @@ namespace ast {
    ** \{ */
   void PrintVisitor::visit (const CellExp &e)
   {
-    std::list<CellLineExp *>::const_iterator	i;
+    std::list<MatrixLineExp *>::const_iterator	i;
     *ostr << SCI_OPEN_CELL;
     ++indent;
     for (i = e.lines_get().begin() ; i != e.lines_get().end() ; )
@@ -66,19 +66,6 @@ namespace ast {
       }
     *ostr << SCI_CLOSE_CELL;
     --indent;
-  }
-
-  void PrintVisitor::visit (const CellLineExp &e)
-  {
-    std::list<Exp *>::const_iterator	i;
-    for (i = e.columns_get().begin() ; i != e.columns_get().end() ; )
-      {
-	(*i)->accept (*this);
-	if (++i != e.columns_get().end())
-	  {
-	    *ostr << SCI_COLUMN_SEPARATOR << " ";
-	  }
-      }
   }
   /** \} */
 

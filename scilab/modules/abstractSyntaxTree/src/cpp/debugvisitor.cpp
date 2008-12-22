@@ -69,7 +69,7 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec CellExp");
-    std::list<CellLineExp *>::const_iterator	i;
+    std::list<MatrixLineExp *>::const_iterator	i;
     for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
       {
 	(*i)->accept (*this);
@@ -77,17 +77,6 @@ namespace ast
     DEBUG_END_NODE();
   }
 
-  void DebugVisitor::visit (const CellLineExp &e)
-  {
-    DEBUG_START_NODE();
-    DEBUG("Exec CellLineExp");
-    std::list<Exp *>::const_iterator	i;
-    for (i = e.columns_get().begin() ; i != e.columns_get().end() ; ++i)
-      {
-	(*i)->accept (*this);
-      }
-    DEBUG_END_NODE();
-  }
   /** \} */
 
   /** \name Visit Constant Expressions nodes.
