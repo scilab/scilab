@@ -385,6 +385,21 @@ namespace ast {
       }
     *ostr << SCI_RPAREN;
   }
+
+ void PrintVisitor::visit (const AssignListExp  &e)
+  {
+    std::list<Exp *>::const_iterator	i;
+    *ostr << SCI_LBRACK;
+    for (i = e.exps_get().begin (); i != e.exps_get().end ();)
+      {
+	(*i)->accept (*this);
+	if (++i != e.exps_get().end ())
+	  {
+	    *ostr << SCI_COMMA << " ";
+	  }
+      }
+    *ostr << SCI_RBRACK;
+  }
   /** \} */
 
   /** \name Visit Single Operation nodes.

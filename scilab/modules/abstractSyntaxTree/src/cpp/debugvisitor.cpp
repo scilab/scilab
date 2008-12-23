@@ -327,6 +327,18 @@ namespace ast
       }
     DEBUG_END_NODE();
   }
+
+ void DebugVisitor::visit (const AssignListExp  &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec AssignListExp");
+    std::list<Exp *>::const_iterator	i;
+    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+      {
+	(*i)->accept (*this);
+      }
+    DEBUG_END_NODE();
+  }
   /** \} */
 
   /** \name Visit Single Operation nodes.

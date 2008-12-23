@@ -75,6 +75,7 @@
 // List of expressions
 #include "seqexp.hxx"
 #include "arraylistexp.hxx"
+#include "assignlistexp.hxx"
 
 // FieldExp
 #include "fieldexp.hxx"

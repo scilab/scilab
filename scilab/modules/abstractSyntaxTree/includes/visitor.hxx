@@ -144,6 +144,7 @@ namespace ast
   public:
     virtual void visit (typename select_const<K, SeqExp>::t & e) = 0;
     virtual void visit (typename select_const<K, ArrayListExp>::t & e) = 0;
+    virtual void visit (typename select_const<K, AssignListExp>::t & e) = 0;
     /** \} */
 
 
