@@ -79,7 +79,9 @@
   ast::CellExp*		t_cell_exp;
 
   ast::FunctionDec*	t_function_dec;
+
   ast::ArrayListExp*	t_arraylist_exp;
+  ast::AssignListExp*	t_assignlist_exp;
   ast::ArrayListVar*	t_arraylist_var;
 }
 
@@ -110,9 +112,7 @@
 %token DOTQUOTE		".'"
 
 %token PLUS		"+"
-%token DOTPLUS		".+"
 %token MINUS		"-"
-%token DOTMINUS		".-"
 %token TIMES		"*"
 %token DOTTIMES		".*"
 %token KRONTIMES	".*."
@@ -173,6 +173,8 @@
 %type <t_seq_exp>	expressions
 %type <t_list_exp>	recursiveExpression
 
+%type <t_exp>		assignable
+%type <t_assignlist_exp>multipleResults
 %type <t_exp>		variable
 %type <t_arraylist_exp>	variableFields
 %type <t_exp>		expression
@@ -253,7 +255,7 @@
 
 %left COLON
 %nonassoc EQ NE LT LE GT GE
-%left MINUS DOTMINUS PLUS DOTPLUS
+%left MINUS PLUS
 %left TIMES DOTTIMES KRONTIMES DIVIDE DOTDIVIDE KRONDIVIDE RDIVIDE DOTRDIVIDE KRONRDIVIDE CONTROLDIVIDE
 %left POWER DOTPOWER
 
@@ -664,13 +666,9 @@ rightOperand :
 /*   '+'   '.+'   '.+.'?   */
 PLUS variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::plus, *$2); }
 | PLUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::plus, *$2); }
-| DOTPLUS variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotplus, *$2); }
-| DOTPLUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotplus, *$2); }
 /*   '-'   '.-'   '.-.'?   */
 | MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::minus, *$2); }
 | MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::minus, *$2); }
-| DOTMINUS variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotminus, *$2); }
-| DOTMINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotminus, *$2); }
 /*   '*'   '.*'   '.*.'   */
 | TIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::times, *$2); }
 | TIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::times, *$2); }
@@ -922,16 +920,37 @@ matrixOrCellColumnsBreak COMMA					{ /* !! Do Nothing !! */ }
 */
 /* How to declare a new variable */
 variableDeclaration :
-variable ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); }
-| variable ASSIGN functionCall		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); }
+assignable ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); }
+| assignable ASSIGN functionCall	%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); }
 | functionCall ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); }
 | functionCall ASSIGN functionCall	%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); }
 // --> Sugar Syntax for ':' meaning eye .* 1
-| variable ASSIGN COLON					{ $$ = new ast::AssignExp(@$, *$1, *new ast::ColonVar(@3)); }
+| assignable ASSIGN COLON				{ $$ = new ast::AssignExp(@$, *$1, *new ast::ColonVar(@3)); }
 | functionCall ASSIGN COLON				{ $$ = new ast::AssignExp(@$, *$1, *new ast::ColonVar(@3)); }
 // --> Strange Syntax : a = return (x)
-| variable ASSIGN returnControl				{ $$ = new ast::AssignExp(@$, *$1, *$3); }
+| assignable ASSIGN returnControl			{ $$ = new ast::AssignExp(@$, *$1, *$3); }
 | functionCall ASSIGN returnControl			{ $$ = new ast::AssignExp(@$, *$1, *$3); }
+;
+
+
+/*
+** -*- ASSIGNABLE -*-
+*/
+/* What we can assign something to. */
+assignable :
+variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); }
+| variable DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
+| multipleResults					{ $$ = $1; }
+;
+
+/*
+** -*- MULTIPLE RESULTS -*-
+*/
+multipleResults :
+LBRACK matrixOrCellColumns RBRACK			{ $$ = new ast::AssignListExp(@$, *$2); }
 ;
 
 
