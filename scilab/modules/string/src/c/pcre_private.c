@@ -97,77 +97,11 @@ UTF8 support if PCRE is built without it. */
 #endif
 
 
-
-/* Static variables */
-
-static FILE *outfile=NULL;
-static int callout_count=0;
-static int callout_fail_count=0;
-static int callout_fail_id=0;
-static size_t gotten_store=0;
-
-/* The buffers grow automatically if very long input lines are encountered. */
-
-char *buffer = NULL;
-
-
 static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 				  int start_offset, int options, int *use_offsets, int use_size_offsets,
 				  int flag, unsigned long int *limit, int errnumber);
 
-/*************************************************
-*              Callout function                  *
-*************************************************/
 
-/* Called from PCRE as a result of the (?C) item. We print out where we are in
-the match. Yield zero unless more callouts than the fail count, or the callout
-data is not zero. */
-
-static int callout(pcre_callout_block *cb)
-{
-/* Always print appropriate indicators, with callout number if not already
-shown. For automatic callouts, show the pattern offset. */
-
-if (cb->callout_data != NULL)
-  {
-  int callout_data = *((int *)(cb->callout_data));
-  if (callout_data != 0)
-    {
-    return callout_data;
-    }
-  }
-
-return (cb->callout_number != callout_fail_id)? 0 :
-       (++callout_count >= callout_fail_count)? 1 : 0;
-}
-
-
-/*************************************************
-*            Local malloc functions              *
-*************************************************/
-
-/* Alternative malloc function, to test functionality and show the size of the
-compiled re. */
-
-static void *new_malloc(size_t size)
-{
-void *block = MALLOC(size);
-gotten_store = size;
-return block;
-}
-
-
-/*************************************************
-*          Call pcre_fullinfo()                  *
-*************************************************/
-
-/* Get one piece of information from the pcre_fullinfo() function */
-
-static void new_info(pcre *re, pcre_extra *study, int option, void *ptr)
-{
-	int rc = 0;
-	rc = pcre_fullinfo(re, study, option, ptr);
-}
 
 /*************************************************
 *        Check match or recursion limit          *
@@ -214,32 +148,6 @@ extra->flags &= ~flag;
 return count;
 }
 
-
-
-/*************************************************
-*         Case-independent strncmp() function    *
-*************************************************/
-
-/*
-Arguments:
-  s         first string
-  t         second string
-  n         number of characters to compare
-
-Returns:    < 0, = 0, or > 0, according to the comparison
-*/
-
-static int strncmpic(char *s, char *t, int n)
-{
-	while (n--)
-	{
-		int c = tolower(*s++) - tolower(*t++);
-		if (c) return c;
-	}
-	return 0;
-}
-
-
 /*************************************************
 *               Algorithm                      *
 *************************************************/
@@ -265,6 +173,10 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 	char *copynamesptr=NULL;
 	char *getnamesptr=NULL;
+
+	/* The buffers grow automatically if very long input lines are encountered. */
+	
+	char *buffer = NULL;
 
 
 	buffer = (char *)MALLOC(strlen(INPUT_LINE)+1);
@@ -305,7 +217,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
     {
 		return DELIMITER_NOT_ALPHANUMERIC;
     }
-
 	pp = p;
 
 	while (*pp != 0)
@@ -332,9 +243,10 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	/* Look for options after final delimiter */
 
 	options = 0;
-		
+
 	while (*pp != 0)
     {
+		printf("dans la boucle\n");
 		switch (*pp++)
 		{
 			case 'f': options |= PCRE_FIRSTLINE; break;
@@ -399,22 +311,20 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	timing, showing, or debugging options, nor the ability to pass over
 	local character tables. */
 
-
-    {
-		re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
-		/* Compilation failed; go back for another re, skipping to blank line
-		if non-interactive. */
-		if (re == NULL)
+	re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
+	/* Compilation failed; go back for another re, skipping to blank line
+	   if non-interactive. */
+	if (re == NULL)
 		{
-		    SKIP_DATA:
+		SKIP_DATA:
 			return CAN_NOT_COMPILE_PATTERN;
 		}
-		true_size = ((real_pcre *)re)->size;
-
-    }        /* End of non-POSIX compile */
+	true_size = ((real_pcre *)re)->size;
+	
+	/* End of non-POSIX compile */
 
   /* Read data lines and test them */
-    {
+	{
 		char *q=NULL;
 		char *bptr=NULL;
 		int *use_offsets = offsets;
@@ -437,9 +347,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		copynamesptr = copynames;
 		getnamesptr = getnames;
   		
-		callout_count = 0;
-		callout_fail_count = 999999;
-		callout_fail_id = -1;
 		
 		if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
 		len = 0;
@@ -626,9 +533,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
     continue;
     }    /* End of loop for data lines */
-
-  }
-	
+	}
 	if (buffer) FREE(buffer);
 	if (offsets) FREE(offsets);
 	return PCRE_EXIT;
