@@ -10,6 +10,7 @@ OPERATIONS_C_SOURCES = 	src/c/doublecomplex.c \
 OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_substraction.cpp \
 			src/cpp/types_multiplication.cpp \
+			src/cpp/types_divide.cpp \
 			src/cpp/types_addition.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la

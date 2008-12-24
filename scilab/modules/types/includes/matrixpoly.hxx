@@ -23,7 +23,7 @@ namespace types
 		MatrixPoly();
 		MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
 		~MatrixPoly();
-	
+
 		Poly*					poly_get(int _iRows, int _iCols);
 		Poly*					poly_get(int _iIdx);
 		bool					poly_set(int _iRows, int _iCols, Double *_pdblCoef);
@@ -36,8 +36,13 @@ namespace types
 		void					complex_set(bool _bComplex);
 		string				var_get();
 		bool					rank_get(int *_piRank);
+		int 					rank_max_get(void);
 		Double*				evaluate(Double* _pdblValue);
 		void					update_rank(void);
+		Double* 			coef_get(void);
+		void					coef_set(Double *_pCoef);
+
+
 
 
 		MatrixPoly&		operator= (MatrixPoly& poPoly);

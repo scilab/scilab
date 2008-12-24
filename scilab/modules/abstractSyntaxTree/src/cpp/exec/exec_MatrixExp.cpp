@@ -169,10 +169,10 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 		case GenericType::RealUInt :
 			poResult = new UInt(_iRows, _iCols);
 			break;
-		case GenericType::RealInt : 
+		case GenericType::RealInt :
 			poResult = new Int(_iRows, _iCols);
 			break;
-		case GenericType::RealString : 
+		case GenericType::RealString :
 			poResult = new String(_iRows, _iCols);
 			break;
 		case GenericType::RealPoly :
@@ -242,7 +242,10 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			if(TypeSource == GenericType::RealDouble)
 			{
 				//Add Source like coef of the new element
+				Poly* pPolyOut	= poResult->getAsPoly()->poly_get(iCurRow, iCurCol);
 
+				pPolyOut->rank_set(1);
+				pPolyOut->coef_set((Double*)_poSource);
 			}
 			break;
 		default:
@@ -263,8 +266,13 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			break;
 		case GenericType::RealPoly :
 			{
-				Poly* pPolyIn		= _poSource->getAsPoly()->poly_get(0, 0);
+/*
+				Double *pDbl = _poSource->getAsPoly()->poly_get(0)->coef_get();
+				pDbl->toString(10,100);
+				_poDest->getAsPoly()->poly_set(iCurRow, iCurCol, _poSource->getAsPoly()->poly_get(0)->coef_get());
+*/
 
+				Poly* pPolyIn		= _poSource->getAsPoly()->poly_get(0);
 				if(_poSource->getAsPoly()->isComplex())
 				{
 					poResult->getAsPoly()->complex_set(true);
@@ -325,3 +333,4 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 	}
 	return NULL;
 }
+

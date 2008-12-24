@@ -248,14 +248,43 @@ namespace ast
 
 					result_set(pResult);
 				}
-				else if(TypeL == InternalType::RealDouble && TypeL == InternalType::RealPoly)
+				else if(TypeL == InternalType::RealDouble && TypeR == InternalType::RealPoly)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					MatrixPoly *pR	= execMeR.result_get()->getAsPoly();
+					Double *pL			    = execMeL.result_get()->getAsDouble();
+					MatrixPoly *pR	    = execMeR.result_get()->getAsPoly();
+					MatrixPoly *pResult = NULL;
 
+					pResult = MultiplyDoubleByPoly(pL, pR);
+
+					if(pResult == NULL)
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+
+					result_set(pResult);
 				}
-				else if(TypeL == InternalType::RealPoly && TypeL == InternalType::RealDouble)
+				else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealDouble)
 				{
+					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
+					Double *pR			    = execMeR.result_get()->getAsDouble();
+					MatrixPoly *pResult = NULL;
+
+					pResult = MultiplyPolyByDouble(pL, pR);
+
+					if(pResult == NULL)
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+
+					result_set(pResult);
 				}
 				break;
 			}
@@ -581,7 +610,7 @@ namespace ast
 					result_set(pResult);
 				}
 				break;
-			}		
+			}
 		case OpExp::ge :
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
@@ -641,5 +670,4 @@ namespace ast
 		}
 	}
 }
-
 
