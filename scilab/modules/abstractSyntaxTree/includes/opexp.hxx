@@ -37,8 +37,6 @@ namespace ast
       /** \brief "**" or "^" */		power,
 
       // Element Ways.
-      /** \brief ".+" */		dotplus,
-      /** \brief ".-" */		dotminus,
       /** \brief ".*" */		dottimes,
       /** \brief "./" */		dotdivide,
       /** \brief ".\" */		dotrdivide,

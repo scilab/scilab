@@ -60,59 +60,57 @@
      DOT = 275,
      DOTQUOTE = 276,
      PLUS = 277,
-     DOTPLUS = 278,
-     MINUS = 279,
-     DOTMINUS = 280,
-     TIMES = 281,
-     DOTTIMES = 282,
-     KRONTIMES = 283,
-     DIVIDE = 284,
-     DOTDIVIDE = 285,
-     CONTROLDIVIDE = 286,
-     KRONDIVIDE = 287,
-     RDIVIDE = 288,
-     DOTRDIVIDE = 289,
-     KRONRDIVIDE = 290,
-     POWER = 291,
-     DOTPOWER = 292,
-     EQ = 293,
-     NE = 294,
-     LT = 295,
-     LE = 296,
-     GT = 297,
-     GE = 298,
-     AND = 299,
-     OR = 300,
-     ASSIGN = 301,
-     IF = 302,
-     THEN = 303,
-     ELSE = 304,
-     ELSEIF = 305,
-     END = 306,
-     SELECT = 307,
-     CASE = 308,
-     FUNCTION = 309,
-     ENDFUNCTION = 310,
-     FOR = 311,
-     WHILE = 312,
-     DO = 313,
-     BREAK = 314,
-     TRY = 315,
-     CATCH = 316,
-     RETURN = 317,
-     STR = 318,
-     ID = 319,
-     VARINT = 320,
-     VARFLOAT = 321,
-     NUM = 322,
-     PATH = 323,
-     COMMENT = 324,
-     BLOCKCOMMENT = 325,
-     TOPLEVEL = 326,
-     HIGHLEVEL = 327,
-     UPLEVEL = 328,
-     LISTABLE = 329,
-     FUNCTIONCALL = 330
+     MINUS = 278,
+     TIMES = 279,
+     DOTTIMES = 280,
+     KRONTIMES = 281,
+     DIVIDE = 282,
+     DOTDIVIDE = 283,
+     CONTROLDIVIDE = 284,
+     KRONDIVIDE = 285,
+     RDIVIDE = 286,
+     DOTRDIVIDE = 287,
+     KRONRDIVIDE = 288,
+     POWER = 289,
+     DOTPOWER = 290,
+     EQ = 291,
+     NE = 292,
+     LT = 293,
+     LE = 294,
+     GT = 295,
+     GE = 296,
+     AND = 297,
+     OR = 298,
+     ASSIGN = 299,
+     IF = 300,
+     THEN = 301,
+     ELSE = 302,
+     ELSEIF = 303,
+     END = 304,
+     SELECT = 305,
+     CASE = 306,
+     FUNCTION = 307,
+     ENDFUNCTION = 308,
+     FOR = 309,
+     WHILE = 310,
+     DO = 311,
+     BREAK = 312,
+     TRY = 313,
+     CATCH = 314,
+     RETURN = 315,
+     STR = 316,
+     ID = 317,
+     VARINT = 318,
+     VARFLOAT = 319,
+     NUM = 320,
+     PATH = 321,
+     COMMENT = 322,
+     BLOCKCOMMENT = 323,
+     TOPLEVEL = 324,
+     HIGHLEVEL = 325,
+     UPLEVEL = 326,
+     LISTABLE = 327,
+     FUNCTIONCALL = 328
    };
 #endif
 /* Tokens.  */
@@ -137,59 +135,57 @@
 #define DOT 275
 #define DOTQUOTE 276
 #define PLUS 277
-#define DOTPLUS 278
-#define MINUS 279
-#define DOTMINUS 280
-#define TIMES 281
-#define DOTTIMES 282
-#define KRONTIMES 283
-#define DIVIDE 284
-#define DOTDIVIDE 285
-#define CONTROLDIVIDE 286
-#define KRONDIVIDE 287
-#define RDIVIDE 288
-#define DOTRDIVIDE 289
-#define KRONRDIVIDE 290
-#define POWER 291
-#define DOTPOWER 292
-#define EQ 293
-#define NE 294
-#define LT 295
-#define LE 296
-#define GT 297
-#define GE 298
-#define AND 299
-#define OR 300
-#define ASSIGN 301
-#define IF 302
-#define THEN 303
-#define ELSE 304
-#define ELSEIF 305
-#define END 306
-#define SELECT 307
-#define CASE 308
-#define FUNCTION 309
-#define ENDFUNCTION 310
-#define FOR 311
-#define WHILE 312
-#define DO 313
-#define BREAK 314
-#define TRY 315
-#define CATCH 316
-#define RETURN 317
-#define STR 318
-#define ID 319
-#define VARINT 320
-#define VARFLOAT 321
-#define NUM 322
-#define PATH 323
-#define COMMENT 324
-#define BLOCKCOMMENT 325
-#define TOPLEVEL 326
-#define HIGHLEVEL 327
-#define UPLEVEL 328
-#define LISTABLE 329
-#define FUNCTIONCALL 330
+#define MINUS 278
+#define TIMES 279
+#define DOTTIMES 280
+#define KRONTIMES 281
+#define DIVIDE 282
+#define DOTDIVIDE 283
+#define CONTROLDIVIDE 284
+#define KRONDIVIDE 285
+#define RDIVIDE 286
+#define DOTRDIVIDE 287
+#define KRONRDIVIDE 288
+#define POWER 289
+#define DOTPOWER 290
+#define EQ 291
+#define NE 292
+#define LT 293
+#define LE 294
+#define GT 295
+#define GE 296
+#define AND 297
+#define OR 298
+#define ASSIGN 299
+#define IF 300
+#define THEN 301
+#define ELSE 302
+#define ELSEIF 303
+#define END 304
+#define SELECT 305
+#define CASE 306
+#define FUNCTION 307
+#define ENDFUNCTION 308
+#define FOR 309
+#define WHILE 310
+#define DO 311
+#define BREAK 312
+#define TRY 313
+#define CATCH 314
+#define RETURN 315
+#define STR 316
+#define ID 317
+#define VARINT 318
+#define VARFLOAT 319
+#define NUM 320
+#define PATH 321
+#define COMMENT 322
+#define BLOCKCOMMENT 323
+#define TOPLEVEL 324
+#define HIGHLEVEL 325
+#define UPLEVEL 326
+#define LISTABLE 327
+#define FUNCTIONCALL 328
 
 
 
@@ -235,7 +231,9 @@ typedef union YYSTYPE
   ast::CellExp*		t_cell_exp;
 
   ast::FunctionDec*	t_function_dec;
+
   ast::ArrayListExp*	t_arraylist_exp;
+  ast::AssignListExp*	t_assignlist_exp;
   ast::ArrayListVar*	t_arraylist_var;
 }
 /* Line 1489 of yacc.c.  */

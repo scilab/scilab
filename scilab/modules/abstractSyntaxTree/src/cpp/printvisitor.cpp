@@ -210,10 +210,6 @@ namespace ast {
       case OpExp::power:
 	*ostr << SCI_POWER; break;
 	// Element Ways.
-      case OpExp::dotplus:
-	*ostr << SCI_DOTPLUS; break;
-      case OpExp::dotminus:
-	*ostr << SCI_DOTMINUS; break;
       case OpExp::dottimes:
 	*ostr << SCI_DOTTIMES; break;
       case OpExp::dotdivide:
@@ -388,6 +384,21 @@ namespace ast {
 	  }
       }
     *ostr << SCI_RPAREN;
+  }
+
+ void PrintVisitor::visit (const AssignListExp  &e)
+  {
+    std::list<Exp *>::const_iterator	i;
+    *ostr << SCI_LBRACK;
+    for (i = e.exps_get().begin (); i != e.exps_get().end ();)
+      {
+	(*i)->accept (*this);
+	if (++i != e.exps_get().end ())
+	  {
+	    *ostr << SCI_COMMA << " ";
+	  }
+      }
+    *ostr << SCI_RBRACK;
   }
   /** \} */
 

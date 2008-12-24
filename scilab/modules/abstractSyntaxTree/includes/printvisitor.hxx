@@ -87,6 +87,7 @@ namespace ast
     virtual void visit (const ReturnExp &e);
     virtual void visit (const SeqExp  &e);
     virtual void visit (const ArrayListExp  &e);
+    virtual void visit (const AssignListExp  &e);
     /** \} */
 
     /** \name Visit Single Operation nodes.

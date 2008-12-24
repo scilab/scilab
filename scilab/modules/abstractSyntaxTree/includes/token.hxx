@@ -39,8 +39,6 @@
 #define SCI_RDIVIDE		"\\"
 #define SCI_POWER		"^"
 
-#define SCI_DOTPLUS		".+"
-#define SCI_DOTMINUS		".-"
 #define SCI_DOTTIMES		".*"
 #define SCI_DOTDIVIDE		"./"
 #define SCI_DOTRDIVIDE		".\\"

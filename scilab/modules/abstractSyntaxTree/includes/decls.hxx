@@ -62,6 +62,7 @@ namespace ast
   // List of expressions
   class SeqExp;
   class ArrayListExp;
+  class AssignListExp;
 
   // Matrix expression
   class MatrixExp;

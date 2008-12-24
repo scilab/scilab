@@ -308,6 +308,10 @@ namespace ast
 	void ExecVisitor::visit (const ArrayListExp  &e)
 	{
 	}
+
+	void ExecVisitor::visit (const AssignListExp  &e)
+	{
+	}
 	/** \} */
 
 	/** \name Visit Single Operation nodes.

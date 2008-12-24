@@ -69,9 +69,7 @@ next		(".."|"...")
 "."		return scan_throw(DOT);
 ".'"		return scan_throw(DOTQUOTE);
 "-"		return scan_throw(MINUS);
-".-"		return scan_throw(DOTMINUS);
 "+"		return scan_throw(PLUS);
-".+"		return scan_throw(DOTPLUS);
 "*"		return scan_throw(TIMES);
 ".*"		return scan_throw(DOTTIMES);
 ".*."		return scan_throw(KRONTIMES);
