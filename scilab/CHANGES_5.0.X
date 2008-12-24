@@ -14,6 +14,8 @@ build Scilab through ssh
 
 * Force the build for the french documentation.
 
+* Some dead code removed (SCI/scripts/, SCI/bin/{dold,scilink,Blatdoc,Blatdocs,f77-linux,minfopr} )
+
 Enhancement:
 ============
 
@@ -61,7 +63,9 @@ Bug fixes:
 * bug 3878 fixed - Under mandriva, the javahelp package is not called jhall but javahelp2.
 
 * bug 3879 fixed - Under mandriva, the batik package is not called batik but batik-all.
-                   
+
+* bug 3886 fixed - strsubst with regular expression was working only on the first element of the vector.
+
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
 
