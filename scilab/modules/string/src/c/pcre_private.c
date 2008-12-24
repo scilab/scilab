@@ -293,7 +293,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		int erroroffset, len, delimiter;
 		
 		LOOP_PCRE_TST = TRUE;
-		p = INPUT_PAT;
+		p = strdup(INPUT_PAT);
 		while (isspace(*p)) p++;
 		if (*p == 0) continue;
 	/* In-line pattern (the usual case). Get the delimiter and seek the end of
