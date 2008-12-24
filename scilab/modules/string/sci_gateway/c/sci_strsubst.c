@@ -16,7 +16,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
@@ -59,15 +58,15 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 		{
 			int m1 = 0 , n1 = 0;
 			int m1n1 = 0; /* m1 * n1 */
-			char **Input_StringMatrix_One = NULL;
+			char **strings_input = NULL;
 			
 			int m2 = 0 , n2 = 0;
 			int m2n2 = 0; /* m2 * n2 */
-			char **Input_StringMatrix_Two = NULL;
+			char **string_to_search = NULL;
 			
 			int m3 = 0 , n3 = 0;
 			int m3n3 = 0; /* m2 * n2 */
-			char **Input_StringMatrix_Three = NULL;
+			char **replacement_string = NULL;
 			
 			char **Output_StringMatrix = NULL;
 			
@@ -85,26 +84,26 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 				return 0;
 			}
 			
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_StringMatrix_One);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&strings_input);
 			m1n1 = m1 * n1 ;
 				
-			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Input_StringMatrix_Two);
+			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&string_to_search);
 			m2n2 = m2 * n2 ;
 
 			if (m2n2 != 1)
 			{
-				freeArrayOfString(Input_StringMatrix_One,m1n1);
-				freeArrayOfString(Input_StringMatrix_Two,m2n2);
+				freeArrayOfString(strings_input,m1n1);
+				freeArrayOfString(string_to_search,m2n2);
 				Scierror(36,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname,2);
 				return 0;
 			}
-			GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Input_StringMatrix_Three);
+			GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&replacement_string);
 			m3n3 = m3 * n3 ;
 			if (m3n3 != 1)
 			{
-				freeArrayOfString(Input_StringMatrix_One,m1n1);
-				freeArrayOfString(Input_StringMatrix_Two,m2n2);
-				freeArrayOfString(Input_StringMatrix_Three,m3n3);
+				freeArrayOfString(strings_input,m1n1);
+				freeArrayOfString(string_to_search,m2n2);
+				freeArrayOfString(replacement_string,m3n3);
 				Scierror(36,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,3);
 				return 0;
 			}
@@ -153,15 +152,15 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 			
 			if (bStrsubst_with_pattern)
 			{
-				Output_StringMatrix = strsubst_reg(Input_StringMatrix_One,m1n1,Input_StringMatrix_Two[0],Input_StringMatrix_Three[0]);
+				Output_StringMatrix = strsubst_reg(strings_input,m1n1,string_to_search[0],replacement_string[0]);
 			}
 			else
 			{
-				Output_StringMatrix = strsubst(Input_StringMatrix_One,m1n1,Input_StringMatrix_Two[0],Input_StringMatrix_Three[0]);
+				Output_StringMatrix = strsubst(strings_input,m1n1,string_to_search[0],replacement_string[0]);
 			}
-			freeArrayOfString(Input_StringMatrix_One,m1n1);
-			freeArrayOfString(Input_StringMatrix_Two,m2n2);
-			freeArrayOfString(Input_StringMatrix_Three,m3n3);
+			freeArrayOfString(strings_input,m1n1);
+			freeArrayOfString(string_to_search,m2n2);
+			freeArrayOfString(replacement_string,m3n3);
 			
 			/* put on scilab stack */
 			CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1,Output_StringMatrix );
