@@ -533,9 +533,12 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
     continue;
     }    /* End of loop for data lines */
-	}
+	if (p) FREE(p);
+  }
+	
 	if (buffer) FREE(buffer);
 	if (offsets) FREE(offsets);
+
 	return PCRE_EXIT;
 }
 
