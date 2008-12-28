@@ -1097,8 +1097,10 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 ## libtool
 #########################
 
+AM_DISABLE_STATIC
 AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
+
 
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
