@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -303,6 +302,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 	if (isalnum(delimiter) || delimiter == '\\')
     {
+		FREE(p);
 		return DELIMITER_NOT_ALPHANUMERIC;
     }
 
@@ -316,7 +316,11 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	}
 
 	/* If the delimiter can't be found, it's a syntax error */
-	if(*pp == 0) return CAN_NOT_COMPILE_PATTERN;
+	if(*pp == 0)
+	{
+		FREE(p);
+		return CAN_NOT_COMPILE_PATTERN;
+	}
 
 	/* If the first character after the delimiter is backslash, make
 	the pattern end with backslash. This is purely to provide a way
@@ -407,6 +411,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if (re == NULL)
 		{
 		    SKIP_DATA:
+			FREE(p);
 			return CAN_NOT_COMPILE_PATTERN;
 		}
 		true_size = ((real_pcre *)re)->size;
@@ -621,6 +626,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		len = (int)(q - buffer);
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
+			free(p);
 			return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
 		}
 		/* Handle matching via the POSIX interface, which does not
@@ -684,6 +690,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				/* This is a check against a lunatic return value. */
 				if (count > maxcount)
 				{
+					FREE(p);
 					return TOO_BIG_FOR_OFFSET_SIZE;
 				}
 
@@ -708,6 +715,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 							(*pcre_free)((void *)tables);
 							setlocale(LC_CTYPE, "C");
 						}
+						FREE(p);
 						return PCRE_FINISHED_OK;
 					}
 				}
@@ -752,12 +760,14 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				{
 					if (gmatched == 0) 
 					{
+						FREE(p);
 						return NO_MATCH;
 					}
 				}
 
 				if (count == PCRE_ERROR_MATCHLIMIT )
 				{
+					FREE(p);
 					return MATCH_LIMIT;
 				}
 				break;  /* Out of loop */
@@ -794,11 +804,11 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
     continue;
     }    /* End of loop for data lines */
-	if (p) FREE(p);
+	FREE(p);
   }
 	
-	if (buffer) FREE(buffer);
-	if (offsets) FREE(offsets);
+	FREE(buffer);
+	FREE(offsets);
 
 	return PCRE_EXIT;
 }
