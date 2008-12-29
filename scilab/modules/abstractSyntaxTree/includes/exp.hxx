@@ -35,7 +35,8 @@ namespace ast
     /** \brief Construct an Expression node.
      ** \param location scanner position informations */
     Exp (const Location& location) :
-      Ast (location)
+      Ast (location),
+      _verbose(true)
     {
     }
     /** \brief Destroys an Expression node. */
@@ -43,6 +44,21 @@ namespace ast
     {
     }
     /** \} */
+
+  public:
+    void mute(void)
+    {
+      _verbose = false;
+    }
+
+    /** \brief Return if an expression should be displayed or not. */
+    const bool is_verbose(void) const
+    {
+      return _verbose;
+    }
+
+  private:
+    bool _verbose;
 
   };
 

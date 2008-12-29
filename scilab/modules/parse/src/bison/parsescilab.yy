@@ -48,6 +48,8 @@
   std::string*		path;
   std::string*		comment;
 
+  bool			mute;
+
   ast::vars_t*		t_list_var;
   ast::exps_t*		t_list_exp;
   ast::Exp*		t_exp;
@@ -239,6 +241,7 @@
 %type<t_matrixline_exp>	matrixOrCellLine
 %type<t_list_mline>	matrixOrCellLines
 
+%type<mute>		expressionLineBreak
 
 %nonassoc TOPLEVEL
 %nonassoc HIGHLEVEL
@@ -314,10 +317,18 @@ recursiveExpression				{
 /* List of instructions. _MUST_BE_ left recursive Rule */
 recursiveExpression :
 recursiveExpression expression expressionLineBreak	{
+							  if ($3)
+							    {
+							      $2->mute();
+							    }
 							  $1->push_back($2);
 							  $$ = $1;
 							}
 | recursiveExpression expression COMMENT expressionLineBreak {
+							  if ($4)
+							    {
+							      $2->mute();
+							    }
 							  $1->push_back($2);
 							  $1->push_back(new ast::CommentExp(@3, $3));
 							  $$ = $1;
@@ -325,11 +336,19 @@ recursiveExpression expression expressionLineBreak	{
 | expression COMMENT expressionLineBreak		{
 							  ast::exps_t *tmp = new ast::exps_t;
 							  tmp->push_front(new ast::CommentExp(@2, $2));
+							  if ($3)
+							    {
+							      $1->mute();
+							    }
 							  tmp->push_front($1);
 							  $$ = tmp;
 							}
 | expression expressionLineBreak			{
 							  ast::exps_t *tmp = new ast::exps_t;
+							  if ($2)
+							    {
+							      $1->mute();
+							    }
 							  tmp->push_front($1);
 							  $$ = tmp;
 							}
@@ -340,12 +359,12 @@ recursiveExpression expression expressionLineBreak	{
 */
 /* Fake Rule : How can we be sure this is the end of an instruction. */
 expressionLineBreak :
-SEMI						{ /* !! Do Nothing !! */ }
-| COMMA						{ /* !! Do Nothing !! */ }
-| EOL						{ /* !! Do Nothing !! */ }
-| expressionLineBreak SEMI			{ /* !! Do Nothing !! */ }
-| expressionLineBreak COMMA			{ /* !! Do Nothing !! */ }
-| expressionLineBreak EOL			{ /* !! Do Nothing !! */ }
+SEMI						{ $$ = true; }
+| COMMA						{ $$ = false; }
+| EOL						{ $$ = false; }
+| expressionLineBreak SEMI			{ $$ = true; }
+| expressionLineBreak COMMA			{ $$ = false; }
+| expressionLineBreak EOL			{ $$ = $1; }
 ;
 
 /*

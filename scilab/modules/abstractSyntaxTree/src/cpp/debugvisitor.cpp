@@ -311,6 +311,10 @@ namespace ast
     std::list<Exp *>::const_iterator	i;
     for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
       {
+	if(!(*i)->is_verbose())
+	  {
+	    DEBUG("__MUTE__");
+	  }
 	(*i)->accept (*this);
       }
     DEBUG_END_NODE();

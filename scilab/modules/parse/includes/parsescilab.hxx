@@ -200,6 +200,8 @@ typedef union YYSTYPE
   std::string*		path;
   std::string*		comment;
 
+  bool			mute;
+
   ast::vars_t*		t_list_var;
   ast::exps_t*		t_list_exp;
   ast::Exp*		t_exp;
