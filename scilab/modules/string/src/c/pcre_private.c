@@ -96,11 +96,77 @@ UTF8 support if PCRE is built without it. */
 #endif
 
 
+
+/* Static variables */
+
+static FILE *outfile=NULL;
+static int callout_count=0;
+static int callout_fail_count=0;
+static int callout_fail_id=0;
+static size_t gotten_store=0;
+
+/* The buffers grow automatically if very long input lines are encountered. */
+
+char *buffer = NULL;
+
+
 static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 				  int start_offset, int options, int *use_offsets, int use_size_offsets,
 				  int flag, unsigned long int *limit, int errnumber);
 
+/*************************************************
+*              Callout function                  *
+*************************************************/
 
+/* Called from PCRE as a result of the (?C) item. We print out where we are in
+the match. Yield zero unless more callouts than the fail count, or the callout
+data is not zero. */
+
+static int callout(pcre_callout_block *cb)
+{
+/* Always print appropriate indicators, with callout number if not already
+shown. For automatic callouts, show the pattern offset. */
+
+if (cb->callout_data != NULL)
+  {
+  int callout_data = *((int *)(cb->callout_data));
+  if (callout_data != 0)
+    {
+    return callout_data;
+    }
+  }
+
+return (cb->callout_number != callout_fail_id)? 0 :
+       (++callout_count >= callout_fail_count)? 1 : 0;
+}
+
+
+/*************************************************
+*            Local malloc functions              *
+*************************************************/
+
+/* Alternative malloc function, to test functionality and show the size of the
+compiled re. */
+
+static void *new_malloc(size_t size)
+{
+void *block = MALLOC(size);
+gotten_store = size;
+return block;
+}
+
+
+/*************************************************
+*          Call pcre_fullinfo()                  *
+*************************************************/
+
+/* Get one piece of information from the pcre_fullinfo() function */
+
+static void new_info(pcre *re, pcre_extra *study, int option, void *ptr)
+{
+	int rc = 0;
+	rc = pcre_fullinfo(re, study, option, ptr);
+}
 
 /*************************************************
 *        Check match or recursion limit          *
@@ -147,6 +213,32 @@ extra->flags &= ~flag;
 return count;
 }
 
+
+
+/*************************************************
+*         Case-independent strncmp() function    *
+*************************************************/
+
+/*
+Arguments:
+  s         first string
+  t         second string
+  n         number of characters to compare
+
+Returns:    < 0, = 0, or > 0, according to the comparison
+*/
+
+static int strncmpic(char *s, char *t, int n)
+{
+	while (n--)
+	{
+		int c = tolower(*s++) - tolower(*t++);
+		if (c) return c;
+	}
+	return 0;
+}
+
+
 /*************************************************
 *               Algorithm                      *
 *************************************************/
@@ -172,10 +264,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 	char *copynamesptr=NULL;
 	char *getnamesptr=NULL;
-
-	/* The buffers grow automatically if very long input lines are encountered. */
-	
-	char *buffer = NULL;
 
 
 	buffer = (char *)MALLOC(strlen(INPUT_LINE)+1);
@@ -217,6 +305,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		FREE(p);
 		return DELIMITER_NOT_ALPHANUMERIC;
     }
+
 	pp = p;
 
 	while (*pp != 0)
@@ -247,10 +336,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	/* Look for options after final delimiter */
 
 	options = 0;
-
+		
 	while (*pp != 0)
     {
-		printf("dans la boucle\n");
 		switch (*pp++)
 		{
 			case 'f': options |= PCRE_FIRSTLINE; break;
@@ -315,21 +403,23 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	timing, showing, or debugging options, nor the ability to pass over
 	local character tables. */
 
-	re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
-	/* Compilation failed; go back for another re, skipping to blank line
-	   if non-interactive. */
-	if (re == NULL)
+
+    {
+		re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
+		/* Compilation failed; go back for another re, skipping to blank line
+		if non-interactive. */
+		if (re == NULL)
 		{
-		SKIP_DATA:
+		    SKIP_DATA:
 			FREE(p);
 			return CAN_NOT_COMPILE_PATTERN;
 		}
-	true_size = ((real_pcre *)re)->size;
-	
-	/* End of non-POSIX compile */
+		true_size = ((real_pcre *)re)->size;
+
+    }        /* End of non-POSIX compile */
 
   /* Read data lines and test them */
-	{
+    {
 		char *q=NULL;
 		char *bptr=NULL;
 		int *use_offsets = offsets;
@@ -338,6 +428,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		int callout_data_set = 0;
 		int count=0;
 		int c=0;
+		int copystrings = 0;
 		int find_match_limit = 0;
 		int getstrings = 0;
 		int gmatched = 0;
@@ -352,13 +443,183 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		copynamesptr = copynames;
 		getnamesptr = getnames;
   		
+		callout_count = 0;
+		callout_fail_count = 999999;
+		callout_fail_id = -1;
 		
 		if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
 		len = 0;
 		p = INPUT_LINE;
+		while (isspace(*p)) p++;
 		bptr = q = buffer;
 		while ((c = *p++) != 0)
 		{
+			int i = 0;
+			int n = 0;
+
+			if (c == '\\') switch ((c = *p++))
+			{
+				case 'a': c =    7; break;
+				case 'b': c = '\b'; break;
+				case 'e': c =   27; break;
+				case 'f': c = '\f'; break;
+				case 'n': c = '\n'; break;
+				case 'r': c = '\r'; break;
+				case 't': c = '\t'; break;
+				case 'v': c = '\v'; break;
+				case '0': case '1': case '2': case '3':
+				case '4': case '5': case '6': case '7':
+					c -= '0';
+					while (i++ < 2 && isdigit(*p) && *p != '8' && *p != '9')
+					c = c * 8 + *p++ - '0';
+				break;
+				case 'x':
+				/* Ordinary \x */
+				c = 0;
+				while (i++ < 2 && isxdigit(*p))
+				{
+					c = c * 16 + tolower(*p) - ((isdigit(*p))? '0' : 'W');
+					p++;
+				}
+				break;
+				case 0:   /* \ followed by EOF allows for an empty line */
+					p--;
+				continue;
+				case '>':
+					while(isdigit(*p)) start_offset = start_offset * 10 + *p++ - '0';
+				continue;
+				case 'A':  /* Option setting */
+					options |= PCRE_ANCHORED;
+				continue;
+				case 'B':
+					options |= PCRE_NOTBOL;
+				continue;
+				case 'C':
+					if (isdigit(*p))    /* Set copy string */
+					{
+						while(isdigit(*p)) n = n * 10 + *p++ - '0';
+						copystrings |= 1 << n;
+					}
+					else if (isalnum(*p))
+					{
+						char *npp = copynamesptr;
+						while (isalnum(*p)) *npp++ = *p++;
+						*npp++ = 0;
+						*npp = 0;
+						n = pcre_get_stringnumber(re, (char *)copynamesptr);
+						copynamesptr = npp;
+					}
+					else if (*p == '+')
+					{
+						
+						p++;
+					}
+					else if (*p == '-')
+					{
+					   p++;
+					}
+					else if (*p == '!')
+					{
+						callout_fail_id = 0;
+						p++;
+						while(isdigit(*p))
+						callout_fail_id = callout_fail_id * 10 + *p++ - '0';
+						callout_fail_count = 0;
+						if (*p == '!')
+						{
+							p++;
+							while(isdigit(*p))
+							callout_fail_count = callout_fail_count * 10 + *p++ - '0';
+						}
+					}
+					else if (*p == '*')
+					{
+						int sign = 1;
+						callout_data = 0;
+						if (*(++p) == '-') { sign = -1; p++; }
+						while(isdigit(*p)) callout_data = callout_data * 10 + *p++ - '0';
+						callout_data *= sign;
+						callout_data_set = 1;
+					}
+				continue;
+				case 'G':
+					if (isdigit(*p))
+					{
+						while(isdigit(*p)) n = n * 10 + *p++ - '0';
+						getstrings |= 1 << n;
+					}
+					else if (isalnum(*p))
+					{
+						char *npp = getnamesptr;
+						while (isalnum(*p)) *npp++ = *p++;
+						*npp++ = 0;
+						*npp = 0;
+						n = pcre_get_stringnumber(re, (char *)getnamesptr);
+						getnamesptr = npp;
+					}
+				continue;
+				case 'L':
+				continue;
+				case 'M':
+					find_match_limit = 1;
+				continue;
+				case 'N':
+					options |= PCRE_NOTEMPTY;
+				continue;
+				case 'O':
+					while(isdigit(*p)) n = n * 10 + *p++ - '0';
+					if (n > size_offsets_max)
+					{
+						size_offsets_max = n;
+						FREE(offsets);
+						use_offsets = offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
+					}
+					use_size_offsets = n;
+					if (n == 0) use_offsets = NULL;   /* Ensures it can't write to it */
+				continue;
+				case 'P':
+					options |= PCRE_PARTIAL;
+				continue;
+				case 'Q':
+					while(isdigit(*p)) n = n * 10 + *p++ - '0';
+					if (extra == NULL)
+					{
+						extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
+						extra->flags = 0;
+					}
+					extra->flags |= PCRE_EXTRA_MATCH_LIMIT_RECURSION;
+					extra->match_limit_recursion = n;
+				continue;
+				case 'q':
+					while(isdigit(*p)) n = n * 10 + *p++ - '0';
+					if (extra == NULL)
+					{
+						extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
+						extra->flags = 0;
+					}
+					extra->flags |= PCRE_EXTRA_MATCH_LIMIT;
+					extra->match_limit = n;
+				continue;
+			#if !defined NODFA
+				case 'R':
+					options |= PCRE_DFA_RESTART;
+				continue;
+			#endif
+				case 'S':
+					
+				continue;
+				case 'Z':
+					options |= PCRE_NOTEOL;
+				continue;
+				case '?':
+					options |= PCRE_NO_UTF8_CHECK;
+				continue;
+				case '<':
+				{
+					while (*p++ != '>');
+				}
+				continue;
+			}
 			*q++ =(char)c;
 		}
 		*q = 0;
