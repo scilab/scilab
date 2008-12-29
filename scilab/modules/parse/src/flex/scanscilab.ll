@@ -4,12 +4,13 @@
 #include "parse.hxx"
 #include "parser.hxx"
 
-static int string_level = 0;
 static int comment_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
 static std::string current_file;
 static std::string program_name;
+
+ static bool rejected = false;
 
 #define YY_USER_ACTION           \
     yylloc.last_column += yyleng;
@@ -29,71 +30,82 @@ static std::string program_name;
 %x LINECOMMENT
 %x LINEBREAK
 
-spaces		[ \t\v\f]+
-integer		[0-9]+
-number		[0-9]+[\.][0-9]*
-little		\.[0-9]+
+%x MATRIX
+%x MATRIXMINUSID
 
-floating	({little}|{number}|{integer})[deDE][+-]?{integer}
+spaces			[ \t\v\f]+
+integer			[0-9]+
+number			[0-9]+[\.][0-9]*
+little			\.[0-9]+
 
-hex		[0]x[0-9a-fA-F]+
-oct		[0]o[0-7]+
+floating		({little}|{number}|{integer})[deDE][+-]?{integer}
 
-id		[a-zA-Z_%#?][a-zA-Z_0-9#?]*
-newline		("\n"|"\r\n")
-blankline	^[ \t\v\f]+{newline}
-next		(".."|"...")
+hex			[0]x[0-9a-fA-F]+
+oct			[0]o[0-7]+
+
+id			[a-zA-Z_%#?][a-zA-Z_0-9#?]*
+newline			("\n"|"\r\n")
+blankline		^[ \t\v\f]+{newline}
+next			(".."|"...")
+
+boolnot			("@"|"~")
+booltrue		("%t"|"%T")
+boolfalse		("%f"|"%F")
+booland			("&"|"&&")
+boolor			("|"|"||")
+
+lbrack			"["
+rbrack			"]"
+
+lparen			"("
+rparen			")"
+
+lbrace			"{"
+rbrace			"}"
+
+dollar			"$"
+
+semicolon		";"
+comma			","
+colon			":"
+
+startcomment		"//"
+startblockcomment	"/*"
+endblockcomment		"*/"
+
+dquote			"\""
+quote			"'"
+
+dot			"."
+dotquote		".'"
+dottimes		".*"
+dotdivide		"./"
+dotrdivide		".\\"
+dotpower		(".^"|".**")
+
+plus			"+"
+minus			"-"
+divide			"/"
+rdivide			"\\"
+times			"*"
+power			("^"|"**")
+
+equal			"=="
+notequal		("~="|"<>")
+lowerthan		"<"
+greaterthan		">"
+lowerequal		"<="
+greaterequal		">="
+
+krontimes		".*."
+krondivide		"./."
+kronrdivide		".\\."
+
+controldivide		"/."
+
+assign			"="
 
 %%
-
-
-"@"		return scan_throw(NOT);
-"~"		return scan_throw(NOT);
-"$"		return scan_throw(DOLLAR);
-
-"%t"		return scan_throw(BOOLTRUE);
-"%f"		return scan_throw(BOOLFALSE);
-"%T"		return scan_throw(BOOLTRUE);
-"%F"		return scan_throw(BOOLFALSE);
-
-
-"("		return scan_throw(LPAREN);
-")"		return scan_throw(RPAREN);
-";"		return scan_throw(SEMI);
-","		return scan_throw(COMMA);
-":"		return scan_throw(COLON);
-"["		return scan_throw(LBRACK);
-"]"		return scan_throw(RBRACK);
-"{"		return scan_throw(LBRACE);
-"}"		return scan_throw(RBRACE);
-"."		return scan_throw(DOT);
-".'"		return scan_throw(DOTQUOTE);
-"-"		return scan_throw(MINUS);
-"+"		return scan_throw(PLUS);
-"*"		return scan_throw(TIMES);
-".*"		return scan_throw(DOTTIMES);
-".*."		return scan_throw(KRONTIMES);
-"/"		return scan_throw(DIVIDE);
-"./"		return scan_throw(DOTDIVIDE);
-"/."		return scan_throw(CONTROLDIVIDE);
-"./."		return scan_throw(KRONDIVIDE);
-"\\"		return scan_throw(RDIVIDE);
-".\\"		return scan_throw(DOTRDIVIDE);
-".\\."		return scan_throw(KRONRDIVIDE);
-"**"		return scan_throw(POWER);
-"^"		return scan_throw(POWER);
-".^"		return scan_throw(DOTPOWER);
-
-"=="		return scan_throw(EQ);
-"<"		return scan_throw(LT);
-">"		return scan_throw(GT);
-"<>"		return scan_throw(NE);
-"~="		return scan_throw(NE);
-"<="		return scan_throw(LE);
-">="		return scan_throw(GE);
-"&"		return scan_throw(AND);
-"|"		return scan_throw(OR);
-"="		return scan_throw(ASSIGN);
 
 "if"		return scan_throw(IF);
 "then"		return scan_throw(THEN);
@@ -101,28 +113,173 @@ next		(".."|"...")
 "elseif"	return scan_throw(ELSEIF);
 "end"		return scan_throw(END);
 
+
 "select"	return scan_throw(SELECT);
 "case"		return scan_throw(CASE);
+
 
 "function"	return scan_throw(FUNCTION);
 "endfunction"	return scan_throw(ENDFUNCTION);
 
+
 "for"		return scan_throw(FOR);
+
 
 "while"		return scan_throw(WHILE);
 "do"		return scan_throw(DO);
 "break"		return scan_throw(BREAK);
+
 
 "try"		return scan_throw(TRY);
 "catch"		return scan_throw(CATCH);
 "return"	return scan_throw(RETURN);
 
 
-{next}			{
-  BEGIN LINEBREAK;
+<INITIAL,MATRIX>{boolnot}		{
+  return scan_throw(NOT);
+}
+<INITIAL,MATRIX>{dollar}		{
+  return scan_throw(DOLLAR);
+}
+<INITIAL,MATRIX>{booltrue}		{
+  return scan_throw(BOOLTRUE);
+}
+<INITIAL,MATRIX>{boolfalse}		{
+  return scan_throw(BOOLFALSE);
+}
+<INITIAL,MATRIX>{booland}		{
+  return scan_throw(AND);
+}
+<INITIAL,MATRIX>{boolor}		{
+  return scan_throw(OR);
 }
 
-{integer}		{
+
+<INITIAL,MATRIX>{lparen}		{
+  return scan_throw(LPAREN);
+}
+<INITIAL,MATRIX>{rparen}		{
+  return scan_throw(RPAREN);
+}
+
+
+<INITIAL,MATRIX>{semicolon}		{
+  return scan_throw(SEMI);
+}
+
+<INITIAL,MATRIX>{comma}			{
+  return scan_throw(COMMA);
+}
+
+<INITIAL,MATRIX>{colon}			{
+  return scan_throw(COLON);
+}
+
+
+<INITIAL,MATRIX>{lbrace}		{
+  return scan_throw(LBRACE);
+}
+<INITIAL,MATRIX>{rbrace}		{
+  return scan_throw(RBRACE);
+}
+
+
+<INITIAL,MATRIX>{dotquote}		{
+  return scan_throw(DOTQUOTE);
+}
+<INITIAL,MATRIX>{dottimes}		{
+  return scan_throw(DOTTIMES);
+}
+<INITIAL,MATRIX>{dotdivide}		{
+  return scan_throw(DOTDIVIDE);
+}
+<INITIAL,MATRIX>{dotrdivide}		{
+  return scan_throw(DOTRDIVIDE);
+}
+<INITIAL,MATRIX>{dotpower}		{
+  return scan_throw(DOTPOWER);
+}
+
+
+{minus}					{
+  return scan_throw(MINUS);
+}
+{plus}					{
+  return scan_throw(PLUS);
+}
+<INITIAL,MATRIX>{times}			{
+  return scan_throw(TIMES);
+}
+<INITIAL,MATRIX>{divide}		{
+  return scan_throw(DIVIDE);
+}
+<INITIAL,MATRIX>{rdivide}		{
+  return scan_throw(RDIVIDE);
+}
+<INITIAL,MATRIX>{power}			{
+  return scan_throw(POWER);
+}
+
+<INITIAL,MATRIX>{krontimes}		{
+  return scan_throw(KRONTIMES);
+}
+<INITIAL,MATRIX>{krondivide}		{
+  return scan_throw(KRONDIVIDE);
+}
+<INITIAL,MATRIX>{kronrdivide}		{
+  return scan_throw(KRONRDIVIDE);
+}
+
+
+<INITIAL,MATRIX>{controldivide}		{
+  return scan_throw(CONTROLDIVIDE);
+}
+
+
+<INITIAL,MATRIX>{equal}			{
+  return scan_throw(EQ);
+}
+<INITIAL,MATRIX>{notequal}		{
+  return scan_throw(NE);
+}
+<INITIAL,MATRIX>{lowerthan}		{
+  return scan_throw(LT);
+}
+<INITIAL,MATRIX>{greaterthan}		{
+  return scan_throw(GT);
+}
+<INITIAL,MATRIX>{lowerequal}		{
+  return scan_throw(LE);
+}
+<INITIAL,MATRIX>{greaterequal}		{
+  return scan_throw(GE);
+}
+
+
+<INITIAL,MATRIX>{assign}		{
+  return scan_throw(ASSIGN);
+ }
+
+
+<INITIAL,MATRIX>{lbrack}		{
+  yy_push_state(MATRIX);
+  return scan_throw(LBRACK);
+}
+{rbrack}				{
+  return scan_throw(RBRACK);
+}
+
+
+<INITIAL,MATRIX>{dot}			{
+  return scan_throw(DOT);
+}
+
+<INITIAL,MATRIX>{next}			{
+  yy_push_state(LINEBREAK);
+}
+
+
+<INITIAL,MATRIX>{integer}		{
   yylval.number = atof(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] INTEGER : " << yytext << std::endl;
@@ -131,7 +288,9 @@ next		(".."|"...")
   return scan_throw(VARINT);
 }
 
-{floating} {
+
+<INITIAL,MATRIX>{floating}		{
+  scan_exponent_convert(yytext);
   yylval.number = atof(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
@@ -140,7 +299,8 @@ next		(".."|"...")
   return scan_throw(VARFLOAT);
 }
 
-{number}		{
+
+<INITIAL,MATRIX>{number}		{
   yylval.number = atof(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] NUMBER : " << yytext << std::endl;
@@ -149,7 +309,8 @@ next		(".."|"...")
   return scan_throw(NUM);
 }
 
-{little}		{
+
+<INITIAL,MATRIX>{little}		{
   yylval.number = atof(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] LITTLE : " << yytext << std::endl;
@@ -158,7 +319,8 @@ next		(".."|"...")
   return scan_throw(NUM);
 }
 
-{id}			{
+
+<INITIAL,MATRIX>{id}			{
   yylval.str = new std::string(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
@@ -167,24 +329,27 @@ next		(".."|"...")
   return scan_throw(ID);
 }
 
-"/*"			{
+
+<INITIAL,MATRIX>{startblockcomment}	{
   yylval.comment = new std::string();
   ++comment_level;
-  BEGIN REGIONCOMMENT;
+  yy_push_state(REGIONCOMMENT);
 }
 
-"//"			{
+
+<INITIAL,MATRIX>{startcomment}		{
   yylval.comment = new std::string();
   yy_push_state(LINECOMMENT);
 }
 
-"\""          {
+
+<INITIAL,MATRIX>{dquote}		{
   yylval.str = new std::string();
-  ++string_level;
   yy_push_state(DOUBLESTRING);
 }
 
-"'"	      {
+
+<INITIAL,MATRIX>{quote}			{
   /*
   ** Matrix Transposition special behaviour
   ** ID' []' toto()' are transposition call
@@ -198,17 +363,18 @@ next		(".."|"...")
     }
   else {
     yylval.str = new std::string();
-    ++string_level;
     yy_push_state(SIMPLESTRING);
   }
 }
 
-{spaces}      {
+
+<INITIAL,MATRIX>{spaces}		{
   scan_step();
   scan_throw(SPACES);
 }
 
-{newline}     {
+
+<INITIAL,MATRIX>{newline}		{
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
@@ -217,15 +383,17 @@ next		(".."|"...")
   }
 }
 
-{blankline}   {
+
+<INITIAL,MATRIX>{blankline}		{
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
   scan_throw(EOL);
 }
 
-.             {
-  std::string str = " : unexpected token '";
+
+.					{
+  std::string str = "unexpected token '";
   str += yytext;
   str += "'";
   exit_status = SCAN_ERROR;
@@ -233,38 +401,209 @@ next		(".."|"...")
 }
 
 
+<MATRIX>
+{
+  {rbrack}				{
+    yy_pop_state();
+    return scan_throw(RBRACK);
+  }
+
+  {plus}				{
+    return scan_throw(PLUS);
+  }
+
+  {minus}				{
+    return scan_throw(MINUS);
+  }
+
+  {spaces}({plus}|{minus}){integer}			{
+   int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+
+  {spaces}({plus}|{minus}){number}	{
+   int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+
+  {spaces}({plus}|{minus}){floating}	{
+   int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+
+  {spaces}({plus}|{minus}){little}	{
+   int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+
+  {spaces}({minus}|{plus}){id}		{
+    int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+  .					{
+    std::string str = "unexpected token '";
+    str += yytext;
+    str += "' within a matrix.";
+    exit_status = SCAN_ERROR;
+    scan_error(str);
+  }
+}
+
+<MATRIXMINUSID>
+{
+  {minus}				{
+    return scan_throw(MINUS);
+  }
+
+  {plus}				{
+     /* Do Nothing. */
+  }
+
+  {integer}				{
+    yy_pop_state();
+    yylval.number = atof(yytext);
+#ifdef TOKENDEV
+    std::cout << "--> [DEBUG] INTEGER : " << yytext << std::endl;
+#endif
+    scan_step();
+    return scan_throw(VARINT);
+  }
+
+  {number}				{
+    yy_pop_state();
+    yylval.number = atof(yytext);
+#ifdef TOKENDEV
+    std::cout << "--> [DEBUG] NUMBER : " << yytext << std::endl;
+#endif
+    scan_step();
+    return scan_throw(NUM);
+  }
+
+  {little}				{
+    yy_pop_state();
+    yylval.number = atof(yytext);
+#ifdef TOKENDEV
+    std::cout << "--> [DEBUG] LITTLE : " << yytext << std::endl;
+#endif
+    scan_step();
+    return scan_throw(NUM);
+  }
+
+  {floating}				{
+    yy_pop_state();
+    scan_exponent_convert(yytext);
+    yylval.number = atof(yytext);
+#ifdef TOKENDEV
+    std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
+#endif
+    scan_step();
+    return scan_throw(VARFLOAT);
+  }
+
+  {id}					{
+    yy_pop_state();
+    yylval.str = new std::string(yytext);
+#ifdef TOKENDEV
+    std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
+#endif
+    scan_step();
+    return scan_throw(ID);
+  }
+
+  {spaces}				{
+    /* Do Nothing. */
+  }
+
+  .					{
+    std::string str = "unexpected token '";
+    str += yytext;
+    str += "' within a matrix.";
+    exit_status = SCAN_ERROR;
+    scan_error(str);
+  }
+}
+
 <LINEBREAK>
 {
-  {newline}	{
+  {newline}				{
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     scan_step();
-    BEGIN INITIAL;
+    yy_pop_state();
   }
 
-  "/*"			{
+  {startblockcomment}			{
     ++comment_level;
-    BEGIN REGIONCOMMENT;
+    yy_push_state(REGIONCOMMENT);
   }
 
-  "//"			{
+  {startcomment}			{
     scan_throw(DOTS);
     yylval.comment = new std::string();
-    BEGIN LINECOMMENT;
+    yy_push_state(LINECOMMENT);
   }
 
-  {spaces}		{
+  {spaces}				{
     /* Do nothing... */
   }
 
-  . {
-    std::string str = " : unexpected token '";
+  .					{
+    std::string str = "unexpected token '";
     str += yytext;
     str += "' after line break with .. or ...";
     exit_status = SCAN_ERROR;
     scan_error(str);
   }
-
 }
 
 
@@ -274,19 +613,20 @@ next		(".."|"...")
     //yylloc.last_line += 1;
     //yylloc.last_column = 1;
     //scan_step();
-    BEGIN INITIAL;
+    yy_pop_state();
+    unput('\n');
     /*
     ** To forgot comments after lines break
     */
     if (last_token != DOTS)
       {
-	unput('\n');
 	return scan_throw(COMMENT);
       }
+
   }
 
   <<EOF>>	{
-    BEGIN INITIAL;
+    yy_pop_state();
     return scan_throw(COMMENT);
   }
 
@@ -296,36 +636,35 @@ next		(".."|"...")
 }
 
 
-
 <REGIONCOMMENT>
 {
-  "*/"		{
+  {endblockcomment}				{
     --comment_level;
     if (comment_level == 0) {
-      BEGIN INITIAL;
+      yy_pop_state();
       //return scan_throw(BLOCKCOMMENT);
     }
   }
 
-  "/*"		{
+  {startblockcomment}				{
     ++comment_level;
-    BEGIN REGIONCOMMENT;
+    yy_push_state(REGIONCOMMENT);
   }
 
-  <<EOF>>	{
-    std::string str = " : unexpected end of file in a comment";
+  <<EOF>>					{
+    std::string str = "unexpected end of file in a comment";
     exit_status = SCAN_ERROR;
     scan_error(str);
   }
 
-  {newline}	{
+  {newline}					{
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     scan_step();
     *yylval.comment += "\n//";
   }
 
-  .		{
+  .						{
     *yylval.comment += yytext;
   }
 }
@@ -333,43 +672,35 @@ next		(".."|"...")
 
 <SIMPLESTRING>
 {
-  "\"\"" {
+  {dquote}{dquote}				{
     *yylval.str += "\"";
   }
 
-  "\"'" {
+  {dquote}{quote}				{
     *yylval.str += "'";
   }
 
-  "'\"" {
+  {quote}{dquote}				{
     *yylval.str += "\"";
   }
 
-  "''" {
+  {quote}{quote}				{
     *yylval.str += "'";
   }
 
-  "\""      {
-    ++string_level;
-    yy_push_state(DOUBLESTRING);
-  }
-
-  "'"      {
+  {quote}					{
     yy_pop_state();
     scan_step();
-    --string_level;
-    if (string_level == 0) {
-      return scan_throw(STR);
-    }
+    return scan_throw(STR);
   }
 
-  {next} {
+  {next}					{
     //yylloc.last_line += 1;
     scan_step();
   }
 
-  {newline} {
-    std::string str = " : unexpected end of line in a string";
+  {newline}					{
+    std::string str = "unexpected end of line in a string.";
     exit_status = SCAN_ERROR;
     scan_error(str);
     yylloc.last_line += 1;
@@ -377,53 +708,45 @@ next		(".."|"...")
     *yylval.str += yytext;
   }
 
-  <<EOF>>   {
-    std::string str = " : unexpected end of file in a string";
+  <<EOF>>					{
+    std::string str = "unexpected end of file in a string.";
     exit_status = SCAN_ERROR;
     scan_error(str);
   }
 
-  .         {
+  .						{
+    scan_step();
     *yylval.str += yytext;
   }
 }
 
 
-
 <DOUBLESTRING>
 {
-  "\"\"" {
+  {dquote}{dquote}				{
     *yylval.str += "\"";
   }
 
-  "\"'" {
+  {dquote}{quote}				{
     *yylval.str += "'";
   }
 
-  "'\"" {
+  {quote}{dquote}				{
     *yylval.str += "\"";
   }
 
-  "''" {
+  {quote}{quote}				{
     *yylval.str += "'";
   }
 
-  "'"      {
-    ++string_level;
-    yy_push_state(SIMPLESTRING);
-  }
-
-  "\""      {
+  {dquote}					{
     yy_pop_state();
     scan_step();
-    --string_level;
-    if (string_level == 0) {
-      return scan_throw(STR);
-    }
+    return scan_throw(STR);
   }
 
   {newline} {
-    std::string str = " : unexpected end of line in a string";
+    std::string str = "unexpected end of line in a string";
     exit_status = SCAN_ERROR;
     scan_error(str);
     yylloc.last_line += 1;
@@ -437,12 +760,13 @@ next		(".."|"...")
   }
 
   <<EOF>>   {
-    std::string str = " : unexpected end of file in a string";
+    std::string str = "unexpected end of file in a string";
     exit_status = SCAN_ERROR;
     scan_error(str);
   }
 
   .         {
+    scan_step();
     *yylval.str += yytext;
   }
 }
@@ -493,6 +817,24 @@ void scan_open (const std::string &name)
 void scan_close (void)
 {
   fclose (yyin);
+}
+
+/*
+** convert floating numbers to C standard
+** 1.2d-3 -> 1.2e-3
+** 1.2D-3 -> 1.2e-3
+*/
+void scan_exponent_convert(char *in)
+{
+  char *pString;
+  while((pString=strpbrk(in,"d"))!=NULL)
+    {
+      *pString='e';
+    }
+  while((pString=strpbrk(in,"D"))!=NULL)
+    {
+      *pString='e';
+    }
 }
 
 #ifdef _MSC_VER

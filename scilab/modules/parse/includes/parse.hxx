@@ -49,10 +49,13 @@ void scan_step(void);
 void scan_error(std::string msg);
 
 /** \brief Open the scanner step (from scanscilab) . */
-void scan_open (const std::string &name);
+void scan_open(const std::string &name);
 
 /** \brief Close the scanner step (from scanscilab) . */
-void scan_close (void);
+void scan_close(void);
+
+/** \brief Convert exponent numbers to C standard . */
+void scan_exponent_convert(char *in);
 
 /** \brief Parse/Scan error message displat . */
 void PrintError(std::string msg);
