@@ -11,6 +11,7 @@
 */
 
 #include "matrixpoly.hxx"
+#include "core_math.h"
 
 namespace types
 {
@@ -110,9 +111,9 @@ namespace types
 		return RealPoly;
 	}
 
-	void MatrixPoly::whoAmI(void) 
+	void MatrixPoly::whoAmI(void)
 	{
-		std::cout << "types::Poly"; 
+		std::cout << "types::Poly";
 	}
 
 	bool MatrixPoly::isComplex(void)
@@ -143,7 +144,7 @@ namespace types
 		m_iCols			= (&poPoly)->cols_get();
 		m_iSize			= m_iRows * m_iCols;
 		m_szVarName	= (&poPoly)->var_get();
-		
+
 		int *piRank = new int[m_iSize];
 		m_bComplex	= false;
 
@@ -232,6 +233,86 @@ namespace types
 		{
 			Poly *pPoly = poly_get(i);
 			pPoly->update_rank();
+		}
+	}
+
+	int MatrixPoly::rank_max_get(void)
+	{
+		int *piRank = new int[size_get()];
+		rank_get(piRank);
+		int iMaxRank = 0;
+		for(int i = 0 ; i < size_get() ; i++)
+		{
+			iMaxRank = Max(iMaxRank, piRank[i]);
+		}
+		return iMaxRank;
+	}
+
+	Double* MatrixPoly::coef_get(void)
+	{
+		int iMaxRank = rank_max_get();
+		Double *pCoef = new Double(rows_get(), cols_get() * iMaxRank, false);
+		if(isComplex())
+		{
+			pCoef->complex_set(true);
+		}
+
+		double *pCoefR	= pCoef->real_get();
+		double *pCoefI	= pCoef->img_get();
+
+		for(int iRank = 0 ; iRank < iMaxRank ; iRank++)
+		{
+			for(int i = 0 ; i < size_get() ; i++)
+			{
+				Poly *pPoly	= poly_get(i);
+				if(iRank > pPoly->rank_get())
+				{
+					pCoefR[iRank * size_get() + i] = 0;
+					if(isComplex())
+					{
+						pCoefI[iRank * size_get() + i] = 0;
+					}
+				}
+				else
+				{
+					double *pR	= pPoly->coef_get()->real_get();
+					double *pI	= pPoly->coef_get()->img_get();
+
+					pCoefR[iRank * size_get() + i] = pR[iRank];
+					if(isComplex())
+					{
+						pCoefI[iRank * size_get() + i] = pI[iRank];
+					}
+				}
+			}
+		}
+		return pCoef;
+	}
+
+	void MatrixPoly::coef_set(Double *_pCoef)
+	{
+		int iMaxRank = rank_max_get();
+
+		complex_set(_pCoef->isComplex());
+		double *pR = _pCoef->real_get();
+		double *pI = _pCoef->img_get();
+		for(int i = 0 ; i < size_get() ; i++)
+		{
+			Double *pTemp = new Double(1, iMaxRank, _pCoef->isComplex());
+			Poly *pPoly = poly_get(i);
+			for(int iRank = 0 ; iRank < iMaxRank ; iRank++)
+			{
+				pTemp->real_get()[iRank] = pR[iRank * size_get() + i];
+			}
+			if(isComplex())
+			{
+				for(int iRank = 0 ; iRank < iMaxRank ; iRank++)
+				{
+					pTemp->img_get()[iRank] = pI[iRank * size_get() + i];
+				}
+			}
+
+			pPoly->coef_set(pTemp);
 		}
 	}
 }
