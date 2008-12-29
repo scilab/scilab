@@ -282,7 +282,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		pcre *re = NULL;
 		pcre_extra *extra = NULL;
 		const char *error=NULL;
-		char *p=NULL; 
+		char *back_p=NULL;
+		char *p=NULL;
 		char *pp=NULL;
 		char *ppp=NULL;
 		const unsigned char *tables = NULL;
@@ -293,6 +294,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		
 		LOOP_PCRE_TST = TRUE;
 		p = strdup(INPUT_PAT);
+		back_p=p;
 		while (isspace(*p)) p++;
 		if (*p == 0) continue;
 	/* In-line pattern (the usual case). Get the delimiter and seek the end of
@@ -302,7 +304,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 	if (isalnum(delimiter) || delimiter == '\\')
     {
-		FREE(p);
+		FREE(back_p);
 		return DELIMITER_NOT_ALPHANUMERIC;
     }
 
@@ -318,7 +320,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	/* If the delimiter can't be found, it's a syntax error */
 	if(*pp == 0)
 	{
-		FREE(p);
+		FREE(back_p);
 		return CAN_NOT_COMPILE_PATTERN;
 	}
 
@@ -411,7 +413,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if (re == NULL)
 		{
 		    SKIP_DATA:
-			FREE(p);
+			FREE(back_p);
 			return CAN_NOT_COMPILE_PATTERN;
 		}
 		true_size = ((real_pcre *)re)->size;
@@ -690,7 +692,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				/* This is a check against a lunatic return value. */
 				if (count > maxcount)
 				{
-					FREE(p);
+					FREE(back_p);
 					return TOO_BIG_FOR_OFFSET_SIZE;
 				}
 
@@ -759,14 +761,14 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				{
 					if (gmatched == 0) 
 					{
-						FREE(p);
+						if (p) FREE(back_p);
 						return NO_MATCH;
 					}
 				}
 
 				if (count == PCRE_ERROR_MATCHLIMIT )
 				{
-					FREE(p);
+					FREE(back_p);
 					return MATCH_LIMIT;
 				}
 				break;  /* Out of loop */
@@ -803,7 +805,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
     continue;
     }    /* End of loop for data lines */
-	FREE(p);
+	FREE(back_p);
   }
 	
 	FREE(buffer);
