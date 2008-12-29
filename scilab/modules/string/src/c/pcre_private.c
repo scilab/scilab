@@ -715,7 +715,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 							(*pcre_free)((void *)tables);
 							setlocale(LC_CTYPE, "C");
 						}
-						FREE(p);
 						return PCRE_FINISHED_OK;
 					}
 				}
