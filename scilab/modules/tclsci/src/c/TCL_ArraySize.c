@@ -10,11 +10,6 @@
  *
  */
 
-/* Workaround for Tcl 8.6.
- * See bug #3877
- */
-#define USE_INTERP_RESULT
-
 #include <stdio.h>
 #include <string.h>
 #include "TCL_ArraySize.h"
@@ -35,7 +30,7 @@ int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,_("Tcl Error: %s\n"),TCLinterpreter->result);
+			Scierror(999,_("Tcl Error: %s\n"),Tcl_GetStringResult(TCLinterpreter));
 			return 0;
 		}
 
