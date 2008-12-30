@@ -290,21 +290,25 @@ recursiveExpression				{
 						  $$ = new ast::SeqExp(@$, *$1);
 						}
 | recursiveExpression expression		{
+						  $2->set_verbose(true);
 						  $1->push_back($2);
 						  $$ = new ast::SeqExp(@$, *$1);
 						}
 | recursiveExpression expression COMMENT	{
+						  $2->set_verbose(true);
 						  $1->push_back($2);
 						  $1->push_back(new ast::CommentExp(@3, $3));
 						  $$ = new ast::SeqExp(@$, *$1);
 						}
 | expression					{
 						  ast::exps_t *tmp = new ast::exps_t;
+						  $1->set_verbose(true);
 						  tmp->push_front($1);
 						  $$ = new ast::SeqExp(@$, *tmp);
 						}
 | expression COMMENT				{
 						  ast::exps_t *tmp = new ast::exps_t;
+						  $1->set_verbose(true);
 						  tmp->push_front(new ast::CommentExp(@2, $2));
 						  tmp->push_front($1);
 						  $$ = new ast::SeqExp(@$, *tmp);
@@ -317,18 +321,12 @@ recursiveExpression				{
 /* List of instructions. _MUST_BE_ left recursive Rule */
 recursiveExpression :
 recursiveExpression expression expressionLineBreak	{
-							  if ($3)
-							    {
-							      $2->mute();
-							    }
+							  $2->set_verbose($3);
 							  $1->push_back($2);
 							  $$ = $1;
 							}
 | recursiveExpression expression COMMENT expressionLineBreak {
-							  if ($4)
-							    {
-							      $2->mute();
-							    }
+							  $2->set_verbose($4);
 							  $1->push_back($2);
 							  $1->push_back(new ast::CommentExp(@3, $3));
 							  $$ = $1;
@@ -336,19 +334,13 @@ recursiveExpression expression expressionLineBreak	{
 | expression COMMENT expressionLineBreak		{
 							  ast::exps_t *tmp = new ast::exps_t;
 							  tmp->push_front(new ast::CommentExp(@2, $2));
-							  if ($3)
-							    {
-							      $1->mute();
-							    }
+							  $1->set_verbose($3);
 							  tmp->push_front($1);
 							  $$ = tmp;
 							}
 | expression expressionLineBreak			{
 							  ast::exps_t *tmp = new ast::exps_t;
-							  if ($2)
-							    {
-							      $1->mute();
-							    }
+							  $1->set_verbose($2);
 							  tmp->push_front($1);
 							  $$ = tmp;
 							}
@@ -359,11 +351,11 @@ recursiveExpression expression expressionLineBreak	{
 */
 /* Fake Rule : How can we be sure this is the end of an instruction. */
 expressionLineBreak :
-SEMI						{ $$ = true; }
-| COMMA						{ $$ = false; }
-| EOL						{ $$ = false; }
-| expressionLineBreak SEMI			{ $$ = true; }
-| expressionLineBreak COMMA			{ $$ = false; }
+SEMI						{ $$ = false; }
+| COMMA						{ $$ = true; }
+| EOL						{ $$ = true; }
+| expressionLineBreak SEMI			{ $$ = false; }
+| expressionLineBreak COMMA			{ $$ = true; }
 | expressionLineBreak EOL			{ $$ = $1; }
 ;
 
