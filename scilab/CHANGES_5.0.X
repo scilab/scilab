@@ -64,6 +64,8 @@ Bug fixes:
 
 * bug 3879 fixed - Under mandriva, the batik package is not called batik but batik-all.
 
+* bug 3880 fixed - Bug with p_margin and g_margin fixed.
+
 * bug 3886 fixed - strsubst with regular expression was working only on the first element of the vector.
 
                           Changes Scilab 5.0.2 -> 5.0.3
