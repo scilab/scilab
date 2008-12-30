@@ -69,8 +69,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			if (GetType(1) == sci_strings)
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				/* Bug 3089 */
-				path = UTFToLocale(cstk(l1));
+				path = cstk(l1);
 				needtofreepath = FALSE;
 
 				filespec=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_FILESPEC)+1));
@@ -107,8 +106,8 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 		break;
 	}
 
-	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX);
-	FilesList=findfiles(pathextented,filespec,&sizeListReturned);
+	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX); 
+	FilesList=findfiles(pathextented,UTFToLocale(filespec),&sizeListReturned);
 	if ( (filespec) && needtofreefilespec ) {FREE(filespec);filespec = NULL;}
 	if ( (path) && needtofreepath ) {FREE(path);path=NULL;}
 

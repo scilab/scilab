@@ -32,7 +32,7 @@ int C2F(sci_getlongpathname)(char *fname,unsigned long l)
 		int bOK=FALSE;
 		char *LongName=NULL;
 		char *ShortName=NULL;
-
+    
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
 		/* bug 3089 */
@@ -42,9 +42,10 @@ int C2F(sci_getlongpathname)(char *fname,unsigned long l)
 
 		if (LongName) 
 		{
-			m1 = (int)strlen(LongName);
+		    char *LongNameUTF=localeToUTF(LongName);
+			m1 = (int)strlen(LongNameUTF);
 			n1 = 1;
-			CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&m1,&n1,&LongName);
+			CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&m1,&n1,&LongNameUTF);
 		}
 		else 
 		{

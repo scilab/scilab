@@ -45,6 +45,17 @@ For more information, see SEP #2.
 
 * Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
 
+
+Internationalization:
+=====================
+
+* Almost all the i/o functions (isdir, mkdir, cd, chdir, mopen, fileinfo, 
+mclose, deletefile, findfiles, ls, listfiles, getshortpathname, 
+getlongpathname, removedir...) now handle file and directory names containing
+UTF-8 characters. This is the work of Yung-Jang Lee. Many thanks!
+(Unitary tests provided) 
+
+
 Bug fixes:
 ==========
 

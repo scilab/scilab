@@ -19,6 +19,7 @@
 #include "../../../io/includes/setenvc.h"
 #include "cluni0.h"
 #include "GetenvB.h"
+#include "charEncoding.h"
 
 static char *SCI_a[]  = {  "SCI/"   , "sci/"   , "$SCI"   , "SCI\\"    , "sci\\"   , (char *) 0 };
 static char *HOME_a[] = {  "HOME/"  , "home/"  , "~/"     , "HOME\\"   , "home\\"  , "~\\" , "$HOME" , (char *) 0};
@@ -37,7 +38,14 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 	int nc= PATH_MAX;
 	static char SCI[PATH_MAX],HOME[PATH_MAX],TMP[PATH_MAX];
 	static int k;
-	
+	char* in_nameL=NULL;
+    long int linL;
+	char in_nameTmp[PATH_MAX];
+	strncpy(in_nameTmp,in_name,lin);
+    in_nameTmp[lin]='\0';
+
+    in_nameL = UTFToLocale(in_nameTmp);
+	linL=(long)strlen(in_nameL);
 	if ( ( n==0 ) || (getUpdateEnvVar() == 1) )
 	{
 		GetenvB("SCI"   , SCI ,nc);
@@ -48,12 +56,12 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 	}
 	
 	/* in_name[lin]='\0';*/
-	if ( Cluni0(SCI,SCI_a,in_name,out_name,lin) == 0 )
-		if ( Cluni0(HOME,HOME_a,in_name,out_name,lin) == 0 )
-			if ( Cluni0(TMP,TMP_a,in_name,out_name,lin) == 0 )
+	if ( Cluni0(SCI,SCI_a,in_nameL,out_name,linL) == 0 )
+		if ( Cluni0(HOME,HOME_a,in_nameL,out_name,linL) == 0 )
+			if ( Cluni0(TMP,TMP_a,in_nameL,out_name,linL) == 0 )
 			{
-				strncpy(out_name,in_name,(size_t)lin);
-				out_name[lin]='\0';
+				strncpy(out_name,in_nameL,(size_t)linL);
+				out_name[linL]='\0';
 			}
 	
 	*out_n = (int)strlen(out_name);
