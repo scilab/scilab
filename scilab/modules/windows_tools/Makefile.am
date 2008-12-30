@@ -45,7 +45,9 @@ libsciwindows_tools_la_include_HEADERS = includes/gw_windows_tools.h \
 includes/ConvertSlash.h \
 includes/InitializeWindows_tools.h \
 includes/strdup_windows.h \
-includes/TerminateWindows_tools.h
+includes/TerminateWindows_tools.h \
+includes/FocusOnConsole.h \
+includes/MutexClosingScilab.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

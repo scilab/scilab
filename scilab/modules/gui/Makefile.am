@@ -348,7 +348,8 @@ includes/sci_exportUI.h \
 includes/exportUserInterface.hxx \
 includes/CallJuigetfile.hxx \
 src/jni/Juigetfile.hxx \
-includes/sci_uigetfile.h 
+includes/sci_uigetfile.h \
+includes/CallJuigetfile.h
 
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
