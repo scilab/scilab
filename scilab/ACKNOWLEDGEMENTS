@@ -10,6 +10,10 @@ Scilab a better software.
 * Vorona Aleksey
 	- Russian localization
 
+* Jonathan Blanchard
+	- Misc patches for Solaris
+	- Testing of Scilab under Solaris
+
 * Yann Collette
 	- Genetic algorithm
 	- Generic probabilistic meta-algorithm
