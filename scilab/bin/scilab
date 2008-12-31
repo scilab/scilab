@@ -528,7 +528,7 @@ do_lib()
 rest="no"
 case $# in
     0) # No arg, run Scilab
-		do_scilex &
+		do_scilex
         ;;
     2) # Only two arg
         case $1 in

@@ -21,6 +21,9 @@ Enhancement:
 
 * Binaries version now embed jre 1.6.0_11
 
+* Under Linux/Unix, do not launch Scilab in background when called without 
+  argument
+
 Bug fixes:
 ==========
 
