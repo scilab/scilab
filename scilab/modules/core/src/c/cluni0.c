@@ -43,9 +43,13 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 	char in_nameTmp[PATH_MAX];
 	strncpy(in_nameTmp,in_name,lin);
     in_nameTmp[lin]='\0';
-
+	/* To convert to UTF-8 */
     in_nameL = UTFToLocale(in_nameTmp);
+	/* Get the new size of the converted string */
 	linL=(long)strlen(in_nameL);
+	/* Copy it back into the in_nameTmp variable */
+	strncpy(in_nameTmp,in_nameL,linL);
+    in_nameL=in_nameTmp;
 	if ( ( n==0 ) || (getUpdateEnvVar() == 1) )
 	{
 		GetenvB("SCI"   , SCI ,nc);
