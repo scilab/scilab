@@ -179,7 +179,7 @@ namespace ast
 			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
 			{
 				(*i)->accept (*execVar);
-				std::cout << execVar->result_get()->toString(10,75) << std::endl;
+				//std::cout << execVar->result_get()->toString(10,75) << std::endl;
 				in.push_back(execVar->result_get());
 			}
 

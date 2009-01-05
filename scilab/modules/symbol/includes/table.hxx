@@ -13,10 +13,11 @@
 #ifndef SYMBOL_TABLE_HH
 # define SYMBOL_TABLE_HH
 
-# include <iostream>
-# include <list>
-# include "symbol.hxx"
-# include "scope.hxx"
+#include <iostream>
+#include <list>
+#include "symbol.hxx"
+#include "scope.hxx"
+#include "export_symbol.h"
 
 namespace symbol
 {
@@ -28,7 +29,7 @@ namespace symbol
 	| removed when the scope is closed.  Lookup of symbols is donne in the   |
 	| last added dictionnary first (LIFO).                                   |
 	`-----------------------------------------------------------------------*/
-	class Table
+	class EXTERN_SYMBOL Table
 	{
 	public:
 

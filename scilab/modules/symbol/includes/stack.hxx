@@ -18,6 +18,7 @@
 # include <map>
 # include <cassert>
 # include "table.hxx"
+#include "export_symbol.h"
 
 namespace symbol
 {
@@ -29,7 +30,7 @@ namespace symbol
 | removed when the scope is closed.  Lookup of symbols is donne in the   |
 | last added dictionnary first (LIFO).                                   |
 `-----------------------------------------------------------------------*/
-  class Stack : public Table
+  class EXTERN_SYMBOL Stack : public Table
   {
   public:
     /** Open a new scope */

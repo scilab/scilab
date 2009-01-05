@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <assert.h>
+#include "export_symbol.h"
 #include "symbol.hxx"
 
 #define __MAX_CLONE_NUMBER__	1000000
@@ -55,6 +56,7 @@ static int symbol_test()
   /* foo, Foo, bar, scicos, clone */
   assert(Symbol::map_size() == 5);
 
+
   std::cout << "Symbol Overview :" << std::endl;
   std::cout << "-----------------" <<  std::endl;
   std::cout << "Size : " << Symbol::map_size() << std::endl;
@@ -67,7 +69,7 @@ static int symbol_test()
   std::cout << scicos << std::endl;
   std::cout << **(clone.begin()) << std::endl;
   std::cout << "----------------" << std::endl;
-  return 0;
+	return 0;
 }
 
 int main(void) {
