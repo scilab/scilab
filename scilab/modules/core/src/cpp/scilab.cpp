@@ -147,7 +147,7 @@ extern "C"
 **
 ** Parse the given file and create the AST.
 */
-static int parseFileTask(void)
+static Parser::ParserStatus parseFileTask(void)
 {
 #ifdef DEBUG
   std::cerr << "*** Processing " << file_name << " file..." << std::endl;
@@ -167,7 +167,7 @@ static int parseFileTask(void)
 **
 ** Parse the given command and create the AST.
 */
-static int parseCommandTask(char *command)
+static Parser::ParserStatus parseCommandTask(char *command)
 {
 #ifdef DEBUG
   std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
@@ -262,7 +262,12 @@ static int batchMain (void)
   /*
   ** -*- PARSING -*-
   */
-  parseFileTask();
+  Parser::ParserStatus parseResult = parseFileTask();
+
+  if (parseResult != Parser::Succeded)
+    {
+      return PARSE_ERROR;
+    }
 
   /*
   ** -*- DUMPING TREE -*-
@@ -296,6 +301,7 @@ static int batchMain (void)
 */
 static int interactiveMain (void)
 {
+  Parser::ParserStatus parseResult;
   bool exit = false;
 
   std::cout << "-*- Yet Another Scilab Project -*-" << std::endl;
@@ -305,7 +311,6 @@ static int interactiveMain (void)
   while (!exit)
     {
       /* Display prompt */
-      file_name = "prompt";
       std::cout << std::endl;
       std::cout << "YaSp --> ";
       char *command = TermReadAndProcess();
@@ -316,35 +321,40 @@ static int interactiveMain (void)
 	  exit = true;
 	}
 
-      /*
-      ** -*- PARSING -*-
-      */
-      parseCommandTask(command);
+      if (strcmp(command, "") != 0)
+	{
+	  /*
+	  ** -*- PARSING -*-
+	  */
+	  parseResult = parseCommandTask(command);
 
-      /*
-      ** -*- DUMPING TREE -*-
-      */
-      if (dumpAst == true) { dumpAstTask(); }
+	  if (parseResult == Parser::Succeded)
+	    {
+	      /*
+	      ** -*- DUMPING TREE -*-
+	      */
+	      if (dumpAst == true) { dumpAstTask(); }
 
-      /*
-      ** -*- PRETTY PRINT TREE -*-
-      */
-      if (printAst == true) { printAstTask(); }
+	      /*
+	      ** -*- PRETTY PRINT TREE -*-
+	      */
+	      if (printAst == true) { printAstTask(); }
 
-      /*
-      ** -*- EXECUTING TREE -*-
-      */
-      if (execAst == true) { execAstTask(); }
+	      /*
+	      ** -*- EXECUTING TREE -*-
+	      */
+	      if (execAst == true) { execAstTask(); }
 
-      /*
-      ** -*- DUMPING STACK AFTER EXECUTION -*-
-      */
-      if (dumpStack == true) { dumpStackTask(); }
-
+	      /*
+	      ** -*- DUMPING STACK AFTER EXECUTION -*-
+	      */
+	      if (dumpStack == true) { dumpStackTask(); }
+	    }
+	}
+    }
 #ifdef DEBUG
       std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
-    }
   return WELL_DONE;
 }
 
