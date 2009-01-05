@@ -16,7 +16,9 @@
 
 void Parser::PrintError(std::string msg) {
  int i = 0;
- std::ifstream file(Parser::getInstance()->getFileName()->c_str());
+
+ // std::ifstream file(Parser::getInstance()->getFileName()->c_str());
+
  std::string codeLine;
 
  std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
@@ -26,7 +28,9 @@ void Parser::PrintError(std::string msg) {
    yylloc.last_line << "." << yylloc.last_column <<
    " : "<< msg << std::endl;
 
- while(!file.eof() && i < yylloc.first_line)
+
+ /*
+   while(!file.eof() && i < yylloc.first_line)
    {
      getline(file, codeLine);
      ++i;
@@ -39,4 +43,5 @@ void Parser::PrintError(std::string msg) {
    std::cerr << " ";
  }
  std::cerr << "^" << std::endl;
+ */
 }
