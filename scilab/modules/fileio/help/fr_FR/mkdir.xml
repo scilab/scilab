@@ -1,41 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mkdir">
+<?xml version="1.0" encoding="windows-1251"?>
+<refentry version="5.0-subset Scilab" xml:id="mkdir" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>mkdir</refname>
-    <refpurpose>Crée un nouveau   répertoire</refpurpose>
+
+    <refpurpose>Cr&#233;e un nouveau r&#233;pertoire</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>S&#233;quence d'appel</title>
+
     <synopsis>mkdir('dirname')
 mkdir('parentdir','newdir')
 status=mkdir( ... )
 [status,msg]=mkdir( ... )</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para>
-			mkdir('dirname') crée le repertoire <literal>dirname</literal>. Si dirname
-			représente représente un chemin relatif, le répertoire dirname est créé
-			dans le répertoire courant.
-		</para>
-    <para>
-			mkdir('parentdir','dirname') crée le répertoire <literal>dirname</literal> dans le
-			répertoire existant <literal>parentdir</literal>, ou <literal>parentdir</literal> est un chemin relatif ou
-			absolu.
-		</para>
-    <para>
-			[status,message] = mkdir(...,'dirname') crée le répertoire <literal>dirname</literal> dans
-			le répertoire existant <literal>parentdir</literal>, retourne le status, et un message. Ici,
-			<literal>status</literal> vaut 1 si tout c'est bien passé, 2 si le repertoire existe déjà, 0
-			dans un autre cas.
-		</para>
+
+    <para>mkdir('dirname') cr&#233;e le repertoire <literal>dirname</literal>.
+    Si dirname repr&#233;sente repr&#233;sente un chemin relatif, le
+    r&#233;pertoire dirname est cr&#233;&#233; dans le r&#233;pertoire
+    courant.</para>
+
+    <para>mkdir('parentdir','dirname') cr&#233;e le r&#233;pertoire
+    <literal>dirname</literal> dans le r&#233;pertoire existant
+    <literal>parentdir</literal>, ou <literal>parentdir</literal> est un
+    chemin relatif ou absolu.</para>
+
+    <para>[status,message] = mkdir(...,'dirname') cr&#233;e le r&#233;pertoire
+    <literal>dirname</literal> dans le r&#233;pertoire existant
+    <literal>parentdir</literal>, retourne le status, et un message. Ici,
+    <literal>status</literal> vaut 1 si tout c'est bien pass&#233;, 2 si le
+    repertoire existe d&#233;j&#224;, -2 si c'est un nom de fichiers, 0 dans
+    un autre cas.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 		// Chemin absolu
 		mkdir(TMPDIR+"/mkdir_example_1")
 		status_2 = mkdir(TMPDIR+"/mkdir_example_2")
@@ -48,24 +62,24 @@ status=mkdir( ... )
 		cd TMPDIR;
 		[status_5,msg_5] = mkdir("mkdir_example_5")
 		[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
-	]]></programlisting>
+	</programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="cd">cd</link>
-      </member>
-      <member>
-        <link linkend="dir">dir</link>
-      </member>
-      <member>
-        <link linkend="rmdir">rmdir</link>
-      </member>
+      <member><link linkend="cd">cd</link></member>
+
+      <member><link linkend="dir">dir</link></member>
+
+      <member><link linkend="rmdir">rmdir</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Auteurs</title>
+
     <simplelist type="vert">
       <member>A.C, P.M</member>
     </simplelist>
