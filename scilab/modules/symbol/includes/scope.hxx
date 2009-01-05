@@ -18,6 +18,7 @@
 #include <map>
 #include "symbol.hxx"
 #include "alltypes.hxx"
+#include "export_symbol.h"
 
 using namespace types;
 
@@ -25,7 +26,7 @@ namespace symbol
 {
 
 	//template< class Entry_T, class Key_T = Symbol >
-	class Scope
+	class EXTERN_SYMBOL Scope
 	{
 	public:
 		/** Constructor & Destructor */

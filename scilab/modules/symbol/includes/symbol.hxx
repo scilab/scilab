@@ -22,6 +22,7 @@
 #include <list>
 #include <string>
 #include <iostream>
+#include "export_symbol.h"
 
 namespace symbol
 {
@@ -32,7 +33,7 @@ namespace symbol
    ** This allows to avoid an "strcmp()" style comparison of strings:
    ** reference comparison is much faster.
    */
-  class Symbol
+  class EXTERN_SYMBOL Symbol
   {
     /** \brief Define the type "set of string". */
     typedef std::set < std::string > string_set_type;
@@ -84,12 +85,10 @@ namespace symbol
    ** \param ostr the destination output stream
    ** \param the a reference to the symbol to redirect
    */
-  std::ostream& operator<< (std::ostream &ostr, const Symbol &the);
+  EXTERN_SYMBOL std::ostream& operator<< (std::ostream &ostr, const Symbol &the);
 
   /** Typedef for the list of Symbol */
   typedef std::list<const Symbol*> symbols_t;
 }
-
-# include "symbol.hxx"
 
 #endif // !SYMBOL_HH

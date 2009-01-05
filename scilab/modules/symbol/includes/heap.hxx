@@ -13,9 +13,10 @@
 #ifndef SYMBOL_HEAP_HH
 # define SYMBOL_HEAP_HH
 
-# include <iostream>
-# include <list>
-# include "table.hxx"
+#include <iostream>
+#include <list>
+#include "symbol.hxx"
+#include "table.hxx"
 
 #define UNNAMED "unnamed"
 
@@ -29,7 +30,7 @@ namespace symbol
 | removed when the scope is closed.  Lookup of symbols is donne in the   |
 | last added dictionnary first (LIFO).                                   |
 `-----------------------------------------------------------------------*/
-  class Heap : public Table
+  class EXTERN_SYMBOL Heap : public Table
   {
   public:
     /**
