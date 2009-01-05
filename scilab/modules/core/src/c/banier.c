@@ -36,7 +36,7 @@ void banner(void)
 
 	sciprint(_("                 Consortium Scilab (DIGITEO)\n"));
 
-	sciprint(_("               Copyright (c) 1989-2008 (INRIA)\n"));
+	sciprint(_("               Copyright (c) 1989-2009 (INRIA)\n"));
 	sciprint(_("               Copyright (c) 1989-2007 (ENPC)\n"));
 	sciprint("%s\n",line);
 
