@@ -119,7 +119,8 @@ scilab6_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
-	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
+	$(top_builddir)/modules/core/libscicore.la
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(bin_SCRIPTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -426,7 +427,8 @@ $(top_builddir)/modules/symbol/libscisymbol.la \
 $(top_builddir)/modules/parse/libsciparse.la \
 $(top_builddir)/modules/types/libscitypes.la \
 $(top_builddir)/modules/system_env/libscisystem_env.la \
-$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
+$(top_builddir)/modules/core/libscicore.la
 
 LANG_DOMAIN = scilab
 TARGETS_ALL = macros $(am__append_2)

@@ -12,6 +12,7 @@
 
 #include <fstream>
 #include <string>
+#include <string.h>
 #include "parser.hxx"
 
 extern FILE*	yyin;
@@ -31,6 +32,7 @@ Parser* Parser::getInstance(void)
 void Parser::parseFile(const std::string& fileName, const std::string& progName)
 {
   yyin = fopen(fileName.c_str (), "r");
+
   if (!yyin)
     {
       std::cerr << "*** Error -> cannot open `" << fileName << "`" << std::endl;
@@ -38,6 +40,20 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
     }
   Parser::getInstance()->setFileName(fileName);
   Parser::getInstance()->setProgName(progName);
+
+
+  yyparse();
+  fclose(yyin);
+}
+
+/** \brief parse the given file command */
+void Parser::parse(char *command)
+{
+  yyin = fmemopen(command, strlen(command), "r");
+
+  Parser::getInstance()->setFileName("prompt");
+  Parser::getInstance()->setProgName("prompt");
+
   yyparse();
   fclose(yyin);
 }

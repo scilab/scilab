@@ -22,7 +22,7 @@ bin_SCRIPTS			= bin/scilab
 scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
 scilab_bin_LDFLAGS 		=
-scilab_bin_CFLAGS 		= 
+scilab_bin_CFLAGS 		=
 
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -70,7 +70,9 @@ $(top_builddir)/modules/symbol/libscisymbol.la \
 $(top_builddir)/modules/parse/libsciparse.la \
 $(top_builddir)/modules/types/libscitypes.la \
 $(top_builddir)/modules/system_env/libscisystem_env.la \
-$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
+$(top_builddir)/modules/core/libscicore.la
+
 
 
 LANG_DOMAIN=scilab

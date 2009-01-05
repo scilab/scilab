@@ -95,7 +95,7 @@ start_profiling() {
 
 start_profiling_visu() {
 	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes"
-#--dump-instr=yes 
+#--dump-instr=yes
 	if test -n "$DEVENV"; then
 		echo "Running profiling visualization of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
 		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
@@ -218,10 +218,10 @@ PATH="$SCI:$SCI/bin:$PATH"
 ###
 
 if test "${OS}" = ""; then
-        OS=`uname -s` # Retrieve the Operating System                                                                                                         
+        OS=`uname -s` # Retrieve the Operating System
 fi
 if test "${MODEL}" = ""; then
-        MODEL=`uname -m` # Retrieve the model                                                                                                                 
+        MODEL=`uname -m` # Retrieve the model
 fi
 
 # Get the proc name matching to the one of the JVM
@@ -340,7 +340,7 @@ case $OS in
 		    "ppc")
 				proc="ppc"
 				;;
-			"alpha")  
+			"alpha")
 				proc="alpha"
 				;;
 			*)
@@ -374,7 +374,7 @@ case $OS in
 		JAVA_SHLIB="jvm.dll"
 		;;
     *darwin* | *Darwin*) # MacOS X
-	# For Mac OS X, Since path are different from the JVM normal tree, don't need to detect 
+	# For Mac OS X, Since path are different from the JVM normal tree, don't need to detect
 	# the CPU
 	;;
 	*)
@@ -391,7 +391,7 @@ esac
 		fi
 	else
             CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
-		# @TODO This is the default path of the official sun JVM. 
+		# @TODO This is the default path of the official sun JVM.
 		# It is different for other implementation of the JVM....
 		    LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
 	fi
@@ -405,7 +405,7 @@ fi
 
 # See http://bugzilla.scilab.org/show_bug.cgi?id=3486
 # Some Java stuff raises spurious SIGSEGV. The problem is that when bug-buddy
-# is enabled, it catches the signal and terminate Scilab. We have to 
+# is enabled, it catches the signal and terminate Scilab. We have to
 # desactivate bug-buddy.
 # See also https://bugzilla.novell.com/show_bug.cgi?id=331618
 # and: http://bugzilla.gnome.org/show_bug.cgi?id=479929
@@ -529,7 +529,7 @@ do_lib()
 rest="no"
 case $# in
     0) # No arg, run Scilab
-		do_scilex &
+		do_scilex
         ;;
     2) # Only two arg
         case $1 in
@@ -595,9 +595,9 @@ if test "$rest" = "yes"; then
     fi
 
     case $sciarg in
-      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni|--debug|--context-dump|--display-tree|--parse-trace|--timed|--help)
+      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni|--debug|--context-dump|--display-tree|--parse-trace|--timed|--exec|--help)
 	      ;;
-      -display|-f|-l|-e|-d|-args|--exec|-mem)
+      -display|-f|-l|-e|-d|-args|-mem)
 	      prevarg=1
 	      ;;
       -debug)
