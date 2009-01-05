@@ -1292,5 +1292,5 @@ EOL
 %%
 void yyerror(std::string msg) {
   Parser::PrintError(msg);
-  exit(PARSE_ERROR);
+  Parser::getInstance()->setExitStatus(Parser::Failed);
 }
