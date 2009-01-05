@@ -31,6 +31,8 @@ Parser* Parser::getInstance(void)
 /** \brief parse the given file name */
 void Parser::parseFile(const std::string& fileName, const std::string& progName)
 {
+  yylloc.first_line = yylloc.last_line = 1;
+  yylloc.first_column = yylloc.last_column = 1;
   yyin = fopen(fileName.c_str (), "r");
 
   if (!yyin)
@@ -41,7 +43,7 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
   Parser::getInstance()->setFileName(fileName);
   Parser::getInstance()->setProgName(progName);
 
-
+  Parser::getInstance()->setExitStatus(Succeded);
   yyparse();
   fclose(yyin);
 }
@@ -49,11 +51,14 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
 /** \brief parse the given file command */
 void Parser::parse(char *command)
 {
+  yylloc.first_line = yylloc.last_line = 1;
+  yylloc.first_column = yylloc.last_column = 1;
   yyin = fmemopen(command, strlen(command), "r");
 
   Parser::getInstance()->setFileName("prompt");
   Parser::getInstance()->setProgName("prompt");
 
+  Parser::getInstance()->setExitStatus(Succeded);
   yyparse();
   fclose(yyin);
 }

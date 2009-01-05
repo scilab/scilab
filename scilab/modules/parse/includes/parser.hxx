@@ -22,11 +22,17 @@
 class Parser
 {
 private:
-  Parser() { _exit_status = 0; }
+  Parser() { _exit_status = Succeded; }
   ~Parser()
   {
     delete _the_program;
   }
+
+public:
+  enum ParserStatus {
+    Succeded ,
+    Failed
+  };
 
 public:
   static Parser* getInstance(void);
@@ -35,6 +41,9 @@ public:
 
   /** \brief parse the given file name */
   void parseFile(const std::string& name, const std::string& progName);
+
+  /** \brief parse the given file command */
+  void parse(char *command);
 
   /** \brief enable Bison trace mode */
   void enableParseTrace(void);
@@ -47,14 +56,15 @@ public:
   const std::string* getFileName(void) { return _file_name; }
   void setFileName(const std::string& fileName) { _file_name = &fileName; }
 
-  const std::string* getProgName(void) { return _prog_name; }
+  //const std::string* getProgName(void) { return _prog_name; }
+  const std::string* getProgName(void) { return new std::string("Scilab6"); }
   void setProgName(const std::string& progName) { _prog_name = &progName; }
 
   ast::Exp* getTree(void) { return _the_program; }
   void setTree(ast::Exp* theProgram) { _the_program = theProgram; }
 
-  int	getExitStatus(void) { return _exit_status; }
-  void	setExitStatus(int exit_status) { _exit_status = exit_status; }
+  ParserStatus	getExitStatus(void) { return _exit_status; }
+  void	setExitStatus(ParserStatus exit_status) { _exit_status = exit_status; }
   /** \} */
 
   static void PrintError(std::string msg);
@@ -64,7 +74,7 @@ private :
   const std::string* _file_name;
   const std::string* _prog_name;
   ast::Exp* _the_program;
-  int _exit_status;
+  ParserStatus _exit_status;
 };
 
 #endif /* !_PARSER_HH_ */
