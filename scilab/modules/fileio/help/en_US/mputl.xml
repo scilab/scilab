@@ -29,7 +29,7 @@
       <varlistentry>
         <term>file_desc</term>
         <listitem>
-          <para>:a character string giving the file name or a logical unit returned by mopen. If omitted lines are written in the last file opened by mopen.</para>
+          <para>A character string giving the name of the file or a logical unit returned by mopen. If omitted, lines are written in the last file opened by mopen.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

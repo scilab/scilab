@@ -19,7 +19,8 @@ src/c/TCL_ArrayExist.c \
 src/c/TCL_ArrayGetVar.c \
 src/c/TCL_ArraySize.c \
 src/c/TCL_Command.c \
-src/c/GlobalTclInterp.c
+src/c/GlobalTclInterp.c \
+src/c/TCL_getErrorLine.c
 
 GATEWAY_C_SOURCES =  sci_gateway/c/sci_opentk.c \
 sci_gateway/c/sci_TCL_SetVar.c \

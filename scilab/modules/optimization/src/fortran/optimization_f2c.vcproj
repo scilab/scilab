@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="optimization_f2c"
 	ProjectGUID="{1D219098-007C-4F76-9AE6-271ABBB7D393}"
 	RootNamespace="optimization_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -125,94 +125,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
-			CharacterSet="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="f2c rule"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TargetEnvironment="3"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_F2C_EXPORTS;FORDLL"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="0"
-				RuntimeLibrary="3"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				Description="Build optimization_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n optimization_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def optimization_f.def &gt;nul&#x0D;&#x0A;copy optimization_f.def ..\optimization_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy optimization_f_header.def+optimization_f.vcdef optimization_f.def &gt;nul&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib optimization.lib"
-				OutputFile="$(SolutionDir)bin\optimization_f.dll"
-				LinkIncremental="2"
-				ModuleDefinitionFile="optimization_f.def"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				TargetMachine="17"
-				CLRUnmanagedCodeCheck="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
@@ -277,6 +189,94 @@
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Build Dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)optimization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)optimization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="f2c rule"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../../../libs/f2c"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_F2C_EXPORTS;FORDLL"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="0"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				Description="Build optimization_f.def"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n optimization_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def optimization_f.def &gt;nul&#x0D;&#x0A;copy optimization_f.def ..\optimization_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy optimization_f_header.def+optimization_f.vcdef optimization_f.def &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="Libscilab.lib optimization.lib"
+				OutputFile="$(SolutionDir)bin\optimization_f.dll"
+				LinkIncremental="2"
+				ModuleDefinitionFile="optimization_f.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -453,7 +453,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dogleg.c"
+				RelativePath=".\minpack\dogleg.c"
 				>
 			</File>
 			<File
@@ -465,7 +465,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\enorm.c"
+				RelativePath=".\minpack\enorm.c"
 				>
 			</File>
 			<File
@@ -493,11 +493,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac1.c"
+				RelativePath=".\minpack\fdjac1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac2.c"
+				RelativePath=".\minpack\fdjac2.c"
 				>
 			</File>
 			<File
@@ -573,19 +573,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd.c"
+				RelativePath=".\minpack\hybrd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd1.c"
+				RelativePath=".\minpack\hybrd1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj.c"
+				RelativePath=".\minpack\hybrj.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj1.c"
+				RelativePath=".\minpack\hybrj1.c"
 				>
 			</File>
 			<File
@@ -621,15 +621,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lmder.c"
+				RelativePath=".\minpack\lmder.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lmdif.c"
+				RelativePath=".\minpack\lmdif.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lmpar.c"
+				RelativePath=".\minpack\lmpar.c"
 				>
 			</File>
 			<File
@@ -705,7 +705,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qform.c"
+				RelativePath=".\minpack\qform.c"
 				>
 			</File>
 			<File
@@ -725,19 +725,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qrfac.c"
+				RelativePath=".\minpack\qrfac.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qrsolv.c"
+				RelativePath=".\minpack\qrsolv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\r1mpyq.c"
+				RelativePath=".\minpack\r1mpyq.c"
 				>
 			</File>
 			<File
-				RelativePath=".\r1updt.c"
+				RelativePath=".\minpack\r1updt.c"
 				>
 			</File>
 			<File
