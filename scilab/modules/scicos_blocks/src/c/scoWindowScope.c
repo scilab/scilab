@@ -126,6 +126,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
           pSUBWIN_FEATURE(pTemp2)->WRect[1] = (double)i/scoGetNumberOfSubwin(pScopeMemory);
           pSUBWIN_FEATURE(pTemp2)->WRect[2] = 1;
           pSUBWIN_FEATURE(pTemp2)->WRect[3] = (double)1/scoGetNumberOfSubwin(pScopeMemory);
+					pSUBWIN_FEATURE(pTemp2)->axes.filled = FALSE;
           switch(dimension)
             {
             case 3:
@@ -167,7 +168,6 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
         }
 
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-      
       sciDrawObj(pTemp);
     }
   else

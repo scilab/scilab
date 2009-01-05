@@ -17,6 +17,7 @@ package org.scilab.modules.gui.graphicWindow;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.tab.Tab;
@@ -441,5 +442,15 @@ public class ScilabRendererProperties implements RendererProperties {
     public void setEventHandlerEnabled(boolean status) {
 	parentTab.setEventHandlerEnabled(status);
     }
+    
+    /**
+	 * Turn on or off single buffering
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 */
+	public void setSingleBuffered(boolean useSingleBuffer) {
+		if (parentCanvas != null) {
+			parentCanvas.setSingleBuffered(useSingleBuffer);
+		}
+	}
 
 }

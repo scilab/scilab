@@ -374,10 +374,7 @@ public class DrawableFigureGL extends ObjectGL {
   		double[] color = getBackgroundColor();
   		// not really needed actually
   		gl.glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
-  		if (!requestSingleBufferUse || !isDoubleBuffered()) {
-  			// don't clear color buffer in single buffer mode otherwise all will be cleared
-  			gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-  		}
+  		gl.glClear(GL.GL_COLOR_BUFFER_BIT);
   	}
   	
   	
@@ -724,6 +721,8 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setUseSingleBuffer(boolean useSingleBuffer) {
 		this.requestSingleBufferUse = useSingleBuffer;
+		// HACK for Scicos
+		getRendererProperties().setSingleBuffered(useSingleBuffer);
 	}
 	
 	/**
