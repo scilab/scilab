@@ -19,6 +19,7 @@
 #include "GlobalTclInterp.h"
 #include "TCL_Command.h"
 #include "FileExist.h"
+#include "TCL_getErrorLine.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_EvalFile(char *fname, unsigned long l)
 {
@@ -80,11 +81,11 @@ int sci_TCL_EvalFile(char *fname, unsigned long l)
 			  const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
 			  if (Err > 0)
 				  {
-					  sciprint(_("%s, at line %i of file %s\n	%s.\n"),fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
+					  sciprint(_("%s, at line %i of file %s\n	%s.\n"),fname,TCL_getErrorLine(TCLinterpreter),cstk(l1),(char *)trace);
 				  }
 			  else
 				  {
-					  Scierror(999,_("%s, at line %i of file %s\n	%s.\n"),fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
+					  Scierror(999,_("%s, at line %i of file %s\n	%s.\n"),fname,TCL_getErrorLine(TCLinterpreter),cstk(l1),(char *)trace);
 					  return 0;
 				  }
 		  }

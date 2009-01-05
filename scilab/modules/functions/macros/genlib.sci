@@ -107,7 +107,8 @@ function genlib(nam,path,force,verbose,names)
   else
     for i=1:size(files,'*')  // loop on .sci files
       scif      = files(i);
-      binf      = strsubst(names, "/\.sci$/",'.bin','r')
+      // binf      = strsubst(scif, "/\.sci$/",".bin","r"); // See bug 3891
+      binf      = part(scif,1:length(scif)-4)+".bin";
       binf_info = fileinfo(binf);
       recompile = %f;
       
