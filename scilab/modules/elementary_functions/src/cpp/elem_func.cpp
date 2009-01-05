@@ -41,7 +41,6 @@ Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, types::type
 	double *pDataOutR = NULL;
 	double *pDataOutI = NULL;
 	Double *pRetVal		= NULL;
-		
 
 	if(in.size() != 1)
 	{

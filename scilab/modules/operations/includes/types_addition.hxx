@@ -14,12 +14,13 @@
 #define __TYPES_ADD_H__
 
 #include "alltypes.hxx" 
+#include "operation.hxx"
 
 using namespace types;
 
-Double* AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2);
-MatrixPoly* AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
-MatrixPoly* AddPolyToPoly(MatrixPoly* pPoly1, MatrixPoly* _pPoly2);
-String* AddStringToString(String *_pString1, String *_pString2);
+EXTERN_OP Double* AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2);
+EXTERN_OP MatrixPoly* AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
+EXTERN_OP MatrixPoly* AddPolyToPoly(MatrixPoly* pPoly1, MatrixPoly* _pPoly2);
+EXTERN_OP String* AddStringToString(String *_pString1, String *_pString2);
 
 #endif /* __TYPES_ADD_H__ */

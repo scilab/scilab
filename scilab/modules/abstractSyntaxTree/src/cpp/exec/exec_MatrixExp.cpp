@@ -135,6 +135,10 @@ namespace ast
 				iCurRow++;
 			}
 			result_set(poResult);
+			if(e.is_verbose())
+			{
+				std::cout << poResult->toString(10,75);
+			}
 		}
 		catch(string sz)
 		{
@@ -268,7 +272,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			{
 /*
 				Double *pDbl = _poSource->getAsPoly()->poly_get(0)->coef_get();
-				pDbl->toString(10,100);
+				pDbl->toString(10,75;
 				_poDest->getAsPoly()->poly_set(iCurRow, iCurCol, _poSource->getAsPoly()->poly_get(0)->coef_get());
 */
 
@@ -277,6 +281,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 				{
 					poResult->getAsPoly()->complex_set(true);
 				}
+
 				Poly* pPolyOut	= poResult->getAsPoly()->poly_get(iCurRow, iCurCol);
 
 				pPolyOut->rank_set(pPolyIn->rank_get());

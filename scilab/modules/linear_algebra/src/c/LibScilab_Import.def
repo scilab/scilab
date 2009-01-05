@@ -27,10 +27,7 @@ createvar_
 checklhs_
 checkrhs_
 iAllocMatrixOfDouble
-vFreeDoubleComplexFromPointer
-vGetPointerFromDoubleComplex
 iAllocComplexMatrixOfDouble
-oGetDoubleComplexFromPointer
 iIsComplex
 GetVarDimension
 CheckVarUsed
@@ -40,9 +37,7 @@ callFunctionFromGateway
 iAllocComplexMatrixOfDouble
 GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
-vGetPointerFromDoubleComplex
 vfiniteComplex_
-oGetDoubleComplexFromPointer
 GetRhsVarMatrixComplex
 ;
 ;core_f

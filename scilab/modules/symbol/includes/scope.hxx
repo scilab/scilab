@@ -96,7 +96,7 @@ namespace symbol
 				{
 					Double *pdbl = (*it_scope).second->getAsDouble();
 					ostr << pdbl->DimToString() << std::endl;
-					ostr << pdbl->toString(18, 100);
+					ostr << pdbl->toString(10, 75);
 					ostr << std::endl;
 				}
 				else if((*it_scope).second->isInt())

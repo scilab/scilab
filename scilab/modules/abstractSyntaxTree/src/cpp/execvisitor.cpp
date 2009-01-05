@@ -73,6 +73,10 @@ namespace ast
 	{
 		String *psz = new String(e.value_get().c_str());
 		result_set(psz);
+		if(e.is_verbose())
+		{
+			std::cout <<  psz->toString(10,75);
+		}
 	}
 
 	void ExecVisitor::visit (const CommentExp &e)
@@ -100,6 +104,10 @@ namespace ast
 	{
 		Double *pdbl = new Double(e.value_get());
 		result_set(pdbl);
+		if(e.is_verbose())
+		{
+			std::cout <<  pdbl->toString(10,75);
+		}
 	}
 
 	void ExecVisitor::visit (const BoolExp  &e)
@@ -117,7 +125,8 @@ namespace ast
 
 	void ExecVisitor::visit (const SimpleVar &e)
 	{
-		result_set(symbol::Context::getInstance()->get(e.name_get()));
+		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
+		result_set(pI);
 	}
 
 	void ExecVisitor::visit (const ColonVar &e)
@@ -170,6 +179,7 @@ namespace ast
 			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
 			{
 				(*i)->accept (*execVar);
+				std::cout << execVar->result_get()->toString(10,75) << std::endl;
 				in.push_back(execVar->result_get());
 			}
 
@@ -212,7 +222,6 @@ namespace ast
 		else
 		{//result == NULL ,variable doesn't exist :(
 		}
-
 
 		delete execVar;
 		delete execFunc;

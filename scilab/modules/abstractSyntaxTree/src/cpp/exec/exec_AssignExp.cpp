@@ -306,7 +306,7 @@ namespace ast
 					}
 
 					//check if the size of In is compatible with the size of Out
-					if(pIn->rows_get() <= pOut->rows_get() && pIn->cols_get() <= pOut->cols_get() && 
+					if(pIn->rows_get() <= pOut->rows_get() && pIn->cols_get() <= pOut->cols_get() &&
 						(pIn->size_get() == 1 || pIn->size_get() == iTotalCombi))
 					{
 						//Copy values in pOut at indexed
@@ -430,6 +430,11 @@ namespace ast
 				}
 
 				symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pVar));
+				if(e.is_verbose())
+				{
+					std::cout << Var->name_get() << " = " << std::endl;
+					std::cout << pVar->toString(10,75) << std::endl;
+				}
 			}
 		}
 		catch(string sz)

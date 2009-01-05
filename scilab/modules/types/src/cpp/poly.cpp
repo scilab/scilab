@@ -59,7 +59,7 @@ namespace types
 		{
 			return;
 		}
-	
+
 		if(_pdblCoefI != NULL)
 		{
 			m_pdblCoef = new Double(1, _iRank, &pR, &pI);
@@ -96,7 +96,14 @@ namespace types
 			{
 				delete m_pdblCoef;
 
-				CreatePoly(&pR, &pI, _iRank);
+				if(m_bComplex == false)
+				{
+					CreatePoly(&pR, NULL, _iRank);
+				}
+				else
+				{
+					CreatePoly(&pR, &pI, _iRank);
+				}
 				return true;
 			}
 			return true;
@@ -182,7 +189,7 @@ namespace types
 		{
 			memcpy(pR, _pdblCoefR, m_iRank * sizeof(double));
 		}
-		
+
 		if(_pdblCoefI != NULL && pI != NULL)
 		{
 			memcpy(pI, _pdblCoefI, m_iRank * sizeof(double));
@@ -193,7 +200,7 @@ namespace types
 
 	void Poly::whoAmI()
 	{
-		std::cout << "types::Poly"; 
+		std::cout << "types::Poly";
 	}
 
 	bool Poly::isComplex()

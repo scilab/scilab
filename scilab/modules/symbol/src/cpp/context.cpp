@@ -16,7 +16,7 @@ namespace symbol
 {
 	Context* Context::me;
 
-	Context::Context() 
+	Context::Context()
 	{
 		PrivateFunTable.scope_begin();
 		PrivateVarTable.scope_begin();
