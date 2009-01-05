@@ -39,6 +39,8 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 		add(axes);
 		this.axes = axes;
 		addComponentListener(this);
+		// use the axes background as default one
+		setRealBackground(axes.getBackground());
 	}
 	
 	/**
@@ -62,7 +64,15 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	public void setBackground(double red, double green, double blue) {
 		Color newColor = new Color((float) red, (float) green, (float) blue);
 		// change the background of the underlying panel
-		getComponent(0).setBackground(newColor);
+		setRealBackground(newColor);
+	}
+	
+	/**
+	 * Set the displayed background of the scrollpane
+	 * @param background color to use as background
+	 */
+	private void setRealBackground(Color background) {
+		getComponent(0).setBackground(background);
 	}
 
 	/**
