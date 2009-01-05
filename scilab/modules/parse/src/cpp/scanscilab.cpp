@@ -2907,33 +2907,6 @@ void scan_error(std::string msg)
   exit(exit_status);
 }
 
-void scan_open (const std::string &name)
-{
-  if (name == "-")
-    {
-      yyin = stdin;
-      current_file = "standard input";
-    }
-  else
-    {
-      yyin = fopen (name.c_str (), "r");
-      current_file = name;
-      if (!yyin)
-	{
-	  std::cerr
-	    << program_name
-	    << ": cannot open `" << name << "': "
-	    << strerror (errno) << std::endl;
-	  exit (1);
-	}
-    }
-}
-
-void scan_close (void)
-{
-  fclose (yyin);
-}
-
 /*
 ** convert floating numbers to C standard
 ** 1.2d-3 -> 1.2e-3
