@@ -16,6 +16,7 @@
 #include "types_multiplication.hxx"
 #include "types_addition.hxx"
 #include "types_substraction.hxx"
+#include "types_divide.hxx"
 
 using std::string;
 
@@ -33,6 +34,7 @@ namespace ast
 		GenericType::RealType TypeL = execMeL.result_get()->getType();
 		GenericType::RealType TypeR = execMeR.result_get()->getType();
 
+		InternalType *pResult = NULL;
 		switch(e.oper_get())
 		{
 		case OpExp::plus :
@@ -41,7 +43,6 @@ namespace ast
 				{
 					Double *pL = execMeL.result_get()->getAsDouble();
 					Double *pR = execMeR.result_get()->getAsDouble();
-					Double *pResult = NULL;
 
 					pResult = AddDoubleToDouble(pL, pR);
 					if(pResult == NULL)
@@ -62,7 +63,6 @@ namespace ast
 				{
 					String *pL = execMeL.result_get()->getAsString();
 					String *pR = execMeR.result_get()->getAsString();
-					String *pResult = NULL;
 
 					pResult = AddStringToString(pL, pR);
 
@@ -87,7 +87,7 @@ namespace ast
 					Double *pL				= execMeL.result_get()->getAsDouble();
 					MatrixPoly *pR		= execMeR.result_get()->getAsPoly();
 
-					MatrixPoly *pResult = AddDoubleToPoly(pR, pL);
+					pResult = AddDoubleToPoly(pR, pL);
 					if(pResult == NULL)
 					{
 						std::ostringstream os;
@@ -103,7 +103,7 @@ namespace ast
 					Double *pR				= execMeR.result_get()->getAsDouble();
 					MatrixPoly *pL		= execMeL.result_get()->getAsPoly();
 
-					MatrixPoly *pResult = AddDoubleToPoly(pL, pR);
+					pResult = AddDoubleToPoly(pL, pR);
 					if(pResult == NULL)
 					{
 						std::ostringstream os;
@@ -121,7 +121,7 @@ namespace ast
 
 					if(pL->var_get() == pR->var_get())
 					{
-						MatrixPoly *pResult = AddPolyToPoly(pL, pR);
+						pResult = AddPolyToPoly(pL, pR);
 						if(pResult == NULL)
 						{
 							std::ostringstream os;
@@ -149,7 +149,6 @@ namespace ast
 				{
 					Double *pL = execMeL.result_get()->getAsDouble();
 					Double *pR = execMeR.result_get()->getAsDouble();
-					Double *pResult = NULL;
 
 					pResult = SubstractDoubleToDouble(pL, pR);
 					if(pResult == NULL)
@@ -166,7 +165,6 @@ namespace ast
 				{
 					Double *pL					= execMeL.result_get()->getAsDouble();
 					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
-					MatrixPoly *pResult = NULL;
 
 					pResult = SubstractPolyToDouble(pL, pR);
 					if(pResult == NULL)
@@ -183,7 +181,6 @@ namespace ast
 				{
 					MatrixPoly *pL			= execMeL.result_get()->getAsPoly();
 					Double *pR					= execMeR.result_get()->getAsDouble();
-					MatrixPoly *pResult = NULL;
 
 					pResult = SubstractDoubleToPoly(pL, pR);
 					if(pResult == NULL)
@@ -200,7 +197,6 @@ namespace ast
 				{
 					MatrixPoly *pL			= execMeL.result_get()->getAsPoly();
 					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
-					MatrixPoly *pResult = NULL;
 
 					pResult = SubstractPolyToPoly(pL, pR);
 					if(pResult == NULL)
@@ -234,10 +230,30 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Double *pResult = NULL;
 
-					pResult = MultiplyDoubleByDouble(pL, pR);
-					if(pResult == NULL)
+					int iRowResult 	= 0;
+					int iColResult	= 0;
+
+					if(pL->size_get() == 1)
+					{
+						iRowResult = pR->rows_get();
+						iColResult = pR->cols_get();
+					}
+					else if (pR->size_get() == 1)
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pL->cols_get();
+					}
+					else if(pL->cols_get() == pR->rows_get())
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pR->cols_get();
+					}
+
+					pResult = new Double(iRowResult, iColResult, pL->isComplex() || pR->isComplex());
+
+					int iResult = MultiplyDoubleByDouble(pL, pR, pResult->getAsDouble());
+					if(iResult)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -252,11 +268,53 @@ namespace ast
 				{
 					Double *pL			    = execMeL.result_get()->getAsDouble();
 					MatrixPoly *pR	    = execMeR.result_get()->getAsPoly();
-					MatrixPoly *pResult = NULL;
 
-					pResult = MultiplyDoubleByPoly(pL, pR);
+					int iRowResult 	= 0;
+					int iColResult	= 0;
+					int *piRank			= NULL;
+					if(pL->size_get() == 1)
+					{
+						iRowResult = pR->rows_get();
+						iColResult = pR->cols_get();
 
-					if(pResult == NULL)
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pR->poly_get(i)->rank_get();
+						}
+					}
+					else if (pR->size_get() == 1)
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pL->cols_get();
+
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pR->poly_get(0)->rank_get();
+						}
+					}
+					else if(pL->cols_get() == pR->rows_get())
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pR->cols_get();
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pR->rank_max_get();
+						}
+					}
+
+					pResult = new MatrixPoly(pR->var_get(), iRowResult, iColResult, piRank);
+					delete piRank;
+					if(pL->isComplex() || pR->isComplex())
+					{
+						pResult->getAsPoly()->complex_set(true);
+					}
+
+					int iResult = MultiplyDoubleByPoly(pL, pR, pResult->getAsPoly());
+
+					if(iResult)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -271,11 +329,52 @@ namespace ast
 				{
 					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
 					Double *pR			    = execMeR.result_get()->getAsDouble();
-					MatrixPoly *pResult = NULL;
+					int iRowResult 	= 0;
+					int iColResult	= 0;
+					int *piRank			= NULL;
+					if(pL->size_get() == 1)
+					{
+						iRowResult = pR->rows_get();
+						iColResult = pR->cols_get();
 
-					pResult = MultiplyPolyByDouble(pL, pR);
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pL->poly_get(0)->rank_get();
+						}
+					}
+					else if (pR->size_get() == 1)
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pL->cols_get();
 
-					if(pResult == NULL)
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pL->poly_get(i)->rank_get();
+						}
+					}
+					else if(pL->cols_get() == pR->rows_get())
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pR->cols_get();
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pL->rank_max_get();
+						}
+					}
+
+					pResult = new MatrixPoly(pL->var_get(), iRowResult, iColResult, piRank);
+					delete piRank;
+					if(pL->isComplex() || pR->isComplex())
+					{
+						pResult->getAsPoly()->complex_set(true);
+					}
+
+					int iResult = MultiplyPolyByDouble(pL, pR, pResult->getAsPoly());
+
+					if(iResult)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -294,9 +393,39 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Double *pResult = NULL;
+					int iRowResult 	= 0;
+					int iColResult	= 0;
+
+					if(pL->size_get() == 0 || pR->size_get() == 0)
+					{//return empty matrix of double
+					}
+					else if(pL->size_get() == 1)
+					{
+						std::cout << "pL->size_get() == 1" << std::endl;
+						iRowResult = pR->rows_get();
+						iColResult = pR->cols_get();
+					}
+					else if (pR->size_get() == 1)
+					{
+						std::cout << "pR->size_get() == 1" << std::endl;
+						iRowResult = pL->rows_get();
+						iColResult = pL->cols_get();
+					}
+					else if(pL->cols_get() == pR->cols_get())
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pR->rows_get();
+					}
+
+					pResult = new Double(iRowResult, iColResult, pL->isComplex() || pR->isComplex());
 
 
+					int iResult = DivideDoubleByDouble(pL, pR, pResult->getAsDouble());
+					if(iResult)
+					{//manage errors
+					}
+
+/*
 					if(pR->size_get() == 1)
 					{
 						double *pReal			= NULL;
@@ -317,7 +446,7 @@ namespace ast
 
 						if(pL->isComplex() == false && pR->isComplex() == false)
 						{
-							pResult->complex_set(false);
+							pResult->getAsDouble()->complex_set(false);
 						}
 					}
 					else if(pR->size_get() == 1)
@@ -340,13 +469,13 @@ namespace ast
 
 						if(pL->isComplex() == false && pR->isComplex() == false)
 						{
-							pResult->complex_set(false);
+							pResult->getAsDouble()->complex_set(false);
 						}
 					}
 					else
 					{//matrix * matrix call atlas :(
 					}
-					result_set(pResult);
+*/					result_set(pResult);
 				}
 				break;
 			}
@@ -356,7 +485,6 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Bool *pResult = NULL;
 
 					if(pR->size_get() == 1)
 					{
@@ -366,7 +494,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pL->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) == dblRef);
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) == dblRef);
 							}
 						}
 					}
@@ -378,7 +506,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, dblRef == pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, dblRef == pR->real_get(i, j));
 							}
 						}
 					}
@@ -389,7 +517,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) == pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) == pR->real_get(i, j));
 							}
 						}
 					}
@@ -408,7 +536,6 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Bool *pResult = NULL;
 
 					if(pR->size_get() == 1)
 					{
@@ -418,7 +545,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pL->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) != dblRef);
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) != dblRef);
 							}
 						}
 					}
@@ -430,7 +557,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, dblRef != pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, dblRef != pR->real_get(i, j));
 							}
 						}
 					}
@@ -441,7 +568,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) != pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) != pR->real_get(i, j));
 							}
 						}
 					}
@@ -460,7 +587,6 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Bool *pResult = NULL;
 
 					if(pR->size_get() == 1)
 					{
@@ -470,7 +596,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pL->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) < dblRef);
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) < dblRef);
 							}
 						}
 					}
@@ -482,7 +608,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, dblRef < pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, dblRef < pR->real_get(i, j));
 							}
 						}
 					}
@@ -493,7 +619,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) < pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) < pR->real_get(i, j));
 							}
 						}
 					}
@@ -512,7 +638,6 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Bool *pResult = NULL;
 
 					if(pR->size_get() == 1)
 					{
@@ -522,7 +647,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pL->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) <= dblRef);
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) <= dblRef);
 							}
 						}
 					}
@@ -534,7 +659,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, dblRef <= pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, dblRef <= pR->real_get(i, j));
 							}
 						}
 					}
@@ -545,7 +670,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) <= pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) <= pR->real_get(i, j));
 							}
 						}
 					}
@@ -564,7 +689,6 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Bool *pResult = NULL;
 
 					if(pR->size_get() == 1)
 					{
@@ -574,7 +698,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pL->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) > dblRef);
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) > dblRef);
 							}
 						}
 					}
@@ -586,7 +710,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, dblRef > pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, dblRef > pR->real_get(i, j));
 							}
 						}
 					}
@@ -598,7 +722,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) > pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) > pR->real_get(i, j));
 							}
 						}
 					}
@@ -617,7 +741,6 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					Bool *pResult = NULL;
 
 					if(pR->size_get() == 1)
 					{
@@ -627,7 +750,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pL->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) >= dblRef);
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) >= dblRef);
 							}
 						}
 					}
@@ -639,7 +762,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, dblRef >= pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, dblRef >= pR->real_get(i, j));
 							}
 						}
 					}
@@ -650,7 +773,7 @@ namespace ast
 						{
 							for(int j = 0 ; j < pR->cols_get() ; j++)
 							{
-								pResult->bool_set(i, j, pL->real_get(i, j) >= pR->real_get(i, j));
+								pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) >= pR->real_get(i, j));
 							}
 						}
 					}
@@ -667,6 +790,11 @@ namespace ast
 			break;
 		default :
 			break;
+		}
+
+		if(e.is_verbose())
+		{
+			std::cout << pResult->toString(10,75) << std::endl;
 		}
 	}
 }

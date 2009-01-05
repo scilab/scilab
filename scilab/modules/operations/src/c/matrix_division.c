@@ -16,8 +16,8 @@
 
 /*iRightDivisionComplexMatrixByComplexMatrix*/
 int iRightDivisionComplexMatrixByComplexMatrix(
-				double *_pdblReal1,		double *_pdblImg1,		int _iInc1, 
-				double *_pdblReal2,		double *_pdblImg2,		int _iInc2, 
+				double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
+				double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
 				double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize)
 {
 	int iErr = 0;
@@ -75,7 +75,7 @@ int iRightDivisionComplexByComplex(
 	}
 	else
 	{//Generic division algorithm
-		
+
 		if(dabss(_dblReal2) >= dabss(_dblImg2))
 		{
 			double dblRatio2	= _dblImg2 / _dblReal2;
@@ -96,8 +96,8 @@ int iRightDivisionComplexByComplex(
 
 /*iRightDivisionRealMatrixByComplexMatrix*/
 int iRightDivisionRealMatrixByComplexMatrix(
-				double *_pdblReal1,								int _iInc1, 
-				double *_pdblReal2,		double *_pdblImg2,		int _iInc2, 
+				double *_pdblReal1,								int _iInc1,
+				double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
 				double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize)
 {
 	int iErr = 0;
@@ -169,8 +169,8 @@ int iRightDivisionRealByComplex(
 
 /*iRightDivisionComplexMatrixByRealMatrix*/
 int iRightDivisionComplexMatrixByRealMatrix(
-				double *_pdblReal1,		double *_pdblImg1,		int _iInc1, 
-				double *_pdblReal2,								int _iInc2, 
+				double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
+				double *_pdblReal2,								int _iInc2,
 				double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize)
 {
 	int iErr = 0;
@@ -209,8 +209,8 @@ int iRightDivisionComplexByReal(
 
 /*iRightDivisionRealMatrixByRealMatrix*/
 int iRightDivisionRealMatrixByRealMatrix(
-				double *_pdblReal1, int _iInc1, 
-				double *_pdblReal2, int _iInc2, 
+				double *_pdblReal1, int _iInc1,
+				double *_pdblReal2, int _iInc2,
 				double *_pdblRealOut, int _iIncOut, int _iSize)
 {
 	int iIndex		= 0; //Main loop index
@@ -345,7 +345,7 @@ int	iRightDivisionOfRealMatrix(
 
 		//	TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
 
-			//Mega caca de la mort qui tue des ours a mains nues 
+			//Mega caca de la mort qui tue des ours a mains nues
 			//mais je ne sais pas comment le rendre "beau" :(
 			{
 				int i,j,ij,ji;
@@ -413,7 +413,7 @@ int	iRightDivisionOfComplexMatrix(
 	poVar1		= oGetDoubleComplexFromPointer(_pdblReal1,		_pdblImg1,		_iRows1 * _iCols1);
 	poVar2		= oGetDoubleComplexFromPointer(_pdblReal2,		_pdblImg2,		_iRows2 * _iCols2);
 	poOut		= oGetDoubleComplexFromPointer(_pdblRealOut,	_pdblImgOut,	_iRowsOut * _iColsOut);
-	
+
 	poAf		= (doublecomplex*)malloc(sizeof(doublecomplex) * _iRows2 * _iCols2);
 	poAt		= (doublecomplex*)malloc(sizeof(doublecomplex) * _iRows2 * _iCols2);
 	poBt		= (doublecomplex*)malloc(sizeof(doublecomplex) * Max(_iRows2, _iCols2) * _iRows1);
@@ -423,7 +423,7 @@ int	iRightDivisionOfComplexMatrix(
 	pIpiv		= (int*)malloc(sizeof(int) * _iCols2);
 	pJpvt		= (int*)malloc(sizeof(int) * _iRows2);
 	pRwork		= (double*)malloc(sizeof(double) * 2 * _iRows2);
-	
+
 	dblEps		= F2C(dlamch)("eps",1L);
 	cNorm		= '1';
 	dblAnorm	= C2F(zlange)(&cNorm, &_iRows2, &_iCols2, poVar2, &_iRows2, poDwork);
@@ -495,7 +495,7 @@ int	iRightDivisionOfComplexMatrix(
 
 		//	TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
 
-			//Mega caca de la mort qui tue des ours a mains nues 
+			//Mega caca de la mort qui tue des ours a mains nues
 			//mais je ne sais pas comment le rendre "beau" :(
 			{
 				int i,j,ij,ji;
@@ -531,7 +531,7 @@ int	iRightDivisionOfComplexMatrix(
 }
 
 /*Matrix left division*/
-int	iLeftDivisionOfRealMatrix(	
+int	iLeftDivisionOfRealMatrix(
 			double *_pdblReal1,		int _iRows1,	int _iCols1,
 			double *_pdblReal2,		int _iRows2,	int _iCols2,
 			double *_pdblRealOut,	int _iRowsOut,	int _iColsOut, double *_pdblRcond)
@@ -571,7 +571,7 @@ int	iLeftDivisionOfRealMatrix(
 	pIpiv		= (int*)malloc(sizeof(int) * _iCols1);
 	pJpvt		= (int*)malloc(sizeof(int) * _iCols1);
 	pIwork		= (int*)malloc(sizeof(int) * _iCols1);
-	
+
 
 	//C'est du grand nawak ca, on reserve toute la stack ! Oo
 
@@ -643,7 +643,7 @@ int	iLeftDivisionOfRealMatrix(
 
 
 /*Complex matrixes left division*/
-int	iLeftDivisionOfComplexMatrix(	
+int	iLeftDivisionOfComplexMatrix(
 			double *_pdblReal1,		double *_pdblImg1,		int _iRows1,	int _iCols1,
 			double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
 			double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut, double *_pdblRcond)

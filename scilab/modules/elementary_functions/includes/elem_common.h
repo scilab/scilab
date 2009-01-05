@@ -56,7 +56,7 @@ extern int C2F(dcopy)(int *_iSize, double *_pdblSrc, int* _piIncSrc, double *_pd
 extern int C2F(dscal)(int *_iSize, double *_pdblVal, double *_pdblDest, int *_iInc);
 extern int C2F(zscal)(int *_iSize, doublecomplex *_pdblVal, doublecomplex *_pdblDest, int *_iInc);
 extern int C2F(dset)(int *_iSize, double *_pdblVal, double *_pdblDest, int *_iInc);
-extern int C2F(dlange)();
+extern double C2F(dlange)();
 extern int C2F(dlacpy)();
 extern int C2F(dgetrf)();
 extern int C2F(dgecon)();

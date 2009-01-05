@@ -33,7 +33,7 @@ void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bo
 void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec);
 void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
 void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, 
+void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI,
 											int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
 namespace types
 {
@@ -150,7 +150,7 @@ namespace types
 		else
 			m_pdblImg = NULL;
 
-		zero_set();
+		//zero_set();
 	}
 
 	bool Double::isComplex()
@@ -183,7 +183,7 @@ namespace types
 	/*	real_get	*/
 	/*------------*/
 	double*	Double::real_get() const
-	{ 
+	{
 		return m_pdblReal;
 	}
 
@@ -191,7 +191,7 @@ namespace types
 	/*	img_get	*/
 	/*------------*/
 	double*	Double::img_get() const
-	{ 
+	{
 		return m_pdblImg;
 	}
 
@@ -219,7 +219,7 @@ namespace types
 	/*	real_get	*/
 	/*------------*/
 	double	Double::real_get(int _iRows, int _iCols) const
-	{ 
+	{
 		if(m_pdblReal != NULL)
 		{
 			return m_pdblReal[_iCols * m_iRows + _iRows];
@@ -254,7 +254,7 @@ namespace types
 	/*	img_get	*/
 	/*------------*/
 	double	Double::img_get(int _iRows, int _iCols) const
-	{ 
+	{
 		if(m_pdblImg != NULL)
 		{
 			return m_pdblImg[_iCols * m_iRows + _iRows];
@@ -303,17 +303,17 @@ namespace types
 	/*--------------*/
 	/*		whoIAm		*/
 	/*--------------*/
-	void Double::whoAmI() 
-	{ 
-		std::cout << "types::Double"; 
+	void Double::whoAmI()
+	{
+		std::cout << "types::Double";
 	}
 
 	/*--------------*/
 	/*	getAsUInt		*/
 	/*--------------*/
-	Double* Double::getAsDouble(void)		
-	{ 
-		return this; 
+	Double* Double::getAsDouble(void)
+	{
+		return this;
 	}
 
 	/*------------*/
@@ -321,7 +321,7 @@ namespace types
 	/*------------*/
 	GenericType::RealType Double::getType(void)
 	{
-		return RealDouble; 
+		return RealDouble;
 	}
 
 	/*--------------*/
@@ -411,7 +411,7 @@ namespace types
 				return false;
 		}
 
-		return true;	
+		return true;
 	}
 
 	string Double::DimToString()
@@ -502,7 +502,7 @@ namespace types
 						iLen = iWidth + bFP + ostemp.str().size();
 						if(iLen > _iLineLen)
 						{//Max length, new line
-							cout << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl; 
+							cout << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
 							cout << ostemp.str() << endl;
 							ostemp.str("\x00");
 							iLastVal = i;
@@ -518,7 +518,7 @@ namespace types
 
 					if(iLastVal != 0)
 					{
-						ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl; 
+						ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
 					}
 				}
 				else //complex case
@@ -562,7 +562,7 @@ namespace types
 
 						if(iLen > _iLineLen)
 						{//Max length, new line
-							ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl; 
+							ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
 							ostr << ostemp.str() << endl;
 							ostemp.str("");
 							iLastVal = i;
@@ -578,7 +578,7 @@ namespace types
 
 					if(iLastVal != 0)
 					{
-						ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl; 
+						ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
 					}
 				}
 				ostemp << endl;
@@ -637,7 +637,7 @@ namespace types
 								ostemp << endl;
 							}
 							iLen = 0;
-							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;; 
+							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
 							ostr << ostemp.str();
 							ostemp.str("");
 							iLastCol = iCols1;
@@ -658,7 +658,7 @@ namespace types
 							ostemp << SPACE_BETWEEN_TWO_VALUES;
 						}
 						ostemp << endl;
-					}			
+					}
 					if(iLastCol != 0)
 					{
 						ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
@@ -677,7 +677,7 @@ namespace types
 							bool bFPR = false, bFPI = false; // FloatingPoint
 							int iCurrentLen = 0;
 
-							GetComplexFormat(	m_pdblReal[iCols1 * rows_get() + iRows1], m_pdblImg[iCols1 * rows_get() + iRows1], _iPrecision, 
+							GetComplexFormat(	m_pdblReal[iCols1 * rows_get() + iRows1], m_pdblImg[iCols1 * rows_get() + iRows1], _iPrecision,
 								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
 							if(iTotalWidth > piSize[iCols1])
@@ -708,17 +708,17 @@ namespace types
 									bool bFPR = false, bFPI = false; // FloatingPoint
 									int iCurrentLen = 0;
 
-									GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision, 
+									GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision,
 										&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
-									Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], 
+									Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2],
 										piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
 									ostemp << SPACE_BETWEEN_TWO_VALUES;
 								}
 								ostemp << endl;
 							}
 							iLen = 0;
-							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;; 
+							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
 							ostr << ostemp.str();
 							ostemp.str("");
 							iLastCol = iCols1;
@@ -736,15 +736,15 @@ namespace types
 							bool bFPR = false, bFPI = false; // FloatingPoint
 							int iCurrentLen = 0;
 
-							GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision, 
+							GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision,
 								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
-							Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], 
+							Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2],
 								piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
 							ostemp << SPACE_BETWEEN_TWO_VALUES;
 						}
 						ostemp << endl;
-					}		
+					}
 
 					if(iLastCol != 0)
 					{
@@ -759,7 +759,7 @@ namespace types
 		{
 		ostr << "C'est complex ca :'(" << endl;
 		}
-		*/	
+		*/
 		return ostr.str();
 	}
 }

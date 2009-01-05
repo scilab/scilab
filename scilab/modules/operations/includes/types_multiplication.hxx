@@ -17,9 +17,9 @@
 
 using namespace types;
 
-Double* MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2);
-MatrixPoly* MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly);
-MatrixPoly* MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble);
+int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double* _pDoubleOut);
+int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly* _pPolyOut);
+int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly *_pPolyOut);
 MatrixPoly* MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2);
 
 #endif /* __TYPES_MULTI_H__ */

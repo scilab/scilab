@@ -31,14 +31,12 @@ namespace types
 		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			m_poPolyMatrix[i].CreatePoly(NULL, NULL, _piRank[i]);
-			if(m_poPolyMatrix[i].isComplex())
-				m_bComplex = true;
 		}
 	}
 
 	MatrixPoly::~MatrixPoly()
 	{
-		delete m_poPolyMatrix;
+		delete[] m_poPolyMatrix;
 	}
 
 	Poly* MatrixPoly::poly_get(int _iRows, int _iCols)

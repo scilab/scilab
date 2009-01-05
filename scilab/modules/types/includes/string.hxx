@@ -22,8 +22,8 @@ namespace types
   class String : public GenericType
   {
   public :
-    String(int _iRows, int _iCols);
-    String(const char *_pcData);
+							String(int _iRows, int _iCols);
+							String(const char *_pcData);
 
     char**		string_get() const;
     char*			string_get(int _iRows, int _iCols) const;
@@ -31,9 +31,10 @@ namespace types
     bool			string_set(const char **_pcData);
     bool			string_set(int _iRows, int _iCols, const char *_pcData);
 
-    void whoAmI();
+    void 			whoAmI();
 
-    String *getAsString(void);
+    String*		getAsString(void);
+		std::string		toString(int _iPrecison, int _iLineLen);
 
   protected :
     RealType getType();//			{ return RealString; }
@@ -41,12 +42,12 @@ namespace types
   private :
 		char** m_pcData;
 
-		void all_delete();
-		void string_delete(int _iRows, int _iCols);
-		void string_delete(int _iPos);
-		bool string_set(int _iPos, const char *_pcData);
+		void 			all_delete();
+		void 			string_delete(int _iRows, int _iCols);
+		void 			string_delete(int _iPos);
+		bool 			string_set(int _iPos, const char *_pcData);
 
-		void CreateString(int _iRows, int _iCols);
+		void 			CreateString(int _iRows, int _iCols);
   };
 }
 #endif /* !__STRING_HH__ */

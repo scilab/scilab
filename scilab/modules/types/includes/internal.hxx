@@ -78,6 +78,8 @@ namespace types
 		bool isPoly(void) { return (getType() == RealPoly); }
 		virtual MatrixPoly* getAsPoly(void) { return NULL; }
 
+		virtual std::string	toString(int _iPrecison, int _iLineLen){return "Internal";}
+
   protected :
     InternalType() {}
 	};

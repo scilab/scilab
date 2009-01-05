@@ -5,13 +5,15 @@
 
 OPERATIONS_C_SOURCES = 	src/c/doublecomplex.c \
 			src/c/matrix_multiplication.c \
-			src/c/matrix_division.c
+			src/c/matrix_division.c \
+			src/c/matrix_finite.c
 
 OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_substraction.cpp \
 			src/cpp/types_multiplication.cpp \
 			src/cpp/types_divide.cpp \
-			src/cpp/types_addition.cpp
+			src/cpp/types_addition.cpp \
+			src/cpp/types_finite.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 
@@ -27,7 +29,7 @@ libscioperations_la_CXXFLAGS = 	-I$(top_srcdir)/modules/operations/includes \
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)
 
-libscioperations_la_LIBADD = 
+libscioperations_la_LIBADD =
 if USE_EMBEDDED_LAPACK
 libscioperations_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
 endif
