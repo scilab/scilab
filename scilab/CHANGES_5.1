@@ -5,7 +5,8 @@ Tests:
 ======
 
 * Tests added for functions: umf_luget, taucs_chget, pcg, removedir, rmdir, ones
-
+* Added elementary functions: acosd acoth asecd asech asec asind
+                       atand cosd cotd cscd csc secd sech sec sind tand 
 
 Compilation:
 ============
@@ -41,6 +42,19 @@ For more information, see SEP #2.
 * Request 564 : completion add '\' or '/' at the end of a directory
 
 * Errors occuring when getting or setting graphic/gui handles properties are now teated as any other Scilab errors.
+
+* Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
+
+
+Internationalization:
+=====================
+
+* Almost all the i/o functions (isdir, mkdir, cd, chdir, mopen, fileinfo, 
+mclose, deletefile, findfiles, ls, listfiles, getshortpathname, 
+getlongpathname, removedir...) now handle file and directory names containing
+UTF-8 characters. This is the work of Yung-Jang Lee. Many thanks!
+(Unitary tests provided) 
+
 
 Bug fixes:
 ==========
@@ -150,4 +164,8 @@ Bug fixes:
 * bug 3844 fixed - Axes with a very high y-bounds/x-bounds ratio do not appear.
 
 * bug 3873 fixed - While editing ticks'label on Axes, mouse click outside box or double clicks or using Tab key, program terminates.
+
+* bug 3578 fixed - the definition of NewSparse and FreeSparse have been added.
+
+* bug 3887 fixed - missing installation of scisparse.h and doublecomplex.h
 

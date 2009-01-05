@@ -449,6 +449,8 @@ includes/int2db.h \
 includes/rea2b.h \
 includes/rea2db.h \
 includes/scidcopy.h \
-includes/unsfdcopy.h
+includes/unsfdcopy.h \
+includes/finite.h \
+includes/vfinite.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -9,6 +9,7 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 #include <stdlib.h>
 
 #ifdef _MSC_VER
@@ -183,9 +184,9 @@ void startTclLoop()
 	    evaluateTclFile();
 	  }
 	/* Update return value and result */
-	if (LocalTCLinterp->result && strlen(LocalTCLinterp->result) != 0)
+	if (Tcl_GetStringResult(LocalTCLinterp) && strlen(Tcl_GetStringResult(LocalTCLinterp)) != 0)
 	  {
-	    TclInterpResult = strdup(LocalTCLinterp->result);
+	    TclInterpResult = strdup(Tcl_GetStringResult(LocalTCLinterp));
 	  }
 	else
 	  {

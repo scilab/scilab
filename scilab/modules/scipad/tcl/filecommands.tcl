@@ -483,16 +483,17 @@ proc opensourceof {} {
 
     set opensofbOK $opensof.f3.buttonOK
     frame $opensof.f3
-    set bestwidth [mcmaxra "OK" \
-                           "Cancel"]
     button $opensofbOK -text "OK" \
             -command "OKopensourceof $opensof" \
-            -width $bestwidth -font $menuFont
+            -font $menuFont
     button $opensof.f3.buttonCancel -text [mc "Cancel"] \
             -command "destroy $opensof" \
-            -width $bestwidth -font $menuFont
-    pack $opensofbOK $opensof.f3.buttonCancel -side left -padx 10
-    pack $opensof.f3 -pady 4 -after $opensof.f2
+            -font $menuFont
+    grid $opensofbOK              -row 0 -column 0 -sticky we -padx 10
+    grid $opensof.f3.buttonCancel -row 0 -column 1 -sticky we -padx 10
+    grid columnconfigure $opensof.f3 0 -uniform 1
+    grid columnconfigure $opensof.f3 1 -uniform 1
+    pack $opensof.f3 -pady 4 -after $opensof.f2 -expand 0 -fill x
 
     # arrange for the buttons to disappear last
     # when the window size is reduced

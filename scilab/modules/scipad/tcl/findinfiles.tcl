@@ -321,32 +321,34 @@ proc displaymatchresultswin {} {
 
         # command buttons
         frame $matchres.f2
-        set bestwidth [mcmaxra "&Previous" \
-                               "&Next" \
-                               "&Close" \
-                               "Pau&se" \
-                               "Cance&l"]
         eval "button $matchres.f2.buttonPrev [bl "&Previous"] \
             -command \"openprevmatch $matchres.f1.resarea\" \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonNext [bl "&Next"] \
             -command \"opennextmatch $matchres.f1.resarea\" \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonClose [bl "&Close"] \
             -command \"destroy $matchres\" \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonPause [bl "Pau&se"] \
             -command \"pauseresumesearchinfiles\" \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonCancel [bl "Cance&l"] \
             -command \"cancelsearchinfiles\" \
-            -width $bestwidth -font \[list $menuFont\] "
-        pack $matchres.f2.buttonPrev $matchres.f2.buttonNext \
-             $matchres.f2.buttonClose $matchres.f2.buttonPause \
-             $matchres.f2.buttonCancel -side left -padx 6 -pady 2
+            -font \[list $menuFont\] "
+        grid $matchres.f2.buttonPrev   -row 0 -column 0 -sticky we -padx 20
+        grid $matchres.f2.buttonNext   -row 0 -column 1 -sticky we -padx 20
+        grid $matchres.f2.buttonClose  -row 0 -column 2 -sticky we -padx 20
+        grid $matchres.f2.buttonPause  -row 0 -column 3 -sticky we -padx 20
+        grid $matchres.f2.buttonCancel -row 0 -column 4 -sticky we -padx 20
+        grid columnconfigure $matchres.f2 0 -uniform 1
+        grid columnconfigure $matchres.f2 1 -uniform 1
+        grid columnconfigure $matchres.f2 2 -uniform 1
+        grid columnconfigure $matchres.f2 3 -uniform 1
+        grid columnconfigure $matchres.f2 4 -uniform 1
 
         # make all this visible (order matters wrt to clipping on external resizing)
-        pack $matchres.f2 -side bottom
+        pack $matchres.f2 -side bottom -expand 0 -fill x
         pack $matchres.f1 -side top -expand 1 -fill both
 
         # buttons bindings

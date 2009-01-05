@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine polops
 c ====================================================================
 c
-c     operations  on polynomial matrices
+c     operations on polynomial matrices
 c
 c ====================================================================
 c

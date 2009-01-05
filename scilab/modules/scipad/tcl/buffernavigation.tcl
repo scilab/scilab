@@ -137,16 +137,17 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     # this is for the top bar containing the pane title (file name)
     # and the hide and close buttons
     frame $tapwfr.topbar
-    set bestwidth [mcmaxra "Hide" \
-                           "Close"]
-    button $tapwfr.clbutton -text [mc "Close"] \
-        -font $menuFont -width $bestwidth \
+    frame $tapwfr.topbar.f
+    button $tapwfr.topbar.f.clbutton -text [mc "Close"] \
+        -font $menuFont \
         -command "focustextarea $textarea; closecurtile yesnocancel"
-    pack $tapwfr.clbutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
-    button $tapwfr.hibutton -text [mc "Hide"] -font $menuFont \
-        -width $bestwidth \
+    grid $tapwfr.topbar.f.clbutton -row 0 -column 0 -sticky we
+    button $tapwfr.topbar.f.hibutton -text [mc "Hide"] -font $menuFont \
         -command "hidetext $textarea"
-    pack $tapwfr.hibutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
+    grid $tapwfr.topbar.f.hibutton -row 0 -column 1 -sticky we
+    grid columnconfigure $tapwfr.topbar.f 0 -uniform 1
+    grid columnconfigure $tapwfr.topbar.f 1 -uniform 1
+    pack $tapwfr.topbar.f -side right -expand 0 -fill none
 
     # this is for the text widget, its margin, the close cross and the y scroll bar
     frame $tapwfr.top
@@ -198,14 +199,14 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
                                               $pad.filemenu.wind invoke 1"
     bind $tapwfr.panetitle <Double-Button-1> "focustextarea $textarea; \
                                               $pad.filemenu.wind invoke 1"
-    bind $tapwfr.topbar    <Button-2>        {switchbuffersinpane %W}
-    bind $tapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
-    bind $tapwfr.panetitle <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
-    bind $tapwfr.panetitle <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
-    bind $tapwfr.clbutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
-    bind $tapwfr.clbutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
-    bind $tapwfr.hibutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
-    bind $tapwfr.hibutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
+    bind $tapwfr.topbar             <Button-2>        {switchbuffersinpane %W}
+    bind $tapwfr.panetitle          <Button-2>        {switchbuffersinpane %W}
+    bind $tapwfr.panetitle          <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
+    bind $tapwfr.panetitle          <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
+    bind $tapwfr.topbar.f.clbutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $tapwfr.topbar.f.clbutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $tapwfr.topbar.f.hibutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
+    bind $tapwfr.topbar.f.hibutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
     pack $tapwfr.panetitle -in $tapwfr.topbar -expand 1 -fill none
 
     pack $textarea            -in $tapwfr.topleft  -side left   -expand 1 -fill both
@@ -254,8 +255,8 @@ proc packbuffer {textarea} {
         $curtapwfr.xscroll configure -command "$textarea xview"
     }
 
-    $curtapwfr.clbutton configure -command "focustextarea $textarea; closecurtile yesnocancel"
-    $curtapwfr.hibutton configure -command "hidetext $textarea"
+    $curtapwfr.topbar.f.clbutton configure -command "focustextarea $textarea; closecurtile yesnocancel"
+    $curtapwfr.topbar.f.hibutton configure -command "hidetext $textarea"
     bind $curtapwfr.clcanvas  <Button-1> "focustextarea $textarea; closecurfile yesnocancel"
 
     bind $curtapwfr.clcanvas  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close file (all tiles)\"\]"
@@ -267,14 +268,14 @@ proc packbuffer {textarea} {
                                                  $pad.filemenu.wind invoke 1"
     bind $curtapwfr.panetitle <Double-Button-1> "focustextarea $textarea; \
                                                  $pad.filemenu.wind invoke 1"
-    bind $curtapwfr.topbar    <Button-2>        {switchbuffersinpane %W}
-    bind $curtapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
-    bind $curtapwfr.panetitle <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
-    bind $curtapwfr.panetitle <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
-    bind $curtapwfr.clbutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
-    bind $curtapwfr.clbutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
-    bind $curtapwfr.hibutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
-    bind $curtapwfr.hibutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
+    bind $curtapwfr.topbar             <Button-2>        {switchbuffersinpane %W}
+    bind $curtapwfr.panetitle          <Button-2>        {switchbuffersinpane %W}
+    bind $curtapwfr.panetitle          <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
+    bind $curtapwfr.panetitle          <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
+    bind $curtapwfr.topbar.f.clbutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $curtapwfr.topbar.f.clbutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $curtapwfr.topbar.f.hibutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
+    bind $curtapwfr.topbar.f.hibutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
 
     pack $textarea -in $curtapwfr.topleft -side left -expand 1 -fill both
 
@@ -1579,20 +1580,19 @@ proc gotoline {} {
 
     frame $gotln.f1
     frame $gotln.f1.f1l
-    set bestwidth [mcmaxra "&logical line" \
-                           "&physical line"]
     eval "radiobutton $gotln.f1.f1l.rbut1 [bl "&logical line"]  \
             -variable physlogic -value \"logical\" \
             -command \"updateOKbuttonstategoto $gotln\" \
-            -width $bestwidth -anchor w -font \[list $menuFont\] "
+            -anchor w -font \[list $menuFont\] "
     eval "radiobutton $gotln.f1.f1l.rbut2 [bl "&physical line"] \
             -variable physlogic -value \"physical\" \
             -command \"updateOKbuttonstategoto $gotln\" \
-            -width $bestwidth -anchor w -font \[list $menuFont\] "
+            -anchor w -font \[list $menuFont\] "
     entry $gotln.f1.en1 -textvariable linetogo \
             -justify center \
             -width 8 -font $textFont
-    pack $gotln.f1.f1l.rbut1 $gotln.f1.f1l.rbut2 -anchor w
+    grid $gotln.f1.f1l.rbut1 -row 0 -column 0 -sticky w
+    grid $gotln.f1.f1l.rbut2 -row 1 -column 0 -sticky w
     pack $gotln.f1.en1 -side right
     pack $gotln.f1.f1l
     pack $gotln.f1 -anchor w
@@ -1619,15 +1619,18 @@ proc gotoline {} {
     pack $gotln.f2.rbut3 $gotln.f2.mb -side left -anchor w
     pack $gotln.f2 $gotln.rbut4 -anchor w
 
-    set bestwidth [mcmaxra "OK" \
-                           "Cancel"]
-    button $gotln.ok -text [mc "OK"] \
-            -font $menuFont -width $bestwidth \
+    frame $gotln.f3
+    button $gotln.f3.ok -text [mc "OK"] \
+            -font $menuFont \
             -command "dogotoline ; destroy $gotln"
-    button $gotln.cancel -text [mc "Cancel"] \
-            -font $menuFont -width $bestwidth \
+    button $gotln.f3.cancel -text [mc "Cancel"] \
+            -font $menuFont \
             -command "destroy $gotln"
-    pack $gotln.ok $gotln.cancel -side left -padx 5 -pady 5 -fill none -expand yes
+    grid $gotln.f3.ok     -row 0 -column 0 -sticky we -padx 10
+    grid $gotln.f3.cancel -row 0 -column 1 -sticky we -padx 10
+    grid columnconfigure $gotln.f3 0 -uniform 1
+    grid columnconfigure $gotln.f3 1 -uniform 1
+    pack $gotln.f3 -expand 1 -fill x
 
     update idletasks
     setwingeom $gotln
@@ -1636,7 +1639,7 @@ proc gotoline {} {
     focus $gotln.f1.en1
     $gotln.f1.en1 selection range 0 end
 
-    bind $gotln <Return> {if {[[winfo toplevel %W].ok cget -state] == "normal"} { \
+    bind $gotln <Return> {if {[[winfo toplevel %W].f3.ok cget -state] == "normal"} { \
                               dogotoline ; destroy [winfo toplevel %W] \
                           }}
     bind $gotln <Escape> {destroy [winfo toplevel %W]}
@@ -1689,9 +1692,9 @@ proc updateOKbuttonstategoto {w {entryfieldvalue "not_given"}} {
     if {($curfileorfun == "current_file" && $physlogic == "logical" && $Scheme != "scilab") || \
         ($curfileorfun == "function" && [$w.f2.mb cget -text] == $unklabel) || \
         ($entryfieldvalue <= 0) || ![string is integer -strict $entryfieldvalue] } {
-        $w.ok configure -state disabled
+        $w.f3.ok configure -state disabled
     } else {
-        $w.ok configure -state normal
+        $w.f3.ok configure -state normal
     }
     # Validation of the entry widget always succeeds, so that the textvariable
     # is updated. The validation result is made known by the OK button state

@@ -438,11 +438,8 @@ cd "$OLDPWD"
 #fi
 #export PVM_ARCH
 
-if test "$LD_LIBRARY_PATH" = ""; then
-	LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/
-else
-	LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$LD_LIBRARY_PATH
-fi
+LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+
 if test $SCIVERBOSE -ne 0; then
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
 fi
@@ -531,7 +528,7 @@ do_lib()
 rest="no"
 case $# in
     0) # No arg, run Scilab
-		do_scilex &
+		do_scilex
         ;;
     2) # Only two arg
         case $1 in

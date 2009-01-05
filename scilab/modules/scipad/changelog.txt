@@ -1,3 +1,9 @@
+Francois VOGEL, 22/12/08
+ * Fixed bug 3882 by using the grid geometry manager instead of pack in
+   certain cases - See also:
+   http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/dfb592a3c9335b38
+ * version --> 7.12
+
 Francois VOGEL, 13/12/08
  * Fixed bug 3806 (drag and drop fails because package tkdnd is not found)
  * File/Revert did not update the readonly flag. Reverting to the saved state

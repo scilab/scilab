@@ -10,12 +10,19 @@ Compilation:
 * Do not init TK when building the doc ("make doc")... in order to be able to 
 build Scilab through ssh
 
+* Giws has lost it .py extension
+
 * Force the build for the french documentation.
+
+* Some dead code removed (SCI/scripts/, SCI/bin/{dold,scilink,Blatdoc,Blatdocs,f77-linux,minfopr} )
 
 Enhancement:
 ============
 
 * Binaries version now embed jre 1.6.0_11
+
+* Under Linux/Unix, do not launch Scilab in background when called without 
+  argument
 
 Bug fixes:
 ==========
@@ -54,7 +61,16 @@ Bug fixes:
                    
 * bug 3874 fixed - When building the macros, only replaces the extension (.sci => .bin)
 
-                   
+* bug 3877 fixed - No use of interp->result any more in the Tcl interface - Compatible with Tcl/Tk 8.6
+
+* bug 3878 fixed - Under mandriva, the javahelp package is not called jhall but javahelp2.
+
+* bug 3879 fixed - Under mandriva, the batik package is not called batik but batik-all.
+
+* bug 3880 fixed - Bug with p_margin and g_margin fixed.
+
+* bug 3886 fixed - strsubst with regular expression was working only on the first element of the vector.
+
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
 

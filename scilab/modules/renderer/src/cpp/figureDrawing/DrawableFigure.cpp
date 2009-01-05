@@ -16,6 +16,7 @@
 #include "DrawableFigureBridge.h"
 #include "subwinDrawing/DrawableSubwin.h"
 #include "getHandleDrawer.h"
+#include "GiwsException.hxx"
 
 // here for static methods
 #include "DrawableFigureJoGL.h"
@@ -166,8 +167,13 @@ void DrawableFigure::forceDisplay( void )
 
 	if (needsDisplay(m_pDrawed) || isDisplayingSingleObject())
 	{
-		// to be sure that the canvas exists
-		openGraphicCanvas();
+		try {
+			// to be sure that the canvas exists
+			openGraphicCanvas();
+		}  catch (const GiwsException::JniException & e)
+			{
+				std::cerr << "An error occured when Scilab tried to open a Canvas: " <<  e.getJavaDescription() << std::endl;
+			}
 	}
 	else
 	{

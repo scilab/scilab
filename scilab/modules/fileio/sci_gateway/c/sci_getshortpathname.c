@@ -41,9 +41,10 @@ int C2F(sci_getshortpathname)(char *fname,unsigned long l)
 
 		if (ShortName) 
 		{
-			m1 =(int)strlen(ShortName);
+		    char *ShortNameUTF=localeToUTF(ShortName);
+			m1 =(int)strlen(ShortNameUTF);
 			n1 = 1;
-			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,&m1,&n1,&ShortName);
+			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,&m1,&n1,&ShortNameUTF);
 		}
 		else 
 		{

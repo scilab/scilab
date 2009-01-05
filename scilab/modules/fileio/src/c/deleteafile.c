@@ -33,6 +33,7 @@ BOOL deleteafile(char *filename)
 	}
 	#else
 	{
+        
 		bOK = DeleteFile(filename);
 	}
 	#endif

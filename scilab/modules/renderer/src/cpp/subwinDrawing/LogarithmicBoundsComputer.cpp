@@ -19,6 +19,7 @@ extern "C"
 {
 #include "math_graphics.h"
 #include "Format.h"
+#include "machine.h"
 }
 
 namespace sciGraphics
@@ -65,7 +66,11 @@ void LogarithmicBoundsComputer::pointScale(double coord, double * scaledCoord)
 /*------------------------------------------------------------------------------------------*/
 void LogarithmicBoundsComputer::inversePointScale(double scaledCoord, double * coord)
 {
+#ifdef exp10
   *coord = exp10(scaledCoord);
+#else
+  *coord = pow(10,scaledCoord);
+#endif
 }
 /*------------------------------------------------------------------------------------------*/
 void LogarithmicBoundsComputer::pointScale(double vector[], int vectorLength)
@@ -80,7 +85,11 @@ void LogarithmicBoundsComputer::inversePointScale(double vector[], int vectorLen
 {
   for (int i = 0; i < vectorLength; i++)
   {
+#ifdef exp10
     vector[i] = exp10(vector[i]);
+#else
+	vector[i] = pow(10,vector[i]);
+#endif
   }
 }
 /*------------------------------------------------------------------------------------------*/
