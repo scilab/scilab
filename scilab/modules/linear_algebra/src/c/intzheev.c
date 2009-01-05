@@ -143,7 +143,7 @@ int intzheev(char *fname)
 		LhsVar(2)=2; // Eigenvalues are stored in variable #2
 	}
 	FREE(pdblEigenValues);
-	FREE(pdblData);
+	vFreeDoubleComplexFromPointer(pdblData);
 	return 0;
 }
 

@@ -1841,11 +1841,27 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 	}
 	else
 	{
-		free(poComplex);
+		FREE(poComplex);
 		return NULL;
 	}
 	return poComplex;
 }
+/*
+vFreeDoubleComplexFromPointer --
+  Free the given pointer of double complex.
+Arguments
+  _poComplex : the array to free
+Note
+  The goal of this function is to allow the client 
+  code to be independent of the particular allocation system used
+  in oGetDoubleComplexFromPointer.
+*/
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
+{
+	if(_poComplex != NULL)
+		FREE(_poComplex);
+}
+
 /*
 GetRhsVarMatrixDouble --
   Returns a pointer on the data of a matrix of double.

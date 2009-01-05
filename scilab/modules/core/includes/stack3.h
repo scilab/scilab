@@ -172,6 +172,8 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
 // oGetDoubleComplexFromPointer : returns a target doublecomplex constructed from the source real and imaginary parts.
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
+// vFreeDoubleComplexFromPointer : Free the given pointer of double complex.
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
 
 // GetRhsVarMatrixOfDouble : Returns a pointer on the data of a matrix of double.
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
