@@ -168,15 +168,50 @@ int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _p
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
 
-// vGetPointerFromDoubleComplex : set the real and imaginary part of an target array from a source doublecomplex array
+/** 
+*  Set the target real and imaginary part of an array from a source doublecomplex array.
+*  @param _poComplex the source array
+*  @param _iSize the number of elements to set
+*  @param _pdblReal, _pdblImg the target array (real and imaginary parts)
+*/
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
-// oGetDoubleComplexFromPointer : returns a target doublecomplex constructed from the source real and imaginary parts.
+/**
+*  Returns a target doublecomplex array constructed from the source real and imaginary parts.
+*  The real and imaginary parts can be NULL or not NULL :
+*  * if real part and imaginary part of source array are not NULL, the returned array is as expected,
+*  * if real part of source array is NULL and imaginary part is not NULL, the real part of the returned array is filled with zeros,
+*  * if real part of source array is not NULL and imaginary part is NULL, the imaginary part of the returned array is filled with zeros,
+*  * if both real and imaginary parts of source array are NULL, the returned array is NULL.
+*  @param _pdblReal the real part of the source array
+*  @param _pdblImg the imaginary part of the source array
+*  @param _iSize the size of the source array
+*/
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
-// vFreeDoubleComplexFromPointer : Free the given pointer of double complex.
+/**
+*  Free the given pointer of double complex.
+*  Note
+*  The goal of this function is to allow the client 
+*  code to be independent of the particular allocation system used
+*  in oGetDoubleComplexFromPointer.
+*  @param _poComplex the array to free
+*/
 void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
 
-// GetRhsVarMatrixOfDouble : Returns a pointer on the data of a matrix of double.
+/**
+* Returns a pointer on the data of a matrix of double
+*  @param number index of the Scilab variable
+*  @param _iRows number of rows in the matrix
+*  @param _iCols number of columns in the matrix
+*  @param _pdblRealData pointer to the block of data for real values
+*/
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
-// GetRhsVarMatrixComplex : Returns a pointer on the data of a matrix of double.
+/**
+*  Returns a pointer on the data of a matrix of double.
+*  @param number index of the Scilab variable
+*  @param _iRows number of rows in the matrix
+*  @param _iCols number of columns in the matrix
+*  @param _pdblRealData pointer to the block of data for real values
+*  @param _pdblImgData pointer to the block of data for complex values
+*/
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
 #endif 
