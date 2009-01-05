@@ -13,13 +13,14 @@
 #ifndef __TYPES_SUB_H__
 #define __TYPES_SUB_H__
 
+#include "operation.hxx"
 #include "alltypes.hxx" 
 
 using namespace types;
 
-Double* SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2);
-MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly);
-MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
-MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2);
+EXTERN_OP Double* SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2);
+EXTERN_OP MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly);
+EXTERN_OP MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
+EXTERN_OP MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2);
 
 #endif /* __TYPES_SUB_H__ */

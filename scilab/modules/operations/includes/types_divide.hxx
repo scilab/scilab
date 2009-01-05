@@ -13,10 +13,11 @@
 #ifndef __TYPES_DIV_H__
 #define __TYPES_DIV_H__
 
+#include "operation.hxx"
 #include "alltypes.hxx"
 
 using namespace types;
 
-int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double *_pDoubleOut);
+EXTERN_OP int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double *_pDoubleOut);
 
 #endif /* __TYPES_DIV_H__ */

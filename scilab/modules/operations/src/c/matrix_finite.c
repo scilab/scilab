@@ -11,6 +11,7 @@
  */
 
 #include "finite.h"
+#include "core_math.h"
 
 /*return 1 if all is OK else 0*/
 int matrix_finite(double *_pdbl, int _iSize)

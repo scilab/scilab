@@ -13,6 +13,7 @@
 #ifndef __TYPES_FINITE__
 #define __TYPES_FINITE__
 
+#include "operation.hxx"
 #include "alltypes.hxx"
 
 extern "C"
@@ -22,6 +23,6 @@ extern "C"
 
 using namespace types;
 
-bool isDoubleFinite(Double *_pDouble);
+EXTERN_OP bool isDoubleFinite(Double *_pDouble);
 
 #endif /* __TYPES_FINITE__ */
