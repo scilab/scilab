@@ -90,6 +90,16 @@ static void getCommandLine(void)
 
 /***********************************************************************/
 /*
+** used by mscanf to get a line from the Scilab console
+*/
+char *getConsoleInputLine(void)
+{
+  getCommandLine();
+  return strdup(__CommandLine);
+}
+
+/***********************************************************************/
+/*
 ** This function is threaded and watch for a signal.
 ** sent when StoreCommand is performed.
 */

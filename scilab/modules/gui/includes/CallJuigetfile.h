@@ -25,6 +25,8 @@ void CallJuigetfileWithoutMultipleSelection(char **mask, char **description, int
 
 char **getJuigetfileSelection(void);
 
+char **getJuigetfileSelectionFileNames(void);
+
 char *getJuigetfileSelectionPathName(void);
 
 int getJuigetfileSelectionSize(void);

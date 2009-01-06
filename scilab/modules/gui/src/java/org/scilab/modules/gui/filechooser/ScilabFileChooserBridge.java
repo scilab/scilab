@@ -135,6 +135,15 @@ public class ScilabFileChooserBridge {
 	}
 
 	/**
+	 * Get the names of selected files
+	 * @param fileChooser the file chooser we want to get the names of selected files
+	 * @return the names of selected files
+	 */
+	public static String[] getSelectionFileNames(FileChooser fileChooser) {
+		return fileChooser.getAsSimpleFileChooser().getSelectionFileNames();
+	}
+
+	/**
 	 * Get the filter index
 	 * @param fileChooser the file chooser we want to get the filter index
 	 * @return the filter index
