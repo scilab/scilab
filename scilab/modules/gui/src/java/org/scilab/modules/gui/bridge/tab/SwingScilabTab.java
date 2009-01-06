@@ -913,6 +913,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.setInfoBar(null);
 		this.setTitlebar(null);
 		this.removeAll();
+		setActive(false);
 		
 		scrolling = null;
 		contentPane = null;
