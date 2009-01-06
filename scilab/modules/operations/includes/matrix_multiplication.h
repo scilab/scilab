@@ -56,4 +56,25 @@ EXTERN_OP int iMultiComplexScalarByComplexMatrix(
 		double *_pdblRealOut,	double *_pdblImgOut);
 
 
+/*polynomial multiplications*/
+EXTERN_OP int iMultiRealPolyByRealPoly(
+		double *_pdblReal1,	int _iRank1,
+		double *_pdblReal2,	int _iRank2,
+		double *_pdblRealOut, int _iRankOut);
+		
+EXTERN_OP int iMultiComplexPolyByRealPoly(
+		double *_pdblReal1,	double *_pdblImg1, int _iRank1,
+		double *_pdblReal2,	int _iRank2,
+		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
+
+EXTERN_OP int iMultiRealPolyByComplexPoly(
+		double *_pdblReal1,	int _iRank1,
+		double *_pdblReal2,	double *_pdblImg2, int _iRank2,
+		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
+
+EXTERN_OP int iMultiComplexPolyByComplexPoly(
+		double *_pdblReal1,	double *_pdblImg1, int _iRank1,
+		double *_pdblReal2,	double *_pdblImg2, int _iRank2,
+		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
+
 #endif /* __MATRIX_MULT__ */

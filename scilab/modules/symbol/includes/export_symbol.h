@@ -13,6 +13,8 @@
 #ifndef __EXPORT_SYMBOL_H__
 #define __EXPORT_SYMBOL_H__
 
+#pragma warning(disable : 4251) //It's not beautifull but that works !
+
 #ifdef _MSC_VER
 	#if SYMBOL_EXPORTS
 		#define EXTERN_SYMBOL __declspec (dllexport)

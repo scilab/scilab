@@ -11,7 +11,7 @@
 */
 
 #ifndef __OPERATION_H__
-#define __OPEARION_H__
+#define __OPERATION_H__
 
 #ifdef _MSC_VER
 	#if OPERATIONS_EXPORTS
@@ -23,4 +23,4 @@
 	#define EXTERN_OP 
 #endif
 
-#endif /* __OPEARION_H__ */
+#endif /* __OPERATION_H__ */

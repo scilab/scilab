@@ -136,9 +136,11 @@ static int	get_option (const int argc, char *argv[])
 
 extern "C"
 {
-#include <stdio.h>
-#include <unistd.h>
+	#include <stdio.h>
 
+#ifndef _MSC_VER
+	#include <unistd.h>
+#endif
   extern char *TermReadAndProcess(void);
 }
 

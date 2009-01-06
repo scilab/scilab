@@ -16,6 +16,7 @@
 extern "C"
 {
 	#include "matrix_multiplication.h"
+	#include "operation_f.h"
 }
 
 int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double* _pDoubleOut)
@@ -409,3 +410,59 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly *_pPol
 	return 0;
 }
 
+int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pPolyOut)
+{
+	bool bComplex1 	= _pPoly1->isComplex();
+	bool bComplex2 	= _pPoly2->isComplex();
+	bool bScalar1		= _pPoly1->rows_get() == 1 && _pPoly1->cols_get() == 1;
+	bool bScalar2		= _pPoly2->rows_get() == 1 && _pPoly2->cols_get() == 1;
+
+	if(bScalar1 && bScalar2)
+	{
+		if(bComplex1 == false && bComplex2 == false)
+		{
+			Poly *pPoly1		= _pPoly1->poly_get(0);
+			Poly *pPoly2		= _pPoly2->poly_get(0);
+			Poly *pPolyOut	= _pPolyOut->poly_get(0);
+			iMultiRealPolyByRealPoly(
+					pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
+					pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
+					pPolyOut->coef_get()->real_get(), pPolyOut->rank_get());
+		}
+		else if(bComplex1 == false && bComplex2 == true)
+		{
+			Poly *pPoly1		= _pPoly1->poly_get(0);
+			Poly *pPoly2		= _pPoly2->poly_get(0);
+			Poly *pPolyOut	= _pPolyOut->poly_get(0);
+			iMultiRealPolyByComplexPoly(
+					pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
+					pPoly2->coef_get()->real_get(), pPoly2->coef_get()->img_get(), pPoly2->rank_get(),
+					pPolyOut->coef_get()->real_get(), pPolyOut->coef_get()->img_get(), pPolyOut->rank_get());
+		}
+		else if(bComplex1 == true && bComplex2 == false)
+		{
+			Poly *pPoly1		= _pPoly1->poly_get(0);
+			Poly *pPoly2		= _pPoly2->poly_get(0);
+			Poly *pPolyOut	= _pPolyOut->poly_get(0);
+			iMultiComplexPolyByRealPoly(
+					pPoly1->coef_get()->real_get(), pPoly1->coef_get()->img_get(), pPoly1->rank_get(),
+					pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
+					pPolyOut->coef_get()->real_get(), pPolyOut->coef_get()->img_get(), pPolyOut->rank_get());
+		}
+		else if(bComplex1 == true && bComplex2 == true)
+		{
+			Poly *pPoly1			= _pPoly1->poly_get(0);
+			Poly *pPoly2			= _pPoly2->poly_get(0);
+			Poly *pPolyOut		= _pPolyOut->poly_get(0);
+			Double *pCoef1		= pPoly1->coef_get();
+			Double *pCoef2		= pPoly2->coef_get();
+			Double *pCoefOut	= pPoly2->coef_get();
+
+			iMultiComplexPolyByComplexPoly(
+					pCoef1->real_get(), pCoef1->img_get(), pPoly1->rank_get(),
+					pCoef2->real_get(), pCoef2->img_get(), pPoly2->rank_get(),
+					pCoefOut->real_get(), pCoefOut->img_get(), pPolyOut->rank_get());
+		}
+	}
+	return 0; //No Error;
+}

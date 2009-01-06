@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="symbol"
-	ProjectGUID="{9CC98870-A803-48C4-BE34-466852B8666C}"
+	ProjectGUID="{2C60033B-0DBD-4CA4-80D3-176C9BE9CE2F}"
 	RootNamespace="symbol"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"

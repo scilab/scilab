@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="FP10.OBJ ..\..\lib\abstractSyntaxTree.lib ..\..\lib\parse.lib $(SolutionDir)bin\libxml2.lib"
+				AdditionalDependencies="FP10.OBJ ..\..\lib\abstractSyntaxTree.lib ..\..\lib\parse.lib $(SolutionDir)bin\libxml2.lib $(SolutionDir)bin\LibScilab.lib"
 				OutputFile="$(SolutionDir)bin\Yasp.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"

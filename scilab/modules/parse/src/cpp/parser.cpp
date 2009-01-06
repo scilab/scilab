@@ -15,6 +15,10 @@
 #include <string.h>
 #include "parser.hxx"
 
+#ifdef _MSC_VER
+#include "windows.h"
+#endif
+
 extern FILE*	yyin;
 extern int	yyparse ();
 extern int	yydebug;
@@ -53,7 +57,15 @@ void Parser::parse(char *command)
 {
   yylloc.first_line = yylloc.last_line = 1;
   yylloc.first_column = yylloc.last_column = 1;
+#ifdef _MSC_VER
+	TCHAR szFile[] = TEXT("command.temp");
+	fopen_s(&yyin, "command.temp", "a+");
+	fwrite(command, 1, strlen(command), yyin);
+	fclose(yyin);
+	fopen_s(&yyin, "command.temp", "r");
+#else
   yyin = fmemopen(command, strlen(command), "r");
+#endif
 
   Parser::getInstance()->setFileName("prompt");
   Parser::getInstance()->setProgName("prompt");
@@ -61,6 +73,10 @@ void Parser::parse(char *command)
   Parser::getInstance()->setExitStatus(Succeded);
   yyparse();
   fclose(yyin);
+#ifdef _MSC_VER
+	DeleteFile(szFile);
+#endif
+	
 }
 
 /** \brief enable Bison trace mode */

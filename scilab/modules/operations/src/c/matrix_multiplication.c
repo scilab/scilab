@@ -10,6 +10,7 @@
  *
  */
 
+#include <string.h> // for memset fonction
 #include "elem_common.h"
 #include "matrix_multiplication.h"
 
@@ -143,5 +144,82 @@ int iMultiComplexScalarByComplexMatrix(
 	vGetPointerFromDoubleComplex(pDataIn2,iSize2, _pdblRealOut, _pdblImgOut);
 	vFreeDoubleComplexFromPointer(pDataIn2);
 	vFreeDoubleComplexFromPointer(pDataIn1);
+	return 0;
+}
+
+
+/* (a1 + a2 * %s + ... ) * (a1 + a2 * %s + ... )*/
+EXTERN_OP int iMultiRealPolyByRealPoly(
+		double *_pdblReal1,	int _iRank1,
+		double *_pdblReal2,	int _iRank2,
+		double *_pdblRealOut, int _iRankOut)
+{
+	int i1		= 0;
+	int i2		= 0;
+
+	memset(_pdblRealOut, 0x00, _iRankOut * sizeof(double));
+	for(i1 = 0 ; i1 < _iRank1 ; i1++)
+	{
+		for(i2 = 0 ; i2 < _iRank2 ; i2++)
+		{
+			_pdblRealOut[i1 + i2] += _pdblReal1[i1] * _pdblReal2[i2];
+		}
+	}
+	return 0;
+}
+
+/* ((a1 +ib1) + (a2+ib2) * %s + ... ) (a1 + a2 * %s + ... ) */
+EXTERN_OP int iMultiComplexPolyByRealPoly(
+		double *_pdblReal1,	double *_pdblImg1, int _iRank1,
+		double *_pdblReal2,	int _iRank2,
+		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
+{
+	int i1		= 0;
+	int i2		= 0;
+
+	memset(_pdblRealOut	, 0x00, _iRankOut * sizeof(double));
+	memset(_pdblImgOut	, 0x00, _iRankOut * sizeof(double));
+	for(i1 = 0 ; i1 < _iRank1 ; i1++)
+	{
+		for(i2 = 0 ; i2 < _iRank2 ; i2++)
+		{
+			_pdblRealOut[i1 + i2] += _pdblReal1[i1] * _pdblReal2[i2];
+			_pdblImgOut[i1 + i2]	+= _pdblImg1[i1] * _pdblReal2[i2];
+		}
+	}
+	return 0;
+}
+
+/* (a1 + a2 * %s + ... ) * ((a1 +ib1) + (a2+ib2) * %s + ... )*/
+EXTERN_OP int iMultiRealPolyByComplexPoly(
+		double *_pdblReal1,	int _iRank1,
+		double *_pdblReal2,	double *_pdblImg2, int _iRank2,
+		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
+{
+	return iMultiComplexPolyByRealPoly(
+		_pdblReal2, _pdblImg2, _iRank2,
+		_pdblReal1, _iRank1,
+		_pdblRealOut, _pdblImgOut, _iRankOut);
+
+}
+
+EXTERN_OP int iMultiComplexPolyByComplexPoly(
+		double *_pdblReal1,	double *_pdblImg1, int _iRank1,
+		double *_pdblReal2,	double *_pdblImg2, int _iRank2,
+		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
+{
+	int i1		= 0;
+	int i2		= 0;
+
+	memset(_pdblRealOut	, 0x00, _iRankOut * sizeof(double));
+	memset(_pdblImgOut	, 0x00, _iRankOut * sizeof(double));
+	for(i1 = 0 ; i1 < _iRank1 ; i1++)
+	{
+		for(i2 = 0 ; i2 < _iRank2 ; i2++)
+		{
+			_pdblRealOut[i1 + i2] += _pdblReal1[i1] * _pdblReal2[i2]	- _pdblImg1[i1] * _pdblImg2[i2];
+			_pdblImgOut[i1 + i2]	+= _pdblImg1[i1] * _pdblReal2[i2]		+ _pdblImg2[i2] * _pdblReal1[i1];
+		}
+	}
 	return 0;
 }

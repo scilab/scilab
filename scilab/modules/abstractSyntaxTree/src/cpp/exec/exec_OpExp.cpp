@@ -385,6 +385,76 @@ namespace ast
 
 					result_set(pResult);
 				}
+				else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
+				{
+					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
+					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
+
+					int iRowResult 	= 0;
+					int iColResult	= 0;
+					int *piRank			= NULL;
+
+					if(pL->size_get() == 1 && pR->size_get() == 1)
+					{
+						iRowResult = pR->rows_get();
+						iColResult = pR->cols_get();
+
+						piRank = new int[iRowResult * iColResult];
+						piRank[0] = pL->poly_get(0)->rank_get() + pR->poly_get(0)->rank_get() - 1;
+					}
+					else if(pL->size_get() == 1)
+					{
+						iRowResult = pR->rows_get();
+						iColResult = pR->cols_get();
+
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pL->poly_get(0)->rank_get() + pR->poly_get(i)->rank_get() - 1;
+						}
+					}
+					else if (pR->size_get() == 1)
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pL->cols_get();
+
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pR->poly_get(0)->rank_get() * pL->poly_get(i)->rank_get();
+						}
+					}
+					else if(pL->cols_get() == pR->rows_get())
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pR->cols_get();
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
+						{
+							piRank[i] = pL->rank_max_get() * pR->rank_max_get();
+						}
+					}
+
+					pResult = new MatrixPoly(pL->var_get(), iRowResult, iColResult, piRank);
+					delete[] piRank;
+					if(pL->isComplex() || pR->isComplex())
+					{
+						pResult->getAsPoly()->complex_set(true);
+					}
+
+					int iResult = MultiplyPolyByPoly(pL, pR, pResult->getAsPoly());
+
+					if(iResult)
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+
+					result_set(pResult);
+				}
 				break;
 			}
 		case OpExp::divide:
