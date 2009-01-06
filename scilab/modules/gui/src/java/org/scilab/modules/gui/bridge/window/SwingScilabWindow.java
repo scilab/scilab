@@ -392,9 +392,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * Only useful when the window is not yet visible
 	 */
 	public void updateDimensions() {
-		if (!isVisible()) {
-			this.pack();
-		}
+		pack();
 	}
 	
 }
