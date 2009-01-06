@@ -331,7 +331,11 @@ c
          istk(il+2)=1
          istk(il+3)=0
          comp(1)=ilc1+nc
+c     .  lct(8)=lct(8)-1 and lct(8)=lct(8)+1 lines 
+c     .  added to fix comment #23 of bug 1469
+         lct(8)=lct(8)-1
          call setlnb
+         lct(8)=lct(8)+1
       else
          top=top+1
          istk(il)=10
