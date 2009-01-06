@@ -83,8 +83,9 @@ CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 	scilab-lib-doc.properties
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
-	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
-	"$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"
+	"$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" \
+	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" \
+	"$(DESTDIR)$(rootdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = scilab_bin-mainscic.$(OBJEXT)
@@ -137,12 +138,13 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+iconsDATA_INSTALL = $(INSTALL_DATA)
 infofilesDATA_INSTALL = $(INSTALL_DATA)
 pkgconfigDATA_INSTALL = $(INSTALL_DATA)
 profilingDATA_INSTALL = $(INSTALL_DATA)
 rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(infofiles_DATA) $(pkgconfig_DATA) $(profiling_DATA) \
-	$(root_DATA)
+DATA = $(icons_DATA) $(infofiles_DATA) $(pkgconfig_DATA) \
+	$(profiling_DATA) $(root_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -402,6 +404,8 @@ $(top_srcdir)/RELEASE_NOTES_5.1 \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
+iconsdir = $(pkgdatadir)/icons/
+icons_DATA = $(top_srcdir)/icons/scilab.xpm
 profilingdir = $(pkgdatadir)/tools/profiling/
 profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
@@ -606,6 +610,23 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool
+install-iconsDATA: $(icons_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(iconsdir)"
+	@list='$(icons_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(iconsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(iconsdir)/$$f'"; \
+	  $(iconsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(iconsdir)/$$f"; \
+	done
+
+uninstall-iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(icons_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(iconsdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(iconsdir)/$$f"; \
+	done
 install-infofilesDATA: $(infofiles_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(infofilesdir)" || $(MKDIR_P) "$(DESTDIR)$(infofilesdir)"
@@ -960,7 +981,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -1009,8 +1030,9 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-infofilesDATA \
-	install-pkgconfigDATA install-profilingDATA install-rootDATA
+install-data-am: install-data-local install-iconsDATA \
+	install-infofilesDATA install-pkgconfigDATA \
+	install-profilingDATA install-rootDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1049,8 +1071,9 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
-	uninstall-infofilesDATA uninstall-pkgconfigDATA \
-	uninstall-profilingDATA uninstall-rootDATA
+	uninstall-iconsDATA uninstall-infofilesDATA \
+	uninstall-pkgconfigDATA uninstall-profilingDATA \
+	uninstall-rootDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -1066,7 +1089,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	install install-am install-binPROGRAMS install-binSCRIPTS \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
+	install-html-am install-iconsDATA install-info install-info-am \
 	install-infofilesDATA install-man install-pdf install-pdf-am \
 	install-pkgconfigDATA install-profilingDATA install-ps \
 	install-ps-am install-rootDATA install-strip installcheck \
@@ -1074,7 +1097,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am \
-	uninstall-binPROGRAMS uninstall-binSCRIPTS \
+	uninstall-binPROGRAMS uninstall-binSCRIPTS uninstall-iconsDATA \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
 	uninstall-profilingDATA uninstall-rootDATA
 

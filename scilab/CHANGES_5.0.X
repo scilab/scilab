@@ -24,6 +24,8 @@ Enhancement:
 * Under Linux/Unix, do not launch Scilab in background when called without 
   argument
 
+* icons are now installed into pkgdatadir/icons/
+
 Bug fixes:
 ==========
 
