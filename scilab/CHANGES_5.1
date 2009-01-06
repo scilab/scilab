@@ -45,7 +45,6 @@ For more information, see SEP #2.
 
 * Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
 
-
 Internationalization:
 =====================
 
@@ -165,12 +164,7 @@ Bug fixes:
 
 * bug 3887 fixed - missing installation of scisparse.h and doublecomplex.h
 
+* bug 3897 fixed - macros perturbs the behavior of mfprintf().
 
-Obsolete functions:
-===================
-
-* TCLSCI module: tk_getfile replaced by uigetfile
-* GUI module: xgetfile replaced by uigetfile
-
-
+* bug 3898 fixed - There was no way to check if mputl() has done his job.
 
