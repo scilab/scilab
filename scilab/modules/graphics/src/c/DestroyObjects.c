@@ -524,30 +524,6 @@ int DestroyCompound (sciPointObj * pthis)
   return sciStandardDestroyOperations(pthis) ;
 }
 
-void DeleteObjs(int win_num)
-{
-  sciPointObj *figure;
-   
-  figure = getFigureFromIndex(win_num);
-     
-  if ( figure != NULL )
-    { 
-      destroyGraphicsSons (figure);
-
-      //** 14MAY2008 : this TCL/TK has been removed because 
-      //**             Scilab 5 hang here: its TCK/TK interpreter
-      //**             is not capable to execute the operations required
-      //**             because is not active in all the possible context
-      //**             e;g. Scicos simulator. (JB&SM) 
-      //** /* close GED to prevent errors when using it */
-      //**    sciDestroyGed( sciGetNum(figure) ) ;
-
-      DestroyFigure (figure);
-
-    }
-}
-
-
 /**sciUnCompound
  * @memo This function destroies the Compound and  and unpackes the elementaries structures to associates them to its parent
  */

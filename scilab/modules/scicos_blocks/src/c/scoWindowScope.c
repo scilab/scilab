@@ -89,7 +89,6 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
   if ((user_data == -1 ) || (user_data == block_number))
     {
       scoSetWindowID(pScopeMemory,win_id);
-      //** DeleteObjs(win_id);
       
       scoSetScopeActivation(pScopeMemory,1); //Activate It ! Let's Rock !
       //Dont forget this kind of command
