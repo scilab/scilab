@@ -176,6 +176,7 @@ void DrawableFigure::forceDisplay( void )
 		}  catch (const GiwsException::JniException & e)
 			{
 				std::cerr << "An error occured when Scilab tried to open a Canvas: " <<  e.getJavaDescription() << std::endl;
+				std::cerr << "If an exception about java.lang.UnsatisfiedLinkError has been thrown, check if etc/librarypath.xml contains the path to gluegen and jogl libraries"  << std::endl;
 			}
 	}
 	else
