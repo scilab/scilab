@@ -232,14 +232,14 @@ c
       ids(6,pt)=toperr
       toperr=top
       if(istk(ilk).eq.13) then
-         lct(8)=0
+         lct(8)=1
          rstk(pt)=501
 c     next line for forced rhs
          ids(5,pt)=0
          icall=6
 c     *call* run
       else
-         lct(8)=0
+         lct(8)=1
          rstk(pt)=502
 c         pstk(pt)=0
          icall=7
