@@ -22,6 +22,9 @@
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "pcre_private.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 
 /* A number of things vary for Windows builds. Originally, pcretest opened its
