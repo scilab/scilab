@@ -141,6 +141,14 @@ public class ScilabFileChooser implements FileChooser {
 	}
 	
 	/**
+	 * Get the names of selected files
+	 * @return the names of selected files
+	 */
+	public String[] getSelectionFileNames() {
+		return ScilabBridge.getSelectionFileNames(this);
+	}
+	
+	/**
 	 * Get the filter index
 	 * @return the filter index
 	 */

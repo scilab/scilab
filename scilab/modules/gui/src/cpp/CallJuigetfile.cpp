@@ -95,6 +95,11 @@ char ** getJuigetfileSelection()
   return Juigetfile::getSelection(getScilabJavaVM());
 }
 
+char ** getJuigetfileSelectionFileNames()
+{
+  return Juigetfile::getSelectionFileNames(getScilabJavaVM());
+}
+
 bool getJuigetfileMultipleSelection()
 {
   return Juigetfile::isMultipleSelection(getScilabJavaVM());

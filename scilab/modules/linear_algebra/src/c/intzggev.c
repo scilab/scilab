@@ -285,8 +285,8 @@ int intzggev_complex(char *fname)
 	{
 		FREE(pdblLeftvectors);
 	}
-	FREE(pdblMatrixA);
-	FREE(pdblMatrixB);
+	vFreeDoubleComplexFromPointer(pdblMatrixA);
+	vFreeDoubleComplexFromPointer(pdblMatrixB);
 	return 0;
 }
 //
@@ -495,6 +495,8 @@ int intzggev_real(char *fname)
 	{
 		FREE(pdblLeftvectors);
 	}
+	vFreeDoubleComplexFromPointer(pdblMatrixA);
+	vFreeDoubleComplexFromPointer(pdblMatrixB);
 	return 0;
 }
 //

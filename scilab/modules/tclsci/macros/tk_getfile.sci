@@ -7,53 +7,47 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// @OBSOLETE
 
 function [p] = tk_getfile(file_mask,path,Title,multip)
-if ~with_tk() then
-   error(gettext("Tcl/Tk interface not loaded."));
-end;
-arg = ""
+
+warnobsolete("uigetfile", "5.2");
+
 if exists("file_mask","local")==1 then
-  TCL_SetVar("ftypes","{""Requested Extensions"" {"+file_mask+"} }")
-  arg = arg+" -filetypes $ftypes"
+  filemask = file_mask;
+else
+  filemask = "*";
 end;
+
+initialdir = getcwd();
 if exists("path","local")==1 then
-  path = pathconvert(path,%f,%t)
-  path=strsubst(path,"\","/")
-  arg = arg+" -initialdir {"+path+"}"
+  initialdir = pathconvert(path,%f,%t)
+  initialdir = strsubst(initialdir,"\","/")
 else
   global("%tk_getfile_defaultpath")
   if typeof(%tk_getfile_defaultpath)=="string" then
-    arg = arg+" -initialdir {"+%tk_getfile_defaultpath+"}"
+    initialdir = %tk_getfile_defaultpath;
   end
 end;
+
+thetitle = gettext("Open");
 if exists("title","local")==1 then
-  Title=title
-  arg = arg+" -title {"+Title+"}",
+  thetitle = title
 elseif exists("Title","local")==1 then
-  arg = arg+" -title {"+Title+"}",
+  thetitle = Title
 end;
+
 if ~exists("multip","local")==1 then
-  multip = "0"
+  multip = %F
 end;
 if multip~="1" then
-  multip = "0"
-end;
-arg = arg+" -multiple "+multip,
-TCL_EvalStr("set scifilepath [tk_getOpenFile"+arg+"]")
-// the output of tk_getOpenFile with -multiple 1 and -multiple 0 is not
-// the same wrt to escaping special chars such as spaces - therefore two cases
-if multip=="1" then
-  // since TCL_GetVar does not handle lists,
-  // let TCL parse the list output from tk_getOpenFile
-  TCL_EvalStr("array set sfpa {};set sfpai 1;foreach sfpae $scifilepath {set sfpa($sfpai,1) $sfpae;incr sfpai};if {$scifilepath==""""} {array unset sfpa;set sfpa """"}")
-  // and get back a column matrix of string
-  p = TCL_GetVar("sfpa")
-  TCL_EvalStr("unset -nocomplain sfpa")
+  multip = %F
 else
-  // -multiple 0 case, just recover the string output from tk_getOpenFile
-  p = TCL_GetVar("scifilepath")
+  multip = %T
 end;
+
+p = uigetfile(filemask, initialdir, thetitle, multip)';
+
 if MSDOS then
   if ~p=="" then
     global("%tk_getfile_defaultpath");

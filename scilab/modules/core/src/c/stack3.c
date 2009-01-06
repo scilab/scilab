@@ -1768,14 +1768,6 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	pTest3			= cstk(*_piString);
 	return 0;
 }
-/* 
-vGetPointerFromDoubleComplex --
-  Set the target real and imaginary part of an array from a source doublecomplex array.
-Arguments
-  _poComplex : the source array
-  _iSize : the number of elements to set
-  _pdblReal, _pdblImg : the target array (real and imaginary parts)
-*/
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
 	int iIndex = 0;
@@ -1799,19 +1791,6 @@ void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double 
 		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
 	}
 }
-/*
-oGetDoubleComplexFromPointer --
-  Returns a target doublecomplex array constructed from the source real and imaginary parts.
-  The real and imaginary parts can be NULL or not NULL :
-  * if real part and imaginary part of source array are not NULL, the returned array is as expected,
-  * if real part of source array is NULL and imaginary part is not NULL, the real part of the returned array is filled with zeros,
-  * if real part of source array is not NULL and imaginary part is NULL, the imaginary part of the returned array is filled with zeros,
-  * if both real and imaginary parts of source array are NULL, the returned array is NULL.
-Arguments
-  _pdblReal : the real part of the source array
-  _pdblImg : the imaginary part of the source array
-  _iSize : the size of the source array
-*/
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
 {
 	int iIndex = 0;
@@ -1841,21 +1820,17 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 	}
 	else
 	{
-		free(poComplex);
+		FREE(poComplex);
 		return NULL;
 	}
 	return poComplex;
 }
-/*
-GetRhsVarMatrixDouble --
-  Returns a pointer on the data of a matrix of double.
-Arguments
-  number : 
-  _iPos : index of the Scilab variable
-  _iRows : number of rows in the matrix
-  _iCols : number of columns in the matrix
-  _pdblRealData : pointer to the block of data for real values
-*/
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
+{
+	if(_poComplex != NULL)
+		FREE(_poComplex);
+}
+
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData)
 {
 	unsigned long type_len;
@@ -1867,17 +1842,6 @@ int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRe
 	*_pdblRealData = stk(lr);
 	return 0;
 }
-/*
-GetRhsVarMatrixComplex --
-  Returns a pointer on the data of a matrix of double.
-Arguments
-  number : 
-  _iPos : index of the Scilab variable
-  _iRows : number of rows in the matrix
-  _iCols : number of columns in the matrix
-  _pdblRealData : pointer to the block of data for real values
-  _pdblImgData : pointer to the block of data for complex values
-*/
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData)
 {
 	unsigned long type_len;

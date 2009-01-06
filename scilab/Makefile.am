@@ -92,6 +92,8 @@ $(top_srcdir)/RELEASE_NOTES_5.1 \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
+iconsdir=$(pkgdatadir)/icons/
+icons_DATA = $(top_srcdir)/icons/scilab.xpm
 
 profilingdir=$(pkgdatadir)/tools/profiling/
 profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp

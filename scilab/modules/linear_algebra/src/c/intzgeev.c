@@ -163,7 +163,7 @@ int intzgeev(char *fname)
 	{
 		FREE(pdblRightvectors);
 	}
-	FREE(pdblData);
+	vFreeDoubleComplexFromPointer(pdblData);
 	return 0;
 }
 

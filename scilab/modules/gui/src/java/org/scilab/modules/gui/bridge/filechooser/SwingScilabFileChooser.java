@@ -33,8 +33,9 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String[] selection;	
-	private String selectionPath;	
+	private String[] selection;	// Path + filenames
+	private String selectionPath; // Path
+	private String[] selectionFileNames; // Filenames	
 	private int selectionSize; 	
 	private int filterIndex;
 	private int maskSize;
@@ -129,16 +130,20 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 			if (this.isMultiSelectionEnabled()) {
 				File[] files = this.getSelectedFiles();
 				selection = new String[files.length];
+				selectionFileNames = new String[files.length];
 				selectionSize = files.length;
 				for (int i = 0; i < files.length; i++) {
 					selection[i] = files[i].getAbsolutePath();
-					selectionPath = files[i].getParentFile().getPath();					
+					selectionPath = files[i].getParentFile().getPath();
+					selectionFileNames[i] = files[i].getAbsolutePath().substring(selectionPath.length() + 1);
 				}					
 			} else {
 				File file = this.getSelectedFile();
 				selection = new String[1];
 				selection[0] = file.getAbsolutePath();
 				selectionPath = file.getParentFile().getPath();
+				selectionFileNames = new String[1];
+				selectionFileNames[0] = file.getAbsolutePath().substring(selectionPath.length() + 1);
 				selectionSize = 1;						
 			}
 			
@@ -146,6 +151,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 			//they are stocked into FileChooserInfos
 			FileChooserInfos.getInstance().setSelection(selection);
 			FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
+			FileChooserInfos.getInstance().setSelectionFileNames(selectionFileNames);
 			FileChooserInfos.getInstance().setSelectionSize(selectionSize);		
 			
 			//set the filter index at the last index 
@@ -161,6 +167,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 			selection[0] = "";
 			selectionSize = 0;
 			selectionPath = "";	
+			selectionFileNames = new String[1];
+			selectionFileNames[0] = "";
 			//set the filter index of the JFileChooser at 0 if "cancel" button was selected
 			filterIndex = 0;
 			
@@ -168,6 +176,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 			//they are stocked into FileChooserInfos
 			FileChooserInfos.getInstance().setSelection(selection);
 			FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
+			FileChooserInfos.getInstance().setSelectionFileNames(selectionFileNames);
 			FileChooserInfos.getInstance().setSelectionSize(selectionSize);			
 			FileChooserInfos.getInstance().setFilterIndex(filterIndex);			
 		}				
@@ -215,11 +224,19 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	}
 	
 	/**
-	 * Get the names of selected files
+	 * Get the path of selected files
 	 * @return selectionPath selected file(s) path
 	 */
 	public String getSelectionPathName() {
 		return selectionPath;
+	}
+	
+	/**
+	 * Get the names of selected files
+	 * @return selectionFileNnames selected file(s) path
+	 */
+	public String[] getSelectionFileNames() {
+		return selectionFileNames;
 	}
 	
 	/**
