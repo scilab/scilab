@@ -42,121 +42,138 @@ import com.artenum.rosetta.util.StringConstants;
  */
 public class SciInputCommandView extends ConsoleTextPane implements InputCommandView {
 
-	private static final long serialVersionUID = 1L;
-	private static final String END_LINE = "\n";
-	private static final Point ERROR_POINT = new Point(0, 0);
-	private static final int TOP_BORDER = 1;
-	private static final int BOTTOM_BORDER = 2;
-	private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
-	private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
+    private static final long serialVersionUID = 1L;
+    private static final String END_LINE = "\n";
+    private static final Point ERROR_POINT = new Point(0, 0);
+    private static final int TOP_BORDER = 1;
+    private static final int BOTTOM_BORDER = 2;
 
-	private SciConsole console;
+    private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+    private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
 
-	/**
-	 * Constructor
-	 */
-	public SciInputCommandView() {
-		super();
-		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
+    private Thread concurrentThread = null;
 
-		// Input command line is not editable when created
-		this.setEditable(false);
+    private SciConsole console;
+
+    /**
+     * Constructor
+     */
+    public SciInputCommandView() {
+	super();
+	setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
+
+	// Input command line is not editable when created
+	this.setEditable(false);
+    }
+
+    /**
+     * Gets the location of the caret in the UI
+     * @return the location as a Point object
+     * @see com.artenum.rosetta.interfaces.ui.InputCommandView#getCaretLocation()
+     */
+    public Point getCaretLocation() {
+	FontMetrics fontMetric = getFontMetrics(getFont());
+	String[] lines = null;
+	try {
+	    lines = getStyledDocument().getText(0, getCaretPosition()).split(END_LINE);
+	} catch (BadLocationException e1) {
+	    e1.printStackTrace();
+	    return ERROR_POINT;
 	}
 
-	/**
-	 * Gets the location of the caret in the UI
-	 * @return the location as a Point object
-	 * @see com.artenum.rosetta.interfaces.ui.InputCommandView#getCaretLocation()
-	 */
-	public Point getCaretLocation() {
-		FontMetrics fontMetric = getFontMetrics(getFont());
-		String[] lines = null;
-		try {
-			lines = getStyledDocument().getText(0, getCaretPosition()).split(END_LINE);
-		} catch (BadLocationException e1) {
-			e1.printStackTrace();
-			return ERROR_POINT;
-		}
+	Point result = new Point(fontMetric.stringWidth(lines[lines.length - 1]), (lines.length * fontMetric.getHeight()));
 
-		Point result = new Point(fontMetric.stringWidth(lines[lines.length - 1]), (lines.length * fontMetric.getHeight()));
-
-		// Translate for absolute coordinates
-		Component currentComponent = this;
-		while (currentComponent != null) {
-			result.translate(currentComponent.getLocation().x, currentComponent.getLocation().y);
-			currentComponent = currentComponent.getParent();
-			if (currentComponent instanceof JPanel) {
-				return result;
-			}
-		}
+	// Translate for absolute coordinates
+	Component currentComponent = this;
+	while (currentComponent != null) {
+	    result.translate(currentComponent.getLocation().x, currentComponent.getLocation().y);
+	    currentComponent = currentComponent.getParent();
+	    if (currentComponent instanceof JPanel) {
 		return result;
+	    }
 	}
+	return result;
+    }
 
-	/**
-	 * Gets the command buffer
-	 * @return the command buffer
-	 */
-	public String getCmdBuffer() {
-		String command = null;
-		try {
-			command = queue.take();
-			if (displayQueue.take()) {
-				OutputView outputView = console.getConfiguration().getOutputView();
-				PromptView promptView = console.getConfiguration().getPromptView();
-				outputView.append(StringConstants.NEW_LINE + promptView.getDefaultPrompt() + command + StringConstants.NEW_LINE);
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+    /**
+     * Gets the command buffer
+     * @return the command buffer
+     */
+    public String getCmdBuffer() {
+	String command = null;
+	try {
+	    if (concurrentThread == null) {
+		concurrentThread = Thread.currentThread();
+	    }
+	    else {
+		System.err.println("[Blouno] concurrentThread = " + concurrentThread.getId());
+		concurrentThread.interrupt();
+	    }
+	    System.err.println("[Blouno] before queue.take() -- "+Thread.currentThread().getId());
+	    command = queue.take();
+	    System.err.println("[Blouno] after queue.take() -- "+Thread.currentThread().getId());
+	    if (displayQueue.take()) {
+		OutputView outputView = console.getConfiguration().getOutputView();
+		PromptView promptView = console.getConfiguration().getPromptView();
+		outputView.append(StringConstants.NEW_LINE + promptView.getDefaultPrompt() + command + StringConstants.NEW_LINE);
+	    }
+	} catch (InterruptedException e) {
+	    /*
+	     * If we have concurrent acces let's interrupt the first one, then allow
+	     * the second to return the command.
+	     */
+	    return "";
+	}
+	concurrentThread = null;
+	return command;
+    }
+
+    /**
+     * Sets the command buffer after a user input in input command view
+     * @param command the string to set to the buffer
+     * @param displayFlag boolean indicating if the command has to be displayed
+     */
+    public void setCmdBuffer(String command, boolean displayFlag) {
+	try {
+	    queue.put(command);
+	    displayQueue.put(displayFlag);
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	}
+    }
+
+    /**
+     * Sets the console object containing this input view
+     * @param c the console associated
+     */
+    public void setConsole(SciConsole c) {
+	console = c;
+
+	// Drag n' Drop handling
+	this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
+
+	// BUG 2510 fix: automatic validation of pasted lines
+	this.getDocument().addDocumentListener(new DocumentListener() {
+	    public void changedUpdate(DocumentEvent e) {
+		// Nothing to do in Scilab
+	    }
+
+	    public void insertUpdate(DocumentEvent e) {
+		// Validates commands if followed by a carriage return
+		String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+		if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
+		    EventQueue.invokeLater(new Runnable() {
+			public void run() {
+			    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+			    console.sendCommandsToScilab(wholeTxt, true, true);
+			};
+		    });
 		}
-		return command;
-	}
+	    }
 
-	/**
-	 * Sets the command buffer after a user input in input command view
-	 * @param command the string to set to the buffer
-	 * @param displayFlag boolean indicating if the command has to be displayed
-	 */
-	public void setCmdBuffer(String command, boolean displayFlag) {
-			try {
-				queue.put(command);
-				displayQueue.put(displayFlag);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-	}
-
-	/**
-	 * Sets the console object containing this input view
-	 * @param c the console associated
-	 */
-	public void setConsole(SciConsole c) {
-		console = c;
-
-		// Drag n' Drop handling
-		this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
-
-		// BUG 2510 fix: automatic validation of pasted lines
-		this.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				// Nothing to do in Scilab
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				// Validates commands if followed by a carriage return
-				String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-				if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
-					EventQueue.invokeLater(new Runnable() {
-						public void run() {
-							String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-							console.sendCommandsToScilab(wholeTxt, true, true);
-						};
-					});
-				}
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				// Nothing to do in Scilab
-			}
-		});
-	}
+	    public void removeUpdate(DocumentEvent e) {
+		// Nothing to do in Scilab
+	    }
+	});
+    }
 }
