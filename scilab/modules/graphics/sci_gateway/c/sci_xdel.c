@@ -21,6 +21,9 @@
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
+#include "getPropertyAssignedValue.h"
+#include "WindowList.h"
+#include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xdel(char *fname,unsigned long fname_len)
@@ -29,11 +32,24 @@ int sci_xdel(char *fname,unsigned long fname_len)
   CheckRhs(-1,1);
   if (Rhs >= 1) {
     int i;
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); 
-    for ( i=0; i < m1*n1 ; i++ ) 
+		double * windowNumbers;
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+
+		/* First check that all the window numbers are valid */
+		windowNumbers = getDoubleMatrixFromStack(l1);
+		for (i = 0; i < m1 * n1; i++)
+		{
+			if (getFigureFromIndex((int) windowNumbers[i]) == NULL)
+			{
+				Scierror(999, "%s: The Figure with figure_id %d does not exist.\n",fname, (int) windowNumbers[i]);
+				LhsVar(1)=0;
+				return -1;
+			}
+		}
+
+    for (i = 0; i < m1*n1 ; i++) 
     {
-      int win = (int) *stk(l1+i);
-      sciDeleteWindow( win ) ;
+      sciDeleteWindow( (int) windowNumbers[i] ) ;
     }
   } else {
     sciDeleteWindow( sciGetNum(sciGetCurrentFigure()) ) ;
