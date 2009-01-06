@@ -43,7 +43,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	int nbRow3 = 0, nbCol3 = 0;
 	int nbRow4 = 0, nbCol4 = 0;
 
-	int nbRowOutSelection = 0, nbColOutSelection = 1;
+	int nbRowOutSelection = 1, nbColOutSelection = 0;
 	int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
 	int nbRowOutPath = 1, nbColOutPath = 1;
 
@@ -216,8 +216,8 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	menuCallback = getJuigetfileMenuCallback();
 
 
-	// nbRowOutSelection
-	nbRowOutSelection = selectionSize;
+	// nbColOutSelection
+	nbColOutSelection = selectionSize;
 
 	freeArrayOfString(mask,nbRow * nbCol);
 	freeArrayOfString(description,nbRow * nbCol);
