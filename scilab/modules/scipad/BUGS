@@ -38,8 +38,6 @@ http://bugzilla.scilab.org/buglist.cgi?&component=Scipad+Editor&bug_status=NEW&b
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
--Line numbering issue in Scilab 5 only (bug 3407)
-
 -When a function definition line ends with a comment, the line numbering is
  wrong 1 unit, resulting in various strange behaviors: execution not stopping
  at breakpoints or not up-to-date value of variables in the watch window
