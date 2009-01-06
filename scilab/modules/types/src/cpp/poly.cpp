@@ -16,6 +16,7 @@ extern "C"
 {
 #include "log.h"
 #include "exp.h"
+#include "elem_common.h"
 }
 namespace types
 {
@@ -270,12 +271,13 @@ namespace types
 
 	void Poly::update_rank(void)
 	{
+		double dblEps = getRelativeMachinePrecision();
 		int iNewRank = m_iRank;
 		double *pCoefR = coef_get()->real_get();
 		double *pCoefI = coef_get()->img_get();
 		for(int i = m_iRank - 1; i >= 0 ; i--)
 		{
-			if(pCoefR[i] == 0 && (pCoefI != NULL ? pCoefI[i] : 0) == 0)
+			if(abs(pCoefR[i]) <= dblEps && (pCoefI != NULL ? abs(pCoefI[i]) : 0) <= dblEps)
 			{
 				iNewRank--;
 			}

@@ -10,6 +10,8 @@
 *
 */
 
+
+#include "timer.hxx"
 #include "execvisitor.hxx"
 #include "core_math.h"
 
@@ -387,6 +389,7 @@ namespace ast
 				}
 				else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
 				{
+					timer timed;
 					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
 					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
 
@@ -394,15 +397,16 @@ namespace ast
 					int iColResult	= 0;
 					int *piRank			= NULL;
 
-					if(pL->size_get() == 1 && pR->size_get() == 1)
+	//				timed.start();
+	/*				if(pL->size_get() == 1 && pR->size_get() == 1)
 					{
-						iRowResult = pR->rows_get();
-						iColResult = pR->cols_get();
+						iRowResult = 1;
+						iColResult = 1;
 
-						piRank = new int[iRowResult * iColResult];
+						piRank = new int[1];
 						piRank[0] = pL->poly_get(0)->rank_get() + pR->poly_get(0)->rank_get() - 1;
 					}
-					else if(pL->size_get() == 1)
+					else */if(pL->size_get() == 1)
 					{
 						iRowResult = pR->rows_get();
 						iColResult = pR->cols_get();
@@ -436,7 +440,9 @@ namespace ast
 					}
 
 					pResult = new MatrixPoly(pL->var_get(), iRowResult, iColResult, piRank);
+
 					delete[] piRank;
+
 					if(pL->isComplex() || pR->isComplex())
 					{
 						pResult->getAsPoly()->complex_set(true);

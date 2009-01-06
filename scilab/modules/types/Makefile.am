@@ -26,8 +26,19 @@ pkglib_LTLIBRARIES 	= libscitypes.la
 
 libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES)
 
+libscitypes_la_LIBADD =
+if USE_EMBEDDED_LAPACK
+libscitypes_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
+endif
+
+if USE_EMBEDDED_BLAS
+libscitypes_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
+endif
+
+
 libscitypes_la_CXXFLAGS	=	-Iincludes/ \
 				-I../elementary_functions/includes \
+				-I../operations/includes \
 				-Isrc/cpp
 
 libscitypes_la_includedir=$(pkgincludedir)/Types

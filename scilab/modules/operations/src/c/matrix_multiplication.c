@@ -40,14 +40,14 @@ int iMultiComplexMatrixByComplexMatrix(
 int iMultiRealMatrixByRealMatrix(
 		double *_pdblReal1,	int _iRows1, int _iCols1,
 		double *_pdblReal2,	int _iRows2, int _iCols2,
-		double *_pdblRealOut)				   
+		double *_pdblRealOut)
 {
 	double dblOne		= 1;
 	double dblZero		= 0;
 
 	C2F(dgemm)("n", "n", &_iRows1, &_iCols2, &_iCols1, &dblOne,
-		_pdblReal1 , &_iRows1 , 
-		_pdblReal2, &_iRows2, &dblZero, 
+		_pdblReal1 , &_iRows1 ,
+		_pdblReal2, &_iRows2, &dblZero,
 		_pdblRealOut ,&_iRows1);
 	return 0;
 }
@@ -60,9 +60,9 @@ int iMultiRealMatrixByComplexMatrix(
 	double dblOne		= 1;
 	double dblZero		= 0;
 	iMultiRealMatrixByRealMatrix(_pdblReal1, _iRows1, _iCols1, _pdblReal2, _iRows2,  _iCols2, _pdblRealOut);
-	C2F(dgemm)("n", "n", &_iRows1, &_iCols2, &_iCols1, &dblOne, 
-		_pdblReal1 , &_iRows1 , 
-		_pdblImg2, &_iRows2, &dblZero, 
+	C2F(dgemm)("n", "n", &_iRows1, &_iCols2, &_iCols1, &dblOne,
+		_pdblReal1 , &_iRows1 ,
+		_pdblImg2, &_iRows2, &dblZero,
 		_pdblImgOut ,&_iRows1);
 
 	return 0;
@@ -77,8 +77,8 @@ int iMultiComplexMatrixByRealMatrix(
 	double dblZero		= 0;
 	iMultiRealMatrixByRealMatrix(_pdblReal1, _iRows1, _iCols1, _pdblReal2, _iRows2,  _iCols2, _pdblRealOut);
 	C2F(dgemm)("n", "n", &_iRows1, &_iCols2, &_iCols1, &dblOne,
-		_pdblImg1 , &_iRows1 , 
-		_pdblReal2, &_iRows2, &dblZero, 
+		_pdblImg1 , &_iRows1 ,
+		_pdblReal2, &_iRows2, &dblZero,
 		_pdblImgOut ,&_iRows1);
 	return 0;
 }
@@ -87,7 +87,7 @@ int iMultiComplexMatrixByRealMatrix(
 int iMultiRealScalarByRealMatrix(
 		double _dblReal1,
 		double *_pdblReal2,	int _iRows2, int _iCols2,
-		double *_pdblRealOut)			   
+		double *_pdblRealOut)
 {
 	int iOne	= 1;
 	int iSize2	= _iRows2 * _iCols2;
@@ -100,7 +100,7 @@ int iMultiRealScalarByRealMatrix(
 int iMultiRealScalarByComplexMatrix(
 		double _dblReal1,
 		double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
-		double *_pdblRealOut, double *_pdblImgOut)				   
+		double *_pdblRealOut, double *_pdblImgOut)
 {
 	int iOne	= 1;
 	int iSize2	= _iRows2 * _iCols2;
@@ -134,9 +134,9 @@ int iMultiComplexScalarByComplexMatrix(
 {
 	int iOne	= 1;
 	int iSize2	= _iRows2 * _iCols2;
-	doublecomplex *pDataIn1 = 
+	doublecomplex *pDataIn1 =
 		oGetDoubleComplexFromPointer(&_dblReal1, &_dblImg1, 1);
-	doublecomplex *pDataIn2 = 
+	doublecomplex *pDataIn2 =
 		oGetDoubleComplexFromPointer(_pdblReal2,_pdblImg2, _iRows2 * _iCols2);
 
 	C2F(zscal)(&iSize2, pDataIn1, pDataIn2, &iOne);
@@ -203,6 +203,7 @@ EXTERN_OP int iMultiRealPolyByComplexPoly(
 
 }
 
+/* ((a1 +ib1) + (a2+ib2) * %s + ... ) * ((a1 +ib1) + (a2+ib2) * %s + ... ) */
 EXTERN_OP int iMultiComplexPolyByComplexPoly(
 		double *_pdblReal1,	double *_pdblImg1, int _iRank1,
 		double *_pdblReal2,	double *_pdblImg2, int _iRank2,
@@ -213,10 +214,17 @@ EXTERN_OP int iMultiComplexPolyByComplexPoly(
 
 	memset(_pdblRealOut	, 0x00, _iRankOut * sizeof(double));
 	memset(_pdblImgOut	, 0x00, _iRankOut * sizeof(double));
+//	std::cout << "_iRank1 : " << _iRank1 << " _iRank2 : " << _iRank2 << " iRankOut : " << _iRankOut << std::endl;
+	printf("\x0d\x0a", _iRank1);
+	printf("\x0d\x0a", _iRank1);
 	for(i1 = 0 ; i1 < _iRank1 ; i1++)
 	{
+		printf("_pdblReal1[%d] = %f\x0d\x0a", i1, _pdblReal1[i1]);
+		printf("_pdblImg1[%d] = %f\x0d\x0a", i1, _pdblImg1[i1]);
 		for(i2 = 0 ; i2 < _iRank2 ; i2++)
 		{
+			printf("_pdblReal2[%d] = %f\x0d\x0a", i2, _pdblReal2[i2]);
+			printf("_pdblImg2[%d] = %f\x0d\x0a", i2, _pdblImg2[i2]);
 			_pdblRealOut[i1 + i2] += _pdblReal1[i1] * _pdblReal2[i2]	- _pdblImg1[i1] * _pdblImg2[i2];
 			_pdblImgOut[i1 + i2]	+= _pdblImg1[i1] * _pdblReal2[i2]		+ _pdblImg2[i2] * _pdblReal1[i1];
 		}
