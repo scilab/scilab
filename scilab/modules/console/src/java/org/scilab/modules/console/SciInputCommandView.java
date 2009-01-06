@@ -106,12 +106,9 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		concurrentThread = Thread.currentThread();
 	    }
 	    else {
-		System.err.println("[Blouno] concurrentThread = " + concurrentThread.getId());
 		concurrentThread.interrupt();
 	    }
-	    System.err.println("[Blouno] before queue.take() -- "+Thread.currentThread().getId());
 	    command = queue.take();
-	    System.err.println("[Blouno] after queue.take() -- "+Thread.currentThread().getId());
 	    if (displayQueue.take()) {
 		OutputView outputView = console.getConfiguration().getOutputView();
 		PromptView promptView = console.getConfiguration().getPromptView();
