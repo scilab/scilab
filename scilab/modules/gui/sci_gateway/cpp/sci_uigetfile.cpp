@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
+* Copyright (C) 2008 - DIGITEO - Vincent COUVERT
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -23,7 +24,6 @@ extern "C"
 #include "gw_gui.h"
 #include "PATH_MAX.h"
 #include "stack-c.h"
-#include "CallFileChooser.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -43,7 +43,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	int nbRow3 = 0, nbCol3 = 0;
 	int nbRow4 = 0, nbCol4 = 0;
 
-	int nbRowOutSelection = 1, nbColOutSelection = 0;
+	int nbRowOutSelection = 0, nbColOutSelection = 1;
 	int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
 	int nbRowOutPath = 1, nbColOutPath = 1;
 
@@ -61,6 +61,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	int multipleSelectionAdr  = NULL;
 
 	char **selection = NULL;
+	char **selectionFileNames = NULL;
 	int selectionSize = 0;  		
 	int filterIndex = 0; 
 
@@ -208,14 +209,15 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	// Get return values
 	selection = getJuigetfileSelection();
 	selectionPathName = getJuigetfileSelectionPathName();
+        selectionFileNames = getJuigetfileSelectionFileNames();
 	selectionSize = getJuigetfileSelectionSize();
 	multipleSelection = getJuigetfileMultipleSelection();
 	filterIndex = getJuigetfileFilterIndex();
 	menuCallback = getJuigetfileMenuCallback();
 
 
-	// nbColOutSelection
-	nbColOutSelection = selectionSize;
+	// nbRowOutSelection
+	nbRowOutSelection = selectionSize;
 
 	freeArrayOfString(mask,nbRow * nbCol);
 	freeArrayOfString(description,nbRow * nbCol);
@@ -228,52 +230,58 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	{
 		nbRowOutSelection = 1; 
 		nbColOutSelection = 1;
+
+                // "" is returned as filename
 		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
 		LhsVar(1) = Rhs + 1 ;
+
+                if (Lhs > 1)
+                  {
+                    // "" is returned as pathname
+                    CreateVarFromPtr(Rhs+2, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
+                    LhsVar(2) = Rhs + 2 ;
+                  }
+
+                if (Lhs > 2)
+                  {
+                    // 0 is returned as pathname
+                    double *tmp = (double*)MALLOC(sizeof(double));
+                    tmp[0] = 0;
+                    CreateVarFromPtr(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRowOutSelection, &nbColOutSelection, &tmp);
+                    FREE(tmp);
+                    LhsVar(3) = Rhs + 3 ;
+                  }
 		C2F(putlhsvar)();
 		return 0;
 	}
 
-	//uigetfile with single file selection
-	if (multipleSelection == FALSE) 
+	// Only one output then it contains path+filenames
+	if (Lhs == 1) 
 	{
-		if (Lhs != 1)
-		{
-			Scierror(999, _("Wrong number of input argument(s).\n"));
-			return 0;	
-		}
-		else
-		{
-			CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-			LhsVar(1) = Rhs + 1 ;
-		}
-	}
-	//uigetfile with multiple files selection (default option)
-	else
-	{
-		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-		
-		nbColOutPath = strlen(selectionPathName);
-		CreateVarFromPtr(Rhs+2, STRING_DATATYPE, &nbColOutPath,&nbRowOutPath, &selectionPathName);
-
-		if (Lhs > 2)
-		{
-			double *tmp = (double*)MALLOC(sizeof(double));
-			tmp[0] = filterIndex;
-			CreateVarFromPtr(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRowOutFilterIndex, &nbColOutFilterIndex, &tmp);
-			FREE(tmp);
-		}
-		
-		
-		LhsVar(1) = Rhs + 1 ;
-		LhsVar(2) = Rhs + 2 ;
-		if (Lhs > 2)
-		{
-			LhsVar(3) = Rhs + 3 ;
-		}			
+          CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
+          LhsVar(1) = Rhs + 1 ;
+          C2F(putlhsvar)();
+          return 0;
 	}
 
-    C2F(putlhsvar)();
+	// More than one output
+        CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selectionFileNames);
+	
+        nbColOutPath = strlen(selectionPathName);
+        CreateVarFromPtr(Rhs+2, STRING_DATATYPE, &nbColOutPath,&nbRowOutPath, &selectionPathName);
+
+        LhsVar(1) = Rhs + 1 ;
+        LhsVar(2) = Rhs + 2 ;
+        if (Lhs > 2)
+          {
+            double *tmp = (double*)MALLOC(sizeof(double));
+            tmp[0] = filterIndex;
+            CreateVarFromPtr(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRowOutFilterIndex, &nbColOutFilterIndex, &tmp);
+            FREE(tmp);
+            LhsVar(3) = Rhs + 3 ;
+          }
+        
+        C2F(putlhsvar)();
 	return 0;
 }
 

@@ -168,6 +168,13 @@ public class Juigetfile {
 	}
 	
 	/**
+	 * @return the file chooser selection
+	 */
+	public static String[] getSelectionFileNames() {
+		return FileChooserInfos.getInstance().getSelectionFileNames();
+	}
+	
+	/**
 	 * @return if the file chooser allows multiple selection
 	 */
 	public static boolean isMultipleSelection() {

@@ -78,6 +78,12 @@ public interface SimpleFileChooser {
 	String getSelectionPathName();
 
 	/**
+	 * Get the names of selected files
+	 * @return the names of selected files
+	 */
+	String[] getSelectionFileNames();
+
+	/**
 	 * Get the filter index
 	 * @return the filter index
 	 */

@@ -30,6 +30,7 @@ public final class FileChooserInfos {
 	private String[] selection;		
 	private boolean multipleSelection;
 	private String selectionPathName;
+	private String[] selectionFileNames;
 	private int filterIndex;
 	private String menuCallback;
 	
@@ -154,6 +155,13 @@ public final class FileChooserInfos {
 	}
 
 	/**
+	 * @param selection the selection to set
+	 */
+	public void setSelectionFileNames(String[] selectionFileNames) {
+		this.selectionFileNames = selectionFileNames;
+	}
+
+	/**
 	 * @return the multipleSelection
 	 */
 	public boolean isMultipleSelection() {
@@ -172,6 +180,14 @@ public final class FileChooserInfos {
 	 */
 	public String getSelectionPathName() {
 		return selectionPathName;
+	}
+
+	/**
+	 * Get the names of selected files
+	 * @return selectionFileNnames selected file(s) path
+	 */
+	public String[] getSelectionFileNames() {
+		return this.selectionFileNames;
 	}
 
 	/**

@@ -4448,6 +4448,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Get the names of selected files
+	 * @param fileChooser the file chooser we want to get the selection of 
+	 * @return the names of selected files
+	 */
+	public static String[] getSelectionFileNames(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getSelectionFileNames(fileChooser);
+	}
+	
+	/**
 	 * Set the flag indicating that we want only select directories
 	 * @param fileChooser the file chooser we want to set the flag of 
 	 */
