@@ -19,6 +19,7 @@
 #include "PATH_MAX.h"
 #include "systemc.h"
 #include "tmpdir.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include "FileExist.h"
@@ -30,7 +31,7 @@ int C2F(systemc)(char *command, int *stat)
 #ifdef _MSC_VER
 	{
 		BOOL Status=FALSE;
-		Status=CallWindowsShell(command,FALSE);
+		Status=CallWindowsShell(UTFToLocale(command),FALSE);
 		if (Status)
 		{
 			*stat=(int) 0;
@@ -43,7 +44,7 @@ int C2F(systemc)(char *command, int *stat)
 #else
 	{
 		int status;
-		status=system(command);
+		status=system(UTFToLocale(command));
 		*stat=(int) status;
 	}
 #endif

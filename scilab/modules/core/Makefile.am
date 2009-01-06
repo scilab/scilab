@@ -367,6 +367,7 @@ includes/CallScilab.h \
 includes/cluni0.h \
 includes/commandwords.h \
 includes/core_math.h \
+includes/doublecomplex.h \
 includes/ExceptionMessage.h \
 includes/existfunction.h \
 includes/freeArrayOfString.h \
@@ -410,6 +411,7 @@ includes/scilabmode.h \
 includes/scimem.h \
 includes/sciquit.h \
 includes/scirun.h \
+includes/scisparse.h \
 includes/setgetSCIpath.h \
 includes/SetScilabEnvironment.h \
 includes/sigbas.h \

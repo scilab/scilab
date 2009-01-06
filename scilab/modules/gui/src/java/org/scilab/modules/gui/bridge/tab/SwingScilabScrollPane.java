@@ -38,6 +38,8 @@ public class SwingScilabScrollPane extends JScrollPane implements
 	public SwingScilabScrollPane(SwingScilabAxes axes) {
 		super(axes);
 		this.axes = axes;
+		// use the axes background as default one
+		setRealBackground(axes.getBackground());
 	}
 	
 	/**
@@ -61,7 +63,15 @@ public class SwingScilabScrollPane extends JScrollPane implements
 	 */
 	public void setBackground(double red, double green, double blue) {
 		Color newColor = new Color((float) red, (float) green, (float) blue);
-		getViewport().setBackground(newColor);
+		setRealBackground(newColor);
+	}
+	
+	/**
+	 * Set the displayed background of the scrollpane
+	 * @param background color to use as background
+	 */
+	private void setRealBackground(Color background) {
+		getViewport().setBackground(background);
 	}
 
 	/**

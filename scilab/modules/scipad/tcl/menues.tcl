@@ -515,8 +515,8 @@ proc disablemenuesbinds {} {
     # Close and hide buttons in the tile titles
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
-            [getpaneframename $ta].clbutton configure -state disabled
-            [getpaneframename $ta].hibutton configure -state disabled
+            [getpaneframename $ta].topbar.f.clbutton configure -state disabled
+            [getpaneframename $ta].topbar.f.hibutton configure -state disabled
         }
     }
 }
@@ -545,8 +545,8 @@ proc restoremenuesbinds {} {
     # Close and hide buttons in the tile titles
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
-            [getpaneframename $ta].clbutton configure -state normal
-            [getpaneframename $ta].hibutton configure -state normal
+            [getpaneframename $ta].topbar.f.clbutton configure -state normal
+            [getpaneframename $ta].topbar.f.hibutton configure -state normal
         }
     }
     set tileprocalreadyrunning false

@@ -264,17 +264,28 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Canvas member) {
-	int result = contentPane.addMember(member);
-	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-	    Dimension dims = ((Container) scrolling).getSize();
-	    scrolling = new AwtScilabScrollPane(contentPane);
-	    ((Container) scrolling).setSize(dims);
-	    this.setContentPane((Container) scrolling);
-	    ((Container) scrolling).setVisible(true);
-	    this.setVisible(true);
-	    this.repaint();
-	}
-	return result;
+    	int result = contentPane.addMember(member);
+
+    	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
+    		int[] currentView = getViewingRegion();
+    		try {
+    			SwingUtilities.invokeAndWait(new Runnable() {
+    				public void run() {
+    					scrolling = new AwtScilabScrollPane(contentPane);
+    					setContentPane((Container) scrolling);
+    					revalidate();
+
+    				}
+    			});
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		} catch (InvocationTargetException e) {
+    			e.getCause().printStackTrace();
+    		}
+    		// set the same viewport as before
+    		setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[3]);
+    	}
+    	return result;
     }
 
     /**
@@ -282,12 +293,22 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member canvas to remove
      */
     public void removeMember(Canvas member) {
-	contentPane.removeMember(member);
-	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-	    scrolling = new SwingScilabScrollPane(contentPane);
-	    this.setContentPane((Container) scrolling);
-	    this.setVisible(true);
-	}
+    	contentPane.removeMember(member);
+    	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
+    		try {
+    			SwingUtilities.invokeAndWait(new Runnable() {
+    				public void run() {
+    					scrolling = new SwingScilabScrollPane(contentPane);
+    					setContentPane((Container) scrolling);
+    					revalidate();
+    				}
+    			});
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		} catch (InvocationTargetException e) {
+    			e.getCause().printStackTrace();
+    		}
+    	}
     }
 
     /**

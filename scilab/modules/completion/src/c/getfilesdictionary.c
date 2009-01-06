@@ -20,6 +20,7 @@
 #include "cluni0.h"
 #include "machine.h"
 #include "isdir.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 static void splitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);
@@ -81,7 +82,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		}
 
 		C2F(cluni0)(path,pathextended,&out_n,(long)strlen(path),PATH_MAX);
-		dictionary = findfiles(pathextended, filespec, &sizeListReturned);
+		dictionary = findfiles(pathextended, UTFToLocale(filespec), &sizeListReturned);
 		if (fullpath)
 		{
 			dictionary = addPath(dictionary, sizeListReturned, path);
