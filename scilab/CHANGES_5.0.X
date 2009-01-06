@@ -73,6 +73,8 @@ Bug fixes:
 
 * bug 3886 fixed - strsubst with regular expression was working only on the first element of the vector.
 
+* bug 3407 fixed - Line number where error is reported changed in Scilab may be wrong
+
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================
 
