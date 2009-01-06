@@ -18,12 +18,12 @@ function ge_do_information(GraphList)
   elseif r==2 then
     path=tk_savefile()
     if path<>'' then
-      mputl(ge_make_text_info(),path)
+      mputl(ge_make_text_info(),path);
     end
   elseif r==3 then
     path=tk_savefile('*.tex')
     if path<>'' then
-      mputl(ge_make_tex_info(),path)
+      mputl(ge_make_tex_info(),path);
     end
   end
 endfunction

@@ -290,7 +290,7 @@ function status = launch_nonreg(baseDir, testName)
           '';
           '// Quit background Scilab session';
           'exit'];
-  mputl(txt, get_filename(testFilename))
+  mputl(txt, get_filename(testFilename));
 
   //-- Launch script using a background Scilab
   // Binary or source version ?

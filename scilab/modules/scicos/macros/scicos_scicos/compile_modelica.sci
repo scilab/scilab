@@ -81,7 +81,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     if MSDOS
       //++ WINDOWS PLATFORMS: Put the instruction in a batch file instead of
       //++ executing it directly
-      mputl(instr, path + 'genc.bat')
+      mputl(instr, path + 'genc.bat');
       instr = path + 'genc.bat'
     end
 
@@ -107,7 +107,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
             txt=[txt ; mgetl(molibs(k))]
           end
         end
-        mputl(txt, TMPDIR + '/MYMOPACKAGE.mo')
+        mputl(txt, TMPDIR + '/MYMOPACKAGE.mo');
         // all Modelica files found in "modelica_libs" directories are
         // merged into the temporary file  "MYMOPACKAGE.mo". This is done
         // because in Windows the length of the command line is limited.
@@ -116,7 +116,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
         //translator = translator + strcat(' -lib ' + molibs)
         instr = translator + ' -lib ' + fil + ' -o ' + FlatName + " -command ""' + name + ' x;"" > ' + TMPDIR + filesep() + translator_err
         if MSDOS
-          mputl(instr, path + 'gent.bat')
+          mputl(instr, path + 'gent.bat');
           instr = path + 'gent.bat'
         end
         if execstr('unix_s(instr)', 'errcatch') <> 0 then

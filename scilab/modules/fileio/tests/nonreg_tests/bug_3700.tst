@@ -14,7 +14,7 @@
 // mputl fails to write some accents
 
 refText = [ 'יאטש$£§µûגפ^v~ח';'יאטש$£§µûגפ^v~ח'];
-mputl(refText, TMPDIR+filesep()+'bug_3700.txt')
+mputl(refText, TMPDIR+filesep()+'bug_3700.txt');
 
 TXT2 = mgetl(TMPDIR+filesep()+'bug_3700.txt');
 if (refText <> TXT2) then pause,end

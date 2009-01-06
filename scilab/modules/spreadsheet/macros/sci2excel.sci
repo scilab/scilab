@@ -31,5 +31,5 @@ t=var(:,1)
 for k=2:size(var,2)
   t=t+sep+var(:,k)
 end
-mputl(t,fname)
+mputl(t,fname);
 endfunction

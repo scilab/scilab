@@ -802,7 +802,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		else
 			
 			// write down the resulting dia file
-			mputl(dia,diafile)
+			mputl(dia,diafile);
 			
 			//Check for diff with the .ref file
 			

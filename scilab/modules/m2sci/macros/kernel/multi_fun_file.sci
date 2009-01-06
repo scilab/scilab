@@ -97,7 +97,7 @@ else
       funcname=stripblanks(part(funcname,keq+1:length(funcname)))
     end
     tmpfiles=[tmpfiles;funcname]
-    mputl(functxt,pathconvert(TMPDIR)+base_name+sep+tmpfiles($)+".m")
+    mputl(functxt,pathconvert(TMPDIR)+base_name+sep+tmpfiles($)+".m");
   end
   
   write(%io(2),msprintf(gettext(" -- Each function converted separately: %s -- "),strcat(tmpfiles," ")));
@@ -114,9 +114,9 @@ else
   
     txt=[]
     txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'log')
-    mputl(txt,res_path+'log') 
+    mputl(txt,res_path+'log'); 
     txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'resumelog')
-    mputl(txt,res_path+'resumelog') 
+    mputl(txt,res_path+'resumelog'); 
   
   // Catenation of all .sci files to have only one output file
   txt=[]
@@ -129,7 +129,7 @@ else
     //mdelete(res_path+tmpfiles(k)+".sci")
   //end
    
-  mputl(txt,res_path+base_name+".sci")
+  mputl(txt,res_path+base_name+".sci");
 
   // Catenation of all .log files to have only one output file
   //if exists("logfile")==0 then
@@ -143,7 +143,7 @@ else
       //mdelete(pathconvert(TMPDIR)+base_name+sep+"m2sci_"+tmpfiles(k)+".log")
     //end
   
-    //mputl(txt,res_path+"m2sci_"+base_name+".log")
+    //mputl(txt,res_path+"m2sci_"+base_name+".log");
   //end
   
   // Catenation of all resume.log files to have only one output file
@@ -158,7 +158,7 @@ else
       //mdelete(res_path+"m2sci_"+tmpfiles(k)+"_resume.log")
     //end
   
-    //mputl(txt,res_path+"m2sci_"+base_name+"_resume.log")
+    //mputl(txt,res_path+"m2sci_"+base_name+"_resume.log");
   //end
   
   // Delete useless .m files

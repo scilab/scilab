@@ -101,7 +101,7 @@ if to<>"xml" then
       end
       WH=[WH;getwhatis(fl,strsubst(fnam,'.man',''))]
     end
-    mputl(gsort(WH,'g','i'),path+whatis)
+    mputl(gsort(WH,'g','i'),path+whatis);
   end
 end
 endfunction

@@ -44,7 +44,7 @@ function Modelica_()
 	XX=scs_m.objs(k).model.rpar;
 	name=XX.props.title(1)
 	txt=gen_modelica(XX,name)
-	mputl(txt,scs_m.props.title(2)+name+'.mo')
+	mputl(txt,scs_m.props.title(2)+name+'.mo');
 	compile_modelica(scs_m.props.title(2)+name+'.mo')
 	Cmenu=[] 
       else
