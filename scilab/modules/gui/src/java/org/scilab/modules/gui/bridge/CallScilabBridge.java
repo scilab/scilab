@@ -48,7 +48,6 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;

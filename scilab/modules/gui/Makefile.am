@@ -34,7 +34,6 @@ src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallColorChooser.cpp \
-src/cpp/CallFileChooser.cpp \
 src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
@@ -114,7 +113,6 @@ src/cpp/CallJuigetfile.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
-src/jni/FileChooser.giws.xml \
 src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \
 src/jni/SwingScilabMenu.giws.xml \
@@ -260,7 +258,6 @@ includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallColorChooser.h \
-includes/CallFileChooser.h \
 includes/CallFontChooser.h \
 includes/CallFigure.h \
 includes/CallJxclick.h \

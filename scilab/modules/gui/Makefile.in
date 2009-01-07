@@ -132,18 +132,17 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	src/cpp/DestroyJavaUiobject.cpp src/cpp/DestroyWaitBar.cpp \
 	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
 	src/cpp/CallJxgetmouse.cpp src/cpp/CallColorChooser.cpp \
-	src/cpp/CallFileChooser.cpp src/cpp/CallFontChooser.cpp \
-	src/cpp/CallFigure.cpp src/cpp/CallMessageBox.cpp \
-	src/cpp/CallMainWindow.cpp src/cpp/CallWaitBar.cpp \
-	src/cpp/CallHelpBrowser.cpp src/cpp/PushButton.cpp \
-	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
-	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
-	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
-	src/cpp/ListBox.cpp src/cpp/Frame.cpp src/cpp/Toolbar.cpp \
-	src/cpp/Widget.cpp src/cpp/SetUimenuLabel.cpp \
-	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
-	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
-	src/cpp/SetUicontrolParent.cpp \
+	src/cpp/CallFontChooser.cpp src/cpp/CallFigure.cpp \
+	src/cpp/CallMessageBox.cpp src/cpp/CallMainWindow.cpp \
+	src/cpp/CallWaitBar.cpp src/cpp/CallHelpBrowser.cpp \
+	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
+	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
+	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp \
+	src/cpp/ContextMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	src/cpp/Toolbar.cpp src/cpp/Widget.cpp \
+	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
+	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
+	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -240,7 +239,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-Jxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallJxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallColorChooser.lo \
-@GUI_TRUE@	libscigui_la-CallFileChooser.lo \
 @GUI_TRUE@	libscigui_la-CallFontChooser.lo \
 @GUI_TRUE@	libscigui_la-CallFigure.lo \
 @GUI_TRUE@	libscigui_la-CallMessageBox.lo \
@@ -631,7 +629,6 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@src/jni/Jxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallJxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallColorChooser.cpp \
-@GUI_TRUE@src/cpp/CallFileChooser.cpp \
 @GUI_TRUE@src/cpp/CallFontChooser.cpp \
 @GUI_TRUE@src/cpp/CallFigure.cpp \
 @GUI_TRUE@src/cpp/CallMessageBox.cpp \
@@ -711,7 +708,6 @@ HELP_CHAPTERFILE = addchapter.sce
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
-@GUI_TRUE@src/jni/FileChooser.giws.xml \
 @GUI_TRUE@src/jni/Jxclick.giws.xml \
 @GUI_TRUE@src/jni/Jxgetmouse.giws.xml \
 @GUI_TRUE@src/jni/SwingScilabMenu.giws.xml \
@@ -837,7 +833,6 @@ includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallColorChooser.h \
-includes/CallFileChooser.h \
 includes/CallFontChooser.h \
 includes/CallFigure.h \
 includes/CallJxclick.h \
@@ -1026,7 +1021,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallClipboard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallColorChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFigure.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFileChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFontChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallHelpBrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJuigetfile.Plo@am__quote@
@@ -1598,13 +1592,6 @@ libscigui_la-CallColorChooser.lo: src/cpp/CallColorChooser.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallColorChooser.cpp' object='libscigui_la-CallColorChooser.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallColorChooser.lo `test -f 'src/cpp/CallColorChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallColorChooser.cpp
-
-libscigui_la-CallFileChooser.lo: src/cpp/CallFileChooser.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallFileChooser.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallFileChooser.Tpo -c -o libscigui_la-CallFileChooser.lo `test -f 'src/cpp/CallFileChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallFileChooser.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallFileChooser.Tpo $(DEPDIR)/libscigui_la-CallFileChooser.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallFileChooser.cpp' object='libscigui_la-CallFileChooser.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallFileChooser.lo `test -f 'src/cpp/CallFileChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallFileChooser.cpp
 
 libscigui_la-CallFontChooser.lo: src/cpp/CallFontChooser.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallFontChooser.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallFontChooser.Tpo -c -o libscigui_la-CallFontChooser.lo `test -f 'src/cpp/CallFontChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallFontChooser.cpp

@@ -402,28 +402,6 @@
 	<method name="displayAndWaitContextMenu" returnType="String" modifier="static">
 	  <parameter type="int" name="ID"/>
 	</method>
-<!-- File chooser -->
-	<method name="newFileChooser" returnType="int" modifier="static"/>      
-	<method name="setFileChooserTitle" returnType="void" modifier="static">
-            <parameter name="id" type="int"/>
-            <parameter name="title" type="String"/>
-        </method>      
-	<method name="setFileChooserInitialDirectory" returnType="void" modifier="static">
-            <parameter name="id" type="int"/>
-            <parameter name="path" type="String"/>
-        </method>      
-	<method name="fileChooserDisplayAndWait" returnType="void" modifier="static">
-            <parameter name="id" type="int"/>
-        </method>      
-	<method name="getFileChooserSelectionSize" returnType="int" modifier="static">
-            <parameter name="id" type="int"/>
-        </method>      
-	<method name="getFileChooserSelection" returnType="String[]" modifier="static">
-            <parameter name="id" type="int"/>
-        </method>      
-	<method name="setFileChooserDirectorySelectionOnly" returnType="void" modifier="static">
-            <parameter name="id" type="int"/>
-        </method>      
 <!-- Message Box -->
 	<method name="newMessageBox" returnType="int" modifier="static"/>      
 	<method name="setMessageBoxTitle" returnType="void" modifier="static">
