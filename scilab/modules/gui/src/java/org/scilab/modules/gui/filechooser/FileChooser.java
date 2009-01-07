@@ -33,12 +33,6 @@ public interface FileChooser {
 	void setTitle(String title);
 	
 	/**
-	 * Set the mask for files to choose
-	 * @param mask the mask to set
-	 */
-	void setMask(String[] mask);
-	
-	/**
 	 * Set the initial directory used for file search
 	 * @param path the default path
 	 */
@@ -65,11 +59,6 @@ public interface FileChooser {
 	 * Set the flag indicating that we want only select directories
 	 */
 	void setDirectorySelectionOnly();
-	
-	/**
-	 * Set the flag indicating that we want only select files
-	 */
-	void setFileSelectionOnly();
 	
 	/**
 	 * Set the flag indicating that we want only select files

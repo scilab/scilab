@@ -88,15 +88,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	}
 	
 	/**
-	 * Set the mask for files to choose
-	 * @param mask the mask to set
-	 */
-	public void setMask(String[] mask) {	
-		//Was used for xgetfile() function
-		//super.addChoosableFileFilter(new SciFileFilter(mask));		
-	}
-	
-	/**
 	 * Set the initial directory used for file search
 	 * @param path the default path
 	 */
@@ -206,13 +197,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 */
 	public void setDirectorySelectionOnly() {
 		setFileSelectionMode(DIRECTORIES_ONLY);
-	}
-
-	/**
-	 * Set the flag indicating that we want only select files
-	 */
-	public void setFileSelectionOnly() {
-		setFileSelectionMode(FILES_ONLY);
 	}
 	
 	/**

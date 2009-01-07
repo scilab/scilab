@@ -164,12 +164,10 @@ jmethodID jstringdisplayAndWaitContextMenujintID; // cache method id
 jmethodID jintnewFileChooserID; // cache method id
 jmethodID voidsetFileChooserTitlejintjstringID; // cache method id
 jmethodID voidsetFileChooserInitialDirectoryjintjstringID; // cache method id
-jmethodID voidsetFileChooserMaskjintjstringID; // cache method id
 jmethodID voidfileChooserDisplayAndWaitjintID; // cache method id
 jmethodID jintgetFileChooserSelectionSizejintID; // cache method id
 jmethodID jobjectArraygetFileChooserSelectionjintID; // cache method id
 jmethodID voidsetFileChooserDirectorySelectionOnlyjintID; // cache method id
-jmethodID voidsetFileChooserFileSelectionOnlyjintID; // cache method id
 jmethodID jintnewMessageBoxID; // cache method id
 jmethodID voidsetMessageBoxTitlejintjstringID; // cache method id
 jmethodID voidsetMessageBoxMessagejintjstringID; // cache method id
@@ -502,8 +500,6 @@ static void setFileChooserTitle(JavaVM * jvm_, int id, char * title);
 
 static void setFileChooserInitialDirectory(JavaVM * jvm_, int id, char * path);
 
-static void setFileChooserMask(JavaVM * jvm_, int id, char * mask);
-
 static void fileChooserDisplayAndWait(JavaVM * jvm_, int id);
 
 static int getFileChooserSelectionSize(JavaVM * jvm_, int id);
@@ -511,8 +507,6 @@ static int getFileChooserSelectionSize(JavaVM * jvm_, int id);
 static char ** getFileChooserSelection(JavaVM * jvm_, int id);
 
 static void setFileChooserDirectorySelectionOnly(JavaVM * jvm_, int id);
-
-static void setFileChooserFileSelectionOnly(JavaVM * jvm_, int id);
 
 static int newMessageBox(JavaVM * jvm_);
 

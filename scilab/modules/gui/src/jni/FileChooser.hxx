@@ -54,7 +54,6 @@ jobject instance;
 jclass instanceClass; // cache class
 jmethodID voidsetTitlejstringID; // cache method id
 jmethodID voidsetInitialDirectoryjstringID; // cache method id
-jmethodID voidsetMaskjstringID; // cache method id
 jmethodID voidsetMultipleSelectionjbooleanID; // cache method id
 
 
@@ -100,8 +99,6 @@ void endSynchronize();
 void setTitle(char * title);
 
 void setInitialDirectory(char * path);
-
-void setMask(char * mask);
 
 void setMultipleSelection(bool multipleSelection);
 

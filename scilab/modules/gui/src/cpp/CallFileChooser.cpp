@@ -24,11 +24,6 @@ void setFileChooserTitle(int ID, char * title)
   CallScilabBridge::setFileChooserTitle(getScilabJavaVM(), ID, title);
 }
 
-void setFileChooserMask(int ID, char * mask)
-{
-  CallScilabBridge::setFileChooserMask(getScilabJavaVM(), ID, mask);
-}
-
 void setFileChooserInitialDirectory(int ID, char * path)
 {
   CallScilabBridge::setFileChooserInitialDirectory(getScilabJavaVM(), ID, path);
@@ -54,7 +49,3 @@ void setFileChooserDirectorySelectionOnly(int ID)
   CallScilabBridge::setFileChooserDirectorySelectionOnly(getScilabJavaVM(), ID);
 }
 
-void setFileChooserFileSelectionOnly(int ID)
-{
-  CallScilabBridge::setFileChooserFileSelectionOnly(getScilabJavaVM(), ID);
-}

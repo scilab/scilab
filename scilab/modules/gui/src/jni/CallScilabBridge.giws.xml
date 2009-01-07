@@ -412,10 +412,6 @@
             <parameter name="id" type="int"/>
             <parameter name="path" type="String"/>
         </method>      
-	<method name="setFileChooserMask" returnType="void" modifier="static">
-            <parameter name="id" type="int"/>
-            <parameter name="mask" type="String"/>
-        </method>      
 	<method name="fileChooserDisplayAndWait" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
@@ -426,9 +422,6 @@
             <parameter name="id" type="int"/>
         </method>      
 	<method name="setFileChooserDirectorySelectionOnly" returnType="void" modifier="static">
-            <parameter name="id" type="int"/>
-        </method>      
-	<method name="setFileChooserFileSelectionOnly" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
 <!-- Message Box -->

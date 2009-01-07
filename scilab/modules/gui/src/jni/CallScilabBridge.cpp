@@ -220,12 +220,10 @@ jstringdisplayAndWaitContextMenujintID=NULL;
 jintnewFileChooserID=NULL; 
 voidsetFileChooserTitlejintjstringID=NULL; 
 voidsetFileChooserInitialDirectoryjintjstringID=NULL; 
-voidsetFileChooserMaskjintjstringID=NULL; 
 voidfileChooserDisplayAndWaitjintID=NULL; 
 jintgetFileChooserSelectionSizejintID=NULL; 
 jobjectArraygetFileChooserSelectionjintID=NULL; 
 voidsetFileChooserDirectorySelectionOnlyjintID=NULL; 
-voidsetFileChooserFileSelectionOnlyjintID=NULL; 
 jintnewMessageBoxID=NULL; 
 voidsetMessageBoxTitlejintjstringID=NULL; 
 voidsetMessageBoxMessagejintjstringID=NULL; 
@@ -434,12 +432,10 @@ jstringdisplayAndWaitContextMenujintID=NULL;
 jintnewFileChooserID=NULL; 
 voidsetFileChooserTitlejintjstringID=NULL; 
 voidsetFileChooserInitialDirectoryjintjstringID=NULL; 
-voidsetFileChooserMaskjintjstringID=NULL; 
 voidfileChooserDisplayAndWaitjintID=NULL; 
 jintgetFileChooserSelectionSizejintID=NULL; 
 jobjectArraygetFileChooserSelectionjintID=NULL; 
 voidsetFileChooserDirectorySelectionOnlyjintID=NULL; 
-voidsetFileChooserFileSelectionOnlyjintID=NULL; 
 jintnewMessageBoxID=NULL; 
 voidsetMessageBoxTitlejintjstringID=NULL; 
 voidsetMessageBoxMessagejintjstringID=NULL; 
@@ -3292,29 +3288,6 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void CallScilabBridge::setFileChooserMask (JavaVM * jvm_, int id, char * mask){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread((void **) &curEnv, NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidsetFileChooserMaskjintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserMask", "(ILjava/lang/String;)V" ) ;
-if (voidsetFileChooserMaskjintjstringID == NULL) {
-std::cerr << "Could not access to the method " << "setFileChooserMask" << std::endl;
-curEnv->ExceptionDescribe();
-exit(EXIT_FAILURE);
-}
-
-jstring mask_ = curEnv->NewStringUTF( mask );
-
-                         curEnv->CallStaticVoidMethod(cls, voidsetFileChooserMaskjintjstringID ,id, mask_);
-
-if (curEnv->ExceptionCheck()) {
-curEnv->ExceptionDescribe() ;
-}
-
-}
-
 void CallScilabBridge::fileChooserDisplayAndWait (JavaVM * jvm_, int id){
 
 JNIEnv * curEnv = NULL;
@@ -3414,27 +3387,6 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetFileChooserDirectorySelectionOnlyjintID ,id);
-
-if (curEnv->ExceptionCheck()) {
-curEnv->ExceptionDescribe() ;
-}
-
-}
-
-void CallScilabBridge::setFileChooserFileSelectionOnly (JavaVM * jvm_, int id){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread((void **) &curEnv, NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidsetFileChooserFileSelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserFileSelectionOnly", "(I)V" ) ;
-if (voidsetFileChooserFileSelectionOnlyjintID == NULL) {
-std::cerr << "Could not access to the method " << "setFileChooserFileSelectionOnly" << std::endl;
-curEnv->ExceptionDescribe();
-exit(EXIT_FAILURE);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsetFileChooserFileSelectionOnlyjintID ,id);
 
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;

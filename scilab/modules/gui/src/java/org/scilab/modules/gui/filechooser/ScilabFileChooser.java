@@ -72,14 +72,6 @@ public class ScilabFileChooser implements FileChooser {
 	}
 	
 	/**
-	 * Set the mask for files to choose
-	 * @param mask the mask to set
-	 */
-	public void setMask(String[] mask) {
-		ScilabBridge.setMask(this, mask);
-	}
-	
-	/**
 	 * Set the initial directory used for file search
 	 * @param path the default path
 	 */
@@ -115,13 +107,6 @@ public class ScilabFileChooser implements FileChooser {
 	 */
 	public void setDirectorySelectionOnly() {
 		ScilabBridge.setDirectorySelectionOnly(this);
-	}
-
-	/**
-	 * Set the flag indicating that we want only select files
-	 */
-	public void setFileSelectionOnly() {
-		ScilabBridge.setFileSelectionOnly(this);
 	}
 	
 	/**

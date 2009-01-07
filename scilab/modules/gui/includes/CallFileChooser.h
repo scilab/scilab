@@ -33,14 +33,6 @@ void setFileChooserTitle(int ID, char * title);
  * @TODO add comment
  *
  * @param ID    
- * @param mask  
- */
-void setFileChooserMask(int ID, char * mask);
-
-/**
- * @TODO add comment
- *
- * @param ID    
  * @param path  
  */
 void setFileChooserInitialDirectory(int ID, char * path);
@@ -74,13 +66,6 @@ int getFileChooserSelectionSize(int ID);
  * @param ID    
  */
 void setFileChooserDirectorySelectionOnly(int ID);
-
-/**
- * @TODO add comment
- *
- * @param ID    
- */
-void setFileChooserFileSelectionOnly(int ID);
 
 #endif
 

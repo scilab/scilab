@@ -4404,15 +4404,6 @@ public class ScilabBridge {
 	}
 	
 	/**
-	 * Set the mask for files to choose
-	 * @param fileChooser the file chooser we want to set the mask of
-	 * @param mask the mask to set
-	 */
-	public static void setMask(FileChooser fileChooser, String[] mask) {
-		ScilabFileChooserBridge.setMask(fileChooser, mask);
-	}
-	
-	/**
 	 * Set the initial directory used for file search
 	 * @param fileChooser the file chooser we want to set the initial directory of
 	 * @param path the default path
@@ -4463,14 +4454,6 @@ public class ScilabBridge {
 	public static void setDirectorySelectionOnly(FileChooser fileChooser) {
 		ScilabFileChooserBridge.setDirectorySelectionOnly(fileChooser);
 	}
-
-	/**
-	 * Set the flag indicating that we want only select files
-	 * @param fileChooser the file chooser we want to set the flag of 
-	 */
-	public static void setFileSelectionOnly(FileChooser fileChooser) {
-		ScilabFileChooserBridge.setFileSelectionOnly(fileChooser);
-	}	
 	
 	/**
 	 * We customize the file chooser for the graphic export 

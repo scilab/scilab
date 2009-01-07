@@ -108,10 +108,10 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	sci_gateway/c/gw_gui.c sci_gateway/c/sci_x_mdialog.c \
 	sci_gateway/c/sci_x_dialog.c sci_gateway/c/sci_x_choose.c \
 	sci_gateway/c/sci_x_choose_modeless.c \
-	sci_gateway/c/sci_xgetfile.c sci_gateway/c/sci_unsetmenu.c \
-	sci_gateway/c/sci_delmenu.c sci_gateway/c/sci_setmenu.c \
-	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_toolbar.c \
-	sci_gateway/c/sci_uigetdir.c sci_gateway/c/sci_uicontrol.c \
+	sci_gateway/c/sci_unsetmenu.c sci_gateway/c/sci_delmenu.c \
+	sci_gateway/c/sci_setmenu.c sci_gateway/c/sci_ClipBoard.c \
+	sci_gateway/c/sci_toolbar.c sci_gateway/c/sci_uigetdir.c \
+	sci_gateway/c/sci_uicontrol.c \
 	sci_gateway/c/sci_uicontextmenu.c sci_gateway/c/sci_uimenu.c \
 	sci_gateway/c/sci_uiwait.c sci_gateway/c/sci_mpopup.c \
 	sci_gateway/c/sci_messagebox.c sci_gateway/c/sci_waitbar.c \
@@ -203,7 +203,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-sci_x_dialog.lo \
 @GUI_TRUE@	libscigui_la-sci_x_choose.lo \
 @GUI_TRUE@	libscigui_la-sci_x_choose_modeless.lo \
-@GUI_TRUE@	libscigui_la-sci_xgetfile.lo \
 @GUI_TRUE@	libscigui_la-sci_unsetmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_delmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_setmenu.lo \
@@ -727,7 +726,6 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@sci_gateway/c/sci_x_dialog.c \
 @GUI_TRUE@sci_gateway/c/sci_x_choose.c \
 @GUI_TRUE@sci_gateway/c/sci_x_choose_modeless.c \
-@GUI_TRUE@sci_gateway/c/sci_xgetfile.c \
 @GUI_TRUE@sci_gateway/c/sci_unsetmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_delmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_setmenu.c \
@@ -1158,7 +1156,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose_modeless.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_dialog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_mdialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_xgetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-setMainWindowTitle.Plo@am__quote@
 
 .c.o:
@@ -1321,13 +1318,6 @@ libscigui_la-sci_x_choose_modeless.lo: sci_gateway/c/sci_x_choose_modeless.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_choose_modeless.c' object='libscigui_la-sci_x_choose_modeless.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_choose_modeless.lo `test -f 'sci_gateway/c/sci_x_choose_modeless.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose_modeless.c
-
-libscigui_la-sci_xgetfile.lo: sci_gateway/c/sci_xgetfile.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_xgetfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_xgetfile.Tpo -c -o libscigui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_xgetfile.Tpo $(DEPDIR)/libscigui_la-sci_xgetfile.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgetfile.c' object='libscigui_la-sci_xgetfile.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
 
 libscigui_la-sci_unsetmenu.lo: sci_gateway/c/sci_unsetmenu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_unsetmenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_unsetmenu.Tpo -c -o libscigui_la-sci_unsetmenu.lo `test -f 'sci_gateway/c/sci_unsetmenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu.c

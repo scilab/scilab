@@ -111,7 +111,6 @@ curEnv->DeleteLocalRef(localInstance);
                 /* Methods ID set to NULL */
 voidsetTitlejstringID=NULL; 
 voidsetInitialDirectoryjstringID=NULL; 
-voidsetMaskjstringID=NULL; 
 voidsetMultipleSelectionjbooleanID=NULL; 
 
 
@@ -143,7 +142,6 @@ exit(EXIT_FAILURE);
         /* Methods ID set to NULL */
         voidsetTitlejstringID=NULL; 
 voidsetInitialDirectoryjstringID=NULL; 
-voidsetMaskjstringID=NULL; 
 voidsetMultipleSelectionjbooleanID=NULL; 
 
 
@@ -204,27 +202,6 @@ exit(EXIT_FAILURE);
 jstring path_ = curEnv->NewStringUTF( path );
 
                          curEnv->CallVoidMethod( this->instance, voidsetInitialDirectoryjstringID ,path_);
-                        
-if (curEnv->ExceptionCheck()) {
-curEnv->ExceptionDescribe() ;
-}
-
-}
-
-void FileChooser::setMask (char * mask){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidsetMaskjstringID==NULL) { /* Use the cache Luke */ voidsetMaskjstringID = curEnv->GetMethodID(this->instanceClass, "setMask", "(Ljava/lang/String;)V" ) ;
-if (voidsetMaskjstringID == NULL) {
-std::cerr << "Could not access to the method " << "setMask" << std::endl;
-curEnv->ExceptionDescribe();
-exit(EXIT_FAILURE);
-}
-}
-jstring mask_ = curEnv->NewStringUTF( mask );
-
-                         curEnv->CallVoidMethod( this->instance, voidsetMaskjstringID ,mask_);
                         
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;
