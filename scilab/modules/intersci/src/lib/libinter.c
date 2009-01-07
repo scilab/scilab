@@ -13,9 +13,8 @@
 #include <string.h>
 
 #include "MALLOC.h"
-
 #include "../../../string/includes/men_Sutils.h"
-
+#include "stack-c.h"
 #include "libinter.h"
 #include "cvstr.h"
 
