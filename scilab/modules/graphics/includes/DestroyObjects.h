@@ -54,7 +54,6 @@ extern int DestroyFec (sciPointObj * pthis); /* DESTROY */
 extern int DestroySegs (sciPointObj * pthis); /* DESTROY */
 extern int DestroyCompound (sciPointObj * pthis);
 
-extern void DeleteObjs(int win); /* DESTROY */
 extern int sciUnCompound (sciPointObj * pobj); /* DESTROY */
 
 extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
