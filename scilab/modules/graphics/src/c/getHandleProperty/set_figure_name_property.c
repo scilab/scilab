@@ -25,6 +25,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
+#include "GetProperty.h" /* sciGetEntityType */
 
 /*------------------------------------------------------------------------*/
 int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
