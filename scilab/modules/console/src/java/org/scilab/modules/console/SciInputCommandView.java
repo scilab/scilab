@@ -60,7 +60,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
 
 		// Input command line is not editable when created
-		this.setEditable(true);
+		this.setEditable(false);
 	}
 
 	Point result = new Point(fontMetric.stringWidth(lines[lines.length - 1]), (lines.length * fontMetric.getHeight()));
