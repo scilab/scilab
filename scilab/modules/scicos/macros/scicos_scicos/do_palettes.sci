@@ -138,7 +138,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
 
   gh_palette.figure_size = [w h1] ; 
 
-  sleep(50); //** workaround fro JB bug on graphics proprieties 
+  //** sleep(50); //** workaround fro JB bug on graphics proprieties 
     
 //  xset('wdim',w,h)   //** xset("wdim", width, height): Set the width and the height of the current
 //                     //** graphics window. This option is not used by the postscript driver. 
