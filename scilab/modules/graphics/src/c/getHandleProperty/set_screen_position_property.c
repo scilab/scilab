@@ -20,6 +20,7 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
+#include "GetProperty.h" /* sciGetEntityType */
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
