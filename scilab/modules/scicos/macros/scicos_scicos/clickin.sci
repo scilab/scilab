@@ -169,8 +169,10 @@ if typeof(o)=="Block" then
   //**--------------------- Standard block -------------------------------  
   else
 
-    ierr = execstr('o_n='+o.gui+'(''set'',o)','errcatch') ; //** stardard, protects, operation 
-    //**ierr = execstr('o_n='+o.gui+'(''set'',o)'); //** DEBUG ONLY : no error catch :(
+    //** RELEASE 
+    ierr = execstr('o_n='+o.gui+'(''set'',o)','errcatch') ; //** stardard, protected, operation 
+    
+    //** ierr = execstr('o_n='+o.gui+'(''set'',o)'); //** DEBUG ONLY : no error catch :(
 
     //** Added to unset the last upper left point
     //** of the dialog box
