@@ -33,6 +33,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
+@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 check_PROGRAMS = testSymbol$(EXEEXT) testScope$(EXEEXT) \
 	testStack$(EXEEXT) testHeap$(EXEEXT)
 TESTS = testSymbol$(EXEEXT) testScope$(EXEEXT) testStack$(EXEEXT) \
@@ -70,7 +72,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisymbol_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscisymbol_la_LIBADD =
+libscisymbol_la_DEPENDENCIES = $(am__append_1) $(am__append_2)
 am__objects_1 = libscisymbol_la-symbol.lo libscisymbol_la-context.lo \
 	libscisymbol_la-table.lo
 am_libscisymbol_la_OBJECTS = $(am__objects_1)
@@ -340,8 +342,11 @@ libscisymbol_la_SOURCES = $(SYMBOL_CPP_SOURCES)
 libscisymbol_la_CXXFLAGS = -I includes/ \
 				-I $(top_builddir)/modules/types/includes \
 				-I $(top_builddir)/modules/functions_manager/includes \
+				-I $(top_builddir)/modules/elementary_functions/includes \
+				-I $(top_builddir)/modules/operations/includes \
 				-I src/cpp
 
+libscisymbol_la_LIBADD = $(am__append_1) $(am__append_2)
 libscisymbol_la_includedir = $(pkgincludedir)/Symbol
 libscisymbol_la_include_HEADERS = includes/symbol.hxx
 

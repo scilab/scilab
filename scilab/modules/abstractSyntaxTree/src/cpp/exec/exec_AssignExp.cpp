@@ -433,6 +433,7 @@ namespace ast
 				if(e.is_verbose())
 				{
 					std::cout << Var->name_get() << " = " << std::endl;
+					std::cout << std::endl;
 					std::cout << pVar->toString(10,75) << std::endl;
 				}
 			}

@@ -10,8 +10,11 @@
 *
 */
 
+#include <sstream>
 #include "matrixpoly.hxx"
 #include "core_math.h"
+
+using namespace std;
 
 namespace types
 {
@@ -313,5 +316,82 @@ namespace types
 			pPoly->coef_set(pTemp);
 		}
 	}
+
+	std::string	MatrixPoly::toString(int _iPrecison, int _iLineLen)
+	{
+		ostringstream ostr;
+
+		for(int iRow = 0 ; iRow < m_iRows ; iRow++)
+		{
+			for(int iCol = 0 ; iCol < m_iCols ; iCol++)
+			{
+				cout << poly_get(iRow, iCol)->toStringReal(_iPrecison, _iLineLen, var_get()) << endl;
+			}
+		}
+		return "";//ostr.str();
+	}
 }
 
+/*
+					MatrixPoly *pMP = (*it_scope).second->getAsPoly();
+					ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << std::endl;
+					for(int i = 0 ; i < pMP->rows_get(); i++)
+					{
+						for(int j = 0 ; j < pMP->cols_get(); j++)
+						{
+							ostr << "| ";
+							Poly *poPoly	= pMP->poly_get(i,j);
+							Double *pdbl	= poPoly->coef_get();
+							double *pR		= pdbl->real_get();
+							double *pI		= pdbl->img_get();
+
+							for(int k = poPoly->rank_get() - 1 ; k >= 0 ; k--)
+							{
+								if(k != poPoly->rank_get() - 1)
+								{
+									ostr << " + ";
+								}
+
+								ostr << "(";
+								if(pR[k] != 0 || pI == NULL || pI[k] == 0)
+								{
+									ostr << pR[k];
+								}
+
+ 								if((pI != NULL && pI[k] != 0))
+								{
+									if(pR[k] != 0 && pI[k] > 0)
+									{
+										ostr << "+";
+									}
+
+									if(pI[k] == 1)
+									{
+										ostr << "i";
+									}
+									else if(pI[k] == -1)
+									{
+										ostr << "-i";
+									}
+									else
+									{
+										ostr << pI[k] << "i";
+									}
+								}
+								ostr << ")";
+
+								if(k != 0)
+								{
+									ostr << " * " << pMP->var_get();
+									if(k != 1)
+									{
+										ostr << "^" << k;
+									}
+								}
+							}
+							ostr << " |";
+						}
+						ostr << std::endl;
+					}
+					ostr << std::endl << std::endl;
+*/

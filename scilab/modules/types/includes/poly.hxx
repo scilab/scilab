@@ -46,6 +46,8 @@ namespace types
 		void					update_rank(void);
 
 		void					CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
+		string				toStringReal(int _iPrecision, int _iLineLen, string _szVar);
+		string				toStringImg(int _iPrecision, int _iLineLen, string _szVar);
 
   protected :
 		RealType			getType(void);

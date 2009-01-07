@@ -9,6 +9,8 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include <sstream>
 #include "types.hxx"
 
 namespace types
@@ -28,4 +30,12 @@ namespace types
 	{
 		return m_iSize;
 	}
+
+	std::string GenericType::DimToString()
+	{
+		std::ostringstream ostr;
+		ostr << "(" << rows_get() << " x " << cols_get() << ")";
+		return ostr.str();
+	}
+
 }

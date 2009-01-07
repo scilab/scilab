@@ -17,6 +17,7 @@
 #include <list>
 #include "types.hxx"
 
+using std::string;
 namespace types
 {
   class String : public GenericType
@@ -34,7 +35,7 @@ namespace types
     void 			whoAmI();
 
     String*		getAsString(void);
-		std::string		toString(int _iPrecison, int _iLineLen);
+		string		toString(int _iPrecision, int _iLineLen);
 
   protected :
     RealType getType();//			{ return RealString; }

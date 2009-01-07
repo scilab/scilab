@@ -20,6 +20,11 @@
 #include "alltypes.hxx"
 #include "export_symbol.h"
 
+extern "C"
+{
+	#include "elem_common.h"
+}
+
 using namespace types;
 
 namespace symbol
@@ -142,32 +147,9 @@ namespace symbol
 				else if((*it_scope).second->isString())
 				{
 					String *psz = (*it_scope).second->getAsString();
-					ostr << "( " << psz->rows_get() << ", " << psz->cols_get() << " )" << std::endl;
-					int iCols = psz->cols_get();
-					int iRows = psz->rows_get();
-
-					if(iRows == 1 && iCols == 1)
-					{
-						ostr << psz->string_get(0,0) << std::endl;
-					}
-					else
-					{
-						ostr << "[ ";
-						for(int r = 0 ; r < iRows ; r++)
-						{
-							for(int c = 0 ; c < iCols ; c++)
-							{
-								ostr << psz->string_get(r, c);
-								if((c + 1) != iCols || (r + 1) != iRows)
-								{
-									ostr << " , ";
-								}
-
-							}
-							ostr  << std::endl;
-						}
-						ostr << " ]" << std::endl;
-					}
+					ostr << psz->DimToString() << std::endl;
+					ostr << psz->toString(10, 75);
+					ostr << std::endl;
 				}
 				else if((*it_scope).second->isBool())
 				{
@@ -194,6 +176,11 @@ namespace symbol
 				}
 				else if((*it_scope).second->isPoly())
 				{
+/*					MatrixPoly *pPoly = (*it_scope).second->getAsPoly();
+					ostr << pPoly->DimToString() << std::endl;
+					ostr << pPoly->toString(10, 75);
+					ostr << std::endl;
+*/
 					MatrixPoly *pMP = (*it_scope).second->getAsPoly();
 					ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << std::endl;
 					for(int i = 0 ; i < pMP->rows_get(); i++)
@@ -216,7 +203,14 @@ namespace symbol
 								ostr << "(";
 								if(pR[k] != 0 || pI == NULL || pI[k] == 0)
 								{
-									ostr << pR[k];
+									if(isZero(pR[k]) == false)
+									{
+										ostr << pR[k];
+									}
+									else
+									{
+										ostr << 0;
+									}
 								}
 
  								if((pI != NULL && pI[k] != 0))

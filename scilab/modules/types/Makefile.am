@@ -20,6 +20,7 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/implicitlist.cpp \
 			src/cpp/poly.cpp \
 			src/cpp/matrixpoly.cpp \
+			src/cpp/tostring_common.cpp \
 			src/cpp/function.cpp
 
 pkglib_LTLIBRARIES 	= libscitypes.la

@@ -21,7 +21,19 @@ libscisymbol_la_SOURCES 	= $(SYMBOL_CPP_SOURCES)
 libscisymbol_la_CXXFLAGS	= -I includes/ \
 				-I $(top_builddir)/modules/types/includes \
 				-I $(top_builddir)/modules/functions_manager/includes \
+				-I $(top_builddir)/modules/elementary_functions/includes \
+				-I $(top_builddir)/modules/operations/includes \
 				-I src/cpp
+
+
+libscisymbol_la_LIBADD =
+if USE_EMBEDDED_LAPACK
+libscisymbol_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
+endif
+
+if USE_EMBEDDED_BLAS
+libscisymbol_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
+endif
 
 libscisymbol_la_includedir=$(pkgincludedir)/Symbol
 

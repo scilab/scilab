@@ -397,8 +397,7 @@ namespace ast
 					int iColResult	= 0;
 					int *piRank			= NULL;
 
-	//				timed.start();
-	/*				if(pL->size_get() == 1 && pR->size_get() == 1)
+					if(pL->size_get() == 1 && pR->size_get() == 1)
 					{
 						iRowResult = 1;
 						iColResult = 1;
@@ -406,7 +405,7 @@ namespace ast
 						piRank = new int[1];
 						piRank[0] = pL->poly_get(0)->rank_get() + pR->poly_get(0)->rank_get() - 1;
 					}
-					else */if(pL->size_get() == 1)
+					else if(pL->size_get() == 1)
 					{
 						iRowResult = pR->rows_get();
 						iColResult = pR->cols_get();

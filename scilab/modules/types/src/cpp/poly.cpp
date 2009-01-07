@@ -9,8 +9,10 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+#include <sstream>
 #include <math.h>
 #include "poly.hxx"
+#include "tostring_common.hxx"
 
 extern "C"
 {
@@ -18,6 +20,9 @@ extern "C"
 #include "exp.h"
 #include "elem_common.h"
 }
+
+using namespace std;
+
 namespace types
 {
 	Poly::Poly()
@@ -289,6 +294,73 @@ namespace types
 		{
 			rank_set(iNewRank, true);
 		}
+	}
+
+	string	Poly::toStringReal(int _iPrecision, int _iLineLen, string _szVar)
+	{
+		ostringstream ostr;
+		ostringstream ostemp;
+
+		double *pReal = m_pdblCoef->real_get();
+		double *pImg 	= m_pdblCoef->img_get();
+
+		//to add exponant value a the good place
+		int *piIndexExp = new int[m_iRank];
+
+		for(int i = 0 ; i < m_iRank ; i++)
+		{
+			piIndexExp[i] = 0;
+			if(isZero(pReal[i]) == false)
+			{
+				int iWidth = 0, iPrec = 0;
+				bool bFP = false; // FloatingPoint
+				GetFormat(pReal[i], _iPrecision, &iWidth, &iPrec, &bFP);
+				Add_Value(&ostemp, pReal[i], iWidth, iPrec, true/*, ostemp.str().size() != 0, i == 0*/);
+
+				if(i != 0)
+				{
+					ostemp << _szVar;
+					if(i > 1)
+					{
+						ostemp << " ";
+					}
+					cout << "piIndexExp[" << i << "] <- " << ostemp.str().size() << "\"" << ostemp.str() << "\"" << endl;
+					piIndexExp[i] = ostemp.str().size();
+				}
+				ostemp << " ";
+			}
+		}
+
+		cout << "m_iRank : " << m_iRank << endl;
+		for(int i = 2 ; i < m_iRank ; i++)
+		{
+			if(piIndexExp[i] == 0)
+			{
+				continue;
+			}
+			cout << "old : " << ostr.str().size() << endl;
+			cout << "piIndexExp[" << i << "] -> " << piIndexExp[i] - ostr.str().size() << endl;
+			Config_Stream(&ostr, piIndexExp[i] - ostr.str().size(), 0, ' ');
+			if(isZero(pReal[i]) == false || (pImg != NULL && isZero(pImg[i])))
+				ostr << right << i;
+		}
+		ostr << endl;
+		ostr << ostemp.str();
+
+		delete[] piIndexExp;
+		return ostr.str();
+	}
+
+	string	Poly::toStringImg(int _iPrecision, int _iLineLen, string _szVar)
+	{
+		if(isComplex() == false)
+		{
+			return "";
+		}
+
+		ostringstream ostr;
+
+		return ostr.str();
 	}
 }
 

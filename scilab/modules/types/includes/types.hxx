@@ -27,7 +27,7 @@ namespace types
 	class GenericType : public InternalType
   {
 
-	protected : 
+	protected :
 		int m_iRows;
 		int m_iCols;
 		int m_iSize;
@@ -61,12 +61,15 @@ namespace types
 
     /* Function */
     bool isFunction(void) { return (getType() == RealFunction); }
-		
+
 
 		/*commun functions*/
 		int cols_get();
 		int rows_get();
 		int size_get();
+
+		std::string DimToString();
+
 
     virtual bool isAssignable(void) { return true; }
 

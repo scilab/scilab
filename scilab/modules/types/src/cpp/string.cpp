@@ -157,7 +157,7 @@ namespace types
 		return GenericType::RealString;
 	}
 
-	string String::toString(int _iPrecison, int _iLineLen)
+	string String::toString(int _iPrecision, int _iLineLen)
 	{
 		ostringstream ostr;
 
@@ -179,13 +179,13 @@ namespace types
 			for(int i = 0 ; i < m_iSize ; i++)
 			{
 				ostr << "!";
-				Config_Stream(&ostr, iMaxLen, _iPrecison, ' ');
+				Config_Stream(&ostr, iMaxLen, _iPrecision, ' ');
 				ostr << left << string_get(i,0);
 				ostr << "!" << endl;
 				if((i+1) < m_iSize)
 				{
 					ostr << "!";
-					Config_Stream(&ostr, iMaxLen, _iPrecison, ' ');
+					Config_Stream(&ostr, iMaxLen, _iPrecision, ' ');
 					ostr << left << " ";
 					ostr << "!" << endl;
 				}
@@ -216,7 +216,7 @@ namespace types
 					iLastVal = i;
 				}
 
-				Config_Stream(&ostemp, iCurLen + 2, _iPrecison, ' ');
+				Config_Stream(&ostemp, iCurLen + 2, _iPrecision, ' ');
 				ostemp << left << string_get(0,i);
 			}
 
@@ -244,9 +244,6 @@ namespace types
 			int *piSize = new int[cols_get()];
 			memset(piSize, 0x00, cols_get() * sizeof(int));
 
-			cout << "iRows : " << m_iRows << " iCols : " << m_iCols << endl;
-			cout << "_iLineLen : " << _iLineLen << endl;
-
 			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
 			{
 				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
@@ -261,7 +258,7 @@ namespace types
 						ostemp << "!";
 						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 						{
-							Config_Stream(&ostemp, piSize[iCols2], _iPrecison, ' ');
+							Config_Stream(&ostemp, piSize[iCols2], _iPrecision, ' ');
 							ostemp << left << string_get(iRows2, iCols2) << SPACE_BETWEEN_TWO_VALUES;
 						}
 
@@ -269,7 +266,7 @@ namespace types
 						if((iRows2 + 1) != m_iRows)
 						{
 							ostemp << "!";
-							Config_Stream(&ostemp, iLen, _iPrecison, ' ');
+							Config_Stream(&ostemp, iLen, _iPrecision, ' ');
 							ostemp << left << " ";
 							ostemp << "!" << endl;
 						}
@@ -289,7 +286,6 @@ namespace types
 					iLastCol = iCols1;
 				}
 				iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
-				cout << "iLen : " << iLen << endl;
 			}
 
 			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
@@ -298,7 +294,7 @@ namespace types
 				ostemp << "!";
 				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
 				{
-					Config_Stream(&ostemp, piSize[iCols2], _iPrecison, ' ');
+					Config_Stream(&ostemp, piSize[iCols2], _iPrecision, ' ');
 					ostemp << left << string_get(iRows2, iCols2) << SPACE_BETWEEN_TWO_VALUES;
 					iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_VALUES;
 				}
@@ -306,7 +302,7 @@ namespace types
 				if((iRows2 + 1) != m_iRows)
 				{
 					ostemp << "!";
-					Config_Stream(&ostemp, iLen, _iPrecison, ' ');
+					Config_Stream(&ostemp, iLen, _iPrecision, ' ');
 					ostemp << left << " ";
 					ostemp << "!" << endl;
 				}

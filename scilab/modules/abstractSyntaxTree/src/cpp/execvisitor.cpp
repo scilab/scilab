@@ -127,6 +127,12 @@ namespace ast
 	{
 		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
 		result_set(pI);
+		if(e.is_verbose())
+		{
+			std::cout << e.name_get() << " = " << std::endl;
+			std::cout << std::endl;
+			std::cout << pI->toString(10,75) << std::endl;
+		}
 	}
 
 	void ExecVisitor::visit (const ColonVar &e)

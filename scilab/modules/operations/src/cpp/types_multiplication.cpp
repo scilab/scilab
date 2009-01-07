@@ -576,5 +576,5 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			}
 		}
 	}
-return 0; //No Error;
+	return 0; //No Error;
 }

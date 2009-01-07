@@ -214,17 +214,10 @@ EXTERN_OP int iMultiComplexPolyByComplexPoly(
 
 	memset(_pdblRealOut	, 0x00, _iRankOut * sizeof(double));
 	memset(_pdblImgOut	, 0x00, _iRankOut * sizeof(double));
-//	std::cout << "_iRank1 : " << _iRank1 << " _iRank2 : " << _iRank2 << " iRankOut : " << _iRankOut << std::endl;
-	printf("\x0d\x0a", _iRank1);
-	printf("\x0d\x0a", _iRank1);
 	for(i1 = 0 ; i1 < _iRank1 ; i1++)
 	{
-		printf("_pdblReal1[%d] = %f\x0d\x0a", i1, _pdblReal1[i1]);
-		printf("_pdblImg1[%d] = %f\x0d\x0a", i1, _pdblImg1[i1]);
 		for(i2 = 0 ; i2 < _iRank2 ; i2++)
 		{
-			printf("_pdblReal2[%d] = %f\x0d\x0a", i2, _pdblReal2[i2]);
-			printf("_pdblImg2[%d] = %f\x0d\x0a", i2, _pdblImg2[i2]);
 			_pdblRealOut[i1 + i2] += _pdblReal1[i1] * _pdblReal2[i2]	- _pdblImg1[i1] * _pdblImg2[i2];
 			_pdblImgOut[i1 + i2]	+= _pdblImg1[i1] * _pdblReal2[i2]		+ _pdblImg2[i2] * _pdblReal1[i1];
 		}

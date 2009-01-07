@@ -52,8 +52,7 @@ namespace types
 		void					complex_set(bool _bComplex);
 
     Double*				getAsDouble(void);
-		string				toString(int _iPrecison, int _iLineLen);
-		string				DimToString();
+		string				toString(int _iPrecision, int _iLineLen);
 
   protected :
 		RealType			getType(void);

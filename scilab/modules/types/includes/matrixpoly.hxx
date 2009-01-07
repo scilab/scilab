@@ -42,6 +42,7 @@ namespace types
 		Double* 			coef_get(void);
 		void					coef_set(Double *_pCoef);
 
+		std::string		toString(int _iPrecison, int _iLineLen);
 
 
 
