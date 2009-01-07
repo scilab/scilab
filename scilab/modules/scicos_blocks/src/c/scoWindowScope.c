@@ -469,7 +469,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                   {
                     sciSetUsedWindow(scoGetWindowID(pScopeMemory));
                     sciSetSelectedSubWin(scoGetPointerAxes(pScopeMemory,i));
-                    pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
+										sciSetVisibility(pShortDraw, TRUE);
                     pShortDrawTable[ShortDrawTableIndex] = pShortDraw ;
                     ShortDrawTableIndex++;
                   }
