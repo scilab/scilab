@@ -34,5 +34,14 @@
     <method name="getSelectionPathName" returnType="String" modifier="static"/>    
     <method name="getFilterIndex" returnType="int" modifier="static"/>     
     <method name="getMenuCallback" returnType="String" modifier="static"/>		
+<!-- uigetdir -->
+    <method name="uigetdir" returnType="void" modifier="static"/>	
+    <method name="uigetdir" returnType="void" modifier="static">
+      <parameter name="initialDirectory" type="String"/>
+    </method>	
+    <method name="uigetdir" returnType="void" modifier="static">
+      <parameter name="initialDirectory" type="String"/>
+      <parameter name="title" type="String"/>
+    </method>	
   </object>
 </package>

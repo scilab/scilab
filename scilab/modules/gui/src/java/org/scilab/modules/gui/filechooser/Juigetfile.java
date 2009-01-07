@@ -201,4 +201,44 @@ public class Juigetfile {
 	public static String getMenuCallback() {
 		return FileChooserInfos.getInstance().getMenuCallback();
 	}
+	
+	/**
+	 * uigetdir called without arguments
+	 */
+	public static void uigetdir() {	
+		uigetdir(null, null);
+	}
+
+	/**
+	 * uigetdir called with 1 input argument
+	 * @param initialDirectory initial directory of uigetdir
+	 */
+	public static void uigetdir(String initialDirectory) {	
+		uigetdir(initialDirectory, null);
+	}
+
+	/**
+	 * Scilab call point for uigetdir
+	 * uigetdir called with all args (initial directory, filechooser box title)
+	 * @param initialDirectory initial directory of uigetdir
+	 * @param title title of the file chooser
+	 */
+	public static void uigetdir(String initialDirectory, String title) {
+
+		Juigetfile.initialDirectory = initialDirectory;
+		Juigetfile.boxtTitle = title;
+		
+		SwingScilabFileChooser ssfc = new SwingScilabFileChooser();				
+		ssfc.setDirectorySelectionOnly();
+		if (Juigetfile.initialDirectory != null) {
+			System.out.println("initialDir = " + Juigetfile.initialDirectory);
+			ssfc.setInitialDirectory(Juigetfile.initialDirectory);
+		}
+		if (Juigetfile.boxtTitle != null) {
+			ssfc.setTitle(Juigetfile.boxtTitle);
+		}
+		ssfc.displayAndWait();	
+	
+		ssfc.invalidate();	
+	}
 }

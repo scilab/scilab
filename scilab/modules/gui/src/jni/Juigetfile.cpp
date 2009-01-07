@@ -125,6 +125,9 @@ jbooleanisMultipleSelectionID=NULL;
 jstringgetSelectionPathNameID=NULL; 
 jintgetFilterIndexID=NULL; 
 jstringgetMenuCallbackID=NULL; 
+voiduigetdirID=NULL; 
+voiduigetdirjstringID=NULL; 
+voiduigetdirjstringjstringID=NULL; 
 
 
 }
@@ -169,6 +172,9 @@ jbooleanisMultipleSelectionID=NULL;
 jstringgetSelectionPathNameID=NULL; 
 jintgetFilterIndexID=NULL; 
 jstringgetMenuCallbackID=NULL; 
+voiduigetdirID=NULL; 
+voiduigetdirjstringID=NULL; 
+voiduigetdirjstringjstringID=NULL; 
 
 
 }
@@ -880,6 +886,75 @@ curEnv->ExceptionDescribe() ;
 }
 
 return myStringBuffer;
+
+}
+
+void Juigetfile::uigetdir (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiduigetdirID = curEnv->GetStaticMethodID(cls, "uigetdir", "()V" ) ;
+if (voiduigetdirID == NULL) {
+std::cerr << "Could not access to the method " << "uigetdir" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voiduigetdirID );
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+}
+
+void Juigetfile::uigetdir (JavaVM * jvm_, char * initialDirectory){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiduigetdirjstringID = curEnv->GetStaticMethodID(cls, "uigetdir", "(Ljava/lang/String;)V" ) ;
+if (voiduigetdirjstringID == NULL) {
+std::cerr << "Could not access to the method " << "uigetdir" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+jstring initialDirectory_ = curEnv->NewStringUTF( initialDirectory );
+
+                         curEnv->CallStaticVoidMethod(cls, voiduigetdirjstringID ,initialDirectory_);
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+}
+
+void Juigetfile::uigetdir (JavaVM * jvm_, char * initialDirectory, char * title){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiduigetdirjstringjstringID = curEnv->GetStaticMethodID(cls, "uigetdir", "(Ljava/lang/String;Ljava/lang/String;)V" ) ;
+if (voiduigetdirjstringjstringID == NULL) {
+std::cerr << "Could not access to the method " << "uigetdir" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+jstring initialDirectory_ = curEnv->NewStringUTF( initialDirectory );
+
+jstring title_ = curEnv->NewStringUTF( title );
+
+                         curEnv->CallStaticVoidMethod(cls, voiduigetdirjstringjstringID ,initialDirectory_, title_);
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
 
 }
 

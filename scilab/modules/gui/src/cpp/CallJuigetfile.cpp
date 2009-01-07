@@ -120,8 +120,22 @@ char * getJuigetfileMenuCallback()
   return Juigetfile::getMenuCallback(getScilabJavaVM());
 }
 
-
 void deleteMenuCallBack(char * menuCallBack)
 {
   delete[] menuCallBack;
+}
+
+void CallJuigetfileForDirectoryWithoutInput()
+{
+	Juigetfile::uigetdir(getScilabJavaVM());
+}
+
+void CallJuigetfileForDirectoryWithInitialdirectory(char *initialDirectory)
+{
+  Juigetfile::uigetdir(getScilabJavaVM(), initialDirectory);
+}
+
+void CallJuigetfileForDirectoryWithInitialdirectoryAndTitle(char *initialDirectory, char *title)
+{
+  Juigetfile::uigetdir(getScilabJavaVM(), initialDirectory, title);
 }

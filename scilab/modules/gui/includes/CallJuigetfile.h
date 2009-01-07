@@ -37,4 +37,10 @@ int getJuigetfileFilterIndex(void);
 
 char *getJuigetfileMenuCallback(void);
 
+void CallJuigetfileForDirectoryWithoutInput();
+
+void CallJuigetfileForDirectoryWithInitialdirectory(char *initialDirectory);
+
+void CallJuigetfileForDirectoryWithInitialdirectoryAndTitle(char *initialDirectory, char *title);
+
 #endif

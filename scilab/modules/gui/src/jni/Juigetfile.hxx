@@ -69,6 +69,9 @@ jmethodID jbooleanisMultipleSelectionID; // cache method id
 jmethodID jstringgetSelectionPathNameID; // cache method id
 jmethodID jintgetFilterIndexID; // cache method id
 jmethodID jstringgetMenuCallbackID; // cache method id
+jmethodID voiduigetdirID; // cache method id
+jmethodID voiduigetdirjstringID; // cache method id
+jmethodID voiduigetdirjstringjstringID; // cache method id
 
 
 /**
@@ -141,6 +144,12 @@ static char * getSelectionPathName(JavaVM * jvm_);
 static int getFilterIndex(JavaVM * jvm_);
 
 static char * getMenuCallback(JavaVM * jvm_);
+
+static void uigetdir(JavaVM * jvm_);
+
+static void uigetdir(JavaVM * jvm_, char * initialDirectory);
+
+static void uigetdir(JavaVM * jvm_, char * initialDirectory, char * title);
 
 
                         /**
