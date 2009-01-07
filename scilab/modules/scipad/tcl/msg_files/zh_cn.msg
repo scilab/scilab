@@ -2,7 +2,7 @@
 #
 #  Copyright (C) 2002 -      INRIA, Matthieu Philippe
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
-#  Copyright (C) 2004-2008 - Francois Vogel
+#  Copyright (C) 2004-2009 - Francois Vogel
 #
 #  Localization files ( in tcl/msg_files/) are copyright of the 
 #  individual authors, listed in the header of each file
@@ -826,7 +826,7 @@
                       "\n Scipad 最初由 Joseph Acosta, joeja@mindspring.com 开发, \n\
                       并由 Scilab Consortium 修改, Enrico Segre 2003-2006 进一步改写.\n\n\
                        其他贡献者,\n 调试工具: François\
-                       Vogel 2004-2008. \n 各国语言翻译:\n 瑞典文 \
+                       Vogel 2004-2009. \n 各国语言翻译:\n 瑞典文 \
                        Gunnar Lindholm，2005。\n 挪威文 Torbjørn Pettersen\
                        2005.\n 德文   Dirk Reusch 2005.\n 波兰文\
                        Bartosz Kosiorek 2005.\n 西班牙文 Juan Nicolás\

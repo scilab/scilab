@@ -1,3 +1,9 @@
+Francois VOGEL, 06/01/09
+ * Fixed Scipad part of bug 3407 (Scilab 5 returns physical line numbers in
+   lasterror while Scilab 4 and Scilab-gtk return logical line numbers)
+ * Pushed copyrights to 2009
+ * version --> 7.13
+
 Francois VOGEL, 22/12/08
  * Fixed bug 3882 by using the grid geometry manager instead of pack in
    certain cases - See also:

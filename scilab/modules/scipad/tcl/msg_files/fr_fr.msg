@@ -2,7 +2,7 @@
 #
 #  Copyright (C) 2002 -      INRIA, Matthieu Philippe
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
-#  Copyright (C) 2004-2008 - Francois Vogel
+#  Copyright (C) 2004-2009 - Francois Vogel
 #
 #  Localization files ( in tcl/msg_files/) are copyright of the 
 #  individual authors, listed in the header of each file
@@ -482,7 +482,7 @@
                    "\n Créé par Joseph Acosta, joeja@mindspring.com.\n\
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2006.\n\
-                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2008.\n\
+                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2009.\n\
                     Traductions :\n\
                      . Suédois, Gunnar Lindholm 2005\n\
                      . Norvégien, Torbjørn Pettersen 2005\n\

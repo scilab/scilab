@@ -37,6 +37,9 @@ Scilab a better software.
 * Aurélien Gérôme
 	- Misc patches for Debian & Ubuntu
 
+* Gerard Henry
+	- Misc patches for Solaris/Opensolaris
+
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )	
 	- Scilab Console console ( Jrosetta )
 

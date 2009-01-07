@@ -2,7 +2,7 @@
 #
 #  Copyright (C) 2002 -      INRIA, Matthieu Philippe
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
-#  Copyright (C) 2004-2008 - Francois Vogel
+#  Copyright (C) 2004-2009 - Francois Vogel
 #
 #  Localization files ( in tcl/msg_files/) are copyright of the
 #  individual authors, listed in the header of each file
@@ -489,6 +489,9 @@ proc scilaberror {funnameargs} {
                                         db_str; \
                                         \"$lineError\"+msprintf(\" %d\",db_l)+\"$funcError\"+db_func\], \"$winTitle\", \"error\", \"modal\" )" \
                           "sync" "seq"
+            # make blinkline below receive its args
+            ScilabEval_lt  "TCL_SetVar(\"errline\", msprintf(\" %d\",db_l), \"scipad\");" "sync" "seq"
+            ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
         } else {
             ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
             ScilabEval_lt  "TCL_SetVar(\"errnum\", msprintf(\" %d\",db_n), \"scipad\");" "sync" "seq"
@@ -524,10 +527,16 @@ proc blinkline {li ma {nb 3}} {
 # The macro is supposed to be defined in one of the opened buffers (no
 # opening of files occur here)
 # Warning: This proc is also used from outside of Scipad by edit_error
-    global SELCOLOR
+    global Scilab5 SELCOLOR
     set funtogoto [funnametofunnametafunstart $ma]
     if {$funtogoto != ""} {
-        dogotoline "logical" $li "function" $funtogoto
+        if {$Scilab5} {
+            # Scilab 5 reports physical line numbers in lasterror (see bug 3407)
+            dogotoline "physical" $li "function" $funtogoto
+        } else {
+            # Scilab 4 and Scilab-gtk reports logical line numbers in lasterror
+            dogotoline "logical" $li "function" $funtogoto
+        }
         set w [lindex $funtogoto 1]
         set i1 [$w index "insert linestart"]
         set i2 [$w index "insert lineend + 1c"]
