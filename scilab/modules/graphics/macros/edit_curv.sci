@@ -140,11 +140,14 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
     npt = n1*n2 ; 
 
     [btn,xc,yc,win,Cmenu] = get_click();
+    
+    //** disp([btn,xc,yc,win]); //** DEBUG only 
 
-    c1 = [xc,yc]; 
-    if Cmenu=='Quit' then Cmenu='Abort',end
-    if Cmenu==[] then Cmenu='edit',end
-    if Cmenu=='Exit' then Cmenu='Ok',end
+    c1 = [xc,yc];
+ 
+    if Cmenu=="Quit" then Cmenu="Abort",end
+    if Cmenu==[]     then Cmenu="edit",end
+    if Cmenu=="Exit" then Cmenu="Ok",end
     
     select Cmenu
     case [] then 
@@ -161,6 +164,12 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
       x = xsav
       y = ysav
       xdel(curwin)
+      ok = %f;
+      return
+
+    case "XClose" then //** the user manually close the win 
+      x = xsav
+      y = ysav
       ok = %f;
       return
 
@@ -272,7 +281,7 @@ function [btn,xc,yc,win,Cmenu] = get_click(flag)
 
   if btn == -1000 then //** user close the window [X]
     if win == curwin then
-      Cmenu = "Quit";
+      Cmenu = "XClose";
     else
       Cmenu = "Open/Set";
     end
