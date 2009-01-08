@@ -288,8 +288,7 @@ Refentry
   <define name="refsection">
     <element name="refsection">
       <ref name="common.attributes"/>
-      <!-- refsection.id added for Scicos doc -->
-      <ref name="refsection.id"/>
+      <ref name="id.attribute"/> <!-- Added for Scicos doc -->
       <ref name="title"/>
       <choice>
         <group>
@@ -306,10 +305,9 @@ Refentry
       </choice>
     </element>
   </define>
-  <!-- refsection.id added for Scicos doc -->
-  <define name="refsection.id">
+  <define name="id.attribute"> <!-- Added for Scicos doc -->
     <attribute name="id">
-      <data type="string"/>
+      <data type="ID"/>
     </attribute>
   </define>
   <define name="chapter">
@@ -874,26 +872,18 @@ Paragraphs
       <zeroOrMore>
         <ref name="any.inline"/>
       </zeroOrMore>
-      <!-- para.xref added for Scicos doc -->
-      <zeroOrMore>
-        <ref name="para.xref"/>
-      </zeroOrMore>
+      <optional>
+        <ref name="para.xref"/> <!-- Added for Scicos doc -->
+      </optional>
     </element>
   </define>
-  <!-- para.xref added for Scicos doc -->
-  <define name="para.xref">
+  <define name="para.xref"> <!-- Added for Scicos doc -->
     <element name="xref">
-      <ref name="xref.linkend.attribute"/>
+      <ref name="linkend.attribute"/>
       <zeroOrMore>
         <ref name="any.inline"/>
       </zeroOrMore>
     </element>
-  </define>
-  <!-- xref.linkend.attribute added for Scicos doc -->
-  <define name="xref.linkend.attribute">
-    <attribute name="linkend">
-      <data type="string"/>
-    </attribute>
   </define>
   <define name="programlisting">
     <element name="programlisting">
