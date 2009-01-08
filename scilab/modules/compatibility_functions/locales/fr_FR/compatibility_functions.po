@@ -227,26 +227,6 @@ msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
 msgstr "%s: Couleur inconnue trouvée dans ''%s'' -> mettre noir\n"
 
 #, c-format
-msgid "%s: All inputs must be character strings.\n"
-msgstr "%s: Toutes les entrées doivent être des chaînes de caractères.\n"
-
-#, c-format
-msgid ""
-"%s: Name conflict, it is not possible to save variable with name ''%s''.\n"
-msgstr ""
-"%s: Conflit de nom, ce n'est pas possible de sauvegarder la variable avec le "
-"nom ''%s''.\n"
-
-#, c-format
-msgid "%s: Attempt to write an unsupported data type to an ASCII file.\n"
-msgstr ""
-"%s: Essaye d'écrire un type de données non supporté par un fichier ASCII.\n"
-
-#, c-format
-msgid "%s: Unknown or misplaced option ''%s''.\n"
-msgstr "%s: Option ''%s'' inconnue ou mal placée.\n"
-
-#, c-format
 msgid "%s: Wrong size for ''%s'': Vector expected.\n"
 msgstr "%s: Mauvaise dimension pour ''%s'': Vecteur attendu.\n"
 
@@ -322,6 +302,23 @@ msgstr "Nov"
 
 msgid "Dec"
 msgstr "Déc"
+
+#~ msgid "%s: All inputs must be character strings.\n"
+#~ msgstr "%s: Toutes les entrées doivent être des chaînes de caractères.\n"
+
+#~ msgid ""
+#~ "%s: Name conflict, it is not possible to save variable with name ''%s''.\n"
+#~ msgstr ""
+#~ "%s: Conflit de nom, ce n'est pas possible de sauvegarder la variable avec "
+#~ "le nom ''%s''.\n"
+
+#~ msgid "%s: Attempt to write an unsupported data type to an ASCII file.\n"
+#~ msgstr ""
+#~ "%s: Essaye d'écrire un type de données non supporté par un fichier "
+#~ "ASCII.\n"
+
+#~ msgid "%s: Unknown or misplaced option ''%s''.\n"
+#~ msgstr "%s: Option ''%s'' inconnue ou mal placée.\n"
 
 #~ msgid "%s: Unknown option ''%s''.\n"
 #~ msgstr "%s: Option ''%s'' inconnue.\n"

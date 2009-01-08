@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-08 14:55+0100\n"
+"Revision-Date: 2009-01-08 15:07+0100\n"
 
 # File: macros/mtlb_echo.sci, line: 23
 # File: macros/mtlb_echo.sci, line: 26
@@ -258,28 +258,6 @@ msgstr ""
 # File: macros/mtlb_plot.sci, line: 215
 #, c-format
 msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr ""
-#
-# File: macros/mtlb_save.sci, line: 21
-#, c-format
-msgid "%s: All inputs must be character strings.\n"
-msgstr ""
-#
-# File: macros/mtlb_save.sci, line: 74
-# File: macros/mtlb_save.sci, line: 191
-#, c-format
-msgid ""
-"%s: Name conflict, it is not possible to save variable with name ''%s''.\n"
-msgstr ""
-#
-# File: macros/mtlb_save.sci, line: 129
-#, c-format
-msgid "%s: Attempt to write an unsupported data type to an ASCII file.\n"
-msgstr ""
-#
-# File: macros/mtlb_save.sci, line: 174
-#, c-format
-msgid "%s: Unknown or misplaced option ''%s''.\n"
 msgstr ""
 #
 # File: macros/mtlb_axis.sci, line: 34
