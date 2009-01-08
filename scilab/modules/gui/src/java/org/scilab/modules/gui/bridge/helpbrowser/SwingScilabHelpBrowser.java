@@ -93,6 +93,16 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	    			}
 	    		});
 
+	    		// For toolboxes JAR files are stored in jar directory
+	    		if (all == null || all.length == 0) {
+	    			toolboxJarPath = new File(helps[k] + "/../../jar");
+	    			all = toolboxJarPath.list(new FilenameFilter() {
+	    				public boolean accept(File pathname, String filename) {
+		    				return filename.endsWith(jarExtension);
+		    			}
+	    			});
+	    		}
+
 	    		/* Get the default language help and the current language help */
 	    		int defaultHelpIndex = -1;
 	    		int localeHelpIndex = -1;
