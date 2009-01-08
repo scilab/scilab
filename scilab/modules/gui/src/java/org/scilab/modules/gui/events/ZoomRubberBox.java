@@ -22,6 +22,9 @@ import java.awt.event.MouseEvent;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.SciTranslator;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.localization.Messages;
+import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 /**
  * Rubber box specialized in zooming.
@@ -32,6 +35,8 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 
 	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/zoom-area-cursor.png";
 	private static final String CURSOR_ICON_NAME = "zoom-area";
+	
+	private DrawableFigureGL zoomedFigure;
 	
 	/**
 	 * Constructor
@@ -49,6 +54,10 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 */
 	public int getRectangle(int[] initialRect, int[] endRect) {
 		
+		zoomedFigure = FigureMapper.getCorrespondingFigure(getSelectedCanvas().getFigureIndex());
+		String currentInfoMessage = zoomedFigure.getInfoMessage();
+		zoomedFigure.setInfoMessage(Messages.gettext("Left click to start selection of the zooming area. Right click to cancel."));
+		
 		// set the zooming cursor
 		getSelectedCanvas().setCursor(ScilabSwingUtilities.createCursorFromIcon(ICON_PATH, CURSOR_ICON_NAME));
 		
@@ -62,6 +71,9 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 		// restore default cursor
 		getSelectedCanvas().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		
+		// reset info message
+		zoomedFigure.setInfoMessage(currentInfoMessage);
+		
 		return res;
 		
 	}
@@ -74,6 +86,8 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	public void mousePressed(MouseEvent event) {
 		if (event.getButton() == MouseEvent.BUTTON1) {
 			// confirmation button do as usual
+			// change info message
+			zoomedFigure.setInfoMessage(Messages.gettext("Left click to terminate selection. Right click to cancel."));
 			super.mousePressed(event);
 		} else {
 			// cancel operation

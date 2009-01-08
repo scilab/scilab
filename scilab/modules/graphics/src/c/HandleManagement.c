@@ -45,64 +45,39 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "Scierror.h"
-
-sciHandleTab * PENDOFHANDLETAB;
+#include "SciHandleTab.h"
 
 static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject );
 static int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
+static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex);
 
 /*********************************** Handle ******************************************/
 
 /**sciSetHandle
  * Sets the handle to this object used only by sciAddNewHandle !!!
  */
-void
-sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
+void sciSetHandle (sciPointObj * pobj, long value)
 {
-  if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
-  {
-    sciGetRelationship(pobj)->phandle = pvalue ; /** put the new index handle */
-  }
+  sciGetRelationship(pobj)->handleIndex = value ; /** put the new index handle */
 }
 
-
-sciHandleTab * sciGetpendofhandletab()
-{
-  return PENDOFHANDLETAB;
-}
 
 /**sciAddNewHandle
  * Returns a generated handle for this object, and put the handle and the object in the handle table
  */
-int
-sciAddNewHandle (sciPointObj * pobj)
+int sciAddNewHandle (sciPointObj * pobj)
 {
-  sciHandleTab *newhd;
-  
-  if ((newhd = MALLOC ((sizeof (sciHandleTab)))) == NULL)
-    return -1;
-  newhd->pprev = PENDOFHANDLETAB;/* We have to use directly PENDOFHANDLETAB and not sciGetHandleTabPointer */
-  newhd->pnext = (sciHandleTab *) NULL;
-  newhd->index = (long)pobj;/* pour l'instant je prend la valeur du pointeur comme handle !!! */
-  
-  newhd->pointobj = pobj;
-  if (PENDOFHANDLETAB != (sciHandleTab *) NULL)
-    PENDOFHANDLETAB->pnext = newhd;
-  else
-    newhd->pprev = (sciHandleTab *) NULL;
-  PENDOFHANDLETAB = newhd;
-  
-  sciSetHandle (pobj, PENDOFHANDLETAB);
-  return 0;
-}
-
-
-/**sciGetHandleTabPointer
- * Returns the handle's pointer address structure from this object
- */
-sciHandleTab * sciGetHandleTabPointer (sciPointObj * pobj)
-{
-  return sciGetRelationship (pobj)->phandle ;
+	/* For now we use the value given by the pointer (Fabrice Leray). */
+	long objectHandle = generateNewHandle(pobj);
+	sciSetHandle(pobj, objectHandle);
+  if (sciAddHandleObjectMapping(objectHandle, pobj))
+	{
+		return 0;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 
@@ -111,54 +86,17 @@ sciHandleTab * sciGetHandleTabPointer (sciPointObj * pobj)
 /**sciDelHandle
  * Removes this pointed handle from the handle table
  */
-extern int sciDelHandle
-(sciPointObj * pobj)
+int sciDelHandle(sciPointObj * pobj)
 {
-  int tmp = 0;
-  sciHandleTab *phandletabtodel;	/* point to a handle structure (prev, value, next) */
-
-  /* We get the handle pointer */
-  tmp = 0;
-  phandletabtodel = (sciHandleTab *) sciGetHandleTabPointer (pobj);
-  if (phandletabtodel == (sciHandleTab *) NULL)
-    tmp = 1;
-  else
-    {
-      if (phandletabtodel->pprev == (sciHandleTab *) NULL)
-	tmp += 2;
-      if (phandletabtodel->pnext == (sciHandleTab *) NULL)
-	tmp += 4;
-    }
-  switch (tmp)
-    {
-    case 0: /* le phandletabtodel->pprev != NULL et le phandletabtodel->pnext != NULL */
-      /*(phandletabtodel->pnext)->pprev = (phandletabtodel->pprev)->pnext; ERREUR */
-      (phandletabtodel->pnext)->pprev = phandletabtodel->pprev;
-      (phandletabtodel->pprev)->pnext = phandletabtodel->pnext;
-      FREE (phandletabtodel);
-      break;
-    case 2:/* le phandletabtodel->pprev == NULL et le phandletabtodel->pnext !NULL */
-      (phandletabtodel->pnext)->pprev = (sciHandleTab *) NULL;
-      FREE (phandletabtodel);
-      break;
-    case 4:/* le phandletabtodel->pprev != NULL et le phandletabtodel->pnext == NULL */
-      (phandletabtodel->pprev)->pnext = (sciHandleTab *) NULL;
-      PENDOFHANDLETAB = phandletabtodel->pprev;
-      FREE (phandletabtodel);    
-      break;
-    case 6:/* le phandletabtodel->pprev == NULL et le phandletabtodel->pnext == NULL */
-      FREE (phandletabtodel);
-      PENDOFHANDLETAB = (sciHandleTab *) NULL;
-      break;
-    case 1:/* the handeltab is empty */
-    case 3:/* in prevision */
-    case 5:/* in prevision */
-    case 7:/* in prevision */
-    default:
-      return -1;
-      break;
-    }
-  return 0;
+	if (sciRemoveObjectMapping(pobj) == NULL)
+	{
+		/* The object is not in the handle tab */
+		return -1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 
@@ -167,7 +105,7 @@ extern int sciDelHandle
  */
 long sciGetHandle (sciPointObj * pobj)
 {
-  return (pobj == NULL ? 0 : (sciGetRelationship(pobj))->phandle->index) ;
+  return (pobj == NULL ? 0 : (sciGetRelationship(pobj))->handleIndex) ;
 }
 
 
@@ -175,59 +113,79 @@ long sciGetHandle (sciPointObj * pobj)
 /**sciGetPointFromHandle
  * Returns the object pointer form the handle argument
  */
-sciPointObj *
-sciGetPointerFromHandle (long handle)
+sciPointObj * sciGetPointerFromHandle(long handle)
 {
-
-  sciHandleTab *phandletab;
-  if ( handle != sciGetHandle(getFigureModel()) && handle != sciGetHandle(getAxesModel()))
-    {
-      phandletab = PENDOFHANDLETAB;
-      while ((phandletab != NULL) && (phandletab->index != handle))
-	phandletab = phandletab->pprev;
-      
-      if (phandletab == NULL)
-	{
-	  return (sciPointObj *) NULL;
-	}  
-      return (sciPointObj *) phandletab->pointobj;
-    }
-  else if ( handle == sciGetHandle(getFigureModel()))
-    return (sciPointObj *) getFigureModel();
-  else if ( handle == sciGetHandle(getAxesModel()))
-    return (sciPointObj *) getAxesModel();
-  else
-    {
-      return (sciPointObj *) NULL;
-    }
-    
+		return sciGetObjectFromHandle(handle);
 }
+
 /**sciGetPointerFromJavaIndex
  * Returns the object pointer form a Java UIElementMapper index
  */
-sciPointObj *
-sciGetPointerFromJavaIndex (int javaIndex)
+sciPointObj * sciGetPointerFromJavaIndex (int javaIndex)
 {
+	int nbFigure = sciGetNbFigure();
+	int * ids = MALLOC(nbFigure * sizeof(int));
+	int i;
 
-  sciHandleTab *phandletab;
+	if (ids == NULL)
+	{
+		return NULL;
+	}
 
-  phandletab = PENDOFHANDLETAB;
-  while (phandletab != NULL) 
-    {
-      if (sciGetEntityType(phandletab->pointobj) == SCI_UICONTROL
-          && pUICONTROL_FEATURE(phandletab->pointobj)->hashMapIndex == javaIndex)
-        {
-          return (sciPointObj *) phandletab->pointobj;
-        }
-      else if (sciGetEntityType(phandletab->pointobj) == SCI_UIMENU
-               && pUIMENU_FEATURE(phandletab->pointobj)->hashMapIndex == javaIndex)
-        {
-          return (sciPointObj *) phandletab->pointobj;
-        }
-      phandletab = phandletab->pprev;
-    }
+	/* Get the id of all the figures */
+	sciGetFiguresId(ids);
 
-  return (sciPointObj *) NULL;
+	for (i = 0; i < nbFigure; i++)
+	{
+		sciPointObj * found = getPointerFromJavaIndex(getFigureFromIndex(ids[i]), javaIndex);
+		if (found != NULL)
+		{
+			FREE(ids);
+			return found;
+		}
+	}
+
+	FREE(ids);
+
+	return NULL;
+}
+
+static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex)
+{
+	/* For now Uicontrol and Uimenus can only be sons of a figure */
+	/* So it is only necessary to look only for figure children. */
+	switch (sciGetEntityType(pObj))
+	{
+	case SCI_UICONTROL:
+		if (pUICONTROL_FEATURE(pObj)->hashMapIndex == javaIndex)
+		{
+			return pObj;
+		}
+		break;
+	case SCI_UIMENU:
+		if (pUIMENU_FEATURE(pObj)->hashMapIndex == javaIndex)
+		{
+			return pObj;
+		}
+		break;
+	case SCI_FIGURE:
+		{
+			sciSons * children = sciGetSons(pObj);
+			while (children != NULL)
+			{
+				sciPointObj * found = getPointerFromJavaIndex(children->pointobj, javaIndex);
+				if (found != NULL)
+				{
+					return found;
+				}
+				children = children->pnext;
+			}
+		}
+		break;
+	}
+
+	/* The object has not been found */
+	return NULL;
 }
 
 /************************************************ End Handle *************************************************/
@@ -241,70 +199,7 @@ sciGetPointerFromJavaIndex (int javaIndex)
 sciRelationShip *
 sciGetRelationship (sciPointObj * pobj)
 {
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return &(pFIGURE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SUBWIN:
-      return  &(pSUBWIN_FEATURE (pobj)->relationship);
-      break;
-    case SCI_TEXT:
-      return  &(pTEXT_FEATURE (pobj)->relationship);
-      break;
-    case SCI_LEGEND:
-      return  &(pLEGEND_FEATURE (pobj)->text.relationship);
-      break;
-    case SCI_ARC:
-      return  &(pARC_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SEGS: 
-      return  &(pSEGS_FEATURE (pobj)->relationship);
-      break; 
-    case SCI_FEC:  
-      return  &(pFEC_FEATURE (pobj)->relationship);
-      break;
-    case SCI_GRAYPLOT:
-      return  &(pGRAYPLOT_FEATURE (pobj)->relationship);
-      break;
-    case SCI_POLYLINE:
-      return  &(pPOLYLINE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_RECTANGLE:
-      return  &(pRECTANGLE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_SURFACE:
-      return  &(pSURFACE_FEATURE (pobj)->relationship);
-      break;
-    case SCI_AXES:
-      return  &(pAXES_FEATURE (pobj)->relationship);
-      break;
-    case SCI_UICONTEXTMENU:
-      return  &(pUICONTEXTMENU_FEATURE (pobj)->relationship);
-      break;
-    case SCI_AGREG:
-      return  &(pAGREG_FEATURE (pobj)->relationship);
-      break; 
-    case SCI_LABEL: /* F.Leray 27.05.04 */
-      return  sciGetRelationship( pLABEL_FEATURE (pobj)->text ) ;
-      break;
-    case SCI_UIMENU: 
-      return  &(pUIMENU_FEATURE (pobj)->relationship);
-      break;
-    case SCI_UICONTROL: 
-      return  &(pUICONTROL_FEATURE (pobj)->relationship);
-      break;
-    case SCI_WAITBAR:
-      return  &(pWAITBAR_FEATURE (pobj)->relationship);
-      break;
-    case SCI_PROGRESSIONBAR:
-      return  &(pPROGRESSIONBAR_FEATURE (pobj)->relationship);
-      break;
-    default:
-      return (sciRelationShip *) NULL;
-      break;
-    }
+	return pobj->relationShip;
 }
 
 
@@ -915,5 +810,14 @@ sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int position)
     return NULL;
   }
   return curSon->pointobj ;
+}
+/*--------------------------------------------------------------------------*/
+long generateNewHandle(sciPointObj * pObj)
+{
+	static long handleValue = 0;
+	/* Start with 1, 0 stands for invalid index */
+	handleValue++;
+
+	return handleValue;
 }
 /*--------------------------------------------------------------------------*/

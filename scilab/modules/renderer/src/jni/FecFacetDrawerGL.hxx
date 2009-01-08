@@ -59,7 +59,6 @@ jmethodID voidinitializeDrawingjintID; // cache method id
 jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
-jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetFacetParametersjdoublejdoublejintjintjintjintID; // cache method id
 jmethodID voiddrawFecjdoubleArrayjdoubleArrayjdoubleArrayjintArrayjintArrayjintArrayID; // cache method id
 
@@ -112,8 +111,6 @@ void endDrawing();
 void show(int figureIndex);
 
 void destroy(int parentFigureIndex);
-
-void setFigureIndex(int figureIndex);
 
 void setFacetParameters(double zMin, double zMax, int colMin, int colMax, int colOutLow, int colOutUp);
 

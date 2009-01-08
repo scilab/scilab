@@ -56,11 +56,6 @@ void DrawableSegsJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex);
 }
-/*--------------------------------------------------------------------------*/
-void DrawableSegsJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void DrawableSegsJavaMapper::translate(const double translation[3])
 {

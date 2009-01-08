@@ -185,6 +185,10 @@ protected:
    */
   virtual void endDrawing( void ) ;
 
+	/**
+	 * Update the object because it has changed.
+	 */
+	virtual void update(void);
 
   /*---------------------------------------------------------------------------------*/
 
@@ -203,6 +207,11 @@ protected:
    * Happens when axes changed
    */
   bool m_bNeedRedraw;
+
+	/**
+	 * To know if the inner structure of the object need to be reconstructed
+	 */
+	bool m_bNeedUpdate;
 
   /**
    *  Contains drivers independent algorithm common to all DrawableObjects

@@ -59,7 +59,6 @@ jmethodID voidinitializeDrawingjintID; // cache method id
 jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
-jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetGridParametersjintjfloatID; // cache method id
 jmethodID voiddrawGridjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
 jmethodID voidshowGridID; // cache method id
@@ -113,8 +112,6 @@ void endDrawing();
 void show(int figureIndex);
 
 void destroy(int figureIndex);
-
-void setFigureIndex(int figureIndex);
 
 void setGridParameters(int gridColor, float gridThickness);
 

@@ -20,11 +20,9 @@
 //
 
 function [scs_m, edited] = do_SaveAs()
-//
-
 
   msg = ["Use .cos extension for binary and .cosf for ASCII file"];
-  fname = savefile('*.cos*', getcwd(), msg) //** alias of "getfile" aka "xgetfile" :(
+  fname = savefile('*.cos*', getcwd(), msg) //** alias of uigetfile
 
   if fname==emptystr() then
     return ; //** EXIT point 
@@ -96,8 +94,6 @@ function [scs_m, edited] = do_SaveAs()
   end
   
   file('close',u)
-
-  //** disp("... SaveAs debug"); pause 
   
   //** if the current window is list of the phisically existing Scilab windows list winsid()
   if or(curwin==winsid()) then
@@ -109,4 +105,5 @@ function [scs_m, edited] = do_SaveAs()
     scicos_pal = update_scicos_pal(path,scs_m.props.title(1),fname),
     scicos_pal = resume(scicos_pal)
   end
+
 endfunction

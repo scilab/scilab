@@ -57,6 +57,12 @@ int sci_show_window( char *fname,unsigned long fname_len )
 
       shownFigure = sciGetPointerFromHandle( getHandleFromStack(stackPointer) );
 
+			if (shownFigure == NULL)
+			{
+				Scierror(999, _("%s: Handle does not or no longer exists.\n"),fname);
+				return -1 ;
+			}
+
       if (sciGetEntityType(shownFigure) != SCI_FIGURE)
       {
         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");

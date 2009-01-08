@@ -40,7 +40,10 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   global %scicos_navig
   global %diagram_path_objective
   global inactive_windows
-  global Scicos_commands   // programmed commands 
+  global Scicos_commands   // programmed commands
+  
+  //** "0" standard scicos oblique link ; "1" SL orthogonanal links 
+  global SL_mode ; SL_mode = 0 ; 
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -436,19 +439,12 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       //** scicos is active in graphical mode
       prot = funcprot();
       funcprot(0);
-
-      // DO NOT OVERLOAD GETCOLOR AND KEEP THE ONE DEFINED IN SCILAB
-      // GETCOLOR is 100% compatible with TK_GETCOLOR and looks much better
-      // //** Replace old TK_GETCOLOR with UIGETCOLOR
-      // //** XGETCOLOR is a wrapper around UIGETCOLOR that mimics behavior of TK_GETCOLOR
-      // getcolor = xgetcolor; // tk_getcolor;
-
-      //** --------- Popup OS dependent definition -----------------
-      getfile  = xgetfile; //** using Java most of these aliases 
-      savefile = getfile;  //** are _obsolete_
       
-      mpopup = createpopup;
-      mdialog = x_mdialog;
+      getfile  = uigetfile ; //** brand new aliases  
+      savefile = uigetfile ; 
+
+      mpopup = createpopup ;
+      mdialog = x_mdialog  ;
       
       //** In Scilab 4.1.2 "getvalue  = tk_getvalue ;"
       //** In scilab 5 we use "modules/scicos/macros/scicos_util/getvalue.sci"
@@ -466,10 +462,12 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       
     else
       //** Scicos works in "text mode"
-      deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
-      savefile = getfile;
-      deff('Cmenu=mpopup(x)','Cmenu=[]')
-      deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
+      disp("Scicos in text mode is not supported"); 
+      //** RAMINE : TEXT MODE is not supported ! 
+      // deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
+      // savefile = getfile;
+      // deff('Cmenu=mpopup(x)','Cmenu=[]')
+      // deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
     end //** of %scicos_gui_mode
 
     //
@@ -652,8 +650,10 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	  [Cmenu,Select] = Find_Next_Step(%diagram_path_objective, super_path)
 
 	  if or(curwin==winsid()) & ~isequal(Select,Select_back) then
-	     selecthilite(Select_back, "off") ; // unHilite previous objects
-	     selecthilite(Select, "on") ;       // Hilite the actual selected object
+             drawlater() ; 
+	       selecthilite(Select_back, "off") ; // unHilite previous objects
+	       selecthilite(Select, "on") ;       // Hilite the actual selected object
+             drawnow() ;
           end
 	  
           if Cmenu=="OpenSet" then
@@ -777,7 +777,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
           //** execstr('exec('+%cor_item_exec(%koko,2)+',-1)'); //** nothing is printed 
 	  
           //** RELEASE --> Please reactivate the error catcher before final release 
-		  execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
+	       execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
 
 	  if ierr > 0 then
 	    Cmenu = "Replot"
@@ -792,8 +792,10 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	    gh_current_window = scf(curwin);
 	  
             if ~isequal(Select,Select_back) then
-	      selecthilite(Select_back, "off") ; // unHilite previous objects
-	      selecthilite(Select, "on") ;       // Hilite the actual selected object
+              drawlater();   
+	        selecthilite(Select_back, "off") ; // unHilite previous objects
+	        selecthilite(Select, "on") ;       // Hilite the actual selected object
+              drawnow(); 
 	    end
 	  
           else

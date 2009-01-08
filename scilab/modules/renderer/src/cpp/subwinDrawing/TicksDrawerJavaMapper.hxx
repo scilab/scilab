@@ -42,8 +42,6 @@ public:
   virtual void show(int figureIndex);
 
   virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for TicksDrawer
   virtual double drawTicks(const double ticksPositions[], char * ticksLabels[],

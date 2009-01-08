@@ -13,9 +13,6 @@
     <method name="destroy" returnType="void">
       <param type="int" name="parentFigureIndex" />
     </method>
-    <method name="setFigureIndex" returnType="void">
-      <param type="int" name="figureIndex" />
-    </method>
     <method name="setTextParameters" returnType="void">
       <param type="int" name="textAlignment" />
       <param type="int" name="color" />

@@ -13,6 +13,10 @@
 
 #include "DestroyWaitBar.hxx"
 
+extern "C"
+{
+#include "DestroyObjects.h"
+}
 using namespace org_scilab_modules_gui_bridge;
 
 void DestroyWaitBar(sciPointObj * sciObj)
@@ -31,4 +35,6 @@ void DestroyWaitBar(sciPointObj * sciObj)
     {
       sciprint(_("%s: Could not destroy this object.\n"), "DestroyWaitBar");
     }
+
+	sciStandardDestroyOperations(sciObj) ;
 }

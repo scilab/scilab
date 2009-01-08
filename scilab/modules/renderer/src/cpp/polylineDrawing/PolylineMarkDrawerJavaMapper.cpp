@@ -57,11 +57,6 @@ void PolylineMarkDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void PolylineMarkDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void PolylineMarkDrawerJavaMapper::setMarkParameters(int background, int foreground, int markSizeUnit, int markSize, int markStyleIndex)
 {
   m_pJavaObject->setMarkParameters(background, foreground, markSizeUnit, markSize, markStyleIndex);

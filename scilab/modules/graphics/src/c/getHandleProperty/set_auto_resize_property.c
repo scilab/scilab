@@ -59,6 +59,7 @@ int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int value
     return SET_PROPERTY_ERROR ;
   }
   enableFigureSynchronization(pobj);
-  return status;
+  /* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus(status);
 }
 /*------------------------------------------------------------------------*/

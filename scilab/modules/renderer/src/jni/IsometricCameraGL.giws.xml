@@ -13,9 +13,6 @@
     <method name="destroy" returnType="void">
       <param type="int" name="parentFigureIndex" />
     </method>
-    <method name="setFigureIndex" returnType="void">
-      <param type="int" name="figureIndex" />
-    </method>
     <method name="setViewingArea" returnType="void">
       <param type="double" name="transX" />
       <param type="double" name="transY" />

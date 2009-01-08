@@ -25,7 +25,6 @@ sciSetBoxType
 sciInitFontSize
 ConstructSubWin
 sciGetFirstTypedSelectedSon
-DeleteObjs
 getFigureFromIndex
 sciIsExistingFigure
 sciSetSelectedSubWin
@@ -64,3 +63,4 @@ getFigureFromIndex
 printStrMat
 copyStrMatElement
 sciSetVisibility
+sciDelGraphicObj

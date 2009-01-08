@@ -17,9 +17,8 @@ import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 
-import javax.media.opengl.GLCanvas;
-
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 /**
@@ -30,174 +29,170 @@ import org.scilab.modules.gui.utils.SciTranslator;
 public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 
 
-	private static SwingScilabAxes axes = null;
+    private static SwingScilabAxes axes = null;
 
-	private boolean isControlDown;
-	private boolean inCanvas = true;
-	private boolean freedom = true;
-	private long eventMask;
-	private SciTranslator clickTranslator;
-	private MouseEvent lastMouse;
+    private boolean isControlDown;
+    private boolean inCanvas = true;
+    private boolean freedom = true;
+    private long eventMask;
+    private SciTranslator clickTranslator;
+    private MouseEvent lastMouse;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param eventMask : a Mask for mouse event watching.
-	 * xclick is AWTEvent.MOUSE_EVENT_MASK
-	 * xgetmouse is AWTEvent.MOUSE_EVENT_MASK + AWTEvent.MOUSE_MOTION_EVENT_MASK
+    /**
+     * Constructor.
+     * 
+     * @param eventMask : a Mask for mouse event watching.
+     * xclick is AWTEvent.MOUSE_EVENT_MASK
+     * xgetmouse is AWTEvent.MOUSE_EVENT_MASK + AWTEvent.MOUSE_MOTION_EVENT_MASK
+     */
+    public GlobalMouseEventWatcher(long eventMask) {
+	this.eventMask = eventMask;
+	//this.canvas = null;
+	clickTranslator = new SciTranslator();
+    }
+
+    /** 
+     * 
+     * When there is a mouse click on a Canvas, just go through the GlobalFilter.
+     * @param mouseEvent : The mouse event caught.
+     * 
+     * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
+     */
+    public void eventDispatched(AWTEvent mouseEvent) {
+	// DEBUG
+	Debug.DEBUG(this.getClass().getSimpleName(),((MouseEvent) mouseEvent).toString());
+	Debug.DEBUG(this.getClass().getSimpleName(),((MouseEvent) mouseEvent).toString());
+	/*
+	 * Managing Canvas
+	 * PRESSED
+	 * CLICKED
+	 * DCLICKED
+	 * MOVED
 	 */
-	public GlobalMouseEventWatcher(long eventMask) {
-		this.eventMask = eventMask;
-		//this.canvas = null;
-		clickTranslator = new SciTranslator();
+
+	this.lastMouse = (MouseEvent) mouseEvent;
+	if (mouseEvent.getSource() instanceof SwingScilabAxes) {
+	    /** ADD COMMENT */
+	    if (axes == null) {
+		this.axes = (SwingScilabAxes) mouseEvent.getSource();
+	    }
+	    this.isControlDown = lastMouse.isControlDown();
+	    switch (mouseEvent.getID()) {
+	    /* CLICKED */
+	    case MouseEvent.MOUSE_CLICKED :
+		this.inCanvas = true;
+		this.axes = (SwingScilabAxes) mouseEvent.getSource();
+		if (lastMouse.getClickCount() == 1) {
+		    clickTranslator.setClickAction(SciTranslator.CLICKED);
+		} 
+		else {
+		    /*
+		     * Means mouseEvent.getClickCount() >= 2
+		     */ 
+		    clickTranslator.setClickAction(SciTranslator.DCLICKED);
+		    synchronized (clickTranslator) {
+			// To unlock javaClick2Scilab done in launchfilter
+			clickTranslator.notify();
+		    }
+		}		
+		break;
+		/* PRESSED */
+	    case MouseEvent.MOUSE_PRESSED :
+		this.inCanvas = true;
+		this.axes = (SwingScilabAxes) mouseEvent.getSource();
+		clickTranslator.setClickAction(SciTranslator.PRESSED);
+		if (this.freedom) {
+		    Thread timer = new Thread() {
+			public void run() { 
+			    launchFilter(); 
+			} 
+		    };
+		    timer.start();
+		}
+		break;
+		/* ENTERED */
+	    case MouseEvent.MOUSE_ENTERED :
+		this.inCanvas = true;
+		this.axes = (SwingScilabAxes) mouseEvent.getSource();
+		mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
+		break;
+		/* MOVED */
+	    case MouseEvent.MOUSE_MOVED :
+		this.inCanvas = true;
+		mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
+		break;
+	    case MouseEvent.MOUSE_DRAGGED :
+		if (this.inCanvas) {
+		    mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
+		}
+		break;
+		/* EXITED */
+	    case MouseEvent.MOUSE_EXITED :
+		this.inCanvas = false;
+		this.axes = null;
+		break;
+	    default:
+		break;
+	    }
+
+	}
+	if (mouseEvent.getSource() instanceof SwingScilabAxes) {
+	    switch (mouseEvent.getID()) {
+	    case MouseEvent.MOUSE_ENTERED :
+		this.inCanvas = true;
+		//this.canvas = (SwingScilabCanvas) mouseEvent.getSource();
+		//mouseEventFilter(lastMouse, canvas, SciTranslator.MOVED, this.isControlDown);
+		break;
+	    case MouseEvent.MOUSE_EXITED :
+		this.inCanvas = false;
+		this.axes = null;
+		break;
+	    default:
+		break;
+	    }
 	}
 
-	/** 
-	 * 
-	 * When there is a mouse click on a Canvas, just go through the GlobalFilter.
-	 * @param mouseEvent : The mouse event caught.
-	 * 
-	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
+	/*
+	 * Manage RELEASED on a Canvas
+	 * Means we are still in a Canvas (ENTERED && !EXITED)
+	 * and the event is not comming from a Canvas itself.
+	 * and got a RELEASED
 	 */
-	public void eventDispatched(AWTEvent mouseEvent) {
-		// DEBUG
-		//System.err.println(("[DEBUG] "+(MouseEvent) mouseEvent).toString());
-
-		/*
-		 * Managing Canvas
-		 * PRESSED
-		 * CLICKED
-		 * DCLICKED
-		 * MOVED
-		 */
-		
-		// Hack here, under Linux the GLCanvas prevent from clicking on the axes directly
-		if (mouseEvent.getSource() instanceof GLCanvas) {
-			// change the source so everything will appear as if the axes were selected
-			mouseEvent.setSource(((GLCanvas) mouseEvent.getSource()).getParent());
-		}
-		
-		this.lastMouse = (MouseEvent) mouseEvent;
-		if (mouseEvent.getSource() instanceof SwingScilabAxes) {
-			/** ADD COMMENT */
-			if (axes == null) {
-				this.axes = (SwingScilabAxes) mouseEvent.getSource();
-			}
-			this.isControlDown = lastMouse.isControlDown();
-			switch (mouseEvent.getID()) {
-			/* CLICKED */
-			case MouseEvent.MOUSE_CLICKED :
-				this.inCanvas = true;
-				if (lastMouse.getClickCount() == 1) {
-					clickTranslator.setClickAction(SciTranslator.CLICKED);
-				} 
-				else {
-					/*
-					 * Means mouseEvent.getClickCount() >= 2
-					 */ 
-					clickTranslator.setClickAction(SciTranslator.DCLICKED);
-					synchronized (clickTranslator) {
-						// To unlock javaClick2Scilab done in launchfilter
-						clickTranslator.notify();
-					}
-				}		
-				break;
-				/* PRESSED */
-			case MouseEvent.MOUSE_PRESSED :
-				this.inCanvas = true;
-				clickTranslator.setClickAction(SciTranslator.PRESSED);
-				if (this.freedom) {
-					Thread timer = new Thread() {
-						public void run() { 
-							launchFilter(); 
-						} 
-					};
-					timer.start();
-				}
-				break;
-				/* ENTERED */
-			case MouseEvent.MOUSE_ENTERED :
-				this.inCanvas = true;
-				this.axes = (SwingScilabAxes) mouseEvent.getSource();
-				mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
-				break;
-				/* MOVED */
-			case MouseEvent.MOUSE_MOVED :
-				this.inCanvas = true;
-				mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
-				break;
-			case MouseEvent.MOUSE_DRAGGED :
-				if (this.inCanvas) {
-					mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
-				}
-				break;
-				/* EXITED */
-			case MouseEvent.MOUSE_EXITED :
-				this.inCanvas = false;
-				this.axes = null;
-				break;
-			default:
-				break;
-			}
-
-		}
-		if (mouseEvent.getSource() instanceof SwingScilabAxes) {
-			switch (mouseEvent.getID()) {
-			case MouseEvent.MOUSE_ENTERED :
-				this.inCanvas = true;
-				//this.canvas = (SwingScilabCanvas) mouseEvent.getSource();
-				//mouseEventFilter(lastMouse, canvas, SciTranslator.MOVED, this.isControlDown);
-				break;
-			case MouseEvent.MOUSE_EXITED :
-				this.inCanvas = false;
-				this.axes = null;
-				break;
-			default:
-				break;
-			}
-		}
-
-		/*
-		 * Manage RELEASED on a Canvas
-		 * Means we are still in a Canvas (ENTERED && !EXITED)
-		 * and the event is not comming from a Canvas itself.
-		 * and got a RELEASED
-		 */
-		if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas 
-				&& (clickTranslator.getClickAction() == SciTranslator.UNMANAGED || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
-			clickTranslator.setClickAction(SciTranslator.RELEASED);
-			mouseEventFilter(lastMouse, axes, clickTranslator.getClickAction(), this.isControlDown);	
-		}
+	if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas 
+		&& (clickTranslator.getClickAction() == SciTranslator.UNMANAGED || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
+	    clickTranslator.setClickAction(SciTranslator.RELEASED);
+	    mouseEventFilter(lastMouse, axes, clickTranslator.getClickAction(), this.isControlDown);	
 	}
+    }
 
-	/**
-	 * Thread to manage old style scilab
-	 * click management.
-	 */
-	private void launchFilter() {
-		this.freedom = false;
-		mouseEventFilter(lastMouse, axes, clickTranslator.javaClick2Scilab(), this.isControlDown);
-		this.freedom = true;
-	}
+    /**
+     * Thread to manage old style scilab
+     * click management.
+     */
+    private void launchFilter() {
+	this.freedom = false;
+	mouseEventFilter(lastMouse, axes, clickTranslator.javaClick2Scilab(), this.isControlDown);
+	this.freedom = true;
+    }
 
-	/**
-	 * Method to filter the event received.
-	 * Depends off what kind of function is called.
-	 * 
-	 * @param mouseEvent : the mouse event caught (as seen in Scilab) 
-	 * @param axes : the axes where action occurs.
-	 * @param scilabMouseAction : the integer scilab code for mouse action.
-	 * @param isControlDown true if the CTRL key has been pressed
-	 */
-	public abstract void mouseEventFilter(MouseEvent mouseEvent, SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown);
+    /**
+     * Method to filter the event received.
+     * Depends off what kind of function is called.
+     * 
+     * @param mouseEvent : the mouse event caught (as seen in Scilab) 
+     * @param axes : the axes where action occurs.
+     * @param scilabMouseAction : the integer scilab code for mouse action.
+     * @param isControlDown true if the CTRL key has been pressed
+     */
+    public abstract void mouseEventFilter(MouseEvent mouseEvent, SwingScilabAxes axes, int scilabMouseAction, boolean isControlDown);
 
-	/**
-	 * Event Mask getter.
-	 * 
-	 * @return eventMask
-	 */
-	public long getEventMask() {
-		return eventMask;
-	}
+    /**
+     * Event Mask getter.
+     * 
+     * @return eventMask
+     */
+    public long getEventMask() {
+	return eventMask;
+    }
 
 }

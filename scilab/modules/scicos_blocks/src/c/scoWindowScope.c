@@ -89,7 +89,6 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
   if ((user_data == -1 ) || (user_data == block_number))
     {
       scoSetWindowID(pScopeMemory,win_id);
-      //** DeleteObjs(win_id);
       
       scoSetScopeActivation(pScopeMemory,1); //Activate It ! Let's Rock !
       //Dont forget this kind of command
@@ -126,6 +125,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
           pSUBWIN_FEATURE(pTemp2)->WRect[1] = (double)i/scoGetNumberOfSubwin(pScopeMemory);
           pSUBWIN_FEATURE(pTemp2)->WRect[2] = 1;
           pSUBWIN_FEATURE(pTemp2)->WRect[3] = (double)1/scoGetNumberOfSubwin(pScopeMemory);
+					pSUBWIN_FEATURE(pTemp2)->axes.filled = FALSE;
           switch(dimension)
             {
             case 3:
@@ -167,7 +167,6 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
         }
 
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-      
       sciDrawObj(pTemp);
     }
   else
@@ -470,7 +469,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                   {
                     sciSetUsedWindow(scoGetWindowID(pScopeMemory));
                     sciSetSelectedSubWin(scoGetPointerAxes(pScopeMemory,i));
-                    pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
+										sciSetVisibility(pShortDraw, TRUE);
                     pShortDrawTable[ShortDrawTableIndex] = pShortDraw ;
                     ShortDrawTableIndex++;
                   }
@@ -840,7 +839,17 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
 
 void scoDelCoupleOfSegments(ScopeMemory * pScopeMemory)
 {
-  //Not coded yet :p
+	/* destroy all short draw */
+	int j;
+	int i;
+	for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+  {
+		for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+		{
+			sciDelGraphicObj(scoGetPointerShortDraw(pScopeMemory, i, j));
+		}
+	}
+	sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
 }
 
 

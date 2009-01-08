@@ -3,11 +3,11 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -42,10 +42,10 @@
 #include "Plot2d.h"
 
 /*------------------------------------------------
- * Objrect : 
+ * Objrect :
  * On recupere la figure courante, puis on recupere la sous fenetre qui y est selectionnee
  *   puis on contruit le rectangle, qu on le place comme objet courant
- * ensuite il reste qu'appeler la fonction du dessin de l'objet 
+ * ensuite il reste qu'appeler la fonction du dessin de l'objet
  *-----------------------------------------------*/
 
 void Objrect ( double * x         ,
@@ -67,7 +67,7 @@ void Objrect ( double * x         ,
   checkRedrawing() ;
   newObj = ConstructRectangle(psubwin ,*x,*y,*height, *width,
                               foreground, background, isfilled, isline) ;
-    
+
   if ( newObj == NULL )
   {
     endFigureDataWriting(pFigure);
@@ -75,14 +75,14 @@ void Objrect ( double * x         ,
     *hdl = -1 ;
     return ;
   }
-  sciSetCurrentObj( newObj ) ; 
+  sciSetCurrentObj( newObj ) ;
   *hdl=sciGetHandle( newObj ) ;
 
 }
 
 
 /*----------------------------------------------
- * Objarc : 
+ * Objarc :
  *-----------------------------------------------*/
 
 void Objarc( double * angle1    ,
@@ -96,7 +96,7 @@ void Objarc( double * angle1    ,
              BOOL     isfilled  ,
              BOOL     isline    ,
              long   * hdl        )
-{ 
+{
   sciPointObj * psubwin;
   sciPointObj * pobj;
 
@@ -110,7 +110,7 @@ void Objarc( double * angle1    ,
 }
 
 /*------------------------------------------------
- * Objpoly : 
+ * Objpoly :
  *-----------------------------------------------*/
 
 void Objpoly ( double  * x     ,
@@ -119,18 +119,18 @@ void Objpoly ( double  * x     ,
                int   closed,
                int       mark  ,
                long    * hdl    )
-{ 
+{
   sciPointObj * pFigure = NULL;
   sciPointObj * psubwin;
   sciPointObj * pobj;
 
   pFigure = sciGetCurrentFigure();
-  psubwin = sciGetCurrentSubWin();  
+  psubwin = sciGetCurrentSubWin();
 
-  
+
   checkRedrawing() ;
   if (mark <= 0)
-    { 
+    {
       int absmark = abs(mark);
       pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
 	         	       NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
@@ -143,10 +143,10 @@ void Objpoly ( double  * x     ,
   sciSetCurrentObj(pobj);
    *hdl=sciGetHandle(pobj);
 }
-  
+
 
 /*------------------------------------------------
- * Objfpoly : 
+ * Objfpoly :
  *-----------------------------------------------*/
 
 void Objfpoly ( double  * x    ,
@@ -155,12 +155,12 @@ void Objfpoly ( double  * x    ,
                 int * style,
                 long    * hdl  ,
                 int   shading )
-{ 
+{
   int fillcolor, contourcolor;
   sciPointObj *psubwin, *pobj;
   int closed = 1; /* we close the polyline by default */
   psubwin = sciGetCurrentSubWin();
-  
+
   checkRedrawing() ;
 
   if(shading == 2)
@@ -188,10 +188,10 @@ void Objfpoly ( double  * x    ,
 	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
 	                         1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
       }
-      
+
     }
     sciSetCurrentObj(pobj);
-    *hdl=sciGetHandle(pobj);  
+    *hdl=sciGetHandle(pobj);
 
 }
 
@@ -273,17 +273,17 @@ void Objstring( char            ** fname      ,
   startFigureDataReading(pFigure);
   pobj=sciGetCurrentObj ();
   *hdl= sciGetHandle(pobj);
-  sciSetFontOrientation (pobj, *angle); 
+  sciSetFontOrientation (pobj, *angle);
 
   sciDrawObj(pobj);
   endFigureDataReading(pFigure);
- 
+
 }
 
 
 /*------------------------------------------------
- *  plot2d 
- *-----------------------------------------------*/   
+ *  plot2d
+ *-----------------------------------------------*/
 
 void Objplot2d ( int       ptype     ,
                  char      logflags[],
@@ -303,7 +303,7 @@ void Objplot2d ( int       ptype     ,
 
 /*------------------------------------------------
  *  grayplot
- *-----------------------------------------------*/   
+ *-----------------------------------------------*/
 void Objgrayplot ( double    x[]      ,
                    double    y[]      ,
                    double    z[]      ,
@@ -312,39 +312,39 @@ void Objgrayplot ( double    x[]      ,
                    char      strflag[],
                    double    brect[]  ,
                    int   aaint[]  ,
-                   BOOL      flagNax   ) 
-{ 
-  C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );       
+                   BOOL      flagNax   )
+{
+  C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );
 }
 
 /*------------------------------------------------
  *  Matplot
- *-----------------------------------------------*/   
+ *-----------------------------------------------*/
 void Objmatplot (double    z[]      ,
                  int * n1       ,
                  int * n2       ,
                  char      strflag[],
                  double    brect[]  ,
                  int    aaint[]  ,
-                 BOOL      flagNax   ) 
-{ 
+                 BOOL      flagNax   )
+{
   C2F(xgray1)(z,n1,n2,strflag, brect, aaint, flagNax, bsiz);
 }
 
 /*------------------------------------------------
  *  Matplot1
- *-----------------------------------------------*/   
+ *-----------------------------------------------*/
 void Objmatplot1 ( double    z[],
                    int * n1 ,
                    int * n2 ,
-                   double    xrect[] ) 
-{ 
+                   double    xrect[] )
+{
   C2F(xgray2)(z, n1, n2,xrect);
 }
 
 /*------------------------------------------------
- *  plot3d 
- *-----------------------------------------------*/   
+ *  plot3d
+ *-----------------------------------------------*/
 void Objplot3d ( char    * fname ,
                  int * isfac ,
                  int * izcol ,
@@ -371,7 +371,7 @@ void Objplot3d ( char    * fname ,
      /* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
 {
   sciTypeOf3D typeof3d;
-  int flagcolor;  
+  int flagcolor;
   long *hdltab;
   int i, mn;
   sciPointObj *psubwin = NULL, *pobj = NULL;
@@ -401,7 +401,7 @@ void Objplot3d ( char    * fname ,
   drect[5]=0;
 
   /* =================================================
-   * Force SubWindow properties according to arguments 
+   * Force SubWindow properties according to arguments
    * ================================================= */
   startGraphicDataWriting();
   parentFigure = sciGetCurrentFigure();
@@ -410,7 +410,7 @@ void Objplot3d ( char    * fname ,
 
   startFigureDataWriting(parentFigure);
   checkRedrawing() ;
-  
+
   /* Force psubwin->is3d to TRUE: we are in 3D mode */
   pSUBWIN_FEATURE (psubwin)->is3d = TRUE;
   pSUBWIN_FEATURE (psubwin)->project[2] = 1; /* to force z axis display */
@@ -424,24 +424,24 @@ void Objplot3d ( char    * fname ,
     if ( loc == NULL) {
 		Scierror(999, _("%s: No more memory.\n"),"Objplot3d");
 	}
-  
+
     strcpy(loc,legend);
-  
+
     /*   legx=strtok_r(loc,"@",&buff); */
     legx=strtok(loc,"@");
-  
+
     if (legx != NULL)
     {
       sciSetText( ppsubwin->mon_x_label, &legx , 1, 1 ) ;
     }
-   
+
     /*   legy=strtok_r((char *)0,"@",&buff); */
     legy=strtok((char *)NULL,"@"); /* NULL to begin at the last read character */
     if ( legy != NULL )
     {
       sciSetText( ppsubwin->mon_y_label, &legy , 1, 1 ) ;
     }
- 
+
     /*   legz=strtok_r((char *)0,"@",&buff); */
     legz=strtok((char *)NULL,"@");
     if ( legz != NULL )
@@ -449,11 +449,11 @@ void Objplot3d ( char    * fname ,
       sciSetText( ppsubwin->mon_z_label, &legz , 1, 1 ) ;
     }
   }
-   
+
   /* Force psubwin->logflags to linear */
   sciSetLogFlags(psubwin, linLogFlags);
- 
-  
+
+
   pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0]; /* mode: treatment of hidden parts */
   if (iflag[1] != 0){
     if (iflag[1]<7)
@@ -461,18 +461,18 @@ void Objplot3d ( char    * fname ,
     else
       pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]-6; /* type: scaling (no more useful)  */
   }
-  
+
   if( pSUBWIN_FEATURE (psubwin)->FirstPlot == FALSE && (iflag[2] == 0 || iflag[2] == 1))
-  { 
+  {
     /* Nothing to do: we leave as before */
   }
   else
   {
     pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
-    
+
     if(iflag[2] == 0 || iflag[2] == 1)
     {
-      
+
       if (pSUBWIN_FEATURE(psubwin)->FirstPlot)
       {
 	pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
@@ -489,11 +489,11 @@ void Objplot3d ( char    * fname ,
     else if(iflag[2] == 2)
     {
       pSUBWIN_FEATURE (psubwin)->axes.rect = BT_HIDDEN_AXIS ; /* for 2d use only (when switching to 2d mode) */
-      
+
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE;
-      
+
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_x_label,FALSE);
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,FALSE);
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,FALSE);
@@ -501,11 +501,11 @@ void Objplot3d ( char    * fname ,
     else if(iflag[2] == 3)
     {
       pSUBWIN_FEATURE (psubwin)->axes.rect = BT_ON ; /* for 2d use only (when switching to 2d mode) */
-      
+
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE;
-      
+
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_x_label,TRUE);
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,TRUE);
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,TRUE);
@@ -513,11 +513,11 @@ void Objplot3d ( char    * fname ,
     else if(iflag[2] == 4)
     {
       pSUBWIN_FEATURE (psubwin)->axes.rect = BT_ON ;
-      
+
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE;
-      
+
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_x_label,TRUE);
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,TRUE);
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,TRUE);
@@ -525,8 +525,8 @@ void Objplot3d ( char    * fname ,
   }
 
   pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
-  pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
-  
+  pSUBWIN_FEATURE (psubwin)->theta  = *theta;
+
   if ((sciGetGraphicMode (psubwin)->autoscaling)) {
     /* compute and merge new specified bounds with psubwin->Srect */
     switch (iflag[1])  {
@@ -541,13 +541,13 @@ void Objplot3d ( char    * fname ,
       drect[5] = ebox[5]; /*zmax*/
       break;
     case 2 : case 4 : case 6 : case 8:/* Force psubwin->Srect to the x and y bounds */
-      mn=(*m1) * (*n1); 
+      mn=(*m1) * (*n1);
       drect[0] = (double) Mini(x, mn); /*xmin*/
       drect[1] = (double) Maxi(x, mn); /*xmax*/
-      mn=(*m2) * (*n2); 
+      mn=(*m2) * (*n2);
       drect[2] = (double) Mini(y, mn); /*ymin*/
       drect[3] = (double) Maxi(y, mn); /*ymax*/
-      mn=(*m3) * (*n3); 
+      mn=(*m3) * (*n3);
       drect[4] = (double) Mini(z, mn); /*zmin*/
       drect[5] = (double) Maxi(z, mn); /*zmax*/
       break;
@@ -560,26 +560,26 @@ void Objplot3d ( char    * fname ,
       drect[4] = Min(pSUBWIN_FEATURE(psubwin)->SRect[4],drect[4]); /*zmin*/
       drect[5] = Max(pSUBWIN_FEATURE(psubwin)->SRect[5],drect[5]); /*zmax*/
     }
-    if (iflag[1] != 0) 
+    if (iflag[1] != 0)
       bounds_changed = update_specification_bounds(psubwin, drect,3);
-  } 
-  
+  }
+
   if(iflag[1] != 0)
     pSUBWIN_FEATURE(psubwin)->isoview = (BOOL)( iflag[1] == 3 || iflag[1] == 4 ||
 						iflag[1] == 5 || iflag[1] == 6);
-  
+
   /* =================================================
-   * Analyze arguments to find entity type 
+   * Analyze arguments to find entity type
    * ================================================= */
 
-  if (*isfac== 1) { 
-    if (*izcol == 0) { 
+  if (*isfac== 1) {
+    if (*izcol == 0) {
       if (strcmp(fname,"plot3d1")==0) {typeof3d = SCI_FAC3D;   flagcolor=1;}
       else                               {typeof3d = SCI_FAC3D;   flagcolor=0;}
     }
     else if (*izcol == 2)                {typeof3d = SCI_FAC3D;   flagcolor=3;}
     else                                 {typeof3d = SCI_FAC3D;   flagcolor=2;}
-  } 
+  }
   else  if  (*isfac== 0) {
     if (strcmp(fname,"plot3d1")==0)   {typeof3d = SCI_PLOT3D;  flagcolor=1;}
     else                                 {typeof3d = SCI_PLOT3D;  flagcolor=0;}
@@ -624,7 +624,7 @@ void Objplot3d ( char    * fname ,
 
       flag_x = monotony ;
     }
-    
+
     if ( *isfac == 1 )
     {
       /* y is considered as a matrix */
@@ -642,7 +642,7 @@ void Objplot3d ( char    * fname ,
     {
       dimvecty = -1 ;
     }
-   
+
     if( dimvecty > 1 )
     {
       /* test the monotony on y*/
@@ -656,11 +656,11 @@ void Objplot3d ( char    * fname ,
 
       flag_y = monotony ;
     }
-    
+
     pNewSurface = ConstructSurface( psubwin, typeof3d,
                                     x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
                                     isfac,m1,n1,m2,n2,m3,n3,m3n,n3n) ;
-    
+
     if ( pNewSurface == NULL )
     {
       endFigureDataWriting(parentFigure);
@@ -668,26 +668,26 @@ void Objplot3d ( char    * fname ,
     }
 
     sciSetCurrentObj( pNewSurface ) ;
-    
+
     pSURFACE_FEATURE (pNewSurface)->flag_x = flag_x;
     pSURFACE_FEATURE (pNewSurface)->flag_y = flag_y;
 
     /* Force clipping */
     sciSetIsClipping(pNewSurface, 0);  /* clipgrf */
-    
-    
+
+
   }
   else
     {
       if ((hdltab = MALLOC (*n * sizeof (long))) == NULL) {
         endFigureDataWriting(parentFigure);
 	Scierror(999,"%s: No more memory.\n",fname);
-	return; 
+	return;
       }
-      for (i = 0; i < *n; ++i) { 
+      for (i = 0; i < *n; ++i) {
 	/* F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
 	   Pb comes when wanting to access the fields "surface_color" or "flag" for example
-	   in function sciSet (cf. matdes.c). 
+	   in function sciSet (cf. matdes.c).
 	   Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
 	   Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
 
@@ -697,14 +697,14 @@ void Objplot3d ( char    * fname ,
 	    sciSetCurrentObj (ConstructPolyline
 			      (sciGetCurrentSubWin(),
 			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
+			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
 	  }
 	  else {
 	    int intzcol = (int) -zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
 			      (sciGetCurrentSubWin(),
 			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE));  
+			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
 	  }
 	}
 	else { /* default case, nothing is given */
@@ -712,17 +712,17 @@ void Objplot3d ( char    * fname ,
 	  sciSetCurrentObj (ConstructPolyline
 			    (sciGetCurrentSubWin(),
 			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
+			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
 	}
 
 	pobj = sciGetCurrentObj();
-	
-	hdltab[i]=sciGetHandle(pobj); 
+
+	hdltab[i]=sciGetHandle(pobj);
       }
 
 
       /** construct Compound and make it current object**/
-      if ( *n>1 ) sciSetCurrentObj (ConstructCompound (hdltab, *n));  
+      if ( *n>1 ) sciSetCurrentObj (ConstructCompound (hdltab, *n));
       FREE(hdltab);
     }
 
@@ -735,7 +735,7 @@ void Objplot3d ( char    * fname ,
   sciDrawObj(sciGetCurrentFigure ());
 
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
-   
+
   FREE(loc); loc = NULL;
 
 }
@@ -760,12 +760,12 @@ void Objdrawaxis ( char     dir    ,
                    int      nb_tics_labels )
 {
   checkRedrawing() ;
-  sciSetCurrentObj (ConstructAxes 
+  sciSetCurrentObj (ConstructAxes
 		    ((sciPointObj *)
 		     sciGetCurrentSubWin(),
-		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels));  
+		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels));
   sciDrawObjIfRequired(sciGetCurrentObj ());
-     
+
 }
 
 /*-----------------------------------------------------------
@@ -780,15 +780,15 @@ void Objnumb( char          * fname    ,
               double          y        ,
               double        * angle    ,
               double        * box       )
-{ 
+{
   /*** faire une macro scilab sur xstring ****/
 
-   
+
 }
 
 /*------------------------------------------------
  * fec
- *-----------------------------------------------*/   
+ *-----------------------------------------------*/
 void Objfec ( double    x[]        ,
               double    y[]        ,
               double    noeud[]    ,

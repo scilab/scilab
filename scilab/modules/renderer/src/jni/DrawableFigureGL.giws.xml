@@ -96,5 +96,8 @@
     </method>
 	<method name="closeGraphicCanvas" returnType="void">
     </method>
+	<method name="setUseSingleBuffer" returnType="void">
+	  <param type="boolean" name="useSingleBuffer" />
+    </method>
   </object>
 </package>

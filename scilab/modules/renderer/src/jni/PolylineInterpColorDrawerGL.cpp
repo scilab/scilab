@@ -104,7 +104,6 @@ voidinitializeDrawingjintID=NULL;
 voidendDrawingID=NULL; 
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
-voidsetFigureIndexjintID=NULL; 
 voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjintArrayID=NULL; 
 
 
@@ -133,7 +132,6 @@ voidinitializeDrawingjintID=NULL;
 voidendDrawingID=NULL; 
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
-voidsetFigureIndexjintID=NULL; 
 voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjintArrayID=NULL; 
 
 
@@ -229,21 +227,6 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "destroy");
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void PolylineInterpColorDrawerGL::setFigureIndex (int figureIndex){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidsetFigureIndexjintID==NULL) { /* Use the cache Luke */ voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
-if (voidsetFigureIndexjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setFigureIndex");
-}
-}
-                         curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

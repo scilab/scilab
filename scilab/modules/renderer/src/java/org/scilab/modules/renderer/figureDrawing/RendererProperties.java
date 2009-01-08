@@ -237,5 +237,11 @@ public interface RendererProperties {
 	 */
 	void setEventHandlerEnabled(boolean status);
 	
+	/**
+	 * Turn on or off single buffering
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 */
+	void setSingleBuffered(boolean useSingleBuffer);
+	
 	
 }
