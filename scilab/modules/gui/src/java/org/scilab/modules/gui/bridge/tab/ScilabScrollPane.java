@@ -13,6 +13,9 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.Container;
+
+
 /**
  * Define a scrollPane that can be used wih Scilab
  * @author Jean-Baptiste Silvy
@@ -51,5 +54,10 @@ public interface ScilabScrollPane {
 	 * @return true if autoresize is on
 	 */
 	boolean getAutoResizeMode();
+	
+	/**
+	 * @return Container representation of this object
+	 */
+	Container getAsContainer();
 	
 }

@@ -106,6 +106,11 @@ void GraphicSynchronizer::setEnable(bool enable)
 {
   enterCriticalSection();
   m_bIsEnable = enable;
+	if (!enable)
+	{
+		// wake others if syncho is disable
+		notifyAll();
+	}
   exitCriticalSection();
 }
 /*---------------------------------------------------------------------------------*/

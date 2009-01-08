@@ -13,34 +13,123 @@
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Point;
 import java.awt.ScrollPane;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.Graphics;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.SwingUtilities;
+
+
 
 /**
  * Scroll pane based on AWT technology
  * @author Jean-Baptiste silvy
  */
-public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane, ComponentListener {
+public class AwtScilabScrollPane implements ScilabScrollPane {
 
 	/** needed */
 	private static final long serialVersionUID = -3303313501821629057L;
+	
+	private AwtCustomScrollPane scrolling;
+	
+	private SwingScilabTab parentTab;
+	
+	/**
+	 * AWT ScrollPane are not able to change their scrollbars policy once created.
+	 * To be able to emulate this behaviour, we need actually change the scrollpane
+	 * each time the scrollbar policy needs to change.
+	 * This class is the real scrollpane component used.
+	 */
+	private class AwtCustomScrollPane extends ScrollPane implements ComponentListener {
+		
+		private static final long serialVersionUID = -127053010360658684L;
+		private SwingScilabAxes axes;
+		
+		/**
+		 * Constructor
+		 * @param axes axes to scroll
+		 * @param scrollBarPolicy if the scrollpane should have scrollbars or not
+		 */
+		public AwtCustomScrollPane(SwingScilabAxes axes, int scrollBarPolicy) {
+			super(scrollBarPolicy);
+			this.axes = axes;
+			addComponentListener(this);
+			add(axes);
+		}
+		
+		/**
+		 * Redefine paint children to be sure that AWT components are well painted.
+		 * @param g graphic pipeline
+		 */
+		public void paint(Graphics g) {
+			if (axes != null) {
+			  // axes won't be displayed automatically
+			  axes.paint(g);
+			}
+			super.paint(g);
+		}
+		
+		/**
+		 * Call when the scrollPane become hidden
+		 * @param event generated event
+		 */
+		public void componentHidden(ComponentEvent event) { }
 
-	private SwingScilabAxes axes;
+
+		/**
+		 * Call when the scrollPane is moved
+		 * @param event generated event
+		 */
+		public void componentMoved(ComponentEvent event) { }
+
+
+		/**
+		 * Call when the scrollPane is resized
+		 * @param event generated event
+		 */
+		public void componentResized(ComponentEvent event) {
+			if (axes.getAutoResizeMode()) {
+				// in auto resize mode the viewport axes
+				// fill the tab and then the view
+				axes.setSize(scrolling.getViewportSize());
+			}
+			
+		}
+		
+		/**
+		 * Call when the scrollPane appears on the screen
+		 * @param event generated event
+		 */
+		public void componentShown(ComponentEvent event) { }
+		
+		/**
+		 * @return the scrolled axes
+		 */
+		public SwingScilabAxes getAxes() {
+			return axes;
+		}
+		
+	}
 	
 	/**
 	 * Create a new Scroll pane around an axes.
 	 * @param axes axes to scroll
+	 * @param parentTab parentTab of the scrollPane
 	 */
-	public AwtScilabScrollPane(SwingScilabAxes axes) {
-		super(ScrollPane.SCROLLBARS_AS_NEEDED);
-		add(axes);
-		this.axes = axes;
-		addComponentListener(this);
+	public AwtScilabScrollPane(SwingScilabAxes axes, SwingScilabTab parentTab) {
+		//super(ScrollPane.SCROLLBARS_AS_NEEDED);
+		if (axes.getAutoResizeMode()) {
+			this.scrolling = new AwtCustomScrollPane(axes, ScrollPane.SCROLLBARS_NEVER);
+		} else {
+			this.scrolling = new AwtCustomScrollPane(axes, ScrollPane.SCROLLBARS_AS_NEEDED);
+		}
+		this.parentTab = parentTab;
 		// use the axes background as default one
-		setRealBackground(axes.getBackground());
+		setRealBackground(scrolling.getAxes().getBackground());
 	}
 	
 	/**
@@ -48,10 +137,10 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	 *         width and height of the viewPort
 	 */
 	public int[] getViewingRegion() {
-		int[] res = {getScrollPosition().x,
-				 	 getScrollPosition().y,
-				 	 getViewportSize().width,
-				 	 getViewportSize().height};
+		int[] res = {scrolling.getScrollPosition().x,
+					 scrolling.getScrollPosition().y,
+					 scrolling.getViewportSize().width,
+					 scrolling.getViewportSize().height};
 		return res;
 	}
 
@@ -72,7 +161,7 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	 * @param background color to use as background
 	 */
 	private void setRealBackground(Color background) {
-		getComponent(0).setBackground(background);
+		scrolling.getComponent(0).setBackground(background);
 	}
 
 	/**
@@ -81,51 +170,16 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	 * @param yPos the y position to scroll to
 	 */
 	public void setViewPosition(int xPos, int yPos) {
-		setScrollPosition(new Point(xPos, yPos));
+		scrolling.setScrollPosition(new Point(xPos, yPos));
 	}
 	
-	/**
-	 * Call when the scrollPane become hidden
-	 * @param event generated event
-	 */
-	public void componentHidden(ComponentEvent event) { }
-
-
-	/**
-	 * Call when the scrollPane is moved
-	 * @param event generated event
-	 */
-	public void componentMoved(ComponentEvent event) { }
-
-
-	/**
-	 * Call when the scrollPane is resized
-	 * @param event generated event
-	 */
-	public void componentResized(ComponentEvent event) {
-		if (axes.getAutoResizeMode()) {
-			// in auto resize mode the viewport axes
-			// fill the tab and then the view
-			axes.setSize(getViewportSize());
-		}
-		
-	}
-
-	/**
-	 * Call when the scrollPane appears on the screen
-	 * @param event generated event
-	 */
-	public void componentShown(ComponentEvent event) { }
 	
 	/**
 	 * Redefine paint children to be sure that AWT components are well painted.
+	 * @param g graphic pipeline
 	 */
 	public void paint(Graphics g) {
-		if (axes != null) {
-		  // axes won't be displayed automatically
-		  axes.paint(g);
-		}
-		super.paint(g);
+		scrolling.paint(g);
 	}
 	
 	/**
@@ -133,12 +187,33 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	 * @param autoResizeMode true if autoresize is on
 	 */
 	public void setAutoResizeMode(boolean autoResizeMode) {
-		axes.setAutoResizeMode(autoResizeMode);
-		if (autoResizeMode) {
-			axes.setSize(getViewportSize());
+		final SwingScilabAxes movedAxes = scrolling.getAxes();
+		final boolean autoResizeModeF = autoResizeMode;
+		if (autoResizeMode != movedAxes.getAutoResizeMode()) {
+			try {
+    			SwingUtilities.invokeAndWait(new Runnable() {
+    				public void run() {
+    					scrolling.remove(movedAxes);
+    					scrolling.getAxes().setSize(scrolling.getViewportSize());
+    					if (autoResizeModeF) {
+    						// switch to auto resize mode
+    						scrolling = new AwtCustomScrollPane(movedAxes, ScrollPane.SCROLLBARS_NEVER);
+    					} else {
+    						scrolling = new AwtCustomScrollPane(movedAxes, ScrollPane.SCROLLBARS_AS_NEEDED);
+    					}
+    					movedAxes.setAutoResizeMode(autoResizeModeF);
+    					// set the new axes
+    					parentTab.setContentPane(scrolling);
+    					parentTab.revalidate();
+    				}
+    			});
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		} catch (InvocationTargetException e) {
+    			e.getCause().printStackTrace();
+    		}
+			
 		}
-		// revalidate to update scollbars
-		validate();
 	}
 	
 	/**
@@ -146,7 +221,14 @@ public class AwtScilabScrollPane extends ScrollPane implements ScilabScrollPane,
 	 * @return true if autoresize is on
 	 */
 	public boolean getAutoResizeMode() {
-		return axes.getAutoResizeMode();
+		return scrolling.getAxes().getAutoResizeMode();
+	}
+	
+	/**
+	 * @return Container representation of this object
+	 */
+	public Container getAsContainer() {
+		return scrolling;
 	}
 
 }
