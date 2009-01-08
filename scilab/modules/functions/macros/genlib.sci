@@ -107,8 +107,7 @@ function genlib(nam,path,force,verbose,names)
   else
     for i=1:size(files,'*')  // loop on .sci files
       scif      = files(i);
-      // binf      = strsubst(scif, "/\.sci$/",".bin","r"); // See bug 3891
-      binf      = part(scif,1:length(scif)-4)+".bin";
+      binf      = strsubst(scif, "/\.sci$/",".bin","r");
       binf_info = fileinfo(binf);
       recompile = %f;
       
@@ -192,10 +191,7 @@ function result = getsave(scifile)
     new = new(1:(size(new,"*")-nold-1))
     
     // create output file name (just replace the ".sci" extension by ".bin"
-    binfile = part(scifile,1:length(scifile)-4)+".bin";
-    
-    // To fix the bug 3886 under Windows, the previous line replace the following :
-    // binfile = strsubst(scifile,"/\.sci$/",".bin",'r')
+    binfile = strsubst(scifile,"/\.sci$/",".bin",'r')
     
     // save all functions in the output file
     [u,ierr]=mopen(binfile,"wb")

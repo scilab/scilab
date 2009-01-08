@@ -25,6 +25,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "strsubst.h"
 
 
 /* A number of things vary for Windows builds. Originally, pcretest opened its
@@ -268,9 +269,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	char *copynamesptr=NULL;
 	char *getnamesptr=NULL;
 
-
-	buffer = (char *)MALLOC(strlen(INPUT_LINE)+1);
-
+	/* bug 3891 */
+	/* backslash characters are not interpreted for input */
+	buffer = strsub(INPUT_LINE, "\\", "\\\\");
 
 	size_offsets_max = size_offsets;
 	offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
@@ -454,8 +455,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		
 		if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
 		len = 0;
-		p = INPUT_LINE;
-		while (isspace(*p)) p++;
+		p = buffer;
 		bptr = q = buffer;
 		while ((c = *p++) != 0)
 		{
@@ -631,7 +631,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		len = (int)(q - buffer);
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
-			free(p);
+			FREE(p);
 			return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
 		}
 		/* Handle matching via the POSIX interface, which does not
