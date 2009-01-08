@@ -55,12 +55,7 @@ public class SciTextRenderer {
 	 * Update the scale factor to use
 	 */
 	private void updateScaleFactor() {
-		//if (useFractionalMetrics) {
-			this.scaleFactor = fontSize / renderer.getFont().getSize2D();
-//			
-//		} else {
-//			this.scaleFactor = 1.0f;
-//		}
+		this.scaleFactor = fontSize / renderer.getFont().getSize2D();
 	}
 	
 	
@@ -76,12 +71,6 @@ public class SciTextRenderer {
 	 * @param angle angle of the text to draw
 	 */
 	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
-		// move position
-		//gl.glPushMatrix();
-		//gl.glTranslated(x, y, z);
-//		gl.glScalef(fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
-//					fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
-//					fontSize / TextRendererManager.DEFAULT_FONT_SIZE);
 		// with OpenGL strings, angle is already set
 		if (useFractionalMetrics) {
 			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
@@ -90,10 +79,6 @@ public class SciTextRenderer {
 			// sometimes (especially for title) leads to jaggy text.
 			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f + EPSILON);
 		}
-		
-		// flush since we moved rendering position
-		//renderer.flush();
-		//gl.glPopMatrix();
 	}
 	
 	/**
@@ -131,6 +116,17 @@ public class SciTextRenderer {
 	public Font getFont() {
 		// renderer font is from the same family but does not have the same size.
 		return renderer.getFont().deriveFont(fontSize);
+	}
+	
+	/**
+	 * @return real size of text produced by the renderer
+	 */
+	public double getDisplayedFontSize() {
+		if (useFractionalMetrics) {
+			return fontSize;
+		} else {
+			return renderer.getFont().getSize2D();
+		}
 	}
 	
 	/**
