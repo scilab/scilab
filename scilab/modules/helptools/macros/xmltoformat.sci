@@ -378,7 +378,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			for k=1:size(dirs_c,"*")
 				if need_to_be_build_tab_c(k) then
 					mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
-					if dirs_c(k) == pathconvert(SCI + "/modules/scicos/help/" + directory_language_c(k)) then
+					if dirs_c(k) == pathconvert(SCI + "/modules/scicos/help/" + directory_language_c(k),%f,%f) then
 					  create_MD_scicos(dirs_c(k), dirs_c(k)+"/master_help.xml", directory_language_c(k))
 					else
 					  create_MD_dir(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml",directory_language_c(k));
@@ -401,7 +401,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				else
 					mprintf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 				end
-				if dirs(k)==pathconvert(SCI + "/modules/scicos/help/" + directory_language(k)) then
+				if dirs(k)==pathconvert(SCI + "/modules/scicos/help/" + directory_language(k),%f,%f) then
 				  create_MD_scicos(dirs(k), dirs(k)+"/master_help.xml", directory_language(k))
 				else
 				  create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml",directory_language(k));
