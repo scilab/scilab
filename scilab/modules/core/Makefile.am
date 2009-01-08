@@ -304,7 +304,8 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
             -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/action_binding/includes \
+                        -I$(top_srcdir)/modules/intersci/includes \
+                        -I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
@@ -411,7 +412,6 @@ includes/scilabmode.h \
 includes/scimem.h \
 includes/sciquit.h \
 includes/scirun.h \
-includes/scisparse.h \
 includes/setgetSCIpath.h \
 includes/SetScilabEnvironment.h \
 includes/sigbas.h \

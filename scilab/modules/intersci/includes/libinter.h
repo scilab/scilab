@@ -14,7 +14,9 @@
 #ifndef __LIBINTER_H__
 #define __LIBINTER_H__
 
-#include "stack-c.h"
+#include "machine.h" /* C2F */
+
+#include "scisparse.h" /* SciSparse struct */
 
 void C2F(out) (char *str,unsigned int);
 void C2F(ccharf) ( int *n, char **ip, int *op);
@@ -26,6 +28,7 @@ void C2F(cboolf) ( int *n, int *ip[], int *op);
 void Cout (char *str);
 void C2F(dbl2cdbl)(int *n,double *ip[], double *op);
 void C2F(int2cint)( int *n, int *ip[], int *op);
+
 int C2F(csparsef)(SciSparse **x,int *mnel,int *icol,double *R,double *I);
 SciSparse *NewSparse(int *,int *,int *,int *);
 void FreeSparse(SciSparse *x);
