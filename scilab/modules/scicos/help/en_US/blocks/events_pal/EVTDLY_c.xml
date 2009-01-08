@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="EVTDLY_c">
+  <refnamediv>
+    <refname>EVTDLY_c</refname>
+    <refpurpose>Event delay</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="images/EVTDLY_c_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents EVTDLY_c">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="EVTDLY_c">Event delay</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Description EVTDLY_c">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialog box EVTDLY_c">Dialog box</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Default properties EVTDLY_c">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacing function EVTDLY_c">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computational function EVTDLY_c">Computational function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="See also EVTDLY_c">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors EVTDLY_c">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description EVTDLY_c">
+    <title>Description</title>
+    <para>
+One event is generated  <emphasis role="bold">Delay</emphasis>  after an event enters the unique
+input event port. Block may also generate an initial output event.
+The event date of that block is computed by the formula :
+</para>
+    <para>
+</para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="images/EVTDLY_c_img2_eng.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+</para>
+    <para>
+where <inlinemediaobject><imageobject><imagedata fileref="images/EVTDLY_c_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> the date of initial output event, <inlinemediaobject><imageobject><imagedata fileref="images/EVTDLY_c_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>
+the delay and <inlinemediaobject><imageobject><imagedata fileref="images/EVTDLY_c_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> and internal integer discrete counter.
+
+</para>
+  </refsection>
+  <refsection id="Dialog box EVTDLY_c">
+    <title>Dialog box</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="images/EVTDLY_c_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Delay</emphasis>
+        </para>
+        <para> scalar. Time delay between input and output event.</para>
+        <para> Properties : Type 'vec' of size 1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Date of initial output event</emphasis>
+        </para>
+        <para> scalar. If<emphasis role="bold">Auto-exec&gt;=0 </emphasis> block initially generates an output event at date<emphasis role="bold">Auto-exec</emphasis> .</para>
+        <para> Properties : Type 'vec' of size 1</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Default properties EVTDLY_c">
+    <title>Default properties</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">evtdly4</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacing function EVTDLY_c">
+    <title>Interfacing function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Events/EVTDLY_c.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Computational function EVTDLY_c">
+    <title>Computational function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/evtdly4.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="See also EVTDLY_c">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CLOCK_c">CLOCK_c - Activation clock (Scicos Block)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors EVTDLY_c">
+    <title>Authors</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>
