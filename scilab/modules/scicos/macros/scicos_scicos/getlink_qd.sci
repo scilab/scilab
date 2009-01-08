@@ -30,7 +30,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 //** 24/07/07: Al@n's patch for rotation of blocks
 
 //** N.B : Please set %scicos_debug_gr="%t" to activate the debug mode 
-  %scicos_debug_gr = %t; 
+  %scicos_debug_gr = %f; 
 
   outin = ['out','in']
   //----------- get link origin --------------------------------------
