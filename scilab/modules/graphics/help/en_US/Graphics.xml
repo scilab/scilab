@@ -509,12 +509,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xbasimp</term>
-        <listitem>
-          <para>send graphics to a Postscript printer or in a file</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xs2fig</term>
         <listitem>
           <para>send graphics to a file in Xfig syntax</para>

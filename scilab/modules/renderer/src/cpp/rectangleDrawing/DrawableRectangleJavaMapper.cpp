@@ -56,11 +56,6 @@ void DrawableRectangleJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex);
 }
-/*--------------------------------------------------------------------------*/
-void DrawableRectangleJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*----------------------------------------------------------------------*/
 void DrawableRectangleJavaMapper::translate(const double translation[3])
 {

@@ -38,8 +38,6 @@ public:
   virtual void show(int figureIndex);
 
   virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for polyline line drawer
   virtual void setBarParameters(int background, int foreground, float thickness,

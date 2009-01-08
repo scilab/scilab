@@ -57,11 +57,6 @@ void FilledTextDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void FilledTextDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void FilledTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle,
                                                    double defaultFontSize, double rotationAngle, bool useFractionalMetrics)
 {

@@ -14,6 +14,7 @@
 package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.Threading;
 import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
@@ -24,12 +25,12 @@ import org.scilab.modules.renderer.utils.TexturedColorMap;
  * Object which can be rendered in a GL pipeline
  * @author Jean-Baptiste Silvy
  */
-public abstract class ObjectGL {
+public class ObjectGL {
 
 //	public static int nbObjectsCount = 0;
 	
 	/** Glu instance to use glu functionalities */
-	private GLU curGluInstance = new GLU();
+	private GLU curGluInstance;
 	/** current context to draw in */
 	private GL glPipeline;
 	/** current colorMap to use */
@@ -45,25 +46,29 @@ public abstract class ObjectGL {
 	}
 	
 	/**
-	 * Specify index of parent figure to get all interesting data.
-	 * @param parentFigureIndex index of parentFigure
-	 */
-	public void setFigureIndex(int parentFigureIndex) {
-		// get the context from the drawing canvas
-		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
-		updateColorMap();
-	}
-	
-	/**
 	 * Called when the object is destroyed from C code
 	 * @param parentFigureIndex index of parent figure
 	 */
 	public void destroy(int parentFigureIndex) {
-		FigureMapper.getCorrespondingFigure(parentFigureIndex).getObjectCleaner().addObjectToDestroy(this);
+		// To fix bug 3785, only add the object if it as some OpenGL resources
+		// to free. Java resources are freed thanks to the Garbage collector.
+		// If for any reason, the figure couldn't show itself (if minimized or in drawlater mode
+		// for example) objects won't use OGL resources since not displayed and won't
+		// be stacked for ever.
+		if (isUsingOGLResources()) {
+			if (Threading.isOpenGLThread()) {
+				// we can release openGL resources now
+				clean(parentFigureIndex);
+			} else {
+				// schedule destroy on the OpenGL thread
+				getParentFigureGL().getObjectCleaner().addObjectToDestroy(this);
+			}
+		}
 	}
 	
 	/**
-	 * Free all things used by this object
+	 * Free all OpenGL resources used by this object.
+	 * 
 	 * @param parentFigureIndex index of parent figure
 	 */
 	public void clean(int parentFigureIndex) { }
@@ -169,6 +174,18 @@ public abstract class ObjectGL {
 	 */
 	public CoordinateTransformation getCoordinateTransformation() {
 		return getParentFigureGL().getCoordinateTransformation();
+	}
+	
+	/**
+	 * This function is used to know if the object is using
+	 * some OpenGL ressources that need to be released when the object is destroyed
+	 * This function will be called from outside the OpenGL thread so should not contain any
+	 * OpenGL call.
+	 * @return true if the object contains such ressources, false otherwise
+	 */
+	public boolean isUsingOGLResources() {
+		// by default return false
+		return false;
 	}
 	
 }

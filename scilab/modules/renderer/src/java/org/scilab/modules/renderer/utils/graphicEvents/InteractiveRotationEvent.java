@@ -63,7 +63,7 @@ public class InteractiveRotationEvent extends GraphicEvent {
 	 */
 	protected boolean getFirstClick() {
 		// set a new infoMessage
-		trackedCanvas.setInfoMessage(Messages.gettext("Click on an Axes object to start rotation. Click again to terminate."));
+		trackedCanvas.setInfoMessage(Messages.gettext("Click on an Axes object to start rotation. Right click or ESCAPE to cancel."));
 		
 		// first get the clicked subwin
 		int[] clickPos = {0, 0};
@@ -86,7 +86,11 @@ public class InteractiveRotationEvent extends GraphicEvent {
 			return false;
 		}
 		
+		trackedCanvas.setInfoMessage(Messages.gettext("Click or press ESCAPE to terminate rotation."));
+		
 		setRotatedSubwinHandle(clickedSubwinHandle);
+		
+		
 		
 		return true;
 	}

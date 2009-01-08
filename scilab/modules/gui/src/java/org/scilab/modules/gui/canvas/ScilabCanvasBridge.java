@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -189,5 +190,14 @@ public class ScilabCanvasBridge {
 	 */
 	public static BufferedImage dumpAsBufferedImage(ScilabCanvas scilabCanvas) {
 		return scilabCanvas.getAsSimpleCanvas().dumpAsBufferedImage();
+	}
+	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 * @param canvas canvas to modify
+	 */
+	public static void setSingleBuffered(Canvas canvas, boolean useSingleBuffer) {
+		canvas.getAsSimpleCanvas().setSingleBuffered(useSingleBuffer);
 	}
 }

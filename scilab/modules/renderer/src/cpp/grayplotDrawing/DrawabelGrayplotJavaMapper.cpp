@@ -56,11 +56,6 @@ void DrawableGrayplotJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex);
 }
-/*--------------------------------------------------------------------------*/
-void DrawableGrayplotJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void DrawableGrayplotJavaMapper::translate(const double translation[3])
 {

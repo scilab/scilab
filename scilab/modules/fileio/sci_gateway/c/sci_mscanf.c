@@ -79,7 +79,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 		//C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,(long int)strlen(String));
 		//getLine(String,&len,&lline,&status);
 		String = getConsoleInputLine();
-		lline = strlen(String);
+		lline = (int)strlen(String);
 
 		if (lline == 0) {String[0] = ' ';lline=1;}
 		/** use the scaned line as input **/

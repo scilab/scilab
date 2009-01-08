@@ -22,57 +22,87 @@
 //
 
 function [x,y,typ]=CURVE_c(job,arg1,arg2)
-x=[];y=[];typ=[];
+//** 07/01/2008 : Adapted fot Scilab 5.0 by Simone Mannori 
+x=[]; y=[]; typ=[];
+
 select job
-case 'plot' then
-  standard_draw(arg1)
-case 'getinputs' then
-  [x,y,typ]=standard_inputs(arg1)
-case 'getoutputs' then
-  [x,y,typ]=standard_outputs(arg1)
-case 'getorigin' then
-  [x,y]=standard_origin(arg1)
- case 'set' then
 
-  x=arg1
-  model=arg1.model
-  graphics=arg1.graphics
-  exprs=graphics.exprs
-  ok=%f;
-  SaveExit=%f
+ case "plot" then
+   standard_draw(arg1);
+
+ case "getinputs" then
+   [x,y,typ]=standard_inputs(arg1);
+
+ case "getoutputs" then
+   [x,y,typ]=standard_outputs(arg1);
+
+ case "getorigin" then
+   [x,y]=standard_origin(arg1);
+
+ case "set" then
+
+  x = arg1; 
+  model = arg1.model;
+  graphics = arg1.graphics; 
+  exprs = graphics.exprs;
+  ok = %f;
+  SaveExit = %f;
+
   while %t do
-    Ask_again=%f
-    [ok,Method,xx,yy,PeriodicOption,graf,exprs]=getvalue('Spline data',['Spline"+...
-		    " Method (0..7)';'x';'y';'Periodic signal(y/n)?';'Launch"+...
-		    " graphic window(y/n)?'],list('vec',1,'vec',-1, ...
-						  'vec',-1,'str',1,'str',1),exprs)
-    if  ~ok then break;end    
-    if PeriodicOption=='y' | PeriodicOption=='Y' then,PO=1;else,exprs(4)='n';PO=0;end
-    mtd=int(Method); if mtd<0 then mtd=0;end; if mtd>7 then mtd=7;end;    
-    METHOD=getmethod(mtd);
-
-    if ~Ask_again then 
-      xx=xx(:);yy=yy(:);
-      [nx,mx]=size(xx); [ny,my]=size(yy);
-      if ~((nx==ny)&(mx==my)) then, x_message('incompatible size of x and y');  Ask_again=%t;end
+    Ask_again = %f; 
+    [ok,Method,xx,yy,PeriodicOption,graf,exprs] = getvalue('Spline data',['Spline"+...
+		                                  " Method (0..7)';'x';'y';'Periodic signal(y/n)?';'Launch"+...
+		                                  " graphic window(y/n)?'],list('vec',1,'vec',-1, ...
+						                                'vec',-1,'str',1,'str',1),exprs)
+    if  ~ok then break;end
+    
+    if PeriodicOption=='y' | PeriodicOption=='Y' then
+      PO=1;
+    else
+      exprs(4)='n';
+      PO=0;
     end
     
-    if ~Ask_again then//+++++++++++++++++++++++++++++++++++++++
-      xy=[xx,yy];
-      [xy]=cleandata(xy);// just for sorting to be able to compare data before and after poke_point(.)
+    mtd=int(Method);
+    if mtd<0 then
+      mtd=0
+    end;
+
+    if mtd>7 then
+      mtd=7;
+    end    
+    
+    METHOD = getmethod(mtd);
+
+    if ~Ask_again then 
+      xx=xx(:); yy=yy(:);
+      [nx,mx] = size(xx); [ny,my]=size(yy);
+      if ~((nx==ny)&(mx==my)) then
+         x_message("Incompatible size of [x] and [y]");
+         Ask_again = %t;
+      end
+    end
+    
+    if ~Ask_again then //+++++++++++++++++++++++++++++++++++++++
+      xy = [xx,yy];
+      [xy] = cleandata(xy); // just for sorting to be able to compare data before and after poke_point(.)
       N= size(xy,'r');
       exprs(5)='n';// exprs.graf='n'
+      
       if graf=='y' | graf=='Y' then //_______Graphic editor___________
 	ipar=[N;mtd;PO];
 	rpar=[];
+
         if ~exists('curwin') then
-         gh=gcf();
-         curwin=gh.figure_id
+         gh = gcf();
+         curwin = gh.figure_id
         end
-        save_curwin=curwin;
-	curwin=max(winsid())+1; 
-	[orpar,oipar,ok]=poke_point(xy,ipar,rpar);   
-	curwin=save_curwin;
+
+        save_curwin = curwin;
+	 curwin = max(winsid())+1; //** prepare a brand new win 
+         //** see below in this file; "poke_point" is very similar to "edit_curv"
+	 [orpar,oipar,ok] = poke_point(xy,ipar,rpar); //** HERE WE ARE +++++++++++++++++++++++++++++++++++  
+	curwin = save_curwin;
 	if ~ok then break;end;//  exit without save
 
 	// verifying the data change
@@ -158,9 +188,11 @@ end
 endfunction
 
 
+function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
 
-function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
-[lhs,rhs]=argn(0)
+ [lhs,rhs]=argn(0)
+
+//** get_click is already defined in "editi_curv"  
 //in line definition of get_click
 deff('[btn,xc,yc,win,Cmenu]=get_click(flag)',[
 'if ~or(winsid() == curwin) then   Cmenu = ''Quit'';return,end,';
@@ -169,7 +201,7 @@ deff('[btn,xc,yc,win,Cmenu]=get_click(flag)',[
 'else';
 '  [btn, xc, yc, win, str] = xclick();';
 'end;'; 
-'if btn == -100 then';
+'if btn == -1000 then';
 '  if win == curwin then';
 '    Cmenu = ''Quit'';';
 '  else';
@@ -189,41 +221,43 @@ deff('[btn,xc,yc,win,Cmenu]=get_click(flag)',[
 'end';
 'Cmenu=[]'])
  
-ok=%f
+ok = %f
 if rhs==0 then ixy=[];end;
+
 if size(xy,'c')<2 then 
-  xinfo(' No y provided');
+  xinfo(" No [y] is provided");
   return
 end
 
-[xy]=cleandata(ixy)
-N=size(xy,'r');
+[xy] = cleandata(ixy)
+
+N = size(xy,'r');
 
 if rhs<=1 then
-  NOrder=1;
-  PeridicOption=0;
-  ipar=[N;NOrder;PeridicOption]
-  rpar=[]
+  NOrder = 1;
+  PeridicOption = 0;
+  ipar = [N;NOrder;PeridicOption]
+  rpar = []
 else if rhs==2 then  
-    NOrder=iparin(2);
-    PeridicOption=iparin(3);
-    ipar=iparin;
-    rpar=[]
+    NOrder = iparin(2);
+    PeridicOption = iparin(3);
+    ipar = iparin;
+    rpar = []; 
 else if rhs==3 then  
-    NOrder=iparin(2);
-    PeridicOption=iparin(3);
-    ipar=iparin;
-    rpar=rparin    
+    NOrder = iparin(2);
+    PeridicOption = iparin(3);
+    ipar = iparin;
+    rpar = rparin    
 end
-end
-end
+end //** ???
+end //** ???
 
-Amp=[];wp=[]; phase=[];offset=[];np1=[];
-Sin_exprs=list(string(Amp),string(wp), string(phase),string(offset),string(np1));
-sAmp=[];sTp=[]; sdelay=[];
-Sawt1_exprs=list(string(sAmp),string(sTp),string(sdelay));
-sAmp2=[];sTp2=[];
-Sawt2_exprs=list(string(sAmp2),string(sTp2));
+Amp=[]; wp=[]; phase=[]; offset=[]; np1=[];
+Sin_exprs = list(string(Amp),string(wp), string(phase),string(offset),string(np1));
+sAmp=[]; sTp=[]; sdelay=[];
+Sawt1_exprs = list(string(sAmp),string(sTp),string(sdelay));
+sAmp2=[]; sTp2 = [];
+Sawt2_exprs = list(string(sAmp2),string(sTp2));
 
 Amp3=[];Tp3=[];Pw3=[];Pd3=[];Bias3=[];
 Pulse_exprs=list(string(Amp3), string(Tp3),string(Pw3),string(Pd3),string(Bias3))
@@ -235,47 +269,49 @@ min5=[];max5=[];seed5=[];sample5=[];np5=[];
 random_u_exprs=list(string(min5), string(max5), string(seed5),string(sample5),string(np5))
 
 // bornes initiales du graphique
-xmx=maxi(xy(:,1));xmn=mini(xy(:,1)),xmn=max(xmn,0);
-ymx=maxi(xy(:,2));ymn=mini(xy(:,2));
-dx=xmx-xmn;dy=ymx-ymn
+xmx = maxi(xy(:,1));xmn=mini(xy(:,1)),xmn=max(xmn,0);
+ymx = maxi(xy(:,2));ymn=mini(xy(:,2));
+dx = xmx-xmn; dy = ymx-ymn
+
 if dx==0 then dx=maxi(xmx/2,1),end;
-xmx=xmx+dx/50;
+xmx = xmx+dx/50;
+
 if dy==0 then dy=maxi(ymx/2,1),end;
-ymn=ymn-dy/50;ymx=ymx+dy/50;
+ymn = ymn-dy/50; ymx = ymx+dy/50;
 
-rect=[xmn,ymn;xmx,ymx];
-//===================================================================
-f=scf();
+rect = [xmn,ymn;xmx,ymx];
 
-if ~MSDOS then
-  delmenu(curwin,'3D Rot.')
-  delmenu(curwin,'Edit')
-  delmenu(curwin,'File')
-  delmenu(curwin,'Insert')
-else
-  hidetoolbar(curwin)
- // French
-  delmenu(curwin,'&Fichier')
-  delmenu(curwin,'&Editer')
-  delmenu(curwin,'&Outils')
-  delmenu(curwin,'&Inserer')
-  // English
-  delmenu(curwin,'&File')
-  delmenu(curwin,'&Edit')
-  delmenu(curwin,'&Tools')
-  delmenu(curwin,'&Insert')
-  end
-//menuss=menus;menuss(1)=menus(1)(2:$);menubar(curwin,menuss)	  
+// initial draw
+f = scf(curwin);
 
-menu_r=[];
-menu_s=[];
-menu_o=['zero order','linear','order 2','not_a_knot','periodic','monotone','fast','clamped']
-menu_d=['Clear','Data Bounds','Load from text f"+...
-	"ile','Save to text file','Load from Excel','Periodic signal']
+// if ~MSDOS then
+//   delmenu(curwin,'3D Rot.')
+//   delmenu(curwin,'Edit')
+//   delmenu(curwin,'File')
+//   delmenu(curwin,'Insert')
+// else
+//   toolbar(curwin,"off")
+//  // French
+//   delmenu(curwin,'&Fichier')
+//   delmenu(curwin,'&Editer')
+//   delmenu(curwin,'&Outils')
+//   delmenu(curwin,'&Inserer')
+//   // English
+//   delmenu(curwin,'&File')
+//   delmenu(curwin,'&Edit')
+//   delmenu(curwin,'&Tools')
+//   delmenu(curwin,'&Insert')
+//   end
+// //menuss=menus;menuss(1)=menus(1)(2:$);menubar(curwin,menuss)	  
+
+menu_r = [];
+menu_s = [];
+menu_o = ['zero order','linear','order 2','not_a_knot','periodic','monotone','fast','clamped']
+menu_d = ['Clear','Data Bounds','Load from text file','Save to text file','Load from Excel','Periodic signal']
 menu_t=['sine','sawtooth1','sawtooth2','pulse','random normal','random uniform']
 menu_e=['Help','Exit without save','Save/Exit']
 MENU=['Autoscale','Spline','Data','Standards','Exit'];
-menus=list(MENU,menu_s,menu_o,menu_d,menu_t,menu_e);
+menus = list(MENU,menu_s,menu_o,menu_d,menu_t,menu_e);
 
 scam='menus(1)(1)'
 w='menus(3)(';r=')';Orderm=w(ones(menu_o))+string(1:size(menu_o,'*'))+r(ones(menu_o))
@@ -295,13 +331,12 @@ addmenu(curwin,MENU(3),menu_d)
 addmenu(curwin,MENU(4),menu_t)
 addmenu(curwin,MENU(5),menu_e)
 //===================================================================
-//initial draw
-f.pixmap='off';
+
 drawlater();
-a=gca(f);
-a.data_bounds=rect;
-a.axes_visible='on';
-a.clip_state='on';
+a = gca();
+a.data_bounds  = rect;
+a.axes_visible = 'on';
+a.clip_state   = 'on';
 xtitle( '', 'time', 'Output' ) ; 
 a.title.font_size=2;
 a.title.font_style=4;
@@ -310,18 +345,19 @@ a.title.foreground=2;
 a.grid=[2 2];
 xpolys(xy(:,1),xy(:,2),[-1]);   //children(2)
 xpolys(xy(:,1),xy(:,2),[5]);    //children(1)
-splines=a.children(1).children
-points=a.children(2).children
+splines = a.children(1).children
+points  = a.children(2).children
 //---------------------------------------
 [rpar,ipar]=AutoScale(a,xy,ipar,rpar) 
 drawnow();
 // -- boucle principale
+
 lines(0);
 while %t then //=================================================
-  N=size(xy,'r');
-  [btn,xc,yc,win,Cmenu]=get_click();
+  N = size(xy,'r');
+  [btn,xc,yc,win,Cmenu] = get_click(); //** see 
   if ((win>0) & (win<>curwin)) then
-    Cmenu='Mouse click is Offside!';
+    Cmenu="Mouse click is Offside!";
   end
   if Cmenu==[] then Cmenu='edit',end
   if (Cmenu=='Exit') |(Cmenu=='Quit' ) then, ipar=[];rpar=[];ok=%f;return; end
@@ -365,7 +401,7 @@ while %t then //=================================================
 	  mok=%f;
 	end
 	if xmn1<0 then
-	  xinfo('X soululd be positive')
+	  xinfo('X should be positive')
 	  mok=%f;
 	end
 	if mok then 
@@ -434,11 +470,10 @@ while %t then //=================================================
     end
     //-------------------------------------------------------------------
    case 'pulse' then
-    [mok,Amp3,Tp3,Pw3,Pd3,Bias3,Pulse_exprs2]=getvalue('Square wave pulse signal', ...
-				    ['Amplitude';'Period (sec)';'Pulse width(% o"+...
-		    "f period)';'Phase delay (sec)';'Bias'],list('vec',1, ...
-						  'vec',1,'vec',1,'vec',1,'vec', ...
-						  1),Pulse_exprs)        
+    [mok,Amp3,Tp3,Pw3,Pd3,Bias3,Pulse_exprs2] = getvalue('Square wave pulse signal', ...
+				                        ['Amplitude';'Period (sec)';'Pulse width(% o"+...
+		                                         "f period)';'Phase delay (sec)';'Bias'],list('vec',1, ...
+						         'vec',1,'vec',1,'vec',1,'vec',1),Pulse_exprs);        
     if mok & Tp3>0  then
       NOrder=0;
       ipar(2)=NOrder;
@@ -597,48 +632,37 @@ while %t then //=================================================
 	  end 
 	  xy=[xy;xc,yc];
 	  [xtt,k2]=gsort(xy(:,1),'r','i');xy=xy(k2,:)
-	  f.pixmap='on';
 	  drawlater();
 	  points.data=xy;
 	  [rpar,ipar]=drawSplin(a,xy,ipar,rpar);  
-	  show_pixmap(); 
-	  drawnow()
-	  f.pixmap='off';
+	  drawnow();
 	end	      
       end
       
       if (HIT)&(btn==2 | btn==5) then  //   remove point
-	f.pixmap='on';
 	if (xy(k,1)>0) |( xy(k,1)==0 & (size(find(xy(:,1)==0),'*')>1)) then 
 	  xy(k,:)=[];
 	end
 	drawlater();
-	points.data=xy;
-	[rpar,ipar]=drawSplin(a,xy,ipar,rpar);  
-	show_pixmap(); 
-	drawnow()
-	f.pixmap='off';
+	 points.data = xy;
+	 [rpar,ipar] = drawSplin(a,xy,ipar,rpar);  
+	drawnow(); 
       end   
 
       if (HIT)&(btn==0) then             // move point
-	f.pixmap='on';
-	[xy,rpar,ipar]=movept(a,xy,ipar,rpar,k)   
-	f.pixmap='off';
+	[xy,rpar,ipar] = movept(a,xy,ipar,rpar,k)   
       end
             
       if (HIT)&(btn==10) then             // change data:: double click
-	[mok,xt,yt]=getvalue('Enter new x and y',['x';'y'],list('vec', ...
-						  1,'vec',1),list(sci2exp(xy(k,1)),sci2exp(xy(k,2))));
+	[mok,xt,yt]=getvalue("Enter new x and y",['x';'y'],...
+                             list('vec',1,'vec',1),list(sci2exp(xy(k,1)),sci2exp(xy(k,2))));
 	if mok then 
-	  xy(k,:)=[xt,yt];
-	  [xy]=cleandata(xy)
-	  f.pixmap='on';
+	  xy(k,:) = [xt,yt];
+	  [xy] = cleandata(xy)
 	  drawlater();
-	  points.data=xy;
-	  [rpar,ipar]=AutoScale(a,xy,ipar,rpar) 
-	  show_pixmap(); 
+	   points.data=xy;
+	   [rpar,ipar]=AutoScale(a,xy,ipar,rpar) 
 	  drawnow()
-	  f.pixmap='off';
 	end
       end
 
@@ -650,7 +674,7 @@ while %t then //=================================================
 end
 endfunction
 //========================================================================
-function [orpar,oipar]=drawSplin(a,xy,iipar,irpar)
+function [orpar,oipar] = drawSplin(a,xy,iipar,irpar)
   N=size(xy,'r');// new size of xy
   x=xy(:,1);  y=xy(:,2);
   points=a.children(2).children
@@ -725,16 +749,15 @@ function [xyt,orpar,oipar]=movept(a,xy,iipar,irpar,k)
     xyt=[xt,yt];
     
     drawlater();
-    points.data=xyt;    
-    [orpar,oipar]=drawSplin(a,xyt,oipar,orpar); 
-    show_pixmap();  
+      points.data=xyt;    
+      [orpar,oipar]=drawSplin(a,xyt,oipar,orpar);  
     drawnow()
   end
 
 endfunction
 
 //==========================================================
-function   rectx=findrect(a) 
+function rectx = findrect(a) 
   splines=a.children(1).children  
   points=a.children(2).children
 
@@ -887,22 +910,21 @@ function [xyo]=cleandata(xye)
   xyo=[xo,yo];
 endfunction
 //---------------------------------------------------------------
-function  [orpar,oipar]=AutoScale(a,xy,inipar,inrpar)   
+function  [orpar,oipar] = AutoScale(a,xy,inipar,inrpar)   
   drawlater();    
-  oipar=inipar
-  orpar=inrpar
-  points=a.children(2).children
-  splines=a.children(1).children
-  points.data=xy;
-  splines.data=xy;
-  [orpar,oipar]=drawSplin(a,xy,oipar,orpar);
-  rectx=findrect(a);     
-  a.data_bounds=rectx;
-  show_pixmap(); 
+   oipar = inipar
+   orpar = inrpar
+   points = a.children(2).children
+   splines = a.children(1).children
+   points.data = xy;
+   splines.data = xy;
+   [orpar,oipar] = drawSplin(a,xy,oipar,orpar);
+   rectx=findrect(a);     
+   a.data_bounds = rectx;
   drawnow()
 endfunction
 //============================
-function METHOD=getmethod(order)
+function METHOD = getmethod(order)
   select order
    case 0 then, METHOD='zero order'
    case 1 then, METHOD='linear'
@@ -915,7 +937,7 @@ function METHOD=getmethod(order)
   end
 endfunction
 //=======================================
-function [sok,xye]=ReadFromFile()
+function [sok,xye] = ReadFromFile()
   xye=[];sok=%f;
   while %t
     [sok,filen,Cformat,Cx,Cy]=getvalue('Text data file ',['Filename';'Reading [C] f"+...
@@ -925,19 +947,19 @@ function [sok,xye]=ReadFromFile()
     if ~sok then break,end
     px=strindex(Cformat,'%');
     NC=size(px,'*');    
-    if NC==[] then, xinfo('Bad format in reading data file');sok=%f;break;end
+    if NC==[] then, xinfo("Bad format in reading data file");sok=%f;break;end
     Lx=[];
     try
       fd=mopen(filen,'r');
       Lx=mfscanf(-1,fd,Cformat);
       mclose(fd);
     catch
-      xinfo('Scicos canot open the data file:'+filen);
+      xinfo("Scicos canot open the data file: " + filen);
       break;
     end 
 
-    [nD,mD]=size(Lx);
-    if ((mD==0) | (nD==0)) then,  xinfo('No data read');sok=%f;break;end
+    [nD,mD] = size(Lx);
+    if ((mD==0) | (nD==0)) then,  xinfo("No data read");sok=%f;break;end
     if (mD<>NC) then, xinfo('Bad format');sok=%f;break;end
     
     xe=Lx(:,Cx);ye=Lx(:,Cy);
@@ -958,7 +980,7 @@ function [sok]=SaveToFile(xye)
     if ~sok then break,end
     px=strindex(Cformat,'%');
     NC=size(px,'*');    
-    if NC<>2 then, xinfo('Bad format in writing data file');sok=%f;break;end
+    if NC<>2 then, xinfo("Bad format in writing data file");sok=%f;break;end
 
     Cformat=Cformat+'\n';
     

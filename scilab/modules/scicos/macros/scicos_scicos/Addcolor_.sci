@@ -26,21 +26,13 @@ function Addcolor_()
     if edited then
       scs_m.props.options = options ;
       set_cmap(scs_m.props.options('Cmap')) ;
-      set_background() ;
-      //** Acquire the current clicked window handles
-      gh_curwin = scf(%win) ;
-      gh_axes = gca(); 
-      //** Clear the graphic window WITHOUT changing his parameters ! :)
-      drawlater() ;
-        delete(gh_axes.children) ;   //** wipe out all the graphics object in the axe 
-        drawobjs(scs_m, gh_curwin) ; //** re-create all the graphics object
-      //** drawnow(); //** re-draw the graphic object and show on screen (now included in drawobjs)
-      //** show_pixmap() ; //** not useful on Scilab 5      
-     
-      Cmenu = [] ; %pt = [];sx
+           
+      Cmenu = [] ; %pt = [];
 
     else
+
       Cmenu = [] ; %pt = [];
+
     end
 
 endfunction

@@ -57,11 +57,6 @@ void IsometricCameraJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void IsometricCameraJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 void IsometricCameraJavaMapper::setViewingArea(double transX, double transY, double scaleX, double scaleY)
 {
   m_pJavaObject->setViewingArea(transX, transY, scaleX, scaleY);

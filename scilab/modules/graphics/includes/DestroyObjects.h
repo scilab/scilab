@@ -54,7 +54,6 @@ extern int DestroyFec (sciPointObj * pthis); /* DESTROY */
 extern int DestroySegs (sciPointObj * pthis); /* DESTROY */
 extern int DestroyCompound (sciPointObj * pthis);
 
-extern void DeleteObjs(int win); /* DESTROY */
 extern int sciUnCompound (sciPointObj * pobj); /* DESTROY */
 
 extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
@@ -74,5 +73,10 @@ int sciStandardDestroyOperations( sciPointObj * pThis ) ;
 void destroyGraphicPointer(void * pointer);
 
 void destroyGraphicStringArray(char ** strArray, int nbStrings);
+
+/**
+ * Destroy the relationShip used by an object
+ */
+void destroyRelationShip(sciPointObj * pObj);
 
 #endif /* __SCI_DESTROY__ */

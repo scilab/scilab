@@ -59,9 +59,6 @@ driver("X11")
     <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xbasimp">xbasimp</link>
-      </member>
-      <member>
         <link linkend="xend">xend</link>
       </member>
       <member>

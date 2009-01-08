@@ -12,6 +12,8 @@
 
 package org.scilab.modules.gui.bridge.menubar;
 
+import java.awt.Container;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
@@ -52,7 +54,8 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.ContextMenu)
 	 */
 	public void add(SwingScilabMenu newMenu) {
-		ScilabSwingUtilities.addToParent(newMenu, this);
+		//ScilabSwingUtilities.addToParent(newMenu, this);
+	    	((Container) this).add(newMenu);
 	}
 
 	/**

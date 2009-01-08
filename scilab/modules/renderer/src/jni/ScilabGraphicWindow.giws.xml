@@ -1,7 +1,0 @@
-<package name="org.scilab.modules.gui.graphicWindow">
-  <object name="ScilabGraphicWindow">
-	<method name="newWindow" returnType="int" modifier="static">
-        <parameter type="int" name="figureIndex"/>
-    </method>
-  </object>
-</package>

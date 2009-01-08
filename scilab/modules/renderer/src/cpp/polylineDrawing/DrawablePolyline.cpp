@@ -43,13 +43,11 @@ DrawableObject::EDisplayStatus DrawablePolyline::show( void )
   {
     return UNCHANGED;
   }
-  initializeDrawing();
   clip();
   translate();
   showPolyline();
   endTranslate();
   unClip();
-  endDrawing();
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/

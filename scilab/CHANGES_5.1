@@ -158,6 +158,10 @@ Bug fixes:
 
 * bug 3767, 3827 fixed (windows) - Atlas 3.8.2 crashs scilab
 
+* bug 3800 fixed - After using surf to plot giving a stacksize error, it is no longer possible to plot in the same window.
+
+* bug 3822 fixed - When a figure handle is saved and reloaded the figure_size as well as the viewport properties are not saved nor restored.
+
 * bug 3844 fixed - Axes with a very high y-bounds/x-bounds ratio do not appear.
 
 * bug 3873 fixed - While editing ticks'label on Axes, mouse click outside box or double clicks or using Tab key, program terminates.
@@ -186,5 +190,42 @@ Bug fixes:
 
 * bug 3627 fixed - variance did not manage complex matrices of data
 
+* bug 3903 fixed - "xdel" of a non existent window crashes Scilab
+
 * bug 3912 fixed - strsubst() used with regular expression may return very stange result.
 
+
+Obsolete functions removed :
+============================
+
+* mtlb_load()  (Please use loadmatfile() instead).
+
+* mtlb_save()  (Please use savematfile() instead).
+
+* xbasimp() (Please use toprint() for printing and by xs2ps() for the file export instead).
+
+* xg2ps() (Please use xs2ps() instead).
+
+* hidetoolbar() (Please use toolbar(,'off') instead).
+
+* browsehelp() (Please use helpbrowser() instead).
+
+* quapro() (Please use qpsolve() instead).
+
+* %sp_eye() (Please use speye() instead).
+
+* TCL_gcf() (Please use gcf() instead).
+
+* TCL_scf() (Please use scf() instead).
+
+* TK_EvalStr() (Please use TCL_EvalStr() instead).
+
+* TK_GetVar() (Please use TCL_GetVar() instead).
+
+* TK_SetVar() (Please use TCL_SetVar() instead).
+
+* sciGUIhelp() (Please use help() instead).
+
+* demoplay() (Please use scilab_demos() instead).
+
+* buttondialog() (Please use messagebox() instead).

@@ -44,10 +44,7 @@ driver("X11")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xbasimp">xbasimp</link>
-      </member>
-      <member>
-        <link linkend="xend">xend</link>
+        <link linkend="xinit">xinit</link>
       </member>
     </simplelist>
   </refsection>

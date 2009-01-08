@@ -499,12 +499,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xbasimp</term>
-        <listitem>
-          <para>envoie des graphiques à une imprimante Postscript ou un fichier</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xs2fig</term>
         <listitem>
           <para>envoie des graphiques dans un fichier au format XFig</para>

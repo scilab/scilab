@@ -56,15 +56,6 @@ public abstract class TextAlignementStrategy {
 	}
 	
 	/**
-	 * Get the height of the bounding box
-	 * @param textBox 4 corners of the bounding box
-	 * @return width of the bounding box
-	 */
-	protected double getBoxHeight(Vector3D[] textBox) {
-		return (textBox[0].getY() - textBox[1].getY());
-	}
-	
-	/**
 	 * @param xCoord value to center
 	 * @return centered value
 	 */
@@ -75,10 +66,12 @@ public abstract class TextAlignementStrategy {
 	/**
 	 * The Y coordinate is the same for all texts
 	 * @param textBox 4 corners of the text cell
+	 * @param stringHeight height of the string in pixels
 	 * @return Y coocdinate of the text to draw
 	 */
-	protected double getYCoordinate(Vector3D[] textBox) {
-		return Math.round(textBox[1].getY() + getBoxHeight(textBox) * TextGrid.EXTEND_FACTOR_Y / 2.0) + DISPLACEMENT_OFFSET;
+	protected double getYCoordinate(Vector3D[] textBox, double stringHeight) {
+		// put the text in the middle of its cell
+		return Math.round((textBox[2].getY() + textBox[0].getY() - stringHeight) / 2.0) + DISPLACEMENT_OFFSET;
 	}
 	
 }

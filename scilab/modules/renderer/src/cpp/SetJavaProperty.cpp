@@ -82,6 +82,11 @@ void sciSetJavaBackground(sciPointObj * pFigure, int backColor)
   getFigureDrawer(pFigure)->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
+void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer)
+{
+	getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
+}
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaTitle( sciPointObj * pFigure, const char * title )
 {
   getFigureDrawer(pFigure)->setTitle(title);

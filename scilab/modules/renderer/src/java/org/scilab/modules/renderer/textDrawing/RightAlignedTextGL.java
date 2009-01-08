@@ -50,7 +50,7 @@ public class RightAlignedTextGL extends TextAlignementStrategy {
 				Vector3D[] curCell = positionMatrix.getCellCoordinates(i, j);
 				double xCoord = curCell[2].getX() - text.getStringWidth(i, j) - getBoxWidth(curCell) * TextGrid.EXTEND_FACTOR_X / 2.0;
 				xCoord = centerX(xCoord);
-				double yCoord = getYCoordinate(curCell);
+				double yCoord = getYCoordinate(curCell, text.getStringHeight(i, j));
 				renderer.draw3D(gl, text.getMatrixElement(i, j), xCoord,
 						        yCoord, curCell[1].getZ(), angle);
 			}

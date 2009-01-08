@@ -14,8 +14,10 @@
 //    scilab crashes under windows, under linux, Scilab loops forever,
 //    and it uses the whole CPU resource.
 
+// 2009-01-09 mtlb_save is removed => savematfile
+
 x = rand(5,5,100)+%i;
 warning('off');
-ierr = execstr('mtlb_save SCI/modules/compatibility_functions/nonreg_tests/bug_649.mat x','errcatch');
+ierr = execstr('savematfile SCI/modules/compatibility_functions/nonreg_tests/bug_649.mat x','errcatch');
 warning('on');
 if ierr <> 10000 then pause,end;

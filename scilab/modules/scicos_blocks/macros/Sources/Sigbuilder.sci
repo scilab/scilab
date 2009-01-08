@@ -19,32 +19,38 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=Sigbuilder(job,arg1,arg2)
-x=[];y=[],typ=[]
+function [x,y,typ] = Sigbuilder(job,arg1,arg2)
+//** updated for Scilab 5.1 by Simone Mannori 
+x=[]; y=[]; typ=[] ; 
+
 select job
-case 'plot' then
-  standard_draw(arg1)
-case 'getinputs' then
-  [x,y,typ]=standard_inputs(arg1)
-case 'getoutputs' then
-  [x,y,typ]=standard_outputs(arg1)
-case 'getorigin' then
-  [x,y]=standard_origin(arg1)
-case 'set' then
-  //paths to updatable parameters or states
-  ppath = list(1,3)
-  newpar=list();
-  y=0;
-  for path=ppath do
-    np=size(path,'*')
-    spath=list()
+case "plot" then
+  standard_draw(arg1);
+
+case "getinputs" then
+  [x,y,typ] = standard_inputs(arg1);
+
+case "getoutputs" then
+  [x,y,typ] = standard_outputs(arg1); 
+
+case "getorigin" then
+  [x,y] = standard_origin(arg1);
+
+case "set" then
+  // paths to updatable parameters or states
+  ppath  = list(1,3)
+  newpar = list();
+  y = 0;
+  for path = ppath do
+    np = size(path,'*')
+    spath = list()
     for k=1:np
       spath($+1)='model'
       spath($+1)='rpar'
       spath($+1)='objs'
       spath($+1)=path(k)
     end
-    xx=arg1(spath)// get the block
+    xx=arg1(spath) // get the block
     execstr('xxn='+xx.gui+'(''set'',xx)')
     if diffobjs(xxn,xx) then 
       model=xx.model
@@ -105,7 +111,8 @@ case 'set' then
   end
   x=arg1
   typ=newpar
-case 'define' then
+
+case "define" then
 scs_m_1=scicos_diagram(..
         version="scicos4.2",..
         props=scicos_params(..

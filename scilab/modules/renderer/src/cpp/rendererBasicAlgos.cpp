@@ -11,12 +11,36 @@
  *
  */
 
+#include <exception>
+#include <iostream>
 
 #include "rendererBasicAlgos.h"
+extern "C"
+{
+#include "sciprint.h"
+#include "localization.h"
+#include "DestroyObjects.h"
+}
 
 /*--------------------------------------------------------------------------*/
 void destroyRendererString(char * string)
 {
   delete[] string;
-}  
+}
+/*--------------------------------------------------------------------------*/
+void callFunctionFromGatewayWithExceptions(gw_generic_table * tab)
+{
+	try
+	{
+		// Exception might be generated in the renderer module.
+		callFunctionFromGateway(tab);
+	}
+	catch (std::exception & e)
+	{
+		// Tell the user that somthing wrong occured
+		sciprint(_("Warning !!!\nScilab has found a critical error (%s).\nSave your data and restart Scilab.\n"), "Unknow exception");
+		// print the exception in the error output
+		std::cerr << e.what() << std::endl;
+	}
+}
 /*--------------------------------------------------------------------------*/

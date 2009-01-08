@@ -2,6 +2,7 @@
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //                      - Alan Layec <alan.layec@inria.fr>
+//                      - Simone Mannori <simone.mannori@scilab.org>
 // //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,10 +22,13 @@
 //
 
 function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
-// edition of a link from an output block to an input  block
+//** Edition of a link from an output block to an input  block
 
-//** BEWARE: "d9" state is not yet tested after Replot removal
+//** 28/11/08: Preparation of the "SL" operation
 //** 24/07/07: Al@n's patch for rotation of blocks
+
+//** N.B : Please set %scicos_debug_gr="%t" to activate the debug mode 
+//** BEWARE: "d9" state is not yet tested after Replot removal
 
   outin = ['out','in']
   //----------- get link origin --------------------------------------
@@ -34,63 +38,68 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   yc1 = %pt(2);
 
   [kfrom, wh] = getblocklink(scs_m,[xc1;yc1]); //** recover information 
-                                               //** about the starting point 
-  if kfrom<>[] then
-    o1 = scs_m.objs(kfrom)
+                                               //** about the starting point
+  //** kfrom is the id of the selected block or link 
+
+  if kfrom<>[] then //** check for the presence of a valid output 
+    o1 = scs_m.objs(kfrom) ; //** acquire the object 
   else
-    return
+    return ; //** EXIT if no valid output is found 
   end
 
-  // kfrom  is the number of selected block or link
+ 
   scs_m_save = scs_m;
-  nc_save    = needcompile
+  nc_save    = needcompile; 
 
   //** new graphics
   gh_curwin = scf(%win) ;
   gh_axes = gca();        //** acquire the current window handler
 
-  if typeof(o1)=="Link" then  // add a split block
+
+  if typeof(o1)=="Link" then  //** add a split block
+    //** ------------------- start from a LINK ------------------------------
     pt = [xc1;yc1] ; 
     [xx,yy,ct,from,to] = (o1.xx,o1.yy,o1.ct,o1.from,o1.to);
     if (-wh==size(xx,'*')) then
-      wh = -(wh+1) // avoid with clicking at the end-point of link
+      wh = -(wh+1) //** avoid with clicking at the end-point of link
     end
 
-    // get split type
-    [xout,yout,typout] = getoutputports(scs_m.objs(from(1)))
-    clr = ct(1)
-    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2)
-    k = kp1
-    typo = ct(2)
+    //** get split type
+    [xout,yout,typout] = getoutputports(scs_m.objs(from(1))); 
+    clr = ct(1); 
+    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2); 
+    k = kp1 ; 
+    typo = ct(2) ; 
 
-    if typo==-1 then // old link comes from an event output port
-      typp="evtout"
-    else //old link comes from an regular output or input (implicit) port
-      typp=outin(from(3)+1)
+    if typo==-1 then //** old link comes from an event output port
+      typp = "evtout"
+    else //** old link comes from an regular output or input (implicit) port
+      typp = outin(from(3)+1)
     end
 
-    // get port size
+    //** get port size
     szout = getportsiz(scs_m.objs(from(1)),from(2),typp)
-    //get port data type
+    //** get port data type
     if typp=='out'|typp=='in' then
-     szouttyp=getporttyp(scs_m.objs(from(1)),from(2),typp)
+     szouttyp = getporttyp(scs_m.objs(from(1)),from(2),typp)
     end
 
-    // get initial split position
-    wh=wh(1)
+    //** get initial split position
+    wh = wh(1)
     if wh>0 then
-      d=projaff(xx(wh:wh+1),yy(wh:wh+1),pt)
-    else // a corner
-      wh=-wh
-      d=[xx(wh);yy(wh)]
+      d = projaff(xx(wh:wh+1), yy(wh:wh+1),pt)
+    else //** a corner
+      wh = -wh ;
+      d  = [xx(wh);yy(wh)] ;
     end
     // Note : creation of the split block and modifications of links are
     //        done later, the sequel assumes that the split block is added
     //        at the end of scs_m
-    ks = kfrom; //selected link number
-    kfrom = size(scs_m.objs)+1;port_number=2; //to be created split block number
+    ks = kfrom; // selected link number
+    kfrom = size(scs_m.objs)+1;
+    port_number = 2; // to be created split block number
 
-    fromsplit = %t
+    fromsplit = %t; 
     // to be created link from origin
 
     from = [kfrom,port_number,0] 
@@ -98,8 +107,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     xl = d(1);yl=d(2)
 
   else // connection comes from a block
-
-    graphics1=o1.graphics
+    //** ------------------- start from a BLOCK ------------------------------
+    graphics1 = o1.graphics
     orig  = graphics1.orig
     sz    = graphics1.sz
     theta = graphics1.theta
@@ -107,111 +116,121 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     op    = graphics1.pout
     impi  = graphics1.pin
     cop   = graphics1.peout
-    [xout,yout,typout]=getoutputports(o1)
+    [xout,yout,typout] = getoutputports(o1)
 
-    i_ImplIndx=find(graphics1.in_implicit=='I')
+    i_ImplIndx = find(graphics1.in_implicit=='I');
 
     if xout==[] then
         hilite_obj(kfrom);
-        message("This block has no output port")
+        message("This block has no output port"); 
         unhilite_obj(kfrom);
-      return
+      return ; //** EXIT 
     end
 
-    xxx=rotate([xout;yout],...
-               theta*%pi/180,...
-               [orig(1)+sz(1)/2;orig(2)+sz(2)/2]);
-    xout=xxx(1,:);
-    yout=xxx(2,:);
+    //** geometrical conversion for rotated block 
+    xxx = rotate([xout;yout],...
+                 theta*%pi/180,...
+                 [orig(1)+sz(1)/2; orig(2)+sz(2)/2]);
+    xout= xxx(1,:);
+    yout= xxx(2,:);
 
-    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2)
-    k = kp1
-    xo = xout(k); yo = yout(k); typo = typout(k)
+    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2) ; 
+    k = kp1 ; 
+    xo = xout(k); yo = yout(k); 
+    typo = typout(k) ; 
 
+    //** ---------------------- Checking ------------------------------------------- 
+    //** Check if the new requested link creation is compatible with the diagram 
     // Check if selected port is already connected and get port type ('in' or 'out')
 
-    if typo==1  then //regular output port
-      port_number=k
+    if typo==1  then // regular output port
+      port_number = k ;
       if op(port_number)<>0 then
           hilite_obj(kfrom)
+           message(["Selected port is already connected.";..
+                    "To start a link off another link, place the cursor";..
+                    "on the split point and double click, or type l."])
+          unhilite_obj(kfrom); 
+        return
+      end
+      typpfrom='out'
+    elseif (typo==2 & k<=size(op,'*')) then // implicit  output port
+      port_number = k ; 
+      if op(port_number)<>0 then
+          hilite_obj(kfrom);
           message(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
                    "on the split point and double click, or type l."])
-          unhilite_obj(kfrom)
+          unhilite_obj(kfrom); 
         return
       end
       typpfrom='out'
-    elseif (typo==2 & k<=size(op,'*')) then //implicit  output port
-      port_number=k
-      if op(port_number)<>0 then
-          hilite_obj(kfrom)
-          message(['Selected port is already connected.';..
-                   'To start a link off another link, place the cursor';..
-                   'on the split point and double click, or type l.'])
-          unhilite_obj(kfrom)
-        return
-      end
-      typpfrom='out'
-    elseif (typo==2 & k>size(op,'*')+size(cop,'*')) then //implicit  input port
-      typpfrom='in' 
-      k=k-size(op,'*')-size(cop,'*')
-//      port_number=k,//out port
-      port_number=i_ImplIndx(k)
+    elseif (typo==2 & k>size(op,'*')+size(cop,'*')) then // implicit  input port
+      typpfrom = 'in' ; 
+      k = k-size(op,'*')-size(cop,'*'); 
+      port_number = i_ImplIndx(k)
       if impi(port_number)<>0 then
-          hilite_obj(kfrom)
-          message(['Selected port is already connected.';..
-                   'To start a link off another link, place the cursor';..
-                   'on the split point and double click, or type l.'])
-          unhilite_obj(kfrom)
+          hilite_obj(kfrom) ; 
+          message(["Selected port is already connected.";..
+                   "To start a link off another link, place the cursor";..
+                   "on the split point and double click, or type l."])
+          unhilite_obj(kfrom) ;
         return
       end
       typpfrom='in'
-    else //event output port
-      port_number=k-  size(op,'*')        //prod(size(find(typout==1)))
+    else // event output port
+      port_number = k - size(op,'*') ;
       if cop(port_number)<>0 then
-          hilite_obj(kfrom)
-          message(['Selected port is already connected.';..
-                   'To start a link off another link, place the cursor';..
-                   'on the split point and double click, or type l.'])
-          unhilite_obj(kfrom)
-        return
+          hilite_obj(kfrom);
+          message(["Selected port is already connected.";..
+                   "To start a link off another link, place the cursor";..
+                   "on the split point and double click, or type l."])
+          unhilite_obj(kfrom);
+        return ; 
       end
-      typpfrom='evtout'
+      typpfrom = 'evtout' ;
     end
-    fromsplit=%f
-    clr=default_color(typo)
+    fromsplit = %f ; 
+    clr = default_color(typo) ;
 
-    //get port size
+    // get port size
     szout=getportsiz(o1,port_number,typpfrom)
-    //get port data type
+    // get port data type
     if typpfrom=='out'|typpfrom=='in' then
-      szouttyp=getporttyp(o1,port_number,typpfrom)
+      szouttyp = getporttyp(o1,port_number,typpfrom); 
     end
 
-    //to be created link from origin 
-    from=[kfrom,port_number,bool2s(typpfrom=='in'|typpfrom=='evtin')]
-    xl=xo
-    yl=yo
+    // to be created link from origin 
+    from = [kfrom,port_number, bool2s(typpfrom=='in'|typpfrom=='evtin')] ;
+    xl = xo ;
+    yl = yo ; 
 
   end
-
+  //** ---------------------- Checking Ends ----------------------------------------
+  
   //----------- get link path ----------------------------------------
   //------------------------------------------------------------------
 
-  //** new graphics
-  drawlater()           ;         // draw later mode
+  drawlater(); //** draw later mode
+  
+  //** These indexes will be used to destroy the intermediate objects created below
+  //** during the "interactive" section 
+
   o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
   p_size = o_size ;
 
-  while %t do //loop on link segments
+  //** there are two nested infinite while(%t) loops:
+  //** the outher loop control the sequence of segment 
+  //**   the inner loop handle the interactive operation on the single link segment
+
+  while %t do // loop on link segments
     xe = xo; ye = yo ; //** o > origin ---- e > end
     //** the first step is the the creation of a dummy graphic object (a link of ZERO leght)
     //** and store this handler to modify it later 
-    xpoly([xo;xe] , [yo;ye], 'lines')        ; //** draw the first 'dummy' object
-    gh_link = gh_axes.children(1) ; //** the last object is the link
+    xpoly([xo;xe] , [yo;ye], 'lines') ; //** create the first 'dummy' object
+    gh_link = gh_axes.children(1) ; //** the last object is the above link :)
 
-    rep(3)=-1; //** initialization
-    
+    rep(3) = -1; //** initialization (as Claudio Macchiavelli has teached me :) )
     while %t do //** infinite loop
       drawlater() ;
       //** for positive event exit from the loop
@@ -222,30 +241,23 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
       //** otherwise ... get a new point
 
-      //** This mode is prone to some errors
-      //** mouse event queque is not cleared
-      //** rep = xgetmouse(0,[%t,%t])
-
       //** mouse event queque is cleared (15 Mar 2007 bugfix)
       rep = xgetmouse([%t, %t]) ; //** looks better :)
 
       gh_figure = gcf();
-      // focus has changed OR active window has been closed
+      //** focus has changed OR active window has been closed
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-
-        [%win, Cmenu] = resume(curwin,'Quit')
+        [%win, Cmenu] = resume(curwin,'Quit'); 
       end
 
       //** any rigth mouse event OR [Esc] OR [d] key : I want to disengage the current Link action
       if or(rep(3)==[2 5 12 27 100]) then
-          p_size = size(gh_axes.children)
+          p_size = size(gh_axes.children); 
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
             gh_compound_delete = glue(gh_axes.children(1:d_size) );
             delete (gh_compound_delete); //** delete the object
-            //** draw(gh_curwin.children); //** display the buffer
-            drawnow();
-            //** show_pixmap(); 
+            drawnow(); //** update the screen
           end
 
           if %scicos_debug_gr then
@@ -258,9 +270,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       xe = rep(1); ye = rep(2) ;
       gh_link.data =  [xo yo ; xe ye ] ;   //** put the coordinate here
       gh_link.foreground = clr             //** put the color here ( 5 = red )
-      //** draw(gh_curwin.children); //** display the buffer
-      drawnow();
-      //** show_pixmap(); 
+      drawnow(); //** update the buffer
     end
     //** ----------------- end of last segment while loop ------------------------------
 
@@ -274,7 +284,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     //** look for a block with a valid (good) input
 
     kto = getblock(scs_m,[xe;ye]) ;
-    if kto<>[] then //new point designs the "to block"
+    if kto<>[] then // new point designs the "to block"
       o2 = scs_m.objs(kto);
       graphics2 = o2.graphics;
       orig  = graphics2.orig
@@ -285,12 +295,12 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       cip   = graphics2.pein
       [xin,yin,typin] = getinputports(o2)
 
-      o_ImplIndx=find(graphics2.out_implicit=='I')
+      o_ImplIndx = find(graphics2.out_implicit=='I'); 
 
-      //check connection
+      //** check connection
       if xin==[] then
          hilite_obj(kto)
-         message("This block has no input port.");
+          message("This block has no input port.");
          p_size = size(gh_axes.children);
          d_size = p_size(1) - o_size(1);
          if d_size > 0 then
@@ -301,27 +311,27 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
            disp("d2");   //** Debug
          end
          unhilite_obj(kto);
-         drawnow();
-         return;      //** EXIT point from the function
+         drawnow(); //** update the diagram 
+         return;      //** EXIT point : link failed ! 
       end
 
-      xxx=rotate([xin;yin],...
-                 theta*%pi/180,...
-                 [orig(1)+sz(1)/2;orig(2)+sz(2)/2]);
-      xin=xxx(1,:);
-      yin=xxx(2,:);
+      //** Connection is OK : compensate for block's rotation 
 
-      [m,kp2] = mini((ye-yin)^2+(xe-xin)^2)
+      xxx = rotate([xin;yin],...
+                   theta*%pi/180,...
+                   [orig(1)+sz(1)/2;orig(2)+sz(2)/2]);
+      xin = xxx(1,:); yin = xxx(2,:);
+      [m,kp2] = mini((ye-yin)^2+(xe-xin)^2);
+      k = kp2 ;
+      xc2 = xin(k); yc2 = yin(k); 
+      typi = typin(k);
 
-      k = kp2
-
-      xc2 = xin(k); yc2 = yin(k); typi = typin(k);
-
+      //** check connection for "type"
       if typo<>typi
         hilite_obj(kto)
-        message(['Selected ports don''t have the same type'
-                 'The port at the origin of the link has type '+string(typo);
-                 'the port at the end has type '+string(typin(k))+'.'])
+        message(["Selected ports don''t have the same type"
+                 "The port at the origin of the link has type "+string(typo);
+                 "the port at the end has type "+string(typin(k))+'.'])
           p_size = size(gh_axes.children)
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
@@ -332,20 +342,19 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
              disp("d3"); //** Debug
           end
           unhilite_obj(kto)
-          drawnow();
+          drawnow(); 
           return; //** EXIT point from the function
       end
 
-      //**------------------------------------------------------------------------
       //** check if is a normal regular input port (not an event input port)
       if typi==1  then // regular input port
         port_number = k ;
         if ip(port_number)<>0 then
              hilite_obj(kto)
-             message(['Selected port is already connected.';..
-                      'To start a link off another link, place the cursor';..
-                      'on the split point and double click, or type l.']),
-             p_size = size(gh_axes.children)
+             message(["Selected port is already connected.";..
+                      "To start a link off another link, place the cursor";..
+                      "on the split point and double click, or type l."]),
+             p_size = size(gh_axes.children); 
              d_size = p_size(1)-o_size(1);
              if d_size > 0 then
                gh_compound_delete = glue(gh_axes.children(1:d_size) );
@@ -359,67 +368,67 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
            return
         end
 
-        typpto='in'
-
+        typpto = 'in' ; 
         szin = getportsiz(o2,port_number,'in')
-        need_warning = %f;
+        
+        //** further check for warning message about "size" 
+        need_warning = %f ; //** flag initialization 
         if (szin(1)<>szout(1)) & mini([szin(1) szout(1)])>0 then
-          need_warning=%t
+          need_warning = %t ; 
         end
 
-        //check for different number of dimension
+        // check for different number of dimension
         szout2 = []; szin2 = [];
         if size(szout,'*')==1 then
-           szout2=1;
+           szout2 = 1;
         else
-           szout2=szout(2);
+           szout2 = szout(2);
         end
 
         if size(szin,'*')==1 then
-           szin2=1;
+           szin2 = 1;
         else
-           szin2=szin(2);
+           szin2 = szin(2);
         end
 
         if (szin2<>szout2) & mini([szin2 szout2])>0 then
-          need_warning=%t
+          need_warning = %t
         end
 
         if need_warning then
             hilite_obj(kto)
-            message(['Warning :';
-                     'Selected ports don''t have the same size';
-                     'The port at the origin of the link has size '+sci2exp(szout);
-                     'the port at the end has size '+sci2exp(szin)+'.'])
+            message(["Warning :";
+                     "Selected ports don''t have the same size";
+                     "The port at the origin of the link has size " + sci2exp(szout);
+                     "the port at the end has size " + sci2exp(szin)+"."])
             unhilite_obj(kto)
         end
 
-        //get port data type
-        //and say warning if doesn't match with szouttyp
-        szintyp=getporttyp(o2,port_number,'in')
-        if (szintyp>0 & szouttyp>0) then //if-then-else, event-select blocks case and all the -1 intyp/outtyp
+        // get port data type
+        // and say warning if doesn't match with szouttyp
+        szintyp = getporttyp(o2,port_number,'in')
+        if (szintyp>0 & szouttyp>0) then // if-then-else, event-select blocks case and all the -1 intyp/outtyp
           if szintyp<>szouttyp then
             tt_typ=['double';'complex';'int32';'int16';
                     'int8';'uint32';'uint16';'uint8']
 
             hilite_obj(kto)
-            message(['Warning :';
-                     'Selected ports don''t have the same data type';
-                     'The port at the origin of the link has datatype '+...
+            message(["Warning :";
+                     "Selected ports don''t have the same data type";
+                     "The port at the origin of the link has datatype "+...
                       tt_typ(szouttyp)+' ('+sci2exp(szouttyp)+')';
-                     'the port at the end has datatype '+...
+                     "the port at the end has datatype "+...
                       tt_typ(szintyp)+' ('+sci2exp(szintyp)+')'+'.'])
-            unhilite_obj(kto)
+            unhilite_obj(kto);
           end
         end
 
-      //TODO
-      elseif typi==2 & k<=size(ip,'*') then //implicit "input" port
+      elseif typi==2 & k<=size(ip,'*') then // implicit "input" port
         port_number = k
         if ip(port_number)<>0 then
-           message(['Selected port is already connected.';..
-                    'To start a link off another link, place the cursor';..
-                    'on the split point and double click, or type l.']),
+           message(["Selected port is already connected.";..
+                    "To start a link off another link, place the cursor";..
+                    "on the split point and double click."]),
            p_size = size(gh_axes.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
@@ -432,30 +441,26 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
            drawnow();
            return ; //** Exit point
         end
-
         typpto='in'
-        szin=getportsiz(o2,port_number,'in')
+        szin = getportsiz(o2,port_number,'in')
 
         if szin<>szout & mini([szin szout])>0 then
-          message(['Warning :';
-                   'Selected ports don''t have the same size';
-                   'The port at the origin of the link has size '+string(szout);
-                   'the port at the end has size '+string(szin)])
+          message(["Warning :';
+                   "Selected ports don''t have the same size";
+                   "The port at the origin of the link has size "+string(szout);
+                   "the port at the end has size "+string(szin)])
         end
 
-      //TODO
-      elseif (typi==2 & k>size(ip,'*')+size(cip,'*')) then //implicit "output" port
-
-        k=k-size(ip,'*')-size(cip,'*')
-        typpto='out'
-        //port_number=k
-        port_number=o_ImplIndx(k)  //RN: explicit outputs are excluded
-                                   //in the computation of k
+      elseif (typi==2 & k>size(ip,'*')+size(cip,'*')) then // implicit "output" port
+        k = k-size(ip,'*')-size(cip,'*')
+        typpto='out'; 
+        port_number = o_ImplIndx(k)  //RN: explicit outputs are excluded
+                                     //    in the computation of k
         if impo(port_number)<>0 then
-           message(['Selected port is already connected.';..
-                    'To start a link off another link, place the cursor';..
-                    'on the split point and double click, or type l.']),
-           p_size = size(gh_axes.children)
+           message(["Selected port is already connected.";..
+                    "To start a link off another link, place the cursor";..
+                    "on the split point and double click"]),
+           p_size = size(gh_axes.children);
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
              gh_compound_delete = glue(gh_axes.children(1:d_size) );
@@ -471,23 +476,23 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         szin=getportsiz(o2,port_number,'out')
 
         if szin<>szout & mini([szin szout])>0 then
-          message(['Warning :';
-                   'Selected ports don''t have the same  size';
-                   'The port at the origin of the link has size '+string(szout);
-                   'the port at the end has size '+string(szin)+'.'])
+          message(["Warning :";
+                   "Selected ports don''t have the same  size";
+                   "The port at the origin of the link has size " + string(szout);
+                   "the port at the end has size " + string(szin)+'.'])
         end
 
       //** otherwise is an event input port
-      else //event input port
+      else // event input port
 
-        port_number=k-size(ip,'*')  //prod(size(find(typin==1)))
+        port_number = k-size(ip,'*');
 
         if cip(port_number)<>0 then
             hilite_obj(kto)
-            message(['Selected port is already connected.';..
-                     'To start a link off another link, place the cursor';..
-                     'on the split point and double click, or type l.']),
-            p_size = size(gh_axes.children)
+            message(["Selected port is already connected.";..
+                     "To start a link off another link, place the cursor";..
+                     "on the split point and double click."]),
+            p_size = size(gh_axes.children); 
             d_size = p_size(1)-o_size(1);
             if d_size > 0 then
               gh_compound_delete = glue(gh_axes.children(1:d_size) );
@@ -501,73 +506,52 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
             return; //** Exit point
         end
 
-        typpto='evtin'
-        szin=getportsiz(o2,port_number,'evtin')
+        typpto = 'evtin'; 
+        szin = getportsiz(o2,port_number,'evtin'); 
         if szin<>szout & mini([szin szout])>0 then
-          //-Alan-ONPASSEPARLA??
-          message(['Warning :';
-                   'Selected ports don''t have the same  size'
-                   'The port at the origin of the link has size '+string(szout);
-                   'the port at the end has size '+string(szin)+'.'])
+          message(["Warning :";
+                   "Selected ports don''t have the same  size"
+                   "The port at the origin of the link has size " + string(szout);
+                   "the port at the end has size " + string(szin)+'.'])
         end
 
       end
-      //**********************************
-      //fin
-
+      //** "fin" : this end a very long list of check on the final destination of the link *****
+   
       if %scicos_debug_gr then
         disp("|->>")
       end
 
-        //** ------------- VERY DANGEROUS CODE HERE ------------------------------------------
-        //** There is the serious possibility of residual "xor-mode" code 
+      break; //** this break the outher loop 
 
-      drawlater ;
+    else // (kto==[]) new point ends current line segment: you remain in the outher loop 
 
-      //** Alan's fix : 17/10/07 : remove that pieces of code.
-      //** Directly treated below in the case nx=1
-//       if kto==kfrom&size(xl,'*')==1 then
-//         //direct link between two port of the same block (add a point)
-//         xl=[xl;(xl+xc2)/2]
-//         yl=[yl;(yl+yc2)/2]
-//       end
-
-      break;
-
-    else //(kto==[]) new point ends current line segment
-
-      if xe<>xo|ye<>yo then //to avoid null length segments
-        xc2=xe;yc2=ye
-
-        // xpoly([xo;xc2],[yo;yc2],'lines')
+      if xe<>xo|ye<>yo then // to avoid null length segments
+        xc2 = xe; yc2 = ye ; 
 
         if abs(xo-xc2)<abs(yo-yc2) then
-          xc2=xo
+          xc2 = xo ;
         else
-          yc2=yo
+          yc2 = yo ; 
         end
 
-        // xpoly([xo;xc2],[yo;yc2],'lines')
         gh_link.data =  [xo yo ; xc2 yc2 ] ; //** temp
         gh_link.foreground = clr           ; //** put the color here
-        
-        //** draw(gh_link.parent); //** display the buffer
-        drawnow(); 
-        //** show_pixmap();           
+
+        drawnow();      
         
         if %scicos_debug_gr then
           disp("d8");//** Debug
         end
 
-        xl=[xl;xc2]
-        yl=[yl;yc2]
-        xo=xc2
-        yo=yc2
+        xl = [xl;xc2]; yl = [yl;yc2] ;
+        xo = xc2     ; yo = yc2    ;
       end
 
     end
 
-  end //loop on link segments
+  end // This is the end of the outher loop (loop on link segments)
+  //**---------------------------------------------------------------------------------------------
 
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
@@ -581,23 +565,21 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   nx = prod(size(xl))
 
   if from==to then
-      message(['Selected port is already connected.';..
-               'To start a link off another link, place the cursor';..
-               'on the split point and double click, or type l.']),
+      message(["Selected port is already connected.";..
+               "To start a link off another link, place the cursor";..
+               "on the split point and double click"]),
       p_size = size(gh_axes.children)
       d_size = p_size(1)-o_size(1);
       if d_size > 0 then
         gh_compound_delete = glue(gh_axes.children(1:d_size) );
         delete (gh_compound_delete); //** delete the object
-        //** draw(gh_curwin.children); //** display the buffer
         drawnow();
-        //** show_pixmap();  
       end
       if %scicos_debug_gr then
         disp("d9");//** Debug
       end
       drawnow();
-      return //** exit point
+      return //** EXIT point
   end
 
   //**-----------------------------------------------------------------------------------
@@ -671,18 +653,17 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
   //**---- Mr. Clean :) -----------------------------------------------------------------------
   p_size = size(gh_axes.children) ; //** p_size(1) is the number of compound object
-  d_size = p_size(1) - o_size(1) ;             //** at the and of this "Link" operation
+  d_size = p_size(1) - o_size(1) ;  //** at the and of this "Link" operation
   if d_size > 0 then
     gh_compound_delete = glue(gh_axes.children(1:d_size) );
     delete (gh_compound_delete); //** delete the object
   end
-
   //**------------------------------------------------------------------------------------------
 
   //----------- update objects structure -----------------------------
   //------------------------------------------------------------------
 
-  if fromsplit then //link comes from a split
+  if fromsplit then // link comes from a split
     nx=size(scs_m.objs)+1
     //split old link
     from1=o1.from
@@ -734,7 +715,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
       //---------------------------
 
-      scs_m.objs(nx)  = sp    ; //** the graphics datastucture is already up to date in "nx" position
+      scs_m.objs(nx)  = sp    ; //** the graphics datastructure is already up to date in "nx" position
 
       //---------------------------
 
@@ -744,21 +725,12 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       gh_axes.children(1).foreground = link1_color ;
       glue(gh_axes.children(1) ); //** create the compound :)
 
-    //---------------------------
-
-    //----------------------------//
-    // scs_m.objs(ks)=link1;      //
-    // scs_m.objs(nx)=sp          //
-    // scs_m.objs(nx+1)=link2;    //
-    //----------------------------//
-    //change link connected to the to block (before it was ks now it is
-    //nx+1 (link2)
-    //disp('scs_m.objs(to1(1))');pause
-    scs_m.objs(to1(1))=mark_prt(scs_m.objs(to1(1)),to1(2),outin(to1(3)+1),typ,nx+1)
+    //** update the diagram 
+    scs_m.objs(to1(1)) = mark_prt(scs_m.objs(to1(1)),to1(2),outin(to1(3)+1),typ,nx+1)
 
   end
 
-//**----------------------------------------------------------------------------------
+  //**----------------------------------------------------------------------------------
 
   //** add new link in objects structure
   nx = size(scs_m.objs)+1 ;

@@ -267,7 +267,7 @@ int sci_uigetfile(char *fname,unsigned long fname_len)
 	// More than one output
         CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selectionFileNames);
 	
-        nbColOutPath = strlen(selectionPathName);
+        nbColOutPath = (int)strlen(selectionPathName);
         CreateVarFromPtr(Rhs+2, STRING_DATATYPE, &nbColOutPath,&nbRowOutPath, &selectionPathName);
 
         LhsVar(1) = Rhs + 1 ;

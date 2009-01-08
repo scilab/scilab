@@ -58,11 +58,6 @@ void DrawableArcJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableArcJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableArcJavaMapper::translate(const double translation[3])
 {
   m_pJavaObject->translate(translation[0], translation[1], translation[2]);

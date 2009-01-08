@@ -47,7 +47,6 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	public void clean(int parentFigureIndex) {
 		super.clean(parentFigureIndex);
-		setFigureIndex(parentFigureIndex);
 		updateGLContext();
 		clearDisplayList();
 	}
@@ -148,6 +147,17 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	protected int getDlIndex() {
 		return dlIndex;
+	}
+	
+	/**
+	 * This function is used to know if the object is using
+	 * some OpenGL ressources that need to be released when the object is destroyed
+	 * This function will be called from outside the OpenGL thread so should not contain any
+	 * OpenGL call.
+	 * @return true if the object contains such ressources, for DrawableObject it is a display list
+	 */
+	public boolean isUsingOGLResources() {
+		return (dlIndex != GLTools.UNINIT_DL_INDEX);
 	}
 	
 }

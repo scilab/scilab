@@ -1,19 +1,27 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - 2008 Digitei Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.AWTEvent;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.Scrollable;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -21,6 +29,7 @@ import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabEventListener;
+import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
@@ -77,7 +86,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		// for event handling
 		this.setFocusable(true);
 		// Enable mouse Events sensitivity...
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
 
 		// for rotations
 		rotationTracker = null;
@@ -236,22 +245,13 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
 		}
 		
-		if (!canvas.isScrollable()) {
-			// we disable scrolling in this case, so put the viewport in correct position first
-			// and disable scrollbars
-			JViewport parentViewPort = (JViewport) getParent();
-			JScrollPane parentPane = (JScrollPane) parentViewPort.getParent();
-			parentViewPort.setViewPosition(new Point(0, 0));
-			parentPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-			parentPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		}
-		
 		// to be sure to have the same size
 		canvas.setSize(getSize());
 		
 		// we use a null layout. It's needed for uicontrol so they should resize when the canvas
 		// is resized. However, its imply to set the canvas size by hand.
-		ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
+		//ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
+		this.add(canvas.getAsComponent(), CANVAS_LAYER, TOP_POSITION);
 		
 		graphicCanvas = canvas;
 
@@ -292,8 +292,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public int addWidget(JComponent widget) {
 		// put the newly added object above any other objects
-		ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
-		
+		//ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
+		this.add(widget, WIDGET_LAYER, TOP_POSITION);
 		return getComponentZOrder(widget);
 	}
 
@@ -311,8 +311,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @return index of member in ArrayList
 	 */
 	public int addFrame(SwingScilabFrame frame) {
-		ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
-		
+		//ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
+		this.add(frame, WIDGET_LAYER, TOP_POSITION);
 		return getComponentZOrder(frame);
 	}
 
@@ -357,49 +357,29 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		}
 		return rotationTracker;
 	}
+
+	/**
+	 * BLOUNO
+	 */
+	public void repaint() {
+	    Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+	    super.repaint();
+	}
 	
 	/**
-	 * Override repaint so the canvas can be displayed even if heavyweight.
-	 * @param g graphics
+	 * Redefine paint children to be sure that AWT components are well painted.
+	 * @param g graphic pipeline
 	 */
 	public void paint(Graphics g) {
-		if (graphicCanvas != null) {
-			graphicCanvas.forcePaint(g);
+		Component[] children = getComponents();
+		for (int i = 0; i < children.length; i++) {
+			// AWT children don't draw themselves automatically
+			// so force their draw
+			if (!children[i].isLightweight()) {
+				children[i].paint(g);
+			}
 		}
-		
 		super.paint(g);
-	}
-	
-	/**
-	 * @return true if the canvas is scrollable
-	 */
-	public boolean isScrollable() {
-		return graphicCanvas == null || graphicCanvas.isScrollable();
-	}
-	
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processMouseEvent(MouseEvent e) {
-		super.processMouseEvent(e);
-	}
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processMouseMotionEvent(MouseEvent e) {
-		super.processMouseMotionEvent(e);
-	}
-	
-	/**
-	 * Override function to be able to call it from SwingScilabCanvas
-	 * @param e event produced on the canvas
-	 */
-	public void processKeyEvent(KeyEvent e) {
-		super.processKeyEvent(e);
 	}
 
 }

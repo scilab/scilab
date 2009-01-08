@@ -16,11 +16,11 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "scilabmode.h"
-#include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
 #include "loadOnUseClassPath.h"
+#include "rendererBasicAlgos.h"
 /*--------------------------------------------------------------------------*/ 
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/ 
@@ -115,8 +115,7 @@ int gw_graphics(void)
 			loadOnUseClassPath("graphics");
 			loadedDep = TRUE;
 		}
-
-		callFunctionFromGateway(Tab);
+		callFunctionFromGatewayWithExceptions(Tab);
 		C2F(putlhsvar)();
 	}
 	else

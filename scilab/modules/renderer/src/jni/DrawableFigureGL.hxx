@@ -90,6 +90,7 @@ jmethodID voidshowWindowID; // cache method id
 jmethodID voidsetNbSubwinsjintID; // cache method id
 jmethodID voidopenGraphicCanvasID; // cache method id
 jmethodID voidcloseGraphicCanvasID; // cache method id
+jmethodID voidsetUseSingleBufferjbooleanID; // cache method id
 
 
 /**
@@ -202,6 +203,8 @@ void setNbSubwins(int nbSubwins);
 void openGraphicCanvas();
 
 void closeGraphicCanvas();
+
+void setUseSingleBuffer(bool useSingleBuffer);
 
 
                         /**

@@ -58,6 +58,7 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
   status = sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
   enableFigureSynchronization(pobj);
 
-  return status;
+  /* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus(status);
 }
 /*------------------------------------------------------------------------*/
