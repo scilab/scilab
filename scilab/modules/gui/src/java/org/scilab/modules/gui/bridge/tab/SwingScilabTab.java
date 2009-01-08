@@ -22,7 +22,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.media.opengl.GLJPanel;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
 
@@ -133,7 +132,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	scrolling = new SwingScilabScrollPane(contentPane);
 
 	// put in in the back of the tab
-	setContentPane((Container) scrolling);
+	setContentPane(scrolling.getAsContainer());
 
 
 	this.setVisible(true);
@@ -268,11 +267,12 @@ public class SwingScilabTab extends View implements SimpleTab {
 
     	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
     		int[] currentView = getViewingRegion();
+    		final SwingScilabTab thisF = this;
     		try {
     			SwingUtilities.invokeAndWait(new Runnable() {
     				public void run() {
-    					scrolling = new AwtScilabScrollPane(contentPane);
-    					setContentPane((Container) scrolling);
+    					scrolling = new AwtScilabScrollPane(contentPane, thisF);
+    					setContentPane(scrolling.getAsContainer());
     					revalidate();
 
     				}
@@ -283,7 +283,7 @@ public class SwingScilabTab extends View implements SimpleTab {
     			e.getCause().printStackTrace();
     		}
     		// set the same viewport as before
-    		setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[3]);
+    		setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[2 + 1]);
     	}
     	return result;
     }
@@ -299,7 +299,7 @@ public class SwingScilabTab extends View implements SimpleTab {
     			SwingUtilities.invokeAndWait(new Runnable() {
     				public void run() {
     					scrolling = new SwingScilabScrollPane(contentPane);
-    					setContentPane((Container) scrolling);
+    					setContentPane(scrolling.getAsContainer());
     					revalidate();
     				}
     			});

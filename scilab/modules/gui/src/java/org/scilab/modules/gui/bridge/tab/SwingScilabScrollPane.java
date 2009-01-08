@@ -13,6 +13,7 @@
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -109,6 +110,13 @@ public class SwingScilabScrollPane extends JScrollPane implements
 	 */
 	public boolean getAutoResizeMode() {
 		return axes.getAutoResizeMode();
+	}
+	
+	/**
+	 * @return Container representation of this object
+	 */
+	public Container getAsContainer() {
+		return this;
 	}
 
 }

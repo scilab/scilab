@@ -41,7 +41,7 @@ DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
 /*---------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
 {
-  closeVisualFigure() ;
+  // do nothing here, figure is alredy closed
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::drawCanvas( void )
@@ -61,9 +61,9 @@ void DrawableFigureJoGL::createVisualFigure( int figureIndex )
 void DrawableFigureJoGL::closeVisualFigure( void )
 {
   // disable synchrnonization here to avoid deadlocks
-  endGraphicDataWriting();
+	disableFigureSynchronization(m_pDrawer->getDrawedObject());
   DrawableObjectJoGL::destroy() ;
-  startGraphicDataWriting();
+	enableFigureSynchronization(m_pDrawer->getDrawedObject());
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setFigureParameters(void)

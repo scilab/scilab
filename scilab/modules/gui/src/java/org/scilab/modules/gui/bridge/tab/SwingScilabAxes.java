@@ -368,6 +368,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	
 	/**
 	 * Redefine paint children to be sure that AWT components are well painted.
+	 * @param g graphic pipeline
 	 */
 	public void paint(Graphics g) {
 		Component[] children = getComponents();
