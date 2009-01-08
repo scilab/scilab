@@ -1393,7 +1393,8 @@ end
 if ~MSDOS then
   unix_w("cp -R " + scicoshelpdir + "/images/ " + buildDoc_dir);
 else
-  unix_w("copy -R " + scicoshelpdir + "/images/ " + buildDoc_dir);
+  mkdir(buildDoc_dir,'images');
+  unix_w("copy " + scicoshelpdir + "images " + buildDoc_dir + filesep() + 'images' );
 end
 
 buildDoc(output_format, master_doc, getlanguage(), scicoshelpdir);	  
@@ -1526,7 +1527,7 @@ tmpfiles = gsort(listfiles(directory + "/*"),"lr","i");
 
 for k=1:size(tmpfiles, "*")
   // Files to be ignored
-  if ~isempty(strindex(tmpfiles(k), "master_")) | ~isempty(strindex(tmpfiles(k), ".sce")) | ~isempty(strindex(tmpfiles(k), ".list_")) | ~isempty(strindex(tmpfiles(k), ".jar")) then
+  if ~isempty(strindex(tmpfiles(k), "master_")) | ~isempty(strindex(tmpfiles(k), ".sce")) | ~isempty(strindex(tmpfiles(k), ".list_")) | ~isempty(strindex(tmpfiles(k), ".last_")) | ~isempty(strindex(tmpfiles(k), ".jar")) then
     continue
   end
 
