@@ -743,9 +743,9 @@ HELP_CHAPTERFILE = addchapter.sce
 
 #### scicos : help files scripts ####
 @SCICOS_TRUE@libsciscicos_la_help_en_USdir = $(mydatadir)/help/en_US
-@SCICOS_TRUE@libsciscicos_la_help_en_US_DATA = help/en_US/scicos_help.jar
+@SCICOS_TRUE@libsciscicos_la_help_en_US_DATA = 
 @SCICOS_TRUE@libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
-@SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = help/fr_FR/scicos_help.jar
+@SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = 
 
 #########�Modelica #############
 @OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac
