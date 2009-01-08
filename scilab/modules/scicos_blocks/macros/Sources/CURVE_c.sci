@@ -253,7 +253,7 @@ if ~MSDOS then
   delmenu(curwin,'File')
   delmenu(curwin,'Insert')
 else
-  hidetoolbar(curwin)
+  toolbar(curwin,"off");
  // French
   delmenu(curwin,'&Fichier')
   delmenu(curwin,'&Editer')
