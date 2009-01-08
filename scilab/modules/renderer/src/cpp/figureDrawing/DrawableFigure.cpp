@@ -119,16 +119,13 @@ DrawableObject::EDisplayStatus DrawableFigure::draw( void )
     displaySingleObject();
     endDrawing() ;
   }
-  else if ( checkVisibility() )
+  else if ( checkVisibility() && checkAutoRedraw() )
   {
-    if (checkAutoRedraw())
-    {
-      initializeDrawing() ;
-      drawBackground();
-      setFigureParameters() ;
-      displayChildren() ;
-      endDrawing() ;
-    }
+    initializeDrawing() ;
+    drawBackground();
+    setFigureParameters() ;
+    displayChildren() ;
+    endDrawing() ;
   }
   else
   {
@@ -315,6 +312,11 @@ void DrawableFigure::openGraphicCanvas(void)
 void DrawableFigure::closeGraphicCanvas(void)
 {
 	getFigureImp()->closeGraphicCanvas();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::setUseSingleBuffer(bool useSingleBuffer)
+{
+	getFigureImp()->setUseSingleBuffer(useSingleBuffer);
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigure::isAbleToCreateFigure(void)

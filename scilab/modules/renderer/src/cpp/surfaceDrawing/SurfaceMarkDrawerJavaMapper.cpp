@@ -58,11 +58,6 @@ void SurfaceMarkDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void SurfaceMarkDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void SurfaceMarkDrawerJavaMapper::setMarkParameters(int background, int foreground, int markSizeUnit,
                                                     int markSize, int markStyleIndex)
 {

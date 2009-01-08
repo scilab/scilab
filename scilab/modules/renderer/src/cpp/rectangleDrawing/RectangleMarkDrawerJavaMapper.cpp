@@ -56,11 +56,6 @@ void RectangleMarkDrawerJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex);
 }
-/*--------------------------------------------------------------------------*/
-void RectangleMarkDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void RectangleMarkDrawerJavaMapper::setMarkParameters(int background, int foreground, int markSizeUnit, int markSize, int markStyleIndex)
 {

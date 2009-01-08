@@ -22,7 +22,9 @@
 function SelectLink_()
   //** This function is called after a single left click 
 
-  Select=[]; SelectRegion=list() ; //** init internal variable
+  Select=[]; 
+  SelectRegion=list() ; //** init internal variable
+  
   //  At this point Select=[]
 
   //**--------------- Navigator ----------------------------------
@@ -47,10 +49,10 @@ function SelectLink_()
     Cmenu=[]; %pt=[]; return
 
   //** case : kc index a "negative" windows id  --> the user has clicked in a palette window
-   elseif windows(kc,1) < 0 then //click dans une palette
-     kpal = -windows(kc,1) ;    //** recover thw windows palette id
-     palette = palettes(kpal) ; //** acquire all the palette
-     k = getobj(palette,%pt)  ; //** isolate the clicked block
+   elseif windows(kc,1) < 0 then //** single click inside a palette
+     kpal = -windows(kc,1) ;     //** recover thw windows palette id
+     palette = palettes(kpal) ;  //** acquire all the palette
+     k = getobj(palette,%pt)  ;  //** isolate the clicked block
 
      if k<>[] then 
        Select=[k,%win]; Cmenu=[]; %pt=[]; //** there is a block on this coordinate
@@ -60,15 +62,20 @@ function SelectLink_()
      end
 
    //** case : the user has clicked in the current editor window ( both main or superblock )
-    elseif %win==curwin then // click dans la fenetre courante
+    elseif %win==curwin then //** click inside the current window 
        k = getobj(scs_m,%pt) //** look for the object
        
        if k<>[] then //** if some object is found 
          
 	 Cmenu = check_edge(scs_m.objs(k),[],%pt); //** check if the click is on a port
-	 //** N.B. if the click is over an output port [Cmenu = "Link"]                        
+	 //** N.B. if the click is over an output port the above function produces [Cmenu = "Link"]
          if Cmenu==[] then //** if is NOT over a port 
               Select=[k,%win]; Cmenu=[]; %pt=[]; return //** it is just an object selection 
+         else
+          //** BEWARE: this is the intermediate entry point for the "Link" operation 
+          //** N.B. if the click is over an output port [Cmenu = "Link"]  
+              return //** the click was over an output: the function came back with the 
+                     //** "Link" command preloaded in "Cmenu"
          end
        
        else //** click in the void 

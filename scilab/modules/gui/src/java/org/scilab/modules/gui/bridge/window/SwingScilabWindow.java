@@ -25,9 +25,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
+import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.view.View;
 
@@ -106,6 +108,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 				for (int i = 0; i < dockArray.length; i++) {
 					((View) dockArray[i]).getActionButton(DockingConstants.CLOSE_ACTION).getAction().actionPerformed(null);
 				}
+				removeWindowListener(this);
 			}
 		});
 	}
@@ -248,10 +251,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public void removeTab(Tab tab) {
 		DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
+		DockingManager.unregisterDockable((Dockable) ((SwingScilabTab) tab.getAsSimpleTab()));
 		((SwingScilabTab) tab.getAsSimpleTab()).close();
 		if (getDockingPort().getDockables().isEmpty()) {
+			// remove xxxBars
 			if (toolBar != null) {
-				UIElementMapper.removeMapping(toolBar.getElementId());
+				((SwingScilabToolBar) toolBar).close();
 			}
 			if (menuBar != null) {
 				UIElementMapper.removeMapping(menuBar.getElementId());
@@ -261,8 +266,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 			addInfoBar(null);
 			UIElementMapper.removeMapping(this.elementId);
 			
+			// clean all
 			this.removeAll();
 			this.dispose();
+			
+			// disable docking port
+			ActiveDockableTracker.getTracker(this).setActive(null);
+			sciDockingPort.removeDockingListener(sciDockingListener);
+			sciDockingPort = null;
+			sciDockingListener = null;
 		} else {
 			/* Make sur a Tab is active */
 			Set<SwingScilabTab> docks = sciDockingPort.getDockables();
@@ -392,9 +404,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * Only useful when the window is not yet visible
 	 */
 	public void updateDimensions() {
-		if (!isVisible()) {
-			this.pack();
-		}
+		pack();
 	}
 	
 }

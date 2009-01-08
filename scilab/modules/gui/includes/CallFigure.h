@@ -31,5 +31,12 @@ void setFigureEventHandler(int ID, char * command);
  */
 void setFigureEventHandlerEnabled(int ID, BOOL status);
 
+/**
+ * Create a new graphic window
+ * @param ID id of the figure to create
+ * @return id of the created figure
+ */
+int newFigure(int ID);
+
 #endif /* !__CALLFIGURE_H__ */
 

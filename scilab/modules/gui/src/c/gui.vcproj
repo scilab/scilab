@@ -392,10 +392,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\CallFileChooser.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\CallFontChooser.cpp"
 				>
 			</File>
@@ -477,10 +473,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\exportUserInterface.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\FileChooser.cpp"
 				>
 			</File>
 			<File
@@ -949,14 +941,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\CallFileChooser.h"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\CallFileChooser.hxx"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\CallFontChooser.h"
 				>
 			</File>
@@ -1078,10 +1062,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\exportUserInterface.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\FileChooser.hxx"
 				>
 			</File>
 			<File

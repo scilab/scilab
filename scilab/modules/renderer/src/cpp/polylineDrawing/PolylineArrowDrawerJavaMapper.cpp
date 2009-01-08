@@ -58,11 +58,6 @@ void PolylineArrowDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void PolylineArrowDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void PolylineArrowDrawerJavaMapper::setArrowParameters(int arrowColor, double arrowSize)
 {
   m_pJavaObject->setArrowParameters(arrowColor, arrowSize);

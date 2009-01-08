@@ -34,9 +34,7 @@ public class AutoDrawableObjectGL extends DrawableClippedObjectGL {
 	public void show(int parentFigureIndex) {
 		// the display list should already have been created.
 		if (getGL().glIsList(getDlIndex())) {
-			super.initializeDrawing(parentFigureIndex);
 			displayDL();
-			super.endDrawing();
 		}
 	}
 	

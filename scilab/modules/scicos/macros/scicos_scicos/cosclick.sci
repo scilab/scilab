@@ -98,7 +98,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       cmd = 'Cmenu = '"MoveLink'"'
     
     elseif (btn==3) then
-      cmd='Cmenu=''SelectLink'''
+      cmd='Cmenu=''SelectLink''' //** indirect call via commands 
     
     elseif (btn==10) then 
       cmd='Cmenu='"Open/Set'"'
@@ -114,7 +114,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
           ind=ind($)
           cmd='Cmenu='''+%scicos_short(ind,2)+''''
         else
-          cmd='Cmenu=''SelectLink'''
+          cmd='Cmenu=''SelectLink'''//** indirect call via commands for shortcut
         end
       else
         cmd='Cmenu=''SelectLink'''
@@ -130,11 +130,11 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     Scicos_commands = ['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
 		        cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
 		      ]
-    return ; //** EXIT POINT 
+    return ; //** EXIT POINT for the indirect command (to be explored)
   
   //** -----------------------------------------------------------
   elseif (btn==3) then //** Single click : Left Mouse Button : no window check         
-    Cmenu = "SelectLink" ; 
+    Cmenu = "SelectLink" ; //** direct command: "Link" or selection of a block 
     
   //** -----------------------------------------------------------
   elseif (btn==0) then //** Press button : Left Mouse Button : no window check 

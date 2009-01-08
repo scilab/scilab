@@ -15,7 +15,6 @@
 #define _CONCRETE_DRAWABLE_SUBWIN_HXX_
 
 #include <list>
-#include <vector>
 
 #include "DrawableSubwin.h"
 #include "ComputeBoundsStrategy.hxx"
@@ -229,7 +228,7 @@ protected:
   std::list<DrawAxesBoxStrategy *> m_oAxesBoxDrawers;
 
   /** list of text objects to draw at the end, ordered from back to front */
-  std::vector<sciPointObj *> m_oDisplayedTexts;
+	std::list<sciPointObj *> m_oDisplayedTexts;
 
   /** Specify wether some texts objects has been added or removed since last update */
   bool m_bTextListChanged;
@@ -248,17 +247,18 @@ private:
    */
   int computeConcealedCornerIndex(void);
 
-  /**
-   * Fill the dists array with the distances of the texts objects to
-   * the viewpoint.
-   */
-  void computeEyeDistances(double dists[], int nbTexts);
-
-  /**
+	/**
    * Compute the distance of a text object to the view point.
    * @param cam camera sed to get the distance.
    */
-  double getEyeDistance(sciPointObj * pText);
+	static double getEyeDistance(Camera * cam, sciPointObj * pText);
+
+	/**
+	 * Compare the viewing depth of two text object.
+	 * This functions returns true if pText1 is deeper than pText2.
+	 * This function is used to sort texts within the text list.
+	 */
+	static bool getTextOrder(sciPointObj * pText1, sciPointObj * pText2);
 
   
 };

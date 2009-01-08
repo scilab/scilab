@@ -70,7 +70,13 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
 
     rotatedObject = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
 
-    if (sciGetEntityType(rotatedObject) == SCI_FIGURE)
+		if (rotatedObject == NULL)
+		{
+			Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+      LhsVar(1) = 0;
+      return -1;
+		}
+    else if (sciGetEntityType(rotatedObject) == SCI_FIGURE)
     {
       interactiveRotation(rotatedObject);
     }

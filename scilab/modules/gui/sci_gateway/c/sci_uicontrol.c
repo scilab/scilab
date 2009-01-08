@@ -78,7 +78,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       GraphicHandle=sciGetHandle(CreateUIControl(NULL));
 
       /* Set the parent */
-      setCurentFigureAsPushButtonParent((sciPointObj*) GraphicHandle);
+      setCurentFigureAsPushButtonParent(sciGetPointerFromHandle(GraphicHandle));
     }
   else if (Rhs==1)
     {
@@ -119,7 +119,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               GraphicHandle=sciGetHandle(CreateUIControl(NULL));
               
               /* First parameter is the parent */
-              setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
+              setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
               if (setStatus == SET_PROPERTY_ERROR)
                 {
                   Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
@@ -294,35 +294,36 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       /* If no parent given then the current figure is the parent */
       if(propertiesValuesIndices[1]==NOT_FOUND)
         {
+					sciPointObj * graphicObject = sciGetPointerFromHandle(GraphicHandle);
           /* Set the parent */
-           switch(pUICONTROL_FEATURE( ((sciPointObj*) GraphicHandle) )->style)
+           switch(pUICONTROL_FEATURE(graphicObject)->style)
             {
             case SCI_PUSHBUTTON:
-              setCurentFigureAsPushButtonParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsPushButtonParent(graphicObject);
               break;
             case SCI_EDIT:
-              setCurentFigureAsEditBoxParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsEditBoxParent(graphicObject);
               break;
             case SCI_UITEXT:
-              setCurentFigureAsLabelParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsLabelParent(graphicObject);
               break;
             case SCI_CHECKBOX:
-              setCurentFigureAsCheckBoxParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsCheckBoxParent(graphicObject);
               break;
             case SCI_RADIOBUTTON:
-              setCurentFigureAsRadioButtonParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsRadioButtonParent(graphicObject);
               break;
             case SCI_SLIDER:
-              setCurentFigureAsSliderParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsSliderParent(graphicObject);
               break;
             case SCI_POPUPMENU:
-              setCurentFigureAsPopupMenuParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsPopupMenuParent(graphicObject);
               break;
             case SCI_LISTBOX:
-              setCurentFigureAsListBoxParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsListBoxParent(graphicObject);
               break;
             case SCI_UIFRAME:
-              setCurentFigureAsFrameParent((sciPointObj*) GraphicHandle);
+              setCurentFigureAsFrameParent(graphicObject);
               break;
            default:
               break;
@@ -333,7 +334,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       if(propertiesValuesIndices[10]==NOT_FOUND)
         {
           /* See SetUicontrolPosition for the use of -1 as stackPointer */
-          SetUicontrolPosition((sciPointObj*) GraphicHandle, -1, 0, 0, 0);
+          SetUicontrolPosition(sciGetPointerFromHandle(GraphicHandle), -1, 0, 0, 0);
         }
 
       /* Read and set all properties */
@@ -346,7 +347,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   stkAdr = propertiesValuesIndices[inputIndex]; /* Special management */
                   nbRow = -1; 
                   nbCol = -1;
-                  setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                  setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                 }
               else /* All other properties */
                 {
@@ -355,23 +356,23 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     {
                     case sci_matrix:
                       GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                      setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                      setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
                     case sci_strings:
                       if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
                         {
                           GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
-                          setStatus = callSetProperty((sciPointObj*) GraphicHandle, (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                          setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                         }
                       else
                         {
                           GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                          setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                          setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                         }
                       break;
                     case sci_handles:
                       GetRhsVar(propertiesValuesIndices[inputIndex],GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                      setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                      setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
                     default:
                       setStatus = SET_PROPERTY_ERROR;

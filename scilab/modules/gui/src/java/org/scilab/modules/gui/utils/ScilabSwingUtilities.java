@@ -47,6 +47,8 @@ public final class ScilabSwingUtilities {
 	 * @param component component to add
 	 * @param parent parent in which the component will be added
 	 */
+
+	/*
 	public static void addToParent(JComponent component, Container parent) {
 		final JComponent componentF = component;
 		final Container parentF = parent;
@@ -64,7 +66,7 @@ public final class ScilabSwingUtilities {
 			e.getCause().printStackTrace();
 		}
 	}
-	
+	*/
 	/**
 	 * Remove a component from its parent.
 	 * This method is thread safe.
@@ -80,7 +82,7 @@ public final class ScilabSwingUtilities {
 					if (parent != null) {
 						parent.remove(componentF);
 						// repaint to see the changes
-						parent.repaint();
+						//parent.repaint();
 					}
 				}
 			});
@@ -99,6 +101,7 @@ public final class ScilabSwingUtilities {
 	 * @param constraints an object expressing layout constraints for the parent
 	 * @param index the position in the container's list at which to insert the component; -1 means insert at the end component 
 	 */
+/*
 	public static void addToParent(Component component, Container parent, Object constraints, int index) {
 		final Component componentF = component;
 		final Container parentF = parent;
@@ -118,7 +121,7 @@ public final class ScilabSwingUtilities {
 			e.getCause().printStackTrace();
 		}
 	}
-	
+*/	
 	/**
 	 * Create a cursor than can be used with any component from an icon.
 	 * The icon can be any kind of image that can be read with ImageIO (jpg, png, gif, bmp)

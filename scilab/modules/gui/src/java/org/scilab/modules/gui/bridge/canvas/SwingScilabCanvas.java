@@ -18,6 +18,7 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -27,6 +28,7 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.ScilabRubberBox;
@@ -75,7 +77,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		setFocusable(false);
 		
 		// to avoid mouse events on canvas
-		setEnabled(false);
+		//setEnabled(false);
 		
 		
 	}
@@ -236,6 +238,35 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 		getContext().release();		
 
 		return dump;
+	}
+	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 */
+	public void setSingleBuffered(boolean useSingleBuffer) {
+		// When in single buffer
+		// we need to be sure that no incoming modifications will occur on the canvas
+		// such as resize, needed repaint, etc...
+		// Otherwise it might mess up the draw, specially with scicos.
+		// So we wait until the event queue is totally empty.
+		if (useSingleBuffer && getChosenGLCapabilities().getDoubleBuffered()) {
+    		Object lock = new Object();
+    		// Check if there are still events on the queue
+    		while(Toolkit.getDefaultToolkit().getSystemEventQueue().peekEvent() != null) {
+    			// if yes, wait a little to avoid consuming CPU.
+    			synchronized (lock) {
+					try {
+						lock.wait(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+    		}
+  	
+    	}
+		// nothing to do when switching back to double buffer
+		// or if already in single buffer mode
 	}
 	
 	/**
