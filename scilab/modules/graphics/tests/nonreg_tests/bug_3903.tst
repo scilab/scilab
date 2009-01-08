@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3903
 //
 // <-- Short Description -->
-// "xdel" of a non existent window crash Scilab
+// "xdel" of a non existent window crashes Scilab
 // 
 
 // close all figures
