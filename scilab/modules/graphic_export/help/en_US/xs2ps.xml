@@ -99,8 +99,6 @@ xs2ps(0,filename);</programlisting>
 
       <member><link linkend="printfigure">printfigure</link></member>
 
-      <member><link linkend="xbasimp">xbasimp</link></member>
-
       <member><link linkend="xs2bmp">xs2bmp</link></member>
 
       <member><link linkend="xs2gif">xs2gif</link></member>
