@@ -43,10 +43,6 @@ msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Un booléen attendu.\
 msgid "%s: Slave interpreter already exists.\n"
 msgstr "%s: L'interpréteur esclave existe déjà.\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
-
 msgid "Tcl/Tk interface not loaded."
 msgstr "Interface TCL/TK n'est pas chargée."
 
@@ -273,6 +269,9 @@ msgstr "Impossible de définir l'encodage système."
 
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Le module TCL/TK de Scilab n'est pas installé.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
 #~ msgid "%s: Wrong number of input argument: %d expected.\n"
 #~ msgstr "%s: Mauvais nombre d'argument d'entrée: %d attendu.\n"
